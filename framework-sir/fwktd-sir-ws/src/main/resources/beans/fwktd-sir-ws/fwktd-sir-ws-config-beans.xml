@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="fwktd_sir_ws_configurationResourceLoaderImpl" name="fwktd_sir_ws_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl">
+	</bean>
+
+	<bean id="fwktd_sir_ws_configurationBean" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="CONFIG_SUBDIR" value="fwktd-sir-ws" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

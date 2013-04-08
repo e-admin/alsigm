@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt 	
+				type="BeanPropertySimpleFmt" 
+				property='NAME' 
+				readOnly='false'
+				titleKey='formatter.selectOrganization.nombre' 
+				fieldType='LINK' 
+				fieldLink='UID'
+				styleClass='displayLink'
+				media='html '
+				decorator=''
+				url='selectOrg'
+				id='uid'
+				width='50%'
+	/>
+	<propertyfmt	
+				type="BeanPropertySimpleFmt" 
+				propertyValueKey='formatter.selectOrganization.seleccionar' 
+				readOnly='false'
+				titleKey='formatter.selectOrganization.accion' 
+				fieldType='LINK' 
+				fieldLink='UID'
+				styleClass='displayLink'
+				media='html '
+				decorator=''
+				url='setOrg'
+				id='uid'
+				width='50%' 				
+	/>
+</beanformatter>

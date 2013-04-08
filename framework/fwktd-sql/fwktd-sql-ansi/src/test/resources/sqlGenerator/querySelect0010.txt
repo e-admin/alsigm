@@ -1,0 +1,1 @@
+SELECT "Clientes".* , 'constante1' , 'constante2'  AS "alias2" FROM DATACM_4_0."Clientes" "Clientes"

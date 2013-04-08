@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS ENTITY="StrutsProcess">
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action0"
+  TITLE="loginForm" ID="#html#login" TYPE="action" PATH="/html/login" SHAPE="40,-8,100,57">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward" PATH="/welcome.jsp" TARGET="page13"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="error" ID="error" TYPE="forward" PATH="/acs/login.jsp"
+   SHAPE="139,32,224,32,224,136,239,136" TARGET="page1"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page1" TITLE="login.jsp"
+  TYPE="page" SUBTYPE="jsp" PATH="/acs/login.jsp" SHAPE="240,129,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/html/login.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/html/login.do" TARGET="action0"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link1"
+   TITLE="/html/changePwd.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/html/changePwd.do" TARGET="action59"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page2"
+  TITLE="header.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/layouts/header.jsp" SHAPE="240,290,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page3" TITLE="menu.jsp"
+  TYPE="page" SUBTYPE="jsp" PATH="/layouts/menu.jsp" SHAPE="240,402,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page5" TITLE="home.jsp"
+  TYPE="page" SUBTYPE="jsp" PATH="/layouts/home.jsp" SHAPE="240,609,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page4" TITLE="blank.jsp"
+  TYPE="page" SUBTYPE="jsp" PATH="/layouts/blank.jsp" SHAPE="240,721,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action1" ID="#adminUser"
+  TYPE="action" PATH="/adminUser" SHAPE="32,161,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward2"
+   TITLE="adminUserBD" ID="adminUserBD" TYPE="forward"
+   PATH="/adminUser/bd/adminUser.jsp" TARGET="page7"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward3"
+   TITLE="adminUserLDAP" ID="adminUserLDAP" TYPE="forward"
+   PATH="/adminUser/ldap/adminUser.jsp" TARGET="page12"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page7"
+  TITLE="adminUser.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/adminUser.jsp" SHAPE="448,273,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action2" ID="#blank"
+  TYPE="action" SUBTYPE="forward" PATH="/blank" SHAPE="32,753,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="action2"
+   TITLE="forward" TYPE="forward" PATH="/layouts/blank.jsp" TARGET="page4"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action3"
+  TITLE="usersListForm" ID="#user#bd#usersList" TYPE="action"
+  PATH="/user/bd/usersList" SHAPE="32,417,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/usersList.jsp" TARGET="page14"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="addPerms" ID="addPerms" TYPE="forward"
+   PATH="/archive/usersList.jsp" TARGET="page53"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action4"
+  TITLE="userFormBd" ID="#user#bd#userEdit" TYPE="action"
+  PATH="/user/bd/userEdit" SHAPE="32,641,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/userEditBd.jsp" TARGET="page6"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action5"
+  TITLE="basicForm" ID="#user#bd#deptEdit" TYPE="action"
+  PATH="/user/bd/deptEdit" SHAPE="32,977,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/deptEdit.jsp" TARGET="page8"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action6"
+  TITLE="basicForm" ID="#user#bd#groupEdit" TYPE="action"
+  PATH="/user/bd/groupEdit" SHAPE="32,1201,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/groupEdit.jsp" TARGET="page22"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action7"
+  TITLE="basicForm" ID="#user#bd#groupProperties" TYPE="action"
+  PATH="/user/bd/groupProperties" SHAPE="32,1313,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/groupProperties.jsp" TARGET="page10"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action8"
+  TITLE="basicForm" ID="#user#bd#deptProperties" TYPE="action"
+  PATH="/user/bd/deptProperties" SHAPE="32,1425,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/deptProperties.jsp" TARGET="page11"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action9"
+  TITLE="basicForm" ID="#user#bd#deptDelete" TYPE="action"
+  PATH="/user/bd/deptDelete" SHAPE="32,1089,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/common/messagesDelete.jsp" TARGET="page33"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action10"
+  TITLE="basicForm" ID="#user#bd#userProperties" TYPE="action"
+  PATH="/user/bd/userProperties" SHAPE="32,1537,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/userPropertiesBd.jsp" TARGET="page9"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page14"
+  TITLE="usersList.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/usersList.jsp" SHAPE="448,529,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page6"
+  TITLE="userEditBd.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/userEditBd.jsp" SHAPE="448,753,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/userEdit.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/userEdit.do" TARGET="action4"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link1"
+   TITLE="/user/bd/userDelete.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/userDelete.do" TARGET="action28"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page8"
+  TITLE="deptEdit.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/deptEdit.jsp" SHAPE="240,1089,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/deptDelete.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/deptDelete.do" TARGET="action9"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link1"
+   TITLE="/user/bd/deptEdit.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/deptEdit.do" TARGET="action5"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page10"
+  TITLE="groupProperties.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/groupProperties.jsp" SHAPE="448,1425,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/groupProperties.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/groupProperties.do" TARGET="action7"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page11"
+  TITLE="deptProperties.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/deptProperties.jsp" SHAPE="240,1649,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/deptProperties.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/deptProperties.do" TARGET="action8"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page9"
+  TITLE="userPropertiesBd.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/userPropertiesBd.jsp" SHAPE="240,1761,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/userProperties.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/userProperties.do" TARGET="action10"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page12"
+  TITLE="adminUser.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/ldap/adminUser.jsp" SHAPE="448,161,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page13"
+  TITLE="welcome.jsp" TYPE="page" SUBTYPE="jsp" PATH="/welcome.jsp" SHAPE="440,8,50,25"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action12"
+  TITLE="basicForm" ID="#user#bd#deptNew" TYPE="action"
+  PATH="/user/bd/deptNew" SHAPE="624,88,100,25">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/confirm/confirm.jsp" TARGET="page16"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="ok" ID="ok" TYPE="forward" PATH="/adminUser/bd/deptNew.jsp" TARGET="page19"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward2"
+   TITLE="cancel" ID="cancel" TYPE="forward" PATH="/layouts/blank.jsp" TARGET="page4"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page16"
+  TITLE="confirm.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/confirm/confirm.jsp" SHAPE="664,136,50,25"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action13"
+  TITLE="userFormBd" ID="#user#bd#userNew" TYPE="action"
+  PATH="/user/bd/userNew" SHAPE="448,1873,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/confirm/confirm.jsp" TARGET="page16"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="ok" ID="ok" TYPE="forward" PATH="/adminUser/bd/userNew.jsp" TARGET="page17"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page17"
+  TITLE="userNew.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/userNew.jsp" SHAPE="656,1873,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/userNew.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/userNew.do" TARGET="action13"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page18"
+  TITLE="resetTest.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/test/resetTest.jsp" SHAPE="32,2018,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/testAction.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/testAction.do" TARGET="action14"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page19"
+  TITLE="deptNew.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/deptNew.jsp" SHAPE="832,88,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/deptNew.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/deptNew.do" TARGET="action12"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action16"
+  ID="#user#bd#groupTree" TYPE="action" PATH="/user/bd/groupTree" SHAPE="32,2241,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/groupTree.jsp" TARGET="page21"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="addPerms" ID="addPerms" TYPE="forward"
+   PATH="/archive/groupTree.jsp" TARGET="page59"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page21"
+  TITLE="groupTree.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/groupTree.jsp" SHAPE="240,2353,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page22"
+  TITLE="groupEdit.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/groupEdit.jsp" SHAPE="240,1313,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/groupDelete.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/groupDelete.do" TARGET="action27"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link1"
+   TITLE="/user/bd/groupEdit.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/groupEdit.do" TARGET="action6"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action15"
+  TITLE="basicForm" ID="#user#bd#groupNew" TYPE="action"
+  PATH="/user/bd/groupNew" SHAPE="448,2017,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/confirm/confirm.jsp" TARGET="page16"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="ok" ID="ok" TYPE="forward" PATH="/adminUser/bd/groupNew.jsp" TARGET="page15"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page15"
+  TITLE="groupNew.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/groupNew.jsp" SHAPE="240,2034,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/groupNew.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/groupNew.do" TARGET="action15"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action17"
+  TITLE="groupList" ID="#groupList" TYPE="action" PATH="/groupList" SHAPE="240,2625,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/test/groupList.jsp" TARGET="page23"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page23"
+  TITLE="groupList.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/test/groupList.jsp" SHAPE="32,2610,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/groupList.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/groupList.do" TARGET="action17"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="forward4" TITLE="error"
+  ID="error" TYPE="forward" PATH="/error/application_error.jsp"
+  SHAPE="32,2721,0,0" TARGET="page24"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page24"
+  TITLE="application_error.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/error/application_error.jsp" SHAPE="240,2738,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action18"
+  ID="#user#ldap#userTree" TYPE="action" PATH="/user/ldap/userTree" SHAPE="32,2945,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/ldap/UserTree.jsp" TARGET="page25"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="addPerms" ID="addPerms" TYPE="forward"
+   PATH="/archive/userTreeLdap.jsp" TARGET="page56"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page25"
+  TITLE="UserTree.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/ldap/UserTree.jsp" SHAPE="240,2962,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action19"
+  TITLE="userFormLdap" ID="#user#ldap#properties" TYPE="action"
+  PATH="/user/ldap/properties" SHAPE="32,3057,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/ldap/properties.jsp" TARGET="page26"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page26"
+  TITLE="properties.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/ldap/properties.jsp" SHAPE="240,3074,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action20"
+  TITLE="searchForm" ID="#user#bd#search" TYPE="action"
+  PATH="/user/bd/search" SHAPE="240,3297,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/search.jsp" TARGET="page27"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page27"
+  TITLE="search.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/search.jsp" SHAPE="32,3282,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/search.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/search.do" TARGET="action20"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action21"
+  ID="#user#bd#userMenu" TYPE="action" PATH="/user/bd/userMenu" SHAPE="32,3393,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/userMenu.jsp" TARGET="page28"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page28"
+  TITLE="userMenu.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/userMenu.jsp" SHAPE="240,3410,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action22"
+  TITLE="userFormLdap" ID="#user#ldap#userEdit" TYPE="action"
+  PATH="/user/ldap/userEdit" SHAPE="240,3633,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/ldap/userEdit.jsp" TARGET="page29"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page29"
+  TITLE="userEdit.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/ldap/userEdit.jsp" SHAPE="32,3618,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/ldap/userEdit.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/ldap/userEdit.do" TARGET="action22"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link1"
+   TITLE="/user/ldap/userDelete.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/ldap/userDelete.do" TARGET="action29"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action23"
+  TITLE="basicForm" ID="#user#ldap#groupEdit" TYPE="action"
+  PATH="/user/ldap/groupEdit" SHAPE="240,3857,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/ldap/groupEdit.jsp" TARGET="page30"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page30"
+  TITLE="groupEdit.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/ldap/groupEdit.jsp" SHAPE="32,3842,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/ldap/groupEdit.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/ldap/groupEdit.do" TARGET="action23"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link1"
+   TITLE="/user/ldap/groupDelete.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/ldap/groupDelete.do" TARGET="action30"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action25"
+  ID="#user#ldap#userNew" TYPE="action" PATH="/user/ldap/userNew" SHAPE="32,3841,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/user/ldap/userEdit.do" TARGET="action22"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action24"
+  ID="#user#ldap#groupNew" TYPE="action" PATH="/user/ldap/groupNew" SHAPE="32,4065,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/user/ldap/groupEdit.do" TARGET="action23"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action26"
+  TITLE="searchForm" ID="#user#ldap#search" TYPE="action"
+  PATH="/user/ldap/search" SHAPE="240,4337,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/ldap/search.jsp" TARGET="page31"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page31"
+  TITLE="search.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/ldap/search.jsp" SHAPE="32,4322,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/ldap/search.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/ldap/search.do" TARGET="action26"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page33"
+  TITLE="messagesDelete.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/common/messagesDelete.jsp" SHAPE="448,1089,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action27"
+  TITLE="basicForm" ID="#user#bd#groupDelete" TYPE="action"
+  PATH="/user/bd/groupDelete" SHAPE="448,1313,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/common/messagesDelete.jsp" TARGET="page33"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="failure" ID="failure" TYPE="forward"
+   PATH="/user/ldap/groupEdit.do" TARGET="action23"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action28"
+  TITLE="userFormBd" ID="#user#bd#userDelete" TYPE="action"
+  PATH="/user/bd/userDelete" SHAPE="752,769,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/common/messagesDelete.jsp" TARGET="page33"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action29"
+  TITLE="userFormLdap" ID="#user#ldap#userDelete" TYPE="action"
+  PATH="/user/ldap/userDelete" SHAPE="256,1281,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/common/messagesDelete.jsp" TARGET="page33"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="failure" ID="failure" TYPE="forward"
+   PATH="/user/ldap/userEdit.do" TARGET="action22"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action30"
+  TITLE="basicForm" ID="#user#ldap#groupDelete" TYPE="action"
+  PATH="/user/ldap/groupDelete" SHAPE="256,1025,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/common/messagesDelete.jsp" TARGET="page33"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action31"
+  ID="#volume#repositoriesTree" TYPE="action"
+  PATH="/volume/repositoriesTree" SHAPE="32,4673,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/volumeTree.jsp" TARGET="page32"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page32"
+  TITLE="volumeTree.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/volumeTree.jsp" SHAPE="240,4690,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action32"
+  TITLE="volumeListForm" ID="#volume#volumeList" TYPE="action"
+  PATH="/volume/volumeList" SHAPE="32,4785,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/volumeList.jsp" TARGET="page34"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page34"
+  TITLE="volumeList.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/volumeList.jsp" SHAPE="240,4802,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action33"
+  TITLE="volumeForm" ID="#volume#volumeProperties" TYPE="action"
+  PATH="/volume/volumeProperties" SHAPE="240,5137,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/volumeProperties.jsp" TARGET="page35"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page35"
+  TITLE="volumeProperties.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/volumeProperties.jsp" SHAPE="32,5122,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/volumeProperties.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/volume/volumeProperties.do" TARGET="action33"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action34"
+  TITLE="volumeForm" ID="#volume#volumeEdit" TYPE="action"
+  PATH="/volume/volumeEdit" SHAPE="240,5473,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/volumeEdit.jsp" TARGET="page36"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page36"
+  TITLE="volumeEdit.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/volumeEdit.jsp" SHAPE="32,5458,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/volumeEdit.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/volume/volumeEdit.do" TARGET="action34"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action35"
+  TITLE="repositoryForm" ID="#volume#repositoryProperties" TYPE="action"
+  PATH="/volume/repositoryProperties" SHAPE="240,5809,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/repositoryProperties.jsp" TARGET="page37"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page37"
+  TITLE="repositoryProperties.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/repositoryProperties.jsp" SHAPE="32,5794,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/repositoryProperties.do" TYPE="link"
+   SUBTYPE="confirmed" PATH="/volume/repositoryProperties.do" TARGET="action35"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action36"
+  TITLE="repositoryForm" ID="#volume#repositoryEdit" TYPE="action"
+  PATH="/volume/repositoryEdit" SHAPE="32,6129,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/repositoryEdit.jsp" TARGET="page38"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page38"
+  TITLE="repositoryEdit.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/repositoryEdit.jsp" SHAPE="240,6129,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/repositoryEdit.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/volume/repositoryEdit.do" TARGET="action36"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action37"
+  ID="#volume#listTree" TYPE="action" PATH="/volume/listTree" SHAPE="32,6465,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/volumeListTree.jsp" TARGET="page39"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page39"
+  TITLE="volumeListTree.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/volumeListTree.jsp" SHAPE="240,6482,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action38"
+  TITLE="listForm" ID="#volume#listProperties" TYPE="action"
+  PATH="/volume/listProperties" SHAPE="240,6817,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/ListProperties.jsp" TARGET="page40"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page40"
+  TITLE="ListProperties.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/ListProperties.jsp" SHAPE="32,6802,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/listProperties.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/volume/listProperties.do" TARGET="action38"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action39"
+  TITLE="listForm" ID="#volume#listEdit" TYPE="action"
+  PATH="/volume/listEdit" SHAPE="240,6929,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/ListEdit.jsp" TARGET="page41"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page41"
+  TITLE="ListEdit.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/ListEdit.jsp" SHAPE="32,6914,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/listEdit.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/volume/listEdit.do" TARGET="action39"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action40"
+  TITLE="listForm" ID="#volume#listNew" TYPE="action"
+  PATH="/volume/listNew" SHAPE="240,7265,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/messages.jsp" TARGET="page42"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="ok" ID="ok" TYPE="forward" PATH="/volume/ListNew.jsp" TARGET="page43"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page42"
+  TITLE="messages.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/messages.jsp" SHAPE="464,7250,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page43"
+  TITLE="ListNew.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/ListNew.jsp" SHAPE="32,7250,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/listNew.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/volume/listNew.do" TARGET="action40"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action41"
+  TITLE="volumeForm" ID="#volume#volumeNew" TYPE="action"
+  PATH="/volume/volumeNew" SHAPE="240,7633,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/messages.jsp" TARGET="page42"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="ok" ID="ok" TYPE="forward" PATH="/volume/volumeNew.jsp" TARGET="page44"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page44"
+  TITLE="volumeNew.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/volumeNew.jsp" SHAPE="32,7618,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/volumeNew.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/volume/volumeNew.do" TARGET="action41"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action42"
+  TITLE="repositoryForm" ID="#volume#repositoryNew" TYPE="action"
+  PATH="/volume/repositoryNew" SHAPE="256,7633,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="ok_1" ID="ok_1" TYPE="forward"
+   PATH="/volume/repositoryNewStep1.jsp" TARGET="page45"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="ok_2" ID="ok_2" TYPE="forward"
+   PATH="/volume/repositoryNewStep2.jsp" TARGET="page46"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward2"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/messages.jsp" TARGET="page42"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page45"
+  TITLE="repositoryNewStep1.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/repositoryNewStep1.jsp" SHAPE="32,7618,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/repositoryNew.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/volume/repositoryNew.do" TARGET="action42"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page46"
+  TITLE="repositoryNewStep2.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/volume/repositoryNewStep2.jsp" SHAPE="32,7794,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/volume/repositoryNew.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/volume/repositoryNew.do" TARGET="action42"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action43"
+  TITLE="VolumeDeleteForm" ID="#volume#delete" TYPE="action"
+  PATH="/volume/delete" SHAPE="256,5841,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/volume/messages.jsp" TARGET="page42"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action14"
+  ID="#testAction" TYPE="action" SUBTYPE="unknown" PATH="/testAction" SHAPE="240,2130,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action44"
+  ID="#archive#dirTree" TYPE="action" PATH="/archive/dirTree" SHAPE="32,8273,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/DirTree.jsp" TARGET="page47"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page47"
+  TITLE="DirTree.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/DirTree.jsp" SHAPE="240,8290,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action45"
+  ID="#archive#archivesList" TYPE="action" PATH="/archive/archivesList" SHAPE="32,8833,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/archivesList.jsp" TARGET="page48"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page48"
+  TITLE="archivesList.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/archivesList.jsp" SHAPE="240,8850,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action46"
+  ID="#user#bd#deptTree" TYPE="action" PATH="/user/bd/deptTree" SHAPE="32,9393,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/adminUser/bd/deptTree.jsp" TARGET="page49"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="addPerm" ID="addPerm" TYPE="forward"
+   PATH="/archive/userTreeBd.jsp" TARGET="page52"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page49"
+  TITLE="deptTree.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/adminUser/bd/deptTree.jsp" SHAPE="240,9410,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action47"
+  TITLE="archiveForm" ID="#archive#archiveProperties" TYPE="action"
+  PATH="/archive/archiveProperties" SHAPE="32,9953,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/archiveProperties.jsp" TARGET="page50"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page50"
+  TITLE="archiveProperties.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/archiveProperties.jsp" SHAPE="240,9970,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action48"
+  TITLE="archiveForm" ID="#archive#archiveEdit" TYPE="action"
+  PATH="/archive/archiveEdit" SHAPE="32,10513,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/archiveEdit.jsp" TARGET="page51"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page51"
+  TITLE="archiveEdit.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/archiveEdit.jsp" SHAPE="240,10530,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page54"
+  TITLE="userTreeFrame.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/userTreeFrame.jsp" SHAPE="448,2945,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/blank.do" TYPE="link" SUBTYPE="confirmed" PATH="/blank.do"
+   TARGET="forward5" SHORTCUT="yes"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link1"
+   TITLE="/archive/userTreeChooser.jsp" TYPE="link" SUBTYPE="confirmed"
+   PATH="/archive/userTreeChooser.jsp" TARGET="page0"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page56"
+  TITLE="userTreeLdap.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/userTreeLdap.jsp" SHAPE="448,3169,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action49"
+  TITLE="addPermsForm" ID="#archive#archiveAddPerms" TYPE="action"
+  PATH="/archive/archiveAddPerms" SHAPE="240,3345,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/addPerms.jsp" TARGET="page57"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page57"
+  TITLE="addPerms.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/addPerms.jsp" SHAPE="32,3586,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page52"
+  TITLE="userTreeBd.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/userTreeBd.jsp" SHAPE="240,9505,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page53"
+  TITLE="usersList.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/usersList.jsp" SHAPE="240,529,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page59"
+  TITLE="groupTree.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/groupTree.jsp" SHAPE="448,2241,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action50"
+  TITLE="dirForm" ID="#archive#dirEdit" TYPE="action"
+  PATH="/archive/dirEdit" SHAPE="240,4113,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/dirEdit.jsp" TARGET="page60"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page60"
+  TITLE="dirEdit.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/dirEdit.jsp" SHAPE="32,4098,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/archive/dirEdit.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/archive/dirEdit.do" TARGET="action50"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link1"
+   TITLE="/archive/dirDelete.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/archive/dirDelete.do" TARGET="action56"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action51"
+  TITLE="dirForm" ID="#archive#dirProperties" TYPE="action"
+  PATH="/archive/dirProperties" SHAPE="240,4593,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/dirProperties.jsp" TARGET="page61"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page61"
+  TITLE="dirProperties.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/dirProperties.jsp" SHAPE="32,4578,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/archive/dirProperties.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/archive/dirProperties.do" TARGET="action51"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action52"
+  TITLE="dirForm" ID="#archive#dirNew" TYPE="action"
+  PATH="/archive/dirNew" SHAPE="240,4705,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/messages.jsp" TARGET="page69"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="input" ID="input" TYPE="forward" PATH="/archive/dirNew.jsp" TARGET="page62"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page62"
+  TITLE="dirNew.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/dirNew.jsp" SHAPE="32,4802,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/archive/dirNew.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/archive/dirNew.do" TARGET="action52"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action53"
+  TITLE="archiveForm" ID="#archive#archiveNew" TYPE="action"
+  PATH="/archive/archiveNew" SHAPE="32,5249,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="input1" ID="input1" TYPE="forward"
+   PATH="/archive/archiveNew_Input1.jsp" TARGET="page63"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="input2" ID="input2" TYPE="forward"
+   PATH="/archive/archiveNew_Input2.jsp" TARGET="page64"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward2"
+   TITLE="input3" ID="input3" TYPE="forward"
+   PATH="/archive/archiveNew_Input3.jsp" TARGET="page65"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward3"
+   TITLE="input4" ID="input4" TYPE="forward"
+   PATH="/archive/archiveNew_Input4.jsp" TARGET="page66"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward4"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/archiveNew_Success.jsp" TARGET="page67"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page63"
+  TITLE="archiveNew_Input1.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/archiveNew_Input1.jsp" SHAPE="240,5266,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page64"
+  TITLE="archiveNew_Input2.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/archiveNew_Input2.jsp" SHAPE="240,5361,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page65"
+  TITLE="archiveNew_Input3.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/archiveNew_Input3.jsp" SHAPE="448,5249,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page66"
+  TITLE="archiveNew_Input4.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/archiveNew_Input4.jsp" SHAPE="448,5361,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page67"
+  TITLE="archiveNew_Success.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/archiveNew_Success.jsp" SHAPE="656,5249,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action54" ID="#logout"
+  TYPE="action" PATH="/logout" SHAPE="32,5937,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward" PATH="/acs/logout.jsp" TARGET="page68"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page68"
+  TITLE="logout.jsp" TYPE="page" SUBTYPE="jsp" PATH="/acs/logout.jsp" SHAPE="240,6066,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/acs/login.jsp" TYPE="link" SUBTYPE="confirmed"
+   PATH="/acs/login.jsp" TARGET="forward2" SHORTCUT="yes"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="forward5" TITLE="cancel"
+  ID="cancel" TYPE="forward" PATH="/blank.do" SHAPE="32,2177,0,0" TARGET="action2"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action55" ID="#welcome"
+  TYPE="action" SUBTYPE="forward" PATH="/welcome" SHAPE="256,977,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="action55"
+   TITLE="forward" TYPE="forward" PATH="/welcome.jsp" TARGET="page13"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="forward6"
+  TITLE="Welcome" ID="Welcome" TYPE="forward" PATH="/welcome.do"
+  SHAPE="32,961,0,0" TARGET="action55"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action56"
+  TITLE="dirForm" ID="#archive#dirDelete" TYPE="action"
+  PATH="/archive/dirDelete" SHAPE="240,4210,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/messages.jsp" TARGET="page69"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page69"
+  TITLE="messages.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/messages.jsp" SHAPE="448,4210,0,0"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action57"
+  ID="#archive#archiveCanAddPerms" TYPE="action"
+  PATH="/archive/archiveCanAddPerms" SHAPE="256,3153,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/userTreeFrame.jsp" TARGET="page54"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action58"
+  TITLE="archiveForm" ID="#archive#archiveDelete" TYPE="action"
+  PATH="/archive/archiveDelete" SHAPE="256,4849,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward"
+   PATH="/archive/archiveNew_Success.jsp" TARGET="page67"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="archiveDelete" ID="archiveDelete" TYPE="forward"
+   PATH="/archive/archiveDelete.do" TARGET="action58"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action59"
+  TITLE="changePwd" ID="#html#changePwd" TYPE="action"
+  PATH="/html/changePwd" SHAPE="48,337,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward" PATH="/welcome.jsp" TARGET="page13"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward1"
+   TITLE="error" ID="error" TYPE="forward" PATH="/acs/login.jsp" TARGET="page1"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward2"
+   TITLE="invalidated" ID="invalidated" TYPE="forward"
+   PATH="/html/invalidated.do" TARGET="action60"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action60"
+  ID="#html#invalidated" TYPE="action" PATH="/html/invalidated" SHAPE="288,1009,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="forward0"
+   TITLE="success" ID="success" TYPE="forward" PATH="/acs/login.jsp" TARGET="page1"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="page0"
+  TITLE="userTreeChooser.jsp" TYPE="page" SUBTYPE="jsp"
+  PATH="/archive/userTreeChooser.jsp" SHAPE="656,2945,0,0">
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link0"
+   TITLE="/user/bd/deptTree.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/deptTree.do" TARGET="action46"/>
+  <PROCESS-ITEM-OUTPUT ENTITY="StrutsProcessItemOutput" NAME="link1"
+   TITLE="/user/bd/groupTree.do" TYPE="link" SUBTYPE="confirmed"
+   PATH="/user/bd/groupTree.do" TARGET="action16"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="forward0" TITLE="/menu"
+  ID="/menu" TYPE="forward" PATH="/layouts/menu.jsp" SHAPE="32,1953,0,0" TARGET="page3"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="forward1"
+  TITLE="/header" ID="/header" TYPE="forward" PATH="/layouts/header.jsp"
+  SHAPE="32,1841,0,0" TARGET="page2"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="forward2" TITLE="/begin"
+  ID="/begin" TYPE="forward" PATH="/acs/login.jsp" SHAPE="32,337,0,0" TARGET="page1"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="forward3" TITLE="/home"
+  ID="/home" TYPE="forward" PATH="/layouts/home.jsp" SHAPE="32,2065,0,0" TARGET="page5"/>
+ <PROCESS-ITEM ENTITY="StrutsProcessItem" NAME="action11"
+  ID="#loginLdap" TYPE="action" PATH="/loginLdap"/>
+</PROCESS>

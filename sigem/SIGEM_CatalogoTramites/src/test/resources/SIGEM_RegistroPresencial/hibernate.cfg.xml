@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+ "-//Hibernate/Hibernate Configuration DTD 2.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-configuration-2.0.dtd">
+<!-- Fichero de configuracion de hibernate -->
+<hibernate-configuration>
+    <session-factory>
+        
+        <!-- Cambiar para poner el nombre de la fuente de datos -->
+        <property name="connection.datasource">java:comp/env/jdbc/registroDS</property>
+        
+        <!-- Posibles implementaciones: net.sf.hibernate.dialect.OracleDialect
+        net.sf.hibernate.dialect.SQLServerDialect
+        net.sf.hibernate.dialect.PostgreSQLDialect
+        net.sf.hibernate.dialect.DB2Dialect-->
+        
+        <property name="dialect">net.sf.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="show_sql">false</property>
+        <property name="use_outer_join">false</property>
+        <property name="use_query_cache">true</property>
+        <!--  <property name="cache.provider_class">net.sf.ehcache.hibernate.Provider</property>  -->
+        <property name="cache.provider_class">net.sf.hibernate.cache.OSCacheProvider</property>
+        <property name="hibernate.statement_cache.size">0</property>
+        
+        
+        
+        
+        
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocbtblctlg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserldapgrphdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocrpt.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocglbdoch.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserobjperm.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivolxactdir.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocmacro.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserobjhdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idoccompusg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuseruserhdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocsrvstatehdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocautonumctlg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivolfileft.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocdatnode.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserldapuserhdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocdbctlg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocpageann.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocrptauxtbl.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iusercurrcnt.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivollistvol.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iusernextid.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocnextid.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocfdrlink.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocfmt.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocsrvstatedet.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocxnextid.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivolvolhdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserlicenc.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocarchhdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocarchhdrct.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocarchhdreu.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocarchhdrgl.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocvtblctlg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocssnextid.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivolnextid.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iusergroupuser.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivolrephdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivollisthdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocwmacro.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocpict.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocappevent.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserusermap.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocfiauxtblctlg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocdbinfo.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocarchdet.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocprefwfmt.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iusergenperm.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iusergrouphdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocdirhdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserdepthdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivolactdir.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocfdrstat.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocpreffmt.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserusertype.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivolfilehdr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocfdrlinkx.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Ivolarchlist.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserusersys.hbm.xml"/>
+
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrLockrelation.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRelation.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRegint.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRecvmsg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrValnum.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRecvreg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDistlist.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrExtdist.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrNackrecvmsg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDirorg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrSendreg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrFldaccperm.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRegstate.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCadoc.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTypeproc.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrNacksendreg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTypeofic.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrProv.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRegpdoc.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrEntregsnd.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrAddrtel.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCa.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCaeu.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCagl.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCact.hbm.xml"/>        
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDelta.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTypeadm.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRegorigdoc.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrExpcnt.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTt.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTteu.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTtgl.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTtct.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDistregstate.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCaofic.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrValdate.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrModifreg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCaaux.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRegasocex.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrErptaux.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrExpfilter.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrUsrperm.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCaadm.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrValstr.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCntlocal.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrW.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrReportarch.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDistreg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDirofic.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRegasoc.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrPfi.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCntoficina.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTypeaddress.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTypeadmeu.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTypeadmgl.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTypeadmct.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrSendmsg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCity.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTranslatedfmt.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrOficadm.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrUserconfig.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrUserfilter.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrSrptaux.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrGenperm.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTmzofic.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrProcreg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCntrefcierre.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrFldpermarch.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrBookofic.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrFldpermuser.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrOrg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrOrgeu.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrOrggl.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrOrgct.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRecvdistreg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrBookasoc.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrReport.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrBookadmin.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrActw.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTypedoc.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrReportperf.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDom.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrExptask.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrContador.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRegdoc.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrNackrecvreg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCntcentral.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrReportofic.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCntordinal.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrOfic.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrOficeu.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrOficgl.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrOficct.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrPjur.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrAddress.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrNacksendmsg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrUsrIdent.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrConfiguration.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrBookTypeConfig.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrBookConfig.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrPinfo.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrPageInfo.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrPagerepository.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrUsrloc.hbm.xml"/>
+        
+    </session-factory>
+</hibernate-configuration>
+

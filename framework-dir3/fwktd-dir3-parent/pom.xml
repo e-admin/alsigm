@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd</groupId>
+		<artifactId>fwktd-parent</artifactId>
+		<version>0.7</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-dir3</groupId>
+	<artifactId>fwktd-dir3-parent</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<name>fwktd-dir3-parent</name>
+
+	<properties>
+
+		<!-- Framework dependencies -->
+		<fwktd.version>0.7</fwktd.version>
+
+		<!-- Third party dependencies -->
+		<xbean.spring.version>3.6</xbean.spring.version>
+		<cxf.version>2.5.2</cxf.version>
+		<geronimo-ws-metadata_2.0_spec.version>1.1.3</geronimo-ws-metadata_2.0_spec.version>
+
+		<jaxws-api.version>2.1-1</jaxws-api.version>
+
+		<!--
+
+		<dom4j.version>1.6.1</dom4j.version>
+		<commons-beanutils.version>1.8.3</commons-beanutils.version>
+		<docbook-xml.version>5.0-all</docbook-xml.version>
+		<geronimo-ws-metadata_2.0_spec.version>1.1.3</geronimo-ws-metadata_2.0_spec.version>
+		<jaxen.version>1.1.1</jaxen.version>
+		<jaxws-api.version>2.1-1</jaxws-api.version>
+		<simplecaptcha.version>1.2</simplecaptcha.version>
+		<tiles.version>2.1.2</tiles.version>
+		<xerces.version>2.8.1</xerces.version>
+		-->
+		<docbook-xml.version>5.0-all</docbook-xml.version>
+
+		<!-- Database dependencies -->
+		<db2.version>3.50.152</db2.version>
+		<h2.version>1.2.144</h2.version>
+		<oracle.version>10.2.0.5</oracle.version>
+		<postgresql.version>9.0-801.jdbc4</postgresql.version>
+		<sqlserver.version>1.2.4</sqlserver.version>
+
+		<!-- Plugin dependencies -->
+		<docbkx-maven-plugin.version>2.0.13</docbkx-maven-plugin.version>
+		<sql-maven-plugin.version>1.4</sql-maven-plugin.version>
+
+		<!-- Tomcat -->
+		<tomcat-maven-plugin.version>1.1</tomcat-maven-plugin.version>
+		<tomcat.url>http://localhost:8080/manager/text</tomcat.url>
+		<tomcat.username>admin</tomcat.username>
+		<tomcat.password></tomcat.password>
+
+	</properties>
+
+</project>

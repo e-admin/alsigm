@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: SPTRedes_spring.xml,v 1.1 2007/07/23 10:59:30 cnavas Exp $ -->
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+<!-- datos de cabecera soap -->
+<!ENTITY NOMBRE_CABECERA "cabecera-implementacion">
+<!ENTITY ARGS_CABECERA
+"<constructor-arg type='java.lang.String' index='0' value='namespace'/>
+<constructor-arg type='java.lang.String' index='1' value='&NOMBRE_CABECERA;'/>">
+<!ENTITY CLASS_HEADER "org.apache.axis.message.SOAPHeaderElement">
+]>
+<beans>
+    <bean id="pago.redes.propiedades" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations" value="classpath:ieci/tecdoc/sgm/pe/impl/redes/resources/SPTRedes.properties"/>
+    </bean>
+
+<!-- 	<bean id="pago.redes.configuracion" class="ieci.tecdoc.sgm.pe.impl.redes.Configuracion">
+		<property name="propiedades" ref="pago.redes.propiedades"/>
+	</bean>
+-->	
+	
+
+</beans>

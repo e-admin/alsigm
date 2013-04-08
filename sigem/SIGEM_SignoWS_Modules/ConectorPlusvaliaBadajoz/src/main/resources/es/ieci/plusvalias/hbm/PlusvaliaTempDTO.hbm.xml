@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jun-2010 10:06:14 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="es.ieci.plusvalias.domain.PlusvaliaTempDTO" table="AYTO_PLUSVALIA_TEMP" >
+        <id name="refcatastral" type="string">
+        	<column name="REFCATASTRAL" length="20" />
+        </id>
+        <property name="fechaactual" type="timestamp">
+            <column name="FECHAACTUAL" length="7" />
+        </property>
+        
+        <property name="nombrevia" type="string">
+            <column name="NOMBREVIA" length="25" />
+        </property>
+        <property name="numerovia" type="string">
+            <column name="NUMEROVIA" length="4" />
+        </property>
+        <property name="supsolar" type="java.lang.Double">
+            <column name="SUPSOLAR" precision="10" scale="2" />
+        </property>  
+              
+        <property name="numNotario" type="java.lang.Integer">
+            <column name="NUMNOTARIO" precision="7"/>
+        </property>
+        <property name="numProtocolo" type="java.lang.Integer">
+            <column name="NUMPROTOCOLO" precision="10"/>
+        </property>
+               
+        <property name="nifTrans" type="string">
+            <column name="NIFTRANSMITIENTE" length="12"/>
+        </property>
+        <property name="nifTransAyto" type="string">
+            <column name="NIFTRANSMITIENTEAYTO" length="12"/>
+        </property>
+        <property name="nombreTrans" type="string">
+            <column name="NOMTRANSMITIENTE" length="50"/>
+        </property>
+        <property name="edadTransmitiente" type="java.lang.Integer">
+            <column name="EDADTRANSMITIENTE" precision="3"/>
+        </property>
+        <property name="porcTransmitido" type="java.lang.Double">
+            <column name="PORCTRANSMITIDO" precision="5" scale="2" />
+        </property>
+        <property name="porcBonificacion" type="java.lang.Double">
+            <column name="PORCBONIFICACION" precision="5" scale="2" />
+        </property>
+        <property name="bonificacion" type="java.lang.Double">
+            <column name="BONIFICACION" precision="14" scale="2" />
+        </property>
+        
+        <property name="nifAdq" type="string">
+            <column name="NIFADQUIRIENTE" length="12"/>
+        </property>
+		<property name="nombreAdqui" type="string">
+            <column name="NOMADQUIRIENTE" length="50"/>
+        </property>
+        <property name="claseDerecho" type="java.lang.Integer">
+            <column name="CLASEDERECHO" precision="2"/>
+        </property>
+        <property name="porcAdquirido" type="java.lang.Double">
+            <column name="PORCADQUIRIDO" precision="5" scale="2" />
+        </property>
+        
+    	<property name="fechatanterior" type="timestamp">
+            <column name="FECHTRANSANTERIOR" length="7" />
+        </property>
+        <property name="fechatactual" type="timestamp">
+            <column name="FECHTRANSACTUAL" length="7" />
+        </property>
+        <property name="anyostranscurridos" type="java.lang.Integer">
+            <column name="ANYOSTRANSCURRIDOS" precision="3"/>
+        </property>
+        <property name="pagada" type="string">
+            <column name="PAGADA" length="1" />
+        </property>
+
+		<property name="valorUnitarioTerreno" type="java.lang.Double">
+            <column name="VALORUNITARIOTERRENO" precision="14" scale="2" />
+        </property>
+        <property name="valorTerreno" type="java.lang.Double">
+            <column name="VALORTERRENO" precision="14" scale="2" />
+        </property>
+        <property name="valorFinalTerreno" type="java.lang.Double">
+            <column name="VALORFINALTERRENO" precision="14" scale="2" />
+        </property>
+        <property name="porcDeduccion" type="java.lang.Double">
+            <column name="PORCDEDUCCION" precision="5" scale="2" />
+        </property>
+        <property name="tipoImpositivo" type="java.lang.Double">
+            <column name="TIPOIMPOSITIVO" precision="5" scale="2" />
+        </property>
+        
+        <property name="porcRecargo" type="java.lang.Double">
+            <column name="PORCRECARGO" precision="5" scale="2" />
+        </property>
+        <property name="recargo" type="java.lang.Double">
+            <column name="RECARGO" precision="14" scale="2" />
+        </property>
+        
+        <property name="diasInteres" type="java.lang.Integer">
+            <column name="DIASINTERES" precision="5"/>
+        </property>
+        <property name="porcInteres" type="java.lang.Double">
+            <column name="PORCINTERES" precision="5" scale="2" />
+        </property>
+        <property name="interes" type="java.lang.Double">
+            <column name="INTERES" precision="14" scale="2" />
+        </property>
+        
+        <property name="porcAnual" type="java.lang.Double">
+            <column name="PORCANUAL" precision="5" scale="2" />
+        </property>
+        <property name="baseImponible" type="java.lang.Double">
+            <column name="BASEIMPONIBLE" precision="14" scale="2" />
+        </property>
+        <property name="cuotaLiquida" type="java.lang.Double">
+            <column name="CUOTALIQUIDA" precision="14" scale="2" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="TOTAL" precision="14" scale="2" />
+        </property>
+        
+        <property name="folderIdRegistro" type="string">
+            <column name="FOLDERIDREGISTRO" length="50" />
+        </property>
+        <property name="numExpediente" type="string">
+            <column name="NUMEXPEDIENTE" length="50" />
+        </property>
+        <property name="referenciaPago" type="string">
+            <column name="REFERENCIAPAGO" length="50" />
+        </property>
+        <property name="situacion" type="string">
+            <column name="SITUACION" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

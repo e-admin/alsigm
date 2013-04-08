@@ -1,0 +1,15 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/src/main/resources/SIGEM_ECOLogo</directory>
+			<outputDirectory>/SIGEM_ECOLogo</outputDirectory>
+		</fileSet>
+	</fileSets>
+
+</assembly>

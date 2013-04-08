@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>es.ieci.tecdoc.archidoc</groupId>
+		<artifactId>archidoc_main</artifactId>
+		<version>5.0</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.archidoc.archidoc_cfg</groupId>
+	<artifactId>archidoc_cfg_modules</artifactId>
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<name>Archidoc: Configuracion del Proyecto</name>
+	<description>Archidoc: Configuracion del Proyecto</description>
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	<modules>
+		<module>archidoc_cfg_main</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>producto</id>
+			<activation>
+				<property>
+					<name>producto</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>producto_cfg</module>
+				<module>producto_cfg_final</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>allresources</id>
+			<activation>
+				<property>
+					<name>allresources</name>
+				</property>
+
+			</activation>
+			<modules>
+				<module>archidoc_cfg_main</module>
+				<module>producto_cfg</module>
+				<module>producto_cfg_final</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>

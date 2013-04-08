@@ -1,0 +1,136 @@
+table.menu_level0 {
+	background-color: #636DAD;
+	font-family: Verdana, Helvetica, Arial, Tahoma;		
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+td.menu_level0 {
+	color: #FFFFFF;
+	padding: 4 10 4 10;
+	background-color: #636DAD;
+}
+a.menu_level0 {
+	background-color: #636DAD;
+	border-color: #E9E9E9;
+	border-width: 1px;
+	border-style: solid;
+	color: #FFFFFF;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	padding:  2 10 2 10;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu_level0:hover {
+	background-color: #495080;
+	/*#3D436B;#E7ECFB;*/
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	color: #FFFFFF;
+	/*#2A4B69;*/
+	text-decoration: none;
+}
+table.menu_level1 {
+	background-color: #636DAD;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #FFFFFF;
+	border-color: #E9E9E9;
+	border-width: 1px;
+	border-style: solid;
+	/*outset*/
+	padding: 0;
+}
+td.menu_level1 {
+	color: #FFFFFF;
+	text-align: left;
+	padding: 2 10 2 10;
+}
+a.menu_level1 {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #FFFFFF;
+	padding: 2 10 2 10;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu_level1:hover {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #FFFFFF;
+	/*#636DAD;*/
+	background-color: #495080;
+	/*#3D436B;#E7ECFB;*/
+	text-decoration: none;
+}
+/* ejemplo de otro estilo para el menu de nivel 0 */
+table.menu0 {
+	background-color: #FFFFFF;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-weight: bold;	
+	font-size: 12px;
+}
+
+td.menu0 {
+	padding: 2 12 2 12;
+	border-bottom-color: #636DAD; 
+	/*#5BA2E4 #2A4B69 #2A4B69 #5BA2E4;*/
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	background-color: #FFFFFF;
+	width: 80px;
+}
+a.menu0 {
+	padding: 2 12 2 12;
+	color: #636DAD;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu0:hover {
+	color: #636DAD;
+	text-decoration: none;
+	padding: 2 12 2 12;
+	background-color: #E7ECFB;
+	
+}
+table.menu1 {
+	background-color: #FFFFFF;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #636DAD;
+	border-color: #636DAD;
+	border-width: 1px;
+	border-style: solid;
+	/*outset*/
+	padding: 0;
+}
+td.menu1 {
+	color: #636DAD;
+	text-align: left;
+	padding: 2 12 2 12;
+}
+a.menu1 {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #636DAD;
+	padding: 2 12 2 12;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu1:hover {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #636DAD;
+	text-decoration: none;
+	padding: 2 12 2 12;
+	background-color: #E7ECFB;
+	
+}

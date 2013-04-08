@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.0" xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Manual de Usuario</title>
+
+    <subtitle>Componente de escaneo idocScan J2EE</subtitle>
+
+    <abstract>
+      <para>FWKTD Componente de escaneo idocScan J2EE</para>
+    </abstract>
+
+    <productname>Framework Tecnología Documental</productname>
+
+    <productnumber>0.7</productnumber>
+
+    <date>Noviembre 2012</date>
+
+    <author>
+      <orgname>IECISA</orgname>
+    </author>
+
+    <revhistory>
+      <revision>
+        <date>1.0 21/07/2011</date>
+
+        <author>
+          <personname><surname>IECISA</surname></personname>
+        </author>
+
+        <revdescription>
+          <para>Versión inicial manual de usuario del componente de
+          escaneo</para>
+        </revdescription>
+      </revision>
+    </revhistory>
+
+    <copyright>
+      <year>2011</year>
+
+      <holder>Informática El Corte Inglés, S. A.</holder>
+    </copyright>
+
+    <legalnotice>
+      <para>Este documento contiene información y material confidencial
+      propiedad de <orgname>Informática El Corte Inglés S.A</orgname>. Los
+      materiales, ideas y conceptos contenidos en esta propuesta serán
+      utilizados exclusivamente para evaluar las capacidades de
+      <orgname>Informática El Corte Inglés</orgname> y no deberán ser
+      divulgados fuera de su organización o utilizados con propósitos
+      distintos a los mencionados. No está permitido su reproducción total o
+      parcial ni su uso con otras organizaciones para ningún otro propósito,
+      excepto autorización previa por escrito.</para>
+    </legalnotice>
+  </info>
+
+  <chapter>
+    <title>Introducción</title>
+
+    <para>El <application>framework de tecnología documental</application>
+    (<application>FWKTD</application>) desarrollado por <orgname>Informática
+    El Corte Inglés</orgname>, es un conjunto de herramientas, librerías y
+    buenas prácticas metodológicas y de desarrollo, que permite la
+    construcción de componentes reutilizables y con un alto grado de calidad.
+    Dichos componentes se integran y distribuyen como parte de las soluciones
+    que conforman la <application>plataforma de gestión documental y
+    workflow</application>, aunque pueden ser usados de manera
+    independiente.</para>
+
+    <para>El presenta manual describe el uso del componente de escaneo
+    integrante de dicho <foreignphrase>framework</foreignphrase>, denominado
+    <application>idocScan</application>.</para>
+
+    <section>
+      <title>Documentos relacionados</title>
+
+      <itemizedlist>
+        <listitem>
+          <para><citetitle>Manual de integración de
+          <application>idocScan</application></citetitle></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>El componente de escaneo</title>
+
+    <para>El componente de escaneo <application>idocScan J2EE</application> se
+    implementa como un <foreignphrase>applet</foreignphrase> Java, que
+    permite, bien ejecutado de forma independiente, bien integrado en otras
+    aplicaciones, realizar operativas de escaneado de imágenes, a través de
+    diferentes dispositivos de captura.</para>
+
+    <section>
+      <title>Requisitos de sistema</title>
+
+      <para>Los requisitos mínimos para la ejecución del módulo de escaneo
+      son:</para>
+
+      <section>
+        <title>Hardware</title>
+
+        <para>Se deberá disponer de una estación cliente con al menos las
+        siguientes características:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Procesador Pentium 4</para>
+          </listitem>
+
+          <listitem>
+            <para>1Gb de RAM</para>
+          </listitem>
+
+          <listitem>
+            <para>2 Gb de disco duro</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <section>
+        <title>Software</title>
+
+        <para>Para garantizar el pleno funcionamiento de la herramienta será
+        necesario satisfacer los siguientes requerimientos:</para>
+
+        <section>
+          <title>Sistema Operativo</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>Windows</para>
+            </listitem>
+
+            <listitem>
+              <para>Linux</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Navegador de internet</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>Internet Explorer 7 / 8</para>
+            </listitem>
+
+            <listitem>
+              <para>Mozilla Firefox 2.x / 3.x</para>
+            </listitem>
+
+            <listitem>
+              <para>Google Chrome 8.x</para>
+            </listitem>
+
+            <listitem>
+              <para>Apple Safari 5.x</para>
+            </listitem>
+
+            <listitem>
+              <para>Opera 11.x</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Otros requisitos</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>Java JRE 1.5 o superior</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Acceso al componente</title>
+
+    <para>El componente <application>idocScan J2EE</application> se distribuye
+    como parte de los productos que conforman la plataforma de <remark>gestión
+    documental y workflow</remark> de <orgname>Informática El Corte
+    Ingles</orgname> (<application>inveSicres J2EE</application>,
+    <application>invesFlow SPAC</application>, etc.), por lo que el acceso al
+    mismo se realiza a través de dichas aplicaciones, para realizar las
+    operaciones de digitalizaciones habilitadas en cada caso.</para>
+
+    <para>También puede ser ejecutado de manera independiente, como aplicación
+    de escritorio.</para>
+  </chapter>
+
+  <chapter>
+    <title>Interfaz de la herramienta</title>
+
+    <para>El componente de escaneo se ejecuta como una ventana independiente,
+    conformada por el menú de operaciones, una barra de herramientas de
+    imagen, y el área de captura.</para>
+
+    <figure>
+      <title>Interfaz del componente</title>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="images/interfaz.png" width="350"></imagedata>
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+    <itemizedlist>
+      <listitem>
+        <para>Menú de operaciones: situado en la parte superior de la ventana,
+        mostrará las distintas funcionalidades que ofrece el
+        componente.</para>
+      </listitem>
+
+      <listitem>
+        <para>Barra de herramientas de imagen: ofrece las funcionalidades
+        aplicables sobre una imagen capturada.</para>
+      </listitem>
+
+      <listitem>
+        <para>Área de captura: mostrará las imágenes capturadas.</para>
+      </listitem>
+    </itemizedlist>
+  </chapter>
+
+  <chapter>
+    <title>Configuración</title>
+
+    <para>Como paso previo a la utilización del componente de escaneo, se
+    deben instalar en el equipo cliente los dispositivos que se podrán
+    utilizar para realizar dicha operación.</para>
+
+    <para><application>idocScan</application> permitirá posteriormente definir
+    perfiles de captura sobre esos dispositivos, y seleccionar aquel a usar
+    para realizar las operaciones de escaneado.</para>
+
+    <note>
+      <para>En caso de no existir ningún perfil creado, se puede configurar la
+      herramienta para trabajar con la fuente de captura establecida por
+      defecto en el equipo.</para>
+    </note>
+
+    <section>
+      <title>Definición y selección de perfiles</title>
+
+      <para>El componente de escaneo permite definir perfiles de captura, en
+      los que se configurarán aspectos como resolución y formato de las
+      imágenes a obtener. Serán perfiles propios por cada usuario, que podrá
+      crearlos y seleccionarlos posteriormente para su uso.</para>
+
+      <para>Al seleccionar la opción de menú <guimenu>Configuración</guimenu>
+      &gt;&gt; <guimenuitem>Perfiles...</guimenuitem>, se muestra una ventana
+      donde se podrán gestionar y seleccionar los perfiles de escaneo.</para>
+
+      <figure>
+        <title>Definición de perfiles de escaneo</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/config_perfiles.png" width="250"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>Pulsando el botón <guibutton>Nuevo</guibutton>, se habilitará una
+      ventana donde dar de alta un nuevo perfil.</para>
+
+      <figure>
+        <title>Nuevo perfil</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/nuevo_perfil.png" width="250"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <itemizedlist>
+        <listitem>
+          <para>"Nombre": denominación que se asignará al nuevo perfil.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Fuente": se debe seleccionar, de entre los dispositivos dados
+          de alta, aquél para el que se está definiendo el perfil. La
+          selección de una fuente determinará los posibles valores del resto
+          de parámetros.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Resolución": en pixels por pulgada (ppi), resolución de la
+          imagen a obtener.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Tamaño": indica el tamaño de los documentos a
+          escanear.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Color": permite definir si se hará captura en blanco y negro
+          (monocromo), en escala de grises, o en color; según lo permita el
+          dispositivo seleccionado.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Formato": configura el formato que va a tener el fichero a
+          obtener con la imagen escaneada. Puede ser:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>PDF</para>
+            </listitem>
+
+            <listitem>
+              <para>JPEG</para>
+            </listitem>
+
+            <listitem>
+              <para>TIFF</para>
+            </listitem>
+
+            <listitem>
+              <para>TIFF multipágina (permite más de una página en un mismo
+              fichero)</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>"Contraste": contraste entre los colores de la imagen a
+          obtener.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Brillo": establece la intensidad o grado de luminosidad de la
+          imagen a obtener.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Calidad": en caso de seleccionarse formato JPEG, se puede
+          establecer el guardar las imágenes con compresión, y definiendo la
+          calidad de las mismas.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Utilizar interface de la fuente": seleccionando esta opción,
+          se usará el interface por defecto de la fuente seleccionada, en vez
+          del proporcionado por defecto por el componente; se deshabilitarán
+          en este por tanto los parámetros configurables del perfil.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Alimentador Automático": establece si el escaneo se va a
+          realizar desde el alimentador automático de documentos.</para>
+        </listitem>
+
+        <listitem>
+          <para>"Dúplex": si el escáner lo permite, define que el escaneo se
+          hará en modo dúplex.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Una vez definida la configuración del perfil, se deberá pulsar el
+      botón <guibutton>Aceptar</guibutton> para dar de alta el mismo.</para>
+
+      <figure>
+        <title>Perfil de escaneo creado</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/config_perfiles_2.png" width="250"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <note>
+        <para>Los perfiles se almacenan de manera local a cada usuario del
+        componente, en el sistema de ficheros de su equipo.</para>
+      </note>
+
+      <para>Sobre los perfiles existentes se podrán realizar las siguientes
+      operaciones:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guibutton>Seleccionar</guibutton>: establece el perfil actual
+          como fuente seleccionada para las capturas, que se realizarán con
+          los parámetros establecidos en el mismo.</para>
+        </listitem>
+
+        <listitem>
+          <para><guibutton>Editar</guibutton>: abre la ventana de edición de
+          la configuración del perfi, permitiendo su modificación.</para>
+        </listitem>
+
+        <listitem>
+          <para><guibutton>Eliminar</guibutton>: borra el perfil
+          seleccionado.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Pulsando el botón <guibutton>Cerrar</guibutton> se cerrará la
+      ventana de configuración de perfiles.</para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Captura</title>
+
+    <para>Desde este grupo de opciones se permite realizar la captura de
+    imágenes a través del perfil seleccionado.</para>
+
+    <section>
+      <title>Iniciar captura</title>
+
+      <para>Para iniciar el proceso de escaneo, se debe seleccionar la opción
+      de menú <guimenu>Captura</guimenu> &gt;&gt; <guimenuitem>Iniciar
+      Captura</guimenuitem>. Si se ha seleccionado un perfil configurado para
+      usar el interfaz de la fuente, se abrirá dicho interfaz, a través del
+      que se deberá realizar la captura; en caso contrario, se obtendrá
+      directamente la imagen desde el dispositivo correspondiente, con los
+      parámetros configurados en el perfil seleccionado.</para>
+
+      <para>Se puede realizar la misma acción, pulsando el icono
+      <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/capt_ico.png"></imagedata>
+          </imageobject>
+        </inlinemediaobject> de la barra de herramientas de la imagen.</para>
+
+      <figure>
+        <title>Captura de documentos</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/interfaz.png" width="350"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>Una vez capturada la imagen, se habilitan las opciones de
+      tratamiento de imágenes, tanto del menú como de la barra de herramientas
+      de imagen. Estas opciones se verán en detalle en el siguiente
+      capítulo.</para>
+    </section>
+
+    <section>
+      <title>Finalizar captura</title>
+
+      <para>Una vez realizadas las operaciones deseadas sobre la imagen
+      obtenida, se seleccionará la opción de menú <guimenu>Captura</guimenu>
+      &gt;&gt; <guimenuitem>Finalizar Captura</guimenuitem>. El componente
+      preguntará entonces dónde guardar el fichero resultante.</para>
+
+      <figure>
+        <title>Finalizar captura</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/fin_captura.png" width="350"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>Si se tiene seleccionado un perfil para el que no está definido el
+      formato a obtener, <application>idocScan</application> preguntará
+      previamente el tipo de fichero que se va a guardar..</para>
+
+      <figure>
+        <title>Selección de formato</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/sel_formato.png" width="200"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+    </section>
+
+    <section>
+      <title>Añadir página</title>
+
+      <para>La opción <guimenu>Captura</guimenu> &gt;&gt; <guimenuitem>Añadir
+      Página...</guimenuitem> incorpora una nueva página escaneada a la
+      captura en edición, obteniéndola de la fuente o perfil
+      seleccionado.</para>
+
+      <figure>
+        <title>Añadir página</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/aniadir_pag.png" width="350"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>Se incrementará el contador de páginas del fichero obtenido. Para
+      moverse entre las distintas páginas obtenidos se dispone de botones de
+      navegación.</para>
+
+      <figure>
+        <title>Navegación entre páginas</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/nav_pag.png" width="150"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+    </section>
+
+    <section>
+      <title>Reemplazar página</title>
+
+      <para>A través de la opción <guimenu>Captura</guimenu> &gt;&gt;
+      <guimenuitem>Reemplazar Página...</guimenuitem> se sustituye la página
+      mostrada por una nueva imagen obtenida del perfil seleccionado.</para>
+    </section>
+
+    <section>
+      <title>Eliminar página</title>
+
+      <para>Seleccionando la opción <guimenu>Captura</guimenu> &gt;&gt;
+      <guimenuitem>Eliminar Página...</guimenuitem> se elimina la pagina
+      actualmente mostrada. Se pedirá confirmación para realizar esta
+      operación.</para>
+
+      <figure>
+        <title>Mensaje de confirmación de eliminación de página</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/del_pag.png" width="200"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>Esta operación se podrá realizar igualmente, pulsando el icono
+      <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/del_ico.png"></imagedata>
+          </imageobject>
+        </inlinemediaobject> de la barra de herramientas de la imagen.</para>
+
+      <note>
+        <para>Si se elimina la última página de una captura, se elimina la
+        misma, por lo que deberá iniciarse una nueva captura para continuar
+        obteniendo imágenes.</para>
+      </note>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Imágenes</title>
+
+    <para>El grupo de opciones <guimenu>Imágenes</guimenu> engloba las
+    operaciones que se pueden realizar sobre una imagen capturada. Estas
+    operaciones también están disponibles en la barra de herramientas de la
+    imagen.</para>
+
+    <figure>
+      <title>Iconos de operaciones sobre la imagen</title>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="images/barra_herramientas_imagen.png"
+                     width="400"></imagedata>
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+    <itemizedlist>
+      <listitem>
+        <para><guimenuitem>Ajustar</guimenuitem>, <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>A</keycap>
+          </keycombo>, o <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/exp_ico.png"></imagedata>
+            </imageobject>
+          </inlinemediaobject>: ajusta la visualización de la imagen al tamaño
+        de la pantalla (área de captura del componente).</para>
+      </listitem>
+
+      <listitem>
+        <para><guimenuitem>Ajustar Vertical</guimenuitem>, <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>V</keycap>
+          </keycombo>, o <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/alto_ico.png"></imagedata>
+            </imageobject>
+          </inlinemediaobject>: ajusta la visualización de la imagen al alto
+        de la pantalla.</para>
+      </listitem>
+
+      <listitem>
+        <para><guimenuitem>Ajustar Horizontal</guimenuitem>, <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>H</keycap>
+          </keycombo>, o <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/ancho_ico.png"></imagedata>
+            </imageobject>
+          </inlinemediaobject>: ajusta la visualización de la imagen al ancho
+        de la pantalla.</para>
+      </listitem>
+
+      <listitem>
+        <para><guimenuitem>Escala 1:1</guimenuitem>, <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>F</keycap>
+          </keycombo>, o <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/tam_real_ico.png"></imagedata>
+            </imageobject>
+          </inlinemediaobject>: ajusta la visualización de la imagen a su
+        tamaño real.</para>
+      </listitem>
+
+      <listitem>
+        <para><guimenuitem>Más Zoom</guimenuitem>, <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>+</keycap>
+          </keycombo>, o <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/zoom_mas_ico.png"></imagedata>
+            </imageobject>
+          </inlinemediaobject>: acerca la visualización de la imagen.</para>
+      </listitem>
+
+      <listitem>
+        <para><guisubmenu>Menos Zoom</guisubmenu>, <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>-</keycap>
+          </keycombo>, o<inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/zoom_menos_ico.png"></imagedata>
+            </imageobject>
+          </inlinemediaobject>: aleja la visualización de la imagen.</para>
+      </listitem>
+
+      <listitem>
+        <para><guimenuitem>Rotar</guimenuitem>, <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>R</keycap>
+          </keycombo>, o <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/rotar_ico.png"></imagedata>
+            </imageobject>
+          </inlinemediaobject>: rota 90º en el sentido de las agujas del reloj
+        la visualización de la imagen.</para>
+      </listitem>
+
+      <listitem>
+        <para><guimenuitem>Cortar</guimenuitem>, <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>C</keycap>
+          </keycombo>, o <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/cortar_ico.png"></imagedata>
+            </imageobject>
+          </inlinemediaobject>: permite recortar una selección de la imagen;
+        la operativa se explica a detalle en el siguiente apartado.</para>
+      </listitem>
+    </itemizedlist>
+
+    <section>
+      <title>Cortar imagen</title>
+
+      <para>La opción <guimenu>Imágenes</guimenu> &gt;&gt;
+      <guimenuitem>Cortar</guimenuitem>, también accesible a través del icono
+      <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/cortar_ico.png"></imagedata>
+          </imageobject>
+        </inlinemediaobject>, permite recortar una selección de la imagen que
+      se esté visualizando.</para>
+
+      <para>Esta funcionalidad requiere que la imagen obtenida se esté
+      visualizando a escala 1:1: por esta razón, cuando se selecciona esta
+      opción, automáticamente la imagen se redimensiona a tamaño real.</para>
+
+      <para>Sobre la imagen visualizada se mostará un recuadro de selección
+      (remarcado en rojo), que se podrá mover y redimensionar para ajustarlo
+      al área que se desea recortar.</para>
+
+      <figure>
+        <title>Operación Cortar, selección de área de recorte</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/cortar.png" width="350"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>Una vez seleccionada el área a recortar, se deberá pulsar el icono
+      <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/aceptar_ico.png"></imagedata>
+          </imageobject>
+        </inlinemediaobject> de la barra de herramientas. Para cancelar la
+      operación, habrá que pulsar el icono <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/cancelar_ico.png"></imagedata>
+          </imageobject>
+        </inlinemediaobject>.</para>
+
+      <figure>
+        <title>Imagen recortada</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/recorte.png" width="350"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Archivo</title>
+
+    <para>Este grupo agrupa las posibles acciones sobre los ficheros
+    obtenidos.</para>
+
+    <section>
+      <title>Guardar como</title>
+
+      <para>La herramienta de escaneo permite guardar las imágenes obtenidas
+      tantas veces como sea necesario, mientras se está realizando la
+      operación de captura</para>
+
+      <para>La funcionalidad <guimenu>Archivo</guimenu> &gt;&gt;
+      <guimenuitem>Guardar como...</guimenuitem> permite guardar el documento
+      escaneado, sin finalizar la captura.</para>
+
+      <para>El componente preguntará dónde guardar el fichero
+      resultante.</para>
+
+      <figure>
+        <title>Guardar como</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/guardar.png" width="350"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>Si se tiene seleccionado un perfil para el que no está definido el
+      formato a obtener, <application>idocScan</application> preguntará
+      previamente el tipo de fichero que se va a guardar..</para>
+
+      <figure>
+        <title>Selección de formato</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/sel_formato.png" width="200"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Ayuda</title>
+
+    <para>Este grupo agrupa las posibles acciones sobre los ficheros
+    obtenidos.</para>
+
+    <section>
+      <title>Acerca de...</title>
+
+      <para>La funcionalidad <guimenu>Ayuda</guimenu> &gt;&gt;
+      <guimenuitem>Acerca de...</guimenuitem> muestra la información de
+      versión y <foreignphrase>copyright</foreignphrase> del componente de
+      escaneo <application>idocScan</application>.</para>
+
+      <figure>
+        <title>Acerca de....</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/acerca_de.png" width="350"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </figure>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Salir</title>
+
+    <para>Pulsando el botón <guimenuitem>Salir</guimenuitem> se cierra la
+    aplicación de escaneo.</para>
+  </chapter>
+</book>

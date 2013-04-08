@@ -1,0 +1,5 @@
+<Context path="/SIGEM_RegistroPresencialWeb" reloadable="true">
+
+	<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+				
+</Context>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.verifdata.scsp.ieci.es" xmlns:intf="http://services.verifdata.scsp.ieci.es" xmlns:tns1="http://dao.model.verifdata.scsp.ieci.es" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.verifdata.scsp.ieci.es">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://services.verifdata.scsp.ieci.es">
+   <import namespace="http://dao.model.verifdata.scsp.ieci.es"/>
+   <element name="consultaProcedimientoByNIF">
+    <complexType>
+     <sequence>
+      <element name="nifFuncionario" type="xsd:string"/>
+      <element name="codigoProcedimiento" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaProcedimientoByNIFResponse">
+   <complexType>
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Servicio"/>
+    </sequence>
+   </complexType>
+   </element>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://dao.model.verifdata.scsp.ieci.es">
+   <import namespace="http://services.verifdata.scsp.ieci.es"/>
+   <complexType name="Servicio">
+    <sequence>
+     <element name="codcertificado" nillable="true" type="xsd:string"/>
+     <element name="coreEmisorCertificado" nillable="true" type="xsd:string"/>
+     <element name="descripcion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+  
+   <wsdl:message name="consultaProcedimientoByNIFRequest">
+
+      <wsdl:part element="impl:consultaProcedimientoByNIF" name="parameters"/>
+
+   </wsdl:message>
+
+
+   <wsdl:message name="consultaProcedimientoByNIFResponse">
+
+      <wsdl:part element="impl:consultaProcedimientoByNIFResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ClienteLigero">
+
+      <wsdl:operation name="consultaProcedimientoByNIF">
+
+         <wsdl:input message="impl:consultaProcedimientoByNIFRequest" name="consultaProcedimientoByNIFRequest"/>
+
+         <wsdl:output message="impl:consultaProcedimientoByNIFResponse" name="consultaProcedimientoByNIFResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ClienteLigeroSoapBinding" type="impl:ClienteLigero">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultaProcedimientoByNIF">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaProcedimientoByNIFRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaProcedimientoByNIFResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ClienteLigeroService">
+
+      <wsdl:port binding="impl:ClienteLigeroSoapBinding" name="ClienteLigero">
+
+         <wsdlsoap:address location="http://tempuri.org/verificacionDatos/services/ClienteLigero"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

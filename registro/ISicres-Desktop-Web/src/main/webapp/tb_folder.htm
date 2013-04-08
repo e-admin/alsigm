@@ -1,0 +1,170 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<script type="text/javascript" language="javascript" src="./scripts/jquery-1.6.2.min.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/jquery.hotkeys-0.8.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/custom_hotkeys.js"></script>
+		<link rel="stylesheet" href="css/global.css" type="text/css">
+		<link REL="stylesheet" TYPE="text/css" HREF="css/font.css" />
+	</head>
+	<script language="javascript">
+		function Cargar()
+		{
+			var CadenaHTML;
+			var Username = top.Main.Folder.FolderData.FolderFormTree.document.getElementById("UserName").value;
+			var User = top.Main.Folder.FolderData.FolderFormTree.document.getElementById("User").value;
+			var OfficeCode = top.Main.Folder.FolderData.FolderFormTree.document.getElementById("OfficeCode").value;
+			var OfficeName = top.Main.Folder.FolderData.FolderFormTree.document.getElementById("OfficeName").value;
+
+			if (!top.g_Maximized){
+				CadenaHTML = '<div class="usuario_organo_left">'
+					+'<div id="usuario_organo">'
+					+'<h2><label id="textUser"></label></h2>'
+					+'<ul id="infoUser" class="usuario_plegado"><li id="imgPoint"><label id="textOffice"></label></li></ul>'
+					+'<p>'
+					+'<a href="#"><img src="images/help.gif" id="imgAyuda" onclick="top.OpenHelp();"/></a>'
+					+'</p>'
+					+'</div>'
+					+'</div>';
+
+			}else{
+				CadenaHTML = '<div class="usuario_organo_left">'
+					+'<div id="usuario_organo">'
+					+'<h2><label id="textUser"></label></h2>'
+					+'<ul id="infoUser" class="usuario_plegado"><li id="imgPoint"><label id="textOffice"></label></li></ul>'
+					+'<p>'
+					+'<a href="#"><img src="images/help.gif" id="imgAyuda" onclick="top.OpenHelp();"/></a>'
+					+'</p>'
+					+'</div>'
+					+'</div>';
+
+			}
+
+			CadenaHTML += '<div class="migas">'
+				+'<ul><li>' + top.GetIdsLan( "IDS_INICIO" ) + '<img id="flechas" src="images/flechitas_down.gif"/><label align="left" id="ArchiveName" class="BookNameEx"></label>';
+
+			if (top.g_ArchiveName != ""){
+				if (top.g_OpenType == 1){
+					CadenaHTML += '<img id="flechas2" src="images/flechitas_down.gif"/>' + top.GetIdsLan( "IDS_OPCNUEVA" );
+				}else{
+					CadenaHTML += '<img id="flechas2" src="images/flechitas_down.gif"/>' + top.GetIdsLan( "IDS_SEARCH_RESULT" );
+				}
+			}
+
+			CadenaHTML += '</li></ul></div>';
+
+
+			window.document.body.innerHTML = CadenaHTML;
+
+			if ((Username == "") || (Username == User)) {
+				userText = User;
+			}
+			else {
+				userText = Username + " (" + User + ")";
+			}
+
+			top.SetInnerText(document.getElementById("textUser"), userText);
+			top.SetInnerText(document.getElementById("textOffice"), OfficeCode + " - " + OfficeName);
+
+			document.getElementById("imgAyuda").alt = top.GetIdsLan("IDS_HELP");
+			document.getElementById("imgAyuda").title = top.GetIdsLan("IDS_HELP");
+
+			return;
+		}
+
+		// Habilita los botones
+		function ToolBarEnabled()
+		{
+			var e;
+
+			try	{
+				document.getElementById("ToggleBtn").className="Options";
+				document.getElementById("CloseBtn").className="Options";
+
+		        if ( ( top.g_FolderId != -1) && (top.g_OpenType == 1) ) {
+					document.getElementById("NewBtn").className="Options";
+					document.getElementById("SendIRBtn").className="Options";
+				}
+
+		        top.g_OpcAval=true;
+			}
+			catch(e){
+				top.g_OpcAval=true;
+			}
+		}
+
+		// Habilita los botones salvo el de nuevo registro
+		function ToolBarEnabledEx()
+		{
+			var e;
+
+			try {
+				document.getElementById("ToggleBtn").className="Options";
+				document.getElementById("CloseBtn").className="Options";
+
+				if ( ( top.g_FolderId != -1) && (top.g_OpenType == 1) ){
+					document.getElementById("NewBtn").className="SubOptionsDisabled";
+				}
+
+				top.g_OpcAval=true;
+			}
+			catch(e){
+				top.g_OpcAval=true;
+			}
+		}
+
+		// Deshabilita los botones
+		function ToolBarDisabled()
+		{
+			var e;
+
+			try {
+				document.getElementById("ToggleBtn").className="SubOptionsDisabled";
+				document.getElementById("CloseBtn").className="SubOptionsDisabled";
+
+		        if ( (top.g_FolderId != -1) && (top.g_OpenType == 1) ) {
+					document.getElementById("NewBtn").className="SubOptionsDisabled";
+					document.getElementById("SendIRBtn").className="SubOptionsDisabled";
+				}
+
+				top.g_OpcAval=false;
+			}
+			catch(e){
+				top.g_OpcAval=true;
+			}
+		}
+
+		function OnLoadToolBar()
+		{
+			window.open(top.g_URL + "/fldbarupdate.htm", "FolderBar","location=no",true);
+			top.g_Page = "0";
+		}
+
+
+		// mensaje informativo al cerrar la ventana
+		window.onbeforeunload = ExitCheck;
+		closingvar =true
+
+		function ExitCheck()
+		{
+			///control de cerrar la ventana///
+			var btnSave = top.Main.Folder.FolderBar.document.getElementById("SaveMenuBtn");
+
+			if(btnSave != null){
+				if (btnSave.className == "SubOptions" ){
+					if(closingvar == true){
+						ExitCheck = false;
+						return top.GetIdsLan( "IDS_QRYGUARDARCHANGES" );
+					}
+				}
+			}
+		}
+
+	</script>
+
+	<body onLoad="OnLoadToolBar();Cargar();if (top.g_ArchiveName != ''){top.SetArchiveName(top.g_ArchiveName,'FRM')}else{top.SetArchiveName(top.GetIdsLan( 'IDS_OPCDISTRIB' ),'FRM')}; top.g_OpcAval=false;" tabIndex="-1">
+	</body>
+</html>

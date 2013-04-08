@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Manager de anexos -->
+	<bean id="fwktd_sir_anexoManagerImpl" name="fwktd_sir_anexoManager"
+		parent="fwktd_sir_transactionTemplate">
+		<property name="target">
+			<bean class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.AnexoManagerImpl">
+				<constructor-arg ref="fwktd_sir_anexoDao" />
+				<property name="incrementer" ref="fwktd_sir_anexoIncrementer" />
+				<property name="hashManager" ref="fwktd_sir_hashManager" />
+				<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+				<property name="gestionDocumentalServiceFactory" ref="fwktd_dm_serviceFactory" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Manager de asientos registrales -->
+	<bean id="fwktd_sir_asientoRegistralManagerImpl" name="fwktd_sir_asientoRegistralManager"
+		parent="fwktd_sir_transactionTemplate">
+		<property name="target">
+			<bean
+				class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.AsientoRegistralManagerImpl">
+				<constructor-arg ref="fwktd_sir_asientoRegistralDao" />
+				<property name="incrementer" ref="fwktd_sir_asientoRegistralIncrementer" />
+				<property name="ficheroIntercambioManager" ref="fwktd_sir_ficheroIntercambioManager" />
+				<property name="mensajeManager" ref="fwktd_sir_mensajeManager" />
+				<property name="interesadoManager" ref="fwktd_sir_interesadoManager" />
+				<property name="anexoManager" ref="fwktd_sir_anexoManager" />
+				<property name="fechaManager" ref="fwktd_sir_fechaManager"/>
+				<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Manager de configuracion -->
+	<bean id="fwktd_sir_configuracionManagerImpl" name="fwktd_sir_configuracionManager"
+		parent="fwktd_sir_transactionTemplate">
+		<property name="target">
+			<bean class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.ConfiguracionManagerImpl">
+				<constructor-arg ref="fwktd_sir_configuracionDao" />
+				<property name="incrementer" ref="fwktd_sir_configuracionIncrementer" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Manager de contadores -->
+	<bean id="fwktd_sir_contadorManagerImpl" name="fwktd_sir_contadorManager"
+		parent="fwktd_sir_transactionTemplate">
+		<property name="target">
+			<bean class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.ContadorManagerImpl">
+				<constructor-arg ref="fwktd_sir_contadorDao" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Manager de codificacion de ficheros -->
+	<bean id="fwktd_sir_codificacionFicherosManagerImpl" name="fwktd_sir_codificacionFicherosManager"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.CodificacionFicherosManagerImpl">
+		<property name="contadorManager" ref="fwktd_sir_contadorManager" />
+	</bean>
+
+	<!-- Manager de compresion -->
+	<bean id="fwktd_sir_compresionManagerImpl" name="fwktd_sir_compresionManager"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.CompresionManagerImpl">
+		<property name="directorioTemporal" value="${fwktd-sir.directorio.temporal}" />
+	</bean>
+
+	<!-- Manager de generacion de codigos hash -->
+	<bean id="fwktd_sir_hashManagerImpl" name="fwktd_sir_hashManager"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.HashManagerImpl">
+		<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+	</bean>
+
+	<!-- Manager de gestion de fechas -->
+	<bean id="fwktd_sir_fechaManagerImpl" name="fwktd_sir_fechaManager"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.FechaManagerImpl">
+		<property name="timeService" ref="fwktd_time_timeService"/>
+	</bean>
+
+	<!-- Manager de XMLs de SICRES -->
+	<bean id="fwktd_sir_sicresXMLManagerImpl" name="fwktd_sir_sicresXMLManager"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.SicresXMLManagerImpl">
+		<property name="anexoManager" ref="fwktd_sir_anexoManager" />
+		<property name="hashManager" ref="fwktd_sir_hashManager" />
+		<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+		<property name="servicioConsultaDirectorioComun" ref="fwktd_dir3_servicioConsultaDirectorioComun" />
+	</bean>
+
+	<!-- Manager de interesados -->
+	<bean id="fwktd_sir_interesadoManagerImpl" name="fwktd_sir_interesadoManager"
+		parent="fwktd_sir_transactionTemplate">
+		<property name="target">
+			<bean class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.InteresadoManagerImpl">
+				<constructor-arg ref="fwktd_sir_interesadoDao" />
+				<property name="incrementer" ref="fwktd_sir_interesadoIncrementer" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Manager de auditoria de ficheros de intercambio -->
+	<bean id="fwktd_sir_auditoriaFicheroIntercambioManagerImpl" name="fwktd_sir_auditoriaFicheroIntercambioManager"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.AuditoriaFicheroIntercambioManagerImpl">
+		<property name="gestionDocumentalServiceFactory" ref="fwktd_dm_serviceFactory" />
+		<property name="sicresXMLManager" ref="fwktd_sir_sicresXMLManager" />
+		<property name="fechaManager" ref="fwktd_sir_fechaManager" />
+		<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+	</bean>
+
+	<!-- Manager de validacion de anexos -->
+	<!-- 
+	<bean id="fwktd_sir_validacionAnexosManagerImpl" name="fwktd_sir_validacionAnexosManager"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.ValidacionAnexosManagerImpl">
+		<property name="asientoRegistralManager" ref="fwktd_sir_asientoRegistralManager" />
+		<property name="anexoManager" ref="fwktd_sir_anexoManager" />
+		<property name="hashManager" ref="fwktd_sir_hashManager" />
+		<property name="firmaDigitalService" ref="fwktd_signature_firmaDigitalService" />
+	</bean>
+	-->
+
+	<!-- Manager de auditoria de mensajes -->
+	<bean id="fwktd_sir_auditoriaMensajeManagerImpl" name="fwktd_sir_auditoriaMensajeManager"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.AuditoriaMensajeManagerImpl">
+		<property name="gestionDocumentalServiceFactory" ref="fwktd_dm_serviceFactory" />
+		<property name="sicresXMLManager" ref="fwktd_sir_sicresXMLManager" />
+		<property name="fechaManager" ref="fwktd_sir_fechaManager" />
+		<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+	</bean>
+
+	<!-- Managers de ficheros de datos de intercambio -->
+
+	<alias name="${fwktd-sir.manager.ficheroIntercambio}" alias="fwktd_sir_ficheroIntercambioManager" />
+
+	<bean abstract="true" id="fwktd_sir_ficheroIntercambioManagerAbstractImpl" name="fwktd_sir_ficheroIntercambioManagerAbstract">
+		<property name="codificacionFicherosManager" ref="fwktd_sir_codificacionFicherosManager" />
+		<property name="sicresXMLManager" ref="fwktd_sir_sicresXMLManager" />
+		<property name="auditoriaFicheroIntercambioManager" ref="fwktd_sir_auditoriaFicheroIntercambioManager" />
+	</bean>
+
+	<!-- Implementacion que utiliza el sistema de ficheros -->
+	<bean id="fwktd_sir_ficheroIntercambioManagerFSImpl" name="fwktd_sir_ficheroIntercambioManagerFS"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.fs.FicheroIntercambioManagerFSImpl"
+		parent="fwktd_sir_ficheroIntercambioManagerAbstract">
+		<property name="anexoManager" ref="fwktd_sir_anexoManager" />
+		<property name="compresorManager" ref="fwktd_sir_compresionManager" />
+		<property name="directorioTemporal" value="${fwktd-sir.directorio.temporal}" />
+		<property name="directorioEnviados" value="${fwktd-sir.directorio.enviados}" />
+	</bean>
+
+	<!-- Implementacion que utiliza el servicio web WSSIR6A del CIR -->
+	<bean id="fwktd_sir_ficheroIntercambioManagerWSSIR6AImpl" name="fwktd_sir_ficheroIntercambioManagerWSSIR6A"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.ws.FicheroIntercambioManagerWSSIR6AImpl"
+		parent="fwktd_sir_ficheroIntercambioManagerAbstract">
+		<property name="anexoManager" ref="fwktd_sir_anexoManager" />
+		<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+		<property name="serviceLocator" ref="fwktd_sir_WSSIR6A_serviceLocator" />
+	</bean>
+
+	<!-- Implementacion que utiliza el servicio web WSSIR6B del CIR -->
+	<bean id="fwktd_sir_ficheroIntercambioManagerWSSIR6BImpl" name="fwktd_sir_ficheroIntercambioManagerWSSIR6B"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.ws.FicheroIntercambioManagerWSSIR6BImpl"
+		parent="fwktd_sir_ficheroIntercambioManagerAbstract">
+		<property name="anexoManager" ref="fwktd_sir_anexoManager" />
+		<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+		<property name="serviceLocator" ref="fwktd_sir_WSSIR6B_serviceLocator" />
+	</bean>
+
+	<!-- Implementacion MOCK para pruebas -->
+	<bean id="fwktd_sir_ficheroIntercambioManagerMockImpl" name="fwktd_sir_ficheroIntercambioManagerMock"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.FicheroIntercambioManagerMockImpl"
+		parent="fwktd_sir_ficheroIntercambioManagerAbstract">
+	</bean>
+
+
+	<!-- Managers de ficheros de datos de control -->
+
+	<alias name="${fwktd-sir.manager.mensaje}" alias="fwktd_sir_mensajeManager" />
+
+	<bean abstract="true" id="fwktd_sir_mensajeManagerAbstractImpl" name="fwktd_sir_mensajeManagerAbstract">
+		<property name="sicresXMLManager" ref="fwktd_sir_sicresXMLManager" />
+		<property name="auditoriaMensajeManager" ref="fwktd_sir_auditoriaMensajeManager" />
+	</bean>
+
+	<!-- Implementacion que utiliza el sistema de ficheros -->
+	<bean id="fwktd_sir_mensajeManagerFSImpl" name="fwktd_sir_mensajeManagerFS"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.fs.MensajeManagerFSImpl"
+		parent="fwktd_sir_mensajeManagerAbstract">
+		<property name="codificacionFicherosManager" ref="fwktd_sir_codificacionFicherosManager" />
+		<property name="compresorManager" ref="fwktd_sir_compresionManager" />
+		<property name="directorioTemporal" value="${fwktd-sir.directorio.temporal}" />
+		<property name="directorioEnviados" value="${fwktd-sir.directorio.enviados}" />
+	</bean>
+
+	<!-- Implementacion que utiliza el servicio web del CIR -->
+	<bean id="fwktd_sir_mensajeManagerWSSIR7Impl" name="fwktd_sir_mensajeManagerWSSIR7"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.ws.MensajeManagerWSSIR7Impl"
+		parent="fwktd_sir_mensajeManagerAbstract">
+		<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+		<property name="serviceLocator" ref="fwktd_sir_WSSIR7_serviceLocator" />
+	</bean>
+
+	<!-- Implementacion MOCK para pruebas -->
+	<bean id="fwktd_sir_mensajeManagerMockImpl" name="fwktd_sir_mensajeManagerMock"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.MensajeManagerMockImpl"
+		parent="fwktd_sir_mensajeManagerAbstract">
+	</bean>
+
+	<!-- Managers de trazabilidad -->
+	<alias name="${fwktd-sir.manager.trazabilidad}" alias="fwktd_sir_trazabilidadManager" />
+
+	<!-- Implementacion que utiliza el servicio web del SIR -->
+	<bean id="fwktd_sir_trazabilidadManagerWSSIR1Impl" name="fwktd_sir_trazabilidadManagerWSSIR1"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.ws.TrazabilidadManagerWSSIR1Impl">
+		<property name="configuracionManager" ref="fwktd_sir_configuracionManager" />
+		<property name="serviceLocator" ref="fwktd_sir_WSSIR1_serviceLocator" />
+	</bean>
+
+	<!-- Implementacion MOCK para pruebas -->
+	<bean id="fwktd_sir_trazabilidadManagerMockImpl" name="fwktd_sir_trazabilidadManagerMock"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.TrazabilidadManagerMockImpl">
+	</bean>
+
+	<!-- Manager de recepcion de ficheros mediante el sistema de ficheros -->
+	<bean id="fwktd_sir_recepcionManagerImpl" name="fwktd_sir_recepcionManager" parent="fwktd_sir_transactionTemplate">
+		<property name="target">
+			<bean class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.RecepcionManagerImpl">
+				<property name="asientoRegistralManager" ref="fwktd_sir_asientoRegistralManager" />
+				<property name="anexoManager" ref="fwktd_sir_anexoManager" />
+				<property name="sicresXMLManager" ref="fwktd_sir_sicresXMLManager" />
+				<property name="fechaManager" ref="fwktd_sir_fechaManager"/>
+				<property name="compresionManager" ref="fwktd_sir_compresionManager" />
+				<property name="mensajeManager" ref="fwktd_sir_mensajeManager" />
+				<property name="auditoriaMensajeManager" ref="fwktd_sir_auditoriaMensajeManager" />
+				<property name="auditoriaFicheroIntercambioManager" ref="fwktd_sir_auditoriaFicheroIntercambioManager" />
+				<property name="trazabilidadManager" ref="fwktd_sir_trazabilidadManager" />
+				<property name="directorioTemporal" value="${fwktd-sir.directorio.temporal}" />
+				<property name="directorioRecibidos" value="${fwktd-sir.directorio.recibidos}" />
+				<property name="directorioHistorico" value="${fwktd-sir.directorio.recibidos.historico}" />
+				<property name="directorioFallidos" value="${fwktd-sir.directorio.recibidos.fallidos}" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Servicio de tiempos -->
+	<bean name="fwktd_time_timeService"
+		factory-bean="fwktd_time_factoryTimeService" factory-method="getTimeService" />
+
+</beans>

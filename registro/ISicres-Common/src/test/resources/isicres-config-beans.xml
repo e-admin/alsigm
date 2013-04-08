@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+
+]>
+
+
+<beans>
+	    
+    <bean name="isicresConfigurationResourceLoader" id="isicresConfigurationResourceLoader" class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl">
+    
+    </bean>
+    <!--
+    <bean class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+        <property name="configurationResourceLoader"><ref bean="isicresConfigurationResourceLoader"/></property>
+        
+    </bean>
+     -->
+     
+     <!-- Bean de configuración de Isicres -->
+	<bean id="registroConfigurationBean" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="CONFIG_SUBDIR" value="registro"/>
+			</map>
+		</property>
+	</bean>
+     
+   
+</beans>

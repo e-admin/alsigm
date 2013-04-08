@@ -1,0 +1,5 @@
+<Context path="/SIGEM_TercerosWS" reloadable="true">
+	
+	<ResourceLink global="jdbc/tercerosDS_000" name="jdbc/tercerosDS_000" type="javax.sql.DataSource"/>
+	
+</Context>

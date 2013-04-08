@@ -1,0 +1,9 @@
+<Context path="/SIGEM_RegistroTelematicoWS" reloadable="true">
+
+	<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+	
+	<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+	<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+	
+</Context>

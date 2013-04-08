@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<digester-rules>
+	<object-create-rule pattern="displaydecorator" classname="ieci.tdw.ispac.ispaclib.bean.DisplayDecorator"/>
+	<!-- 
+	  Busca cualquier campo de tipo displaycolumn y por cada uno de ellos crea
+	  un objeto de tipo DisplayColumn a través del factory, que luego es
+	  añadido al displaydecorator 
+	-->
+	<pattern value="*/displaycolumn">
+		<factory-create-rule classname="ieci.tdw.ispac.ispaclib.bean.DisplayColumnFactory"/>
+		<set-properties-rule>
+			<alias attr-name='name' prop-name='name' />
+			<alias attr-name='title' prop-name='title' />
+			<alias attr-name='type' prop-name='type' />
+			<alias attr-name='width' prop-name='width' />
+			<alias attr-name='headerClass' prop-name='headerClass' />
+			<alias attr-name='sortable' prop-name='sortable' />
+			<alias attr-name='media' prop-name='media' />
+			<alias attr-name='decorator' prop-name='decorator' />
+			<alias attr-name='url' prop-name='url' />
+			<alias attr-name='id' prop-name='id' />
+			<alias attr-name='parameter' prop-name='parameter' />
+		</set-properties-rule>		
+		<set-next-rule methodname="add"/>
+	</pattern>
+</digester-rules>

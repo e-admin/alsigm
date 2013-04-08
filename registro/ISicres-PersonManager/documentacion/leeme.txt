@@ -1,0 +1,7 @@
+1.- La interface com.ieci.tecdoc.person.validation.core.PersonValidation.java
+	se ha movido al proyecto ISicres-Common.
+	Ahora es: com.ieci.tecdoc.common.adapter.PersonValidation.java
+	
+2.- La clase com.ieci.tecdoc.person.validation.PersonValidationFactory.java
+	se ha movido al proyecto ISicres-Server
+	Ahora es: com.ieci.tecdoc.isicres.person.PersonValidationFactory.java

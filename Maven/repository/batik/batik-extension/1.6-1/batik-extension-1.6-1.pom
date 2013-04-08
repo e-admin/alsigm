@@ -1,0 +1,16 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>batik</groupId>
+  <artifactId>batik-extension</artifactId>
+  <name>Batik Extension</name>
+  <version>1.6-1</version>
+  <description>Batik Extension</description>
+  <inceptionYear>2000</inceptionYear>
+  <dependencies>
+    <dependency>
+      <groupId>batik</groupId>
+      <artifactId>batik-bridge</artifactId>
+      <version>1.6-1</version>
+    </dependency>
+  </dependencies>
+</project>

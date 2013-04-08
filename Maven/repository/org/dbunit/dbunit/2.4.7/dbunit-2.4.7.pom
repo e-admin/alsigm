@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.dbunit</groupId>
+  <artifactId>dbunit</artifactId>
+  <version>2.4.7</version>
+  <packaging>jar</packaging>
+  <name>DbUnit Framework</name>
+  <url>http://dbunit.sourceforge.net</url>
+  <inceptionYear>2002</inceptionYear>
+  <description>
+    DbUnit is a JUnit extension (also usable from Ant) targeted for database-driven projects that, among other things, puts your database into a known state between test runs. This is an excellent way to avoid the myriad of problems that can occur when one test case corrupts the database and causes subsequent tests to fail or exacerbate the damage.
+  </description>
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License, Version 2.1</name>
+      <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <properties>
+    <compileSource>1.4</compileSource>
+    <checkstyle.excludes>org/dbunit/util/concurrent/*.java</checkstyle.excludes>
+  </properties>
+
+  <scm>
+    <connection>scm:svn:https://dbunit.svn.sourceforge.net/svnroot/dbunit/tags/dbunit-2.4.7</connection>
+    <developerConnection>scm:svn:https://dbunit.svn.sourceforge.net/svnroot/dbunit/tags/dbunit-2.4.7</developerConnection>
+    <url>http://dbunit.svn.sourceforge.net/svnroot/dbunit/tags/dbunit-2.4.7</url>
+  </scm>
+  <issueManagement>
+    <system>SourceForge</system>
+    <url>http://sourceforge.net/tracker/?group_id=47439</url>
+  </issueManagement>
+  <ciManagement>
+    <system>parabuild</system>
+    <url><![CDATA[http://parabuild.viewtier.com:8080/parabuild/index.htm?view=detailed&buildid=30]]></url>
+    <notifiers>
+      <notifier>
+        <type>mail</type>
+        <sendOnError>true</sendOnError>
+        <sendOnFailure>false</sendOnFailure>
+        <sendOnSuccess>false</sendOnSuccess>
+        <sendOnWarning>false</sendOnWarning>
+        <configuration>
+          <address>gommma@users.sourceforge.net</address>
+        </configuration>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+
+  <mailingLists>
+    <mailingList>
+      <name>DbUnit User List</name>
+      <subscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-user</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-user</unsubscribe>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=dbunit-user</archive>
+    </mailingList>
+    <mailingList>
+      <name>DbUnit Developer List</name>
+      <subscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-developer</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-developer</unsubscribe>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=dbunit-developer</archive>
+    </mailingList>
+    <mailingList>
+      <name>DbUnit SVN Commit List</name>
+      <subscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-commit</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-commit</unsubscribe>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=dbunit-commit</archive>
+    </mailingList>
+  </mailingLists>
+
+  <!--
+     - Who are the developers for the project, in order of recent activity.
+    -->
+  <developers>
+    <!--
+       - Note: email of first developer is used by the announcements-email plugin
+      -->
+    <developer>
+      <name>Matthias Gommeringer</name>
+      <id>gommma</id>
+      <email>gommma@users.sourceforge.net</email>
+      <roles>
+        <role>Java Developer (very active)</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>John Hurst</name>
+      <id>jbhurst</id>
+      <email>jbhurst@users.sourceforge.net</email>
+      <roles>
+        <role>Java Developer (very active)</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Jeff Jensen</name>
+      <id>jeffjensen</id>
+      <email>jeffjensen@users.sourceforge.net</email>
+      <roles>
+        <role>Java Developer (active)</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Roberto Lo Giacco</name>
+      <id>rlogiacco</id>
+      <email>rlogiacco@users.sourceforge.net</email>
+      <organization>SmartLab</organization>
+      <roles>
+        <role>Java Developer (active)</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Felipe Leme</name>
+      <id>felipeal</id>
+      <email>dbunit@felipeal.net</email>
+      <organization>GoldenGate Software</organization>
+      <timezone>-8</timezone>
+      <roles>
+        <role>Java Developer (mostly inactive :-)</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>David Eric Pugh</name>
+      <id>dep4b</id>
+      <email>epugh@opensourceconnections.com</email>
+      <organization>OpenSource Connections</organization>
+      <roles>
+        <role>Java Developer (inactive)</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Sebastien Le Callonnec</name>
+      <id>slecallonnec</id>
+      <email>slecallonnec@users.sourceforge.net</email>
+      <roles>
+        <role>Java Developer (inactive)</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Manuel Laflamme</name>
+      <id>mlaflamm</id>
+      <organization>Oz Communication</organization>
+      <roles>
+        <role>Project Founder (inactive)</role>
+        <!--  <role>Java Developer</role> -->
+      </roles>
+    </developer>
+    <developer>
+      <name>Benjamin Cox</name>
+      <id>bdrum</id>
+      <roles>
+        <role>Java Developer (inactive)</role>
+        <!--  <role>Original Ant Task Contributor</role> -->
+      </roles>
+    </developer>
+    <developer>
+      <name>Federico Spinazzi</name>
+      <id>fspinazzi</id>
+      <email>f.spinazzi@masterhouse.it</email>
+      <organization>Master House S.r.l</organization>
+      <roles>
+        <role>Java Developer (inactive)</role>
+        <!--  <role>DB2 Contributor</role> -->
+      </roles>
+    </developer>
+    <developer>
+      <name>Timothy J. Ruppert</name>
+      <id>zieggy</id>
+      <roles>
+        <role>Java Developer (inactive)</role>
+        <!--  <role>Original Ant Task Contributor</role> -->
+      </roles>
+    </developer>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <name>Klas Axel</name>
+      <roles>
+        <role>HsqldbDataTypeFactory</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Erik Price</name>
+      <roles>
+        <role>DatabaseSequenceOperation</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Jeremy Stein</name>
+      <roles>
+        <role>InsertIndentityOperation</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Keven Kizer</name>
+      <roles>
+        <role>Early guinea pig</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Mike Bresnahan</name>
+      <roles>
+        <role>DbUnit evangelist</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Andres Almiray</name>
+      <email>aalmiray@users.sourceforge.net</email>
+      <roles>
+        <role>IDatabaseTester creator</role>
+      </roles>
+    </contributor>
+  </contributors>
+
+
+  <dependencies>
+
+    <!--
+      TODO: check which dependencies could marked as optional. For
+      instance, ant is optional because it's only necessary for the
+      dbunit Ant tasks.
+    -->
+
+    <!-- TODO: add exclusion for dependencies that include xerces/xalan -->
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.5.4</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.2-FINAL</version>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-testutil</artifactId>
+      <version>1.7.0</version>
+      <optional>true</optional>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit-addons</groupId>
+      <artifactId>junit-addons</artifactId>
+      <version>1.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>mockobjects</groupId>
+      <artifactId>mockobjects-core</artifactId>
+      <version>0.07</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>mockmaker</groupId>
+      <artifactId>mmmockobjects</artifactId>
+      <version>1.12.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- TODO: check why follow dependency is necessary -->
+    <dependency>
+      <groupId>mockobjects</groupId>
+      <artifactId>mockobjects-jdk1.3</artifactId>
+      <version>0.07</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>1.8.0.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.1.113</version>
+      <!-- Note that the 1.1.113 version is the last one officially built with JDK 1.4 -->
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>gsbase</groupId>
+      <artifactId>gsbase</artifactId>
+      <version>2.0.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>1.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-nop</artifactId>
+      <version>1.5.6</version>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <sourceDirectory>src/java</sourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory>
+
+    <!--
+      TODO: move to M2's expected path and separate java from test (once
+      SCM is migrated to SVN...)
+    -->
+    <resources>
+      <resource>
+        <directory>.</directory>
+        <includes>
+          <include>LICENSE.txt</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/java</directory>
+        <includes>
+          <include>**/dataset.dtd</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/csv</directory>
+        <includes>
+          <include>**/cvs-tests.properties</include>
+        </includes>
+      </resource>
+
+    </resources>
+    <!--
+      TODO: that are some resources on src that should be on test...
+
+      <testResources> <testResource> </testResource> </testResources>
+    -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>**/Abstract*.java</exclude>
+          </excludes>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+          <systemProperties>
+            <property>
+              <name>dbunit.profile</name>
+              <value>${dbunit.profile}</value>
+            </property>
+            <property>
+              <name>dbunit.profile.driverClass</name>
+              <value>${dbunit.profile.driverClass}</value>
+            </property>
+            <property>
+              <name>dbunit.profile.url</name>
+              <value>${dbunit.profile.url}</value>
+            </property>
+            <property>
+              <name>dbunit.profile.schema</name>
+              <value>${dbunit.profile.schema}</value>
+            </property>
+            <property>
+              <name>dbunit.profile.user</name>
+              <value>${dbunit.profile.user}</value>
+            </property>
+            <property>
+              <name>dbunit.profile.password</name>
+              <value>${dbunit.profile.password}</value>
+            </property>
+            <property>
+              <name>dbunit.profile.unsupportedFeatures</name>
+              <value>${dbunit.profile.unsupportedFeatures}</value>
+            </property>
+          </systemProperties>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${compileSource}</source>
+          <target>${compileSource}</target>
+          <compilerVersion>${compileSource}</compilerVersion>
+          <!--
+            TODO somehow we must ensure that the used rt.jar is really a
+            1.4 and not higher, also for continuous integration
+          -->
+          <!--<executable>${JAVA_1_4_HOME}/bin/javac</executable>-->
+          <debug>true</debug>
+          <fork>true</fork>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.0-beta-9</version>
+        <configuration>
+          <goals>javadoc:javadoc site changes:announcement-generate assembly:assembly javadoc:jar source:jar deploy</goals>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>/LICENSE.txt</include>
+            <include>**</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptors>
+            <descriptor>assembly.xml</descriptor>
+          </descriptors>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+      </plugin>
+      <!--
+        <plugin> <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId> </plugin>
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <configLocation>checkstyle.xml</configLocation>
+          <argLine>-Xmx512m -Xms128m</argLine>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <configuration>
+          <linkXref>true</linkXref>
+          <sourceEncoding>utf-8</sourceEncoding>
+          <minimumTokens>100</minimumTokens>
+          <targetJdk>${compileSource}</targetJdk>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jdepend-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <destDir>apidocs</destDir>
+          <quiet>true</quiet>
+          <stylesheet>maven</stylesheet>
+          <tags>
+            <tag>
+              <name>TODO</name>
+              <placement>a</placement>
+              <head>To do:</head>
+            </tag>
+          </tags>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changes-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <smtpHost>localhost</smtpHost>
+          <smtpPort implementation="java.lang.Integer">25</smtpPort>
+          <introduction>If you are reading this, the maintainer forgot to describe what's the purpose of this release!!!</introduction>
+          <toAddresses>
+            <toAddress implementation="java.lang.String">dbunit-developer@lists.sourceforge.net</toAddress>
+            <toAddress implementation="java.lang.String">dbunit-user@lists.sourceforge.net</toAddress>
+          </toAddresses>
+          <urlDownload>http://sourceforge.net/project/showfiles.php?group_id=47439</urlDownload>
+          <issueLinkTemplate><![CDATA[http://sourceforge.net/support/tracker.php?aid=%ISSUE%]]></issueLinkTemplate>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>changes-report</report>
+              <report>license</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>sourceforge</id>
+      <name>SourceForge Snapshots Repo</name>
+      <url>scp://shell.sourceforge.net/home/groups/d/db/dbunit/htdocs/repo/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>sourceforge</id>
+      <name>SourceForge Releases Repo</name>
+      <url>scp://shell.sourceforge.net/home/groups/d/db/dbunit/htdocs/repo/official</url>
+    </repository>
+    <site>
+      <id>sourceforge</id>
+      <url>scp://shell.sourceforge.net/home/groups/d/db/dbunit/htdocs</url>
+    </site>
+  </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>official</id>
+      <dependencies>
+        <dependency>
+          <groupId>javax.sql</groupId>
+          <artifactId>jdbc-stdext</artifactId>
+          <version>2.0</version>
+          <optional>true</optional>
+        </dependency>
+      </dependencies>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                <source>${compileSource}</source>
+                <target>${compileSource}</target>
+                <compilerVersion>${compileSource}</compilerVersion>
+                <executable>${JAVA_1_4_HOME}/bin/javac</executable>
+                <debug>true</debug>
+                <fork>true</fork>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-changes-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-changelog-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
+    <profile>
+      <id>oracle-default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.oracle</groupId>
+          <artifactId>ojdbc14</artifactId>
+          <version>10.2.0.4.0</version>
+          <optional>true</optional>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>hsqldb</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <dbunit.profile>hsqldb</dbunit.profile>
+        <dbunit.profile.driverClass>org.hsqldb.jdbcDriver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:hsqldb:mem:.</dbunit.profile.url>
+        <dbunit.profile.schema>PUBLIC</dbunit.profile.schema>
+        <dbunit.profile.user>sa</dbunit.profile.user>
+        <dbunit.profile.password />
+        <dbunit.profile.unsupportedFeatures>BLOB,CLOB,SCROLLABLE_RESULTSET,INSERT_IDENTITY,TRUNCATE_TABLE,SDO_GEOMETRY</dbunit.profile.unsupportedFeatures>
+      </properties>
+    </profile>
+    <!-- "original" OracleDataTypeFactory (NOT 10g) with Oracle 10 JDBC driver for Java 1.4 -->
+    <profile>
+      <id>oracle-ojdbc14</id>
+      <properties>
+        <dbunit.profile>oracle</dbunit.profile>
+        <dbunit.profile.driverClass>oracle.jdbc.OracleDriver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:oracle:thin:@demowin:1521:demowin</dbunit.profile.url>
+        <dbunit.profile.schema>DBUNIT</dbunit.profile.schema>
+        <dbunit.profile.user>dbunit</dbunit.profile.user>
+        <dbunit.profile.password>dbunit</dbunit.profile.password>
+        <dbunit.profile.unsupportedFeatures>INSERT_IDENTITY,SCROLLABLE_RESULTSET</dbunit.profile.unsupportedFeatures>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.oracle</groupId>
+          <artifactId>ojdbc14</artifactId>
+          <version>10.2.0.4.0</version>
+          <optional>true</optional>
+        </dependency>
+      </dependencies>
+    </profile>
+    <!-- "original" OracleDataTypeFactory (NOT 10g) with Oracle 11 JDBC driver for Java 6 -->
+    <profile>
+      <id>oracle-ojdbc6</id>
+      <properties>
+        <dbunit.profile>oracle</dbunit.profile>
+        <dbunit.profile.driverClass>oracle.jdbc.OracleDriver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:oracle:thin:@demowin:1521:demowin</dbunit.profile.url>
+        <dbunit.profile.schema>DBUNIT</dbunit.profile.schema>
+        <dbunit.profile.user>dbunit</dbunit.profile.user>
+        <dbunit.profile.password>dbunit</dbunit.profile.password>
+        <dbunit.profile.unsupportedFeatures>INSERT_IDENTITY,SCROLLABLE_RESULTSET</dbunit.profile.unsupportedFeatures>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.oracle</groupId>
+          <artifactId>ojdbc6</artifactId>
+          <version>11.1.0.7.0</version>
+          <optional>true</optional>
+        </dependency>
+      </dependencies>
+    </profile>
+    <!-- "newer" Oracle10DataTypeFactory with Oracle 10 JDBC driver for Java 1.4 -->
+    <profile>
+      <id>oracle10-ojdbc14</id>
+      <properties>
+        <dbunit.profile>oracle10</dbunit.profile>
+        <dbunit.profile.driverClass>oracle.jdbc.OracleDriver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:oracle:thin:@demowin:1521:demowin</dbunit.profile.url>
+        <dbunit.profile.schema>DBUNIT</dbunit.profile.schema>
+        <dbunit.profile.user>dbunit</dbunit.profile.user>
+        <dbunit.profile.password>dbunit</dbunit.profile.password>
+        <dbunit.profile.unsupportedFeatures>INSERT_IDENTITY,SCROLLABLE_RESULTSET</dbunit.profile.unsupportedFeatures>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.oracle</groupId>
+          <artifactId>ojdbc14</artifactId>
+          <version>10.2.0.4.0</version>
+          <optional>true</optional>
+        </dependency>
+      </dependencies>
+    </profile>
+    <!-- "newer" Oracle10DataTypeFactory with Oracle 11 JDBC driver for Java 6 -->
+    <profile>
+      <id>oracle10-ojdbc6</id>
+      <properties>
+        <dbunit.profile>oracle10</dbunit.profile>
+        <dbunit.profile.driverClass>oracle.jdbc.OracleDriver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:oracle:thin:@demowin:1521:demowin</dbunit.profile.url>
+        <dbunit.profile.schema>DBUNIT</dbunit.profile.schema>
+        <dbunit.profile.user>dbunit</dbunit.profile.user>
+        <dbunit.profile.password>dbunit</dbunit.profile.password>
+        <dbunit.profile.unsupportedFeatures>INSERT_IDENTITY,SCROLLABLE_RESULTSET</dbunit.profile.unsupportedFeatures>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.oracle</groupId>
+          <artifactId>ojdbc6</artifactId>
+          <version>11.1.0.7.0</version>
+          <optional>true</optional>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>postgresql</id>
+      <properties>
+        <dbunit.profile>postgresql</dbunit.profile>
+        <dbunit.profile.driverClass>org.postgresql.Driver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:postgresql://host/database</dbunit.profile.url>
+        <dbunit.profile.schema>public</dbunit.profile.schema>
+        <dbunit.profile.user>dbunit</dbunit.profile.user>
+        <dbunit.profile.password>dbunit</dbunit.profile.password>
+        <dbunit.profile.unsupportedFeatures>INSERT_IDENTITY,CLOB,BLOB,SCROLLABLE_RESULTSET,SDO_GEOMETRY</dbunit.profile.unsupportedFeatures>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>8.4-701.jdbc3</version>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>mysql</id>
+      <properties>
+        <dbunit.profile>mysql</dbunit.profile>
+        <dbunit.profile.driverClass>com.mysql.jdbc.Driver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:mysql://localhost:3306/dbunit</dbunit.profile.url>
+        <dbunit.profile.schema />
+        <dbunit.profile.user>dbunit</dbunit.profile.user>
+        <dbunit.profile.password>dbunit</dbunit.profile.password>
+        <dbunit.profile.unsupportedFeatures>BLOB,CLOB,SCROLLABLE_RESULTSET,INSERT_IDENTITY,SDO_GEOMETRY</dbunit.profile.unsupportedFeatures>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.6</version>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>mssql</id>
+      <properties>
+        <dbunit.profile>mssql</dbunit.profile>
+        <dbunit.profile.driverClass>com.microsoft.jdbc.sqlserver.SQLServerDriver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:microsoft:sqlserver://localhost\\dbunit:1433;DatabaseName=dbunit;SelectMethod=cursor</dbunit.profile.url>
+        <dbunit.profile.schema>dbo</dbunit.profile.schema>
+        <dbunit.profile.user>dbunit</dbunit.profile.user>
+        <dbunit.profile.password>dbunit</dbunit.profile.password>
+        <dbunit.profile.unsupportedFeatures>BLOB,CLOB,SCROLLABLE_RESULTSET,SDO_GEOMETRY</dbunit.profile.unsupportedFeatures>
+      </properties>
+    </profile>
+    <profile>
+      <id>db2</id>
+      <properties>
+        <dbunit.profile>db2</dbunit.profile>
+        <dbunit.profile.driverClass>TODO</dbunit.profile.driverClass>
+        <dbunit.profile.url>TODO</dbunit.profile.url>
+        <dbunit.profile.schema>TODO</dbunit.profile.schema>
+        <dbunit.profile.user>TODO</dbunit.profile.user>
+        <dbunit.profile.password>TODO</dbunit.profile.password>
+        <dbunit.profile.unsupportedFeatures>TODO</dbunit.profile.unsupportedFeatures>
+      </properties>
+    </profile>
+    <profile>
+      <id>derby</id>
+      <properties>
+        <dbunit.profile>derby</dbunit.profile>
+        <dbunit.profile.driverClass>org.apache.derby.jdbc.EmbeddedDriver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:derby:target/derby_db;create=true</dbunit.profile.url>
+        <dbunit.profile.schema>APP</dbunit.profile.schema>
+        <dbunit.profile.user>APP</dbunit.profile.user>
+        <dbunit.profile.password>APP</dbunit.profile.password>
+        <dbunit.profile.unsupportedFeatures>VARBINARY,BLOB,CLOB,TRANSACTION,SCROLLABLE_RESULTSET,INSERT_IDENTITY,TRUNCATE_TABLE,SDO_GEOMETRY</dbunit.profile.unsupportedFeatures>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.derby</groupId>
+          <artifactId>derby</artifactId>
+          <version>10.4.1.3</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>h2</id>
+      <properties>
+        <dbunit.profile>h2</dbunit.profile>
+        <dbunit.profile.driverClass>org.h2.Driver</dbunit.profile.driverClass>
+        <dbunit.profile.url>jdbc:h2:target/h2/test</dbunit.profile.url>
+        <dbunit.profile.schema>PUBLIC</dbunit.profile.schema>
+        <dbunit.profile.user>sa</dbunit.profile.user>
+        <dbunit.profile.password />
+        <dbunit.profile.unsupportedFeatures>BLOB,CLOB,SCROLLABLE_RESULTSET,INSERT_IDENTITY,TRUNCATE_TABLE,SDO_GEOMETRY</dbunit.profile.unsupportedFeatures>
+      </properties>
+      <dependencies>
+        <dependency>
+           <groupId>com.h2database</groupId>
+           <artifactId>h2</artifactId>
+           <version>1.1.118</version>
+       </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+
+</project>

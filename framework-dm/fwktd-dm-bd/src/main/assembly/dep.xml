@@ -1,0 +1,29 @@
+<assembly>
+	<id>bd</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/db2</directory>
+			<outputDirectory>fwktd-dm-bd/db2</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/h2</directory>
+			<outputDirectory>fwktd-dm-bd/h2</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/oracle</directory>
+			<outputDirectory>fwktd-dm-bd/oracle</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/postgresql</directory>
+			<outputDirectory>fwktd-dm-bd/postgresql</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/sqlserver</directory>
+			<outputDirectory>fwktd-dm-bd/sqlserver</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>

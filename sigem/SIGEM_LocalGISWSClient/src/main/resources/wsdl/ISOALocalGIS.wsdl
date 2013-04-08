@@ -1,0 +1,1219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ln.localgis.com" xmlns:ns2="http://model.core.web.localgis.com" xmlns:ns1="http://ot.model.localgis.com" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:tns="http://ln.localgis.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ot.model.localgis.com">
+<xsd:complexType name="NumeroOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="calificador" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="codigoINEMunicipio" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="fechaEjecucion" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="idVia" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="idacl" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="numero" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="BienPreAltaOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="costeAdquisicion" type="xsd:double"/>
+<xsd:element minOccurs="0" name="descripcion" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="fechaAdquisicion" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="id" type="xsd:long"/>
+<xsd:element minOccurs="0" name="idMunicipio" type="xsd:long"/>
+<xsd:element minOccurs="0" name="nombre" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="tipo" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfParcelaOT">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ParcelaOT" nillable="true" type="ns1:ParcelaOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ParcelaOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="direccion" nillable="true" type="ns1:LocalizacionOT"/>
+<xsd:element minOccurs="0" name="lstBienesInmuebles" nillable="true" type="ns1:ArrayOfBienInmuebleOT"/>
+<xsd:element minOccurs="0" name="refCatastral" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="superficie" nillable="true" type="xsd:double"/>
+<xsd:element minOccurs="0" name="superficieConstruida" type="xsd:double"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="LocalizacionOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="bloque" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="codigoPostal" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="kilometro" nillable="true" type="xsd:double"/>
+<xsd:element minOccurs="0" name="nombreMunicipio" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="nombreProvincia" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="nombreVia" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="primerNumero" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="primeraLetra" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="segundaLetra" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="segundoNumero" nillable="true" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfBienInmuebleOT">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="BienInmuebleOT" nillable="true" type="ns1:BienInmuebleOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="BienInmuebleOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="claseBienInmueble" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="claseUso" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="direccionLocalizacion" nillable="true" type="ns1:LocalizacionOT"/>
+<xsd:element minOccurs="0" name="lstConstrucciones" nillable="true" type="ns1:ArrayOfConstruccionOT"/>
+<xsd:element minOccurs="0" name="lstCultivos" nillable="true" type="ns1:ArrayOfCultivoOT"/>
+<xsd:element minOccurs="0" name="referencia_catastral" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="superficie" nillable="true" type="xsd:double"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfConstruccionOT">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ConstruccionOT" nillable="true" type="ns1:ConstruccionOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ConstruccionOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="codigoUso" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="escalera" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="identificador" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="planta" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="puerta" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="superficieTotal" nillable="true" type="xsd:double"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfCultivoOT">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="CultivoOT" nillable="true" type="ns1:CultivoOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="CultivoOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="calificacion" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="denominacion" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="identificador" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="intensidadProductiva" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="superficie" nillable="true" type="xsd:double"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfProvinciaOT">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ProvinciaOT" nillable="true" type="ns1:ProvinciaOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ProvinciaOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="codigoINE" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="comunidadAutonoma" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="nombreCoOficial" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="nombreOficial" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="CalleOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="claseVia" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="codigoDGC" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="codigoINEMunicipio" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="codigoTipoVia" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="denominacion" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="denominacionNormalizada" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="fechaEjecucion" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="fechaGrabacionAyto" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="fechaGrabacionCierre" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="idacl" nillable="true" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="PoiOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="coordX" type="xsd:double"/>
+<xsd:element minOccurs="0" name="coordY" type="xsd:double"/>
+<xsd:element minOccurs="0" name="direccion" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="idContenido" type="xsd:int"/>
+<xsd:element minOccurs="0" name="idMunicpio" type="xsd:int"/>
+<xsd:element minOccurs="0" name="subtipo" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="tipo" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="urlContenido" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="URLsPlano">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="urlGuiaUrbana" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="urlMapServer" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfCapaOT">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="CapaOT" nillable="true" type="ns1:CapaOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="CapaOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="nombreCapa" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="patron" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="subtipos" nillable="true" type="ns1:ArrayOfSubtipoOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfSubtipoOT">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="SubtipoOT" nillable="true" type="ns1:SubtipoOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="SubtipoOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="nombreSubtipo" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="patron" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfMunicipioOT">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="MunicipioOT" nillable="true" type="ns1:MunicipioOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="MunicipioOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="codigoINE" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="nombreCoOficial" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="nombreOficial" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfTipoViaOT">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="TipoViaOT" nillable="true" type="ns1:TipoViaOT"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="TipoViaOT">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="descripcion" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="patron" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ln.localgis.com">
+<xsd:element name="altaNumerero">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:NumeroOT"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="altaNumereroResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="insertBienPreAlta">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:BienPreAltaOT"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="insertBienPreAltaResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="consultarCatastro">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="consultarCatastroResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:ArrayOfParcelaOT"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="validarReferencia">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="validarReferenciaResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="obtenerProvincias">
+<xsd:complexType/>
+</xsd:element>
+<xsd:element name="obtenerProvinciasResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:ArrayOfProvinciaOT"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanosPublicados">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanosPublicadosResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns2:ArrayOfLocalgisMap"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verMunicipiosPublicados">
+<xsd:complexType/>
+</xsd:element>
+<xsd:element name="verMunicipiosPublicadosResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns2:ArrayOfGeopistaMunicipio"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="modificacionCallejero">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="ns1:CalleOT"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="modificacionCallejeroResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="selectColumnsByLayerTranslated">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="selectColumnsByLayerTranslatedResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns2:ArrayOfGeopistaColumn"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="bajaPOI">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="bajaPOIResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="altaCallejero">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:CalleOT"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="altaCallejeroResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="altaPOI">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:PoiOT"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="altaPOIResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="bajaCallejero">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in3" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in4" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in5" nillable="true" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="bajaCallejeroResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanoPorIdNumeroPolicia">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in3" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in4" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in5" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanoPorIdNumeroPoliciaResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:URLsPlano"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="obtenerListaCapas">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="obtenerListaCapasResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:ArrayOfCapaOT"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getURLReportMap">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in3" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in4" nillable="true" type="xsd:anyType"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in5" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in6" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in7" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in8" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in9" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in10" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in11" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:complexType name="anyType2anyTypeMap">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="0" name="key" type="xsd:anyType"/>
+<xsd:element maxOccurs="1" minOccurs="0" name="value" type="xsd:anyType"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getURLReportMapResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="tns:anyType2anyTypeMap"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanoPorReferenciaCatastral">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in3" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in4" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in5" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanoPorReferenciaCatastralResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:URLsPlano"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="bajaNumerero">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:NumeroOT"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="bajaNumereroResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="obtenerMunicipios">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="obtenerMunicipiosResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:ArrayOfMunicipioOT"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="selectLayersByIdMap">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="selectLayersByIdMapResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns2:ArrayOfLocalgisLayer"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="modificacionNumerero">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:NumeroOT"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="modificacionNumereroResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="obtenerTiposDeVia">
+<xsd:complexType/>
+</xsd:element>
+<xsd:element name="obtenerTiposDeViaResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:ArrayOfTipoViaOT"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanoPorIdVia">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in3" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in4" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in5" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanoPorIdViaResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:URLsPlano"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanoPorCoordenadas">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" type="xsd:double"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" type="xsd:double"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in3" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in4" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in5" type="xsd:int"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in6" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="verPlanoPorCoordenadasResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:URLsPlano"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://model.core.web.localgis.com">
+<xsd:complexType name="ArrayOfLocalgisMap">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="LocalgisMap" nillable="true" type="ns2:LocalgisMap"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="LocalgisMap">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="mapdefault" nillable="true" type="xsd:short"/>
+<xsd:element minOccurs="0" name="mapid" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="mapidentidad" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="mapidgeopista" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="mappublic" nillable="true" type="xsd:short"/>
+<xsd:element minOccurs="0" name="maxx" nillable="true" type="xsd:double"/>
+<xsd:element minOccurs="0" name="maxy" nillable="true" type="xsd:double"/>
+<xsd:element minOccurs="0" name="minx" nillable="true" type="xsd:double"/>
+<xsd:element minOccurs="0" name="miny" nillable="true" type="xsd:double"/>
+<xsd:element minOccurs="0" name="name" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="srid" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfGeopistaMunicipio">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="GeopistaMunicipio" nillable="true" type="ns2:GeopistaMunicipio"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="GeopistaMunicipio">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="area" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="id" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="idCatastro" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="idIne" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="idMhacienda" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="idProvincia" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="length" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="nombrecooficial" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="nombreoficial" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="nombreoficialcorto" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="srid" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfGeopistaColumn">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="GeopistaColumn" nillable="true" type="ns2:GeopistaColumn"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="GeopistaColumn">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="alias" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="geometryType" nillable="true" type="xsd:short"/>
+<xsd:element minOccurs="0" name="id" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="idAlias" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="idAttributeGeopista" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="idDomain" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="idTable" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="length" nillable="true" type="xsd:short"/>
+<xsd:element minOccurs="0" name="name" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="precision" nillable="true" type="xsd:short"/>
+<xsd:element minOccurs="0" name="scale" nillable="true" type="xsd:short"/>
+<xsd:element minOccurs="0" name="tablename" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="type" nillable="true" type="xsd:short"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfLocalgisLayer">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="LocalgisLayer" nillable="true" type="ns2:LocalgisLayer"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="LocalgisLayer">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="columnTime" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="geometrytype" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="layerid" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="layeridgeopista" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="layername" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="layerquery" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="time" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="versionable" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="versionable2" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="verPlanosPublicadosRequest">
+    <wsdl:part name="parameters" element="tns:verPlanosPublicados">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="insertBienPreAltaRequest">
+    <wsdl:part name="parameters" element="tns:insertBienPreAlta">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarCatastroResponse">
+    <wsdl:part name="parameters" element="tns:consultarCatastroResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="selectColumnsByLayerTranslatedRequest">
+    <wsdl:part name="parameters" element="tns:selectColumnsByLayerTranslated">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verPlanoPorIdNumeroPoliciaRequest">
+    <wsdl:part name="parameters" element="tns:verPlanoPorIdNumeroPolicia">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modificacionNumereroResponse">
+    <wsdl:part name="parameters" element="tns:modificacionNumereroResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verPlanoPorCoordenadasRequest">
+    <wsdl:part name="parameters" element="tns:verPlanoPorCoordenadas">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaNumereroResponse">
+    <wsdl:part name="parameters" element="tns:altaNumereroResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaPOIResponse">
+    <wsdl:part name="parameters" element="tns:altaPOIResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validarReferenciaResponse">
+    <wsdl:part name="parameters" element="tns:validarReferenciaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modificacionCallejeroRequest">
+    <wsdl:part name="parameters" element="tns:modificacionCallejero">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerProvinciasResponse">
+    <wsdl:part name="parameters" element="tns:obtenerProvinciasResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerProvinciasRequest">
+    <wsdl:part name="parameters" element="tns:obtenerProvincias">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verPlanoPorIdViaResponse">
+    <wsdl:part name="parameters" element="tns:verPlanoPorIdViaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaPOIRequest">
+    <wsdl:part name="parameters" element="tns:altaPOI">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerTiposDeViaRequest">
+    <wsdl:part name="parameters" element="tns:obtenerTiposDeVia">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verPlanoPorIdNumeroPoliciaResponse">
+    <wsdl:part name="parameters" element="tns:verPlanoPorIdNumeroPoliciaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarCatastroRequest">
+    <wsdl:part name="parameters" element="tns:consultarCatastro">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerTiposDeViaResponse">
+    <wsdl:part name="parameters" element="tns:obtenerTiposDeViaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerListaCapasRequest">
+    <wsdl:part name="parameters" element="tns:obtenerListaCapas">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getURLReportMapRequest">
+    <wsdl:part name="parameters" element="tns:getURLReportMap">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verPlanoPorIdViaRequest">
+    <wsdl:part name="parameters" element="tns:verPlanoPorIdVia">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verMunicipiosPublicadosRequest">
+    <wsdl:part name="parameters" element="tns:verMunicipiosPublicados">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verPlanoPorReferenciaCatastralResponse">
+    <wsdl:part name="parameters" element="tns:verPlanoPorReferenciaCatastralResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerMunicipiosResponse">
+    <wsdl:part name="parameters" element="tns:obtenerMunicipiosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validarReferenciaRequest">
+    <wsdl:part name="parameters" element="tns:validarReferencia">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaCallejeroRequest">
+    <wsdl:part name="parameters" element="tns:altaCallejero">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modificacionCallejeroResponse">
+    <wsdl:part name="parameters" element="tns:modificacionCallejeroResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaNumereroRequest">
+    <wsdl:part name="parameters" element="tns:bajaNumerero">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaCallejeroResponse">
+    <wsdl:part name="parameters" element="tns:bajaCallejeroResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaCallejeroResponse">
+    <wsdl:part name="parameters" element="tns:altaCallejeroResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verPlanoPorReferenciaCatastralRequest">
+    <wsdl:part name="parameters" element="tns:verPlanoPorReferenciaCatastral">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerListaCapasResponse">
+    <wsdl:part name="parameters" element="tns:obtenerListaCapasResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerMunicipiosRequest">
+    <wsdl:part name="parameters" element="tns:obtenerMunicipios">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modificacionNumereroRequest">
+    <wsdl:part name="parameters" element="tns:modificacionNumerero">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="selectLayersByIdMapRequest">
+    <wsdl:part name="parameters" element="tns:selectLayersByIdMap">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verPlanosPublicadosResponse">
+    <wsdl:part name="parameters" element="tns:verPlanosPublicadosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verMunicipiosPublicadosResponse">
+    <wsdl:part name="parameters" element="tns:verMunicipiosPublicadosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaCallejeroRequest">
+    <wsdl:part name="parameters" element="tns:bajaCallejero">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verPlanoPorCoordenadasResponse">
+    <wsdl:part name="parameters" element="tns:verPlanoPorCoordenadasResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaPOIResponse">
+    <wsdl:part name="parameters" element="tns:bajaPOIResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="selectLayersByIdMapResponse">
+    <wsdl:part name="parameters" element="tns:selectLayersByIdMapResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaNumereroRequest">
+    <wsdl:part name="parameters" element="tns:altaNumerero">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaNumereroResponse">
+    <wsdl:part name="parameters" element="tns:bajaNumereroResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaPOIRequest">
+    <wsdl:part name="parameters" element="tns:bajaPOI">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getURLReportMapResponse">
+    <wsdl:part name="parameters" element="tns:getURLReportMapResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="insertBienPreAltaResponse">
+    <wsdl:part name="parameters" element="tns:insertBienPreAltaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="selectColumnsByLayerTranslatedResponse">
+    <wsdl:part name="parameters" element="tns:selectColumnsByLayerTranslatedResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ISOALocalGISPortType">
+    <wsdl:operation name="altaNumerero">
+      <wsdl:input name="altaNumereroRequest" message="tns:altaNumereroRequest">
+    </wsdl:input>
+      <wsdl:output name="altaNumereroResponse" message="tns:altaNumereroResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertBienPreAlta">
+      <wsdl:input name="insertBienPreAltaRequest" message="tns:insertBienPreAltaRequest">
+    </wsdl:input>
+      <wsdl:output name="insertBienPreAltaResponse" message="tns:insertBienPreAltaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCatastro">
+      <wsdl:input name="consultarCatastroRequest" message="tns:consultarCatastroRequest">
+    </wsdl:input>
+      <wsdl:output name="consultarCatastroResponse" message="tns:consultarCatastroResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validarReferencia">
+      <wsdl:input name="validarReferenciaRequest" message="tns:validarReferenciaRequest">
+    </wsdl:input>
+      <wsdl:output name="validarReferenciaResponse" message="tns:validarReferenciaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerProvincias">
+      <wsdl:input name="obtenerProvinciasRequest" message="tns:obtenerProvinciasRequest">
+    </wsdl:input>
+      <wsdl:output name="obtenerProvinciasResponse" message="tns:obtenerProvinciasResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanosPublicados">
+      <wsdl:input name="verPlanosPublicadosRequest" message="tns:verPlanosPublicadosRequest">
+    </wsdl:input>
+      <wsdl:output name="verPlanosPublicadosResponse" message="tns:verPlanosPublicadosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verMunicipiosPublicados">
+      <wsdl:input name="verMunicipiosPublicadosRequest" message="tns:verMunicipiosPublicadosRequest">
+    </wsdl:input>
+      <wsdl:output name="verMunicipiosPublicadosResponse" message="tns:verMunicipiosPublicadosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificacionCallejero">
+      <wsdl:input name="modificacionCallejeroRequest" message="tns:modificacionCallejeroRequest">
+    </wsdl:input>
+      <wsdl:output name="modificacionCallejeroResponse" message="tns:modificacionCallejeroResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectColumnsByLayerTranslated">
+      <wsdl:input name="selectColumnsByLayerTranslatedRequest" message="tns:selectColumnsByLayerTranslatedRequest">
+    </wsdl:input>
+      <wsdl:output name="selectColumnsByLayerTranslatedResponse" message="tns:selectColumnsByLayerTranslatedResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaPOI">
+      <wsdl:input name="bajaPOIRequest" message="tns:bajaPOIRequest">
+    </wsdl:input>
+      <wsdl:output name="bajaPOIResponse" message="tns:bajaPOIResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaCallejero">
+      <wsdl:input name="altaCallejeroRequest" message="tns:altaCallejeroRequest">
+    </wsdl:input>
+      <wsdl:output name="altaCallejeroResponse" message="tns:altaCallejeroResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaPOI">
+      <wsdl:input name="altaPOIRequest" message="tns:altaPOIRequest">
+    </wsdl:input>
+      <wsdl:output name="altaPOIResponse" message="tns:altaPOIResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaCallejero">
+      <wsdl:input name="bajaCallejeroRequest" message="tns:bajaCallejeroRequest">
+    </wsdl:input>
+      <wsdl:output name="bajaCallejeroResponse" message="tns:bajaCallejeroResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanoPorIdNumeroPolicia">
+      <wsdl:input name="verPlanoPorIdNumeroPoliciaRequest" message="tns:verPlanoPorIdNumeroPoliciaRequest">
+    </wsdl:input>
+      <wsdl:output name="verPlanoPorIdNumeroPoliciaResponse" message="tns:verPlanoPorIdNumeroPoliciaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerListaCapas">
+      <wsdl:input name="obtenerListaCapasRequest" message="tns:obtenerListaCapasRequest">
+    </wsdl:input>
+      <wsdl:output name="obtenerListaCapasResponse" message="tns:obtenerListaCapasResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getURLReportMap">
+      <wsdl:input name="getURLReportMapRequest" message="tns:getURLReportMapRequest">
+    </wsdl:input>
+      <wsdl:output name="getURLReportMapResponse" message="tns:getURLReportMapResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanoPorReferenciaCatastral">
+      <wsdl:input name="verPlanoPorReferenciaCatastralRequest" message="tns:verPlanoPorReferenciaCatastralRequest">
+    </wsdl:input>
+      <wsdl:output name="verPlanoPorReferenciaCatastralResponse" message="tns:verPlanoPorReferenciaCatastralResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaNumerero">
+      <wsdl:input name="bajaNumereroRequest" message="tns:bajaNumereroRequest">
+    </wsdl:input>
+      <wsdl:output name="bajaNumereroResponse" message="tns:bajaNumereroResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerMunicipios">
+      <wsdl:input name="obtenerMunicipiosRequest" message="tns:obtenerMunicipiosRequest">
+    </wsdl:input>
+      <wsdl:output name="obtenerMunicipiosResponse" message="tns:obtenerMunicipiosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectLayersByIdMap">
+      <wsdl:input name="selectLayersByIdMapRequest" message="tns:selectLayersByIdMapRequest">
+    </wsdl:input>
+      <wsdl:output name="selectLayersByIdMapResponse" message="tns:selectLayersByIdMapResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificacionNumerero">
+      <wsdl:input name="modificacionNumereroRequest" message="tns:modificacionNumereroRequest">
+    </wsdl:input>
+      <wsdl:output name="modificacionNumereroResponse" message="tns:modificacionNumereroResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerTiposDeVia">
+      <wsdl:input name="obtenerTiposDeViaRequest" message="tns:obtenerTiposDeViaRequest">
+    </wsdl:input>
+      <wsdl:output name="obtenerTiposDeViaResponse" message="tns:obtenerTiposDeViaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanoPorIdVia">
+      <wsdl:input name="verPlanoPorIdViaRequest" message="tns:verPlanoPorIdViaRequest">
+    </wsdl:input>
+      <wsdl:output name="verPlanoPorIdViaResponse" message="tns:verPlanoPorIdViaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanoPorCoordenadas">
+      <wsdl:input name="verPlanoPorCoordenadasRequest" message="tns:verPlanoPorCoordenadasRequest">
+    </wsdl:input>
+      <wsdl:output name="verPlanoPorCoordenadasResponse" message="tns:verPlanoPorCoordenadasResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ISOALocalGISHttpBinding" type="tns:ISOALocalGISPortType">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="altaNumerero">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="altaNumereroRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaNumereroResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertBienPreAlta">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="insertBienPreAltaRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="insertBienPreAltaResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCatastro">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="consultarCatastroRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultarCatastroResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validarReferencia">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="validarReferenciaRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validarReferenciaResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerProvincias">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="obtenerProvinciasRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="obtenerProvinciasResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanosPublicados">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="verPlanosPublicadosRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verPlanosPublicadosResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verMunicipiosPublicados">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="verMunicipiosPublicadosRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verMunicipiosPublicadosResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificacionCallejero">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="modificacionCallejeroRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="modificacionCallejeroResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectColumnsByLayerTranslated">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="selectColumnsByLayerTranslatedRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="selectColumnsByLayerTranslatedResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaPOI">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="bajaPOIRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bajaPOIResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaCallejero">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="altaCallejeroRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaCallejeroResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaPOI">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="altaPOIRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaPOIResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaCallejero">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="bajaCallejeroRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bajaCallejeroResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanoPorIdNumeroPolicia">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="verPlanoPorIdNumeroPoliciaRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verPlanoPorIdNumeroPoliciaResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerListaCapas">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="obtenerListaCapasRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="obtenerListaCapasResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getURLReportMap">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getURLReportMapRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getURLReportMapResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanoPorReferenciaCatastral">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="verPlanoPorReferenciaCatastralRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verPlanoPorReferenciaCatastralResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaNumerero">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="bajaNumereroRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bajaNumereroResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerMunicipios">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="obtenerMunicipiosRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="obtenerMunicipiosResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectLayersByIdMap">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="selectLayersByIdMapRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="selectLayersByIdMapResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificacionNumerero">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="modificacionNumereroRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="modificacionNumereroResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerTiposDeVia">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="obtenerTiposDeViaRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="obtenerTiposDeViaResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanoPorIdVia">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="verPlanoPorIdViaRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verPlanoPorIdViaResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPlanoPorCoordenadas">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="verPlanoPorCoordenadasRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verPlanoPorCoordenadasResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ISOALocalGIS">
+    <wsdl:port name="ISOALocalGISHttpPort" binding="tns:ISOALocalGISHttpBinding">
+      <wsdlsoap:address location="http://localgis.mityc.es:8080/SOALocalGIS/services/ISOALocalGIS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

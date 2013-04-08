@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<alias name="${fwktd-sir.database}_fwktd_sir_anexoIncrementerImpl" alias="fwktd_sir_anexoIncrementer"/>
+	<alias name="${fwktd-sir.database}_fwktd_sir_asientoRegistralIncrementerImpl" alias="fwktd_sir_asientoRegistralIncrementer"/>
+	<alias name="${fwktd-sir.database}_fwktd_sir_interesadoIncrementerImpl" alias="fwktd_sir_interesadoIncrementer"/>
+	<alias name="${fwktd-sir.database}_fwktd_sir_configuracionIncrementerImpl" alias="fwktd_sir_configuracionIncrementer"/>
+
+
+	<!--
+		DB2 UDB
+	 -->
+
+	<bean id="db2_fwktd_sir_anexoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_anexos_seq" />
+	</bean>
+
+	<bean id="db2_fwktd_sir_asientoRegistralIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_aregs_seq" />
+	</bean>
+
+	<bean id="db2_fwktd_sir_interesadoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_interesados_seq" />
+	</bean>
+
+	<bean id="db2_fwktd_sir_configuracionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_config_seq" />
+	</bean>
+
+	<!--
+		DB2 Mainframe (DB2/390 o DB2/400)
+	 -->
+
+	<bean id="db2_400_fwktd_sir_anexoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_anexos_seq" />
+	</bean>
+
+	<bean id="db2_400_fwktd_sir_asientoRegistralIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_aregs_seq" />
+	</bean>
+
+	<bean id="db2_400_fwktd_sir_interesadoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_interesados_seq" />
+	</bean>
+
+	<bean id="db2_400_fwktd_sir_configuracionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_config_seq" />
+	</bean>
+
+
+	<!--
+		H2
+	 -->
+
+	<bean id="h2_fwktd_sir_anexoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.H2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_anexos_seq" />
+	</bean>
+
+	<bean id="h2_fwktd_sir_asientoRegistralIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.H2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_aregs_seq" />
+	</bean>
+
+	<bean id="h2_fwktd_sir_interesadoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.H2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_interesados_seq" />
+	</bean>
+
+	<bean id="h2_fwktd_sir_configuracionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.H2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_config_seq" />
+	</bean>
+
+
+	<!--
+		Oracle
+	 -->
+
+	<bean id="oracle_fwktd_sir_anexoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_anexos_seq" />
+	</bean>
+
+	<bean id="oracle_fwktd_sir_asientoRegistralIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_aregs_seq" />
+	</bean>
+
+	<bean id="oracle_fwktd_sir_interesadoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_interesados_seq" />
+	</bean>
+
+	<bean id="oracle_fwktd_sir_configuracionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_config_seq" />
+	</bean>
+
+
+	<!--
+		PostgreSQL
+	 -->
+
+	<bean id="postgresql_fwktd_sir_anexoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_anexos_seq" />
+	</bean>
+
+	<bean id="postgresql_fwktd_sir_asientoRegistralIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_aregs_seq" />
+	</bean>
+
+	<bean id="postgresql_fwktd_sir_interesadoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_interesados_seq" />
+	</bean>
+
+	<bean id="postgresql_fwktd_sir_configuracionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_config_seq" />
+	</bean>
+
+
+	<!--
+		SQLServer
+	 -->
+
+	<bean id="sqlserver_fwktd_sir_anexoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_anexos_seq" />
+		<constructor-arg value="id" />
+	</bean>
+
+	<bean id="sqlserver_fwktd_sir_asientoRegistralIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_aregs_seq" />
+		<constructor-arg value="id" />
+	</bean>
+
+	<bean id="sqlserver_fwktd_sir_interesadoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_interesados_seq" />
+		<constructor-arg value="id" />
+	</bean>
+
+	<bean id="sqlserver_fwktd_sir_configuracionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg ref="fwktd_sir_dataSource" />
+		<constructor-arg value="sir_config_seq" />
+		<constructor-arg value="id" />
+	</bean>
+
+</beans>

@@ -1,0 +1,57 @@
+body {
+  	background-color: #FFFFFF;
+  	margin:0;
+  	padding:0;
+}
+h2 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #999;
+  color: rgb(97, 110, 170);
+  background-color: rgb(238, 238, 238);
+  font-weight:900;
+  font-size: x-large;
+}
+
+h3 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #aaa;
+  color: rgb(97, 110, 170);
+  background-color: #eee;
+  font-weight: normal;
+  font-size: large;
+}
+
+#cabecera {
+	width:100%;
+	height:61px;
+	border:0px solid red;
+	background: #99d6f5 url(../img/fondo_cab.jpg) no-repeat;
+	position: relative;
+	padding:0px;
+}
+#logo {
+	float:left;
+	margin: 0px 0px 0px 10px;
+}
+#app{
+	float:right;
+	margin-right:10px;
+	font-weight:bold;
+	margin-top:40px;
+	font-family:Verdana, Arial, Helvetica, Sans-serif;
+	font-size:16px;
+	color: #0B5DC0;
+}
+#contenido {
+	width:100%;
+	height:100%;	
+	position: relative;
+	text-align: center;
+}
+.index_title {
+    color:  #6166AA;
+    font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    border-bottom: 1px solid #6166AA;
+}

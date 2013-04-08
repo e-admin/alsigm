@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter defaultSort="2">
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+        	     property='ID_AGRUPACION' 
+        	     readOnly='false'
+        		 fieldType='CHECKBOX' 
+			     columnClass='width5percent'
+        		 media='html'
+        		 headerClass='headerDisplay'/> 
+        		
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FECHA_CREACION' 
+				 format='dd/MM/yyyy HH:mm:ss' 
+				 readOnly='false'
+				 titleKey='formatter.batchTaskList.fechaCreacion'
+				 fieldType='LINK'
+				 fieldLink='ID_AGRUPACION'
+				 styleClass='displayLink'
+				 media='html'
+				 headerClass='sortable'
+				 sortable='true'
+				 decorator=''
+				 url='showBatchTask'
+				 id='batchTaskId'
+			     columnClass='width35percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+			     
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FECHA_CREACION' 
+				 format='dd/MM/yyyy HH:mm:ss' 
+				 readOnly='false'
+				 titleKey='formatter.batchTaskList.fechaCreacion'
+				 fieldType='LIST'
+				 media='csv excel xml pdf'
+			     columnClass='width35percent'/>
+			     
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='PROCEDIMIENTO' 
+	             readOnly='false'
+		         titleKey='formatter.batchTaskList.procedimiento' 
+		         fieldType='LIST' 
+			     columnClass='width30percent'
+			     sortable='true'/>
+        		 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='FASE' 
+	             readOnly='false'
+		         titleKey='formatter.batchTaskList.fase' 
+		         fieldType='LIST' 
+			     columnClass='width30percent'
+			     sortable='true'/>
+        		 
+</beanformatter>

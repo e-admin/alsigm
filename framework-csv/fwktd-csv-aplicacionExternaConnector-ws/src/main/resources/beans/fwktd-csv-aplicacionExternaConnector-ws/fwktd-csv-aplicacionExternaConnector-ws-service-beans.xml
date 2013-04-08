@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:soap="http://cxf.apache.org/bindings/soap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+	default-dependency-check="none" default-lazy-init="false">
+
+	<!-- Load the needed resources that are present in the cxf* jars -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+
+	<!-- servicio -->
+
+	<jaxws:endpoint id="fwktd_csv_aplicacionExternaConnector_ws_endpoint"
+		implementor="#fwktd_csv_aplicacionExternaConnector_ws_service"
+		xmlns:ns="http://service.ws.aplicacionExternaConnector.csv.fwktd.tecdoc.ieci.es/"
+		serviceName="ns:AplicacionExternaConnectorWSService"
+		endpointName="ns:AplicacionExternaConnectorWS"
+		address="/AplicacionExternaConnectorWS">
+		<jaxws:inInterceptors>
+			<ref bean="fwktd_csv_aplicacionExternaConnector_ws_securityInterceptor" />
+		</jaxws:inInterceptors>
+	</jaxws:endpoint>
+
+
+	<bean id="fwktd_csv_aplicacionExternaConnector_ws_serviceImpl"
+		name="fwktd_csv_aplicacionExternaConnector_ws_service"
+		class="es.ieci.tecdoc.fwktd.csv.aplicacionExternaConnector.ws.service.impl.AplicacionExternaConnectorWSImpl">
+		<property name="aplicacionExternaConnectorDelegate"
+			ref="fwktd_csv_aplicacionExternaConnector_ws_aplicacionExternaConnectorDelegate" />
+	</bean>
+
+	<bean id="fwktd_csv_aplicacionExternaConnector_ws_securityInterceptorImpl"
+		name="fwktd_csv_aplicacionExternaConnector_ws_securityInterceptor"
+		class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+		<constructor-arg>
+			<map>
+				<entry key="action" value="${fwktd-csv.aplicacionExternaConnector.ws.security.action}" />
+				<entry key="passwordType" value="${fwktd-csv.aplicacionExternaConnector.ws.security.passwordType}" />
+				<entry key="passwordCallbackRef">
+					<ref bean="fwktd_csv_aplicacionExternaConnector_ws_passwordCallback" />
+				</entry>
+				<entry key="SignaturePropRefId" value="cryptoProperties" />
+				<entry key="cryptoProperties">
+					<props>
+						<prop key="org.apache.ws.security.crypto.provider">${fwktd-csv.aplicacionExternaConnector.ws.security.signature.provider}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.file">${fwktd-csv.aplicacionExternaConnector.ws.security.signature.keystore.file}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.keystore.type">${fwktd-csv.aplicacionExternaConnector.ws.security.signature.keystore.type}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.keystore.password">${fwktd-csv.aplicacionExternaConnector.ws.security.signature.keystore.password}</prop>
+					</props>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="fwktd_csv_aplicacionExternaConnector_ws_passwordCallbackImpl"
+		name="fwktd_csv_aplicacionExternaConnector_ws_passwordCallback"
+		class="es.ieci.tecdoc.fwktd.ws.security.callback.PropertiesPasswordCallback"
+		init-method="loadProperties">
+		<property name="configurationResourceLoader" ref="fwktd_csv_aplicacionExternaConnector_ws_configurationResourceLoader"/>
+		<property name="propertiesFile" value="${fwktd-csv.aplicacionExternaConnector.ws.security.usernameToken.users.file}"/>
+	</bean>
+
+</beans>

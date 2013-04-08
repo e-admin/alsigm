@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="TerceroValidadoVO">
+
+	<resultMap class="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoVO"
+		id="tercero">
+		<result property="id" column="id" />
+		<result property="direcciones" select="BaseDireccionVO.getDireccionByTercero" column="id" />
+		<result property="tipoDocumento"
+			select="TipoDocumentoIdentificativoTerceroVO.getTipoDocumentoIdentificativoTerceroVO"
+			column="type_doc" />
+		<discriminator javaType="java.lang.String" column="tipoTercero">
+			<subMap value="FISICO" resultMap="terceroFisico" />
+			<subMap value="JURIDICO" resultMap="terceroJuridico" />
+		</discriminator>
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoFisicoVO"
+		extends="tercero" id="terceroFisico">
+		<result property="numeroDocumento" column="documento" />
+		<result property="nombre" column="surname" />
+		<result property="apellido1" column="first_name" />
+		<result property="apellido2" column="second_name" />
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoJuridicoVO"
+		extends="tercero" id="terceroJuridico">
+		<result property="numeroDocumento" column="documento" />
+		<result property="razonSocial" column="first_name" />
+	</resultMap>
+
+	<select id="getTerceroValidadoVOs" resultMap="tercero">
+		SELECT * FROM (
+			SELECT id, type_doc, cif as documento, name as first_name, 'NULL' as second_name, 'NULL' as surname, 'JURIDICO' as tipoTercero
+			FROM scr_pjur
+			UNION
+			SELECT id, type_doc, nif as documento, first_name, second_name, surname, 'FISICO' AS tipoTercero
+			FROM scr_pfis
+		) terceros
+	</select>
+
+	<select id="getTerceroValidadoVO" parameterClass="java.lang.String" resultMap="tercero">
+		SELECT * FROM (
+			SELECT id, type_doc, cif as documento, name as first_name, 'NULL' as second_name, 'NULL' as surname, 'JURIDICO' as tipoTercero
+			FROM scr_pjur
+			UNION
+			SELECT id, type_doc, nif as documento, first_name, second_name, surname, 'FISICO' AS tipoTercero
+			FROM scr_pfis
+		) terceros WHERE id=#value:INTEGER#
+	</select>
+
+	<sql id="dynamicCriteriaSearch">
+		<dynamic prepend="WHERE">
+			<isNotEmpty property="where" prepend="AND">
+				$where$
+			</isNotEmpty>
+			<iterate prepend="AND" property="filters"
+  					open="(" close=")" conjunction="AND">
+  				<isEqual property="filters[].operator.value" compareValue="0">
+  					$filters[].field$ LIKE '$filters[].value$%'
+  				</isEqual>
+  				<isEqual property="filters[].operator.value" compareValue="1">
+  					$filters[].field$ = #filters[].value#
+  				</isEqual>
+  				<isEqual property="filters[].operator.value" compareValue="2">
+  					$filters[].field$ LIKE '%$filters[].value$%'
+  				</isEqual>
+			</iterate>
+			<isNotEmpty property="orderBy" prepend="ORDER BY">
+				$orderBy$
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+</sqlMap>

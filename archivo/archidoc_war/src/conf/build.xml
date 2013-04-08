@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="Generación de Codigo y Recursos de Archivo" basedir=".">
+
+	<target name="run_rename">
+		<property name="src.dir" value="${basedir}\target\classes" />
+		<echo message="Renombrando ${cadenaInicial} por ${cadenaFinal}" />
+		<replace dir="${src.dir}" token="${cadenaInicial}" value="${cadenaFinal}" excludes="**/*.jar" casesensitive="true"/>
+		<echo message="FIN Renombrando ${cadenaInicial} por ${cadenaFinal}" />
+	</target>
+	
+</project>

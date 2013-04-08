@@ -1,0 +1,13 @@
+
+--Ejecutar la siguiente sentencia
+SELECT id from spac_ct_jerarquias where nombre='Sesion-Propuesta' ;
+
+--Sustituir <id> por el valor  que devuelve la anterior sentencia
+CREATE OVIEW SPAC_CT_JERARQUIA_<ID> AS
+SELECT
+SPAC_EXPEDIENTES.ID as id,
+SPAC_EXPEDIENTES.ID as id_padre ,
+SPAC_EXPEDIENTES.ID as id_hija
+FROM SPAC_EXPEDIENTES
+WHERE ID=1
+;

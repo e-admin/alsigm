@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="NotificacionesWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="actualizaEstados" qname="ns1:actualizaEstados" returnQName="ns1:actualizaEstadosReturn" returnType="ns2:RetornoServicio" soapAction="" xmlns:ns1="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns1:entidad" type="ns2:Entidad"/>
+  </operation>
+  <operation name="actualizaEstado" qname="ns3:actualizaEstado" returnQName="ns3:actualizaEstadoReturn" returnType="ns4:RetornoServicio" soapAction="" xmlns:ns3="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:ns4="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns3:numeroExpediente" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns3:estado" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns3:fechaActualizacion" type="xsd:dateTime" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns3:nifDestino" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns3:notiId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns3:entidad" type="ns4:Entidad"/>
+  </operation>
+  <operation name="recuperaDocumento" qname="ns5:recuperaDocumento" returnQName="ns5:recuperaDocumentoReturn" returnType="ns5:InfoDocumento" soapAction="" xmlns:ns5="http://server.ws.nt.sgm.tecdoc.ieci">
+   <parameter qname="ns5:poCriterio" type="ns5:CriterioBusquedaDocumentos"/>
+   <parameter qname="ns5:entidad" type="ns6:Entidad" xmlns:ns6="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="detalleNotificacion" qname="ns7:detalleNotificacion" returnQName="ns7:detalleNotificacionReturn" returnType="ns7:Notificacion" soapAction="" xmlns:ns7="http://server.ws.nt.sgm.tecdoc.ieci">
+   <parameter qname="ns7:poIdentificador" type="ns7:IdentificadorNotificacion"/>
+   <parameter qname="ns7:entidad" type="ns8:Entidad" xmlns:ns8="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="detalleNotificacionByNotiId" qname="ns9:detalleNotificacionByNotiId" returnQName="ns9:detalleNotificacionByNotiIdReturn" returnType="ns9:Notificacion" soapAction="" xmlns:ns9="http://server.ws.nt.sgm.tecdoc.ieci">
+   <parameter qname="ns9:notiId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:entidad" type="ns10:Entidad" xmlns:ns10="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="consultarNotificaciones" qname="ns11:consultarNotificaciones" returnQName="ns11:consultarNotificacionesReturn" returnType="ns11:Notificaciones" soapAction="" xmlns:ns11="http://server.ws.nt.sgm.tecdoc.ieci">
+   <parameter qname="ns11:poCriterio" type="ns11:CriterioBusquedaNotificaciones"/>
+   <parameter qname="ns11:entidad" type="ns12:Entidad" xmlns:ns12="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerEstado" qname="ns13:obtenerEstado" returnQName="ns13:obtenerEstadoReturn" returnType="ns13:EstadoNotificacion" soapAction="" xmlns:ns13="http://server.ws.nt.sgm.tecdoc.ieci">
+   <parameter qname="ns13:poIdNotificacion" type="ns13:Notificacion"/>
+   <parameter qname="ns13:entidad" type="ns14:Entidad" xmlns:ns14="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerEstadoBD" qname="ns15:obtenerEstadoBD" returnQName="ns15:obtenerEstadoBDReturn" returnType="ns15:EstadoNotificacionBD" soapAction="" xmlns:ns15="http://server.ws.nt.sgm.tecdoc.ieci">
+   <parameter qname="ns15:idEstado" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns15:entidad" type="ns16:Entidad" xmlns:ns16="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="altaNotificacion" qname="ns17:altaNotificacion" returnQName="ns17:altaNotificacionReturn" returnType="ns17:IdentificadorNotificacion" soapAction="" xmlns:ns17="http://server.ws.nt.sgm.tecdoc.ieci">
+   <parameter qname="ns17:poNotificacion" type="ns17:Notificacion"/>
+   <parameter qname="ns17:entidad" type="ns18:Entidad" xmlns:ns18="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <parameter name="allowedMethods" value="recuperaDocumento actualizaEstados altaNotificacion actualizaEstado obtenerEstadoBD detalleNotificacion obtenerEstado consultarNotificaciones detalleNotificacionByNotiId"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="NotificacionesWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.nt.ws.server.NotificacionesWebService"/>
+  <parameter name="wsdlServicePort" value="NotificacionesWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.nt.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="NotificacionesWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns19="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns20:Notificacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.nt.ws.server.Notificacion" xmlns:ns20="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" xmlns:ns21="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:EstadoNotificacionBD" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.nt.ws.server.EstadoNotificacionBD" xmlns:ns22="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:CriterioBusquedaDocumentos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.nt.ws.server.CriterioBusquedaDocumentos" xmlns:ns23="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:Notificaciones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.nt.ws.server.Notificaciones" xmlns:ns24="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:InfoDocumento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.nt.ws.server.InfoDocumento" xmlns:ns25="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns26:EstadoNotificacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.nt.ws.server.EstadoNotificacion" xmlns:ns26="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns27:IdentificadorNotificacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.nt.ws.server.IdentificadorNotificacion" xmlns:ns27="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns28:CriterioBusquedaNotificaciones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.nt.ws.server.CriterioBusquedaNotificaciones" xmlns:ns28="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns29:Notificacion" languageSpecificType="java:ieci.tecdoc.sgm.nt.ws.server.Notificacion[]" qname="ns29:ArrayOfNotificacion" xmlns:ns29="http://server.ws.nt.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="xsd:string" languageSpecificType="java:java.lang.String[]" qname="ns30:ArrayOf_xsd_string" xmlns:ns30="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

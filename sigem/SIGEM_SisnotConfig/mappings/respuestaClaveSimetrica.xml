@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+        <class name="es.map.sn.correspondencia.mapping.RemesaClave">
+                <map-to xml="CLSIM"/>
+                <field name="contenidos" type="es.map.sn.correspondencia.mapping.SolicitudClave" collection="collection">
+                        <bind-xml name="contenido" />
+                </field>
+                <field name="firma"  type="java.lang.String">
+                        <bind-xml name="firma_del_emisor" />
+                </field>
+                <field name="firmaUsuario"  type="java.lang.String">
+                        <bind-xml name="firma_de_usuario" />
+                </field>
+        </class>
+
+        <class name="es.map.sn.correspondencia.mapping.SolicitudClave">
+                <field name="codEmisor"  type="java.lang.String">
+                        <bind-xml name="admon" />
+                </field>
+                <field name="tipoCorrespondencia"  type="java.lang.String">
+                        <bind-xml name="aplicacion"/>
+                </field>
+
+                <field name="DEU" type="java.lang.String">
+                        <bind-xml name="DEU" node="element"/>
+                </field>
+                <field name="nif"
+                       type="java.lang.String">
+                        <bind-xml name="nif" node="element"/>
+                </field>
+                <field name="ncc" type="java.lang.Long">
+                        <bind-xml name="ncc" node="element"/>
+                </field>
+                <field name="codRemesa" type="java.lang.Long">
+                        <bind-xml name="remesa" node="element"/>
+                </field>
+                <field name="fecha" type="java.lang.String">
+                        <bind-xml name="fecha" node="element"/>
+                </field>
+                <field name="hora" type="java.lang.String">
+                        <bind-xml name="hora" node="element"/>
+                </field>
+	          <field name="claveEncriptacion"
+                       type="java.lang.String">
+                        <bind-xml name="clave" node="element"/>
+                </field>
+	          <field name="codError"
+                       type="java.lang.String">
+                        <bind-xml name="recepcion" node="element"/>
+                </field>
+        </class>
+</mapping>

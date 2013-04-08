@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+							  "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+
+	<settings lazyLoadingEnabled="true" useStatementNamespaces="true" />
+
+	<typeHandler javaType="java.lang.String"
+		callback="es.ieci.tecdoc.fwktd.server.dao.ibatis.sqlmap.client.extensions.StringTypeHandlerCallback" />
+
+	<typeHandler javaType="java.lang.Boolean"
+		callback="es.ieci.tecdoc.fwktd.server.dao.ibatis.sqlmap.client.extensions.BooleanTypeHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.isicres.terceros.business.vo.enums.DireccionType"
+		callback="es.ieci.tecdoc.isicres.terceros.business.dao.callback.DireccionTypeCallbackHandler" />
+
+	<sqlMap resource="sqlmaps/ISicres-Terceros/Tercero.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/TerceroFisico.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/TerceroJuridico.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/TipoDireccionTelematica.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/Direccion.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/DireccionFisica.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/DireccionTelematica.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/TipoDocumentoIdentificativo.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/Interesado.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/RepresentanteInteresado.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/Ciudad.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/Provincia.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Terceros/Pais.xml" />
+</sqlMapConfig>

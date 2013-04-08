@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+  "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<display-name>SIGEM_SchedulerWeb</display-name>
+
+	<context-param>
+	  <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>   
+	  <param-value>resources.ApplicationResources</param-value>
+	</context-param>    
+
+	<listener>
+		<listener-class>ieci.tecdoc.sgm.scheduler.listener.SchedulerInitializerListener</listener-class>
+	</listener>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

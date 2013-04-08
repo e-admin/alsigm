@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="personDao"
+		class="es.ieci.tecdoc.fwktd.server.dao.ibatis.IbatisGenericDaoImpl">
+		<constructor-arg value="es.ieci.tecdoc.fwktd.sampleapp.business.vo.Person" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="addressDao"		
+		class="es.ieci.tecdoc.fwktd.server.dao.ibatis.IbatisGenericDaoImpl">
+		<constructor-arg value="es.ieci.tecdoc.fwktd.sampleapp.business.vo.Address" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+</beans>

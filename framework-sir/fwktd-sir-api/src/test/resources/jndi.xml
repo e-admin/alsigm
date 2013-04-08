@@ -1,0 +1,29 @@
+<beans>
+
+	<bean id="jndi" class="org.apache.xbean.spring.jndi.DefaultContext">
+		<property name="entries">
+			<map>
+				<entry key="java:comp/env/jdbc/fwktd-sirDS">
+					<!--
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+					-->
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+						<property name="driverClassName" value="org.h2.Driver" />
+						<property name="url" value="jdbc:h2:~/fwktd-sir;MVCC=TRUE" />
+						<property name="username" value="fwktdsir" />
+						<property name="password" value="fwktdsir" />
+					</bean>
+				</entry>
+				<entry key="java:comp/env/jdbc/fwktd-dir3DS">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+						<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+						<property name="url" value="jdbc:oracle:thin:@oracle_11g:1521:ORCL" />
+						<property name="username" value="DIR3" />
+						<property name="password" value="DIR3" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

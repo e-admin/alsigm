@@ -1,0 +1,150 @@
+/*Prueba*/
+.ROJO{
+color:#cc3300 	
+}
+
+
+/*Generales*/
+body{padding:0;font:normal 70%/normal "Arial", Tahoma, Helvetica, sans-serif;background: #FFFFFF;
+}
+#contenedora{margin:0 auto;text-align:left;background-color:#fff;height:50%;width: 100%;
+}
+a:hover{ text-decoration:underline; 
+}
+a{ text-decoration:none; color:#000000 
+}
+.activo{ text-decoration:none;color:#cc3300 
+}
+.titular{font-weight:bold;color: #006699;
+}
+.titular a{ text-decoration:none; color: #006699;
+}
+
+/*cabecera*/
+#cabecera{width:100%;height:61px;background: #99d6f5 url(/SIGEM_EstructuraOrganizativaWeb/img/fondo_cab.jpg) no-repeat;
+}
+#logo{float:left;margin: 0px 0px 0px 10px;height:60px;
+}
+.salir{float:right;margin-right:10px;font-weight:bold;margin-top: 20px;
+}
+.salir .titular{margin-left:5px;
+}
+.salir img{vertical-align: middle;
+}
+.usuario{width:100%;height:33px;background: url(/SIGEM_EstructuraOrganizativaWeb/img/bg_mid_usuario.jpg) repeat-x;float: none;
+}
+.usuarioleft{width:80%; float:left; background: url(/SIGEM_EstructuraOrganizativaWeb/img/bg_left_usuario.jpg) no-repeat left;height:33px
+}
+.usuarioright{width:20%;float:left;background: url(/SIGEM_EstructuraOrganizativaWeb/img/bg_right_usuario.jpg) no-repeat right;text-align:right;height:33px
+}
+p.desplegar{margin-top:10px;background: url(../img/ico_desplegar.gif) no-repeat left; padding-left:15px;font-size:90%;margin-right:20px;width:80px;
+}
+.usuarioleft p{margin-left:15px;margin-top:10px;
+}
+.margen{margin-left:15px; margin-right:5px; 
+}
+#migas{padding-top:10px; padding-bottom:10px; 
+}
+
+/*submenu1*/
+.submenu{width:100%;height:21px;background: url(../img/subme1_bg.gif) repeat-x;border-right: 1px solid #c3d8e5;border-left: 1px solid #c3d8e5; padding:0px
+}
+.submenu ul{height:21px;font-size:100%;margin: 0px 0px 0px 21px;padding:0px;padding:0px;list-style: none;float:left;
+}
+.submenu img{ padding:0px; margin:0px;vertical-align: text-bottom
+}
+.submenu li{ float:left; padding:0px; margin:0px;
+}
+.submenu li.submen1on{background: url(../images/subme1_bgon.gif) top left repeat-x; font-weight:bold;color: #006699; margin: 0px; padding:0px; height:21px;
+}
+.submenu li.submen1off{background: url(../images/subme1_bgoff.gif) top left repeat-x ; margin: 0px; padding:0px; height:21px;
+}
+/*submenu2*/
+.submenu2{width:100%;height:21px;background: url(../img/subme2_bg.gif) repeat-x;border-right: 1px solid #c3d8e5;border-left: 1px solid #c3d8e5; padding:0px
+}
+.submenu2 ul{height:21px;font-size:100%;margin: 0px 0px 0px 21px;padding:0px;padding:0px;list-style: none;float:left;
+}
+.submenu2 img{ padding:0px; margin:0px;vertical-align: text-bottom
+}
+.submenu2 li{ float:left; padding:0px; margin:0px;
+}
+.submenu2 li.submen1on{ background: url(../img/subme2_bgon.gif) top left repeat-x; font-weight:bold;color: #006699; margin: 0px; padding:0px; height:21px;
+}
+.submenu2 li.submen1off{ background: url(../img/subme2_bgoff.gif) top left repeat-x ; margin: 0px; padding:0px; height:21px;
+}
+
+/*submenu3*/
+
+.submenu3{width:100%;height:17px;background: url(../img/subme3_bg.gif) repeat-x; padding:0px
+}
+.submenu3 ul{height:17px;font-size:100%;margin: 0px 0px 0px 21px;padding:0px;padding:0px;list-style: none;float:right;
+}
+.submenu3 img{ padding:0px; margin:0px;vertical-align: text-bottom
+}
+.submenu3 li{ float:left; padding:0px; margin:0px;
+}
+.submenu3 li.submen1on{ background: url(../img/subme3_bgon.gif) top left repeat-x; font-weight:bold;color: #006699; margin: 0px; padding:0px; height:17px;
+}
+.submenu3 li.submen1off{ background: url(../img/subme3_bgoff.gif) top left repeat-x ; margin: 0px; padding:0px; height:17px;color: #006699
+}
+
+
+/*ejemplo cuerpo con submenu*/
+
+.cuerpo{ background: #dee1e8 url(../images/bg_left_cuerpo.jpg) no-repeat left top; 
+}
+.cuerpomid{ background: url(../img/bg_mid_cuerpo.jpg) repeat-x left top; margin: 0px 6px 0px 5px; padding: 6px 0px 0px;
+}
+.cuerporight{ background: url(../img/bg_right_cuerpo.jpg) no-repeat right top;
+}
+h1{ font-weight:bold; color: #006699; font-size:100%; background: url(../img/bolo_activo.gif) no-repeat left; margin: 6px 0px 0px 10px; padding: 0px 0px 0px 10px;
+line-height:90%;
+}
+.cuadro{ background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid #c6c9d5; padding:15px; margin:0px
+}
+.cuadro input{height:16px;font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+.col{ background: url(../img/fondo_puntos.gif) repeat-x left bottom; padding-bottom:3px;padding-top:3px;
+}
+.cuadro label.gr{color: #006699; width:110px;float:left;padding-top:2px
+}
+.cuerpobt{ background: #dee1e8 url(../img/bg_leftdown_cuerpo.jpg) no-repeat left bottom; }
+.cuerpomidbt{ background: url(../img/bg_middown_cuerpo.jpg) repeat-x left bottom; margin: 0px 6px 0px 5px; padding: 6px 0px 20px;
+}
+.cuerporightbt{ background: url(../img/bg_rightdown_cuerpo.jpg) no-repeat right bottom;
+}
+
+
+
+
+.cuadro select.gr{height:16px;font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+.cuadro textarea.gr{font-size:100%; padding:0;border:1px solid #7f9db9;margin-right:10px
+}
+input.ok{background: url(../img/fondo_boton.jpg) no-repeat; color:#fff; font:bold 11px "Arial"; height: 20px; border: 0px; width:87px;
+}
+input.otros{background: url(../img/fondo_boton_az.jpg) no-repeat; color:#fff; font:bold 11px "Arial"; height: 20px; border: 0px; width:87px;
+}
+label.error{color: #006699; float:left; font: bold;
+}
+.col_nuevo{ cursor: hand; background: url(../img/ico_new.jpg) no-repeat left; padding-bottom:3px;padding-top:3px; padding-left: 24px; padding-right: 4px; color: #006699; font-size: 70%;
+}
+.col_editar{ cursor: hand; background: url(../img/ico_edit.jpg) no-repeat left; padding-bottom:3px;padding-top:3px; padding-left: 24px; padding-right: 4px; color: #006699; font-size: 70%;
+}
+.col_guardar{ cursor: hand; background: url(../img/ico_save.jpg) no-repeat left; padding-bottom:3px;padding-top:3px; padding-left: 24px; padding-right: 4px; color: #006699; font-size: 70%;
+}
+.col_eliminar{ cursor: hand; background: url(../img/ico_delete.jpg) no-repeat left; padding-bottom:3px;padding-top:3px; padding-left: 24px; padding-right: 4px; color: #006699; font-size: 70%;
+}
+.col_vacio{ padding-bottom:3px;padding-top:3px; padding-left: 24px; padding-right: 4px; color: #006699; float:left;padding-top:2px; font-size: 70%;
+}
+.cuadro select.gr_multiple{font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+p.ayuda{margin-top:10px; padding-left:15px;font-size:90%;margin-right:20px;width:80px; height: 33px;
+}
+
+.cabecera_error {background: url(../img/cabpop.jpg) no-repeat; height: 46px; width: 505px
+}
+.cuadro_error{ background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid #c6c9d5;  height: 160px; width: 505px;
+}
+label.popup{color: #006699; font: bold; font-size: 50%
+}

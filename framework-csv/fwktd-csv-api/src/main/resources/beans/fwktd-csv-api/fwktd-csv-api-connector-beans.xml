@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Conectores de generacion de CSV -->
+
+	<bean id="fwktd_csv_csvConnectorRegistryImpl" name="fwktd_csv_csvConnectorRegistry"
+		class="es.ieci.tecdoc.fwktd.csv.api.connector.generacionCSV.CSVConnectorRegistry">
+	</bean>
+
+	<bean id="fwktd_csv_baseCSVConnector" abstract="true" init-method="register">
+		<property name="connectorRegistry" ref="fwktd_csv_csvConnectorRegistry" />
+	</bean>
+
+	<bean id="fwktd_csv_csvConnectorImpl" parent="fwktd_csv_baseCSVConnector"
+		class="es.ieci.tecdoc.fwktd.csv.api.connector.generacionCSV.impl.CSVConnectorImpl">
+		<property name="uid" value="DEFAULT_CSV_CONNECTOR" />
+		<property name="tiemposManager" ref="fwktd_csv_tiemposManager"/>
+	</bean>
+
+	<bean id="fwktd_csv_csvConnectorFactoryImpl" name="fwktd_csv_csvConnectorFactory"
+	      factory-bean="fwktd_csv_csvConnectorRegistry"
+	      factory-method="getConector">
+		<constructor-arg type="java.lang.String" value="${fwktd-csv.connector.csv.uid}"/>
+	</bean>
+
+
+	<!-- Conectores de acceso a aplicaciones externas -->
+
+	<bean id="fwktd_csv_aplicacionExternaConnectorRegistryImpl" name="fwktd_csv_aplicacionExternaConnectorRegistry"
+		class="es.ieci.tecdoc.fwktd.csv.api.connector.aplicacionExterna.AplicacionExternaConnectorRegistry">
+	</bean>
+
+	<bean id="fwktd_csv_baseAplicacionExternaConnector" abstract="true"
+		init-method="register">
+		<property name="connectorRegistry" ref="fwktd_csv_aplicacionExternaConnectorRegistry" />
+	</bean>
+
+	<bean id="fwktd_csv_mockAplicacionExternaConnectorImpl" parent="fwktd_csv_baseAplicacionExternaConnector"
+		class="es.ieci.tecdoc.fwktd.csv.api.connector.aplicacionExterna.impl.MockAplicacionExternaConnectorImpl">
+		<property name="uid" value="MOCK" />
+	</bean>
+
+	<bean id="fwktd_csv_webServiceAplicacionExternaConnectorImpl" parent="fwktd_csv_baseAplicacionExternaConnector"
+		class="es.ieci.tecdoc.fwktd.csv.api.connector.aplicacionExterna.impl.WebServiceConnectorImpl">
+		<property name="uid" value="WEB_SERVICE" />
+	</bean>
+
+</beans>

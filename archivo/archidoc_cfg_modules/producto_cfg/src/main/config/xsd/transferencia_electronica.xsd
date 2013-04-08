@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+  <!-- Definición de Atributos -->	
+	<xs:attribute name="version" type="AT_VERSION_XML"/>
+	<xs:attribute name="unidadMedida" type="AT_UNIDAD_MEDIDA"/>
+	<xs:attribute name="tipoProductor" type="AT_TIPO_PRODUCTOR"/>
+	<xs:attribute name="tipoMedida" type="AT_TIPO_MEDIDA"/>
+	<xs:attribute name="tipoAtributo" type="AT_TIPO_ATRIBUTO_ORGANIZACION"/>
+	<xs:attribute name="idLista" type="AT_LISTA_DESCRIPTORA"/>
+	<xs:attribute name="CALIF" type="AT_CALIFICADOR_FECHA"/>  
+  
+  
+	<xs:simpleType name="AT_VERSION_XML">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="5.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- Organización -->
+	<xs:simpleType name="AT_TIPO_PRODUCTOR">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ORGANIZACION"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AT_TIPO_ATRIBUTO_ORGANIZACION">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CODIGO"/>
+			<xs:enumeration value="ID"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- Fechas -->
+		<xs:simpleType name="AT_SEPARADOR_FECHA">
+		<xs:restriction base="xs:string">
+			<!-- Barra -->			
+			<xs:enumeration value="/"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+		<xs:simpleType name="AT_FECHA_FORMATO">
+		<xs:restriction base="xs:string">
+			<!-- Día Mes y Año -->
+			<xs:enumeration value="DDMMAAAA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	 <!-- Campo Fecha -->	
+	 
+	<xs:simpleType name="AT_CAMPO_FECHA_SEPARADOR">
+		<xs:restriction base="xs:string">
+			<!-- Barra -->			
+			<xs:enumeration value="/"/>
+			
+			<!-- Guion -->			
+			<xs:enumeration value="-"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="AT_CAMPO_FECHA_FORMATO">
+		<xs:restriction base="xs:string">
+						<!-- Día Mes y Año -->
+			<xs:enumeration value="DDMMAAAA"/>
+			
+			<!-- Año Mes y Día -->
+			<xs:enumeration value="AAAAMMDD"/>
+			
+			<!-- Año -->			
+			<xs:enumeration value="AAAA"/>
+			
+			<!-- Mes y Año -->
+			<xs:enumeration value="MMAAAA"/>
+			
+			<!-- Año y Mes -->
+			<xs:enumeration value="AAAAMM"/>
+			
+			<!-- Siglo -->
+			<xs:enumeration value="S"/>
+			
+			
+		</xs:restriction>
+	</xs:simpleType>
+
+		<xs:simpleType name="AT_CALIFICADOR_FECHA">
+		<xs:restriction base="xs:string">
+			<!-- Anterior a -->
+			<xs:enumeration value="ant"/>
+
+			<!-- Posterior a -->
+			<xs:enumeration value="pos"/>
+
+			<!-- Aproximada -->
+			<xs:enumeration value="apr"/>
+
+			<!-- Conocida -->
+			<xs:enumeration value="con"/>
+
+			<!-- Tal y como se ha escrito -->
+			<xs:enumeration value="sic"/>
+			
+			<!-- Supesta -->
+			<xs:enumeration value="sup"/>
+			
+			<!-- Antes de Cristo -->
+			<xs:enumeration value="a.C."/>
+			
+			<!-- Primera Mitad -->
+			<xs:enumeration value="p.m."/>
+			
+			<!-- Segunda Mitad -->
+			<xs:enumeration value="s.m."/>
+			
+			<!-- Primer Tercio -->
+			<xs:enumeration value="p.t"/>
+			
+			<!-- Segundo Tercio -->
+			<xs:enumeration value="s.t."/>
+			
+			<!-- Último Tercio -->
+			<xs:enumeration value="u.t."/>
+			
+			<!-- Cerca -->
+			<xs:enumeration value="c."/>
+			
+			<!-- Principios -->
+			<xs:enumeration value="p."/>
+			
+			<!-- Mediados -->
+			<xs:enumeration value="m."/>
+			
+			<!-- Finales -->
+			<xs:enumeration value="f."/>
+			
+			<!-- Sin Fecha -->
+			<xs:enumeration value="sf"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- Campo Numérico -->
+	<xs:simpleType name="AT_UNIDAD_MEDIDA">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AT_TIPO_MEDIDA">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	<!-- Campo Descriptor -->
+		<xs:simpleType name="AT_LISTA_DESCRIPTORA">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	
+  <!-- Documentos Electrónicos -->
+		<xs:simpleType name="AT_TIPO_UBICACION">
+		<xs:restriction base="xs:string">
+				<xs:enumeration value="BINARIO"/>
+				<xs:enumeration value="REPOSITORIO"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+		<xs:simpleType name="AT_TIPO_ALMACENAMIENTO">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REPOSITORIO"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="AT_TIPO_REPOSITORIO">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="INVESDOC"/>
+			<xs:enumeration value="ALFRESCO"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	<!-- Atributos de Campos -->
+	<xs:simpleType name="AT_ETIQUETA">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="AT_VALOR">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	
+
+<!--Elementos -->
+
+	<!-- Comunes -->
+	<xs:element name="ID" type="T_ID"/>
+	<xs:element name="CODIGO" type="T_CODIGO"/>
+	<xs:element name="NOMBRE" type="T_NOMBRE"/>
+	<xs:element name="TITULO" type="T_TITULO"/>
+	
+	<xs:element name="FICHA_SERIE" type="T_FICHA_SERIE"/>
+	<xs:element name="FICHA_UDOC" type="T_FICHA_UDOC"/>	
+	
+		<xs:element name="CAMPO_TEXTO" type="T_CAMPO_TEXTO" />
+		<xs:element name="CAMPO_FECHA" type="T_CAMPO_FECHA"/>
+		<xs:element name="CAMPO_NUMERICO" type="T_CAMPO_NUMERICO"/>
+		<xs:element name="CAMPO_DESCRIPTOR" type="T_CAMPO_DESCRIPTOR"/>
+
+		<xs:element name="CAMPO_ORGANIZACION" type="T_CAMPO_ORGANIZACION"/>
+		<xs:element name="CAMPO_TABLA" type="T_CAMPO_TABLA"/>
+			<xs:element name="CAMPO_FILA" type="T_CAMPO_FILA"/>
+			<xs:element name="CAMPO_DOCUMENTO_ELECTRONICO" type="T_CAMPO_DOCUMENTO_ELECTRONICO"/>
+				<xs:element name="UBICACION" type="T_UBICACION"/>
+					<xs:element name="BINARIO" type="T_BINARIO"/>			
+						<xs:element name="CONTENIDO" type="T_CONTENIDO"/>
+					<xs:element name="REPOSITORIO" type="T_REPOSITORIO"/>
+						<xs:element name="LOCALIZADOR" type="T_LOCALIZADOR"/>					
+				
+				<xs:element name="ALMACENAMIENTO" type="T_ALMACENAMIENTO"/>
+					<xs:element name="CLASIFICADOR" type="T_CLASIFICADOR"/>
+					<xs:element name="DESCRIPCION" type="T_DESCRIPCION"/>
+					<xs:element name="EXTENSION" type="T_EXTENSION"/>
+	
+
+	<xs:element name="TRANSFERENCIA" type="T_TRANSFERENCIA"/>
+		<xs:element name="SERIE" type="T_SERIE"/>
+			<xs:element name="CODIGO_FONDO" type="T_CODIGO_FONDO"/>
+			<xs:element name="ID_FICHA_UDOCS" type="T_ID_FICHA_UDOCS"/>
+			<xs:element name="PROCEDIMIENTO" type="T_PROCEDIMIENTO"/>		
+				<xs:element name="TITULO_CORTO" type="T_TITULO_CORTO"/>
+				<xs:element name="OBJETO" type="T_OBJETO"/>
+				<xs:element name="NORMATIVA" type="T_NORMATIVA"/>
+				<xs:element name="DOCUMENTOS" type="T_DOCUMENTOS"/>
+				<xs:element name="TRAMITES" type="T_TRAMITES"/>
+					<xs:element name="TRAMITE" type="T_TRAMITE"/>
+				<xs:element name="SISTEMA_TRAMITADOR" type="T_SISTEMA_TRAMITADOR"/>
+				<xs:element name="PRODUCTORES" type="T_PRODUCTORES"/>
+					<xs:element name="PRODUCTOR" type="T_PRODUCTOR"/>
+
+		<xs:element name="UNIDAD_DOCUMENTAL_ELECTRONICA" type="T_UNIDAD_DOCUMENTAL_ELECTRONICA"/>
+			
+			<xs:element name="IDENTIFICACION" type="T_IDENTIFICACION"/>
+				<xs:element name="FECHA_INICIO" type="T_FECHA_INICIO"/>
+				<xs:element name="FECHA_FIN" type="T_FECHA_FIN"/>
+				<xs:element name="NUMEXP" type="T_NUMEXP"/>
+				<xs:element name="CODIGO_PROCEDIMIENTO" type="T_CODIGO_PROCEDIMIENTO"/>
+
+
+<!-- Definición del XML -->	
+	<!-- Comunes -->
+	<xs:simpleType name="T_ID">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>	
+
+	<xs:simpleType name="T_CODIGO">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="T_NOMBRE">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="T_TITULO">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:complexType name="T_FECHA_INICIO">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="valor" type="AT_VALOR" use="required"/>
+				<xs:attribute name="SEP" type="AT_SEPARADOR_FECHA"/>
+				<xs:attribute name="FMT" type="AT_FECHA_FORMATO"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="T_FECHA_FIN">
+		<xs:attribute name="valor" type="AT_VALOR" use="required"/>
+	</xs:complexType>
+
+
+ <!-- Ficha -->
+	<xs:complexType name="T_FICHA_SERIE">
+		<xs:sequence>
+			<xs:element ref="CAMPO_TEXTO" maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_FECHA" maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_NUMERICO" maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_DESCRIPTOR" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType> 
+	
+		<xs:complexType name="T_FICHA_UDOC">
+		<xs:sequence>
+			<xs:element ref="CAMPO_TEXTO" maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_FECHA" maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_NUMERICO" maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_DESCRIPTOR" maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_TABLA" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType> 
+ 
+	<xs:complexType name="T_CAMPO_TEXTO">
+		<xs:simpleContent>
+			<xs:extension base="ST_CAMPO_TEXTO">
+				<xs:attribute name="etiqueta" type="AT_ETIQUETA" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="ST_CAMPO_TEXTO">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:complexType name="T_CAMPO_FECHA">
+		<xs:attribute name="valor" type="AT_VALOR" use="required"/>
+		<xs:attribute name="etiqueta" type="AT_ETIQUETA" use="required"/>
+		<xs:attribute name="SEP" type="AT_CAMPO_FECHA_SEPARADOR" use="required"/>
+		<xs:attribute name="FMT" type="AT_CAMPO_FECHA_FORMATO" use="required"/>
+		<xs:attribute ref="CALIF" />
+	</xs:complexType>
+
+	<xs:complexType name="T_CAMPO_NUMERICO">
+		<xs:attribute name="etiqueta" type="AT_ETIQUETA" use="required"/>		
+		<xs:attribute name="valor" type="xs:decimal" use="required"/>
+		<xs:attribute ref="unidadMedida"/>
+		<xs:attribute ref="tipoMedida"/>
+	</xs:complexType>
+
+	<xs:complexType name="T_CAMPO_DESCRIPTOR">
+		<xs:attribute name="etiqueta" type="AT_ETIQUETA" use="required"/>
+		<xs:attribute name="valor" type="AT_VALOR" use="required"/>
+		<xs:attribute ref="idLista"/>
+	</xs:complexType>
+
+	<xs:complexType name="T_CAMPO_TABLA">
+		<xs:sequence>
+			<xs:element ref="CAMPO_FILA"/>
+		</xs:sequence>
+		<xs:attribute name="etiqueta" type="AT_ETIQUETA" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="T_CAMPO_ORGANIZACION">
+		<xs:attribute name="etiqueta" type="AT_ETIQUETA" use="required"/>		
+		<xs:attribute name="valor" type="AT_VALOR" use="required"/>
+		<xs:attribute ref="tipoAtributo" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="T_CAMPO_FILA">
+		<xs:sequence>
+			<xs:element ref="CAMPO_TEXTO" maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_FECHA" maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_NUMERICO"  maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_ORGANIZACION"  maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_FECHA"  maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_DOCUMENTO_ELECTRONICO"  maxOccurs="unbounded"/>
+			<xs:element ref="CAMPO_DESCRIPTOR" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="etiqueta" type="AT_ETIQUETA" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="T_CAMPO_DOCUMENTO_ELECTRONICO">
+		<xs:sequence>
+			<xs:element ref="UBICACION"/>
+			<xs:element ref="ALMACENAMIENTO"/>
+		</xs:sequence>
+		<xs:attribute name="etiqueta" type="AT_ETIQUETA" use="required"/>
+	</xs:complexType>
+
+	
+	<xs:complexType name="T_BINARIO">
+		<xs:sequence>
+			<xs:element ref="CONTENIDO"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="T_ALMACENAMIENTO">
+		<xs:sequence>
+			<xs:element ref="NOMBRE"/>
+			<xs:element ref="EXTENSION"/>
+			<xs:element ref="REPOSITORIO"/>
+			<xs:element ref="DESCRIPCION"/>
+			<xs:element ref="CLASIFICADOR"/>
+		</xs:sequence>
+		<xs:attribute name="tipo" type="AT_TIPO_ALMACENAMIENTO" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="T_EXTENSION"/>
+	<xs:complexType name="T_DESCRIPCION"/>
+	<xs:complexType name="T_CONTENIDO"/>
+	<xs:complexType name="T_CLASIFICADOR"/>
+
+
+	<xs:complexType name="T_UBICACION">
+		<xs:sequence>
+			<xs:element ref="BINARIO"/>
+			<xs:element ref="REPOSITORIO"/>
+		</xs:sequence>
+		<xs:attribute name="tipo" type="AT_TIPO_UBICACION" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="T_REPOSITORIO" mixed="true">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="ID"/>
+			<xs:element ref="LOCALIZADOR"/>
+		</xs:sequence>
+		<xs:attribute name="tipo" type="AT_TIPO_REPOSITORIO" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="T_LOCALIZADOR"/>
+
+
+	<!-- Tag Global -->
+	<xs:complexType name="T_TRANSFERENCIA">
+		<xs:sequence>
+			<xs:element ref="SERIE"/>
+			<xs:element ref="UNIDAD_DOCUMENTAL_ELECTRONICA"/>
+		</xs:sequence>
+		<xs:attribute ref="version" use="required"/>
+	</xs:complexType>
+
+	<!-- SERIE -->
+
+	<xs:complexType name="T_SERIE">
+		<xs:sequence>
+			<xs:element ref="CODIGO_FONDO"/>
+			<xs:element ref="ID_FICHA_UDOCS"/>
+			<xs:element ref="PROCEDIMIENTO"/>
+			<xs:element ref="FICHA_SERIE"/>
+		</xs:sequence>
+	</xs:complexType>	
+	
+	<xs:simpleType name="T_CODIGO_FONDO">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>	
+
+
+	<xs:simpleType name="T_ID_FICHA_UDOCS">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ID_FICHA_UDOCS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:complexType name="T_PROCEDIMIENTO">
+		<xs:sequence>
+			<xs:element ref="ID"/>
+			<xs:element ref="CODIGO"/>
+			<xs:element ref="NOMBRE"/>
+			<xs:element ref="TITULO_CORTO"/>
+			<xs:element ref="NORMATIVA"/>
+			<xs:element ref="OBJETO"/>
+			<xs:element ref="DOCUMENTOS"/>
+			<xs:element ref="TRAMITES"/>
+			<xs:element ref="SISTEMA_TRAMITADOR"/>
+			<xs:element ref="PRODUCTORES"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="T_TITULO_CORTO">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="T_OBJETO">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="T_NORMATIVA">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="T_DOCUMENTOS">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="T_CODIGO_PROCEDIMIENTO">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:complexType name="T_TRAMITES">
+		<xs:sequence>
+			<xs:element ref="TRAMITE" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="T_TRAMITE">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:complexType name="T_SISTEMA_TRAMITADOR">
+		<xs:sequence>
+			<xs:element ref="ID"/>
+			<xs:element ref="NOMBRE"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="T_PRODUCTORES">
+		<xs:sequence>
+			<xs:element ref="PRODUCTOR" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="T_PRODUCTOR">
+		<xs:sequence>
+			<xs:element ref="FECHA_INICIO" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="valor" type="AT_VALOR" use="required"/>
+		<xs:attribute ref="tipoProductor" use="required"/>
+		<xs:attribute ref="tipoAtributo" use="required"/>
+	</xs:complexType>
+
+
+	<!-- UNIDAD DOCUMENTAL -->
+	<xs:complexType name="T_UNIDAD_DOCUMENTAL_ELECTRONICA">
+		<xs:sequence>
+			<xs:element ref="IDENTIFICACION"/>
+			<xs:element ref="FICHA_UDOC"/>
+		</xs:sequence>
+	</xs:complexType>	
+	
+	
+	<xs:complexType name="T_IDENTIFICACION">
+		<xs:sequence>
+			<xs:element ref="ID"/>
+			<xs:element ref="NUMEXP"/>
+			<xs:element ref="TITULO"/>
+			<xs:element ref="FECHA_INICIO"/>
+			<xs:element ref="FECHA_FIN"/>
+			<xs:element ref="CODIGO_PROCEDIMIENTO"/>
+			<xs:element ref="PRODUCTOR"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="T_NUMEXP">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Numero Expediente"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

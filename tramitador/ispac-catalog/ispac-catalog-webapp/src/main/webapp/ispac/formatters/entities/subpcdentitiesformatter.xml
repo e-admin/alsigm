@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ETIQUETA'
+				 readOnly='false'
+				 titleKey='catalog.entity'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width20percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE_APP'
+				 readOnly='false'
+				 titleKey='procedure.card.entities.propertyLabel.form'
+				 fieldType='FORM'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width25percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 readOnly='false'
+				 fieldType='LINKFRM'
+				 fieldLink='PENTITIES:ID'
+				 styleClass='aActionButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''
+				 url='entities.do?method=addApp'
+				 id='pentId'
+				 columnClass='width45percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 titleKey='procedure.card.entities.propertyLabel.modOrden'
+				 readOnly='false'
+				 fieldType='MODORDER'
+				 fieldLink='PENTITIES:ID'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='entities.do?method=modEntityOrder'
+				 id='pentId'
+				 columnClass='width10percent'/>
+
+</beanformatter>

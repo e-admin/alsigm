@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrUserconfig" 
+    table="SCR_USERCONFIG"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_USERCONFIG"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="userid" 
+            column="USERID" 
+            type="java.lang.Integer"
+            length="3"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="USERID"
+                length="3"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="data" 
+            column="DATA" 
+            type="com.ieci.tecdoc.common.extension.StringClobType"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DATA"
+                length="0"
+            </meta> 
+        </key-property>
+    </composite-id>    
+    
+    <property
+        name="idoficpref"
+        type="java.lang.Integer"
+        column="IDOFICPREF"
+        not-null="true"
+        length="3"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="IDOFICPREF"
+            length="3"
+        </meta>    
+    </property>
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

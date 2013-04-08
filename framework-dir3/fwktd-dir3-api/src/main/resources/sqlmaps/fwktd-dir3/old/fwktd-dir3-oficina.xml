@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="UnidadOrganicaVO">
+
+	<typeAlias alias="unidadOrganica"
+		type="es.ieci.tecdoc.fwktd.csv.api.vo.UnidadOrganicaVO" />
+
+	<resultMap id="unidadOrganica" class="es.ieci.tecdoc.fwktd.dir3.api.vo.UnidadOrganicaVO">
+		<result property="id" column="C_ID_UD_ORGANICA" />
+		<result property="nombre" column="C_DNM_UD_ORGANICA" />
+		<result property="siglas" column="C_DNM_SIGLAS_UD" />
+		<result property="nivelAdministracion" column="C_ID_NIVEL_ADMON" select="NivelAdministracionVO.getNivelAdministracionVO"/>
+		<result property="tipoEntidadPublica" column="C_ID_TIPO_ENT_PUBLICA" select="TipoEntidadPublicaVO.getTipoEntidadPublicaVO"/>
+		<result property="tipoUnidadOrganica" column="C_ID_TIPO_UD_ORGANICA" select="TipoUnidadOrganicaVO.getTipoUnidadOrganicaVO"/>
+		<result property="nivelJerarquico" column="N_NIVEL_JERARQUICO" />
+		<result property="idUnidadOrganicaSuperiorJerarquica" column="C_ID_DEP_UD_SUPERIOR" />
+		<result property="idUnidadOrganicaPrincipal" column="C_ID_DEP_UD_PRINCIPAL" />
+		<result property="entidadDerechoPublico" column="B_SW_DEP_EDP_PRINCIPAL" />
+		<result property="idUnidadPrincipalEntidadDerechoPublico" column="C_ID_DEP_EDP_PRINCIPAL" />
+		<result property="ambitoTerritorialCompetencias" column="C_ID_UD_ORGANICA" select="AmbitoTerritorialVO.getAmbitoTerritorialByUnidadOrganica" />
+		<result property="entidadGeografica" column="C_ID_AMB_ENT_GEOGRAFICA" select="EntidadGeograficaVO.getEntidadGeograficaVO" />
+		<result property="pais" column="C_ID_AMB_PAIS" select="PaisVO.getPaisVO" />
+		<result property="comunidadAutonoma" column="C_ID_AMB_C_AUTONOMA" select="ComunidadAutonomaVO.getComunidadAutonomaVO"/>
+		<result property="provincia" column="C_ID_AMB_PROVINCIA" select="ProvinciaVO.getProvinciaVO"/>
+		<result property="isla" column="C_ID_AMB_ISLA" select="IslaVO.getIslaVO"/>
+		<result property="municipio" column="C_ID_UD_ORGANICA" select="LocalidadVO.getMunicipioByUnidadOrganica" />
+		<result property="entidadLocalMenor" column="C_ID_UD_ORGANICA" select="LocalidadVO.getEntidadLocalMenorByUnidadOrganica" />
+		<result property="idLocalidadExtranjera" column="C_ID_AMB_LOC_EXTRANJERA" />
+		<result property="competenciasUnidad" column="C_COMPET_UD" />
+		<result property="disposicionLegalCompetenciasUnidad" column="C_COMPET_DISP_LEGAL" />
+		<result property="mismaDireccionUnidadSuperior" column="B_SW_LOC_UD_SUPERIOR" />
+		<result property="idDireccion" column="N_ID_LOC_DIRECCION" />
+		<result property="estadoEntidad" column="C_ID_ESTADO" select="EstadoEntidadVO.getEstadoEntidadVO"/>
+		<result property="fechaAltaOficial" column="D_VIG_ALTA_OFICIAL" />
+		<result property="fechaBajaOficial" column="D_VIG_BAJA_OFICIAL" />
+		<result property="fechaExtincion" column="D_VIG_EXTINCION" />
+		<result property="fechaAnulacion" column="D_VIG_ANULACION" />
+		<result property="idExternoUnidadOrganica" column="C_ID_EXTERNO_FUENTE" />
+		<result property="observacionesGeneral" column="N_ID_OBSERVACION_GENERAL" select="ObservacionVO.getObservacionVO" />
+		<result property="observacionesBaja" column="N_ID_OBSERVACION_BAJA" select="ObservacionVO.getObservacionVO" />
+		<result property="poder" column="N_ID_PODER" select="PoderVO.getPoderVO" />
+		<result property="idFuente" column="C_ID_EXTERNO_DIR2" />
+		<result property="fechaAltaSistema" column="D_ALTA_SISTEMA" />
+		<result property="fechaUltimaActualizacion" column="D_ULT_ACTUALIZ" />
+		<!--
+		<result property="" column="N_ID_OBSERVACION_CONTACTO" />
+		-->
+	</resultMap>
+
+	<sql id="table">DIR_UNIDAD_ORGANICA</sql>
+	<sql id="columns">
+		C_ID_UD_ORGANICA,
+		C_DNM_UD_ORGANICA,
+		C_DNM_SIGLAS_UD,
+		C_ID_NIVEL_ADMON,
+		C_ID_TIPO_ENT_PUBLICA,
+		C_ID_TIPO_UD_ORGANICA,
+		N_NIVEL_JERARQUICO,
+		C_ID_DEP_UD_SUPERIOR,
+		C_ID_DEP_UD_PRINCIPAL,
+		B_SW_DEP_EDP_PRINCIPAL,
+		C_ID_DEP_EDP_PRINCIPAL,
+		C_ID_AMB_TERR_COMPET,
+		C_ID_AMB_ENT_GEOGRAFICA,
+		C_ID_AMB_PAIS,
+		C_ID_AMB_C_AUTONOMA,
+		C_ID_AMB_PROVINCIA,
+		C_ID_AMB_ISLA,
+		C_ID_AMB_MUNICIPIO,
+		C_ID_AMB_ELM,
+		C_ID_AMB_LOC_EXTRANJERA,
+		C_COMPET_UD,
+		C_COMPET_DISP_LEGAL,
+		B_SW_LOC_UD_SUPERIOR,
+		N_ID_LOC_DIRECCION,
+		C_ID_ESTADO,
+		D_VIG_ALTA_OFICIAL,
+		D_VIG_BAJA_OFICIAL,
+		D_VIG_EXTINCION,
+		D_VIG_ANULACION,
+		C_ID_EXTERNO_FUENTE,
+		N_ID_OBSERVACION_GENERAL,
+		N_ID_OBSERVACION_CONTACTO,
+		N_ID_OBSERVACION_BAJA,
+		N_ID_PODER,
+		C_ID_EXTERNO_DIR2,
+		D_ALTA_SISTEMA,
+		D_ULT_ACTUALIZ
+	</sql>
+
+	<select id="getUnidadOrganicaVOs" resultMap="unidadOrganica">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY C_DNM_UD_ORGANICA
+	</select>
+
+	<select id="getUnidadOrganicaVO" parameterClass="java.lang.String" resultMap="unidadOrganica">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			C_ID_UD_ORGANICA=#value#
+	</select>
+
+</sqlMap>

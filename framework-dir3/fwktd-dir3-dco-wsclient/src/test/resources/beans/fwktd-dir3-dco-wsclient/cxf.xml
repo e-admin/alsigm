@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+       xsi:schemaLocation="http://cxf.apache.org/transports/http/configuration
+                           http://cxf.apache.org/schemas/configuration/http-conf.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- Configuramos el tiempo de respuesta de los WS para los Test (algunos
+		tardan mas del tiempo por defecto que son 60s) -->
+	<http-conf:conduit name="*.http-conduit">
+		<http-conf:client ReceiveTimeout="0" />
+	</http-conf:conduit>
+</beans>

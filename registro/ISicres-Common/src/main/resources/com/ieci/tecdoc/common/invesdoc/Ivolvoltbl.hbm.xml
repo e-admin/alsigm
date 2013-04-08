@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Ivolvoltbl" 
+    table="IVOLVOLTBL"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IVOLVOLTBL"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="locid" 
+            column="LOCID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="LOCID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="extid1" 
+            column="EXTID1" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="EXTID1"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="extid2" 
+            column="EXTID2" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="EXTID2"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="extid3" 
+            column="EXTID3" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="EXTID3"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="extid4" 
+            column="EXTID4" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="EXTID4"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fileext" 
+            column="FILEEXT" 
+            type="java.lang.String"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FILEEXT"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fileval" 
+            column="FILEVAL" 
+            type="java.sql.Blob"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FILEVAL"
+                length="0"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

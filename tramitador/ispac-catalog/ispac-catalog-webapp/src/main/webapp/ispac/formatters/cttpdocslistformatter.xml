@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Formateador para el listado de tipos de documentos: Inventario -> Tipos de documentos -->
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width5percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 columnClass='width75percent'
+				 url='showCTEntity.do?entityId=7'
+				 id='regId'/>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width75percent'
+				 media='csv excel xml pdf'/>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='COD_TPDOC'
+				 readOnly='false'
+				 titleKey='catalog.common.codigo'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'
+				 media=''/>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='TIPOREG'
+				 readOnly='false'
+				 titleKey='catalog.common.tipoRegistro'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'
+				 media=''/>
+				 
+</beanformatter>

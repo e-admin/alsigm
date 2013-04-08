@@ -1,0 +1,326 @@
+/**************   GENERALES  ******************/
+body{
+	padding:0;
+	font:normal 70%/normal "Arial", Tahoma, Helvetica, sans-serif;
+	background: #FFFFFF;
+}
+
+#contenedora{
+	margin:0 auto;
+	text-align: left;
+	background-color: #fff;
+	height: 50%;
+	width: 100%;
+}
+
+a{
+	text-decoration:none;
+	color:#000000;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+/**************   CABECERA  ******************/
+
+#cabecera{
+	width:100%;
+	height:61px;
+	/*background: #99d6f5 url(../../img/fondo_cab.jpg) no-repeat;*/
+}
+
+#logo{
+	width:140px;
+	float:left;
+	margin: 10px 0px 0px 10px;
+}
+
+.salir{
+	float:right;
+	margin-right:10px;
+	font-weight:bold;
+	margin-top: 20px;
+}
+
+.salir img{
+	vertical-align: middle;
+}
+
+.titular{
+	margin-left:5px;
+	font-weight:bold;
+	color: #666600;
+}
+
+.titular a{
+	text-decoration:none;
+	color: #666600;
+}
+
+.usuario{
+	width:100%;
+	height:33px;
+	background: url(../../img/bg_mid_usuario.jpg) repeat-x;
+	float: none;
+}
+
+.usuarioleft{
+	width:80%;
+	float:left;
+	background: url(../../img/bg_left_usuario.jpg) no-repeat left;
+	height:33px;
+}
+
+.usuarioright{
+	width:20%;
+	float:left;
+	background: url(../../img/bg_right_usuario.jpg) no-repeat right;
+	text-align:right;
+	height:33px;
+}
+
+.usuarioleft p{
+	margin-left:15px;
+	margin-top:10px;
+}
+
+/**************   MIGAS DE PAN  ******************/
+
+#migas{
+	color: #666600;
+	font-size:100%;
+	background: url(../../img/flecha_migas.gif) no-repeat left;
+	margin: 6px 0px 0px 6px;
+	padding: 0px 0px 0px 20px;
+}
+
+.migasElementoSeleccionado{
+	font-weight: bolder;
+	background: url(../../img/flecha_menu.gif) no-repeat left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+/*ejemplo cuerpo con submenu*/
+#contenido{text-align:center;}
+.cuerpo{ background: #dee1e8 url(../../img/bg_left_cuerpo.jpg) no-repeat left top;width: 890px; text-align:left;
+}
+.cuerpomid{ background: url(../../img/bg_mid_cuerpo.jpg) repeat-x left top; margin: 0px 6px 0px 5px;
+}
+
+.cuerpomidUsuarios{ background: repeat-x left top; margin: 0px 6px 0px 5px; padding: 6px 0px 0px;
+}
+.cuerporight{ background: url(../../img/bg_right_cuerpo.jpg) no-repeat right top;
+}
+.cuerpoEO{ background: #dee1e8 url(../../img/bg_left_cuerpoEO.jpg) no-repeat left top;
+}
+.cuerpomidEO{ background: url(../../img/bg_mid_cuerpo.jpg) repeat-x  top; margin: 0px 6px 0px 5px; padding: 0px 0px 0px; padding-bottom: 6px;
+}
+.cuerporightEO{ background: url(../../img/bg_right_cuerpoEO.jpg) no-repeat right top;
+}
+h1{ font-weight:bold; color: #666600; font-size:100%; background: url(../../img/bolo_activo.gif) no-repeat left; margin: 6px 0px 0px 10px; padding: 0px 0px 0px 10px;
+line-height:90%;
+}
+.cuadro{ background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid #c6c9d5; padding:15px; margin:0px
+}
+
+.cuadroIframe{ background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid #c6c9d5; padding:0px; margin:0px
+}
+/*
+.cuadro input{height:16px;font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+*/
+
+.cuadroUsuario{ background: #FFFFFF; border-right: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; padding:15px; margin:0px;
+}
+
+.cuadroOficinas{ background: #FFFFFF; border-right: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c;
+				 padding:15px; margin:0px;
+}
+
+.textInput {
+	height:16px;font-size:100%; padding:0;border:1px solid #666600;width:220px;margin-right:10px;
+}
+
+.textInputRO {
+	height:16px;font-size:100%; padding:0;border:1px solid #666600;width:220px;margin-right:10px;
+	background: #dee1e8;
+}
+
+select.textInput, select.textInputRO {
+	height:20px;
+}
+
+.col{ background: url(../../img/fondo_puntos.gif) repeat-x left bottom; padding-bottom:3px;padding-top:3px;
+}
+.cuadro label.gr{color: #666600; width:110px;float:left;padding-top:2px
+}
+.cuerpobt{ background: #dee1e8 url(../../img/bg_leftdown_cuerpo.jpg) no-repeat left bottom; width: 890px;}
+.cuerpomidbt{ background: url(../../img/bg_middown_cuerpo.jpg) repeat-x left bottom; margin: 0px 6px 0px 5px; padding: 6px 0px 20px;
+}
+.cuerporightbt{ background: url(../../img/bg_rightdown_cuerpo.jpg) no-repeat right bottom;
+}
+
+.cuerpobtEO{ background: #dee1e8 url(../../img/bg_leftdown_cuerpo.jpg) no-repeat bottom; }
+.cuerpomidbtEO{ background: url(../../img/bg_middown_cuerpo.jpg) repeat-x left bottom; margin: 0px 6px 0px 5px; padding: 6px 0px 20px;
+}
+.cuerporightbtEO{ background: url(../../img/bg_rightdown_cuerpo.jpg) no-repeat right bottom;
+}
+
+
+.cuadro select.gr{height:16px;font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+.cuadro textarea.gr{font-size:100%; padding:0;border:0px solid #7f9db9;margin-right:10px
+}
+input.ok{background: url(../../img/fondo_boton.jpg) no-repeat; color:#fff; font:bold 11px "Arial"; height: 20px; border: 0px; width:87px;
+}
+
+input.okEO{background: url(../../img/fondo_boton.jpg) no-repeat; color:#fff; font:bold 11px "Arial"; height: 20px; border: 0px; width:87px ; margin: 5px 0px 0px 5px;
+}
+
+input.otros{background: url(../../img/fondo_boton_az.jpg) no-repeat; color:#fff; font:bold 11px "Arial"; height: 20px; border: 0px; width:87px;
+}
+label.error{color: #666600; float:left; font: bold;
+}
+
+/**************     BOTONES  ******************/
+.col_buscar, .col_nuevo, .col_editar, .col_guardar, .col_eliminar, .col_usuarios, .col_volver, .col_refrescar, .col_vacio, .col_abrir, .col_cerrar, .col_config, .col_aceptar, .col_cancelar, .col_descargar, .col_testLdap {
+	cursor: pointer;
+	padding-bottom:3px;
+	padding-top:3px;
+	padding-left: 24px;
+	padding-right: 4px;
+	color: #666600;
+	font-size: 11px;
+}
+
+.col_nuevo{
+	background: url(../../img/ico_new.gif) no-repeat left;
+	text-decoration:none;
+}
+.col_editar{
+	background: url(../../img/ico_edit.gif) no-repeat left;
+}
+.col_guardar{
+	background: url(../../img/ico_save.gif) no-repeat left;
+}
+
+.col_descargar{
+	background: url(../../img/ico_save.gif) no-repeat left;
+}
+
+.col_eliminar{
+	background: url(../../img/ico_delete.gif) no-repeat left;
+}
+.col_usuarios{
+	background: url(../../img/grupo.gif) no-repeat left;
+}
+.col_volver{
+	background: url(../../img/ico_volver.gif) no-repeat left;
+}
+.col_refrescar{
+	background: url(../../img/ico_refresh.gif) no-repeat left;
+}
+.col_abrir{
+	background: url(../../img/abrir.gif) no-repeat left;
+}
+.col_cerrar{
+	background: url(../../img/cerrar.gif) no-repeat left;
+}
+.col_config{
+	background: url(../../img/configurar.gif) no-repeat left;
+}
+.col_cancelar{
+	background: url(../../img/ico_cancelar.gif) no-repeat left;
+}
+.col_aceptar{
+	background: url(../../img/ico_aceptar.gif) no-repeat left;
+}
+.col_vacio{
+	float:left;
+}
+
+.col_buscar {
+	background: url(../../img/ico_buscar.gif) no-repeat left;
+}
+
+.col_testLdap {
+	background: url(../../img/configurar.gif) no-repeat left;
+}
+
+/*
+.cuadro select.gr_multiple{font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+
+p.ayuda{margin-top:10px; padding-left:15px;font-size:90%;margin-right:20px;width:80px; height: 33px;
+}
+.cabecera_error {background: url(../../img/cabpop.jpg) no-repeat; height: 46px; width: 505px
+}
+
+.cuadro_error{ background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid #c6c9d5;  height: 160px; width: 505px;
+}
+
+label.popup{color: #666600; font: bold; font-size: 50%
+}
+
+.nada {
+	border-color: #ffffff;
+	border-style: none;
+	border-bottom: 0px none;
+	background:  #ffffff;
+}
+
+.recuadro {
+	border-right: 1px solid #c6c9d5;
+	border-bottom: 1px solid #c6c9d5;
+	border-left: 1px solid #c6c9d5;
+	border-top: 1px solid #c6c9d5;
+}
+*/
+
+.txt{
+	color:#666600;
+	font-size: 11px;
+}
+
+.txtCol{
+	background: url(../../img/fondo_puntos.gif) repeat-x left bottom; padding-bottom:3px;padding-top:3px;
+	color:#666600;
+}
+
+.tableft{
+	background-image: url(../../img/tableft.gif);
+	height:20px;
+}
+
+.tabright{
+	background-image: url(../../img/tabright.gif);
+	height:20px;
+}
+
+
+#tabmiddle1, #tabmiddle2, #tabmiddle3, #tabmiddle4, #tabmiddle5 {
+	background-image: url(../../img/middle.gif);
+	text-align: middle;
+	color: #999999;
+	cursor: arrow;
+	font-size: 9px;
+	font-family: "Arial",Tahoma,Helvetica,sans-serif;
+}
+
+.txt12v1b {
+	font-weight:bold;
+}
+
+.usuarioSeleccionado {
+	color:#000000;
+	background-color:#ffffff;
+	background: url(../../img/fondo_puntos.gif) repeat-x left bottom; padding-bottom:3px;padding-top:3px;
+	font-size:11px;
+}
+
+.elementoDeshabilitado{
+	color:#FF0000;
+}

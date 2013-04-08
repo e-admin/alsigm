@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<digester-rules>
+	<!-- Debería crear un solo objeto, ya sea pq encuentra beanformatter o
+	      pq encuentra queryform -->
+	<pattern value="beanformatter">
+		<object-create-rule classname="ieci.tdw.ispac.ispaclib.bean.BeanFormatter" />
+		<set-properties-rule >
+			<alias attr-name='defaultSort' prop-name='defaultSort' />
+			<alias attr-name='defaultOrder' prop-name='defaultOrder' />
+			<alias attr-name='pageSize' prop-name='pageSize' />
+			<alias attr-name='sort' prop-name='sort' />
+			<alias attr-name='export' prop-name='export' />
+			<alias attr-name='title' prop-name='title' />
+			<alias attr-name='fieldType' prop-name='fieldType' />
+			<alias attr-name='styleClass' prop-name='styleClass' />
+			<alias attr-name='requestURI' prop-name='requestURI' />
+		</set-properties-rule>
+	</pattern>
+	<pattern value="queryform">
+		<object-create-rule classname="ieci.tdw.ispac.ispaclib.bean.BeanFormatter" />
+		<set-properties-rule />
+	</pattern>
+	<pattern value="processlistformat/beanformatter">
+		<object-create-rule classname="ieci.tdw.ispac.ispaclib.bean.BeanFormatter" />
+		<set-properties-rule />
+	</pattern>
+	<pattern value="sicresformat/beanformatter">
+		<object-create-rule classname="ieci.tdw.ispac.ispaclib.bean.BeanFormatter" />
+		<set-properties-rule />
+	</pattern>
+	<!--
+	<object-create-rule pattern="beanformatter" classname="ieci.tdw.ispac.ispaclib.bean.BeanFormatter"/>
+	<object-create-rule pattern="queryform" classname="ieci.tdw.ispac.ispaclib.bean.BeanFormatter"/>
+	<object-create-rule pattern="processlistformat/beanformatter" classname="ieci.tdw.ispac.ispaclib.bean.BeanFormatter"/>
+	<object-create-rule pattern="sicresformat/beanformatter" classname="ieci.tdw.ispac.ispaclib.bean.BeanFormatter"/>
+	-->
+
+	<!-- Busca cualquier campo de tipo propertyfmt y por cada uno de ellos crea
+	  un objeto de tipo BeanPropertyFmt a través del factory, que luego es
+	  añadido al beanformatter -->
+	<pattern value="*/propertyfmt">
+		<factory-create-rule classname="ieci.tdw.ispac.ispaclib.bean.BeanPropertyFmtFactory"/>
+		<!-- Hace los sets para los atributos que se llaman igual que las propiedades de la clase -->
+		<set-properties-rule />
+		<set-properties-rule >
+			<alias attr-name='showproperty' prop-name='property' />
+		</set-properties-rule>
+
+		<!--
+		<set-properties-rule>
+			<alias attr-name='property' prop-name='property' />
+			<alias attr-name='readOnly' prop-name='readOnly' />
+			<alias attr-name='format' prop-name='format' />
+			<alias attr-name='title' prop-name='title' />
+			<alias attr-name='titleKey' prop-name='titleKey' />
+			<alias attr-name='fieldType' prop-name='fieldType' />
+			<alias attr-name='fieldLink' prop-name='fieldLink' />
+			Estilo CSS para el contenido del formateador
+			<alias attr-name='styleClass' prop-name='styleClass' />
+			Estilo CSS para la cabecera del displaytag
+			<alias attr-name='headerClass' prop-name='headerClass' />
+			Estilo CSS para la columna del displaytag
+			<alias attr-name='columnClass' prop-name='columnClass' />
+			Clase de la cabecera
+			<alias attr-name='sortable' prop-name='sortable' />
+			Tipo de exportacion displaytag csv excel xml pdf
+			<alias attr-name='media' prop-name='media' />
+			Clase decoradora para la columna
+			<alias attr-name='decorator' prop-name='decorator' />
+			Clase comparadora para la ordenación de la columna
+			<alias attr-name='comparator' prop-name='comparator' />
+			URL asociada al formateador
+			<alias attr-name='url' prop-name='url' />
+			URL asociada al formateador
+			<alias attr-name='urlTarget' prop-name='urlTarget'/>
+			Nombre del parámetro a añadir a la URL
+			<alias attr-name='id' prop-name='id' />
+			Valor constante que devolverá este formateador en lugar del correspondiente a la propiedad
+			<alias attr-name='propertyValue' prop-name='propertyValue' />
+		</set-properties-rule>
+		-->
+		<call-method-rule pattern="linkParam" methodname="addLinkParams" paramcount="2" />
+		<call-param-rule pattern="linkParam" attrname="paramId" paramnumber="0"/>
+		<call-param-rule pattern="linkParam" attrname="property" paramnumber="1"/>
+		<set-next-rule methodname="add"/>
+	</pattern>
+</digester-rules>

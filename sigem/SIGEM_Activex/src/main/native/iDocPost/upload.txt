@@ -1,0 +1,232 @@
+
+#define CHECK_LAST_ERROR(rc) { rc = GetLastHR(); if (rc) { goto End; } }
+
+
+long GetLastHR() 
+{ 
+   return HRESULT_FROM_WIN32(GetLastError()); 
+}
+
+static long GetHTTPError(HINTERNET hInet)
+{
+   DWORD dwStatus = 0;
+   DWORD dwStatusSize = sizeof(dwStatus);
+   DWORD dwIndex = 0;
+   DWORD Err = 0;
+   CString Msg;
+
+   if (!HttpQueryInfo(hInet, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatus, &dwStatusSize, &dwIndex))
+   {    
+      Err = GetLastHR();    
+   }
+   else if (dwStatus >= 400)
+   {
+      Err = HTTP_STATUS_TO_ERR(dwStatus);
+   }
+
+   return Err;
+}
+
+////////////////////UploadFileX/////////////////////////////////////
+//
+//  Parámetros:
+//   
+//  File : Fichero local a subir 
+//  Server : Servidor
+//  Page : Página ASP que recibe los bytes en el servidor 
+//  VirtualDir: Directorio en el servidor donde se genera el fichero
+//  DstFileName: Nombre que se le quiere dar en el servidor
+//  bRemove : Indica si se borra o no el fichero origen
+//
+//
+//  Ej UploadFileX("c:\01.tif","SERVERNAME","idocnet89/ReadAll.asp","upload","123.tif",0)
+//
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+STDMETHODIMP CUpload::UploadFileX(BSTR File, BSTR Server, BSTR Page, BSTR VirtualDir, 
+                                  BSTR DstFileName, long bRemove,VARIANT* pErrorCode)
+{
+  // Implementacion tradicional basada en conexiones internet
+
+   CString Msg;
+   USES_ERROR_LOG("CUpload::UploadFileX");
+   long Err = S_OK;
+   
+   try
+   {
+      CString    strFile(File), strVDir(VirtualDir), strProtocol, strServer(Server), strPage(Page), strFileName;
+      CString    FileDst(DstFileName), strResource;
+      ULONG ulPort = INTERNET_DEFAULT_HTTP_PORT;
+
+      
+      HINTERNET  hInetOpen      = NULL;
+      HINTERNET  hInetConnect   = NULL;
+      HINTERNET  hInetReq       = NULL;
+      DWORD      dwINetFlags    = 0;      
+      DWORD      dwHTTPFlags    = INTERNET_FLAG_RELOAD | INTERNET_FLAG_NO_CACHE_WRITE | INTERNET_FLAG_KEEP_CONNECTION;
+      LPTSTR     AcceptTypes[]  = {_T("*" "/" "*"), NULL}; 
+      HANDLE     hFile = INVALID_HANDLE_VALUE;
+
+      INTERNET_BUFFERS BufferIn = {0};
+      DWORD            BytesRead;
+      DWORD            BytesWritten;
+      BYTE             pBuffer[102400];   
+      
+   #ifdef TRACE_TIME
+     CTraceTime __tt(_T("CUpload::UploadFileX(%I64d) to %s"), GetFileSizeFN(strFile), strURL);
+   #endif
+
+      
+      int iDotPos = strServer.Find(_T(":"));         
+      if (iDotPos != -1)
+      {
+         ulPort = _ttoi(LPCTSTR(strServer) + iDotPos + 1);
+         strServer = strServer.Left(iDotPos);
+      }
+      
+            
+      // Abrimos fichero
+      hFile = CreateFile(strFile, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      if (hFile == INVALID_HANDLE_VALUE)
+         CHECK_LAST_ERROR(Err)
+
+   Request:
+      if (SetFilePointer(hFile, 0, NULL, FILE_BEGIN) == INVALID_SET_FILE_POINTER)
+         CHECK_LAST_ERROR(Err)
+ 
+      // Acceso a internet
+      hInetOpen = InternetOpen( "HttpSendRequestEx", INTERNET_OPEN_TYPE_PRECONFIG,
+		                          NULL, NULL, 0);	
+      if (!hInetOpen)
+         CHECK_LAST_ERROR(Err)
+
+      dwINetFlags = INTERNET_FLAG_EXISTING_CONNECT;
+      if (ulPort == 443) // https
+         dwINetFlags |= INTERNET_FLAG_SECURE;
+     
+ 	   hInetConnect = InternetConnect(hInetOpen, strServer, USHORT(ulPort), NULL, NULL, INTERNET_SERVICE_HTTP, dwINetFlags, 0);    
+      if (!hInetConnect)
+         CHECK_LAST_ERROR(Err)
+
+      dwHTTPFlags = INTERNET_FLAG_RELOAD | INTERNET_FLAG_NO_CACHE_WRITE | INTERNET_FLAG_KEEP_CONNECTION;
+      if (ulPort == 443) // https
+         dwHTTPFlags |= INTERNET_FLAG_SECURE;
+ 
+      strResource.Format("%s?FileName=%s&Dir=%s",strPage,FileDst,strVDir);       
+      hInetReq = HttpOpenRequest(hInetConnect, _T("POST"), strResource, NULL, NULL, NULL, dwHTTPFlags, 0);   
+      if (!hInetReq)
+         CHECK_LAST_ERROR(Err)
+ 
+      
+      // Preparamos HttpSendRequestEx
+      BufferIn.dwStructSize = sizeof(INTERNET_BUFFERS);
+      BufferIn.Next = NULL;     
+      if (m_strBasicProxyAuth.IsEmpty())
+      {
+        BufferIn.lpcszHeader = NULL;
+        BufferIn.dwHeadersLength = 0;
+      }
+      else
+      {
+        BufferIn.lpcszHeader = m_strBasicProxyAuth; 
+        BufferIn.dwHeadersLength = m_strBasicProxyAuth.GetLength();
+      }
+
+      BufferIn.dwHeadersTotal = 0;
+      BufferIn.lpvBuffer = NULL;                
+      BufferIn.dwBufferLength = 0;
+      BufferIn.dwBufferTotal = GetFileSize(hFile, NULL);
+      BufferIn.dwOffsetLow = 0;
+      BufferIn.dwOffsetHigh = 0;
+ 
+      if (!HttpSendRequestEx(hInetReq, &BufferIn, NULL, HSR_INITIATE | HSR_SYNC |HSR_CHUNKED, 0))
+         CHECK_LAST_ERROR(Err)
+      
+      // Enviamos los datos
+      do
+      {       
+       
+         if (!ReadFile(hFile, pBuffer, sizeof(pBuffer), &BytesRead, NULL))
+         {
+            Err = GetLastHR();            
+            break;
+         }
+     
+         if (!InternetWriteFile(hInetReq, pBuffer, BytesRead, &BytesWritten))
+         {
+            Err = GetLastHR();
+            break;
+         } 
+     
+      }
+      while (BytesRead == sizeof(pBuffer));
+
+
+      // Finalizamos la peticion
+      if (!HttpEndRequest(hInetReq, NULL, HSR_INITIATE | HSR_SYNC, 0))
+      {     
+         Err = GetLastError();
+
+         //DiscardResult(hInetReq, pBuffer, sizeof(pBuffer));
+         if ( Err == ERROR_INTERNET_FORCE_RETRY && 
+            (GetHTTPError(hInetReq) == HTTP_STATUS_TO_ERR(HTTP_STATUS_PROXY_AUTH_REQ)||
+            GetHTTPError(hInetReq) == HTTP_STATUS_TO_ERR(HTTP_STATUS_DENIED)) )
+         {
+            AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+            CProxyDlg dlg;
+            GetVia(hInetReq, dlg.m_strServer);
+            Err = dlg.DoModal();
+            if (Err == IDOK)
+            {
+               Err = CreateProxyAuth(dlg.m_strUserName, dlg.m_strPassword, m_strBasicProxyAuth);
+               CHECK_ERR(Err)
+        
+               // Cerramos handles y repetimos la peticion        
+               InternetCloseHandle(hInetReq);
+               InternetCloseHandle(hInetConnect);
+               InternetCloseHandle(hInetOpen);
+               goto Request;
+            }
+            else
+            {
+               Err = HRESULT_FROM_WIN32(ERROR_CANCELLED);
+               goto End;
+            }
+         }
+      }
+
+      Err = GetHTTPError(hInetReq);
+
+      //DiscardResult(hInetReq, pBuffer, sizeof(pBuffer));
+      CHECK_ERR(Err)
+
+      CloseHandle(hFile);
+      hFile = INVALID_HANDLE_VALUE;
+      if (bRemove)
+        ::DeleteFile(strFile);
+    
+  End:
+      if (hInetReq)       InternetCloseHandle(hInetReq);
+      if (hInetConnect)   InternetCloseHandle(hInetConnect);
+      if (hInetOpen)      InternetCloseHandle(hInetOpen);
+      if (hFile != INVALID_HANDLE_VALUE) CloseHandle(hFile);
+   }
+   catch (CException *e)
+   {
+      e->Delete();
+      Err = LEXNET_ERR_EXCEPTION;
+   }
+   catch (...)
+   {
+      Err = LEXNET_ERR_EXCEPTION;
+   }
+
+   V_VT(pErrorCode) = VT_I4;
+   V_I4(pErrorCode) = Err;  
+  
+	return S_OK;
+}

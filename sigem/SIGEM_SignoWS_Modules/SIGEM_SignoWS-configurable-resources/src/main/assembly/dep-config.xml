@@ -1,0 +1,34 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_SignoWS/src/main/resources/SIGM_SignoWS/default</directory>
+			<outputDirectory>SIGEM_SignoWS/default</outputDirectory>	
+			<includes>
+				<include>plusvalias-config.properties</include>
+			</includes>		
+		</fileSet>	
+		<fileSet>
+			<directory>../SIGEM_SignoWS/src/main/webapp/WEB-INF/reports</directory>
+			<outputDirectory>SIGEM_SignoWS/default</outputDirectory>	
+			<includes>
+				<include>receipt.pdf</include>
+			</includes>		
+		</fileSet>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_SignoWS/src/main/resources/SIGM_SignoWS</directory>
+			<outputDirectory>SIGEM_SignoWS</outputDirectory>	
+			<includes>
+				<include>log4j.properties</include>
+			</includes>		
+		</fileSet>
+	</fileSets>
+
+</assembly>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="DocumentoTipoDocumentalSicresVO">
+
+	<typeAlias alias="tipoDocumentalSicresEnumVO"
+		type="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.TipoDocumentalSicresEnumVO" />
+		
+	<typeAlias alias="documentoTipoDocumentalSicresVO"
+		type="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.DocumentoTipoDocumentalSicresVO" />
+	
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.IdentificadorDocumentoElectronicoAnexoVO"
+		id="identificadorDocumentoVO">
+		<result property="idLibro" column="bookid" />
+		<result property="idRegistro" column="folderid" />
+		<result property="idPagina" column="pageid" />
+	</resultMap>
+	
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.DocumentoTipoDocumentalSicresVO"
+		id="documentoTipoDocumentalSicres">
+		<result property="id" resultMap="DocumentoTipoDocumentalSicresVO.identificadorDocumentoVO"/>
+		<result property="tipoDocumentalSicres" column="id_pagetype" />
+		<result property="idDocumento" column="docuid" />
+	</resultMap>
+</sqlMap>

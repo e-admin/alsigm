@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Iuserldapuserhdr" 
+    table="IUSERLDAPUSERHDR"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IUSERLDAPUSERHDR"
+    </meta>
+
+	<id
+		name="id" 
+	    column="ID" 
+	    type="int"
+	    length="10"
+	>
+		<meta attribute="field-description">
+			@hibernate.id
+		    generator-class="assigned"
+		    type="java.lang.Integer"
+		    column="ID"
+		</meta> 
+		<generator class="assigned" />
+	</id>
+       
+    <property 
+        name="ldapguid" 
+        column="LDAPGUID" 
+        type="java.lang.String"
+        length="36"
+	>
+        <meta attribute="field-description">
+           @hibernate.property
+            column="LDAPGUID"
+            length="36"
+        </meta> 
+    </property>
+    <property 
+        name="ldapfullname" 
+        column="LDAPFULLNAME" 
+        type="java.lang.String"
+        length="254"
+    >
+   		<meta attribute="field-description">
+        	@hibernate.property
+            column="LDAPFULLNAME"
+            length="254"
+        </meta> 
+     </property>
+ 
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

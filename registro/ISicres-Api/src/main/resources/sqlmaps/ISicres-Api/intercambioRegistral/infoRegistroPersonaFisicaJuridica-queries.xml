@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="InfoRegistroPersonaFisicaOJuridicaVO">
+		
+	<select id="getInfoRegistroPersonaFisicaVO" resultMap="infoRegistroPersonaFisicaResultMap" parameterClass="infoRegistroInteresadoVO">
+		select * from scr_pfis where id=#idPersona#
+	</select>
+	
+	<select id="getInfoRegistroPersonaJuridicaVO" resultMap="infoRegistroPersonaJuridicaResultMap" parameterClass="infoRegistroInteresadoVO">
+		select * from scr_pjur where id=#idPersona#
+	</select>
+</sqlMap>	

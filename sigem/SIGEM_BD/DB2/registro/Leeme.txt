@@ -1,0 +1,14 @@
+Pasos a seguir para ejecutar los script:
+
+1. Abrir una ventana de comandos (db2Inicio -> Ejecutar -> db2cmd)
+2. Ejecutar uno por uno y en este orden los siguientes comandos
+	
+	db2 connect to SICRESI user Administrador using ieciovi
+	db2 -tvf 01.1_create_tables_registro_sigem_db2.sql > R01.1_create_tables_db2.txt 
+	db2 -tvf 01.2_create_tables_invesdoc_registro_sigem_db2.sql > R01.2_create_tables_db2.txt 
+	db2 -tvf 02.1_create_indexes_constraints_registro_sigem_db2.sql > R02.1_create_indexes_db2.txt
+	db2 -tvf 02.2_create_indexes_constraints_registro_sigem_db2.sql > R02.2_create_indexes_db2.txt
+	db2 -tvf 03.1_insert_data_registro_sigem_db2.sql > R03.1_insert_data_db2.txt
+	db2 -tvf 03.2_insert_data_invesdoc_registro_sigem_db2.sql > R03.2_insert_data_db2.txt
+	db2 -tvf 04.1_insert_clob_registro_sigem_db2.sql > R4.1_insert_clob_db2.txt
+	db2 terminate

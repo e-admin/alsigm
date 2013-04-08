@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="DocumentoElectronicoAnexoVO">
+		
+		<!-- consulta que inserta datos en la tabla SCR_ATTACHMENT -->
+	<insert  id="addAttachment"  parameterClass="documentoElectronicoAnexoVO" >	
+		INSERT INTO SCR_ATTACHMENT (
+			ID,
+			BOOKID,
+			FOLDERID,
+			PAGEID,
+			COMMENTS,
+			MIME_TYPE,
+			NAME,
+			CODE_NAME,
+			VALIDITY_TYPE,
+			DOCUMENT_TYPE
+	    ) 
+		VALUES (
+			#id.id:INT#,
+		    #id.idLibro:INT#,
+			#id.idRegistro:INT#,
+			#id.idPagina:INT#,
+			#comentario:VARCHAR#,
+			#mimeType:VARCHAR#,
+			#name:VARCHAR#,
+			#codeName:VARCHAR#,
+			#tipoValidez#,
+			#tipoDocumentoAnexo#
+			
+		)
+	</insert>
+	 <!-- obtiene los datos del documentoElectronicoAnexo de las tablas  SCR_ATTACHMENT y SCR_ATTACHMENT_SIGN_INFO-->
+	<select id="getAttachmentById" parameterClass="java.lang.Long"  resultMap="documentoElectronicoAnexo">
+		SELECT ATTACH.*,
+			SIGNINFO.id as idDatosFirma,
+			SIGNINFO.id_attachment,
+			SIGNINFO.cert,
+			SIGNINFO.signature,
+			SIGNINFO.signature_alg,
+			SIGNINFO.signature_format,
+			SIGNINFO.time_signature,
+			SIGNINFO.ocsp_validation,
+			SIGNINFO.hash,
+			SIGNINFO.hash_alg,
+			SIGNINFO.id_attachment_signed 
+		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
+		WHERE ATTACH.ID =#id:INT# AND 
+			  ATTACH.ID=SIGNINFO.ID_ATTACHMENT
+	</select>
+	
+	<!-- obtiene los datos del documentoElectronicoAnexo de las tablas  SCR_ATTACHMENT y SCR_ATTACHMENT_SIGN_INFO a partir de idLibro, idRegistro y idPagina -->
+	<select id="getAttachmentByIdIdDocumentoElectronicoAnexo" parameterClass="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.IdentificadorDocumentoElectronicoAnexoVO"  resultMap="documentoElectronicoAnexo">
+		SELECT ATTACH.*,
+			SIGNINFO.id as idDatosFirma,
+			SIGNINFO.id_attachment,
+			SIGNINFO.cert,
+			SIGNINFO.signature,
+			SIGNINFO.signature_alg,
+			SIGNINFO.signature_format,
+			SIGNINFO.time_signature,
+			SIGNINFO.ocsp_validation,
+			SIGNINFO.hash,
+			SIGNINFO.hash_alg,
+			SIGNINFO.id_attachment_signed
+		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
+		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
+			  ATTACH.BOOKID=#idLibro# AND
+			  ATTACH.FOLDERID=#idRegistro# AND
+			  ATTACH.PAGEID=#idPagina#
+	</select>
+	
+	
+	
+	<select id="getAttachmentByIdLibroIdRegistro" parameterClass="java.util.Map"  resultMap="documentoElectronicoAnexo">
+		SELECT ATTACH.*,
+			SIGNINFO.id as idDatosFirma,
+			SIGNINFO.id_attachment,
+			SIGNINFO.cert,
+			SIGNINFO.signature,
+			SIGNINFO.signature_alg,
+			SIGNINFO.signature_format,
+			SIGNINFO.time_signature,
+			SIGNINFO.ocsp_validation,
+			SIGNINFO.hash,
+			SIGNINFO.hash_alg,
+			SIGNINFO.id_attachment_signed 
+		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
+		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
+			  ATTACH.BOOKID=#idLibro# AND
+			  ATTACH.FOLDERID=#idRegistro#
+	</select>
+	
+	<select id="getIdDocumentoElectronicoAnexoByIdLibroIdRegistro" parameterClass="java.util.Map"  resultMap="identificadorDocumentoElectronicoAnexoVO">
+		SELECT ATTACH.ID,
+			   ATTACH.BOOKID,
+			   ATTACH.FOLDERID,
+			   ATTACH.PAGEID 
+		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
+		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
+			  ATTACH.BOOKID=#idLibro# AND
+			  ATTACH.FOLDERID=#idRegistro#
+	</select>
+	
+	
+	
+	
+	<!-- consulta que inserta datos en la tabla SCR_ATTACHMENT_SIGN_INFO -->
+	<insert  id="addAttachmentSignInfo"  parameterClass="documentoElectronicoAnexoDatosFirmaVO" >	
+		INSERT INTO SCR_ATTACHMENT_SIGN_INFO (
+			ID,
+			ID_ATTACHMENT,
+			ID_ATTACHMENT_SIGNED,
+			CERT,
+			SIGNATURE,
+			SIGNATURE_ALG,
+			SIGNATURE_FORMAT,
+			TIME_SIGNATURE,
+			OCSP_VALIDATION,
+			HASH_ALG,
+			HASH
+			 
+			
+	    ) 
+		VALUES (
+			#id:INT#,
+		    #idAttachment:INT#,
+			#idAttachmentFirmado:INT#,
+			#certificado:BINARY#,
+			#firma:BINARY#,
+			#algFirma:VARCHAR#,
+			#formatoFirma:VARCHAR#,
+			#selloTiempo:BINARY#,
+			#ocspValidation:BINARY#,
+			#hashAlg:VARCHAR#,
+			#hash:BINARY#
+			
+		)
+	</insert>
+	
+	
+	
+	<select id="getAttachmentSignInfoByIdAttachment" parameterClass="java.lang.Long"  resultMap="documentoElectronicoAnexoDatosFirma">
+		SELECT 
+			SIGNINFO.id as idDatosFirma,
+			SIGNINFO.id_attachment,
+			SIGNINFO.cert,
+			SIGNINFO.signature,
+			SIGNINFO.signature_alg,
+			SIGNINFO.signature_format,
+			SIGNINFO.time_signature,
+			SIGNINFO.ocsp_validation,
+			SIGNINFO.hash,
+			SIGNINFO.hash_alg,
+			SIGNINFO.id_attachment_signed 
+		FROM SCR_ATTACHMENT_SIGN_INFO SIGNINFO
+		WHERE SIGNINFO.ID_ATTACHMENT =#id:INT#
+	</select>
+	
+	<select id="getAttachmentSignInfoById" parameterClass="java.lang.Long"  resultMap="documentoElectronicoAnexoDatosFirma">
+		SELECT 
+			SIGNINFO.id as idDatosFirma,
+			SIGNINFO.id_attachment,
+			SIGNINFO.cert,
+			SIGNINFO.signature,
+			SIGNINFO.signature_alg,
+			SIGNINFO.signature_format,
+			SIGNINFO.time_signature,
+			SIGNINFO.ocsp_validation,
+			SIGNINFO.hash,
+			SIGNINFO.hash_alg,
+			SIGNINFO.id_attachment_signed 
+		FROM SCR_ATTACHMENT_SIGN_INFO SIGNINFO
+		WHERE SIGNINFO.ID=#id:INT#
+	</select>
+	
+	
+	<select id="getAttachmentFirmadoByIdFirma" parameterClass="java.lang.Long"  resultMap="documentoElectronicoAnexo">
+			
+			
+			SELECT ATTACH.*,
+				SIGNINFO.id as idDatosFirma,
+				SIGNINFO.id_attachment,
+				SIGNINFO.cert,
+				SIGNINFO.signature,
+				SIGNINFO.signature_alg,
+				SIGNINFO.signature_format,
+				SIGNINFO.time_signature,
+				SIGNINFO.ocsp_validation,
+				SIGNINFO.hash,
+				SIGNINFO.hash_alg,
+				SIGNINFO.id_attachment_signed 
+		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
+		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
+			ATTACH.ID IN
+			<!-- selecionamos el id del documento al que firma que no es el mismo-->
+			(
+			SELECT id_attachment_signed
+			FROM  SCR_ATTACHMENT_SIGN_INFO    
+			WHERE id_attachment=#id:INT# AND
+				  id_attachment_signed!=id_attachment
+			)
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="getFirmasById" parameterClass="java.lang.Long"  resultMap="documentoElectronicoAnexo">
+		SELECT ATTACH.*,SIGNINFO.id as idDatosFirma,
+			SIGNINFO.id_attachment,
+			SIGNINFO.cert,
+			SIGNINFO.signature,
+			SIGNINFO.signature_alg,
+			SIGNINFO.signature_format,
+			SIGNINFO.time_signature,
+			SIGNINFO.ocsp_validation,
+			SIGNINFO.hash,
+			SIGNINFO.hash_alg,
+			SIGNINFO.id_attachment_signed 
+		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
+		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
+			  SIGNINFO.ID_ATTACHMENT_SIGNED=#id:INT# AND
+			  SIGNINFO.ID_ATTACHMENT_SIGNED!=SIGNINFO.ID_ATTACHMENT
+		
+	</select>
+	
+	<select id="getIdDocumentoElectronicoFirmasById" parameterClass="java.lang.Long"  resultMap="identificadorDocumentoElectronicoAnexoVO">
+		SELECT ATTACH.ID,
+			   ATTACH.BOOKID,
+			   ATTACH.FOLDERID,
+			   ATTACH.PAGEID
+		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
+		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
+			  SIGNINFO.ID_ATTACHMENT_SIGNED=#id:INT# AND
+			  SIGNINFO.ID_ATTACHMENT_SIGNED!=SIGNINFO.ID_ATTACHMENT
+		
+	</select>
+	
+	
+	
+	
+	
+</sqlMap>	

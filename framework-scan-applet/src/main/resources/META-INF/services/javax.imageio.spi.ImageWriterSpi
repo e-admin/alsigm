@@ -1,0 +1,7 @@
+uk.co.mmscomputing.imageio.bmp.BMPImageWriterSpi
+uk.co.mmscomputing.imageio.gif.GIFImageWriterSpi
+uk.co.mmscomputing.imageio.sff.SFFImageWriterSpi
+uk.co.mmscomputing.imageio.ppm.PBMImageWriterSpi
+uk.co.mmscomputing.imageio.ppm.PGMImageWriterSpi
+uk.co.mmscomputing.imageio.ppm.PPMImageWriterSpi
+uk.co.mmscomputing.imageio.tiff.TIFFImageWriterSpi

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings enhancementEnabled="true" maxTransactions="5"
+		maxRequests="32" maxSessions="10" useStatementNamespaces="true" lazyLoadingEnabled="true"/>
+
+<typeHandler
+		javaType="java.lang.String"
+		callback="es.ieci.tecdoc.fwktd.server.dao.ibatis.sqlmap.client.extensions.StringTypeHandlerCallback" />
+
+<typeHandler javaType="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaEnumVO"
+	callback="es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.typehandler.EstadoSalidaEnumTypeHandler"/>
+
+<typeHandler javaType="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralEntradaEnumVO"
+	callback="es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.typehandler.EstadoEntradaEnumTypeHandler"/>
+
+<typeHandler javaType="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoRegistroEnumVO"
+	callback="es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.typehandler.EstadoRegistroEnumTypeHandler"/>
+
+
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/entidadRegistral-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/entidadRegistral-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/unidadTramitacion-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/unidadTramitacion-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/intercambioRegistralSalida-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/intercambioRegistralSalida-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/intercambioRegistralEntrada-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/intercambioRegistralEntrada-queries.xml" />
+
+
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistro-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistro-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroCamposExtendidos-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroCamposExtendidos-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroInteresado-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroInteresado-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroPersonaFisicaJuridica-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroPersonaFisicaJuridica-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroRepresentante-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroRepresentante-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroPageRepository-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroPageRepository-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroInfoDocumento-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroInfoDocumento-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroDireccion-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroDireccion-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroDomicilio-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroDomicilio-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroDireccionTelematica-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/infoRegistroDireccionTelematica-queries.xml" />
+
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/unidadAdministrativa-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/unidadAdministrativa-queries.xml" />
+
+
+</sqlMapConfig>

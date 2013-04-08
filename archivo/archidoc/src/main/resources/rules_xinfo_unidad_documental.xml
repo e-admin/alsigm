@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<digester-rules>
+   <pattern value="UNIDAD_DOCUMENTAL_TRANSFERENCIA">
+
+      <call-method-rule pattern="EXPEDIENTE/SISTEMA_PRODUCTOR" methodname="setSistemaProductor" paramcount="2" />	                
+      <call-param-rule pattern="EXPEDIENTE/SISTEMA_PRODUCTOR/CODIGO" paramnumber ="0" />	                
+      <call-param-rule pattern="EXPEDIENTE/SISTEMA_PRODUCTOR/NOMBRE" paramnumber ="1" />	                
+
+      <call-method-rule pattern="PRODUCTOR" methodname="setProductor" paramcount="3" />	                
+      <call-param-rule pattern="PRODUCTOR/ID" paramnumber ="0" />	                
+      <call-param-rule pattern="PRODUCTOR/NOMBRE" paramnumber ="1" />	                
+      <call-param-rule pattern="PRODUCTOR/CODIGO_ORGANO" paramnumber ="2" />
+
+      <call-method-rule pattern="PUBLICACION_EN_SAC" methodname="setEnSAC" paramcount="0" />	                
+      <!--call-method-rule pattern="FECHA_INICIAL/FECHA" methodname="setFechaInicio" paramcount="0" /-->	                
+      <!--call-method-rule pattern="FECHA_FINAL/FECHA" methodname="setFechaFin" paramcount="0" /-->	                
+
+      <pattern value="INTERESADOS/INTERESADO">
+         <object-create-rule classname="transferencias.vos.InteresadoVO" />
+         <call-method-rule pattern="IDENTIDAD" methodname="setNombre" paramcount="0" />
+         <call-method-rule pattern="NUM_IDENTIDAD" methodname="setNumeroIdentificacion" paramcount="0" />
+         <call-method-rule pattern="ROL" methodname="setRol" paramcount="0" />
+         <call-method-rule pattern="PRINCIPAL" methodname="setPrincipal" paramcount="0" />
+         <call-method-rule pattern="VALIDADO_EN_TERCEROS" methodname="setValidado" paramcount="0" />
+         <call-method-rule pattern="ID_EN_TERCEROS" methodname="setIdEnTerceros" paramcount="0"/>
+         <set-next-rule methodname="addInteresado" />         
+      </pattern>
+
+      <pattern value="EMPLAZAMIENTOS/EMPLAZAMIENTO">
+         <object-create-rule classname="common.vos.Direccion" />
+         <call-method-rule pattern="PAIS" methodname="setPais" paramcount="0" />
+         <call-method-rule pattern="COMUNIDAD" methodname="setComunidad" paramcount="0" />
+         <call-method-rule pattern="PROVINCIA" methodname="setComunidad" paramcount="0" />
+         <call-method-rule pattern="CONCEJO" methodname="setConcejo" paramcount="0" />
+         <call-method-rule pattern="POBLACION" methodname="setPoblacion" paramcount="0" />
+         <call-method-rule pattern="LOCALIZACION" methodname="setLocalizacion" paramcount="0"/>
+         <call-method-rule pattern="VALIDADO" methodname="setValidado" paramcount="0"/>
+         <set-next-rule methodname="addEmplazamiento" />         
+      </pattern>
+      <pattern value="DOCUMENTOS/DOCUMENTOS_FISICOS/DOCUMENTO">
+         <object-create-rule classname="transferencias.vos.DocumentoVO" />
+         <call-method-rule pattern="NOMBRE" methodname="setNombre" paramcount="0" />
+         <call-method-rule pattern="DESCRIPCION" methodname="setDescripcion" paramcount="0" />
+         <call-method-rule pattern="INCLUIDO_EN_TRANFERENCIA" methodname="setIncluidoEnTransferencia" paramcount="0" paramtypes="java.lang.Boolean"/>
+         <set-next-rule methodname="addDocumento" />         
+      </pattern>
+      <pattern value="DOCUMENTOS/DOCUMENTOS_ELECTRONICOS/DOCUMENTO">
+         <object-create-rule classname="transferencias.vos.DocumentoElectronicoVO" />
+         <call-method-rule pattern="NOMBRE" methodname="setNombre" paramcount="0" />
+         <call-method-rule pattern="DESCRIPCION" methodname="setDescripcion" paramcount="0" />
+         <call-method-rule pattern="REPOSITORIO" methodname="setRepositorio" paramcount="0" />
+         <call-method-rule pattern="LOCALIZADOR" methodname="setLocalizador" paramcount="0" />
+         <call-method-rule pattern="EXTENSION" methodname="setExtension" paramcount="0" />
+         <set-next-rule methodname="addDocumento" />         
+      </pattern>
+      <pattern value="DOCUMENTOS/VOLUMEN_Y_SOPORTE/SOPORTE">
+         <object-create-rule classname="transferencias.vos.SoporteDocumentacionVO" />
+         <call-method-rule pattern="NUM_DOCS" methodname="setVolumen" paramcount="0" paramtypes="java.lang.Integer"/>
+         <call-method-rule pattern="FORMATO" methodname="setFormato" paramcount="0" />
+         <call-method-rule pattern="TIPO" methodname="setSoporte" paramcount="0" />
+         <set-next-rule methodname="addSoporte" />         
+      </pattern>
+      <pattern value="RANGOS/RANGO">
+         <object-create-rule classname="transferencias.vos.RangoVO" />
+         <call-method-rule pattern="DESDE" methodname="setDesde" paramcount="0"/>
+         <call-method-rule pattern="HASTA" methodname="setHasta" paramcount="0" />
+         <set-next-rule methodname="addRango" />         
+      </pattern>
+      
+	<call-method-rule pattern="TIENE_DESCRIPCION" methodname="setTieneDescripcion" paramcount="0" />	                
+	
+	<pattern value="VALORES_DESCRIPCION_UNIDAD_DOCUMENTAL_TRANSFERENCIA/CAMPO">
+		<object-create-rule classname="transferencias.vos.CampoDescripcionUdocReVO" />
+		<call-method-rule pattern="IDCAMPO" methodname="setIdCampo" paramcount="0" />
+		<call-method-rule pattern="TIPOCAMPO" methodname="setTipoCampo" paramcount="0" />
+		<pattern value="VALORES/VALOR">
+			<object-create-rule classname="transferencias.vos.ValorCampoDescripcionUdocReVO" />
+			<call-method-rule pattern="ORDEN" methodname="setOrden" paramcount="0" />
+			<call-method-rule pattern="VALOR" methodname="setValor" paramcount="0" />
+			<call-method-rule pattern="CALIFICADOR" methodname="setCalificador" paramcount="0" />
+			<call-method-rule pattern="NOMBRE" methodname="setNombre" paramcount="0" />
+			<call-method-rule pattern="FORMATO" methodname="setFormato" paramcount="0"/>
+			<call-method-rule pattern="SEPARADOR" methodname="setSep" paramcount="0"/>
+			<call-method-rule pattern="TIPO_MEDIDA" methodname="setTipoMedida" paramcount="0"/>
+			<call-method-rule pattern="UNIDAD_MEDIDA" methodname="setUnidadMedida" paramcount="0"/>												
+			<call-method-rule pattern="TIPO_OBJ_REF" methodname="setTipoObjRef" paramcount="0"/>
+			<call-method-rule pattern="ID_OBJ_REF" methodname="setIdObjRef" paramcount="0"/>
+	         <set-next-rule methodname="addValor" />					
+		</pattern>
+		<set-next-rule methodname="addCampoDescripcion" />
+	</pattern>
+   </pattern>
+   
+</digester-rules>

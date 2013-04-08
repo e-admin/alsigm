@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='empty'
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 />
+			
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PHYSICALNAME'
+				 readOnly='false'
+				 titleKey='form.entity.field.propertyLabel.physicalName'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width25percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ETIQUETA'
+				 readOnly='false'
+				 titleKey='form.entity.field.propertyLabel.logicalName'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.entity.field.propertyLabel.descripcion'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TYPEDESCR'
+				 readOnly='false'
+				 titleKey='form.entity.field.propertyLabel.type'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width10percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SIZE'
+				 readOnly='false'
+				 titleKey='form.entity.field.propertyLabel.size'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 decorator='ieci.tdw.ispac.ispaccatalog.decorators.EntityFieldSizeColumnDecorator'
+				 columnClass='width10percent'
+				 />
+			
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PRECISION'
+				 readOnly='false'
+				 titleKey='form.entity.field.propertyLabel.precision'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 decorator='ieci.tdw.ispac.ispaccatalog.decorators.EntityFieldSizeColumnDecorator'
+				 columnClass='width10percent'
+				 />
+
+</beanformatter>

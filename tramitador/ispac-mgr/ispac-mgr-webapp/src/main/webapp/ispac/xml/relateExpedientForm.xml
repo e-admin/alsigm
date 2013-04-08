@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="SearchForm.xsl"?>
+<queryform displaywidth='95%' defaultSort='1'>	
+	<entity type="main" identifier="1">
+		<tablename>spac_expedientes</tablename>
+		<description>Expedientes</description>
+		<field type='query'>
+			<columnname>NOMBREPROCEDIMIENTO</columnname>
+			<description>Procedimiento:</description>
+			<datatype>string</datatype>
+			<controltype size='30' maxlength='30' tipo='validate' table='SPAC_P_PROCEDIMIENTOS' field='spac_expedientes:NOMBREPROCEDIMIENTO' label='NOMBRE'  value='NOMBRE' clause='WHERE TIPO=1 AND ESTADO=2'>text</controltype>
+		</field>
+		<field type="query">
+			<columnname>NUMEXP</columnname>
+			<description>Número Expediente:</description>	
+			<datatype>string</datatype>
+			<controltype size='50' maxlength='125'>text</controltype>
+		</field>
+		<field type="query">
+			<columnname>ASUNTO</columnname>	
+			<description>Asunto:</description>
+			<datatype>string</datatype>
+			<controltype size='50' maxlength='125'>text</controltype>
+		</field>
+		<field type="query">
+			<columnname>NREG</columnname>	
+			<description>Número Registro:</description>
+			<datatype>string</datatype>
+			<controltype size='50' maxlength='125'>text</controltype>
+		</field>
+		<field type="query">
+			<columnname>FREG</columnname>	
+			<description>Fecha Registro:</description>
+			<datatype>date</datatype>
+			<controltype size='20' maxlength='21'>text</controltype>
+		</field>
+		<field type="query">
+			<columnname>NIFCIFTITULAR</columnname>	
+			<description>NIF/CIF Interesado Principal:</description>
+			<datatype>string</datatype>
+			<controltype size='50' maxlength='125'>text</controltype>
+		</field>
+		<field type="query">
+			<columnname>IDENTIDADTITULAR</columnname>	
+			<description>Nombre Interesado Principal:</description>
+			<datatype>string</datatype>
+			<controltype size='50' maxlength='125'>text</controltype>
+		</field>
+	</entity>
+
+	<propertyfmt type='BeanPropertySimpleFmt' 
+				property='SPAC_EXPEDIENTES.NUMEXP' 
+				readOnly='false' 
+				dataType='string' 
+				titleKey='search.numExp' 
+				fieldType='LINK' 
+				fieldLink='SPAC_EXPEDIENTES.NUMEXP'
+		        comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'
+				headerClass='sortable'
+		        sortable='true'
+		        styleClass='displayLink'
+		        columnClass='width30percent'
+		        />
+	<propertyfmt type='BeanPropertySimpleFmt' 
+				property='SPAC_EXPEDIENTES.ASUNTO' 
+				readOnly='false'			
+				dataType='string'
+				titleKey='search.asunto' 
+				headerClass='sortable'
+		        sortable='true'
+				fieldType='LIST' 
+				columnClass='width30percent'
+				/>
+	<propertyfmt type='BeanPropertySimpleFmt' 
+				property='SPAC_EXPEDIENTES.NIFCIFTITULAR' 
+				readOnly='false'			
+				dataType='string'
+				titleKey='search.nifInteresado' 
+				headerClass='sortable'
+		        sortable='true'
+				fieldType='LIST' 
+				columnClass='width20percent'
+				/>
+	<propertyfmt type='BeanPropertySimpleFmt' 
+				property='SPAC_EXPEDIENTES.IDENTIDADTITULAR' 
+				readOnly='false'			
+				dataType='string'
+				titleKey='search.interesado' 
+				headerClass='sortable'
+		        sortable='true'
+				fieldType='LIST' 
+				columnClass='width20percent'
+				/>
+</queryform>

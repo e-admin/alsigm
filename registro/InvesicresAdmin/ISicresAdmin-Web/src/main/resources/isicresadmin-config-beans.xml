@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+
+]>
+
+
+<beans>
+
+	<bean name="isicresadminConfigurationResourceLoader"	id="isicresadminConfigurationResourceLoader"	class="${admin.config.resources.loader.class}">
+
+	</bean>
+
+
+	<!-- Bean de configuración de Isicres Administración-->
+	<bean id="registroAdminConfigurationBean" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="CONFIG_SUBDIR"
+					value="${admin.config.subdir.path}" />
+			</map>
+		</property>
+	</bean>
+
+
+</beans>

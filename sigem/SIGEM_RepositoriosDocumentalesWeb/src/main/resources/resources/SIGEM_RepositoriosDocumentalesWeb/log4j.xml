@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="Consola" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p] %C{1}.%M(%L) %m %n"/>
+		</layout>
+	</appender>
+
+	<appender name="Fichero" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${sigem.log.path}${sigem.path.separator}SIGEM_RepositoriosDocumentalesWeb${sigem.path.separator}SIGEM_RepositoriosDocumentalesWeb.log"/>
+		<param name="MaxFileSize" value="5000KB"/>
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss} [%p] %C %M %m %n"/>
+		</layout>
+	</appender>
+
+	<appender name="audit" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${sigem.log.path}${sigem.path.separator}SIGEM_RepositoriosDocumentalesWeb${sigem.path.separator}SIGEM_RepositoriosDocumentalesWeb.log"/>
+		<param name="MaxFileSize" value="5000KB"/>
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="ieci.tecdoc.mvc.util.log.HTMLLayout">
+			<param name="Title" value="invesDoc Log File"/>
+			<param name="locale" value="es_ES"/>
+			<param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss} %X{user} %X{action} %X{cabinet} %X{folder} %M %n"/>
+		</layout>
+	</appender>
+
+	<appender name="XML" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${sigem.log.path}${sigem.path.separator}SIGEM_RepositoriosDocumentalesWeb${sigem.path.separator}SIGEM_RepositoriosDocumentalesWeb.log"/>
+		<param name="MaxFileSize" value="5000KB"/>
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%x] [user: %X{apellido}] [%p]  %C %M %m %n"/>
+		</layout>
+	</appender>
+
+	<!-- Log4eclipse -->
+	<appender name="socket" class="org.apache.log4j.net.SocketAppender">
+		<param name="RemoteHost" value="localhost"/>
+		<param name="Port" value="4445"/>
+	</appender>
+
+	<logger name="ieci.tecdoc.mvc.action" additivity="false">
+		<level value="error"/>
+		<appender-ref ref="Fichero"/>
+		<appender-ref ref="Consola"/>
+	</logger>
+
+	<logger name="ieci.tecdoc.mvc.service" additivity="false">
+		<level value="error"/>
+		<appender-ref ref="Consola"/>
+		<appender-ref ref="Fichero"/>
+	</logger>
+	
+	<logger name="ieci.tecdoc.mvc.control" additivity="false">
+		<level value="error"/>
+		<appender-ref ref="Consola"/>
+		<appender-ref ref="Fichero"/>		
+	</logger>
+	
+	<logger name="ieci.tecdoc.idoc.admin.sys" additivity="false">
+		<level value="error"/>
+		<appender-ref ref="Consola"/>
+	</logger>
+	
+	<logger name="ieci.tecdoc.mvc.util.servlet.control" additivity="true">
+		<level value="error"/>
+		<appender-ref ref="Consola"/>
+		<appender-ref ref="Fichero"/>		
+	</logger>
+	
+	<logger name="ieci.tecdoc.mvc.plugin" additivity="true">
+		<level value="error"/>
+		<appender-ref ref="Consola"/>
+		<appender-ref ref="Fichero"/>		
+	</logger>
+	
+	<logger name="org.apache" additivity="false">
+		<level value="error"/>
+		<appender-ref ref="Consola"/>
+	</logger>
+	     
+	<logger name="ieci.tecdoc.core" additivity="false">
+		<level value="error"/>
+		<appender-ref ref="Consola"/>
+	</logger>						
+	
+		<!--
+		
+	<logger name="ieci.tecdoc.core.db.DbGrantStatement" additivity="false">
+		<level value="error"/>
+		<appender-ref ref="Consola"/>
+	</logger>
+			
+	<root>
+		<priority value="ALL"/>
+		<appender-ref ref="socket"/>
+	</root>
+	-->
+</log4j:configuration>

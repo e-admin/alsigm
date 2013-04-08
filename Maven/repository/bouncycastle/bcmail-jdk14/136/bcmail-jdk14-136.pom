@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>bouncycastle</groupId>
+  <artifactId>bcmail-jdk14</artifactId>
+  <version>136</version>
+  <description>POM was created from install:install-file</description>
+  <distributionManagement>
+    <status>deployed</status>
+  </distributionManagement>
+</project>

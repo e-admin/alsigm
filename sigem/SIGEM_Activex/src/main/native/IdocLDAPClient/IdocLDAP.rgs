@@ -1,0 +1,25 @@
+HKCR
+{
+	IdocLDAPClient.IdocLDAP.1 = s 'IdocLDAP Class'
+	{
+		CLSID = s '{13180912-3296-40DF-9335-88D3E00A2E53}'
+	}
+	IdocLDAPClient.IdocLDAP = s 'IdocLDAP Class'
+	{
+		CLSID = s '{13180912-3296-40DF-9335-88D3E00A2E53}'
+		CurVer = s 'IdocLDAPClient.IdocLDAP.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {13180912-3296-40DF-9335-88D3E00A2E53} = s 'IdocLDAP Class'
+		{
+			ProgID = s 'IdocLDAPClient.IdocLDAP.1'
+			VersionIndependentProgID = s 'IdocLDAPClient.IdocLDAP'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+			}
+			'TypeLib' = s '{B6D1BBCC-4C64-4963-9BC2-7642F1647AF7}'
+		}
+	}
+}

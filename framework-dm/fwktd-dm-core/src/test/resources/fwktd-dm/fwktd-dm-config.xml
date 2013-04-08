@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<config>
+
+	<!--
+		Propiedades globales
+	-->
+	<properties>
+		<property name="TEST">test</property>
+	</properties>
+
+	<!--
+		Grupos de mapeos de campos
+	-->
+	<mapping-groups>
+
+		<mapping-group id="grupo1">
+			<mapping>
+				<source type="integer">id</source>
+				<destination type="string">document_id</destination>
+			</mapping>
+			<mapping>
+				<source type="string">name</source>
+				<destination type="string">document_name</destination>
+			</mapping>
+			<mapping>
+				<source type="datetime">date</source>
+				<destination type="string">document_date</destination>
+			</mapping>
+		</mapping-group>
+
+	</mapping-groups>
+
+	<!--
+		Tipos de contenido
+	-->
+	<content-types>
+
+		<content-type id="1" name="bd" type="bd">
+
+			<properties>
+		    	<!-- property name="JDBC_DATASOURCE">java:comp/env/jdbc/testDS</property-->
+		    	<property name="JDBC_DRIVER_CLASS_NAME">org.postgresql.Driver</property>
+		    	<property name="JDBC_URL">jdbc:postgresql://localhost:5432/test</property>
+		    	<property name="JDBC_USERNAME">postgres</property>
+		    	<property name="JDBC_PASSWORD">postgres</property>
+			</properties>
+
+			<mappings>
+				<mapping-group ref="grupo1"/>
+				<mapping>
+					<source type="string" token="token1">nombre_token1</source>
+					<destination type="string">document_nombre_token1</destination>
+				</mapping>
+				<mapping>
+					<source type="string" token="token2">nombre_token2</source>
+					<destination type="string">document_nombre_token2</destination>
+				</mapping>
+				<mapping>
+					<source type="string" token="token3">nombre_token3</source>
+					<destination type="string">document_nombre_token3</destination>
+				</mapping>
+				<mapping>
+					<source type="string" token="token4">nombre_token4</source>
+					<destination type="string">document_nombre_token4</destination>
+				</mapping>
+			</mappings>
+
+			<tokens>
+				<token name="token1" type="constant">
+					CONSTANTE
+				</token>
+				<token name="token2" type="xpath">
+					/metadatos/metadato[contains(nombre,'name')]/valor
+				</token>
+				<token name="token3">
+					name
+				</token>
+				<token name="token4" type="expression">
+					/${_YEAR}/${token1}/${token2}/${token3}/bla
+				</token>
+			</tokens>
+
+		</content-type>
+
+		<content-type id="2" name="invesdoc" type="invesdoc">
+
+			<properties>
+
+		    	<!-- property name="JDBC_DATASOURCE">java:comp/env/jdbc/invesDocDS</property-->
+		    	<property name="JDBC_DRIVER_CLASS_NAME">org.postgresql.Driver</property>
+		    	<property name="JDBC_URL">jdbc:postgresql://localhost:5432/invesdoc11</property>
+		    	<property name="JDBC_USERNAME">postgres</property>
+		    	<property name="JDBC_PASSWORD">postgres</property>
+
+		    	<property name="ARCHIVE_ID">1</property>
+		    	<property name="USER_ID">0</property>
+		    	<property name="TEMPORARY_PATH">C:/temp</property>
+
+		    	<!-- property name="UID_FIELD">document_id</property-->
+
+			</properties>
+
+			<!--
+				Mapeos de campos.
+			-->
+		    <mappings>
+				<mapping>
+					<source type="integer">document_id</source>
+					<destination type="integer" fld="1">document_id</destination>
+				</mapping>
+				<mapping>
+					<source type="string">document_name</source>
+					<destination type="string" fld="2">document_name</destination>
+				</mapping>
+		      	<mapping>
+		        	<source type="integer">document_type</source>
+		        	<destination type="integer" fld="3">document_type</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="integer">procedure_id</source>
+		        	<destination type="integer" fld="4">procedure_id</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="string">procedure_name</source>
+		        	<destination type="string" fld="5">procedure_name</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="integer">expedient_id</source>
+		        	<destination type="integer" fld="6">expedient_id</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="string">expedient_name</source>
+		        	<destination type="string" fld="7">expedient_name</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="string">user_guid</source>
+		        	<destination type="string" fld="8">user_guid</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="string">user_name</source>
+		        	<destination type="string" fld="9">user_name</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="integer">stage_id</source>
+		        	<destination type="integer" fld="10">stage_id</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="string">stage_name</source>
+		        	<destination type="string" fld="11">stage_name</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="integer">task_id</source>
+		        	<destination type="integer" fld="12">task_id</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="string">task_name</source>
+		        	<destination type="string" fld="13">task_name</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="string">mimetype</source>
+		        	<destination type="string" fld="14">mimetype</destination>
+		      	</mapping>
+		      	<mapping>
+		        	<source type="integer">document_size</source>
+		        	<destination type="integer" fld="15">document_size</destination>
+		      	</mapping>
+			</mappings>
+		</content-type>
+
+	</content-types>
+
+</config>

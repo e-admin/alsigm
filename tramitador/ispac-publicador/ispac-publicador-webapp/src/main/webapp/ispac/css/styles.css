@@ -1,0 +1,118 @@
+body {
+  	background-color: #FFFFFF;
+  	margin:0;
+  	padding:0;
+}
+a, a:hover {
+	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	color: #666666;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+#contenido {
+	width:100%;
+	height:80%;
+}
+
+.index_title {
+    color:  #6166AA;
+    font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+	width:100%;
+	text-align: center;
+	padding: 30px 30px 30px 30px;
+}
+
+#copyright{
+	width:99%;
+	position:relative;
+	text-align: center;
+    font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 10px;
+    color:  #666666;
+}
+
+
+/* CABECERA DE LAS APLICACIONES */
+
+#cabecera {
+	width:100%;
+	height:62px;
+	position: relative;
+	margin:0px;
+	padding:0px;
+}
+
+#cabecera_left {
+	height: 62px;
+	float:left;
+	width:50%;
+	margin: 0px;
+	padding: 0px;
+	background: #000000 url("../img/inicio-banner-left.png") top right no-repeat;
+	/* border:1px solid yellow; */
+}
+
+#cabecera_right {
+	height: 62px;
+	width:50%;
+	float:left;
+	margin: 0px;
+	padding: 0px;
+	background: #FFFFFF url("../img/inicio-banner-right.png") top left no-repeat;
+	/* border:1px solid red; */
+}
+
+#cabecera_left h1 {
+	width: 245px;
+	height: 60px;
+	margin: 0px 0px 0px 10px;
+	padding: 0px;
+	text-indent: -3000px;
+	background: url("../img/inicio-ieci.png") top left no-repeat;
+	border:none;
+}
+
+#cabecera_right h2 {
+	position: absolute;
+	top: 7px;
+	right: 16px;
+	width: 179px;
+	height: 58px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	background: url("../img/inicio-nombre.png") top left no-repeat;
+	text-indent: -3000px;
+	border:none;
+}
+
+/* BARRAS DE USUARIO */
+/* area de usuario con texto a izquierda y botón de ayuda a derecha */
+
+#usuario {
+	background: url("../img/bg_right_usuario.jpg") bottom right no-repeat;
+	height: 23px;
+	clear: both;
+}
+
+#barra_usuario {
+	margin: 0px;
+	background: url("../img/bg_left_usuario.jpg") left bottom no-repeat;
+	padding: 0px;
+	height: 23px;
+	line-height: 23px;
+}
+
+#barra_usuario .usuario  {
+	margin: 0px 10px;
+	text-align: right;
+	font-weight: bold;
+	font-family: verdana;
+	color: #333333;
+	font-size: 12px;
+}

@@ -1,0 +1,20 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_AutenticacionAdministracionWeb/src/main/resources/SIGEM_AutenticacionAdministracionWeb</directory>
+			<outputDirectory>/SIGEM_AutenticacionAdministracionWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+				<include>autenticacionAdministracionWebConfig.properties</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.iflow</groupId>
+		<artifactId>ispac-main</artifactId>
+		<version>6.4</version>
+	</parent>
+
+	<artifactId>ispac-db-update</artifactId>
+	<name>ispac-db-update</name>
+	<packaging>jar</packaging>
+
+	<dependencies>
+
+		<!-- IECI dependencies -->
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-lib</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>net.sf.jasperreports</groupId>
+					<artifactId>jasperreports</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.openoffice</groupId>
+					<artifactId>juh</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.openoffice</groupId>
+					<artifactId>unoil</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>struts</groupId>
+					<artifactId>struts</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.iflow</groupId>
+					<artifactId>ispac-resources</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons.beanutils.version}</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+
+		<!-- Perfil para generar el parche para la actualizacion a la v6.4 -->
+		<profile>
+			<id>generate-patch</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>2.2</version>
+						<configuration>
+							<archive>
+					            <manifest>
+					            	<mainClass>ieci.tdw.ispac.update.Update_v6_3_To_v6_4</mainClass>
+				            		<addClasspath>true</addClasspath>
+					            </manifest>
+					            <manifestEntries>
+					            	<Built-By></Built-By>
+					            	<Class-Path>. db2jcc.jar db2jcc_license_cu.jar jtds-1.1.jar ojdbc14.jar postgresql-8.3-604.jdbc3.jar jt400.jar</Class-Path>
+					            </manifestEntries>
+							</archive>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.1</version>
+						<executions>
+							<execution>
+								<id>assembly-common-resources</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<descriptors>
+										<descriptor>src/main/assembly/conf.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
+</project>

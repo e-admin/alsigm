@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jun-2010 12:15:53 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="es.ieci.plusvalias.domain.ReduccionDTO" table="REDUCCION" >
+        <id name="reduccion" type="java.lang.Double">
+            <column name="PORREDUCCION" precision="4" />
+            <generator class="assigned" />
+        </id>
+        <property name="anyoliquidacion" type="java.lang.Integer">
+            <column name="ANYLIQUIDACION" precision="5" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

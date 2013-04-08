@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<?xml-stylesheet type='text/xsl' href='SearchForm.xsl'?>
+<queryform displaywidth='95%' defaultSort='1'>
+<!--INICIO ENTIDAD PRINCIPAL DE BUSQUEDA-->
+<entity type='main' identifier='1'>
+<!--INICIO CUERPO BUSQUEDA-->
+	<tablename>spac_expedientes</tablename>
+	<description>DATOS DEL EXPEDIENTE</description>
+	<field type='query'>
+		<columnname>NOMBREPROCEDIMIENTO</columnname>
+		<description>Procedimiento</description>
+		<datatype>string</datatype>
+		<controltype size='30' maxlength='30' tipo='validate' table='SPAC_P_PROCEDIMIENTOS' field='spac_expedientes:NOMBREPROCEDIMIENTO' label='NOMBRE'  value='NOMBRE' clause='WHERE ESTADO IN (2,3) AND TIPO = 1'>text</controltype>
+	</field>
+	<field type='query'>
+		<columnname>NUMEXP</columnname>
+		<description>N?mero de Expediente</description>
+		<datatype>string</datatype>
+		<controltype size='30' maxlength='30'>text</controltype>
+		</field>
+	<field type='query'>
+		<columnname>NREG</columnname>
+		<description>N?mero Anotaci?n Registro</description>
+		<datatype>string</datatype>
+		<controltype size='16' maxlength='16'>text</controltype>
+	</field>
+	<field type='query'>
+		<columnname>IDENTIDADTITULAR</columnname>
+		<description>Interesado Principal</description>
+		<datatype>string</datatype>
+		<controltype size='50' maxlength='50'>text</controltype> 
+	</field>
+	<field type='query'>
+		<columnname>NIFCIFTITULAR</columnname>
+		<description>NIF/CIF Interesado</description>
+		<datatype>string</datatype>
+		<controltype size='16' maxlength='16'>text</controltype>
+	</field>
+	<field type='query'>
+		<columnname>FAPERTURA</columnname>
+		<description>Fecha Apertura</description>
+		<datatype>date</datatype> 
+		<controltype size='14' maxlength='14'>text</controltype>
+	</field>
+	<field type='query'>
+		<columnname>ESTADOADM</columnname>
+		<description>Estado Administrativo</description>
+		<datatype>string</datatype>
+		<controltype size='20' maxlength='20' tipo='validate' table='SPAC_TBL_004' field='spac_expedientes:ESTADOADM' label='SUSTITUTO' value='VALOR'>text</controltype>
+	</field>
+	<field type='query'>     
+		<columnname>HAYRECURSO</columnname>
+		<description>Recurso(SI/NO)</description>
+		<datatype>string</datatype>
+		<controltype size='2' maxlength='2'>text</controltype>
+	</field>
+<!--FIN CUERPO BUSQUEDA-->
+</entity>
+<!--FIN ENTIDAD PRINCIPAL DE BUSQUEDA-->
+<!--INICIO SEGUNDA ENTIDAD DE BUSQUEDA-->
+<entity type='secondary' identifier='52'>
+	<tablename>spac_fases</tablename>
+	<bindfield>NUMEXP</bindfield>
+</entity>
+<!--FIN SEGUNDA ENTIDAD DE BUSQUEDA-->
+<!--INICIO CUERPO RESULTADO-->
+<propertyfmt type='BeanPropertySimpleFmt' property='SPAC_FASES.ID' readOnly='false' dataType='string' fieldType='CHECKBOX' fieldLink='SPAC_FASES.ID' />
+<propertyfmt type='BeanPropertySimpleFmt' property='SPAC_EXPEDIENTES.NUMEXP' readOnly='false' dataType='string' titleKey='search.numExp' fieldType='LINK' fieldLink='SPAC_EXPEDIENTES.NUMEXP' comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator' />
+<propertyfmt type='BeanPropertySimpleFmt' property='SPAC_EXPEDIENTES.NREG' readOnly='false' dataType='string' titleKey='search.numRegistro' fieldType='LIST' fieldLink='SPAC_EXPEDIENTES.NREG' />
+<propertyfmt type='BeanPropertySimpleFmt' property='SPAC_EXPEDIENTES.IDENTIDADTITULAR' readOnly='false' dataType='string' titleKey='search.interesado' fieldType='LIST' fieldLink='SPAC_EXPEDIENTES.IDENTIDADTITULAR' />
+<propertyfmt type='BeanPropertySimpleFmt' property='SPAC_EXPEDIENTES.NIFCIFTITULAR' readOnly='false' dataType='string' titleKey='search.nifInteresado' fieldType='LIST' fieldLink='SPAC_EXPEDIENTES.NIFCIFTITULAR' />
+<propertyfmt type='BeanPropertySimpleFmt' property='SPAC_EXPEDIENTES.FAPERTURA' readOnly='false' dataType='date' titleKey='search.fechaApertura' fieldType='DATE' fieldLink='SPAC_EXPEDIENTES.FAPERTURA' />
+<propertyfmt type='BeanPropertySimpleFmt' property='SPAC_EXPEDIENTES.ESTADOADM' readOnly='false' dataType='string' titleKey='search.estadoAdministrativo' fieldType='LIST' fieldLink='SPAC_EXPEDIENTES.ESTADOADM' validatetable='SPAC_TBL_004' substitute='SUSTITUTO' showproperty='SPAC_TBL_004.SUSTITUTO'  value='VALOR'/>
+<propertyfmt type='BeanPropertySimpleFmt' property='SPAC_EXPEDIENTES.HAYRECURSO' readOnly='false' dataType='string' titleKey='search.recurrido' fieldType='LIST' fieldLink='SPAC_EXPEDIENTES.HAYRECURSO' />
+<!--FIN CUERPO RESULTADO-->
+<!--INICIO ACCIONES-->
+<action title='Cerrar expedientes' path='/closeProcess.do' titleKey='ispac.action.expedients.close' />
+<action title='Avanzar fases' path='/closeStage.do' titleKey='ispac.action.stages.next' />
+<action title='Retroceder fases' path='/redeployPreviousStage.do' titleKey='ispac.action.stages.return' />
+<!--FIN ACCIONES-->
+</queryform>

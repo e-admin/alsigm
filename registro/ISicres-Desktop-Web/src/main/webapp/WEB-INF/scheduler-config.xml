@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<scheduler>
+   <task class="com.ieci.tecdoc.isicres.init.ISicresScheduler" delay="0" period="30m">
+
+   </task>
+</scheduler>
+

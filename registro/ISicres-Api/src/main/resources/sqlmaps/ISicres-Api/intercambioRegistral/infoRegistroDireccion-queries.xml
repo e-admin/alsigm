@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="InfoRegistroDireccionVO">
+	<select id="getInfoRegistroDireccionesList" resultMap="infoRegistroDireccionResultMap" parameterClass="infoRegistroInteresadoVO">
+		select * from scr_address where id_person=#idPersona#
+	</select>
+
+	<select id="getInfoRegistroDireccionInteresado" resultMap="infoRegistroDireccionResultMap" parameterClass="infoRegistroInteresadoVO">
+		select * from scr_address where id=#idDireccion#
+	</select>
+
+
+</sqlMap>	

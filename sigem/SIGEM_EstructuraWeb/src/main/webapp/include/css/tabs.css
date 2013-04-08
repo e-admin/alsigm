@@ -1,0 +1,258 @@
+/* CSS Document */
+/* Estilos usados en las pestañas */
+
+body {
+	background: #F2F2F2;
+	margin: 0;
+	color: #000;
+}
+
+p, tr, td, ul, li {
+	color: #000;
+	font: 9px verdana, arial, helvetica, sans-serif;
+}
+
+hr {
+/*	 border: 1px #000 solid; */
+width:90%;
+
+}
+
+
+/*
+Estilos de formularios
+*/
+/*
+input, select, textarea {
+	color:#000;
+	background-color:#FFF;
+	border: 1px #000 solid;
+}*/
+
+input, select, textarea {
+	color:#000;
+	/* background-color:#FFF; 
+	border: 1px #000 solid;*/
+	font: 9px verdana, arial, helvetica, sans-serif;
+}
+
+
+.fecha{
+border: 0px;
+font: 9px verdana, arial, helvetica, sans-serif;
+background-color:#FFF; 
+}
+	
+
+input:focus,textarea:focus {
+	border: 1px #000 solid;
+	font: 9px verdana, arial, helvetica, sans-serif;
+}
+
+table.tableBase {
+	border: 1px;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	empty-cells: show;
+	margin: 0;
+	padding: 0;
+}
+
+.tableft  { 
+background-image: url(../images/tableft.gif);
+height:17px;
+}
+
+.tabright  { 
+background-image: url(../images/tabright.gif);
+height:17px;
+}
+
+/*
+#tabmiddle1, #tabmiddle2, #tabmiddle3, #tabmiddle4, #tabmiddle5 {
+background-image: url(../images/middle.gif);
+text-align: middle;
+color: #999999;
+cursor: arrow;
+font-size: 10px;
+width:50px;
+/* vertical-align:top; */
+}
+*/
+/*
+#tab1, #tab2, #tab3, #tab4, #tab5 {
+position:absolute;
+height: 17px;
+top: 18px;
+z-index: 0;
+background-color: #cccccc;
+color: #999999;
+
+}
+
+
+#tab1 {
+left: 2px; 
+}
+
+#tab2 {
+left: 67px;
+}
+*/
+#tab3 {
+left: 132px;
+}
+
+#tab4 {
+/* left: 335px; */
+left: 198px;
+}
+
+#tab5 {
+left: 410px;
+}
+
+#test{
+position:absolute; 
+left:345px;
+top:95px;
+width:253px;
+height:160px;
+z-index:20;
+border: 1px solid black;
+
+}
+
+#box1, #box2, #box3, #box4, #box5 {
+vertical-align: middle;
+position: absolute;
+top: 50px; 
+left: 10px;
+/* width: 253px; */
+width: 258px;
+height: 150px;
+z-index: 0;
+padding-top:0px;
+padding-left:0px;
+background-color: white;
+
+}
+
+.titulo{
+background-color:#5888b8;
+font-family: verdana, helvetica, sans-serif;
+font-size: 10px;
+font-weight: bold;
+color:#FFFFFF;
+padding-top:1px;
+padding-left:1px;
+position:absolute;
+left:2px;
+top:2px;
+width:325px;
+height:14px;
+z-index:21;
+}
+
+.capaFondo {
+	border: 1px solid;
+	position:absolute;
+	left:1px;
+	top:1px;
+	width:325px;
+	height:199px;
+	z-index:0;
+	/* border-collapse: collapse; */
+}
+
+.contexto {
+	border: 1px solid #000000;
+	position:absolute;
+	left:28px;
+	top:90px;
+	width:130px;
+	height:80px;
+	z-index:19;
+}
+
+
+.tablaCampos{
+	position:absolute;
+	overflow: auto;
+	left:5px;
+	top:37px;
+	width: 75%;
+	height: 45%;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+	font-family: verdana, helvetica, sans-serif;
+	font-size: 9px;
+	border-spacing: 0;
+	empty-cells: show;
+	margin: 0;
+	padding: 0;
+	/* scrollbar-base-color:  #f2f2f2;  Solo explorer */
+
+
+
+
+}
+
+
+#selectContexto{
+visibility:hidden;
+font: 9px verdana, arial, helvetica, sans-serif; 
+}
+.aceptarTab
+{
+font: 9px verdana, arial, helvetica, sans-serif; 
+border: 1px solid #000000;
+position:absolute;
+left:263px;
+top:50px;
+z-index:20;
+}
+.eliminarTab
+{
+font: 9px verdana, arial, helvetica, sans-serif; 
+border: 1px solid #000000;
+position:absolute;
+left:263px;
+top:78px;
+z-index:20;
+}
+
+.boton1
+{
+font: 9px verdana, arial, helvetica, sans-serif;
+border: 1px solid #000000;
+position:absolute;
+left:263px;
+top:50px;
+z-index:20;
+width: 65px;
+}
+
+.boton2
+{
+font: 9px verdana, arial, helvetica, sans-serif; 
+border: 1px solid #000000;
+position:absolute;
+left:263px;
+top:78px;
+z-index:20;
+width: 65px;
+}
+
+.boton3
+{
+font: 9px verdana, arial, helvetica, sans-serif; 
+border: 1px solid #000000;
+position:absolute;
+left:263px;
+top:106px;
+z-index:20;
+width: 65px;
+}
+

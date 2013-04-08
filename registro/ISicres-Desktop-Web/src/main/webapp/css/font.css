@@ -1,0 +1,28 @@
+﻿.radio
+{
+    font-weight: normal;
+    font-size: 8pt;
+    font-family: Microsoft Sans Serif, Verdana;
+}
+.checkbox
+{
+    font-weight: normal;
+    font-size: 8pt;
+    font-family: Microsoft Sans Serif, Verdana;
+}
+.divMenu1
+{
+    background-color: #F2F2FF;
+    border-left: 1px solid #9999CC;
+    border-right: 1px solid #9999CC; 
+    border-top: 1px none #9999CC; 
+    border-bottom: 1px none #9999CC;
+}
+.divMenu2
+{
+    background-color: #F2F2FF;
+    border-left: 1px none #9999CC; 
+    border-right: 1px none #9999CC; 
+    border-top: 1px solid #9999CC; 
+    border-bottom: 1px solid #9999CC;
+}

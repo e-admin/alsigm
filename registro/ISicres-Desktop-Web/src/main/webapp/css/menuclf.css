@@ -1,0 +1,27 @@
+﻿.Option
+{
+    FONT-SIZE: 8pt;
+    CURSOR: default;
+    COLOR: #63009c;
+    LINE-HEIGHT: 1.6em;
+    FONT-FAMILY: Tahoma;
+    BACKGROUND-COLOR: #f2f2ff
+}
+.Selected
+{
+    FONT-SIZE: 8pt;
+    CURSOR: default;
+    COLOR: #f2f2ff;
+    LINE-HEIGHT: 1.6em;
+    FONT-FAMILY: Tahoma;
+    BACKGROUND-COLOR: #63009c
+}
+.Disabled
+{
+    FONT-SIZE: 8pt;
+    CURSOR: default;
+    COLOR: #9999cc;
+    LINE-HEIGHT: 1.6em;
+    FONT-FAMILY: Tahoma;
+    BACKGROUND-COLOR: #f2f2ff
+}

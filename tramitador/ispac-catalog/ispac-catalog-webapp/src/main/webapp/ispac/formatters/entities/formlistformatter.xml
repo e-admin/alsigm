@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey = 'form.app.propertyLabel.name'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 url='showCTEntityToManage.do?method=form'
+				 id='regId'
+				 columnClass='width25percent'
+				 />
+				
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='form.app.propertyLabel.name'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 media='csv excel xml pdf'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.app.propertyLabel.description'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PAGINA'
+				 readOnly='false'
+				 titleKey='form.app.propertyLabel.page'
+				 fieldType='LINK_JS'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='showCTAppForm.do'
+				 id='regId'
+				 columnClass='width40percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PAGINA'
+				 readOnly='false'
+				 titleKey='form.app.propertyLabel.page'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='csv excel xml pdf'
+				 />
+				
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='FRM_VERSION'
+				 readOnly='false'
+				 titleKey='form.app.propertyLabel.version'
+				 fieldType='VERSION'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width5percent'
+				 />
+				
+</beanformatter>

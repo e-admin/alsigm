@@ -1,0 +1,2 @@
+CREATE GLOBAL TEMPORARY TABLE A_SCHEMA."COMPLEX_TABLE" ( field1 Varchar2(25) not null, field2 Varchar2(25) not null, field3 Varchar2(25) , Primary key( field1 , field2 ))
+ ON COMMIT PRESERVE ROWS

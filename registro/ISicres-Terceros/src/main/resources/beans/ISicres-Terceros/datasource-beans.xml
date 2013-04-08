@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="sicres_terceros_api_dataSourceImpl" name="sicres_terceros_api_dataSource"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.jdbc.datasource.MultiEntityJndiDatasource">
+		<property name="jndiBaseName">
+			<value>${isicres.database.jndiName}</value>
+		</property>
+	</bean>
+
+	<bean id="sicres_terceros_api_sqlMapClient" class="es.ieci.tecdoc.fwktd.core.spring.orm.ibatis.SqlMapClientMultiEntity">
+		<property name="configLocation" value="classpath:sqlmaps/ISicres-Terceros/sqlmap-config.xml" />
+		<property name="dataSource" ref="sicres_terceros_api_dataSource" />
+	</bean>
+
+</beans>

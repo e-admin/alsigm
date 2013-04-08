@@ -1,0 +1,35 @@
+HKCR
+{
+	iDocImgX.Control.1 = s 'IECISA iDocImgX Control Class'
+	{
+		CLSID = s '{24C6D59E-6D0D-11D4-8128-00C0F049167F}'
+	}
+	IDocImgX.Control = s 'IECISA iDocImgX Control Class'
+	{
+		CLSID = s '{24C6D59E-6D0D-11D4-8128-00C0F049167F}'
+		CurVer = s 'iDocImgX.Control.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {24C6D59E-6D0D-11D4-8128-00C0F049167F} = s 'IECISA iDocImgX Control Class'
+		{
+			ProgID = s 'iDocImgX.Control.1'
+			VersionIndependentProgID = s 'iDocImgX.Control'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 102'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{24C6D590-6D0D-11D4-8128-00C0F049167F}'
+			'Version' = s '1.0'
+			
+		}
+	}
+}

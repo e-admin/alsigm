@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="UnidadAdministrativaIntercambioRegistralVO">
+
+	<select id="getUnidadAdministrativaByCodeEntityReg" resultMap="unidadAdministrativaIntercambioRegistralResultMap" parameterClass="java.lang.String">
+		select orgs.id, orgs.code, orgs.name from scr_orgs orgs, scr_entityreg entityreg, scr_ofic oficina where entityreg.code=#value# and entityreg.id_ofic=oficina.id and oficina.id_orgs=orgs.id
+	</select>
+
+
+	<select id="getUnidadAdministrativaByCodeEntity" resultMap="unidadAdministrativaIntercambioRegistralResultMap" parameterClass="java.lang.String">
+		select orgs.id, orgs.code, orgs.name from scr_orgs orgs, scr_tramunit tramunit where tramunit.code_entity=#codeEntity# and tramunit.id_orgs=orgs.id
+	</select>
+
+   <select id="getUnidadAdministrativaByCodeEntityAndTramunit" resultMap="unidadAdministrativaIntercambioRegistralResultMap" parameterClass="java.util.HashMap">
+		select orgs.id, orgs.code, orgs.name from scr_orgs orgs, scr_tramunit tramunit where tramunit.code_tramunit=#codeTramunit# and tramunit.code_entity=#codeEntity# and tramunit.id_orgs=orgs.id
+	</select>
+
+
+	<select id="getUnidadAdministrativaByIdOficina" resultMap="unidadAdministrativaIntercambioRegistralResultMap" parameterClass="java.lang.Integer">
+		select orgs.id, orgs.code, orgs.name from scr_ofic oficina, scr_orgs orgs where oficina.id=#value# and oficina.id_orgs=orgs.id
+	</select>
+</sqlMap>

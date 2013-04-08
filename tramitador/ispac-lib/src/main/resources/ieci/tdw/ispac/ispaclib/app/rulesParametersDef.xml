@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+<pattern value="parameters">
+	<object-create-rule classname="ieci.tdw.ispac.ispaclib.app.ParametersDef" />
+	<call-method-rule pattern="list-order" methodname="setListOrder" paramcount="0"/>
+	<pattern value="entity">
+		<object-create-rule classname="ieci.tdw.ispac.ispaclib.app.EntityParameterDef" />
+		<set-properties-rule >
+			<alias attr-name="type" prop-name="type" />
+		</set-properties-rule>
+		<call-method-rule pattern="type" methodname="setType" paramcount="0"/>
+		<set-properties-rule >
+			<alias attr-name="primaryTable" prop-name="primaryTable" />
+		</set-properties-rule>
+		<call-method-rule pattern="primaryTable" methodname="setPrimaryTable" paramcount="0"/>
+		<set-properties-rule >
+			<alias attr-name="readonly" prop-name="readonly" />
+		</set-properties-rule>
+		<call-method-rule pattern="readonly" methodname="setReadonly" paramcount="0"/>
+		<set-properties-rule> 
+			<alias attr-name="noDelete" prop-name="noDelete" />
+		</set-properties-rule>
+		<call-method-rule pattern="noDelete" methodname="setNoDelete" paramcount="0"/>
+		<set-properties-rule >
+			<alias attr-name="table" prop-name="table" />
+		</set-properties-rule>
+		<call-method-rule pattern="table" methodname="setTable" paramcount="0"/>
+		<pattern value="relation">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.app.EntityRelationDef" />
+			<set-properties-rule >
+				<alias attr-name="type" prop-name="type" />
+			</set-properties-rule>
+			<call-method-rule pattern="type" methodname="setType" paramcount="0"/>
+			<call-method-rule pattern="primary-field" methodname="setPrimaryField" paramcount="0"/>
+			<call-method-rule pattern="secondary-field" methodname="setSecondaryField" paramcount="0"/>
+			<call-method-rule pattern="query" methodname="setQuery" paramcount="0"/>
+			<set-next-rule methodname="setRelation" />
+		</pattern>
+		<set-next-rule methodname="addEntity" />
+	</pattern>	
+</pattern>
+</digester-rules>

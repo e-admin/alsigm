@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<groupId>es.ieci.tecdoc.archidoc</groupId>
+	<artifactId>archidoc_modules</artifactId>
+	<version>5.0</version>
+
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<name>Archidoc</name>
+	<description>Producto ArchiDoc</description>
+
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	<distributionManagement>
+		<repository>
+			<id>inhouse_releases</id>
+			<name>Repositorio tecdoc de releases</name>
+			<url>http://10.228.75.66:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>inhouse_snapshots</id>
+			<name>Repositorio tecdoc de snapshots</name>
+			<url>http://10.228.75.66:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<profiles>
+		<profile>
+			<id>jars</id>
+			<activation>
+				<property>
+					<name>jars</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>archidoc_main</module>
+				<module>archidoc_common</module>
+				<module>archidoc_organization_modules</module>
+				<module>archidoc_resources</module>
+				<module>archidoc_specific_resources</module>
+				<module>archidoc_jar</module>
+				<module>archidoc_ispac_connector_jar</module>
+				<module>archidoc_webapp</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>archidoc_war</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>ears</id>
+			<activation>
+				<property>
+					<name>ears</name>
+				</property>
+			</activation>
+			<modules>
+				<module>archidoc_ear</module>
+				<!-- module>archidocWS</module-->
+			</modules>
+		</profile>
+		<profile>
+			<id>distribucion</id>
+			<activation>
+				<property>
+					<name>distribucion</name>
+				</property>
+			</activation>
+			<modules>
+				<module>archidoc_cfg_modules</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>archidoc</id>
+			<activation>
+				<property>
+					<name>archidoc</name>
+				</property>
+			</activation>
+			<modules>
+				<module>archidoc</module>
+			</modules>
+		</profile>
+		<profile>
+			<!-- perfil para generar los fuentes de Archidoc -->
+			<id>src</id>
+			<activation>
+				<property>
+					<name>src</name>
+				</property>
+			</activation>
+			<modules>
+				<module>archidoc_main</module>
+				<module>archidoc_fuentes</module>
+			</modules>
+		</profile>
+		<profile>
+			<!-- perfil para modulos independientes que son compartidos por diferentes productos iecisa y sirven para evitar dependencias circulares -->
+			<id>shareModules</id>
+			<activation>
+				<property>
+					<name>shareModules</name>
+				</property>
+			</activation>
+			<modules>
+				<module>archidoc_main</module>
+				<module>archidoc_organization_modules</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>documentation</id>
+			<activation>
+				<property>
+					<name>documentation</name>
+				</property>
+			</activation>
+			<modules>
+				<module>archidoc_main</module>
+				<module>archidoc_doc</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>repository</id>
+			<activation>
+				<property>
+					<name>repository</name>
+				</property>
+			</activation>
+			<modules>
+				<module>archidoc_main</module>
+				<module>archidoc_common</module>
+				<module>archidoc_organization_modules</module>
+				<module>archidoc_resources</module>
+				<module>archidoc_specific_resources</module>
+				<module>archidoc_jar</module>
+				<module>archidoc_ispac_connector_jar</module>
+				<module>archidoc_webapp</module>
+				<module>archidoc_ws_clients</module>
+				<module>archidoc_cfg_modules</module>
+				<module>archidoc</module>
+				<module>archidoc_war</module>
+				<module>archidoc_fuentes</module>
+			</modules>
+		</profile>
+
+
+		<profile>
+			<id>allresources</id>
+			<activation>
+				<property>
+					<name>allresources</name>
+				</property>
+			</activation>
+			<modules>
+				<module>archidoc_main</module>
+				<module>archidoc_common</module>
+				<module>archidoc_organization_modules</module>
+				<module>archidoc_resources</module>
+				<module>archidoc_specific_resources</module>
+				<module>archidoc_jar</module>
+				<module>archidoc_ispac_connector_jar</module>
+				<module>archidoc_webapp</module>
+				<module>archidoc_ws_clients</module>
+				<module>archidoc_cfg_modules</module>
+				<module>archidoc</module>
+				<module>archidoc_war</module>
+				<module>archidoc_ear</module>
+				<module>archidoc_fuentes</module>
+				<module>archidoc_doc</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>

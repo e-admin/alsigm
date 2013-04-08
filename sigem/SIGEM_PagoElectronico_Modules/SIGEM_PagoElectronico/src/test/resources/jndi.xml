@@ -1,0 +1,18 @@
+<beans>
+	<bean id="jndi" class="org.apache.xbean.spring.jndi.DefaultContext">
+		<property name="entries">
+			<map>
+				<entry key="java:comp/env/jdbc/eTramitacionDS_000">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://192.168.8.4:5432/eTramitacion_000" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="TrazaAuditoriaVO">
+
+	<!-- query dinamica -->
+	<sql id="dynamicCriteriaSearch">
+		<dynamic prepend="WHERE">
+			 
+			<isNotEmpty property="where">
+				$where$
+			</isNotEmpty>
+			
+			<isEmpty property="where">
+				1=1
+			</isEmpty>
+			<isNotEmpty property="filters" prepend="AND">
+			<iterate prepend="AND" property="filters" conjunction="AND">
+  				<isEqual property="filters[].operator.value" compareValue="0">
+  					$filters[].field$ LIKE '$filters[].value$%'
+  				</isEqual>
+  				<isEqual property="filters[].operator.value" compareValue="1">
+  					<isEqual property="filters[].jdbcType.value" compareValue="1">
+  						$filters[].field$ = #filters[].value#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="2">
+  						$filters[].field$ = #filters[].value:BIGINT#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="3">
+  						$filters[].field$ = #filters[].valueAsDate:TIMESTAMP#
+  					</isEqual> 
+  				</isEqual>
+  				<isEqual property="filters[].operator.value" compareValue="2">
+  					$filters[].field$ LIKE '%$filters[].value$%'
+  				</isEqual> 				 
+  				<isEqual property="filters[].operator.value" compareValue="3">
+  					<isEqual property="filters[].jdbcType.value" compareValue="1">
+  						$filters[].field$ > #filters[].value#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="2">
+  						$filters[].field$ > #filters[].value:BIGINT#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="3">
+  						$filters[].field$ > #filters[].valueAsDate:TIMESTAMP#
+  					</isEqual> 
+  				</isEqual>
+  				
+  				<isEqual property="filters[].operator.value" compareValue="4">
+  					<isEqual property="filters[].jdbcType.value" compareValue="1">
+  						$filters[].field$ >= #filters[].value#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="2">
+  						$filters[].field$ >= #filters[].value:BIGINT#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="3">
+  						$filters[].field$ >= #filters[].valueAsDate:TIMESTAMP#
+  					</isEqual> 
+  				</isEqual>
+  				
+  				<isEqual property="filters[].operator.value" compareValue="5">
+  					<isEqual property="filters[].jdbcType.value" compareValue="1">
+  						$filters[].field$ &lt; #filters[].value#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="2">
+  						$filters[].field$ &lt; #filters[].value:BIGINT#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="3">
+  						$filters[].field$ &lt; #filters[].valueAsDate:TIMESTAMP#
+  					</isEqual> 
+  				</isEqual>
+  				
+  				<isEqual property="filters[].operator.value" compareValue="6">
+  					<isEqual property="filters[].jdbcType.value" compareValue="1">
+  						$filters[].field$ &lt;= #filters[].value#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="2">
+  						$filters[].field$ &lt;= #filters[].value:BIGINT#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="3">
+  						$filters[].field$ &lt;= #filters[].valueAsDate:TIMESTAMP#
+  					</isEqual> 
+  				</isEqual>
+  				
+  				<isEqual property="filters[].operator.value" compareValue="7">
+  					<isEqual property="filters[].jdbcType.value" compareValue="1">
+  						$filters[].field$ = #filters[].value#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="2">
+  						$filters[].field$ = #filters[].value:BIGINT#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="3">
+  						$filters[].field$ = #filters[].valueAsDate:TIMESTAMP#
+  					</isEqual>  					
+  				</isEqual>
+  				
+  				<isEqual property="filters[].operator.value" compareValue="8">
+  					<isEqual property="filters[].jdbcType.value" compareValue="1">
+  						$filters[].field$ != #filters[].value#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="2">
+  						$filters[].field$ != #filters[].value:BIGINT#
+  					</isEqual>
+  					<isEqual property="filters[].jdbcType.value" compareValue="3">
+  						$filters[].field$ != #filters[].valueAsDate:TIMESTAMP#
+  					</isEqual> 
+  				</isEqual>
+  				
+			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="orderBy" prepend="ORDER BY">
+				$orderBy$
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+
+	
+	<insert id="addTrazaAuditoriaVO" parameterClass="es.ieci.tecdoc.fwktd.audit.core.vo.TrazaAuditoriaVO">
+		INSERT INTO AUDIT_TRAZA
+		(ID, APP_ID, APP_DESCRIPTION, EVENT_TYPE, EVENT_DATE, EVENT_DESCRIPTION, 
+			USER_ID, USER_NAME, USER_HOST_NAME, USER_IP, OBJECT_TYPE,OBJECT_TYPE_DESCRIPTION,
+			OBJECT_ID,OBJECT_FIELD,OLD_VALUE,NEW_VALUE)
+		VALUES (#id:BIGINT#, #appId:BIGINT#, #appDescription:VARCHAR#, #eventType:BIGINT#, #eventDate:TIMESTAMP#, #eventDescription:VARCHAR#,
+			#userId:VARCHAR#, #userName:VARCHAR#, #userHostName:VARCHAR#, #userIp:VARCHAR#, #objectType:VARCHAR#, #objectTypeDescription:VARCHAR#,
+			#objectId:VARCHAR#, #objectField:VARCHAR#, #oldValue:VARCHAR#, #newValue:VARCHAR#)
+	</insert>
+
+	<select id="getTrazaAuditoriaVO" parameterClass="java.lang.String"
+		resultMap="trazaAditorioResultMap">
+		SELECT * FROM AUDIT_TRAZA WHERE id=#value:BIGINT#
+	</select>
+
+	<select id="getTrazaAuditoriaVOs" resultMap="trazaAditorioResultMap">
+		SELECT * FROM AUDIT_TRAZA
+	</select>
+
+	<update id="updateTrazaAuditoriaVO" parameterClass="es.ieci.tecdoc.fwktd.audit.core.vo.TrazaAuditoriaVO">
+		UPDATE AUDIT_TRAZA
+		SET APP_ID=#appId:BIGINT#, APP_DESCRIPTION=#appDescription:VARCHAR#, EVENT_TYPE=#eventType:BIGINT#,
+		EVENT_DATE=#eventDate:TIMESTAMP#, EVENT_DESCRIPTION=#eventDescription:VARCHAR#,
+		USER_ID=#userId:BIGINT#, USER_NAME=#userName:VARCHAR# , USER_HOST_NAME=#userHostName:VARCHAR#, USER_IP=#userIp:VARCHAR#,
+		OBJECT_TYPE=#objectType:VARCHAR#, OBJECT_TYPE_DESCRIPTION=#objectTypeDescription:VARCHAR#,
+		OBJECT_ID=#objectId:VARCHAR#, OBJECT_FIELD=#objectField:VARCHAR#, OLD_VALUE=#oldValue:VARCHAR#, NEW_VALUE=#newValue:VARCHAR#
+		WHERE id=#id:BIGINT#
+	</update>
+
+	<delete id="deleteTrazaAuditoriaVO" parameterClass="java.lang.String">
+		DELETE FROM AUDIT_TRAZA WHERE ID=#value:BIGINT#
+	</delete>
+	
+	<select id="findByCriteria" parameterClass="es.ieci.tecdoc.fwktd.audit.core.vo.seach.CriteriaVO"
+		resultMap="TrazaAuditoriaVO.trazaAditorioResultMap">
+		SELECT * FROM AUDIT_TRAZA
+		<include refid="TrazaAuditoriaVO.dynamicCriteriaSearch" />
+	</select>
+
+	<select id="countByCriteria" parameterClass="es.ieci.tecdoc.fwktd.audit.core.vo.seach.CriteriaVO"
+		resultClass="java.lang.Integer">
+		SELECT count(*) FROM AUDIT_TRAZA
+		<include refid="TrazaAuditoriaVO.dynamicCriteriaSearch" />
+	</select>
+	
+	
+</sqlMap>

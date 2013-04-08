@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+			property='CTENTITY:NOMBRE'
+			readOnly='false'
+			titleKey='catalog.common.nombre'
+			fieldType='DATA'
+			headerClass='headerDisplay'
+			sortable='false'
+			decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+			property='PENTITIES:FRM_EDIT'
+			readOnly='false'
+			titleKey='procedure.card.entities.propertyLabel.idApp'
+			fieldType='DATA'
+			headerClass='headerDisplay'
+			sortable='false'
+			decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+			property='PENTITIES:NOMBRE_APP'
+			readOnly='false'
+			titleKey='procedure.card.entities.propertyLabel.app'
+			fieldType='DATA'
+			headerClass='headerDisplay'
+			sortable='false'
+			decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+			property=''
+			propertyValueKey='procedure.card.entities.linkLabel.assign.app'
+			readOnly='false'
+			titleKey='empty'
+			fieldType='LINKFRM'
+			fieldLink='PENTITIES:ID'
+			styleClass='aActionButton'
+			headerClass='headerDisplay'
+			sortable='false'
+			media='html'
+			decorator=''
+			url='addAppEntityPcd.do'
+			id='pentId'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+			property=''
+			readOnly='false'
+			titleKey='empty'
+			fieldType='MODORDER'
+			fieldLink='PENTITIES:ID'
+			styleClass=''
+			headerClass='headerDisplay'
+			sortable='false'
+			media='html'
+			decorator=''
+			url='selectEntities.do'
+			id='pentId'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+			propertyValueKey='forms.button.delete'
+			property=''
+			readOnly='false'
+			titleKey='empty'
+			fieldType='LINK'
+			fieldLink='PENTITIES:ID'
+			styleClass='aDelButton'
+			headerClass='headerDisplay'
+			sortable='false'
+			media='html'
+			decorator=''
+			url='selectEntities.do'
+			id='delId'/>
+</beanformatter>

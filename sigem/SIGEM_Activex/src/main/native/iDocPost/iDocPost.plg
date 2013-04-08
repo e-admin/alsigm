@@ -1,0 +1,97 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: iDocPost - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /tlb ".\iDocPost.tlb" /h "iDocPost.h" /iid "iDocPost_i.c" /Oicf "c:\invesDocWeb\PLUG\iDocPost\iDocPost.idl""
+Creating command line "rc.exe /l 0x409 /fo"..\temp\iDocPost\Release/iDocPost.res" /d "NDEBUG" /d "_AFXDLL" "c:\invesDocWeb\PLUG\iDocPost\iDocPost.rc"" 
+Creating temporary file "C:\DOCUME~1\Sol\LOCALS~1\Temp\RSP42A.tmp" with contents
+[
+/nologo /MD /W4 /GX /O1 /I "..\include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "_ATL_STATIC_REGISTRY" /Fp"..\temp\iDocPost\Release/iDocPost.pch" /Yu"stdafx.h" /Fo"..\temp\iDocPost\Release/" /Fd"..\temp\iDocPost\Release/" /FD /c 
+"c:\invesDocWeb\PLUG\iDocPost\BrowseDirectory.cpp"
+"c:\invesDocWeb\PLUG\iDocPost\iDocPost.cpp"
+"c:\invesDocWeb\PLUG\iDocPost\ProxyDlg.cpp"
+"c:\invesDocWeb\PLUG\iDocPost\Upload.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Sol\LOCALS~1\Temp\RSP42A.tmp" 
+Creating temporary file "C:\DOCUME~1\Sol\LOCALS~1\Temp\RSP42B.tmp" with contents
+[
+/nologo /MD /W4 /GX /O1 /I "..\include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "_ATL_STATIC_REGISTRY" /Fp"..\temp\iDocPost\Release/iDocPost.pch" /Yc"stdafx.h" /Fo"..\temp\iDocPost\Release/" /Fd"..\temp\iDocPost\Release/" /FD /c 
+"c:\invesDocWeb\PLUG\iDocPost\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Sol\LOCALS~1\Temp\RSP42B.tmp" 
+Creating temporary file "C:\DOCUME~1\Sol\LOCALS~1\Temp\RSP42C.tmp" with contents
+[
+lnutil.lib wininet.lib rpcrt4.lib urlmon.lib Shlwapi.lib /nologo /subsystem:windows /dll /pdb:none /machine:I386 /def:".\iDocPost.def" /out:"..\bin\Release/iDocPost.dll" /implib:"..\bin\Release/iDocPost.lib" /libpath:"..\lib" /libpath:"..\bin\Release" /opt:ref 
+\invesDocWeb\PLUG\temp\iDocPost\Release\BrowseDirectory.obj
+\invesDocWeb\PLUG\temp\iDocPost\Release\iDocPost.obj
+\invesDocWeb\PLUG\temp\iDocPost\Release\ProxyDlg.obj
+\invesDocWeb\PLUG\temp\iDocPost\Release\StdAfx.obj
+\invesDocWeb\PLUG\temp\iDocPost\Release\Upload.obj
+\invesDocWeb\PLUG\temp\iDocPost\Release\iDocPost.res
+]
+Creating command line "link.exe @C:\DOCUME~1\Sol\LOCALS~1\Temp\RSP42C.tmp"
+Creating temporary file "C:\DOCUME~1\Sol\LOCALS~1\Temp\RSP42D.bat" with contents
+[
+@echo off
+regsvr32 /s /c "\invesDocWeb\PLUG\bin\Release\iDocPost.dll"
+echo regsvr32 exec. time > ".\..\bin\Release\regsvr32.trg"
+]
+Creating command line "C:\DOCUME~1\Sol\LOCALS~1\Temp\RSP42D.bat"
+Creating Type Library...
+Microsoft (R) MIDL Compiler Version 5.01.0164  
+Copyright (c) Microsoft Corp 1991-1997. All rights reserved.
+Processing c:\invesDocWeb\PLUG\iDocPost\iDocPost.idl
+iDocPost.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\oaidl.idl
+oaidl.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\objidl.idl
+objidl.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\unknwn.idl
+unknwn.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\wtypes.idl
+wtypes.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\basetsd.h
+basetsd.h
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\guiddef.h
+guiddef.h
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\ocidl.idl
+ocidl.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\oleidl.idl
+oleidl.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\servprov.idl
+servprov.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\urlmon.idl
+urlmon.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\msxml.idl
+msxml.idl
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\oaidl.acf
+oaidl.acf
+Processing C:\PROGRAM FILES\MICROSOFT PLATFORM SDK\INCLUDE\ocidl.acf
+ocidl.acf
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+BrowseDirectory.cpp
+iDocPost.cpp
+ProxyDlg.cpp
+Upload.cpp
+c:\invesDocWeb\PLUG\iDocPost\Upload.cpp(754) : warning C4244: '=' : conversion from 'int' to 'unsigned short', possible loss of data
+c:\invesDocWeb\PLUG\iDocPost\Upload.cpp(790) : warning C4245: 'argument' : conversion from 'const int' to 'unsigned long', signed/unsigned mismatch
+Generating Code...
+Linking...
+   Creating library ..\bin\Release/iDocPost.lib and object ..\bin\Release/iDocPost.exp
+<h3>Output Window</h3>
+Performing registration
+
+
+
+<h3>Results</h3>
+iDocPost.dll - 0 error(s), 2 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+	  "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+	  "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean
+			name="ListaExpedientes"
+			type="ieci.tecdoc.sgm.ct.struts.form.ListaExpedientesForm"/>
+		<form-bean
+			name="BusquedaExpedientes"
+			type="ieci.tecdoc.sgm.ct.struts.form.BusquedaExpedientesForm"/>
+		<form-bean
+			name="DetalleExpediente"
+			type="ieci.tecdoc.sgm.ct.struts.form.DetalleExpedienteForm"/>
+		<form-bean
+			name="RecogerDocumento"
+			type="ieci.tecdoc.sgm.ct.struts.form.RecogerDocumentoForm"/>
+	</form-beans>
+
+	<global-forwards>
+		<forward name="entry" path="/entry.do" />
+	</global-forwards>
+
+	<action-mappings>
+
+		<action path="/entry"
+			type="ieci.tecdoc.sgm.ct.struts.action.EntryAction">
+			<forward name="Success" path="/BusquedaExpedientes.do" />
+			<forward name="noaccess" path="/sinPermiso.jsp" />
+		</action>
+
+		<action path="/ListaExpedientes"
+				type="ieci.tecdoc.sgm.ct.struts.action.ListaExpedientesAction"
+				name="ListaExpedientes">
+				<forward name="Busqueda" path="/BusquedaExpedientes.do"/>
+				<forward name="Success" path="/SeleccionExpedientes.jsp"/>
+				<forward name="Success_Search" path="/BusquedaExpedientes.do?rebuscar=true"/>
+		</action>
+
+	   	<action path="/BusquedaExpedientes"
+			   type="ieci.tecdoc.sgm.ct.struts.action.BusquedaExpedientesAction"
+			   name="BusquedaExpedientes"
+			   scope="request">
+			   <forward name="Failure" path="/MensajeError.jsp"/>
+			   <forward name="Success" path="/BusquedaExpedientes.jsp"/>
+		</action>
+
+		<action path="/DetalleExpediente"
+				type="ieci.tecdoc.sgm.ct.struts.action.DetalleExpedienteAction"
+				name="DetalleExpediente"
+				scope="request">
+				<forward name="Failure" path="/DetalleExpediente.jsp"/>
+				<forward name="Success" path="/DetalleExpediente.jsp"/>
+		</action>
+
+		<action path="/RecogerDocumento"
+				type="ieci.tecdoc.sgm.ct.struts.action.RecogerDocumentoAction"
+				name="RecogerDocumento"
+				scope="request">
+				<forward name="Failure" path="/MensajeError.jsp"/>
+		</action>
+
+	</action-mappings>
+
+	<controller>
+		<set-property property="inputForward" value="true"/>
+	</controller>
+	<message-resources parameter="ieci.tecdoc.sgm.ct.resources.lenguaje" />
+
+</struts-config>

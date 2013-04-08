@@ -1,0 +1,120 @@
+<html>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<link rel="stylesheet" href="css/global.css" type="text/css">
+		<link rel="stylesheet" href="css/font.css" type="text/css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/table.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/frame.css">
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/qryfmt.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/calendar.js" charset="ISO-8859-1"></SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+		
+			function DoOnClick()
+			{
+				var sRet = "", URL = "";
+				var index = document.getElementById("SelPrint").selectedIndex;
+				sRet = document.getElementById("SelPrint").options[index].value;
+				
+				URL = top.g_URL + "/reportsfmt.jsp?SessionPId=" + top.g_SessionPId 
+					+ "&ArchiveId=" + top.g_ArchiveId.toString()
+					+ "&ArchiveName=" + top.g_ArchiveName
+					+ "&ArchivePId=" + top.g_ArchivePId.toString()
+					+ "&Perms=" + top.g_BookPerms
+					+ "&Opcion=" + sRet;
+					
+				document.body.style.cursor = "wait";
+				DisableQryControls(true);
+				
+				window.open(URL, "ShowFmt","location=no",true);
+			}
+			
+			function DoOnLoadIframe()
+			{
+				document.getElementById("Back").className = "Options";
+				document.body.style.cursor = "none";
+				var bluetoolbar = document.getElementsByTagName("A");
+				
+				for (var i = 0; i < bluetoolbar.length; i++)
+				{
+					bluetoolbar[i].className = "activo";	
+				}
+	
+			}
+								
+		</SCRIPT>
+	</HEAD>
+	<body tabindex="-1">
+		<div class="migas">
+			<ul>
+				<li><SCRIPT LANGUAGE="javascript">document.write( top.GetIdsLan( "IDS_INICIO" ) )</SCRIPT>
+					<img id="flechas" src="images/flechitas_down.gif""/>
+					<label align="center" class="BookNameEx" id="ArchiveName"></label>
+					<img id="flechas" src="images/flechitas_down.gif"/>
+					<SCRIPT LANGUAGE="javascript">document.write( top.GetIdsLan( "IDS_OPCINFORMES" ) )</SCRIPT>
+				</li>
+			</ul>
+		</div> 
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="GreyToolbar">
+			<tr height="22" valign="center" align="middle" tabIndex="-1"> 
+				<td width="360">
+				</td>
+				<td>
+					<table width="100%"  height="18" border="0" cellspacing="0" cellpadding="0">
+						<tr tabIndex="-1">
+							<td width="100"></td>
+							<td>&nbsp;</td>
+							<td id="Back" width="100" class="SubOptionsDisabled" onmouseover="top.Over(this)" 
+								onmouseout="top.Out(this)" 
+								onclick="if (this.className != 'SubOptionsDisabled'){top.ShowQuery();}"
+								onkeydown="if ((top.GetKeyCode(event)==13) && (this.className != 'SubOptionsDisabled')){top.ShowQuery();}" 
+								tabIndex="1"> 
+								<div align="center">
+									<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCVOLVER" ) )</SCRIPT>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5"></td>
+			</tr>
+		</table>
+		<div class="seccion_tab" >
+			<div class="cabecera_seccion_tab">
+				<p>
+					<a href="#" onclick="if (this.className != 'inactivo'){top.Main.Reports.ShowFmt.document.getElementById('btSubmit').click();}" class="inactivo"><img src="images/printer.png"/> 
+						<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCIMPRIMIR" ) )</SCRIPT>
+					</a>
+					<a href="#" onclick="if (this.className != 'inactivo'){ClearFieldsReports();}" class="inactivo"><img src="images/clear.gif"/> 
+						<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BTNLIMPIAR" ) )</SCRIPT>
+					</a>					
+				</p>
+			</div>
+		</div>	
+		<div class="form_busqueda">
+			<p class="fila_sub_busqueda">
+				<label class="labelBusqueda">
+					<SCRIPT LANGUAGE="javascript">document.write(top.GetIdsLan("IDS_LABEL_SEL_PRINT"));</SCRIPT> 
+				</label>
+				<select class="select_busqueda" name="SelPrint" id="SelPrint" onchange="DoOnClick();">
+					<option value="0" selected>
+						<SCRIPT LANGUAGE="javascript">document.write(top.GetIdsLan("IDS_LABEL_SEL_OPEN_BOOK"));</SCRIPT>
+					</option>
+					<option value="1">
+						<SCRIPT LANGUAGE="javascript">document.write(top.GetIdsLan("IDS_LABEL_SEL_ALL_OPEN_BOOKS"));</SCRIPT>
+					</option>
+					<option value="2">
+						<SCRIPT LANGUAGE="javascript">document.write(top.GetIdsLan("IDS_LABEL_SEL_ALL_BOOKS"));</SCRIPT>
+					</option>
+				</select>
+			 </p>
+		</div>				 
+		<iframe id="ShowFmt" name="ShowFmt" SRC="blank.htm" frameborder="3" scrolling="no" class="Style6"
+			style="height:100%;left:3;position:absolute;top:120;width:100%;border-width:0"
+			onload="DoOnLoadIframe()";>
+		</iframe>
+	</body>
+</html>

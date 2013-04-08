@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Definicion_FmtFicha Version="3.2">
+  <Editable>N</Editable>
+  <Elementos>
+    <Elemento Tipo="Seccion">
+      <Desplegada>S</Desplegada>
+      <Etiqueta>
+        <Titulo Predeterminado="Area de identificación"></Titulo>
+        <Estilo></Estilo>
+      </Etiqueta>
+      <Seccion_Elementos>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Nombre:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>
+          <Campo Id="-5">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Tipo de entidad:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>
+          <Campo Id="100">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Formas(s) autorizada(s) del nombre:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>
+          <Campo Id="101">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Formas paralelas de nombre:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>
+          <Campo Id="102">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Formas normalizadas del nombre según otras reglas:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>
+          <Campo Id="103">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Otras formas de nombre:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>
+          <Campo Id="104">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Identificadores para instituciones:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>
+          <Campo Id="105">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+      </Seccion_Elementos>
+    </Elemento> 
+    <Elemento Tipo="Seccion">
+      <Desplegada>S</Desplegada>
+      <Etiqueta>
+        <Titulo Predeterminado="Area de descripción"></Titulo>
+      </Etiqueta>
+      <Seccion_Elementos>
+          <Elemento Tipo="Tabla">
+           	<Id_CampoTbl>104</Id_CampoTbl>
+          	<Etiqueta>
+            	<Titulo Predeterminado="Fechas de Existencia"></Titulo>
+            	<Estilo></Estilo>
+          	</Etiqueta>
+          <Tabla_Elementos>
+	        <Elemento Tipo="EtiquetaDato">
+	          <Etiqueta>
+	            <Titulo Predeterminado="Fecha Inicio"></Titulo>
+	            <Estilo></Estilo>
+	          </Etiqueta>	            
+	          <Campo Id="106">
+	            <ValorSeleccionPorDefecto>DDMMAAAA</ValorSeleccionPorDefecto>
+	            <Estilo></Estilo>
+	          </Campo>
+	        </Elemento> 
+	        <Elemento Tipo="EtiquetaDato">
+	          <Etiqueta>
+	            <Titulo Predeterminado="Fecha Final"></Titulo>
+	            <Estilo></Estilo>
+	          </Etiqueta>	            
+	          <Campo Id="218">
+	            <ValorSeleccionPorDefecto>DDMMAAAA</ValorSeleccionPorDefecto>
+	            <Estilo></Estilo>
+	          </Campo>
+	        </Elemento>         
+         </Tabla_Elementos>
+         </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Historia:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="107">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento> 
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Lugar(es):"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="108">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento> 
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Estatuto jurídico:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="109">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento> 
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Funciones, ocupaciones y actividades:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="110">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento> 
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Atribución(es) / Fuente(s) legal(es):"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="111">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento> 
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Estructura(s) interna(s) / Genealogía:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="112">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento> 
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Contexto general:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="113">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento> 
+      </Seccion_Elementos>
+    </Elemento> 
+    <Elemento Tipo="Seccion">
+      <Desplegada>S</Desplegada>
+      <Etiqueta>
+        <Titulo Predeterminado="Area de relaciones"></Titulo>
+      </Etiqueta>
+      <Seccion_Elementos>
+        <Elemento Tipo="Tabla">
+          <Id_CampoTbl>100</Id_CampoTbl>
+          <Etiqueta>
+            <Titulo Predeterminado="Entidades relacionadas"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>
+          <Tabla_Elementos>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="Nombre/Identificador"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>
+              <Campo Id="114">
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="Naturaleza de la relación"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>
+              <Campo Id="115">
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="Descripción"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>
+              <Campo Id="116">
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="F. Inicio"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>
+              <Campo Id="117">
+                <ValorSeleccionPorDefecto>DDMMAAAA</ValorSeleccionPorDefecto>
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="F. Fin"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>
+              <Campo Id="118">
+                <ValorSeleccionPorDefecto>DDMMAAAA</ValorSeleccionPorDefecto>
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+          </Tabla_Elementos>
+        </Elemento>
+      </Seccion_Elementos>
+    </Elemento>
+    <Elemento Tipo="Seccion">
+      <Desplegada>S</Desplegada>
+      <Etiqueta>
+        <Titulo Predeterminado="Area de control"></Titulo>
+      </Etiqueta>
+      <Seccion_Elementos> 
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Identificador del registro de la autoridad:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="119">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Identificador de la institución:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="120">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Reglas y/o convenciones:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="121">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Estado de elaboración:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="122">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Nivel de detalle:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="123">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="Hipervinculo">
+          <Etiqueta>
+            <Titulo Predeterminado="Fechas de control:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta> 
+          <Vinculo>   
+            <Titulo Predeterminado="Auditoría"></Titulo>  
+            <Estilo></Estilo>
+            <Url><![CDATA[../../action/auditoriaBuscarExtendida?method=buscar&kind=1&tipo=40002]]></Url>
+          </Vinculo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Lenguas y escrituras:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="127">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Fuentes:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="128">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+        <Elemento Tipo="EtiquetaDato">
+          <Etiqueta>
+            <Titulo Predeterminado="Notas de mantenimiento:"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>	            
+          <Campo Id="129">
+            <Estilo></Estilo>
+          </Campo>
+        </Elemento>
+      </Seccion_Elementos>
+    </Elemento>
+    <Elemento Tipo="Seccion">
+      <Desplegada>S</Desplegada>
+      <Etiqueta>
+        <Titulo Predeterminado="Relación de instituciones, personas y familias con documentos de archivo y otros recursos"></Titulo>
+      </Etiqueta>
+      <Seccion_Elementos> 
+        <Elemento Tipo="Tabla">
+          <Id_CampoTbl>101</Id_CampoTbl>
+          <Etiqueta>
+            <Titulo Predeterminado="Recursos relacionados"></Titulo>
+            <Estilo></Estilo>
+          </Etiqueta>
+          <Tabla_Elementos>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="Título"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>	            
+              <Campo Id="130">
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="Identificador"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>	            
+              <Campo Id="131">
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="Tipo"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>	            
+              <Campo Id="132">
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="Naturaleza"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>	            
+              <Campo Id="133">
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+            <Elemento Tipo="EtiquetaDato">
+              <Etiqueta>
+                <Titulo Predeterminado="Fecha"></Titulo>
+                <Estilo></Estilo>
+              </Etiqueta>	            
+              <Campo Id="134">
+                <ValorSeleccionPorDefecto>DDMMAAAA</ValorSeleccionPorDefecto>
+                <Estilo></Estilo>
+              </Campo>
+            </Elemento>
+          </Tabla_Elementos>
+        </Elemento>
+      </Seccion_Elementos>
+    </Elemento>
+  </Elementos>
+</Definicion_FmtFicha>

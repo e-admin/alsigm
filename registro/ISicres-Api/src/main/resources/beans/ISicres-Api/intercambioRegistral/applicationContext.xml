@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	
+	<import
+		resource="classpath:beans/ISicres-Api/intercambioRegistral/intercambio-config-beans.xml" />
+	<import
+		resource="classpath:beans/ISicres-Api/intercambioRegistral/alias-intercambio-beans.xml" />
+	<import
+		resource="classpath:beans/ISicres-Api/intercambioRegistral/dao-intercambio-beans.xml" />
+	<import
+		resource="classpath:beans/ISicres-Api/intercambioRegistral/datasource-intercambio-beans.xml" />
+	<import
+		resource="classpath:beans/ISicres-Api/intercambioRegistral/transaction-intercambio-beans.xml" />
+	<import
+		resource="classpath:beans/ISicres-Api/intercambioRegistral/manager-intercambio-beans.xml" />
+	<import
+		resource="classpath:beans/ISicres-Api/intercambioRegistral/incrementer-intercambio-beans.xml" />
+
+	<import resource="classpath:beans/ISicres-Api/intercambioRegistral/import-intercambio-beans.xml" />
+</beans>

@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<LINK rel="stylesheet" TYPE="text/css" HREF="./css/global.css">
+		<LINK rel="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/vldtbl.js"></SCRIPT>
+		<script language="javascript">
+			var caseSensitive = top.ParamValue(document.location.search,"caseSensitive");
+
+			function getString()
+			{
+				var strRet = top.g_URL + "/vldres.jsp?SessionPId=" + top.g_SessionPId.toString() + "&FldId=" + parent.FolderId
+					+ "&ArchivePId=" + top.g_ArchivePId.toString() + "&tblvalidated=" + parent.VldCtlType
+					+ "&Enabled=" + parent.VldEnabled + "&IsDtrList=" + parent.bIsDtrList
+					+ "&TblFldId=" + parent.TblFldId + "&ListPId=" + parent.VldListPId;
+				return strRet;
+			}
+		</script>
+	</head>
+	<body onload="OnWindowLoad();" tabIndex="-1">
+			<form Action="getString();" Method="post" id="Query" Name="Query" target="VldRes" onsubmit="if (!document.getElementById('QryButt').disabled){document.getElementById('QryButt').disabled=true;return(buscar());}else{return false;};">
+				<div id="divQuery">
+					<LABEL class="label" style="position:absolute; top:10; left:10;">
+						<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_LABEL_FIELD" ) )</SCRIPT>
+					</LABEL>
+					<select class="combo" onchange="ChangeField();" style="position:absolute; top:28; left:10; width:175;" name="cmbFields" id="cmbFields" filled="0">
+						<option value="0" colname="">
+							<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_NONE" ) )</SCRIPT>
+						</option>
+					</select>
+					<LABEL class="label" style="position:absolute; top:55; left:10;">
+						<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPR" ) )</SCRIPT>
+					</LABEL>
+					<select class="combo" onchange="ChangeField();" style="position:absolute; top:73; left:10; width:90;" name="LikeType" id="LikeType">
+						<option value="0">
+						<option value="1">
+						<option value="2">
+						<option value="3" selected>
+					</select>
+					<LABEL class="label" style="position:absolute; top:100; left:10;">
+						<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_QRY_TXT" ) )</SCRIPT>
+					</LABEL>
+					<script language="javascript">
+						if (caseSensitive == 'CS'){
+							document.write('<input class="input" style="position:absolute; top:118; left:10; width:175; text-transform:uppercase" id="Value" Name="Value" Maxlength="255" tabIndex="2" ></input>');
+						} else {
+							document.write('<input class="input" style="position:absolute; top:118; left:10; width:175;" id="Value" Name="Value" Maxlength="255" tabIndex="2"></input>');
+						}
+					</script>
+
+			</div>
+			<div id="divQueryBook" style="display:none">
+				<label class="label" style="position:absolute; top:50; left:10;">
+					<b><SCRIPT TYPE="text/javascript" LANGUAGE="javascript">document.write( top.GetIdsLan( "IDS_LABEL_BOOK_REG" ) )</SCRIPT></b>
+				</label>
+				<select class="combo" style="position:absolute; top:75; left:10; width:160;" name="TypeBook" id="TypeBook">
+					<option value=""><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BOOKALL" ) )</SCRIPT></option>
+					<option value="1"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BOOKIN" ) )</SCRIPT></option>
+					<option value="2"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BOOKOUT" ) )</SCRIPT></option>
+				</select>
+			</div>
+			<input type="hidden" value="ByValue" name="QryByHidd"></input>
+			<input class="button" id="QryButt" style="position:absolute; top:145; left:10; width:80;" name="QryButt" Type="Submit" Value="" disabled="true"></input>
+			<input class="button" style="position:absolute; top:145; left:100; width:80;" name="Close" id="Close" Type="Button" Value="" onclick="ExitVld()"></input>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='CTENT:NOMBRE'
+				readOnly='false'
+				titleKey='entity.title'
+				fieldType='DATA'
+				headerClass='headerDisplay'
+				sortable='false'
+				media='html'
+				decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='PFRMSTAGE:FRM_EDIT'
+				readOnly='false'
+				titleKey='procedure.card.entities.propertyLabel.idApp'
+				fieldType='DATA'
+				headerClass='headerDisplay'
+				sortable='false'
+				media='html'
+				decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NOMBRE_APP'
+				readOnly='false'
+				titleKey='procedure.card.entities.propertyLabel.app'
+				fieldType='DATA'
+				headerClass='headerDisplay'
+				sortable='false'
+				media='html'
+				decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property=''
+				propertyValueKey='procedure.card.entities.linkLabel.assign.app'
+				readOnly='false'
+				titleKey='empty'
+				fieldType='LINKFRM'
+				fieldLink='PFRMSTAGE:ID'
+				styleClass='aActionButton'
+				headerClass='headerDisplay'
+				sortable='false'
+				media='html'
+				decorator=''
+				url='addAppFrmStage.do'
+				id='FrmStageId'/>
+
+<propertyfmt type="BeanPropertySimpleFmt"
+				propertyValueKey='forms.button.delete'
+				property=''
+				readOnly='false'
+				titleKey='empty'
+				fieldType='LINK_BT'
+				fieldLink='PFRMSTAGE:ID'
+				styleClass='aDelButton'
+				headerClass='headerDisplay'
+				sortable='false'
+				media='html'
+				decorator=''
+				url='/delEntityFrmStage.do'
+				id='FrmStageDel'/>
+</beanformatter>

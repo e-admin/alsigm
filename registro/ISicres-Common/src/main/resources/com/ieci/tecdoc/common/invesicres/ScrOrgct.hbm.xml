@@ -1,0 +1,377 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrOrgct" 
+    table="SCR_ORGS_CT"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_ORGS_CT"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="code"
+        type="java.lang.String"
+        column="CODE"
+        not-null="true"
+        length="16"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CODE"
+            length="16"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idFather"
+        type="java.lang.Integer"
+        column="ID_FATHER"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_FATHER"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="acron"
+        type="java.lang.String"
+        column="ACRON"
+        not-null="true"
+        length="12"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ACRON"
+            length="12"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="250"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="NAME"
+            length="250"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="creationDate"
+        type="java.sql.Timestamp"
+        column="CREATION_DATE"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CREATION_DATE"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="disableDate"
+        type="java.sql.Timestamp"
+        column="DISABLE_DATE"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="DISABLE_DATE"
+            length="7"
+        </meta>    
+    </property>
+    <property
+        name="enabled"
+        type="int"
+        column="ENABLED"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ENABLED"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="cif"
+        type="java.lang.String"
+        column="CIF"
+        length="15"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CIF"
+            length="15"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to ScrTypeadm -->
+    <many-to-one
+        name="scrTypeadm"
+        class="com.ieci.tecdoc.common.invesicres.ScrTypeadmct"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="TYPE"         
+        </meta>
+        <column name="TYPE" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to ScrSendmsg -->
+    <set
+        name="scrSendmsgsBySender"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="SENDER"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrSendmsg"
+        </meta>
+        <key>
+            <column name="SENDER" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrSendmsg"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrSendmsg -->
+    <set
+        name="scrSendmsgsByDestination"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="DESTINATION"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrSendmsg"
+        </meta>
+        <key>
+            <column name="DESTINATION" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrSendmsg"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrRecvmsg -->
+    <set
+        name="scrRecvmsgsBySender"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="SENDER"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrRecvmsg"
+        </meta>
+        <key>
+            <column name="SENDER" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrRecvmsg"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrRecvmsg -->
+    <set
+        name="scrRecvmsgsByDestination"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="DESTINATION"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrRecvmsg"
+        </meta>
+        <key>
+            <column name="DESTINATION" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrRecvmsg"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrRecvdistreg -->
+    <set
+        name="scrRecvdistregs"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="IDORGS"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrRecvdistreg"
+        </meta>
+        <key>
+            <column name="IDORGS" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrRecvdistreg"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrRegorigdoc -->
+    <set
+        name="scrRegorigdocs"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="DESTINATION"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrRegorigdoc"
+        </meta>
+        <key>
+            <column name="DESTINATION" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrRegorigdoc"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrOfic -->
+    <set
+        name="scrOfics"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="ID_ORGS"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrOficct"
+        </meta>
+        <key>
+            <column name="ID_ORGS" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrOficct"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrSendreg -->
+    <set
+        name="scrSendregs"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="ID_ENTREG_DEST"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrSendreg"
+        </meta>
+        <key>
+            <column name="ID_ENTREG_DEST" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrSendreg"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrRelation -->
+    <set
+        name="scrRelations"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="IDUNIT"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrRelation"
+        </meta>
+        <key>
+            <column name="IDUNIT" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrRelation"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

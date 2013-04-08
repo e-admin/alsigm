@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="AntivirusWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="comprobarFicheroContenido" qname="ns1:comprobarFicheroContenido" returnQName="ns1:comprobarFicheroContenidoReturn" returnType="ns1:RetornoBooleano" soapAction="" xmlns:ns1="http://server.ws.antivirus.sgm.tecdoc.ieci">
+   <parameter qname="ns1:contenidoFichero" type="ns1:RetornoArrayByte"/>
+   <parameter qname="ns1:borrar" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="comprobarFicheroRuta" qname="ns2:comprobarFicheroRuta" returnQName="ns2:comprobarFicheroRutaReturn" returnType="ns2:RetornoBooleano" soapAction="" xmlns:ns2="http://server.ws.antivirus.sgm.tecdoc.ieci">
+   <parameter qname="ns2:rutaFichero" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns2:borrar" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <parameter name="allowedMethods" value="comprobarFicheroRuta comprobarFicheroContenido"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="AntivirusWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.antivirus.ws.server.AntivirusWebService"/>
+  <parameter name="wsdlServicePort" value="AntivirusWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.antivirus.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.antivirus.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="AntivirusWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns3:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns3="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns4:RetornoBooleano" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.antivirus.ws.server.RetornoBooleano" xmlns:ns4="http://server.ws.antivirus.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns5:RetornoArrayByte" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.antivirus.ws.server.RetornoArrayByte" xmlns:ns5="http://server.ws.antivirus.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

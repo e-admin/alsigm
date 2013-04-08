@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="PagoTelematicoWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="altaLiquidacion" qname="ns1:altaLiquidacion" returnQName="ns1:altaLiquidacionReturn" returnType="ns1:Liquidacion" soapAction="" xmlns:ns1="http://server.ws.pe.sgm.tecdoc.ieci">
+   <parameter qname="ns1:poLiquidacion" type="ns1:Liquidacion"/>
+   <parameter qname="ns1:entidad" type="ns2:Entidad" xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="bajaLiquidacion" qname="ns3:bajaLiquidacion" returnQName="ns3:bajaLiquidacionReturn" returnType="ns4:RetornoServicio" soapAction="" xmlns:ns3="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:ns4="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns3:poLiquidacion" type="ns3:Liquidacion"/>
+   <parameter qname="ns3:entidad" type="ns4:Entidad"/>
+  </operation>
+  <operation name="buscarLiquidaciones" qname="ns5:buscarLiquidaciones" returnQName="ns5:buscarLiquidacionesReturn" returnType="ns5:ListaLiquidaciones" soapAction="" xmlns:ns5="http://server.ws.pe.sgm.tecdoc.ieci">
+   <parameter qname="ns5:poCriterio" type="ns5:CriterioBusquedaLiquidacion"/>
+   <parameter qname="ns5:entidad" type="ns6:Entidad" xmlns:ns6="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="buscarTasas" qname="ns7:buscarTasas" returnQName="ns7:buscarTasasReturn" returnType="ns7:ListaTasas" soapAction="" xmlns:ns7="http://server.ws.pe.sgm.tecdoc.ieci">
+   <parameter qname="ns7:poCriterio" type="ns7:CriterioBusquedaTasa"/>
+   <parameter qname="ns7:entidad" type="ns8:Entidad" xmlns:ns8="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="detallePago" qname="ns9:detallePago" returnQName="ns9:detallePagoReturn" returnType="ns9:Pago" soapAction="" xmlns:ns9="http://server.ws.pe.sgm.tecdoc.ieci">
+   <parameter qname="ns9:poPago" type="ns9:Pago"/>
+   <parameter qname="ns9:entidad" type="ns10:Entidad" xmlns:ns10="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="modificarLiquidacion" qname="ns11:modificarLiquidacion" returnQName="ns11:modificarLiquidacionReturn" returnType="ns11:Liquidacion" soapAction="" xmlns:ns11="http://server.ws.pe.sgm.tecdoc.ieci">
+   <parameter qname="ns11:poLiquidacion" type="ns11:Liquidacion"/>
+   <parameter qname="ns11:entidad" type="ns12:Entidad" xmlns:ns12="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerDatosTasa" qname="ns13:obtenerDatosTasa" returnQName="ns13:obtenerDatosTasaReturn" returnType="ns13:Tasa" soapAction="" xmlns:ns13="http://server.ws.pe.sgm.tecdoc.ieci">
+   <parameter qname="ns13:poTasa" type="ns13:Tasa"/>
+   <parameter qname="ns13:entidad" type="ns14:Entidad" xmlns:ns14="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerDocumentoPago" qname="ns15:obtenerDocumentoPago" returnQName="ns15:obtenerDocumentoPagoReturn" returnType="ns15:DocumentoPago" soapAction="" xmlns:ns15="http://server.ws.pe.sgm.tecdoc.ieci">
+   <parameter qname="ns15:poPago" type="ns15:Pago"/>
+   <parameter qname="ns15:entidad" type="ns16:Entidad" xmlns:ns16="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="realizarPago" qname="ns17:realizarPago" returnQName="ns17:realizarPagoReturn" returnType="ns17:Pago" soapAction="" xmlns:ns17="http://server.ws.pe.sgm.tecdoc.ieci">
+   <parameter qname="ns17:poPago" type="ns17:Pago"/>
+   <parameter qname="ns17:entidad" type="ns18:Entidad" xmlns:ns18="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <parameter name="allowedMethods" value="realizarPago modificarLiquidacion obtenerDocumentoPago bajaLiquidacion detallePago buscarTasas altaLiquidacion obtenerDatosTasa buscarLiquidaciones"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="PagoTelematicoWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.pe.ws.server.PagoTelematicoWebService"/>
+  <parameter name="wsdlServicePort" value="PagoTelematicoWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.pe.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="PagoTelematicoWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns19="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns20:ListaTasas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.pe.ws.server.ListaTasas" xmlns:ns20="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" xmlns:ns21="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:CriterioBusquedaTasa" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.pe.ws.server.CriterioBusquedaTasa" xmlns:ns22="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:Liquidacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.pe.ws.server.Liquidacion" xmlns:ns23="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:DocumentoPago" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.pe.ws.server.DocumentoPago" xmlns:ns24="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:Tasa" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.pe.ws.server.Tasa" xmlns:ns25="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns26:CriterioBusquedaLiquidacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.pe.ws.server.CriterioBusquedaLiquidacion" xmlns:ns26="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns27:Pago" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.pe.ws.server.Pago" xmlns:ns27="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns28:ListaLiquidaciones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.pe.ws.server.ListaLiquidaciones" xmlns:ns28="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns29:Liquidacion" languageSpecificType="java:ieci.tecdoc.sgm.pe.ws.server.Liquidacion[]" qname="ns29:ArrayOfLiquidacion" xmlns:ns29="http://server.ws.pe.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns30:Tasa" languageSpecificType="java:ieci.tecdoc.sgm.pe.ws.server.Tasa[]" qname="ns30:ArrayOfTasa" xmlns:ns30="http://server.ws.pe.sgm.tecdoc.ieci"/>
+ </service>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

@@ -1,0 +1,41 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: TRK - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\WINDOWS\TEMP\RSP8233.TMP" with contents
+[
+/nologo /MT /W4 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp".\Release/TRK.pch" /YX /Fo".\Release/" /Fd".\Release/" /FD /c 
+"C:\trk32\trk\Auxtrk.cpp"
+"C:\trk32\trk\Bastrk.cpp"
+"C:\trk32\trk\Geom.cpp"
+"C:\trk32\trk\Mapmode.cpp"
+"C:\trk32\trk\Trk.cpp"
+"C:\trk32\trk\Trkform.cpp"
+"C:\trk32\trk\Trklist.cpp"
+"C:\trk32\trk\Trkobj.cpp"
+]
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSP8233.TMP" 
+Creating command line "link.exe -lib /nologo /out:".\Release\TRK.lib"  .\Release\Auxtrk.obj .\Release\Bastrk.obj .\Release\Geom.obj .\Release\Mapmode.obj .\Release\Trk.obj .\Release\Trkform.obj .\Release\Trklist.obj .\Release\Trkobj.obj "
+<h3>Output Window</h3>
+Compiling...
+Auxtrk.cpp
+Bastrk.cpp
+Geom.cpp
+Mapmode.cpp
+Trk.cpp
+Trkform.cpp
+Trklist.cpp
+Trkobj.cpp
+Creating library...
+
+
+
+<h3>Results</h3>
+TRK.lib - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

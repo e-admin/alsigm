@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="DireccionTelematicaVO">
+
+	<select id="getDireccionTelematicaVOs" resultMap="BaseDireccionVO.direccion">
+		SELECT addr.id, addr.id_person,
+			addr.type, tel.address, '' as city, '' as
+			zip, '' as country,
+			tel.preference, tel.type as tipoTelematica
+			FROM scr_address addr RIGHT JOIN scr_addrtel tel ON
+			addr.id=tel.id
+	</select>
+
+	<insert id="addDireccionTelematicaVO" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.DireccionTelematicaVO">
+		INSERT INTO scr_addrtel (id, address, type, preference)
+		VALUES (#id:INTEGER#, #direccion#, #tipoDireccionTelematica.id:INTEGER#, #principal:INTEGER#)
+	</insert>
+
+	<delete id="deleteDireccionTelematicaVO" parameterClass="java.lang.String">
+		DELETE FROM scr_addrtel
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteDireccionTelematicaVOs">
+		DELETE FROM scr_addrtel
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteDireccionTelematicaVOByTercero" parameterClass="java.lang.String">
+		DELETE FROM scr_addrtel
+		WHERE id IN (SELECT id FROM scr_address WHERE id_person=#value:INTEGER#)
+	</delete>
+
+	<update id="updateDireccionTelematicaVO" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.DireccionTelematicaVO">
+		UPDATE scr_addrtel
+		SET address=#direccion#, type=#tipoDireccionTelematica.id:INTEGER#, preference=#principal:INTEGER#
+		WHERE id=#id:INTEGER#
+	</update>
+
+	<update id="unassignDireccionPrincipalTercero" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoVO">
+		UPDATE scr_addrtel
+		SET preference=0
+		WHERE preference=1 AND id IN (SELECT id FROM scr_address WHERE id_person=#id:INTEGER#)
+	</update>
+
+	<update id="assignDireccionPrincipalTercero" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.DireccionTelematicaVO">
+		UPDATE scr_addrtel
+		SET preference=1
+		WHERE id=#id:INTEGER# AND id IN (SELECT id FROM scr_address WHERE id_person=#tercero.id:INTEGER#)
+	</update>
+
+</sqlMap>

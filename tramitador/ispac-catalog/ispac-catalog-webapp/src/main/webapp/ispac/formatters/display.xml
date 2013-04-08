@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<displaydecorator>
+	<displaycolumn name='NOMBRE' 
+				titleKey='catalog.common.nombre' 
+				type='TEXT' 
+				width='25%'
+				headerClass=""/>
+	<displaycolumn name='NDOC' 
+				titleKey='usrmgr.documento' 
+				type='TEXT' 
+				width='15%'/>	
+	<displaycolumn name='DIRNOT' 
+				titleKey='usrmgr.direccion' 
+				type='TEXT' 
+				width='30%'/>
+	<propertyfmt name='EMAIL' 
+				titleKey='usrmgr.email' 
+				fieldType='TEXT' 
+				width='30%'/>
+</displaydecorator>

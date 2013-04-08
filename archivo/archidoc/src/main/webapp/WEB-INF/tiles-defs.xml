@@ -1,0 +1,2701 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+    "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+    "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+
+<tiles-definitions>
+
+	<!-- Layout con todo -->
+	<definition name="archivo.complexLayout" path="/pages/tiles/TreeFrameLayout.jsp">
+		<put name="head" value="head.jsp" />
+		<put name="sessionAlive" value="sessionAlive.jsp" />
+		<put name="cabecera" value="cabeceraSalir.jsp" />
+		<put name="usuario" value="usuario.jsp" />
+		<put name="menu" value="nuevoMenu.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+		</putList>
+	</definition>
+
+	<!-- Layout para mostrar en el iframe de contenido sin barra de navegacion ni pie
+-->
+	<definition name="archivo.iFrameRootContentLayout" path="/pages/tiles/IFrameContentLayout.jsp">
+		<put name="head" value="head.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/ficha.js</add>
+			<add type="string">/js/jquery-min.js</add>
+		</putList>
+   </definition>
+
+   <!-- Layout para mostrar en el iframe de contenido con barra de navegacion y pie
+-->
+	<definition name="archivo.iFrameContentLayout" extends="archivo.iFrameRootContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+		<put name="pie_pagina" value="pie_pagina.jsp" />
+   </definition>
+
+	<!-- Layout para mostrar ventanas nuevas por Javascript -->
+	<definition name="archivo.basicLayout" path="/pages/tiles/BasicLayout.jsp">
+		<put name="head" value="head.jsp" />
+		<put name="sessionAlive" value="sessionAlive.jsp" />
+		<put name="pie_pagina" value="pie_pagina.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+			<add type="string">/js/ficha.js</add>
+		</putList>
+	</definition>
+<!--   *************************************************** -->
+	<definition name="iframe.error" extends="archivo.basicLayout">
+    	<put name="head" value="head.jsp" />
+    	<put name="cuerpo" value="/messageIframe.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+			<add type="string">/js/ficha.js</add>
+		</putList>
+	</definition>
+
+    <definition name="lista.repositorios.ecm" path="/pages/tiles/controls/campo_lista_repositorio_ecm.jsp" />
+
+
+<!--  ***************************************************
+
+                         BANDEJA
+
+      ***************************************************
+-->
+
+    <definition name="archivo.bandeja" extends="archivo.complexLayout">
+    	<put name="urlIFrame" value="/action/homepage?method=loadBandeja"/>
+   </definition>
+
+    <definition name="archivo.load.bandeja" extends="archivo.iFrameRootContentLayout">
+    	<put name="cuerpo" value="bandeja.jsp" />
+    	<put name="pie_pagina" value="pie_pagina.jsp" />
+   </definition>
+
+<!--  ***************************************************
+
+                         DEPOSITO
+
+      ***************************************************
+-->
+
+	<definition name="deposito.defaultArbolLayout" extends="archivo.iFrameContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/manageVistaDeposito" />
+		<put name="defaultViewURL" direct="true" value="/action/manageVistaDeposito?actionToPerform=loadHomeDeposito" />
+    	<put name="frameRefresher" value="deposito/refreshTreeView.jsp" />
+    	<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="deposito.home" extends="archivo.iFrameRootContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/manageVistaDeposito" />
+		<put name="defaultViewURL" direct="true" value="/action/manageVistaDeposito?actionToPerform=loadHomeDeposito" />
+    	<put name="cuerpo" value="deposito/homeDeposito.jsp" />
+		<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="deposito.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+	</definition>
+
+	<definition name="deposito.listaUbicaciones" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/home_deposito.jsp" />
+	</definition>
+
+	<definition name="deposito.resumenOcupacion" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/resumen_deposito.jsp" />
+	</definition>
+
+	<definition name="deposito.informeOcupacion" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/ocupacion.jsp" />
+	</definition>
+
+	<definition name="deposito.wizardalta" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/cuerpo_wizardalta.jsp" />
+	</definition>
+
+	<definition name="deposito.ediciondeposito" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/deposito/cuerpo_ediciondeposito.jsp" />
+	</definition>
+
+	<definition name="deposito.altatipoasignable" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tipoasignable/cuerpo_altatipoasignable.jsp" />
+	</definition>
+
+	<definition name="deposito.altatiponoasignable" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tiponoasignable/cuerpo_edicionnoasignable.jsp" />
+	</definition>
+
+	<definition name="deposito.tipoNoAsignable.seleccionarCartelas" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tiponoasignable/seleccionar_cartelas.jsp" />
+	</definition>
+
+	<definition name="deposito.tipoNoAsignable.verCartelas" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tiponoasignable/ver_cartelas.jsp" />
+	</definition>
+
+	<definition name="deposito.tipoAsignable.seleccionarcartelas" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tipoasignable/seleccionar_cartelas.jsp" />
+	</definition>
+
+	<definition name="deposito.tipoAsignable.vercartelas" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tipoasignable/ver_cartelas.jsp" />
+	</definition>
+
+	<definition name="deposito.viewdeposito" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/deposito/cuerpo_viewdeposito.jsp" />
+	</definition>
+
+	<definition name="deposito.viewtiponoasignable" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tiponoasignable/cuerpo_viewtiponoasignable.jsp" />
+	</definition>
+
+	<definition name="deposito.viewtipoasignable" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tipoasignable/cuerpo_viewtipoasignable.jsp" />
+	</definition>
+
+	<definition name="deposito.error" extends="deposito.defaultLayout">
+		<put name="cuerpo" value="/error.jsp" />
+	</definition>
+
+	<definition name="deposito.reubicacion.selecionUIs" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/reubicacion/cuerpo_seleccion_uis_a_reubicar.jsp" />
+	</definition>
+
+	<definition name="deposito.reubicacion.selecionDestino" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/reubicacion/cuerpo_seleccion_destino.jsp" />
+	</definition>
+
+	<definition name="deposito.reubicacion.selecionUDocs" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/reubicacion/cuerpo_seleccion_udocs_a_reubicar.jsp" />
+	</definition>
+
+	<definition name="deposito.reubicacion.selecionHuecoDestino" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/reubicacion/cuerpo_seleccion_hueco_destino.jsp" />
+	</definition>
+
+	<definition name="deposito.reubicacion.selecionAsignableDestino" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/reubicacion/cuerpo_seleccion_asignable_destino.jsp" />
+	</definition>
+
+	<definition name="deposito.reubicacion.informeReubicacion" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/reubicacion/cuerpo_informe_reubicacion_udocs.jsp" />
+	</definition>
+
+	<definition name="deposito.reubicacion.informeReubicacionUinst" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/reubicacion/cuerpo_informe_reubicacion_uinst.jsp" />
+	</definition>
+
+	<definition name="deposito.cambioestadohuecos" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/hueco/cuerpo_seleccion_huecos.jsp" />
+	</definition>
+
+	<definition name="deposito.listadoudocs"  extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/hueco/cuerpo_listadoudocs.jsp" />
+	</definition>
+
+	<definition name="deposito.listadoFormatos"  extends="deposito.defaultLayout">
+		<put name="cuerpo" value="deposito/cuerpo_listado_formatos.jsp" />
+	</definition>
+
+	<definition name="deposito.infoFormato"  extends="deposito.defaultLayout">
+		<put name="cuerpo" value="deposito/cuerpo_info_formato.jsp" />
+	</definition>
+
+	<definition name="deposito.formularioFormato"  extends="deposito.defaultLayout">
+		<put name="cuerpo" value="deposito/cuerpo_form_formato.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="deposito.buscarUI" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/busquedas/cuerpo_busqueda_ui.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/clean_campos_busqueda.js</add>
+			<add type="string">/js/busquedasUtils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="deposito.busquedaUIs.eliminadas" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/busquedas/cuerpo_busqueda_uis_eliminadas.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/clean_campos_busqueda.js</add>
+			<add type="string">/js/busquedasUtils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+
+
+	<definition name="deposito.busquedaUISAnioYSerie" extends="archivo.iFrameContentLayout">
+		<put name="cuerpo"  value="/pages/tiles/deposito/informes/cuerpo_busqueda_uis_anio_serie.jsp"/>
+
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/clean_campos_busqueda.js</add>
+			<add type="string">/js/busquedasUtils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+
+
+
+	<definition name="deposito.organizacion.udocs" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/organizacion/cuerpo_udocsAOrganizar.jsp" />
+	</definition>
+
+	<definition name="deposito.cambiar.numeracion" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tipoasignable/cuerpo_cambiar_numeracion.jsp" />
+	</definition>
+
+	<definition name="deposito.confirmar.cambio.numeracion" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tipoasignable/cuerpo_confirmar_numeracion_regular.jsp" />
+	</definition>
+
+	<!-- DEFINICIONES PARA USAR EN LAS JSP -->
+   <definition name="deposito.datosOcupacion" path="/pages/tiles/PABlockLayout.jsp">
+      <put name="blockContent" value="deposito/resumenOcupacion.jsp" />
+   </definition>
+
+   <!-- Seleccion de UIS para Editar Numeración -->
+   <definition name="deposito.seleccionUIsEditarNumeracion" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/hueco/cuerpo_seleccion_uis_editar.jsp" />
+	</definition>
+
+   <!-- Editar Numeracion -->
+   <definition name="deposito.editarNumeracion" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/hueco/cuerpo_editar_numeracion.jsp" />
+	</definition>
+
+	<definition name="deposito.edicionTipoNoAsignable" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/tiponoasignable/cuerpo_edicion_tipoNoAsignable.jsp" />
+	</definition>
+
+
+<!--  **************************************************************
+
+                         DEPOSITO ELECTRONICO
+
+      **************************************************************
+-->
+
+	<definition name="depositoElectronico.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+	</definition>
+
+	<definition name="depositoElectronico.ver_depositos" extends="depositoElectronico.defaultLayout">
+		<put name="cuerpo" value="deposito/cuerpo_ver_depositos_electronicos.jsp" />
+	</definition>
+
+	<definition name="depositoElectronico.ver_deposito" extends="depositoElectronico.defaultLayout">
+		<put name="cuerpo" value="deposito/cuerpo_ver_deposito_electronico.jsp" />
+	</definition>
+
+	<definition name="depositoElectronico.editar_deposito" extends="depositoElectronico.defaultLayout">
+		<put name="cuerpo" value="deposito/cuerpo_editar_deposito_electronico.jsp" />
+	</definition>
+
+<!--  ******************************************************
+
+                         TRANSFERENCIAS
+
+      ******************************************************
+-->
+
+	<definition name="transferencias.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+         	<add type="string">/js/ficha.js</add>
+		</putList>
+	</definition>
+
+	<definition name="transferencias.previsiones.formulario_busqueda" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_buscar_previsiones.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.listado_busqueda_previsiones" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_listado_busqueda_previsiones.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.home" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_home_previsiones.jsp" />
+	</definition>
+
+	<definition name="transferencias.altaprevision" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_nueva_prevision.jsp" />
+	</definition>
+
+	<definition name="transferencias.viewprevision" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_view_prevision.jsp" />
+	</definition>
+
+	<definition name="transferencias.edicionprevision" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_edicion_prevision.jsp" />
+	</definition>
+
+	<definition name="transferencias.modificarprevision" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_modificar_prevision.jsp" />
+	</definition>
+
+	<definition name="transferencias.listadoprevisionoficina" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_listado_previsionoficina.jsp" />
+	</definition>
+
+	<definition name="transferencias.listadoprevisionarchivo" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_listado_previsionarchivo.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.info_detalle" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/info_detalle_prevision.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.edicion_detalle" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_edicion_detalle_prevision.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.edicion_detalle_entre_archivos" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_edicion_detalle_prevision_entre_archivos.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.aceptacionrechazo" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_aceptacionrechazo_prevision.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.calendario" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_calendario_previsiones.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.calendario.mes" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_calendario_previsiones_mes.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.viewprevisiongarchivo" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_view_previsiongarchivo.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.seleccionartipoprevision" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_seleccion_creacionprevision.jsp" />
+	</definition>
+
+	<definition name="transferencias.previsiones.seleccionPrevisiones" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_seleccion_prevision.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="transferencias.previsiones.seleccionGestor" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_seleccion_gestor.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="transferencias.previsiones.resultadoAsignacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_resultado_asignacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="transferencias.relaciones.seleccionRelaciones" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_seleccion_relaciones.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="transferencias.relaciones.seleccionGestorRelaciones" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_seleccion_gestor_relaciones.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="transferencias.relaciones.resultadoAsignacionRelaciones" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_resultado_asignacion_relaciones.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="transferencias.relaciones.formulario_busqueda" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_buscar_relaciones.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.listado_busqueda_relaciones" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_listado_busqueda_relaciones.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.home" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_home_relaciones.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.listadoprevision" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_listado_previsiones.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.nuevarelacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_nueva_relacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.nueva_relacion_entre_archivos" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_nueva_relacion_entre_archivos.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.modificarubicacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_cambio_ubicacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.listadorelacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_listado_relaciones.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.listadorelacionarchivo" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_listado_relacionesarchivo.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.verrelacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_view_relacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.verrelacion.entre.archivos" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_view_relacion_entre_archivos.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.verrelaciones" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_view_relaciones.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.rechazarrelacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_rechazar_relacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.ver_informe_reservas" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_view_informe_reservas.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.ver_informe_ubicacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_view_informe_ubicacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.verrelaciondesdedeposito" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_view_relacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.edicionrelacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_edicion_relacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.validarrelacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_validacion_relacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.recepcionrelacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_recepcionrelacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.informeenvio" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_informe_enviorelacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.lista_unidades_documentales" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/lista_unidades_documentales.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.cajas_cotejo" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_cajas_cotejo.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.cajas_cotejo_reencajado" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/transferencias/relaciones/cuerpo_cajas_cotejo_reencajado.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.udocs_electronicas_cotejo" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_udocs_electronicas_cotejo.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.contenido_caja_cotejo" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_contenido_caja_cotejo.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.finalizarcotejo" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_finalizar_cotejo.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.informefinalizarcotejo" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_informe_finalizar_cotejo.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.seleccion_expedientes" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/seleccion_expedientes.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.cajas_en_relacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cajas_en_relacion_nuevo.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.asignacionCajas.cajas_en_relacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/organizacionCajas/cajasRelacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.asignacionCajas.dividir_udoc" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/organizacionCajas/dividir_udoc.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.asignacionCajas.nueva_caja" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/organizacionCajas/nuevaCaja.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.asignacionCajas.edicion_caja" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/organizacionCajas/edicionCaja.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.asignacionCajas.edicion_descripcion_contenido" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/organizacionCajas/edicionDescripcion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.asignacionCajas.edicion_signatura_caja" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/organizacionCajas/edicion_signatura_caja.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.seleccionarcartelas" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/seleccionar_cartelas.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.vercartelas" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/ver_cartelas.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.edicion_descripcion_contenido_caja" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_descripcion_caja.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.info_udoc" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_view_unidad_documental.jsp" />
+   </definition>
+
+	<definition name="transferencias.relaciones.info_udoc_desde_deposito" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_view_unidad_documental.jsp" />
+   	</definition>
+
+	<definition name="transferencias.relaciones.edicion_udoc" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_edicion_udoc.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.import_udocs" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_import_udocs.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.import_udocs_result" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_import_udocs_result.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.edicion_interesado" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_incorporar_interesado.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.edicion_info_interesado" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_edicion_info_interesado.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.edicion_emplazamiento" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_edicion_emplazamiento.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.edicion_documento" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_edicion_documento.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.edicion_soporte" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_edicion_soporte.jsp" />
+	</definition>
+
+	<definition name="add.unidad.instalacion.relacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_seleccion_cajas.jsp" />
+	</definition>
+
+	<definition name="transferencias.ingreso_directo.nuevo_editar_ingreso" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_nuevo_editar_ingreso_directo.jsp" />
+	</definition>
+
+	<definition name="transferencias.ingresos.directos.formulario_busqueda" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_buscar_ingresos_directos.jsp" />
+	</definition>
+
+	<definition name="transferencias.campo.busqueda.productor" page="/pages/tiles/transferencias/campo_busqueda_productores_relacion.jsp"/>
+
+	<definition name="transferencias.ingresos.listadoingresos" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_listado_ingresos.jsp" />
+	</definition>
+
+	<definition name="transferencias.ingresos.directos.listado.busqueda" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/cuerpo_listado_ingresos_directos.jsp" />
+	</definition>
+
+	<definition name="transferencias.listadorelacionesreserva" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="deposito/reserva/cuerpo_listadorelaciones.jsp" />
+	</definition>
+
+	<definition name="transferencias.vernavegadorreserva" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="deposito/reserva/cuerpo_reserva.jsp" />
+	</definition>
+
+	<definition name="transferencias.verinformereserva"  extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="deposito/reserva/cuerpo_informereserva.jsp" />
+	</definition>
+
+	<definition name="transferencias.listadorelacionesubicacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="deposito/ubicacion/cuerpo_listadorelaciones.jsp" />
+	</definition>
+
+	<definition name="transferencias.vernavegadorubicacion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="deposito/ubicacion/cuerpo_ubicacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.verinformeubicacion"  extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="deposito/ubicacion/cuerpo_informeubicacion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.relacionesprevision" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_relaciones_prevision.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<!-- DEFINICIONES PARA EL REENCAJADO -->
+	<definition name="transferencias.relaciones.reencajado.edicion_caja" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/reencajado/edicionCajaReencajado.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.reencajado.nueva_caja" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/reencajado/nuevaCajaReencajado.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.reencajado.edicion_descripcion" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/reencajado/edicionDescripcionReencajado.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.reencajado.edicion_descripcionUI" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/reencajado/edicionDescripcionUIReencajado.jsp" />
+	</definition>
+
+	<!-- DEFINICIONES PARA USAR EN LAS JSP -->
+	<definition name="transferencias.previsiones.BloqueDatosPrevision" path="/pages/tiles/PADockableBlockLayout.jsp">
+		<put name="blockName" value="PREVISION" direct="true" />
+		<put name="visibleContent" value="transferencias/cabeceracte_prevision.jsp" />
+		<put name="dockableContent" value="transferencias/datos_prevision.jsp" />
+   </definition>
+
+   <definition name="transferencias.relaciones.formato.reencajado" extends="transferencias.defaultLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_formato_reencajado.jsp" />
+	</definition>
+
+<!--  ******************************************************
+
+                         FONDOS
+
+      ******************************************************
+-->
+
+
+	<!-- LAYOUT SIN ÁRBOL -->
+
+	<definition name="fondos.defaultLayout" extends="archivo.iFrameContentLayout">
+	</definition>
+
+	<!-- LAYOUT CON ÁRBOL -->
+
+	<definition name="fondos.defaultArbolLayout" extends="archivo.iFrameContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/manageVistaCuadroClasificacion" />
+		<put name="defaultViewURL" direct="true" value="/action/manageVistaCuadroClasificacion?actionToPerform=resumenFondos" />
+    	<put name="frameRefresher" value="fondos/refreshTreeView.jsp" />
+    	<put name="useArbol" value="true"/>
+	</definition>
+
+	<!-- DEFINICIONES CON ÁRBOL -->
+
+	<definition name="fondos.home" extends="archivo.iFrameRootContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/manageVistaCuadroClasificacion" />
+		<put name="defaultViewURL" direct="true" value="/action/manageVistaCuadroClasificacion?actionToPerform=resumenFondos" />
+		<put name="cuerpo" value="fondos/homeFondos.jsp" />
+		<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="fondos.resumenFondos" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/resumenFondos.jsp" />
+		<!--  <put name="useArbol" value="true"/> -->
+	</definition>
+
+	<definition name="fondos.cf.verClasificadorFondos" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fondos/cuerpo_viewClasificadorFondos.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.edicionClasificadorFondos" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fondos/cuerpo_edicionClasificadorFondos.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.edicionInfoCLFondo" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fondos/edicion_infoCLFondo.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.infoClasificadorFondo" path="/pages/tiles/fondos/fondos/info_clasificadorFondo.jsp" />
+
+	<definition name="fondos.cf.verFondo" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fondos/cuerpo_viewFondo.jsp" />
+	      <putList name="jsFiles">
+	         <add type="string">/js/x_core.js</add>
+	         <add type="string">/js/x_event.js</add>
+	         <add type="string">/js/utils.js</add>
+	         <add type="string">/js/sigia_form.js</add>
+	      </putList>
+	</definition>
+
+	<definition name="fondos.fondos.edicion_fondo" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fondos/cuerpo_edicion_fondo.jsp" />
+	</definition>
+
+	<definition name="fondos.fondos.edicion_info_fondo" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fondos/edicion_infoFondo.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.edicionInfoCLSerie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/series/edicion_infoCLSerie.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.infoClasificadorSerie" path="/pages/tiles/fondos/series/info_clasificadorSerie.jsp" />
+
+	<definition name="fondos.cf.edicionClasificadorSeries" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_edicionClasificadorSeries.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.verClasificadorSeries" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_viewClasificadorSeries.jsp" />
+	</definition>
+
+	<definition name="fondos.series.solicitud_alta" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_solicitud_alta.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.edicionSerie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/series/edicion_infoSerie.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.verSerie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_infoSerie.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.identificacionSerie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_identificacion.jsp" />
+		<putList name="jsFilesPage">
+			<add type="string">/js/controlesUtil.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.cf.listadoOrganos" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_seleccion_organos.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.listadoProcedimientos" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_seleccion_procedimiento.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.pasoSerieAVigente" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_pasoSerieAVigente.jsp" />
+	</definition>
+
+	<definition name="fondos.udoc.udocs_serie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/unidadDocumental/cuerpo_udocs_serie.jsp" />
+		<putList name="jsFilesPage">
+			<add type="string">/js/clean_campos_busqueda.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.udoc.busqueda_udocs_serie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/unidadDocumental/cuerpo_busqueda_udocs_serie.jsp" />
+		<putList name="jsFilesPage">
+			<add type="string">/js/clean_campos_busqueda.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.udoc.udocs_serie_no_conservar" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/unidadDocumental/cuerpo_udocs_serie_no_conservar.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.seleccionClasificadorFondo" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fondos/cuerpo_seleccionClasificadorFondo.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.informe.mover" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fondos/cuerpo_informe_mover_fondo.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.informe.mover.clasificador" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fondos/cuerpo_informe_mover_clasificador.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.seleccionPadre" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_seleccionPadre.jsp" />
+	</definition>
+
+	<definition name="fondos.series.seleccionClasificadorSeries" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_seleccionClasificadorSerie.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.sustituirProductor" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_sustituir_productor.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.pasarAHistorico" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_pasar_a_historico_productor.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.refrescarVariosProductores" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_refrescar_varios_productores.jsp" />
+	</definition>
+
+	<definition name="fondos.series.solicitud_aprobacionCambios" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_solicitud_aprobacionCambios.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.pasoSerieAEstudio" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_pasoSerieAEstudio.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.pasoSerieAHistorica" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_pasoSerieAHistorica.jsp" />
+	</definition>
+
+	<definition name="fondos.udoc.ver_unidadDocumental" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/cuerpo_viewUnidadDocumental.jsp" />
+	</definition>
+
+	<definition name="fondos.udoc.editar_unidadDocumental" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/cuerpo_editUnidadDocumental.jsp" />
+	</definition>
+
+	<definition name="fondos.series.formularioBusquedaUdocs" extends="fondos.defaultArbolLayout">
+			<put name="cuerpo" value="/pages/tiles/fondos/unidadDocumental/cuerpo_buscar_udocs.jsp" />
+	</definition>
+
+	<definition name="fondos.series.formularioBusquedaSerieDestino" extends="fondos.defaultArbolLayout">
+			<put name="cuerpo" value="fondos/unidadDocumental/cuerpo_buscar_serieDestino.jsp" />
+	</definition>
+
+	<definition name="fondos.series.informeMoverUdocs" extends="fondos.defaultArbolLayout">
+			<put name="cuerpo" value="/pages/tiles/fondos/unidadDocumental/cuerpo_informe_mover_udocs.jsp" />
+	</definition>
+
+	<definition name="fondos.series.informeMoverSerie" extends="fondos.defaultArbolLayout">
+			<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_informe_mover_serie.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.crearOrganoProductorSerie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/series/cuerpo_crear_organo_productor.jsp" />
+	</definition>
+
+	<definition name="fondos.udoc.initDivision_fraccionSerie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fraccionSerie/cuerpo_initDivisionFS.jsp" />
+	</definition>
+
+	<definition name="fondos.udoc.dividir_fraccionSerie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fraccionSerie/cuerpo_divideFraccionSerie.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.udoc.editar_udoc_fraccionSerie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fraccionSerie/cuerpo_edicionUdocEnFS.jsp" />
+	</definition>
+
+	<definition name="fondos.udoc.ver_udoc_fraccionSerie" extends="fondos.defaultArbolLayout">
+		<put name="cuerpo" value="fondos/fraccionSerie/cuerpo_verUdocEnFS.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.listaNiveles" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/cuerpo_listadoNiveles.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.datosNivel" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/cuerpo_datosNivel.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.altaNivel" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/cuerpo_altaNivelCuadro.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.agregarNivelDescendiente" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/cuerpo_agregarNivelCuadroDescendiente.jsp" />
+	</definition>
+
+	<!-- DEFINICIONES SIN ÁRBOL -->
+
+	<definition name="fondos.form_busqueda_rapida" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/cuerpo_form_busqueda_rapida.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/clean_campos_busqueda.js</add>
+			<add type="string">/js/busquedasUtils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.exportar.cuadro" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/cuerpo_exportar_cuadro.jsp" />
+	</definition>
+
+	<definition name="fondos.form_busqueda_avanzada" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/cuerpo_form_busqueda_avanzada.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/clean_campos_busqueda.js</add>
+			<add type="string">/js/busquedasUtils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.form_busqueda_generica" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/cuerpo_form_busqueda_generica.jsp" />
+	</definition>
+
+	<definition name="fondos.listado_busqueda_elementos" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/fondos/cuerpo_listado_busqueda_elementos.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/clean_campos_busqueda.js</add>
+			<add type="string">/js/busquedasUtils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.seleccion_busqueda_elementos" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/cuerpo_seleccion_busqueda_elementos.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.series.home" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_home_identificacion_series.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="series.solicitudes.formulario_busqueda" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_busqueda_solicitudes.jsp" />
+	</definition>
+
+	<definition name="series.solicitudes.listado_busqueda" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_listado_busqueda_solicitudes.jsp" />
+	</definition>
+
+	<definition name="fondos.series.view_solicitud" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/view_solicitud.jsp" />
+	</definition>
+
+	<definition name="fondos.series.aceptacion_rechazo" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/AceptacionRechazo_solicitud_alta.jsp" />
+	</definition>
+
+	<definition name="fondos.series.enIdentificacion" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_series_en_identificacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.busqueda_valoracion_seleccion_udocs" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_busqueda_seleccion_unidades.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.cf.listaSolicitudes" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/lista_solicitudes.jsp" />
+	</definition>
+
+	<definition name="fondos.cf.seleccionSeries" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_seleccion_serieAAsignar.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.cf.seleccionGestor" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_seleccion_gestorAAsignar.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.cf.resultadoAsignacion" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/series/cuerpo_resultado_asignacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="fondos.udoc.listado_divisionesFraccionSerie" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/fraccionSerie/cuerpo_listado_divisionesFS.jsp" />
+	</definition>
+
+ 	<definition name="fondos.cf.listadodivisionesFS" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="fondos/fraccionSerie/cuerpo_listadodivisionesFS.jsp" />
+	</definition>
+
+	<!--  DEFINICIONES PARA USAR EN LAS JSP -->
+
+	<definition name="fondos.fondo.infoFondo" path="/pages/tiles/PABlockLayout.jsp">
+		<put name="blockContent" value="fondos/fondos/info_fondo.jsp" />
+	</definition>
+
+   <definition name="fondos.fondo.infoClasificador" path="/pages/tiles/PABlockLayout.jsp">
+		<put name="blockContent" value="fondos/series/info_clasificador.jsp" />
+   </definition>
+
+   	<definition name="fondos.series.infoSerie" path="/pages/tiles/PABlockLayout.jsp">
+		<put name="blockContent" value="fondos/series/cuerpo_infoSerie.jsp" />
+    </definition>
+
+   <definition name="fondos.series.cabeceraSerie" path="/pages/tiles/PABlockLayout.jsp">
+    	<put name="blockContent" value="fondos/series/cabecera_serie.jsp" />
+    </definition>
+
+	<definition name="fondos.cf.BloqueDatosSerie" path="/pages/tiles/PABlockLayout.jsp">
+		<put name="blockContent" value="fondos/series/datos_serie.jsp" />
+   	</definition>
+
+	<definition name="fondos.serie.identificacion" path="/pages/tiles/fondos/series/identificacion.jsp" />
+
+    <definition name="campo.fecha.editable" path="/pages/tiles/campoFechaEditable.jsp" />
+
+    <definition name="campo.editable" path="/pages/tiles/campoEditable.jsp" />
+
+	<definition name="fondos.cf.jerarquiaElemento" page="/pages/tiles/fondos/jerarquiaElemento.jsp" />
+
+<!--  ************************************************************
+
+                         VALORACION Y ESPURGO
+
+      ************************************************************
+-->
+
+    <definition name="serie.valoracion.seleccion.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="serie.valoracion.seleccion.ArbolLayout" extends="archivo.iFrameContentLayout">
+		<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="serie.valoracion.home" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_home_valoracion.jsp" />
+	</definition>
+
+	<definition name="valoracion.infoValoracion" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_vista_valoracion.jsp" />
+	</definition>
+
+	<definition name="valoracion.formulario_busqueda" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_buscar_valoracion.jsp" />
+	</definition>
+
+	<definition name="valoracion.listado_valoraciones" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_listado_valoraciones_buscar.jsp" />
+	</definition>
+
+	<definition name="valoracion.nuevaValoracion" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_nueva_valoracion.jsp" />
+	</definition>
+
+	<definition name="valoracion.edicionValoracion" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_edicion_valoracion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+			<add type="string">/js/ficha.js</add>
+		</putList>
+	</definition>
+
+	<definition name="valoracion.seleccionSerie" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_seleccion_serie.jsp" />
+	</definition>
+
+	<definition name="valoracion.cambioEstado" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_cambio_estado.jsp" />
+	</definition>
+
+	<definition name="valoracion.listaValoraciones" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_listado_valoraciones.jsp" />
+	</definition>
+
+	<definition name="valoracion.listaValoracionesAGestionar" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_listado_valoraciones_a_gestionar.jsp" />
+	</definition>
+
+	<!-- SELECCIÓN -->
+
+	<definition name="valoracion.seleccion.home" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_home_seleccion.jsp" />
+	</definition>
+
+	<definition name="valoracion.listaEliminaciones" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_listado_eliminaciones.jsp" />
+	</definition>
+
+	<definition name="valoracion.listaSeriesSeleccionables" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_series_seleccionables.jsp" />
+	</definition>
+
+	<definition name="valoracion.nuevaEliminacion" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_nueva_eliminacion.jsp" />
+	</definition>
+
+	<definition name="valoracion.formulario_busqueda_eliminacion" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_buscar_eliminacion.jsp" />
+	</definition>
+
+	<definition name="valoracion.listado_eliminaciones" extends="serie.valoracion.seleccion.defaultLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_listado_eliminaciones_buscar.jsp" />
+	</definition>
+
+	<!-- SELECCIÓN CON ÁRBOL DE FONDOS -->
+
+   	<definition name="valoracion.infoEliminacion" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_vista_eliminacion.jsp" />
+    </definition>
+
+	<definition name="valoracion.edicionEliminacion" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_edicion_eliminacion.jsp" />
+	</definition>
+
+	<definition name="valoracion.infoUdocs" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_listado_udocs.jsp" />
+	</definition>
+
+	<definition name="valoracion.edicionEliminacionAvanzada" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_condiciones_avanzadas_eliminacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="seleccion.eleccionArchivo" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_eleccion_archivo.jsp" />
+	</definition>
+
+	<definition name="seleccion.cambioEstado" extends="serie.valoracion.seleccion.ArbolLayout">
+		<put name="cuerpo" value="fondos/valoracion/cuerpo_cambio_estado_seleccion.jsp" />
+	</definition>
+
+	<!-- DEFINICIONES PARA USAR EN LAS JSP -->
+
+	<definition name="valoracion.datosValoracion" path="/pages/tiles/fondos/valoracion/datos_valoracion.jsp" />
+
+	<definition name="valoracion.datosEliminacion" path="/pages/tiles/fondos/valoracion/datos_eliminacion.jsp" />
+
+	<definition name="valoracion.resumen.datosEliminacion" path="/pages/tiles/fondos/valoracion/resumen_datos_eliminacion.jsp" />
+
+	<definition name="valoracion.BloqueDatosValoracion" path="/pages/tiles/PABlockLayout.jsp">
+		<put name="blockContent" value="fondos/valoracion/valoracion_a_valorar.jsp" />
+	</definition>
+
+<!--  ******************************************************
+
+                           PRESTAMOS
+
+      ******************************************************
+-->
+
+	<definition name="solicitudes.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+    </definition>
+
+	<definition name="solicitudes.prestamos.home" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_home_prestamos.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.listadoprestamo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_listado_prestamos.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.prestamos.viewprestamo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_view_prestamo.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.prestamos.imprimirentrada" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_imprimir_entrada_prestamo.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.altaprestamo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_nuevo_prestamo.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.edicionprestamo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_edicion_prestamo.jsp" />
+	</definition>
+
+    <definition name="solicitudes.prestamos.nuevo_detalle" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/nuevo_detalle_prestamo.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.viewdetalleprestamo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_view_detalle_prestamo.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.verudocsrelacionadas" extends="archivo.basicLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_ver_udocs_relacionadas.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.verudocsrelacionadas" extends="archivo.basicLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_ver_udocs_relacionadas.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.vernodisponiblesautorizadas" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_view_no_disponibles_autorizadas.jsp" />
+	</definition>
+
+	 <definition name="solicitudes.prestamos.listadoprestamocedercontrol" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_listado_prestamos_ceder_control.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.formulario_busqueda" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_buscar_prestamos.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.listadoprestamobuscar" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_listado_prestamosbuscar.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.formulario_devolucion" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_devolver_udocs.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.prestamos.formulario_udocs_devueltas" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/cuerpo_udocs_devueltas.jsp" />
+	</definition>
+
+	<definition name="solicitudes.formulario_devolucion" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/cuerpo_devolver_solicitudes.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.seleccionPrestamos" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_seleccion_prestamo.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.prestamos.seleccionRevDocumentacion" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_seleccion_rev_documentacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.prestamos.seleccionGestor" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_seleccion_gestor.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.prestamos.seleccionGestorRevDoc" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_seleccion_gestor_rev_doc.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.prestamos.resultadoAsignacion" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_resultado_asignacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.prestamos.resultadoAsignacionRevDoc" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_resultado_asignacion_rev_doc.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.consultar" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/cuerpo_consultar.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.documentacion_udocs_revisar" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_listado_revision_documentacion.jsp" />
+	</definition>
+
+
+	<definition name="solicitudes.prestamos.solicitudProrroga" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_solicitud_prorroga.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.ver.prorroga" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_ver_solicitud_prorroga.jsp" />
+	</definition>
+
+
+<!--  ******************************************************
+
+                           CONSULTAS
+
+      ******************************************************
+-->
+
+	<definition name="solicitudes.consultas.home" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_home_consultas.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.listadoconsulta" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_listado_consultas.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.consultas.viewconsulta" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_view_consulta.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="solicitudes.consultas.imprimirentrada" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_imprimir_entrada_consulta.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.altaconsulta" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_nueva_consulta.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.editarconsulta" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_edicion_consulta.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.nuevo_detalle" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/nuevo_detalle_consulta.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.viewdetalleconsulta" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_view_detalle_consulta.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.vernodisponiblesautorizadas" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_view_no_disponibles_autorizadas.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.formulario_busqueda" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_buscar_consultas.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.listadoconsultabuscar" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_listado_consultasbuscar.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.listaMotivosConsulta" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_listadoMotivosConsulta.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.altaMotivoConsulta" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_altaMotivoConsulta.jsp" />
+	</definition>
+
+	<definition name="solicitudes.consultas.datosMotivoConsulta" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/consultas/cuerpo_datosMotivoConsulta.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.listaMotivosPrestamo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_listadoMotivosPrestamo.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.altaMotivoPrestamo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_altaMotivoPrestamo.jsp" />
+	</definition>
+
+	<definition name="solicitudes.prestamos.datosMotivoPrestamo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/prestamos/cuerpo_datosMotivoPrestamo.jsp" />
+	</definition>
+
+	<definition name="solicitudes.listaMotivosRechazo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/cuerpo_listadoMotivosRechazo.jsp" />
+	</definition>
+
+	<definition name="solicitudes.altaMotivoRechazo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/cuerpo_altaMotivoRechazo.jsp" />
+	</definition>
+
+	<definition name="solicitudes.datosMotivoRechazo" extends="solicitudes.defaultLayout">
+		<put name="cuerpo" value="solicitudes/cuerpo_datosMotivoRechazo.jsp" />
+	</definition>
+
+<!--  *******************************************************************
+
+                                   DESCRIPCION
+
+      *******************************************************************
+-->
+
+	<definition name="descripcion.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+	</definition>
+
+	<definition name="descripcion.formulario_busqueda" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_formulario_busqueda.jsp" />
+	</definition>
+
+	<definition name="descripcion.listado_busqueda" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_listado_busqueda.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.formulario_busqueda_aut" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_formulario_busqueda_aut.jsp" />
+	</definition>
+
+	<definition name="descripcion.listado_busqueda_aut" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_listado_busqueda_aut.jsp" />
+	</definition>
+
+	<definition name="descripcion.ver_ficha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_ficha.jsp" />
+		<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="descripcion.cambio_formato_preferente" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_cambio_formato_preferente.jsp" />
+		<put name="useArbol" value="true"/>
+	</definition>
+
+	<!-- TABLAS DE VALIDACION -->
+
+	<definition name="descripcion.ver_tablas_validacion" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_tablas_validacion.jsp" />
+	</definition>
+
+	<definition name="descripcion.ver_tabla_validacion" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_tabla_validacion.jsp" />
+	</definition>
+
+	<definition name="descripcion.editar_tabla_validacion" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_editar_tabla_validacion.jsp" />
+	</definition>
+
+	<definition name="descripcion.ver_texto_tabla_validacion" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_texto_tabla_validacion.jsp" />
+	</definition>
+
+	<!-- LISTAS DESCRIPTORAS -->
+
+	<definition name="descripcion.ver_listas_descriptoras" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_listas_descriptoras.jsp" />
+	</definition>
+
+	<definition name="descripcion.ver_lista_descriptora" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_lista_descriptora.jsp" />
+	</definition>
+
+	<definition name="descripcion.editar_lista_descriptora" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_editar_lista_descriptora.jsp" />
+	</definition>
+
+	<definition name="descripcion.resultado_busqueda_descriptores" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_resultado_busqueda_descriptores.jsp" />
+	</definition>
+
+	<definition name="descripcion.ver_descriptor" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_descriptor.jsp" />
+	</definition>
+
+	<definition name="descripcion.editar_descriptor" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_editar_descriptor.jsp" />
+	</definition>
+
+	<definition name="descripcion.busqueda.unificar" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/descripcion/cuerpo_unificar_descriptores.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/utils.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.confirmacion.unificar" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/descripcion/cuerpo_confirmar_unificar_descriptores.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/utils.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.informe.unificar" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/descripcion/cuerpo_informe_unificar_descriptores.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/utils.js</add>
+		</putList>
+	</definition>
+
+	<!-- GESTION FICHAS -->
+
+	<definition name="descripcion.gestionFicha.listaFichas" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_lista_fichas.jsp" />
+		<putList name="jsFilesPage">
+			<add type="string">/js/gestion_ficha.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.gestionFicha.edicionFicha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_editar_ficha.jsp" />
+		<putList name="jsFilesPage">
+			<add type="string">/js/gestion_ficha.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.gestionFicha.duplicarFicha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_duplicar_ficha.jsp" />
+	</definition>
+
+
+	<definition name="descripcion.gestionFicha.edicionAvanzadaFicha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_editar_ficha_avanzado.jsp" />
+		<putList name="jsFilesPage">
+			<add type="string">/js/gestion_ficha.js</add>
+		</putList>
+	</definition>
+
+
+	<definition name="descripcion.gestionFicha.importarFicha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ficha_importar.jsp" />
+	</definition>
+
+	<definition name="descripcion.gestionFicha.exportarFicha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ficha_exportar.jsp" />
+	</definition>
+
+	<!-- GESTION DE FORMATOS DE FICHAS -->
+
+	<definition name="descripcion.gestionFormatoFicha.listaFormatoFichas" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_lista_formato_fichas.jsp" />
+	</definition>
+
+	<definition name="descripcion.gestionFormatoFicha.busquedaFormatoFicha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_busqueda_formato_fichas.jsp" />
+	</definition>
+
+	<definition name="descripcion.gestionFormatoFicha.edicionFormatoFicha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_editar_formato_ficha.jsp" />
+	</definition>
+
+	<definition name="descripcion.gestionFormatoFicha.importarFormatoFicha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_formato_ficha_importar.jsp" />
+	</definition>
+
+	<definition name="descripcion.gestionFicha.exportarFormatoFicha" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_formato_ficha_exportar.jsp" />
+	</definition>
+
+	<!-- GESTION DE AREAS -->
+
+	<definition name="descripcion.gestionArea.listaAreas" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_lista_areas.jsp" />
+		<putList name="jsFilesPage">
+	         <add type="string">/js/gestion_area.js</add>
+	      </putList>
+	</definition>
+
+	<definition name="descripcion.gestionArea.edicionArea" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_editar_area.jsp" />
+		<putList name="jsFilesPage">
+	         <add type="string">/js/gestion_area.js</add>
+	      </putList>
+	</definition>
+
+	<!-- GESTION DE CAMPOS DATO -->
+
+	<definition name="descripcion.gestionCampoDato.listaCampos" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/descripcion/cuerpo_lista_campos_dato.jsp" />
+
+		<putList name="jsFilesPage">
+	         <add type="string">/js/gestion_campo.js</add>
+	      </putList>
+	</definition>
+
+	<definition name="descripcion.gestionCampoDato.edicionCampos" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/descripcion/cuerpo_editar_campos_dato.jsp" />
+
+		<putList name="jsFilesPage">
+	        <add type="string">/js/gestion_campo.js</add>
+	    </putList>
+	</definition>
+
+	<!-- GESTION DE CAMPOS TABLA -->
+
+	<definition name="descripcion.gestionCampoTabla.listaCampos" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_lista_campos_tabla.jsp" />
+	</definition>
+
+	<definition name="descripcion.gestionCampoTabla.edicionCampos" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_editar_campos_tabla.jsp" />
+	</definition>
+
+	<definition name="descripcion.gestionCampoTabla.editInformacionCampo" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_editar_informacion_campo_tabla.jsp" />
+	</definition>
+
+	<!-- REEMPLAZO -->
+
+	<definition name="descripcion.reemplazo.simple" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_form_reemplazo_simple.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.listado.elementos.reemplazo" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_listado_elementos_reemplazo.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.reemplazo.avanzado" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_form_reemplazo_avanzado.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.confirmacion.reemplazo" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_form_confirmacion_reemplazo.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.confirmacion.series.afectadas" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_lista_series_afectadas.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="descripcion.listado.reemplazo.avanzado" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_listado_reemplazo_avanzado.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<!-- BUSQUEDAS DESCRIPTORES Y ELEMENTOS SALEN EN UNA NUEVA VENTANA -->
+
+	<definition name="descripcion.ver_descriptores" extends="archivo.basicLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_descriptores.jsp" />
+	</definition>
+
+	<definition name="descripcion.busqueda_descriptores" extends="archivo.basicLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_busqueda_descriptores.jsp" />
+	</definition>
+
+	<definition name="descripcion.ver.productores.relaciones" extends="archivo.basicLayout">
+		<put name="cuerpo" value="/pages/tiles/transferencias/relaciones/cuerpo_busqueda_productor_relacion.jsp" />
+	</definition>
+
+	<definition name="descripcion.busqueda_elementos" extends="archivo.basicLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_busqueda_elementos.jsp" />
+	</definition>
+
+	<definition name="descripcion.ver_elementos" extends="archivo.basicLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_elementos.jsp" />
+	</definition>
+
+	<definition name="descripcion.busqueda_elementos_adv" extends="archivo.basicLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_busqueda_elementos_adv.jsp" />
+	</definition>
+
+	<definition name="descripcion.ver_elementos_adv" extends="archivo.basicLayout">
+		<put name="cuerpo" value="descripcion/cuerpo_ver_elementos_adv.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.edicion_interesado_descripcion" extends="archivo.basicLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_incorporar_interesado_descripcion.jsp" />
+	</definition>
+
+	<definition name="transferencias.relaciones.edicion_emplazamiento_descripcion" extends="archivo.basicLayout">
+		<put name="cuerpo" value="transferencias/relaciones/cuerpo_edicion_emplazamiento_descripcion.jsp" />
+	</definition>
+
+	<!-- DEFINICIONES PARA USAR EN LAS JSP -->
+
+	<definition name="transferecias.unidadDocumental.contextoUdoc" page="/pages/tiles/transferencias/relaciones/contexto_unidad_documental.jsp" />
+
+<!--  *******************************************************************
+
+                                ORGANIZACIÓN
+
+      *******************************************************************
+-->
+
+	<definition name="organizacion.defaultLayout" extends="archivo.iFrameContentLayout">
+	</definition>
+
+	<definition name="organizacion.defaultArbolLayout" extends="archivo.iFrameContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/manageVistaOrganizacion" />
+		<put name="defaultViewURL" direct="true" value="/action/manageVistaOrganizacion?actionToPerform=loadHomeOrganizacion" />
+    	<put name="frameRefresher" value="organizacion/refreshTreeView.jsp" />
+    	<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="organizacion.home" extends="archivo.iFrameRootContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/manageVistaOrganizacion" />
+		<put name="defaultViewURL" direct="true" value="/action/manageVistaOrganizacion?actionToPerform=loadHomeOrganizacion" />
+		<put name="cuerpo" value="organizacion/homeOrganizacion.jsp" />
+		<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="organizacion.jerarquiaElemento" page="/pages/tiles/organizacion/jerarquiaElemento.jsp" />
+
+	<definition name="organizacion.listainstituciones" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/home_organizacion.jsp" />
+	</definition>
+
+	<definition name="organizacion.verorganizacion" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/cuerpo_verorganizacion.jsp" />
+	</definition>
+
+	<definition name="organizacion.nuevaorganizacion" extends="organizacion.defaultArbolLayout">
+		 <put name="cuerpo" value="organizacion/cuerpo_nuevaorganizacion.jsp" />
+	</definition>
+
+	<definition name="organizacion.edicionorganizacion" extends="organizacion.defaultArbolLayout">
+		 <put name="cuerpo" value="organizacion/cuerpo_edicionorganizacion.jsp" />
+	</definition>
+
+	<definition name="organizacion.fechas" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/campo_fecha.jsp" />
+	</definition>
+
+	<definition name="organizacion.moverorganizacion" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/cuerpo_moverorganizacion.jsp" />
+	</definition>
+
+	<definition name="organizacion.seleccionusuario" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/seleccionUsuario.jsp" />
+	</definition>
+
+	<definition name="organizacion.resultadoseleccionusuario" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/resultadoSeleccionUsuario.jsp" />
+	</definition>
+
+	<definition name="organizacion.listausuarios" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/listadoUsuarios.jsp" />
+	</definition>
+
+	<definition name="organizacion.buscarusuarios" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/buscarUsuarios.jsp" />
+	</definition>
+
+	<definition name="organizacion.nuevousuario" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/nuevoUsuario.jsp" />
+	</definition>
+
+	<definition name="organizacion.verusuario" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/verUsuario.jsp" />
+	</definition>
+
+	<definition name="organizacion.resultadobusquedausuarios" extends="organizacion.defaultArbolLayout">
+		<put name="cuerpo" value="organizacion/resultadoBusquedaUsuarios.jsp" />
+	</definition>
+
+	<definition name="organizacion.busquedaorganizacion" extends="organizacion.defaultLayout">
+		 <put name="cuerpo" value="organizacion/busqueda_organizacion.jsp" />
+	</definition>
+
+<!--  *******************************************************************
+
+                         DOCUMENTOS ELECTRÓNICOS
+
+      *******************************************************************
+-->
+
+	<definition name="documentos.defaultArbolLayout" extends="archivo.iFrameContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/documentos" />
+		<put name="defaultViewURL" direct="true" value="/action/clasificador?method=retrieve" />
+    	<put name="frameRefresher" value="documentos/refreshTreeView.jsp" />
+    	<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="documentos.home" extends="archivo.iFrameRootContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/documentos" />
+		<put name="defaultViewURL" direct="true" value="/action/clasificador?method=retrieve" />
+		<put name="cuerpo" value="documentos/homeDocumentos.jsp" />
+		<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="documentos.ver_documento_tree" extends="archivo.iFrameRootContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/documentos" />
+		<put name="defaultViewURL" direct="true" value="/action/documento?method=viewDocumentCF" />
+		<put name="cuerpo" value="documentos/homeDocumentos.jsp" />
+		<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="documentos.ver_clasificador" extends="documentos.defaultArbolLayout">
+		<put name="cuerpo" value="documentos/cuerpo_ver_clasificador.jsp" />
+	</definition>
+
+	<definition name="documentos.editar_clasificador" extends="documentos.defaultArbolLayout">
+		<put name="cuerpo" value="documentos/cuerpo_editar_clasificador.jsp" />
+	</definition>
+
+	<definition name="documentos.ver_documento" extends="documentos.defaultArbolLayout">
+		<put name="cuerpo" value="/pages/tiles/documentos/cuerpo_ver_documento.jsp" />
+	</definition>
+
+
+
+
+	<definition name="documentos.editar_documento" extends="documentos.defaultArbolLayout">
+		<put name="cuerpo" value="documentos/cuerpo_editar_documento.jsp" />
+	</definition>
+
+<!--  ************************************************************
+
+                              AUDITORIA
+
+      ************************************************************
+-->
+
+	<definition name="auditoria.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/clean_campos_busqueda.js</add>
+			<add type="string">/js/busquedasUtils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+    </definition>
+
+	<definition name="auditoria.formulario_busqueda" extends="auditoria.defaultLayout">
+		<put name="cuerpo" value="auditoria/cuerpo_formulario_busqueda.jsp"/>
+	</definition>
+
+	<definition name="auditoria.listado_pistas" extends="auditoria.defaultLayout">
+		<put name="cuerpo" value="auditoria/cuerpo_listado_busqueda.jsp"/>
+	</definition>
+
+	<definition name="auditoria.listado_acciones" extends="auditoria.defaultLayout">
+		<put name="cuerpo" value="auditoria/cuerpo_listado_acciones.jsp"/>
+	</definition>
+
+	<definition name="auditoria.listado_grupos" extends="auditoria.defaultLayout">
+		<put name="cuerpo" value="auditoria/cuerpo_listado_grupos.jsp"/>
+	</definition>
+
+	<definition name="auditoria.detalle_pista" extends="auditoria.defaultLayout">
+		<put name="cuerpo" value="auditoria/cuerpo_detalle_pista.jsp"/>
+	</definition>
+
+<!--  ************************************************************
+
+                         CONTROL ACCESO - ORGANOS
+
+      ************************************************************
+-->
+
+	<definition name="controlAccesoOrganos.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+    </definition>
+
+	<definition name="controlAcceso.infoOrgano" extends="controlAccesoOrganos.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/infoOrgano.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.altaOrgano" extends="controlAccesoOrganos.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/altaOrgano.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.edicionOrgano" extends="controlAccesoOrganos.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/edicionOrgano.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.listaOrganos" extends="controlAccesoOrganos.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/listadoOrganos.jsp" />
+	</definition>
+
+<!--  ************************************************************
+
+                         CONTROL ACCESO - USUARIOS
+
+      ************************************************************
+-->
+
+	<definition name="controlAccesoUsuarios.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+    </definition>
+
+	<definition name="controlAcceso.listaUsuarios" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/listadoUsuarios.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.resultadoBusqueda" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/resultadoBusquedaUsuarios.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.resultadoBusquedaOrganos" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/resultadoBusquedaOrganos.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.nuevoUsuario" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/nuevoUsuario.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.verUsuario" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/verUsuario.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.buscarUsuarios" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/buscarUsuarios.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.anadirRoleAUsuario" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/anadirRoleAUsuario.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.buscarOrganoInterno" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/buscarOrganosInternos.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.listaRolesAAnadir" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/cuerpo_listadoRolesAAnadir.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.listaGruposAAnadir" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/cuerpo_listadoGruposAAnadir.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.altaUsuario" extends="controlAccesoUsuarios.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/usuario/altaUsuario.jsp" />
+	</definition>
+
+<!--  ************************************************************
+
+                         CONTROL ACCESO - ROLES
+
+      ************************************************************
+-->
+
+	<definition name="controlAccesoRoles.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+    </definition>
+
+	<definition name="controlAcceso.infoRol" extends="controlAccesoRoles.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/roles/cuerpo_infoRol.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.edicionRol" extends="controlAccesoRoles.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/roles/cuerpo_edicionRol.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.listaRoles" extends="controlAccesoRoles.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/roles/cuerpo_listadoRoles.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.rol.seleccionUsuarios" extends="controlAccesoRoles.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/roles/cuerpo_seleccionUsuarios.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.seleccionPermisos" extends="controlAccesoRoles.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/roles/cuerpo_seleccion_permisos.jsp" />
+	</definition>
+
+<!--  ************************************************************
+
+                         CONTROL ACCESO - GRUPOS
+
+      ************************************************************
+-->
+
+	<definition name="controlAccesoGrupos.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+    </definition>
+
+	<definition name="controlAcceso.infoGrupo" extends="controlAccesoGrupos.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/grupos/cuerpo_infoGrupo.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.edicionGrupo" extends="controlAccesoGrupos.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/grupos/cuerpo_edicionGrupo.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.listaGrupos" extends="controlAccesoGrupos.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/grupos/cuerpo_listadoGrupos.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.grupo.seleccionUsuarios" extends="controlAccesoGrupos.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/grupos/cuerpo_seleccionUsuarios.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.busquedaGrupos"  extends="controlAccesoGrupos.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/grupos/cuerpo_busquedaGrupos.jsp" />
+	</definition>
+
+<!--  ************************************************************
+
+                      CONTROL ACCESO - LISTA ACCESO
+
+      ************************************************************
+-->
+
+	<definition name="controlAccesoListas.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+    </definition>
+
+	<definition name="controlAccesoListas.defaultArbolLayout" extends="controlAccesoListas.defaultLayout">
+		<put name="useArbol" value="true" />
+    </definition>
+
+	<definition name="controlAcceso.infoListaAcceso" extends="controlAccesoListas.defaultArbolLayout">
+		<put name="cuerpo" value="controlAcceso/listasAcceso/cuerpo_infoListaAcceso.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.edicionListaAcceso" extends="controlAccesoListas.defaultArbolLayout">
+		<put name="cuerpo" value="controlAcceso/listasAcceso/cuerpo_edicionListaAcceso.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.listaListasAcceso" extends="controlAccesoListas.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/listasAcceso/cuerpo_listadoListasAcceso.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.seleccionar_permisos_lista_acceso" extends="controlAccesoListas.defaultArbolLayout">
+		<put name="cuerpo" value="controlAcceso/listasAcceso/cuerpo_seleccionPermisos.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.listado_destinatarios_anadir"  extends="controlAccesoListas.defaultArbolLayout">
+		<put name="cuerpo" value="controlAcceso/listasAcceso/cuerpo_seleccionDestinatarios.jsp" />
+	</definition>
+
+	<definition name="controlAcceso.busqueda_listas_acceso"  extends="controlAccesoListas.defaultLayout">
+		<put name="cuerpo" value="controlAcceso/listasAcceso/cuerpo_busquedaListasAcceso.jsp" />
+	</definition>
+
+<!--  ************************************************************
+
+                         DOCUMENTOS VITALES
+
+      ************************************************************
+-->
+
+	<definition name="docVitales.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+    </definition>
+
+	<definition name="docVitales.home_documentos_vitales" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_home_documentos_vitales.jsp" />
+	</definition>
+
+	<definition name="docVitales.listado_documentos_vitales" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_listado_documentos_vitales.jsp" />
+	</definition>
+
+	<definition name="docVitales.formulario_busqueda" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_formulario_busqueda.jsp" />
+	</definition>
+
+	<definition name="docVitales.listado_busqueda" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_listado_busqueda.jsp" />
+	</definition>
+
+	<definition name="docVitales.ver_documento_vital" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_ver_documento_vital.jsp" />
+	</definition>
+
+	<definition name="docVitales.ver_documento_vital_vigente" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_ver_documento_vital_vigente.jsp" />
+	</definition>
+
+	<definition name="docVitales.ver_tipos" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_ver_tipos_documentos_vitales.jsp" />
+	</definition>
+
+	<definition name="docVitales.ver_tipo" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_ver_tipo_documento_vital.jsp" />
+	</definition>
+
+	<definition name="docVitales.editar_tipo" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_editar_tipo_documento_vital.jsp" />
+	</definition>
+
+	<definition name="docVitales.busqueda_tercero" extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_buscar_tercero.jsp" />
+	</definition>
+
+	<definition name="docVitales.formulario_docVital"  extends="docVitales.defaultLayout">
+		<put name="cuerpo" value="docVitales/cuerpo_formulario_docVital.jsp" />
+	</definition>
+
+<!--  *******************************************************
+
+                         DIGITALIZACION
+
+      *******************************************************
+-->
+
+	<definition name="digitalizacion.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+    </definition>
+
+    <definition name="digitalizacion.formulario_tarea" extends="digitalizacion.defaultLayout">
+		<put name="cuerpo" value="digitalizacion/cuerpo_formulario_tarea.jsp" />
+    </definition>
+
+	<definition name="digitalizacion.home_tareas" extends="digitalizacion.defaultLayout">
+		<put name="cuerpo" value="digitalizacion/cuerpo_home_tareas.jsp" />
+	</definition>
+
+	<definition name="digitalizacion.buscar_elemento_tarea" extends="digitalizacion.defaultLayout">
+		<put name="cuerpo" value="digitalizacion/cuerpo_buscar_elemento.jsp" />
+	</definition>
+
+    <definition name="digitalizacion.vista_tarea" extends="digitalizacion.defaultLayout">
+		<put name="cuerpo" value="digitalizacion/cuerpo_vista_tarea.jsp" />
+    </definition>
+
+    <definition name="digitalizacion.vista_tarea" extends="digitalizacion.defaultLayout">
+		<put name="cuerpo" value="digitalizacion/cuerpo_vista_tarea.jsp" />
+    </definition>
+
+    <definition name="digitalizacion.lista_tareas_pendientes" extends="digitalizacion.defaultLayout">
+		<put name="cuerpo" value="digitalizacion/cuerpo_lista_tareas_pendientes.jsp" />
+    </definition>
+
+    <definition name="digitalizacion.lista_tareas_gestionar" extends="digitalizacion.defaultLayout">
+		<put name="cuerpo" value="digitalizacion/cuerpo_lista_tareas_gestionar.jsp" />
+    </definition>
+
+    <definition name="digitalizacion.finalizar_captura"  extends="digitalizacion.defaultLayout">
+    	<put name="cuerpo" value="digitalizacion/cuerpo_finalizar_captura.jsp" />
+    </definition>
+
+	<definition name="digitalizacion.finalizar_validacion_tarea" extends="digitalizacion.defaultLayout">
+    	<put name="cuerpo" value="digitalizacion/cuerpo_finalizar_validacion_tarea.jsp" />
+    </definition>
+
+	<definition name="digitalizacion.formulario_busqueda" extends="digitalizacion.defaultLayout">
+    	<put name="cuerpo" value="digitalizacion/cuerpo_formulario_busqueda.jsp" />
+    </definition>
+
+	<definition name="digitalizacion.listado_busqueda" extends="digitalizacion.defaultLayout">
+    	<put name="cuerpo" value="digitalizacion/cuerpo_listado_busqueda.jsp" />
+    </definition>
+
+	<definition name="digitalizacion.seleccion_tareas" extends="digitalizacion.defaultLayout">
+    	<put name="cuerpo" value="digitalizacion/cuerpo_seleccion_tareas.jsp" />
+    </definition>
+
+	<definition name="digitalizacion.seleccion_gestor_tareas" extends="digitalizacion.defaultLayout">
+    	<put name="cuerpo" value="digitalizacion/cuerpo_seleccion_gestor_tareas.jsp" />
+    </definition>
+
+	<definition name="digitalizacion.resultado_asignacion_tareas" extends="digitalizacion.defaultLayout">
+    	<put name="cuerpo" value="digitalizacion/cuerpo_resultado_asignacion_tareas.jsp" />
+    </definition>
+
+	<definition name="digitalizacion.eliminacion_tarea" extends="digitalizacion.defaultLayout">
+    	<put name="cuerpo" value="digitalizacion/cuerpo_eliminacion_tarea.jsp" />
+    </definition>
+
+<!--  ************************************************************
+
+                         NIVELES DE ARCHIVO
+
+      ************************************************************
+-->
+
+    <definition name="nivelArchivo.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+	</definition>
+
+	<definition name="lista.niveles.archivo" extends="nivelArchivo.defaultLayout">
+    	<put name="cuerpo" value="controlAcceso/nivelesArchivo/lista_niveles.jsp" />
+    </definition>
+ 	<definition name="edicion.nivel.archivo" extends="nivelArchivo.defaultLayout">
+    	<put name="cuerpo" value="controlAcceso/nivelesArchivo/edicion_nivel.jsp" />
+    </definition>
+  	<definition name="alta.nivel.archivo" extends="nivelArchivo.defaultLayout">
+    	<put name="cuerpo" value="controlAcceso/nivelesArchivo/alta_nivel.jsp" />
+    </definition>
+    <definition name="listaArchivosAsociados.nivel.archivo" extends="nivelArchivo.defaultLayout">
+    	<put name="cuerpo" value="controlAcceso/nivelesArchivo/cuerpo_lista_archivos_asociados.jsp" />
+    </definition>
+
+<!--  ************************************************************
+
+                         GESTION DE ARCHIVOS
+
+      ************************************************************
+-->
+
+    <definition name="gestionArchivos.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+	</definition>
+
+	<definition name="lista.archivo" extends="gestionArchivos.defaultLayout">
+    	<put name="cuerpo" value="controlAcceso/archivos/lista_archivos.jsp" />
+    </definition>
+
+ 	<definition name="edicion.archivo" extends="gestionArchivos.defaultLayout">
+    	<put name="cuerpo" value="controlAcceso/archivos/edicion_archivo.jsp" />
+    </definition>
+
+  	<definition name="alta.archivo" extends="gestionArchivos.defaultLayout">
+    	<put name="cuerpo" value="controlAcceso/archivos/alta_archivo.jsp" />
+    </definition>
+
+
+<!--  ************************************************************
+
+                         DEFINICIONES GENERALES
+
+      ************************************************************
+-->
+
+	<definition name="progressBar" path="/pages/tiles/controls/progressBar.jsp"/>
+
+	<definition name="button.closeButton" path="/pages/tiles/controls/closeButton.jsp" />
+
+	<definition name="button.returnButton" path="/pages/tiles/controls/returnButton.jsp" />
+
+
+	<definition name="message" extends="archivo.iFrameContentLayout">
+		<put name="cuerpo" value="/message.jsp" />
+	</definition>
+
+	<definition name="common.contentBlock" path="/pages/tiles/PABlockLayout.jsp" />
+
+   	<definition name="campos.busqueda" path="/pages/tiles/fondos/busquedas/campos_busqueda.jsp">
+		<put name="Signatura"			  value="/pages/tiles/solicitudes/prestamos/busquedas/campo_busqueda_signatura.jsp"/>
+		<put name="Codigo.Referencia" 	  value="/pages/tiles/fondos/busquedas/campo_busqueda_codigo_referencia.jsp"/>
+		<put name="Titulo" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_titulo.jsp"/>
+		<put name="Rango" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_rango.jsp"/>
+		<put name="Numero.Expediente" 	  value="/pages/tiles/fondos/busquedas/campo_busqueda_numero_expediente.jsp"/>
+		<put name="Texto" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_texto.jsp"/>
+		<put name="Fecha.Inicial" 		  value="/pages/tiles/fondos/busquedas/campo_busqueda_fecha_inicial.jsp"/>
+		<put name="Fecha.Final" 		  value="/pages/tiles/fondos/busquedas/campo_busqueda_fecha_final.jsp"/>
+		<put name="Fechas" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_fecha.jsp"/>
+		<put name="Productor" 			  value="/pages/tiles/fondos/busquedas/campo_busqueda_productor.jsp"/>
+		<put name="Fondo" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_fondo.jsp"/>
+		<put name="Niveles.Descripcion"   value="/pages/tiles/fondos/busquedas/campo_busqueda_niveles_descripcion.jsp"/>
+		<put name="Descriptores" 		  value="/pages/tiles/fondos/busquedas/campo_busqueda_descriptores.jsp"/>
+		<put name="Ambito" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_condiciones_ambito.jsp"/>
+		<put name="Dato.Numerico" 		  value="/pages/tiles/fondos/busquedas/campo_busqueda_dato_numerico.jsp"/>
+		<put name="Estado" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_estado.jsp"/>
+		<put name="Codigo.Relacion"		  value="/pages/tiles/solicitudes/prestamos/busquedas/campo_busqueda_codigo_relacion.jsp"/>
+		<put name="Codigo" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_codigo.jsp"/>
+		<put name="Procedimiento" 		  value="/pages/tiles/fondos/busquedas/campo_busqueda_procedimiento.jsp"/>
+		<put name="Condiciones.Avanzadas" value="/pages/tiles/fondos/busquedas/campo_busqueda_condiciones_avanzadas.jsp"/>
+		<put name="Contenido.Fichero" 	  value="/pages/tiles/fondos/busquedas/campo_busqueda_contenido_fichero.jsp"/>
+		<put name="Generico.Texto.Corto"  value="/pages/tiles/fondos/busquedas/campo_generico_busqueda_texto_corto.jsp"/>
+		<put name="Generico.Texto.Largo"  value="/pages/tiles/fondos/busquedas/campo_generico_busqueda_texto_largo.jsp"/>
+		<put name="Generico.Fecha" 		  value="/pages/tiles/fondos/busquedas/campo_generico_busqueda_fecha.jsp"/>
+		<put name="Generico.Numerico" 	  value="/pages/tiles/fondos/busquedas/campo_generico_busqueda_dato_numerico.jsp"/>
+		<put name="Bloqueo" 			  value="/pages/tiles/fondos/busquedas/campo_busqueda_bloqueo.jsp"/>
+	</definition>
+
+
+	<definition name="campos.busqueda.udocs.serie" path="/pages/tiles/fondos/busquedas/campos_busqueda_udocs_serie.jsp">
+		<put name="Titulo" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_titulo.jsp"/>
+		<put name="Fecha.Inicial" 		  value="/pages/tiles/fondos/busquedas/campo_busqueda_fecha_inicial.jsp"/>
+		<put name="Fecha.Final" 		  value="/pages/tiles/fondos/busquedas/campo_busqueda_fecha_final.jsp"/>
+		<put name="Numero.Expediente" 	  value="/pages/tiles/fondos/busquedas/campo_busqueda_numero_expediente.jsp"/>
+		<put name="Codigo" 				  value="/pages/tiles/fondos/busquedas/campo_busqueda_codigo.jsp"/>
+		<put name="Productor" 			  value="/pages/tiles/fondos/busquedas/campo_busqueda_productor_serie.jsp"/>
+		<put name="Conservada" 			  value="/pages/tiles/fondos/busquedas/campo_busqueda_conservada.jsp"/>
+		<put name="Bloqueo" 			  value="/pages/tiles/fondos/busquedas/campo_busqueda_bloqueo.jsp"/>
+	</definition>
+
+
+   <definition name="sel.formato.informe.listado" extends="descripcion.defaultLayout">
+		<put name="cuerpo" value="cuerpo_sel_formato_informe_listado.jsp" />
+		<putList name="jsFiles">
+			<add type="string">/js/x_core.js</add>
+			<add type="string">/js/x_event.js</add>
+			<add type="string">/js/utils.js</add>
+			<add type="string">/js/sigia_form.js</add>
+		</putList>
+	</definition>
+
+	<definition name="error.multilinea" extends="archivo.iFrameContentLayout">
+		<put name="cuerpo" value="/multilineaError.jsp" />
+	</definition>
+
+	<definition name="busquedas.abrevia.valor" path="pages/tiles/busquedas/abreviavalor.jsp"/>
+
+
+<!--  ************************************************************
+
+                         GESTION DE SALAS CONSULTA
+
+      ************************************************************
+-->
+	<definition name="gestionSalasConsulta.defaultArbolLayout" extends="archivo.iFrameContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/gestionVistaSalasConsulta" />
+		<put name="defaultViewURL" direct="true" value="/action/gestionVistaSalasConsulta?actionToPerform=loadHomeSalasConsulta" />
+    	<put name="frameRefresher" value="/pages/tiles/salas/arbol/refreshTreeView.jsp" />
+    	<put name="useArbol" value="true"/>
+	</definition>
+
+	<definition name="gestionSalasConsulta.home" extends="archivo.iFrameRootContentLayout">
+		<put name="showTreeViewAction" direct="true" value="/action/gestionVistaSalasConsulta" />
+		<put name="defaultViewURL" direct="true" value="/action/gestionVistaSalasConsulta?actionToPerform=loadHomeSalasConsulta" />
+    	<put name="cuerpo" value="/pages/tiles/salas/arbol/homeSalasConsulta.jsp" />
+		<put name="useArbol" value="true"/>
+	</definition>
+
+    <definition name="gestionSalasConsulta.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+	</definition>
+
+	<definition name="gestionSalasConsulta.listadoEdificios" extends="gestionSalasConsulta.defaultArbolLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/edificio/cuerpo_listado_edificios.jsp" />
+    </definition>
+
+	<definition name="gestionSalasConsulta.edicion.edificio" extends="gestionSalasConsulta.defaultArbolLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/edificio/cuerpo_edicion_edificio.jsp" />
+    </definition>
+
+	<definition name="gestionSalasConsulta.ver.edificio" extends="gestionSalasConsulta.defaultArbolLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/edificio/cuerpo_datos_edificio.jsp" />
+    </definition>
+
+	<definition name="salas.datos.edificio" path="/pages/tiles/salas/edificio/datos_edificio.jsp" />
+
+	<definition name="salas.edicion.sala" extends="gestionSalasConsulta.defaultArbolLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/sala/cuerpo_edicion_sala.jsp" />
+    </definition>
+
+    <definition name="salas.ver.sala" extends="gestionSalasConsulta.defaultArbolLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/sala/cuerpo_datos_sala.jsp" />
+    </definition>
+
+    <definition name="salas.datos.sala" path="/pages/tiles/salas/sala/datos_sala.jsp" />
+
+	<definition name="salas.cambioestado.mesas" extends="gestionSalasConsulta.defaultArbolLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/mesa/cuerpo_seleccion_estado_mesas.jsp" />
+    </definition>
+
+    <definition name="salas.cambiocodigo.mesas" extends="gestionSalasConsulta.defaultArbolLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/mesa/cuerpo_cambio_codigo_mesas.jsp" />
+    </definition>
+
+    <definition name="salas.edicion.mesas" extends="gestionSalasConsulta.defaultArbolLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/mesa/cuerpo_edicion_mesas.jsp" />
+    </definition>
+
+    <definition name="salas.seleccion.mesas" extends="gestionSalasConsulta.defaultArbolLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/mesa/cuerpo_seleccion_mesas.jsp" />
+    </definition>
+
+	<!-- Gestion de Registro de Entrada en Sala -->
+    <definition name="gestionRegistroConsultasSala.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+	</definition>
+
+    <definition name="salas.registro.entrada" extends="gestionRegistroConsultasSala.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/registro/cuerpo_busqueda_usuario.jsp" />
+    </definition>
+
+    <definition name="salas.edicion.registro" extends="gestionRegistroConsultasSala.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/registro/cuerpo_edicion_registro.jsp" />
+    </definition>
+
+    <definition name="salas.confirmar.registro" extends="gestionRegistroConsultasSala.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/registro/cuerpo_confirmar_registro.jsp" />
+    </definition>
+
+    <definition name="salas.datos.registro.entrada" extends="gestionRegistroConsultasSala.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/registro/cuerpo_datos_registro_entrada.jsp" />
+    </definition>
+
+    <definition name="salas.consultas.usuario" extends="gestionRegistroConsultasSala.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/registro/cuerpo_listado_consultas.jsp" />
+    </definition>
+
+    <definition name="salas.listado.usuarios.registrados" extends="gestionRegistroConsultasSala.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/registro/cuerpo_listado_usuarios_registrados.jsp" />
+    </definition>
+
+    <definition name="salas.busqueda.usuarios" extends="gestionRegistroConsultasSala.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/registro/cuerpo_buscar_usuarios.jsp" />
+    </definition>
+
+    <definition name="salas.campo.fecha.registro" path="/pages/tiles/salas/registro/campo_busqueda_fecha_registro.jsp" />
+
+	<!-- Gestion de Usuario de Salas -->
+    <definition name="gestionUsuariosSalasConsulta.defaultLayout" extends="archivo.iFrameContentLayout">
+		<put name="barra_navegacion" value="barra_navegacion.jsp" />
+	</definition>
+
+	<definition name="gestionUsuariosSalasConsulta.listadoUsuarios" extends="gestionUsuariosSalasConsulta.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_listado_usuarios_sc.jsp" />
+    </definition>
+
+ 	<definition name="gestionUsuariosSalasConsulta.datosUsuario" extends="gestionUsuariosSalasConsulta.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_datos_usuario_sc.jsp" />
+    </definition>
+
+  	<definition name="gestionUsuariosSalasConsulta.edicionUsuario" extends="gestionUsuariosSalasConsulta.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_edicion_usuario_sc.jsp" />
+    </definition>
+
+  	<definition name="gestionUsuarioSalasConsulta.addUsuarioExterno" extends="gestionUsuariosSalasConsulta.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_busqueda_usuarios_externos.jsp" />
+    </definition>
+
+  	<definition name="gestionUsuarioSalasConsulta.buscadorUsuarios" extends="gestionUsuariosSalasConsulta.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_busqueda_usuarios.jsp" />
+    </definition>
+
+    <definition name="gestionUsuarioSalasConsulta.buscadorExpedientes" extends="gestionUsuariosSalasConsulta.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_busqueda_expedientes.jsp" />
+    </definition>
+
+    <definition name="gestionUsuarioSalasConsulta.resumenServicios" extends="gestionUsuariosSalasConsulta.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_resumen_servicios.jsp" />
+    </definition>
+
+    <definition name="gestionUsuarioSalasConsulta.temasInvestigacion" extends="gestionUsuariosSalasConsulta.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_temas_investigacion.jsp" />
+    </definition>
+
+    <definition name="gestionUsuarioSalasConsulta.unidadesConsultadas" extends="gestionUsuariosSalasConsulta.defaultLayout">
+    	<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_unidades_consultadas.jsp" />
+    </definition>
+
+    <definition name="gestionUsuarioSalasConsulta.buscarUsuarios" extends="archivo.basicLayout">
+		<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_busqueda_usuarios.jsp" />
+	</definition>
+
+	<definition name="gestionUsuarioSalasConsulta.listadoUsuarios" extends="archivo.basicLayout">
+		<put name="cuerpo" value="/pages/tiles/salas/usuarios/cuerpo_listado_usuarios.jsp" />
+	</definition>
+
+	<definition name="salas.datos.usuario.consulta" path="/pages/tiles/salas/usuarios/datos_usuario_consulta.jsp" />
+
+
+	<definition name="salas.datos.usuario" path="/pages/tiles/salas/usuarios/datos_usuario_sc.jsp" />
+	<!-- Fin Gestión de Usuarios Salas -->
+
+
+	<!-- Fin Gestion Salas -->
+
+	<!-- Gestion de Niveles Deposito -->
+	<definition name="deposito.niveles.listaNiveles" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/deposito/niveles/cuerpo_listadoNiveles.jsp" />
+	</definition>
+
+	<definition name="deposito.niveles.datosNivel" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/deposito/niveles/cuerpo_datosNivel.jsp" />
+	</definition>
+
+	<definition name="deposito.niveles.altaNivel" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/deposito/niveles/cuerpo_altaNivel.jsp" />
+	</definition>
+
+	<definition name="deposito.niveles.agregarNivelDescendiente" extends="fondos.defaultLayout">
+		<put name="cuerpo" value="/pages/tiles/deposito/niveles/cuerpo_agregarNivelDescendiente.jsp" />
+	</definition>
+	<!-- Fin Gestion Niveles -->
+
+</tiles-definitions>

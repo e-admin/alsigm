@@ -1,0 +1,88 @@
+
+	// IDocScanXP.idl : IDL source for IDocScanXP.exe
+//
+// This file will be processed by the MIDL tool to
+// produce the type library (IDocScanXP.tlb) and marshalling code.
+import "oaidl.idl";
+import "ocidl.idl";
+	
+[
+	uuid(C78C8DB9-F105-470C-BC81-96A3E8453AC9),
+	version(1.0),
+	helpstring("IECISA IDocScanXP Type Library")
+]
+library IDocScanXPLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		object,
+		uuid(6E8DBAA7-A128-4034-B520-098276AFF0B7),
+		dual,
+		helpstring("IScanner Interface"),
+		pointer_default(unique)
+	]
+	interface IScanner : IDispatch
+	{
+		[id(1), helpstring("Initialize")]
+      HRESULT Initialize();
+
+		[id(2), helpstring("Configure")] 
+      HRESULT Configure();
+
+		[id(3), helpstring("UINewFiles")] 
+      HRESULT UINewFiles([out,retval] VARIANT* Files);
+
+		[id(4), helpstring("UIUpdateFile")] 
+      HRESULT UIUpdateFile([in] BSTR File,[out,retval] VARIANT_BOOL* Updated);
+
+		[id(5), helpstring("NewFiles")] 
+      HRESULT NewFiles([in] LONG PagesToScan,[out,retval] VARIANT* Files);
+
+	  [id(6), helpstring("ConfigureScan")] 
+      HRESULT ConfigureScan();	  
+
+	  [id(7), helpstring("UINewFilesToPath")] 
+      HRESULT UINewFilesToPath([in] BSTR Path,[out,retval] VARIANT* Files);
+
+	  [id(8), helpstring("InitializeX")]
+      HRESULT InitializeX([in] LONG hWnd);	
+
+	  [id(9), helpstring("SelectDevice")] 
+      HRESULT SelectDevice([in] BSTR Name);
+
+	  [id(10), helpstring("Terminate")] 
+      HRESULT Terminate();
+
+	  [id(11), helpstring("SelectConfiguration")] 
+      HRESULT SelectConfiguration([in] BSTR Name);
+	  
+	  [id(12), helpstring("UIConfig")]
+      HRESULT UIConfig([in] VARIANT_BOOL StdDlg,[in] VARIANT_BOOL InitCapture);	
+
+	  [id(13), helpstring("GetNumPages")]
+      HRESULT GetNumPages([in] BSTR File,[out,retval] LONG* NumPages);	
+
+	  [id(14), helpstring("UINewFilesX")] 
+      HRESULT UINewFilesX([in] LONG NumPages,[out,retval] VARIANT* Files);
+
+	  [id(15), helpstring("NewFilesToPath")] 
+      HRESULT NewFilesToPath([in] BSTR Path,[in] LONG PagesToScan,[out,retval] VARIANT* Files);
+
+
+	};
+
+
+
+	[
+		uuid(936846A9-D889-48FF-AD95-084662394143),
+		helpstring("Scanner Class")
+	]
+	coclass Scanner
+	{
+		[default] interface IScanner;
+	};
+};
+
+	

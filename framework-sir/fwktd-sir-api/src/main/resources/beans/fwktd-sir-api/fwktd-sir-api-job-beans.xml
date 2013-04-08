@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Job para la recepcion de ficheros de intercambio -->
+	<bean id="recepcionFicherosJobDetailImpl" name="recepcionFicherosJobDetail"
+	      class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="es.ieci.tecdoc.fwktd.sir.api.job.RecepcionFicherosJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="servicioIntercambioRegistral">
+					<ref bean="fwktd_sir_servicioIntercambioRegistralImpl" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- Job para la comprobacion del time-out en el envio de ficheros de intercambio -->
+	<bean id="comprobarTimeOutEnviosJobDetailImpl" name="comprobarTimeOutEnviosJobDetail"
+	      class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="es.ieci.tecdoc.fwktd.sir.api.job.ComprobarTimeOutEnviosJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="servicioIntercambioRegistral">
+					<ref bean="fwktd_sir_servicioIntercambioRegistralImpl" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- Job para la comprobacion del time-out en el envio de ficheros de intercambio -->
+	<bean id="eliminarAsientosPorEstadosJobDetailImpl" name="eliminarAsientosPorEstadosJobDetail"
+	      class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="es.ieci.tecdoc.fwktd.sir.api.job.EliminarAsientosPorEstadosJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="servicioIntercambioRegistral">
+					<ref bean="fwktd_sir_servicioIntercambioRegistralImpl" />
+				</entry>
+
+				<!--
+					Estados en EstadoAsientoRegistralEnum:
+						PENDIENTE_ENVIO 	= 0;
+						ENVIADO 			= 1;
+						ENVIADO_Y_ACK 		= 2;
+						ENVIADO_Y_ERROR 	= 3;
+						DEVUELTO 			= 4;
+						ACEPTADO 			= 5;
+						REENVIADO 			= 6;
+						REENVIADO_Y_ACK 	= 7;
+						REENVIADO_Y_ERROR	= 8;
+						ANULADO 			= 9;
+						RECIBIDO 			= 10;
+						RECHAZADO 			= 11;
+						RECHAZADO_Y_ACK 	= 12;
+						RECHAZADO_Y_ERROR 	= 13;
+						VALIDADO 			= 14;
+				 -->
+				<entry key="codigosEstado">
+					<list>
+						<value>5</value>
+						<value>9</value>
+						<value>12</value>
+						<value>14</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

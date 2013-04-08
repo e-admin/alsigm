@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="documentoDelegateImpl" name="documentoDelegate"
+		class="es.ieci.tecdoc.fwktd.csv.web.delegate.impl.DocumentoDelegateImpl">
+		<property name="servicioDocumentos" ref="fwktd_csv_servicioDocumentos"/>
+	</bean>
+
+	<bean id="captchaDelegateFactoryBeanImpl" name="captchaDelegateFactoryBean"
+		class="es.ieci.tecdoc.fwktd.csv.web.delegate.CaptchaDelegateFactory">
+	</bean>
+
+	<bean id="captchaDelegateFactoryImpl" name="captchaDelegateFactory"
+	      factory-bean="captchaDelegateFactoryBean"
+	      factory-method="getCaptchaDelegate">
+		<constructor-arg type="java.lang.String" value="${fwktd-csv-webapp.useCaptcha}"/>
+		<constructor-arg type="java.lang.String" value="captchaDelegate"/>
+	</bean>
+
+	<bean id="captchaDelegateImpl" name="captchaDelegate"
+		class="es.ieci.tecdoc.fwktd.csv.web.delegate.impl.CaptchaDelegateImpl"
+		lazy-init="true">
+	</bean>
+
+</beans>

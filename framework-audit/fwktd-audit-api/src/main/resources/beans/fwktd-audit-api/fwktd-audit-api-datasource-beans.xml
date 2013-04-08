@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+        
+    <!-- archivo de definicion de beans de datasources -->
+	<bean id="fwktd_audit_dataSourceImpl" name="fwktd_audit_dataSource"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.jdbc.datasource.MultiEntityJndiDatasource">
+		<property name="jndiBaseName" value="${fwktd-audit.jdbc.datasource}" />
+	</bean>
+
+</beans>

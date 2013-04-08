@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="registro">
+		
+	
+	
+	<select id="getNumRegistroById" parameterClass="java.util.Map" resultClass="java.lang.String" >
+		select FLD1 from a$idLibro$sf where fdrid=#idRegistro#
+	</select>
+	
+	
+	
+	
+	
+</sqlMap>	

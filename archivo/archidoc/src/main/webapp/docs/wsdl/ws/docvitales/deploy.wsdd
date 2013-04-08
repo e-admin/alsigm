@@ -1,0 +1,119 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from WSDocumentosVitalesService WSDL service -->
+
+  <service name="WSDocumentosVitales" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://docvitales.ws"/>
+      <parameter name="wsdlServiceElement" value="WSDocumentosVitalesService"/>
+      <parameter name="schemaQualified" value="http://vos.webservice.docvitales,http://docvitales.ws,http://vos.docvitales,http://vos.common"/>
+      <parameter name="wsdlServicePort" value="WSDocumentosVitales"/>
+      <parameter name="className" value="ws.docvitales.WSDocumentosVitalesImpl"/>
+      <parameter name="wsdlPortType" value="WSDocumentosVitales"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getSeriesTercero" qname="operNS:getSeriesTercero" xmlns:operNS="http://docvitales.ws" returnQName="retNS:getSeriesTerceroReturn" xmlns:retNS="http://docvitales.ws" returnType="rtns:Serie" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+        <parameter qname="pns:idTercero" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getDocumentosAntecedentes" qname="operNS:getDocumentosAntecedentes" xmlns:operNS="http://docvitales.ws" returnQName="retNS:getDocumentosAntecedentesReturn" xmlns:retNS="http://docvitales.ws" returnType="rtns:DocumentoAntecedente" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+        <parameter qname="pns:idTercero" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idSerie" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getDocumentosAntecedentesTercero" qname="operNS:getDocumentosAntecedentesTercero" xmlns:operNS="http://docvitales.ws" returnQName="retNS:getDocumentosAntecedentesTerceroReturn" xmlns:retNS="http://docvitales.ws" returnType="rtns:DocumentoAntecedente" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+        <parameter qname="pns:idTercero" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getISADG" qname="operNS:getISADG" xmlns:operNS="http://docvitales.ws" returnQName="retNS:getISADGReturn" xmlns:retNS="http://docvitales.ws" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idDocAnt" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getDocumentosVitalesTercero" qname="operNS:getDocumentosVitalesTercero" xmlns:operNS="http://docvitales.ws" returnQName="retNS:getDocumentosVitalesTerceroReturn" xmlns:retNS="http://docvitales.ws" returnType="rtns:InfoBDocumentoVital" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+        <parameter qname="pns:idTercero" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getDocumentosVitalesTerProc" qname="operNS:getDocumentosVitalesTerProc" xmlns:operNS="http://docvitales.ws" returnQName="retNS:getDocumentosVitalesTerProcReturn" xmlns:retNS="http://docvitales.ws" returnType="rtns:InfoBDocumentoVital" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+        <parameter qname="pns:idTercero" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idProc" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getDocumentoVital" qname="operNS:getDocumentoVital" xmlns:operNS="http://docvitales.ws" returnQName="retNS:getDocumentoVitalReturn" xmlns:retNS="http://docvitales.ws" returnType="rtns:DocumentoVital" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="altaDocumentoVital" qname="operNS:altaDocumentoVital" xmlns:operNS="http://docvitales.ws" returnQName="retNS:altaDocumentoVitalReturn" xmlns:retNS="http://docvitales.ws" returnType="rtns:InfoBDocumentoVital" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+        <parameter qname="pns:formDocVit" xmlns:pns="http://docvitales.ws" type="tns:FormDocumentoVital" xmlns:tns="http://vos.webservice.docvitales"/>
+      </operation>
+      <operation name="vinculaExpediente" qname="operNS:vinculaExpediente" xmlns:operNS="http://docvitales.ws" soapAction="" >
+        <parameter qname="pns:idDocVit" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idExp" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idSist" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:usuario" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="eliminaVinculosExpediente" qname="operNS:eliminaVinculosExpediente" xmlns:operNS="http://docvitales.ws" soapAction="" >
+        <parameter qname="pns:idExp" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idSist" xmlns:pns="http://docvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getDocumentosVitalesTerProc getDocumentosAntecedentes getDocumentoVital getDocumentosAntecedentesTercero getDocumentosVitalesTercero eliminaVinculosExpediente vinculaExpediente getSeriesTercero getISADG altaDocumentoVital"/>
+      <parameter name="scope" value="Request"/>
+
+      <typeMapping
+        xmlns:ns="http://vos.webservice.docvitales"
+        qname="ns:DocumentoAntecedente"
+        type="java:docvitales.webservice.vos.DocumentoAntecedente"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vos.webservice.docvitales"
+        qname="ns:Serie"
+        type="java:docvitales.webservice.vos.Serie"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vos.webservice.docvitales"
+        qname="ns:FormDocumentoVital"
+        type="java:docvitales.webservice.vos.FormDocumentoVital"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vos.common"
+        qname="ns:BaseVO"
+        type="java:common.vos.BaseVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vos.webservice.docvitales"
+        qname="ns:DocumentoVital"
+        type="java:docvitales.webservice.vos.DocumentoVital"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vos.docvitales"
+        qname="ns:FormDocumentoVitalVO"
+        type="java:docvitales.vos.FormDocumentoVitalVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vos.webservice.docvitales"
+        qname="ns:InfoBDocumentoVital"
+        type="java:docvitales.webservice.vos.InfoBDocumentoVital"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

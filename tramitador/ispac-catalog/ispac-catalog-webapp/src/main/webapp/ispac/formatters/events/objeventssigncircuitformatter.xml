@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='EVENTO_TEXT'
+				 titleKey='events.title'
+				 fieldType='EVENT'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 propertyValueKey='events.delete.event'
+				 fieldType='DELEVENT'
+				 fieldLink='EVENTO'
+				 styleClass='aDelButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''
+				 url='events.do?method=delEvent'
+				 id='delEvent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 propertyValueKey='events.addRules'
+				 fieldType='ADDRULE'
+				 fieldLink='EVENTO'
+				 styleClass='aActionButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''
+				 url='events.do?method=rules'
+				 id='codEvent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE_REGLA'
+				 titleKey='rules.title'
+				 fieldType='RULE'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE_REGLA'
+				 titleKey='rules.propertyLabel.modOrden'
+				 fieldType='MODORDER'
+				 fieldLink='ID_REGLA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''
+				 url='eventsSingCircuit.do?method=modRuleOrder'
+				 id='RuleId'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 propertyValueKey='rules.delete.rule'
+				 fieldType='DELRULE'
+				 fieldLink='ID_REGLA'
+				 styleClass='aDelButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''
+				 url='events.do?method=delEventRule'
+				 id='delRule'/>
+
+</beanformatter>

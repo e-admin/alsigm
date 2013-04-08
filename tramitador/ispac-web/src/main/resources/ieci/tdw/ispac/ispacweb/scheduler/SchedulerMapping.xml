@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+<!--
+ * Copyright (C) 2003, 2004  Pascal Essiembre, Essiembre Consultant Inc.
+ * 
+ * This file is part of Essiembre Scheduler.
+ * 
+ * Essiembre Scheduler is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * Essiembre Scheduler is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with Essiembre Scheduler; if not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, 
+ * Boston, MA  02111-1307  USA
+ -->
+<mapping>
+    <class name="ieci.tdw.ispac.ispacweb.scheduler.SchedulerTasks">
+        <map-to xml="scheduler"/>
+        <field name="tasksList"
+               type="ieci.tdw.ispac.ispacweb.scheduler.SchedulerTaskInfo"
+               collection="vector">
+            <bind-xml name="task"/>
+        </field>
+    </class>
+
+    <class name="ieci.tdw.ispac.ispacweb.scheduler.SchedulerTaskInfo">
+        <field name="task"
+               type="java.lang.String"
+               required="true">
+            <bind-xml name="class" node="attribute"/>
+        </field>
+
+        <field name="time"
+               type="java.lang.String"
+               required="false">
+            <bind-xml name="time" node="attribute"/>
+        </field>
+
+        <field name="period"
+               type="java.lang.String"
+               required="false">
+            <bind-xml name="period" node="attribute"/>
+        </field>
+
+        <field name="delay"
+               type="java.lang.String"
+               required="false">
+            <bind-xml name="delay" node="attribute"/>
+        </field>
+
+        <field name="parameters"
+               type="org.exolab.castor.mapping.MapItem"
+               collection="vector">
+            <bind-xml name="task-param"/>
+        </field>
+
+    </class>
+
+    <class name= "org.exolab.castor.mapping.MapItem">
+        <field name="key" type="java.lang.String">
+            <bind-xml name="param-name" node="element"/>
+        </field>
+        <field name="value" type="java.lang.String">
+            <bind-xml name="param-value" node="element" />
+        </field>
+    </class>
+
+</mapping>
+

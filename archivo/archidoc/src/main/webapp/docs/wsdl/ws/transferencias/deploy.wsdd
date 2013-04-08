@@ -1,0 +1,93 @@
+<!-- Use this file to deploy some handlers/chains and services -->
+<!-- Two ways to do this: -->
+<!-- java org.apache.axis.client.AdminClient deploy.wsdd -->
+<!-- after the axis server is running -->
+<!-- or -->
+<!-- java org.apache.axis.utils.Admin client|server deploy.wsdd -->
+<!-- from the same directory that the Axis engine runs -->
+
+<deployment
+	xmlns="http://xml.apache.org/axis/wsdd/"
+	xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+	<!-- Services from WSTransferenciasService WSDL service -->
+
+	<service
+		name="WSTransferencias"
+		provider="java:RPC"
+		style="wrapped"
+		use="literal">
+		<parameter
+			name="wsdlTargetNamespace"
+			value="http://transferencias.ws/" />
+		<parameter
+			name="wsdlServiceElement"
+			value="WSTransferenciasService" />
+		<parameter
+			name="schemaUnqualified"
+			value="http://transferencias.ws/" />
+		<parameter
+			name="wsdlServicePort"
+			value="WSTransferencias" />
+		<parameter
+			name="className"
+			value="ws.transferencias.WSTransferenciasSoapBindingImpl" />
+		<parameter
+			name="wsdlPortType"
+			value="WSTransferencias" />
+		<parameter
+			name="typeMappingVersion"
+			value="1.1" />
+		<operation
+			name="transferirExpedienteElectronicoConDocumentos"
+			qname="operNS:transferirExpedienteElectronicoConDocumentos"
+			xmlns:operNS="http://transferencias.ws/"
+			returnQName="return"
+			returnType="rtns:boolean"
+			xmlns:rtns="http://www.w3.org/2001/XMLSchema"
+			soapAction="">
+
+
+			<parameter
+				qname="codigoTramitador"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="nombreTramitador"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="anioExpediente"
+				type="tns:int"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="codigoProcedimiento"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="contenidoXML"
+				type="tns:base64Binary"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="verificarUnicidad"
+				type="tns:int"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="usuario"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="password"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="entidad"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<parameter
+			name="allowedMethods"
+			value="transferirExpedienteElectronicoConDocumentos" />
+
+	</service>
+</deployment>

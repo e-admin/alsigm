@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       					   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="documentoElectronicoAnexoManager" parent="isicresDocumentoElectronicoTransactionTemplate">
+		<property name="target">
+			<bean  class="es.ieci.tecdoc.isicres.api.documento.electronico.business.manager.impl.DocumentoElectronicoAnexoManagerImpl">
+				<property name="registroManager"><ref bean="registroManager"/></property>
+				<property name="documentoElectronicoAnexoIncrementer"><ref bean="documentoElectronicoAnexoIncrementer"/></property>
+				<property name="documentoElectronicoAnexoDatosFirmaIncrementer"><ref bean="documentoElectronicoAnexoDatosFirmaIncrementer"/></property>
+				<property name="documentoElectronicoAnexoDAO"><ref bean="documentoElectronicoAnexoDAO"/></property>
+		    </bean>
+		</property>
+	</bean>
+
+	<bean id="documentotipoDocumentalSicresManager" parent="isicresDocumentoElectronicoTransactionTemplate">
+		<property name="target">
+			<bean  class="es.ieci.tecdoc.isicres.api.documento.electronico.business.manager.impl.DocumentoTipoDocumentalSicresManagerImpl">
+				<property name="documentoTipoDocumentalDAO"><ref bean="documentoTipoDocumentalSicresDAO"/></property>
+		    </bean>
+		</property>
+	</bean>
+
+</beans>

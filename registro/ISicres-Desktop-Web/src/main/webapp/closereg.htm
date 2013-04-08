@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/table.css"/>
+		<script type="text/javascript" language="javascript" src="./scripts/calendar.js" charset="ISO-8859-1"></SCRIPT>
+</HEAD>
+	<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/report.js"></SCRIPT>
+	<BODY>
+		<TABLE WIDTH="99%" CLASS="report" TABINDEX="-1">
+			<THEAD>
+				<TR>
+					<TH CLASS="report" ALIGN="left">
+						<SCRIPT LANGUAGE="javascript">
+							document.write(top.GetIdsLan( "IDS_TITCLOSEREG"));
+						</SCRIPT>
+					</TH>
+				</TR>
+			</THEAD>
+			<TR VALIGN="middle">
+				<TD CLASS="report">		
+					<DIV class="label" WIDTH="100%" style="clear: both;">			
+						<INPUT CLASS="radio" TYPE="radio" NAME="chkCloseRegisters" ID="chkCloseRegisters" VALUE="chkCloseRegistersDay" TABINDEX="1" onclick="ToggleCloseRegBtn(this)"> </INPUT>
+						<SCRIPT LANGUAGE="javascript">
+							document.write(top.GetIdsLan("IDS_LABELCHKCLOSEREG"));
+						</SCRIPT>
+						<BR/>
+						<INPUT CLASS="radio" TYPE="radio" NAME="chkCloseRegisters" ID="chkCloseRegisters" VALUE="chkCloseRegistersRange" TABINDEX="1" onclick="ToggleCloseRegBtn(this)"> </INPUT>
+						<SCRIPT LANGUAGE="javascript">
+							document.write(top.GetIdsLan("IDS_LABELCHKCLOSEREG_RANGE"));
+						</SCRIPT>
+					</DIV>
+					<BR/>
+					<DIV class="closeRegBetweenDate">
+						<table style="margin-left:15px">
+							<tr>
+								<TD CLASS="report">
+									<SCRIPT LANGUAGE="javascript">
+										document.write(top.GetIdsLan( "IDS_LABEL_FROMHOUR"));
+									</SCRIPT>
+								</td>
+								<TD CLASS="report">
+									<INPUT TYPE="text" CLASS="input" VALUE="" NAME="fechaCierre1" SIZE="10" MAXLENGTH="10" onblur="ValidateDate(this);"
+										TABINDEX="1" DISABLED="1" ID="fechaCierre1"> </INPUT>
+									<img src="images/calendarM.gif" id="imgFechaCierre1"  name="imgFechaCierre1" style="display:none"
+    									 onclick='showCalendarEx(fechaCierre1, fechaCierre1 , top.Idioma)'"/>
+								</td>
+							</tr>
+							<tr>
+								<td CLASS="report">
+									<SCRIPT LANGUAGE="javascript">
+										document.write(top.GetIdsLan( "IDS_LABEL_UNTILHOUR"));
+									</SCRIPT>
+								</td>
+								<td CLASS="report">
+									<INPUT TYPE="text" CLASS="input" VALUE="" NAME="fechaCierre2" SIZE="10" MAXLENGTH="10" onblur="ValidateDate(this);"
+										TABINDEX="1" DISABLED="1" id="fechaCierre2"> 
+									</INPUT>
+									<img src="images/calendarM.gif" id="imgFechaCierre2"  name="imgFechaCierre2" style="display:none"
+    									onclick='showCalendarEx(fechaCierre2, fechaCierre2, top.Idioma)'"/>									
+								</td>
+							</tr>
+						</table>					
+					</DIV>
+				</TD>
+			</TR>
+		</TABLE>
+	</BODY>
+</HTML>

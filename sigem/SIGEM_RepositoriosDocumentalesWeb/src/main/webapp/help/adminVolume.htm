@@ -1,0 +1,465 @@
+<html>
+<head>
+<title>Administración de Usuarios</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<style type="text/css">
+.body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+<!-- 
+.titulo
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+a:visited{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #660066;
+}
+a:link{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #ffffff;
+}
+.bar {
+	color: #CC6600;
+}
+
+p,li {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+
+ol ol li { list-style-type: upper-alpha;}
+.header {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+.header2{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	margin-left: 30px;
+}
+.bold{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.tableBase {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	border: 1px #000 solid;
+	width: 85%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	empty-cells: show;
+	margin: 0;
+	padding: 0;
+}
+th {
+ 	background-color: #F2F2F2;
+	font-size: 12px;
+	font-weight: bold;
+	height: 25px;
+}
+.resaltado{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #ffffce;
+	margin-left: 15px;
+	height: 20px;
+	padding: 4px;
+}
+
+
+// -->
+</style>
+
+<script language="javascript">
+	window.name = 'help';
+</script>
+</head>
+
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#FFFFFF" vlink="#000099" alink="#FFFFFF" onLoad="">
+<div align="left">
+</div>
+
+<div id="titulo" style="position:absolute; left:349px; top:29px; width:381px; height:24px; z-index:4">
+
+<span class="titulo"> 
+	Repositorios Documentales</span></div><br>
+
+       
+<blockquote> 
+  <p>&nbsp;</p><table width="700" border="0" cellspacing="0" cellpadding="0">
+    <tr align="left" valign="top"> 
+      <td> 
+        <blockquote>
+			<p>
+			Esta aplicación permite organizar la información de la base de datos en estructuras lógicas ordenadas tales como los volúmenes,
+			las listas y los repositorios. La definición de estas estructuras es imprescindible para aquellos archivadores 
+			que contengan ficheros.			</p>
+			<p>
+			La aplicaci&oacute;n de Repositorios Documentales gestiona volúmenes y servidores de ficheros.			</p>
+			<span class="header">
+			Ventana principal de Repositorios Documentales			</span>
+
+			<p>
+				La pantalla principal está formada por los siguientes elementos básicos:			</p>
+			<p align="center"><img src="imag/volumes/sigem_general.JPG"></p>
+			<p>
+				Como se observa en la figura anterior, la pantalla se divide en dos áreas de trabajo claramente diferenciadas:			</p>
+			<ul>
+				<li>La dedicada a la enumeración de los repositorios y listas de volúmenes creados en el sistema (zona izquierda).</li>
+				<li>Dependiendo del elemento de la izquierda que seleccione, los datos de la parte derecha de variarán, los volúmenes que componen la lista, o los volúmenes de un repositorio.</li>
+			</ul>
+
+			<p>
+			Los usuarios con derechos podrán realizar las siguientes operaciones:			</p>
+			<ul>
+				<li>Dar de alta nuevos volúmenes, repositorios y listas.</li>
+				<li>Modificar ciertos atributos de repositorios, volúmenes y listas ya creados.</li>
+				<li>Consultar las características de un volumen, lista o repositorio determinado.</li>
+			</ul>
+			
+			<span class="header">
+				Estructura de almacenamiento			</span>
+
+			<p align="center">
+				<img src="imag/volumes/estructura.gif" border="0" />			</p>
+			<p>
+			Para poder realizar estas acciones, es preciso haber definido con anterioridad los siguientes elementos:			</p>
+
+			<ul>
+				<li><span class="bold">Repositorios: </span>Estructura lógica que agrupa una serie de características físicas que heredarán todos los volúmenes que se incluyan en ellos. </li>
+			</ul>
+			<ul>
+				<li><span class="bold">Volúmenes: </span>Lugar donde se van a almacenar los ficheros de las carpetas de archivadores. </li>
+			</ul>
+			<ul>
+				<li><span class="bold">Listas: </span>Serie ordenada de volúmenes. Al incluir un fichero en una carpeta de un archivador determinado vía escáner o vía fichero, en el momento en que se guarda la carpeta, el fichero se guardará en el primer volumen de almacenamiento disponible de la lista de volúmenes asociada al archivador. Si realiza cualquier tipo de modificación sobre el fichero y guarda los cambios, el nuevo fichero reemplazará de manera automática al original en el volumen de almacenamiento.</li>
+			</ul>
+
+			<p>
+				En resumen, los ficheros capturados en la aplicación se guardan en volúmenes de almacenamiento. Estos volúmenes deben estar incluidos en un repositorio y pueden pertenecer a una o varias listas de volúmenes.			</p>
+
+			<div class="header">
+			Repositorios			</div>
+			<p>
+				Los repositorios del sistema son servidores lógicos que agrupan características comunes de la máquina sobre la que se definen los volúmenes. Por tanto, los volúmenes que se incluyan en un mismo repositorio compartirán las propiedades físicas que éste agrupe. Cada repositorio puede incluir un número indefinido de volúmenes.			</p>
+			<p align="center">
+			<img src="imag/volumes/repositorios.gif" border="0"/>			</p>
+			
+			<span class="header2">
+				Gestión de repositorios			</span>
+			<p>
+			Mediante el módulo de administración de volúmenes, se pueden realizar las opciones necesarias para llevar la gestión de repositorios que comprende las siguientes operaciones:			</p>
+			<ul>
+				<li>Crear repositorios.</li>
+				<li>Modificar sus características.</li>
+				<li>Borrar repositorios</li>
+				<li>Consultar sus propiedades.</li>
+			</ul>
+			<div class="header2">
+				Crear repositorios			</div>
+			<div class="resaltado">
+				Secuencia de operaciones para crear un repositorio			</div>
+			<ol>
+				<li>Seleccione el nodo Repositorio que aparece por defecto en la pantalla, y ejecute la opción Nuevo que aparece en la derecha. Aparece el asistente de creación de repositorios.
+					<p align="center"><img src="imag/volumes/sigem_repo_nuevo1.JPG" width="395" height="263"></p>
+				</li>
+				<li>Introduzca el nombre que desee dar al repositorio en el campo <span class="bold">Nombre </span>. En el campo <span class="bold">Tipo</span> seleccione el tipo de repositorio que desee crear. Según la forma de acceso que se determine a la máquina puede elegir uno de estos: 
+					<ul>
+						<li>PFS (Public File System): El sistema puede acceder a una máquina mediante un sistema público de ficheros.</li>
+						<li>FTP (File Transfer Program): Si es una máquina con protocolo FTP. Disco remoto con servidor FTP.</li>
+					</ul>
+					<p align="center">
+						<img src="imag/volumes/typeRepository.gif" border="0"/>					</p>
+					<p>
+					En el campo <span class="bold"> Descripción</span> puede introducir una breve descripción sobre el repositorio.					</p>
+					<p>
+					El apartado <span class="bold">Estado</span> se refiere a aquellas propiedades transitorias por las que va a pasar el repositorio. Seleccione cualquiera de las siguientes opciones:					</p>
+					<ul>
+						<li>Disponible: Es el estado natural, se puede acceder a él normalmente.</li>
+						<li>Sólo lectura: El repositorio no se podrá modificar, ni se podrán crear y eliminar volúmenes de dicho repositorio.</li>
+					</ul>
+				</li>
+				<li>
+					Pulse "Siguiente" para pasar de ficha una vez definidos los aspectos necesarios.
+					<ol><li><p align="center"><img src="imag/volumes/sigem_repo_nuevo2.JPG" width="396" height="268"></p>
+
+						<p>
+							Esta pantalla le permite indicar las características físicas de la máquina sobre la que van a almacenarse los ficheros. Rellene los siguientes campos y recuadros:							</p>
+						<ul>
+							<li>En el recuadro <span class="bold">Servidor</span> seleccione si desea establecer conexión con éste mediante una "Dirección IP" o mediante un "Nombre lógico" de conexión que corresponderá al fichero HOSTS de Windows. En ambos casos, deberá introducir el nombre de un Usuario y su Contraseña.</li>
+							<li><span class="bold">Puerto: </span> Puerto seleccionado en la conexión. </li>
+							<li><span class="bold">Ruta</span> de acceso: En este recuadro incluya la ruta para acceder al repositorio en cuestión.</li>
+						</ul>
+						</li>
+					</ol>
+				</li>
+				<li>
+					Pulse "Crear" para crear el repositorio, y finalizar el asistente.				</li>
+			</ol>
+
+			<div class="header2">
+				Consultar las propiedades			</div>
+			<p>
+				Durante el proceso de creación se determinan ciertas características de cada repositorio. Para consultarlas, haga seleccione el repositorio en cuestión y pulse sobre la opción Propiedades.			</p>
+
+			<p align="center">
+				<img src="imag/volumes/sigem_repo_properties.JPG">			</p>
+			<p>
+				A partir de aquí puede consultar los siguientes aspectos:			</p>
+			<ul>
+				<li>Nombre y tipo.</li>
+				<li>Fecha y hora de creación y última modificación del repositorio.</li>
+				<li>Nombre del usuario que lo creó y responsable de su última modificación.</li>
+			</ul>
+			<p>
+				Si selecciona la pestaña "Detalle" puede ver también:			</p>
+			<ul>
+				<li>La ruta de acceso al directorio en el que se van a almacenar los ficheros correspondientes.</li>
+				<li>Estado actual (Disponible, se puede leer y acceder a él siempre que lo desee; o sólo lectura, se trata de un repositorio sobre el que no se pueden modificar datos).</li>
+			</ul>
+
+			<div class="header2">
+				Modificar repositorios			</div>
+
+			<p>Desde la opción Editar de cada Repositorio y una vez seleccionado el repositorio en cuestión se puede modificar lo siguiente:</p>
+			<ul>
+				<li>El nombre.</li>
+				<li>La descripción.</li>
+				<li>La "Dirección IP" o el "Nombre lógico" del servidor, el puerto, y el nombre de Usuario y Contraseña con los que se realiza la conexión, si el repositorio es FTP. </li>
+			</ul>			
+			
+			<p align="center"><img src="imag/volumes/sigem_repoeditar.JPG" width="394" height="262"></p>
+			<p>El botón test realiza una prueba de conexión para verificar los datos del repositorio.</p>
+
+
+			<div class="header2">
+				Borrar repositorios			</div>
+
+			<p>Sólo se pueden borrar repositorios en los que no exista ningún volumen. La opción que ha de utilizar es Eliminar dentro del menú Edición de cada Repositorio.</p>
+
+			<div class="header">
+				Volúmenes			</div>
+			<p>
+				Un volumen de almacenamiento representa el destino en el que se van a almacenar los ficheros de las carpetas de los archivadores.			</p>
+
+			<div class="header2">
+				Gestión de Volúmenes			</div>
+			<p>
+				Mediante el módulo de administración de volúmenes, se pueden realizar las opciones necesarias para llevar la gestión de volúmenes que comprende las siguientes operaciones:			</p>
+			<ul>
+				<li>Crear volúmenes. </li>
+				<li>Modificar sus características.</li>
+				<li>Borrar volúmenes</li>
+				<li>Consultar sus propiedades.</li>
+			</ul>
+			
+			<div class="header2">
+				Crear volúmenes			</div>
+			<div class="resaltado">
+				Secuencia de operaciones para crear un volumen.			</div>
+
+			<ol>
+				<li>Seleccionar el repositorio en el que se desea incluir el volumen, elegir la opción "Nuevo Volumen". 
+					<p align="center"><img src="imag/volumes/sigem_vol_new.JPG" width="612" height="517"></p>
+				</li>
+				<li>Rellene los siguientes campos:
+					<ul>
+						<li><span class="bold">Nombre: </span>Introduzca el nombre que desee dar al nuevo volumen.</li>
+						<li><span class="bold">Ruta de acceso: </span> Relativa al repositorio al que pertenece el volumen.</li>
+						<li><span class="bold">Capacidad: </span>Tamaño máximo en Mbytes que va a tener el volumen. Se podrá copiar información que no exceda de lo aquí indicado. Por defecto se asignan 500 Mbytes.</li>
+						<li><span class="bold">Descripción: </span> Escriba un breve texto sobre el volumen.</li>
+						<li><span class="bold">Estado:</span>Permite seleccionar el estado del volumen. La aplicación reconoce tres estados diferentes para un volumen:
+							<ul>
+								<li>"Disponible": Se puede leer y acceder a él normalmente. Por defecto todos los volúmenes nuevos están disponibles.</li>
+								<li>"Sólo lectura": Se trata de un volumen que no se puede modificar.</li>
+								<li>"Lleno": El volumen ha llegado a la capacidad máxima definida y no puede albergar más ficheros.</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>Pulse "Aceptar". El nuevo volumen aparecerá en la zona derecha de la pantalla principal de la aplicación. Para crear más volúmenes repita este proceso las veces que sean necesarias.</li>
+			</ol>
+
+			<div class="header2">
+			Consultar propiedades de volúmenes			</div>
+			<p>
+				Igual que sucede con los repositorios, durante el proceso de creación de volúmenes se determinan ciertas características. Para consultarlas debe seleccionar el repositorio o la lista que contenga a dicho volumen y elegir la opción Propiedades			</p>
+			
+			<p align="center"><img src="imag/volumes/sigem_vol_properties.JPG">&nbsp;</p>
+
+			<p>Además del nombre, repositorio al que pertenece el volumen, identificador y usuario que lo ha creado y modificado, bajo la pestaña "Detalle" también puede consultar la ruta de acceso, la capacidad total del volumen y lo que está ocupado, así como el número de ficheros copiados y el estado en el que se encuentra.</p>
+			<div class="header2">
+				Modificar volúmenes			</div>
+			<p>
+			Desde la opción Editar, una vez seleccionado el repositorio o lista que contiene al volumen se puede modificar lo siguiente:			</p>
+			<ul>
+				<li>El nombre. </li>
+				<li>La capacidad.</li>
+				<li>El estado: "Disponible", de "Sólo lectura" o "Lleno".</li>
+				<li>La descripción.</li>
+			</ul>
+			<div class="header2">
+				Borrar volúmenes			</div>
+			<p>Sólo se pueden borrar volúmenes vacíos, es decir, aquellos en los que no se ha copiado información. La opción que ha de utilizar es Eliminar de desde la pantalla de edicion de un volumen. Siempre que borre un volumen que esté asociado a una lista, también desaparece de ésta.</p>	
+
+
+			<div class="header">
+				Listas			</div>
+			<p>
+			Una lista es un conjunto de volúmenes pertenecientes a uno o varios repositorios ordenados según el criterio que decida el creador de la lista. Los usuarios sólo realizan operaciones de almacenamiento a través de listas de volúmenes.			</p>
+			
+			<p>
+				Las listas de volúmenes establecen el orden que el sistema seguirá a la hora de almacenar los ficheros de las carpetas. Así, siguiendo el ejemplo del esquema, si asocia la "LISTA 1" a un archivador, el sistema almacenará los ficheros que se incluyan en sus carpetas en el "VOLUMEN1", cuando éste se llene o no esté disponible o esté marcado como "Sólo lectura", pasará al "VOLUMEN2", y así sucesivamente hasta acabar con el espacio disponible de los volúmenes incluidos en esta lista.			</p>
+			
+			<p align="center">
+				<img src="imag/volumes/listas.gif" border="0"/>			</p>
+			<p>
+				Se pueden crear tantas listas como desee, si bien una lista debe contener al menos un volumen. Los elementos de una lista pueden moverse entre sí, alterando el orden definido o añadiendo/eliminando elementos a otras listas. Una misma lista puede incluir volúmenes pertenecientes a distintos repositorios. Un mismo volumen puede estar incluido en más de una lista.			</p>
+			
+			<div class="header2">
+				Gestión de listas de volúmenes			</div>
+
+			<p>
+			Se pueden realizar las siguientes operaciones sobre las Listas de Volúmenes :			</p>
+			<ul>
+				<li>Crear listas</li>
+				<li>Modificar sus características</li>
+				<li>Borrar listas</li>
+				<li>Consultar sus propiedades</li>
+			</ul>
+			<div class="header2">
+				Crear listas de volúmenes			</div>
+
+			<div class="resaltado">
+				Secuencia de operaciones para crear un repositorio			</div>
+			<ol>
+				<li>Seleccione el nodo "Listas" del árbol, y seleccione la opción Nueva Lista  </li>
+				<li>Aparecerá el asistente de creación de listas
+					<p align="center"><img src="imag/volumes/sigem_lista_nueva.JPG" width="394" height="249"></p>
+				</li>
+				<li>
+					Escriba el nombre y una breve descripción complementaria si lo desea.				</li>
+				<li> Pulse Aceptar para finalizar, y se añadirá en el lado correspondiente de las listas de la ventana principal del administrador de almacenamiento. Para crear más listas repita este proceso las veces que sea necesario.</li>
+			</ol>
+
+			<div class="header2">
+				Consultar las propiedades de las listas			</div>
+			<p>
+				Cuando se crea una lista se añaden una serie de características que pueden consultarse con la opción Propiedades, una vez que ésta se haya seleccionado previamente.			</p>
+			<p align="center"><img src="imag/volumes/sigem_lista_properties.JPG" width="395" height="251"></p>
+			<p>La información que se puede consultar es la siguiente: </p>
+			<ul>
+				<li>El nombre de la lista y el identificador. </li>
+				<li>La descripción.</li>
+				<li>Las fechas y los usuarios que la han creado y modificado.</li>
+			</ul>
+			
+			<div class="header2">
+				Modificar listas			</div>
+
+			<p>Desde la opción Editar, una vez seleccionada la lista en cuestión se puede modificar lo siguiente:</p>
+			<ul>
+				<li>El nombre. </li>
+				<li>La descripción.</li>
+			</ul>
+
+			<div class="header2">
+				Borrar listas			</div>
+			<p>Desde la ventana de edición de cada lista, Se pueden borrar listas de volúmenes siempre que no estén siendo utilizadas por ningún archivador, es decir, siempre que no se hayan asociado desde el módulo Administrador a ningún archivador.</p>
+			
+			<div class="header2">
+				Asociar listas a volúmenes.			</div>
+			<p>
+			Creadas las listas, hay que asociarles los volúmenes de almacenamiento en el orden de uso que desee establecer para la aplicación, ya que para que se pueda copiar información de un archivador en un volumen, éste ha de estar asignado a una lista.			</p>
+			<div class="resaltado">
+				Proceda de la siguiente manera:			</div>
+			<ol>
+				<li>Seleccione el repositorio donde se encuentre el volumen al que quiera asociar listas </li>
+				<li>Entre en la pantalla de edición de dicho volumen.</li>
+				<li>
+					Seleccione la pestaña listas.
+					<p align="center"><img src="imag/volumes/sigem_vol_listas.JPG" width="394" height="260"></p>
+				</li>
+				<li>
+					Elija las listas a las que quiere que pertenezca el volumen				</li>
+				<li>Pulse aceptar para guardar los cambios</li>
+			</ol>
+
+			<div class="header2">
+				Modificar la posición de los volúmenes en una lista			</div>
+			<p>
+				Si ha asociado varios volúmenes a una lista puede alterar su posición. Lo único que ha de hacer es 
+				seleccionar la lista y después el volumen que quiere modificar de orden, y a continuación desde 
+				usar los botones Arriba y Abajo para cambiar el orden. Pulsar el boton "Cambiar orden" para guardar cambios.			</p>
+
+<!-- 
+
+		<div class="resaltado">
+			Secuencia de operaciones
+		</div>
+		<ol>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ol>
+
+-->
+
+
+
+
+<br>
+
+<!-- 
+
+
+						<ul>
+							<li><span class="bold">Superusuario:</span> </li>
+						</ul>
+						<ul>
+							<li><span class="bold">Administrador:</span> </li>
+						</ul>
+						<ul>
+							<li><span class="bold">Estándar:</span> </li>
+						</ul>
+						<ul>
+							<li><span class="bold">Sin derechos: </span> </li>
+						</ul>
+					<td>
+						<ul>
+							<li><span class="bold"> </span> </li>
+						</ul>
+					</td>
+
+-->
+
+			<!-- 
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul> -->
+        </blockquote>      </td>
+    </tr>
+  </table>
+  
+</blockquote>
+    
+</body>
+</html>

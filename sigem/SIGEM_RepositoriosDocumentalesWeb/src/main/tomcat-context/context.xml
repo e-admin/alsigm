@@ -1,0 +1,7 @@
+<Context path="/SIGEM_RepositoriosDocumentalesWeb" reloadable="true">
+
+	<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+	<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+	 	
+</Context>

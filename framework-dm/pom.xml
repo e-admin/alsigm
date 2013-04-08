@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd</groupId>
+		<artifactId>fwktd-parent</artifactId>
+		<version>0.7</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-dm</groupId>
+	<artifactId>fwktd-dm</artifactId>
+	<version>0.7</version>
+
+	<packaging>pom</packaging>
+
+	<name>fwktd-dm</name>
+
+	<profiles>
+
+		<profile>
+			<id>jars</id>
+			<activation>
+				<property>
+					<name>jars</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>fwktd-dm-parent</module>
+				<module>fwktd-dm-core</module>
+				<module>fwktd-dm-bd</module>
+				<module>fwktd-dm-invesdoc</module>
+				<module>fwktd-dm-alfresco</module>
+				<module>fwktd-dm-service</module>
+				<module>fwktd-dm-doc</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>distri</id>
+			<activation>
+				<property>
+					<name>distri</name>
+				</property>
+			</activation>
+			<modules>
+				<module>fwktd-dm-dist</module>
+			</modules>
+		</profile>
+
+	</profiles>
+</project>

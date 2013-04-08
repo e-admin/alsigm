@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<config>
+
+	<!-- Propiedades globales -->
+	<properties>
+
+	</properties>
+
+	<!-- Grupos de mapeos de campos -->
+	<mapping-groups>
+
+		<mapping-group id="grupo1">
+			<mapping>
+				<source type="integer">id</source>
+				<destination type="string">document_id</destination>
+			</mapping>
+			<mapping>
+				<source type="string">name</source>
+				<destination type="string">document_name</destination>
+			</mapping>
+			<mapping>
+				<source type="datetime">date</source>
+				<destination type="string">document_date</destination>
+			</mapping>
+		</mapping-group>
+
+	</mapping-groups>
+
+	<content-types>
+		<content-type id="1" name="Alfresco" type="alfresco">
+			<properties>
+				<property name="ALFRESCO_ENDPOINT_ADDRESS">http://[ip]:[puerto]/alfresco/api
+				</property>
+				<property name="ALFRESCO_USERNAME">[user]</property>
+				<property name="ALFRESCO_PASSWORD">[password]</property>
+				<property name="ALFRESCO_PATH">/app:company_home/cm:archidoc</property>
+
+				<!-- OPCIONAL: por defecto {http://www.alfresco.org/model/content/1.0}content -->
+				<property name="ALFRESCO_TYPE">{http://www.alfresco.org/model/content/1.0}content</property>
+
+				<!-- OPCIONAL -->
+				<property name="ALFRESCO_ASPECTS"></property>
+
+				<!-- OPCIONAL: por defecto UTF-8 -->
+				<property name="ALFRESCO_ENCODING">UTF-8</property>
+
+				<!-- OPCIONAL: por defecto SpacesStore -->
+				<property name="ALFRESCO_STORE_NAMESPACE">SpacesStore</property>
+			</properties>
+			<mappings>
+				<mapping>
+					<source type="string">description</source>
+					<destination type="string">{http://www.alfresco.org/model/content/1.0}description
+					</destination>
+				</mapping>
+				<mapping>
+					<source type="string">title</source>
+					<destination type="string">{http://www.alfresco.org/model/content/1.0}title
+					</destination>
+				</mapping>
+			</mappings>
+		</content-type>
+	</content-types>
+</config>
+

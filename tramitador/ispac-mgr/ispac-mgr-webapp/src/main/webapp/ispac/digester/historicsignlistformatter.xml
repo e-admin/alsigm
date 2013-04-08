@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter defaultSort="1">
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_DOCUMENTOS:NUMEXP' 
+				 titleKey='formatter.signHistorics.numExp'
+				 readOnly='false'
+				 fieldType='LIST' 
+				 columnClass="width15percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_DOCUMENTOS:NOMBRE' 
+				 titleKey='formatter.signHistorics.nombreDocumento' 
+				 readOnly='false'
+				 fieldType='LIST'
+				 media='csv excel xml pdf'
+				 columnClass="width25percent"
+				 sortable='true'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_DOCUMENTOS:NOMBRE' 
+				 titleKey='formatter.signHistorics.nombreDocumento' 
+				 readOnly='false'
+				 fieldType='LINK'
+				 fieldLink='SPAC_DT_DOCUMENTOS:ID' 
+				 styleClass='displayLink'
+				 url='showSignedDocument'
+				 id='document'
+				 media='html'
+				 columnClass="width25percent"
+				 sortable='true'/>
+				 
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='SPAC_DT_DOCUMENTOS:FDOC'
+				 readOnly='false'
+				 fieldType='LIST' 
+				 format='dd/MM/yyyy' 
+				 titleKey='formatter.signHistorics.fechaGeneracion' 
+				 columnClass="width15percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+				 			 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_DOCUMENTOS:AUTOR_INFO' 
+				 titleKey='formatter.signHistorics.autor'
+				 readOnly='false'
+				 fieldType='LIST' 
+				 columnClass="width15percent"
+				 sortable='true'/>				 
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_TBL_008:SUSTITUTO' 
+				 titleKey='formatter.signHistorics.estadoFirma'
+				 readOnly='false'
+				 fieldType='LIST' 
+				 columnClass="width15percent"
+				 sortable='true'/>
+
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='SPAC_CTOS_FIRMA:FECHA' 
+				 titleKey='formatter.signHistorics.fechaFirma'
+				 readOnly='false'
+				 fieldType='LIST' 
+				 format='dd/MM/yyyy'
+				 columnClass="width15percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+
+</beanformatter>

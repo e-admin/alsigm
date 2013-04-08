@@ -1,0 +1,180 @@
+
+package es.ieci.tecdoc.isicres.admin.sbo.config;
+
+import java.io.File;
+
+import es.ieci.tecdoc.isicres.admin.core.base64.Base64Util;
+import es.ieci.tecdoc.isicres.admin.core.db.DbConnectionConfig;
+import es.ieci.tecdoc.isicres.admin.core.file.FileManager;
+import es.ieci.tecdoc.isicres.admin.core.xml.lite.XmlTextParser;
+
+public final class CfgMdoDbConn
+{
+   
+   private static final String EN_ROOT        = "Config";
+   private static final String EN_POOL        = "Pooling";
+   private static final String EN_DATASOURCE  = "DataSource";
+   private static final String EN_DRV         = "Driver";
+   private static final String EN_URL         = "Url";
+   private static final String EN_USER        = "User";
+   private static final String EN_PWD         = "Password";
+
+   /* 
+   *@SF-SEVILLA 
+   *02-may-2006 / antmaria
+   */   
+   private static final String EN_SCHEMA      = "Schema";
+   private static final String EN_USERGRANTED = "User_Granted";
+   // end
+   private CfgMdoDbConn()
+   {
+   }
+   
+   public static DbConnectionConfig createConfigFromFile(String dir, String file)
+                                    throws Exception
+   {
+      
+      DbConnectionConfig cfg = null;
+      String             loc;
+      
+      loc = dir + File.separator + file;
+      
+      cfg =  loadConfigFromFile(loc);
+      
+      return cfg;
+      
+   }
+
+   public static DbConnectionConfig createConfigFromFile(String file)
+                                    throws Exception
+   {
+      
+      DbConnectionConfig cfg = null;
+      String             loc;
+      
+      loc = CfgMisc.getConfigFilePath(file);
+      
+      if (loc != null)
+         cfg =  loadConfigFromFile(loc);
+      else
+         cfg =  loadConfigFromResourceFile(file);
+      
+      return cfg;
+      
+   }
+                           
+   public static DbConnectionConfig loadConfigFromFile(String fileLoc)
+                                    throws Exception
+   {    
+      String             text;
+      XmlTextParser      xtp;
+      DbConnectionConfig cfg = null;
+      
+      text = FileManager.readStringFromFile(fileLoc);
+            
+      xtp = new XmlTextParser();
+      
+      xtp.createFromStringText(text);
+
+      cfg = loadConfigFromText(xtp, EN_ROOT);
+      
+      return cfg;
+
+   }
+   
+   public static DbConnectionConfig loadConfigFromResourceFile(String fileName)
+                                    throws Exception
+   {    
+      String             text;
+      XmlTextParser      xtp;
+      DbConnectionConfig cfg = null;
+      
+      text = FileManager.readStringFromResourceFile(fileName);
+            
+      xtp = new XmlTextParser();
+      
+      xtp.createFromStringText(text);
+
+      cfg = loadConfigFromText(xtp, EN_ROOT);
+      
+      return cfg;
+
+   }
+   
+   public static DbConnectionConfig loadConfigFromText(XmlTextParser xtp,String ren) 
+                                    throws Exception
+   {
+      
+      String             pooling, encPwd, dataSource;
+      String             ctx = null;
+      String             drv = null;
+      String             url = null;
+      String             user, pwd;
+      String			 schema = null;
+      String			 userGranted = null;
+      DbConnectionConfig cfg = null;
+      
+      xtp.selectElement(ren);     
+      
+      xtp.selectElement(EN_POOL);
+      pooling = xtp.getElementValue(); 
+
+      if (pooling.equals("Y"))
+      {      
+         xtp.selectElement(EN_DATASOURCE);
+         dataSource = xtp.getElementValue();
+         ctx = dataSource;
+      }
+      else 
+      {     
+         xtp.selectElement(EN_DRV);
+         drv = xtp.getElementValue();
+
+         xtp.selectElement(EN_URL);
+         url = xtp.getElementValue();
+      }
+      
+      xtp.selectElement(EN_USER);
+      user = xtp.getElementValue();
+      
+      if (user.equals(""))
+         user = null;
+            
+      xtp.selectElement(EN_PWD);
+      encPwd = xtp.getElementValue();
+
+      if ((encPwd != null) && (!encPwd.equals("")))
+         pwd = Base64Util.decodeToString(encPwd);
+      else
+         pwd = null;
+
+      if (pooling.equals("Y"))
+      {
+          cfg = new DbConnectionConfig(ctx, user, pwd);
+      }
+      else
+      {
+          cfg = new DbConnectionConfig(drv, url, user, pwd);
+      }
+      /* 
+	 *@SF-SEVILLA 
+	 *02-may-2006 / antmaria
+	 */
+      try {
+    	  xtp.selectElement(EN_SCHEMA);
+          schema = xtp.getElementValue();
+          DbConnectionConfig.setSchema(schema);
+      }catch (Exception ex){
+      }
+      try {
+          xtp.selectElement(EN_USERGRANTED);
+          userGranted = xtp.getElementValue();
+          DbConnectionConfig.setUserGranted(userGranted);
+      }catch (Exception ex){
+      }
+      // FIN schema
+      return cfg;
+            
+   }  
+   
+} // class

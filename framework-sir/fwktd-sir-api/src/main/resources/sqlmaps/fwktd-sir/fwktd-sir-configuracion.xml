@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ConfiguracionVO">
+
+	<typeAlias alias="configuracion"
+		type="es.ieci.tecdoc.fwktd.sir.api.vo.ConfiguracionVO" />
+
+	<resultMap id="configuracion" class="es.ieci.tecdoc.fwktd.sir.api.vo.ConfiguracionVO">
+		<result property="id" column="id" />
+		<result property="nombre" column="nombre" />
+		<result property="descripcion" column="descripcion" />
+		<result property="valor" column="valor" />
+	</resultMap>
+
+	<sql id="table">sir_configuracion</sql>
+	<sql id="columns">
+		id,
+		nombre,
+		descripcion,
+		valor
+	</sql>
+	<sql id="insert">
+		#id:INTEGER#,
+		#nombre#,
+		#descripcion#,
+		#valor#
+	</sql>
+	<sql id="update">
+		nombre=#nombre#,
+		descripcion=#descripcion#,
+		valor=#valor#
+	</sql>
+
+	<select id="getConfiguracionVOs" resultMap="configuracion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY nombre
+	</select>
+
+	<select id="getConfiguracionVO" parameterClass="java.lang.String" resultMap="configuracion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+
+	<select id="getValorConfiguracion" parameterClass="java.lang.String" resultClass="java.lang.String">
+		SELECT
+			valor
+		FROM
+			<include refid="table" />
+		WHERE
+			nombre=#value#
+	</select>
+
+	<select id="getValoresConfiguracion" parameterClass="java.util.Map" resultMap="configuracion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			<iterate property="nombres" conjunction="OR">
+				nombre=#nombres[]#
+			</iterate>
+	</select>
+
+	<insert id="addConfiguracionVO" parameterClass="configuracion">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<update id="updateConfiguracionVO" parameterClass="configuracion">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE id=#id:INTEGER#
+	</update>
+
+	<delete id="deleteConfiguracionVO" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteConfiguracionVOs">
+		DELETE FROM
+			<include refid="table" />
+	</delete>
+
+</sqlMap>

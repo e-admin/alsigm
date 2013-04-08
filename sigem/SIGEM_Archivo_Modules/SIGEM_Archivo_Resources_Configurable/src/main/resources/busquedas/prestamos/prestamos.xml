@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Busqueda version="5.0" descripcion="Búsqueda de expedientes para préstamos">
+	<entrada>
+		<campo nombre="Fondo" mostrar="S" tipo="1"/>
+		<campo nombre="Signatura" mostrar="S"  mostrarCalificadores="S"  tipo="1"/>
+ 		<campo nombre="Numero_Expediente" mostrar="S"  mostrarCalificadores="S" tipo="1">
+	 		<restriccion id="UDoc_EnRelEntrega" tipo="-5"/>
+	 		<restriccion id="Rangos" tipo="-6"/>
+ 		</campo>
+		<campo nombre="Titulo" mostrar="S" tipo="1">
+		</campo>
+		<campo nombre="Fecha_Inicial" mostrar="S" tipo="3">
+			<restriccion id="Fecha_Inicial" tipo="3"/>
+		</campo>
+		<campo nombre="Fecha_Final" mostrar="S" tipo="3">
+			<restriccion id="Fecha_Final" tipo="3"/>
+		</campo>
+		<campo nombre="Codigo_Relacion" mostrar="S"  tipo="1">
+			<restriccion id="Estado_UDoc_Validada" tipo="-5"/>
+		</campo>
+		<campo nombre="Condiciones_Avanzadas" mostrar="S" tipo="0"/>
+	</entrada>
+	<salida>
+		<campo nombre="Numero_Expediente" mostrar="S" mostrarLink="S" tipo="1"/>
+		<campo nombre="Fondo" mostrar="S" tipo="1"/>
+		<campo nombre="Signatura" mostrar="S" mostrarLink="S"  tipo="1"/>
+		<campo nombre="Titulo" mostrar="S" tipo="1"/>
+	</salida>
+	<ordenacion tipo="ASC">
+		<orden>Numero_Expediente</orden>
+	</ordenacion>
+
+	<restriccion id="UDoc_EnRelEntrega" tipo="-5"/>
+
+</Busqueda>

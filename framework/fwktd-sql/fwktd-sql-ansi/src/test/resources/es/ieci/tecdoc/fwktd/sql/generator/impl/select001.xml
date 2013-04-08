@@ -1,0 +1,150 @@
+[<es.ieci.tecdoc.fwktd.sql.node.statement.create.table.CreateTable>
+	<temporary>true</temporary>
+	<select
+		class="es.ieci.tecdoc.fwktd.sql.node.statement.select.PlainSelect">
+		<selectItems>
+			<es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+				<expression
+					class="es.ieci.tecdoc.fwktd.sql.node.schema.Column">
+					<columnName>NUM_CLIENTE</columnName>
+				</expression>
+				<alias>id</alias>
+			</es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+		</selectItems>
+		<tableReferences>
+			<es.ieci.tecdoc.fwktd.sql.node.schema.Table>
+				<schemaName>DATA</schemaName>
+				<name>CLIENTES</name>
+			</es.ieci.tecdoc.fwktd.sql.node.schema.Table>
+		</tableReferences>
+	</select>
+	<table>
+		<schemaName>TEMP</schemaName>
+		<name>SEL00001769</name>
+	</table>
+</es.ieci.tecdoc.fwktd.sql.node.statement.create.table.CreateTable>
+,
+<es.ieci.tecdoc.fwktd.sql.node.statement.insert.Insert>
+	<valuesList
+		class="es.ieci.tecdoc.fwktd.sql.node.statement.select.SubSelect">
+		<selectBody
+			class="es.ieci.tecdoc.fwktd.sql.node.statement.select.PlainSelect">
+			<selectItems>
+					<es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+						<expression
+							class="es.ieci.tecdoc.fwktd.sql.node.expression.StringValue">
+							<value>SEL00001769</value>
+							<quoted>false</quoted>
+						</expression>
+					</es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+					<es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+						<expression
+							class="es.ieci.tecdoc.fwktd.sql.node.expression.functions.agregate.CountFunction">
+							<allColumns>true</allColumns>
+						</expression>
+					</es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+			</selectItems>
+			<tableReferences>
+				<es.ieci.tecdoc.fwktd.sql.node.schema.Table>
+					<schemaName>TEMP</schemaName>
+					<name>SEL00001769</name>
+				</es.ieci.tecdoc.fwktd.sql.node.schema.Table>
+			</tableReferences>
+		</selectBody>
+	</valuesList>
+	<useValues>true</useValues>
+	<table>
+		<schemaName>TEMP</schemaName>
+		<name>CS00000397</name>
+	</table>
+</es.ieci.tecdoc.fwktd.sql.node.statement.insert.Insert>
+,
+<es.ieci.tecdoc.fwktd.sql.node.statement.create.table.CreateTable>
+	<temporary>false</temporary>
+	<select
+		class="es.ieci.tecdoc.fwktd.sql.node.statement.select.PlainSelect">
+		<selectItems>
+			<es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+				<expression
+					class="es.ieci.tecdoc.fwktd.sql.node.schema.Column">
+					<table>
+						<schemaName>TEMP</schemaName>
+						<name>SEL00001769</name>
+					</table>
+					<columnName>id</columnName>
+				</expression>
+			</es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+		</selectItems>
+		<tableReferences>
+			<es.ieci.tecdoc.fwktd.sql.node.schema.Table
+				reference="../../selectItems/es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem/expression/table" />
+		</tableReferences>
+	</select>
+	<table>
+		<schemaName>TEMP</schemaName>
+		<name>SEL00001769_target</name>
+	</table>
+</es.ieci.tecdoc.fwktd.sql.node.statement.create.table.CreateTable>
+,
+<es.ieci.tecdoc.fwktd.sql.node.statement.truncate.Truncate>
+	<table>
+		<schemaName>TEMP</schemaName>
+		<name>SEL00001769</name>
+	</table>
+</es.ieci.tecdoc.fwktd.sql.node.statement.truncate.Truncate>
+,
+<es.ieci.tecdoc.fwktd.sql.node.statement.drop.Drop>
+	<table>
+		<schemaName>TEMP</schemaName>
+		<name>SEL00001769</name>
+	</table>
+</es.ieci.tecdoc.fwktd.sql.node.statement.drop.Drop>
+,
+<es.ieci.tecdoc.fwktd.sql.node.statement.insert.Insert>
+	<valuesList
+		class="es.ieci.tecdoc.fwktd.sql.node.statement.select.SubSelect">
+		<selectBody
+			class="es.ieci.tecdoc.fwktd.sql.node.statement.select.PlainSelect">
+			<selectItems>
+					<es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+						<expression
+							class="es.ieci.tecdoc.fwktd.sql.node.expression.StringValue">
+							<value>SEL00001769_target</value>
+							<quoted>false</quoted>
+						</expression>
+					</es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+					<es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+						<expression
+							class="es.ieci.tecdoc.fwktd.sql.node.schema.Column">
+							<table>
+								<schemaName>TEMP</schemaName>
+								<name>CS00000397</name>
+							</table>
+							<columnName>count</columnName>
+						</expression>
+					</es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem>
+			</selectItems>
+			<tableReferences>
+				<es.ieci.tecdoc.fwktd.sql.node.schema.Table
+					reference="../../selectItems/es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem[2]/expression/table" />
+			</tableReferences>
+			<where
+				class="es.ieci.tecdoc.fwktd.sql.node.expression.operators.relational.EqualsTo">
+				<leftExpression
+					class="es.ieci.tecdoc.fwktd.sql.node.schema.Column">
+					<table
+						reference="../../../selectItems/es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem[2]/expression/table" />
+					<columnName>idEntity</columnName>
+				</leftExpression>
+				<rightExpression
+					class="es.ieci.tecdoc.fwktd.sql.node.expression.StringValue">
+					<value>SEL00001769</value>
+					<quoted>false</quoted>
+				</rightExpression>
+			</where>
+		</selectBody>
+	</valuesList>
+	<useValues>true</useValues>
+	<table
+		reference="../valuesList/selectBody/selectItems/es.ieci.tecdoc.fwktd.sql.node.statement.select.SelectExpressionItem[2]/expression/table" />
+</es.ieci.tecdoc.fwktd.sql.node.statement.insert.Insert>]

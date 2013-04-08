@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>mojo</artifactId>
+    <groupId>org.codehaus.mojo</groupId>
+    <version>16</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>keytool-maven-plugin</artifactId>
+  <packaging>maven-plugin</packaging>
+  <version>1.0</version>
+  <name>Maven Keytool Plugin</name>
+  <description>A plugin that wraps the keytool program bundled with Sun's Java SDK. Allows to manipulate keystores.</description>
+
+  <issueManagement>
+    <system>jira</system>
+    <url>http://jira.codehaus.org/browse/MKEYTOOL</url>
+  </issueManagement>
+
+  <inceptionYear>2005</inceptionYear>
+  <prerequisites>
+    <maven>2.0.6</maven>
+  </prerequisites>
+  <licenses>
+    <license>
+      <name>Apache License 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Jerome Lacoste</name>
+      <email>jerome@coffeebreaks.org</email>
+      <organization>CoffeeBreaks</organization>
+      <organizationUrl>http://www.coffeebreaks.org</organizationUrl>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <name>Sharmarke Aden</name>
+      <email>mark.aden@gmail.com</email>
+      <timezone>-7</timezone>
+    </contributor>
+  </contributors>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>2.0.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>2.0.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <version>1.4.9</version>
+    </dependency>      
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.1</version>
+    </dependency>
+  </dependencies>
+
+  <scm>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/tags/keytool-maven-plugin-1.0</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/keytool-maven-plugin-1.0</developerConnection>
+    <url>http://svn.codehaus.org/mojo/tags/keytool-maven-plugin-1.0</url>
+  </scm>
+</project>

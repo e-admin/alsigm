@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <SCR_ATTACHMENT id="8" bookid="1" folderid="2" pageid="3" comments="comentario" mime_type="tipoMime" name="nombre" code_name="codeName" validity_type="4" document_type="3"/>
+  <SCR_ATTACHMENT_SIGN_INFO id="5" id_attachment="8" id_attachment_signed="8" cert="Y2VydGlmaWNhZG8=" signature="RmlybWE=" signature_alg="AF" signature_format="FF" time_signature="c2VsbG9UaWVtcG8=" ocsp_validation="b2NzcFZhbGlkYXRpb24=" hash_alg="HA" hash="aGFzaA=="/>
+</dataset>

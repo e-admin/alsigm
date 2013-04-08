@@ -1,0 +1,57 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>../SIGEM_Notificacion/src/main/resources/default</directory>
+			<outputDirectory>SIGEM_Notificacion/default</outputDirectory>	
+			<includes>
+				<include>conectores.properties</include>
+				<include>SisnotBD.properties</include>
+			</includes>		
+		</fileSet>	
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_NotificacionWeb/src/main/resources/SIGEM_NotificacionWeb</directory>
+			<outputDirectory>SIGEM_NotificacionWeb</outputDirectory>	
+			<includes>
+				<include>log4j.*</include>
+			</includes>		
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_NotificacionWeb/src/main/resources/SIGEM_NotificacionWeb</directory>
+			<outputDirectory>SIGEM_NotificacionWeb</outputDirectory>	
+			<includes>
+				<include>skin*/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_NotificacionWS/src/main/resources/SIGEM_NotificacionWS</directory>
+			<outputDirectory>SIGEM_NotificacionWS</outputDirectory>	
+			<includes>
+				<include>log4j.*</include>
+			</includes>		
+		</fileSet>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_NotificacionUpdaterWeb/src/main/resources/SIGEM_NotificacionUpdaterWeb</directory>
+			<outputDirectory>SIGEM_NotificacionUpdaterWeb</outputDirectory>	
+			<includes>
+				<include>log4j.*</include>
+			</includes>		
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_NotificacionUpdaterWeb/src/main/resources/SIGEM_NotificacionUpdaterWeb</directory>
+			<outputDirectory>SIGEM_NotificacionUpdaterWeb</outputDirectory>	
+			<includes>
+				<include>updater.properties</include>
+			</includes>		
+		</fileSet>	
+	</fileSets>
+
+</assembly>

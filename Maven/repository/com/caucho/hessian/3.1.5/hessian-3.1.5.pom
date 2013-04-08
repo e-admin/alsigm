@@ -1,0 +1,17 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.caucho</groupId>
+  <artifactId>hessian</artifactId>
+  <version>3.1.5</version>
+  <packaging>jar</packaging>
+  <name>Hessian</name>
+  <url>http://hessian.caucho.com</url>
+  <description>The Hessian binary web service protocol destribution pack</description>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 1.1</name>
+      <url>http://www.apache.org/licenses/LICENSE-1.1.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+</project>

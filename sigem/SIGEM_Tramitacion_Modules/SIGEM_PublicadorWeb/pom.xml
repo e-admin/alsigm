@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main_web</artifactId>
+		<version>3.0</version>
+	</parent>
+	
+	<artifactId>SIGEM_PublicadorWeb</artifactId>
+	<name>SIGEM_PublicadorWeb</name>
+	<packaging>war</packaging>
+	
+	<dependencies>
+
+		<!-- SIGEM dependencies -->
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_core</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.thoughtworks.xstream</groupId>
+					<artifactId>xstream</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xpp3</groupId>
+					<artifactId>xpp3_min</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_consulta</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_consultaWsClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Terceros</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_TercerosWSClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_entidades</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_entidadesWsClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_notificacion</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_notificacionWsClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_rde</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_rdeWsClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_MensajesCortos</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_utilidadesAdministracion</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_administracionSesionesAdmWsClient</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_administracionSesionesBackOfficeWsClient</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_entidades</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativa</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativaCore</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Tramitacion</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_registroPresencial</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_registroPresencialAdmin</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_registroPresencialWsClient</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-publicador-java</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+		
+		
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-lib</artifactId>
+			<version>${ispac.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.iflow</groupId>
+					<artifactId>ispac-lib-cfg</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.iflow</groupId>
+					<artifactId>ispac-resources</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>net.sf.jasperreports</groupId>
+					<artifactId>jasperreports</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>jmimemagic</groupId>
+					<artifactId>jmimemagic</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.ant</groupId>
+					<artifactId>ant</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.htmlparser</groupId>
+					<artifactId>htmlparser</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>struts</groupId>
+					<artifactId>struts</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>jdom</groupId>
+					<artifactId>jdom</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ant</groupId>
+					<artifactId>ant-optional</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-web</artifactId>
+			<version>${ispac.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>displaytag</groupId>
+					<artifactId>displaytag</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>struts</groupId>
+					<artifactId>struts</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>struts-menu</groupId>
+					<artifactId>struts-menu</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons.beanutils.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons.lang.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.4.2</version>
+		</dependency>
+
+	</dependencies>
+	
+	<build>
+		<finalName>SIGEM_PublicadorWeb</finalName>
+		<filters>
+			<filter>${filter.generic.system}</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>		
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>dependency-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-web-resources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<artifactItems>
+						<artifactItem>
+							<groupId>es.ieci.tecdoc.iflow</groupId>
+							<artifactId>ispac-publicador-webapp</artifactId>
+							<version>${ispac.version}</version>
+							<type>jar</type>
+						</artifactItem>
+					</artifactItems>
+					<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<profiles>
+		<!-- Perfiles de construccion en funcion del S.O. -->
+		<profile>
+			<id>unix</id>
+			<activation>
+				<property>
+					<name>unix</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../../SIGEM_Config/src/main/filters/system/unix.properties</filter.generic.system>
+			</properties>
+		</profile>
+		<profile>
+			<id>win</id>
+			<activation>
+				<property>
+					<name>win</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../../SIGEM_Config/src/main/filters/system/windows.properties</filter.generic.system>
+			</properties>
+		</profile>	
+	</profiles>
+	
+</project>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='ID' 
+				 readOnly='false'
+				 fieldType='CHECKBOX'
+				 columnClass='width5percent'
+				 media='html'
+				 headerClass='headerDisplay'
+				 />
+				 
+	<!-- Ponemos 2 veces la propiedad Nombre, 
+		 una para mostrarla solo en html (media='html')
+		 y la otra para la exportacion (media= 'xml excel csv pdf') -->
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE' 
+				 readOnly='false'
+				 titleKey='formatter.documents.documento' 
+				 fieldType='LINK'
+				 media='html'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width25percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE' 
+				 readOnly='false'
+				 titleKey='formatter.documents.documento' 
+				 fieldType='LIST'
+				 media='xml excel csv pdf'
+				 headerClass='sortable'
+				 columnClass='width25percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='INFOPAG' 
+				 readOnly='true'
+				 media='html'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 fieldType='SHOWDOCUMENT'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='DESCRIPCION' 
+				 readOnly='true'
+				 titleKey='formatter.documents.descripcion' 
+				 fieldType='LIST'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FDOC' 
+				 readOnly='true'
+				 format='dd/MM/yyyy'
+				 titleKey='formatter.documents.fechaGeneracion' 
+				 fieldType='LIST'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'
+				 />
+	
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FAPROBACION' 
+				 readOnly='true'
+				 format='dd/MM/yyyy'			 
+				 titleKey='formatter.documents.fechaAprobacion' 
+				 fieldType='LIST'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width25percent'
+				 />
+
+</beanformatter>

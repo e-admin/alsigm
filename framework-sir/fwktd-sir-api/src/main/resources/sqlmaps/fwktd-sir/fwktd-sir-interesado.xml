@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="InteresadoVO">
+
+	<typeAlias alias="interesado"
+		type="es.ieci.tecdoc.fwktd.sir.core.vo.InteresadoVO" />
+
+	<resultMap id="interesado" class="es.ieci.tecdoc.fwktd.sir.core.vo.InteresadoVO">
+		<result property="id" column="id" />
+		<result property="idAsientoRegistral" column="id_asiento_registral" />
+		<result property="tipoDocumentoIdentificacionInteresado" column="cd_tipo_identificador" />
+		<result property="documentoIdentificacionInteresado" column="ds_identificador" />
+		<result property="razonSocialInteresado" column="ds_razon_social" />
+		<result property="nombreInteresado" column="ds_nombre" />
+		<result property="primerApellidoInteresado" column="ds_apellido1" />
+		<result property="segundoApellidoInteresado" column="ds_apellido2" />
+		<result property="codigoPaisInteresado" column="cd_pais" />
+		<result property="codigoProvinciaInteresado" column="cd_provincia" />
+		<result property="codigoMunicipioInteresado" column="cd_municipio" />
+		<result property="direccionInteresado" column="ds_direccion" />
+		<result property="codigoPostalInteresado" column="cd_postal" />
+		<result property="correoElectronicoInteresado" column="ds_email" />
+		<result property="telefonoInteresado" column="ds_telefono" />
+		<result property="direccionElectronicaHabilitadaInteresado" column="ds_deu" />
+		<result property="canalPreferenteComunicacionInteresado" column="cd_canal_pref" />
+		<result property="tipoDocumentoIdentificacionRepresentante" column="cd_tipo_identificador_rep" />
+		<result property="documentoIdentificacionRepresentante" column="ds_identificador_rep" />
+		<result property="razonSocialRepresentante" column="ds_razon_social_rep" />
+		<result property="nombreRepresentante" column="ds_nombre_rep" />
+		<result property="primerApellidoRepresentante" column="ds_apellido1_rep" />
+		<result property="segundoApellidoRepresentante" column="ds_apellido2_rep" />
+		<result property="codigoPaisRepresentante" column="cd_pais_rep" />
+		<result property="codigoProvinciaRepresentante" column="cd_provincia_rep" />
+		<result property="codigoMunicipioRepresentante" column="cd_municipio_rep" />
+		<result property="direccionRepresentante" column="ds_direccion_rep" />
+		<result property="codigoPostalRepresentante" column="cd_postal_rep" />
+		<result property="correoElectronicoRepresentante" column="ds_email_rep" />
+		<result property="telefonoRepresentante" column="ds_telefono_rep" />
+		<result property="direccionElectronicaHabilitadaRepresentante" column="ds_deu_rep" />
+		<result property="canalPreferenteComunicacionRepresentante" column="cd_canal_pref_rep" />
+		<result property="observaciones" column="ds_observaciones" />
+	</resultMap>
+
+	<sql id="table">sir_interesados</sql>
+	<sql id="columns">
+		id,
+		id_asiento_registral,
+		cd_tipo_identificador,
+		ds_identificador,
+		ds_razon_social,
+		ds_nombre,
+		ds_apellido1,
+		ds_apellido2,
+		cd_pais,
+		cd_provincia,
+		cd_municipio,
+		ds_direccion,
+		cd_postal,
+		ds_email,
+		ds_telefono,
+		ds_deu,
+		cd_canal_pref,
+		cd_tipo_identificador_rep,
+		ds_identificador_rep,
+		ds_razon_social_rep,
+		ds_nombre_rep,
+		ds_apellido1_rep,
+		ds_apellido2_rep,
+		cd_pais_rep,
+		cd_provincia_rep,
+		cd_municipio_rep,
+		ds_direccion_rep,
+		cd_postal_rep,
+		ds_email_rep,
+		ds_telefono_rep,
+		ds_deu_rep,
+		cd_canal_pref_rep,
+		ds_observaciones
+	</sql>
+	<sql id="insert">
+		#id:INTEGER#,
+		#idAsientoRegistral:INTEGER#,
+		#tipoDocumentoIdentificacionInteresado#,
+		#documentoIdentificacionInteresado#,
+		#razonSocialInteresado#,
+		#nombreInteresado#,
+		#primerApellidoInteresado#,
+		#segundoApellidoInteresado#,
+		#codigoPaisInteresado#,
+		#codigoProvinciaInteresado#,
+		#codigoMunicipioInteresado#,
+		#direccionInteresado#,
+		#codigoPostalInteresado#,
+		#correoElectronicoInteresado#,
+		#telefonoInteresado#,
+		#direccionElectronicaHabilitadaInteresado#,
+		#canalPreferenteComunicacionInteresado#,
+		#tipoDocumentoIdentificacionRepresentante#,
+		#documentoIdentificacionRepresentante#,
+		#razonSocialRepresentante#,
+		#nombreRepresentante#,
+		#primerApellidoRepresentante#,
+		#segundoApellidoRepresentante#,
+		#codigoPaisRepresentante#,
+		#codigoProvinciaRepresentante#,
+		#codigoMunicipioRepresentante#,
+		#direccionRepresentante#,
+		#codigoPostalRepresentante#,
+		#correoElectronicoRepresentante#,
+		#telefonoRepresentante#,
+		#direccionElectronicaHabilitadaRepresentante#,
+		#canalPreferenteComunicacionRepresentante#,
+		#observaciones#
+	</sql>
+	<sql id="update">
+		id_asiento_registral=#idAsientoRegistral:INTEGER#,
+		cd_tipo_identificador=#tipoDocumentoIdentificacionInteresado#,
+		ds_identificador=#documentoIdentificacionInteresado#,
+		ds_razon_social=#razonSocialInteresado#,
+		ds_nombre=#nombreInteresado#,
+		ds_apellido1=#primerApellidoInteresado#,
+		ds_apellido2=#segundoApellidoInteresado#,
+		cd_pais=#codigoPaisInteresado#,
+		cd_provincia=#codigoProvinciaInteresado#,
+		cd_municipio=#codigoMunicipioInteresado#,
+		ds_direccion=#direccionInteresado#,
+		cd_postal=#codigoPostalInteresado#,
+		ds_email=#correoElectronicoInteresado#,
+		ds_telefono=#telefonoInteresado#,
+		ds_deu=#direccionElectronicaHabilitadaInteresado#,
+		cd_canal_pref=#canalPreferenteComunicacionInteresado#,
+		cd_tipo_identificador_rep=#tipoDocumentoIdentificacionRepresentante#,
+		ds_identificador_rep=#documentoIdentificacionRepresentante#,
+		ds_razon_social_rep=#razonSocialRepresentante#,
+		ds_nombre_rep=#nombreRepresentante#,
+		ds_apellido1_rep=#primerApellidoRepresentante#,
+		ds_apellido2_rep=#segundoApellidoRepresentante#,
+		cd_pais_rep=#codigoPaisRepresentante#,
+		cd_provincia_rep=#codigoProvinciaRepresentante#,
+		cd_municipio_rep=#codigoMunicipioRepresentante#,
+		ds_direccion_rep=#direccionRepresentante#,
+		cd_postal_rep=#codigoPostalRepresentante#,
+		ds_email_rep=#correoElectronicoRepresentante#,
+		ds_telefono_rep=#telefonoRepresentante#,
+		ds_deu_rep=#direccionElectronicaHabilitadaRepresentante#,
+		cd_canal_pref_rep=#canalPreferenteComunicacionRepresentante#,
+		ds_observaciones=#observaciones#
+	</sql>
+
+	<select id="getInteresadoVOs" resultMap="interesado">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY ds_identificador
+	</select>
+
+	<select id="getInteresadoVOsByAsientoRegistral" parameterClass="java.lang.String" resultMap="interesado">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			id_asiento_registral=#value:INTEGER#
+		ORDER BY ds_identificador
+	</select>
+
+	<select id="getInteresadoVO" parameterClass="java.lang.String" resultMap="interesado">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+
+	<insert id="addInteresadoVO" parameterClass="interesado">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<update id="updateInteresadoVO" parameterClass="interesado">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE id=#id:INTEGER#
+	</update>
+
+	<delete id="deleteInteresadoVO" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteInteresadoVOs">
+		DELETE FROM
+			<include refid="table" />
+	</delete>
+
+	<delete id="deleteInteresadosByIdAsientoRegistral" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id_asiento_registral=#value:INTEGER#
+	</delete>
+
+</sqlMap>

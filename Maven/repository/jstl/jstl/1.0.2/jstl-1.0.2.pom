@@ -1,0 +1,19 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jstl</groupId>
+  <artifactId>jstl</artifactId>
+  <version>1.0.2</version>
+  <name>Java Server Pages Standard Tag Library</name>
+  <description>
+The JavaServer Pages Standard Tag Library (JSTL) encapsulates, as simple tags, core functionality common to many JSP applications.
+  </description>
+  <url>http://java.sun.com/products/jsp/jstl/</url>
+  <distributionManagement>
+    <downloadUrl>http://java.sun.com/products/jsp/jstl/downloads/</downloadUrl>
+    <relocation>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.0.2</version>
+    </relocation>
+  </distributionManagement>
+</project>

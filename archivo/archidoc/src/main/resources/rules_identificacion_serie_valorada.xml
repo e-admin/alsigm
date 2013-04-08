@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+   <pattern value="valoracion_serie">
+	   <pattern value="datos_serie">
+		   <pattern value="contexto">
+				<call-method-rule pattern="ancestro" methodname="addAncestro" paramcount="1" />	                
+   		 		<call-param-rule pattern="ancestro" paramnumber="0" />	                	
+   			</pattern>  
+			<call-method-rule pattern="codigo" methodname="setCodigoSerie" paramcount="0" />
+			<call-method-rule pattern="titulo" methodname="setDenominacion" paramcount="0" />
+		</pattern>
+		<pattern value="contenido_serie">
+			<pattern value="identificacion_serie">
+				<call-method-rule pattern="definicion" methodname="setDefinicion" paramcount="0" />
+				<call-method-rule pattern="tramites" methodname="setTramites" paramcount="0" />
+				<call-method-rule pattern="normativa" methodname="setNormativa" paramcount="0" />
+				<call-method-rule pattern="docs_basicos_unidad_documental" methodname="setDocsBasicosUnidadDocumental" paramcount="0" />
+		
+		      	<call-method-rule pattern="procedimiento" methodname="setProcedimiento" paramcount="3" />
+				<call-param-rule pattern="procedimiento/identificacion" paramnumber ="0" />	                
+				<call-param-rule pattern="procedimiento/nombre" paramnumber ="1" />	                
+				<call-param-rule pattern="procedimiento/codigo_sistema_productor" paramnumber ="2" />	                
+   			
+		    	<call-method-rule pattern="informacion_extendida" methodname="setInfoExtendida" paramcount="3" />
+    			<call-param-rule pattern="informacion_extendida/tipo_documentacion" paramnumber ="0" />	                
+    			<call-param-rule pattern="informacion_extendida/prevision_anual/volumen" paramnumber ="1" />	                
+    			<call-param-rule pattern="informacion_extendida/prevision_anual/soporte" paramnumber ="2" />	   			
+   			</pattern>
+   			
+   			<pattern value="descripcion_serie">
+	   			<call-method-rule pattern="descripcion_fisica/n_unidades_documentales" methodname="setNumeroUnidadesDocumentales" paramcount="0" />
+	   			<call-method-rule pattern="descripcion_fisica/n_unidades_instalacion" methodname="setNumeroUnidadesInstalacion" paramcount="0" />
+	   			<call-method-rule pattern="descripcion_fisica/volumen" methodname="setVolumen" paramcount="0" />
+	   			<call-method-rule pattern="fechas_extremas/fecha_inicial" methodname="setFechaInicial" paramcount="0" />
+	   			<call-method-rule pattern="fechas_extremas/fecha_final" methodname="setFechaFinal" paramcount="0" />
+   			</pattern>
+   			
+   			<pattern value="productores_serie">
+	   			<pattern value="productores_vigentes">
+					<call-method-rule pattern="productor" methodname="addProductorVigente" paramcount="2" />	                
+   			 		<call-param-rule pattern="productor/nombre" paramnumber="0" />
+   			 		<call-param-rule pattern="productor/tipo" paramnumber="1" />	                	
+   			 	</pattern>
+   			    <pattern value="productores_historicos">
+					<call-method-rule pattern="productor" methodname="addProductorHistorico" paramcount="2" />	                
+   			 		<call-param-rule pattern="productor/nombre" paramnumber="0" />
+   			 		<call-param-rule pattern="productor/tipo" paramnumber="1" />	                	
+   			 	</pattern>
+   			</pattern>  
+   		</pattern>
+   </pattern>
+</digester-rules>

@@ -1,0 +1,49 @@
+a.enls:link, a.enls:visited{
+color: #3366CC;
+text-decoration: none;
+}
+a.enls:hover{
+color: #CC0000;
+background-color: #eeeeee;
+}
+a.secac2{
+	color: #B87070;
+	text-decoration: none;
+}
+a.secac{
+	color: #FFFFFF;
+	text-decoration: none;
+	background-color: #CC0000;
+}
+a.secac:hover{
+	color: #B87070;
+	text-decoration: none;
+	background-color: #ffffff;
+}
+.botones {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #3366CC;
+	margin: 0;
+	text-decoration: none;
+	text-align: left;
+}
+.botonesHover {
+text-decoration: none;
+color: #CC0000;
+background-color: #eeeeee;
+}
+/* Atención, evitar alterar la clase .subMe */
+.subMe{
+	display: none;
+	margin: 0;
+	background-image: url(imasmenu/puntosvt.gif);
+	background-repeat:  repeat-y;
+}
+/* Atención, evitar alterar la clase .subMe */
+body {
+	background-color: #EDDBC9;
+	font-family: verdana, tahoma, arial, sans serif;
+	font-size: 12px;
+}

@@ -1,0 +1,24 @@
+Para que las conexiones SSL desde el pago electronico se realizen con exito, hay que confiar en el certificado público, utilizado en la encriptacion de los datos, enviado desde el servidor SSL externo (Ej red.es).
+
+El fichero trustStoreRedes/trustStorePagoElectronico, es un almacén de confianza que tiene que contener los certificados SSL (claves públicas) en los que va a confiar SIGEM, en las conexiones SSL realizadas desde el pago electrónico.
+
+Actualmente, el certificado usado en las conexiones SSL con red.es, ha cambiado por lo que hay que añadir el nuevo en el almacen de claves.
+Otra opción, sería la de añadir el certificado en el cacerts, localizado en la ruta jre/lib/security de la JDK
+
+trustStoreRedes ya contiene el nuevo certificado SSL para red.es
+trustStorePagoElectronico contiene los nuevos certificados SSL para red.es y euskadi.net
+
+
+En el directorio Certs_SSL_PagoElectronico se incluyen los certificados a añadir/importar en el almacen de confianza usado en las conexiones SSL del pago electrónico.
+
+La linea a ejecutar, es la siguiente:
+	<Ruta absoluta al keytool>/keytool -import -trustcacerts -file ./<nuevo certificado SSL en formato binario>.cer -keystore <ruta completa al almacen de claves> -storepass <contraseña almacen de claves> -alias <alias identificativo del certificado importado>
+
+	Ej: /usr/local/jdk1.5.0_17/jre/bin/keytool -import -trustcacerts -file ./Nuevo_Cert_SSL_STP_REDes.cer -keystore /home/sigem/SIGEM/certificados/trustStoreRedes -storepass carlos -alias 2010_red.es
+
+Ojo: Antes de ejecutar nada, comprobar que la versión de la JDK que se va a usar para modificar el almacen de claves, corresponde con la versión del almacen de claves; especialmente si se va a modificar el cacerts directamente. Es posible si hay instaladas varias JDKs/JRE en un equipo, que la que esté activada por defecto, no sea la correcta. Por este motivo se recomienda llamar a keytool, usando la ruta completa al ejecutable.
+
+Para comprobar el contenido de un almacen de claves, hay que usar el siguiente comando:
+	<Ruta absoluta al keytool>/keytool -list -v -keystore <ruta completa al almacen de claves> -storepass <contraseña almacen de claves>
+	
+	Ej /usr/local/jdk1.5.0_17/jre/bin/keytool -list -v -keystore /home/sigem/SIGEM/certificados/trustStoreRedes -storepass carlos

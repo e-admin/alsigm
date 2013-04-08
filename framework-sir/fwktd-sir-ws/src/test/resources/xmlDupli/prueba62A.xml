@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Fichero_Intercambio_SICRES_3>
+	<De_Origen_o_Remitente>
+		<Codigo_Entidad_Registral_Origen>O00002102</Codigo_Entidad_Registral_Origen>
+		<Decodificacion_Entidad_Registral_Origen><![CDATA[REGISTRO GENERAL DEL AYUNTAMIENTO DE CIUDAD REAL]]></Decodificacion_Entidad_Registral_Origen>
+		<Numero_Registro_Entrada>2012050800000000</Numero_Registro_Entrada>
+		<Fecha_Hora_Entrada>20120518110926</Fecha_Hora_Entrada>
+		<Codigo_Unidad_Tramitacion_Origen>L01130343</Codigo_Unidad_Tramitacion_Origen>
+		<Decodificacion_Unidad_Tramitacion_Origen><![CDATA[Ayuntamiento de Ciudad Real]]></Decodificacion_Unidad_Tramitacion_Origen>
+	</De_Origen_o_Remitente>
+	<De_Destino>
+		<Codigo_Entidad_Registral_Destino>O00002061</Codigo_Entidad_Registral_Destino>
+		<Decodificacion_Entidad_Registral_Destino><![CDATA[REGISTRO GENERAL DE LA DIPUTACIÓn PROVINCIAL DE SORIA]]></Decodificacion_Entidad_Registral_Destino>
+		<Codigo_Unidad_Tramitacion_Destino>L02000042</Codigo_Unidad_Tramitacion_Destino>
+		<Decodificacion_Unidad_Tramitacion_Destino><![CDATA[Diputación Provincial de Soria]]></Decodificacion_Unidad_Tramitacion_Destino>
+	</De_Destino>
+	<De_Interesado>
+		<Tipo_Documento_Identificacion_Interesado>C</Tipo_Documento_Identificacion_Interesado>
+		<Documento_Identificacion_Interesado>A28855260</Documento_Identificacion_Interesado>
+		<Razon_Social_Interesado>INFORMICA EL CORTE INGLʓ, S.A.</Razon_Social_Interesado>
+		<Tipo_Documento_Identificacion_Representante>N</Tipo_Documento_Identificacion_Representante>
+		<Documento_Identificacion_Representante>00000000T
+		</Documento_Identificacion_Representante>
+		<Nombre_Representante>Isidoro</Nombre_Representante>
+		<Primer_Apellido_Representante>¬varez</Primer_Apellido_Representante>
+		<Segundo_Apellido_Representante>¬varez</Segundo_Apellido_Representante>
+		<Pais_Interesado>724</Pais_Interesado>
+		<Provincia_Interesado>28</Provincia_Interesado>
+		<Municipio_Interesado>0796</Municipio_Interesado>
+		<Direccion_Interesado>Travesde Costa Brava nڴ</Direccion_Interesado>
+		<Codigo_Postal_Interesado>28034</Codigo_Postal_Interesado>
+		<Correo_Electronico_Interesado>mkt@ieci.es</Correo_Electronico_Interesado>
+		<Telefono_Contacto_Interesado>913874700</Telefono_Contacto_Interesado>
+		<Canal_Preferente_Comunicacion_Interesado>01</Canal_Preferente_Comunicacion_Interesado>
+		<Pais_Representante>724</Pais_Representante>
+		<Provincia_Representante>28</Provincia_Representante>
+		<Municipio_Representante>0796</Municipio_Representante>
+		<Direccion_Representante>Hermosilla, 112</Direccion_Representante>
+		<Codigo_Postal_Representante>28009</Codigo_Postal_Representante>
+		<Correo_Electronico_Representante>servicio_clientes@elcorteingles.es</Correo_Electronico_Representante>
+		<Telefono_Contacto_Representante>901122122</Telefono_Contacto_Representante>
+		<Canal_Preferente_Comunicacion_Representante>01</Canal_Preferente_Comunicacion_Representante>
+		<Observaciones><![CDATA[Observaciones sobre el interesado]]></Observaciones>
+	</De_Interesado>
+	<De_Asunto>
+		<Resumen><![CDATA[Resumen del registro]]></Resumen>
+		<Codigo_Asunto_Segun_Destino>ASUNTO0000000001</Codigo_Asunto_Segun_Destino>
+		<Referencia_Externa><![CDATA[REF0000000000001]]></Referencia_Externa>
+		<Numero_Expediente><![CDATA[EXP2012/00001]]></Numero_Expediente>
+	</De_Asunto>
+	
+	<De_Internos_Control>
+		<Tipo_Transporte_Entrada>01</Tipo_Transporte_Entrada>
+		<Numero_Transporte_Entrada>99999</Numero_Transporte_Entrada>
+		<Nombre_Usuario>ieci</Nombre_Usuario>
+		<Contacto_Usuario><![CDATA[ieci@ieci.es]]></Contacto_Usuario>
+		<Identificador_Intercambio>O00002102_12_20000026</Identificador_Intercambio>
+		<Tipo_Anotacion>02</Tipo_Anotacion>
+		<Tipo_Registro>0</Tipo_Registro>
+		<Documentacion_Fisica>2</Documentacion_Fisica>
+		<Observaciones_Apunte><![CDATA[Observaciones del apunte]]></Observaciones_Apunte>
+		<Indicador_Prueba>1</Indicador_Prueba>
+		<Codigo_Entidad_Registral_Inicio>O00002102</Codigo_Entidad_Registral_Inicio>
+		<Decodificacion_Entidad_Registral_Inicio><![CDATA[REGISTRO GENERAL DEL AYUNTAMIENTO DE CIUDAD REAL]]></Decodificacion_Entidad_Registral_Inicio>
+	</De_Internos_Control>
+	<De_Formulario_Generico>
+		<Expone><![CDATA[Texto de EXPONE]]></Expone>
+		<Solicita><![CDATA[Texto de SOLICITA]]></Solicita>
+	</De_Formulario_Generico>
+</Fichero_Intercambio_SICRES_3> 

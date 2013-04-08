@@ -1,0 +1,74 @@
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
+
+<form-validation>
+	<formset>
+		<form name="/crearUsuario">
+			<field property="user" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.usuario"/>
+			</field>
+			<field property="password" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.pass"/>
+			</field>	
+			<field property="password2" depends="required, twofields">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.pass2"/>
+				<arg1 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.pass"/>
+				<var>
+					<var-name>secondProperty</var-name>
+					<var-value>password</var-value>
+				</var>
+			</field>		
+			<field property="id" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.id"/>
+			</field>	
+			<field property="name" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.nombre"/>
+			</field>										
+			<field property="lastname" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.apellidos"/>
+			</field>										
+			<field property="email" depends="required,email">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.email"/>
+			</field>
+		</form>
+		
+		<form name="/modificarUsuario">
+			<field property="user" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.usuario"/>
+			</field>
+			<field property="id" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.id"/>
+			</field>	
+			<field property="name" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.nombre"/>
+			</field>										
+			<field property="lastname" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.apellidos"/>
+			</field>										
+			<field property="email" depends="required,email">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.email"/>
+			</field>
+		</form>		
+
+		<form name="/iniciarCambioPass">
+			<field property="user" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.usuario"/>
+			</field>	
+		</form>	
+		
+		<form name="/cambiarPass">
+			<field property="password" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.pass"/>
+			</field>	
+			<field property="password2" depends="required, twofields">
+				<arg0 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.pass2"/>
+				<arg1 key="ieci.tecdoc.sgm.autenticacion.admin.struts.usuario.pass"/>
+				<var>
+					<var-name>secondProperty</var-name>
+					<var-value>password</var-value>
+				</var>
+			</field>		
+		</form>		
+	</formset>
+</form-validation>

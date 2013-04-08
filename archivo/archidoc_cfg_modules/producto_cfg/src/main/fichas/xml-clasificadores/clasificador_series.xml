@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Definicion_Ficha Version="3.2">
+  <Clasificadores_Predeterminados>
+    <Clasificador>
+      <Nombre>Estudios de Valoración</Nombre>
+      <Tipo>1</Tipo>
+      <Descripcion>Clasificador para los documentos de las distintas valoraciones de la serie.</Descripcion>
+    </Clasificador>
+    <Clasificador>
+      <Nombre>Actas de Destrucción</Nombre>
+      <Tipo>1</Tipo>
+      <Descripcion>Clasificador para las actas de la destrucción de unidades documentales.</Descripcion>
+    </Clasificador>
+  </Clasificadores_Predeterminados>
+</Definicion_Ficha>

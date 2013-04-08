@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Conexion directa a BD -->
+	<bean id="fwktd_csv_dataSourceImpl" name="fwktd_csv_dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<!--
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://10.228.8.110/eTramitacion_000" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+		-->
+
+	</bean>
+
+</beans>

@@ -1,0 +1,47 @@
+<assembly>
+	<id>configurable</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/target/classes/fwktd-dir3</directory>
+			<outputDirectory>/fwktd-dir3</outputDirectory>
+			<includes>
+				<include>fwktd-dir3-api.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/target/classes/fwktd-dm</directory>
+			<outputDirectory>/fwktd-dm</outputDirectory>
+			<includes>
+				<include>fwktd-dm-config.xml</include>
+			</includes>
+		</fileSet>
+		<!-- 
+		<fileSet>
+			<directory>${basedir}/target/classes/fwktd-signature</directory>
+			<outputDirectory>/fwktd-signature</outputDirectory>
+			<includes>
+				<include>fwktd-signature.properties</include>
+			</includes>
+		</fileSet>
+		-->
+		<fileSet>
+			<directory>${basedir}/target/classes/fwktd-sir</directory>
+			<outputDirectory>/fwktd-sir</outputDirectory>
+			<includes>
+				<include>fwktd-sir-api.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/target/classes/fwktd-time</directory>
+			<outputDirectory>/fwktd-time</outputDirectory>
+			<includes>
+				<include>fwktd-time.properties</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="GestionCSVWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="generarCSV" qname="ns1:generarCSV" returnQName="ns1:generarCSVReturn" returnType="ns2:InfoDocumentoCSVRetorno" soapAction="" xmlns:ns1="http://server.ws.gestioncsv.sgm.tecdoc.ieci" xmlns:ns2="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci">
+   <parameter qname="ns1:entidad" type="ns3:Entidad" xmlns:ns3="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <parameter qname="ns1:infoDocumentoForm" type="ns2:InfoDocumentoCSVFormDTO"/>
+  </operation>
+  <operation name="writeDocumento" qname="ns4:writeDocumento" returnQName="ns4:writeDocumentoReturn" returnType="ns5:RetornoServicio" soapAction="" xmlns:ns4="http://server.ws.gestioncsv.sgm.tecdoc.ieci" xmlns:ns5="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns4:entidad" type="ns5:Entidad"/>
+   <parameter qname="ns4:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns4:stringB64Encoded" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="deleteInfoDocumento" qname="ns6:deleteInfoDocumento" returnQName="ns6:deleteInfoDocumentoReturn" returnType="ns7:RetornoServicio" soapAction="" xmlns:ns6="http://server.ws.gestioncsv.sgm.tecdoc.ieci" xmlns:ns7="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns6:entidad" type="ns7:Entidad"/>
+   <parameter qname="ns6:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="getDocumentoByCSV" qname="ns8:getDocumentoByCSV" returnQName="ns8:getDocumentoByCSVReturn" returnType="ns9:DocumentoCSVRetorno" soapAction="" xmlns:ns8="http://server.ws.gestioncsv.sgm.tecdoc.ieci" xmlns:ns9="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci">
+   <parameter qname="ns8:entidad" type="ns10:Entidad" xmlns:ns10="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <parameter qname="ns8:csv" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="getContenidoDocumento" qname="ns11:getContenidoDocumento" returnQName="ns11:getContenidoDocumentoReturn" returnType="ns12:StringB64" soapAction="" xmlns:ns11="http://server.ws.gestioncsv.sgm.tecdoc.ieci" xmlns:ns12="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci">
+   <parameter qname="ns11:entidad" type="ns13:Entidad" xmlns:ns13="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <parameter qname="ns11:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="existeContenidoDocumento" qname="ns14:existeContenidoDocumento" returnQName="ns14:existeContenidoDocumentoReturn" returnType="ns15:BooleanRetorno" soapAction="" xmlns:ns14="http://server.ws.gestioncsv.sgm.tecdoc.ieci" xmlns:ns15="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci">
+   <parameter qname="ns14:entidad" type="ns16:Entidad" xmlns:ns16="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <parameter qname="ns14:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="getInfoDocumentoByCSV" qname="ns17:getInfoDocumentoByCSV" returnQName="ns17:getInfoDocumentoByCSVReturn" returnType="ns18:InfoDocumentoCSVRetorno" soapAction="" xmlns:ns17="http://server.ws.gestioncsv.sgm.tecdoc.ieci" xmlns:ns18="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci">
+   <parameter qname="ns17:entidad" type="ns19:Entidad" xmlns:ns19="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <parameter qname="ns17:csv" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <parameter name="allowedMethods" value="deleteInfoDocumento getInfoDocumentoByCSV existeContenidoDocumento writeDocumento generarCSV getDocumentoByCSV getContenidoDocumento"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="GestionCSVWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.gestioncsv.ws.server.GestionCSVWebService"/>
+  <parameter name="wsdlServicePort" value="GestionCSVWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.gestioncsv.sgm.tecdoc.ieci,http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.gestioncsv.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="GestionCSVWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns20:InfoDocumentoCSVFormDTO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.gestioncsv.ws.server.dto.InfoDocumentoCSVFormDTO" xmlns:ns20="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:StringB64" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.gestioncsv.ws.server.dto.StringB64" xmlns:ns21="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:BooleanRetorno" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.gestioncsv.ws.server.dto.BooleanRetorno" xmlns:ns22="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:InfoDocumentoCSVRetorno" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.gestioncsv.ws.server.dto.InfoDocumentoCSVRetorno" xmlns:ns23="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" xmlns:ns24="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:DocumentoCSVRetorno" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.gestioncsv.ws.server.dto.DocumentoCSVRetorno" xmlns:ns25="http://dto.server.ws.gestioncsv.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns26:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns26="http://dto.services.core.sgm.tecdoc.ieci"/>
+ </service>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

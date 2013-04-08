@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='RESPNAME'
+				 titleKey='catalog.supervision.group'
+				 fieldType='ITEMLINK'
+				 fieldLink='UID'
+				 styleClass='resplink'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='viewUsersManager.do?type=groups'
+				 id='uidint'
+				 columnClass='width100percent'
+				 />
+	
+	<!-- Se utiliza para poner el boton seleccionar en las columnas				
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property=''
+				 titleKey='empty'
+				 propertyValueKey="forms.button.select"
+				 fieldType='ACTIONBUTTON'
+				 fieldLink='UID'
+				 styleClass='aActionButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='viewUsersManager.do'
+				 id='uid'
+				 columnClass='width40percent'
+				 />
+	-->
+	
+	<!-- Ruta hasta la raiz, no se utiliza en la tabla -->
+	<propertyfmt type="BeanPropertyLdapAncestorFmt" 
+				 property='RESPNAME' 
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldLink='UID'
+				 styleClass='displayLink'
+				 fieldType='ANCESTOR'
+				 url='viewUsersManager.do?type=groups'
+				 id='uidint'
+				 />
+		
+</beanformatter>

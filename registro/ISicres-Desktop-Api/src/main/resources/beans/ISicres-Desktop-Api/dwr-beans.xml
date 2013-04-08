@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    	http://www.directwebremoting.org/schema/spring-dwr
+    	http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+	<dwr:controller id="dwrController" debug="true" />
+
+	<dwr:configuration>
+		<dwr:convert type="bean"
+			class="es.ieci.tecdoc.isicres.terceros.business.vo.PaisVO" />
+		<dwr:convert type="bean"
+			class="es.ieci.tecdoc.isicres.terceros.business.vo.CiudadVO">
+			<dwr:exclude method="provincia" />
+		</dwr:convert>
+		<dwr:convert type="bean"
+			class="es.ieci.tecdoc.isicres.terceros.business.vo.ProvinciaVO" />
+		<dwr:convert type="bean"
+			class="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoFisicoVO">
+			<dwr:include method="descripcion"/>
+		</dwr:convert>
+		<dwr:convert type="bean"
+			class="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoJuridicoVO">
+			<dwr:include method="descripcion"/>
+		</dwr:convert>
+	</dwr:configuration>
+
+	<bean class="es.ieci.tecdoc.sicres.terceros.web.service.DWRService"
+		id="dwrService">
+		<dwr:remote javascript="dwrService">
+			<dwr:include method="getPaises" />
+			<dwr:include method="getProvincias" />
+			<dwr:include method="getProvinciaPorDefecto" />
+			<dwr:include method="getCiudades" />
+			<dwr:include method="getTercerosFisicos" />
+			<dwr:include method="getTercerosJuridicos" />
+		</dwr:remote>
+		<property name="masterValuesDelegate">
+			<ref bean="masterValuesDelegate" />
+		</property>
+		<property name="tercerosFacade">
+			<ref bean="tercerosFacade" />
+		</property>
+	</bean>
+
+
+</beans>

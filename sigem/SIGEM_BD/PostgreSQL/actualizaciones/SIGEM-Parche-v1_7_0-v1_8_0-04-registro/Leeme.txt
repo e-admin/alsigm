@@ -1,0 +1,6 @@
+Para instalar el parche SIGEM-Parche-v1_7_0-v1_8_0-04-registro es necesario ejecutar la siguiente sentencia 
+desde una ventana de línea de comandos en el servidor de base de datos postgreSQL:
+
+	-  psql -d [nombre_bbdd] -f [ruta_fichero]/scr_reports.sql
+	
+El resultado debería ser eliminar y volver a insertar las filas de los informes corregidos.

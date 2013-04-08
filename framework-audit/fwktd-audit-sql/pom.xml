@@ -1,0 +1,201 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+		<artifactId>fwktd-audit-parent</artifactId>
+		<version>0.7</version>
+	</parent>
+
+	<artifactId>fwktd-audit-sql</artifactId>
+	<name>fwktd-audit-sql</name>
+
+	
+
+	<build>
+		<plugins>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly.plugin.version}</version>
+				<configuration>
+					<descriptors>
+						<descriptor>
+							${basedir}/src/main/assembly/dep.xml
+						</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assembly-sql-resources</id>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+
+
+		<profile>
+			<id>resetBD</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>sql-maven-plugin</artifactId>
+						<version>${sql-maven-plugin.version}</version>
+
+						<dependencies>
+							<dependency>
+								<groupId>${dependencyDriverGroupId}</groupId>
+								<artifactId>${dependencyDriverArtifactId}</artifactId>
+								<version>${dependencyDriverVersionId}</version>
+							</dependency>
+						</dependencies>
+
+						<configuration>
+							<driver>${driverJdbc}</driver>
+							<url>${urlJdbc}</url>
+							<username>${usernameJdbc}</username>
+							<password>${passwordJdbc}</password>
+							<!-- You can comment out username/password configurations and have
+								maven to look them up in your settings.xml using ${settingsKey} -->
+							<!--<settingsKey>sensibleKey</settingsKey> --><!--all executions are ignored if -Dmaven.test.skip=true <skip>${maven.test.skip}</skip> -->
+							<printResultSet>true</printResultSet>
+						</configuration>
+
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<id>create-schema</id>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<autocommit>${autocommit}</autocommit>
+									<onError>continue</onError>
+									<printResultSet>true</printResultSet>
+									<srcFiles>
+										<srcFile>${baseDirSql}/fwktd-audit-drop.sql</srcFile>
+										<srcFile>${baseDirSql}/fwktd-audit-create.sql</srcFile>
+										<srcFile>${baseDirSql}/fwktd-audit-insert.sql</srcFile>
+									</srcFiles>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>createBD</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>sql-maven-plugin</artifactId>
+						<version>${sql-maven-plugin.version}</version>
+
+						<dependencies>
+							<!-- specify the dependent jdbc driver here -->
+							<dependency>
+								<groupId>${dependencyDriverGroupId}</groupId>
+								<artifactId>${dependencyDriverArtifactId}</artifactId>
+								<version>${dependencyDriverVersionId}</version>
+							</dependency>
+						</dependencies>
+
+						<configuration>
+							<driver>${driverJdbc}</driver>
+							<url>${urlJdbc}</url>
+							<username>${usernameJdbc}</username>
+							<password>${passwordJdbc}</password>
+							<!-- You can comment out username/password configurations and have
+								maven to look them up in your settings.xml using ${settingsKey} -->
+							<!--<settingsKey>sensibleKey</settingsKey> --><!--all executions are ignored if -Dmaven.test.skip=true <skip>${maven.test.skip}</skip> -->
+							<printResultSet>true</printResultSet>
+						</configuration>
+
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<id>create-schema</id>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<autocommit>${autocommit}</autocommit>
+									<onError>abort</onError>
+									<printResultSet>true</printResultSet>
+									<srcFiles>
+										<srcFile>${baseDirSql}/fwktd-audit-create.sql</srcFile>
+										<srcFile>${baseDirSql}/fwktd-audit-insert.sql</srcFile>
+									</srcFiles>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>dropBD</id>
+			<build>
+				<plugins>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>sql-maven-plugin</artifactId>
+						<version>${sql-maven-plugin.version}</version>
+
+						<dependencies>
+							<!-- specify the dependent jdbc driver here -->
+							<dependency>
+								<groupId>${dependencyDriverGroupId}</groupId>
+								<artifactId>${dependencyDriverArtifactId}</artifactId>
+								<version>${dependencyDriverVersionId}</version>
+							</dependency>
+						</dependencies>
+
+						<configuration>
+							<driver>${driverJdbc}</driver>
+							<url>${urlJdbc}</url>
+							<username>${usernameJdbc}</username>
+							<password>${passwordJdbc}</password>
+							<!-- You can comment out username/password configurations and have
+								maven to look them up in your settings.xml using ${settingsKey} -->
+							<!--<settingsKey>sensibleKey</settingsKey> --><!--all executions are ignored if -Dmaven.test.skip=true <skip>${maven.test.skip}</skip> -->
+							<printResultSet>true</printResultSet>
+						</configuration>
+
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<id>create-schema</id>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<autocommit>${autocommit}</autocommit>
+									<onError>abort</onError>
+									<printResultSet>true</printResultSet>
+									<srcFiles>
+										<srcFile>${baseDirSql}/fwktd-audit-drop.sql</srcFile>
+									</srcFiles>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

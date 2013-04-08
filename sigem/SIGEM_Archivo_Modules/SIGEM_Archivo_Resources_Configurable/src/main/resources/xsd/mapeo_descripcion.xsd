@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="ST_VALOR">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ST_SIST_EXT">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ST_ID_SIST_EXT">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:element name="VALOR">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ST_VALOR">
+					<xs:attribute name="ORG" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="N"/>
+								<xs:enumeration value="S"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TRANSFORMA_VALOR">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="VALOR" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TABLA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FILA"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SIST_EXT">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ST_SIST_EXT">
+					<xs:attribute name="TIPOPARAM" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:byte"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PARAM" type="xs:string"/>
+	<xs:element name="MAP_UDOC_REL_A_DESCR">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DATOS_SIMPLES"/>
+				<xs:element ref="DATOS_TABLA"/>
+			</xs:sequence>
+			<xs:attribute name="Version" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ID_SIST_EXT">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ST_ID_SIST_EXT">
+					<xs:attribute name="TIPOPARAM" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ID_LISTA">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FILA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DATO" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="NODO" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DESCRIPTOR">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ID_LISTA"/>
+				<xs:sequence minOccurs="0">
+					<xs:element ref="SIST_EXT"/>
+					<xs:element ref="ID_SIST_EXT"/>
+				</xs:sequence>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DATOS_TABLA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TABLA" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DATOS_SIMPLES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DATO" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DATO">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PARAM"/>
+				<xs:choice minOccurs="0">
+					<xs:element ref="DESCRIPTOR"/>
+					<xs:element ref="TRANSFORMA_VALOR"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="TIPOPARAM" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>						
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="TIPO" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>						
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ID" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

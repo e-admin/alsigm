@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SPAC_CT_INFORMES:ID'
+				 readOnly='false'
+				 titleKey='form.report.propertyLabel.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width5percent'/>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='SPAC_CT_INFORMES:NOMBRE'
+				 readOnly='false'
+				 titleKey='form.report.propertyLabel.name'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width65percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SPAC_CT_INFORMES:DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.report.propertyLabel.description'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'/>
+				 
+</beanformatter>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='CTENTITY:ID'
+				readOnly='false'
+				titleKey='form.tblvld.valor'
+				fieldType='SUBMIT'
+				fieldLink='CTENTITY:ID'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+				media='html'
+				decorator=''
+				url='/setProcedureEntity.do'
+				id='selectcode'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='ETIQUETA'
+				readOnly='false'
+				titleKey='catalog.entity'
+				fieldType='SUBMIT'
+				fieldLink='CTENTITY:ID'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+				media='html'
+				decorator=''
+				url='/setProcedureEntity.do'
+				id='selectcode'/>
+</beanformatter>

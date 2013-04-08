@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+                         "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <display-name>SIGEM_PublicadorWeb</display-name>
+    <description>Publicador de Expedientes</description>
+
+	<context-param>
+	  <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>   
+	  <param-value>ieci.tdw.ispac.ispacpublicador.business.resources.ApplicationResources</param-value>
+	</context-param>    
+	
+	<servlet>
+        <servlet-name>startup</servlet-name>
+        <servlet-class>ieci.tdw.ispac.ispacweb.servlet.ISPACStartupServlet</servlet-class>
+        <init-param>
+            <param-name>subdir</param-name>
+            <param-value>../SIGEM_PublicadorWeb</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logFileName</param-name>
+            <param-value>log4j.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+	<servlet>
+        <servlet-name>scheduler</servlet-name>
+        <display-name>Session Scheduler</display-name>
+        <servlet-class>ieci.tdw.ispac.ispacweb.scheduler.SchedulerServlet</servlet-class>
+		<init-param>
+		   <param-name>subdir</param-name>
+		   <param-value>../SIGEM_PublicadorWeb</param-value>
+		</init-param>
+		<init-param>
+		   <param-name>fileName</param-name>
+		   <param-value>scheduler-config.xml</param-value>
+		</init-param>
+        <load-on-startup>1</load-on-startup>
+   </servlet>
+    <servlet>
+        <servlet-name>direct</servlet-name>
+        <servlet-class>ieci.tdw.ispac.ispacpublicador.web.servlets.DirectExecutionServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>direct</servlet-name>
+        <url-pattern>/direct</url-pattern>
+    </servlet-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>ispac/index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

@@ -1,0 +1,23 @@
+<beans>
+
+	<bean id="jndi" class="org.apache.xbean.spring.jndi.DefaultContext">
+		<property name="entries">
+			<map>
+				<entry key="java:comp/env/jdbc/fwktd-csvDS">
+					<!--
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+					-->
+
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+						<property name="driverClassName" value="org.h2.Driver" />
+						<!-- property name="url" value="jdbc:h2:tcp://localhost/~/fwktd-sir;AUTO_SERVER=TRUE" / -->
+						<property name="url" value="jdbc:h2:~/fwktd-csv;MVCC=TRUE" />
+						<property name="username" value="fwktdcsv" />
+						<property name="password" value="fwktdcsv" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

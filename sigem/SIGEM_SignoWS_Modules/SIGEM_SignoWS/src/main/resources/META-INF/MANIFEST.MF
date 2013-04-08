@@ -1,0 +1,9 @@
+Specification-Title: ${pom.description}
+Specification-Version: ${pom.version} - ${build.time}
+Specification-Vendor: ${pom.organization.name}
+Implementation-Title: ${pom.description}
+Implementation-Version: ${pom.version} - ${build.time}
+Implementation-Vendor: ${pom.organization.name}
+Built-By: ${user.name}
+Build-Jdk: ${java.version}
+Build-Time: ${build.time}

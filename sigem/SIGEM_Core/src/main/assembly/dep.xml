@@ -1,0 +1,22 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>${basedir}/src/main/resources/SIGEM_Core</directory>
+			<outputDirectory>/SIGEM_Core</outputDirectory>	
+			<includes>
+				<include>SIGEM_spring.properties</include>
+				<include>database.properties</include>
+				<include>Idiomas.properties</include>
+				<include>IdiomasPresentacion.properties</include>
+			</includes>		
+		</fileSet>			
+	</fileSets>
+
+</assembly>

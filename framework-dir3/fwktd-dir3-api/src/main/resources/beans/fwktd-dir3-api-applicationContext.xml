@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+    default-lazy-init="true">
+
+	<!-- Carga de las propiedades de configuracion -->
+
+	<bean id="fwktd_dir3_api_configurationResourceLoaderImpl" name="fwktd_dir3_api_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl" />
+
+	<bean
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="configurationResourceLoader" ref="fwktd_dir3_api_configurationResourceLoader" />
+		<property name="locations">
+			<list>
+				<value>fwktd-dir3/fwktd-dir3-api.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--  el core de los servicios del modulo dir3 contiene alias a usar en las integraciones -->	
+	<import resource="classpath*:beans/fwktd-dir3-core-applicationContext.xml" />
+
+	<!-- todos estos contextos son necesarios en la implementación del api -->
+	<import resource="classpath*:beans/fwktd-dir3-dco-wsclient-applicationContext.xml" />
+	<import resource="classpath*:beans/fwktd-dir3-api/fwktd-dir3-api-datasource-beans.xml"/>
+	<import resource="classpath*:beans/fwktd-dir3-api/fwktd-dir3-api-dao-beans.xml"/>
+	<import resource="classpath*:beans/fwktd-dir3-api/fwktd-dir3-api-manager-beans.xml"/>
+	<import resource="classpath*:beans/fwktd-dir3-api/fwktd-dir3-api-beans.xml"/>
+
+</beans>

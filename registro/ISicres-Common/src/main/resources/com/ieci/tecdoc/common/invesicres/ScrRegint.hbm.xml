@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrRegint" 
+    table="SCR_REGINT"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_REGINT"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="idArch"
+        type="int"
+        column="ID_ARCH"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_ARCH"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idFdr"
+        type="int"
+        column="ID_FDR"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_FDR"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="80"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="NAME"
+            length="80"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idPerson"
+        type="int"
+        column="ID_PERSON"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_PERSON"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="ord"
+        type="int"
+        column="ORD"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ORD"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to ScrAddress -->
+    <many-to-one
+        name="scrAddress"
+        class="com.ieci.tecdoc.common.invesicres.ScrAddress"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="ID_ADDRESS"         
+        </meta>
+        <column name="ID_ADDRESS" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

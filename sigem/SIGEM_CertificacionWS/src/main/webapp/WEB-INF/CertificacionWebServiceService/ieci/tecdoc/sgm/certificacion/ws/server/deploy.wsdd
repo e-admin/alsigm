@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CertificacionWebServiceService WSDL service -->
+
+  <service name="CertificacionWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.certificacion.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="CertificacionWebServiceService"/>
+      <parameter name="schemaQualified" value="http://dto.services.core.sgm.tecdoc.ieci,http://pago.server.ws.certificacion.sgm.tecdoc.ieci,http://server.ws.certificacion.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="CertificacionWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.certificacion.ws.server.CertificacionWebService"/>
+      <parameter name="wsdlPortType" value="CertificacionWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.certificacion.sgm.tecdoc.ieci" name="generarCertificacionPagos" qname="operNS:generarCertificacionPagos" returnQName="retNS:generarCertificacionPagosReturn" returnType="rtns:RetornoPdf" soapAction="">
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://pago.server.ws.certificacion.sgm.tecdoc.ieci" qname="pns:pagos" type="tns:Pago"/>
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.certificacion.sgm.tecdoc.ieci" qname="pns:usuario" type="tns:Usuario"/>
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="altaCertificacion" qname="operNS:altaCertificacion" returnQName="retNS:altaCertificacionReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idUsuario" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idFichero" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="eliminarCertificacion" qname="operNS:eliminarCertificacion" returnQName="retNS:eliminarCertificacionReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idFichero" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.certificacion.sgm.tecdoc.ieci" name="obtenerCertificacion" qname="operNS:obtenerCertificacion" returnQName="retNS:obtenerCertificacionReturn" returnType="rtns:Certificacion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idUsuario" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idFichero" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <parameter name="allowedMethods" value="obtenerCertificacion eliminarCertificacion altaCertificacion generarCertificacionPagos"/>
+
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:RetornoServicio" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.certificacion.sgm.tecdoc.ieci" qname="ns:Certificacion" type="java:ieci.tecdoc.sgm.certificacion.ws.server.Certificacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://pago.server.ws.certificacion.sgm.tecdoc.ieci" qname="ns:Liquidacion" type="java:ieci.tecdoc.sgm.certificacion.ws.server.pago.Liquidacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:Entidad" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://pago.server.ws.certificacion.sgm.tecdoc.ieci" qname="ns:Pago" type="java:ieci.tecdoc.sgm.certificacion.ws.server.pago.Pago" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.certificacion.sgm.tecdoc.ieci" qname="ns:Usuario" type="java:ieci.tecdoc.sgm.certificacion.ws.server.Usuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.certificacion.sgm.tecdoc.ieci" qname="ns:RetornoPdf" type="java:ieci.tecdoc.sgm.certificacion.ws.server.RetornoPdf" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://pago.server.ws.certificacion.sgm.tecdoc.ieci" qname="ns:Tasa" type="java:ieci.tecdoc.sgm.certificacion.ws.server.pago.Tasa" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

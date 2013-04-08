@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				property='SPAC_EXPEDIENTES:NUMEXP'
+				readOnly='false'
+				dataType='string'
+				titleKey='search.numExp'
+				fieldType='LINKPARAM'
+				fieldLink='SPAC_EXPEDIENTES.NUMEXP'
+		        comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'
+				headerClass='sortable'
+		        sortable='true'
+		        styleClass='displayLink'
+		        url='sendToSesion.do?method=relate'
+		        columnClass='width30percent'>
+		        	 <linkParam paramId="numexp" property="SPAC_EXPEDIENTES:NUMEXP"/>
+
+		 </propertyfmt>
+	<propertyfmt type='BeanPropertySimpleFmt'
+				property='SPAC_EXPEDIENTES:ASUNTO'
+				readOnly='false'
+				dataType='string'
+				titleKey='search.asunto'
+				headerClass='sortable'
+		        sortable='true'
+				fieldType='LIST'
+				columnClass='width30percent'
+				/>
+	<propertyfmt type="BeanPropertySimpleFmt"
+					 property='ESTADO:SUSTITUTO'
+					 readOnly='false'
+					 titleKey='formatter.workList.estadoAdministrativo'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 columnClass='width20percent'/>
+
+</beanformatter>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:attribute name="Version">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="Tipo">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Cabecera"/>
+				<xs:enumeration value="EtiquetaDato"/>
+				<xs:enumeration value="Hipervinculo"/>
+				<xs:enumeration value="Seccion"/>
+				<xs:enumeration value="Tabla"/>
+				<xs:enumeration value="TablaTextual"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="Predeterminado" type="xs:string"/>
+	<xs:attribute name="Id" type="xs:string"/>
+	<xs:element name="Vinculo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Titulo"/>
+				<xs:element ref="Estilo"/>
+				<xs:element ref="Url"/>
+				<xs:element ref="Target" minOccurs="0"/>
+				<xs:element ref="Parametro" minOccurs="0"/>
+				<xs:element ref="Id_Campo_Value" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ValorSeleccionPorDefecto">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Url" type="xs:string"/>
+	<xs:element name="Titulo">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="Predeterminado" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Target">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Parametro">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Id_Campo_Value">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Tabla_Elementos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Elemento" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Seccion_Elementos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Elemento" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Multilinea">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="N"/>
+				<xs:enumeration value="S"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Mostrar_Unidad_Numero">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="N"/>
+				<xs:enumeration value="S"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Mostrar_Tipo_Numero">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="N"/>
+				<xs:enumeration value="S"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Mostrar_Cabeceras">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="N"/>
+				<xs:enumeration value="S"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Id_CampoTbl">
+		<xs:simpleType>
+			<xs:restriction base="xs:short"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Etiqueta">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Titulo"/>
+				<xs:element ref="Estilo" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Estilo">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Elementos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Elemento" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Elemento">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="Id_CampoTbl"/>
+					<xs:element ref="Etiqueta"/>
+					<xs:element ref="Mostrar_Cabeceras" minOccurs="0"/>
+					<xs:element ref="Tabla_Elementos"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="Etiqueta"/>
+					<xs:choice>
+						<xs:element ref="Cabecera_Elementos"/>
+						<xs:element ref="Campo"/>
+						<xs:element ref="Vinculo"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="Desplegada"/>
+					<xs:element ref="Etiqueta"/>
+					<xs:element ref="Seccion_Elementos"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:attribute ref="Tipo" use="required"/>
+			<xs:attribute name="Scroll">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="N"/>
+						<xs:enumeration value="S"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Editable">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="N"/>
+				<xs:enumeration value="S"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Desplegada">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="N"/>
+				<xs:enumeration value="S"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Definicion_FmtFicha">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Editable" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="Automaticos" minOccurs="0" maxOccurs="1" />
+				<xs:element ref="Elementos" minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute ref="Version" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Campo">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:choice>
+						<xs:element ref="ValorSeleccionPorDefecto"/>
+						<xs:sequence>
+							<xs:element ref="Mostrar_Tipo_Numero"/>
+							<xs:element ref="Mostrar_Unidad_Numero"/>
+						</xs:sequence>
+					</xs:choice>
+					<xs:element ref="Estilo"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="Estilo"/>
+					<xs:element ref="Multilinea" minOccurs="0"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:attribute ref="Id" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Cabecera_Elementos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Elemento" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Automaticos">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="N"/>
+				<xs:enumeration value="S"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<displaydecorator>
+	<displaycolumn name='NOMBRE' 
+				title='Nombre' 
+				type='TEXT' 
+				width='25%'
+				headerClass=""/>
+	<displaycolumn name='NDOC' 
+				title='Documento' 
+				type='TEXT' 
+				width='15%'/>	
+	<displaycolumn name='DIRNOT' 
+				title='Dirección' 
+				type='TEXT' 
+				width='30%'/>
+	<propertyfmt name='EMAIL' 
+				title='E-mail' 
+				fieldType='TEXT' 
+				width='30%'/>
+</displaydecorator>

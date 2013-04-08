@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Fichero_Intercambio_SICRES_3 xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+        <De_Origen_o_Remitente>
+                <Codigo_Entidad_Registral_Origen>O00001223</Codigo_Entidad_Registral_Origen>
+                <Decodificacion_Entidad_Registral_Origen/>
+                <Numero_Registro_Entrada>110110029</Numero_Registro_Entrada>
+                <Fecha_Hora_Entrada>20111003142545</Fecha_Hora_Entrada>
+                <Timestamp_Entrada>MIIJAgYJKoZIhvcNAQcCoIII8zCCCO8CAQMxCzAJBgUrDgMCGgUAMGMGCyqGSIb3DQEJEAEEoFQE
+UjBQAgEBBgcrBAYBAwQGMCEwCQYFKw4DAhoFAAQUUWOB4eBUCR2Huvdoxj5620NBxAQCAx+r9BgP
+MjAxMTAzMTgwOTQ3MzZaMAkCAQGAAQGBAQKgggYWMIIGEjCCBPqgAwIBAgIIbm8zhY7CD5EwDQYJ
+KoZIhvcNAQEFBQAwUjERMA8GA1UEAxMIQUNDVi1DQTIxDzANBgNVBAsTBlBLSUdWQTEfMB0GA1UE
+ChMWR2VuZXJhbGl0YXQgVmFsZW5jaWFuYTELMAkGA1UEBhMCRVMwHhcNMDkwNzE2MTczODM2WhcN
+MTQwNzE1MTc0ODM2WjBwMS8wLQYDVQQDEyZkZXMtdHNhZmlybWEucmVkaW50ZXJhZG1pbmlzdHJh
+dGl2YS5lczEPMA0GA1UECxMGUEtJR1ZBMR8wHQYDVQQKExZHZW5lcmFsaXRhdCBWYWxlbmNpYW5h
+MQswCQYDVQQGEwJFUzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAO7U7PFIMDqbWr0z
+7YI4pRHZML7PKSWgtu6dv8gmOXJPCd6W7FKqn10OTWfZOPaKHJCqoyyJu0UImDtEwicE3hQ2tazF
+BsjnJdUw7KmfEkvzdkbmx+PGYD7H6rPM0cWWPfOHZgqr8eg7Zdd3Ui0R6vDEcxqh47MwTq3Kw8JC
+BKElgawkX92BgXhWiNlUBXlTD2r9CzgBhogB+tFCTOv2k2XzqUeVHQ8fmsZ6gj1MZl9iCS/c9I1+
+U3NmA0HeITsVn7j/6fxBYOiyV7janGOsqCnKdm3M8fefDIoJcldgh2SZ6NUmrYzU7XjnIpgBTods
+x4US6fd95vtSOkmFkFwhA8sCAwEAAaOCAswwggLIMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQD
+AgbAMBYGA1UdJQEB/wQMMAoGCCsGAQUFBwMIMB0GA1UdDgQWBBT1tA+2+0rit7VNeZyusiKwE+jn
+cTAfBgNVHSMEGDAWgBSzeO0FpXlBOsL0wFIo/2NDP7/jgTBKBgNVHREEQzBBgiZkZXMtdHNhZmly
+bWEucmVkaW50ZXJhZG1pbmlzdHJhdGl2YS5lc4IXZGVzLXRzYWZpcm1hLnJlZHNhcmEuZXMwggGW
+BgNVHSAEggGNMIIBiTCCAYUGCysGAQQBv1UDFAEAMIIBdDCCAT4GCCsGAQUFBwICMIIBMB6CASwA
+QwBlAHIAdABpAGYAaQBjAGEAZABvACAAZABlACAAVABTAEEAIABlAHgAcABlAGQAaQBkAG8AIABw
+AG8AcgAgAGwAYQAgAEEAdQB0AG8AcgBpAHQAYQB0ACAAZABlACAAQwBlAHIAdABpAGYAaQBjAGEA
+YwBpAPMAIABkAGUAIABsAGEAIABDAG8AbQB1AG4AaQB0AGEAdAAgAFYAYQBsAGUAbgBjAGkAYQBu
+AGEAIAAoAFAAbAAuACAATQBhAG4AaQBzAGUAcwAgADEALAAgAEMASQBGACAAUwA0ADYAMQAxADAA
+MAAxAEEAKQAuACAAQwBQAFMAIAB5ACAAQwBQACAAZQBuACAAaAB0AHQAcAA6AC8ALwB3AHcAdwAu
+AGEAYwBjAHYALgBlAHMwMAYIKwYBBQUHAgEWJGh0dHA6Ly93d3cuYWNjdi5lcy9sZWdpc2xhY2lv
+bl9jLmh0bTA5BgNVHR8EMjAwMC6gLKAqhihodHRwOi8vd3d3LmFjY3YuZXMvZ2VzdGNlcnQvYWNj
+di1jYTIuY3JsMC8GCCsGAQUFBwEBBCMwITAfBggrBgEFBQcwAYYTaHR0cDovL29jc3AuYWNjdi5l
+czANBgkqhkiG9w0BAQUFAAOCAQEAQ1FqMK5H80MycZ1/rxwyri7KNIVYeuNoXbIHFXT9WddO2TM7
+vDKM5MNcjcTKgqLOOT1J3+HyoGYIOWevyK/1N1ukCAw7YlcZ9CC9M/3LOMVNhDBm7XzrN+/mZbzv
+qzqABB5m1C/8/2WA5R0zvGOZmL8hEfFM1Wqq7NIugnGkcQ5dKBJdUY+oxI11yIH8BbW3AvvNdMoa
+XPaPycxw5LjWsmlT1CqjqgQ9+pm1vRxsbHIJwkBwzgSI9DhInbCyAGN7ZQYCk6sPI4FV0SRsNkXj
+ge+75bBQMk34aQXTaWY7dakGodGY5GAdFsXmPgy+PzDLaU6LjZ3uHWe8BDrSFChFbTGCAlwwggJY
+AgEBMF4wUjERMA8GA1UEAxMIQUNDVi1DQTIxDzANBgNVBAsTBlBLSUdWQTEfMB0GA1UEChMWR2Vu
+ZXJhbGl0YXQgVmFsZW5jaWFuYTELMAkGA1UEBhMCRVMCCG5vM4WOwg+RMAkGBSsOAwIaBQCggdQw
+GgYJKoZIhvcNAQkDMQ0GCyqGSIb3DQEJEAEEMCMGCSqGSIb3DQEJBDEWBBRk3qPAxxH0lPIy5VGc
+njjOVQFhaDCBkAYLKoZIhvcNAQkQAgwxgYAwfjB8MHoEFC1bdKngYdu4zDr0UTyZOTIt/YOxMGIw
+VqRUMFIxETAPBgNVBAMTCEFDQ1YtQ0EyMQ8wDQYDVQQLEwZQS0lHVkExHzAdBgNVBAoTFkdlbmVy
+YWxpdGF0IFZhbGVuY2lhbmExCzAJBgNVBAYTAkVTAghubzOFjsIPkTANBgkqhkiG9w0BAQEFAASC
+AQAnk7toTy6VlRxmPbBooo1z1jOQ6qMvogh9FTV75Ksv92Ql6IZXr+SwFVED6qgNls+4Ir9JFYTL
+8Nv46CegSiGqLf8WvxagFJPVFVKInAAQl/pcFIbqn6Ki/38Vsh/W825hBh3gxKHGX/DWwVfj4Ihp
+0yE3s1nKD6DUT6IEg0H35cSFVj6lSxqzP7Kk8KEmTx5EeMjQJkrtmWuV62Klk6P/1oSwOHPuwCax
+hUmPpMK9c0Z2A72bc/6nEguS35yyAf3z4eWqMYLY/qqk7LxevxNSu5YMS5O4r1YkAEaYnOqhQqaQ
+85zGwwSue+/F3ZWfh69owgb5IckgWWhr7SkopXVl</Timestamp_Entrada>
+                <Codigo_Unidad_Tramitacion_Origen>E00106103</Codigo_Unidad_Tramitacion_Origen>
+                <Decodificacion_Unidad_Tramitacion_Origen/>
+        </De_Origen_o_Remitente>
+        <De_Destino>
+                <Codigo_Entidad_Registral_Destino>O00002061</Codigo_Entidad_Registral_Destino>
+                <Decodificacion_Entidad_Registral_Destino/>
+                <Codigo_Unidad_Tramitacion_Destino/>
+                <Decodificacion_Unidad_Tramitacion_Destino/>
+        </De_Destino>
+        <De_Interesado>
+                <Tipo_Documento_Identificacion_Interesado/>
+                <Documento_Identificacion_Interesado/>
+                <Razon_Social_Interesado/>
+                <Nombre_Interesado/>
+                <Primer_Apellido_Interesado/>
+                <Segundo_Apellido_Interesado/>
+                <Tipo_Documento_Identificacion_Representante/>
+                <Documento_Identificacion_Representante/>
+                <Razon_Social_Representante/>
+                <Nombre_Representante/>
+                <Primer_Apellido_Representante/>
+                <Segundo_Apellido_Representante/>
+                <Pais_Interesado/>
+                <Provincia_Interesado/>
+                <Municipio_Interesado/>
+                <Direccion_Interesado/>
+                <Codigo_Postal_Interesado/>
+                <Correo_Electronico_Interesado/>
+                <Telefono_Contacto_Interesado/>
+                <Direccion_Electronica_Habilitada_Interesado/>
+                <Canal_Preferente_Comunicacion_Interesado/>
+                <Pais_Representante/>
+                <Provincia_Representante/>
+                <Municipio_Representante/>
+                <Direccion_Representante/>
+                <Codigo_Postal_Representante/>
+                <Correo_Electronico_Representante/>
+                <Telefono_Contacto_Representante/>
+                <Direccion_Electronica_Habilitada_Representante/>
+                <Canal_Preferente_Comunicacion_Representante/>
+                <Observaciones/>
+        </De_Interesado>
+        <De_Asunto>
+                <Resumen>Asunto de Caso de Prueba SIR-RC-PR-029</Resumen>
+                <Codigo_Asunto_Segun_Destino/>
+                <Referencia_Externa/>
+                <Numero_Expediente/>
+        </De_Asunto>
+        <De_Internos_Control>
+                <Tipo_Transporte_Entrada/>
+                <Numero_Transporte_Entrada/>
+                <Nombre_Usuario/>
+                <Contacto_Usuario/>
+                <Identificador_Intercambio>O00001223_11_00010029</Identificador_Intercambio>
+                <Aplicacion_Version_Emisora/>
+                <Tipo_Anotacion>02</Tipo_Anotacion>
+                <Descripcion_Tipo_Anotacion/>
+                <Tipo_Registro>0</Tipo_Registro>
+                <Documentacion_Fisica>1</Documentacion_Fisica>
+                <Observaciones_Apunte/>
+                <Indicador_Prueba>0</Indicador_Prueba>
+                <Codigo_Entidad_Registral_Inicio>O00001223</Codigo_Entidad_Registral_Inicio>
+                <Decodificacion_Entidad_Registral_Inicio/>
+        </De_Internos_Control> 
+        <De_Formulario_Generico>
+                <Expone/>
+                <Solicita/>
+        </De_Formulario_Generico>
+</Fichero_Intercambio_SICRES_3>

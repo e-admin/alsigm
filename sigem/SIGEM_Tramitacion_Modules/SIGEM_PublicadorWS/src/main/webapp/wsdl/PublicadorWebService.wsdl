@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.publicador.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.publicador.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.publicador.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:tns2="http://exception.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.publicador.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="getHito">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="idHito" type="xsd:int"/>
+      <element name="idAplicacion" type="xsd:int"/>
+      <element name="idSystem" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getHitoResponse">
+    <complexType>
+     <sequence>
+      <element name="getHitoReturn" type="impl:Hito"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Hito">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="estado" type="xsd:int"/>
+       <element name="fecha" nillable="true" type="xsd:dateTime"/>
+       <element name="idAplicacion" type="xsd:int"/>
+       <element name="idEvento" type="xsd:int"/>
+       <element name="idFase" type="xsd:int"/>
+       <element name="idHito" type="xsd:int"/>
+       <element name="idInfo" type="xsd:int"/>
+       <element name="idObjeto" nillable="true" type="xsd:string"/>
+       <element name="idPcd" type="xsd:int"/>
+       <element name="idSistema" nillable="true" type="xsd:string"/>
+       <element name="idTramite" type="xsd:int"/>
+       <element name="infoAux" nillable="true" type="xsd:string"/>
+       <element name="ipMaquina" nillable="true" type="xsd:string"/>
+       <element name="tipoDoc" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="updateHito">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="hito" type="impl:Hito"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateHitoResponse">
+    <complexType>
+     <sequence>
+      <element name="updateHitoReturn" type="impl:Hito"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Booleano">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="valor" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="addHito">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="hito" type="impl:Hito"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addHitoResponse">
+    <complexType>
+     <sequence>
+      <element name="addHitoReturn" type="impl:Hito"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteHito">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="idHito" type="xsd:int"/>
+      <element name="applicationId" type="xsd:int"/>
+      <element name="systemId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteHitoResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteHitoReturn" type="impl:Booleano"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="reactivateHito">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="idHito" type="xsd:int"/>
+      <element name="applicationId" type="xsd:int"/>
+      <element name="systemId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="reactivateHitoResponse">
+    <complexType>
+     <sequence>
+      <element name="reactivateHitoReturn" type="impl:Hito"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getRegla">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="idRegla" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getReglaResponse">
+    <complexType>
+     <sequence>
+      <element name="getReglaReturn" type="impl:Regla"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Regla">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="atributos" nillable="true" type="xsd:string"/>
+       <element name="id" type="xsd:int"/>
+       <element name="idAccion" type="xsd:int"/>
+       <element name="idAplicacion" type="xsd:int"/>
+       <element name="idCondicion" type="xsd:int"/>
+       <element name="idEvento" type="xsd:int"/>
+       <element name="idFase" type="xsd:int"/>
+       <element name="idInfo" type="xsd:int"/>
+       <element name="idPcd" type="xsd:int"/>
+       <element name="idTramite" type="xsd:int"/>
+       <element name="orden" type="xsd:int"/>
+       <element name="tipoDoc" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="addRegla">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="regla" type="impl:Regla"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addReglaResponse">
+    <complexType>
+     <sequence>
+      <element name="addReglaReturn" type="impl:Regla"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateRegla">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="regla" type="impl:Regla"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateReglaResponse">
+    <complexType>
+     <sequence>
+      <element name="updateReglaReturn" type="impl:Regla"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteRegla">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="idRegla" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteReglaResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteReglaReturn" type="impl:Booleano"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getError">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="idHito" type="xsd:int"/>
+      <element name="applicationId" type="xsd:int"/>
+      <element name="systemId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getErrorResponse">
+    <complexType>
+     <sequence>
+      <element name="getErrorReturn" type="impl:Error"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Error">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="descripcion" nillable="true" type="xsd:string"/>
+       <element name="idAplicacion" type="xsd:int"/>
+       <element name="idError" type="xsd:int"/>
+       <element name="idHito" type="xsd:int"/>
+       <element name="idObjeto" nillable="true" type="xsd:string"/>
+       <element name="idSistema" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfError">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Error"/>
+    </sequence>
+   </complexType>
+   <complexType name="ListaErrores">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="errores" nillable="true" type="impl:ArrayOfError"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getListaErrores">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListaErroresResponse">
+    <complexType>
+     <sequence>
+      <element name="getListaErroresReturn" type="impl:ListaErrores"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListaHitos">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListaHitosResponse">
+    <complexType>
+     <sequence>
+      <element name="getListaHitosReturn" type="impl:ListaHitos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfHito">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Hito"/>
+    </sequence>
+   </complexType>
+   <complexType name="ListaHitos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="hitos" nillable="true" type="impl:ArrayOfHito"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getListaReglas">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListaReglasResponse">
+    <complexType>
+     <sequence>
+      <element name="getListaReglasReturn" type="impl:ListaReglas"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfRegla">
+    <sequence>
+
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Regla"/>
+    </sequence>
+   </complexType>
+   <complexType name="ListaReglas">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="reglas" nillable="true" type="impl:ArrayOfRegla"/>
+      </sequence>
+
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getErrorResponse">
+
+      <wsdl:part element="impl:getErrorResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListaReglasRequest">
+
+      <wsdl:part element="impl:getListaReglas" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateReglaRequest">
+
+      <wsdl:part element="impl:updateRegla" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getHitoRequest">
+
+      <wsdl:part element="impl:getHito" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addReglaResponse">
+
+      <wsdl:part element="impl:addReglaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteHitoRequest">
+
+      <wsdl:part element="impl:deleteHito" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getErrorRequest">
+
+      <wsdl:part element="impl:getError" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteReglaResponse">
+
+      <wsdl:part element="impl:deleteReglaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteReglaRequest">
+
+      <wsdl:part element="impl:deleteRegla" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getReglaRequest">
+
+      <wsdl:part element="impl:getRegla" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="reactivateHitoResponse">
+
+      <wsdl:part element="impl:reactivateHitoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListaReglasResponse">
+
+      <wsdl:part element="impl:getListaReglasResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListaErroresResponse">
+
+      <wsdl:part element="impl:getListaErroresResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListaHitosResponse">
+
+      <wsdl:part element="impl:getListaHitosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListaErroresRequest">
+
+      <wsdl:part element="impl:getListaErrores" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addHitoRequest">
+
+      <wsdl:part element="impl:addHito" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListaHitosRequest">
+
+      <wsdl:part element="impl:getListaHitos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateHitoRequest">
+
+      <wsdl:part element="impl:updateHito" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateReglaResponse">
+
+      <wsdl:part element="impl:updateReglaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getReglaResponse">
+
+      <wsdl:part element="impl:getReglaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateHitoResponse">
+
+      <wsdl:part element="impl:updateHitoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addReglaRequest">
+
+      <wsdl:part element="impl:addRegla" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteHitoResponse">
+
+      <wsdl:part element="impl:deleteHitoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addHitoResponse">
+
+      <wsdl:part element="impl:addHitoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getHitoResponse">
+
+      <wsdl:part element="impl:getHitoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="reactivateHitoRequest">
+
+      <wsdl:part element="impl:reactivateHito" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PublicadorWebService">
+
+      <wsdl:operation name="getHito">
+
+         <wsdl:input message="impl:getHitoRequest" name="getHitoRequest"/>
+
+         <wsdl:output message="impl:getHitoResponse" name="getHitoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateHito">
+
+         <wsdl:input message="impl:updateHitoRequest" name="updateHitoRequest"/>
+
+         <wsdl:output message="impl:updateHitoResponse" name="updateHitoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addHito">
+
+         <wsdl:input message="impl:addHitoRequest" name="addHitoRequest"/>
+
+         <wsdl:output message="impl:addHitoResponse" name="addHitoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteHito">
+
+         <wsdl:input message="impl:deleteHitoRequest" name="deleteHitoRequest"/>
+
+         <wsdl:output message="impl:deleteHitoResponse" name="deleteHitoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reactivateHito">
+
+         <wsdl:input message="impl:reactivateHitoRequest" name="reactivateHitoRequest"/>
+
+         <wsdl:output message="impl:reactivateHitoResponse" name="reactivateHitoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRegla">
+
+         <wsdl:input message="impl:getReglaRequest" name="getReglaRequest"/>
+
+         <wsdl:output message="impl:getReglaResponse" name="getReglaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRegla">
+
+         <wsdl:input message="impl:addReglaRequest" name="addReglaRequest"/>
+
+         <wsdl:output message="impl:addReglaResponse" name="addReglaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateRegla">
+
+         <wsdl:input message="impl:updateReglaRequest" name="updateReglaRequest"/>
+
+         <wsdl:output message="impl:updateReglaResponse" name="updateReglaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteRegla">
+
+         <wsdl:input message="impl:deleteReglaRequest" name="deleteReglaRequest"/>
+
+         <wsdl:output message="impl:deleteReglaResponse" name="deleteReglaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getError">
+
+         <wsdl:input message="impl:getErrorRequest" name="getErrorRequest"/>
+
+         <wsdl:output message="impl:getErrorResponse" name="getErrorResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListaErrores">
+
+         <wsdl:input message="impl:getListaErroresRequest" name="getListaErroresRequest"/>
+
+         <wsdl:output message="impl:getListaErroresResponse" name="getListaErroresResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListaHitos">
+
+         <wsdl:input message="impl:getListaHitosRequest" name="getListaHitosRequest"/>
+
+         <wsdl:output message="impl:getListaHitosResponse" name="getListaHitosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListaReglas">
+
+         <wsdl:input message="impl:getListaReglasRequest" name="getListaReglasRequest"/>
+
+         <wsdl:output message="impl:getListaReglasResponse" name="getListaReglasResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PublicadorWebServiceSoapBinding" type="impl:PublicadorWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getHito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getHitoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getHitoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateHito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateHitoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateHitoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addHito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addHitoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addHitoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteHito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteHitoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteHitoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reactivateHito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="reactivateHitoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="reactivateHitoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRegla">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getReglaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getReglaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRegla">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addReglaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addReglaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateRegla">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateReglaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateReglaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteRegla">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteReglaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteReglaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getError">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getErrorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getErrorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListaErrores">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getListaErroresRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getListaErroresResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListaHitos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getListaHitosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getListaHitosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListaReglas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getListaReglasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getListaReglasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PublicadorWebServiceService">
+
+      <wsdl:port binding="impl:PublicadorWebServiceSoapBinding" name="PublicadorWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_PublicadorWS/services/PublicadorWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

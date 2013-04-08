@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Idocautonumctlg" 
+    table="IDOCAUTONUMCTLG"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IDOCAUTONUMCTLG"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="name" 
+            column="NAME" 
+            type="java.lang.String"
+            length="64"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="NAME"
+                length="64"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="tblname" 
+            column="TBLNAME" 
+            type="java.lang.String"
+            length="16"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TBLNAME"
+                length="16"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="info" 
+            column="INFO" 
+            type="java.lang.String"
+            length="254"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="INFO"
+                length="254"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="remarks" 
+            column="REMARKS" 
+            type="java.lang.String"
+            length="254"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="REMARKS"
+                length="254"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="crtrid" 
+            column="CRTRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CRTRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="crtndate" 
+            column="CRTNDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CRTNDATE"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="updrid" 
+            column="UPDRID" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="UPDRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="upddate" 
+            column="UPDDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="UPDDATE"
+                length="7"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

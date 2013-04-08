@@ -1,0 +1,29 @@
+<assembly>
+	<id>bd</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/db2</directory>
+			<outputDirectory>db2</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/h2</directory>
+			<outputDirectory>h2</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/oracle</directory>
+			<outputDirectory>oracle</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/postgresql</directory>
+			<outputDirectory>postgresql</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/sql/sqlserver</directory>
+			<outputDirectory>sqlserver</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>

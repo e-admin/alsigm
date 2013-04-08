@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+    default-lazy-init="true">
+
+	<!-- Carga de los modulos adicionales utilizados -->
+
+	<!-- ejemplos 
+		<import resource="classpath*:/beans/modulo1-applicationContext.xml"/>
+		<import resource="classpath*:/beans/modulo2-applicationContext.xml"/> 
+	
+	 -->
+	 	
+
+	<!-- Carga de las propiedades de configuracion -->
+
+	<bean id="fwktd_audit_configurationResourceLoaderImpl" name="fwktd_audit_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl" />
+
+	<bean
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="configurationResourceLoader" ref="fwktd_audit_configurationResourceLoader" />
+		<property name="locations">
+			<list>
+				<value>fwktd-audit/fwktd-audit-api.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- carga de ficheros de beans del modulo -->
+	<import resource="fwktd-audit-api/fwktd-audit-api-beans.xml"/>
+	<import resource="fwktd-audit-api/fwktd-audit-api-dao-beans.xml"/>
+	<import resource="fwktd-audit-api/fwktd-audit-api-datasource-beans.xml"/>
+	<import resource="fwktd-audit-api/fwktd-audit-api-incrementer-beans.xml"/>
+	<import resource="fwktd-audit-api/fwktd-audit-api-manager-beans.xml"/>
+	<import resource="fwktd-audit-api/fwktd-audit-api-transaction-beans.xml"/>
+	
+	<!-- carga de posibles personalizaciones de los beans del fwktd-audit-api, como se cargan los últimos sobreecribirían los anteriores -->
+	<import  resource="classpath:beans/fwktd-audit-api/*-custom-beans.xml"/>
+	
+
+</beans>

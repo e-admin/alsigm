@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<digester-rules>
+	<pattern value="queryform">
+		<object-create-rule classname="java.util.ArrayList" />
+	</pattern>
+
+	<!-- Busca cualquier campo de tipo action y por cada uno de ellos crea
+	  un objeto de tipo SearchActionBean que luego es añadido a la lista -->
+	<pattern value="*/action">
+		<object-create-rule classname="ieci.tdw.ispac.ispaclib.bean.SearchActionBean" />
+		<!-- Hace los sets para los atributos que se llaman igual que las propiedades de la clase -->
+		<set-properties-rule />
+		<set-next-rule methodname="add"/>
+	</pattern>
+	
+</digester-rules>

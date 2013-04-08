@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IE_Nombre></IE_Nombre>
+<IE_Descripcion></IE_Descripcion>
+<IE_Id_Externo></IE_Id_Externo>
+<IE_Version_NTI></IE_Version_NTI>
+<IE_Organo codigo="" idLista=""></IE_Organo>
+<IE_Fecha_Captura FMT="" SEP="" CALIF=""></IE_Fecha_Captura>
+<IE_Origen></IE_Origen>
+<IE_Estado_Elaboracion></IE_Estado_Elaboracion>
+<IE_Nombre_Formato></IE_Nombre_Formato>
+<IE_Tipo_Documental></IE_Tipo_Documental>
+<IE_Tipo_Firma></IE_Tipo_Firma>
+<IE_Valor_CSV></IE_Valor_CSV>
+<IE_Definicion_Generacion_CSV></IE_Definicion_Generacion_CSV>
+<IE_Identificador_Documento_Origen></IE_Identificador_Documento_Origen>
+
+<Indice_electronico tipo="documentoElectronico">
+	<UBICACION tipo="BINARIO">
+		<CONTENIDO></CONTENIDO>
+	</UBICACION>
+
+
+	<UBICACION tipo="ECM">
+		<ID_REPOSITORIO tipo="INVESDOC|ALFRESCO"></ID_REPOSITORIO>
+		<LOCALIZADOR></LOCALIZADOR>
+	</UBICACION>
+
+	<ALMACENAMIENTO>
+		<NOMBRE></NOMBRE>
+		<EXTENSION></EXTENSION>
+		<DESCRIPCION></DESCRIPCION>
+		<CLASIFICADOR></CLASIFICADOR>
+		<ID_REPOSITORIO tipo="INVESDOC|ALFRESCO"></ID_REPOSITORIO><!-- Sólo cuando el repositorio no sea común -->
+	</ALMACENAMIENTO>
+</Indice_electronico>
+
+
+<!-- OPCION 2 -->
+<Indice_electronico tipo="documentoElectronico">
+
+	<FICHA>
+		<IE_Nombre></IE_Nombre>
+		<IE_Descripcion></IE_Descripcion>
+		<IE_Id_Externo></IE_Id_Externo>
+		<IE_Version_NTI></IE_Version_NTI>
+		<IE_Organo codigo="" idLista=""></IE_Organo>
+		<IE_Fecha_Captura FMT="" SEP="" CALIF=""></IE_Fecha_Captura>
+		<IE_Origen></IE_Origen>
+		<IE_Estado_Elaboracion></IE_Estado_Elaboracion>
+		<IE_Nombre_Formato></IE_Nombre_Formato>
+		<IE_Tipo_Documental></IE_Tipo_Documental>
+		<IE_Tipo_Firma></IE_Tipo_Firma>
+		<IE_Valor_CSV></IE_Valor_CSV>
+		<IE_Definicion_Generacion_CSV></IE_Definicion_Generacion_CSV>
+		<IE_Identificador_Documento_Origen></IE_Identificador_Documento_Origen>
+	</FICHA>
+
+	<UBICACION tipo="BINARIO">
+		<CONTENIDO></CONTENIDO>
+	</UBICACION>
+
+
+	<UBICACION tipo="ECM">
+		<ID_REPOSITORIO tipo="INVESDOC|ALFRESCO"></ID_REPOSITORIO>
+		<LOCALIZADOR></LOCALIZADOR>
+	</UBICACION>
+
+	<ALMACENAMIENTO>
+		<NOMBRE></NOMBRE>
+		<EXTENSION></EXTENSION>
+		<DESCRIPCION></DESCRIPCION>
+		<CLASIFICADOR></CLASIFICADOR>
+		<ID_REPOSITORIO tipo="INVESDOC|ALFRESCO"></ID_REPOSITORIO><!-- Sólo cuando el repositorio no sea común -->
+	</ALMACENAMIENTO>
+</Indice_electronico>

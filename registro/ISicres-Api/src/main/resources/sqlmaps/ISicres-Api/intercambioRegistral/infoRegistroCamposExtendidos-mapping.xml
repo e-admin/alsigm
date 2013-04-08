@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="InfoRegistroCamposExtendidosVO">
+
+<typeAlias alias="infoRegistroCamposExtendidosVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroCamposExtendidosVO" />
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroCamposExtendidosVO"
+		id="infoRegistroCamposExtendidosResultMap">
+		<result property="id" column="id" />
+		<result property="fdrid" column="fdrid" />
+		<result property="fldid" column="fldid" />
+		<result property="value" column="text" />
+
+	</resultMap>
+</sqlMap>

@@ -1,0 +1,2 @@
+SELECT "C".CL_CLI  AS "id_cliente" FROM DATACM_4_0."Clientes" "C" , DATACM_4_0."Tarjetas" "T"  WHERE 
+"T".CL_CLI  =  "C".CL_CLI (+)

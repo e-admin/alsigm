@@ -1,0 +1,17 @@
+<assembly>
+	<id>configurable</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/src/main/resources/fwktd-csv</directory>
+			<outputDirectory>/fwktd-csv</outputDirectory>
+			<includes>
+				<include>fwktd-csv-core.properties</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

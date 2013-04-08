@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				property='UID' 
+				readOnly='false'
+				titleKey='catalog.supervision.UID' 
+				fieldType='LIST' 
+				width='' />
+	<propertyfmt type="BeanPropertyLdapReduceSizeFmt" 
+				property='DN' 
+				readOnly='false'
+				titleKey='catalog.supervision.DN' 
+				fieldType='LIST' 
+				width='70' />
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				property='RELATIVEDN' 
+				readOnly='false'
+				titleKey='catalog.supervision.relativeDN' 
+				fieldType='LIST' 
+				width=''/>		
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				property='RESPNAME' 
+				readOnly='false'
+				titleKey='catalog.common.nombre' 
+				fieldType='LIST' 
+				width=''/>
+				
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.sustitucion.propertyLabel.description'
+				 fieldType='GROUP_LINK_JS'
+				 fieldLink='ID_FECH_SUSTITUCIONES'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width30percent'
+				 media='html'
+				 id='regId'
+				 />
+				 
+	<propertyfmt type="BeanPropertyDateFmt"
+				 property='FECHA_INICIO'
+				 format='dd/MM/yyyy'
+				 readOnly='false'
+				 titleKey='form.sustitucion.propertyLabel.fechaInicio'
+				 fieldType='GROUP'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertyDateFmt"
+				 property='FECHA_FIN'
+				 format='dd/MM/yyyy'
+				 readOnly='false'
+				 titleKey='form.sustitucion.propertyLabel.fechaFin'
+				 fieldType='GROUP'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='RESPNAME'
+				 readOnly='false'
+				 titleKey='form.sustitucion.propertyLabel.responsible'
+				 fieldType='RESPONSIBLE'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width40percent'
+				 />
+				 
+</beanformatter>

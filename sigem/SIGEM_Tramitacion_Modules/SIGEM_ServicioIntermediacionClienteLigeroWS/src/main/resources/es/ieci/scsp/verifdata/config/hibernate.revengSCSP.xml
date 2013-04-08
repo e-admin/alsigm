@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-name="core_bloqueo" match-catalog="SCSP"></table-filter>
+	<table-filter match-name="core_cache_certificados"
+		match-catalog="SCSP">
+	</table-filter>
+	<table-filter match-name="core_clave_privada"
+		match-catalog="SCSP">
+	</table-filter>
+	<table-filter match-name="core_clave_publica"
+		match-catalog="SCSP">
+	</table-filter>
+	<table-filter match-name="core_emisor_certificado"
+		match-catalog="SCSP">
+	</table-filter>
+	<table-filter match-name="core_log" match-catalog="SCSP"></table-filter>
+	<table-filter match-name="core_modulo" match-catalog="SCSP"></table-filter>
+	<table-filter match-name="core_modulo_configuracion"
+		match-catalog="SCSP">
+	</table-filter>
+	<table-filter match-name="core_parametro_configuracion"
+		match-catalog="SCSP">
+	</table-filter>
+	<table-filter match-name="core_peticion_respuesta"
+		match-catalog="SCSP">
+	</table-filter>
+	<table-filter match-name="core_secuencia_idpeticion"
+		match-catalog="SCSP">
+	</table-filter>
+	<table-filter match-name="core_servicio" match-catalog="SCSP"></table-filter>
+	<table-filter match-name="core_tipo_mensaje" match-catalog="SCSP"></table-filter>
+	<table-filter match-name="core_token_data" match-catalog="SCSP"></table-filter>
+	<table-filter match-name="core_transmision" match-catalog="SCSP"></table-filter>
+	<table-filter match-name="scsp_codigo_error" match-catalog="SCSP"></table-filter>
+	<table-filter match-name="scsp_estado_peticion"
+		match-catalog="SCSP">
+	</table-filter>
+</hibernate-reverse-engineering>

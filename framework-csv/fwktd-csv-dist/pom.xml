@@ -1,0 +1,139 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+		<artifactId>fwktd-csv-parent</artifactId>
+		<version>1.1</version>
+	</parent>
+
+	<description>Generacion de distribucion de fwktd-csv</description>
+
+	<artifactId>fwktd-csv-dist</artifactId>
+	<name>fwktd-csv-dist</name>
+
+	<properties>
+		<skipDeploy>true</skipDeploy>
+	</properties>
+
+	<dependencies>
+
+		<!-- librerias -->
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-core</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-api</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-wsclient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+ 		<!-- archivos de recursos -->
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-core</artifactId>
+			<version>${pom.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-api</artifactId>
+			<version>${pom.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-wsclient</artifactId>
+			<version>${pom.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-webapp</artifactId>
+			<version>${pom.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-ws</artifactId>
+			<version>${pom.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-aplicacionExternaConnector-ws</artifactId>
+			<version>${pom.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<!-- documentacion -->
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-doc</artifactId>
+			<version>${pom.version}</version>
+			<classifier>documentacion</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<!-- base de datos -->
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-sql</artifactId>
+			<version>${pom.version}</version>
+			<classifier>bd</classifier>
+			<type>zip</type>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>assembly-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>
+									src/main/assembly/dep.xml
+								</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

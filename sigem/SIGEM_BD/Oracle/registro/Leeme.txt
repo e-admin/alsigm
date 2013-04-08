@@ -1,0 +1,36 @@
+Ejemplo de importación en la base de datos PSIGEM con password PSIGEM y sid GDOC_10.228.20.179
+
+1) Abrir una consola de sistema mediante el comando cmd
+
+2) Entrar en el directorio donde estén los scripts de creación de la base de datos limpia:
+
+	cd "Base de Datos\Oracle\Limpia"
+
+3) Ejecutar sqlplus
+	
+	Usuario: USUARIO 
+	Password: PASSWORD@NOMBRE_BBDD_EN_TSNAMES
+	
+4) Ejecutar los siguientes scripts
+
+	@01.1_create_tables_registro_sigem_oracle.sql
+	@01.2_create_tables_invesdoc_registro_sigem_oracle.sql
+	@02.1_create_indexes_constraints_registro_sigem_oracle.sql
+	@02.2_create_indexes_constraints_invesdoc_registro_sigem_oracle.sql
+	@03.1_insert_data_registro_sigem_oracle.sql
+	@03.2_insert_data_invesdoc_registro_sigem_oracle.sql
+	@04.1_insert_clob_invesdoc_registro_sigem_oracle.sql
+	@05_create_scr_reports_index.sql
+		
+5) Ejecutar la siguiente sentencia desde otra ventana de línea de comandos
+
+	Si se ejecuta desde un equipo remoto:
+		- imp <nombre usuario>@SID file=SCR_REPORTS.DMP tables=(SCR_REPORTS) log=SCR_REPORTS_IMP.log ignore=Y
+		El SID debemos tenerlo en el TSNAMES
+
+	Si se ejecuta desde el equipo en el que se encuentra la base de datos
+		- imp <nombre usuario>/<password> file=SCR_REPORTS.DMP tables=(SCR_REPORTS) log=SCR_REPORTS_IMP.log ignore=Y
+
+6) Salir del sqlplus mediante el comando:
+
+	quit

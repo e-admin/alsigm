@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrCaaux" 
+    table="SCR_CAAUX"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_CAAUX"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="idMatter"
+        type="int"
+        column="ID_MATTER"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_MATTER"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="datosAux"
+        type="com.ieci.tecdoc.common.extension.StringClobType"
+        column="DATOS_AUX"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="DATOS_AUX"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

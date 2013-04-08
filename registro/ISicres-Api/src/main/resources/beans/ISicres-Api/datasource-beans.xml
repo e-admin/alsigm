@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="isicresSqlMapClient" class="es.ieci.tecdoc.fwktd.core.spring.orm.ibatis.SqlMapClientMultiEntity">
+		<property name="configLocation">
+			<value>classpath:sqlmaps/ISicres-Api/registro/sqlmap-config.xml</value>
+		</property>
+		<property name="dataSource">
+			<ref bean="isicresDataSource" />
+		</property>
+	</bean>
+
+	<!-- JNDI Datasource -->
+	<bean id="isicresDataSource" class="es.ieci.tecdoc.fwktd.core.spring.configuration.jdbc.datasource.MultiEntityJndiDatasource">
+		<property name="jndiBaseName">
+			<value>${isicres.database.jndiName}</value>
+		</property>
+	</bean>
+
+
+</beans>

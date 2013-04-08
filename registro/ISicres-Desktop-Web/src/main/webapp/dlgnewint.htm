@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/global.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/font.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/tables.css" />
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></script>
+		<script language="javascript">
+			top.Idioma = top.ParamValue(document.location.search,"Idioma");
+			top.numIdioma = top.ParamValue(document.location.search,"numIdioma");
+			top.g_SessionPId = top.ParamValue(document.location.search,"SessionPId");
+			document.title = top.GetIdsLan("IDS_BUSCINTER");
+
+			function OnLoad()
+			{
+				var PermsCreate = parseInt(top.ParamValue(document.location.search,"PermsCreate"), 10);
+				var strMsg = "";
+
+				if (PermsCreate > 0) {
+					strMsg = top.GetIdsLan("IDS_NOT_RESULT") + "\n" + top.GetIdsLan("IDS_ALTA_INTER");
+					document.getElementById("btnNewPFis").style.visibility = "visible";
+					document.getElementById("btnNewPJur").style.visibility = "visible";
+				}
+				else {
+					strMsg = top.GetIdsLan("IDS_NOT_RESULT");
+				}
+
+				top.SetInnerText(document.getElementById("message"), strMsg);
+			}
+		</script>
+	</head>
+	<body onload="OnLoad();" onunload="top.EnableEvents(window.opener);" tabindex="-1">
+		<TABLE width="100%" border="0">
+			<tr height="89%">
+				<td width="1%"></td>
+				<td align="center"><h4 id="message"></h4></td>
+				<td width="1%"></td>
+			</tr>
+			<tr><td colspan="3"></td></tr>
+			<tr>
+				<td colspan="3" align="right">
+					<input id="btnNewPFis" class="button" type="button" onclick="window.close();window.returnValue='1';" style="width:160;visibility:hidden">
+						<SCRIPT TYPE="text/javascript">document.getElementById("btnNewPFis").value = top.GetIdsLan("IDS_LABEL_NEW_PFIS");</SCRIPT>
+					</input>
+					<input id="btnNewPJur" class="button" type="button" onclick="window.close();window.returnValue='2';" style="width:160;visibility:hidden">
+						<SCRIPT TYPE="text/javascript">document.getElementById("btnNewPJur").value = top.GetIdsLan("IDS_LABEL_NEW_PJUR");</SCRIPT>
+					</input>
+					<input id="btnClose" class="button" type="button" onclick="window.close();window.returnValue='';">
+						<SCRIPT TYPE="text/javascript">document.getElementById("btnClose").value = top.GetIdsLan("IDS_OPCCERRAR");</SCRIPT>
+					</input>
+				</td>
+			</tr>
+   		</TABLE>
+	</body>
+</html>   

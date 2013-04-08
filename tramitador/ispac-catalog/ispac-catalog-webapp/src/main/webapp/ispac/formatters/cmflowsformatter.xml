@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PROCD:ID'
+				 readOnly='true'
+				 titleKey='form.pproc.propertyLabel.procIdShort'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTPCD:COD_PCD'
+				 readOnly='false'
+				 titleKey='procedure.card.identif.codProc'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PROCD:NOMBRE'
+				 readOnly='true'
+				 titleKey='procedure.card.identif.procName'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PROCD:NVERSION'
+				 readOnly='false'
+				 titleKey='form.pproc.propertyLabel.version'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='FLOW:ID_ORIGEN'
+				 readOnly='true'
+				 titleKey='procedure.flow.stage.ini'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='FLOW:ID_DESTINO'
+				 readOnly='true'
+				 titleKey='procedure.flow.stage.fin'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+
+</beanformatter>

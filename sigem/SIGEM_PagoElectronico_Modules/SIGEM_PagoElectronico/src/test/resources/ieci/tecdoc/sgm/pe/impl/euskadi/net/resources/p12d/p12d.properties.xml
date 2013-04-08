@@ -1,0 +1,122 @@
+<properties>
+	
+	<!-- Ficheros de mapeo -->	
+	<objectMapPath>classMap.xml</objectMapPath>
+	<objectMapPathV1>classMapV1.xml</objectMapPathV1>	
+	<sipca>
+		<peticionPago>
+		  <fields>
+	  		<field>informarSIPCA</field>
+	  		<!--<field>entidadSIPCA</field>-->
+	  		<field>gastoGV</field>
+	  		<field>exentoPago</field>
+	  		<field>ejercicioContable</field>	  		
+		  </fields>			
+		</peticionPago>
+		<conceptoPeticionPago>
+		  <fields>
+	  		<field>codigoIngreso</field>
+	  		<field>aplicPresupuestaria</field>
+	  		<field>numInmovilizado</field>
+	  		<field>baseImponible</field>
+	  		<field>tipoIVA</field>
+	  		<field>ivaRepercutido</field>
+	  		<field>importeIVA</field>
+	  		<field>conceptoIVA</field>
+	  		<field>territorioIVA</field>	  				  
+		  </fields>			
+		</conceptoPeticionPago>
+	</sipca>
+	
+	<!-- Diferentes urls -->
+	<uri>
+		<utilEjie>
+			<staticContent>/utilEjie</staticContent>
+		</utilEjie>
+	</uri>
+	
+	<urls>
+		<urlPasarela>https://www.testpago.euskadi.net/p12iWar/p12iRPCDispatcherServlet</urlPasarela>
+	</urls>
+	
+	
+	<!-- Carga de los ficheros de configuracion -->
+	<config>
+		<types>
+			<FinantialOrg>FinantialOrg</FinantialOrg>
+			<Instance>Instance</Instance>
+			<Admin>Admin</Admin>
+			<PaymentType>PaymentType</PaymentType>
+		</types>
+	</config>	
+	
+	<!-- Configuracion de los Business delegates a utilizar en el API de 
+	     cliente.
+			-bzdType: Class - Carga en utilizando a una clase en la misma VM
+					  EJB	- Carga en utilizando un EJB (no implementado)
+					  HTTP 	- Carga haciendo una llamada via http (no implementado)
+					  WS	- Carga haciendo una llamada via Web Service (no implementado)
+			-bzdRemote: Class	- Nombre completo (incluido el paquete) de la clase
+						EJB		- Nombre jndi del EJB 
+								  Nombre completo (incluido el paquete) de la clase con el interfaz home
+	-->
+	<businessDelegatesConfig>
+		<businessDelegate oid='paymentManagerBZDByRPC'>
+			<bzdType>RPCServlet</bzdType>
+			<!-- <bzdClass>p12d.exe.services.P12DPaymentManagerBzd</bzdClass> -->
+			<bzdClass>p12d.exe.pasarelapagos.services.P12DPaymentManagerBzd</bzdClass>
+	        <bzdRemote>                       
+              <rpcServlet>https://www.testpago.euskadi.net/p12gWar/p12gRPCDispatcherServlet</rpcServlet>
+              <module>rpcCoreDaemon</module>
+              <xoMapFile>/html/datos/classMap.xml</xoMapFile>
+              <timeout>2500000000</timeout>
+            </bzdRemote>			
+			<!-- <bzdRemote>p12g.exe.services.P12GPaymentManager</bzdRemote> -->
+		</businessDelegate>
+		<businessDelegate oid='p12d012345paymentConfig'>
+			<bzdType>Class</bzdType>
+			<bzdClass>p12d.exe.services.P12DPaymentManagerBzd</bzdClass>			
+			<bzdRemote>p12g.exe.services.P12GPaymentManager</bzdRemote>
+		</businessDelegate>
+		<businessDelegate oid='config'>
+ 	     	<bzdType>Class</bzdType>
+ 			<bzdClass>p12f.exe.pasarelapagos.services.config.ConfigLoaderBzd</bzdClass>
+ 			<bzdRemote>p12g.exe.pasarelapagos.config.loaders.P12GConfigLoader</bzdRemote>
+		</businessDelegate>      
+	</businessDelegatesConfig>
+	
+	<!-- Logging settings (el nivel global tiene preferencia a no ser que se
+         especifique el parametro ignoreGlobal='true' en un componente)
+		 Existen diferentes niveles de log que de mayor a menor nivel son:  
+		       ALL: 		(Integer.MIN_VALUE)	Todo; 
+		       FINEST:		(300)				Mensajes de debug de nivel bajo;
+		       FINER:		(400)				Mensajes de debug de nivel medio;
+		       FINE:		(500)				Mensajes de debug de alto nivel;
+		       CONFIG:		(700)				Partes de configuracion;
+		       INFO:		(800)				Informacion; 
+		       WARNING: 	(900)				Alertas importantes; 
+		       SEVERE: 		(1000)				Condiciones extremas (excepciones, etc);
+		       OFF:			(Integer.MAX_VALUE)	No se hace log
+		En la seccion <handler id='__'></handler> se especifica el handler que se
+		encarga de escribir las trazas. Como handler de las trazas se pueden utilizar:
+				CONSOLE:	Escribe las trazas en la consola
+				FILE:		Escribe las trazas en un fichero.
+							Hay que especificar las siguientes propiedades
+				            	<property id='fileName'>NombreFichero</property>
+				SOCKET:		Escribe las trazas en un socket
+							Hay que especificar las siguientes propiedades
+				            	<property id='host'>dns/IP_Host</property>
+				            	<property id='port'>puertoSocket</property>
+    -->
+	<log level='INFO'>
+		<handler id='CONSOLE'/>
+		<!--
+		<handler id='FILE'>
+			<property id='fileName'>d:\temp\R01HLog.log</property>
+		</handler>
+		-->
+		<component name='config' level='FINEST' ignoreGlobal='true'/>
+		<component name='serverPaymentAPI' level='FINEST' ignoreGlobal='true'/>
+		<component name='pago' level='FINEST' ignoreGlobal='true'/>
+	</log>
+</properties>

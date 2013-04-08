@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="SesionUsuarioWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="loginExternalUser" qname="ns1:loginExternalUser" returnQName="ns1:loginExternalUserReturn" returnType="ns1:IdentificadorSesion" soapAction="" xmlns:ns1="http://server.ws.autenticacion.sgm.tecdoc.ieci">
+   <parameter qname="ns1:poLogin" type="ns1:LoginExternalUser"/>
+   <parameter qname="ns1:entidad" type="ns2:Entidad" xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="loginCertificate" qname="ns3:loginCertificate" returnQName="ns3:loginCertificateReturn" returnType="ns3:IdentificadorSesion" soapAction="" xmlns:ns3="http://server.ws.autenticacion.sgm.tecdoc.ieci">
+   <parameter qname="ns3:poLogin" type="ns3:LoginCertificado"/>
+   <parameter qname="ns3:poEntidad" type="ns4:Entidad" xmlns:ns4="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="loginCertificateAuth" qname="ns5:loginCertificateAuth" returnQName="ns5:loginCertificateAuthReturn" returnType="ns5:IdentificadorSesion" soapAction="" xmlns:ns5="http://server.ws.autenticacion.sgm.tecdoc.ieci">
+   <parameter qname="ns5:poLogin" type="ns5:LoginCertificadoAutoridad"/>
+   <parameter qname="ns5:poEntidad" type="ns6:Entidad" xmlns:ns6="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="logout" qname="ns7:logout" returnQName="ns7:logoutReturn" returnType="ns8:RetornoServicio" soapAction="" xmlns:ns7="http://server.ws.autenticacion.sgm.tecdoc.ieci" xmlns:ns8="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns7:sessionId" type="ns7:IdentificadorSesion"/>
+   <parameter qname="ns7:poEntidad" type="ns8:Entidad"/>
+  </operation>
+  <operation name="crearSesion" qname="ns9:crearSesion" returnQName="ns9:crearSesionReturn" returnType="ns10:RetornoServicio" soapAction="" xmlns:ns10="http://dto.services.core.sgm.tecdoc.ieci" xmlns:ns9="http://server.ws.autenticacion.sgm.tecdoc.ieci">
+   <parameter qname="ns9:poSessionUsuario" type="ns9:SesionUsuario"/>
+   <parameter qname="ns9:poEntidad" type="ns10:Entidad"/>
+  </operation>
+  <operation name="borrarSesion" qname="ns11:borrarSesion" returnQName="ns11:borrarSesionReturn" returnType="ns12:RetornoServicio" soapAction="" xmlns:ns11="http://server.ws.autenticacion.sgm.tecdoc.ieci" xmlns:ns12="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns11:poIdSesion" type="ns11:IdentificadorSesion"/>
+   <parameter qname="ns11:poEntidad" type="ns12:Entidad"/>
+  </operation>
+  <operation name="limpiarSesiones" qname="ns13:limpiarSesiones" returnQName="ns13:limpiarSesionesReturn" returnType="ns14:RetornoServicio" soapAction="" xmlns:ns13="http://server.ws.autenticacion.sgm.tecdoc.ieci" xmlns:ns14="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns13:poEntidad" type="ns14:Entidad"/>
+  </operation>
+  <operation name="limpiarSesionesTimeOut" qname="ns15:limpiarSesionesTimeOut" returnQName="ns15:limpiarSesionesTimeOutReturn" returnType="ns16:RetornoServicio" soapAction="" xmlns:ns15="http://server.ws.autenticacion.sgm.tecdoc.ieci" xmlns:ns16="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns15:timeout" type="ns17:LimpiarSesiones" xmlns:ns17="http://sesion.services.core.sgm.tecdoc.ieci"/>
+   <parameter qname="ns15:poEntidad" type="ns16:Entidad"/>
+  </operation>
+  <operation name="obtenerSesion" qname="ns18:obtenerSesion" returnQName="ns18:obtenerSesionReturn" returnType="ns18:SesionUsuario" soapAction="" xmlns:ns18="http://server.ws.autenticacion.sgm.tecdoc.ieci">
+   <parameter qname="ns18:poIdSesion" type="ns18:IdentificadorSesion"/>
+   <parameter qname="ns18:poEntidad" type="ns19:Entidad" xmlns:ns19="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="getInfoUsuario" qname="ns20:getInfoUsuario" returnQName="ns20:getInfoUsuarioReturn" returnType="ns20:InfoUsuario" soapAction="" xmlns:ns20="http://server.ws.autenticacion.sgm.tecdoc.ieci">
+   <parameter qname="ns20:poIdSesion" type="ns20:IdentificadorSesion"/>
+   <parameter qname="ns20:poEntidad" type="ns21:Entidad" xmlns:ns21="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="getIdMetodoAutenticacion" qname="ns22:getIdMetodoAutenticacion" returnQName="ns22:getIdMetodoAutenticacionReturn" returnType="ns22:MetodoAutenticacion" soapAction="" xmlns:ns22="http://server.ws.autenticacion.sgm.tecdoc.ieci">
+   <parameter qname="ns22:poIdSesion" type="ns22:IdentificadorSesion"/>
+   <parameter qname="ns22:poEntidad" type="ns23:Entidad" xmlns:ns23="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="getMetodoAutenticacion" qname="ns24:getMetodoAutenticacion" returnQName="ns24:getMetodoAutenticacionReturn" returnType="ns24:MetodoAutenticacion" soapAction="" xmlns:ns24="http://server.ws.autenticacion.sgm.tecdoc.ieci">
+   <parameter qname="ns24:poIdSesion" type="ns24:IdentificadorSesion"/>
+   <parameter qname="ns24:poEntidad" type="ns25:Entidad" xmlns:ns25="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <parameter name="allowedMethods" value="obtenerSesion loginCertificate loginExternalUser borrarSesion loginCertificateAuth limpiarSesionesTimeOut getMetodoAutenticacion limpiarSesiones crearSesion logout getInfoUsuario getIdMetodoAutenticacion"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="SesionUsuarioWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.autenticacion.ws.server.SesionUsuarioWebService"/>
+  <parameter name="wsdlServicePort" value="SesionUsuarioWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.autenticacion.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci,http://sesion.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.autenticacion.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="SesionUsuarioWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns26:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns26="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns27:MetodoAutenticacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.autenticacion.ws.server.MetodoAutenticacion" xmlns:ns27="http://server.ws.autenticacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns28:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" xmlns:ns28="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns29:LoginCertificado" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.autenticacion.ws.server.LoginCertificado" xmlns:ns29="http://server.ws.autenticacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns30:LoginCertificadoAutoridad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.autenticacion.ws.server.LoginCertificadoAutoridad" xmlns:ns30="http://server.ws.autenticacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns31:InfoUsuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.autenticacion.ws.server.InfoUsuario" xmlns:ns31="http://server.ws.autenticacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns32:SesionUsuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.autenticacion.ws.server.SesionUsuario" xmlns:ns32="http://server.ws.autenticacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns33:IdentificadorSesion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.autenticacion.ws.server.IdentificadorSesion" xmlns:ns33="http://server.ws.autenticacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns34:LoginExternalUser" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.autenticacion.ws.server.LoginExternalUser" xmlns:ns34="http://server.ws.autenticacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns35:LimpiarSesiones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.sesion.LimpiarSesiones" xmlns:ns35="http://sesion.services.core.sgm.tecdoc.ieci"/>
+ </service>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

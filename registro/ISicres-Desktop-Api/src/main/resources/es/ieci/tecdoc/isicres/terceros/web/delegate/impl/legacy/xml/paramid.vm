@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ParamId sesionId="$!configuracionUsuario.sessionID" entidadId="$!configuracionUsuario.idEntidad">
+#if($!entity.id)
+	<Id>$entity.id</Id>
+#end
+</ParamId>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrVisdate" 
+    table="SCR_VISDATE"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_VISDATE"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="idarch" 
+            column="IDARCH" 
+            type="java.math.BigDecimal"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="IDARCH"
+                length="22"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="timestamp" 
+            column="TIMESTAMP" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TIMESTAMP"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="visdate" 
+            column="VISDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="VISDATE"
+                length="7"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

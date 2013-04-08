@@ -1,0 +1,15 @@
+<assembly>
+	<id>configurableSigem</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}/target/generated-resources/SIGEM_RegistroPresencialAdminWeb/SIGEM_RegistroPresencialAdmin</directory>
+			<filtered>true</filtered>
+			<outputDirectory>/SIGEM_RegistroPresencialAdminWeb/</outputDirectory>
+		</fileSet>
+	</fileSets>
+
+</assembly>

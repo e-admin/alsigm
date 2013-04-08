@@ -1,0 +1,15 @@
+<document>
+	<properties>
+		<title>Servicio de Calculo y Pago de Plusvalias</title>
+		<author email="angel_castro@ieci.es">Informatica El Corte Ingles</author>
+	</properties>
+	<body>
+		<release version="1.0.0" date="21-07-2010"
+			description="First release">
+			<action dev="acastro" type="release">
+				Primera versión de Plusvalia service.
+			</action>
+		</release>
+	</body>
+</document>
+

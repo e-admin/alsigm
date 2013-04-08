@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="CertificacionWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="generarCertificacionPagos" qname="ns1:generarCertificacionPagos" returnQName="ns1:generarCertificacionPagosReturn" returnType="ns1:RetornoPdf" soapAction="" xmlns:ns1="http://server.ws.certificacion.sgm.tecdoc.ieci">
+   <parameter qname="ns1:pagos" type="ns2:Pago" xmlns:ns2="http://pago.server.ws.certificacion.sgm.tecdoc.ieci"/>
+   <parameter qname="ns1:usuario" type="ns1:Usuario"/>
+   <parameter qname="ns1:entidad" type="ns3:Entidad" xmlns:ns3="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="altaCertificacion" qname="ns4:altaCertificacion" returnQName="ns4:altaCertificacionReturn" returnType="ns5:RetornoServicio" soapAction="" xmlns:ns4="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:ns5="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns4:idUsuario" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns4:idFichero" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns4:entidad" type="ns5:Entidad"/>
+  </operation>
+  <operation name="eliminarCertificacion" qname="ns6:eliminarCertificacion" returnQName="ns6:eliminarCertificacionReturn" returnType="ns7:RetornoServicio" soapAction="" xmlns:ns6="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:ns7="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns6:idFichero" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns6:entidad" type="ns7:Entidad"/>
+  </operation>
+  <operation name="obtenerCertificacion" qname="ns8:obtenerCertificacion" returnQName="ns8:obtenerCertificacionReturn" returnType="ns8:Certificacion" soapAction="" xmlns:ns8="http://server.ws.certificacion.sgm.tecdoc.ieci">
+   <parameter qname="ns8:idUsuario" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns8:idFichero" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns8:entidad" type="ns9:Entidad" xmlns:ns9="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <parameter name="allowedMethods" value="obtenerCertificacion eliminarCertificacion altaCertificacion generarCertificacionPagos"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="CertificacionWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.certificacion.ws.server.CertificacionWebService"/>
+  <parameter name="wsdlServicePort" value="CertificacionWebService"/>
+  <parameter name="schemaQualified" value="http://dto.services.core.sgm.tecdoc.ieci,http://pago.server.ws.certificacion.sgm.tecdoc.ieci,http://server.ws.certificacion.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.certificacion.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="CertificacionWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns10="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:Certificacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.certificacion.ws.server.Certificacion" xmlns:ns11="http://server.ws.certificacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:Liquidacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.certificacion.ws.server.pago.Liquidacion" xmlns:ns12="http://pago.server.ws.certificacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" xmlns:ns13="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns14:Pago" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.certificacion.ws.server.pago.Pago" xmlns:ns14="http://pago.server.ws.certificacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:Usuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.certificacion.ws.server.Usuario" xmlns:ns15="http://server.ws.certificacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:RetornoPdf" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.certificacion.ws.server.RetornoPdf" xmlns:ns16="http://server.ws.certificacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns17:Tasa" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.certificacion.ws.server.pago.Tasa" xmlns:ns17="http://pago.server.ws.certificacion.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

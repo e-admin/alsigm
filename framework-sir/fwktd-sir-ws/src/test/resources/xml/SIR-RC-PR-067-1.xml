@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Fichero_Intercambio_SICRES_3 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <De_Origen_o_Remitente>
+    <Codigo_Entidad_Registral_Origen>O00001223</Codigo_Entidad_Registral_Origen>
+    <Decodificacion_Entidad_Registral_Origen />
+    <Numero_Registro_Entrada>110110067</Numero_Registro_Entrada>
+    <Fecha_Hora_Entrada>20111003142545</Fecha_Hora_Entrada>
+    <Timestamp_Entrada />
+    <Codigo_Unidad_Tramitacion_Origen>E00106103</Codigo_Unidad_Tramitacion_Origen>
+    <Decodificacion_Unidad_Tramitacion_Origen />
+  </De_Origen_o_Remitente>
+  <De_Destino>
+    <Codigo_Entidad_Registral_Destino>O00002061</Codigo_Entidad_Registral_Destino>
+    <Decodificacion_Entidad_Registral_Destino/>
+    <Codigo_Unidad_Tramitacion_Destino/>
+    <Decodificacion_Unidad_Tramitacion_Destino/>
+  </De_Destino>
+  <De_Interesado>
+    <Tipo_Documento_Identificacion_Interesado />
+    <Documento_Identificacion_Interesado />
+    <Razon_Social_Interesado />
+    <Nombre_Interesado />
+    <Primer_Apellido_Interesado />
+    <Segundo_Apellido_Interesado />
+    <Tipo_Documento_Identificacion_Representante />
+    <Documento_Identificacion_Representante />
+    <Razon_Social_Representante />
+    <Nombre_Representante />
+    <Primer_Apellido_Representante />
+    <Segundo_Apellido_Representante />
+    <Pais_Interesado />
+    <Provincia_Interesado />
+    <Municipio_Interesado />
+    <Direccion_Interesado />
+    <Codigo_Postal_Interesado />
+    <Correo_Electronico_Interesado />
+    <Telefono_Contacto_Interesado />
+    <Direccion_Electronica_Habilitada_Interesado />
+    <Canal_Preferente_Comunicacion_Interesado />
+    <Pais_Representante />
+    <Provincia_Representante />
+    <Municipio_Representante />
+    <Direccion_Representante />
+    <Codigo_Postal_Representante />
+    <Correo_Electronico_Representante />
+    <Telefono_Contacto_Representante />
+    <Direccion_Electronica_Habilitada_Representante />
+    <Canal_Preferente_Comunicacion_Representante />
+    <Observaciones />
+  </De_Interesado>
+  <De_Asunto>
+    <Resumen>Asunto de Caso de Prueba SIR-RC-PR-067</Resumen>
+    <Codigo_Asunto_Segun_Destino />
+    <Referencia_Externa/>
+    <Numero_Expediente/>
+  </De_Asunto>
+  <De_Internos_Control>
+    <Tipo_Transporte_Entrada />
+    <Numero_Transporte_Entrada />
+    <Nombre_Usuario />
+    <Contacto_Usuario />
+    <Identificador_Intercambio>O00001223_11_00010067</Identificador_Intercambio>
+    <Aplicacion_Version_Emisora />
+    <Tipo_Anotacion></Tipo_Anotacion>
+    <Descripcion_Tipo_Anotacion />
+    <Tipo_Registro>0</Tipo_Registro>
+    <Documentacion_Fisica>1</Documentacion_Fisica>
+    <Observaciones_Apunte />
+    <Indicador_Prueba>0</Indicador_Prueba>
+    <Codigo_Entidad_Registral_Inicio>O00001223</Codigo_Entidad_Registral_Inicio>
+    <Decodificacion_Entidad_Registral_Inicio />
+  </De_Internos_Control>
+  <De_Formulario_Generico>
+    <Expone />
+    <Solicita />
+  </De_Formulario_Generico>
+</Fichero_Intercambio_SICRES_3>

@@ -1,0 +1,21 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/report.js"></SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			top.Idioma = top.GetDlgParam(7);
+			document.title = top.GetIdsLan( "IDS_OPCIMPRIMIR" );
+		</SCRIPT>
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+	</HEAD>
+	<FRAMESET id="ReportList" NAME="ReportList" ROWS="37%,*" BORDER="0" onload="InitData();" onunload="top.EnableEvents(window.opener);" frameSpacing="0" frameBorder="0">
+		<FRAME id="ReportOpc" NAME="ReportOpc" SRC="repopc.htm" BORDER="0" scrolling="no">
+		<FRAME id="ReportData" NAME="ReportData" BORDER="0" SRC="blank.htm" SCROLLING="auto">
+	</FRAMESET>
+</HTML>

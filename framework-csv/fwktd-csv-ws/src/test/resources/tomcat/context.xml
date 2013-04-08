@@ -1,0 +1,8 @@
+<Context path="/fwktd-csv-ws" reloadable="true">
+
+	<Resource name="jdbc/fwktd-csvDS" auth="Container" type="javax.sql.DataSource"
+		driverClassName="org.h2.Driver" url="jdbc:h2:~/fwktd-csv;MVCC=TRUE"
+		username="fwktdcsv" password="fwktdcsv" maxActive="20" maxIdle="10"
+		maxWait="-1" />
+
+</Context>

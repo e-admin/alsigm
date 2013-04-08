@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrFldaccperm" 
+    table="SCR_FLDACCPERMS"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_FLDACCPERMS"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="archivetype" 
+            column="ARCHIVETYPE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ARCHIVETYPE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idfld" 
+            column="IDFLD" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="IDFLD"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="userperms" 
+            column="USERPERMS" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="USERPERMS"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="adminperms" 
+            column="ADMINPERMS" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ADMINPERMS"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="suserperms" 
+            column="SUSERPERMS" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="SUSERPERMS"
+                length="10"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

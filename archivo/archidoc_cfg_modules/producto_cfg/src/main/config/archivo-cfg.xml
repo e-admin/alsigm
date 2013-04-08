@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Configuracion_Sistema_Archivo Version="5.0">
+  <Sistemas_Gestores_Organismos>
+    <Sistemas_Externos>
+	   	<!-- Organización XML -->
+	   	<!-- Sistema>
+       		<Id>ORG_XML</Id>
+       		<Nombre>Organización XML</Nombre>
+			<Clase>se.instituciones.DefaultGestorOrganismoImpl</Clase>
+    	</Sistema-->
+
+    	<!-- Organización Invesdoc -->
+    	<!-- Sistema>
+	      	<Id>ORG_INVESDOC</Id>
+	      	<Nombre>Organizacion Invesdoc</Nombre>
+			<Clase>se.instituciones.archivo.invesdoc.GestorOrganismoInvesdoc</Clase>
+      	</Sistema-->
+
+      	<!-- Organizacion en base de datos -->
+      	<Sistema>
+       		<Id>ORG_BD</Id>
+        	<Nombre>Organizacion Base de Datos</Nombre>
+ 			<Clase>se.instituciones.db.DbOrganizationConnectorImpl</Clase>
+	       	<init-param>
+          		<param-name>DATASOURCE_NAME</param-name>
+          		<param-value>java:comp/env/jdbc/archivoDS</param-value>
+        	</init-param>
+      	</Sistema>
+    </Sistemas_Externos>
+    <Sistema_Interno>
+      <Id>ARCHIVO</Id>
+      <Clase>se.instituciones.archivo.GestorOrganismoArchivo</Clase>
+    </Sistema_Interno>
+  </Sistemas_Gestores_Organismos>
+  <Sistemas_Gestores_Usuarios>
+	<!-- Gestion de Usuarios XML -->
+	<Sistema>
+	  <Id>USR_XML</Id>
+	  <Nombre>Usuarios Xml</Nombre>
+	  <Clase>se.autenticacion.DefaultAuthenticationConnectorImpl</Clase>
+	</Sistema>
+
+  	<!-- Gestor de Usuarios Invesdoc -->
+    <!-- Sistema>
+      <Id>USR_INVESDOC</Id>
+      <Nombre>Usuarios Invesdoc</Nombre>
+      <Clase>se.autenticacion.idoc.InvesDocConnector</Clase>
+    </Sistema-->
+
+  	<!-- Gestor de Usuarios LDAP de Active Directory-->
+	<!-- Sistema>
+      <Id>USR_ACTIVE_DIRECTORY</Id>
+		<Nombre>Usuarios de LDAP Active Directory</Nombre>
+		<Clase>se.autenticacion.ldap.LdapConnector</Clase>
+		<init-param>
+			<param-name>ENGINE</param-name>
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PROVIDER</param-name>
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>URL</param-name>
+			<param-value>
+				ldap://10.228.20.180:389/DC=srvgdbl-rep,DC=iecisa,DC=corp
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_DEFAULT</param-name>
+			<param-value>CN=nacho,CN=Users,DC=srvgdbl-rep,DC=iecisa,DC=corp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PASSWORD_DEFAULT</param-name>
+			<param-value>archivo_2007</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_START</param-name>
+			<param-value>CN=Users</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_ATTRIBUTE</param-name>
+			<param-value>CN</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_SCOPE</param-name>
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>POOLING</param-name>
+			<param-value>N</param-value>
+		</init-param>
+		<init-param>
+			<param-name>POOLING_TIMEOUT</param-name>
+			<param-value>0</param-value>
+		</init-param>
+    </Sistema-->
+
+  	<!-- Gestor de Usuarios LDAP de Sun One -->
+	<!-- Sistema>
+		<Id>USR_OPEN_LDAP</Id>
+		<Nombre>Usuarios OPEN LDAP</Nombre>
+		<Clase>se.autenticacion.ldap.LdapConnector</Clase>
+		<init-param>
+			<param-name>ENGINE</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PROVIDER</param-name>
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>URL</param-name>
+			<param-value>
+				ldap://10.228.20.178:389/DC=iecisa,DC=corp
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_DEFAULT</param-name>
+			<param-value>CN=Administrator,DC=iecisa,DC=corp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PASSWORD_DEFAULT</param-name>
+			<param-value>ieciovi2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_START</param-name>
+			<param-value>ou=Usuarios</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_ATTRIBUTE</param-name>
+			<param-value>CN</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_SCOPE</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>POOLING</param-name>
+			<param-value>N</param-value>
+		</init-param>
+		<init-param>
+			<param-name>POOLING_TIMEOUT</param-name>
+			<param-value>0</param-value>
+		</init-param>
+    </Sistema-->
+
+	<!-- Gestor de Usuarios Ldap de Sun Directory Manager -->
+	<!-- Sistema>
+		<Id>USR_SUN_MANAGER</Id>
+		<Nombre>Usuarios Sun Directory Manager</Nombre>
+		<Clase>se.autenticacion.ldap.LdapConnector</Clase>
+		<init-param>
+			<param-name>ENGINE</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PROVIDER</param-name>
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>URL</param-name>
+			<param-value>
+				ldap://10.228.20.180:3543/dc=iecisa,dc=corp
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_DEFAULT</param-name>
+			<param-value>cn=Directory Manager</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PASSWORD_DEFAULT</param-name>
+			<param-value>ieciovi2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_START</param-name>
+			<param-value>ou=Usuarios</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_ATTRIBUTE</param-name>
+			<param-value>CN</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_SCOPE</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>POOLING</param-name>
+			<param-value>N</param-value>
+		</init-param>
+		<init-param>
+			<param-name>POOLING_TIMEOUT</param-name>
+			<param-value>0</param-value>
+		</init-param>
+    </Sistema-->
+  </Sistemas_Gestores_Usuarios>
+	<Sistema_Gestor_Catalogo>
+		<!-- Catálogo XML -->
+	 	<Id_SistGestor_Org>ORG_BD</Id_SistGestor_Org>
+	 	<Clase>se.procedimientos.DefaultGestorCatalogoImpl</Clase>
+
+	  	<!-- Catálogo Ispac --><!--
+    	<Id_SistGestor_Org>ORG_INVESDOC</Id_SistGestor_Org>
+    	<Clase>se.procedimientos.ispac.GestorCatalogoIspac</Clase>
+		-->
+	</Sistema_Gestor_Catalogo>
+  <Sistemas_Tramitadores>
+    <!-- Sistema Tramitador XML -->
+    <Sistema>
+      <Id>04</Id>
+      <Nombre>Tramitador</Nombre>
+      <Id_SistGestor_Org>ORG_BD</Id_SistGestor_Org>
+      <Clase>se.tramites.DefaultSistemaTramitadorImpl</Clase>
+    </Sistema>
+
+    <!-- Sistema Tramitador de Ispac -->
+    <!-- Sistema>
+      <Id>04</Id>
+      <Nombre>Tramitador</Nombre>
+      <Id_SistGestor_Org>ORG_INVESDOC</Id_SistGestor_Org>
+      <Clase>se.tramites.ispac.SistemaTramitadorIspac</Clase>
+    </Sistema-->
+  </Sistemas_Tramitadores>
+  <Sistema_Gestor_Geograficos>
+    <!-- Gestor de Geográficos XML -->
+    <Id>GEOGRAFICOS_XML</Id>
+    <Clase>se.geograficos.DefaultGestorGeograficosImpl</Clase>
+  </Sistema_Gestor_Geograficos>
+  <Sistema_Gestor_Terceros>
+    <!-- Gestor de Terceros XML -->
+    <Id>TERCEROS_XML</Id>
+    <Clase>se.terceros.DefaultGestorTercerosImpl</Clase>
+
+    <!-- Gestor de Terceros de ISPAC -->
+    <!--
+    <Id>TERCEROS_ISPAC</Id>
+    <Clase>se.terceros.ispac.GestorTercerosIspac</Clase>
+    -->
+    </Sistema_Gestor_Terceros>
+  <Sistema_Gestor_Repositorio_Electronico>
+    <!-- Gestor de Repositorio Electrónico de Ispac -->
+    <Id>REP</Id>
+    <Clase>se.repositorios.ispac.GestorRepositorioIspac</Clase>
+  </Sistema_Gestor_Repositorio_Electronico>
+  <Configuracion_ControlAcceso>
+  	<!-- Gestores de Usuarios -->
+  	<!--
+  	<Id_SistGestor_Usr>USR_XML</Id_SistGestor_Usr>
+  	<Id_SistGestor_Usr>USR_INVESDOC</Id_SistGestor_Usr>
+  	<Id_SistGestor_Usr>USR_ACTIVE_DIRECTORY</Id_SistGestor_Usr>
+  	<Id_SistGestor_Usr>USR_OPEN_LDAP</Id_SistGestor_Usr>
+  	<Id_SistGestor_Usr>USR_SUN_MANAGER</Id_SistGestor_Usr>
+  	 -->
+
+  	<!-- Gestores de Organización -->
+  	<!--
+    <Id_SistGestor_Org>ORG_BD</Id_SistGestor_Org>
+  	<Id_SistGestor_Org>ORG_INVESDOC</Id_SistGestor_Org>
+  	<Id_SistGestor_Org>ORG_XML</Id_SistGestor_Org>
+  	<Id_SistGestor_Org>ARCHIVO</Id_SistGestor_Org>
+  	 -->
+
+    <Usuarios>
+      <Usuario Tipo="1">
+        <Nombre_Tipo>Interno</Nombre_Tipo>
+  		<Id_SistGestor_Usr>USR_XML</Id_SistGestor_Usr>
+        <Id_SistGestor_Org>ORG_BD</Id_SistGestor_Org>
+      </Usuario>
+      <Usuario Tipo="2">
+        <Nombre_Tipo>Asociado</Nombre_Tipo>
+        <Id_SistGestor_Usr>USR_XML</Id_SistGestor_Usr>
+        <Id_SistGestor_Org>ARCHIVO</Id_SistGestor_Org>
+      </Usuario>
+      <Usuario Tipo="3">
+        <Nombre_Tipo>Externo</Nombre_Tipo>
+		<Id_SistGestor_Usr>USR_XML</Id_SistGestor_Usr>
+      </Usuario>
+    </Usuarios>
+    <Superusuarios_Sistema_Archivo>
+    	<Superusuario>
+			<Usuario>SYSSUPERUSER</Usuario>
+			<Clave>Uk1uZWxXL0RXemk0VExnPQ==</Clave>
+		</Superusuario>
+    </Superusuarios_Sistema_Archivo>
+    <Perfil_Usuarios_Externos>ID_ROL_USUARIOS_EXTERNOS</Perfil_Usuarios_Externos>
+  </Configuracion_ControlAcceso>
+  <Configuracion_Servicios>
+    <Prestamos>
+      <Plazo>30</Plazo>
+      <Plazo_tras_reclamacion>10</Plazo_tras_reclamacion>
+      <Plazo_Reserva>30</Plazo_Reserva>
+      <Plazo_Prorroga>30</Plazo_Prorroga>
+      <Expediente_Fraccion_Serie>
+      	<Patron>([0-9]{7}[/][0-9]{4})?</Patron><!-- Ejemplo: 1234567/2000
+-->
+      	<Etiqueta_Validacion>DDDDDDD/DDDD</Etiqueta_Validacion>
+		<Autocompletar_Izquierda>
+			<Caracter>0</Caracter>
+			<Limite>12</Limite>
+		</Autocompletar_Izquierda>
+      </Expediente_Fraccion_Serie>
+    </Prestamos>
+    <Tabla_Validacion_Tipo_Entrega>ID_TBLVLD_TIPOS_ENTREGA</Tabla_Validacion_Tipo_Entrega>
+  </Configuracion_Servicios>
+  <Configuracion_Descripcion>
+    <Campos_Descriptivos>
+      	<Fecha_Extrema_Inicial>3</Fecha_Extrema_Inicial>
+      	<Fecha_Extrema_Final>4</Fecha_Extrema_Final>
+      	<Id_Tercero_Interesado>51</Id_Tercero_Interesado>
+      	<Campos_no_reemplazables>
+			<Campo>-1</Campo> <!-- Codigo de referencia -->
+			<Campo>-4</Campo> <!-- Nivel de descripcion -->
+      	</Campos_no_reemplazables>
+	  	<Cantidad_Volumen_Soporte>7</Cantidad_Volumen_Soporte>
+	  	<Cantidad_Volumen_Soporte_Documental>214</Cantidad_Volumen_Soporte_Documental>
+	  	<Soporte_Documental>8</Soporte_Documental>
+	  	<Productor>16</Productor>
+	  	<Productor_Serie>34</Productor_Serie>
+	  	<Fecha_Inicio_Productor_Serie>36</Fecha_Inicio_Productor_Serie>
+	  	<Fecha_Fin_Productor_Serie>37</Fecha_Fin_Productor_Serie>
+	  	<RangoInicial>201</RangoInicial>
+	  	<RangoFinal>202</RangoFinal>
+	  	<RangoInicialNorm>210</RangoInicialNorm>
+	  	<RangoFinalNorm>211</RangoFinalNorm>
+	  	<Id_Interesado_Identidad>9</Id_Interesado_Identidad>
+		<Id_Interesado_Numero_Identidad>10</Id_Interesado_Numero_Identidad>
+		<Id_Interesado_Rol>11</Id_Interesado_Rol>
+		<Id_Interesado_Validado>12</Id_Interesado_Validado>
+		<Id_Interesado_Principal>213</Id_Interesado_Principal>
+		<Unidades_Relacionadas>31</Unidades_Relacionadas>
+		<Denominacion_Expediente>215</Denominacion_Expediente>
+		<Valor_Interesado_Principal>Si</Valor_Interesado_Principal>
+		<Id_Tabla_Interesados>2</Id_Tabla_Interesados>
+		<Id_Tabla_Rangos>102</Id_Tabla_Rangos>
+    </Campos_Descriptivos>
+  </Configuracion_Descripcion>
+  <Configuracion_Fondos>
+    <Instituciones_Productoras>
+	  	<!-- Gestores de Organización -->
+	  	<!--
+	    <Id_SistGestor_Org>ORG_BD</Id_SistGestor_Org>
+	  	<Id_SistGestor_Org>ORG_INVESDOC</Id_SistGestor_Org>
+	  	<Id_SistGestor_Org>ORG_XML</Id_SistGestor_Org>
+	  	<Id_SistGestor_Org>ARCHIVO</Id_SistGestor_Org>
+	  	 -->
+	    <Id_SistGestor_Org>ORG_BD</Id_SistGestor_Org>
+    </Instituciones_Productoras>
+    <Directorio_Logs_Eliminacion>C:/Aplicaciones Web/archidoc/logs</Directorio_Logs_Eliminacion>
+    <Numero_Maximo_Resultados_Serie>1500</Numero_Maximo_Resultados_Serie>
+    <Num_Resultados_Pag_Seleccion_Udoc_Conservar>100</Num_Resultados_Pag_Seleccion_Udoc_Conservar>
+    <Delimitador_Codigo_Referencia>/</Delimitador_Codigo_Referencia>
+    <Tabla_Validacion_Boletines_Oficiales>ID_TBLVLD_BOLETINES_OFICIALES</Tabla_Validacion_Boletines_Oficiales>
+    <Tabla_Validacion_Tipo_Documentacion>ID_TBLVLD_TIPO_DOCUMENTACION</Tabla_Validacion_Tipo_Documentacion>
+  </Configuracion_Fondos>
+  <Configuracion_Transferencias>
+    <Tabla_Validacion_Rol_Interesado>ID_TBLVLD_ROLES_INTERESADO</Tabla_Validacion_Rol_Interesado>
+    <Tabla_Validacion_Forma_Documental>ID_TBLVLD_FORMAS_DOCUMENTALES</Tabla_Validacion_Forma_Documental>
+  </Configuracion_Transferencias>
+  <Configuracion_Documentos_Vitales>
+    <Id_Repositorio_ECM>1</Id_Repositorio_ECM>
+  </Configuracion_Documentos_Vitales>
+  <Configuracion_Almacenamiento>
+    <Data_Source_Almacenamiento>java:comp/env/jdbc/archivoDS</Data_Source_Almacenamiento>
+  </Configuracion_Almacenamiento>
+  <Configuracion_Ws_Transferencias>
+      <Url>http://localhost:8080/archiDocServicioWeb/services/ServicioTransferirExpedientes</Url>
+  </Configuracion_Ws_Transferencias>
+  <Configuracion_General>
+	<!-- Factorias -->
+	<!--
+    <DB_Factory_Class>common.db.DBEntityFactoryDB2</DB_Factory_Class>
+    <DB_Factory_Class>common.db.DBEntityFactoryOracle9i</DB_Factory_Class>
+    <DB_Factory_Class>common.db.DBEntityFactoryPostgreSQL</DB_Factory_Class>
+    <DB_Factory_Class>common.db.DBEntityFactorySqlServer2000</DB_Factory_Class>
+ 	-->
+	<DB_Factory_Class>common.db.DBEntityFactoryPostgreSQL</DB_Factory_Class>
+    <Data_Source>java:comp/env/jdbc/archivoDS</Data_Source>
+    <Data_Source_Auth>java:comp/env/jdbc/archivoDS</Data_Source_Auth>
+    <Periodo_Maximo_Bloqueo>1440</Periodo_Maximo_Bloqueo>
+    <Periodo_Evento_Sesion>60</Periodo_Evento_Sesion>
+    <Keep_alive>60000</Keep_alive>
+    <Tabla_Validacion_Soporte>ID_TBLVLD_SOPORTE</Tabla_Validacion_Soporte>
+    <Tabla_Validacion_Formato>ID_TBLVLD_FORMATO</Tabla_Validacion_Formato>
+    <Numero_Maximo_Resultados>500</Numero_Maximo_Resultados>
+    <Numero_Resultados_Por_Pagina>15</Numero_Resultados_Por_Pagina>
+    <Numero_Maximo_Intentos>3</Numero_Maximo_Intentos>
+    <Listas_Descriptoras_Productores>
+      <lista productor="Institucion" tipoproductor="1">ID_LIST_INSTITUCION</lista>
+      <lista productor="Familia" tipoproductor="2">ID_LIST_FAMILIA</lista>
+      <lista productor="Persona" tipoproductor="3">ID_LIST_PERSONA</lista>
+      <lista productor="Organo" tipoproductor="4">ID_LIST_ORGANO</lista>
+      <lista productor="BDOrganizacion" tipoproductor="5">ID_LIST_BDORGANIZACION</lista>
+    </Listas_Descriptoras_Productores>
+    <Encriptacion>
+      <Algoritmo>AES</Algoritmo>
+      <Clave_Secreta>YWJjMTIzZGVmNDU2Z2g3OA==</Clave_Secreta>
+    </Encriptacion>
+    <Usuario_Anonimo_Servicios_Web>
+        <Usuario>SYSSUPERUSER</Usuario>
+        <Clave>SYSPASSWORD</Clave>
+    </Usuario_Anonimo_Servicios_Web>
+  </Configuracion_General>
+  <Configuracion_Parametros>
+	<parametro>
+		<id>COLORES_CALENDARIO_PREVISIONES</id>
+		<valor>50ff50;b0acfa;fff721;ffa0a0</valor>
+	</parametro>
+	<parametro>
+		<id>INTERVAL_CALENDARIO_PREVISIONES</id>
+		<valor>20</valor>
+	</parametro>
+	<parametro>
+		<id>LAST_LEVEL_UBICACION_RESERVA</id>
+		<valor>00000000000000000000000000000004;00000000000000000000000000000006</valor>
+	</parametro>
+	<parametro>
+		<id>LOCALE_DEFAULT</id>
+		<valor>default</valor>
+	</parametro>
+	<parametro>
+		<id>SEPARADOR_CODIGO_TRANSFERENCIA</id>
+		<valor>/</valor>
+	</parametro>
+	<parametro>
+		<id>SEPARADOR_VALORES_MULTIPLES</id>
+		<valor>;</valor>
+	</parametro>
+	<parametro>
+		<id>CODIGO_UDOC_UNICO</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>DISTINGUIR_MAYUSCULAS_MINUSCULAS</id>
+		<valor>N</valor>
+	</parametro>
+
+	<parametro>
+		<id>ECM_EXTERNO</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>ENTIDAD_REQUERIDA</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>FORMATEAR_SIGNATURA_NUMERICA</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_ADMINISTRACION_ORGANIZACION</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_AYUDA</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_BUSQUEDA_AVANZADA</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_CALENDARIO_PREVISIONES</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_CHECK_SUPERUSUARIO</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_DOC_VITALES</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_INFORMACION_IDENTIFICACION_EXTENDIDA</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_TODAS_UBICACIONES</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>NIVELES_DEPOSITO_VISIBLES_CARTELAS</id>
+		<valor>D;M;B;P;C</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_ALTA_DIRECTA_UNIDADES_DOCUMENTALES</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_CODIGO_CLASIFICADOR_NULO</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_SELECCIONAR_ELEMENTO_UBICACION</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_FICHA_ALTA_RELACION</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_SIGNATURA_ALFANUMERICA</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_TRANSFERENCIAS_ENTRE_ARCHIVOS</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>SIGNATURACION_POR_ARCHIVO</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>UDOCS_SOLICITUDES_HOJAS_SEPARADAS</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>USAR_VISOR_IMG_OCX</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>DEBUG</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_CARGA_XML_RELACION_EXTRAORDINARIA_SIN_SIGNATURA</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_CARGA_XML_RELACION_EXTRAORDINARIA_CON_SIGNATURA</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>MANTENER_CAJA_COMPACTAR</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>MOTIVO_SOLICITUD_OPCIONAL</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_REENCAJADO</id>
+		<valor>S</valor>
+	</parametro>
+  </Configuracion_Parametros>
+  <Configuracion_Parametros_Sistemas_Externos>
+	<parametro>
+		<id>Interesados.Identidad.Id</id>
+		<valor>9</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.NumIdentidad.Id</id>
+		<valor>10</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.Rol.Id</id>
+		<valor>11</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.Validado.Id</id>
+		<valor>12</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.Validado.No.Indice</id>
+		<valor>1</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.Validado.Si.Indice</id>
+		<valor>2</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.IdTercero.Id</id>
+		<valor>51</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Pais.Id</id>
+		<valor>2</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Provincia.Id</id>
+		<valor>39</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Municipio.Id</id>
+		<valor>40</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Poblacion.Id</id>
+		<valor>41</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Localizacion.Id</id>
+		<valor>42</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Validado.Id</id>
+		<valor>212</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Validado.No.Indice</id>
+		<valor>1</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Validado.Si.Indice</id>
+		<valor>2</valor>
+	</parametro>
+  </Configuracion_Parametros_Sistemas_Externos>
+</Configuracion_Sistema_Archivo>

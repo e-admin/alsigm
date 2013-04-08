@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrDctmsync" 
+    table="SCR_DCTMSYNC"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_DCTMSYNC"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="bookid" 
+            column="BOOKID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="BOOKID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fdrid" 
+            column="FDRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FDRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="username" 
+            column="USERNAME" 
+            type="java.lang.String"
+            length="32"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="USERNAME"
+                length="32"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="dctmObjguid" 
+            column="DCTM_OBJGUID" 
+            type="java.lang.String"
+            length="16"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DCTM_OBJGUID"
+                length="16"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="dctmPath" 
+            column="DCTM_PATH" 
+            type="java.lang.String"
+            length="250"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DCTM_PATH"
+                length="250"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="javaMethod" 
+            column="JAVA_METHOD" 
+            type="java.lang.String"
+            length="250"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="JAVA_METHOD"
+                length="250"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="operationType" 
+            column="OPERATION_TYPE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="OPERATION_TYPE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="state" 
+            column="STATE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="STATE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="stateDate" 
+            column="STATE_DATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="STATE_DATE"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="errorinfo" 
+            column="ERRORINFO" 
+            type="java.lang.String"
+            length="32"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ERRORINFO"
+                length="32"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to ScrDctmdocbase -->
+    <many-to-one
+        name="scrDctmdocbase"
+        class="com.ieci.tecdoc.common.invesicres.ScrDctmdocbase"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="DOCBASEID"         
+        </meta>
+        <column name="DOCBASEID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

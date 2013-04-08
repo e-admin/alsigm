@@ -1,0 +1,16 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>batik</groupId>
+  <artifactId>batik-ext</artifactId>
+  <name>Batik Ext</name>
+  <version>1.6-1</version>
+  <description>Batik Ext</description>
+  <inceptionYear>2000</inceptionYear>
+  <dependencies>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xmlParserAPIs</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+  </dependencies>
+</project>

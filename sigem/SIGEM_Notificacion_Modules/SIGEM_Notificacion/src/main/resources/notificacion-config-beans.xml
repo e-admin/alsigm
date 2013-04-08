@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- Bean de configuración de Acceso a BD Sisnot desde SIGEM -->
+	<bean id="NOTIFICACIONES.SISNOT_BD_CONFIG" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="SISNOT_BD_DRIVER" value="${sigem.notificaciones.sisnot.db.driver}"/>
+				<entry key="SISNOT_BD_URL" value="${sigem.notificaciones.sisnot.db.url}"/>
+				<entry key="SISNOT_BD_USERNAME" value="${sigem.notificaciones.sisnot.db.username}"/>
+				<entry key="SISNOT_BD_PASSWORD" value="${sigem.notificaciones.sisnot.db.password}"/>
+				<entry key="SISNOT_ID_QUERY" value="${sigem.notificaciones.sisnot.id.query}"/>	
+			</map>
+		</property>
+	</bean>
+
+
+	<!-- Configuracion de conectores -->
+    <bean id="NOTIFICACION.SMS" class="ieci.tecdoc.sgm.nt.config.beans.ConectorDefinition">
+    	<property name="nombre" value="${sigem.notificaciones.sms.id}"/>
+	    <property name="claseJava" value="${sigem.notificaciones.sms.nombreClase}"/>
+	    <property name="actualizacionEstado" value="${sigem.notificaciones.sms.actualizacionEstado}"/>
+	    <property name="user" value="${sigem.notificaciones.sms.user}"/>
+	    <property name="password" value="${sigem.notificaciones.sms.password}"/>
+	</bean>
+	<bean id="NOTIFICACION.SISNOT" class="ieci.tecdoc.sgm.nt.config.beans.ConectorDefinition">
+		<property name="nombre" value="${sigem.notificaciones.sisnot.id}"/>
+	    <property name="claseJava" value="${sigem.notificaciones.sisnot.nombreClase}"/>
+	    <property name="actualizacionEstado" value="${sigem.notificaciones.sisnot.actualizacionEstado}"/>
+	    <property name="url" value="${sigem.notificaciones.sisnot.url}"/>
+	    <property name="organismo" value="${sigem.notificaciones.sisnot.organismo}"/>
+	    <property name="tipoCorrespondencia" value="${sigem.notificaciones.sisnot.tipoCorrespondencia}"/>
+	</bean>
+	
+	<bean id="NOTIFICACION.CONECTORES_CONFIG" class="org.springframework.beans.factory.config.MapFactoryBean">
+	    <property name="sourceMap">
+	    	<map>
+	    		<entry key="SMS"><ref local="NOTIFICACION.SMS"/></entry>
+	    		<entry key="SISNOT"><ref local="NOTIFICACION.SISNOT"/></entry>
+	    	</map>
+	    </property>
+	</bean>
+</beans>

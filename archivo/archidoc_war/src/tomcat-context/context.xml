@@ -1,0 +1,7 @@
+<Context path="/archidoc" reloadable="true">
+
+	<ResourceLink global="jdbc/archivoDS" name="jdbc/archivoDS" type="javax.sql.DataSource"/>
+
+	<ResourceLink global="jdbc/invesdocDS" name="jdbc/archivoDS" type="javax.sql.DataSource"/>
+
+</Context>

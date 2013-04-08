@@ -1,0 +1,2106 @@
+<!DOCTYPE struts-config SYSTEM
+    "struts-config_1_1.dtd">
+
+<struts-config>
+
+  <form-beans>
+
+   <!--form-bean name="WizardAltaForm" type="deposito.forms.WizardAltaForm" /-->
+   <form-bean name="DepositoForm" type="deposito.forms.UbicacionForm" />
+   <form-bean name="NivelesDepositoForm" type="deposito.forms.NivelesDepositoForm"/>
+   <form-bean name="DepositoElectronicoForm" type="deposito.forms.DepositoElectronicoForm" />
+   <form-bean name="AsignableForm" type="deposito.forms.ElementoAsignableForm" />
+   <form-bean name="NoAsignableForm" type="deposito.forms.ElementoNoAsignableForm" />
+   <form-bean name="ReubicacionForm" type="deposito.forms.ReubicacionForm" />
+   <form-bean name="VerHuecoForm" type="deposito.forms.VerHuecoForm" />
+   <form-bean name="OrganizacionUDocsForm" type="deposito.forms.OrganizacionUDocsForm" />
+
+   <form-bean name="ReubicacionUnidadesDocumentalesForm" type="deposito.forms.ReubicacionUnidadesDocumentalesForm"/>
+   <form-bean name="GestionEstadoHuecoForm" type="deposito.forms.GestionEstadoHuecoForm" />
+   <form-bean name="ReservaForm" type="deposito.forms.GestionReservaForm" />
+   <form-bean name="FormatoForm" type="deposito.forms.FormatoForm" />
+   <form-bean name="BusquedaUISEliminadasForm" type="deposito.forms.BusquedaUISEliminadasForm"/>
+   <form-bean name="BusquedaUISAnioYSerieForm" type="deposito.forms.BusquedaUISAnioYSerieForm"/>
+
+   <form-bean name="NavegadorDepositoForm" type="deposito.forms.NavegadorDepositoForm" />
+   <form-bean name="NavegadorReservaDepositoForm" type="deposito.forms.NavegadorReservaDepositoForm" />
+   <form-bean name="PrevisionForm" type="transferencias.forms.PrevisionForm" />
+   <form-bean name="RelacionForm" type="transferencias.forms.RelacionForm" />
+   <form-bean name="IngresoDirectoForm" type="transferencias.forms.IngresoDirectoForm" />
+   <!--form-bean name="TransferenciaControlForm" type="transferencias.forms.TransferenciaControlForm" /-->
+   <!--form-bean name="RelacionesTransfControlForm" type="transferencias.forms.RelacionesTransfControlForm" /-->
+   <form-bean name="RecepcionPrevisionesForm" type="transferencias.forms.RecepcionPrevisionesForm" />
+   <form-bean name="RecepcionRelacionesForm" type="transferencias.forms.RecepcionRelacionesForm" />
+   <form-bean name="CesionPrevisionesForm" type="transferencias.forms.CesionPrevisionesForm" />
+   <form-bean name="CesionRelacionesForm" type="transferencias.forms.CesionRelacionesForm" />
+
+   <form-bean name="detallePrevisionForm" type="transferencias.forms.DetallePrevisionForm" />
+   <form-bean name="udocForm" type="transferencias.forms.UnidadDocumentalForm" />
+   <form-bean name="interesadoForm" type="transferencias.forms.InteresadoForm" />
+   <form-bean name="soporteForm" type="transferencias.forms.SoporteForm" />
+   <form-bean name="emplazamientoForm" type="transferencias.forms.EmplazamientoForm" />
+   <form-bean name="asignacionCajasForm" type="transferencias.forms.AsignacionCajasForm" />
+   <form-bean name="divisionFSForm" type="fondos.forms.DivisionFraccionSerieForm" />
+   <form-bean name="uDocEnFSForm" type="fondos.forms.UDocEnDivisionFSForm" />
+
+   <form-bean name="CotejoysignaturizacionForm" type="transferencias.forms.CotejoysignaturizacionForm" />
+   <form-bean name="busquedaPrevisionesForm" type="transferencias.forms.BusquedaPrevisionesForm" />
+   <form-bean name="busquedaRelacionesForm" type="transferencias.forms.BusquedaRelacionesForm" />
+   <form-bean name="busquedaElementosForm" type="fondos.forms.BusquedaElementosForm" />
+   <form-bean name="uInstRelacionForm" type="transferencias.forms.UInstRelacionForm"/>
+   <form-bean name="FondoForm" type="fondos.forms.FondoForm" />
+   <form-bean name="ClasificadorSerieForm" type="fondos.forms.ClasificadorSeriesForm" />
+   <form-bean name="ClasificadorFondoForm" type="fondos.forms.ClasificadorFondosForm" />
+   <form-bean name="SerieForm" type="fondos.forms.SolicitudSerieForm" />
+   <form-bean name="IdentificacionForm" type="fondos.forms.IdentificacionSerieForm" />
+   <form-bean name="valoracionForm" type="valoracion.forms.ValoracionForm" />
+   <form-bean name="eliminacionForm" type="valoracion.forms.EliminacionForm" />
+   <form-bean name="busquedaForm" type="valoracion.forms.BusquedaForm"/>
+   <form-bean name="UnidadDocumentalForm" type="fondos.forms.UnidadDocumentalForm" />
+   <form-bean name="BusquedaSolicitudSerieForm" type="fondos.forms.BusquedaSolicitudSerieForm" />
+   <form-bean name="ResultadoBusquedaFondosForm" type="fondos.forms.ResultadoBusquedaFondosForm"/>
+
+    <!-- Prestamos -->
+   <form-bean name="PrestamoForm" type="solicitudes.prestamos.forms.PrestamoForm" />
+   <form-bean name="detallePrestamoForm" type="solicitudes.prestamos.forms.DetallePrestamoForm" />
+   <form-bean name="busquedaPrestamoForm" type="solicitudes.prestamos.forms.BusquedaForm" />
+   <form-bean name="cesionPrestamosForm" type="solicitudes.prestamos.forms.CesionPrestamosForm" />
+   <form-bean name="cesionRevisionDocumentacionForm"  type="solicitudes.prestamos.forms.CesionRevisionDocumentacionForm" />
+   <form-bean name="prorrogaForm"  type="solicitudes.prestamos.forms.ProrrogaForm" />
+
+
+   <!-- Consultas -->
+   <form-bean name="ConsultaForm" type="solicitudes.consultas.forms.ConsultaForm" />
+   <form-bean name="detalleConsultaForm" type="solicitudes.consultas.forms.DetalleConsultaForm" />
+   <form-bean name="busquedaConsultaForm" type="solicitudes.consultas.forms.BusquedaForm" />
+   <form-bean name="busquedaReemplazosForm" type="descripcion.forms.BusquedaReemplazosForm" />
+
+    <!-- Descripcion -->
+   <form-bean name="descripcionAutForm" type="descripcion.forms.BusquedaGeneralAutForm" />
+   <form-bean name="descriptoresForm" type="descripcion.forms.BusquedaDescriptoresForm" />
+<!--     <form-bean name="fichaForm" dynamic="true" type="es.archigest.framework.web.action.ArchigestDynaActionForm">
+		<form-property name="id" type="java.lang.String" />
+		<form-property name="contextPath" type="java.lang.String" />
+   </form-bean>-->
+   <form-bean name="fichaForm" type="descripcion.forms.FichaForm"/>
+   <form-bean name="fichasForm" type="descripcion.forms.FichasForm"/>
+   <form-bean name="formatoFichasForm" type="descripcion.forms.FormatoFichasForm"/>
+   <form-bean name="areasForm" type="descripcion.forms.AreasForm"/>
+   <form-bean name="camposDatoForm" type="descripcion.forms.CamposDatoForm"/>
+   <form-bean name="camposTablaForm" type="descripcion.forms.CamposTablaForm"/>
+
+   <form-bean name="tablaValidacionForm" type="descripcion.forms.TablaValidacionForm"/>
+   <form-bean name="textoTablaValidacionForm" type="descripcion.forms.TextoTablaValidacionForm"/>
+   <form-bean name="listaDescriptoraForm" type="descripcion.forms.ListaDescriptoraForm"/>
+   <form-bean name="unificarDescriptoresForm" type="descripcion.forms.UnificarDescriptoresForm"/>
+   <form-bean name="descriptorForm" type="descripcion.forms.DescriptorForm"/>
+   <form-bean name="documentoForm" type="docelectronicos.forms.DocumentoForm"/>
+   <form-bean name="clasificadorForm" type="docelectronicos.forms.ClasificadorForm"/>
+
+   <form-bean name="nivelesArchivoForm" type="gcontrol.forms.NivelesArchivoForm"/>
+   <form-bean name="archivoForm" type="gcontrol.forms.ArchivoForm"/>
+
+   <!-- Auditoría -->
+   <form-bean name="accionesForm" dynamic="true" type="es.archigest.framework.web.action.ArchigestDynaActionForm" >
+	   <form-property name="module" type="java.lang.String" />
+   </form-bean>
+   <form-bean name="usuariosForm" dynamic="true" type="es.archigest.framework.web.action.ArchigestDynaActionForm" >
+		<form-property name="module" type="java.lang.String" />
+   </form-bean>
+   <form-bean name="busquedaPistasForm" type="auditoria.forms.BusquedaPistasForm"/>
+   <form-bean name="busquedaExtendidaForm" dynamic="true" type="es.archigest.framework.web.action.ArchigestDynaActionForm" >
+		<form-property name="id" type="java.lang.String" />
+		<form-property name="tipo" type="java.lang.String" />
+		<form-property name="kind" type="java.lang.String" />
+   </form-bean>
+
+   <form-bean name="organoForm" type="gcontrol.forms.OrganoForm" />
+   <form-bean name="usuarioForm" type="gcontrol.forms.UsuarioForm" />
+   <form-bean name="rolForm" type="gcontrol.forms.RolForm" />
+   <form-bean name="grupoForm" type="gcontrol.forms.GrupoForm" />
+   <form-bean name="listaAccesoForm" type="gcontrol.forms.ListaAccesoForm" />
+
+   <!-- Documentos vitales -->
+   <form-bean name="busquedaDocumentosVitalesForm" type="docvitales.forms.BusquedaDocumentosVitalesForm" />
+   <form-bean name="documentoVitalForm" type="docvitales.forms.DocumentoVitalForm" />
+   <form-bean name="tipoDocumentoVitalForm" type="docvitales.forms.TipoDocumentoVitalForm" />
+   <form-bean name="tareaForm" type="docelectronicos.forms.TareaForm" />
+   <form-bean name="busquedaTareaForm" type="docelectronicos.forms.BusquedaTareaForm" />
+   <form-bean name="cesionControlTareasForm" type="docelectronicos.forms.CesionControlTareasForm" />
+   <form-bean name="MoverUdocsForm" type="fondos.forms.MoverUdocsForm" />
+   <form-bean name="consultaUnidadesDocumentalesForm" type="solicitudes.forms.ConsultaUnidadesDocumentalesForm" />
+   <form-bean name="revisionDocumentacionForm" type="solicitudes.prestamos.forms.RevisionDocumentacionForm" />
+
+	<!-- Organizacion -->
+  	<form-bean name="organizacionForm" type="organizacion.view.form.OrganizacionForm" />
+	<form-bean name="usuarioOrganoForm"	type="organizacion.view.form.UsuarioOrganoForm" />
+	<form-bean name="fechasForm" type="organizacion.view.form.FechasForm" />
+
+  	<!-- Niveles Cuadro Clasificacion -->
+  	<form-bean name="nivelesCuadroForm" type="fondos.forms.NivelesCuadroForm"/>
+
+  	<!-- Motivos Prestamos y Consultas -->
+  	<form-bean name="motivoConsultaForm" type="solicitudes.consultas.forms.MotivoConsultaForm"/>
+  	<form-bean name="motivoPrestamoForm" type="solicitudes.prestamos.forms.MotivoPrestamoForm"/>
+  	<form-bean name="motivoRechazoForm" type="solicitudes.forms.MotivoRechazoForm"/>
+
+
+  	<!-- Gestión de Salas -->
+  	<form-bean name="edificioForm" type="salas.form.EdificioForm"/>
+  	<form-bean name="salaForm" type="salas.form.SalaForm"/>
+  	<form-bean name="mesaForm" type="salas.form.MesaForm"/>
+  	<form-bean name="estadoMesaForm" type="salas.form.EstadoMesaForm"/>
+  	<form-bean name="usuarioSalasConsultaForm" type="salas.form.UsuarioSalasConsultaForm"/>
+  	<form-bean name="registroConsultaSalaForm" type="salas.form.RegistroConsultaSalaForm"/>
+  	<form-bean name="navegadorRegistroConsultaSalaForm" type="salas.form.NavegadorRegistroConsultaSalaForm"/>
+  </form-beans>
+
+
+  <global-exceptions>
+  	<exception key="global.archigestexception" type="java.lang.Exception" path="deposito.error" handler="org.apache.struts.action.ExceptionHandler" />
+  </global-exceptions>
+
+  <global-forwards>
+      <forward name="avisolegal" path="/pages/tiles/aviso_legal.jsp" />
+      <forward name="globalerror" path="deposito.error" />
+      <forward name="iframeError" path="iframe.error" />
+      <forward name="error_multilinea" path="/action/multilineaErrorAction?method=show" />
+      <forward name="back_and_error_multilinea" path="/action/multilineaErrorAction?method=backAndShow" />
+
+      <forward name="verEdificio" path="/action/gestionEdificiosAction?method=ver" />
+	  <forward name="verSala" path="/action/gestionSalasAction?method=ver" />
+	  <forward name="ver_listado_edificios_salas_consulta"  path="/action/gestionEdificiosAction?method=init"/>
+	  <forward name="ver_usuario_sala_consulta" path="/action/gestionUsuarioSalasConsultaAction?method=ver"/>
+  </global-forwards>
+
+  <action-mappings>
+      <action path="/homepage" name="busquedaElementosForm" type="common.actions.HomeAction" scope="request" validate="false" parameter="method">
+         <forward name="ver_bandeja" path="archivo.bandeja"/>
+         <forward name="load_bandeja" path="archivo.load.bandeja"/>
+         <forward name="previsionesEnElaboracion" path="/action/gestionPrevisiones?method=listadooficina"
+            redirect="true"/>
+         <forward name="previsionesAGestionar" path="/action/gestionPrevisiones?method=listadoarchivo" redirect="true"/>
+         <forward name="relacionesEnElaboracion" path="/action/gestionRelaciones?method=listadorelacionesoficina"
+            redirect="true"/>
+         <forward name="relacionesAGestionar" path="/action/gestionRelaciones?method=listadorelacionesarchivo"
+            redirect="true"/>
+         <forward name="relacionesAGestionarReserva" path="/action/gestionReservaRelaciones?method=listadorelaciones"
+            redirect="true"/>
+         <forward name="relacionesAUbicar" path="/action/gestionUbicacionRelaciones?method=listadorelaciones"
+            redirect="true"/>
+         <forward name="prestamosEnElaboracion" path="/action/gestionPrestamos?method=listadoprestamosver"
+            redirect="true"/>
+         <forward name="prestamosAGestionar" path="/action/gestionPrestamos?method=listadoprestamos" redirect="true"/>
+         <forward name="prestamosAEntregar" path="/action/gestionPrestamos?method=listadoprestamosentregar"
+            redirect="true"/>
+         <forward name="consultasEnElaboracion" path="/action/gestionConsultas?method=listadoconsultaver"
+            redirect="true"/>
+         <forward name="consultasAEntregar" path="/action/gestionConsultas?method=listadoconsultaentregar"
+            redirect="true"/>
+         <forward name="consultasAGestionar" path="/action/gestionConsultas?method=listadoconsulta" redirect="true"/>
+         <forward name="solicitudesEnElaboracion" path="/action/gestionSeries?method=misSolicitudesAprobacion"
+            redirect="true"/>
+         <forward name="solicitudesAGestionar" path="/action/gestionSeries?method=listaSolicitudesAprobacion"
+            redirect="true"/>
+         <forward name="valoracionesEnElaboracion" path="/action/gestionValoracion?method=valoracionesEnElaboracion"
+            redirect="true"/>
+         <forward name="valoracionesAGestionar" path="/action/gestionValoracion?method=valoracionesAGestionar"
+            redirect="true"/>
+         <forward name="seleccionesEnElaboracion" path="/action/gestionEliminacion?method=eliminacionesEnElaboracion"
+            redirect="true"/>
+      </action>
+
+     <action path="/navigateAction" type="common.actions.NavigationControllerAction" scope="request" parameter="method">
+      <forward name="verDepositosFisicos" path="/action/manageVistaDeposito?actionToPerform=homeDeposito" redirect="true"/>
+      <forward name="verDepositosElectronicos" path="/action/gestionDepositosElectronicos?method=home" redirect="true"/>
+      <forward name="gestionReservas" path="/action/gestionReservaRelaciones?method=listadorelaciones" redirect="true"/>
+      <forward name="ubicacionRelaciones" path="/action/gestionUbicacionRelaciones?method=listadorelaciones" redirect="true"/>
+      <forward name="entregaPrestamos" path="/action/gestionPrestamos?method=listadoprestamosentregar" redirect="true"/>
+      <forward name="gestionPrestamos" path="/action/gestionPrestamos?method=listadoprestamos" redirect="true"/>
+      <forward name="gestionPrestamosReserva" path="/action/gestionPrestamos?method=listadoprestamosreserva" redirect="true"/>
+      <forward name="entregaConsultas" path="/action/gestionConsultas?method=listadoconsultaentregar" redirect="true"/>
+      <forward name="gestionConsultas" path="/action/gestionConsultas?method=listadoconsulta" redirect="true"/>
+      <forward name="gestionConsultasReserva" path="/action/gestionConsultas?method=listadoconsultasreserva" redirect="true"/>
+
+	  <forward name="calendarioPrevisiones" path="/action/recepcionPrevisiones?method=mostrarCalendarioPrevisiones" redirect="true"/>
+      <forward name="homePrevisiones" path="/action/gestionPrevisiones?method=homePrevisiones" redirect="true"/>
+      <forward name="crearPrevision" path="/action/gestionPrevisiones?method=seleccionTipoPrevision" redirect="true"/>
+      <forward name="previsionesEnElaboracion" path="/action/gestionPrevisiones?method=listadooficina" redirect="true"/>
+      <forward name="previsionesAceptadasORechazadas" path="/action/gestionPrevisiones?method=listadoPrevisionesAceptadasORechazadas" redirect="true"/>
+      <forward name="gestionPrevisiones" path="/action/gestionPrevisiones?method=listadoarchivo" redirect="true"/>
+      <forward name="transferenciaControlPrevision" path="/action/gestionPrevisionTransferenciaControl?method=verBuscadorPrevisiones" redirect="true"/>
+      <forward name="busquedaPrevisiones" path="/action/buscarPrevisiones?method=formBusqueda" redirect="true"/>
+      <forward name="asignacionGestorPrevision" path="/action/cesionPrevisiones?method=verBuscadorPrevisiones" redirect="true"/>
+      <forward name="asignacionGestorRelacionArchivo" path="/action/cesionRelacionesArchivo?method=verBuscador" redirect="true"/>
+      <forward name="asignacionGestorRelacionOrgRemitente" path="/action/cesionRelacionesOrgRemitente?method=verBuscador" redirect="true"/>
+      <forward name="asignacionGestorIngresoDirecto" path="/action/cesionIngresoDirecto?method=verBuscador" redirect="true"/>
+
+      <forward name="homeRelaciones" path="/action/gestionRelaciones?method=homeRelaciones" redirect="true"/>
+      <forward name="crearRelacion" path="/action/gestionRelaciones?method=listadoprevision" redirect="true"/>
+      <forward name="relacionesEnElaboracion" path="/action/gestionRelaciones?method=listadorelacionesoficina" redirect="true"/>
+      <forward name="relacionesFinalizadas" path="/action/gestionRelaciones?method=listadorelacionesFinalizadas" redirect="true"/>
+      <forward name="relacionesRechazadas" path="/action/gestionRelaciones?method=listadoRelacionesRechazadas" redirect="true"/>
+      <forward name="busquedaIngresosDirectos" path="/action/buscarRelaciones?method=formBusquedaIngresos" redirect="true"/>
+      <forward name="ingresosEnElaboracion" path="/action/gestionRelaciones?method=listadoingresos" redirect="true"/>
+      <forward name="ingresosFinalizados" path="/action/gestionRelaciones?method=listadoingresosFinalizados" redirect="true"/>
+      <forward name="divisionesFSEnElaboracion" path="/action/gestionFraccionSerie?method=listadodivisiones" redirect="true"/>
+      <forward name="divisionesFSFinalizadas" path="/action/gestionFraccionSerie?method=listadodivisionesFinalizadas" redirect="true"/>
+      <forward name="gestionRelaciones" path="/action/gestionRelaciones?method=listadorelacionesarchivo" redirect="true"/>
+      <forward name="asignacionGestorOficina" path="/action/relacionTransfControlGOficina?method=transfcontrolpaso0" redirect="true"/>
+      <forward name="asignacionGestorArchivo" path="/action/relacionTransfControlGArchivo?method=transfcontrolpaso0" redirect="true"/>
+      <forward name="verFondos" path="/action/manageVistaCuadroClasificacion?actionToPerform=goHome" redirect="true"/>
+      <forward name="exportarCuadro" path="/action/manageVistaCuadroClasificacion?actionToPerform=exportarCuadro" redirect="true"/>
+      <forward name="busquedaRapidaElementos" path="/action/buscarElementos?method=formBusquedaRapida" redirect="true"/>
+      <forward name="busquedaAvanzadaElementos" path="/action/buscarElementos?method=formBusquedaAvanzada" redirect="true"/>
+      <forward name="busquedaRelaciones" path="/action/buscarRelaciones?method=formBusqueda" redirect="true"/>
+	  <forward name="busquedaSolicitudesSeries" path="/action/buscarSolicitudesSeries?method=formBusqueda" redirect="true"/>
+	  <forward name="ingresoDirecto" path="/action/gestionIngresoDirecto?method=nuevo" redirect="true"/>
+	  <forward name="reemplazoSimple" path="/action/gestionReemplazarValores?method=initReemplazoSimple" redirect="true"/>
+	  <forward name="reemplazoAvanzado" path="/action/gestionReemplazarValores?method=initReemplazoAvanzado" redirect="true"/>
+	  <forward name="homeIdentificacionSeries" path="/action/gestionSeries?method=homeIdentificacion" redirect="true"/>
+
+
+      <forward name="identificacionSeries" path="/action/gestionSeries?method=verSeriesEnIdentificacion" redirect="true"/>
+      <forward name="solicitudesAprobacion" path="/action/gestionSeries?method=misSolicitudesAprobacion" redirect="true"/>
+      <forward name="gestionSolicitudesAprobacion" path="/action/gestionSeries?method=listaSolicitudesAprobacion" redirect="true"/>
+      <forward name="asignacionGestorSerie" path="/action/gestionAsignacionSerie?method=verBuscadorSeries" redirect="true"/>
+
+      <forward name="valoracionesEnElaboracion" path="/action/gestionValoracion?method=valoracionesEnElaboracion" redirect="true"/>
+      <forward name="valoracionesAGestionar" path="/action/gestionValoracion?method=valoracionesAGestionar" redirect="true"/>
+      <forward name="seleccionesEnElaboracion" path="/action/gestionEliminacion?method=eliminacionesEnElaboracion" redirect="true"/>
+
+      <forward name="homePrestamos" path="/action/gestionPrestamos?method=homeprestamos" redirect="true"/>
+      <forward name="crearPrestamo" path="/action/gestionPrestamos?method=nuevo" redirect="true"/>
+      <forward name="listaPrestamos" path="/action/gestionPrestamos?method=listadoprestamosver" redirect="true"/>
+      <forward name="listaPrestamosEnElaboracion" path="/action/gestionPrestamos?method=listadoprestamosenelaboracionver" redirect="true"/>
+      <forward name="gestionPrestamos" path="/action/gestionPrestamos?method=listadoprestamos" redirect="true"/>
+      <forward name="busquedaPrestamos" path="/action/buscarPrestamos?method=formBusqueda" redirect="true"/>
+      <forward name="consultarUnidadesDocumentales" path="/action/consultaUnidadesDocumentalesAction?method=init" redirect="true"/>
+      <forward name="devolverSolicitudes" path="/action/devolverSolicitudes?method=form" redirect="true"/>
+
+
+      <forward name="asignacionGestorPrestamo" path="/action/cesionPrestamos?method=verBuscador" redirect="true"/>
+	  <forward name="cesionControlRevisionDocumentacion" path="/action/cesionRevisionDocumentacion?method=verBuscador" redirect="true"/>
+
+      <forward name="homeConsultas" path="/action/gestionConsultas?method=homeconsultas" redirect="true"/>
+      <forward name="crearConsulta" path="/action/gestionConsultas?method=nuevo" redirect="true"/>
+      <forward name="listaConsultas" path="/action/gestionConsultas?method=listadoconsultaver" redirect="true"/>
+      <forward name="listaConsultasEnElaboracion" path="/action/gestionConsultas?method=listadoconsultasenelaboracionver" redirect="true"/>
+      <forward name="gestionConsultas" path="/action/gestionConsultas?method=listadoconsulta" redirect="true"/>
+      <forward name="busquedaConsultas" path="/action/buscarConsultas?method=formBusqueda" redirect="true"/>
+      <forward name="devolucionPrestamo" path="/action/devolverDetalles?method=form" redirect="true"/>
+      <forward name="busquedaEnCuadroClasificacion" path="/action/descripcion?method=formBusq" redirect="true"/>
+      <forward name="busquedaAutoridades" path="/action/descripcionAut?method=formBusq" redirect="true"/>
+      <forward name="listasDescriptoras" path="/action/listasDescriptoras?method=show" redirect="true"/>
+      <forward name="crearListaDescriptora" path="/action/listasDescriptoras?method=form" redirect="true"/>
+      <forward name="unificarDescriptores" path="/action/unificarDescriptores?method=init" redirect="true"/>
+      <forward name="gestionFicha" path="/action/gestionFicha?method=list" redirect="true"/>
+      <forward name="gestionFormatoFicha" path="/action/gestionFormatoFicha?method=list" redirect="true"/>
+      <forward name="gestionArea" path="/action/gestionArea?method=listFromMenu" redirect="true"/>
+      <forward name="gestionCampoDato" path="/action/gestionCampoDato?method=listFromMenu" redirect="true"/>
+      <forward name="gestionCampoTabla" path="/action/gestionCampoTabla?method=list" redirect="true"/>
+      <forward name="tablasValidacion" path="/action/tablasVld?method=show" redirect="true"/>
+      <forward name="crearTablaValidacion" path="/action/tablasVld?method=form" redirect="true"/>
+      <forward name="gestionFormatos" path="/action/gestionFormatosAction?method=listaFormatos" redirect="true"/>
+	  <forward name="gestionNivelesDeposito" path="/action/gestionNivelesDeposito?method=init" redirect="true"/>
+
+	  <!-- Auditoria-->
+      <forward name="verAcciones" path="/action/auditoriaAcciones?method=listadoModulos" redirect="true"/>
+	  <forward name="verUsuarios" path="/action/auditoriaUsuarios?method=listadoGrupos" redirect="true"/>
+	  <forward name="buscarPistas" path="/action/auditoriaBuscar?method=formBusqueda" redirect="true"/>
+	  <!-- Organos -->
+	  <forward name="altaOrgano" path="/action/gestionOrganos?method=altaOrgano" redirect="true"/>
+	  <forward name="listaOrganos" path="/action/gestionOrganos?method=listaOrganos" redirect="true"/>
+	  <!-- Usuarios -->
+	  <forward name="altaUsuario" path="/action/gestionUsuarios?method=nuevoUsuario" redirect="true"/>
+	  <forward name="listaUsuarios" path="/action/gestionUsuarios?method=listadoUsuarios" redirect="true"/>
+	  <!-- Roles -->
+	  <forward name="altaRol" path="/action/gestionRoles?method=altaRol" redirect="true"/>
+	  <forward name="listaRoles" path="/action/gestionRoles?method=listaRoles" redirect="true"/>
+	  <!-- Grupos -->
+	  <forward name="altaGrupo" path="/action/gestionGrupos?method=altaGrupo" redirect="true"/>
+	  <forward name="listaGrupos" path="/action/gestionGrupos?method=listaGrupos" redirect="true"/>
+	  <!-- Listad de control de acceso -->
+	  <forward name="altaListaAcceso" path="/action/gestionListasAcceso?method=altaListaAcceso" redirect="true"/>
+	  <forward name="listaListasAcceso" path="/action/gestionListasAcceso?method=listaListasAcceso" redirect="true"/>
+	  <!-- Valoraciones -->
+	  <forward name="homeValoracionSeries" path="/action/gestionValoracion?method=homeValoracion" redirect="true"/>
+	  <forward name="valoracionesEnElaboracion" path="/action/gestionValoracion?method=valoracionesEnElaboracion" redirect="true"/>
+	  <!--forward name="nuevaValoracion" path="/action/gestionValoracion?method=nuevaValoracion" redirect="true"/-->
+	  <forward name="valoracionesAGestionar" path="/action/gestionValoracion?method=valoracionesAGestionar" redirect="true"/>
+      <!--forward name="valoracionesABuscar" path="/action/buscarValoracion?method=formBusqueda" redirect="true"/-->
+	  <!-- Eliminaciones -->
+	  <forward name="homeSeleccionSeries" path="/action/gestionEliminacion?method=homeSeleccion" redirect="true"/>
+	  <!--forward name="nuevaEliminacion" path="/action/gestionEliminacion?method=nuevaEliminacion" redirect="true"/-->
+      <forward name="eliminacionesEnElaboracion" path="/action/gestionEliminacion?method=eliminacionesEnElaboracion" redirect="true"/>
+      <!--forward name="eliminacionesABuscar" path="/action/buscarEliminacion?method=formBusqueda" redirect="true"/-->
+      <forward name="homeDigitalizacion" path="/action/gestionTareasDigitalizacion?method=homeTareasDigitalizacion" redirect="true"/>
+      <forward name="busquedaTareasDigitalizacion" path="/action/busquedaTareasDigitalizacion?method=formBusqueda" redirect="true"/>
+      <forward name="cesionControlTareaCaptura" path="/action/cesionTareasDigitalizacion?method=verBuscador" redirect="true"/>
+      <forward name="tareasPendientes" path="/action/gestionTareasDigitalizacion?method=verTareasPendientes" redirect="true"/>
+      <forward name="tareasAGestionar" path="/action/gestionTareasDigitalizacion?method=verTareasAGestionar" redirect="true"/>
+      <forward name="crearTarea" path="/action/gestionTareasDigitalizacion?method=initAnadirTarea" redirect="true"/>
+
+      <!-- Documentos Vitales -->
+      <forward name="homeDocumentosVitales" path="/action/gestionDocumentosVitales?method=homeDocumentos" redirect="true"/>
+      <forward name="gestionDocumentosVitales" path="/action/gestionDocumentosVitales?method=documentosPendientes" redirect="true"/>
+      <forward name="busquedaDocumentosVitales" path="/action/buscarDocumentosVit?method=formBusqueda" redirect="true"/>
+      <forward name="admTiposDocumentos" path="/action/gestionTiposDocumentos?method=listaTiposDocumentos" redirect="true"/>
+      <forward name="crearDocumentoVital" path="/action/gestionDocumentosVitales?method=initCrearDocumento" redirect="true"/>
+
+      <!-- Niveles de Archivo -->
+      <forward name="init" path="/action/gestionNivelesArchivo?method=init" redirect="true"/>
+
+      <!-- Archivos -->
+      <forward name="listadoArchivos" path="/action/gestionArchivos?method=initial"/>
+
+	  <!-- Documentacion UDocs. a Revisar -->
+	  <forward name="documentacionUDocsaRevisar" path="/action/gestionRevDocAction?method=listadoRevisionDoc" redirect="true"/>
+
+	  <!-- Organizacion -->
+	  <forward name="verEstructuraOrganizaciones" path="/action/manageVistaOrganizacion?actionToPerform=goHome" redirect="true"/>
+	  <forward name="crearOrganizacion" path="/action/gestionOrganizacionAction?method=altaOrganizacion" redirect="true" />
+	  <forward name="buscarOrganizacion" path="/action/gestionOrganizacionAction?method=verBuscador" redirect="true" />
+
+	  <!-- Cuadro Clasificacion -->
+	  <forward name="gestionNiveles" path="/action/gestionNivelesCuadro?method=init" redirect="true" />
+
+	  <!-- Motivos Prestamos y Consultas -->
+	  <forward name="gestionMotivosConsulta" path="/action/gestionMotivosConsulta?method=init" redirect="true" />
+	  <forward name="gestionMotivosPrestamo" path="/action/gestionMotivosPrestamo?method=init" redirect="true" />
+	  <forward name="gestionMotivosRechazo" path="/action/gestionMotivosRechazo?method=init" redirect="true" />
+
+	  <!--  Salas de Consulta -->
+	  <forward name="verEstructuraSalasConsulta" path="/action/gestionVistaSalasConsulta?actionToPerform=goHome" redirect="true"/>
+	  <forward name="verUsuariosSalasConsulta" path="/action/gestionUsuarioSalasConsultaAction?method=listadoUsuarios" redirect="true"/>
+	  <forward name="registroEntradaSala" path="/action/gestionRegistroConsultaAction?method=init" redirect="true"/>
+	  <forward name="busquedaRegistroConsulta" path="/action/gestionRegistroConsultaAction?method=listadoUsuariosRegistrados" redirect="true"/>
+	  <forward name="gestionRegistroConsultas" path="/action/gestionRegistroConsultaAction?method=listadoRegistrosAbiertos" redirect="true"/>
+
+	  <forward name="informeUsuariosConsulta" path="/action/gestionUsuarioSalasConsultaAction?method=busquedaUsuarios" redirect="true"/>
+	  <forward name="informeUsuariosConsultaAsistencia" path="/action/gestionRegistroConsultaAction?method=busquedaUsuariosAsistencia" redirect="true"/>
+	  <forward name="informeExpedientesUsuarioConsulta" path="/action/gestionUsuarioSalasConsultaAction?method=busquedaExpedientes" redirect="true"/>
+	  <forward name="informeResumenServicios" path="/action/gestionUsuarioSalasConsultaAction?method=resumenServicios" redirect="true"/>
+	  <forward name="informeTemasInvestigacion" path="/action/gestionUsuarioSalasConsultaAction?method=temasInvestigacion" redirect="true"/>
+	  <forward name="informeUnidadesConsultadas" path="/action/gestionUsuarioSalasConsultaAction?method=unidadesConsultadas" redirect="true"/>
+     </action>
+
+
+    <!--action path="/dispatchAltaTipoAction" name="WizardAltaForm"  type="deposito.actions.DispatchAltaTipoAction" scope="request" validate="false" input="deposito.wizardalta">
+    	<forward name="tipodeposito" path="/action/gestionDepositoAction?calltype=prealta" redirect="true"/>
+    	<forward name="tipoasignable" path="/action/gestionTipoAsignableAction?calltype=prealta" redirect="true"/>
+    	<forward name="tiponoasignable" path="/action/gestionTipoNoAsignableAction?calltype=prealta" redirect="true"/>
+    </action-->
+
+    <action path="/backLastPathSessionAction" type="deposito.actions.BackLastPathSessionAction" validate="false" />
+
+	<action path="/manageVistaDeposito" scope="request" type="deposito.actions.GestionVistaDeposito" parameter="actionToPerform">
+       <forward name="homedeposito" path="deposito.home" />
+       <forward name="lista_ubicaciones" path="deposito.listaUbicaciones" />
+       <forward name="resumenOcupacion" path="deposito.resumenOcupacion" />
+	    <forward name="done" path="/pages/tiles/deposito/showTreeView.jsp" />
+	    <forward name="verUbicacion" path="/action/gestionDepositoAction?method=verUbicacion" />
+	    <forward name="verNoAsignable" path="/action/gestionTipoNoAsignableAction?method=verNoAsignable" />
+	    <forward name="verAsignable" path="/action/gestionTipoAsignableAction?method=verAsignable" />
+	    <forward name="verHueco" path="/action/verHuecoAction?method=listadoudocs" />
+	</action>
+
+	<action path="/cuadroSeleccion" scope="request" type="fondos.actions.GestionCuadroClasificacionSeleccion" parameter="actionToPerform">
+	  <forward name="done" path="/pages/tiles/fondos/showTreeViewSeleccion.jsp" />
+	</action>
+
+	<action path="/resultadoBusquedaFondosAction" scope="request" name="ResultadoBusquedaFondosForm"  type="fondos.actions.ResultadoBusquedaFondosAction" parameter="method">
+		<forward name="mover_fondo_busquedas" path="/action/gestionFondoAction?method=accionSeleccionarNuevoPadre" />
+		<forward name="mover_clasificador_serie_busquedas" path="/action/gestionClasificadorSeriesAction?method=accionMove" />
+      	<forward name="mover_serie_busquedas" path="/action/gestionSeries?method=accionMoveSerie" />
+      	<forward name="mover_unidades_documentales_busquedas" path="/action/moverUdocsAction?method=accionFormBusquedaSerieDestino" />
+		<forward name="crear_prestamo_busquedas" path="/action/gestionPrestamos?method=accionNuevoPrestamoDesdeBusqueda" />
+		<forward name="aniadir_a_prestamo_busquedas" path="/action/gestionPrestamos?method=accionAniadirAPrestamoDesdeBusqueda" />
+		<forward name="crear_consulta_busquedas" path="/action/gestionConsultas?method=accionNuevaConsultaDesdeBusqueda" />
+		<forward name="aniadir_a_consulta_busquedas" path="/action/gestionConsultas?method=accionAniadirAConsultaDesdeBusqueda" />
+		<forward name="desbloquear_udocs_busquedas" path="/action/gestionRelaciones?method=accionUnlockUdocs" />
+		<forward name="bloquear_udocs_busquedas" path="/action/gestionRelaciones?method=accionLockUdocs"/>
+		<forward name="no_conservar_udocs_serie" path="/action/gestionUdocsCF?method=accionNoConservarUdocs"/>
+	</action>
+
+	<action path="/ambitoDepositoSeleccion" name="DepositoForm" scope="request" type="deposito.actions.GestionVistaAmbitoDepositoSeleccion" parameter="actionToPerform">
+	  <forward name="done" path="/pages/tiles/deposito/showTreeViewSeleccionAmbitoDeposito.jsp" />
+	  <forward name="doneSub" path="/pages/tiles/deposito/showSubtreeViewSeleccionAmbitoDeposito.jsp" />
+	</action>
+
+
+	<action path="/depositoSeleccion" name="DepositoForm" scope="request" type="deposito.actions.GestionVistaDepositoSeleccion" parameter="actionToPerform">
+	  <forward name="done" path="/pages/tiles/deposito/showTreeViewSeleccion.jsp" />
+	  <forward name="doneSub" path="/pages/tiles/deposito/showSubtreeViewSeleccion.jsp" />
+	</action>
+
+	<action path="/gestionFormatosAction" scope="request" name="FormatoForm"
+		type="deposito.actions.GestionFormatosAction" parameter="method">
+		  <forward name="lista_formatos" path="deposito.listadoFormatos" />
+		  <forward name="info_formato" path="deposito.infoFormato"/>
+		  <forward name="formulario_formato" path="deposito.formularioFormato"/>
+	</action>
+
+	<action path="/busquedaUISEliminadasAction" scope="request" name="BusquedaUISEliminadasForm"
+		type="deposito.actions.BusquedaUISEliminadasAction" parameter="method" >
+		  <forward name="form_busqueda" path="deposito.busquedaUIs.eliminadas"/>
+	</action>
+
+	<action path="/busquedaUISAnioYSerieAction" scope="request" name="BusquedaUISAnioYSerieForm"
+		type="deposito.actions.informes.BusquedaUISAnioYSerieAction" parameter="method" >
+		  <forward name="form_busqueda" path="deposito.busquedaUISAnioYSerie"/>
+		  <forward name="show_form_busqueda" path="/action/busquedaUISAnioYSerieAction?method=nuevaBusqueda"/>
+	</action>
+
+	<action path="/organizacionUDocsAction" scope="session" name="OrganizacionUDocsForm"
+		type="deposito.actions.organizacion.OrganizacionUDocsAction" parameter="method">
+    	  <forward name="listado_udocs" path="deposito.listadoudocs" />
+		  <forward name="organizacion_udocs" path="deposito.organizacion.udocs" />
+	</action>
+
+    <action path="/gestionDepositoAction" scope="request" name="DepositoForm" type="deposito.actions.deposito.GestionDepositoAction" parameter="method">
+
+		 <forward name="info_ubicacion" path="deposito.viewdeposito"/>
+		 <forward name="edicion_deposito" path="deposito.ediciondeposito"/>
+		 <forward name="redirect_to_info_ubicacion" path="/action/gestionDepositoAction?method=verUbicacion"/>
+         <forward name="informe_ocupacion" path="deposito.informeOcupacion" />
+         <forward name="ver_elemento" path="/action/manageVistaDeposito?actionToPerform=verNodo" />
+         <forward name="buscar_ui" path="deposito.buscarUI"/>
+		 <forward name="sel_formato_informe_listado" path="/action/exportarInformeListado?method=init"/>
+
+    	<!--forward name="failure" path="deposito.error" redirect="true" />
+    	<forward name="failurecreate" path="deposito.altadeposito" />
+    	<forward name="failureedit" path="deposito.viewdeposito" />
+    	<forward name="failureload" path="deposito.error" />
+    	<forward name="failuredelete" path="deposito.viewdeposito" />
+    	<forward name="successprecreate" path="deposito.altadeposito" />
+    	<forward name="successcreate" path="/action/viewResultadoOperacionAction?tipoelemento=tipodeposito" redirect="true"/>
+    	<forward name="successedit" path="/action/viewResultadoOperacionAction?tipoelemento=tipodeposito&amp;operacion=edit" redirect="true" />
+    	<forward name="successdelete" path="/action/viewResultadoOperacionAction?tipoelemento=tipodeposito&amp;operacion=delete" redirect="true" />
+    	<forward name="successload" path="deposito.viewdeposito" redirect="true" /-->
+    </action>
+
+    <action path="/gestionDepositosElectronicos" scope="request" name="DepositoElectronicoForm" type="deposito.actions.deposito.GestionDepositoElectronicoAction" parameter="method" validate="false">
+        <forward name="ver_depositos" path="depositoElectronico.ver_depositos"/>
+        <forward name="ver_deposito" path="depositoElectronico.ver_deposito"/>
+        <forward name="editar_deposito" path="depositoElectronico.editar_deposito"/>
+    </action>
+	<action path="/gestionNivelesDeposito"
+			name="NivelesDepositoForm"
+			scope="request"
+			type="deposito.actions.niveles.GestionNivelesDepositoAction"
+			parameter="method"
+			validate="false">
+			<forward name="list" path="/action/gestionNivelesDeposito?method=init"/>
+			<forward name="init" path="deposito.niveles.listaNiveles"/>
+			<forward name="datos_nivel" path="deposito.niveles.datosNivel"/>
+			<forward name="alta_nivel" path="deposito.niveles.altaNivel"/>
+			<forward name="agregar_nivel_hijo" path="deposito.niveles.agregarNivelDescendiente"/>
+	 </action>
+
+    <action path="/gestionTipoAsignableAction" name="AsignableForm" type="deposito.actions.asignable.GestionTipoAsignableAction" scope="request" parameter="method">
+			<forward name="edicion_asignable" path="deposito.altatipoasignable"/>
+			<forward name="info_asignable" path="deposito.viewtipoasignable"/>
+			<forward name="seleccion_usuarios" path="controlAcceso.rol.seleccionUsuarios"/>
+			<forward name="seleccion_permisos" path="controlAcceso.seleccionPermisos"/>
+			<forward name="redirect_to_info_asignable" path="/action/gestionTipoAsignableAction?method=verAsignable"/>
+        <forward name="ver_elemento" path="/action/manageVistaDeposito?actionToPerform=verNodo" />
+	    <forward name="seleccionar_cartelas" path="deposito.tipoAsignable.seleccionarcartelas"/>
+	    <forward name="ver_cartelas" path="deposito.tipoAsignable.vercartelas"/>
+		<forward name="cambiar_numeracion_asignables" path="deposito.cambiar.numeracion"/>
+		<forward name="confirmar_numeracion_asignables_regulares" path="deposito.confirmar.cambio.numeracion"/>
+		<forward name="crear_asignables_con_numeracion" path="/action/gestionTipoAsignableAction?method=crearAsignablesYHuecos"/>
+
+    	<!--forward name="failure" path="deposito.error" redirect="true" />
+    	<forward name="failurecreate" path="deposito.altatipoasignable" />
+    	<forward name="failureedit" path="deposito.viewtipoasignable" />
+    	<forward name="failureload" path="deposito.error" />
+    	<forward name="failuredelete" path="deposito.viewtipoasignable" />
+    	<forward name="successprecreate" path="deposito.altatipoasignable" />
+    	<forward name="successcreate" path="/action/viewResultadoOperacionAction?tipoelemento=tipoasignable" redirect="true" />
+    	<forward name="successedit" path="/action/viewResultadoOperacionAction?tipoelemento=tipoasignable&amp;operacion=edit" redirect="true" />
+    	<forward name="successload" path="deposito.viewtipoasignable" redirect="true" />
+    	<forward name="successdelete" path="/action/viewResultadoOperacionAction?tipoelemento=tipoasignable&amp;operacion=delete" redirect="true" /-->
+    </action>
+
+    <action path="/gestionTipoNoAsignableAction" name="NoAsignableForm" type="deposito.actions.noasignable.GestionTipoNoAsignableAction" scope="request" parameter="method">
+
+		 <forward name="alta_no_asignable" path="deposito.altatiponoasignable"/>
+		 <forward name="alta_asignable" path="/action/gestionTipoAsignableAction?method=altaAsignable"/>
+		 <forward name="info_no_asignable" path="deposito.viewtiponoasignable"/>
+		 <forward name="redirect_to_info_no_asignable" path="/action/gestionTipoNoAsignableAction?method=verNoAsignable"/>
+         <forward name="informe_ocupacion" path="deposito.informeOcupacion" />
+         <forward name="ver_elemento" path="/action/manageVistaDeposito?actionToPerform=verNodo" />
+         <forward name="seleccionar_cartelas" path="deposito.tipoNoAsignable.seleccionarCartelas" />
+         <forward name="ver_cartelas" path="deposito.tipoNoAsignable.verCartelas" />
+         <forward name="edicion_no_asignable" path="deposito.edicionTipoNoAsignable"/>
+
+    	<!--forward name="failure" path="deposito.error" redirect="true" />
+    	<forward name="failurecreate" path="deposito.altatiponoasignable" />
+    	<forward name="failureedit" path="deposito.viewtiponoasignable" />
+    	<forward name="failureload" path="deposito.error" />
+    	<forward name="failuredelete" path="deposito.viewtiponoasignable" />
+     	<forward name="successprecreate" path="/action/viewResultadoOperacionAction?tipoelemento=tiponoasignable" redirect="true" />
+    	<forward name="successcreate" path="/action/viewResultadoOperacionAction?tipoelemento=tiponoasignable" redirect="true" />
+    	<forward name="successedit" path="/action/viewResultadoOperacionAction?tipoelemento=tiponoasignable&amp;operacion=edit" redirect="true" />
+    	<forward name="successload" path="deposito.viewtiponoasignable" redirect="true" />
+    	<forward name="successdelete" path="/action/viewResultadoOperacionAction?tipoelemento=tiponoasignable&amp;operacion=delete" redirect="true" /-->
+    </action>
+
+    <!--action path="/wizardAltaAction" name="WizardAltaForm" type="deposito.actions.WizardAltaAction" scope="session" validate="false"-->
+    <!--action path="/wizardAltaAction" name="WizardAltaForm" type="deposito.actions.WizardAltaAction" scope="request" validate="false" >
+    	<forward name="wizard" path="deposito.wizardalta" />
+    	<forward name="dispatch" path="/action/dispatchAltaTipoAction" />
+    </action-->
+
+    <!--action path="/viewResultadoOperacionAction" type="deposito.actions.ViewResultadoOperacionAction">
+    	<forward name="tipodeposito" path="deposito.resultadoalta" />
+    	<forward name="tipoasignable" path="deposito.resultadoalta"  />
+    	<forward name="tiponoasignable" path="deposito.resultadoalta"  />
+    </action-->
+
+    <action path="/viewTipoAsignableAction" name="TipoAsignableForm" type="deposito.actions.asignable.ViewTipoAsignableAction" validate="false" >
+    	<forward name="success" path="deposito.viewtipoasignable" redirect="true" />
+    </action>
+
+    <action path="/viewTipoNoAsignableAction" name="TipoNoAsignableForm" type="deposito.actions.noasignable.ViewTipoNoAsignableAction" validate="false" >
+    	<forward name="success" path="deposito.viewtiponoasignable" redirect="true" />
+    </action>
+
+    <action path="/reubicacionAction" name="ReubicacionForm" type="deposito.actions.reubicacion.ReubicacionUnidadesInstalacionAction" scope="request" parameter="method">
+    	<forward name="seleccion_uis" path="deposito.reubicacion.selecionUIs" />
+    	<forward name="seleccion_destino" path="deposito.reubicacion.selecionDestino" />
+    	<forward name="informe_reubicacion" path="deposito.reubicacion.informeReubicacionUinst" />
+    </action>
+    <action path="/reubicacionUdocsAction" name="ReubicacionUnidadesDocumentalesForm"
+    	type="deposito.actions.reubicacion.ReubicacionUnidadesDocumentales"
+    		scope="session" parameter="method">
+    	<forward name="seleccion_udocs" path="deposito.reubicacion.selecionUDocs" />
+    	<forward name="seleccion_asignable_destino" path="deposito.reubicacion.selecionAsignableDestino" />
+    	<forward name="seleccion_hueco_destino" path="deposito.reubicacion.selecionHuecoDestino" />
+    	<forward name="informe_reubicacion" path="deposito.reubicacion.informeReubicacion" />
+    	<forward name="listado_udocs" path="deposito.listadoudocs" />
+    </action>
+
+
+
+    <!--action path="/reubicacionWizardAction" name="ReubicacionWizardForm" type="deposito.actions.reubicacion.ReubicacionWizardAction" scope="request" validate="false" input="deposito.reubicacionwizard">
+    	<forward name="success" path="deposito.reubicacionwizard" />
+    </action-->
+
+    <!-- action path="/WizardPrueba" name="" type="transf.util.actions.WizardAction" scope="session" validate="false" input=""-->
+    	<!-- forward name="success" path="" / -->
+     	<!-- forward name="wizardend" path="deposito.operacioncancelada" / -->
+    	<!-- forward name="cancelled" path="deposito.operacioncancelada" / -->
+    <!-- /action -->
+
+    <action path="/gestionEstadoHuecosAction" name="GestionEstadoHuecoForm" type="deposito.actions.hueco.GestionEstadoHuecosAction" scope="request" parameter="method">
+    	<forward name="seleccion_huecos" path="deposito.cambioestadohuecos" />
+    	<forward name="seleccion_uis_editar" path="deposito.seleccionUIsEditarNumeracion" />
+    	<forward name="editar_numeracion" path="deposito.editarNumeracion" />
+    </action>
+
+    <action path="/verHuecoAction" name="VerHuecoForm" type="deposito.actions.hueco.VerHuecoAction" scope="request" validate="false" parameter="method">
+      <forward name="listado_udocs" path="deposito.listadoudocs" />
+      <forward name="ver_en_cuadro_clasificacion" path="/action/buscarElementos?method=verEnCuadro" />
+      <forward name="ver_en_relacion_entrega" path="/action/gestionUdocsRelacion?method=infoUnidadDocumentalDesdeDeposito" />
+      <forward name="ver_padre" path="/action/manageVistaDeposito?actionToPerform=goHome" />
+      <forward name="redirect_lista_udocs" path="/action/verHuecoAction?method=listadoudocs" />
+    </action>
+
+    <!-- action path="/navegadorDepositoAction" name="NavegadorDepositoForm" type="deposito.actions.navegador.NavegadorDepositoAction" scope="request" validate="false" parameter="method">
+   		<forward name="success" path="/pages/tiles/navegadordeposito.jsp" />
+    </action-->
+
+    <action path="/navegadorReservaDepositoAction" name="NavegadorReservaDepositoForm" type="deposito.actions.navegador.NavegadorReservaDepositoAction" scope="request" validate="false" parameter="method">
+   		<forward name="success" path="/pages/tiles/navegadorreservadeposito.jsp" />
+    </action>
+
+    <action path="/navegadorDepositoTableAction" name="NavegadorDepositoForm" type="deposito.actions.navegador.NavegadorDepositoAction" scope="request" validate="false" parameter="method">
+   		<forward name="success" path="/pages/tiles/navegadordepositotable.jsp" />
+    </action>
+
+    <action path="/gestionReservaRelaciones" name="ReservaForm" type="deposito.actions.reservaUbicacion.GestionReservaAction" scope="session" validate="false" parameter="method">
+	<forward name="listado_relaciones" path="transferencias.listadorelacionesreserva" />
+	<forward name="ver_navegador" path="transferencias.vernavegadorreserva" />
+	<forward name="informe_reserva" path="transferencias.verinformereserva" />
+	<!--forward name="default" path="/action/manageVistaDeposito?actionToPerform=goHome" redirect="true"/-->
+	<forward name="redirect_to_info_relacion" path="/action/gestionRelaciones?method=verrelacion" />
+    </action>
+
+    <action path="/gestionUbicacionRelaciones" name="ReservaForm" type="deposito.actions.reservaUbicacion.GestionUbicacionAction" scope="session" validate="false" parameter="method">
+	<forward name="listado_relaciones" path="transferencias.listadorelacionesubicacion" />
+	<forward name="ver_navegador" path="transferencias.vernavegadorubicacion" />
+	<forward name="informe_ubicacion" path="transferencias.verinformeubicacion" />
+	<forward name="redirect_to_info_relacion" path="/action/gestionRelaciones?method=verrelacion" />
+
+	<!--forward name="default" path="/action/manageVistaDeposito?actionToPerform=goHome" redirect="true"/-->
+    </action>
+
+	<action path="/buscarPrevisiones" name="busquedaPrevisionesForm" scope="request" type="transferencias.actions.BusquedaPrevisionesAction" parameter="method" validate="false">
+		<forward name="formulario" path="transferencias.previsiones.formulario_busqueda" />
+		<forward name="listado" path="transferencias.previsiones.listado_busqueda_previsiones" />
+    </action>
+
+	<action path="/gestionPrevisiones" name="PrevisionForm" scope="request" type="transferencias.actions.GestionPrevisionesAction" parameter="method">
+	    <forward name="home_previsiones" path="transferencias.previsiones.home" />
+	    <forward name="nueva_prevision" path="transferencias.altaprevision" />
+	    <forward name="ver_prevision" path="transferencias.viewprevision" />
+	    <forward name="listado_prevision_oficina" path="transferencias.listadoprevisionoficina" redirect="true"/>
+	    <forward name="listado_prevision_archivo" path="transferencias.listadoprevisionarchivo" redirect="true"/>
+	    <forward name="edicion_prevision" path="transferencias.edicionprevision" />
+	    <forward name="modificar_prevision" path="transferencias.modificarprevision" />
+	    <forward name="editar_detalle" path="/action/gestionDetallesPrevision" />
+	    <forward name="seleccionar_tipoprevision" path="transferencias.previsiones.seleccionartipoprevision" />
+	    <forward name="vista_prevision" path="/action/gestionPrevisiones?method=verprevision" />
+	</action>
+
+	<action path="/cesionPrevisiones" name="CesionPrevisionesForm" scope="request" type="transferencias.actions.CesionPrevisionesAction" parameter="method" validate="false">
+ 	    <forward name="seleccion_previsiones" path="transferencias.previsiones.seleccionPrevisiones" />
+ 	    <forward name="seleccion_gestor" path="transferencias.previsiones.seleccionGestor" />
+ 	    <forward name="resultado_asignacion" path="transferencias.previsiones.resultadoAsignacion" />
+    </action>
+
+	<action path="/cesionRelacionesArchivo" name="CesionRelacionesForm" scope="request" type="transferencias.actions.CesionRelacionesArchivoAction" parameter="method" validate="false">
+ 	    <forward name="seleccion_relaciones" path="transferencias.relaciones.seleccionRelaciones" />
+ 	    <forward name="seleccion_gestor_relaciones" path="transferencias.relaciones.seleccionGestorRelaciones" />
+ 	    <forward name="resultado_asignacion_relaciones" path="transferencias.relaciones.resultadoAsignacionRelaciones" />
+    </action>
+
+	<action path="/cesionRelacionesOrgRemitente" name="CesionRelacionesForm" scope="request" type="transferencias.actions.CesionRelacionesOrgRemitenteAction" parameter="method" validate="false">
+ 	    <forward name="seleccion_relaciones" path="transferencias.relaciones.seleccionRelaciones" />
+ 	    <forward name="seleccion_gestor_relaciones" path="transferencias.relaciones.seleccionGestorRelaciones" />
+ 	    <forward name="resultado_asignacion_relaciones" path="transferencias.relaciones.resultadoAsignacionRelaciones" />
+    </action>
+
+	<action path="/cesionIngresoDirecto" name="CesionRelacionesForm" scope="request" type="transferencias.actions.CesionIngresoDirectoAction" parameter="method" validate="false">
+ 	    <forward name="seleccion_relaciones" path="transferencias.relaciones.seleccionRelaciones" />
+ 	    <forward name="seleccion_gestor_relaciones" path="transferencias.relaciones.seleccionGestorRelaciones" />
+ 	    <forward name="resultado_asignacion_relaciones" path="transferencias.relaciones.resultadoAsignacionRelaciones" />
+    </action>
+
+	<!--action path="/relacionTransfControlGOficina" name="TransferenciaControlForm" scope="session" type="transferencias.actions.RelacionTransfControlGOficinaAction" parameter="method">
+	    <forward name="listado_elementosatransferir" path="transferencias.control.listadorelacionestransfcontrolgoficina" />
+	    <forward name="listado_usuariostranfcontrolorigen" path="transferencias.control.listadousuariostransfcontrol1" />
+	    <forward name="listado_usuariostranfcontroldestino" path="transferencias.control.listadousuariostransfcontrol1" />
+	    <forward name="informe_transferencias" path="transferencias.control.informetransferencias" />
+	    <forward name="listado_final_paso5" path="/action/gestionRelaciones?method=listadorelacionesoficina" redirect="true"/>
+	</action-->
+
+
+	<!--action path="/relacionTransfControlGArchivo" name="RelacionesTransfControlForm" scope="session" type="transferencias.actions.RelacionTransfControlGArchivoAction" parameter="method">
+	   <forward name="listado_relacionestransfcontrol" path="transferencias.control.listadorelacionestransfcontrol" />
+	   <forward name="listado_usuarios" path="transferencias.control.listadousuariosgarchivo" />
+	   <forward name="informe_transferencias" path="transferencias.control.informetransfgarchivo" />
+	   <forward name="listado_relaciones" path="/action/gestionRelaciones?method=listadorelacionesarchivo" redirect="true"/>
+	</action-->
+
+
+
+	<action path="/gestionDetallesPrevision"
+				name="detallePrevisionForm"
+				scope="request"
+				type="transferencias.actions.GestionDetallesPrevisionAction"
+				parameter="method">
+	    <!--forward name="lista_detalles_prevision" path="transferencias.previsiones.detalles_prevision" /-->
+	    <forward name="info_detalle_prevision" path="transferencias.previsiones.info_detalle" />
+	    <!--forward name="nuevo_detalle_prevision" path="transferencias.previsiones.nuevo_detalle" /-->
+	    <forward name="seleccion_procedimiento" path="transferencias.previsiones.seleccion_procedimiento" />
+	    <forward name="seleccion_serie" path="transferencias.previsiones.seleccion_serie" />
+	    <forward name="edicion_detalle_prevision" path="transferencias.previsiones.edicion_detalle" />
+	    <forward name="edicion_detalle_prevision_entre_archivos" path="transferencias.previsiones.edicion_detalle_entre_archivos" />
+	</action>
+
+	<action path="/gestionUdocsRelacion"
+				name="udocForm"
+				scope="request"
+				type="transferencias.actions.GestionUnidadesDocumentales"
+				parameter="method">
+	    <forward name="lista_udocs_relacion" path="transferencias.relaciones.lista_unidades_documentales" />
+	    <forward name="seleccion_expedientes" path="transferencias.relaciones.seleccion_expedientes" />
+	    <forward name="nueva_udoc_relacion" path="transferencias.relaciones.creacion_udoc" />
+	    <forward name="edicion_udoc_relacion" path="transferencias.relaciones.edicion_udoc" />
+	    <forward name="info_udoc_relacion" path="transferencias.relaciones.info_udoc" />
+	    <forward name="info_udoc_relacion_desde_deposito" path="transferencias.relaciones.info_udoc_desde_deposito" />
+	    <forward name="info_documento" path="transferencias.relaciones.info_documento" />
+	    <forward name="edicion_documento" path="transferencias.relaciones.edicion_documento" />
+	    <forward name="nuevo_detalle_prevision" path="transferencias.previsiones.nuevo_detalle" />
+	    <forward name="seleccion_serie" path="transferencias.previsiones.seleccion_serie" />
+	    <forward name="redirect_to_view_udoc" path="/action/gestionUdocsRelacion?method=infoUnidadDocumental"/>
+	    <forward name="edicion_descripcion_contenido_caja" path="transferencias.relaciones.edicion_descripcion_contenido_caja" />
+	    <forward name="edicion_descripcion_contenido_parte" path="transferencias.relaciones.asignacionCajas.edicion_descripcion_contenido" />
+	    <forward name="nueva_udoc_relacion_con_ficha" path="/action/isadgudocre?method=edit" />
+	    <forward name="ver_udoc_relacion_con_ficha" path="/action/isadgudocre?method=retrieve" />
+	    <forward name="import_udocs_relacion" path="transferencias.relaciones.import_udocs" />
+	    <forward name="import_udocs_relacion_result" path="transferencias.relaciones.import_udocs_result" />
+	</action>
+
+	<action path="/asignacionCajas"
+				name="asignacionCajasForm"
+				scope="request"
+				type="transferencias.actions.AsignacionCajasAction"
+				parameter="method">
+	    <forward name="cajas_relacion" path="transferencias.relaciones.asignacionCajas.cajas_en_relacion" />
+	    <forward name="nueva_caja" path="transferencias.relaciones.asignacionCajas.nueva_caja" />
+	    <forward name="edicion_caja" path="transferencias.relaciones.asignacionCajas.edicion_caja" />
+	    <forward name="redirect_editar_caja" path="/action/asignacionCajas?method=editarCaja" redirect="true"/>
+	    <forward name="edicion_descripcion_contenido_parte" path="transferencias.relaciones.asignacionCajas.edicion_descripcion_contenido" />
+		<forward name="edicion_signatura_caja" path="transferencias.relaciones.asignacionCajas.edicion_signatura_caja"/>
+		<forward name="dividir_udoc" path="transferencias.relaciones.asignacionCajas.dividir_udoc"/>
+    </action>
+
+   	<action path="/asignacionCajasReencajado"
+				name="asignacionCajasForm"
+				scope="request"
+				type="transferencias.actions.AsignacionCajasReencajadoAction"
+				parameter="method">
+
+	    <forward name="edicion_caja" path="transferencias.relaciones.reencajado.edicion_caja"/>
+	    <forward name="nueva_caja" path="transferencias.relaciones.reencajado.nueva_caja" />
+	    <forward name="redirect_editar_caja" path="/action/asignacionCajasReencajado?method=editarCaja" redirect="true"/>
+	    <forward name="edicion_descripcion" path="transferencias.relaciones.reencajado.edicion_descripcion" />
+	    <forward name="edicion_descripcionUI" path="transferencias.relaciones.reencajado.edicion_descripcionUI" />
+    </action>
+
+	<action path="/gestionInteresados"
+				name="interesadoForm"
+				scope="request"
+				type="transferencias.actions.GestionInteresadosAction"
+				parameter="method">
+	    <!--forward name="edicion_interesado_val" path="transferencias.relaciones.edicion_interesado_val" />
+	    <forward name="edicion_interesado_no_val" path="transferencias.relaciones.edicion_interesado_no_val" /-->
+       <forward name="edicion_interesado" path="transferencias.relaciones.edicion_interesado" />
+       <forward name="edicion_interesado_descripcion" path="transferencias.relaciones.edicion_interesado_descripcion" />
+	    <forward name="info_interesado" path="transferencias.relaciones.info_interesado" />
+	    <forward name="edicion_info_interesado" path="transferencias.relaciones.edicion_info_interesado" />
+	    <!--forward name="udoc_interesado" path="/action/gestionUdocsRelacion?method=verUnidadDocumental" /-->
+	    <forward name="info_udoc" path="transferencias.relaciones.info_udoc" />
+	</action>
+
+	<action path="/composicionEmplazamiento"
+				name="emplazamientoForm"
+				scope="request"
+				type="transferencias.actions.ComposicionEmplazamientoAction"
+				parameter="method">
+	    <forward name="edicion_emplazamiento" path="transferencias.relaciones.edicion_emplazamiento" />
+	    <forward name="edicion_emplazamiento_descripcion" path="transferencias.relaciones.edicion_emplazamiento_descripcion" />
+	    <forward name="lista_concejos" path="transferencias.relaciones.lista_concejos" />
+	    <forward name="info_udoc" path="transferencias.relaciones.info_udoc" />
+	    <!--forward name="ver_udoc" path="/action/gestionUdocsRelacion?method=verUnidadDocumental" /-->
+	</action>
+
+	<action path="/gestionSoportes"
+				name="soporteForm"
+				scope="request"
+				type="transferencias.actions.GestionSoportesAction"
+				parameter="method">
+	    <!--forward name="edicion_interesado_val" path="transferencias.relaciones.edicion_interesado_val" />
+	    <forward name="edicion_interesado_no_val" path="transferencias.relaciones.edicion_interesado_no_val" /-->
+       <forward name="edicion_soporte" path="transferencias.relaciones.edicion_soporte" />
+	    <forward name="info_udoc" path="transferencias.relaciones.info_udoc" />
+	</action>
+
+	<action path="/buscarRelaciones" name="busquedaRelacionesForm" scope="request" type="transferencias.actions.BusquedaRelacionesAction" parameter="method" validate="false">
+		<forward name="formulario" path="transferencias.relaciones.formulario_busqueda" />
+		<forward name="listado" path="transferencias.relaciones.listado_busqueda_relaciones" />
+		<forward name="formularioIngresosDirectos" path="transferencias.ingresos.directos.formulario_busqueda" />
+		<forward name="listado_ingresos_directos" path="transferencias.ingresos.directos.listado.busqueda" />
+    </action>
+
+	<action path="/gestionRelaciones" name="RelacionForm" scope="request" type="transferencias.actions.GestionRelacionesAction" parameter="method">
+	    <forward name="home_relaciones" path="transferencias.relaciones.home" />
+	    <forward name="nueva_relacion" path="transferencias.relaciones.nuevarelacion" />
+	    <forward name="listado_prevision" path="transferencias.relaciones.listadoprevision" />
+	    <forward name="listado_relacion" path="transferencias.relaciones.listadorelacion" />
+	    <forward name="listado_relacion_archivo" path="transferencias.relaciones.listadorelacionarchivo" />
+	    <forward name="listado_ingresos" path="transferencias.ingresos.listadoingresos" />
+	    <forward name="ver_relacion" path="transferencias.relaciones.verrelacion" />
+	    <forward name="ver_relaciones" path="transferencias.relaciones.verrelaciones" />
+	    <forward name="ver_relacion_desde_desposito" path="transferencias.relaciones.verrelaciondesdedeposito" />
+	    <forward name="edicion_relacion" path="transferencias.relaciones.edicionrelacion" />
+	    <forward name="lista_udocs_a_validar" path="transferencias.relaciones.validarrelacion" />
+	    <forward name="seleccionar_cartelas" path="transferencias.relaciones.seleccionarcartelas"/>
+	    <forward name="ver_cartelas" path="transferencias.relaciones.vercartelas"/>
+	    <forward name="relaciones_prevision" path="transferencias.relaciones.relacionesprevision"/>
+	    <forward name="modificar_ubicacion" path="transferencias.relaciones.modificarubicacion"/>
+	    <forward name="redirect_to_view_relacion" path="/action/gestionRelaciones?method=verrelacion"/>
+	    <forward name="ver_informe_ubicacion" path="transferencias.relaciones.ver_informe_ubicacion" />
+	    <forward name="ver_informe_reservas" path="transferencias.relaciones.ver_informe_reservas" />
+	    <forward name="nueva_relacion_entre_archivos" path="transferencias.relaciones.nueva_relacion_entre_archivos" />
+	    <forward name="datos_relacion_entre_archivos" path="/action/gestionRelaciones?method=datosRelacionEntreArchivos" />
+	    <forward name="ver_relacion_entre_archivos" path="transferencias.relaciones.verrelacion.entre.archivos" />
+	   	<forward name="redirect_to_view_relacion_entre_archivos" path="/action/gestionRelaciones?method=verrelacionentrearchivos"/>
+   	    <forward name="redirect_to_edicion_ingreso" path="/action/gestionIngresoDirecto?method=editar"/>
+   	    <forward name="redirect_to_seleccionar_cartelas" path="/action/gestionRelaciones?method=selCartelas"/>
+   	    <forward name="formato_reencajado" path="transferencias.relaciones.formato.reencajado"/>
+
+   </action>
+
+	<action path="/gestionIngresoDirecto" name="IngresoDirectoForm" scope="request" type="transferencias.actions.GestionIngresoDirectoAction" parameter="method">
+	    <forward name="nuevo_ingreso" path="transferencias.ingreso_directo.nuevo_editar_ingreso" />
+	    <forward name="editar_ingreso" path="transferencias.ingreso_directo.nuevo_editar_ingreso" />
+	    <forward name="redirect_to_view_relacion" path="/action/gestionRelaciones?method=verrelacion"/>
+	</action>
+
+    <action path="/informeReservas" type="transferencias.actions.InformeReservasPDFReportAction" validate="false" scope="request" />
+    <action path="/informeUbicacion" type="transferencias.actions.InformeUbicacionPDFReportAction" validate="false" scope="request" />
+    <action path="/informeValoracion" type="valoracion.actions.InformeValoracionPDFReportAction" validate="false" scope="request" />
+    <action path="/informeIdentificacion" type="fondos.actions.InformeIdentificacionPDFReportAction" validate="false" scope="request" />
+    <action path="/informeSeleccion" type="valoracion.actions.InformeSeleccionPDFReportAction" validate="false" scope="request" />
+    <action path="/informeEliminacion" type="valoracion.actions.InformeEliminacionPDFReportAction" validate="false" scope="request" />
+    <action path="/cartelas" type="transferencias.actions.CartelasPDFReportAction" validate="false" scope="request" />
+    <action path="/cartelasDeposito" type="deposito.actions.asignable.CartelasDepositoPDFReportAction" validate="false" scope="request" />
+    <action path="/informeDevolucionFechas" type="solicitudes.actions.DevolucionFechasPDFReportAction" validate="false" scope="request" />
+	<action path="/informeCotejo" type="transferencias.actions.InformeCotejoPDFReportAction" validate="false" scope="request" />
+	<action path="/informeUnificarDescriptores" type="descripcion.actions.InformeUnificarDescriptoresPDFReportAction" validate="false" scope="request" />
+	<action path="/informeRelacion" type="transferencias.actions.InformeRelacionPDFReportAction" validate="false" scope="request" />
+	<action path="/informeDetallesRelacion" type="transferencias.actions.InformeDetallesRelacionPDFReportAction" validate="false" scope="request" />
+	<action path="/justificanteAltaUDocs" type="transferencias.actions.InformeAltaUDocsPDFReportAction" validate="false" scope="request" />
+    <action path="/informeBusquedaDeposito" type="deposito.actions.deposito.InformeBusquedaDepositoReportAction" validate="false" scope="request"/>
+    <action path="/informeBusquedaFondos" type="fondos.actions.InformeBusquedaFondosReportAction" validate="false" scope="request"/>
+	<action path="/informeUDocsSerie" type="fondos.actions.InformeUDocsSeriePDFReportAction" validate="false" scope="request"/>
+
+    <action path="/progressBarRefresher" type="common.actions.ProgressBarRefresherAction" validate="false" scope="request" parameter="method">
+    	<forward name="progressBar" path="progressBar" />
+    </action>
+    <action path="/exportarInformeListado" type="export.actions.ExportarInformeListadoAction" validate="false" scope="request" parameter="method">
+    	<forward name="init" path="sel.formato.informe.listado"/>
+    	<forward name="informe_busqueda_fondos" path="/action/informeBusquedaFondos"/>
+    	<forward name="informe_busqueda_deposito" path="/action/informeBusquedaDeposito"/>
+    </action>
+
+	<action path="/recepcionPrevisiones" name="RecepcionPrevisionesForm" scope="request" type="transferencias.actions.RecepcionPrevisionesAction" parameter="method">
+		<forward name="aceptacion_prevision" path="transferencias.previsiones.aceptacionrechazo" />
+		<forward name="rechazo_prevision" path="transferencias.previsiones.aceptacionrechazo" />
+		<forward name="mostrar_calendario_previsiones" path="transferencias.previsiones.calendario" />
+		<forward name="mostrar_calendario_previsiones_mes" path="transferencias.previsiones.calendario.mes" />
+		<!--forward name="ver_prevision_garchivo" path="transferencias.previsiones.viewprevisiongarchivo" /-->
+	</action>
+
+	<action path="/recepcionRelaciones" name="RecepcionRelacionesForm" scope="request" type="transferencias.actions.RecepcionRelacionesAction" parameter="method">
+		<forward name="recepcion_relacion" path="transferencias.relaciones.recepcionrelacion" />
+		<forward name="error_recepcion_desdelistado" path="/action/gestionRelaciones?method=listadorelacionesoficina" redirect="true"/>
+		<!--forward name="error_recepcion_desdevista" path="/action/gestionRelaciones?method=verrelacion" redirect="true"/-->
+		<forward name="error_guardar_recepcion" path="/action/recepcionRelaciones?method=recibirrelacion" redirect="true"/>
+		<forward name="informe_envio" path="transferencias.relaciones.informeenvio" />
+		<forward name="redirect_to_informeEnvio" path="/action/recepcionRelaciones?method=informeenvio" redirect="true"/>
+		<forward name="rechazo_relacion" path="transferencias.relaciones.rechazarrelacion"/>
+		<forward name="ver_relacion" path="transferencias.relaciones.verrelacion"/>
+	</action>
+
+	<action path="/cotejoysignaturizacionAction" name="CotejoysignaturizacionForm" scope="request" type="transferencias.actions.CotejoysignaturizacionAction" parameter="method">
+		<forward name="cajas_cotejo" path="transferencias.relaciones.cajas_cotejo" />
+		<forward name="contenido_caja_cotejo" path="transferencias.relaciones.contenido_caja_cotejo" />
+		<forward name="finalizarcotejo" path="transferencias.relaciones.finalizarcotejo" />
+		<forward name="informefinalizarcotejo" path="transferencias.relaciones.informefinalizarcotejo" />
+		<forward name="imprimircartela" path="transferencias.relaciones.imprimircartela" />
+	    <forward name="redirect_to_view_udoc" path="/action/gestionUdocsRelacion?method=infoUnidadDocumental"/>
+		<forward name="udocs_eletronicas_cotejo" path="transferencias.relaciones.udocs_electronicas_cotejo" />
+		<forward name="verUnidadDocumental" path="/action/gestionUdocsCF?method=verEnFondos" />
+		<forward name="cajas_cotejo_reencajado" path="transferencias.relaciones.cajas_cotejo_reencajado"/>
+	</action>
+
+	<!-- Fondos -->
+	<action path="/gestionFondoAction" name="FondoForm" scope="request" type="fondos.actions.GestionFondo" parameter="method">
+     	<forward name="refreshView" path="/action/manageVistaCuadroClasificacion?actionToPerform=verNodo" />
+		<forward name="edicion_fondo" path="fondos.fondos.edicion_fondo" />
+		<forward name="forwardVistaFondo" path="/action/gestionFondoAction?method=verfondo" />
+		<forward name="ver_fondo" path="fondos.cf.verFondo" />
+	   	<forward name="view_clasificadorFondos" path="fondos.cf.verClasificadorFondos" />
+		<forward name="editar_fondo" path="fondos.fondos.edicion_fondo"/>
+		<!-- forward name="resultado_alta" path="fondos.cf.resultado_alta" / -->
+		<forward name="seleccion_clasificador_fondos" path="fondos.cf.seleccionClasificadorFondo" />
+		<forward name="informe_mover" path="fondos.cf.informe.mover" />
+		<forward name="edicion_info_fondo" path="fondos.fondos.edicion_info_fondo" />
+	</action>
+
+	<action path="/manageVistaCuadroClasificacion" scope="request" type="fondos.actions.GestionVistaCuadroClasificacion" parameter="actionToPerform">
+	    <forward name="viewRefresher" path="/pages/tiles/fondos/refreshTreeView.jsp" />
+	    <forward name="homefondos" path="fondos.home" />
+	    <forward name="resumenFondos" path="fondos.resumenFondos" />
+	    <forward name="done" path="/pages/tiles/fondos/showTreeView.jsp" />
+	    <forward name="view_elementoCF" path="fondos.cf.verElementoCuadroClasificacion" />
+	    <forward name="verClasificadorFondos" path="/action/gestionClasificadorFondosAction?method=verClasificadorFondos" />
+	    <forward name="verFondo" path="/action/gestionFondoAction?method=verfondo" />
+	    <forward name="verClasificadorSeries" path="/action/gestionClasificadorSeriesAction?method=verClasificadorSeries" />
+	    <forward name="verSerie" path="/action/gestionIdentificacionAction?method=veridentificacionserie" />
+	    <forward name="verUnidadDocumental" path="/action/gestionUdocsCF?method=verUnidadDocumental" />
+	    <forward name="verDescripcionUnidadDocumental" path="/action/isadg?method=retrieve" />
+	    <forward name="exportarCuadro" path="fondos.exportar.cuadro" />
+	</action>
+
+	<action path="/buscarElementos" name="busquedaElementosForm" scope="request" type="fondos.actions.BusquedaElementosAction" parameter="method" validate="false">
+		<forward name="form_busqueda_rapida" path="fondos.form_busqueda_rapida" />
+		<forward name="form_busqueda_avanzada" path="fondos.form_busqueda_avanzada" />
+		<forward name="form_busqueda_generica" path="fondos.form_busqueda_generica" />
+    	<forward name="form_busqueda_elementos" path="descripcion.busqueda_elementos" />
+    	<forward name="form_busqueda_udocs_serie" path="fondos.udoc.busqueda_udocs_serie" />
+
+    	<forward name="ver_elementos" path="descripcion.ver_elementos" />
+
+		<forward name="listado" path="fondos.listado_busqueda_elementos" />
+		<forward name="seleccion" path="fondos.seleccion_busqueda_elementos" />
+		<forward name="busqueda_seleccion" path="fondos.busqueda_valoracion_seleccion_udocs" />
+		<forward name="returnSeleccionEliminacion" path="/action/gestionEliminacion?method=addUdocsReturn" />
+	    <forward name="verClasificadorFondos" path="/action/gestionFondoAction?method=verClasificadorFondos" />
+	    <forward name="verFondo" path="/action/gestionFondoAction?method=verfondo" />
+	    <forward name="verClasificadorSeries" path="/action/gestionClasificadorSeriesAction?method=verClasificadorSeries" />
+	    <forward name="verSerie" path="/action/gestionIdentificacionAction?method=veridentificacionserie" />
+	    <forward name="verUnidadDocumental" path="/action/gestionUdocsCF?method=verUnidadDocumental" />
+	    <forward name="verEnCuadro" path="/action/manageVistaCuadroClasificacion?actionToPerform=goHome"/>
+	    <forward name="busqueda_valoracion_seleccion_udocs" path="fondos.busqueda_valoracion_seleccion_udocs"/>
+    	<forward name="exportarCuadro" path="fondos.exportar.cuadro" />
+	    <forward name="sel_formato_informe_listado" path="/action/exportarInformeListado?method=init"/>
+	    <forward name="generate_informe_udocs_serie" path="/action/informeUDocsSerie"/>
+    </action>
+
+	<action path="/buscarSolicitudesSeries"
+		name="BusquedaSolicitudSerieForm"
+		scope="request"
+		type="fondos.actions.BusquedaSolicitudesSerieAction"
+		parameter="method" validate="false">
+		<forward name="formulario" path="series.solicitudes.formulario_busqueda" />
+		<forward name="listado" path="series.solicitudes.listado_busqueda" />
+	    <forward name="verSolicitud" path="/action/gestionSerie?method=verSolicitud" />
+    </action>
+
+	<action path="/gestionClasificadorSeriesAction"  name="ClasificadorSerieForm" scope="request" type="fondos.actions.GestionClasificadorSeriesAction" parameter="method">
+      <forward name="refreshView" path="/action/manageVistaCuadroClasificacion?actionToPerform=verNodo" />
+      <forward name="view_clasificadorSeries" path="fondos.cf.verClasificadorSeries" />
+		<forward name="edicion_clasificador_series" path="fondos.cf.edicionClasificadorSeries" />
+		<forward name="resultado_alta" path="fondos.cf.resultado_alta" />
+		<forward name="seleccion_padre" path="fondos.cf.seleccionPadre" />
+		<forward name="informe_mover" path="fondos.cf.informe.mover.clasificador"/>
+		<forward name="edicion_info_clserie" path="fondos.cf.edicionInfoCLSerie"/>
+	</action>
+
+	<action path="/gestionClasificadorFondosAction"  name="ClasificadorFondoForm" scope="request" type="fondos.actions.GestionClasificadorFondosAction" parameter="method">
+      <forward name="refreshView" path="/action/manageVistaCuadroClasificacion?actionToPerform=verNodo" />
+      <forward name="view_clasificadorFondos" path="fondos.cf.verClasificadorFondos" />
+	  <forward name="edicion_clasificador_fondos" path="fondos.cf.edicionClasificadorFondos" />
+	  <forward name="resultado_alta" path="fondos.cf.resultado_alta" />
+	  <forward name="seleccion_padre" path="fondos.cf.seleccionPadre" />
+	  <forward name="edicion_info_clfondo" path="fondos.cf.edicionInfoCLFondo" />
+	</action>
+
+	<action path="/gestionSeries" name="SerieForm" scope="request" type="fondos.actions.GestionSerieAction" parameter="method">
+		<!--forward name="info_serie" path="fondos.cf.infoSerie" /-->
+
+		<forward name="home_gestion_series" path="fondos.series.home" />
+		<forward name="series_en_identificacion" path="fondos.series.enIdentificacion" />
+
+		<forward name="ver_serie" path="fondos.cf.verSerie" />
+		<forward name="paso_serie_a_vigente" path="fondos.cf.pasoSerieAVigente" />
+		<forward name="paso_serie_a_estudio" path="fondos.cf.pasoSerieAEstudio" />
+		<forward name="paso_serie_a_historica" path="fondos.cf.pasoSerieAHistorica" />
+		<forward name="nueva_solicitud_alta" path="fondos.series.solicitud_alta" />
+		<forward name="lista_solicitudes" path="fondos.cf.listaSolicitudes" />
+		<forward name="view_solicitud" path="fondos.series.view_solicitud" />
+		<forward name="aceptacion_rechazo" path="fondos.series.aceptacion_rechazo" />
+		<forward name="solicitud_alta_ejecutada" path="fondos.series.solicitud_alta_ejecutada" />
+		<forward name="ver_clasificador_padre" path="/action/gestionClasificadorSeriesAction?method=verClasificadorSeries" />
+		<forward name="nueva_solicitud_aprobacionCambios" path="fondos.series.solicitud_aprobacionCambios" />
+		<forward name="ver_en_fondos" path="/action/manageVistaCuadroClasificacion?actionToPerform=goHome"/>
+		<forward name="vista_serie" path="/action/gestionSeries?method=verserie" />
+		<forward name="edicion_info_serie" path="fondos.cf.edicionSerie" />
+		<!-- <forward name="edicion_info_serie" path="/pages/tiles/fondos/series/info_ficha_udoc_lvol.jsp" />-->
+		<forward name="redirect_to_vista_serie" path="/action/manageVistaCuadroClasificacion?actionToPerform=verNodo" />
+	    <forward name="refreshView" path="/action/manageVistaCuadroClasificacion?actionToPerform=verNodo" />
+		<forward name="ver_ficha" path="fondos.series.ver_ficha" />
+		<forward name="editar_ficha" path="fondos.series.edit_ficha" />
+		<forward name="seleccion_clasificador_series" path="fondos.series.seleccionClasificadorSeries" />
+		<forward name="verSerieDesdeFondos" path="/action/gestionIdentificacionAction?method=veridentificacionserie" />
+		<forward name="informe_mover_serie" path="fondos.series.informeMoverSerie" />
+	</action>
+
+	<action path="/moverUdocsAction" type="fondos.actions.MoverUdocsAction"
+	name="MoverUdocsForm" scope="session" parameter="method">
+		<forward name="formulario_busqueda_udocs" path="fondos.series.formularioBusquedaUdocs" />
+		<forward name="formulario_busqueda_serieDestino" path="fondos.series.formularioBusquedaSerieDestino" />
+		<forward name="informe_mover_udocs" path="fondos.series.informeMoverUdocs" />
+	</action>
+
+	<action path="/gestionAsignacionSerie" scope="request" type="fondos.actions.AsignacionGestorSerieAction" parameter="method">
+		<forward name="seleccion_series" path="fondos.cf.seleccionSeries" />
+		<forward name="seleccion_gestor" path="fondos.cf.seleccionGestor" />
+		<forward name="resultado_asignacion" path="fondos.cf.resultadoAsignacion" />
+	</action>
+
+	<action path="/gestionUdocsCF" name="UnidadDocumentalForm" scope="session"
+	    type="fondos.actions.GestionUnidadDocumental"
+	    parameter="method" validate="false">
+		<forward name="ver_ficha" path="fondos.udoc.ver_ficha" />
+		<forward name="lista_udocs_serie" path="fondos.udoc.udocs_serie" />
+		<forward name="ver_unidadDocumental" path="fondos.udoc.ver_unidadDocumental" />
+		<forward name="editar_unidadDocumental" path="fondos.udoc.editar_unidadDocumental" />
+		<forward name="ver_en_fondos" path="/action/manageVistaCuadroClasificacion?actionToPerform=goHome"/>
+		<forward name="message" path="message" />
+		<forward name="ver_hueco" path="/action/manageVistaDeposito?actionToPerform=goHome"/>
+		<forward name="generate_informe_udocs_serie" path="/action/informeUDocsSerie"/>
+		<forward name="ver_udocs_serie_no_conservar" path="fondos.udoc.udocs_serie_no_conservar"/>
+	</action>
+
+	<action path="/gestionReemplazarValores" name="busquedaReemplazosForm" scope="request"
+	    type="descripcion.actions.GestionReemplazarValores"
+	    parameter="method" validate="false">
+		<forward name="pantalla_reemplazo_simple" path="descripcion.reemplazo.simple"/>
+		<forward name="busqueda_generica" path="/action/gestionReemplazarValores?method=buscar"/>
+		<forward name="ver_elementos_afectados" path="descripcion.listado.elementos.reemplazo"/>
+		<forward name="listado" path="/action/gestionReemplazarValores?method=selListadoReemplazo"/>
+		<forward name="reemplazo_avanzado" path="/action/gestionReemplazarValores?method=initReemplazoAvanzado"/>
+		<forward name="confirmacion_reemplazo" path="descripcion.confirmacion.reemplazo"/>
+		<forward name="series_afectadas" path="descripcion.confirmacion.series.afectadas"/>
+		<forward name="reemplazo_simple" path="/action/gestionReemplazarValores?method=initReemplazoSimple"/>
+		<forward name="pantalla_reemplazo_avanzado" path="descripcion.reemplazo.avanzado"/>
+		<forward name="listado_reemplazo_avanzado" path="descripcion.listado.reemplazo.avanzado"/>
+		<forward name="form_busqueda_generica" path="descripcion.reemplazo.avanzado"/>
+		<forward name="elementos_afectados" path="/action/gestionReemplazarValores?method=verElementosAfectados"/>
+	</action>
+
+
+	<!-- <action path="/gestionFraccionSerie" name="UnidadDocumentalForm" scope="request"  -->
+	<action path="/gestionFraccionSerie" name="divisionFSForm" scope="request"
+	    type="fondos.actions.GestionFraccionSerieAction" parameter="method" validate="false">
+	    <forward name="initDivision_fraccionSerie" path="fondos.udoc.initDivision_fraccionSerie"/>
+		<forward name="dividir_fraccionSerie" path="fondos.udoc.dividir_fraccionSerie"/>
+		<forward name="redirect_to_dividir_fraccionSerie" path="/action/gestionFraccionSerie?method=verDivisionFraccionSerie"/>
+		<forward name="listado_divisionesFraccionSerie" path="fondos.udoc.listado_divisionesFraccionSerie"/>
+	</action>
+
+	<action path="/gestionUDocsEnFS" name="uDocEnFSForm" scope="request"
+		type="fondos.actions.GestionUnidadesDocumentalesEnFS" parameter="method" validate="false">
+		<forward name="edicion_udocEnFS" path="fondos.udoc.editar_udoc_fraccionSerie"/>
+		<forward name="dividir_fraccionSerie" path="fondos.udoc.dividir_fraccionSerie"/>
+		<forward name="ver_udocEnFS" path="fondos.udoc.ver_udoc_fraccionSerie"/>
+		<forward name="edicion_udocEnFS_con_ficha" path="/action/isadgudocfs?method=edit"/>
+		<forward name="redirect_to_view_udocEnFS" path="/action/gestionUDocsEnFS?method=infoUnidadDocumental"/>
+		<forward name="ver_udocEnFS_con_ficha" path="/action/isadgudocfs?method=retrieve"/>
+	</action>
+
+	<action path="/gestionIdentificacionAction" name="IdentificacionForm" scope="session" type="fondos.actions.GestionIdentificacionAction" parameter="method">
+		<forward name="ver_serie" path="fondos.cf.verSerie" />
+		<forward name="identificacion_serie" path="fondos.cf.identificacionSerie" />
+		<forward name="listado_procedimientos" path="fondos.cf.listadoProcedimientos" />
+		<forward name="refrescar_varios_productores" path="fondos.cf.refrescarVariosProductores" />
+		<forward name="listado_organos" path="fondos.cf.listadoOrganos" />
+	    <forward name="sustituir_productor" path="fondos.cf.sustituirProductor" />
+   		<forward name="crear_organo_productor_serie" path="fondos.cf.crearOrganoProductorSerie" />
+   		<forward name="pasar_productor_a_historico" path="fondos.cf.pasarAHistorico"/>
+
+		<forward name="redirect_to_identificacion" path="/action/gestionIdentificacionAction?method=pantallaidentificarserie"/>
+	    <forward name="refreshView" path="/action/manageVistaCuadroClasificacion?actionToPerform=verNodo" />
+   		<forward name="inicioIdentificacionSerie" path="/action/gestionIdentificacionAction?method=inicioidentificarserie"/>
+	</action>
+
+	<!-- Prestamos -->
+	<action path="/gestionPrestamos"  name="PrestamoForm"  scope="request" type="solicitudes.prestamos.actions.GestionPrestamosAction" parameter="method">
+	    <forward name="home_prestamos" path="solicitudes.prestamos.home" />
+	    <forward name="listado_prestamo" path="solicitudes.prestamos.listadoprestamo" />
+	     <forward name="listado_prestamo_ver" path="solicitudes.prestamos.listadoprestamover" />
+	    <forward name="ver_prestamo" path="solicitudes.prestamos.viewprestamo" />
+	    <forward name="nuevo_prestamo" path="solicitudes.prestamos.altaprestamo" />
+	    <forward name="edicion_prestamo" path="solicitudes.prestamos.edicionprestamo" />
+	    <!--<forward name="ver_prestamos_no_disponibles" path="solicitudes.prestamos.vernodisponibles" />-->
+	    <forward name="ver_prestamos_no_disponibles_autorizadas" path="solicitudes.prestamos.vernodisponiblesautorizadas" />
+	    <forward name="listado_prestamo_ceder_control" path="solicitudes.prestamos.listadoprestamocedercontrol" />
+	    <forward name="imprimir_entrada_prestamo" path="solicitudes.prestamos.imprimirentrada" />
+	    <forward name="imprimir_reclamacion1_prestamo" path="solicitudes.prestamos.imprimirreclamacion1" />
+	    <forward name="imprimir_reclamacion2_prestamo" path="solicitudes.prestamos.imprimirreclamacion2" />
+	    <!--<forward name="devolver_udocs" path="solicitudes.prestamos.devolver_udocs" />-->
+		<!--<forward name="listado_prorroga" path="solicitudes.prestamos.listadoprorroga" />-->
+	    <!--<forward name="listado_prestamo_reservas" path="solicitudes.prestamos.listadoprestamoreservas" />-->
+	</action>
+
+	<action path="/gestionDetallesPrestamos"
+				name="detallePrestamoForm"
+				scope="request"
+				type="solicitudes.prestamos.actions.GestionDetallesPrestamoAction"
+				parameter="method">
+	     <forward name="nuevo_detalle_prestamo" path="solicitudes.prestamos.nuevo_detalle" />
+	     <forward name="ver_detalle_prestamo" path="solicitudes.prestamos.viewdetalleprestamo" />
+	     <forward name="ver_udocs_relacionadas" path="solicitudes.prestamos.verudocsrelacionadas" />
+	     <forward name="ver_prestamo" path="solicitudes.prestamos.viewprestamo" />
+	</action>
+
+	<action path="/buscarPrestamos" name="busquedaPrestamoForm" scope="request" type="solicitudes.prestamos.actions.BusquedaPrestamosAction" parameter="method" validate="false">
+		<forward name="formulario_busqueda" path="solicitudes.prestamos.formulario_busqueda" />
+		<forward name="listado_prestamo" path="solicitudes.prestamos.listadoprestamobuscar" />
+	 </action>
+
+	 <action path="/devolverDetalles" name="detallePrestamoForm" scope="session" type="solicitudes.actions.DevolucionDetallesAction" parameter="method">
+		<forward name="formulario_devolucion" path="solicitudes.prestamos.formulario_devolucion" />
+		<forward name="load_page" path="/action/devolverDetalles?method=loadPage" />
+ 	    <forward name="imprimir_entrada" path="/action/papeletaDevolucion" />
+ 	    <forward name="formulario_udocs_devueltas" path="solicitudes.prestamos.formulario_udocs_devueltas" />
+ 	    <forward name="verPrestamo" path="/action/gestionPrestamos?method=verprestamo" />
+ 	    <forward name="verConsulta" path="/action/gestionConsultas?method=verconsulta" />
+	 </action>
+
+	 <action path="/devolverSolicitudes" scope="request" type="solicitudes.actions.DevolucionSolicitudesAction" parameter="method">
+		<forward name="formulario_devolucion" path="solicitudes.formulario_devolucion" />
+	 </action>
+
+	 <action path="/cesionPrestamos" name="cesionPrestamosForm" scope="request" type="solicitudes.prestamos.actions.CesionPrestamosAction" parameter="method" validate="false">
+ 	    <forward name="seleccion_prestamos" path="solicitudes.prestamos.seleccionPrestamos" />
+ 	    <forward name="seleccion_gestor" path="solicitudes.prestamos.seleccionGestor" />
+ 	    <forward name="resultado_asignacion" path="solicitudes.prestamos.resultadoAsignacion" />
+	 </action>
+
+	<action path="/cesionRevisionDocumentacion" name="cesionRevisionDocumentacionForm" scope="request" type="solicitudes.prestamos.actions.CesionRevisionDocumentacionAction" parameter="method" validate="false">
+ 	    <forward name="seleccion_rev_documentacion" path="solicitudes.prestamos.seleccionRevDocumentacion" />
+ 	    <forward name="seleccion_gestor" path="solicitudes.prestamos.seleccionGestorRevDoc" />
+ 	    <forward name="resultado_asignacion" path="solicitudes.prestamos.resultadoAsignacionRevDoc" />
+    </action>
+
+	 <action path="/papeletasPrestamo" type="solicitudes.prestamos.actions.PapeletasPDFReportAction" validate="false" scope="request" />
+	 <action path="/papeletaReclamacionPrestamo" type="solicitudes.prestamos.actions.PapeletaReclamacionPDFReportAction" validate="false" scope="request" />
+	<action path="/etiquetasPrestamo" type="solicitudes.prestamos.actions.PapeletasEtiquetasPDFReportAction" validate="false" scope="request" />
+
+	<action path="/gestionProrroga" name="prorrogaForm" scope="request" type="solicitudes.prestamos.actions.GestionProrrogaAction" parameter="method" validate="false">
+ 	    <forward name="solicitud_prorroga" path="solicitudes.prestamos.solicitudProrroga" />
+ 	    <forward name="solicitud_ver_prorroga" path="solicitudes.prestamos.ver.prorroga" />
+    </action>
+
+	<!-- Fin Prestamos -->
+
+	<!-- Consultas -->
+	<action path="/gestionConsultas" name="ConsultaForm" scope="session" type="solicitudes.consultas.actions.GestionConsultasAction" parameter="method">
+   	<forward name="home_consultas" path="solicitudes.consultas.home" />
+   	<forward name="listado_consulta" path="solicitudes.consultas.listadoconsulta" />
+		<forward name="ver_consulta" path="solicitudes.consultas.viewconsulta" />
+		<forward name="nueva_consulta" path="solicitudes.consultas.altaconsulta" />
+		<forward name="edicion_consulta" path="solicitudes.consultas.editarconsulta" />
+		<!--<forward name="ver_consultas_no_disponibles" path="solicitudes.consultas.vernodisponibles" />-->
+		<forward name="ver_consultas_no_disponibles_autorizadas" path="solicitudes.consultas.vernodisponiblesautorizadas" />
+		<forward name="imprimir_entrada_consulta" path="solicitudes.consultas.imprimirentrada" />
+		<forward name="consultasUsuario" path="salas.consultas.usuario" />
+	</action>
+
+	<action path="/gestionDetallesConsultas"
+		name="detalleConsultaForm"
+		scope="request"
+		type="solicitudes.consultas.actions.GestionDetallesConsultasAction"
+		parameter="method">
+		<forward name="nuevo_detalle_consulta" path="solicitudes.consultas.nuevo_detalle" />
+		<forward name="seleccion_motivo_rechazo" path="solicitudes.consultas.seleccion_motivo_rechazo" />
+		<forward name="ver_detalle_consulta" path="solicitudes.consultas.viewdetalleconsulta" />
+		<forward name="ver_udocs_relacionadas" path="solicitudes.consultas.verudocsrelacionadas" />
+	 </action>
+
+	<action path="/buscarConsultas" name="busquedaConsultaForm" scope="request" type="solicitudes.consultas.actions.BusquedaConsultasAction" parameter="method" validate="false">
+		<forward name="formulario_busqueda" path="solicitudes.consultas.formulario_busqueda" />
+		<forward name="listado_consultas" path="solicitudes.consultas.listadoconsultabuscar" />
+	 </action>
+
+	 <action path="/papeletasConsulta" type="solicitudes.consultas.actions.PapeletasPDFReportAction" validate="false" scope="request" />
+
+	 <action path="/papeletaDevolucion" type="solicitudes.actions.PapeletaDevolucionPDFReportAction" validate="false" scope="request" />
+	 <action path="/listadoDevolucionesSolicitud" type="solicitudes.actions.ListadoDevolucionesPDFReportAction" validate="false" scope="request" />
+	<!-- FIN CONSULTAS-->
+
+	<!-- INICIO DESCRIPCION -->
+	<action path="/descripcion"
+		name="busquedaElementosForm"
+		scope="request"
+		type="descripcion.actions.DescripcionAction"
+		input="formulario_busqueda"
+		parameter="method"
+		validate="false">
+		<forward name="formulario_busqueda" path="descripcion.formulario_busqueda" />
+		<forward name="listado_busqueda" path="descripcion.listado_busqueda" />
+		<forward name="load_bandeja" path="archivo.load.bandeja"/>
+		<forward name="sel_formato_informe_listado" path="/action/exportarInformeListado?method=init"/>
+	 </action>
+
+	<action path="/descripcionAut"
+		name="descripcionAutForm"
+		scope="request"
+		type="descripcion.actions.DescripcionAutAction"
+		input="formulario_busqueda_aut"
+		parameter="method"
+		validate="false">
+		<forward name="formulario_busqueda_aut" path="descripcion.formulario_busqueda_aut" />
+		<forward name="listado_busqueda_aut" path="descripcion.listado_busqueda_aut" />
+	 </action>
+
+	<action path="/isadg"
+		name="fichaForm"
+		scope="request"
+		type="descripcion.actions.ISADGAction"
+		input="descripcion.ver_ficha"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_ficha" path="descripcion.ver_ficha" />
+    	<forward name="ver_descriptores" path="descripcion.ver_descriptores" />
+    	<forward name="form_cambio_formato_preferente" path="descripcion.cambio_formato_preferente" />
+	 </action>
+
+	<action path="/isaar"
+		name="fichaForm"
+		scope="request"
+		type="descripcion.actions.ISAARAction"
+		input="descripcion.ver_ficha"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_ficha" path="descripcion.ver_ficha" />
+    	<forward name="ver_descriptores" path="descripcion.ver_descriptores" />
+    	<forward name="form_cambio_formato_preferente" path="descripcion.cambio_formato_preferente" />
+	 </action>
+
+	 <action path="/isadgudocre"
+		name="fichaForm"
+		scope="request"
+		type="descripcion.actions.ISADGUDocREAction"
+		input="descripcion.ver_ficha"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_ficha" path="descripcion.ver_ficha" />
+    	<forward name="ver_descriptores" path="descripcion.ver_descriptores" />
+    	<forward name="form_cambio_formato_preferente" path="descripcion.cambio_formato_preferente" />
+	 </action>
+
+	  <action path="/isadgudocfs"
+		name="fichaForm"
+		scope="request"
+		type="descripcion.actions.ISADGUDocFSAction"
+		input="descripcion.ver_ficha"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_ficha" path="descripcion.ver_ficha" />
+    	<forward name="ver_descriptores" path="descripcion.ver_descriptores" />
+    	<forward name="form_cambio_formato_preferente" path="descripcion.cambio_formato_preferente" />
+	 </action>
+
+	 <action path="/descriptores"
+		name="descriptoresForm"
+		scope="request"
+		type="descripcion.actions.DescriptoresAction"
+		input="descripcion.ver_descriptores"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_descriptores" path="descripcion.ver_descriptores" />
+    	<forward name="busqueda_descriptores" path="descripcion.busqueda_descriptores" />
+    	<forward name="ver_productores_relacion" path="descripcion.ver.productores.relaciones"/>
+	 </action>
+
+	 <action path="/elementos"
+		name="busquedaElementosForm"
+		scope="request"
+		type="descripcion.actions.ElementosAction"
+		input="descripcion.ver_elementos"
+		parameter="method"
+		validate="false">
+    	<forward name="busqueda_elementos" path="descripcion.busqueda_elementos" />
+    	<forward name="ver_elementos" path="descripcion.ver_elementos" />
+    	<forward name="busqueda_elementos_adv" path="descripcion.busqueda_elementos_adv" />
+    	<forward name="ver_elementos_adv" path="descripcion.ver_elementos_adv" />
+	 </action>
+
+	 <action path="/tablasVld"
+	    name="tablaValidacionForm"
+		scope="session"
+		type="descripcion.actions.TablasValidacionAction"
+		input="descripcion.ver_tabla_validacion"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_tablas_validacion" path="descripcion.ver_tablas_validacion" />
+    	<forward name="ver_tabla_validacion" path="descripcion.ver_tabla_validacion" />
+    	<forward name="editar_tabla_validacion" path="descripcion.editar_tabla_validacion" />
+	 </action>
+
+	 <action path="/textosTblVld"
+	    name="textoTablaValidacionForm"
+		scope="request"
+		type="descripcion.actions.TablasValidacionAction"
+		input="descripcion.ver_texto_tabla_validacion"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_texto_tabla_validacion" path="descripcion.ver_texto_tabla_validacion" />
+	 </action>
+
+	 <action path="/listasDescriptoras"
+	    name="listaDescriptoraForm"
+		scope="session"
+		type="descripcion.actions.ListasDescriptorasAction"
+		input="descripcion.ver_lista_descriptora"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_listas_descriptoras" path="descripcion.ver_listas_descriptoras" />
+    	<forward name="ver_lista_descriptora" path="descripcion.ver_lista_descriptora" />
+    	<forward name="editar_lista_descriptora" path="descripcion.editar_lista_descriptora" />
+	 </action>
+
+	 <action path="/unificarDescriptores"
+	    name="unificarDescriptoresForm"
+		scope="session"
+		type="descripcion.actions.UnificarDescriptoresAction"
+		input="descripcion.busqueda.unificar"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_busqueda_unificar" path="descripcion.busqueda.unificar" />
+    	<forward name="ver_confirmacion_unificar" path="descripcion.confirmacion.unificar" />
+		<forward name="ver_informe_unificar" path="descripcion.informe.unificar" />
+	 </action>
+
+	 <action path="/gestionFicha"
+	    name="fichasForm"
+	    scope="session"
+		type="descripcion.actions.GestionFichaAction"
+		input="descripcion.gestionFicha.listaFichas"
+		parameter="method"
+		validate="false">
+		<forward name="actionList" path="/action/gestionFicha?method=list" />
+		<forward name="list" path="descripcion.gestionFicha.listaFichas" />
+		<forward name="new" path="descripcion.gestionFicha.edicionFicha" />
+		<forward name="editAvanzado" path="descripcion.gestionFicha.edicionAvanzadaFicha" />
+		<forward name="retrieveFromList" path="/action/gestionFicha?method=retrieve" />
+		<forward name="retrieve" path="descripcion.gestionFicha.edicionFicha" />
+		<forward name="create-failed" path="descripcion.gestionFicha.edicionFicha" />
+		<forward name="update-failed" path="descripcion.gestionFicha.edicionFicha" />
+		<forward name="changeTipoNorma" path="descripcion.gestionFicha.edicionFicha" />
+		<forward name="import" path="descripcion.gestionFicha.importarFicha" />
+		<forward name="importCancel" path="descripcion.gestionFicha.edicionFicha" />
+		<forward name="importAccept" path="descripcion.gestionFicha.edicionFicha" />
+		<forward name="export" path="descripcion.gestionFicha.exportarFicha" />
+		<forward name="exportCancel" path="descripcion.gestionFicha.edicionFicha" />
+		<forward name="exportAccept" path="descripcion.gestionFicha.edicionFicha" />
+		<forward name="duplicarFicha" path="descripcion.gestionFicha.duplicarFicha"/>
+	 </action>
+
+	 <action path="/gestionFormatoFicha"
+	    name="formatoFichasForm"
+	    scope="session"
+		type="descripcion.actions.GestionFormatoFichaAction"
+		input="descripcion.gestionFicha.listaFormatoFichas"
+		parameter="method"
+		validate="false">
+		<forward name="list" path="descripcion.gestionFormatoFicha.listaFormatoFichas" />
+		<forward name="new" path="descripcion.gestionFormatoFicha.edicionFormatoFicha" />
+		<forward name="retrieveFromList" path="/action/gestionFormatoFicha?method=retrieve" />
+		<forward name="retrieve" path="descripcion.gestionFormatoFicha.edicionFormatoFicha" />
+		<forward name="create-failed" path="descripcion.gestionFormatoFicha.edicionFormatoFicha" />
+		<forward name="update-failed" path="descripcion.gestionFormatoFicha.edicionFormatoFicha" />
+		<forward name="import" path="descripcion.gestionFormatoFicha.importarFormatoFicha" />
+		<forward name="importCancel" path="descripcion.gestionFormatoFicha.edicionFormatoFicha" />
+		<forward name="importAccept" path="descripcion.gestionFormatoFicha.edicionFormatoFicha" />
+		<forward name="export" path="descripcion.gestionFormatoFicha.exportarFormatoFicha" />
+		<forward name="exportCancel" path="descripcion.gestionFormatoFicha.edicionFormatoFicha" />
+		<forward name="exportAccept" path="descripcion.gestionFormatoFicha.edicionFormatoFicha" />
+		<forward name="findFormatos" path="descripcion.gestionFormatoFicha.busquedaFormatoFicha" />
+	 </action>
+
+	 <action path="/gestionArea"
+	    name="areasForm"
+	    scope="session"
+		type="descripcion.actions.GestionAreaAction"
+		input="descripcion.gestionArea.listAreas"
+		parameter="method"
+		validate="false">
+		<forward name="list" path="descripcion.gestionArea.listaAreas" />
+		<forward name="listFromMenu" path="/action/gestionArea?method=list" />
+		<forward name="new" path="descripcion.gestionArea.edicionArea" />
+		<forward name="retrieveFromList" path="/action/gestionArea?method=retrieve" />
+		<forward name="retrieve" path="descripcion.gestionArea.edicionArea" />
+		<forward name="create-failed" path="descripcion.gestionArea.edicionArea" />
+	 </action>
+
+	 <action path="/gestionCampoDato"
+	    name="camposDatoForm"
+	    scope="session"
+		type="descripcion.actions.GestionCampoDatoAction"
+		input="descripcion.gestionCampoDato.listaCampos"
+		parameter="method"
+		validate="false">
+		<forward name="listFromMenu" path="/action/gestionCampoDato?method=list" />
+		<forward name="list" path="descripcion.gestionCampoDato.listaCampos" />
+		<forward name="new" path="descripcion.gestionCampoDato.edicionCampos" />
+		<forward name="changeTipoNorma" path="descripcion.gestionCampoDato.edicionCampos" />
+		<forward name="delete" path="descripcion.gestionCampoDato.listaCampos" />
+		<forward name="retrieveFromList" path="/action/gestionCampoDato?method=retrieve" />
+		<forward name="retrieve" path="descripcion.gestionCampoDato.edicionCampos" />
+		<forward name="changeTipo" path="/action/gestionCampoTabla?method=list" />
+		<forward name="create-failed" path="descripcion.gestionCampoDato.edicionCampos" />
+		<forward name="update-failed" path="descripcion.gestionCampoDato.edicionCampos" />
+
+	 </action>
+
+	 <action path="/gestionCampoTabla"
+	    name="camposTablaForm"
+	    scope="session"
+		type="descripcion.actions.GestionCampoTablaAction"
+		input="descripcion.gestionCampoTabla.listaCampos"
+		parameter="method"
+		validate="false">
+		<forward name="list" path="descripcion.gestionCampoTabla.listaCampos" />
+		<forward name="changeTipo" path="/action/gestionCampoDato?method=list" />
+		<forward name="new" path="descripcion.gestionCampoTabla.editInformacionCampo" />
+		<forward name="changeTipoNorma" path="descripcion.gestionCampoTabla.editInformacionCampo" />
+		<forward name="retrieveFromList" path="/action/gestionCampoTabla?method=retrieve" />
+		<forward name="retrieve" path="descripcion.gestionCampoTabla.edicionCampos" />
+		<forward name="delete" path="descripcion.gestionCampoDato.listaCampos" />
+		<forward name="edit" path="descripcion.gestionCampoTabla.editInformacionCampo" />
+		<forward name="newCampoDato" path="/action/gestionCampoDato?method=new" />
+		<forward name="create-failed" path="descripcion.gestionCampoTabla.editInformacionCampo" />
+		<forward name="update-failed" path="descripcion.gestionCampoTabla.editInformacionCampo" />
+		<forward name="subirCampo" path="descripcion.gestionCampoTabla.edicionCampos" />
+		<forward name="bajarCampo" path="descripcion.gestionCampoTabla.edicionCampos" />
+		<forward name="updateInformacion" path="descripcion.gestionCampoTabla.edicionCampos" />
+
+
+	 </action>
+
+
+
+	 <action path="/descriptor"
+	    name="descriptorForm"
+		scope="request"
+		type="descripcion.actions.ListasDescriptorasAction"
+		input="descripcion.ver_descriptor"
+		parameter="method"
+		validate="false">
+    	<forward name="resultado_busqueda_descriptores" path="descripcion.resultado_busqueda_descriptores" />
+    	<forward name="ver_descriptor" path="descripcion.ver_descriptor" />
+    	<forward name="editar_descriptor" path="descripcion.editar_descriptor" />
+	 </action>
+	 <!-- FIN DESCRIPCION -->
+
+	 <!-- DOCUMENTOS ELECTRONICOS -->
+	 <action path="/documentos"
+		scope="request"
+		type="docelectronicos.actions.GestionDocumentosAction"
+		parameter="actionToPerform"
+		validate="false">
+		<forward name="home" path="documentos.home" />
+		<forward name="ver_documento_tree" path="documentos.ver_documento_tree" />
+    	<forward name="done" path="/pages/tiles/documentos/showTreeView.jsp" />
+    	<forward name="verClasificador" path="/action/clasificador?method=retrieve" />
+    	<forward name="verDocumento" path="/action/documento?method=retrieve" />
+    	<forward name="viewRefresher" path="/pages/tiles/documentos/refreshTreeView.jsp" />
+	 </action>
+	 <action path="/documento"
+	    name="documentoForm"
+		scope="request"
+		type="docelectronicos.actions.DocumentoAction"
+		input="documentos.ver_documento"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_documento" path="documentos.ver_documento" />
+    	<forward name="editar_documento" path="documentos.editar_documento" />
+	 </action>
+	 <action path="/clasificador"
+	    name="clasificadorForm"
+		scope="request"
+		type="docelectronicos.actions.ClasificadorAction"
+		input="documentos.ver_clasificador"
+		parameter="method"
+		validate="false">
+    	<forward name="ver_clasificador" path="documentos.ver_clasificador" />
+    	<forward name="editar_clasificador" path="documentos.editar_clasificador" />
+	 </action>
+
+	 <action path="/gestionTareasDigitalizacion"
+		name="tareaForm"
+		scope="session"
+		type="docelectronicos.actions.GestionTareasAction"
+		parameter="method"
+		validate="false">
+		<forward name="home_tareas" path="digitalizacion.home_tareas" />
+    	<forward name="formulario_tarea" path="digitalizacion.formulario_tarea" />
+    	<forward name="buscar_elemento_tarea" path="digitalizacion.buscar_elemento_tarea" />
+    	<forward name="vista_tarea" path="digitalizacion.vista_tarea" />
+    	<forward name="redirect_anadirTareaPaso1" path="/action/gestionTareasDigitalizacion?method=anadirTareaPaso1" redirect="true"/>
+    	<forward name="redirect_vista_tarea" path="/action/documentos?actionToPerform=homeUDoc" redirect="true"/>
+    	<forward name="lista_tareas_pendientes" path="digitalizacion.lista_tareas_pendientes" />
+    	<forward name="lista_tareas_gestionar" path="digitalizacion.lista_tareas_gestionar" />
+    	<forward name="finalizar_captura" path="digitalizacion.finalizar_captura"/>
+    	<forward name="finalizar_validacion_tarea" path="digitalizacion.finalizar_validacion_tarea"/>
+    	<forward name="tarea_eliminada" path="digitalizacion.eliminacion_tarea"/>
+	 </action>
+
+	 <action path="/busquedaTareasDigitalizacion"
+ 		name="busquedaTareaForm"
+		scope="request"
+		type="docelectronicos.actions.BusquedaTareasAction"
+		parameter="method"
+		validate="false">
+
+		<forward name="formulario" path="digitalizacion.formulario_busqueda" />
+		<forward name="listado" path="digitalizacion.listado_busqueda" />
+	 </action>
+
+	 <action path="/cesionTareasDigitalizacion"
+ 		name="cesionControlTareasForm"
+		scope="request"
+		type="docelectronicos.actions.CesionControlTareasAction"
+		parameter="method"
+		validate="false">
+		<forward name="seleccion_tareas" path="digitalizacion.seleccion_tareas" />
+		<forward name="seleccion_gestor_tareas" path="digitalizacion.seleccion_gestor_tareas"/>
+		<forward name="resultado_asignacion_tareas" path="digitalizacion.resultado_asignacion_tareas"/>
+	 </action>
+
+
+
+	 <!-- FIN DOCUMENTOS ELECTRONICOS -->
+
+	 <!-- AUDITORIA -->
+		<action path="/auditoriaAcciones"
+			name="accionesForm"
+			scope="request"
+			type="auditoria.actions.AccionesAction"
+			parameter="method"
+			validate="false">
+				<forward name="listado_acciones" path="auditoria.listado_acciones"/>
+		</action>
+
+		<action path="/auditoriaUsuarios"
+			name="usuariosForm"
+			scope="request"
+			type="auditoria.actions.UsuariosAction"
+			parameter="method"
+			validate="false">
+				<forward name="listado_grupos" path="auditoria.listado_grupos"/>
+		</action>
+
+		<action path="/auditoriaBuscar"
+			name="busquedaPistasForm"
+			scope="request"
+			type="auditoria.actions.BusquedaPistasAction"
+			parameter="method"
+			validate="false">
+				<forward name="formulario_busqueda" path="auditoria.formulario_busqueda"/>
+				<forward name="listado_pistas" path="auditoria.listado_pistas"/>
+				<forward name="detalle_pista" path="auditoria.detalle_pista"/>
+		</action>
+
+	<action path="/auditoriaBuscarExtendida"
+			name="busquedaExtendidaForm"
+			scope="request"
+			type="auditoria.actions.BusquedasAuditoriaAction"
+			parameter="method"
+			validate="false">
+				<forward name="listado_pistas" path="auditoria.listado_pistas"/>
+		</action>
+	 <!-- FIN AUDITORIA -->
+
+	<action path="/gestionOrganos"
+			name="organoForm"
+			scope="request"
+			type="gcontrol.actions.GestionOrganosAction"
+			parameter="method"
+			validate="false">
+			<forward name="lista_organos" path="controlAcceso.listaOrganos"/>
+			<forward name="info_organo" path="controlAcceso.infoOrgano"/>
+			<forward name="alta_organo" path="controlAcceso.altaOrgano"/>
+			<forward name="edicion_organo" path="controlAcceso.edicionOrgano"/>
+			<forward name="redirect_to_info_organo" path="/action/gestionOrganos?method=infoOrgano"/>
+			<forward name="redirect_to_info_usuario" path="/action/gestionUsuarios?method=verUsuario" redirect="true"/>
+			<forward name="resultado_busqueda_organos" path="controlAcceso.resultadoBusquedaOrganos"/>
+		</action>
+
+	<action path="/gestionUsuarios"	name="usuarioForm" scope="session" type="gcontrol.actions.GestionUsuariosAction"
+			parameter="method" validate="false">
+			<forward name="lista_usuarios" path="controlAcceso.listaUsuarios"/>
+			<forward name="nuevo_usuario" path="controlAcceso.nuevoUsuario"/>
+			<forward name="resultado_busqueda_usuarios" path="controlAcceso.resultadoBusqueda"/>
+			<forward name="ver_usuario_despues_alta" path="/action/gestionUsuarios?method=verUsuario" redirect="true"/>
+			<forward name="ver_usuario" path="controlAcceso.verUsuario"/>
+         <forward name="buscar_usuarios" path="controlAcceso.buscarUsuarios"/>
+		   <forward name="listado_roles_anadir" path="controlAcceso.listaRolesAAnadir"/>
+		   <forward name="listado_grupos_anadir" path="controlAcceso.listaGruposAAnadir"/>
+		   <forward name="anadir_role" path="controlAcceso.anadirRoleAUsuario"/>
+		   <forward name="buscar_organo_interno" path="controlAcceso.buscarOrganoInterno"/>
+		   <forward name="pantallaNuevoUsuario" path="/action/gestionUsuarios?method=pantallaNuevoUsuario" redirect="true"/>
+   		<forward name="pantallaVerUsuario" path="/action/gestionUsuarios?method=pantallaVerUsuario" redirect="true"/>
+   		<forward name="tabVerGrupoUsuario" path="/action/gestionUsuarios?method=verGruposUsuario" redirect="true"/>
+		</action>
+
+
+	<action path="/gestionRoles"
+			name="rolForm"
+			scope="request"
+			type="gcontrol.actions.GestionRolesAction"
+			parameter="method"
+			validate="false">
+			<forward name="lista_roles" path="controlAcceso.listaRoles"/>
+			<forward name="info_rol" path="controlAcceso.infoRol"/>
+			<forward name="edicion_rol" path="controlAcceso.edicionRol"/>
+			<forward name="seleccion_usuarios" path="controlAcceso.rol.seleccionUsuarios"/>
+			<forward name="seleccion_permisos" path="controlAcceso.seleccionPermisos"/>
+			<forward name="redirect_to_info_rol" path="/action/gestionRoles?method=verRol"/>
+		</action>
+
+
+	<action path="/gestionGrupos"
+			name="grupoForm"
+			scope="request"
+			type="gcontrol.actions.GestionGruposAction"
+			parameter="method"
+			validate="false">
+			<forward name="lista_grupos" path="controlAcceso.listaGrupos"/>
+			<forward name="info_grupo" path="controlAcceso.infoGrupo"/>
+			<forward name="edicion_grupo" path="controlAcceso.edicionGrupo"/>
+			<forward name="seleccion_usuarios" path="controlAcceso.grupo.seleccionUsuarios"/>
+			<forward name="redirect_to_info_grupo" path="/action/gestionGrupos?method=verGrupo"/>
+			<forward name="busqueda_grupos" path="controlAcceso.busquedaGrupos"/>
+		</action>
+
+	<action path="/gestionListasAcceso"
+			name="listaAccesoForm"
+			scope="session"
+			type="gcontrol.actions.GestionListasAccesoAction"
+			parameter="method"
+			validate="false">
+			<forward name="lista_listas_acceso" path="controlAcceso.listaListasAcceso"/>
+			<forward name="info_lista_acceso" path="controlAcceso.infoListaAcceso"/>
+			<forward name="edicion_lista_acceso" path="controlAcceso.edicionListaAcceso"/>
+			<forward name="redirect_to_info_lista_acceso" path="/action/gestionListasAcceso?method=verListaAcceso"/>
+			<forward name="seleccionar_permisos" path="controlAcceso.seleccionar_permisos_lista_acceso"/>
+			<forward name="listado_destinatarios_anadir" path="controlAcceso.listado_destinatarios_anadir"/>
+			<forward name="busqueda_listas_acceso" path="controlAcceso.busqueda_listas_acceso"/>
+		</action>
+
+
+	<action path="/gestionValoracion"
+			name="valoracionForm"
+			scope="request"
+			type="valoracion.actions.GestionValoracionAction"
+			parameter="method"
+			validate="false">
+			<forward name="home_valoracion_series" path="serie.valoracion.home"/>
+			<forward name="lista_valoraciones" path="valoracion.listaValoraciones"/>
+			<forward name="lista_valoraciones_a_gestionar" path="valoracion.listaValoracionesAGestionar"/>
+			<forward name="info_valoracion" path="valoracion.infoValoracion"/>
+			<forward name="nueva_valoracion" path="valoracion.nuevaValoracion"/>
+			<forward name="edicion_valoracion" path="valoracion.edicionValoracion"/>
+			<forward name="seleccion_serie" path="valoracion.seleccionSerie"/>
+			<forward name="cambio_estado" path="valoracion.cambioEstado"/>
+			<forward name="valoracion_serie_dictaminada" path="fondos.cf.verSerie"/>
+			<forward name="redirect_to_info_valoracion" path="/action/gestionValoracion?method=verValoracion"/>
+			<forward name="redirect_to_serie_complete" path="/action/manageVistaCuadroClasificacion?actionToPerform=goHome"/>
+		</action>
+
+	<action path="/gestionEliminacion"
+			name="eliminacionForm"
+			scope="session"
+			type="valoracion.actions.GestionEliminacionAction"
+			parameter="method"
+			validate="false">
+			<forward name="home_seleccion_series" path="valoracion.seleccion.home"/>
+			<forward name="lista_eliminaciones" path="valoracion.listaEliminaciones"/>
+			<forward name="nueva_eliminacion" path="valoracion.nuevaEliminacion"/>
+			<forward name="redirect_to_info_eliminacion" path="/action/gestionEliminacion?method=verEliminacion"/>
+			<forward name="info_eliminacion" path="valoracion.infoEliminacion"/>
+			<forward name="edicion_eliminacion" path="valoracion.edicionEliminacion"/>
+			<forward name="edicion_eliminacion_avanzada" path="valoracion.edicionEliminacionAvanzada"/>
+			<forward name="edicion_eliminacion_seleccion_udocs" path="/action/buscarElementos?method=formBusquedaValoracionSeleccionUdocs"/>
+			<forward name="info_udocs" path="valoracion.infoUdocs"/>
+			<forward name="ver_serie" path="fondos.cf.verSerie"/>
+			<forward name="lista_series_seleccionables" path="valoracion.listaSeriesSeleccionables"/>
+			<forward name="cambio_estado" path="seleccion.cambioEstado"/>
+			<forward name="eleccion_archivo" path="seleccion.eleccionArchivo"/>
+			<forward name="continuarInicioEliminacion" path="/action/gestionEliminacion?method=continuarInicioEliminacion"/>
+			<forward name="udocsSeleccionables" path="/action/gestionEliminacion?method=udocsSeleccionables"/>
+
+		</action>
+
+	<action path="/buscarValoracion"
+			name="busquedaForm"
+			scope="request"
+			type="valoracion.actions.BusquedaValoracionAction"
+			parameter="method"
+			validate="false">
+				<forward name="formulario_busqueda" path="valoracion.formulario_busqueda"/>
+				<forward name="listado_valoraciones" path="valoracion.listado_valoraciones"/>
+				<forward name="detalle_valoracion" path="valoracion.infoValoracion"/>
+	</action>
+	<action path="/buscarEliminacion"
+			name="busquedaForm"
+			scope="request"
+			type="valoracion.actions.BusquedaEliminacionAction"
+			parameter="method"
+			validate="false">
+				<forward name="formulario_busqueda" path="valoracion.formulario_busqueda_eliminacion"/>
+				<forward name="listado_eliminaciones" path="valoracion.listado_eliminaciones"/>
+				<forward name="detalle_eliminacion" path="valoracion.detalle_eliminacion"/>
+	</action>
+
+    <!-- DOCUMENTOS VITALES -->
+    <action path="/buscarDocumentosVit"
+			name="busquedaDocumentosVitalesForm"
+			scope="request"
+			type="docvitales.actions.BusquedaDocumentosVitalesAction"
+			parameter="method"
+			validate="false">
+			<forward name="formulario" path="docVitales.formulario_busqueda" />
+			<forward name="listado" path="docVitales.listado_busqueda" />
+	</action>
+    <action path="/gestionDocumentosVitales"
+			name="documentoVitalForm"
+			scope="request"
+			type="docvitales.actions.GestionDocumentosVitalesAction"
+			parameter="method"
+			validate="false">
+			<forward name="home_documentos_vitales" path="docVitales.home_documentos_vitales" />
+			<forward name="listado_documentos_vitales" path="docVitales.listado_documentos_vitales" />
+			<forward name="ver_documento_vital" path="docVitales.ver_documento_vital"/>
+			<forward name="ver_documento_vital_vigente" path="docVitales.ver_documento_vital_vigente"/>
+			<forward name="editar_documento_vital" path="docVitales.editar_documento_vital"/>
+			<forward name="redirect_anadirDocumentoPaso1" path="/action/gestionDocumentosVitales?method=anadirDocumentoPaso1" redirect="true"/>
+			<forward name="buscar_tercero"  path="docVitales.busqueda_tercero"/>
+			<forward name="formulario_documento_vital" path="docVitales.formulario_docVital"/>
+	</action>
+    <action path="/gestionTiposDocumentos"
+			name="tipoDocumentoVitalForm"
+			scope="request"
+			type="docvitales.actions.GestionTiposDocumentosVitalesAction"
+			parameter="method"
+			validate="false">
+			<forward name="ver_tipos" path="docVitales.ver_tipos"/>
+			<forward name="ver_tipo" path="docVitales.ver_tipo"/>
+			<forward name="editar_tipo" path="docVitales.editar_tipo"/>
+	</action>
+	<!-- FIN DE DOCUMENTOS VITALES -->
+
+	<!--
+	NIVELES DE ARCHIVO
+	 -->
+	 <action path="/gestionNivelesArchivo"
+			name="nivelesArchivoForm"
+			scope="request"
+			type="gcontrol.actions.GestionNivelesArchivoAction"
+			parameter="method"
+			validate="false">
+
+			<forward name="initial_lista_niveles_archivo" path="/action/gestionNivelesArchivo?method=initialListaNivelesArchivo"/>
+			<forward name="lista_niveles_archivo" path="/action/gestionNivelesArchivo?method=listaNivelesArchivo"/>
+
+			<forward name="alta_nivel_archivo" path="alta.nivel.archivo"/>
+			<forward name="ver_lista_niveles_archivo" path="lista.niveles.archivo"/>
+			<forward name="edicion_nivel_archivo" path="edicion.nivel.archivo"/>
+			<forward name="init" path="/action/gestionNivelesArchivo?method=initialListaNivelesArchivo"/>
+			<forward name="grabar" path="/action/gestionNivelesArchivo?method=init"/>
+			<forward name="lista_archivos_asociados" path="listaArchivosAsociados.nivel.archivo"/>
+	 </action>
+
+	 <!--
+	NIVELES DE CUADRO CLASIFICACION
+	 -->
+	 <action path="/gestionNivelesCuadro"
+			name="nivelesCuadroForm"
+			scope="request"
+			type="fondos.actions.GestionNivelesCuadroAction"
+			parameter="method"
+			validate="false">
+
+			<forward name="init" path="fondos.cf.listaNiveles"/>
+			<forward name="list" path="/action/gestionNivelesCuadro?method=init"/>
+			<forward name="datos_nivel_cuadro" path="fondos.cf.datosNivel"/>
+			<forward name="alta_nivel_cuadro" path="fondos.cf.altaNivel"/>
+			<forward name="agregar_nivel_hijo" path="fondos.cf.agregarNivelDescendiente"/>
+	 </action>
+
+
+
+
+	  <!--
+		MOTIVOS CONSULTA
+	 -->
+	 <action path="/gestionMotivosConsulta"
+			name="motivoConsultaForm"
+			scope="request"
+			type="solicitudes.consultas.actions.GestionMotivosConsultaAction"
+			parameter="method"
+			validate="false">
+
+			<forward name="init" path="solicitudes.consultas.listaMotivosConsulta"/>
+			<forward name="list" path="/action/gestionMotivosConsulta?method=init"/>
+			<forward name="datos_motivo" path="solicitudes.consultas.datosMotivoConsulta"/>
+			<forward name="alta_motivo" path="solicitudes.consultas.altaMotivoConsulta"/>
+	 </action>
+
+	  <!--
+		MOTIVOS PRESTAMO
+	 -->
+	 <action path="/gestionMotivosPrestamo"
+			name="motivoPrestamoForm"
+			scope="request"
+			type="solicitudes.prestamos.actions.GestionMotivosPrestamoAction"
+			parameter="method"
+			validate="false">
+
+			<forward name="init" path="solicitudes.prestamos.listaMotivosPrestamo"/>
+			<forward name="list" path="/action/gestionMotivosPrestamo?method=init"/>
+			<forward name="datos_motivo" path="solicitudes.prestamos.datosMotivoPrestamo"/>
+			<forward name="alta_motivo" path="solicitudes.prestamos.altaMotivoPrestamo"/>
+	 </action>
+
+	 <!--
+		MOTIVOS RECHAZO
+	 -->
+	 <action path="/gestionMotivosRechazo"
+			name="motivoRechazoForm"
+			scope="request"
+			type="solicitudes.actions.GestionMotivosRechazoAction"
+			parameter="method"
+			validate="false">
+
+			<forward name="init" path="solicitudes.listaMotivosRechazo"/>
+			<forward name="list" path="/action/gestionMotivosRechazo?method=init"/>
+			<forward name="datos_motivo" path="solicitudes.datosMotivoRechazo"/>
+			<forward name="alta_motivo" path="solicitudes.altaMotivoRechazo"/>
+	 </action>
+
+	<!-- ORGANIZACION -->
+
+		<action path="/manageVistaOrganizacion"	type="organizacion.view.actions.GestionVistaOrganizacion" scope="request" parameter="actionToPerform">
+			<forward name="homeorganizacion" path="organizacion.home" />
+			<forward name="done" path="/pages/tiles/organizacion/showTreeView.jsp" />
+			<forward name="lista_instituciones" path="organizacion.listainstituciones" />
+			<forward name="verOrganizacion"	path="/action/gestionOrganizacionAction?method=verOrganizacion" />
+		</action>
+
+		<action path="/gestionOrganizacionAction" scope="request" name="organizacionForm" type="organizacion.view.actions.GestionOrganizacionAction"	parameter="method">
+			<forward name="info_organizacion" path="organizacion.verorganizacion" />
+			<forward name="nueva_organizacion" path="organizacion.nuevaorganizacion" />
+			<forward name="edicion_organizacion" path="organizacion.edicionorganizacion" />
+			<forward name="redirect_to_info_organizacion" path="/action/gestionOrganizacionAction?method=verOrganizacion"/>
+			<forward name="resultado_busqueda_organizaciones" path="organizacion.busquedaorganizacion" />
+			<forward name="insertar_fecha_vigencia" path="/action/gestionFechasOrganizacionAction?method=init" />
+			<forward name="mover_organizacion" path="organizacion.moverorganizacion" />
+			<forward name="redirect_to_buscador_usuario" path="/action/gestionUsuariosOrganizacionAction?method=busquedaUsuario"/>
+		</action>
+
+		<action path="/manageVistaOrganizacionSeleccion" type="organizacion.view.actions.GestionVistaOrganizacionSeleccion" name="organizacionForm" scope="request" parameter="actionToPerform">
+			<forward name="done" path="/pages/tiles/organizacion/showTreeViewSeleccion.jsp" />
+		    <!-- <forward name="viewRefresher" path="/pages/tiles/fondos/refreshTreeView.jsp" />  -->
+		</action>
+
+		<action path="/gestionUsuariosOrganizacionAction" scope="request" name="usuarioOrganoForm" type="organizacion.view.actions.GestionUsrOrganoAction" parameter="method">
+			<forward name="nuevo_usuario" path="organizacion.nuevousuario"/>
+			<forward name="lista_usuarios" path="organizacion.listausuarios"/>
+			<forward name="ver_usuario_despues_alta" path="/action/gestionUsuariosOrganizacionAction?method=verUsuario" redirect="true"/>
+			<forward name="ver_usuario" path="organizacion.verusuario"/>
+			<forward name="buscar_usuarios" path="organizacion.buscarusuarios"/>
+			<forward name="resultado_busqueda_usuarios" path="organizacion.resultadobusquedausuarios"/>
+			<forward name="redirect_to_busqueda_organizacion" path="/action/gestionOrganizacionAction?method=verBuscadorOrg"/>
+		</action>
+
+		<action path="/gestionFechasOrganizacionAction" name="fechasForm" scope="request" type="organizacion.view.actions.GestionFechasAction" parameter="method">
+			<forward name="done" path="organizacion.fechas" />
+			<forward name="listado" path="/action/manageVistaOrganizacion?method=goHome" />
+		</action>
+
+	<!--
+	ARCHIVO
+	 -->
+	 <action path="/gestionArchivos"
+			name="archivoForm"
+			scope="session"
+			type="gcontrol.actions.GestionArchivosAction"
+			parameter="method"
+			validate="false">
+
+			<forward name="initial" path="/action/gestionArchivos?method=initial"/>
+
+			<forward name="alta_archivo" path="alta.archivo"/>
+			<forward name="lista_archivos" path="lista.archivo"/>
+			<forward name="edicion_archivo" path="edicion.archivo"/>
+	 </action>
+
+	 <action path="/gestionUInstRelacion"
+	 		 name="uInstRelacionForm"
+	 		 scope="request"
+	 		 type="transferencias.actions.GestionUInstRelacionAction"
+	 		 parameter="method"
+	 		 validate="false" >
+
+		<forward name="add_unidades_instalacion" path="add.unidad.instalacion.relacion"/>
+		<forward name="ver_relacion_entre_archivos" path="/action/gestionRelaciones?method=verrelacion"/>
+
+
+	</action>
+
+	<action path="/consultaUnidadesDocumentalesAction"
+			name="consultaUnidadesDocumentalesForm"
+			scope="session"
+			type="solicitudes.actions.ConsultaUnidadesDocumentalesAction"
+			parameter="method"
+			validate="false">
+
+			<forward name="init" path="/action/consultaUnidadesDocumentalesAction?method=consultar" />
+			<forward name="consultar" path="solicitudes.consultar" />
+	</action>
+
+	<action path="/gestionRevDocAction"
+			name="revisionDocumentacionForm"
+			scope="session"
+			type="solicitudes.prestamos.actions.GestionRevDocAction"
+			parameter="method"
+			validate="false">
+
+			<forward name="listado_revisionDoc" path="solicitudes.prestamos.documentacion_udocs_revisar" />
+			<forward name="recargar_listado" path="/action/gestionRevDocAction?method=listadoRevisionDoc" />
+			<forward name="ver_en_cuadro_clasificacion" path="/action/buscarElementos?method=verEnCuadro" />
+			<forward name="crear_alta_udoc" path="/action/gestionIngresoDirecto?method=nuevoDesdeUdoc" />
+	</action>
+
+	<!-- SALAS DE CONSULTA -->
+	<action path="/gestionVistaSalasConsulta"
+			scope="request"
+			type="salas.actions.GestionVistaSalasConsulta"
+			parameter="actionToPerform">
+
+		<forward name="home_salas_consulta" path="gestionSalasConsulta.home" />
+		<forward name="done" path="/pages/tiles/salas/arbol/showTreeView.jsp" />
+		<forward name="listado_edificios" path="gestionSalasConsulta.listadoEdificios"/>
+
+	</action>
+	<action path="/gestionEdificiosAction"
+			name="edificioForm"
+			scope="request"
+			parameter="method"
+			type="salas.actions.GestionEdificiosAction"
+			validate="false">
+
+	    <forward name="verEdificio" path="/action/gestionEdificiosAction?method=ver" />
+		<forward name="initEdificios" path="/action/gestionEdificiosAction?method=listado"/>
+		<forward name="crearSala" path="/action/gestionSalaAction?method=nuevo"/>
+		<forward name="listadoEdificios" path="gestionSalasConsulta.listadoEdificios"/>
+		<forward name="datosEdificio" path="gestionSalasConsulta.ver.edificio"/>
+		<forward name="edicionEdificio" path="gestionSalasConsulta.edicion.edificio"/>
+	</action>
+
+
+  	<action path="/gestionSalasAction"
+			name="salaForm"
+			scope="request"
+			type="salas.actions.GestionSalasAction"
+			parameter="method"
+			validate="false">
+
+		<forward name="listado" path="salas.listadoSalas" />
+		<forward name="datos" path="salas.ver.sala" />
+		<forward name="edicion" path="salas.edicion.sala" />
+		<forward name="crearMesas" path="/action/gestionMesasAction?method=guardar" />
+		<forward name="numMesasCrear" path="salas.edicion.mesas" />
+		<forward name="seleccionMesas" path="salas.seleccion.mesas" />
+	</action>
+
+	<action path="/gestionMesasAction"
+			name="mesaForm"
+			scope="request"
+			type="salas.actions.GestionMesasAction"
+			parameter="method"
+			validate="false">
+
+		<forward name="crearMesas" path="salas.cambiocodigo.mesas" />
+		<forward name="numMesasCrear" path="salas.edicion.mesas" />
+		<forward name="seleccionMesas" path="salas.seleccion.mesas" />
+	</action>
+
+
+	<action path="/gestionUsuarioSalasConsultaAction"
+			name="usuarioSalasConsultaForm"
+			scope="request"
+			type="salas.actions.GestionUsuarioSalasConsultaAction"
+			parameter="method"
+			validate="false">
+
+		<forward name="listado" path="gestionUsuariosSalasConsulta.listadoUsuarios" />
+		<forward name="datos" path="gestionUsuariosSalasConsulta.datosUsuario" />
+		<forward name="edicion" path="gestionUsuariosSalasConsulta.edicionUsuario" />
+		<forward name="add_usuario_externo" path="gestionUsuarioSalasConsulta.addUsuarioExterno"/>
+		<forward name="buscador" path="gestionUsuarioSalasConsulta.buscadorUsuarios"/>
+		<forward name="buscarUsuarios" path="gestionUsuarioSalasConsulta.buscadorUsuarios"/>
+		<forward name="informeUsuarios" path="/action/informeUsuariosConsulta" redirect="true"/>
+		<forward name="buscarExpedientes" path="gestionUsuarioSalasConsulta.buscadorExpedientes"/>
+		<forward name="informeExpedientes" path="/action/informeExpedientesUsuario" redirect="true"/>
+		<forward name="buscadorUsuarios" path="gestionUsuarioSalasConsulta.buscarUsuarios"/>
+		<forward name="listadoUsuarios" path="gestionUsuarioSalasConsulta.listadoUsuarios"/>
+		<forward name="informeExpedientes" path="/action/informeExpedientesUsuario" redirect="true"/>
+		<forward name="resumenServicios" path="gestionUsuarioSalasConsulta.resumenServicios"/>
+		<forward name="temasInvestigacion" path="gestionUsuarioSalasConsulta.temasInvestigacion"/>
+		<forward name="informeServicios" path="/action/informeResumenServicios" redirect="true"/>
+		<forward name="informeTemas" path="/action/informeTemasInvestigacion" redirect="true"/>
+		<forward name="unidadesConsultadas" path="gestionUsuarioSalasConsulta.unidadesConsultadas"/>
+		<forward name="informeUnidades" path="/action/informeUnidadesConsultadas" redirect="true"/>
+	</action>
+
+	<action path="/gestionEstadoMesasAction"
+			name="estadoMesaForm"
+			scope="request"
+			type="salas.actions.GestionEstadoMesasAction"
+			parameter="method">
+
+    	<forward name="seleccionEstadoMesas" path="salas.cambioestado.mesas" />
+    </action>
+
+    <action path="/gestionRegistroConsultaAction"
+			name="registroConsultaSalaForm"
+			scope="request"
+			type="salas.actions.GestionRegistroConsultaAction"
+			parameter="method">
+
+    	<forward name="registroEntrada" path="salas.registro.entrada" />
+    	<forward name="crearRegistro" path="salas.edicion.registro" />
+    	<forward name="confirmarRegistro" path="salas.confirmar.registro" />
+    	<forward name="registroSalida" path="salas.registro.entrada" />
+    	<forward name="datosRegistroEntrada" path="salas.datos.registro.entrada" />
+    	<forward name="redirectDatosRegistroEntrada" path="/action/gestionRegistroConsultaAction?method=ver" />
+    	<forward name="usuariosRegistrados" path="salas.listado.usuarios.registrados" />
+    	<forward name="buscarUsuarios" path="salas.busqueda.usuarios" />
+    	<forward name="buscarInvestigadoresAsistencia" path="salas.busqueda.usuarios" />
+		<forward name="informeAsistencia" path="/action/informeAsistenciaSala" redirect="true"/>
+    </action>
+
+	<action path="/informeUsuariosConsulta" type="salas.actions.InformeUsuariosConsultaPDFReportAction" validate="false" scope="request" />
+    <action path="/informeAsistenciaSala" type="salas.actions.InformeUsuariosAsistenciaPDFReportAction" validate="false" scope="request" />
+    <action path="/informeExpedientesUsuario" type="salas.actions.InformeExpedientesUsuarioPDFReportAction" validate="false" scope="request" />
+    <action path="/informeResumenServicios" type="salas.actions.InformeResumenServiciosPDFReportAction" validate="false" scope="request" />
+    <action path="/informeTemasInvestigacion" type="salas.actions.InformeTemasInvestigacionPDFReportAction" validate="false" scope="request" />
+    <action path="/informeUnidadesConsultadas" type="salas.actions.InformeUnidadesConsultadasPDFReportAction" validate="false" scope="request" />
+
+    <action path="/navegadorRegistroConsultaSalaAction"
+			name="navegadorRegistroConsultaSalaForm"
+			scope="request"	type="salas.actions.NavegadorRegistroConsultaSalaAction"
+			validate="false" parameter="method">
+		<forward name="success" path="/pages/tiles/salas/registro/cuerpo_navegacion_registro.jsp" />
+    </action>
+
+	<action path="/multilineaErrorAction"
+			scope="request"
+			parameter="method"
+			type="common.actions.MultilineaErrorAction">
+
+			<forward name="show_multilinea_error" path="error.multilinea" />
+	</action>
+
+	 <action path="/informeReubicacion" type="deposito.actions.reubicacion.InformeReubicacionPDFReportAction" validate="false" scope="request" />
+  	 <action path="/informeReubicacionUinst" type="deposito.actions.reubicacion.InformeReubicacionUInstPDFReportAction" validate="false" scope="request" />
+	 <action path="/informeMoverFondos" type="fondos.actions.InformeMoverFondosPDFReportAction" validate="false" scope="request" />
+	 <action path="/informeMoverClasificadorSeries" type="fondos.actions.InformeMoverClasificadorSeriesPDFReportAction" validate="false" scope="request" />
+  	 <action path="/informeMoverUdocs" type="fondos.actions.InformeMoverUDocsPDFReportAction" validate="false" scope="request" />
+  	 <action path="/informeMoverSerie" type="fondos.actions.InformeMoverSeriesPDFReportAction" validate="false" scope="request" />
+  </action-mappings>
+
+  <controller nocache="true"/>
+
+  <message-resources parameter="resources.ApplicationResources" />
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames" value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml" />
+  </plug-in>
+
+  <plug-in className="org.apache.struts.tiles.TilesPlugin">
+  	<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+  	<set-property property="moduleAware" value="true" />
+  	<set-property property="definitions-parser-validate" value="true" />
+  </plug-in>
+
+  <plug-in className="net.sf.navigator.menu.MenuPlugIn">
+	<set-property property="menuConfig" value="/WEB-INF/menu-config.xml"/>
+  </plug-in>
+
+
+</struts-config>

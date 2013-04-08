@@ -1,0 +1,27 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_AutenticacionBackOfficeWeb/src/main/resources/SIGEM_AutenticacionBackOfficeWeb</directory>
+			<outputDirectory>/SIGEM_AutenticacionBackOfficeWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+				<include>autenticacionBackOfficeWebConfig.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_AutenticacionBackOfficeWeb/src/main/resources/SIGEM_AutenticacionBackOfficeWeb</directory>
+			<outputDirectory>/SIGEM_AutenticacionBackOfficeWeb</outputDirectory>
+			<includes>
+				<include>skin*/</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

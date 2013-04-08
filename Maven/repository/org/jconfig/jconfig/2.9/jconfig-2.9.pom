@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.jconfig</groupId>
+    <artifactId>jconfig</artifactId>
+    <packaging>jar</packaging>
+    <version>2.9</version>
+    <name>JConfig</name>
+    <url>http://www.jconfig.org</url>
+    <description>jConfig a framework for handling XML-configurations</description>
+    <licenses>
+        <license>
+            <name>BSD License</name>
+            <distribution>repo</distribution>
+            <url>http://jconfig.cvs.sourceforge.net/*checkout*/jconfig/jConfig/jConfig/BSD_license.txt?revision=1.1</url>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:cvs:pserver:anonymous@cvs.sourceforge.net:/cvsroot/jconfig</connection>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>crimson</groupId>
+            <artifactId>crimson</artifactId>
+            <version>1.1.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.parsers</groupId>
+            <artifactId>jaxp-api</artifactId>
+            <version>1.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jmx</groupId>
+            <artifactId>jmxri</artifactId>
+            <version>1.2.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+<pattern value="info/ocultar_partes_codigo_referencia">
+	<object-create-rule classname="common.vos.InfoPartesCodigoReferenciaVO" />
+	<pattern value="parte">
+		<object-create-rule classname="common.vos.ParteCodigoReferenciaVO" />
+		<set-properties-rule >
+			<alias attr-name="idParte" prop-name="idParte" />
+			<alias attr-name="ocultar" prop-name="ocultar" />
+		</set-properties-rule>
+		<set-next-rule methodname="addParte" />
+	</pattern>
+</pattern>
+</digester-rules>

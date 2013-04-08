@@ -1,0 +1,19 @@
+<assembly>
+	<id>configurableSigem</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}/target/generated-resources/SIGEM_RegistroPresencial/Isicres</directory>
+			<filtered>true</filtered>
+			<outputDirectory>/SIGEM_RegistroPresencial/</outputDirectory>
+			<excludes>
+				<exclude>**/log4j.xml</exclude>
+				<exclude>**/ISicres-resources*</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

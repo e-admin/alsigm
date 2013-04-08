@@ -1,0 +1,18 @@
+<webscript>
+	<shortname>Informe de ocupacion del repositorio</shortname>
+	<description>
+		<![CDATA[
+			Informe de ocupacion del repositorio
+			<ul>
+				<li> path: espacio </li>  
+			</ul>	
+			Example: http://localhost:8080/alfresco/service/ieci/repository/Company Home
+			<BR/>
+			Return status: STATUS_OK, 200  
+		]]>
+	</description>
+	<url>/ieci/repository/{path}</url>
+	<format default="xml">argument</format>
+	<authentication>user</authentication>
+	<transaction>required</transaction>
+</webscript>

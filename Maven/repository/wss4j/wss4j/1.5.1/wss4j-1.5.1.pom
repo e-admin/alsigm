@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- now under org.apache.ws.security -->
+
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>wss4j</groupId>
+    <artifactId>wss4j</artifactId>
+    <name>WSS4J</name>
+    <version>1.5.1</version>
+    <description>
+    Apache WSS4J is an implementation of the Web Services Security (WS-Security) being developed at 
+    OASIS Web Services Security TC. WSS4J is a primarily a Java library that can be used to sign and 
+    verify SOAP Messages with WS-Security information. WSS4J will use Apache Axis and Apache XML-Security 
+    projects and will be interoperable with JAX-RPC based server/clients and .NET server/clients. 
+    </description>
+    <url>http://ws.apache.org/wss4j/</url>
+    <issueManagement>
+        <system>JIRA</system>
+        <url>http://issues.apache.org/jira/browse/WSS</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Continuum</system>
+        <url>unknown</url>
+        <notifiers>
+            <notifier>
+                <sendOnError>false</sendOnError>
+                <sendOnFailure>false</sendOnFailure>
+                <sendOnSuccess>false</sendOnSuccess>
+                <sendOnWarning>false</sendOnWarning>
+                <configuration>
+                    <address>wss4j-dev@ws.apache.org</address>
+                </configuration>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+    <mailingLists>
+        <mailingList>
+            <name>WSS4J Developer List</name>
+            <subscribe>wss4j-dev-subscribe@ws.apache.org</subscribe>
+            <unsubscribe>wss4j-dev-unsubscribe@ws.apache.org</unsubscribe>
+            <post>wss4j-dev@ws.apache.org</post>
+            <archive>http://mail-archives.apache.org/mod_mbox/ws-wss4j-dev/</archive>
+        </mailingList>
+    </mailingLists>
+    <inceptionYear>2004</inceptionYear>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:svn:http://svn.apache.org/repos/asf/webservices/wss4j/trunk/</connection>
+        <developerConnection>
+            scm:svn:https://svn.apache.org/repos/asf/webservices/wss4j/trunk/</developerConnection>
+        <url>http://svn.apache.org/viewvc/webservices/wss4j/trunk</url>
+    </scm>
+    <organization>
+        <name>The Apache Software Foundation</name>
+        <url>http://www.apache.org/</url>
+    </organization>
+
+</project>

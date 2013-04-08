@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NAME' 
+				 readOnly='false'
+				 titleKey='formatter.tasks.nombre' 
+				 fieldType='LINK' 
+				 fieldLink='ID_CTTASK'/>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='COUNT' 
+				 readOnly='false'
+				 titleKey='formatter.tasks.elementos' 
+				 fieldType='LIST'/>
+</beanformatter>

@@ -1,0 +1,16 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>batik</groupId>
+  <artifactId>batik-gui-util</artifactId>
+  <name>Batik GUI Utilities</name>
+  <version>1.6-1</version>
+  <description>Batik GUI Utilities</description>
+  <inceptionYear>2000</inceptionYear>
+  <dependencies>
+    <dependency>
+      <groupId>batik</groupId>
+      <artifactId>batik-ext</artifactId>
+      <version>1.6-1</version>
+    </dependency>
+  </dependencies>
+</project>

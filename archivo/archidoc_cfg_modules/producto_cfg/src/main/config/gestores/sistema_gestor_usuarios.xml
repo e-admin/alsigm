@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sistema_gestor_usuarios>
+
+<!-- 	  <usuario>
+	    <externalUserId>IdEnSistemaExterno</externalUserId>
+	    <organizationUserId>IdEnSistemaOrganización</organizationUserId>
+	    <address>Dirección del Usuario</address>
+	    <email>email del Usuario</email>
+	    <name>Nombre</name>
+	    <surname>Apellidos</surname>
+	    <username>usuario1</username>
+	    <password>password encriptado</password>
+	  </usuario>
+	  <usuario>
+	    <externalUserId>IdEnSistemaExterno2</externalUserId>
+	    <organizationUserId>IdEnSistemaOrganizacion2</organizationUserId>
+	    <address>Dirección del Usuario</address>
+	    <email>email del Usuario</email>
+	    <name>Nombre</name>
+	    <surname>Apellidos</surname>
+	    <username>usuario2</username>
+	    <password>password encriptado</password>
+	  </usuario>	
+	   -->
+
+	  <usuario>
+	    <externalUserId>USR1</externalUserId>
+	    <organizationUserId>USR1</organizationUserId>
+	    <address>direccion</address>
+	    <email>email</email>
+	    <name>Administrador de Series</name>
+	    <surname></surname>
+	    <username>adminseries</username>
+	    <!-- Contraseña archivo -->
+	    <password>YXJjaGl2bw==</password>
+	  </usuario>
+	  
+	  <usuario>
+	    <externalUserId>USR2</externalUserId>
+	    <organizationUserId>USR2</organizationUserId>
+	    <address>direccion</address>
+	    <email>email</email>
+	    <name>Administrador de Fondos</name>
+	    <surname></surname>
+	    <username>adminfondos</username>
+	    <!-- Contraseña archivo -->
+	    <password>YXJjaGl2bw==</password>
+	  </usuario>
+	  
+	  <usuario>
+	    <externalUserId>USR3</externalUserId>
+	    <organizationUserId>USR3</organizationUserId>
+	    <address>direccion</address>
+	    <email>email</email>
+	    <name>Administrador de Prestamos</name>
+	    <surname></surname>
+	    <username>adminprestamos</username>
+	    <!-- Contraseña archivo -->
+	    <password>YXJjaGl2bw==</password>
+	  </usuario>
+	  
+	  <usuario>
+	    <externalUserId>USR4</externalUserId>
+	    <organizationUserId>USR4</organizationUserId>
+	    <address>direccion</address>
+	    <email>email</email>
+	    <name>Administrador de Deposito</name>
+	    <surname></surname>
+	    <username>admindeposito</username>
+	    <!-- Contraseña archivo -->
+	    <password>YXJjaGl2bw==</password>
+	  </usuario>
+	  
+	  <usuario>
+	    <externalUserId>USR5</externalUserId>
+	    <organizationUserId>USR5</organizationUserId>
+	    <address>direccion</address>
+	    <email>email</email>
+	    <name>Administrador de Archivo</name>
+	    <surname></surname>
+	    <username>adminarchivo</username>
+	    <!-- Contraseña archivo -->
+	    <password>YXJjaGl2bw==</password>
+	  </usuario>
+	  
+	  <usuario>
+	    <externalUserId>USR6</externalUserId>
+	    <organizationUserId>USR6</organizationUserId>
+	    <address>direccion</address>
+	    <email>email</email>
+	    <name>Administrador de Oficina</name>
+	    <surname></surname>
+	    <username>adminoficina</username>
+	    <!-- Contraseña archivo -->
+	    <password>YXJjaGl2bw==</password>
+	  </usuario>
+	     
+</sistema_gestor_usuarios>

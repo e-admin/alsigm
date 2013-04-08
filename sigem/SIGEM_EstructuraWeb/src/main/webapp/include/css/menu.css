@@ -1,0 +1,108 @@
+@import url(common.css);
+
+.menuItem{
+	color: #5888b8;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 8pt;
+	text-align: right;
+	cursor: pointer;
+	border-top: 2px #5888b8 solid;
+	width:100%;
+	margin-top: 15px;
+   	display: block;
+	
+}
+
+body.menubody {
+	background: #e6e6e6;
+	border-right: 1px #d1d1d1 solid;
+	margin: 0;
+	color: #000;
+}
+
+/**
+Estilos del menu izquierdo
+*/
+table.menuTop {
+	empty-cells: hide;
+	width: 130px;
+	background-color: #e6e6e6;
+	empty-cells: hide;
+}
+
+table.menuTop td {
+	width: 100%;
+}
+
+table.menuItemTop {
+	width: 100%;
+	background-color: #e6e6e6;
+	empty-cells: hide;
+	border-bottom: 1px #f3f3f3 solid;
+	border-left: 1px #f3f3f3 solid;
+	border-right: 1px #f3f3f3 solid;
+	margin-top: 7px;
+}
+
+table.menuItemTop td {
+	empty-cells: hide;
+	margin-left: 2px;
+	border-top: 1px #f3f3f3 solid;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	width: 100%;
+}
+
+td.menuover {
+    background-color: #e9e9e9;
+}
+
+td.menuout {
+    background-color: #e6e6e6;
+}
+
+label.expander{
+	color: #5888b8;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 7pt;
+	text-align: right;
+	cursor: pointer;
+	border-top: 2px #5888b8 solid;
+	width:100%;
+	margin-top: 10px;
+    display: block;
+}
+
+#menuItemRow {
+	color: #5888b8;
+	font-family: Verdana, Helvetica, Arial,sans-serif;
+	font-size: 7pt;
+	empty-cells: hide;
+	width: 100%;
+}
+
+#menuItemRow a:link, #menuItemRow a:visited {
+	color: #5888b8;
+	font-family: Verdana, Helvetica, Arial,sans-serif;
+	font-size: 7pt;
+    width:100%;
+}
+
+#menuItemRow a:hover {
+	color: #6495ED;
+	font-family: Verdana, Helvetica, Arial,sans-serif;
+	font-size: 7pt;
+	width:100%;
+}
+
+#menuList ul, #menuList li, td {
+	margin: 0;
+	padding: 0;
+}
+
+a, A:link, a:visited, a:active, A:hover {
+	text-decoration: none;
+	font-size: 7pt;
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+

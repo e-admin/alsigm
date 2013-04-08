@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<identificacion_serie version="01.00">
+	<definicion><![CDATA[Definición del Procedimiento]]></definicion>
+	<tramites></tramites>
+	<normativa><![CDATA[Normativa del procedimiento]]></normativa>
+	<docs_basicos_unidad_documental></docs_basicos_unidad_documental>
+	<procedimiento>
+		<identificacion><![CDATA[PCD-ACTAS-2012]]></identificacion>
+		<nombre><![CDATA[ACTAS 2012]]></nombre>
+		<codigo_sistema_productor><![CDATA[T1]]></codigo_sistema_productor>
+	</procedimiento>
+</identificacion_serie>

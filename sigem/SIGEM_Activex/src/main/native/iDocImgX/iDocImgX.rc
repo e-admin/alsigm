@@ -1,0 +1,558 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Spanish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
+#ifdef _WIN32
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "1 TYPELIB ""iDocImgX.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,3,1,5
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040a04b0"
+        BEGIN
+            VALUE "CompanyName", "Ministerio de Industria Turismo y Comercio"
+            VALUE "FileVersion", "3, 3, 1, 5"
+            VALUE "InternalName", "iDocImgX"
+            VALUE "LegalCopyright", ""
+            VALUE "OriginalFilename", "iDocImgX.DLL"
+            VALUE "ProductName", ""
+            VALUE "ProductVersion", "0, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40a, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_CONTROL             BITMAP                  "control.bmp"
+IDR_TRMAINFRAME         BITMAP                  "res\\mainfram.bmp"
+IDR_MAINFRAME           BITMAP                  "toolbar.bmp"
+IDR_ANNOTATION          BITMAP                  "res\\toolbar1.bmp"
+IDB_NOTE                BITMAP                  "res\\note.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_CONTROL             REGISTRY                "Control.rgs"
+IDR_PRINTJOB            REGISTRY                "PrintJob.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TRMAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      IDM_HAND
+    SEPARATOR
+    BUTTON      IDM_SELECT
+    BUTTON      IDM_ZOOMINCR
+    BUTTON      IDM_ZOOMDECR
+    BUTTON      IDM_ZOOMRECT
+    SEPARATOR
+    BUTTON      IDM_NORMALSIZE
+    SEPARATOR
+    BUTTON      IDM_FITWINDOW
+    BUTTON      IDM_FITHORZ
+    BUTTON      IDM_FITVERT
+    SEPARATOR
+    BUTTON      IDM_ROTI90
+    BUTTON      IDM_ROTD90
+    SEPARATOR
+    BUTTON      IDM_PREVP
+    BUTTON      IDM_NEXTP
+    SEPARATOR
+    BUTTON      IDM_PRINT
+END
+
+IDR_MAINFRAME TOOLBAR  17, 16
+BEGIN
+    BUTTON      IDM_HAND
+    SEPARATOR
+    BUTTON      IDM_ZOOMINCR
+    BUTTON      IDM_ZOOMDECR
+    BUTTON      IDM_ZOOMRECT
+    SEPARATOR
+    BUTTON      IDM_NORMALSIZE
+    SEPARATOR
+    BUTTON      IDM_FITWINDOW
+    BUTTON      IDM_FITHORZ
+    BUTTON      IDM_FITVERT
+    SEPARATOR
+    BUTTON      IDM_ROTI90
+    BUTTON      IDM_ROTD90
+    SEPARATOR
+    BUTTON      IDM_PREVP
+    BUTTON      IDM_NEXTP
+    SEPARATOR
+    BUTTON      IDM_PRINT
+END
+
+IDR_ANNOTATION TOOLBAR  20, 19
+BEGIN
+    BUTTON      ID_SELECTOR
+    BUTTON      ID_NOTE
+    BUTTON      ID_ARROW
+    BUTTON      ID_HIGHLINE
+    BUTTON      ID_LINE
+    BUTTON      ID_TEXT
+    BUTTON      ID_MARK
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_TRMAINFRAME MENU 
+BEGIN
+    POPUP "Menu"
+    BEGIN
+        MENUITEM "&Ver barra de herramientas",  IDM_SHOWPAL
+        POPUP "&Imagen"
+        BEGIN
+            MENUITEM "&Arrastrar",                  IDM_HAND
+            MENUITEM SEPARATOR
+            MENUITEM "&Zoom para acercar",          IDM_ZOOMINCR
+            MENUITEM "Zoom para &alejar",           IDM_ZOOMDECR
+            MENUITEM "Zoom de &selección",          IDM_ZOOMRECT
+            MENUITEM SEPARATOR
+            MENUITEM "&Tamaño normal",              IDM_NORMALSIZE
+            MENUITEM SEPARATOR
+            MENUITEM "&Ajustar en ventana",         IDM_FITWINDOW
+            MENUITEM "Ajustar en &horizontal",      IDM_FITHORZ
+            MENUITEM "Ajustar en &vertical",        IDM_FITVERT
+            MENUITEM SEPARATOR
+            MENUITEM "&Número de documento...",     IDM_ENDOSO
+            MENUITEM SEPARATOR
+            POPUP "&Modo de visualización"
+            BEGIN
+                MENUITEM "&Potenciación blancos",       IDM_WHITEDRAW
+                MENUITEM "Potenciación &negros",        IDM_BLACKDRAW
+                MENUITEM "&Escala de grises",           IDM_GRAYDRAW
+            END
+            MENUITEM "&Invertir",                   IDM_INVERT
+        END
+        POPUP "&Páginas"
+        BEGIN
+            MENUITEM "&Siguiente",                  IDM_NEXTP
+            MENUITEM "&Anterior",                   IDM_PREVP
+            MENUITEM "&Primera",                    IDM_FIRSTP
+            MENUITEM "&Última",                     IDM_LASTP
+            MENUITEM SEPARATOR
+            MENUITEM "&Ir a...",                    IDM_GOTO
+        END
+        POPUP "&Anotaciones"
+        BEGIN
+            MENUITEM "&Editar",                     IDM_EDITANN
+            MENUITEM "&Guardar",                    IDM_SAVEANN
+            MENUITEM "E&liminar",                   IDM_DELETEANN
+            MENUITEM SEPARATOR
+            POPUP "&Tipo"
+            BEGIN
+                MENUITEM "&Selector",                   ID_SELECTOR
+                MENUITEM "&Nota",                       ID_NOTE
+                MENUITEM "&Flecha",                     ID_ARROW
+                MENUITEM "&Resaltado",                  ID_HIGHLINE
+                MENUITEM "Línea",                       ID_LINE
+                MENUITEM "&Texto",                      ID_TEXT
+                MENUITEM "&Marca",                      ID_MARK
+            END
+            MENUITEM SEPARATOR
+            MENUITEM "&Ver paleta",                 IDM_SHOWPALANN
+        END
+        POPUP "&Tratamientos"
+        BEGIN
+            MENUITEM "&Aumento de contraste local", IDM_TINCRCLOCAL
+            MENUITEM "Aumento &global de contraste", IDM_TINCRGC
+            MENUITEM "&Realzar tintas desvaídas",   IDM_TRTD
+            MENUITEM "&Hacer el trazo más grueso",  IDM_TTWIDTH
+            MENUITEM "&Eliminar el fondo del documento", IDM_TSUPFD
+            MENUITEM "Eliminar manchas &sobre texto claro", IDM_TSUPMTC
+            MENUITEM "Eliminar &manchas sobre texto oscuro", IDM_TSUPMTO
+            MENUITEM "E&liminar tintas transparentes", IDM_TSUPTT
+            MENUITEM "Hacer el &trazo más fino",    IDM_TTF
+            MENUITEM "Rel&ieve",                    IDM_TREL
+            MENUITEM "&Deshacer",                   IDM_TUNDO
+        END
+        MENUITEM "&Imprimir...",                IDM_PRINT
+        MENUITEM "&Guardar como...",            IDM_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Configurar...",              IDM_CONFIG
+    END
+END
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "Menu"
+    BEGIN
+        MENUITEM "&Ver barra de herramientas",  IDM_SHOWPAL
+        POPUP "&Imagen"
+        BEGIN
+            MENUITEM "&Arrastrar",                  IDM_HAND
+            MENUITEM SEPARATOR
+            MENUITEM "&Zoom para acercar",          IDM_ZOOMINCR
+            MENUITEM "Zoom para &alejar",           IDM_ZOOMDECR
+            MENUITEM "Zoom de &selección",          IDM_ZOOMRECT
+            MENUITEM SEPARATOR
+            MENUITEM "&Tamaño normal",              IDM_NORMALSIZE
+            MENUITEM SEPARATOR
+            MENUITEM "&Ajustar en ventana",         IDM_FITWINDOW
+            MENUITEM "Ajustar en &horizontal",      IDM_FITHORZ
+            MENUITEM "Ajustar en &vertical",        IDM_FITVERT
+            MENUITEM SEPARATOR
+            MENUITEM "&Número de documento...",     IDM_ENDOSO
+            MENUITEM SEPARATOR
+            POPUP "&Modo de visualización"
+            BEGIN
+                MENUITEM "&Potenciación blancos",       IDM_WHITEDRAW
+                MENUITEM "Potenciación &negros",        IDM_BLACKDRAW
+                MENUITEM "&Escala de grises",           IDM_GRAYDRAW
+            END
+            MENUITEM "&Invertir",                   IDM_INVERT
+        END
+        POPUP "&Páginas"
+        BEGIN
+            MENUITEM "&Siguiente",                  IDM_NEXTP
+            MENUITEM "&Anterior",                   IDM_PREVP
+            MENUITEM "&Primera",                    IDM_FIRSTP
+            MENUITEM "&Última",                     IDM_LASTP
+            MENUITEM SEPARATOR
+            MENUITEM "&Ir a...",                    IDM_GOTO
+        END
+        POPUP "&Anotaciones"
+        BEGIN
+            MENUITEM "&Editar",                     IDM_EDITANN
+            MENUITEM "&Guardar",                    IDM_SAVEANN
+            MENUITEM "E&liminar",                   IDM_DELETEANN
+            MENUITEM SEPARATOR
+            POPUP "&Tipo"
+            BEGIN
+                MENUITEM "&Selector",                   ID_SELECTOR
+                MENUITEM "&Nota",                       ID_NOTE
+                MENUITEM "&Flecha",                     ID_ARROW
+                MENUITEM "&Resaltado",                  ID_HIGHLINE
+                MENUITEM "Línea",                       ID_LINE
+                MENUITEM "&Texto",                      ID_TEXT
+                MENUITEM "&Marca",                      ID_MARK
+            END
+            MENUITEM SEPARATOR
+            MENUITEM "&Ver paleta",                 IDM_SHOWPALANN
+        END
+        MENUITEM "&Imprimir...",                IDM_PRINT
+        MENUITEM "&Guardar como...",            IDM_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Configurar...",              IDM_CONFIG
+    END
+END
+
+IDR_PROPERTY_MENU MENU 
+BEGIN
+    POPUP "Prop"
+    BEGIN
+        MENUITEM "Propiedades...",              IDM_M_PROPERTY
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_ZOOM                CURSOR                  "zoom.cur"
+IDC_SEL                 CURSOR                  "res\\sel.cur"
+IDC_HHAND               CURSOR                  "hand.cur"
+IDC_ICONCUR             CURSOR                  "res\\cur00001.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PRINT DIALOG  0, 0, 162, 68
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Imprimiendo Fichero"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancelar",IDCANCEL,105,47,50,14
+    EDITTEXT        2038,9,21,146,13,ES_AUTOHSCROLL | ES_READONLY
+END
+
+IDD_PAGIR DIALOG  100, 100, 80, 46
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Ir a"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Aceptar",IDOK,23,25,34,14
+    LTEXT           "Página:",IDC_ST_PAG,7,7,27,10
+    COMBOBOX        IDC_LISTPAGE,35,5,35,38,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_CONFIGURATION DIALOG  100, 100, 247, 167
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Configuración"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Blancos",IDC_WHITE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,20,37,8
+    CONTROL         "Negros",IDC_BLACK,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,93,20,43,8
+    CONTROL         "Escala de grises",IDC_GRAY,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,166,20,66,8
+    CONTROL         "Ventana",IDC_WINDOW,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,60,41,8
+    CONTROL         "Horizontal",IDC_HORZ,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,70,60,49,8
+    CONTROL         "Vertical",IDC_VERT,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,134,60,47,8
+    CONTROL         "1:1",IDC_ONETOONE,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,196,60,42,8
+    CONTROL         "0",IDC_NOROT,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,100,41,8
+    CONTROL         "90",IDC_ROT90,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,70,100,49,8
+    CONTROL         "180",IDC_ROT180,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,134,100,47,8
+    CONTROL         "270",IDC_ROT270,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,196,100,42,8
+    CONTROL         "Ver barra de herramientas",IDC_PAL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,123,119,13
+    DEFPUSHBUTTON   "Aceptar",IDOK,136,146,50,14
+    PUSHBUTTON      "Cancelar",IDCANCEL,190,146,50,14
+    GROUPBOX        "Potenciación",IDC_DrawMode,7,7,233,31
+    GROUPBOX        "Ajuste",IDC_FIT,7,48,233,31
+    GROUPBOX        "Rotación",IDC_ROT,7,87,233,31
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,140,233,1
+END
+
+IDD_TITLE_NOT DIALOG  0, 0, 186, 95
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Texto asociado"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Aceptar",IDOK,67,74,50,14
+    EDITTEXT        IDC_NOT_TXT,7,7,172,63,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+END
+
+IDD_TITLE_EDNOT DIALOG  0, 0, 186, 95
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "General"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_NOTE,7,7,172,81,ES_MULTILINE | ES_AUTOHSCROLL | WS_VSCROLL
+END
+
+IDD_TITLE_TEXT DIALOG  0, 0, 215, 143
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Formato de texto"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,7,7,201,33
+    LTEXT           "Nombre de tipo de letra:",IDC_ST_TXT_FONT,9,11,76,8
+    LTEXT           "Tamaño de tipo de letra:",IDC_ST_TXT_SIZE,9,25,81,10
+    PUSHBUTTON      "Tipo de letra...",IDC_FONT,153,18,50,14
+    LTEXT           "",IDC_ST_FONT,93,11,51,8
+    LTEXT           "",IDC_ST_SIZE,93,27,51,8
+    GROUPBOX        "Justificado",IDC_ST_JUSTIFY,7,43,201,26
+    CONTROL         "Izquierda",IDC_TXT_LEFT,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,22,54,45,8
+    CONTROL         "Centro",IDC_TXT_CENTER,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,86,54,44,8
+    CONTROL         "Derecha",IDC_TXT_RIGHT,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,149,54,44,8
+    GROUPBOX        "Límites",IDC_ST_BORDER,7,73,201,63
+    LTEXT           "Todos:",IDC_ST_BORDER_ALL,67,87,22,9
+    LTEXT           "Arrriba:",IDC_ST_BORDER_TOP,13,103,22,9
+    LTEXT           "Abajo:",IDC_ST_BORDER_DOWN,14,120,22,9
+    LTEXT           "Izquierda:",IDC_ST_BORDER_LEFT,121,103,33,9
+    LTEXT           "Derecha:",IDC_ST_BORDER_RIGHT,121,120,34,9
+    COMBOBOX        IDC_BORDER_ALL,93,84,44,33,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_BORDER_TOP,39,100,44,33,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_BORDER_DOWN,39,117,44,33,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_BORDER_LEFT,155,99,44,33,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_BORDER_RIGHT,155,117,44,33,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_ENDOSO DIALOG  0, 0, 186, 52
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Imagen - Número de documento"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "",IDC_NUMBER,7,21,172,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PRINT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 155
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 61
+    END
+
+    IDD_PAGIR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 73
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 39
+    END
+
+    IDD_CONFIGURATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 240
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 160
+    END
+
+    IDD_TITLE_NOT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_TITLE_EDNOT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_TITLE_TEXT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 208
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
+    END
+
+    IDD_ENDOSO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 45
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR1 ACCELERATORS 
+BEGIN
+    VK_DELETE,      IDM_DELETEANN,          VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PROJNAME            "iDocImgX"
+    IDS_ERRDSPL             "Error"
+    IDS_NONE_BORDER         "Ninguno"
+    IDS_SIMPLE_BORDER       "Simple"
+    IDS_DOUBLE_BORDER       "Doble"
+    IDS_ANN_TEXT            "Texto"
+    IDS_ANN_NOTE            "Nota"
+    IDS_GEN                 "General"
+    IDS_ERR_FILENOTE        "Fichero de anotaciones no válido"
+    IDS_ERR_DOWNLOAD_FILE   "No se puede descargar el fichero"
+    IDS_ERR_OPEN_IMG        "Imagen no válida ó no accesible"
+    IDS_ERR_CAD             "Es necesario instalar el certificado del servidor"
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ENDOSO              "Muestra el número de endoso"
+END
+
+#endif    // Spanish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "iDocImgX.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+	Tomcat context.xml file. 
+-->
+
+<Context privileged="true" antiResourceLocking="false"
+	antiJARLocking="false" debug="1" reloadable="true" path="">
+
+
+	<!--  GWT uses Tomcat 5.0.28 - use the 5.0 "style" for defining resources -->
+	<!--  note that you ALSO have to add stuff like commons-pool, commons-dbcp and your JDBC driver to the GWTShell classpath -->
+	<!--  (the gwt-maven plugin does this FOR you, all maven deps will be on the GWTShell classpath) -->
+
+	<Resource name="jdbc/tramitadorDS" auth="Container"
+		type="javax.sql.DataSource" />
+
+	<ResourceParams name="jdbc/tramitadorDS">
+
+		<parameter>
+			<name>factory</name>
+			<value>org.apache.commons.dbcp.BasicDataSourceFactory</value>
+		</parameter>
+		<parameter>
+			<name>username</name>
+			<value>postgres</value>
+		</parameter>
+		<parameter>
+			<name>password</name>
+			<value>postgres</value>
+		</parameter>
+		<parameter>
+			<name>driverClassName</name>
+			<value>org.postgresql.Driver</value>
+		</parameter>
+		<parameter>
+			<name>url</name>
+			<value>jdbc:postgresql://localhost:5432/tramitador</value>
+		</parameter>
+	</ResourceParams>
+
+	<Resource name="jdbc/registroDS" auth="Container" type="javax.sql.DataSource"/> 
+	<ResourceParams name="jdbc/registroDS">
+		<parameter>
+			<name>factory</name>
+			<value>org.apache.commons.dbcp.BasicDataSourceFactory</value>
+		</parameter>
+		<parameter>
+			<name>driverClassName</name>
+			<value>org.postgresql.Driver</value>
+		</parameter>
+		<parameter>
+			<name>url</name>
+			<value>jdbc:postgresql://localhost:5432/registro</value>
+		</parameter>
+		<parameter>
+			<name>username</name>
+			<value>postgres</value>
+		</parameter>
+		<parameter>
+			<name>password</name>
+			<value>postgres</value>
+		</parameter>
+		<parameter>
+			<name>maxActive</name>
+			<value>20</value>
+		</parameter>
+		<parameter>
+			<name>maxIdle</name>
+			<value>10</value>
+		</parameter>
+		<parameter>
+			<name>maxWait</name>
+			<value>-1</value>
+		</parameter>
+	</ResourceParams>
+
+</Context>
+

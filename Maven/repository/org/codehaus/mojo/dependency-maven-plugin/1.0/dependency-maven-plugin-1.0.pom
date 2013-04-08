@@ -1,0 +1,76 @@
+<?xml version="1.0"?><project>
+  <parent>
+    <artifactId>mojo</artifactId>
+    <groupId>org.codehaus.mojo</groupId>
+    <version>5</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>dependency-maven-plugin</artifactId>
+  <packaging>maven-plugin</packaging>
+  <name>Dependency Maven Plugin</name>
+  <version>1.0</version>
+  <developers>
+    <developer>
+      <id>brianfox</id>
+      <name>Brian Fox</name>
+      <email>brianefox@gmail.com</email>
+      <roles>
+        <role>Lead Developer</role>
+      </roles>
+      <timezone>5</timezone>
+    </developer>
+    <developer>
+      <id>dtran</id>
+      <name>Dan T. Tran</name>
+      <email>dantran@gmail.com</email>
+      <organization></organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>Copyright 2005-2006 Brian Fox</comments>
+    </license>
+  </licenses>
+  <build />
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-archiver</artifactId>
+      <version>1.0-alpha-3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <version>2.0</version>
+    </dependency>
+  </dependencies>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>changes-maven-plugin</artifactId>
+        <version>2.0-beta-1</version>
+      </plugin>
+    </plugins>
+  </reporting>
+  <distributionManagement>
+    <status>deployed</status>
+  </distributionManagement>
+</project>

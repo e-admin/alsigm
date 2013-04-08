@@ -1,0 +1,150 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #ffffff; PADDING-BOTTOM: 0px; FONT: 70% "Arial", Tahoma, Helvetica, sans-serif; PADDING-TOP: 0px
+}
+#contenedora {
+	BACKGROUND: #ffffff; MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 100%; HEIGHT: 100%; TEXT-ALIGN: left
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+A {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.activo {
+	COLOR: #cc3300; TEXT-DECORATION: none
+}
+.titular {
+	FONT-WEIGHT: bold; COLOR: #006699
+}
+.titular A {
+	COLOR: #006699; TEXT-DECORATION: none
+}
+#cabecera {
+	BACKGROUND: url(../img/fondo_cab.jpg) #99d6f5 no-repeat; WIDTH: 100%; HEIGHT: 61px
+}
+#logo {
+	FLOAT: left;
+}
+.salir {
+	MARGIN-TOP: 20px; FONT-WEIGHT: bold; FLOAT: right; MARGIN-RIGHT: 10px
+}
+.salir .titular {
+	MARGIN-LEFT: 5px
+}
+.salir IMG {
+	VERTICAL-ALIGN: middle
+}
+.usuario {
+	BACKGROUND: url(../img/bg_mid_usuario.jpg) repeat-x; FLOAT: none; WIDTH: 100%; HEIGHT: 33px
+}
+.usuarioleft {
+	BACKGROUND: url(../img/bg_left_usuario.jpg) no-repeat left 50%; FLOAT: left; WIDTH: 80%; HEIGHT: 33px
+}
+.usuarioright {
+	BACKGROUND: url(../img/bg_right_usuario.jpg) no-repeat right 50%; FLOAT: left; WIDTH: 20%; HEIGHT: 33px; TEXT-ALIGN: right
+}
+P.desplegar {
+	MARGIN-TOP: 10px; PADDING-LEFT: 15px; FONT-SIZE: 90%; BACKGROUND: url(../img/ico_desplegar.gif) no-repeat left 50%; WIDTH: 80px; MARGIN-RIGHT: 20px
+}
+.usuarioleft P {
+	MARGIN-TOP: 10px; MARGIN-LEFT: 15px
+}
+.margen {
+	MARGIN-LEFT: 15px; MARGIN-RIGHT: 5px
+}
+#migas {
+	PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.submenu {
+	BORDER-RIGHT: #c3d8e5 1px solid; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(../img/subme1_bg.gif) repeat-x; PADDING-BOTTOM: 0px; BORDER-LEFT: #c3d8e5 1px solid; WIDTH: 100%; PADDING-TOP: 0px; HEIGHT: 21px
+}
+.submenu LI.submen1on {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; BACKGROUND: url(../img/subme1_bgon.gif) repeat-x left top; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #006699; PADDING-TOP: 0px; HEIGHT: 21px
+}
+.submenu LI.submen1off {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(../img/subme1_bgoff.gif) repeat-x left top; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 21px
+}
+.submenu2 {
+	BORDER-RIGHT: #c3d8e5 1px solid; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(../img/subme2_bg.gif) repeat-x; PADDING-BOTTOM: 0px; BORDER-LEFT: #c3d8e5 1px solid; WIDTH: 100%; PADDING-TOP: 0px; HEIGHT: 21px
+}
+.submenu2 LI.submen1on {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; BACKGROUND: url(../img/subme2_bgon.gif) repeat-x left top; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #006699; PADDING-TOP: 0px; HEIGHT: 21px
+}
+.submenu2 LI.submen1off {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(../img/subme2_bgoff.gif) repeat-x left top; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 21px
+}
+.submenu3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(../img/subme3_bg.gif) repeat-x; PADDING-BOTTOM: 0px; WIDTH: 100%; PADDING-TOP: 0px; HEIGHT: 17px
+}
+.submenu3 UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 100%; FLOAT: right; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 21px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none; HEIGHT: 17px
+}
+.submenu3 LI.submen1on {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; BACKGROUND: url(../img/subme3_bgon.gif) repeat-x left top; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #006699; PADDING-TOP: 0px; HEIGHT: 17px
+}
+.submenu3 LI.submen1off {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(../img/subme3_bgoff.gif) repeat-x left top; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #006699; PADDING-TOP: 0px; HEIGHT: 17px
+}
+.cuerpo {
+	BACKGROUND: url(../img/bg_left_cuerpo.jpg) #dee1e8 no-repeat left top
+}
+.cuerpomid {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(../img/bg_mid_cuerpo.jpg) repeat-x left top; PADDING-BOTTOM: 0px; MARGIN: 0px 6px 0px 5px; PADDING-TOP: 6px
+}
+.cuerporight {
+	BACKGROUND: url(../img/bg_right_cuerpo.jpg) no-repeat right top
+}
+H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 100%; BACKGROUND: url(../img/bolo_activo.gif) no-repeat left 50%; PADDING-BOTTOM: 0px; MARGIN: 6px 0px 0px 10px; COLOR: #006699; LINE-HEIGHT: 90%; PADDING-TOP: 0px
+}
+.ayuda {
+	BACKGROUND: none transparent scroll repeat 0% 0%; FONT: bold 11px "Arial", Tahoma, Helvetica, sans-serif; COLOR: #006699
+}
+.cuadro {
+	BORDER-RIGHT: #c6c9d5 1px solid; PADDING-RIGHT: 15px; PADDING-LEFT: 15px; BACKGROUND: #ffffff; PADDING-BOTTOM: 15px; MARGIN: 0px; BORDER-LEFT: #c6c9d5 1px solid; PADDING-TOP: 15px; BORDER-BOTTOM: #c6c9d5 1px solid
+}
+.cuadro INPUT {
+	BORDER-RIGHT: #7f9db9 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #7f9db9 1px solid; PADDING-LEFT: 0px; FONT-SIZE: 100%; PADDING-BOTTOM: 0px; BORDER-LEFT: #7f9db9 1px solid; WIDTH: 160px; MARGIN-RIGHT: 10px; PADDING-TOP: 0px; BORDER-BOTTOM: #7f9db9 1px solid; HEIGHT: 16px
+}
+.col {
+	BACKGROUND: url(../img/fondo_puntos.gif) repeat-x left bottom; PADDING-BOTTOM: 3px; PADDING-TOP: 3px
+}
+.cuadro LABEL.gr {
+	FLOAT: left; WIDTH: 110px; COLOR: #006699; PADDING-TOP: 2px
+}
+.cuerpobt {
+	BACKGROUND: url(../img/bg_leftdown_cuerpo.jpg) #dee1e8 no-repeat left bottom
+}
+.cuerpomidbt {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(../img/bg_middown_cuerpo.jpg) repeat-x left bottom; PADDING-BOTTOM: 20px; MARGIN: 0px 6px 0px 5px; PADDING-TOP: 6px
+}
+.cuerporightbt {
+	BACKGROUND: url(../img/bg_rightdown_cuerpo.jpg) no-repeat right bottom
+}
+.submenu UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 100%; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 21px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none; HEIGHT: 21px
+}
+.submenu2 UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 100%; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 21px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none; HEIGHT: 21px
+}
+.submenu3 IMG {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; VERTICAL-ALIGN: text-bottom; PADDING-TOP: 0px
+}
+.submenu IMG {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; VERTICAL-ALIGN: text-bottom; PADDING-TOP: 0px
+}
+.submenu2 IMG {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; VERTICAL-ALIGN: text-bottom; PADDING-TOP: 0px
+}
+.submenu3 LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+.submenu LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+.submenu2 LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#contenedor {
+	PADDING-RIGHT: 6px; OVERFLOW-Y: auto; PADDING-LEFT: 6px; BACKGROUND: #ffffff; VISIBILITY: visible; OVERFLOW-X: hidden; PADDING-BOTTOM: 6px; FONT: 10px Verdana, Geneva, Arial, Helvetica, sans-serif; VERTICAL-ALIGN: top; WIDTH: 568px; PADDING-TOP: 6px; POSITION: relative; HEIGHT: 314px; TEXT-ALIGN: justify
+}

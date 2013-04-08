@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrOficeu" 
+    table="SCR_OFIC_EU"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_OFIC_EU"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="code"
+        type="java.lang.String"
+        column="CODE"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CODE"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="acron"
+        type="java.lang.String"
+        column="ACRON"
+        not-null="true"
+        length="12"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ACRON"
+            length="12"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="32"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="NAME"
+            length="32"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="creationDate"
+        type="java.sql.Timestamp"
+        column="CREATION_DATE"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CREATION_DATE"
+            length="7"
+        </meta>    
+    </property>
+    <property
+        name="disableDate"
+        type="java.sql.Timestamp"
+        column="DISABLE_DATE"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="DISABLE_DATE"
+            length="7"
+        </meta>    
+    </property>
+    <property
+        name="stamp"
+        type="java.lang.String"
+        column="STAMP"
+        length="240"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="STAMP"
+            length="240"
+        </meta>    
+    </property>
+    <property
+        name="deptid"
+        type="int"
+        column="DEPTID"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="DEPTID"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to ScrTypeofic -->
+    <many-to-one
+        name="scrTypeofic"
+        class="com.ieci.tecdoc.common.invesicres.ScrTypeofic"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="TYPE"         
+        </meta>
+        <column name="TYPE" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to ScrOrg -->
+    <many-to-one
+        name="scrOrg"
+        class="com.ieci.tecdoc.common.invesicres.ScrOrgeu"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="ID_ORGS"         
+        </meta>
+        <column name="ID_ORGS" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to ScrRegorigdoc -->
+    <set
+        name="scrRegorigdocs"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="IDOFIC"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrRegorigdoc"
+        </meta>
+        <key>
+            <column name="IDOFIC" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrRegorigdoc"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrW -->
+    <set
+        name="scrWs"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="IDOFIC"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrW"
+        </meta>
+        <key>
+            <column name="IDOFIC" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrW"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrRelation -->
+    <set
+        name="scrRelations"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="IDOFIC"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrRelation"
+        </meta>
+        <key>
+            <column name="IDOFIC" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrRelation"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrOficadm -->
+    <set
+        name="scrOficadms"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="IDOFIC"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrOficadm"
+        </meta>
+        <key>
+            <column name="IDOFIC" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrOficadm"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrCaofic -->
+    <set
+        name="scrCaofics"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="ID_OFIC"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrCaofic"
+        </meta>
+        <key>
+            <column name="ID_OFIC" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrCaofic"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrReportofic -->
+    <set
+        name="scrReportofics"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="ID_OFIC"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrReportofic"
+        </meta>
+        <key>
+            <column name="ID_OFIC" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrReportofic"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ScrLockrelation -->
+    <set
+        name="scrLockrelations"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="IDOFIC"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrLockrelation"
+        </meta>
+        <key>
+            <column name="IDOFIC" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrLockrelation"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

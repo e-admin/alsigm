@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='ID_STAGE' 
+				 readOnly='false'
+				 titleKey='formatter.process.estado' 
+				 fieldType='CHECKBOX' 
+				 width='7%' />
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NUMEXP' 
+				 readOnly='false'
+				 titleKey='formatter.process.numExp' 
+				 fieldType='LINK' 
+				 fieldLink='ID_STAGE' 
+				 width='17%' />
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NAME_PROC' 
+				 readOnly='false'
+				 titleKey='formatter.process.procedimiento' 
+				 fieldType='LIST' 
+				 width='22%' />
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NAME_STAGE' 
+				 readOnly='false'
+				 titleKey='formatter.process.fase' 
+				 fieldType='LIST' 
+				 width='22%' />
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='INITDATE' 
+				 readOnly='false'
+				 format='dd/MM/yyyy' 
+				 titleKey='formatter.process.fechaInicio' 
+				 fieldType='LIST' 
+				 width='16%' 
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='LIMITDATE' 
+				 readOnly='false'
+				 format='dd/MM/yyyy' 
+				 titleKey='formatter.process.fechaLimite' 
+				 fieldType='LIST' 
+				 width='16%' 
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+</beanformatter>

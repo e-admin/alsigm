@@ -1,0 +1,101 @@
+.botones {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+.botones a, .botones a:hover, .botones a:visited {
+	text-decoration: none;
+	display: inline-block;
+	padding : 0px;
+	margin: 0px;
+}
+
+.botones a span {
+	font-family: Verdana,Arial,sans-serif;
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: 11px;
+	color: #6C6C6C;
+	border:0;
+	margin-left: 4px;
+	height: 20px;
+}
+
+.botones input {
+	font-family: Verdana,Arial,sans-serif;
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: 11px;
+	color: #6C6C6C;
+	border:0;
+	margin-left: 8px;
+	cursor: pointer;
+	height: 20px;
+}
+
+.botones input.buscar {
+	background:transparent url(../img/buscar.png) no-repeat scroll left center;
+	margin: 0px;
+	padding: 0px 10px 1px 20px;
+	//padding: 0px 4px 1px 10px;
+}
+
+.botones input.volver {
+	background:transparent url(../img/volver.png) no-repeat scroll left center;
+	padding: 0px 10px 1px 20px;
+}
+
+.botones a.descargar {
+	background:transparent url(../img/download.png) no-repeat scroll left center;
+	padding: 0px 10px 1px 20px;
+}
+
+/*
+button {
+  border: 0px;
+  cursor:pointer;
+  font-weight:normal;
+  text-align:center;
+  margin: 10px 0px;
+}
+button span {
+  position:relative;
+  display:block;
+  white-space:nowrap;
+  padding: 0px 8px 0px 14px;
+  //padding: 0px 0px 0px 14px;
+  height : 20px;
+  line-height : 20px;
+}
+*/
+
+.enlaces {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	vertical-align: middle;
+}
+
+.enlaces a, .enlaces a:hover, .enlaces a:visited {
+	text-decoration: none;
+	display: inline-block;
+	padding : 0px;
+	margin: 0px;
+}
+
+.enlaces a span {
+	font-family: Verdana,Arial,sans-serif;
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: 11px;
+	color: #6C6C6C;
+	border:0;
+	margin-left: 4px;
+	height: 20px;
+}
+
+.enlaces a.inicio {
+	background:transparent url(../img/inicio.png) no-repeat scroll left center;
+	padding: 2px 10px 1px 20px;
+}

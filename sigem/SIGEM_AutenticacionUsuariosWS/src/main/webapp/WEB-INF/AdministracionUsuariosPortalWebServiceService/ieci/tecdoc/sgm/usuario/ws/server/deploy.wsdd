@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AdministracionUsuariosPortalWebServiceService WSDL service -->
+
+  <service name="AdministracionUsuariosPortalWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.usuario.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="AdministracionUsuariosPortalWebServiceService"/>
+      <parameter name="schemaQualified" value="http://dto.services.core.sgm.tecdoc.ieci,http://server.ws.usuario.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="AdministracionUsuariosPortalWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.usuario.ws.server.AdministracionUsuariosPortalWebService"/>
+      <parameter name="wsdlPortType" value="AdministracionUsuariosPortalWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="crearUsuario" qname="operNS:crearUsuario" returnQName="retNS:crearUsuarioReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:user" type="tns:Usuario"/>
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="eliminarUsuario" qname="operNS:eliminarUsuario" returnQName="retNS:eliminarUsuarioReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:user" type="tns:Usuario"/>
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.usuario.sgm.tecdoc.ieci" name="buscarUsuarios" qname="operNS:buscarUsuarios" returnQName="retNS:buscarUsuariosReturn" returnType="rtns:ListaUsuarios" soapAction="">
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:criteria" type="tns:CriterioBusquedaUsuario"/>
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.usuario.sgm.tecdoc.ieci" name="autenticarUsuario" qname="operNS:autenticarUsuario" returnQName="retNS:autenticarUsuarioReturn" returnType="rtns:Usuario" soapAction="">
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:user" type="tns:Usuario"/>
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.usuario.sgm.tecdoc.ieci" name="obtenerUsuario" qname="operNS:obtenerUsuario" returnQName="retNS:obtenerUsuarioReturn" returnType="rtns:Usuario" soapAction="">
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:user" type="tns:Usuario"/>
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="actualizarUsuario" qname="operNS:actualizarUsuario" returnQName="retNS:actualizarUsuarioReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:user" type="tns:Usuario"/>
+        <parameter xmlns:pns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <parameter name="allowedMethods" value="autenticarUsuario eliminarUsuario buscarUsuarios actualizarUsuario crearUsuario obtenerUsuario"/>
+
+      <typeMapping xmlns:ns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="ns:Entidad" type="java:ieci.tecdoc.sgm.usuario.ws.server.Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:RetornoServicio" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="ns:Usuario" type="java:ieci.tecdoc.sgm.usuario.ws.server.Usuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="ns:CriterioBusquedaUsuario" type="java:ieci.tecdoc.sgm.usuario.ws.server.CriterioBusquedaUsuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="ns:ArrayOfUsuario" type="java:ieci.tecdoc.sgm.usuario.ws.server.Usuario[]" innerType="cmp-ns:Usuario" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.usuario.sgm.tecdoc.ieci" qname="ns:ListaUsuarios" type="java:ieci.tecdoc.sgm.usuario.ws.server.ListaUsuarios" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

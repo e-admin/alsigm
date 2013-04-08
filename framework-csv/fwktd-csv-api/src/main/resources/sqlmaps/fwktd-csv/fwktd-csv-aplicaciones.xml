@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AplicacionVO">
+
+	<typeAlias alias="aplicacion"
+		type="es.ieci.tecdoc.fwktd.csv.api.vo.AplicacionVO" />
+
+	<resultMap id="aplicacion" class="es.ieci.tecdoc.fwktd.csv.api.vo.AplicacionVO">
+		<result property="id" column="id" />
+		<result property="codigo" column="codigo" />
+		<result property="nombre" column="nombre" />
+		<result property="infoConexion" column="info_conexion" />
+	</resultMap>
+
+	<sql id="table">csv_aplicaciones</sql>
+	<sql id="columns">
+		id,
+		codigo,
+		nombre,
+		info_conexion
+	</sql>
+	<sql id="columns_insert">
+		id,
+		codigo,
+		nombre,
+		info_conexion
+	</sql>
+	<sql id="insert">
+		#id:INTEGER#,
+		#codigo#,
+		#nombre#,
+		#infoConexion#
+	</sql>
+	<sql id="update">
+		codigo=#codigo#,
+		nombre=#nombre#,
+		info_conexion=#infoConexion#
+	</sql>
+
+	<select id="getAplicacionVOs" resultMap="aplicacion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY nombre
+	</select>
+
+	<select id="getAplicacionVO" parameterClass="java.lang.String" resultMap="aplicacion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+
+	<select id="getAplicacionVOByCodigo" parameterClass="java.lang.String" resultMap="aplicacion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			codigo=#value#
+	</select>
+
+	<insert id="addAplicacionVO" parameterClass="aplicacion">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns_insert" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<update id="updateAplicacionVO" parameterClass="aplicacion">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE id=#id:INTEGER#
+	</update>
+
+	<delete id="deleteAplicacionVO" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteAplicacionVOByCodigo" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE codigo=#value#
+	</delete>
+
+	<delete id="deleteAplicacionVOs">
+		DELETE FROM
+			<include refid="table" />
+	</delete>
+
+</sqlMap>

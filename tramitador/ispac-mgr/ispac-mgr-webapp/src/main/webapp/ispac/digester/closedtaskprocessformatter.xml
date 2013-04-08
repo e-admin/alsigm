@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter defaultSort="2">
+
+	<!--
+	<propertyfmt type="BeanPropertySimpleFmt" 
+        	     property='ID' 
+        	     readOnly='false'
+        		 fieldType='CHECKBOX'
+        		 headerClass='headerDisplay'
+        		 columnClass='width5percent'
+        		 media='html'/>
+	-->	
+	<!-- 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NAME' 
+				 readOnly='false'
+				 titleKey='formattaer.taskProcess.nombre'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html '
+				 decorator=''
+				 url='showExpedient'
+				 id='taskId'
+				 width='17%'/>	
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='NAME' 
+	             readOnly='false'
+		         titleKey='formattaer.taskProcess.nombre' 
+		         fieldType='LIST' 
+		         width='17%'
+        		 media='excel csv xml pdf'/>
+	-->
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NUMEXP' 
+				 readOnly='false'
+				 titleKey='formattaer.taskProcess.numExp'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html '
+				 decorator=''
+				 url='showExpedient'
+				 id='taskId'
+				 columnClass='width15percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='NUMEXP' 
+	             readOnly='false'
+		         titleKey='formattaer.taskProcess.numExp' 
+		         fieldType='LIST' 
+		         columnClass='width15percent'
+		         media='excel csv xml pdf'/>
+		         
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='NAME_PROC' 
+	             readOnly='false'
+		         titleKey='formattaer.taskProcess.procedimiento' 
+		         fieldType='LIST' 
+		         columnClass='width25percent'
+		         sortable='true'/>
+		         
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='NAME_STAGE' 
+	             readOnly='false'
+		         titleKey='formattaer.taskProcess.fase' 
+		         fieldType='LIST' 
+		         columnClass='width25percent'
+		         sortable='true'/>
+		         
+	<propertyfmt type="BeanPropertyDateFmt" 
+	             property='INITDATE' 
+	             readOnly='false'
+		         format='dd/MM/yyyy' 
+		         titleKey='formattaer.taskProcess.fechaInicio' 
+		         fieldType='LIST' 
+		         columnClass='width15percent'
+		         sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+		         
+	<propertyfmt type="BeanPropertyDateFmt" 
+	             property='LIMITDATE' 
+	             readOnly='false'
+		         format='dd/MM/yyyy' 
+		         titleKey='formattaer.taskProcess.fechaLimite'
+		         fieldType='LIST' 
+		         columnClass='width15percent'
+		         sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+		         
+</beanformatter>

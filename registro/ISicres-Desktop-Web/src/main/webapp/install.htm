@@ -1,0 +1,48 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="css/global.css" />
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/global.js"></script>
+		<script language="javascript">
+				document.title = top.ParamValue(top.location.search, "Title");
+		</script>
+		<script language="javascript">
+			function cerrar()
+			{
+				window.returnValue = strPlugin;
+				window.close();
+			}
+      
+			function asignar()
+			{
+				top.AttachEvent(window, "focus", cerrar);
+			}
+			
+			function evaluar(estado)
+			{
+				if (estado==4)
+				{
+					strPlugin = "1";
+				}
+				else
+				{
+					strPlugin = "0";
+				}
+			}
+      
+			var strPlugin="0";
+			var strURLPlugin = top.ParamValue(top.location.search, "URLPlugin");
+   			var strClsid = top.ParamValue(top.location.search, "CLSID");
+   			var strVer = top.ParamValue(top.location.search, "VerPlugin");
+   			var strText = (top.ParamValue(document.location.search,"BgText") == "") ? "Install" : top.ParamValue(document.location.search,"BgText");
+
+   			document.write('<body class="resalt" onload="asignar()" style="overflow:hidden" onunload="top.EnableEvents(window.opener);">');
+   			document.write('<center><font size=6 color="#FFFFFF">' + unescape(strText) + '</font><center><br/><br/><br/><br/>');
+   			document.write('<object id=iDocScanX classid="clsid:' + strClsid + '" codebase="' + strURLPlugin + '#version=' + strVer
+   				+ '" viewastext onreadystatechange="evaluar(this.readyState)" border="none">');
+			document.write('</object>');
+			document.write('</body>');
+		</script>
+	</HEAD>
+</HTML>

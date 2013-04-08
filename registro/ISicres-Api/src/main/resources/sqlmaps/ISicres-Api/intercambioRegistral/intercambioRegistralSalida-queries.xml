@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="IntercambioRegistralSalidaVO">
+
+	<insert  id="addIntercambioRegistralSalidaVO"  parameterClass="intercambioRegistralSalidaVO" >
+		INSERT INTO SCR_EXREG (
+			ID,
+			ID_ARCH,
+			ID_FDR,
+			STATE,
+			STATE_DATE,
+			TYPE_ORIG,
+			ID_OFIC,
+			ID_EXCHANGE,
+			ID_EXCHANGE_SIR,
+			EXCHANGE_DATE,
+			USERNAME,
+			CODE_ENTITY,
+			NAME_ENTITY,
+			CODE_TRAMUNIT,
+			NAME_TRAMUNIT,
+			COMMENTS
+	    )
+		VALUES (
+			#id:INT#,
+		    #idLibro:INT#,
+			#idRegistro:INT#,
+			#idEstado:INT#,
+			#fechaEstado:TIMESTAMP#,
+			#tipoOrigen:INT#,
+			#idOfic:INT#,
+			#idIntercambioInterno:INT#,
+			#idIntercambioRegistral:VARCHAR#,
+			#fechaIntercambio:TIMESTAMP#,
+			#username:VARCHAR#,
+			#codeEntity:VARCHAR#,
+			#nameEntity:VARCHAR#,
+			#codeTramunit:VARCHAR#,
+			#nameTramunit:VARCHAR#,
+			#comentarios:VARCHAR#
+		)
+	</insert>
+
+	<insert id="addDetalleEstadoIntercambioRegistralSalidaVO" parameterClass="estadoIntercambioRegistralSalidaVO">
+		INSERT INTO SCR_EXREGSTATE (
+			ID,
+			ID_EXREG,
+			STATE,
+			STATE_DATE,
+			USERNAME,
+			COMMENTS
+	    )
+		VALUES (
+			#id:INT#,
+		    #idExReg:INT#,
+			#idEstado:INT#,
+			#fechaEstado:TIMESTAMP#,
+			#userName:VARCHAR#,
+			#comentarios:VARCHAR#
+		)
+	</insert>
+
+	<update id="updateStateIntercambioRegistralSalidaVO"  parameterClass="intercambioRegistralSalidaVO">
+		UPDATE SCR_EXREG
+		SET
+			STATE=#idEstado:INT#,
+			STATE_DATE=#fechaEstado:TIMESTAMP#,
+			COMMENTS=#comentarios:VARCHAR# 
+		WHERE
+			ID=#id#
+	</update>
+
+	<update id="updateIntercambioRegistralSalidaVO"  parameterClass="intercambioRegistralSalidaVO">
+		UPDATE SCR_EXREG
+		SET
+			STATE=#idEstado:INT#,
+			STATE_DATE=#fechaEstado:TIMESTAMP#,
+			ID_EXCHANGE=#idIntercambioInterno:INT#,
+			ID_EXCHANGE_SIR=#idIntercambioRegistral#,
+			COMMENTS=#comentarios:VARCHAR#
+		WHERE
+			ID=#id#
+	</update>
+
+	<delete id="deleteIntercambioRegistralSalidaVO"
+			parameterClass="intercambioRegistralSalidaVO">
+		DELETE
+		FROM SCR_EXREG where ID=#id:INT#
+	</delete>
+
+	<delete id="deleteIntercambioRegistralSalidaByIdArchIdFolderVO"
+			parameterClass="java.util.HashMap">
+		DELETE
+		FROM SCR_EXREG where ID_ARCH=#idLibro:INT# and ID_FDR=#idRegistro:INT# and ID_OFIC=#idOficina:INT#
+	</delete>
+
+	<select id="getBandejaSalidaByEstadoOficina" parameterClass="java.util.HashMap"  resultMap="bandejaSalidaItemResultmap">
+		select * from SCR_EXREG
+		where id_ofic=#idOficina:INT# AND STATE=#estado:INT#
+	</select>
+
+	<select id="getIntercambiosRegistralesByIdRegistroIdLibroIdOficina" parameterClass="java.util.HashMap"
+			resultMap="intercambioRegistralSalidaResultMap">
+		select exreg.id, exreg.id_arch, exreg.id_fdr, exreg.id_ofic, exreg.type_orig, exreg.exchange_date,
+		       exreg.state, exreg.username, exreg.code_entity, exreg.name_entity, exreg.name_tramunit,
+		        exreg.code_tramunit, exreg.state_date, exreg.id_exchange, exreg.id_exchange_sir, exreg.comments, ofic.name as nameOfic
+		  from SCR_EXREG exreg, SCR_OFIC ofic
+		 where exreg.id_fdr=#idRegistro:INT#
+		   AND exreg.id_arch=#idLibro:INT#
+		   AND exreg.id_ofic = ofic.id
+	</select>
+
+	<select id="getHistorialEstadoByIntercambioRegistralSalida"
+		parameterClass="java.lang.Long" resultMap="intercambioRegistralSalidaDetalleEstadosResultMap">
+		select *
+		  from SCR_EXREGSTATE
+		 where id_exreg=#idExReg:INT#
+	</select>
+
+	<select id="getBandejaSalidaByEstadoOficinaYLibro" parameterClass="java.util.HashMap"  resultMap="bandejaSalidaItemResultmap">
+		select exreg.id as id, exreg.id_arch as id_arch, exreg.id_fdr as id_fdr, exreg.type_orig as type_orig, exreg.id_exchange as id_exchange,
+		exreg.id_exchange_sir as id_exchange_sir, exreg.code_entity as code_entity, exreg.name_entity as name_entity, exreg.code_tramunit as code_tramunit, exreg.name_tramunit as name_tramunit,
+		exreg.state_date as state_date, exreg.state as state, exreg.id_ofic as id_ofic, exreg.comments as comments,
+		 libro.fld1 as fld1, libro.fld2 as fld2, libro.fld6 as fld6, libro.fld8 as fld8
+		 from a$idLibro$sf libro, scr_exreg exreg
+		where libro.fdrid=exreg.id_fdr and exreg.id_arch=#idLibro:INT# and exreg.id_ofic=#idOficina:INT# AND exreg.state=#estado:INT#
+	</select>
+
+	<select id="getIntercambioRegistralSalidaById" parameterClass="java.lang.Long"  resultMap="intercambioRegistralSalidaResultMap">
+	select *, 'NULL' as nameOfic from SCR_EXREG where id=#value#
+	</select>
+
+	<select id="getIntercambiosRegistralesSalida" parameterClass="java.lang.Integer"  resultMap="intercambioRegistralSalidaResultMap">
+	select *, 'NULL' as nameOfic from SCR_EXREG where STATE=#value#
+	</select>
+
+
+	<select id="findByCriterios" parameterClass="java.util.List" resultMap="intercambioRegistralSalidaResultMap">
+	select *, 'NULL' as nameOfic from SCR_EXREG
+	<dynamic prepend="WHERE">
+		<iterate open="(" close=")" conjunction="AND">
+
+			 <isNotNull prepend="OR" property="[].value1">
+        		$[].column$ $[].operator$ #[].value1#
+      		</isNotNull>
+			<isNotNull prepend="OR" property="[].value2">
+        		$[].column$ $[].operator$ #[].value2#
+      		</isNotNull>
+      		<isNotNull prepend="OR" property="[].value3">
+        		$[].column$ $[].operator$ #[].value3#
+      		</isNotNull>
+
+		</iterate>
+	</dynamic>
+	</select>
+
+	<select id="getBandejaSalidaItemRegistro" parameterClass="bandejaSalidaItemVO"  resultMap="bandejaSalidaItemRegistroResultmap">
+	select libro.fld1 as fld1, libro.fld2 as fld2, libro.fld6 as fld6
+	 from a$idLibro$sf libro
+	where libro.fdrid=#idRegistro:INT#
+	</select>
+
+
+</sqlMap>

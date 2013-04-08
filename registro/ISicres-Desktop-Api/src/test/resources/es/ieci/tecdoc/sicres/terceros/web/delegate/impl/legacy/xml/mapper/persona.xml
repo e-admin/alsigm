@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Persona sesionId="65" bloqueada="0">
+ 	<Id>12345</Id>
+ 	<Tipo>1</Tipo>
+ 	<Nombre>Manuel</Nombre>
+ 	<Apellido1>Tavares</Apellido1>
+ 	<Apellido2>Casanueva</Apellido2>
+ 	<TipoDoc>2</TipoDoc>
+ 	<NIF>45234567K</NIF>
+ 	<Domicilios>
+ 		<Domicilio>
+ 			<Id>87657</Id>
+ 			<Direccion>Calle Mayor 5 - 4</Direccion>
+ 			<Poblacion>23</Poblacion>
+ 			<CodPostal>45678</CodPostal>
+ 			<Provincia>1</Provincia>
+ 			<Preferencia>1</Preferencia>
+ 		</Domicilio>
+ 	</Domicilios>
+ 	<Telematicas>
+ 		<Telematica>
+ 			<IdTel>87657</IdTel>
+ 			<DireccionTel>609765234</DireccionTel>
+ 			<TipoTel>1</TipoTel>
+ 			<PreferenciaTel>1</PreferenciaTel>
+ 		</Telematica>
+ 		<Telematica eliminarTel="1">
+ 			<IdTel>87658</IdTel>
+ 			<DireccionTel>mmmm@uuu.com</DireccionTel>
+ 			<TipoTel>3</TipoTel>
+ 			<PreferenciaTel>0</PreferenciaTel>
+ 		</Telematica>
+	</Telematicas>
+</Persona>

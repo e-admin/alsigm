@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="libroDAO"
+		class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.LibroLegacyDAOImpl" />
+
+	<bean id="oficinaDAO"
+		class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.OficinaLegacyDAOImpl" />
+
+	<bean id="tipoAsuntoDAO"
+		class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.TipoAsuntoLegacyDAOImpl" />
+
+	<bean id="unidadAdministrativaDAO"
+		class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.UnidadAdministrativaLegacyDAOImpl" />
+
+	<bean id="reportsDAO"
+		class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.ReportsDAOImpl"></bean>
+
+
+
+
+
+	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/> <property name="configLocation">
+		<value>hibernate/hibernate.cfg.xml</value> </property> </bean> -->
+
+	<!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" /> </bean> -->
+	<!-- Configuración de logger advisor <bean id="loggerThrowsAdvice" class="es.ieci.tecdoc.fwktd.core.aop.LoggerThrowsAdvice">
+		<property name="level"><value>ERROR</value></property> </bean> <bean id="daoBeanAutoProxy"
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames"><value>*DAO</value></property> <property name="interceptorNames">
+		<list> <value>loggerThrowsAdvice</value> </list> </property> </bean> -->
+
+
+
+
+</beans>

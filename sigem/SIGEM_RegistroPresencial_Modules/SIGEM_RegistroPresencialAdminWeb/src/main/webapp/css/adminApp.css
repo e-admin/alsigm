@@ -1,0 +1,80 @@
+@import url(common.css);
+
+
+body.menubody {
+	background: #e6e6e6;
+	color: #000;
+
+}
+
+.menuItem{
+	color: #5888b8;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 8pt;
+	text-align: right;
+	cursor: pointer;
+	border-top: 2px #5888b8 solid;
+	height: 30px
+}
+
+
+/*
+a:link {
+	font-size: 10px;
+	color: #5888b8;
+	text-decoration: none;
+}
+
+a:visited {
+	font-size: 10px;
+	color: #5888b8;
+	text-decoration: none;
+}
+
+a:hover {
+	background-color: #639ACE;
+	color: #ffffff;
+	text-decoration: none;
+}*/
+.encabezado1 {
+	font-size: 10pt; color: #5888b8; font-weight: bold;
+}
+
+.texto1{
+	font-size: 9pt; color: #5888b8;
+}
+
+table.tableBase{
+	border-collapse: collapse;
+	border: 1px solid #000000;
+	margin-top: 5px;
+	background-color: #D9E6F2;
+	border-color: #008BD7;
+	font-size:10px;
+	font-family: arial, helvetica, Microsoft Sans-serif;
+}
+td.tdBase{
+	font: 11px verdana, arial, helvetica, sans-serif;
+	font-size:10px;
+}
+th{
+	background: #ACC9E3;
+	color: #5888b8;
+}
+.selectedRow{
+	background: #ACC9E3;
+}
+.notSelectedRow{
+	background: #D9E6F2;
+}
+
+#usarSOAuthRow {
+	visibility: hidden;
+}
+
+#usarSOAuthSepRow {
+	visibility: hidden;
+}
+
+
+

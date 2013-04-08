@@ -1,0 +1,111 @@
+#cabecera .des_adm {
+	top: 12px;
+}
+
+#cabecera .des_bck {
+	top: 40px;
+}
+
+#cabecera .salir {
+	top: 125px;
+}
+
+#cabecera .salir2 {
+	top: 25px;
+}
+
+
+#barra_usuario_organo ul li {
+	height: auto;
+}
+
+#barra_usuario_organo ul.usuario_desplegado li li {
+	left: 0px;
+}
+
+#barra_usuario_organo ul.usuario_desplegado li li li {
+	left: 10px;
+}
+
+#botonera {
+	padding-bottom:0px; 
+	height:22px;
+
+}
+
+#contenido_menu {
+	padding-top:0px;
+}
+
+.ficha div.cuerpo_ficha, .ficha_tabs div.cuerpo_ficha {
+	clear: left;
+}
+
+div.cuerpo_ficha div.seccion_ficha {
+	margin: 0px 6px 0px 5px;
+}
+
+#navegacion {
+	margin-right:4px;
+}
+
+div.menu_desplegado #navegacion {
+	margin-top:-1px;
+	margin-right:4px;
+}
+
+#botonera p.menu_bt{
+height:22px;
+}
+#botonera p.menu_bt .imgMenuOn {
+	
+	padding-left: 18px;
+	padding-bottom: 10px;
+	margin: 0px;
+	text-decoration: none;
+
+}
+
+#botonera p.menu_bt .imgMenuOff {
+	
+	padding-left: 18px;
+	padding-bottom: 10px;
+	margin: 0px;
+	text-decoration: none;
+
+.popUp p.aviso, .popUp p.error {
+	width: 50%;
+}
+
+/* estilo para el mensaje de la capa semiopaca */
+.messageShowLayer {
+	position: absolute; 
+	top: 50%; 
+	display: table-cell; 
+	vertical-align: middle;
+    left:42%;
+	text-align: center;
+	width:400px;
+	height:450px;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+}
+
+/* estilos para los botones */
+input.btnOk ,  #btnOkSubmit {
+	padding-left: 8px;
+}
+
+input.btnCancel {
+	padding-left: 8px;
+}
+
+input.btnSearch {
+	padding-left: 8px;
+}
+
+input.btnDir {
+	padding-left: 8px;
+}

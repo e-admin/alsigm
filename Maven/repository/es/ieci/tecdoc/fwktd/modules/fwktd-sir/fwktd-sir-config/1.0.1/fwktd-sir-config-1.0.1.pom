@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
+		<artifactId>fwktd-sir-parent</artifactId>
+		<version>1.0.1</version>
+	</parent>
+
+	<description>Generacion archivos de configuracion fwktd-sir</description>
+
+	<artifactId>fwktd-sir-config</artifactId>
+	<name>fwktd-sir-config</name>
+
+	<dependencies>
+
+ 		<!-- archivos de recursos de configuracion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
+			<artifactId>fwktd-sir-core</artifactId>
+			<version>${project.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
+			<artifactId>fwktd-sir-api</artifactId>
+			<version>${project.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
+			<artifactId>fwktd-sir-ws</artifactId>
+			<version>${project.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
+			<artifactId>fwktd-sir-wsclient</artifactId>
+			<version>${project.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		 
+		<plugins>
+					
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>assembly-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>
+									src/main/assembly/dep.xml
+								</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			
+			
+			
+			 
+		</plugins>
+	</build>
+</project>

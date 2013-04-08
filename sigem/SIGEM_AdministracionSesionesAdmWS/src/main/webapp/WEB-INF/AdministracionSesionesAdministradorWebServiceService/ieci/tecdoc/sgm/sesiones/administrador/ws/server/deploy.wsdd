@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AdministracionSesionesAdministradorWebServiceService WSDL service -->
+
+  <service name="AdministracionSesionesAdministradorWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="AdministracionSesionesAdministradorWebServiceService"/>
+      <parameter name="schemaQualified" value="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="AdministracionSesionesAdministradorWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.sesiones.administrador.ws.server.AdministracionSesionesAdministradorWebService"/>
+      <parameter name="wsdlPortType" value="AdministracionSesionesAdministradorWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="nuevaSesion" qname="operNS:nuevaSesion" returnQName="retNS:nuevaSesionReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:usuario" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:tipoUsuario" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="nuevaSesionEntidad" qname="operNS:nuevaSesionEntidad" returnQName="retNS:nuevaSesionEntidadReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idEntidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="validarSesion" qname="operNS:validarSesion" returnQName="retNS:validarSesionReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="validarSesionEntidad" qname="operNS:validarSesionEntidad" returnQName="retNS:validarSesionEntidadReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key_entidad" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idAplicacion" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" name="caducarSesion" qname="operNS:caducarSesion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" name="caducarSesionEntidad" qname="operNS:caducarSesionEntidad" soapAction="">
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key_entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" name="obtenerSesion" qname="operNS:obtenerSesion" returnQName="retNS:obtenerSesionReturn" returnType="rtns:Sesion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" name="obtenerSesionEntidad" qname="operNS:obtenerSesionEntidad" returnQName="retNS:obtenerSesionEntidadReturn" returnType="rtns:Sesion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key_entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="modificarDatosSesion" qname="operNS:modificarDatosSesion" returnQName="retNS:modificarDatosSesionReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:datosEspecificos" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="obtenerSesion caducarSesion nuevaSesionEntidad caducarSesionEntidad validarSesionEntidad validarSesion nuevaSesion modificarDatosSesion obtenerSesionEntidad"/>
+
+      <typeMapping xmlns:ns="http://server.ws.administrador.sesiones.sgm.tecdoc.ieci" qname="ns:Sesion" type="java:ieci.tecdoc.sgm.sesiones.administrador.ws.server.Sesion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

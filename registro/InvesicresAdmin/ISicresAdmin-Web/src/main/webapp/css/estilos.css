@@ -1,0 +1,477 @@
+
+
+@import url("common/error-stylesheet.css");
+@import url("common/displaytag-stylesheet.css");
+@import url("common/menus-stylesheet.css");
+@import url("common/structure-stylesheet.css");
+
+
+body {
+	font-family:"Arial",Tahoma,Helvetica,sans-serif;
+	font-size: 69%;
+	margin: 5px 5px 10px 5px; /* PARA DEJAR BORDES EN LA PAGINA: QUITAR SI NO SE DESEA ASI */
+	/*margin: 0px; */
+	padding: 0px;
+}
+
+img {
+	border: 0;
+}
+
+.clearfix:after{content: ""; display: block; clear: both; height: 0; visibility: hidden;}
+.clearfix{min-height: 0; height: 1%;}
+
+/* CABECERA DE LAS APLICACIONES */
+
+#cabecera_left {
+	height: 62px;
+	float:left;
+	width:49%;
+	margin: 0px;
+	padding: 0px;
+	background: #000000 url("../img/inicio-banner-left.png") top right no-repeat;
+	/* border:1px solid yellow; */
+}
+
+#cabecera_right {
+	height: 62px;
+	width:49%;
+	float:left;
+	margin: 0px;
+	padding: 0px;
+	background: #FFFFFF url("../img/inicio-banner-right.png") no-repeat;
+	/* border:1px solid red; */
+}
+
+#cabecera_left h1 {
+	width: 245px;
+	height: 60px;
+	margin: 0px 0px 0px 10px;
+	padding: 0px;
+	text-indent: -3000px;
+	background: url("../img/inicio-ieci.png") top left no-repeat;
+}
+
+#cabecera_right h2 {
+	position: absolute;
+	top: 7px;
+	right: 16px;
+	width: 188px;
+	height: 58px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	background: url("../img/inicio-nombre.png") top left no-repeat;
+	text-indent: -3000px;
+}
+
+#cabecera_int_left {
+	height: 37px;
+	float:left;
+	width:50%;
+	margin: 0px;
+	padding: 0px;
+	background: #000000 url("../img/interna-banner-left.png") top right no-repeat;
+}
+
+#cabecera_int_right {
+	height: 37px;
+	width:49.8%;
+	float:left;
+	margin: 0px;
+	padding: 0px;
+	background: #FFFFFF url("../img/interna-banner-right.png") top left no-repeat;
+}
+
+#cabecera_int_left h1 {
+	width: 241px;
+	height: 37px;
+	line-height: 37px;
+	padding: 0px;
+	margin: 0px 0px 0px 10px;
+	background: url("../img/interna-gallery.png") 0px 10px no-repeat;
+	text-indent: -3000px;
+}
+
+#cabecera_int_right h3 {
+	position: absolute;
+	top: 7px;
+	right: 90px;
+	width: 107px;
+	height: 33px;
+	margin: 0px;
+	padding: 0px;
+	background: url("../img/interna-nombre.png") 0px 0px no-repeat;
+	text-indent: -3000px;
+}
+
+.salir {
+	position: absolute;
+	background: url("../img/interna-salir.png") top left no-repeat;
+	text-align: right;
+	top: 11px;
+	right: 18px;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.salir a {
+	height: 25px;
+	line-height: 25px;
+	padding-left: 30px;
+	color: #000000;
+	font-weight: bold;
+	font-family: verdana, arial, tahoma, geneva, sans-serif;
+	text-decoration: none;
+	font-size: 90%;
+}
+
+/* CABECERA LOGIN */
+#cabecera_login{
+	font-family: verdana, arial, tahoma, geneva, sans-serif;
+	font-size: 69%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#appHeaderLogin {
+	width:100%;
+	height:62px;
+}
+
+#appHeaderLogin div#logo_app_login {
+	/*height: 37px;*/
+	height: 62px;
+	float:left;
+	width:50%;
+	margin: 0px;
+	padding: 0px;
+	background: #000000 url("../img/inicio-banner-left.png") top right no-repeat;
+}
+
+#logo_app_img_login {
+	display: block;
+	margin: 0px 0px 0px 10px;
+}
+#logo_app_img2_login {
+	display: block;
+	margin: 3px 10px 0px 0px;
+}
+
+#logo_app_img2 {
+	display: block;
+	margin: 3px 100px 0px 0px;
+}
+
+#logo_app_img {
+	display: block;
+	margin: 8px 0px 0px 10px;
+}
+
+#appHeaderLogin div#logo_cia_login {
+	/*height: 37px;*/
+	height: 62px;
+	width:49.8%;
+	float:left;
+	margin: 0px;
+	padding: 0px;
+	background: #FFFFFF url("../img/inicio-banner-right.png") top left no-repeat;
+}
+
+#appHeader div#logo_cia {
+	height: 37px;
+	width:49.8%;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	background: #FFFFFF url("../img/interna-banner-right.png") top left no-repeat;
+}
+
+/* BARRAS DE USUARIO */
+/* area de usuario con texto a izquierda y botón de ayuda a derecha */
+
+#usuario {
+	background: url("../img/bg_right_usuario_newstyle.jpg") bottom right no-repeat;
+	height: 23px;
+	clear: both;
+}
+
+#barra_usuario {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent url(../img/bg_left_usuario.jpg) no-repeat scroll left bottom;
+	height:23px;
+	line-height:23px;
+	margin:0;
+	padding:0;
+}
+
+#usuariologin {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent url(../img/bg_right_usuario_newstyle.jpg) no-repeat scroll right bottom;
+	clear:both;
+	height:23px;
+}
+
+#barra_usuario a{
+	text-decoration: none;
+}
+
+#barra_usuario h1 {
+	font-weight: bold;
+	font-family: arial;
+	color: #333333;
+	font-size: 100%;
+	float: left;
+	margin: 0px 5px 0px 10px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario h2 {
+	font-weight: normal;
+	font-family: arial;
+	color: #333333;
+	font-size: 100%;
+	float: left;
+	margin: 0px 15px 0px 10px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario h3 {
+	font-weight: bold;
+	font-family: verdana;
+	color: #333333;
+	font-size: 90%;
+	float: left;
+	margin: 0px 15px 0px 10px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario .ayuda  {
+	margin: 0px 10px;
+	text-align: right;
+}
+
+#barra_usuario .ayuda a {
+	background: url("../img/help.gif") top right no-repeat;
+	text-decoration: none;
+	padding: 2px 10px;
+}
+
+#barra_usuario ul {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+}
+
+#barra_usuario ul li {
+	padding-left: 10px;
+	background: url("../img/padre_up.gif") left 3px no-repeat;
+}
+
+
+/* area de usuario con info de organo, desplegable, y botón para desplegar a derecha */
+
+#usuario_organo {
+	background: url("../img/bg_right_usuario_organo.jpg") bottom right repeat-y;
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+	clear:both;
+}
+
+.usuario_plegado ul {
+	display: none;
+}
+
+.usuario_desplegado ul {
+	display: block;
+}
+
+/***/
+#contenido_centrado {
+	margin: 60px auto 0px auto;
+	/*width: 620px;*/
+	width: 669px;
+	overflow: hidden;
+	clear: both;
+}
+
+.ficha_fixed {
+	width: 667px;
+	/*width: 618px;*/
+	background: url("../img/bottom_right.gif") bottom right no-repeat;
+}
+
+.ficha_fixed .encabezado {
+	background: url("../img/top_right.gif") top right no-repeat;
+}
+
+.ficha_fixed .left_encabezado {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent url(../img/top_left.gif) no-repeat scroll left 0;
+	margin:0;
+	padding:2px 0;
+}
+
+.ficha_fixed h3 {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent no-repeat scroll 14px 4px;
+	color:#6C6C6C;
+	font-size:100%;
+	margin:3px 0;
+	padding:0 0 0 30px;
+	text-decoration:none;
+}
+
+.ficha_fixed div.cuerpo {
+	background: url("../img/bottom_left.gif") bottom left no-repeat;
+	padding-bottom: 8px;
+}
+
+.ficha_fixed div.cuerpo div.contenido_cuerpo {
+	border: 1px solid #c7d9d3;
+	background-color: #ffffff;
+	margin: 0px 5px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.ficha_fixed div.cuerpo div.contenido_cuerpo_login {
+	border: 1px solid #c7d9d3;
+	background: #FFFFFF url("../img/inicio-sesion.png") 0px 0px no-repeat;
+	margin: 0px 7px;
+	width: 651px;
+	/*width: 600px;*/
+	height: 231px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.seccion_login {
+	float:right;
+	width:350px;
+}
+
+.fila, .fila_sub {
+	clear:both;
+	font-size:90%;
+	line-height:105%;
+	margin:10px 15px;
+	padding-bottom:3px;
+	padding-top:3px;
+}
+
+.fila_right {
+	clear:both;
+	font-size:90%;
+	line-height:105%;
+	margin:7px 15px;
+	padding-bottom:3px;
+	padding-top:10px;
+}
+
+.fila_error{
+	margin: 10px 15px;
+	padding-bottom:3px;
+}
+
+.fila_sub {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent url(../img/fondo_puntos_newstyle.gif) repeat-x scroll left bottom;
+}
+
+.fila_right {
+	float:right;
+}
+
+.fila label, .fila_sub label {
+	color: #6C6C6C;
+	float:left;
+	font-weight: bold;
+	padding-top:2px
+}
+
+.fila input, .fila_sub input {
+	border:1px solid #6C6C6C;
+	font-size:100%;
+	height:16px;
+	margin-right:10px;
+	padding:0;
+}
+
+label.login {
+	width:150px;
+}
+
+input.login {
+	width:150px;
+}
+
+.fila input.checkbox , .fila_sub input.checkbox {
+	border: none;
+	width:14px;
+	float:left;
+}
+
+.fila a, .fila a:visited, .fila a:hover {
+	color: #6C6C6C;
+	font-size:90%;
+
+}
+
+.fila_right input.botonFondo {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	-x-system-font:none;
+	background:transparent url(../img/fondo_boton_verde.jpg) no-repeat scroll 0 0;
+	border:medium none;
+	color:#FFFFFF;
+	font-family:"Arial";
+	font-size:11px;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	height:20px;
+	line-height:normal;
+	width:87px;
+}
+
+#idiomas {
+	margin-right:10px;
+	text-align:right;
+}
+
+#selIdioma {
+	font-size: 8pt;
+	border:1px solid #7F9DB9;
+	padding:0;
+	width:100px;
+}
+
+#copyright{
+	position:relative;
+	MARGIN-LEFT: 29.5%;
+	MARGIN-TOP: 10%;
+	WIDTH: 40%;
+	TEXT-ALIGN: center;
+}
+
+label.error{
+	color: #006699;
+	float:left;
+	font: bold;
+	padding-bottom:0px;
+}

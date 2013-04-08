@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<!--
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.id'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width5percent'/>
+	-->
+			 				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='EVENT_NAME'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.event'
+				 fieldType='EVENT_NAME'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='INFO_NAME'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.info'
+				 fieldType='INFO_NAME'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width15percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_ACCION'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.action'
+				 fieldType='ID_ACCION'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width15percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_CONDICION'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.condition'
+				 fieldType='ID_CONDICION'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width15percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_APLICACION'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.application'
+				 fieldType='ID_APLICACION'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width15percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 titleKey='form.pubRule.propertyLabel.modOrden'
+				 fieldType='MODORDER'
+				 fieldLink='ID'
+				 styleClass='aOrderButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='showPubRulesList.do?method=modRuleOrder'
+				 id='regId'
+				 columnClass='width10percent'/>
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 readOnly='false'
+				 propertyValueKey='forms.button.edit'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='aActionButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='showPubRule.do?entityId=45'
+				 id='regId'
+				 columnClass='width10percent'/>
+				
+</beanformatter>

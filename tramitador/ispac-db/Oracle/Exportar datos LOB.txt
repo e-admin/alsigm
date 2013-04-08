@@ -1,0 +1,46 @@
+
+Exportación de datos LOB
+------------------------
+
+Para exportar los datos de las tablas:
+
+		SPAC_CT_APLICACIONES
+		SPAC_CT_ENTIDADES
+		SPAC_CT_FRMBUSQUEDA
+		SPAC_CT_INFORMES
+		SPAC_P_BLP (Plantillas)
+
+hay que utilizar el comando EXP de la versión 9.2, para que sea compatible a partir de esta versión.
+
+En la exportación a partir de una 10g, se produce el error:
+
+	EXP-00003 : no storage definition found for segment .....
+	
+
+La solución es recrear la siguiente vista del usuario SYS:
+
+CREATE OR REPLACE VIEW exu9tne (
+tsno, fileno, blockno, length) AS
+SELECT ts#, segfile#, segblock#, length
+FROM sys.uet$
+WHERE ext# = 1
+UNION ALL
+SELECT * FROM SYS.EXU9TNEB
+/ 
+
+
+Exportar las tablas:
+
+EXP <usuario>/<clave>@<instancia> TABLES=(SPAC_CT_APLICACIONES, SPAC_CT_ENTIDADES, SPAC_CT_FRMBUSQUEDA, SPAC_CT_INFORMES, SPAC_P_BLP) FILE=EXPDAT.DMP
+
+
+Tras la exportación, hay que dejar la vista como antes:
+
+CREATE OR REPLACE VIEW EXU9TNE
+(TSNO, FILENO, BLOCKNO, LENGTH)
+AS 
+SELECT  ts#, segfile#, segblock#, LENGTH
+        FROM    sys.uet$
+        WHERE   ext# = 1
+/
+

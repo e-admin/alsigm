@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+								   "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="tercero.list" extends="base-layout">
+		<put-attribute name="title" value="Listado de terceros" />
+		<put-attribute name="body" value="/WEB-INF/jsp/terceros/list.jsp" />
+	</definition>
+
+	<definition name="interesado.search.form" extends="base-layout">
+		<put-attribute name="title" value="Busqueda de terceros" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/interesados/search/form.jsp" />
+	</definition>
+
+	<definition name="tercero.fisico.form" extends="base-layout">
+		<put-attribute name="title" value="Busqueda de terceros" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/terceros/fisicos/form.jsp" />
+	</definition>
+
+	<definition name="tercero.juridico.form" extends="base-layout">
+		<put-attribute name="title" value="Busqueda de terceros" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/terceros/juridicos/form.jsp" />
+	</definition>
+
+	<definition name="direccion.fisica.form"
+		template="/WEB-INF/jsp/terceros/direcciones/fisicas/form.jsp" />
+
+	<definition name="direccion.fisica.list"
+		template="/WEB-INF/jsp/terceros/direcciones/fisicas/list.jsp" />
+
+	<definition name="direccion.telematica.form"
+		template="/WEB-INF/jsp/terceros/direcciones/telematicas/form.jsp" />
+
+	<definition name="direccion.telematica.list"
+		template="/WEB-INF/jsp/terceros/direcciones/telematicas/list.jsp" />
+
+
+	<definition name="interesado.search.list" template="/WEB-INF/jsp/interesados/search/list.jsp" />
+
+	<definition name="interesado.search.form.register.list" template="/WEB-INF/jsp/interesados/searchFormRegister/list.jsp" />
+
+	<definition name="interesado.choose.direccion"
+		template="/WEB-INF/jsp/interesados/direccion/choose.jsp" />
+
+	<definition name="interesado.list" template="/WEB-INF/jsp/interesados/list.jsp" />
+
+	<definition name="representante.search.form"
+		template="/WEB-INF/jsp/representantes/search/form.jsp" />
+
+	<definition name="representante.search.list"
+		template="/WEB-INF/jsp/representantes/search/list.jsp" />
+
+	<definition name="representante.choose.direccion"
+		template="/WEB-INF/jsp/representantes/direccion/choose.jsp" />
+
+	<definition name="interesados.flush" template="/WEB-INF/jsp/interesados/flush.jsp" />
+
+	<definition name="general-error" template="/WEB-INF/jsp/error.jsp" />
+</tiles-definitions>

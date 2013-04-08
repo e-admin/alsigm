@@ -1,0 +1,450 @@
+/*Generales*/
+body {
+	padding:0px;
+	margin: 5px 5px 10px 5px;
+	font:normal 70%/normal "Arial", Tahoma, Helvetica, sans-serif;
+	background: #FFFFFF;
+}
+
+#contenedora {
+	margin:0px auto;
+	text-align:left;
+	background-color:#fff;
+	height:100%;
+	width: 100%;
+}
+
+.centered {
+	text-align: center;
+}
+
+a:hover{ text-decoration:underline;
+}
+a{ text-decoration:none; color:#000000
+}
+.activo{ text-decoration:none;color:#cc3300
+}
+.titular{font-weight:bold;color: #006699;
+}
+.titular a{ text-decoration:none; color: #006699;
+}
+
+/*cabecera*/
+
+
+#cabecera {
+	height: 61px;
+	background: #99D6F5 url("../img/fondo_cab.jpg") top left no-repeat;
+}
+
+#cabecera h1 {
+	margin: 0px 0px 0px 8px;
+	height: 61px;
+	background: url("../img/logo.gif") 0px 0px no-repeat;
+	text-indent: -3000px;
+}
+
+#cabecera h3 {
+	margin: 0px;
+	position: absolute;
+	top: 6px;
+	left: 279px;
+/*	cambiar para cabecera sin margen */
+	width: 415px;
+	height: 60px;
+/*	background: url("../img/portal_organismo.gif") 0px 0px no-repeat;*/
+	text-indent: -3000px;
+}
+
+#cabecera .salir {
+	position: absolute;
+	background: url("../img/exit.gif") top left no-repeat;
+	text-align: right;
+	top: 28px;
+	right: 26px;
+}
+
+.salir a {
+	height: 20px;
+	line-height: 20px;
+	padding-left: 30px;
+	color: #307CB6;
+	font-weight: bold;
+	font-family: verdana, arial, tahoma, geneva, sans-serif;
+	text-decoration: none;
+	font-size: 90%;
+}
+
+/* BARRAS DE USUARIO */
+
+/* area de usuario con texto a izquierda y bot�n de ayuda a derecha */
+
+#usuario {
+	background: url("../img/bg_right_usuario.jpg") bottom right no-repeat;
+	height: 27px;
+	vertical-align:middle;
+	margin: 0px;
+	padding: 0px;
+}
+
+#barra_usuario {
+	margin: 0px;
+	background: url("../img/bg_left_usuario.jpg") left bottom no-repeat;
+	padding: 0px;
+	height: 27px;
+	line-height: 27px;
+}
+
+
+#barra_usuario h3 {
+	font-weight: bold;
+	font-family: verdana;
+	color: #333333;
+	font-size: 90%;
+	float: left;
+	margin: 0px 15px 0px 10px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario .ayuda  {
+	margin: 0px 10px;
+	padding: 0px;
+	text-align: right;
+}
+
+#barra_usuario .ayuda a {
+	background: url("../img/help.gif") right 0px no-repeat;
+	text-decoration: none;
+	margin: 0px;
+	padding: 1px 0px 0px 6px;
+}
+
+#barra_usuario .idioma {
+	Height: 23px;
+	line-height: 23px;
+	margin: 0px 10px;
+	padding: 0px;
+}
+
+#barra_usuario .idioma a {
+	background: url("../img/refresh.gif") right 0px no-repeat;
+	text-decoration: none;
+	Height: 23px;
+	line-height: 23px;
+	margin: 0px;
+	padding: 1px 0px 0px 6px;
+}
+
+#barra_usuario .idioma select {
+	font-size: 100%;
+	margin: 0px;
+	padding: 0px;
+	margin-top: 3px;
+	border: 1px solid #7f9db9;
+	width: 100px;
+}
+
+/* fin cabecera normalizada */
+
+
+p.desplegar{margin-top:10px;background: url(../img/ico_desplegar.gif) no-repeat left; padding-left:15px;font-size:90%;margin-right:20px;width:80px;
+}
+.margen{margin-left:15px; margin-right:5px;
+}
+#migas{padding-top:10px; padding-bottom:10px;
+}
+
+/*submenu1*/
+.submenu{width:100%;height:21px;background: url(../img/subme1_bg.gif) repeat-x;border-right: 1px solid #c3d8e5;border-left: 1px solid #c3d8e5; padding:0px
+}
+.submenu ul{height:21px;font-size:100%;margin: 0px 0px 0px 21px;padding:0px;padding:0px;list-style: none;float:left;
+}
+.submenu img{ padding:0px; margin:0px;vertical-align: text-bottom
+}
+.submenu li{ float:left; padding:0px; margin:0px;
+}
+.submenu li.submen1on{background: url(../img/subme1_bgon.gif) top left repeat-x; font-weight:bold;color: #006699; margin: 0px; padding:0px; height:21px;
+}
+.submenu li.submen1off{background: url(../img/subme1_bgoff.gif) top left repeat-x ; margin: 0px; padding:0px; height:21px;
+}
+/*submenu2*/
+.submenu2{width:100%;height:21px;background: url(../img/subme2_bg.gif) repeat-x;border-right: 1px solid #c3d8e5;border-left: 1px solid #c3d8e5; padding:0px
+}
+.submenu2 ul{height:21px;font-size:100%;margin: 0px 0px 0px 21px;padding:0px;padding:0px;list-style: none;float:left;
+}
+.submenu2 img{ padding:0px; margin:0px;vertical-align: text-bottom
+}
+.submenu2 li{ float:left; padding:0px; margin:0px;
+}
+.submenu2 li.submen1on{ background: url(../img/subme2_bgon.gif) top left repeat-x; font-weight:bold;color: #006699; margin: 0px; padding:0px; height:21px;
+}
+.submenu2 li.submen1off{ background: url(../img/subme2_bgoff.gif) top left repeat-x ; margin: 0px; padding:0px; height:21px;
+}
+
+/*submenu3*/
+
+.submenu3{width:100%;height:17px;background: url(../img/subme3_bg.gif) repeat-x; padding:0px
+}
+.submenu3 ul{height:17px;font-size:100%;margin: 0px 0px 0px 21px;padding:0px;padding:0px;list-style: none;float:right;
+}
+.submenu3 img{ padding:0px; margin:0px;vertical-align: text-bottom
+}
+.submenu3 li{ float:left; padding:0px; margin:0px;
+}
+.submenu3 li.submen1on{ background: url(../img/subme3_bgon.gif) top left repeat-x; font-weight:bold;color: #006699; margin: 0px; padding:0px; height:17px;
+}
+.submenu3 li.submen1off{ background: url(../img/subme3_bgoff.gif) top left repeat-x ; margin: 0px; padding:0px; height:17px;color: #006699
+}
+
+
+/*ejemplo cuerpo con submenu*/
+
+.contenedor_centrado {
+	width: 710px;
+	margin: 80px auto 20px auto;
+	text-align: center;
+}
+
+.contenedor_centrado_ancho {
+	width: 780px;
+	margin: 20px auto 20px auto;
+	text-align: center;
+}
+
+.cuerpo{
+	background: #dee1e8 url(../img/bg_left_cuerpo.jpg) no-repeat left top;
+	width:707px;
+	text-align:left;
+}
+.cuerpomid{ background: url(../img/bg_mid_cuerpo.jpg) repeat-x left top; margin: 0px 6px 0px 5px; padding: 6px 0px 0px;
+}
+.cuerporight{ background: url(../img/bg_right_cuerpo.jpg) no-repeat right top;
+}
+h1 {
+	font-weight:bold;
+	color: #006699;
+	font-size:100%;
+	background: transparent url(../img/bolo_activo.gif) no-repeat scroll left 1px;
+	margin: 6px 0px 0px 10px;
+	padding: 0px 0px 5px 15px;
+	line-height:90%;
+}
+.cuadro{ background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid #c6c9d5; padding:15px; margin:0px
+}
+.cuadro input{height:16px;font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+.col{ background: url(../img/fondo_puntos.gif) repeat-x left bottom; padding-bottom:3px;padding-top:3px;
+}
+.cuadro label.gr{color: #006699; width:110px;float:left;padding-top:2px
+}
+.cuerpobt{
+	background: #dee1e8 url(../img/bg_leftdown_cuerpo.jpg) no-repeat left bottom;
+	width:707px;
+}
+.cuerpomidbt{ background: url(../img/bg_middown_cuerpo.jpg) repeat-x left bottom; margin: 0px 6px 0px 5px; padding: 6px 0px 20px;
+}
+.cuerporightbt{ background: url(../img/bg_rightdown_cuerpo.jpg) no-repeat right bottom;
+}
+
+.contenido_cuerpo_login,  .contenido_cuerpo_acceso {
+	border: 1px solid #c7d9d3;
+	background: #FFFFFF url("../img/foto_mujer_teclado.jpg") 0px 0px no-repeat;
+	margin: 0px 5px;
+	width: 685px;
+	height: 231px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.contenido_cuerpo_acceso{
+	background: #FFFFFF url("../img/foto_carpetas.jpg") 0px 0px no-repeat;
+}
+
+.contenido_cuerpo {
+	margin: 0px 5px;
+	border: 1px solid #c7d9d3;
+	background: #FFFFFF;
+}
+
+.seccion_login {
+	margin: 15px 30px 0px 0px;
+	width: 320px;
+	float:right;
+}
+
+.seccion_new_login {
+	margin: 5px 5px 0px 5px;
+	width: 340px;
+	float:right;
+}
+
+.seccion_acceso {
+	margin: 70px 50px 0px 0px;
+	width: 300px;
+	float:right;
+}
+
+.seccion {
+	margin: 10px 6px 20px 14px;
+	width: 300px;
+	float:left;
+}
+
+div.clear {
+	clear:both;
+}
+
+.encabezado_sec {
+	background-color: #DFECF5;
+	border: 1px solid #C3D8E5;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 10px;
+	font-weight: bold;
+	color: #333333;
+}
+
+.cuerpo_sec {
+	padding: 10px 0px 0px 0px;
+}
+
+.cuerpo_sec ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.cuerpo_sec ul li {
+	background: url("../img/bolo_activo.gif") left 3px no-repeat;
+	padding-left: 14px;
+	margin: 5px 0px 10px 0px;
+}
+
+.cuerpo_sec a {
+	height: 12px;
+	line-height: 12px;
+	color: #333333;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+form {
+	padding: 10px 4px 10px 4px;
+	margin: 0px;
+	font-size: 100%;
+}
+
+.fila, .fila_sub, .fila_right {
+	padding-bottom:3px;
+	padding-top:3px;
+	margin: 0px;
+	clear:both;
+}
+
+.fila_sub {
+	background: url(../img/fondo_puntos.gif) repeat-x left bottom;
+}
+
+.fila_right {
+	float:right;
+}
+
+.fila label, .fila_sub label {
+	color: #006699;
+	float:left;
+	padding-top:2px
+}
+
+.fila span {
+	color: #006699;
+	float:left;
+	padding-top:2px
+}
+
+span.login {
+	width:100px;
+}
+
+.fila input, .fila_sub input, .fila select, .fila_sub select {
+	height:16px;
+	font-size:100%;
+	padding:0px;
+	border:1px solid #7f9db9;
+	margin-right:10px;
+}
+
+label.login {
+	width:100px;
+}
+
+label.new_login {
+	width:150px;
+}
+
+input.login {
+	width:160px;
+}
+input.login_disabled {
+	width:160px;
+	background-color:#DDDDDD;
+}
+select.login {
+	width:160px;
+}
+
+.fila input.checkbox , .fila_sub input.checkbox {
+	border: none;
+	width:14px;
+	float:left;
+}
+
+.fila a, .fila a:visited, .fila a:hover {
+	color: #006699;
+	font-size:90%;
+}
+
+.fila_right input.botonFondo {
+	border: none;
+	background: url(../img/fondo_boton.jpg) no-repeat;
+	font: bold 11px "Arial";
+	width: 87px;
+	color: #fff;
+	height: 20px
+}
+
+
+.cuadro_alta{ background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid #c6c9d5; padding:1px; margin:0px
+}
+.cuadro_alta label.gr{color: #006699; width:110px;float:left;padding-top:2px
+}
+.cuadro_alta input{height:16px;font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+.cuadro select.gr{height:16px;font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+.cuadro textarea.gr{padding:0;border:1px solid #7f9db9;margin-right:10px
+}
+input.ok{background: url(../img/fondo_boton.jpg) no-repeat; color:#fff; font:bold 11px "Arial"; height: 20px; border: 0px; width:87px;
+}
+label.error {
+	color: #006699;
+	float:left;
+	font-weight: bold;
+}
+
+titulo{ font-weight:bold; color: #006699; font-size:100%; margin: 6px 0px 0px 10px; padding: 0px 0px 0px 10px; line-height:90%;
+}
+.cuadro checkbox.gr{font-size:100%; padding:0;margin-right:10px
+}
+.cuadro2 label.gr{color: #006699; width:110px;float:left;padding-top:2px
+}
+.cuadro2{ background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid #c6c9d5; padding:15px; margin:0px
+}
+.cuadro2 gr2{height:16px; font-size:100%; padding:0;border:1px solid #7f9db9;width:160px;margin-right:10px
+}
+
+/*p.ayuda{margin-top:8px;background: url(../img/help.gif) no-repeat left; padding-left:15px;font-size:90%;margin-right:20px;width:80px;
+}
+*/
+
+label.error_rojo{color: #EE0000; font: bold;
+}

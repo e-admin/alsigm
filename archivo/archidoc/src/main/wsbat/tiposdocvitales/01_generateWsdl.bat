@@ -1,0 +1,1 @@
+CALL ..\comun\01_generateWsdl.bat ..\tiposdocvitales\defs.bat

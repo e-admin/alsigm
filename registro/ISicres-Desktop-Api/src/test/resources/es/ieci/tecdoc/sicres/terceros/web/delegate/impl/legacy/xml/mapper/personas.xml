@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Personas inicio="0" fin="2" total="2" rango="20">
+	<Persona>
+		<Id>12345</Id>
+	 	<Tipo>1</Tipo>
+	 	<Nombre>Manuel</Nombre>
+	 	<Apellido1>Manuel</Apellido1>
+	 	<Apellido2>Manuel</Apellido2>
+	 	<TipoDoc>N</TipoDoc>
+	 	<NIF>45234567K</NIF>
+	 </Persona>
+	 <Persona>
+	 	<Id>12645</Id>
+	 	<Tipo>1</Tipo>
+	 	<Nombre>José</Nombre>
+	 	<Apellido1>López</Apellido1>
+	 	<Apellido2>García</Apellido2>
+	 	<TipoDoc>N</TipoDoc>
+	 	<NIF>55214867J</NIF>
+	</Persona>
+</Personas>

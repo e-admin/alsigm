@@ -1,0 +1,19 @@
+@import url(common.css);
+
+/* Estilos propios de la página de logout */
+td.cabecera {
+	height: 45px;
+	background: url(../images/degblue.gif);
+}
+
+a.relogin, a.relogin:link, a.relogin:active ,a.relogin:visited, a.relogin:hover {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 12px;
+	font-family: Tahoma, verdana, arial, helvetica, sans-serif;
+	color: #000000;
+}
+
+A.relogin:hover  {
+	text-decoration: underline;
+}

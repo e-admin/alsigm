@@ -1,0 +1,2371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="getUsuariosDepartamento">
+    <complexType>
+     <sequence>
+      <element name="idDept" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosDepartamentoResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosDepartamentoReturn" type="impl:Usuarios"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Permiso">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="dest" type="xsd:int"/>
+       <element name="id" type="xsd:int"/>
+       <element name="perm" type="xsd:int"/>
+       <element name="product" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPermiso">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Permiso"/>
+    </sequence>
+   </complexType>
+   <complexType name="Permisos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="permisos" nillable="true" type="impl:ArrayOfPermiso"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PermisosGenericos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="permisos" nillable="true" type="impl:Permisos"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PerfilUsuario">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="product" type="xsd:int"/>
+       <element name="profile" type="xsd:int"/>
+       <element name="userId" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPerfilUsuario">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:PerfilUsuario"/>
+    </sequence>
+   </complexType>
+   <complexType name="PerfilesUsuario">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="perfilesUsuario" nillable="true" type="impl:ArrayOfPerfilUsuario"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PerfilesGenericos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="perfilesUsuario" nillable="true" type="impl:PerfilesUsuario"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Usuario">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="creationDate" nillable="true" type="xsd:dateTime"/>
+       <element name="creatorId" type="xsd:int"/>
+       <element name="deptId" type="xsd:int"/>
+       <element name="description" nillable="true" type="xsd:string"/>
+       <element name="id" type="xsd:int"/>
+       <element name="isChange" type="xsd:boolean"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="oldPassword" nillable="true" type="xsd:string"/>
+       <element name="password" nillable="true" type="xsd:string"/>
+       <element name="perms" nillable="true" type="impl:PermisosGenericos"/>
+       <element name="profiles" nillable="true" type="impl:PerfilesGenericos"/>
+       <element name="pwdLastUpdTs" type="xsd:long"/>
+       <element name="pwdmbc" nillable="true" type="xsd:string"/>
+       <element name="pwdminlen" type="xsd:int"/>
+       <element name="pwdvpcheck" nillable="true" type="xsd:string"/>
+       <element name="state" type="xsd:int"/>
+       <element name="updateDate" nillable="true" type="xsd:dateTime"/>
+       <element name="updaterId" type="xsd:int"/>
+       <element name="userConnected" type="xsd:int"/>
+       <element name="wasAdmin" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfUsuario">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Usuario"/>
+    </sequence>
+   </complexType>
+   <complexType name="Usuarios">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="usuarios" nillable="true" type="impl:ArrayOfUsuario"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getUsuarioPorId">
+    <complexType>
+     <sequence>
+      <element name="idUser" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioPorIdResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioPorIdReturn" type="impl:Usuario"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioPorNombre">
+    <complexType>
+     <sequence>
+      <element name="nameUser" type="xsd:string"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioPorNombreResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioPorNombreReturn" type="impl:Usuario"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioPorIdCertificado">
+    <complexType>
+     <sequence>
+      <element name="idCert" type="xsd:string"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioPorIdCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioPorIdCertificadoReturn" type="impl:Usuario"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosAplicacion">
+    <complexType>
+     <sequence>
+      <element name="aplicacion" type="xsd:int"/>
+      <element name="sinPermisos" type="xsd:boolean"/>
+      <element name="usuarios" type="xsd:boolean"/>
+      <element name="superusuarios" type="xsd:boolean"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosAplicacionResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosAplicacionReturn" type="impl:Usuarios"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosGrupo">
+    <complexType>
+     <sequence>
+      <element name="idGrupo" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosGrupoResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosGrupoReturn" type="impl:Usuarios"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDepartamentosPorPadre">
+    <complexType>
+     <sequence>
+      <element name="idDeptPadre" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDepartamentosPorPadreResponse">
+    <complexType>
+     <sequence>
+      <element name="getDepartamentosPorPadreReturn" type="impl:Departamentos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="UsuarioBasico">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="id" type="xsd:int"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfUsuarioBasico">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:UsuarioBasico"/>
+    </sequence>
+   </complexType>
+   <complexType name="UsuariosBasicos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="usuariosBasicos" nillable="true" type="impl:ArrayOfUsuarioBasico"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Departamento">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="adminUsers" nillable="true" type="impl:UsuariosBasicos"/>
+       <element name="creationDate" nillable="true" type="xsd:dateTime"/>
+       <element name="creatorId" type="xsd:int"/>
+       <element name="description" nillable="true" type="xsd:string"/>
+       <element name="id" type="xsd:int"/>
+       <element name="managerId" type="xsd:int"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="parentId" type="xsd:int"/>
+       <element name="perms" nillable="true" type="impl:PermisosGenericos"/>
+       <element name="type" type="xsd:int"/>
+       <element name="updateDate" nillable="true" type="xsd:dateTime"/>
+       <element name="updaterId" type="xsd:int"/>
+       <element name="userConnected" type="xsd:int"/>
+       <element name="users" nillable="true" type="impl:Usuarios"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfDepartamento">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Departamento"/>
+    </sequence>
+   </complexType>
+   <complexType name="DepartamentosLista">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="departamentos" nillable="true" type="impl:ArrayOfDepartamento"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Departamentos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="departamentosLista" nillable="true" type="impl:DepartamentosLista"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getGrupos">
+    <complexType>
+     <sequence>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getGruposResponse">
+    <complexType>
+     <sequence>
+      <element name="getGruposReturn" type="impl:Grupos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Grupo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="adminUsers" nillable="true" type="impl:UsuariosBasicos"/>
+       <element name="creationDate" nillable="true" type="xsd:dateTime"/>
+       <element name="creatorId" type="xsd:int"/>
+       <element name="description" nillable="true" type="xsd:string"/>
+       <element name="id" type="xsd:int"/>
+       <element name="managerId" type="xsd:int"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="perms" nillable="true" type="impl:PermisosGenericos"/>
+       <element name="type" type="xsd:int"/>
+       <element name="updateDate" nillable="true" type="xsd:dateTime"/>
+       <element name="updaterId" type="xsd:int"/>
+       <element name="userConnected" type="xsd:int"/>
+       <element name="users" nillable="true" type="impl:Usuarios"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfGrupo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Grupo"/>
+    </sequence>
+   </complexType>
+   <complexType name="GruposLista">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="grupos" nillable="true" type="impl:ArrayOfGrupo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Grupos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="gruposLista" nillable="true" type="impl:GruposLista"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getDepartamentos">
+    <complexType>
+     <sequence>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDepartamentosResponse">
+    <complexType>
+     <sequence>
+      <element name="getDepartamentosReturn" type="impl:Departamentos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getGrupo">
+    <complexType>
+     <sequence>
+      <element name="idGrupo" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getGrupoResponse">
+    <complexType>
+     <sequence>
+      <element name="getGrupoReturn" type="impl:Grupo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDepartamento">
+    <complexType>
+     <sequence>
+      <element name="idDepto" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDepartamentoResponse">
+    <complexType>
+     <sequence>
+      <element name="getDepartamentoReturn" type="impl:Departamento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="crearArchivador">
+    <complexType>
+     <sequence>
+      <element name="archive" type="impl:Archive"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArchiveFld">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="colName" nillable="true" type="xsd:string"/>
+       <element name="doc" type="xsd:boolean"/>
+       <element name="id" type="xsd:int"/>
+       <element name="len" type="xsd:int"/>
+       <element name="mult" type="xsd:boolean"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="nullable" type="xsd:boolean"/>
+       <element name="remarks" nillable="true" type="xsd:string"/>
+       <element name="type" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfArchiveFld">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ArchiveFld"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArchiveFlds">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="archiveFldsList" nillable="true" type="impl:ArrayOfArchiveFld"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_xsd_int">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArchiveIdx">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="fldsId" nillable="true" type="impl:ArrayOf_xsd_int"/>
+       <element name="id" type="xsd:int"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="unique" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfArchiveIdx">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ArchiveIdx"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArchiveIdxs">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="archiveIndxsList" nillable="true" type="impl:ArrayOfArchiveIdx"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArchiveMisc">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="fdrName" nillable="true" type="xsd:string"/>
+       <element name="volListId" type="xsd:int"/>
+       <element name="volListType" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Archive">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="adminUserId" type="xsd:int"/>
+       <element name="fldsDef" nillable="true" type="impl:ArchiveFlds"/>
+       <element name="ftsInContents" type="xsd:boolean"/>
+       <element name="idxsDef" nillable="true" type="impl:ArchiveIdxs"/>
+       <element name="miscDef" nillable="true" type="impl:ArchiveMisc"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="parentId" type="xsd:int"/>
+       <element name="remarks" nillable="true" type="xsd:string"/>
+       <element name="typeId" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="crearArchivadorResponse">
+    <complexType>
+     <sequence>
+      <element name="crearArchivadorReturn" type="impl:RetornoEntero"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoEntero">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="valor" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="editarDepartamentoCompleto">
+    <complexType>
+     <sequence>
+      <element name="departamento" type="impl:Departamento"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editarDepartamentoCompletoResponse">
+    <complexType>
+     <sequence>
+      <element name="editarDepartamentoCompletoReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editarUsuario">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="impl:Usuario"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editarUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="editarUsuarioReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarArchivador">
+    <complexType>
+     <sequence>
+      <element name="userId" type="xsd:int"/>
+      <element name="archiveId" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarArchivadorResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarArchivadorReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListas">
+    <complexType>
+     <sequence>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListasResponse">
+    <complexType>
+     <sequence>
+      <element name="getListasReturn" type="impl:Listas"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Lista">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="creationDate" nillable="true" type="xsd:dateTime"/>
+       <element name="creatorId" type="xsd:int"/>
+       <element name="flags" type="xsd:int"/>
+       <element name="id" type="xsd:int"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="remarks" nillable="true" type="xsd:string"/>
+       <element name="state" type="xsd:int"/>
+       <element name="updateDate" nillable="true" type="xsd:dateTime"/>
+       <element name="updaterId" type="xsd:int"/>
+       <element name="volId" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfLista">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Lista"/>
+    </sequence>
+   </complexType>
+   <complexType name="Listas">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="listas" nillable="true" type="impl:ArrayOfLista"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getUsuarios">
+    <complexType>
+     <sequence>
+      <element name="aplicacion" type="xsd:int"/>
+      <element maxOccurs="unbounded" name="idsUser" type="xsd:int"/>
+      <element name="superusers" type="xsd:boolean"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosReturn" type="impl:Usuarios"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosAsociation">
+    <complexType>
+     <sequence>
+      <element name="aplicacion" type="xsd:int"/>
+      <element name="deptId" type="xsd:int"/>
+      <element name="superusers" type="xsd:boolean"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosAsociationResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosAsociationReturn" type="impl:Usuarios"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosYaAsociados">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="idsUser" type="xsd:int"/>
+      <element name="idOfic" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosYaAsociadosResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosYaAsociadosReturn" type="impl:Usuarios"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosAplicacionPorDepartamento">
+    <complexType>
+     <sequence>
+      <element name="aplicacion" type="xsd:int"/>
+      <element maxOccurs="unbounded" name="deptId" type="xsd:int"/>
+      <element name="sinPermisos" type="xsd:boolean"/>
+      <element name="users" type="xsd:boolean"/>
+      <element name="superusuarios" type="xsd:boolean"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosAplicacionPorDepartamentoResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosAplicacionPorDepartamentoReturn" type="impl:Usuarios"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="crearGrupoLdap">
+    <complexType>
+     <sequence>
+      <element name="ldapGuid" type="xsd:string"/>
+      <element name="ldapDn" type="xsd:string"/>
+      <element name="type" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="crearGrupoLdapResponse">
+    <complexType>
+     <sequence>
+      <element name="crearGrupoLdapReturn" type="impl:GrupoLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="GrupoLdap">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="_fullname" nillable="true" type="xsd:string"/>
+       <element name="_guid" nillable="true" type="xsd:string"/>
+       <element name="_id" type="xsd:int"/>
+       <element name="_type" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getGrupoLdap">
+    <complexType>
+     <sequence>
+      <element name="ldapGuid" type="xsd:string"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getGrupoLdapResponse">
+    <complexType>
+     <sequence>
+      <element name="getGrupoLdapReturn" type="impl:GrupoLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="crearUsuarioLdap">
+    <complexType>
+     <sequence>
+      <element name="ldapGuid" type="xsd:string"/>
+      <element name="name" type="xsd:string"/>
+      <element name="idPerfil" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="crearUsuarioLdapResponse">
+    <complexType>
+     <sequence>
+      <element name="crearUsuarioLdapReturn" type="impl:UsuarioLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="UsuarioLdap">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="_id" type="xsd:int"/>
+       <element name="_ldapfullname" nillable="true" type="xsd:string"/>
+       <element name="_ldapguid" nillable="true" type="xsd:string"/>
+       <element name="_permsImpl" nillable="true" type="impl:PermisosGenericos"/>
+       <element name="_profilesImpl" nillable="true" type="impl:PerfilesGenericos"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getUsuarioLdapByGuid">
+    <complexType>
+     <sequence>
+      <element name="ldapguid" type="xsd:string"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioLdapByGuidResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioLdapByGuidReturn" type="impl:UsuarioLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioLdapByFullName">
+    <complexType>
+     <sequence>
+      <element name="fullName" type="xsd:string"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioLdapByFullNameResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioLdapByFullNameReturn" type="impl:UsuarioLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioLdapPorIdCertificado">
+    <complexType>
+     <sequence>
+      <element name="idCert" type="xsd:string"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioLdapPorIdCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioLdapPorIdCertificadoReturn" type="impl:UsuarioLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosLdap">
+    <complexType>
+     <sequence>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosLdapResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosLdapReturn" type="impl:UsuariosLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfUsuarioLdap">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:UsuarioLdap"/>
+    </sequence>
+   </complexType>
+   <complexType name="UsuariosLdap">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="usuariosLdap" nillable="true" type="impl:ArrayOfUsuarioLdap"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getUsuarioLdap">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioLdapResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioLdapReturn" type="impl:UsuarioLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosLdapYaAsociados">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="idsUser" type="xsd:int"/>
+      <element name="idOfic" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosLdapYaAsociadosResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosLdapYaAsociadosReturn" type="impl:UsuariosLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editarUsuarioLdap">
+    <complexType>
+     <sequence>
+      <element name="usuarioLdap" type="impl:UsuarioLdap"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="editarUsuarioLdapResponse">
+    <complexType>
+     <sequence>
+      <element name="editarUsuarioLdapReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarUsuarioLdap">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarUsuarioLdapResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarUsuarioLdapReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioLdapBasicById">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioLdapBasicByIdResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioLdapBasicByIdReturn" type="impl:RetornoCadena"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoCadena">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="valor" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getDepartamentoLite">
+    <complexType>
+     <sequence>
+      <element name="arg0" type="xsd:int"/>
+      <element name="arg1" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDepartamentoLiteResponse">
+    <complexType>
+     <sequence>
+      <element name="getDepartamentoLiteReturn" type="impl:Departamento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getGrupoLdapById">
+    <complexType>
+     <sequence>
+      <element name="arg0" type="xsd:int"/>
+      <element name="arg1" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getGrupoLdapByIdResponse">
+    <complexType>
+     <sequence>
+      <element name="getGrupoLdapByIdReturn" type="impl:GrupoLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosLdapAplicacionPorDepartamento">
+    <complexType>
+     <sequence>
+      <element name="aplicacion" type="xsd:int"/>
+      <element maxOccurs="unbounded" name="deptId" type="xsd:int"/>
+      <element name="sinPermisos" type="xsd:boolean"/>
+      <element name="usuarios" type="xsd:boolean"/>
+      <element name="superusuarios" type="xsd:boolean"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosLdapAplicacionPorDepartamentoResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosLdapAplicacionPorDepartamentoReturn" type="impl:UsuariosLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosLdapAplicacion">
+    <complexType>
+     <sequence>
+      <element name="aplicacion" type="xsd:int"/>
+      <element maxOccurs="unbounded" name="idsUser" type="xsd:int"/>
+      <element name="superusers" type="xsd:boolean"/>
+      <element name="entidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuariosLdapAplicacionResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuariosLdapAplicacionReturn" type="impl:UsuariosLdap"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://server.ws.estructura.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getUsuariosGrupoRequest">
+
+      <wsdl:part element="impl:getUsuariosGrupo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosAsociationResponse">
+
+      <wsdl:part element="impl:getUsuariosAsociationResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapByGuidResponse">
+
+      <wsdl:part element="impl:getUsuarioLdapByGuidResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapByFullNameResponse">
+
+      <wsdl:part element="impl:getUsuarioLdapByFullNameResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapPorIdCertificadoResponse">
+
+      <wsdl:part element="impl:getUsuarioLdapPorIdCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarUsuarioLdapRequest">
+
+      <wsdl:part element="impl:eliminarUsuarioLdap" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarArchivadorResponse">
+
+      <wsdl:part element="impl:eliminarArchivadorResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGrupoLdapByIdResponse">
+
+      <wsdl:part element="impl:getGrupoLdapByIdResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapBasicByIdRequest">
+
+      <wsdl:part element="impl:getUsuarioLdapBasicById" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="editarDepartamentoCompletoRequest">
+
+      <wsdl:part element="impl:editarDepartamentoCompleto" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGrupoLdapResponse">
+
+      <wsdl:part element="impl:getGrupoLdapResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarArchivadorRequest">
+
+      <wsdl:part element="impl:eliminarArchivador" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosYaAsociadosResponse">
+
+      <wsdl:part element="impl:getUsuariosYaAsociadosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosLdapAplicacionPorDepartamentoResponse">
+
+      <wsdl:part element="impl:getUsuariosLdapAplicacionPorDepartamentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosYaAsociadosRequest">
+
+      <wsdl:part element="impl:getUsuariosYaAsociados" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearGrupoLdapRequest">
+
+      <wsdl:part element="impl:crearGrupoLdap" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartamentoRequest">
+
+      <wsdl:part element="impl:getDepartamento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartamentosRequest">
+
+      <wsdl:part element="impl:getDepartamentos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearUsuarioLdapRequest">
+
+      <wsdl:part element="impl:crearUsuarioLdap" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioPorNombreResponse">
+
+      <wsdl:part element="impl:getUsuarioPorNombreResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioPorIdCertificadoResponse">
+
+      <wsdl:part element="impl:getUsuarioPorIdCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGrupoResponse">
+
+      <wsdl:part element="impl:getGrupoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosAplicacionPorDepartamentoResponse">
+
+      <wsdl:part element="impl:getUsuariosAplicacionPorDepartamentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearGrupoLdapResponse">
+
+      <wsdl:part element="impl:crearGrupoLdapResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosLdapYaAsociadosRequest">
+
+      <wsdl:part element="impl:getUsuariosLdapYaAsociados" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosLdapYaAsociadosResponse">
+
+      <wsdl:part element="impl:getUsuariosLdapYaAsociadosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListasResponse">
+
+      <wsdl:part element="impl:getListasResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosAsociationRequest">
+
+      <wsdl:part element="impl:getUsuariosAsociation" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapRequest">
+
+      <wsdl:part element="impl:getUsuarioLdap" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartamentosPorPadreResponse">
+
+      <wsdl:part element="impl:getDepartamentosPorPadreResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="editarDepartamentoCompletoResponse">
+
+      <wsdl:part element="impl:editarDepartamentoCompletoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="editarUsuarioResponse">
+
+      <wsdl:part element="impl:editarUsuarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosLdapAplicacionRequest">
+
+      <wsdl:part element="impl:getUsuariosLdapAplicacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartamentoLiteResponse">
+
+      <wsdl:part element="impl:getDepartamentoLiteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosGrupoResponse">
+
+      <wsdl:part element="impl:getUsuariosGrupoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGruposRequest">
+
+      <wsdl:part element="impl:getGrupos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosAplicacionRequest">
+
+      <wsdl:part element="impl:getUsuariosAplicacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGrupoLdapRequest">
+
+      <wsdl:part element="impl:getGrupoLdap" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosAplicacionResponse">
+
+      <wsdl:part element="impl:getUsuariosAplicacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosRequest">
+
+      <wsdl:part element="impl:getUsuarios" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosLdapAplicacionResponse">
+
+      <wsdl:part element="impl:getUsuariosLdapAplicacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioPorNombreRequest">
+
+      <wsdl:part element="impl:getUsuarioPorNombre" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioPorIdCertificadoRequest">
+
+      <wsdl:part element="impl:getUsuarioPorIdCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListasRequest">
+
+      <wsdl:part element="impl:getListas" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="editarUsuarioRequest">
+
+      <wsdl:part element="impl:editarUsuario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGrupoRequest">
+
+      <wsdl:part element="impl:getGrupo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosDepartamentoResponse">
+
+      <wsdl:part element="impl:getUsuariosDepartamentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapResponse">
+
+      <wsdl:part element="impl:getUsuarioLdapResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGruposResponse">
+
+      <wsdl:part element="impl:getGruposResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosResponse">
+
+      <wsdl:part element="impl:getUsuariosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartamentoLiteRequest">
+
+      <wsdl:part element="impl:getDepartamentoLite" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosAplicacionPorDepartamentoRequest">
+
+      <wsdl:part element="impl:getUsuariosAplicacionPorDepartamento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGrupoLdapByIdRequest">
+
+      <wsdl:part element="impl:getGrupoLdapById" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartamentosPorPadreRequest">
+
+      <wsdl:part element="impl:getDepartamentosPorPadre" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="editarUsuarioLdapResponse">
+
+      <wsdl:part element="impl:editarUsuarioLdapResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartamentoResponse">
+
+      <wsdl:part element="impl:getDepartamentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearArchivadorResponse">
+
+      <wsdl:part element="impl:crearArchivadorResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioPorIdResponse">
+
+      <wsdl:part element="impl:getUsuarioPorIdResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosLdapResponse">
+
+      <wsdl:part element="impl:getUsuariosLdapResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarUsuarioLdapResponse">
+
+      <wsdl:part element="impl:eliminarUsuarioLdapResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearArchivadorRequest">
+
+      <wsdl:part element="impl:crearArchivador" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapByGuidRequest">
+
+      <wsdl:part element="impl:getUsuarioLdapByGuid" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapByFullNameRequest">
+
+      <wsdl:part element="impl:getUsuarioLdapByFullName" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapPorIdCertificadoRequest">
+
+      <wsdl:part element="impl:getUsuarioLdapPorIdCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioLdapBasicByIdResponse">
+
+      <wsdl:part element="impl:getUsuarioLdapBasicByIdResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartamentosResponse">
+
+      <wsdl:part element="impl:getDepartamentosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearUsuarioLdapResponse">
+
+      <wsdl:part element="impl:crearUsuarioLdapResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="editarUsuarioLdapRequest">
+
+      <wsdl:part element="impl:editarUsuarioLdap" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosLdapAplicacionPorDepartamentoRequest">
+
+      <wsdl:part element="impl:getUsuariosLdapAplicacionPorDepartamento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioPorIdRequest">
+
+      <wsdl:part element="impl:getUsuarioPorId" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosDepartamentoRequest">
+
+      <wsdl:part element="impl:getUsuariosDepartamento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuariosLdapRequest">
+
+      <wsdl:part element="impl:getUsuariosLdap" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EstructuraOrganizativaWebService">
+
+      <wsdl:operation name="getUsuariosDepartamento">
+
+         <wsdl:input message="impl:getUsuariosDepartamentoRequest" name="getUsuariosDepartamentoRequest"/>
+
+         <wsdl:output message="impl:getUsuariosDepartamentoResponse" name="getUsuariosDepartamentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioPorId">
+
+         <wsdl:input message="impl:getUsuarioPorIdRequest" name="getUsuarioPorIdRequest"/>
+
+         <wsdl:output message="impl:getUsuarioPorIdResponse" name="getUsuarioPorIdResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioPorNombre">
+
+         <wsdl:input message="impl:getUsuarioPorNombreRequest" name="getUsuarioPorNombreRequest"/>
+
+         <wsdl:output message="impl:getUsuarioPorNombreResponse" name="getUsuarioPorNombreResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioPorIdCertificado">
+
+         <wsdl:input message="impl:getUsuarioPorIdCertificadoRequest" name="getUsuarioPorIdCertificadoRequest"/>
+
+         <wsdl:output message="impl:getUsuarioPorIdCertificadoResponse" name="getUsuarioPorIdCertificadoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosAplicacion">
+
+         <wsdl:input message="impl:getUsuariosAplicacionRequest" name="getUsuariosAplicacionRequest"/>
+
+         <wsdl:output message="impl:getUsuariosAplicacionResponse" name="getUsuariosAplicacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosGrupo">
+
+         <wsdl:input message="impl:getUsuariosGrupoRequest" name="getUsuariosGrupoRequest"/>
+
+         <wsdl:output message="impl:getUsuariosGrupoResponse" name="getUsuariosGrupoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDepartamentosPorPadre">
+
+         <wsdl:input message="impl:getDepartamentosPorPadreRequest" name="getDepartamentosPorPadreRequest"/>
+
+         <wsdl:output message="impl:getDepartamentosPorPadreResponse" name="getDepartamentosPorPadreResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGrupos">
+
+         <wsdl:input message="impl:getGruposRequest" name="getGruposRequest"/>
+
+         <wsdl:output message="impl:getGruposResponse" name="getGruposResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDepartamentos">
+
+         <wsdl:input message="impl:getDepartamentosRequest" name="getDepartamentosRequest"/>
+
+         <wsdl:output message="impl:getDepartamentosResponse" name="getDepartamentosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGrupo">
+
+         <wsdl:input message="impl:getGrupoRequest" name="getGrupoRequest"/>
+
+         <wsdl:output message="impl:getGrupoResponse" name="getGrupoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDepartamento">
+
+         <wsdl:input message="impl:getDepartamentoRequest" name="getDepartamentoRequest"/>
+
+         <wsdl:output message="impl:getDepartamentoResponse" name="getDepartamentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearArchivador">
+
+         <wsdl:input message="impl:crearArchivadorRequest" name="crearArchivadorRequest"/>
+
+         <wsdl:output message="impl:crearArchivadorResponse" name="crearArchivadorResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editarDepartamentoCompleto">
+
+         <wsdl:input message="impl:editarDepartamentoCompletoRequest" name="editarDepartamentoCompletoRequest"/>
+
+         <wsdl:output message="impl:editarDepartamentoCompletoResponse" name="editarDepartamentoCompletoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editarUsuario">
+
+         <wsdl:input message="impl:editarUsuarioRequest" name="editarUsuarioRequest"/>
+
+         <wsdl:output message="impl:editarUsuarioResponse" name="editarUsuarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarArchivador">
+
+         <wsdl:input message="impl:eliminarArchivadorRequest" name="eliminarArchivadorRequest"/>
+
+         <wsdl:output message="impl:eliminarArchivadorResponse" name="eliminarArchivadorResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListas">
+
+         <wsdl:input message="impl:getListasRequest" name="getListasRequest"/>
+
+         <wsdl:output message="impl:getListasResponse" name="getListasResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarios">
+
+         <wsdl:input message="impl:getUsuariosRequest" name="getUsuariosRequest"/>
+
+         <wsdl:output message="impl:getUsuariosResponse" name="getUsuariosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosAsociation">
+
+         <wsdl:input message="impl:getUsuariosAsociationRequest" name="getUsuariosAsociationRequest"/>
+
+         <wsdl:output message="impl:getUsuariosAsociationResponse" name="getUsuariosAsociationResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosYaAsociados">
+
+         <wsdl:input message="impl:getUsuariosYaAsociadosRequest" name="getUsuariosYaAsociadosRequest"/>
+
+         <wsdl:output message="impl:getUsuariosYaAsociadosResponse" name="getUsuariosYaAsociadosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosAplicacionPorDepartamento">
+
+         <wsdl:input message="impl:getUsuariosAplicacionPorDepartamentoRequest" name="getUsuariosAplicacionPorDepartamentoRequest"/>
+
+         <wsdl:output message="impl:getUsuariosAplicacionPorDepartamentoResponse" name="getUsuariosAplicacionPorDepartamentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearGrupoLdap">
+
+         <wsdl:input message="impl:crearGrupoLdapRequest" name="crearGrupoLdapRequest"/>
+
+         <wsdl:output message="impl:crearGrupoLdapResponse" name="crearGrupoLdapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGrupoLdap">
+
+         <wsdl:input message="impl:getGrupoLdapRequest" name="getGrupoLdapRequest"/>
+
+         <wsdl:output message="impl:getGrupoLdapResponse" name="getGrupoLdapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearUsuarioLdap">
+
+         <wsdl:input message="impl:crearUsuarioLdapRequest" name="crearUsuarioLdapRequest"/>
+
+         <wsdl:output message="impl:crearUsuarioLdapResponse" name="crearUsuarioLdapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdapByGuid">
+
+         <wsdl:input message="impl:getUsuarioLdapByGuidRequest" name="getUsuarioLdapByGuidRequest"/>
+
+         <wsdl:output message="impl:getUsuarioLdapByGuidResponse" name="getUsuarioLdapByGuidResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdapByFullName">
+
+         <wsdl:input message="impl:getUsuarioLdapByFullNameRequest" name="getUsuarioLdapByFullNameRequest"/>
+
+         <wsdl:output message="impl:getUsuarioLdapByFullNameResponse" name="getUsuarioLdapByFullNameResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdapPorIdCertificado">
+
+         <wsdl:input message="impl:getUsuarioLdapPorIdCertificadoRequest" name="getUsuarioLdapPorIdCertificadoRequest"/>
+
+         <wsdl:output message="impl:getUsuarioLdapPorIdCertificadoResponse" name="getUsuarioLdapPorIdCertificadoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosLdap">
+
+         <wsdl:input message="impl:getUsuariosLdapRequest" name="getUsuariosLdapRequest"/>
+
+         <wsdl:output message="impl:getUsuariosLdapResponse" name="getUsuariosLdapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdap">
+
+         <wsdl:input message="impl:getUsuarioLdapRequest" name="getUsuarioLdapRequest"/>
+
+         <wsdl:output message="impl:getUsuarioLdapResponse" name="getUsuarioLdapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosLdapYaAsociados">
+
+         <wsdl:input message="impl:getUsuariosLdapYaAsociadosRequest" name="getUsuariosLdapYaAsociadosRequest"/>
+
+         <wsdl:output message="impl:getUsuariosLdapYaAsociadosResponse" name="getUsuariosLdapYaAsociadosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editarUsuarioLdap">
+
+         <wsdl:input message="impl:editarUsuarioLdapRequest" name="editarUsuarioLdapRequest"/>
+
+         <wsdl:output message="impl:editarUsuarioLdapResponse" name="editarUsuarioLdapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarUsuarioLdap">
+
+         <wsdl:input message="impl:eliminarUsuarioLdapRequest" name="eliminarUsuarioLdapRequest"/>
+
+         <wsdl:output message="impl:eliminarUsuarioLdapResponse" name="eliminarUsuarioLdapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdapBasicById">
+
+         <wsdl:input message="impl:getUsuarioLdapBasicByIdRequest" name="getUsuarioLdapBasicByIdRequest"/>
+
+         <wsdl:output message="impl:getUsuarioLdapBasicByIdResponse" name="getUsuarioLdapBasicByIdResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDepartamentoLite">
+
+         <wsdl:input message="impl:getDepartamentoLiteRequest" name="getDepartamentoLiteRequest"/>
+
+         <wsdl:output message="impl:getDepartamentoLiteResponse" name="getDepartamentoLiteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGrupoLdapById">
+
+         <wsdl:input message="impl:getGrupoLdapByIdRequest" name="getGrupoLdapByIdRequest"/>
+
+         <wsdl:output message="impl:getGrupoLdapByIdResponse" name="getGrupoLdapByIdResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosLdapAplicacionPorDepartamento">
+
+         <wsdl:input message="impl:getUsuariosLdapAplicacionPorDepartamentoRequest" name="getUsuariosLdapAplicacionPorDepartamentoRequest"/>
+
+         <wsdl:output message="impl:getUsuariosLdapAplicacionPorDepartamentoResponse" name="getUsuariosLdapAplicacionPorDepartamentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosLdapAplicacion">
+
+         <wsdl:input message="impl:getUsuariosLdapAplicacionRequest" name="getUsuariosLdapAplicacionRequest"/>
+
+         <wsdl:output message="impl:getUsuariosLdapAplicacionResponse" name="getUsuariosLdapAplicacionResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EstructuraOrganizativaWebServiceSoapBinding" type="impl:EstructuraOrganizativaWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getUsuariosDepartamento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosDepartamentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosDepartamentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioPorId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioPorIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioPorIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioPorNombre">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioPorNombreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioPorNombreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioPorIdCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioPorIdCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioPorIdCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosAplicacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosAplicacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosAplicacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosGrupo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosGrupoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosGrupoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDepartamentosPorPadre">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDepartamentosPorPadreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDepartamentosPorPadreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGrupos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getGruposRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getGruposResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDepartamentos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDepartamentosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDepartamentosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGrupo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getGrupoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getGrupoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDepartamento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDepartamentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDepartamentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearArchivador">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="crearArchivadorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="crearArchivadorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editarDepartamentoCompleto">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="editarDepartamentoCompletoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="editarDepartamentoCompletoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editarUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="editarUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="editarUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarArchivador">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarArchivadorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarArchivadorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getListasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getListasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarios">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosAsociation">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosAsociationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosAsociationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosYaAsociados">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosYaAsociadosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosYaAsociadosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosAplicacionPorDepartamento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosAplicacionPorDepartamentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosAplicacionPorDepartamentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearGrupoLdap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="crearGrupoLdapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="crearGrupoLdapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGrupoLdap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getGrupoLdapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getGrupoLdapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearUsuarioLdap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="crearUsuarioLdapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="crearUsuarioLdapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdapByGuid">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioLdapByGuidRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioLdapByGuidResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdapByFullName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioLdapByFullNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioLdapByFullNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdapPorIdCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioLdapPorIdCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioLdapPorIdCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosLdap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosLdapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosLdapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioLdapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioLdapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosLdapYaAsociados">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosLdapYaAsociadosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosLdapYaAsociadosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="editarUsuarioLdap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="editarUsuarioLdapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="editarUsuarioLdapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarUsuarioLdap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarUsuarioLdapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarUsuarioLdapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioLdapBasicById">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioLdapBasicByIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioLdapBasicByIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDepartamentoLite">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDepartamentoLiteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDepartamentoLiteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGrupoLdapById">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getGrupoLdapByIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getGrupoLdapByIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosLdapAplicacionPorDepartamento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosLdapAplicacionPorDepartamentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosLdapAplicacionPorDepartamentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuariosLdapAplicacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuariosLdapAplicacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuariosLdapAplicacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EstructuraOrganizativaWebServiceService">
+
+      <wsdl:port binding="impl:EstructuraOrganizativaWebServiceSoapBinding" name="EstructuraOrganizativaWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_EstructuraOrganizativaWS/services/EstructuraOrganizativaWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

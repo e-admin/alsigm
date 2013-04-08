@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Idocfdrstat" 
+    table="IDOCFDRSTAT"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IDOCFDRSTAT"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="fdrid" 
+            column="FDRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FDRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="archid" 
+            column="ARCHID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ARCHID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="stat" 
+            column="STAT" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="STAT"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="userid" 
+            column="USERID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="USERID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="timestamp" 
+            column="TIMESTAMP" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TIMESTAMP"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="flags" 
+            column="FLAGS" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLAGS"
+                length="10"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

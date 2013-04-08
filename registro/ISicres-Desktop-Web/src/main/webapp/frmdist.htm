@@ -1,0 +1,148 @@
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<link rel="stylesheet" href="css/global.css" type="text/css">
+		<link rel="stylesheet" href="css/font.css" type="text/css">
+		<link rel="stylesheet" TYPE="text/css" HREF="css/table.css">
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/frmdist.js"></SCRIPT>
+		<script type="text/javascript" language="javascript" src="./scripts/jquery-1.6.2.min.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/jquery.hotkeys-0.8.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/custom_hotkeys.js"></script>
+	</HEAD>
+	<BODY tabIndex="-1" onload="InitFrmDist();">
+		<form id="formDist" action="distribution.jsp" method="post" target="mainDtr">
+			<input type="hidden" id="distWhere" name="distWhere" value=""></input>
+			<input type="hidden" id="regWhere" name="regWhere" value=""></input>
+			<input type="hidden" id="Remarks" name="Remarks" value=""></input>
+		</form>
+		<div class="migas">
+			<ul>
+				<li><SCRIPT LANGUAGE="javascript">document.write( top.GetIdsLan( "IDS_INICIO" ) )</SCRIPT>
+					<img id="flechas" src="images/flechitas_down.gif""/>
+					<SCRIPT LANGUAGE="javascript">document.write( top.GetIdsLan( "IDS_OPCDISTRIB" ) )</SCRIPT>
+				</li>
+			</ul>
+		</div>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="GreyToolbar">
+			<tr height="22" valign="center" align="middle" tabIndex="-1">
+				<td width="45%">&nbsp;</td>
+				<td width="230">
+					<nobr>
+						<div align="center" class="ArchiveName">
+							<select class="combo" name="selectTypeDistr" style="WIDTH: 100px" onchange="ChangeOption(this)" tabIndex="1" disabled="true" ID="selectTypeDistr">
+								<option value="1" selected><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPC_ENTRADA" ) )</SCRIPT></option>
+								<option value="2"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPC_SALIDA" ) )</SCRIPT></option>
+							</select>
+							<select class="combo" name="select" style="WIDTH: 175px" onchange="ChangeOption(this)" tabIndex="1" disabled="true" ID="select" FieldName="STATE">
+								<option value="1" selected><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCPENDIENTE" ) )</SCRIPT></option>
+								<option value="2"><SCRIPT language="javascript">document.write(top.GetIdsLan("IDS_OPCACEPTADO"))</SCRIPT></option>
+								<option value="4"><SCRIPT language="javascript">document.write(top.GetIdsLan("IDS_OPCRECHAZADO"))</SCRIPT></option>
+								<option value="0"><SCRIPT language="javascript">document.write("-----")</SCRIPT></option>
+							</select>
+						</div>
+					</nobr>
+				</td>
+				<td>
+					<table width="100%" height="18" border="0" cellspacing="0" cellpadding="0" ID="Table2">
+						<tr tabIndex="-1">
+							<td id="Refrescar" width="100" class="SubOptionsDisabled" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="Refresh(this);" onkeydown="if (top.GetKeyCode(event)==13){Refresh(this);}" tabIndex="1">
+								<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BTNREFRESCAR" ) )</SCRIPT></div>
+							</td>
+							<td id="Buscar" width="100" class="SubOptionsDisabled" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="Search(this);" onkeydown="if (top.GetKeyCode(event)==13){Search(this);}" tabIndex="1">
+								<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCBUSCAR" ) )</SCRIPT></div>
+							</td>
+							<td id="Back" width="100" class="SubOptionsDisabled" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="BackToQry(this);" onkeydown="if (top.GetKeyCode(event)==13){BackToQry(this);}" tabIndex="1">
+								<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCVOLVER" ) )</SCRIPT></div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br/>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" tabIndex="-1" class="SubMenu2">
+			<tr>
+				<td height="22">&nbsp;</td>
+				<!--<td id="Distribuir" width="100" height="20" class="SubOptionsDisabled2" onmouseover="Over(this)" onmouseout="Out(this)" onclick="Distribute(this);" onkeydown="if (top.GetKeyCode(event)==13){Distribute(this);}" tabIndex="1">
+					<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BTNDIST" ) )</SCRIPT></div>
+				</td>-->
+				<td id="Aceptar" width="100" class="SubOptionsDisabled2" onmouseover="Over(this)" onmouseout="Out(this)" onclick="Accept(this);" onkeydown="if (top.GetKeyCode(event)==13){Accept(this);}" tabIndex="1">
+					<div align="center" style="vertical-align:middle"><img src="images/accept.png" align="middle"/>&nbsp;<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BTNACEPTAR" ) )</SCRIPT></div>
+				</td>
+				<td id="Rechazar" width="100" class="SubOptionsDisabled2" onmouseover="Over(this)" onmouseout="Out(this)" onclick="SetRemarks(this);" onkeydown="if (top.GetKeyCode(event)==13){SetRemarks(this);}" tabIndex="1">
+					<div align="center" style="vertical-align:middle"><IMG src="images/rechazar.png" align="middle"/>&nbsp;<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPC_RECHAZAR" ) )</SCRIPT></div>
+				</td>
+				<td id="Destino" width="125" class="SubOptionsDisabled2" onmouseover="Over(this)" onmouseout="Out(this)" onclick="ChangeDest(this);" onkeydown="if (top.GetKeyCode(event)==13){ChangeDest(this);}" tabIndex="1">
+					<div align="center" style="vertical-align:middle"><IMG src="images/change_dest.png" align="middle"/>&nbsp;<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BTN_DESTINO" ) )</SCRIPT></div>
+				</td>
+				<td id="Redistribuir" width="125" class="SubOptionsDisabled2" onmouseover="Over(this)" onmouseout="Out(this)" onclick="RejectDistribution(this);" onkeydown="if (top.GetKeyCode(event)==13){RejectDistribution(this);}" tabIndex="1">
+					<div align="center" style="vertical-align:middle"><IMG src="images/redist.png" align="middle"/>&nbsp;<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BTN_REDISTRIBUIR" ) )</SCRIPT></div>
+				</td>
+				<td id="Archivar" width="100" class="SubOptionsDisabled2" onmouseover="Over(this)" onmouseout="Out(this)" onclick="Archive(this);" onkeydown="if (top.GetKeyCode(event)==13){Archive(this);}" tabIndex="1">
+					<div align="center" style="vertical-align:middle"><IMG src="images/arch.gif" align="middle"/>&nbsp;<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCARCHIVAR" ) )</SCRIPT></div>
+				</td>
+				<!-- <td id="Buscar" width="100" class="SubOptions" onmouseover="Over(this)" onmouseout="Out(this)" onclick="Search(this);" onkeydown="if (top.GetKeyCode(event)==13){Search(this);}" tabIndex="1">
+					<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCBUSCAR" ) )</SCRIPT></div>
+				</td>-->
+				<td id="Propiedades" width="100" class="SubOptionsDisabled2" onmouseover="Over(this)" onmouseout="Out(this)" onclick="ViewProperties(this);" onkeydown="if (top.GetKeyCode(event)==13){ViewProperties(this);}" tabIndex="1">
+					<div align="center" style="vertical-align:middle"><IMG src="images/properties.gif" align="middle"/>&nbsp;<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_LABEL_PROPERTIES" ) )</SCRIPT></div>
+				</td>
+				<td id="Comentario" width="100" class="SubOptionsDisabled2" onmouseover="Over(this)" onmouseout="Out(this)" onclick="ShowRemarks(this);" onkeydown="if (top.GetKeyCode(event)==13){ShowRemarks(this);}" tabIndex="1">
+					<div align="center" style="vertical-align:middle"><IMG src="images/comment.png" align="middle"/>&nbsp;<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_LABEL_REMARKS" ) )</SCRIPT></div>
+				</td>
+			</tr>
+		</table>
+
+
+		<table id="tblUtil" name="tblUtil" width="100%" cellspacing="0" cellpadding="0" border="0" tabindex="-1" style="margin-top:3px;">
+			<TR>
+				<TH class="report3" width="15px"></TH>
+
+				<TH class="report3" align="left">
+					<IMG id="imgFirst" src="images/firstarrow.gif" width="10" height="11" title="" border="0" style="visibility:hidden" onclick="FirstValues(this);" onmouseover="this.style.cursor='pointer';">
+						<script language="javascript">document.getElementById("imgFirst").title = top.GetIdsLan("IDS_ETQPRINCIPIO");</script>
+					</IMG>
+					<IMG src="images/trans.gif" width="7" height="1" /> <IMG id="imgPrev" src="images/leftarrow.gif" width="10" height="11" title="" border="0" style="visibility:hidden" onclick="PrevValues(this);" onmouseover="this.style.cursor='pointer';">
+						<script language="javascript">document.getElementById("imgPrev").title = top.GetIdsLan("IDS_ETQANTERIOR");</script>
+					</IMG>
+					<IMG src="images/trans.gif" width="10" height="1" />
+						<LABEL id="lbPrepDe" style="visibility:hidden">
+							<script language="javascript">top.SetInnerText(document.getElementById("lbPrepDe"), " " + top.GetIdsLan("IDS_PREPDE") + " ");</script>
+						</LABEL>
+					<IMG src="images/trans.gif" width="10" height="1" /> <IMG id="imgNext" src="images/rightarrow.gif" width="10" height="11" title="" border="0" style="visibility:hidden" onclick="NextValues(this);" onmouseover="this.style.cursor='pointer';">
+						<script language="javascript">document.getElementById("imgNext").title = top.GetIdsLan("IDS_ETQSIGUIENTE");</script>
+					</IMG>
+					<IMG src="images/trans.gif" width="7" height="1" /> <IMG id="imgLast" src="images/lastarrow.gif" width="10" height="11" title="" border="0" style="visibility:hidden" onclick="LastValues(this);" onmouseover="this.style.cursor='pointer';">
+						<script language="javascript">document.getElementById("imgLast").title = top.GetIdsLan("IDS_ETQFINAL");</script>
+					</IMG>
+				</TH>
+
+				<TH class="report3" width="50%"></TH>
+
+				<TH class="report3" align="right">
+					<input class="checkbox" type="checkbox" name="checkSel" value="6" IdArch="2" IdFdr="1" onclick="CheckAllSel()" tabIndex="1" ID="checkSel" />
+					<LABEL id="SelAll">
+						<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCSELECT" ) )</SCRIPT>
+					</LABEL>
+				</TH>
+				<TH class="report3">
+					<input class="checkbox" type="checkbox" name="checkDesSel" value="6" IdArch="2" IdFdr="1" onclick="CheckDesAllSel()" tabIndex="1" ID="checkDesSel"/>
+					<LABEL id="DesSelAll">
+						<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_QUITARSELECT" ) )</SCRIPT>
+					</LABEL>
+				</TH>
+				<TH></TH>
+			</TR>
+		</table>
+
+		<iframe src="blank.htm" id="mainDtr" name="mainDtr" width="100%" height="70%" frameborder="0" scrolling="no"></iframe>
+
+	</BODY>
+</HTML>

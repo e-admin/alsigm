@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_registroPresencial_modules</artifactId>
+		<version>3.0</version>
+	</parent>
+
+	<artifactId>sigem_registroPresencialWs</artifactId>
+	<packaging>war</packaging>
+
+	<properties>
+		<unpack.config.directory>
+			${project.build.directory}/generated-resources
+		</unpack.config.directory>
+	</properties>
+
+	<dependencies>
+
+		<!-- Dependencias de InvesSicres -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.isicres</groupId>
+			<artifactId>ISicres-Api</artifactId>
+			<version>${isicres.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-security</groupId>
+					<artifactId>xmlsec</artifactId>
+				</exclusion>
+				<!-- 
+				<exclusion>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				</exclusion>
+
+				<exclusion>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-transports-http</artifactId>
+				</exclusion>
+				 -->
+				<exclusion>
+					<groupId>es.ieci.tecdoc.isicres</groupId>
+					<artifactId>ISicres-resources-configurable</artifactId>
+				</exclusion>
+
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.isicres</groupId>
+			<artifactId>ISicres-Desktop-Api</artifactId>
+			<version>${isicres.version}</version>
+		</dependency>
+
+		<!-- Dependencias SIGEM -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_core</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.thoughtworks.xstream</groupId>
+					<artifactId>xstream</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_registroPresencial</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>cglib</groupId>
+					<artifactId>cglib-full</artifactId>
+				</exclusion>
+				<!-- para uso de la version necesaria para el cliente cxf de intercambio -->
+				<exclusion>
+					<groupId>wsdl4j</groupId> 
+					<artifactId>wsdl4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>
+				sigem_registroPresencialWS-configurable-resources
+			</artifactId>
+			<version>${pom.version}</version>
+			<classifier>configurableSigem</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<!-- AXIS -->
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.3</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+					
+				</exclusion>
+				<!-- para uso de la version necesaria para el cliente cxf de intercambio -->
+				<exclusion>
+					<groupId>wsdl4j</groupId> 
+					<artifactId>wsdl4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- 3rdParty -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.media</groupId>
+			<artifactId>jai_codec</artifactId>
+			<version>1.1.3</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>SIGEM_RegistroPresencialWS</finalName>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<filtering>true</filtering>
+				<directory>${unpack.config.directory}</directory>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1-alpha-1</version>
+				<configuration>
+					<webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp/WEB-INF</directory>
+							<targetPath>WEB-INF</targetPath>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+					<archive>
+			            <manifest>
+			              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+			            </manifest>
+			            <manifestEntries>
+			              <Implementation-Build>${buildNumber}</Implementation-Build>
+			            </manifestEntries>
+			          </archive>
+				</configuration>
+			</plugin>
+			<!--
+				Este fragmento descomprime el .zip de configurables
+				que tenemos como dependecia (directa o transitiva)
+				en el directorio que se indica en la property
+				unpack.config.directory
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-dependencies</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeClassifiers>configurableSigem</includeClassifiers>
+							<includeTypes>zip</includeTypes>
+							<excludeTypes>jar</excludeTypes>
+							<type>zip</type>
+							<outputDirectory>
+								${unpack.config.directory}
+							</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>java2wsdl</id>
+			<activation>
+				<property>
+					<name>java2wsdl</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>axistools-maven-plugin</artifactId>
+						<version>1.3</version>
+
+						<configuration>
+							<filename>ServicioRegistroWebService.wsdl</filename>
+							<classOfPortType>
+								ieci.tecdoc.sgm.registropresencial.ws.server.ServicioRegistroWebService
+							</classOfPortType>
+							<location>
+								http://localhost:8080/sigem_registroPresencialWs/services/ServicioRegistroWebService
+							</location>
+							<use>literal</use>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>java2wsdl</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>axis</groupId>
+								<artifactId>axis</artifactId>
+								<version>1.3</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>wsdl2java</id>
+			<activation>
+				<property>
+					<name>wsdl2java</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>axistools-maven-plugin</artifactId>
+						<version>1.3</version>
+						<configuration>
+							<sourceDirectory>
+								${basedir}/src/main/webapp/wsdl
+							</sourceDirectory>
+							<packageSpace>
+								ieci.tecdoc.sgm.registropresencial.ws.client.axis
+							</packageSpace>
+							<serverSide>false</serverSide>
+							<verbose>true</verbose>
+							<testCases>false</testCases>
+							<runTestCasesAsUnitTests>
+								false
+							</runTestCasesAsUnitTests>
+							<typeMappingVersion>1.2</typeMappingVersion>
+							<subPackageByFileName>false</subPackageByFileName>
+							<outputDirectory>
+								${basedir}/src/client/java
+							</outputDirectory>
+							<wrapArrays>false</wrapArrays>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>wsdl2java</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>axis</groupId>
+								<artifactId>axis</artifactId>
+								<version>1.3</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+
+
+</project>

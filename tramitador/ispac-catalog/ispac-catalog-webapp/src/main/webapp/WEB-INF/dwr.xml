@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC 
+	"-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" 
+	"http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		
+		<!-- Utilidades para DWR -->
+		<create creator="new" javascript="CatalogAPI">
+			<param name="class" value="ieci.tdw.ispac.ispacweb.dwr.CatalogAPI" />
+		</create>
+
+		<!-- Utilidades para DWR -->
+		<create creator="new" javascript="ISPACDWRUtils">
+			<param name="class" value="ieci.tdw.ispac.ispacweb.dwr.ISPACDWRUtils" />
+		</create>
+		<!--  Definicion de beans -->
+		<convert converter="bean" match="ieci.tdw.ispac.ispacweb.dwr.vo.SimpleBean"/>
+		
+
+		<!-- Excepciones -->
+		<convert converter="exception" match="java.lang.Exception"/>
+					
+	</allow>
+</dwr>

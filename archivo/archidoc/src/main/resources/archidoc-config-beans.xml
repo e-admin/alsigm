@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+
+]>
+
+
+<beans>
+
+    <bean name="productoConfigurationResourceLoader" id="productoConfigurationResourceLoader" class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl"/>
+
+    <bean class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+        <property name="configurationResourceLoader"><ref bean="productoConfigurationResourceLoader"/></property>
+        <property name="locations">
+        	<list>
+        		<value>archidocConfig.properties</value>
+        	</list>
+        </property>
+    </bean>
+    
+    <!-- Bean de configuración de Archivo -->
+    <bean id="ARCHIVO.CONFIGURATION.BEAN" class="org.springframework.beans.factory.config.MapFactoryBean">
+	    <property name="sourceMap">
+	    	<map>
+	    		<entry key="HTTPS_PORT" value="${HTTPS_PORT}"/>
+	    		<entry key="ARCHIDOC_BASE_CONFIG_DIR" value="${ARCHIDOC_BASE_CONFIG_DIR}"/>
+	    	</map>
+	    </property>
+	</bean>
+
+</beans>

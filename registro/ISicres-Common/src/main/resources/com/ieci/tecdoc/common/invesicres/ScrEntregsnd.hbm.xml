@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrEntregsnd" 
+    table="SCR_ENTREGSND"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_ENTREGSND"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="idEntreg" 
+            column="ID_ENTREG" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_ENTREG"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="transportType" 
+            column="TRANSPORT_TYPE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TRANSPORT_TYPE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="encodingMsg" 
+            column="ENCODING_MSG" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ENCODING_MSG"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="certificateIssuer" 
+            column="CERTIFICATE_ISSUER" 
+            type="java.lang.String"
+            length="255"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CERTIFICATE_ISSUER"
+                length="255"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="certificateNserial" 
+            column="CERTIFICATE_NSERIAL" 
+            type="java.lang.String"
+            length="255"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CERTIFICATE_NSERIAL"
+                length="255"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

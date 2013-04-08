@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+	    <form-bean name="LoginForm" type="org.apache.struts.validator.DynaValidatorForm">
+      		<form-property name="user" type="java.lang.String" />
+      		<form-property name="pass" type="java.lang.String" />
+		</form-bean> 
+		<form-bean 
+			name="procedureBean" type="ieci.tecdoc.sgm.catalogo_tramites.form.TramiteForm">
+		</form-bean>
+		<form-bean 
+			name="documentsBean" type="ieci.tecdoc.sgm.catalogo_tramites.form.DocumentoForm">
+		</form-bean>
+		<form-bean 
+			name="addresseeBean" type="ieci.tecdoc.sgm.catalogo_tramites.form.OrganoDestinatarioForm">
+    	</form-bean>
+    	<form-bean 
+    		name="hooksBean" type="ieci.tecdoc.sgm.catalogo_tramites.form.ConectorForm">
+    	</form-bean>
+		<form-bean
+			name="authHooksBean" type="ieci.tecdoc.sgm.catalogo_tramites.form.ConectorAutenticacionForm">
+    	</form-bean>
+    	<form-bean
+			name="calendarBean" type="ieci.tecdoc.sgm.catalogo_tramites.form.CalendarioForm">
+    	</form-bean>
+	</form-beans>
+	<global-forwards> 	
+  		<forward name="desconectar" path="/desconectar.do"/>  	
+  		<forward name="errorAutenticacion" path="/jsp/autenticacion.jsp" />
+	</global-forwards>
+	<action-mappings>
+		<action path="/loadprocedure" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.CargarTramiteAction" 
+				name="procedureBean"
+				scope="request"
+				validate="false">
+				<forward name="failure" path="/jsp/error.jsp"/>
+				<forward name="success" path="/jsp/procedures/load_procedure.jsp"/> 
+		</action>
+		<action path="/newprocedure" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.NuevoTramiteAction" 
+				name="procedureBean"
+				scope="request"
+				validate="false">
+				<forward name="failure" path="/jsp/error.jsp"/>
+				<forward name="success" path="/jsp/procedures/new_procedure.jsp"/> 
+		</action>
+		<action path="/delprocedure" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.EliminarTramiteAction" 
+				name="procedureBean"
+				scope="request"
+				validate="false">
+				<forward name="failure" path="/jsp/error.jsp"/>
+				<forward name="success" path="/jsp/procedures/delete_procedure.jsp"/> 
+		</action>
+		<action path="/updateprocedure" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.ActualizarTramiteAction" 
+				name="procedureBean"
+				scope="request"
+				validate="false"> 
+				<forward name="failure" path="/jsp/error.jsp"/> 
+				<forward name="success" path="/jsp/procedures/update_procedure.jsp"/> 
+		</action>
+		<action path="/loaddocument"
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.CargarDocumentoAction"
+				name="documentsBean"
+				scope="request"
+				validate="false">
+				<forward name="failure" path="/jsp/error.jsp"/> 
+				<forward name="success" path="/jsp/documents/load_document.jsp"/>
+		</action>
+		<action path="/newdocument" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.NuevoDocumentoAction" 
+				name="documentsBean"
+				scope="request"
+				validate="false">
+				<forward name="failure" path="/jsp/error.jsp"/>
+				<forward name="success" path="/jsp/documents/new_document.jsp"/> 
+		</action>
+		<action path="/deldocument" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.EliminarDocumentoAction" 
+				name="documentsBean"
+				scope="request"
+				validate="false">
+				<forward name="failure" path="/jsp/error.jsp"/>
+				<forward name="success" path="/jsp/documents/delete_document.jsp"/> 
+		</action>
+		<action path="/updatedocument" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.ActualizarDocumentoAction" 
+				name="documentsBean"
+				scope="request"
+				validate="false"> 
+				<forward name="failure" path="/jsp/error.jsp"/> 
+				<forward name="success" path="/jsp/documents/update_document.jsp"/> 
+		</action>
+		<action path="/cargarUnidades"
+	       type="ieci.tecdoc.sgm.catalogo_tramites.action.CargarUnidadesAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/consolidacion/iFrameUnidades.jsp"/>
+	    	<forward name="failure" path="/jsp/error.jsp"/>
+	    </action>
+		
+		<action path="/addresseeList" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.ListaOrganosDestinatariosAction" 
+				name="addresseeBean"
+				scope="request"
+				validate="false">
+		 		<forward name="success" path="/jsp/consolidacion/addressees.jsp"/>
+		 		<forward name="failure" path="/jsp/error.jsp"/>
+      	</action>
+      	<action path="/importAddressee" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.ImportListaOrganosDestinatariosAction" 
+				name="addresseeBean"
+				scope="request"
+				validate="false">
+		 		<forward name="success" path="/jsp/consolidacion/import_addressees.jsp"/>
+		 		<forward name="selectOrg" path="/jsp/consolidacion/import_addressees.jsp"/>
+		 		<forward name="failure" path="/jsp/error.jsp"/>
+      	</action>
+		<action path="/hooks" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.ConectoresAction" 
+				name="hooksBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/autenticacion/hooks.jsp"/>
+				<forward name="failure" path="/jsp/error.jsp"/>
+		</action> 
+		<action path="/authHook"
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.ConectorAutenticacionAction"
+				name="authHooksBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/autenticacion/auth_hooks.jsp"/>
+				<forward name="failure" path="/jsp/error.jsp"/>
+		</action>  
+		<action path="/calendar"
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.CalendarioAction"
+				name="calendarBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/calendar/calendar.jsp"/>
+				<forward name="failure" path="/jsp/error.jsp"/>
+		</action> 
+		<action path="/inicio" 
+				type="ieci.tecdoc.sgm.catalogo_tramites.action.InicioAction">
+			<forward name="success" path="/showProcedures.do" /> 
+		</action>
+		<action path="/login" 
+   				name="LoginForm"
+   				scope="request"   			   			
+   				type="ieci.tecdoc.sgm.catalogo_tramites.action.LoginAction">
+				<forward name="success" path="/showProcedures.do" />   			
+    	</action>    
+    	<action path="/showProcedures" 
+   				type="ieci.tecdoc.sgm.catalogo_tramites.action.ShowProceduresAction">
+				<forward name="success" path="/jsp/procedures/procedures.jsp" />   			
+    	</action>    
+   		<action 
+   			path="/desconectar" 
+   			type="ieci.tecdoc.sgm.catalogo_tramites.action.DesconectarAction">
+   			<forward name="success" path="/jsp/redireccionPortal.jsp" />
+    	</action>
+    	
+		<action path="/documents" parameter="/jsp/documents/documents.jsp" type="org.apache.struts.actions.ForwardAction"/>
+		<action path="/procedure" parameter="/jsp/procedures/procedure.jsp" type="org.apache.struts.actions.ForwardAction"/>
+		<action path="/procedures" parameter="/jsp/procedures/procedures.jsp" type="org.apache.struts.actions.ForwardAction"/>
+		<action path="/procedureDocuments" parameter="/jsp/procedures/procedure_documents.jsp" type="org.apache.struts.actions.ForwardAction"/>
+		<action path="/authHooks" parameter="/jsp/autenticacion/auth_hooks.jsp" type="org.apache.struts.actions.ForwardAction"/>
+
+	</action-mappings>
+	<message-resources parameter="resources.application" />
+	
+	<plug-in className="ieci.tecdoc.sgm.catalogo_tramites.plugin.ConfigPlugin" />
+	
+</struts-config>

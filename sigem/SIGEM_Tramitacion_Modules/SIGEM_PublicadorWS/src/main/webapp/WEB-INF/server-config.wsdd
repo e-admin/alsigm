@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="PublicadorWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation returnQName="ns1:getHitoReturn" returnType="ns1:Hito" name="getHito" qname="ns1:getHito" soapAction="" xmlns:ns1="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns1:idEntidad"/>
+   <parameter qname="ns1:idHito"/>
+   <parameter qname="ns1:idAplicacion"/>
+   <parameter qname="ns1:idSystem"/>
+  </operation>
+  <operation returnQName="ns2:updateHitoReturn" returnType="ns2:Hito" name="updateHito" qname="ns2:updateHito" soapAction="" xmlns:ns2="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns2:idEntidad"/>
+   <parameter qname="ns2:hito" type="ns2:Hito"/>
+  </operation>
+  <operation returnQName="ns3:addHitoReturn" returnType="ns3:Hito" name="addHito" qname="ns3:addHito" soapAction="" xmlns:ns3="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns3:idEntidad"/>
+   <parameter qname="ns3:hito"/>
+  </operation>
+  <operation returnQName="ns4:deleteHitoReturn" returnType="ns4:Booleano" name="deleteHito" qname="ns4:deleteHito" soapAction="" xmlns:ns4="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns4:idEntidad"/>
+   <parameter qname="ns4:idHito"/>
+   <parameter qname="ns4:applicationId"/>
+   <parameter qname="ns4:systemId"/>
+  </operation>
+  <operation returnQName="ns5:reactivateHitoReturn" returnType="ns5:Hito" name="reactivateHito" qname="ns5:reactivateHito" soapAction="" xmlns:ns5="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns5:idEntidad"/>
+   <parameter qname="ns5:idHito"/>
+   <parameter qname="ns5:applicationId"/>
+   <parameter qname="ns5:systemId"/>
+  </operation>
+  <operation returnQName="ns6:getReglaReturn" returnType="ns6:Regla" name="getRegla" qname="ns6:getRegla" soapAction="" xmlns:ns6="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns6:idEntidad"/>
+   <parameter qname="ns6:idRegla"/>
+  </operation>
+  <operation returnQName="ns7:addReglaReturn" returnType="ns7:Regla" name="addRegla" qname="ns7:addRegla" soapAction="" xmlns:ns7="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns7:idEntidad"/>
+   <parameter qname="ns7:regla"/>
+  </operation>
+  <operation returnQName="ns8:updateReglaReturn" returnType="ns8:Regla" name="updateRegla" qname="ns8:updateRegla" soapAction="" xmlns:ns8="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns8:idEntidad"/>
+   <parameter qname="ns8:regla"/>
+  </operation>
+  <operation returnQName="ns9:deleteReglaReturn" returnType="ns9:Booleano" name="deleteRegla" qname="ns9:deleteRegla" soapAction="" xmlns:ns9="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns9:idEntidad"/>
+   <parameter qname="ns9:idRegla"/>
+  </operation>
+  <operation returnQName="ns10:getErrorReturn" returnType="ns10:Error" name="getError" qname="ns10:getError" soapAction="" xmlns:ns10="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns10:idEntidad"/>
+   <parameter qname="ns10:idHito"/>
+   <parameter qname="ns10:applicationId"/>
+   <parameter qname="ns10:systemId"/>
+  </operation>
+  <operation returnQName="ns11:getListaErroresReturn" returnType="ns11:ListaErrores" name="getListaErrores" qname="ns11:getListaErrores" soapAction="" xmlns:ns11="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns11:idEntidad"/>
+  </operation>
+  <operation returnQName="ns12:getListaHitosReturn" returnType="ns12:ListaHitos" name="getListaHitos" qname="ns12:getListaHitos" soapAction="" xmlns:ns12="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns12:idEntidad"/>
+  </operation>
+  <operation returnQName="ns13:getListaReglasReturn" returnType="ns13:ListaReglas" name="getListaReglas" qname="ns13:getListaReglas" soapAction="" xmlns:ns13="http://server.ws.publicador.sgm.tecdoc.ieci">
+   <parameter qname="ns13:idEntidad"/>
+  </operation>
+  <parameter name="allowedMethods" value="*"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="PublicadorWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.publicador.ws.server.PublicadorWebService"/>
+  <parameter name="wsdlServicePort" value="PublicadorWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.publicador.sgm.tecdoc.ieci,http://dto.server.ws.publicador.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="PublicadorWebServiceService"/>
+  <typeMapping encodingStyle="" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" type="java:ieci.tecdoc.sgm.publicador.ws.server.dto.Booleano" qname="ns14:Booleano" xmlns:ns14="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <typeMapping encodingStyle="" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" type="java:ieci.tecdoc.sgm.publicador.ws.server.dto.Hito" qname="ns15:Hito" xmlns:ns15="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <typeMapping encodingStyle="" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" type="java:ieci.tecdoc.sgm.publicador.ws.server.dto.Error" qname="ns16:Error" xmlns:ns16="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <typeMapping encodingStyle="" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" type="java:ieci.tecdoc.sgm.publicador.ws.server.dto.Regla" qname="ns17:Regla" xmlns:ns17="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <typeMapping encodingStyle="" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" type="java:ieci.tecdoc.sgm.publicador.ws.server.dto.ListaErrores" qname="ns18:ListaErrores" xmlns:ns18="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <typeMapping encodingStyle="" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" type="java:ieci.tecdoc.sgm.publicador.ws.server.dto.ListaHitos" qname="ns19:ListaHitos" xmlns:ns19="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <typeMapping encodingStyle="" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" type="java:ieci.tecdoc.sgm.publicador.ws.server.dto.ListaReglas" qname="ns20:ListaReglas" xmlns:ns20="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns21:Regla" languageSpecificType="java:ieci.tecdoc.sgm.publicador.ws.server.dto.Regla[]" qname="ns21:ArrayOfReglas" xmlns:ns21="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns22:Hito" languageSpecificType="java:ieci.tecdoc.sgm.publicador.ws.server.dto.Hito[]" qname="ns22:ArrayOfHitos" xmlns:ns22="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns23:Error" languageSpecificType="java:ieci.tecdoc.sgm.publicador.ws.server.dto.Error[]" qname="ns23:ArrayOfError" xmlns:ns23="http://server.ws.publicador.sgm.tecdoc.ieci"/>
+  <wsdlFile>../../wsdl/PublicadorWebService.wsdl</wsdlFile>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

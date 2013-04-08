@@ -1,0 +1,209 @@
+/* CSS Document */
+/* Estilos usados en las pestañas */
+
+body {
+	background: #F2F2F2;
+	margin: 0;
+	color: #000;
+
+	SCROLLBAR-FACE-COLOR:#6699CC; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #6699CC; 
+	SCROLLBAR-SHADOW-COLOR: #6699CC; 
+	SCROLLBAR-3DLIGHT-COLOR: #FFFFFF;
+	SCROLLBAR-ARROW-COLOR: #FFFFFF; 
+	SCROLLBAR-TRACK-COLOR: #E3E3E3; 
+	SCROLLBAR-DARKSHADOW-COLOR: #000000;
+}
+th
+{
+	color: #000;
+	font: 9px verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+}
+
+/*
+p, tr, td, ul, li {
+	color: #000;
+	font: 9px verdana, arial, helvetica, sans-serif;
+}
+*/
+
+hr {
+/*	 border: 1px #000 solid; */
+width:90%;
+
+}
+
+.encabezado1 {
+	font-size: 10pt; color: #5888b8; font-weight: bold;
+}
+
+
+
+input, select, textarea {
+	color:#000;
+	font: 9px verdana, arial, helvetica, sans-serif;
+}
+
+
+input:focus,textarea:focus {
+	font: 9px verdana, arial, helvetica, sans-serif;
+}
+
+.tableft  { 
+background-image: url(../images/tableft.gif);
+height:17px;
+}
+
+.tabright  { 
+background-image: url(../images/tabright.gif);
+height:17px;
+}
+
+/*
+#tabmiddle1, #tabmiddle2, #tabmiddle3, #tabmiddle4, #tabmiddle5 {
+background-image: url(../images/middle.gif);
+text-align: middle;
+color: #999999;
+cursor: arrow;
+font-size: 10px;
+width:50px;
+}
+*/
+
+/*
+#tab1, #tab2, #tab3, #tab4, #tab5 {
+position:absolute;
+height: 17px;
+top: 18px;
+z-index: 0;
+background-color: #cccccc;
+color: #999999;
+}
+*/
+
+/*
+.RowSelected {
+background-color: #639ACE;
+}
+.RowNonSelected {
+BACKGROUND-COLOR: #FFFFFF;
+}
+*/
+.activebgcolor{
+	background-color: #639ACE;
+}
+.inactivebgcolor{
+	background-color: #ffffff;
+}
+.overbgcolor {
+	background-color: #E6E6E6;
+}
+
+/*
+#tab1 {
+left: 2px; 
+}
+
+#tab2 {
+left: 67px;
+}
+
+#tab3 {
+left: 132px;
+}
+
+#tab4 {
+left: 197px;
+}
+
+#tab5 {
+left: 410px;
+}
+*/
+
+#box1, #box2, #box3, #box4, #box5 {
+vertical-align: middle;
+position: absolute;
+top: 35px; /* 35 */
+left: 2px;
+/* width: 258px; */
+width: 80%; /* 88%, 340px*/
+/* height: 165px; */
+height: 85%;
+z-index: 0; /* 0 */
+padding-top:0px;
+padding-left:0px;
+background-color: white;
+border: 1px solid black;
+padding: 2px;
+}
+
+.titulo{
+background-color:#5888b8;
+font-family: verdana, helvetica, sans-serif;
+font-size: 10px;
+font-weight: bold;
+color:#FFFFFF;
+padding-top:1px;
+padding-left:1px;
+position:absolute;
+left:2px;
+top:2px;
+width: 100%;
+height:14px;
+z-index:21;
+}
+
+
+.tablaCampos{
+	position:absolute;
+	overflow: auto;
+	left:5px;
+	top:37px;
+	width: 85%;
+	height: 45%;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+	font-family: verdana, helvetica, sans-serif;
+	font-size: 9px;
+	border-spacing: 0;
+	empty-cells: show;
+	margin: 0;
+	padding: 0;
+	visibility:visible;
+}
+
+.boton1
+{
+font: 9px verdana, arial, helvetica, sans-serif;
+border: 1px solid #000000;
+position:absolute;
+left:358px;
+top:50px;
+width: 65px;
+z-index:20;
+}
+
+.boton2
+{
+font: 9px verdana, arial, helvetica, sans-serif; 
+border: 1px solid #000000;
+position:absolute;
+left:358px;
+top:78px;
+width: 65px;
+z-index:20;
+}
+
+.boton3
+{
+font: 9px verdana, arial, helvetica, sans-serif; 
+border: 1px solid #000000;
+position:absolute;
+left:358px;
+top:106px;
+z-index:20;
+width: 65px;
+}
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+							  "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+
+	<settings lazyLoadingEnabled="true" useStatementNamespaces="true" />
+
+	<typeHandler javaType="java.lang.String"
+		callback="es.ieci.tecdoc.fwktd.server.dao.ibatis.sqlmap.client.extensions.StringTypeHandlerCallback" />
+
+	<typeHandler javaType="java.lang.Boolean"
+		callback="es.ieci.tecdoc.fwktd.server.dao.ibatis.sqlmap.client.extensions.BooleanTypeHandlerCallback" />
+
+	<sqlMap resource="sqlmaps/fwktd-csv/fwktd-csv-aplicaciones.xml" />
+	<sqlMap resource="sqlmaps/fwktd-csv/fwktd-csv-documentos.xml" />
+
+</sqlMapConfig>

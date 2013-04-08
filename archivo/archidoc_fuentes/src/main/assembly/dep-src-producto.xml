@@ -1,0 +1,28 @@
+<assembly>
+	<id>src</id>
+	<formats>
+		<format>tar</format>
+	</formats>
+	<componentDescriptors>
+    	<componentDescriptor>src/main/assembly/component.xml</componentDescriptor>
+  	</componentDescriptors>	
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>..</directory>
+			<outputDirectory>/</outputDirectory>
+			<excludes>
+				<exclude>**/target/**</exclude>
+				<exclude>**/.settings/**</exclude>
+				<exclude>**/.classpath/**</exclude>
+				<exclude>**/.project/**</exclude>
+			</excludes>
+			<includes>
+				<include>archidoc_cfg_modules/producto_cfg**/**</include>
+				<include>genera_archidoc.bat</include>
+				<include>run_maven.bat</include>
+			</includes>	
+		</fileSet>
+	</fileSets>
+</assembly>
+

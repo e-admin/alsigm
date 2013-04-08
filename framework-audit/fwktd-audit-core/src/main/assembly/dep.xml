@@ -1,0 +1,17 @@
+<assembly>
+	<id>configurable</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/target/classes/fwktd-audit</directory>
+			<outputDirectory>/fwktd-audit</outputDirectory>
+			<includes>
+				<include>fwktd-audit-core.properties</include>
+			</includes>
+		</fileSet>
+			</fileSets>
+
+</assembly>

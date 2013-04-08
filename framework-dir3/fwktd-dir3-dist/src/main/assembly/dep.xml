@@ -1,0 +1,72 @@
+<assembly>
+	<id>distribucion</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}/../</directory>
+			<outputDirectory>/src</outputDirectory>
+			<useDefaultExcludes>true</useDefaultExcludes>
+			<excludes>
+				<exclude>${project.build.directory}/**</exclude>
+				<exclude>**/target/</exclude>
+				<exclude>**/.project</exclude>
+				<exclude>**/.classpath</exclude>
+				<exclude>**/.settings/**</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+
+
+	<dependencySets>
+
+		<!-- dependencias de zip de tipo configuracion -->
+		<dependencySet>
+			<unpack>true</unpack>
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<useProjectArtifact>false</useProjectArtifact>
+			<includes>
+				<include>*:zip:configurable</include>
+			</includes>
+			<outputDirectory>config</outputDirectory>
+		</dependencySet>
+
+		<!-- dependencias de tipo jar -->
+		<dependencySet>
+			<unpack>false</unpack>
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<useProjectArtifact>false</useProjectArtifact>
+			<includes>
+				<include>*:jar</include>
+			</includes>
+			<outputDirectory>/bin/jars</outputDirectory>
+		</dependencySet>
+
+		<!-- dependencias de tipo base de datos -->
+		<dependencySet>
+			<unpack>true</unpack>
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<useProjectArtifact>false</useProjectArtifact>
+			<includes>
+				<include>*:zip:bd</include>
+			</includes>
+			<outputDirectory>db</outputDirectory>
+		</dependencySet>
+
+		<!-- dependencias de documentacion -->
+		<dependencySet>
+			<unpack>true</unpack>
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<useProjectArtifact>false</useProjectArtifact>
+			<includes>
+				<include>*:zip:documentacion</include>
+			</includes>
+			<outputDirectory>doc</outputDirectory>
+		</dependencySet>
+
+	</dependencySets>
+
+</assembly>

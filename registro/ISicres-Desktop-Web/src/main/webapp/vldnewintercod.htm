@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   	<script language="javascript">														
+		document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+	</script>
+   <link REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+   <link REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+</HEAD>
+<BODY tabindex="-1">
+<form name="frmVldNewInterCod" id="frmVldNewInterCod" onsubmit="return false;">
+      <label class="label" name="oLblCod" style="position:absolute; top:5; left:5;">
+         <script language="javascript">document.write(top.GetIdsLan("IDS_COD_POSTAL"));
+         </script>:
+      </label>
+      <input class="input" ID="oTxtCod" style="position:absolute; top:5; left:60; width:150;" Name="oTxtCod"
+         Type="text" onkeyup="parent.VldNewInterPob.HabilitarAgregarPob(event);" maxlength="5" tabindex="1">
+      </input>
+</form>
+</BODY>
+</HTML>

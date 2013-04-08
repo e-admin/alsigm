@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='EXP:NUMEXP' 
+				 titleKey='formatter.exprel.numExp' 
+				 fieldType='LINK' 
+				 columnClass='width20percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'
+				 media="html"
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='EXP:NUMEXP' 
+				 titleKey='formatter.exprel.numExp' 
+				 fieldType='LIST' 
+				 columnClass='width20percent'
+				 media='csv excel xml pdf'
+				 />			 
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='EXP:ASUNTO' 
+				 titleKey='formatter.exprel.asunto' 
+				 fieldType='LIST' 
+				 columnClass='width25percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='EXP:IDENTIDADTITULAR' 
+				 titleKey='formatter.exprel.interesado' 
+				 fieldType='LIST' 
+				 columnClass='width30percent'
+				 />
+	
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='EXP_REL:RELACION' 
+				 titleKey='formatter.exprel.relacion' 
+				 fieldType='LIST' 
+				 columnClass='width20percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 fieldType='DELETE' 
+				 columnClass='width5percent'
+				 media='html'
+				 />
+
+</beanformatter>

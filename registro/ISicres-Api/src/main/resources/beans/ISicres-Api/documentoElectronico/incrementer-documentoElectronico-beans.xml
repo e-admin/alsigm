@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- ############################### POSTGRES ############################################## -->
+	<bean id="postgres-documentoElectronicoAnexoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_seq"></constructor-arg>
+	</bean>
+
+	<bean id="postgres-documentoElectronicoAnexoDatosFirmaIncrementer"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_sign_info_seq"></constructor-arg>
+	</bean>
+
+	<!-- ############################### SQLSERVER ############################################## -->
+
+	<bean id="sqlserver-documentoElectronicoAnexoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_seq"></constructor-arg>
+		<constructor-arg value="id"></constructor-arg>
+	</bean>
+	<bean id="sqlserver-documentoElectronicoAnexoDatosFirmaIncrementer"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_sign_info_seq"></constructor-arg>
+		<constructor-arg value="id"></constructor-arg>
+	</bean>
+
+
+	<!-- ############################### ORACLE ############################################## -->
+
+	<bean id="oracle-documentoElectronicoAnexoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_seq"></constructor-arg>
+	</bean>
+
+	<bean id="oracle-documentoElectronicoAnexoDatosFirmaIncrementer"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_sign_info_seq"></constructor-arg>
+	</bean>
+
+	<!-- ############################### DB2 400 ############################################# -->
+
+	<bean id="db2400-documentoElectronicoAnexoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_seq"></constructor-arg>
+	</bean>
+
+	<bean id="db2400-documentoElectronicoAnexoDatosFirmaIncrementer"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_sign_info_seq"></constructor-arg>
+	</bean>
+
+	<!-- ############################### DB2 UDB ############################################# -->
+
+	<bean id="db2udb-documentoElectronicoAnexoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_seq"></constructor-arg>
+	</bean>
+
+	<bean id="db2udb-documentoElectronicoAnexoDatosFirmaIncrementer"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg ref="isicresDocumentoElectronicoDataSource"></constructor-arg>
+		<constructor-arg value="scr_attachment_sign_info_seq"></constructor-arg>
+	</bean>
+
+</beans>

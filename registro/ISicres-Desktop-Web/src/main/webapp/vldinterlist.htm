@@ -1,0 +1,1082 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>&nbsp;</title>
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/table.css">
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/cons_tam.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/list.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/frmint.js"></script>
+		<script language="javascript">
+
+			var wherePFis = "", wherePJur = "";
+			var caseSensitive = top.g_FormVld.document.getElementById("Interesados").getAttribute("caseSensitive");
+
+			function getInterested(cadena)
+			{
+   				var oArray = new Array();
+   				var strCopia = new String(cadena);
+   				var strPattern = / && /i;
+   				var iPosFin = 0;
+   				var ii = 0;
+
+				for(var jj = 0; ii < strCopia.length; jj++) {
+					iPosFin =  strCopia.search(strPattern);
+
+					if (iPosFin > -1) {
+					        oArray[jj] = new VldData(strCopia.substr(ii,iPosFin));
+         					ii = iPosFin + 4; // La longitud de " && "
+         					// Nos quedamos con la parte izquierda
+         					strCopia = strCopia.substr(ii,(strCopia.length - ii));
+         					ii = 0;
+      					}
+      					else {
+         					oArray[jj] = new VldData(strCopia.substr(ii, strCopia.length));
+         					ii = strCopia.length;
+      					}
+   				}
+
+   				return oArray;
+			}
+
+
+			function onWindowLoad()
+			{
+				var oArrInterested = null;
+				if (caseSensitive == 'CS'){
+					document.getElementById("txtNumIdent").style.textTransform = "uppercase";
+					document.getElementById("txtApe1").style.textTransform = "uppercase";
+					document.getElementById("txtApe2").style.textTransform = "uppercase";
+					document.getElementById("txtName").style.textTransform = "uppercase";
+					document.getElementById("txtSocial").style.textTransform = "uppercase";
+				}
+				top.g_FormVld.style.visibility = 'hidden';
+
+   				//Para evitar que el foco se sit�e en el campo oculto de b�squeda. Quitar cuando se rehaga la edici�n de interesados
+   				top.g_WndVld.SetFormFocus();
+
+   				if (top.g_Field)  {
+      					oArrInterested = getInterested(top.g_Field.value);
+   				}
+
+				with (document.getElementById("tbInts")){
+					with (tHead.rows[0]){
+						top.SetInnerText(cells[1], top.GetIdsLan("IDS_LABEL_INT"));
+						top.SetInnerText(cells[2], top.GetIdsLan("IDS_DIRECCION"));
+					}
+
+					for (var i = rows.length - 1; i > 0; i--){
+						deleteRow(i);
+					}
+				}
+
+				for (var i = 0; i < oArrInterested.length; i++){
+					var oArrOneInter = top.getTokens(oArrInterested[i].value, "#", "#", 5);
+
+					if (oArrOneInter[3] != "" && oArrOneInter[3] != null && oArrOneInter[3] != undefined){
+						insertRowInteresados(document.getElementById("tbInts"), oArrOneInter[0], oArrOneInter[2], oArrOneInter[1], oArrOneInter[3], oArrOneInter[4], -1);
+					}else{
+						insertRowInteresados(document.getElementById("tbInts"), oArrOneInter[0], oArrOneInter[2], oArrOneInter[1], "", oArrOneInter[4], -1);
+					}
+				}
+
+				with (document.getElementById("tbInts")){
+					var newRow = insertRow(-1);
+					var newCell = new Array;
+
+					newRow.id = "null";
+					newRow.className="Style5";
+
+					newCell[0] = newRow.insertCell(-1);
+					newCell[1] = newRow.insertCell(-1);
+					newCell[2] = newRow.insertCell(-1);
+				}
+
+				SetTabSize();
+
+				top.SetInnerText(parent.VldTitle.document.getElementById("V_Title"), top.GetIdsLan( "IDS_TITCAMPOINT" ));
+
+				OnCheckPerson();
+
+			}
+
+			function SetTabSize()
+			{
+				var tabData = document.getElementById("tbInts");
+				var rowNull = document.getElementById("null");
+				var space = (document.body.clientHeight/2) - tabData.clientHeight + rowNull.clientHeight - 16;
+
+				if (space > 13)	{
+					rowNull.height = space.toString();
+				}
+				else {
+					rowNull.height = "13";
+				}
+				document.getElementById("divtbInts").style.height = (document.body.clientHeight/2);
+			}
+
+			function OnClose()
+			{
+				var oForm = top.g_FormVld;
+
+				// Cerramos los frames
+				top.SetInnerText(parent.VldTitle.document.getElementById("V_Title"), "");
+				parent.VldInter.rows = "100%, *";
+
+				eval(top.g_VldPath + ".document.getElementById('Vld').style.display = 'none'");
+
+				oForm.style.visibility = "visible";
+
+				top.setFocus(top.g_FormVld.document.Interesados.document.getElementById("validInt"));
+
+				g_VldInterSaved = false;
+
+				// activamos el boton de guardar
+				if (top.g_WndVld.bIsActiveSave) {
+					top.Main.Folder.FolderBar.ActivateSave();
+				}
+
+				if ((top.Main != null)
+				 && (top.Main.Folder != null)
+				 && (top.Main.Folder.FolderData != null)
+				 && (top.Main.Folder.FolderData.FolderFormTree != null)
+				 && (top.Main.Folder.FolderData.FolderFormTree.document != null)
+				 && (top.Main.Folder.FolderData.FolderFormTree.document.getElementById("divDocs") != null)
+				 && (top.Main.Folder.FolderData.FolderFormTree.document.getElementById("divDocs").style != null)){
+					top.Main.Folder.FolderData.FolderFormTree.document.getElementById("divDocs").style.visibility="visible";
+				}
+
+				return;
+			}
+
+			function OnOK()
+			{
+				var strInteresados = "";
+
+				with (document.getElementById("tbInts")){
+					for (var i = 0; i < rows.length; i++){
+						if (rows[i].id == "rowDatas"){
+							if (i > 1){ strInteresados += " && ";}
+							strInteresados += rows[i].cells[0].getAttribute("id") + "#" + top.GetInnerText(rows[i].cells[1]) + "#";
+
+							if((rows[i].cells[0].getAttribute("idAddress")!= null) && (rows[i].cells[0].getAttribute("idAddress")!= "") && (rows[i].cells[0].getAttribute("idAddress")!= " ") && (top.GetInnerText(rows[i].cells[2]) != "")){
+								strInteresados += rows[i].cells[0].getAttribute("idAddress") + "#" + top.GetInnerText(rows[i].cells[2]) + "#" + rows[i].cells[0].getAttribute("idType") + "#";
+							}else{
+								//sin direccion
+								strInteresados += " # # #";
+							}
+						}
+					}
+				}
+
+				// Guardamos la cadena en el campo
+				if ( top.g_Field ){
+					top.g_Field.value = strInteresados;
+					// Asignamos los valores de la lista a los campos interesados
+					asignSustitutos(strInteresados, top.g_Field.getAttribute("FldId"), top.g_Field.getAttribute("tblvalidated"));
+					top.g_WndVld.document.getElementById("Interesados").value = strInteresados;
+					top.g_WndVld.document.getElementById("Interesados").document.Interesados.LoadFrameInt();
+					top.g_WndVld.document.getElementById("Interesados").document.Interesados.SetChange();
+					top.g_WndVld.cambioValor(top.g_Field);
+   				}
+
+   				if ((g_VldInterSaved) || (top.g_WndVld.bIsActiveSave)){
+					g_VldInterSaved = false;
+					//Activamos el guardar
+					top.Main.Folder.FolderBar.ActivateSave();
+				}
+
+				// Cerramos los frames
+				top.SetInnerText(parent.VldTitle.document.getElementById("V_Title"), "");
+				parent.VldInter.rows = "100%, *";
+				eval(top.g_VldPath + ".document.getElementById('Vld').style.display = 'none'");
+
+				// Volvemos a mostrar el formulario
+				top.g_FormVld.style.visibility = 'visible';
+
+   				//Para evitar que el foco se sit�e en el campo oculto de b�squeda. Quitar cuando se rehaga la edici�n de interesados
+				top.setFocus(top.g_FormVld.document.Interesados.document.getElementById("validInt"));
+
+				eval( top.g_VldPath + ".OnHelpWindow=false" );
+
+				if ((top.Main != null)
+				 && (top.Main.Folder != null)
+				 && (top.Main.Folder.FolderData != null)
+				 && (top.Main.Folder.FolderData.FolderFormTree != null)
+				 && (top.Main.Folder.FolderData.FolderFormTree.document != null)
+				 && (top.Main.Folder.FolderData.FolderFormTree.document.getElementById("divDocs") != null)
+				 && (top.Main.Folder.FolderData.FolderFormTree.document.getElementById("divDocs").style != null)){
+					top.Main.Folder.FolderData.FolderFormTree.document.getElementById("divDocs").style.visibility="visible";
+				}
+
+			}
+
+
+			function VldData(value)
+			{
+   				this.value = value;
+			}
+
+			function OnCheckClick()
+			{
+				var firstChecked = false, lastChecked = false, anyChecked = false;
+
+				with (document.getElementById("tbInts")){
+					for (var i = 0; i < rows.length; i++){
+						if (rows[i].id == "rowDatas"){
+							if (rows[i].cells[0].firstChild.checked == true){
+								if (!firstChecked){firstChecked = (i == 1);}
+								if (!lastChecked){lastChecked = (i == rows.length - 2);}
+								anyChecked = true;
+							}
+						}
+					}
+				}
+			}
+
+			function OnCheckPerson()
+			{
+				if(document.getElementById("cmbTipoIdent").value == "1"){
+					document.getElementById("cmbApe1").disabled = false;
+					document.getElementById("cmbApe2").disabled = false;
+					document.getElementById("cmbName").disabled = false;
+					document.getElementById("txtApe1").className = false?"inputRO":"input";
+					document.getElementById("txtApe2").className = false?"inputRO":"input";
+					document.getElementById("txtName").className = false?"inputRO":"input";
+					document.getElementById("txtApe1").disabled = false;
+					document.getElementById("txtApe2").disabled = false;
+					document.getElementById("txtName").disabled = false;
+					document.getElementById("cmbSocial").disabled = true;
+					document.getElementById("txtSocial").className = true?"inputRO":"input";
+					document.getElementById("txtSocial").disabled = true;
+					document.getElementById("cmbNumIdent").disabled = false;
+					document.getElementById("txtNumIdent").className = false?"inputRO":"input";
+					document.getElementById("txtNumIdent").disabled = false;
+					document.getElementById("btnSearch2").disabled = false;
+
+				}else{
+					document.getElementById("cmbApe1").disabled = true;
+					document.getElementById("cmbApe2").disabled = true;
+					document.getElementById("cmbName").disabled = true;
+					document.getElementById("txtApe1").className = true?"inputRO":"input";
+					document.getElementById("txtApe2").className = true?"inputRO":"input";
+					document.getElementById("txtName").className = true?"inputRO":"input";
+					document.getElementById("txtApe1").disabled = true;
+					document.getElementById("txtApe2").disabled = true;
+					document.getElementById("txtName").disabled = true;
+					document.getElementById("cmbSocial").disabled = false;
+					document.getElementById("txtSocial").className = false?"inputRO":"input";
+					document.getElementById("txtSocial").disabled = false;
+					document.getElementById("cmbNumIdent").disabled = false;
+					document.getElementById("txtNumIdent").className = false?"inputRO":"input";
+					document.getElementById("txtNumIdent").disabled = false;
+					document.getElementById("btnSearch2").disabled = false;
+
+				}
+			}
+
+			function getFirstRowSelected()
+			{
+				var index = -1;
+
+				with (document.getElementById("tbInts")){
+					for (var i = 0; i < rows.length; i++){
+						if (rows[i].id == "rowDatas"){
+							if (rows[i].cells[0].firstChild.checked == true){
+								index = i;
+								break;
+							}
+						}
+					}
+				}
+
+				return (index);
+			}
+
+			function getNumberOfRowsSelected()
+			{
+				var numCheck = 0;
+
+				with (document.getElementById("tbInts")){
+					for (var i = 0; i < rows.length; i++){
+						if (rows[i].id == "rowDatas"){
+							if (rows[i].cells[0].firstChild.checked == true){
+								numCheck += 1;
+							}
+						}
+					}
+				}
+
+				return (numCheck);
+			}
+
+			function OnUpRow()
+			{
+				var index = getFirstRowSelected();
+
+				if ((index != 1) && (index > -1)){
+					with (document.getElementById("tbInts")){
+						var idRow = rows[index - 1].cells[0].getAttribute("id");
+						var idAddress = rows[index - 1].cells[0].getAttribute("idAddress");
+						var idType = rows[index - 1].cells[0].getAttribute("idType");
+						var txtInt = top.GetInnerText(rows[index - 1].cells[1]);
+
+						if (idAddress != ""){
+							var txtAddress = top.GetInnerText(rows[index - 1].cells[2]);
+						}else{
+							var txtAddress = top.GetInnerText(rows[index - 1].cells[2]);
+						}
+						rows[index - 1].cells[0].setAttribute("id", rows[index].cells[0].getAttribute("id"));
+						rows[index - 1].cells[0].setAttribute("idAddress", rows[index].cells[0].getAttribute("idAddress"));
+						rows[index - 1].cells[0].setAttribute("idType", rows[index].cells[0].getAttribute("idType"));
+						top.SetInnerText(rows[index - 1].cells[1], top.GetInnerText(rows[index].cells[1]));
+						top.SetInnerText(rows[index - 1].cells[2], top.GetInnerText(rows[index].cells[2]));
+
+						rows[index].cells[0].setAttribute("id", idRow);
+						rows[index].cells[0].setAttribute("idAddress", idAddress);
+						rows[index].cells[0].setAttribute("idType", idType);
+						top.SetInnerText(rows[index].cells[1], txtInt);
+						top.SetInnerText(rows[index].cells[2], txtAddress);
+						rows[index - 1].cells[0].firstChild.checked = true;
+						rows[index].cells[0].firstChild.checked = false;
+					}
+
+					OnCheckClick();
+				}
+			}
+
+			function OnDownRow()
+			{
+				var index = getFirstRowSelected();
+
+				if ((index != document.getElementById("tbInts").rows.length - 2) && (index > -1)){
+					with (document.getElementById("tbInts")){
+						var idRow = rows[index + 1].cells[0].getAttribute("id");
+						var idAddress = rows[index + 1].cells[0].getAttribute("idAddress");
+						var idType = rows[index + 1].cells[0].getAttribute("idType");
+						var txtInt = top.GetInnerText(rows[index + 1].cells[1]);
+
+						if (idAddress != ""){
+							var txtAddress = top.GetInnerText(rows[index + 1].cells[2]);
+						}else{
+							var txtAddress = top.GetInnerText(rows[index + 1].cells[2]);
+						}
+
+						rows[index + 1].cells[0].setAttribute("id", rows[index].cells[0].getAttribute("id"));
+						rows[index + 1].cells[0].setAttribute("idAddress", rows[index].cells[0].getAttribute("idAddress"));
+						rows[index + 1].cells[0].setAttribute("idType", rows[index].cells[0].getAttribute("idType"));
+
+						top.SetInnerText(rows[index + 1].cells[1], top.GetInnerText(rows[index].cells[1]));
+						top.SetInnerText(rows[index + 1].cells[2], top.GetInnerText(rows[index].cells[2]));
+
+						rows[index].cells[0].setAttribute("id", idRow);
+						rows[index].cells[0].setAttribute("idAddress", idAddress);
+						rows[index].cells[0].setAttribute("idType", idType);
+						top.SetInnerText(rows[index].cells[1], txtInt);
+						top.SetInnerText(rows[index].cells[2], txtAddress);
+
+						rows[index + 1].cells[0].firstChild.checked = true;
+						rows[index].cells[0].firstChild.checked = false;
+					}
+
+					OnCheckClick();
+				}
+			}
+
+			function OnDelRows()
+			{
+				var numRowsCheck = getNumberOfRowsSelected();
+
+				if(numRowsCheck <= 0){
+					alert(top.GetIdsLan("IDS_MSGALERT_DELET_TERCEROS"));
+				}
+				else{
+					if (!window.confirm(top.GetIdsLan("IDS_MSG_DEL_INTS"))){return;}
+
+					with (document.getElementById("tbInts")){
+						for (var i = rows.length - 2; i >= 1; i--){
+							if (rows[i].cells[0].firstChild.checked){
+								deleteRow(i);
+								SetTabSize();
+							}
+						}
+					}
+
+					OnCheckClick();
+				}
+			}
+
+			function SetAddress()
+			{
+				var numRowsCheck = getNumberOfRowsSelected();
+
+				if(numRowsCheck > 1){
+					alert(top.GetIdsLan("IDS_ERRORSELECINTER"));
+				}else if(numRowsCheck <= 0){
+					alert(top.GetIdsLan("IDS_MSGALERT_MODIF_TERCEROS"));
+				}else{
+					var iIndex = getFirstRowSelected();
+					var strIdPerson = document.getElementById("tbInts").rows[iIndex].cells[0].getAttribute("id");
+					var strRet = "", value = "";
+					var oArrayTok;
+
+					var URL = "vlddirinter.jsp?SessionPId=" + top.ParamValue(document.location.search,"SessionPId")
+						+ "&PersonId=" + strIdPerson
+						+ "&Idioma=" + top.Idioma
+						+ "&numIdioma=" + top.numIdioma;
+
+					strRet = top.ShowModalDialog(URL, top.GetIdsLan("IDS_DIRECCIONES"), 265, 550, "");
+
+					// si hemos seleccionado un elemento de la lista
+					if ( (strRet) && (strRet != "") ) {
+						oArrayTok = top.getTokens(strRet, "|", "||", 5);
+						value = oArrayTok[1] + " " + oArrayTok[2] + " " + oArrayTok[3] + " " + oArrayTok[4];
+						document.getElementById("tbInts").rows[iIndex].cells[0].setAttribute("idAddress", oArrayTok[0]);
+						document.getElementById("tbInts").rows[iIndex].cells[0].setAttribute("idAddressTel", "");
+						top.SetInnerText(document.getElementById("tbInts").rows[iIndex].cells[2], value);
+
+						parent.g_VldInterSaved=true;
+					}
+				}
+			}
+
+			function SetAddressTel()
+			{
+				var numRowsCheck = getNumberOfRowsSelected();
+
+				if(numRowsCheck > 1){
+					alert(top.GetIdsLan("IDS_ERRORSELECINTER"));
+				}else if(numRowsCheck <= 0){
+						alert(top.GetIdsLan("IDS_MSGALERT_MODIF_TERCEROS"));
+				}else{
+					var iIndex = getFirstRowSelected();
+					var strIdPerson = document.getElementById("tbInts").rows[iIndex].cells[0].getAttribute("id");
+					var strRet = "", value = "", typeDescription = "";
+					var oArrayTok;
+
+					var URL = "vlddirintertel.jsp?SessionPId=" + top.ParamValue(document.location.search,"SessionPId")
+						+ "&PersonId=" + strIdPerson
+						+ "&Idioma=" + top.Idioma
+						+ "&numIdioma=" + top.numIdioma;
+
+					strRet = top.ShowModalDialog(URL, top.GetIdsLan("IDS_DIRECCIONES"), 265, 550, "");
+
+					// si hemos seleccionado un elemento de la lista
+					if ( (strRet) && (strRet != "") ) {
+						oArrayTok = top.getTokens(strRet, "|", "||", 4);
+						document.getElementById("tbInts").rows[iIndex].cells[0].setAttribute("idAddress", oArrayTok[0]);
+						document.getElementById("tbInts").rows[iIndex].cells[0].setAttribute("idType", oArrayTok[3]);
+
+						value = oArrayTok[1] + " " + oArrayTok[2] ;
+						top.SetInnerText(document.getElementById("tbInts").rows[iIndex].cells[2], value);
+
+						parent.g_VldInterSaved=true;
+					}
+				}
+			}
+
+			function OnClickSearch(Init, fnCallback)
+			{
+				document.body.style.cursor = "wait";
+
+				var URL = "vldbuscinter.jsp?AppId=" + top.ParamValue(document.location.search,"AppId")
+					+ "&SessionPId=" + top.ParamValue(document.location.search,"SessionPId")
+					+ "&Idioma=" + top.ParamValue(document.location.search,"Idioma")
+					+ "&numIdioma=" + top.ParamValue(document.location.search,"numIdioma")
+					+ "&InitValue=" + Init.toString();
+				var typePerson = document.getElementById("cmbTipoIdent").value;
+				var searchPFis = false, searchPJur = false;
+
+				wherePFis = wherePJur = "";
+				if (caseSensitive == 'CS'){
+					document.getElementById("txtNumIdent").value = top.miTrim(document.getElementById("txtNumIdent").value.toUpperCase());
+					document.getElementById("txtApe1").value = top.miTrim(document.getElementById("txtApe1").value).toUpperCase();
+					document.getElementById("txtApe2").value = top.miTrim(document.getElementById("txtApe2").value).toUpperCase();
+					document.getElementById("txtName").value = top.miTrim(document.getElementById("txtName").value).toUpperCase();
+					document.getElementById("txtSocial").value = top.miTrim(document.getElementById("txtSocial").value.toUpperCase());
+				} else {
+					document.getElementById("txtNumIdent").value = top.miTrim(document.getElementById("txtNumIdent").value);
+					document.getElementById("txtApe1").value = top.miTrim(document.getElementById("txtApe1").value);
+					document.getElementById("txtApe2").value = top.miTrim(document.getElementById("txtApe2").value);
+					document.getElementById("txtName").value = top.miTrim(document.getElementById("txtName").value);
+					document.getElementById("txtSocial").value = top.miTrim(document.getElementById("txtSocial").value);
+				}
+
+				if (typePerson == "1" || typePerson == "0"){
+					searchPFis = true;
+					if (document.getElementById("txtNumIdent").value != ""){
+						wherePFis = document.getElementById("txtNumIdent").getAttribute("label") + "|"
+							+ document.getElementById("cmbNumIdent").value + "|" + document.getElementById("txtNumIdent").value;
+					}
+
+					if (document.getElementById("txtApe1").value != ""){
+						if (wherePFis != ""){wherePFis += "#";}
+						wherePFis += document.getElementById("txtApe1").getAttribute("label") + "|"
+							+ document.getElementById("cmbApe1").value + "|" + document.getElementById("txtApe1").value;
+
+					}
+
+					if (document.getElementById("txtApe2").value != ""){
+						if (wherePFis != ""){wherePFis += "#";}
+						wherePFis += document.getElementById("txtApe2").getAttribute("label") + "|"
+							+ document.getElementById("cmbApe2").value + "|" + document.getElementById("txtApe2").value;
+
+					}
+
+					if (document.getElementById("txtName").value != ""){
+						if (wherePFis != ""){wherePFis += "#";}
+						wherePFis += document.getElementById("txtName").getAttribute("label") + "|"
+							+ document.getElementById("cmbName").value + "|" + document.getElementById("txtName").value;
+					}
+				}
+
+				if (typePerson == "2" || typePerson == "0"){
+					searchPJur = true;
+					if (document.getElementById("txtNumIdent").value != ""){
+						wherePJur = document.getElementById("txtNumIdent").getAttribute("label") + "|"
+							+ document.getElementById("cmbNumIdent").value + "|" + document.getElementById("txtNumIdent").value;
+
+					}
+
+					if (document.getElementById("txtSocial").value != ""){
+						if (wherePJur != ""){wherePJur += "#";}
+						wherePJur += document.getElementById("txtSocial").getAttribute("label") + "|"
+							+ document.getElementById("cmbSocial").value + "|" + document.getElementById("txtSocial").value;
+
+					}
+				}
+
+				URL += "&wherePFis=" + escape(wherePFis) + "&wherePJur=" + escape(wherePJur) + "&SearchPFis=" + searchPFis
+					+ "&SearchPJur=" + searchPJur;
+
+				top.XMLHTTPRequestGet(URL, fnCallback, true);
+			}
+
+			function ResponseSearch()
+			{
+				document.body.style.cursor = "default";
+				
+				if (top.g_oXMLHTTPRequest.readyState != 4){
+					return;
+				}
+
+				if (top.g_oXMLHTTPRequest.status != 200){
+					alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
+				return;
+				}
+
+				var XMLText = top.g_oXMLHTTPRequest.responseText;
+
+				if (XMLText.indexOf("alert(") != -1){
+					evalAlert(XMLText);
+				}
+				else{
+					var XMLDoc = top.g_oXMLHTTPRequest.responseXML;
+
+					if (XMLDoc.documentElement.getElementsByTagName("Error").length != 0){
+						alert(XMLDoc.documentElement.getElementsByTagName("Error")[0].firstChild.data);
+						return;
+					}
+
+					var Total = parseInt(XMLDoc.documentElement.getElementsByTagName("Total")[0].firstChild.data, 10);
+
+					if (Total > 0){
+						var args = new Array();
+						var sRet;
+						var selected = false;
+						var typePerson = document.getElementById("cmbTipoIdent").value;
+						var searchPFis = false, searchPJur = false;
+						if (typePerson == "1"){
+							searchPFis = true;
+						}else{
+							if (typePerson == "2"){
+								searchPJur = true;
+							}else{
+								searchPFis = true;
+								searchPJur = true;
+							}
+						}
+
+						args[0] = XMLDoc;
+						args[1] = top.g_URL;
+						args[2] = top.g_SessionPId.toString();
+						args[3] = "0";
+						args[4] = "SearchInt";
+						args[5] = top.Idioma;
+						args[6] = top.GetIdsLan( "IDS_INTS_SELECT");
+						args[7] = (searchPFis == true)?wherePFis:"none";
+						args[8] = (searchPJur == true)?wherePJur:"none";
+						//args[7] = (document.getElementById("checkPFis").checked)?wherePFis:"none";
+						//args[8] = (document.getElementById("checkPJur").checked)?wherePJur:"none";
+
+						document.body.style.cursor = "wait";
+
+						sRet = top.ShowModalDialog(top.g_URL + "/dlglist.htm", args, 550, 750, "");
+
+						if ((sRet != null) && (sRet != ""))	{
+							var interesadoDuplicado = false;
+							var arrTokens = top.getTokens(sRet, "#", "#", 8);
+
+							with (document.getElementById("tbInts")){
+								for (var i = 0; i < document.getElementById("tbInts").rows.length; i++){
+									if (document.getElementById("tbInts").rows[i].cells[0].getAttribute("id") == (parseInt(arrTokens[2], 10))){
+										interesadoDuplicado = true;
+									}
+								}
+							}
+
+							if(interesadoDuplicado){
+								alert(top.GetIdsLan("IDS_ERRORINTER_INCLUIDO"));
+								OnClickSearch(0, ResponseSearch);
+							}else{
+								if (arrTokens[3] != "" && arrTokens[3] != null){
+									insertRowInteresados(document.getElementById("tbInts"), parseInt(arrTokens[2], 10), parseInt(arrTokens[4], 10), arrTokens[1], arrTokens[3], 0, document.getElementById("tbInts").rows.length - 1);
+								}else{
+									insertRowInteresados(document.getElementById("tbInts"), parseInt(arrTokens[2], 10), parseInt(arrTokens[6], 10), arrTokens[1], arrTokens[5], parseInt(arrTokens[7], 10), document.getElementById("tbInts").rows.length - 1);
+								}
+								SetTabSize();
+							}
+
+						}
+
+						document.body.style.cursor = "cursor";
+					}
+					else {
+						var arguments = new Array();
+						var URL = top.g_URL + "/dlgnewint.htm?SessionPId=" + top.g_SessionPId
+							+ "&PermsCreate=" + top.g_CreateInterPerms.toString()
+							+ "&Idioma=" + top.Idioma
+							+ "&numIdioma=" + top.numIdioma;
+						var strRet = top.ShowModalDialog(URL, null, 250, 450, "");
+
+						if ((strRet != "") && (strRet != null)){
+							URL = top.g_URL + "/vldnewinter.htm?SessionPId=" + top.g_SessionPId
+								+ "&PersonId=0&PersonType=" + strRet
+								+ "&Idioma=" + top.Idioma
+								+ "&numIdioma=" + top.numIdioma
+								+ "&caseSensitive=" + caseSensitive;
+
+							//inicializar el formulario de nueva persona con los datos introducidos por el usuario en el formulario de busqueda
+							arguments[0] = document.getElementById("txtNumIdent").value;
+							arguments[1] = document.getElementById("txtApe1").value;
+							arguments[2] = document.getElementById("txtApe2").value;
+							arguments[3] = document.getElementById("txtName").value;
+							arguments[4] = document.getElementById("txtSocial").value;
+
+							strRet = top.ShowModalDialog(URL, arguments, 450, 580, "");
+							if ( (strRet) && (strRet != "") ) {
+								var arrTokens = top.getTokens(strRet, "|", "||", 11);
+
+								if (arrTokens[9] != undefined){
+									insertRowInt(document.getElementById("tbInts"), parseInt(arrTokens[0], 10), parseInt(arrTokens[8], 10), arrTokens[1], arrTokens[9], parseInt(arrTokens[10], 10), document.getElementById("tbInts").rows.length - 1);
+								}else{
+									insertRowInt(document.getElementById("tbInts"), parseInt(arrTokens[0], 10), "0", arrTokens[1], "", "0", document.getElementById("tbInts").rows.length - 1);
+								}
+
+								SetTabSize();
+							}
+						}
+					}
+				}
+			}
+
+			// funcion que lanza el formulario de interesados para un interesado que ya existe
+			function ModInter()
+			{
+				if (top.g_ModifyInterPerms == 0){
+					alert(top.GetIdsLan("IDS_INVALIDCONFIGUSERNAME"));
+				}
+				else{
+					var numRowsCheck = getNumberOfRowsSelected();
+
+					//validamos que no haya mas de una persona seleccionada
+					if(numRowsCheck > 1){
+						alert(top.GetIdsLan("IDS_ERRORSELECINTER"));
+					}else if(numRowsCheck <= 0){
+						alert(top.GetIdsLan("IDS_MSGALERT_MODIF_TERCEROS"));
+					}else{
+						var iIndex = getFirstRowSelected();
+						var strIdPerson = document.getElementById("tbInts").rows[iIndex].cells[0].getAttribute("id");
+						var strRet = "";
+						var oArrayTok;
+
+						var arguments = new Array();
+						var URL = top.g_URL + "/vldnewinter.htm?SessionPId=" + top.ParamValue(document.location.search,"SessionPId")
+							+ "&PersonId=" + strIdPerson
+							+ "&Idioma=" + top.Idioma
+							+ "&numIdioma=" + top.numIdioma
+							+ "&caseSensitive=" + caseSensitive;
+
+						arguments[0] = "";
+						arguments[1] = "";
+						arguments[2] = "";
+						arguments[3] = "";
+						arguments[4] = "";
+
+   						strRet = top.ShowModalDialog(URL, arguments, 450, 580, "");
+
+						// si hemos seleccionado un elemento de la lista
+						if ( (strRet) && (strRet != "") )  {
+							var iIndex = getFirstRowSelected();
+							var typeDescription;
+
+							oArrayTok = top.getTokens(strRet, "|", "||", 11);
+							top.SetInnerText(document.getElementById("tbInts").rows[iIndex].cells[1], oArrayTok[1]);
+							if(oArrayTok[9] != undefined){
+								if (oArrayTok[10] != 0){
+									if (oArrayTok[10] == 1){
+										typeDescription = top.GetIdsLan( "IDS_TELEFONO_FIJO");
+									}
+									if (oArrayTok[10] == 2){
+										typeDescription = top.GetIdsLan( "IDS_CORREO");
+									}
+									if (oArrayTok[10] == 3){
+										typeDescription = top.GetIdsLan( "IDS_FAX");
+									}
+									if (oArrayTok[10] == 4){
+										typeDescription = top.GetIdsLan( "IDS_DEU");
+									}
+									if (oArrayTok[10] == 5){
+										typeDescription = top.GetIdsLan( "IDS_TELEFONO_MOVIL");
+									}
+									top.SetInnerText(document.getElementById("tbInts").rows[iIndex].cells[2], oArrayTok[9] + " " + typeDescription);
+								}else{
+									top.SetInnerText(document.getElementById("tbInts").rows[iIndex].cells[2], oArrayTok[9]);
+								}
+								document.getElementById("tbInts").rows[iIndex].cells[0].setAttribute("idAddress", oArrayTok[8]);
+								document.getElementById("tbInts").rows[iIndex].cells[0].setAttribute("idType", oArrayTok[10]);
+							}else{
+								top.SetInnerText(document.getElementById("tbInts").rows[iIndex].cells[2], "");
+							}
+
+							parent.g_VldInterSaved=true;
+						}
+					}
+
+					return;
+				}
+			}
+
+			// Se crea un nuevo interesado
+			function CreateNewInt(personType)
+			{
+				if (top.g_CreateInterPerms == 0){
+					alert(top.GetIdsLan("IDS_INVALIDCONFIGUSERNAME"));
+
+				}
+				else{
+					var arguments = new Array();
+					var URL = top.g_URL + "/vldnewinter.htm" + top.document.location.search
+						+ "&PersonId=0&PersonType=" + personType.toString()
+						+ "&Idioma=" + top.Idioma
+						+ "&numIdioma=" + top.numIdioma
+						+ "&caseSensitive=" + caseSensitive;
+
+					arguments[0] = "";
+					arguments[1] = "";
+					arguments[2] = "";
+					arguments[3] = "";
+					arguments[4] = "";
+
+					var strRet = top.ShowModalDialog(URL, arguments, 450, 580, "");
+					// si hemos seleccionado un elemento de la lista
+					if ( (strRet) && (strRet != "") ) {
+
+						var oArrayTok = top.getTokens(strRet, "|", "||", 11);
+
+						if (oArrayTok[9] != undefined){
+							insertRowInt(document.getElementById("tbInts"), oArrayTok[0], oArrayTok[8], oArrayTok[1], oArrayTok[9], oArrayTok[10], document.getElementById("tbInts").rows.length - 1);
+						}else{
+							insertRowInt(document.getElementById("tbInts"), oArrayTok[0], "0", oArrayTok[1], "", "0", document.getElementById("tbInts").rows.length - 1);
+						}
+						SetTabSize();
+						parent.g_VldInterSaved=true;
+					}
+				}
+				return;
+
+			}
+
+
+			function insertRowInt(Tab, PersonId, AddressId, PersonName, AddressName, TypeId, Position)
+			{
+				with (Tab) {
+					var newRow = insertRow(Position);
+					var datas = new Array;
+					var newCell = new Array;
+					var typeDescription;
+
+					newRow.id = "rowDatas";
+					newRow.className="Style5";
+					newRow.onclick = OnCheckClick;
+
+					newCell[0] = newRow.insertCell(-1);
+					newCell[0].width="3%";
+					newCell[0].setAttribute("id", PersonId);
+					newCell[0].setAttribute("idAddress", AddressId);
+
+					datas[0]=document.createElement("input");
+					datas[0].setAttribute ("type", "checkbox");
+					datas[0].setAttribute("class", "checkbox");
+
+					newCell[0].appendChild(datas[0]);
+					newCell[1] = newRow.insertCell(-1);
+					newCell[1].width="48%";
+					top.SetInnerText(newCell[1], PersonName);
+
+					if (TypeId == 0){
+
+							newCell[2] = newRow.insertCell(-1);
+							newCell[2].width="49%";
+							top.SetInnerText(newCell[2], AddressName);
+							newCell[0].setAttribute("idType", TypeId);
+
+
+					}else{
+
+							newCell[2] = newRow.insertCell(-1);
+							newCell[2].width="49%";
+							if (TypeId == 1){
+								typeDescription = top.GetIdsLan( "IDS_TELEFONO_FIJO");
+							}
+							if (TypeId == 2){
+								typeDescription = top.GetIdsLan( "IDS_CORREO");
+							}
+							if (TypeId == 3){
+								typeDescription = top.GetIdsLan( "IDS_FAX");
+							}
+							if (TypeId == 4){
+								typeDescription = top.GetIdsLan( "IDS_DEU");
+							}
+							if (TypeId == 5){
+								typeDescription = top.GetIdsLan( "IDS_TELEFONO_MOVIL");
+							}
+							top.SetInnerText(newCell[2], AddressName + " " + typeDescription);
+							newCell[0].setAttribute("idType", TypeId);
+					}
+				}
+			}
+
+			function insertRowInteresados(Tab, PersonId, AddressId, PersonName, AddressName, TypeId, Position)
+			{
+				with (Tab) {
+					var newRow = insertRow(Position);
+					var datas = new Array;
+					var newCell = new Array;
+					var typeDescription;
+
+					newRow.id = "rowDatas";
+					newRow.className="Style5";
+					newRow.onclick = OnCheckClick;
+
+					newCell[0] = newRow.insertCell(-1);
+					newCell[0].width="3%";
+					newCell[0].setAttribute("id", PersonId);
+					newCell[0].setAttribute("idAddress", AddressId);
+
+					datas[0]=document.createElement("input");
+					datas[0].setAttribute ("type", "checkbox");
+					datas[0].setAttribute("class", "checkbox");
+
+					newCell[0].appendChild(datas[0]);
+					newCell[1] = newRow.insertCell(-1);
+					newCell[1].width="48%";
+					top.SetInnerText(newCell[1], PersonName);
+
+
+					newCell[2] = newRow.insertCell(-1);
+					newCell[2].width="49%";
+					top.SetInnerText(newCell[2], AddressName);
+					newCell[0].setAttribute("idType", TypeId);
+
+				}
+			}
+
+			/**
+			 * Busca en una cadena un mensaje de Alert y lo ejecuta.
+			 * Se usa para poder mostrar los mensajes de error cuando hay una respuesta que lo incluya, independientemente de su posicion.
+			 * @param message Cadena que incluye el mensaje de error.
+			 */
+			function evalAlert(message) {
+				var startAlert = 0;
+				var endAler = 0;
+				
+				startAlert = message.indexOf("alert(");
+				if (startAlert != -1) {
+					endAlert = message.indexOf(");", startAlert);
+					eval(message.substr(startAlert, endAlert - startAlert + 2));
+				}
+			}
+		</script>
+	</head>
+	<body onload="onWindowLoad();" tabindex="-1">
+		<form id="frmVldInterList" name="frmVldInterList" onsubmit="return false;">
+			<DIV style="width:100%;height:95%;top:0px;left:0px;overflow:no" tabindex="-1">
+				<TABLE width="90%" border="0">
+					<TR><TD colspan="3" height="15%"></TD></TR>
+					<TR>
+						<TD width="75%">
+							<TABLE id="tbSearchInts" class="report" width="100%" align="left" cellpadding="0" cellspacing="1" border="0" tabindex="-1" style="border-collapse:collapse">
+								<THEAD tabindex="-1">
+									<TR>
+										<TH class="report" align="left">
+											<SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_INTER_VLD"));</SCRIPT>
+										</TH>
+									</TR>
+								</THEAD>
+								<TBODY tabindex="-1">
+									<tr>
+										<td class="report">
+											<table border="0" width="100%">
+												<tr><td width="15%"></td>
+													<td width="28%">
+														<label class="label"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_TIPO_PERSON"));</SCRIPT></label>
+													</td>
+													<td colspan="2">
+														<select class="combo" id="cmbTipoIdent" onchange="OnCheckPerson();">
+															<option value="1" selected="selected"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_PER_FIS"));</SCRIPT></option>
+															<option value="2"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_PER_JUR"));</SCRIPT></option>
+														</select>
+													</td>
+												</tr>
+												<tr><td colspan="4" height="5"></td></tr>
+												<tr><td width="15%"></td>
+												<td width="28%">
+													<label class="label"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_NUM_IDENT"));</SCRIPT></label>
+												</td><td>
+													<select class="combo" id="cmbNumIdent">
+														<option value="0" selected><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_EQUAL_TO"));</SCRIPT></option>
+														<option value="1"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_STARTS_WITH"));</SCRIPT></option>
+														<option value="2"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_CONTAINS"));</SCRIPT></option>
+													</select>
+												</td><td>
+													<input type="text" class="input" id="txtNumIdent" label="1"></input>
+												</td></tr>
+												<tr><td width="15%"></td>
+												<td width="28%">
+													<label class="label"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_APE1"));</SCRIPT></label>
+												</td><td>
+													<select class="combo" id="cmbApe1">
+														<option value="0" selected><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_EQUAL_TO"));</SCRIPT></option>
+														<option value="1"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_STARTS_WITH"));</SCRIPT></option>
+														<option value="2"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_CONTAINS"));</SCRIPT></option>
+													</select>
+												</td><td>
+													<input type="text" class="input" id="txtApe1" label="2"></input>
+												</td></tr>
+												<tr><td width="15%"></td>
+												<td width="28%">
+													<label class="label"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_APE2"));</SCRIPT></label>
+												</td><td>
+													<select class="combo" id="cmbApe2">
+														<option value="0" selected><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_EQUAL_TO"));</SCRIPT></option>
+														<option value="1"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_STARTS_WITH"));</SCRIPT></option>
+														<option value="2"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_CONTAINS"));</SCRIPT></option>
+													</select>
+												</td><td>
+													<input type="text" class="input" id="txtApe2" label="3"></input>
+												</td></tr>
+												<tr><td width="15%"></td>
+												<td width="28%">
+													<label class="label"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_USER"));</SCRIPT></label>
+												</td><td>
+													<select class="combo" id="cmbName">
+														<option value="0" selected><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_EQUAL_TO"));</SCRIPT></option>
+														<option value="1"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_STARTS_WITH"));</SCRIPT></option>
+														<option value="2"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_CONTAINS"));</SCRIPT></option>
+													</select>
+												</td><td>
+													<input type="text" class="input" id="txtName" label="4"></input>
+												</td></tr>
+												<tr><td width="15%"></td>
+												<td width="28%">
+													<label class="label"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_RAZON"));</SCRIPT></label>
+												</td><td>
+													<select class="combo" id="cmbSocial" disabled="true">
+														<option value="0" selected><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_EQUAL_TO"));</SCRIPT></option>
+														<option value="1"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_STARTS_WITH"));</SCRIPT></option>
+														<option value="2"><SCRIPT TYPE="text/javascript">document.write(top.GetIdsLan("IDS_CONTAINS"));</SCRIPT></option>
+													</select>
+												</td><td>
+													<input type="text" class="input" id="txtSocial" disabled="true" label="5"></input>
+												</td></tr>
+												<tr><td colspan="4" height="5"></td></tr>
+											</table>
+										</td>
+									</tr>
+								</TBODY>
+							</TABLE>
+						</TD>
+						<TD colspan="2"></TD>
+					</TR>
+					<TR>
+						<td align="right" width="75%">
+							<img src="./images/user_add.gif" id="btnNewPFis" onclick="CreateNewInt(1);"/><script type="text/javascript">document.getElementById("btnNewPFis").alt = top.GetIdsLan("IDS_LABEL_NEW_PFIS");</script>
+								<script type="text/javascript">document.getElementById("btnNewPFis").title = top.GetIdsLan("IDS_LABEL_NEW_PFIS");</script>
+							<img src="./images/building_add.gif" id="btnNewPJur" onclick="CreateNewInt(2);"/><script type="text/javascript">document.getElementById("btnNewPJur").alt = top.GetIdsLan("IDS_LABEL_NEW_PJUR");</script>
+								<script type="text/javascript">document.getElementById("btnNewPJur").title = top.GetIdsLan("IDS_LABEL_NEW_PJUR");</script>
+							<img src="./images/magnifier_zoom_in.gif" id="btnSearch2" onclick="OnClickSearch(0, ResponseSearch);" /><script type="text/javascript">document.getElementById("btnSearch2").alt = top.GetIdsLan("IDS_OPCBUSCAR");</script>
+								<script type="text/javascript">document.getElementById("btnSearch2").title = top.GetIdsLan("IDS_OPCBUSCAR");</script>
+							<img src="./images/delete_row.gif" id="btnEliminar" onclick="OnDelRows();parent.g_VldInterSaved=true;"/> <script type="text/javascript">document.getElementById("btnEliminar").alt = top.GetIdsLan("IDS_BTNELIMINAR");</script>
+								<script type="text/javascript">document.getElementById("btnEliminar").title = top.GetIdsLan("IDS_BTNELIMINAR");</script>
+							<img src="./images/table_edit_blue_plain_trans.gif" id="btnModInter" onclick="ModInter();"/> <script type="text/javascript">document.getElementById("btnModInter").alt = top.GetIdsLan("IDS_MODIFICAR");</script>
+								<script type="text/javascript">document.getElementById("btnModInter").title = top.GetIdsLan("IDS_MODIFICAR");</script>
+							<img src="./images/house.gif" id="btnDireccion" onclick="SetAddress();"/> <script type="text/javascript">document.getElementById("btnDireccion").alt = top.GetIdsLan("IDS_DIRECCION_POS");</script>
+								<script type="text/javascript">document.getElementById("btnDireccion").title = top.GetIdsLan("IDS_DIRECCION_POS");</script>
+							<img src="./images/phone.gif" id="btnDireccionTel" onclick="SetAddressTel();"/> <script type="text/javascript">document.getElementById("btnDireccionTel").alt = top.GetIdsLan("IDS_DIRECCION_TEL");</script>
+								<script type="text/javascript">document.getElementById("btnDireccionTel").title = top.GetIdsLan("IDS_DIRECCION_TEL");</script>
+						</td>
+						<TD colspan="3"></TD>
+					</TR>
+					<TR>
+						<TD width="100%">
+							<DIV id="divtbInts" style="overflow-y:no">
+								<TABLE id="tbInts" class="report" width="100%" align="left" cellpadding="0" cellspacing="1" border="0" tabindex="-1" style="border-collapse:collapse">
+									<THEAD tabindex="-1">
+										<TR>
+											<TH class="report" align="left" width="3%"/>
+											<TH class="report" align="left" width="48%"/>
+											<TH class="report" align="left" width="49%"/>
+										</TR>
+									</THEAD>
+									<TBODY tabindex="-1"/>
+								</TABLE>
+							</DIV>
+						</TD>
+						<TD width="1%"></TD>
+						<TD valign="bottom">
+							<table border="0">
+								<tr><td>
+									<img src="./images/arriba.gif" id="btnSubir" onclick="OnUpRow();parent.g_VldInterSaved=true;"/><script type="text/javascript">document.getElementById("btnSubir").alt = top.GetIdsLan("IDS_BTN_UP");</script>
+										<script type="text/javascript">document.getElementById("btnSubir").title = top.GetIdsLan("IDS_BTN_UP");</script>
+								</td></tr>
+								<tr><td>
+									<img src="./images/abajo.gif" id="btnBajar" onclick="OnDownRow(); parent.g_VldInterSaved=true;"/><script type="text/javascript">document.getElementById("btnBajar").alt = top.GetIdsLan("IDS_BTN_DOWN");</script>
+										<script type="text/javascript">document.getElementById("btnBajar").title = top.GetIdsLan("IDS_BTN_DOWN");</script>
+								</td></tr>
+							</table>
+						</TD>
+					</TR>
+					<TR><TD colspan="3" height="15%"></TD></TR>
+
+					<tr>
+						<td align="right" width="75%">
+							<input id="btnOK" class="button" type="button" onclick="OnOK();">
+								<SCRIPT TYPE="text/javascript">document.getElementById("btnOK").value = top.GetIdsLan("IDS_BTNACEPTAR");</SCRIPT>
+							</input>
+							<input id="btnClose" class="button" type="button" onclick="OnClose();">
+								<SCRIPT TYPE="text/javascript">document.getElementById("btnClose").value = top.GetIdsLan("IDS_OPCCERRAR");</SCRIPT>
+							</input>
+						</td>
+						<td colspan="2"></td>
+					</tr>
+				</TABLE>
+			</DIV>
+		</form>
+	</body>
+</html>

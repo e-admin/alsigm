@@ -1,0 +1,152 @@
+/**
+ * Coordenada.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.3 Oct 05, 2005 (05:23:37 EDT) WSDL2Java emitter.
+ */
+
+package es.ieci.tecdoc.sigem.GeoLocalizacionWebService;
+
+public class Coordenada  extends es.ieci.tecdoc.sigem.GeoLocalizacionWebService.RetornoServicio  implements java.io.Serializable {
+    private double coordX;
+
+    private double coordY;
+
+    public Coordenada() {
+    }
+
+    public Coordenada(
+           java.lang.String errorCode,
+           java.lang.String returnCode,
+           double coordX,
+           double coordY) {
+        super(
+            errorCode,
+            returnCode);
+        this.coordX = coordX;
+        this.coordY = coordY;
+    }
+
+
+    /**
+     * Gets the coordX value for this Coordenada.
+     * 
+     * @return coordX
+     */
+    public double getCoordX() {
+        return coordX;
+    }
+
+
+    /**
+     * Sets the coordX value for this Coordenada.
+     * 
+     * @param coordX
+     */
+    public void setCoordX(double coordX) {
+        this.coordX = coordX;
+    }
+
+
+    /**
+     * Gets the coordY value for this Coordenada.
+     * 
+     * @return coordY
+     */
+    public double getCoordY() {
+        return coordY;
+    }
+
+
+    /**
+     * Sets the coordY value for this Coordenada.
+     * 
+     * @param coordY
+     */
+    public void setCoordY(double coordY) {
+        this.coordY = coordY;
+    }
+
+    private java.lang.Object __equalsCalc = null;
+    public synchronized boolean equals(java.lang.Object obj) {
+        if (!(obj instanceof Coordenada)) return false;
+        Coordenada other = (Coordenada) obj;
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (__equalsCalc != null) {
+            return (__equalsCalc == obj);
+        }
+        __equalsCalc = obj;
+        boolean _equals;
+        _equals = super.equals(obj) && 
+            this.coordX == other.getCoordX() &&
+            this.coordY == other.getCoordY();
+        __equalsCalc = null;
+        return _equals;
+    }
+
+    private boolean __hashCodeCalc = false;
+    public synchronized int hashCode() {
+        if (__hashCodeCalc) {
+            return 0;
+        }
+        __hashCodeCalc = true;
+        int _hashCode = super.hashCode();
+        _hashCode += new Double(getCoordX()).hashCode();
+        _hashCode += new Double(getCoordY()).hashCode();
+        __hashCodeCalc = false;
+        return _hashCode;
+    }
+
+    // Type metadata
+    private static org.apache.axis.description.TypeDesc typeDesc =
+        new org.apache.axis.description.TypeDesc(Coordenada.class, true);
+
+    static {
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://server.ws.geolocalizacion.sgm.tecdoc.ieci", "Coordenada"));
+        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("coordX");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://server.ws.geolocalizacion.sgm.tecdoc.ieci", "coordX"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("coordY");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://server.ws.geolocalizacion.sgm.tecdoc.ieci", "coordY"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+    }
+
+    /**
+     * Return type metadata object
+     */
+    public static org.apache.axis.description.TypeDesc getTypeDesc() {
+        return typeDesc;
+    }
+
+    /**
+     * Get Custom Serializer
+     */
+    public static org.apache.axis.encoding.Serializer getSerializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanSerializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+    /**
+     * Get Custom Deserializer
+     */
+    public static org.apache.axis.encoding.Deserializer getDeserializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanDeserializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+}

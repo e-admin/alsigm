@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jun-2010 12:15:53 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="es.ieci.plusvalias.domain.ActjuridancertDTO" table="ACTJURIDANCERT" >
+        <id name="codigo" type="java.lang.Integer">
+            <column name="CODACTOJURIDICO" precision="5" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="DESACTOJURIDICO" length="100" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="TIPOANCERT" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

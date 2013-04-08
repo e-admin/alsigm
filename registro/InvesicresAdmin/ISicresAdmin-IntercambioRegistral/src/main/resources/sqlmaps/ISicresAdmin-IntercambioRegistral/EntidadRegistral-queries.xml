@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="EntidadRegistralVO">
+
+	<insert  id="addEntidadRegistralVO" parameterClass="entidadRegistralVO" >
+		INSERT INTO SCR_ENTITYREG (
+			ID,
+			NAME,
+			CODE,
+			ID_OFIC
+	    )
+		VALUES (
+			#id:NUMERIC#,
+		    #name:VARCHAR#,
+			#code:VARCHAR#,
+			#idOfic:NUMERIC#
+		)
+	</insert>
+
+	<update id="updateEntidadRegistralVO"  parameterClass="entidadRegistralVO">
+		UPDATE SCR_ENTITYREG
+		SET
+			NAME=#name#,
+			CODE=#code#
+		WHERE
+			ID=#id#
+	</update>
+
+	<delete id="deleteEntidadRegistralVO"
+			parameterClass="entidadRegistralVO">
+		DELETE
+		FROM SCR_ENTITYREG where ID=#id:NUMERIC#
+	</delete>
+
+	<select id="getEntidadesRegistrales" resultMap="entidadRegistral">
+	select * from scr_entityreg
+	</select>
+
+	<select id="getEntidadRegistralVO" resultMap="entidadRegistral" parameterClass="java.lang.Integer">
+	select * from scr_entityreg where ID=#value#
+	</select>
+
+	<select id="findEntidadesRegistrales" parameterClass="entidadRegistralVO" resultMap="entidadRegistral">
+	select * from scr_entityreg
+	<dynamic prepend="WHERE">
+	 	<isNotEqual compareValue="0" prepend="AND" property="id">
+        id = #id:NUMERIC#
+      	</isNotEqual>
+      	<isNotNull prepend="AND" property="idOfic">
+        id_ofic = #idOfic:NUMERIC#
+      	</isNotNull>
+      	<isNotNull prepend="AND" property="name">
+        name = #name:VARCHAR#
+      	</isNotNull>
+      	<isNotNull prepend="AND" property="code">
+        code = #code:VARCHAR#
+      	</isNotNull>
+	</dynamic>
+	</select>
+
+	<select id="findEntitadaRegistralByOficina" resultMap="entidadRegistral" parameterClass="java.lang.Integer">
+		select * from scr_entityreg where id_ofic=#value#
+	</select>
+
+</sqlMap>

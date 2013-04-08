@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+    default-lazy-init="true">
+
+	<!-- Carga de los modulos del framework utilizados -->
+
+	<import resource="classpath*:/beans/fwktd-time-applicationContext.xml"/>
+
+	<!-- Carga de las propiedades de configuracion -->
+
+	<bean id="fwktd_csv_api_configurationResourceLoaderImpl" name="fwktd_csv_api_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl" />
+
+	<bean
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="configurationResourceLoader" ref="fwktd_csv_api_configurationResourceLoader" />
+		<property name="locations">
+			<list>
+				<value>fwktd-csv/fwktd-csv-api.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<import resource="fwktd-csv-api/fwktd-csv-api-dao-beans.xml"/>
+	<import resource="fwktd-csv-api/fwktd-csv-api-datasource-beans.xml"/>
+	<import resource="fwktd-csv-api/fwktd-csv-api-incrementer-beans.xml"/>
+	<import resource="fwktd-csv-api/fwktd-csv-api-manager-beans.xml"/>
+	<import resource="fwktd-csv-api/fwktd-csv-api-transaction-beans.xml"/>
+	<import resource="fwktd-csv-api/fwktd-csv-api-connector-beans.xml"/>
+	<import resource="fwktd-csv-api/fwktd-csv-api-beans.xml"/>
+
+	<import resource="classpath*:/beans/fwktd-csv-api/fwktd-csv-api-*-connector-custom-beans.xml"/>
+
+</beans>

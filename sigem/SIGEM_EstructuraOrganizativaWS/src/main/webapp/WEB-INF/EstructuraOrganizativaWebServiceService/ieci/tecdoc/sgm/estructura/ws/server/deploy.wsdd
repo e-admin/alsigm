@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EstructuraOrganizativaWebServiceService WSDL service -->
+
+  <service name="EstructuraOrganizativaWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.estructura.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="EstructuraOrganizativaWebServiceService"/>
+      <parameter name="schemaQualified" value="http://server.ws.estructura.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="EstructuraOrganizativaWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.estructura.ws.server.EstructuraOrganizativaWebService"/>
+      <parameter name="wsdlPortType" value="EstructuraOrganizativaWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosDepartamento" qname="operNS:getUsuariosDepartamento" returnQName="retNS:getUsuariosDepartamentoReturn" returnType="rtns:Usuarios" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idDept" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuarioPorId" qname="operNS:getUsuarioPorId" returnQName="retNS:getUsuarioPorIdReturn" returnType="rtns:Usuario" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idUser" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuarioPorNombre" qname="operNS:getUsuarioPorNombre" returnQName="retNS:getUsuarioPorNombreReturn" returnType="rtns:Usuario" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nameUser" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuarioPorIdCertificado" qname="operNS:getUsuarioPorIdCertificado" returnQName="retNS:getUsuarioPorIdCertificadoReturn" returnType="rtns:Usuario" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idCert" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosAplicacion" qname="operNS:getUsuariosAplicacion" returnQName="retNS:getUsuariosAplicacionReturn" returnType="rtns:Usuarios" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:aplicacion" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sinPermisos" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:usuarios" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:superusuarios" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosGrupo" qname="operNS:getUsuariosGrupo" returnQName="retNS:getUsuariosGrupoReturn" returnType="rtns:Usuarios" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idGrupo" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getDepartamentosPorPadre" qname="operNS:getDepartamentosPorPadre" returnQName="retNS:getDepartamentosPorPadreReturn" returnType="rtns:Departamentos" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idDeptPadre" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getGrupos" qname="operNS:getGrupos" returnQName="retNS:getGruposReturn" returnType="rtns:Grupos" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getDepartamentos" qname="operNS:getDepartamentos" returnQName="retNS:getDepartamentosReturn" returnType="rtns:Departamentos" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getGrupo" qname="operNS:getGrupo" returnQName="retNS:getGrupoReturn" returnType="rtns:Grupo" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idGrupo" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getDepartamento" qname="operNS:getDepartamento" returnQName="retNS:getDepartamentoReturn" returnType="rtns:Departamento" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idDepto" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="crearArchivador" qname="operNS:crearArchivador" returnQName="retNS:crearArchivadorReturn" returnType="rtns:RetornoEntero" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="pns:archive" type="tns:Archive"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="editarDepartamentoCompleto" qname="operNS:editarDepartamentoCompleto" returnQName="retNS:editarDepartamentoCompletoReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="pns:departamento" type="tns:Departamento"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="editarUsuario" qname="operNS:editarUsuario" returnQName="retNS:editarUsuarioReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="pns:usuario" type="tns:Usuario"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="eliminarArchivador" qname="operNS:eliminarArchivador" returnQName="retNS:eliminarArchivadorReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:userId" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:archiveId" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getListas" qname="operNS:getListas" returnQName="retNS:getListasReturn" returnType="rtns:Listas" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuarios" qname="operNS:getUsuarios" returnQName="retNS:getUsuariosReturn" returnType="rtns:Usuarios" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:aplicacion" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idsUser" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:superusers" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosAsociation" qname="operNS:getUsuariosAsociation" returnQName="retNS:getUsuariosAsociationReturn" returnType="rtns:Usuarios" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:aplicacion" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:deptId" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:superusers" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosYaAsociados" qname="operNS:getUsuariosYaAsociados" returnQName="retNS:getUsuariosYaAsociadosReturn" returnType="rtns:Usuarios" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idsUser" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idOfic" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosAplicacionPorDepartamento" qname="operNS:getUsuariosAplicacionPorDepartamento" returnQName="retNS:getUsuariosAplicacionPorDepartamentoReturn" returnType="rtns:Usuarios" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:aplicacion" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:deptId" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sinPermisos" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:users" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:superusuarios" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="crearGrupoLdap" qname="operNS:crearGrupoLdap" returnQName="retNS:crearGrupoLdapReturn" returnType="rtns:GrupoLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ldapGuid" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ldapDn" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:type" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getGrupoLdap" qname="operNS:getGrupoLdap" returnQName="retNS:getGrupoLdapReturn" returnType="rtns:GrupoLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ldapGuid" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="crearUsuarioLdap" qname="operNS:crearUsuarioLdap" returnQName="retNS:crearUsuarioLdapReturn" returnType="rtns:UsuarioLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ldapGuid" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:name" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idPerfil" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuarioLdapByGuid" qname="operNS:getUsuarioLdapByGuid" returnQName="retNS:getUsuarioLdapByGuidReturn" returnType="rtns:UsuarioLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ldapguid" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuarioLdapByFullName" qname="operNS:getUsuarioLdapByFullName" returnQName="retNS:getUsuarioLdapByFullNameReturn" returnType="rtns:UsuarioLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fullName" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuarioLdapPorIdCertificado" qname="operNS:getUsuarioLdapPorIdCertificado" returnQName="retNS:getUsuarioLdapPorIdCertificadoReturn" returnType="rtns:UsuarioLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idCert" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosLdap" qname="operNS:getUsuariosLdap" returnQName="retNS:getUsuariosLdapReturn" returnType="rtns:UsuariosLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuarioLdap" qname="operNS:getUsuarioLdap" returnQName="retNS:getUsuarioLdapReturn" returnType="rtns:UsuarioLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosLdapYaAsociados" qname="operNS:getUsuariosLdapYaAsociados" returnQName="retNS:getUsuariosLdapYaAsociadosReturn" returnType="rtns:UsuariosLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idsUser" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idOfic" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="editarUsuarioLdap" qname="operNS:editarUsuarioLdap" returnQName="retNS:editarUsuarioLdapReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="pns:usuarioLdap" type="tns:UsuarioLdap"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="eliminarUsuarioLdap" qname="operNS:eliminarUsuarioLdap" returnQName="retNS:eliminarUsuarioLdapReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuarioLdapBasicById" qname="operNS:getUsuarioLdapBasicById" returnQName="retNS:getUsuarioLdapBasicByIdReturn" returnType="rtns:RetornoCadena" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getDepartamentoLite" qname="operNS:getDepartamentoLite" returnQName="retNS:getDepartamentoLiteReturn" returnType="rtns:Departamento" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:arg0" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:arg1" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getGrupoLdapById" qname="operNS:getGrupoLdapById" returnQName="retNS:getGrupoLdapByIdReturn" returnType="rtns:GrupoLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:arg0" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:arg1" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosLdapAplicacionPorDepartamento" qname="operNS:getUsuariosLdapAplicacionPorDepartamento" returnQName="retNS:getUsuariosLdapAplicacionPorDepartamentoReturn" returnType="rtns:UsuariosLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:aplicacion" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:deptId" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sinPermisos" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:usuarios" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:superusuarios" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.estructura.sgm.tecdoc.ieci" name="getUsuariosLdapAplicacion" qname="operNS:getUsuariosLdapAplicacion" returnQName="retNS:getUsuariosLdapAplicacionReturn" returnType="rtns:UsuariosLdap" soapAction="">
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:aplicacion" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idsUser" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:superusers" type="tns:boolean"/>
+        <parameter xmlns:pns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getUsuariosLdapYaAsociados getUsuariosAplicacionPorDepartamento editarUsuario getUsuariosLdapAplicacion getUsuariosAsociation getGrupoLdapById getDepartamentoLite getUsuarioPorId getUsuariosYaAsociados getListas getGrupo getUsuariosLdap getUsuarioLdap getDepartamentos getUsuarios eliminarUsuarioLdap getUsuarioPorNombre getUsuarioPorIdCertificado editarDepartamentoCompleto eliminarArchivador getUsuarioLdapByGuid getUsuarioLdapByFullName getUsuarioLdapPorIdCertificado getDepartamento getUsuariosAplicacion getUsuariosLdapAplicacionPorDepartamento getUsuariosDepartamento getUsuariosGrupo crearArchivador crearGrupoLdap getGrupos getUsuarioLdapBasicById editarUsuarioLdap crearUsuarioLdap getDepartamentosPorPadre getGrupoLdap"/>
+
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:GruposLista" type="java:ieci.tecdoc.sgm.estructura.ws.server.GruposLista" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:UsuariosBasicos" type="java:ieci.tecdoc.sgm.estructura.ws.server.UsuariosBasicos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfGrupo" type="java:ieci.tecdoc.sgm.estructura.ws.server.Grupo[]" innerType="cmp-ns:Grupo" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Archive" type="java:ieci.tecdoc.sgm.estructura.ws.server.Archive" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:RetornoCadena" type="java:ieci.tecdoc.sgm.estructura.ws.server.RetornoCadena" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Usuarios" type="java:ieci.tecdoc.sgm.estructura.ws.server.Usuarios" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Listas" type="java:ieci.tecdoc.sgm.estructura.ws.server.Listas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:PerfilesGenericos" type="java:ieci.tecdoc.sgm.estructura.ws.server.PerfilesGenericos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Grupo" type="java:ieci.tecdoc.sgm.estructura.ws.server.Grupo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Lista" type="java:ieci.tecdoc.sgm.estructura.ws.server.Lista" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:RetornoEntero" type="java:ieci.tecdoc.sgm.estructura.ws.server.RetornoEntero" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArchiveIdxs" type="java:ieci.tecdoc.sgm.estructura.ws.server.ArchiveIdxs" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArchiveFlds" type="java:ieci.tecdoc.sgm.estructura.ws.server.ArchiveFlds" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Permisos" type="java:ieci.tecdoc.sgm.estructura.ws.server.Permisos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:UsuarioBasico" type="java:ieci.tecdoc.sgm.estructura.ws.server.UsuarioBasico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArchiveFld" type="java:ieci.tecdoc.sgm.estructura.ws.server.ArchiveFld" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfUsuario" type="java:ieci.tecdoc.sgm.estructura.ws.server.Usuario[]" innerType="cmp-ns:Usuario" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Usuario" type="java:ieci.tecdoc.sgm.estructura.ws.server.Usuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:RetornoServicio" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfUsuarioBasico" type="java:ieci.tecdoc.sgm.estructura.ws.server.UsuarioBasico[]" innerType="cmp-ns:UsuarioBasico" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:UsuariosLdap" type="java:ieci.tecdoc.sgm.estructura.ws.server.UsuariosLdap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfArchiveIdx" type="java:ieci.tecdoc.sgm.estructura.ws.server.ArchiveIdx[]" innerType="cmp-ns:ArchiveIdx" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfDepartamento" type="java:ieci.tecdoc.sgm.estructura.ws.server.Departamento[]" innerType="cmp-ns:Departamento" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Departamento" type="java:ieci.tecdoc.sgm.estructura.ws.server.Departamento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Departamentos" type="java:ieci.tecdoc.sgm.estructura.ws.server.Departamentos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfPerfilUsuario" type="java:ieci.tecdoc.sgm.estructura.ws.server.PerfilUsuario[]" innerType="cmp-ns:PerfilUsuario" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArchiveMisc" type="java:ieci.tecdoc.sgm.estructura.ws.server.ArchiveMisc" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfArchiveFld" type="java:ieci.tecdoc.sgm.estructura.ws.server.ArchiveFld[]" innerType="cmp-ns:ArchiveFld" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:DepartamentosLista" type="java:ieci.tecdoc.sgm.estructura.ws.server.DepartamentosLista" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:UsuarioLdap" type="java:ieci.tecdoc.sgm.estructura.ws.server.UsuarioLdap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Permiso" type="java:ieci.tecdoc.sgm.estructura.ws.server.Permiso" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:PerfilesUsuario" type="java:ieci.tecdoc.sgm.estructura.ws.server.PerfilesUsuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfUsuarioLdap" type="java:ieci.tecdoc.sgm.estructura.ws.server.UsuarioLdap[]" innerType="cmp-ns:UsuarioLdap" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfPermiso" type="java:ieci.tecdoc.sgm.estructura.ws.server.Permiso[]" innerType="cmp-ns:Permiso" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:PerfilUsuario" type="java:ieci.tecdoc.sgm.estructura.ws.server.PerfilUsuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:Grupos" type="java:ieci.tecdoc.sgm.estructura.ws.server.Grupos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:GrupoLdap" type="java:ieci.tecdoc.sgm.estructura.ws.server.GrupoLdap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:PermisosGenericos" type="java:ieci.tecdoc.sgm.estructura.ws.server.PermisosGenericos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArchiveIdx" type="java:ieci.tecdoc.sgm.estructura.ws.server.ArchiveIdx" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.estructura.sgm.tecdoc.ieci" qname="ns:ArrayOfLista" type="java:ieci.tecdoc.sgm.estructura.ws.server.Lista[]" innerType="cmp-ns:Lista" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.estructura.sgm.tecdoc.ieci" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_int" type="java:int[]" innerType="cmp-ns:int" encodingStyle=""/>
+  </service>
+</deployment>

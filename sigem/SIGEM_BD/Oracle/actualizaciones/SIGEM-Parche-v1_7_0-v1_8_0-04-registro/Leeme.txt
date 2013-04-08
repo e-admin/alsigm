@@ -1,0 +1,29 @@
+Pasos para instalar el parche SIGEM-Parche-v1_7_0-v1_8_0-04-registro
+
+1) Abrir una consola de sistema mediante el comando cmd
+
+2) Entrar en el directorio donde estén los scripts de instalación del parche:
+
+	cd "Base de Datos\Oracle\Actualizaciones\SIGEM-Parche-v1_7_0-v1_8_0-04-registro"
+
+3) Ejecutar sqlplus
+	
+	Usuario: USUARIO 
+	Password: PASSWORD@NOMBRE_BBDD_EN_TSNAMES
+	
+4) Ejecutar el siguiente script
+
+	@SIGEM-Parche-v1_7_0-v1_8_0-04-registro.sql
+		
+5) Ejecutar la siguiente sentencia desde otra ventana de línea de comandos
+
+	Si se ejecuta desde un equipo remoto:
+		- imp <nombre usuario>@SID file=SCR_REPORTS.DMP tables=(SCR_REPORTS) log=SCR_REPORTS_IMP_1.8.log ignore=Y
+		El SID debemos tenerlo en el TSNAMES
+
+	Si se ejecuta desde el equipo en el que se encuentra la base de datos
+		- imp <nombre usuario>/<password> file=SCR_REPORTS.DMP tables=(SCR_REPORTS) log=SCR_REPORTS_IMP_1.8.log ignore=Y
+
+6) Salir del sqlplus mediante el comando:
+
+	quit

@@ -1,0 +1,16 @@
+Pasos a seguir para ejecutar los script:
+
+1. Abrir una ventana de comandos (db2Inicio -> Ejecutar -> db2cmd)
+2. Ejecutar uno por uno y en este orden los siguientes comandos
+	
+	db2 connect to SICRESI user Administrador using ieciovi
+	db2 -tvf 01.1_create_tables_isicres.sql > R01.1_create_tables_isicres.txt
+	db2 -tvf 01.2_create_tables_invesdoc_isicres.sql > R01.2_create_tables_invesdoc_isicres.txt
+	db2 -tvf 02.1_create_indexes_constraints_isicres.sql > R02.1_create_indexes_constraints_isicres.txt
+	db2 -tvf 02.2_create_indexes_constraints_invesdoc_isicres.sql > R02.2_create_indexes_constraints_invesdoc_isicres.txt
+	db2 -tvf 03.1_insert_data_invesdoc_isicres.sql > R03.1_insert_data_invesdoc_isicres.txt
+	db2 -tvf 03.2_insert_data_territorio_isicres.sql > R03.2_insert_data_territorio_isicres.txt
+	db2 -tvf 03.3_insert_data_orgs_isicres.sql > R03.3_insert_data_orgs_isicres.txt
+	db2 -tvf 03.4_insert_data_isicres.sql > R03.4_insert_data_isicres.txt
+	db2 -tvf 04.1_insert_clob_isicres.sql > R04.1_insert_clob_isicres.txt
+	db2 terminate

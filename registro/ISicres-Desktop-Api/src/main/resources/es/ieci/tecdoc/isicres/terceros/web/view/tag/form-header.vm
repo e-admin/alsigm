@@ -1,0 +1,13 @@
+<div class="twocol cabecera">
+	<div class="column first">
+		<h4>${title}</h4>
+	</div>
+	<div class="column last textright">
+		<p class="botonera">
+			<input type="submit" id="${submitId}" name="save" class="${submitCssClass}" value="${guardar}">
+			</input>
+			<input type="submit" id="${cancelId}" name="cancel" class="${cancelCssClass}" value="${cerrar}">
+			</input>
+		</p>
+	</div>
+</div>

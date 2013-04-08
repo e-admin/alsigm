@@ -1,0 +1,32 @@
+<module>
+
+	<!-- Librerias necesarias                -->
+	<inherits name='com.google.gwt.user.User'/>
+	<inherits name='pl.balon.gwt.diagrams.Diagrams'/>
+    <inherits name='com.allen_sauer.gwt.dragdrop.DragAndDrop'/>
+    
+    
+    <!-- Internacionalización -->
+     <inherits name="com.google.gwt.i18n.I18N"/>
+     <extend-property name="locale" values="es"/>
+     <extend-property name="locale" values="ca"/>
+     <extend-property name="locale" values="gl"/>
+     <extend-property name="locale" values="eu"/>
+
+   
+    <!-- Hojas de estilo -->
+   <stylesheet src="./css/Designer.css" />
+   
+   
+	<!-- Specify the app entry point class.                   -->
+	<entry-point class='ieci.tdw.ispac.designer.client.Designer'/>
+	
+	
+	<!-- Js externo -->
+	<script  src="./js/calendar.js"/> 
+     
+<servlet path="/GwtIService.gwt"
+        class="ieci.tdw.ispac.designer.server.ImplGwtIService"/>
+        
+  
+</module>

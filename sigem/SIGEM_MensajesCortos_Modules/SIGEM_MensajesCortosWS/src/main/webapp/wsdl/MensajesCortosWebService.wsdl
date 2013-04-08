@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:tns1="http://dto.mensajes_cortos.services.core.sgm.tecdoc.ieci" xmlns:tns2="http://dto.services.core.sgm.tecdoc.ieci" xmlns:tns3="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <import namespace="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+   <import namespace="http://dto.mensajes_cortos.services.core.sgm.tecdoc.ieci"/>
+   <element name="sendMail">
+    <complexType>
+     <sequence>
+      <element name="from" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="to" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="cc" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="bcc" type="xsd:string"/>
+      <element name="subject" type="xsd:string"/>
+      <element name="content" type="xsd:string"/>
+     <!--  <element maxOccurs="unbounded" name="attachments" type="tns1:Attachment"/> -->
+      <element name="attachments" type="impl:ArrayOfAttachment"/>
+     </sequence>
+    </complexType>
+   </element>
+     <complexType name="ArrayOfAttachment">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="impl:Attachment"/>
+    </sequence>
+   </complexType>
+   <element name="sendMailResponse">
+    <complexType>
+     <sequence>
+      <element name="sendMailReturn" type="tns2:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendCertSMS">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+      <element name="src" type="xsd:string"/>
+      <element name="dst" type="xsd:string"/>
+      <element name="txt" type="xsd:string"/>
+      <element name="lang" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendCertSMSResponse">
+    <complexType>
+     <sequence>
+      <element name="sendCertSMSReturn" type="tns3:String"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSMS_Multiple">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+      <element name="src" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="dst" type="xsd:string"/>
+      <element name="txt" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSMS_MultipleResponse">
+    <complexType>
+     <sequence>
+      <element name="sendSMS_MultipleReturn" type="tns3:ListaString"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_string">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="getSMSStatus">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+      <element name="id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSMSStatusResponse">
+    <complexType>
+     <sequence>
+      <element name="getSMSStatusReturn" type="tns3:Entero"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSMS">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+      <element name="src" type="xsd:string"/>
+      <element name="dst" type="xsd:string"/>
+      <element name="txt" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSMSResponse">
+    <complexType>
+     <sequence>
+      <element name="sendSMSReturn" type="tns3:String"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCertSMSSignatureStatus">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+      <element name="id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCertSMSSignatureStatusResponse">
+    <complexType>
+     <sequence>
+      <element name="getCertSMSSignatureStatusReturn" type="tns3:Entero"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCertSMSSignatureXML">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+      <element name="id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCertSMSSignatureXMLResponse">
+    <complexType>
+     <sequence>
+      <element name="getCertSMSSignatureXMLReturn" type="tns3:String"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCertSMSSignatureDocument">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+      <element name="id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCertSMSSignatureDocumentResponse">
+    <complexType>
+     <sequence>
+      <element name="getCertSMSSignatureDocumentReturn" type="tns3:ListaBytes"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.mensajes_cortos.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <import namespace="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+   <import namespace="http://server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+   <complexType name="Attachment">
+    <sequence>
+     <element name="content" nillable="true" type="xsd:base64Binary"/>
+     <element name="fileName" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+   <import namespace="http://dto.mensajes_cortos.services.core.sgm.tecdoc.ieci"/>
+   <import namespace="http://server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <import namespace="http://dto.mensajes_cortos.services.core.sgm.tecdoc.ieci"/>
+   <import namespace="http://server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+   <complexType name="String">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="valor" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ListaString">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="array" nillable="true" type="impl:ArrayOf_xsd_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Entero">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="valor" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ListaBytes">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="bytes" nillable="true" type="xsd:base64Binary"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sendMailRequest">
+
+      <wsdl:part element="impl:sendMail" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendCertSMSResponse">
+
+      <wsdl:part element="impl:sendCertSMSResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSMS_MultipleRequest">
+
+      <wsdl:part element="impl:sendSMS_Multiple" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSMS_MultipleResponse">
+
+      <wsdl:part element="impl:sendSMS_MultipleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendCertSMSRequest">
+
+      <wsdl:part element="impl:sendCertSMS" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertSMSSignatureDocumentResponse">
+
+      <wsdl:part element="impl:getCertSMSSignatureDocumentResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertSMSSignatureXMLResponse">
+
+      <wsdl:part element="impl:getCertSMSSignatureXMLResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSMSRequest">
+
+      <wsdl:part element="impl:sendSMS" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertSMSSignatureStatusResponse">
+
+      <wsdl:part element="impl:getCertSMSSignatureStatusResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertSMSSignatureDocumentRequest">
+
+      <wsdl:part element="impl:getCertSMSSignatureDocument" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSMSStatusRequest">
+
+      <wsdl:part element="impl:getSMSStatus" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSMSResponse">
+
+      <wsdl:part element="impl:sendSMSResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertSMSSignatureXMLRequest">
+
+      <wsdl:part element="impl:getCertSMSSignatureXML" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendMailResponse">
+
+      <wsdl:part element="impl:sendMailResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertSMSSignatureStatusRequest">
+
+      <wsdl:part element="impl:getCertSMSSignatureStatus" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSMSStatusResponse">
+
+      <wsdl:part element="impl:getSMSStatusResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="MensajesCortosWebService">
+
+      <wsdl:operation name="sendMail">
+
+         <wsdl:input message="impl:sendMailRequest" name="sendMailRequest"/>
+
+         <wsdl:output message="impl:sendMailResponse" name="sendMailResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendCertSMS">
+
+         <wsdl:input message="impl:sendCertSMSRequest" name="sendCertSMSRequest"/>
+
+         <wsdl:output message="impl:sendCertSMSResponse" name="sendCertSMSResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSMS_Multiple">
+
+         <wsdl:input message="impl:sendSMS_MultipleRequest" name="sendSMS_MultipleRequest"/>
+
+         <wsdl:output message="impl:sendSMS_MultipleResponse" name="sendSMS_MultipleResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSMSStatus">
+
+         <wsdl:input message="impl:getSMSStatusRequest" name="getSMSStatusRequest"/>
+
+         <wsdl:output message="impl:getSMSStatusResponse" name="getSMSStatusResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSMS">
+
+         <wsdl:input message="impl:sendSMSRequest" name="sendSMSRequest"/>
+
+         <wsdl:output message="impl:sendSMSResponse" name="sendSMSResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertSMSSignatureStatus">
+
+         <wsdl:input message="impl:getCertSMSSignatureStatusRequest" name="getCertSMSSignatureStatusRequest"/>
+
+         <wsdl:output message="impl:getCertSMSSignatureStatusResponse" name="getCertSMSSignatureStatusResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertSMSSignatureXML">
+
+         <wsdl:input message="impl:getCertSMSSignatureXMLRequest" name="getCertSMSSignatureXMLRequest"/>
+
+         <wsdl:output message="impl:getCertSMSSignatureXMLResponse" name="getCertSMSSignatureXMLResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertSMSSignatureDocument">
+
+         <wsdl:input message="impl:getCertSMSSignatureDocumentRequest" name="getCertSMSSignatureDocumentRequest"/>
+
+         <wsdl:output message="impl:getCertSMSSignatureDocumentResponse" name="getCertSMSSignatureDocumentResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MensajesCortosWebServiceSoapBinding" type="impl:MensajesCortosWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sendMail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendMailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendMailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendCertSMS">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendCertSMSRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendCertSMSResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSMS_Multiple">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendSMS_MultipleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendSMS_MultipleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSMSStatus">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSMSStatusRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSMSStatusResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSMS">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendSMSRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendSMSResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertSMSSignatureStatus">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCertSMSSignatureStatusRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCertSMSSignatureStatusResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertSMSSignatureXML">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCertSMSSignatureXMLRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCertSMSSignatureXMLResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertSMSSignatureDocument">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCertSMSSignatureDocumentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCertSMSSignatureDocumentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="MensajesCortosWebServiceService">
+
+      <wsdl:port binding="impl:MensajesCortosWebServiceSoapBinding" name="MensajesCortosWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_MensajesCortosWS/services/MensajesCortosWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CiudadVO">
+
+	<resultMap class="es.ieci.tecdoc.isicres.terceros.business.vo.CiudadVO"
+		id="ciudad">
+		<result property="id" column="id" />
+		<result property="codigo" column="code" />
+		<result property="nombre" column="name" />
+		<result property="provincia" select="ProvinciaVO.getProvinciaVO"
+			column="id_prov" />
+	</resultMap>
+
+	<select id="getCiudadVOs" resultMap="ciudad">
+		SELECT id, name, code, id_prov
+		FROM
+		SCR_CITIES
+		ORDER BY name ASC
+	</select>
+
+	<select id="getCiudadVO" parameterClass="java.lang.String"
+		resultMap="ciudad">
+		SELECT id, name, code, id_prov
+		FROM SCR_CITIES
+		WHERE
+		id=#value:INTEGER#
+	</select>
+
+	<select id="findByCodigo" parameterClass="java.lang.String"
+		resultMap="ciudad">
+		SELECT id, name, code, id_prov
+		FROM SCR_CITIES
+		WHERE code=#value#
+		ORDER BY name ASC
+	</select>
+
+	<select id="findByNombre" parameterClass="java.lang.String"
+		resultMap="ciudad">
+		SELECT id, name, code, id_prov
+		FROM SCR_CITIES
+		WHERE name=#value#
+	</select>
+
+	<select id="getCiudadesByProvincia" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.ProvinciaVO"
+		resultMap="ciudad">
+		SELECT cities.id, cities.name, cities.code, cities.id_prov
+		FROM SCR_CITIES cities, SCR_PROV prov
+		WHERE cities.id_prov=prov.id AND prov.name=#nombre#
+		<isNotNull prepend="AND" property="id">
+			prov.id=#id:INTEGER#
+		</isNotNull>
+		ORDER BY cities.name ASC
+	</select>
+
+</sqlMap>

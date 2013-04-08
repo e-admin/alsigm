@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.iflow</groupId>
+		<artifactId>ispac-main-war</artifactId>
+		<version>6.4</version>
+	</parent>
+
+	<artifactId>ispac-mgr-war</artifactId>
+	<name>ispac-mgr-war</name>
+	<packaging>war</packaging>
+
+	<dependencies>
+	
+		<!-- IECI dependencies -->
+	
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-mgr-java</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+	    <dependency>
+	      <groupId>es.ieci.tecdoc.iflow</groupId>
+	      <artifactId>ispac-lib</artifactId>
+	      <version>${pom.version}</version>
+	    </dependency>
+			
+	    <dependency>
+	      <groupId>es.ieci.tecdoc.iflow</groupId>
+	      <artifactId>ispac-documentum</artifactId>
+	      <version>${pom.version}</version>
+	    </dependency>
+			
+	    <dependency>
+	      <groupId>es.ieci.tecdoc.iflow</groupId>
+	      <artifactId>ispac-sharepoint</artifactId>
+	      <version>${pom.version}</version>
+	    </dependency>
+			
+	    <dependency>
+	      <groupId>es.ieci.tecdoc.iflow</groupId>
+	      <artifactId>ispac-invesdoc</artifactId>
+	      <version>${pom.version}</version>
+	    </dependency>
+
+	    <dependency>
+	      <groupId>es.ieci.tecdoc.iflow</groupId>
+	      <artifactId>ispac-alfresco</artifactId>
+	      <version>${pom.version}</version>
+	    </dependency>
+		
+	    <dependency>
+	      <groupId>es.ieci.tecdoc.iflow</groupId>
+	      <artifactId>ispac-invesicres</artifactId>
+	      <version>${pom.version}</version>
+	    </dependency>
+			
+	    <dependency>
+	      <groupId>es.ieci.tecdoc.iflow</groupId>
+	      <artifactId>ispac-ldap</artifactId>
+	      <version>${pom.version}</version>
+	    </dependency>
+			
+	    <dependency>
+	      <groupId>es.ieci.tecdoc.iflow</groupId>
+	      <artifactId>ispac-web</artifactId>
+	      <version>${pom.version}</version>
+	    </dependency>
+	
+	    <dependency>
+	      <groupId>es.ieci.tecdoc.iflow</groupId>
+	      <artifactId>ispac-designer</artifactId>
+	      <version>${pom.version}</version>
+	    </dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-archidoc</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+	</dependencies>
+	
+	<build>
+		<finalName>ispacmgr</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>dependency-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-web-resources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<artifactItems>
+						<artifactItem>
+							<groupId>es.ieci.tecdoc.iflow</groupId>
+							<artifactId>ispac-mgr-webapp</artifactId>
+							<version>${pom.version}</version>
+							<type>jar</type>
+						</artifactItem>
+					</artifactItems>
+					<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,120 @@
+## Configuración en constantes.js distribuido junto con los JARs del cliente de firma
+## <script type="text/javascript" language="javascript" src="$!{JAVASCRIPT_PATH}/../constantes.js"></script>
+## Fichero de constantes.js movido a la carpeta de common-js que contiene todos los JavaScripts del cliente
+<script type="text/javascript" language="javascript" src="$!{JAVASCRIPT_PATH}/constantes.js"></script>
+
+<script type="text/javascript" language="javascript">
+//<!--
+
+var componentLoaded = false;
+var path = "$!{APPLET_PATH}";
+
+// Ruta al instalador.
+// Si no se establece, supone que estan en el mismo directorio(que el HTML).
+base = path;
+
+// Ruta al los instalables.
+// Si no se establece, supone que estan en el mismo directorio(que el HTML).
+baseDownloadURL = path;
+
+//-->
+</script>
+
+## JavaScripts necesarios para la firma de cadenas con los datos codificados en Base64
+## Otros ficheros JS con funciones para la automatizaciÃ³n de los procesos de firma
+<script type="text/javascript" language="javascript" src="$!{JAVASCRIPT_PATH}/deployJava.js"></script>
+<script type="text/javascript" language="javascript" src="$!{JAVASCRIPT_PATH}/instalador.js"></script>
+<script type="text/javascript" language="javascript" src="$!{JAVASCRIPT_PATH}/firma.js"></script>
+
+<script type="text/javascript" language="javascript">
+//<!--
+
+// Funcion que ejecuta la carga del componente de firma
+function initSign() {
+
+	cargarAppletFirma();
+}
+
+// Funcion que comprueba si el componente de firma se ha cargado correctamente
+function isComponentLoaded() {
+
+	try {
+		if (!componentLoaded) {
+			componentLoaded = (clienteFirma != null && clienteFirma != undefined && clienteFirma.isInitialized());
+		}
+    	return componentLoaded;
+	} catch(err) {
+		return false;
+	}
+}
+
+// Funcion que ejecuta el proceso de firma
+function sign() {
+
+	// Inicializar la configuracion del cliente
+	initialize();
+
+	// Configurar la operacion de firma
+	configuraFirma();
+
+	// Establecer los datos a firmar
+	#if ($FIRMA == "Hash")
+	clienteFirma.setHash("$CODIGO_HASH");
+	#elseif ($FIRMA == "MassiveHash")
+	#foreach($codigoHash in $CODIGOS_HASH)
+	clienteFirma.addMassiveHash("$codigoHash");
+	#end
+	#end
+
+	// Ejecutar la operacion de firma
+	firmar();
+
+	if(clienteFirma.isError()) {
+		alert(clienteFirma.getErrorMessage());
+		return false;
+	}
+
+	var signValue = null;
+
+	#if ($FIRMA == "Hash")
+
+	signValue = clienteFirma.getSignatureBase64Encoded();
+
+	#elseif ($FIRMA == "MassiveHash")
+
+	signValue = clienteFirma.getSignaturesBase64Encoded();
+
+	#end
+
+	if (signValue == null || signValue == '' || signValue == 'undefined' || signValue == 'null') { return false; }
+
+	// Campo en el que se guarda la firma codificada en Base64
+	var sign = document.getElementById("sign");
+	if (sign != null) {
+		sign.value = signValue;
+	}
+
+	// Bug en la version 3.2: getSignCertificateBase64Encoded() no retorna el certificado en Base64
+	// Establecer el MandatoryCert a TRUE para que la funcion anterior retorne el certificado en Base64
+	clienteFirma.setMandatoryCertificateConditionRFC2254(null, null, true);
+
+	var signCertificateValue = clienteFirma.getSignCertificateBase64Encoded();
+	if (signCertificateValue == null || signCertificateValue == '' || signCertificateValue == 'undefined' || signCertificateValue == 'null') { return false; }
+
+	// Campo en el que se guarda el certificado usado para firmar codificado en Base64
+	var signCertificate = document.getElementById("signCertificate");
+	if (signCertificate != null) {
+		signCertificate.value = signCertificateValue;
+	}
+
+	// Campo en el que se guarda el formato de la firma
+	var signFormat = document.getElementById("signFormat");
+	if (signFormat != null) {
+		signFormat.value = signatureFormat;
+	}
+
+	return true; // Enviar
+}
+
+//-->
+</script>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jun-2010 12:15:53 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="es.ieci.plusvalias.domain.CalleDTO" table="CALLES" >
+        <id name="numero" type="string">
+            <column name="NUMVIA" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipo" type="string">
+            <column name="TIPOVIA" length="5" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="NOMVIA" length="50" />
+        </property>
+        <property name="categoria" type="java.lang.Integer">
+            <column name="CATEGORIA" precision="5" scale="0" />
+        </property>
+        <property name="textoCalle" type="string" formula="TIPOVIA || ' ' || NOMVIA"/>
+    </class>
+</hibernate-mapping>

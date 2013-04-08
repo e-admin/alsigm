@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="DocumentoVO">
+
+	<typeAlias alias="documento"
+		type="es.ieci.tecdoc.fwktd.csv.api.vo.DocumentoVO" />
+
+	<resultMap id="documento" class="es.ieci.tecdoc.fwktd.csv.api.vo.DocumentoVO">
+		<result property="id" column="id" />
+		<result property="nombre" column="nombre" />
+		<result property="descripcion" column="descripcion" />
+		<result property="tipoMIME" column="tipo_mime" />
+		<result property="fechaCreacion" column="fecha_creacion" />
+		<result property="fechaCaducidad" column="fecha_caducidad" />
+		<result property="csv" column="csv" />
+		<result property="fechaCSV" column="fecha_csv" />
+		<result property="disponible" column="disponibilidad" />
+		<result property="aplicacion" column="id_aplicacion" select="AplicacionVO.getAplicacionVO" />
+	</resultMap>
+
+	<sql id="table">csv_documentos</sql>
+	<sql id="columns">
+		id,
+		nombre,
+		descripcion,
+		tipo_mime,
+		fecha_creacion,
+		fecha_caducidad,
+		csv,
+		fecha_csv,
+		disponibilidad,
+		id_aplicacion
+	</sql>
+	<sql id="insert">
+		#id:INTEGER#,
+		#nombre#,
+		#descripcion#,
+		#tipoMIME#,
+		#fechaCreacion#,
+		#fechaCaducidad#,
+		#csv#,
+		#fechaCSV#,
+		#disponible:INTEGER#,
+		#aplicacion.id:INTEGER#
+	</sql>
+	<sql id="update">
+		nombre=#nombre#,
+		descripcion=#descripcion#,
+		tipo_mime=#tipoMIME#,
+		fecha_creacion=#fechaCreacion#,
+		fecha_caducidad=#fechaCaducidad#,
+		csv=#csv#,
+		fecha_csv=#fechaCSV#,
+		disponibilidad=#disponible:INTEGER#,
+		id_aplicacion=#aplicacion.id:INTEGER#
+	</sql>
+
+	<select id="getDocumentoVOs" resultMap="documento">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY nombre
+	</select>
+
+	<select id="getDocumentoVO" parameterClass="java.lang.String" resultMap="documento">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+
+	<select id="getDocumentoVOByCSV" parameterClass="java.lang.String" resultMap="documento">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			csv=#value#
+	</select>
+
+	<insert id="addDocumentoVO" parameterClass="documento">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<update id="updateDocumentoVO" parameterClass="documento">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE id=#id:INTEGER#
+	</update>
+
+	<delete id="deleteDocumentoVO" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteDocumentoVOByCSV" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE csv=#value#
+	</delete>
+
+	<delete id="deleteDocumentoVOs">
+		DELETE FROM
+			<include refid="table" />
+	</delete>
+
+</sqlMap>

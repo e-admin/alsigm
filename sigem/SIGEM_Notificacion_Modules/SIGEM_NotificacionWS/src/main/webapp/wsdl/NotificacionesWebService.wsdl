@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.nt.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="actualizaEstados">
+    <complexType>
+     <sequence>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizaEstadosResponse">
+    <complexType>
+     <sequence>
+      <element name="actualizaEstadosReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizaEstado">
+    <complexType>
+     <sequence>
+      <element name="numeroExpediente" type="xsd:string"/>
+      <element name="estado" type="xsd:int"/>
+      <element name="fechaActualizacion" type="xsd:dateTime"/>
+      <element name="nifDestino" type="xsd:string"/>
+      <element name="notiId" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizaEstadoResponse">
+    <complexType>
+     <sequence>
+      <element name="actualizaEstadoReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="recuperaDocumento">
+    <complexType>
+     <sequence>
+      <element name="poCriterio" type="impl:CriterioBusquedaDocumentos"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CriterioBusquedaDocumentos">
+    <sequence>
+     <element name="codigDoc" nillable="true" type="xsd:string"/>
+     <element name="codigoNoti" nillable="true" type="xsd:string"/>
+     <element name="expediente" nillable="true" type="xsd:string"/>
+     <element name="nifDestinatario" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="recuperaDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="recuperaDocumentoReturn" type="impl:InfoDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="InfoDocumento">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="content" nillable="true" type="xsd:string"/>
+       <element name="extension" nillable="true" type="xsd:string"/>
+       <element name="guid" nillable="true" type="xsd:string"/>
+       <element name="mimeType" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="detalleNotificacion">
+    <complexType>
+     <sequence>
+      <element name="poIdentificador" type="impl:IdentificadorNotificacion"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="IdentificadorNotificacion">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="codigoDeNotificacion" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="detalleNotificacionResponse">
+    <complexType>
+     <sequence>
+      <element name="detalleNotificacionReturn" type="impl:Notificacion"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_string">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Notificacion">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="apellidosDest" nillable="true" type="xsd:string"/>
+       <element name="asunto" nillable="true" type="xsd:string"/>
+       <element name="codigoNoti" nillable="true" type="xsd:string"/>
+       <element name="codigoPostal" nillable="true" type="xsd:string"/>
+       <element name="correoDest" nillable="true" type="xsd:string"/>
+       <element name="descripcionEstado" nillable="true" type="xsd:string"/>
+       <element name="documentos" nillable="true" type="impl:ArrayOf_xsd_string"/>
+       <element name="escaleraDireccion" nillable="true" type="xsd:string"/>
+       <element name="estado" nillable="true" type="xsd:string"/>
+       <element name="extension" nillable="true" type="impl:ArrayOf_xsd_string"/>
+       <element name="fechaActualiEstado" nillable="true" type="xsd:string"/>
+       <element name="fechaEntrega" nillable="true" type="xsd:string"/>
+       <element name="fechaRegistro" nillable="true" type="xsd:string"/>
+       <element name="guid" nillable="true" type="impl:ArrayOf_xsd_string"/>
+       <element name="idioma" nillable="true" type="xsd:string"/>
+       <element name="municipio" nillable="true" type="xsd:string"/>
+       <element name="nifDest" nillable="true" type="xsd:string"/>
+       <element name="nombreDest" nillable="true" type="xsd:string"/>
+       <element name="nombreDocumentos" nillable="true" type="impl:ArrayOf_xsd_string"/>
+       <element name="numeroDireccion" nillable="true" type="xsd:string"/>
+       <element name="numeroExpediente" nillable="true" type="xsd:string"/>
+       <element name="numeroRegistro" nillable="true" type="xsd:string"/>
+       <element name="organismo" nillable="true" type="xsd:string"/>
+       <element name="pisoDireccion" nillable="true" type="xsd:string"/>
+       <element name="procedimiento" nillable="true" type="xsd:string"/>
+       <element name="provincia" nillable="true" type="xsd:string"/>
+       <element name="puertaDireccion" nillable="true" type="xsd:string"/>
+       <element name="telefono" nillable="true" type="xsd:string"/>
+       <element name="texto" nillable="true" type="xsd:string"/>
+       <element name="tipo" nillable="true" type="xsd:string"/>
+       <element name="tipoCorrespondencia" nillable="true" type="xsd:string"/>
+       <element name="tipoViaDireccion" nillable="true" type="xsd:string"/>
+       <element name="usuario" nillable="true" type="xsd:string"/>
+       <element name="viaDireccion" nillable="true" type="xsd:string"/>
+       <element name="notiId" nillable="true" type="xsd:string"/>
+       <element name="deu" nillable="true" type="xsd:string"/>
+       <element name="movil" nillable="true" type="xsd:string"/>
+       <element name="sistemaId" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="detalleNotificacionByNotiId">
+    <complexType>
+     <sequence>
+      <element name="notiId" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="detalleNotificacionByNotiIdResponse">
+    <complexType>
+     <sequence>
+      <element name="detalleNotificacionByNotiIdReturn" type="impl:Notificacion"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultarNotificaciones">
+    <complexType>
+     <sequence>
+      <element name="poCriterio" type="impl:CriterioBusquedaNotificaciones"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CriterioBusquedaNotificaciones">
+    <sequence>
+     <element name="conDetalle" nillable="true" type="xsd:string"/>
+     <element name="estado" nillable="true" type="xsd:string"/>
+     <element name="fechaDesde" nillable="true" type="xsd:string"/>
+     <element name="fechaHasta" nillable="true" type="xsd:string"/>
+     <element name="nif" nillable="true" type="xsd:string"/>
+     <element name="notificacion" nillable="true" type="xsd:string"/>
+     <element name="tipo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="consultarNotificacionesResponse">
+    <complexType>
+     <sequence>
+      <element name="consultarNotificacionesReturn" type="impl:Notificaciones"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfNotificacion">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Notificacion"/>
+    </sequence>
+   </complexType>
+   <complexType name="Notificaciones">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="notificaciones" nillable="true" type="impl:ArrayOfNotificacion"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerEstado">
+    <complexType>
+     <sequence>
+      <element name="poIdNotificacion" type="impl:Notificacion"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerEstadoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerEstadoReturn" type="impl:EstadoNotificacion"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="EstadoNotificacion">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="error" nillable="true" type="xsd:string"/>
+       <element name="estado" nillable="true" type="xsd:string"/>
+       <element name="fecha" nillable="true" type="xsd:string"/>
+       <element name="motivoRechazo" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerEstadoBD">
+    <complexType>
+     <sequence>
+      <element name="idEstado" type="xsd:int"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerEstadoBDResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerEstadoBDReturn" type="impl:EstadoNotificacionBD"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="EstadoNotificacionBD">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="descripcion" nillable="true" type="xsd:string"/>
+       <element name="id" nillable="true" type="xsd:string"/>
+       <element name="idSisnot" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="altaNotificacion">
+    <complexType>
+     <sequence>
+      <element name="poNotificacion" type="impl:Notificacion"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="altaNotificacionResponse">
+    <complexType>
+     <sequence>
+      <element name="altaNotificacionReturn" type="impl:IdentificadorNotificacion"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://server.ws.nt.sgm.tecdoc.ieci"/>
+   <complexType name="Entidad">
+    <sequence>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="obtenerEstadoBDResponse">
+
+      <wsdl:part element="impl:obtenerEstadoBDResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarNotificacionesResponse">
+
+      <wsdl:part element="impl:consultarNotificacionesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="recuperaDocumentoRequest">
+
+      <wsdl:part element="impl:recuperaDocumento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarNotificacionesRequest">
+
+      <wsdl:part element="impl:consultarNotificaciones" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerEstadoResponse">
+
+      <wsdl:part element="impl:obtenerEstadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizaEstadoResponse">
+
+      <wsdl:part element="impl:actualizaEstadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="recuperaDocumentoResponse">
+
+      <wsdl:part element="impl:recuperaDocumentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizaEstadosRequest">
+
+      <wsdl:part element="impl:actualizaEstados" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaNotificacionRequest">
+
+      <wsdl:part element="impl:altaNotificacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaNotificacionResponse">
+
+      <wsdl:part element="impl:altaNotificacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizaEstadoRequest">
+
+      <wsdl:part element="impl:actualizaEstado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="detalleNotificacionResponse">
+
+      <wsdl:part element="impl:detalleNotificacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerEstadoBDRequest">
+
+      <wsdl:part element="impl:obtenerEstadoBD" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizaEstadosResponse">
+
+      <wsdl:part element="impl:actualizaEstadosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerEstadoRequest">
+
+      <wsdl:part element="impl:obtenerEstado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="detalleNotificacionRequest">
+
+      <wsdl:part element="impl:detalleNotificacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="detalleNotificacionByNotiIdRequest">
+
+      <wsdl:part element="impl:detalleNotificacionByNotiId" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="detalleNotificacionByNotiIdResponse">
+
+      <wsdl:part element="impl:detalleNotificacionByNotiIdResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="NotificacionesWebService">
+
+      <wsdl:operation name="actualizaEstados">
+
+         <wsdl:input message="impl:actualizaEstadosRequest" name="actualizaEstadosRequest"/>
+
+         <wsdl:output message="impl:actualizaEstadosResponse" name="actualizaEstadosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizaEstado">
+
+         <wsdl:input message="impl:actualizaEstadoRequest" name="actualizaEstadoRequest"/>
+
+         <wsdl:output message="impl:actualizaEstadoResponse" name="actualizaEstadoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="recuperaDocumento">
+
+         <wsdl:input message="impl:recuperaDocumentoRequest" name="recuperaDocumentoRequest"/>
+
+         <wsdl:output message="impl:recuperaDocumentoResponse" name="recuperaDocumentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="detalleNotificacion">
+
+         <wsdl:input message="impl:detalleNotificacionRequest" name="detalleNotificacionRequest"/>
+
+         <wsdl:output message="impl:detalleNotificacionResponse" name="detalleNotificacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="detalleNotificacionByNotiId">
+
+         <wsdl:input message="impl:detalleNotificacionByNotiIdRequest" name="detalleNotificacionByNotiIdRequest"/>
+
+         <wsdl:output message="impl:detalleNotificacionByNotiIdResponse" name="detalleNotificacionByNotiIdResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultarNotificaciones">
+
+         <wsdl:input message="impl:consultarNotificacionesRequest" name="consultarNotificacionesRequest"/>
+
+         <wsdl:output message="impl:consultarNotificacionesResponse" name="consultarNotificacionesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerEstado">
+
+         <wsdl:input message="impl:obtenerEstadoRequest" name="obtenerEstadoRequest"/>
+
+         <wsdl:output message="impl:obtenerEstadoResponse" name="obtenerEstadoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerEstadoBD">
+
+         <wsdl:input message="impl:obtenerEstadoBDRequest" name="obtenerEstadoBDRequest"/>
+
+         <wsdl:output message="impl:obtenerEstadoBDResponse" name="obtenerEstadoBDResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaNotificacion">
+
+         <wsdl:input message="impl:altaNotificacionRequest" name="altaNotificacionRequest"/>
+
+         <wsdl:output message="impl:altaNotificacionResponse" name="altaNotificacionResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="NotificacionesWebServiceSoapBinding" type="impl:NotificacionesWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="actualizaEstados">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="actualizaEstadosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="actualizaEstadosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizaEstado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="actualizaEstadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="actualizaEstadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="recuperaDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="recuperaDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="recuperaDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="detalleNotificacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="detalleNotificacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="detalleNotificacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="detalleNotificacionByNotiId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="detalleNotificacionByNotiIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="detalleNotificacionByNotiIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultarNotificaciones">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultarNotificacionesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultarNotificacionesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerEstado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerEstadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerEstadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerEstadoBD">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerEstadoBDRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerEstadoBDResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaNotificacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="altaNotificacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="altaNotificacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="NotificacionesWebServiceService">
+
+      <wsdl:port binding="impl:NotificacionesWebServiceSoapBinding" name="NotificacionesWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_NotificacionWS/services/NotificacionesWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

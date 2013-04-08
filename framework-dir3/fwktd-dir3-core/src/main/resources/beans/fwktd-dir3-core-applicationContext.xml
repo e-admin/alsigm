@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+    default-lazy-init="true">
+
+	<!-- Carga de las propiedades de configuracion -->
+
+	<bean id="fwktd_dir3_core_configurationResourceLoaderImpl" name="fwktd_dir3_core_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl" />
+
+	<bean
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="configurationResourceLoader" ref="fwktd_dir3_core_configurationResourceLoader" />
+		<property name="locations">
+			<list>
+				<value>fwktd-dir3/fwktd-dir3-core.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- los beans del core alias de servicio  -->
+	<import resource="classpath*:/beans/fwktd-dir3-core/fwktd-dir3-core-beans.xml" />	
+	
+</beans>

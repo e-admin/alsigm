@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<catalogdef>
+
+<!--
+	En catalogdef.xml se definen tanto las entidades a mantener como las aplicaciones
+	que se ocuparán de ello.
+
+	====================================
+		Definición de entidades
+	====================================
+
+	Ids por defecto de las entidades del catálogo administrativo de procedimientos.
+
+    public int ENTITY_CT_ENTITY=1;
+    public int ENTITY_CT_APP=2;
+    public int ENTITY_CT_RULE=3;
+    public int ENTITY_CT_SEARCHFORM=4;
+    public int ENTITY_CT_STAGE=5;
+    public int ENTITY_CT_TASK=6;
+    public int ENTITY_CT_TYPEDOC=7;
+    public int ENTITY_CT_PROCEDURE=8;
+    public int ENTITY_CT_TEMPLATE=9;
+
+
+	public int ENTITY_CT_STAGETASK=10;
+	public int ENTITY_CT_TASKTYPEDOC=11;
+	
+	public int ENTITY_P_ENTITY=20;
+	public int ENTITY_P_STAGE=21;
+	public int ENTITY_P_PROCEDURE=22;
+	public int ENTITY_P_TASK=23;
+	public int ENTITY_P_FRMSTAGE=24;
+	public int ENTITY_P_FRMTASK=25;
+	
+	public int ENTITY_PRODUCER_SYSTEMS=46;
+-->
+
+<!-- CATALOGO DE ENTIDADES -->
+	<entitydef	id='1'
+				name='SPAC_CT_ENTIDADES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTENTIDADES'
+				description='Catálogo de entidades'
+				schemaexpr='NOMBRE'
+				appid='0'
+				keynumexp=''
+				type='0'/>
+
+<!-- CATALOGO DE APLICACIONES -->
+	<entitydef	id='2'
+				name='SPAC_CT_APLICACIONES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTAPLICACIONES'
+				description='Catálogo de aplicaciones'
+				schemaexpr='NOMBRE'
+				appid='2'
+				keynumexp=''
+				type='0'/>
+
+<!-- CATALOGO DE REGLAS -->
+	<entitydef	id='3'
+				name='SPAC_CT_REGLAS'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTREGLAS'
+				description='Catálogo de reglas'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='3'
+				type='0'/>
+
+<!-- CATALOGO DE FORMULARIOS DE BUSQUEDA -->
+	<entitydef	id='4'
+				name='SPAC_CT_FRMBUSQUEDA'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTFRMBUSQUEDA'
+				description='Catálogo de formularios de búsquedas'
+				schemaexpr='DESCRIPCION'
+				keynumexp=''
+				appid='4'
+				type='0'/>
+
+<!-- CATALOGO DE FASES -->
+	<entitydef	id='5'
+				name='SPAC_CT_FASES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTFASES'
+				description='Catálogo de fases'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='5'
+				type='0'/>
+
+<!-- CATALOGO DE TRAMITES -->
+	<entitydef	id='6'
+				name='SPAC_CT_TRAMITES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTTRAMITES'
+				description='Catálogo de trámites'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='6'
+				type='0'/>
+
+<!-- CATALOGO DE TIPOS DE DOCUMENTOS -->
+	<entitydef	id='7'
+				name='SPAC_CT_TPDOC'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTTPDOC'
+				description='Catálogo de tipos de documentos'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='7'
+				type='0'/>
+
+<!-- CATALOGO DE PROCEDIMIENTOS -->
+	<entitydef	id='8'
+				name='SPAC_CT_PROCEDIMIENTOS'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTPROCEDIMIENTOS'
+				description='Catálogo de procedimientos'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='8'
+				type='0'/>
+
+<!-- PLANTILLAS DE UN DOCUMENTO -->
+	<entitydef	id='9'
+				name='SPAC_P_PLANTDOC'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PPLANTILLAS'
+				description='Plantillas del documento'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='9'
+				type='0'/>
+
+
+<!-- TRAMITES ASOCIADOS A UNA FASE -->
+	<entitydef	id='10'
+				name='SPAC_CT_FSTR'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTFSTR'
+				description='Trámites de una fase'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+
+<!-- TIPOS DE DOCUMENTOS ASOCIADOS A UN TRAMITE-->
+	<entitydef	id='11'
+				name='SPAC_CT_TRTD'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTTRTD'
+				description='Tipos de documentos de un trámite'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>	
+
+<!-- PRODUCTORES ASOCIADOS A PROCEDIMIENTOS-->
+	<entitydef	id='12'
+				name='SPAC_CT_PCDORG'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTPCDORG'
+				description='Productores de procedimientos'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>	
+<!-- CATALOGO DE FORMULARIOS DE BUSQUEDA -->
+	<entitydef	id='13'
+				name='SPAC_CT_FRMBUSQUEDA_ORG'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTFRMBUSQUEDA_ORG'
+				description='Formularios de búsquedas asociados a objetos de organizacion'
+				schemaexpr='ID_SEARCHFRM'
+				keynumexp=''
+				appid='4'
+				type='0'/>
+				
+<!-- ENTIDADES PARA UN PROCEDIMIENTO -->
+	<entitydef	id='20'
+				name='SPAC_P_ENTIDADES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PENTIDADES'
+				description='Entidades de un procedimiento'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='0'
+				type='0'/>
+				
+<!-- FASES PARA UN PROCEDIMIENTO -->
+	<entitydef	id='21'
+				name='SPAC_P_FASES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PNODOS'
+				description='Fases de un procedimiento'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='21'
+				type='0'/>
+				
+<!-- PROCEDIMIENTOS -->
+	<entitydef	id='22'
+				name='SPAC_P_PROCEDIMIENTOS'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PPROCEDIMIENTOS'
+				description='Procedimientos'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='22'
+				type='0'/>
+				
+<!-- TRAMITES PARA UN PROCEDIMIENTO -->
+	<entitydef	id='23'
+				name='SPAC_P_TRAMITES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PTRAMITES'
+				description='Tramites de un procedimiento'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='23'
+				type='0'/>
+				
+<!-- APLICACIONES PARA ENTIDADES DE UN FASE -->
+	<entitydef	id='24'
+				name='SPAC_P_FRMFASES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PFRMFASES'
+				description='Aplicaciones asociadas'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>				
+				
+<!-- APLICACIONES PARA ENTIDADES DE UN TRAMITE -->
+	<entitydef	id='25'
+				name='SPAC_P_FRMTRAMITES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PFRMTRAMITES'
+				description='Aplicaciones asociadas'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>	
+
+	<entitydef	id='26'
+				name='SPAC_P_FSTD'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PFSTD'
+				description='Aplicaciones asociadas'
+				schemaexpr=''
+				keynumexp=''
+				appid='7'
+				type='0'/>			
+
+	<entitydef	id='29'
+				name='SPAC_P_PLANTILLAS'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_P_PLANTILLAS'
+				description='Plantillas del procedimiento'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+
+<!-- ENTIDAD DE FLUJOS -->
+	<entitydef	id='30'
+				name='SPAC_P_FLUJOS'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PFLUJOS'
+				description='Flujos del procedimiento'
+				schemaexpr=''
+				keynumexp=''
+				appid='30'
+				type='0'/>
+
+<!-- ENTIDAD DE NODOS DE SINCRONIZACION -->
+	<entitydef	id='31'
+				name='SPAC_P_SINCNODO'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_SINCNODOS'
+				description='Nodos de sincronizacion del procedimiento'
+				schemaexpr=''
+				keynumexp=''
+				appid='31'
+				type='0'/>
+
+<!-- ENTIDAD DE FLUJOS -->
+	<entitydef	id='32'
+				name='SPAC_P_NODOS'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PNODOS'
+				description='Nodos del procedimiento'
+				schemaexpr=''
+				keynumexp=''
+				appid='32'
+				type='0'/>
+
+<!-- SUBPROCESOS -->
+	<entitydef	id='33'
+				name='SPAC_P_PROCEDIMIENTOS'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PPROCEDIMIENTOS'
+				description='Subprocesos'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='33'
+				type='0'/>
+
+<!-- ACTIVIDADES DE SUBPROCESOS -->
+	<entitydef	id='34'
+				name='SPAC_P_FASES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_PNODOS'
+				description='Actividades de un subproceso'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='34'
+				type='0'/>
+
+<!-- ACCIONES PARA EL PUBLICADOR -->
+	<entitydef	id='40'
+				name='PUB_ACCIONES'
+				keyfield='ID'
+				sequence='PUB_SQ_ID_ACCIONES'
+				description='Acciones para el publicador'
+				schemaexpr=''
+				keynumexp=''
+				appid='40'
+				type='0'/>
+				
+<!-- APLICACIONES PARA EL PUBLICADOR -->
+	<entitydef	id='41'
+				name='PUB_APLICACIONES_HITOS'
+				keyfield='ID'
+				sequence='PUB_SQ_ID_APLICACIONES_HITOS'
+				description='Aplicaciones para el publicador'
+				schemaexpr=''
+				keynumexp=''
+				appid='41'
+				type='0'/>
+				
+<!-- CONDICIONES PARA EL PUBLICADOR -->
+	<entitydef	id='42'
+				name='PUB_CONDICIONES'
+				keyfield='ID'
+				sequence='PUB_SQ_ID_CONDICIONES'
+				description='Condiciones para el publicador'
+				schemaexpr=''
+				keynumexp=''
+				appid='42'
+				type='0'/>
+				
+<!-- ERRORES EN EL PUBLICADOR -->
+	<entitydef	id='43'
+				name='PUB_ERRORES'
+				keyfield=''
+				sequence=''
+				description='Errores en el publicador'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+				
+<!-- HITOS ACTIVOS EN EL PUBLICADOR -->
+	<entitydef	id='44'
+				name='PUB_HITOS_ACTIVOS'
+				keyfield=''
+				sequence=''
+				description='Hitos activos en el publicador'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+				
+<!-- REGLAS DEL PUBLICADOR -->
+	<entitydef	id='45'
+				name='PUB_REGLAS'
+				keyfield='ID'
+				sequence='PUB_SQ_ID_REGLAS'
+				description='Reglas para el publicador'
+				schemaexpr=''
+				keynumexp=''
+				appid='45'
+				type='0'/>
+
+<!-- TABLAS DE VALIDACION -->
+	<entitydef	id='46'
+				name='SPAC_VLDTBL_SIST_PRODUCTORES'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_VLDTBL_SIST_PROD'
+				description='Sistemas Productores'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+	<entitydef	id='47'
+				name='SPAC_VLDTBL_ACTS_FUNCS'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_VLDTBL_ACTS_FUNCS'
+				description='Actividades/Funciones'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+	<entitydef	id='48'
+				name='SPAC_VLDTBL_MATS_COMP'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_VLDTBL_MATS_COMP'
+				description='Materias/Competencia'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+	<entitydef	id='49'
+				name='SPAC_VLDTBL_SIT_TLM'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_VLDTBL_SIT_TLM'
+				description='Sit. Telematica'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+				
+<!-- PROCESOS DE FIRMA -->
+	<entitydef	id='50'
+				name='SPAC_CTOS_FIRMA_CABECERA'
+				keyfield='ID_CIRCUITO'
+				sequence='SPAC_SQ_ID_CTOS_FIRMA_CABECERA'
+				description='Procesos de firma'
+				schemaexpr=''
+				keynumexp=''
+				appid='50'
+				type='0'/>
+				
+<!-- PROCESOS DE FIRMA -->
+	<entitydef	id='51'
+				name='SPAC_CTOS_FIRMA_DETALLE'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTOS_FIRMA_DETALLE'
+				description='Detalles del proceso de firma'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>	
+
+<!-- TABLAS DE VALIDACION -->
+	<entitydef	id='52'
+				name='SPAC_TBL_002'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_TBL_002'
+				description='Tipos de relacion'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+	<entitydef	id='53'
+				name='SPAC_VLDTBL_FORMA_INIC'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_VLDTBL_FORMA_INIC'
+				description='Formas de iniciacion'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+	<entitydef	id='54'
+				name='SPAC_TBL_001'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_TBL_001'
+				description='Unidades plazo'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+	<entitydef	id='55'
+				name='SPAC_VLDTBL_EFEC_SLNCIO'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_VLDTBL_EFEC_SLNC'
+				description='Efectos del silencio'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+	<entitydef	id='56'
+				name='SPAC_TBL_009'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_TBL_009'
+				description='Fin via administrativa'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+	<entitydef	id='57'
+				name='SPAC_VLDTBL_RECURSOS'
+				keyfield='ID'
+				sequence='SPAC_SQ_SPAC_VLDTBL_RECURSOS'
+				description='Recursos'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+
+	<entitydef	id='58'
+				name='SPAC_CALENDARIOS'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CALENDARIOS'
+				description='Recursos'
+				schemaexpr=''
+				keynumexp=''
+				appid='51'
+				type='0'/>
+				
+<!-- PROCESOS DE FIRMA -->
+	<entitydef	id='59'
+				name='SPAC_CTOS_FIRMA'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTOS_FIRMA'
+				description='Procesos de firma en uso'
+				schemaexpr=''
+				keynumexp=''
+				appid='0'
+				type='0'/>
+				
+<!-- Para los eventos de un procedimiento -->
+	<entitydef	id='60'
+				name='SPAC_P_EVENTOS'
+				keyfield='ID_OBJ'
+				sequence='SPAC_SQ_ID_PEVENTOS'
+				description='Eventos asociados al procedimiento'
+				type='0'/>
+
+<!-- Informes -->
+	<entitydef	id='61'
+				name='SPAC_CT_INFORMES'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTINFORMES'
+				description='Informes'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='61'
+				type='0'/>
+ 
+<!-- Variables de sistema -->
+	<entitydef	id='62'
+				name='SPAC_VARS'
+				keyfield='ID'
+				sequence='spac_sq_id_vars'
+				description='Variables de Sistema'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='62'
+				type='0'/>	
+
+<!-- Ayudas -->
+	<entitydef	id='63'
+				name='SPAC_AYUDAS'
+				keyfield='ID'
+				sequence='spac_sq_id_ayudas'
+				description='Ayudas'
+				schemaexpr='NOMBRE'
+				keynumexp=''
+				appid='63'
+				type='0'/>					
+<!--
+	====================================
+		Definición de las aplicaciones
+	====================================
+-->
+
+
+<!-- APLICACION PARA EL CATALOGO DE ENTIDADES: ahora la entidad se gestiona en showCTEntityToManage
+	<applicationdef	id='1'
+					name='EditCTEntity'
+					description='Formulario para entidades'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTEntityApp'
+					page='/forms/catalog/ctentityform.jsp'
+					parameters=''
+					formatter='' />
+-->
+
+<!-- APLICACION PARA CATALOGO DE APLICACIONES -->
+	<applicationdef	id='2'
+					name='EditCTApp'
+					description='Formulario para aplicaciones'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTApplicationApp'
+					page='/forms/catalog/ctaplicationform.jsp'
+					parameters=''
+					formatter='' />
+
+<!-- APLICACION PARA CATALOGO DE REGLAS -->
+	<applicationdef	id='3'
+					name='EditCTRule'
+					description='Formulario para reglas'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTRuleApp'
+					page='/forms/catalog/ctruleform.jsp'
+					parameters=''
+					formatter='' />
+
+<!-- APLICACION PARA FORMULARIOS DE BUSQUEDA -->
+	<applicationdef	id='4'
+					name='EditCTSearch'
+					description='Formulario para editar búsquedas'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTFrmBusquedaApp'
+					page='/forms/catalog/ctfrmsearchform.jsp'
+					parameters=''
+					formatter='' />
+
+
+	<!-- APLICACION PARA FASES -->
+	<applicationdef	id='5'
+					name='EditCTStage'
+					description='Formulario para fases'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTStageApp'
+					page='/forms/catalog/ctstageform.jsp'
+					parameters=''
+					formatter='' />
+
+	<!-- APLICACION PARA TRAMITES -->
+	<applicationdef	id='6'
+					name='EditCTTask'
+					description='Formulario para trámites'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTTaskApp'
+					page='/forms/catalog/cttaskform.jsp'
+					parameters=''
+					formatter='' />
+
+	<!-- APLICACION PARA TIPOS DE DOCUMENTOS -->
+	<applicationdef	id='7'
+					name='EditCTTypeDoc'
+					description='Formulario para tipos de documentos'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTTpDocApp'
+					page='/forms/catalog/cttpdocform.jsp'
+					parameters=''
+					formatter='' />
+
+	<!-- APLICACION PARA PROCEDIMIENTOS -->
+	<applicationdef	id='8'
+					name='EditCTProcedure'
+					description='Formulario para editar de procedimientos'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTProcedureApp'
+					page='/forms/catalog/ctprocedureform.jsp'
+					parameters=''
+					formatter='' />
+
+	<!-- APLICACION PARA PLANTILLAS -->
+	<applicationdef	id='9'
+					name='EditCTTemplate'
+					description='Formulario para editar plantillas'
+					class='ieci.tdw.ispac.ispaclib.app.SimpleEntityApp'
+					page='/forms/catalog/cttemplateform.jsp'
+					parameters=''
+					formatter='' />
+					
+	<!-- APLICACION PARA FASES DE UN PROCEDIMIENTO -->
+	<applicationdef	id='21'
+					name='EditPFases'
+					description='Formulario para editar fases de procedimiento'
+					class='ieci.tdw.ispac.ispaccatalog.app.PStageApp'
+					page='/forms/procedure/pcdstageform.jsp'
+					parameters=''
+					formatter='/forms/formatters/pcdtasksstageformatter.xml' />
+					
+	<!-- APLICACION PARA FASES DE UN PROCEDIMIENTO -->
+	<applicationdef	id='22'
+					name='EditPProcedimientos'
+					description='Formulario para editar el procedimiento'
+					class='ieci.tdw.ispac.ispaccatalog.app.PProcedureApp'
+					page='/forms/procedure/pcdprocedureform.jsp'
+					parameters=''
+					formatter='/forms/formatters/pcdstagesprocedureformatter.xml' />
+
+	<!-- APLICACION PARA TRAMITES DE UN PROCEDIMIENTO -->
+	<applicationdef	id='23'
+					name='EditPTramites'
+					description='Formulario para editar TRAMITES de procedimiento'
+					class='ieci.tdw.ispac.ispaccatalog.app.PTaskApp'
+					page='/forms/procedure/pcdtaskform.jsp'
+					parameters=''
+					formatter='' />
+	<applicationdef	id='24'
+					name='EditTblVld'
+					description='Formulario para editar tablas de validacion'
+					class='ieci.tdw.ispac.ispaclib.app.SimpleEntityApp'
+					page='/forms/catalog/cttblvld.jsp'
+					parameters=''
+					formatter='' />
+	<applicationdef	id='30'
+					name='EditPFlujos'
+					description='Formulario para editar FLUJOS de procedimiento'
+					class='ieci.tdw.ispac.ispaccatalog.app.PFlowApp'
+					page='/forms/procedure/pcdflowform.jsp'
+					parameters=''
+					formatter='' />
+	<applicationdef	id='31'
+					name='EditPSincNodos'
+					description='Formulario para editar NODOS DE SINCRONIZACION de procedimiento'
+					class='ieci.tdw.ispac.ispaccatalog.app.PSincNodeApp'
+					page='/forms/procedure/pcdsincnodeform.jsp'
+					parameters=''
+					formatter='' />
+	<applicationdef	id='32'
+					name='EditPNodos'
+					description='Formulario para editar NODOS de procedimiento'
+					class='ieci.tdw.ispac.ispaclib.app.SimpleEntityApp'
+					page='/forms/procedure/pcdnodeform.jsp'
+					parameters=''
+					formatter='' />
+
+	<!-- APLICACION PARA SUBPROCESOS -->
+	<applicationdef	id='33'
+					name='EditPSubprocesos'
+					description='Formulario para editar el subproceso'
+					class='ieci.tdw.ispac.ispaccatalog.app.PProcedureApp'
+					page='/forms/procedure/pcdprocedureform.jsp'
+					parameters=''
+					formatter='/forms/formatters/pcdstagesprocedureformatter.xml' />
+
+	<!-- APLICACION PARA ACTIVIDADES DE UN SUBPROCESO -->
+	<applicationdef	id='34'
+					name='EditPactividades'
+					description='Formulario para editar actividades de subproceso'
+					class='ieci.tdw.ispac.ispaccatalog.app.PStageApp'
+					page='/forms/procedure/pcdstageform.jsp'
+					parameters=''
+					formatter='/forms/formatters/pcdtasksstageformatter.xml' />
+
+<!-- APLICACION PARA ACCIONES PARA EL PUBLICADOR -->
+	<applicationdef	id='40'
+					name='EditPubActions'
+					description='Formulario para acciones para el publicador'
+					class='ieci.tdw.ispac.ispaclib.app.SimpleEntityApp'
+					page='/forms/publisher/pubactionform.jsp'
+					parameters=''
+					formatter='' />
+					
+	<!-- APLICACION PARA APLICACIONES PARA EL PUBLICADOR -->
+	<applicationdef	id='41'
+					name='EditPubApplications'
+					description='Formulario para aplicaciones para el publicador'
+					class='ieci.tdw.ispac.ispaclib.app.SimpleEntityApp'
+					page='/forms/publisher/pubapplicationform.jsp'
+					parameters=''
+					formatter='' />
+					
+	<!-- APLICACION PARA CONDICIONES PARA EL PUBLICADOR -->
+	<applicationdef	id='42'
+					name='EditPubConditions'
+					description='Formulario para condiciones para el publicador'
+					class='ieci.tdw.ispac.ispaclib.app.SimpleEntityApp'
+					page='/forms/publisher/pubconditionform.jsp'
+					parameters=''
+					formatter='' />
+					
+	<!-- APLICACION PARA REGLAS PARA EL PUBLICADOR -->
+	<applicationdef	id='45'
+					name='EditPubRules'
+					description='Formulario para reglas para el publicador'
+					class='ieci.tdw.ispac.ispaccatalog.app.PubRuleApp'
+					page='/forms/publisher/pubrulesform.jsp'
+					parameters=''
+					formatter='' />
+					
+	<!-- APLICACION PARA PROCESOS DE FIRMA -->
+	<applicationdef	id='50'
+					name='EditSignProcess'
+					description='Formulario para procesos de firma'
+					class='ieci.tdw.ispac.ispaccatalog.app.SignProcessApp'
+					page='/forms/signprocess/signprocessform.jsp'
+					parameters=''
+					formatter='/ispac/formatters/signprocess/signprocessdetailformatter.xml' />
+
+	<!-- APLICACION PARA CALENDARIOS -->
+	<applicationdef	id='51'
+					name='EditCTCalendar'
+					description='Formulario para editar calendarios'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTCalendarApp'
+					page='/forms/catalog/ctcalendarform.jsp'
+					parameters=''
+					formatter='' />
+					
+	<!-- APLICACION PARA INFORMES -->
+	<applicationdef	id='61'
+					name='EditCTReport'
+					description='Formulario para editar informes'
+					class='ieci.tdw.ispac.ispaccatalog.app.ReportApp'
+					page='/forms/catalog/ctreportform.jsp'
+					parameters=''
+					formatter='' />
+	
+	<!-- Responsables asociados al informe -->
+	<entitydef	id='14'
+				name='SPAC_CT_INFORMES_ORG'
+				keyfield='ID'
+				sequence='SPAC_SQ_ID_CTINFORMES_ORG'
+				description='Informes asociados a objetos de organizacion'
+				schemaexpr='ID_INFORME'
+				keynumexp=''
+				appid='61'
+				type='0'/>			
+					
+		<!-- APLICACION PARA VARIABLES DE SISTEMA-->
+	<applicationdef	id='62'
+					name='EditCTVblSystem'
+					description='Formulario para editar variables de sistema'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTVblSystemApp'
+					page='/forms/catalog/ctvblSystemform.jsp'
+					parameters=''
+					formatter='' />
+					
+	<!-- APLICACION PARA AYUDAS-->
+	<applicationdef	id='63'
+					name='EditCTAyuda'
+					description='Formulario para editar ayudas'
+					class='ieci.tdw.ispac.ispaccatalog.app.CTHelpApp'
+					page='/forms/catalog/cthelpform.jsp'
+					parameters=''
+					formatter='' />					
+</catalogdef>

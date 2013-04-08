@@ -1,0 +1,2362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.ct.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="consultarExpedientesNIF">
+    <complexType>
+     <sequence>
+      <element name="poNif" type="impl:CriterioBusquedaExpedientes"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CriterioBusquedaExpedientes">
+    <sequence>
+     <element name="NIF" nillable="true" type="xsd:string"/>
+     <element name="estado" nillable="true" type="xsd:string"/>
+     <element name="fechaDesde" nillable="true" type="xsd:string"/>
+     <element name="fechaHasta" nillable="true" type="xsd:string"/>
+     <element name="operadorConsulta" nillable="true" type="xsd:string"/>
+     <element name="expediente" nillable="true" type="xsd:string"/>
+     <element name="procedimiento" nillable="true" type="xsd:string"/>
+     <element name="numeroRegistroInicial" nillable="true" type="xsd:string"/>
+     <element name="fechaRegistroInicialDesde" nillable="true" type="xsd:string"/>
+     <element name="fechaRegistroInicialHasta" nillable="true" type="xsd:string"/>
+     <element name="operadorConsultaFechaInicial" nillable="true" type="xsd:string"/>
+
+    </sequence>
+   </complexType>
+   <element name="consultarExpedientesNIFResponse">
+    <complexType>
+     <sequence>
+      <element name="consultarExpedientesNIFReturn" type="impl:Expedientes"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Expediente">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="aportacion" nillable="true" type="xsd:string"/>
+       <element name="codigoPresentacion" nillable="true" type="xsd:string"/>
+       <element name="estado" nillable="true" type="xsd:string"/>
+       <element name="fechaInicio" nillable="true" type="xsd:string"/>
+       <element name="fechaRegistro" nillable="true" type="xsd:string"/>
+       <element name="informacionAuxiliar" nillable="true" type="xsd:string"/>
+       <element name="nif" nillable="true" type="xsd:string"/>
+       <element name="notificacion" nillable="true" type="xsd:string"/>
+       <element name="numero" nillable="true" type="xsd:string"/>
+       <element name="numeroRegistro" nillable="true" type="xsd:string"/>
+       <element name="procedimiento" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfExpediente">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Expediente"/>
+    </sequence>
+   </complexType>
+   <complexType name="Expedientes">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="expedientes" nillable="true" type="impl:ArrayOfExpediente"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="consultarExpedientes">
+    <complexType>
+     <sequence>
+      <element name="poCriterio" type="impl:CriterioBusquedaExpedientes"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultarExpedientesResponse">
+    <complexType>
+     <sequence>
+      <element name="consultarExpedientesReturn" type="impl:Expedientes"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerURLAportacionExpedientes">
+    <complexType/>
+   </element>
+   <element name="obtenerURLAportacionExpedientesResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerURLAportacionExpedientesReturn" type="impl:Url"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Url">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="url" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerURLNotificacionExpedientes">
+    <complexType/>
+   </element>
+   <element name="obtenerURLNotificacionExpedientesResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerURLNotificacionExpedientesReturn" type="impl:Url"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerURLPagoTasas">
+    <complexType/>
+   </element>
+   <element name="obtenerURLPagoTasasResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerURLPagoTasasReturn" type="impl:Url"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDetalle">
+    <complexType>
+     <sequence>
+      <element name="poNumExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDetalleResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDetalleReturn" type="impl:Expediente"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHistoricoExpediente">
+    <complexType>
+     <sequence>
+      <element name="poNumExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHistoricoExpedienteResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerHistoricoExpedienteReturn" type="impl:HitosExpediente"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="HitoExpediente">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="codigo" nillable="true" type="xsd:string"/>
+       <element name="descripcion" nillable="true" type="xsd:string"/>
+       <element name="fecha" nillable="true" type="xsd:string"/>
+       <element name="guid" nillable="true" type="xsd:string"/>
+       <element name="informacionAuxiliar" nillable="true" type="xsd:string"/>
+       <element name="numeroExpediente" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfHitoExpediente">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:HitoExpediente"/>
+    </sequence>
+   </complexType>
+   <complexType name="HitosExpediente">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="expedientes" nillable="true" type="impl:ArrayOfHitoExpediente"/>
+       <element name="hitosExpedientes" nillable="true" type="impl:ArrayOfHitoExpediente"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerHitoEstado">
+    <complexType>
+     <sequence>
+      <element name="poNumExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHitoEstadoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerHitoEstadoReturn" type="impl:HitoExpediente"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerFicherosHito">
+    <complexType>
+     <sequence>
+      <element name="poGuidHito" type="impl:HitoExpediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerFicherosHitoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerFicherosHitoReturn" type="impl:FicherosHito"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="FicheroHito">
+    <sequence>
+     <element name="guid" nillable="true" type="xsd:string"/>
+     <element name="guidHito" nillable="true" type="xsd:string"/>
+     <element name="titulo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFicheroHito">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:FicheroHito"/>
+    </sequence>
+   </complexType>
+   <complexType name="FicherosHito">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="ficherosHito" nillable="true" type="impl:ArrayOfFicheroHito"/>
+       <element name="guid" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerFicherosHitos">
+    <complexType>
+     <sequence>
+      <element name="poHitos" type="impl:HitosExpediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerFicherosHitosResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerFicherosHitosReturn" type="impl:FicherosHitos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfFicherosHito">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:FicherosHito"/>
+    </sequence>
+   </complexType>
+   <complexType name="FicherosHitos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="ficherosHitos" nillable="true" type="impl:ArrayOfFicherosHito"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="nuevoExpediente">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="poInteresado" type="impl:Interesado"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Interesado">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="NIF" nillable="true" type="xsd:string"/>
+       <element name="expedientes" nillable="true" type="impl:Expedientes"/>
+       <element name="informacionAuxiliar" nillable="true" type="xsd:string"/>
+       <element name="nombre" nillable="true" type="xsd:string"/>
+       <element name="numeroExpediente" nillable="true" type="xsd:string"/>
+       <element name="principal" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="nuevoExpedienteResponse">
+    <complexType>
+     <sequence>
+      <element name="nuevoExpedienteReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarExpediente">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarExpedienteResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarExpedienteReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuevoInteresado">
+    <complexType>
+     <sequence>
+      <element name="poInteresado" type="impl:Interesado"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuevoInteresadoResponse">
+    <complexType>
+     <sequence>
+      <element name="nuevoInteresadoReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarInteresado">
+    <complexType>
+     <sequence>
+      <element name="poInteresado" type="impl:Interesado"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarInteresadoResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarInteresadoReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarInteresadoExpediente">
+    <complexType>
+     <sequence>
+      <element name="numeroExpediente" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarInteresadoExpedienteResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarInteresadoExpedienteReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="establecerHitoActual">
+    <complexType>
+     <sequence>
+      <element name="poHito" type="impl:HitoExpediente"/>
+      <element name="poFicheros" type="impl:FicherosHito"/>
+      <element name="poHistorico" type="impl:Historico"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Historico">
+    <sequence>
+     <element name="pasoHistoricoHitoActual" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="establecerHitoActualResponse">
+    <complexType>
+     <sequence>
+      <element name="establecerHitoActualReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarHitoActual">
+    <complexType>
+     <sequence>
+      <element name="poNumExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarHitoActualResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarHitoActualReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuevoHitoHistorico">
+    <complexType>
+     <sequence>
+      <element name="poHito" type="impl:HitoExpediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuevoHitoHistoricoResponse">
+    <complexType>
+     <sequence>
+      <element name="nuevoHitoHistoricoReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarHitoHistorico">
+    <complexType>
+     <sequence>
+      <element name="poHito" type="impl:HitoExpediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarHitoHistoricoResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarHitoHistoricoReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cargarDocumento">
+    <complexType>
+     <sequence>
+      <element name="poInfodoc" type="impl:InfoDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="InfoDocumento">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="content" nillable="true" type="xsd:string"/>
+       <element name="extension" nillable="true" type="xsd:string"/>
+       <element name="guid" nillable="true" type="xsd:string"/>
+       <element name="mimeType" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="cargarDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="cargarDocumentoReturn" type="impl:InfoDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="recogerDocumento">
+    <complexType>
+     <sequence>
+      <element name="poInfodoc" type="impl:InfoDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="recogerDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="recogerDocumentoReturn" type="impl:InfoDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="busquedaExpediente">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="busquedaExpedienteResponse">
+    <complexType>
+     <sequence>
+      <element name="busquedaExpedienteReturn" type="impl:Expediente"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="busquedaExpedientes">
+    <complexType>
+     <sequence>
+      <element name="poCriterio" type="impl:CriterioBusquedaExpedientes"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="busquedaExpedientesResponse">
+    <complexType>
+     <sequence>
+      <element name="busquedaExpedientesReturn" type="impl:Expedientes"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="anexarFicherosHitoActual">
+    <complexType>
+     <sequence>
+      <element name="poFicheros" type="impl:FicherosHito"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="anexarFicherosHitoActualResponse">
+    <complexType>
+     <sequence>
+      <element name="anexarFicherosHitoActualReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="recogerNotificaciones">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="recogerNotificacionesResponse">
+    <complexType>
+     <sequence>
+      <element name="recogerNotificacionesReturn" type="impl:NotificacionesPendientes"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="NotificacionesPendientes">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="notificacionesPendientes" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="altaSolicitudSubsanacion">
+    <complexType>
+     <sequence>
+      <element name="poSubsanacion" type="impl:Subsanacion"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Subsanacion">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="fecha" nillable="true" type="xsd:string"/>
+       <element name="idDocumento" nillable="true" type="xsd:string"/>
+       <element name="identificador" nillable="true" type="xsd:string"/>
+       <element name="identificadorHito" nillable="true" type="xsd:string"/>
+       <element name="mensajeParaElCiudadano" nillable="true" type="xsd:string"/>
+       <element name="numeroExpediente" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="altaSolicitudSubsanacionResponse">
+    <complexType>
+     <sequence>
+      <element name="altaSolicitudSubsanacionReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerSubsanacionesHitoActual">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerSubsanacionesHitoActualResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerSubsanacionesHitoActualReturn" type="impl:Subsanaciones"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfSubsanacion">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Subsanacion"/>
+    </sequence>
+   </complexType>
+   <complexType name="Subsanaciones">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="subsanaciones" nillable="true" type="impl:ArrayOfSubsanacion"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerSubsanacionesHito">
+    <complexType>
+     <sequence>
+      <element name="poHitoExp" type="impl:HitoExpediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerSubsanacionesHitoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerSubsanacionesHitoReturn" type="impl:Subsanaciones"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="altaSolicitudPago">
+    <complexType>
+     <sequence>
+      <element name="poPago" type="impl:Pago"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Pago">
+    <sequence>
+     <element name="autoliquidacionId" nillable="true" type="xsd:string"/>
+     <element name="entidadEmisoraId" nillable="true" type="xsd:string"/>
+     <element name="fecha" nillable="true" type="xsd:string"/>
+     <element name="idDocumento" nillable="true" type="xsd:string"/>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+     <element name="identificadorHito" nillable="true" type="xsd:string"/>
+     <element name="importe" nillable="true" type="xsd:string"/>
+     <element name="mensajeParaElCiudadano" nillable="true" type="xsd:string"/>
+     <element name="numeroExpediente" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="altaSolicitudPagoResponse">
+    <complexType>
+     <sequence>
+      <element name="altaSolicitudPagoReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPagosHitoActual">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPagosHitoActualResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerPagosHitoActualReturn" type="impl:Pagos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfPago">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Pago"/>
+    </sequence>
+   </complexType>
+   <complexType name="Pagos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="pagos" nillable="true" type="impl:ArrayOfPago"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerPagosHito">
+    <complexType>
+     <sequence>
+      <element name="poHitoExp" type="impl:HitoExpediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPagosHitoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerPagosHitoReturn" type="impl:Pagos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="altaNotificacion">
+    <complexType>
+     <sequence>
+      <element name="poNotificacion" type="impl:Notificacion"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Notificacion">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="descripcion" nillable="true" type="xsd:string"/>
+       <element name="deu" nillable="true" type="xsd:string"/>
+       <element name="expediente" nillable="true" type="xsd:string"/>
+       <element name="fechaNotificacion" nillable="true" type="xsd:string"/>
+       <element name="hitoId" nillable="true" type="xsd:string"/>
+       <element name="notificacionId" nillable="true" type="xsd:string"/>
+       <element name="servicioNotificionesId" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="altaNotificacionResponse">
+    <complexType>
+     <sequence>
+      <element name="altaNotificacionReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerNotificionesHitoActual">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerNotificionesHitoActualResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerNotificionesHitoActualReturn" type="impl:Notificaciones"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfNotificacion">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Notificacion"/>
+    </sequence>
+   </complexType>
+   <complexType name="Notificaciones">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="notificaciones" nillable="true" type="impl:ArrayOfNotificacion"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerNotificionesHito">
+    <complexType>
+     <sequence>
+      <element name="poHitoExp" type="impl:HitoExpediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerNotificionesHitoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerNotificionesHitoReturn" type="impl:Notificaciones"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="existenNotificaciones">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="existenNotificacionesResponse">
+    <complexType>
+     <sequence>
+      <element name="existenNotificacionesReturn" type="impl:RetornoLogico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoLogico">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="valor" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="existenPagos">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="existenPagosResponse">
+    <complexType>
+     <sequence>
+      <element name="existenPagosReturn" type="impl:RetornoLogico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="existenSubsanaciones">
+    <complexType>
+     <sequence>
+      <element name="poExpediente" type="impl:Expediente"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="existenSubsanacionesResponse">
+    <complexType>
+     <sequence>
+      <element name="existenSubsanacionesReturn" type="impl:RetornoLogico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarEstadoLocalGIS">
+    <complexType>
+     <sequence>
+      <element name="idExpediente" type="xsd:string"/>
+      <element name="estado" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarEstadoLocalGISResponse">
+    <complexType>
+     <sequence>
+      <element name="actualizarEstadoLocalGISReturn" type="impl:RetornoLogico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="publicarExpedienteLocalGIS">
+    <complexType>
+     <sequence>
+      <element name="idExpediente" type="xsd:string"/>
+      <element name="nif" type="xsd:string"/>
+      <element name="tipoExpediente" type="xsd:string"/>
+      <element name="estado" type="xsd:string"/>
+      <element name="fecha" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="publicarExpedienteLocalGISResponse">
+    <complexType>
+     <sequence>
+      <element name="publicarExpedienteLocalGISReturn" type="impl:RetornoLogico"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://server.ws.ct.sgm.tecdoc.ieci"/>
+   <complexType name="Entidad">
+    <sequence>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="obtenerPagosHitoActualRequest">
+
+      <wsdl:part element="impl:obtenerPagosHitoActual" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarExpedienteRequest">
+
+      <wsdl:part element="impl:eliminarExpediente" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHistoricoExpedienteResponse">
+
+      <wsdl:part element="impl:obtenerHistoricoExpedienteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPagosHitoActualResponse">
+
+      <wsdl:part element="impl:obtenerPagosHitoActualResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarInteresadoExpedienteResponse">
+
+      <wsdl:part element="impl:eliminarInteresadoExpedienteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarEstadoLocalGISResponse">
+
+      <wsdl:part element="impl:actualizarEstadoLocalGISResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerNotificionesHitoActualRequest">
+
+      <wsdl:part element="impl:obtenerNotificionesHitoActual" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerURLPagoTasasResponse">
+
+      <wsdl:part element="impl:obtenerURLPagoTasasResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="recogerDocumentoRequest">
+
+      <wsdl:part element="impl:recogerDocumento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="recogerDocumentoResponse">
+
+      <wsdl:part element="impl:recogerDocumentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="establecerHitoActualRequest">
+
+      <wsdl:part element="impl:establecerHitoActual" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerFicherosHitoResponse">
+
+      <wsdl:part element="impl:obtenerFicherosHitoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="existenNotificacionesResponse">
+
+      <wsdl:part element="impl:existenNotificacionesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaNotificacionRequest">
+
+      <wsdl:part element="impl:altaNotificacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerSubsanacionesHitoActualRequest">
+
+      <wsdl:part element="impl:obtenerSubsanacionesHitoActual" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="existenPagosRequest">
+
+      <wsdl:part element="impl:existenPagos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarHitoHistoricoRequest">
+
+      <wsdl:part element="impl:eliminarHitoHistorico" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerNotificionesHitoResponse">
+
+      <wsdl:part element="impl:obtenerNotificionesHitoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerSubsanacionesHitoActualResponse">
+
+      <wsdl:part element="impl:obtenerSubsanacionesHitoActualResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cargarDocumentoRequest">
+
+      <wsdl:part element="impl:cargarDocumento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHitoEstadoResponse">
+
+      <wsdl:part element="impl:obtenerHitoEstadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerNotificionesHitoRequest">
+
+      <wsdl:part element="impl:obtenerNotificionesHito" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaSolicitudPagoRequest">
+
+      <wsdl:part element="impl:altaSolicitudPago" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cargarDocumentoResponse">
+
+      <wsdl:part element="impl:cargarDocumentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerURLPagoTasasRequest">
+
+      <wsdl:part element="impl:obtenerURLPagoTasas" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaSolicitudSubsanacionRequest">
+
+      <wsdl:part element="impl:altaSolicitudSubsanacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerURLAportacionExpedientesResponse">
+
+      <wsdl:part element="impl:obtenerURLAportacionExpedientesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPagosHitoRequest">
+
+      <wsdl:part element="impl:obtenerPagosHito" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerFicherosHitosRequest">
+
+      <wsdl:part element="impl:obtenerFicherosHitos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="anexarFicherosHitoActualResponse">
+
+      <wsdl:part element="impl:anexarFicherosHitoActualResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="existenSubsanacionesRequest">
+
+      <wsdl:part element="impl:existenSubsanaciones" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerFicherosHitoRequest">
+
+      <wsdl:part element="impl:obtenerFicherosHito" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarExpedientesNIFRequest">
+
+      <wsdl:part element="impl:consultarExpedientesNIF" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="existenPagosResponse">
+
+      <wsdl:part element="impl:existenPagosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarEstadoLocalGISRequest">
+
+      <wsdl:part element="impl:actualizarEstadoLocalGIS" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevoExpedienteResponse">
+
+      <wsdl:part element="impl:nuevoExpedienteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevoInteresadoResponse">
+
+      <wsdl:part element="impl:nuevoInteresadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerNotificionesHitoActualResponse">
+
+      <wsdl:part element="impl:obtenerNotificionesHitoActualResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="anexarFicherosHitoActualRequest">
+
+      <wsdl:part element="impl:anexarFicherosHitoActual" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDetalleRequest">
+
+      <wsdl:part element="impl:obtenerDetalle" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaSolicitudPagoResponse">
+
+      <wsdl:part element="impl:altaSolicitudPagoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="recogerNotificacionesRequest">
+
+      <wsdl:part element="impl:recogerNotificaciones" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerURLNotificacionExpedientesResponse">
+
+      <wsdl:part element="impl:obtenerURLNotificacionExpedientesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="establecerHitoActualResponse">
+
+      <wsdl:part element="impl:establecerHitoActualResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevoHitoHistoricoResponse">
+
+      <wsdl:part element="impl:nuevoHitoHistoricoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPagosHitoResponse">
+
+      <wsdl:part element="impl:obtenerPagosHitoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="publicarExpedienteLocalGISRequest">
+
+      <wsdl:part element="impl:publicarExpedienteLocalGIS" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaSolicitudSubsanacionResponse">
+
+      <wsdl:part element="impl:altaSolicitudSubsanacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarExpedientesRequest">
+
+      <wsdl:part element="impl:consultarExpedientes" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevoExpedienteRequest">
+
+      <wsdl:part element="impl:nuevoExpediente" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarHitoActualResponse">
+
+      <wsdl:part element="impl:eliminarHitoActualResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="existenNotificacionesRequest">
+
+      <wsdl:part element="impl:existenNotificaciones" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="busquedaExpedientesRequest">
+
+      <wsdl:part element="impl:busquedaExpedientes" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="busquedaExpedientesResponse">
+
+      <wsdl:part element="impl:busquedaExpedientesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerURLNotificacionExpedientesRequest">
+
+      <wsdl:part element="impl:obtenerURLNotificacionExpedientes" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarInteresadoResponse">
+
+      <wsdl:part element="impl:eliminarInteresadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="recogerNotificacionesResponse">
+
+      <wsdl:part element="impl:recogerNotificacionesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHistoricoExpedienteRequest">
+
+      <wsdl:part element="impl:obtenerHistoricoExpediente" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarHitoActualRequest">
+
+      <wsdl:part element="impl:eliminarHitoActual" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarInteresadoExpedienteRequest">
+
+      <wsdl:part element="impl:eliminarInteresadoExpediente" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="existenSubsanacionesResponse">
+
+      <wsdl:part element="impl:existenSubsanacionesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarExpedienteResponse">
+
+      <wsdl:part element="impl:eliminarExpedienteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarExpedientesResponse">
+
+      <wsdl:part element="impl:consultarExpedientesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevoInteresadoRequest">
+
+      <wsdl:part element="impl:nuevoInteresado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerFicherosHitosResponse">
+
+      <wsdl:part element="impl:obtenerFicherosHitosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="busquedaExpedienteResponse">
+
+      <wsdl:part element="impl:busquedaExpedienteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDetalleResponse">
+
+      <wsdl:part element="impl:obtenerDetalleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerURLAportacionExpedientesRequest">
+
+      <wsdl:part element="impl:obtenerURLAportacionExpedientes" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerSubsanacionesHitoRequest">
+
+      <wsdl:part element="impl:obtenerSubsanacionesHito" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerSubsanacionesHitoResponse">
+
+      <wsdl:part element="impl:obtenerSubsanacionesHitoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarExpedientesNIFResponse">
+
+      <wsdl:part element="impl:consultarExpedientesNIFResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHitoEstadoRequest">
+
+      <wsdl:part element="impl:obtenerHitoEstado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarInteresadoRequest">
+
+      <wsdl:part element="impl:eliminarInteresado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="busquedaExpedienteRequest">
+
+      <wsdl:part element="impl:busquedaExpediente" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaNotificacionResponse">
+
+      <wsdl:part element="impl:altaNotificacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarHitoHistoricoResponse">
+
+      <wsdl:part element="impl:eliminarHitoHistoricoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="publicarExpedienteLocalGISResponse">
+
+      <wsdl:part element="impl:publicarExpedienteLocalGISResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevoHitoHistoricoRequest">
+
+      <wsdl:part element="impl:nuevoHitoHistorico" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ConsultaExpedientesWebService">
+
+      <wsdl:operation name="consultarExpedientesNIF">
+
+         <wsdl:input message="impl:consultarExpedientesNIFRequest" name="consultarExpedientesNIFRequest"/>
+
+         <wsdl:output message="impl:consultarExpedientesNIFResponse" name="consultarExpedientesNIFResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultarExpedientes">
+
+         <wsdl:input message="impl:consultarExpedientesRequest" name="consultarExpedientesRequest"/>
+
+         <wsdl:output message="impl:consultarExpedientesResponse" name="consultarExpedientesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerURLAportacionExpedientes">
+
+         <wsdl:input message="impl:obtenerURLAportacionExpedientesRequest" name="obtenerURLAportacionExpedientesRequest"/>
+
+         <wsdl:output message="impl:obtenerURLAportacionExpedientesResponse" name="obtenerURLAportacionExpedientesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerURLNotificacionExpedientes">
+
+         <wsdl:input message="impl:obtenerURLNotificacionExpedientesRequest" name="obtenerURLNotificacionExpedientesRequest"/>
+
+         <wsdl:output message="impl:obtenerURLNotificacionExpedientesResponse" name="obtenerURLNotificacionExpedientesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerURLPagoTasas">
+
+         <wsdl:input message="impl:obtenerURLPagoTasasRequest" name="obtenerURLPagoTasasRequest"/>
+
+         <wsdl:output message="impl:obtenerURLPagoTasasResponse" name="obtenerURLPagoTasasResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDetalle">
+
+         <wsdl:input message="impl:obtenerDetalleRequest" name="obtenerDetalleRequest"/>
+
+         <wsdl:output message="impl:obtenerDetalleResponse" name="obtenerDetalleResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHistoricoExpediente">
+
+         <wsdl:input message="impl:obtenerHistoricoExpedienteRequest" name="obtenerHistoricoExpedienteRequest"/>
+
+         <wsdl:output message="impl:obtenerHistoricoExpedienteResponse" name="obtenerHistoricoExpedienteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHitoEstado">
+
+         <wsdl:input message="impl:obtenerHitoEstadoRequest" name="obtenerHitoEstadoRequest"/>
+
+         <wsdl:output message="impl:obtenerHitoEstadoResponse" name="obtenerHitoEstadoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerFicherosHito">
+
+         <wsdl:input message="impl:obtenerFicherosHitoRequest" name="obtenerFicherosHitoRequest"/>
+
+         <wsdl:output message="impl:obtenerFicherosHitoResponse" name="obtenerFicherosHitoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerFicherosHitos">
+
+         <wsdl:input message="impl:obtenerFicherosHitosRequest" name="obtenerFicherosHitosRequest"/>
+
+         <wsdl:output message="impl:obtenerFicherosHitosResponse" name="obtenerFicherosHitosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoExpediente">
+
+         <wsdl:input message="impl:nuevoExpedienteRequest" name="nuevoExpedienteRequest"/>
+
+         <wsdl:output message="impl:nuevoExpedienteResponse" name="nuevoExpedienteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarExpediente">
+
+         <wsdl:input message="impl:eliminarExpedienteRequest" name="eliminarExpedienteRequest"/>
+
+         <wsdl:output message="impl:eliminarExpedienteResponse" name="eliminarExpedienteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoInteresado">
+
+         <wsdl:input message="impl:nuevoInteresadoRequest" name="nuevoInteresadoRequest"/>
+
+         <wsdl:output message="impl:nuevoInteresadoResponse" name="nuevoInteresadoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarInteresado">
+
+         <wsdl:input message="impl:eliminarInteresadoRequest" name="eliminarInteresadoRequest"/>
+
+         <wsdl:output message="impl:eliminarInteresadoResponse" name="eliminarInteresadoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarInteresadoExpediente">
+
+         <wsdl:input message="impl:eliminarInteresadoExpedienteRequest" name="eliminarInteresadoExpedienteRequest"/>
+
+         <wsdl:output message="impl:eliminarInteresadoExpedienteResponse" name="eliminarInteresadoExpedienteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="establecerHitoActual">
+
+         <wsdl:input message="impl:establecerHitoActualRequest" name="establecerHitoActualRequest"/>
+
+         <wsdl:output message="impl:establecerHitoActualResponse" name="establecerHitoActualResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarHitoActual">
+
+         <wsdl:input message="impl:eliminarHitoActualRequest" name="eliminarHitoActualRequest"/>
+
+         <wsdl:output message="impl:eliminarHitoActualResponse" name="eliminarHitoActualResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoHitoHistorico">
+
+         <wsdl:input message="impl:nuevoHitoHistoricoRequest" name="nuevoHitoHistoricoRequest"/>
+
+         <wsdl:output message="impl:nuevoHitoHistoricoResponse" name="nuevoHitoHistoricoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarHitoHistorico">
+
+         <wsdl:input message="impl:eliminarHitoHistoricoRequest" name="eliminarHitoHistoricoRequest"/>
+
+         <wsdl:output message="impl:eliminarHitoHistoricoResponse" name="eliminarHitoHistoricoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cargarDocumento">
+
+         <wsdl:input message="impl:cargarDocumentoRequest" name="cargarDocumentoRequest"/>
+
+         <wsdl:output message="impl:cargarDocumentoResponse" name="cargarDocumentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="recogerDocumento">
+
+         <wsdl:input message="impl:recogerDocumentoRequest" name="recogerDocumentoRequest"/>
+
+         <wsdl:output message="impl:recogerDocumentoResponse" name="recogerDocumentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="busquedaExpediente">
+
+         <wsdl:input message="impl:busquedaExpedienteRequest" name="busquedaExpedienteRequest"/>
+
+         <wsdl:output message="impl:busquedaExpedienteResponse" name="busquedaExpedienteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="busquedaExpedientes">
+
+         <wsdl:input message="impl:busquedaExpedientesRequest" name="busquedaExpedientesRequest"/>
+
+         <wsdl:output message="impl:busquedaExpedientesResponse" name="busquedaExpedientesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="anexarFicherosHitoActual">
+
+         <wsdl:input message="impl:anexarFicherosHitoActualRequest" name="anexarFicherosHitoActualRequest"/>
+
+         <wsdl:output message="impl:anexarFicherosHitoActualResponse" name="anexarFicherosHitoActualResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="recogerNotificaciones">
+
+         <wsdl:input message="impl:recogerNotificacionesRequest" name="recogerNotificacionesRequest"/>
+
+         <wsdl:output message="impl:recogerNotificacionesResponse" name="recogerNotificacionesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaSolicitudSubsanacion">
+
+         <wsdl:input message="impl:altaSolicitudSubsanacionRequest" name="altaSolicitudSubsanacionRequest"/>
+
+         <wsdl:output message="impl:altaSolicitudSubsanacionResponse" name="altaSolicitudSubsanacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerSubsanacionesHitoActual">
+
+         <wsdl:input message="impl:obtenerSubsanacionesHitoActualRequest" name="obtenerSubsanacionesHitoActualRequest"/>
+
+         <wsdl:output message="impl:obtenerSubsanacionesHitoActualResponse" name="obtenerSubsanacionesHitoActualResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerSubsanacionesHito">
+
+         <wsdl:input message="impl:obtenerSubsanacionesHitoRequest" name="obtenerSubsanacionesHitoRequest"/>
+
+         <wsdl:output message="impl:obtenerSubsanacionesHitoResponse" name="obtenerSubsanacionesHitoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaSolicitudPago">
+
+         <wsdl:input message="impl:altaSolicitudPagoRequest" name="altaSolicitudPagoRequest"/>
+
+         <wsdl:output message="impl:altaSolicitudPagoResponse" name="altaSolicitudPagoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPagosHitoActual">
+
+         <wsdl:input message="impl:obtenerPagosHitoActualRequest" name="obtenerPagosHitoActualRequest"/>
+
+         <wsdl:output message="impl:obtenerPagosHitoActualResponse" name="obtenerPagosHitoActualResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPagosHito">
+
+         <wsdl:input message="impl:obtenerPagosHitoRequest" name="obtenerPagosHitoRequest"/>
+
+         <wsdl:output message="impl:obtenerPagosHitoResponse" name="obtenerPagosHitoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaNotificacion">
+
+         <wsdl:input message="impl:altaNotificacionRequest" name="altaNotificacionRequest"/>
+
+         <wsdl:output message="impl:altaNotificacionResponse" name="altaNotificacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerNotificionesHitoActual">
+
+         <wsdl:input message="impl:obtenerNotificionesHitoActualRequest" name="obtenerNotificionesHitoActualRequest"/>
+
+         <wsdl:output message="impl:obtenerNotificionesHitoActualResponse" name="obtenerNotificionesHitoActualResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerNotificionesHito">
+
+         <wsdl:input message="impl:obtenerNotificionesHitoRequest" name="obtenerNotificionesHitoRequest"/>
+
+         <wsdl:output message="impl:obtenerNotificionesHitoResponse" name="obtenerNotificionesHitoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existenNotificaciones">
+
+         <wsdl:input message="impl:existenNotificacionesRequest" name="existenNotificacionesRequest"/>
+
+         <wsdl:output message="impl:existenNotificacionesResponse" name="existenNotificacionesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existenPagos">
+
+         <wsdl:input message="impl:existenPagosRequest" name="existenPagosRequest"/>
+
+         <wsdl:output message="impl:existenPagosResponse" name="existenPagosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existenSubsanaciones">
+
+         <wsdl:input message="impl:existenSubsanacionesRequest" name="existenSubsanacionesRequest"/>
+
+         <wsdl:output message="impl:existenSubsanacionesResponse" name="existenSubsanacionesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarEstadoLocalGIS">
+
+         <wsdl:input message="impl:actualizarEstadoLocalGISRequest" name="actualizarEstadoLocalGISRequest"/>
+
+         <wsdl:output message="impl:actualizarEstadoLocalGISResponse" name="actualizarEstadoLocalGISResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="publicarExpedienteLocalGIS">
+
+         <wsdl:input message="impl:publicarExpedienteLocalGISRequest" name="publicarExpedienteLocalGISRequest"/>
+
+         <wsdl:output message="impl:publicarExpedienteLocalGISResponse" name="publicarExpedienteLocalGISResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ConsultaExpedientesWebServiceSoapBinding" type="impl:ConsultaExpedientesWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultarExpedientesNIF">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultarExpedientesNIFRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultarExpedientesNIFResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultarExpedientes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultarExpedientesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultarExpedientesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerURLAportacionExpedientes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerURLAportacionExpedientesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerURLAportacionExpedientesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerURLNotificacionExpedientes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerURLNotificacionExpedientesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerURLNotificacionExpedientesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerURLPagoTasas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerURLPagoTasasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerURLPagoTasasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDetalle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDetalleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDetalleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHistoricoExpediente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerHistoricoExpedienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerHistoricoExpedienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHitoEstado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerHitoEstadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerHitoEstadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerFicherosHito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerFicherosHitoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerFicherosHitoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerFicherosHitos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerFicherosHitosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerFicherosHitosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoExpediente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuevoExpedienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuevoExpedienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarExpediente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarExpedienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarExpedienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoInteresado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuevoInteresadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuevoInteresadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarInteresado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarInteresadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarInteresadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarInteresadoExpediente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarInteresadoExpedienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarInteresadoExpedienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="establecerHitoActual">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="establecerHitoActualRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="establecerHitoActualResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarHitoActual">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarHitoActualRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarHitoActualResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoHitoHistorico">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuevoHitoHistoricoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuevoHitoHistoricoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarHitoHistorico">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarHitoHistoricoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarHitoHistoricoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cargarDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cargarDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cargarDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="recogerDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="recogerDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="recogerDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="busquedaExpediente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="busquedaExpedienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="busquedaExpedienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="busquedaExpedientes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="busquedaExpedientesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="busquedaExpedientesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="anexarFicherosHitoActual">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="anexarFicherosHitoActualRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="anexarFicherosHitoActualResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="recogerNotificaciones">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="recogerNotificacionesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="recogerNotificacionesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaSolicitudSubsanacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="altaSolicitudSubsanacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="altaSolicitudSubsanacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerSubsanacionesHitoActual">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerSubsanacionesHitoActualRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerSubsanacionesHitoActualResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerSubsanacionesHito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerSubsanacionesHitoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerSubsanacionesHitoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaSolicitudPago">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="altaSolicitudPagoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="altaSolicitudPagoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPagosHitoActual">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerPagosHitoActualRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerPagosHitoActualResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPagosHito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerPagosHitoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerPagosHitoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaNotificacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="altaNotificacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="altaNotificacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerNotificionesHitoActual">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerNotificionesHitoActualRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerNotificionesHitoActualResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerNotificionesHito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerNotificionesHitoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerNotificionesHitoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existenNotificaciones">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="existenNotificacionesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="existenNotificacionesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existenPagos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="existenPagosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="existenPagosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existenSubsanaciones">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="existenSubsanacionesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="existenSubsanacionesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarEstadoLocalGIS">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="actualizarEstadoLocalGISRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="actualizarEstadoLocalGISResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="publicarExpedienteLocalGIS">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="publicarExpedienteLocalGISRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="publicarExpedienteLocalGISResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ConsultaExpedientesWebServiceService">
+
+      <wsdl:port binding="impl:ConsultaExpedientesWebServiceSoapBinding" name="ConsultaExpedientesWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_ConsultaWS/services/ConsultaExpedientesWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

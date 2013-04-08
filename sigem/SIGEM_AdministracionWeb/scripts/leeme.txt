@@ -1,0 +1,21 @@
+Estos scripts SQL son necesarios para la clonación de entidades en Oracle
+desde la aplicación SIGEM_AdministracionWeb:
+
+	create_oracle_user.sql
+	drop_oracle_user.sql
+
+Dentro de esta aplicación, en el fichero admon-entidades-context.xml se
+configuran los procesos de exportación e importación de entidades.
+
+La ubicación de estos scripts SQL se indica en el bean "dbExportManagerOracle":
+
+	<bean id="dbExportManagerOracle" class="ieci.tecdoc.sgm.admsistema.proceso.managers.DbExportManagerImpl">
+		<property name="createCommand" value="sqlplus system/manager@orcl @/home/sigem/SIGEM/create_oracle_user.sql ${dbName}_${importEntityId} ${dbName}_${importEntityId}"/>
+		<property name="dropCommand" value="sqlplus system/manager@orcl @/home/sigem/SIGEM/drop_oracle_user.sql ${dbName}_${exportEntityId}"/>
+		<property name="importCommand" value="imp system/manager@orcl fromuser=${dbName}_${backupEntityId} touser=${dbName}_${importEntityId} ignore=y file='${file}'"/>
+		<property name="exportCommand" value="exp system/manager@orcl owner=${dbName}_${exportEntityId} file='${file}'"/>
+	</bean>
+
+Los scripts SQL "create_oracle_user_with_tablespace.sql" y "drop_oracle_user_with_tablespace.sql"
+son EJEMPLOS de cómo modificar los scripts originales para personalizar el tablespace del
+usuario creado.

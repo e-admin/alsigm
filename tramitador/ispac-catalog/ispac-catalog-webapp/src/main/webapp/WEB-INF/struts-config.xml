@@ -1,0 +1,1515 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+
+<!DOCTYPE struts-config PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+   "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="defaultForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.form.EntityForm" />
+		<form-bean name="calendarForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.form.CalendarForm"/>
+		<form-bean name="loginForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.form.LoginForm" />
+		<form-bean name="batchForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.form.BatchForm" />
+		<form-bean name="uploadForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.form.UploadForm" />
+		<form-bean name="upload2Form"
+			type="ieci.tdw.ispac.ispaccatalog.action.form.Upload2Form" />
+		<form-bean name="entityDocumentsForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.form.EntityDocumentsForm" />
+		<form-bean name="selectObjForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.form.SelectObjForm" />
+		<form-bean name="usersForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.form.UsersForm" />
+
+
+		<form-bean name="newProcedureForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="pcdId" type="java.lang.String"/>
+			<form-property name="name" type="java.lang.String"/>
+            <form-property name="pcdtype" type="java.lang.String"/>
+            <form-property name="action" type="java.lang.String"/>
+			<form-property name="forward" type="java.lang.String"/>
+			<form-property name="parent" type="java.lang.String"/>
+			<form-property name="blank" type="java.lang.String"/>
+        </form-bean>
+
+		<form-bean name="exportProcedureForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="pcdId" type="java.lang.String"/>
+        </form-bean>
+
+        <!--User Manager forms-->
+		<form-bean name="saveFunctionsForm" type="ieci.tdw.ispac.ispaccatalog.action.frmsupervision.SaveFunctionsForm" />
+		<form-bean name="deleteFollowedModeSupervisedsForm" type="ieci.tdw.ispac.ispaccatalog.action.frmsupervision.DeleteSupervisedsForm" />
+		<form-bean name="deleteTotalModeSupervisedsForm" type="ieci.tdw.ispac.ispaccatalog.action.frmsupervision.DeleteSupervisedsForm" />
+		<form-bean name="addSupervisedsForm" type="ieci.tdw.ispac.ispaccatalog.action.frmsupervision.AddSupervisedsForm" />
+		<form-bean name="sustitutionsForm" type="ieci.tdw.ispac.ispaccatalog.action.frmsustitutions.SustitutionsForm" />
+		<form-bean name="selectForm" type="ieci.tdw.ispac.ispaccatalog.action.form.SelectForm" />
+
+	</form-beans>
+
+	<global-exceptions>
+		<exception key="error.ISPACException" path="/showException.do"
+			scope="request" type="ieci.tdw.ispac.api.errors.ISPACException"/>
+
+		<exception key="error.ISPACException" path="/showException.do"
+			scope="request" type="java.lang.Exception"/>
+
+	</global-exceptions>
+
+	<global-forwards>
+		<forward name="loading" path="/ispac/loading.jsp" />
+		<forward name="fail" path="/ispac/index.jsp" />
+		<forward name="login" path="/ispac/index.jsp" redirect="true"/>
+		<forward name="error" path="/ispac/error.jsp" redirect="true"/>
+        <forward name="showtemplateslist" path="/showTemplatesList.do" redirect="true" />
+        <forward name="edittemplate" path="/editTemplate.do" redirect="true" />
+		<forward name="modalcttaskslist" path="/modalCTTasksList.do" redirect="true" />
+
+		<!--User Manarger global forwards-->
+    	<forward name="showInfoEntry" path="/showInfoEntry.do" />
+    	<forward name="showCTSearchForm" path="/showCTSearchForm.do" />
+    	<forward name="showResponsiblesForSupervision" path="/showResponsiblesForSupervision.do" />
+    	<forward name="showResponsiblesForSearchForm" path="/showResponsiblesForSearchForm.do" />
+		<forward name="wizardEntitiesSuccessPage" path="/showCTEntitiesList.do" redirect="true" />
+		<forward name="wizardTblVldSuccessPage" path="/showCTValueTablesList.do" redirect="true" />
+		<forward name="wizardCancelPage" path="/showCTEntitiesList.do" redirect="true" />
+		<forward name="closeIFrame" path="/ispac/closeIFrame.jsp" />
+		<forward name="closeIFrameAndSave" path="/ispac/closeIFrameAndSave.jsp" />
+		<forward name="loadOnTarget" path="/ispac/loadOnTarget.jsp" />
+		<forward name="empty" path="/ispac/common/empty.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+	<action path="/login" type="ieci.tdw.ispac.ispaccatalog.action.LoginAction"
+			name="loginForm" scope="request" input="/ispac/index.jsp" validate="true">
+			<forward name="success" path="/home.do"	redirect="true" />
+			<forward name="proceduresTree" path="/showCTProceduresTree.do" redirect="true" />
+		</action>
+
+		<action path="/home" type="ieci.tdw.ispac.ispaccatalog.action.HomeAction">
+			<forward name="success" path="home" />
+		</action>
+
+		<action path="/exit" type="ieci.tdw.ispac.ispaccatalog.action.ExitAction">
+			<forward name="success" path="/ispac/index.jsp" redirect="true" />
+		</action>
+
+		<action path="/showException"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowExceptionAction">
+			<forward name="success" path="errorhandler"/>
+		</action>
+
+		<action path="/selectObject" name="selectObjForm"
+			scope="request" validate="false"
+			type="ieci.tdw.ispac.ispaccatalog.action.SelectCTObjectAction">
+			<forward name="success" path="select.object"/>
+		</action>
+
+		<action path="/selectProcedure" name="selectObjForm"
+			scope="request" validate="false"
+			type="ieci.tdw.ispac.ispaccatalog.action.SelectCTProcedureTreeAction">
+			<forward name="success" path="select.procedure"/>
+		</action>
+
+		<action path="/selectCTProcedureEntities" name="selectObjForm"
+			scope="request" validate="false"
+			type="ieci.tdw.ispac.ispaccatalog.action.SelectCTProcedureEntitiesAction">
+			<forward name="success" path="select.object"/>
+		</action>
+
+		<action path="/selectFieldsEntity" name="selectObjForm"
+			scope="request" validate="false"
+			type="ieci.tdw.ispac.ispaccatalog.action.SelectFieldsEntityAction">
+			<forward name="success" path="select.object"/>
+		</action>
+
+		<action path="/selectObjectToTreeElement" name="selectObjForm"
+			scope="request" validate="false"
+			type="ieci.tdw.ispac.ispaccatalog.action.SelectCTObjectToTreeElementAction">
+			<forward name="success" path="select.object"/>
+		</action>
+
+		<action path="/setObject" name="selectObjForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.SetCTObjectAction">
+			<forward name="success" path="/apps/setObject.jsp"/>
+		</action>
+
+		<action path="/setEntityField" name="selectObjForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.SetCTEntityFieldAction">
+			<forward name="success" path="/apps/setObject.jsp"/>
+		</action>
+
+		<action path="/setProcedureEntity" name="selectObjForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.SetCTProcedureEntityAction">
+			<forward name="success" path="/apps/setObject.jsp"/>
+		</action>
+
+		<action path="/selectOrgUnit" name="selectObjForm"
+			scope="request" validate="false" parameter="method"
+			type="ieci.tdw.ispac.ispaccatalog.action.SelectOrgUnitAction">
+			<forward name="show" path="select.orgunit"/>
+			<forward name="set" path="/apps/setObject.jsp"/>
+		</action>
+
+	<!--Administrador para la delegacion de permisos-->
+
+		<action path="/viewUsersManager" name="usersForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.usrmanager.ViewUsersManagerAction"
+			scope="request" validate="false">
+			<forward name="nav" path="view.usrmgr"/>
+			<forward name="success" path="/apps/setObject.jsp"/>
+		</action>
+
+		<!--Pantallas para la asignacion de Circuitos de Firma a Procedimientos-->
+		<action path="/ctosfirma"
+				type="ieci.tdw.ispac.ispaccatalog.action.CtosFirmaAction"
+				name="batchForm" scope="request" validate="false"
+				parameter="method">
+		</action>
+
+		<action path="/viewSignersAction" name="usersForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.signprocess.ViewSignersAction"
+			scope="request" validate="false">
+			<forward name="list" path="portafirmas.signers"/>
+			<forward name="success" path="/apps/setObject.jsp"/>
+		</action>
+
+		<!--Pantallas para la asignacion de Informes a Procedimientos-->
+		<action path="/reports"
+				type="ieci.tdw.ispac.ispaccatalog.action.ReportsAction"
+				name="batchForm" scope="request" validate="false"
+				parameter="method">
+		</action>
+
+		<!--Pantallas para la asignacion de dependencias entre tramites-->
+		<action path="/dependencies"
+				type="ieci.tdw.ispac.ispaccatalog.action.procedure.TaskDependenciesAction"
+				name="batchForm" scope="request" validate="false"
+				parameter="method">
+		</action>
+
+	<!--Pantallas para la asignacion de Entidades a Procedimientos-->
+
+		<action path="/entities"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.EntitiesAction"
+			name="batchForm" scope="request" validate="false"
+			parameter="method">
+			<forward name="events" path="entity.events" />
+		</action>
+
+		<action path="/selectEntities"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.SelectEntitiesAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.entities" />
+		</action>
+
+		<action path="/addEntityPcd"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.AddEntityPcdAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="/selectEntities.do" />
+		</action>
+
+		<action path="/addAppEntityPcd"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.AddAppEntityPcdAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="/selectEntities.do" />
+		</action>
+
+	<!--Creación de Procedimientos-->
+
+		<action path="/newProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.NewProcedureAction"
+			name="newProcedureForm" scope="request" validate="false">
+			<forward name="success" path="p.newprocedure" />
+			<forward name="next" path="/selectStages.do" redirect="true"/>
+			<forward name="confirm" path="/overviewCreateProcedure.do" redirect="true"/>
+		</action>
+
+		<action path="/selectStages"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.SelectStagesAction"
+			name="batchForm" scope="request" validate="false" >
+			<forward name="success" path="p.selstages" />
+
+			<forward name="next" path="/selectTasks.do" redirect="true"/>
+			<forward name="prev" path="/newProcedure.do" redirect="true"/>
+
+			<forward name="appError" path="/newProcedure.do" redirect="true" />
+		</action>
+
+		<action path="/selectTasks"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.OverviewCreateProcedureAction"
+			scope="request" validate="false">
+			<forward name="success" path="p.showseltasks" />
+			<forward name="duplicateProced" path="/newProcedure.do?forward=next" redirect="true"/>
+			<forward name="next" path="/overviewCreateProcedure.do" redirect="true"/>
+			<forward name="prev" path="/selectStages.do" redirect="true"/>
+
+		</action>
+
+		<action path="/relationStageTasks"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.RelationStageTasksAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.showselstagetasks"/>
+			<forward name="linksuccess" path="/relationStageTasks.do" />
+			<forward name="prev" path="/selectTasks.do" redirect="true"/>
+
+		</action>
+
+		<action path="/overviewCreateProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.OverviewCreateProcedureAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.overviewprocedure" />
+
+			<forward name="next" path="/createProcedure.do" redirect="true"/>
+			<forward name="prev" path="/selectTasks.do" redirect="true"/>
+			<forward name="begin" path="/newProcedure.do?blank=true" redirect="true"/>
+
+			<forward name="duplicateProced" path="/newProcedure.do?forward=next" redirect="true"/>
+		</action>
+
+		<action path="/createProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.CreateProcedureAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.createprocedure" />
+			<!-- forward name="shownewpcd" path="/showPProcedure.do" /-->
+			<forward name="shownewpcd" path="/manageVistaCuadroProcedimiento.do?method=inithome" />
+		</action>
+
+	<!--  Exportar procedimiento -->
+
+		<action path="/exportProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ExportProcedureAction"
+			name="exportProcedureForm" scope="request" validate="false" parameter="method">
+			<forward name="enter" path="p.exportprocedure" />
+		</action>
+
+	<!--  Importar procedimiento -->
+
+		<action path="/importProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ImportProcedureAction"
+		 	name="uploadForm" scope="request" validate="false" parameter="method">
+			<forward name="enter" path="p.importprocedure" />
+			<forward name="appError" path="p.importprocedure" />
+		</action>
+
+	<!-- Procedimientos: borradores y version vigente -->
+
+		<action path="/showPVersions"
+			name="defaultForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ShowPVersionsAction"
+			scope="request" validate="false">
+			<forward name="success" path="p.versions" />
+		</action>
+
+		<action path="/promoteDraft"
+			name="defaultForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.PromoteDraftAction"
+			scope="request" >
+			<forward name="reloadProc" path="/manageVistaCuadroProcedimiento.do?method=inithome" redirect="true" />
+			<forward name="success" path="/showProcedureEntity.do?method=card" redirect="true" />
+			<forward name="appError" path="/showProcedureEntity.do?method=card" redirect="false" />
+		</action>
+
+		<action path="/deleteDraft"
+			name="defaultForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.DeleteDraftAction"
+			scope="request" >
+			<forward name="pcd" path="/manageVistaCuadroProcedimiento.do?method=inithome" redirect="true" />
+			<forward name="pcds" path="/showCTProceduresTree.do" redirect="true" />
+			<forward name="subPcds" path="/showSubProceduresList.do" redirect="true" />
+			<forward name="appError" path="/showProcedureEntity.do?method=card" redirect="false" />
+		</action>
+
+	<!-- Procedimientos: Representación gráfica -->
+
+		<action path="/showPcdGraph"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ShowProcedureGraphAction"
+			scope="request" validate="false">
+		</action>
+
+		<action path="/showPcdGUI"
+				type="ieci.tdw.ispac.ispaccatalog.action.procedure.ShowProcedureGUIAction"
+				scope="request" validate="false">
+			<forward name="success" path="p.gui" />
+		</action>
+
+	<!-- Creación de Subprocesos -->
+
+		<action path="/newSubProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.subprocedure.NewSubProcedureAction"
+			name="newProcedureForm" scope="request" validate="false">
+			<forward name="success" path="p.newsubprocedure" />
+			<forward name="next" path="/selectActivities.do" redirect="true"/>
+			<forward name="confirm" path="/overviewCreateSubProcedure.do" redirect="true"/>
+		</action>
+
+		<action path="/selectActivities"
+			type="ieci.tdw.ispac.ispaccatalog.action.subprocedure.SelectActivitiesAction"
+			name="batchForm" scope="request" validate="false" >
+			<forward name="success" path="p.selactivities" />
+			<forward name="next" path="/overviewCreateSubProcedure.do" redirect="true"/>
+			<forward name="prev" path="/newSubProcedure.do" redirect="true"/>
+			<forward name="appError" path="/newSubProcedure.do" redirect="true" />
+		</action>
+
+		<action path="/overviewCreateSubProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.subprocedure.OverviewCreateSubProcedureAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.overviewsubprocedure" />
+			<forward name="next" path="/createSubProcedure.do" redirect="true"/>
+			<forward name="prev" path="/selectActivities.do" redirect="true"/>
+			<forward name="begin" path="/newSubProcedure.do?blank=true" redirect="true"/>
+		</action>
+
+		<action path="/createSubProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.subprocedure.CreateSubProcedureAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.createsubprocedure" />
+			<forward name="shownewsubpcd" path="/manageVistaCuadroProcedimiento.do?method=inithome" />
+		</action>
+
+		<action path="/deleteSubProcedure"
+			name="defaultForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.DeleteDraftAction"
+			scope="request" >
+			<forward name="pcd" path="/manageVistaCuadroProcedimiento.do?method=inithome" redirect="true" />
+			<forward name="pcds" path="/showCTProceduresTree.do" redirect="true" />
+			<forward name="subPcds" path="/showSubProceduresList.do" redirect="true" />
+			<forward name="appError" path="/showProcedureEntity.do?method=card" redirect="false" />
+		</action>
+
+
+	<!--Pantallas para la asignacion de eventos y reglas a objetos (Procedimientos, Fases, Tramites, etc)-->
+		<action path="/events"
+			type="ieci.tdw.ispac.ispaccatalog.action.events.EventsAction"
+			name="defaultForm" scope="request" validate="false" parameter="method">
+			<forward name="events" path="events"/>
+			<forward name="rules" path="rules"/>
+		</action>
+
+		<action path="/eventsSingCircuit"
+		type="ieci.tdw.ispac.ispaccatalog.action.events.EventsSingCircuitAction"
+			name="defaultForm" scope="request" validate="false" parameter="method">
+			<forward name="sucess" path="ct.eventsctosignlist"/>
+		</action>
+
+		<action path="/showPEvents"
+			type="ieci.tdw.ispac.ispaccatalog.action.events.ShowPEventsAction"
+			scope="request" validate="false">
+			<forward name="success" path="p.events" />
+		</action>
+
+		<action path="/addPEvents"
+			type="ieci.tdw.ispac.ispaccatalog.action.events.AddPEventsAction"
+			scope="request" validate="false">
+			<forward name="showevents" path="/showPEvents.do"  redirect="true"/>
+			<forward name="success" path="p.addevents"/>
+		</action>
+
+		<action path="/delPEvents"
+			type="ieci.tdw.ispac.ispaccatalog.action.events.DelPEventsAction"
+			scope="request" validate="false">
+			<forward name="success" path="/showPEvents.do" redirect="true"/>
+		</action>
+
+		<action path="/modOrderPEvents"
+			type="ieci.tdw.ispac.ispaccatalog.action.events.ModOrderPEventsAction"
+			scope="request" validate="false">
+			<forward name="success" path="/showPEvents.do" />
+		</action>
+
+		<!--Pantallas para la administracion de las tablas de catalogo, SPAC_CT_*
+			*** LISTADOS ***-->
+		<action path="/showCTProceduresList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTProceduresListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.procedureslist" />
+		</action>
+
+		<action path="/showCTProceduresTree"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTProceduresTreeAction"
+			name="defaultForm" scope="request" validate="false" >
+			<forward name="success" path="ct.procedurestree" />
+		</action>
+
+		<action path="/showSubProceduresList"
+			type="ieci.tdw.ispac.ispaccatalog.action.subprocedure.ShowSubProceduresListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.subprocedureslist" />
+		</action>
+
+		<action path="/showCTEntitiesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntitiesListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.entitieslist"/>
+		</action>
+
+		<action path="/showCTCalendarsList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTCalendarsListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.calendarslist"/>
+		</action>
+
+		<action path="/showCTReportsList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTReportsListAction"
+			name="defaultForm" scope="request" validate="false" parameter="method" >
+
+			<forward name="success" path="ct.reportslist"/>
+		</action>
+
+		<action path="/frmSearchReportAction"
+			name="defaultForm" scope="request" validate="false" parameter="method"
+			type="ieci.tdw.ispac.ispaccatalog.action.FrmSearchReportAction">
+			<forward name="show" path="ct.fmrsearchreport" redirect="true" />
+		</action>
+
+		<action path="/deleteResponsiblesReport"
+	    		type="ieci.tdw.ispac.ispaccatalog.action.reports.DeleteResponsiblesReportAction"
+	    		name="selectForm" input="/showReport.do" validate="false" scope="request" >
+			<forward name="success" path="/showReport.do" redirect="true" />
+	    </action>
+
+	    <action path="/showResponsiblesForReport"
+	    		type="ieci.tdw.ispac.ispaccatalog.action.reports.ShowResponsiblesForReportAction">
+			<forward name="success" path="showResponsiblesForReport" />
+	    </action>
+
+	    <action path="/addResponsiblesReport"
+	    		type="ieci.tdw.ispac.ispaccatalog.action.reports.AddResponsiblesReportAction"
+				name="selectForm" input="/showResponsiblesForReport.do" validate="false" scope="request" >
+			<forward name="closeFrame" path="/ispac/closeIFrame.jsp" />
+	    </action>
+
+		<action path="/showCTVbleSystemList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTVbleSystemList"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.vbleSystemlist"/>
+		</action>
+
+		<action path="/showCTHelpList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTHelpList"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.Helplist"/>
+		</action>
+
+		<action path="/showHelp"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowHelpAction"
+			name="defaultForm" scope="session" validate="false">
+			<forward name="success" path="/help/help.jsp"/>
+		</action>
+
+		<action path="/showCTAdminPermisosNegocio"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowAdminPermisosNegocioAction"
+			name="defaultForm" scope="request" validate="false" parameter="method" >
+			<forward name="success" path="ct.adminpermisosnegocio"/>
+		</action>
+
+		<action path="/gestionSustituciones"
+			type="ieci.tdw.ispac.ispaccatalog.action.sustitucion.GestionSustitucionesAction"
+			name="sustitutionsForm" scope="request" validate="false" parameter="method" >
+			<forward name="vista_sustitucion" path="/showInfoEntry.do" redirect="true"/>
+			<forward name="success_showSustitutos" path="showResponsiblesForSupervision" />
+			<forward name="closeFrame" path="/ispac/closeIFrame.jsp" />
+			<forward name="success_viewAddFecha" path="showAddFechaSustitucion" />
+			<forward name="ver_historicos" path="sutitute.historic.list" />
+			<forward name="vista_sustitucion_historic" path="sustitute.historic.list"/>
+
+		</action>
+
+		<action path="/showCTCalendar"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTCalendarAction"
+			name="calendarForm" scope="request" validate="false" parameter="method" input="/showCTCalendar.do?method=show">
+			<forward name="success_show" path="ct.entity" />
+			<forward name="success_holydays" path="ct.holydayForm" />
+			<forward name="copy_calendar" path="ct.copyCalendar" />
+			<forward name="success_saveholydays" path="ct.entity" />
+			<forward name="closeframe_and_refresh" path="/ispac/closeIFrame.jsp" />
+			<forward name="success_deleteCalendar" path="/showCTCalendarsList.do" redirect="true"/>
+			<forward name="validate" path="ct.copyCalendar" redirect="false"/>
+			<forward name="addFixedHolidays" path="ct.fixedHolidays" />
+			<forward name="errorYear" path="/showCTCalendar.do?method=fixedHolydays" redirect="false"/>
+		</action>
+
+		<action path="/showCTValueTablesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTValueTablesListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.valuetableslist"/>
+		</action>
+
+		<action path="/showCTHierarchicalTablesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTHierarchicalTablesListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.hierarchicaltableslist"/>
+		</action>
+
+		<action path="/hierarchicalTableManage"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.HierarchicalTableManageAction"
+			name="defaultForm" scope="request" validate="false" parameter="method">
+			<forward name="init" path="/hierarchicalTableManage.do?method=init" />
+			<forward name="general_page" path="ct.hierarchicaltablegeneral" />
+			<forward name="finalize" path="/showCTHierarchicalTablesList.do" redirect="true" />
+			<forward name="value_list" path="ct.hierarchicaltablevalues" />
+			<forward name="addValues" path="ct.hierarchicaltablevaluesadd" />
+			<forward name="reloadAddValues" path="/hierarchicalTableManage.do?method=addValues" />
+		</action>
+
+		<action path="/showCTRulesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTRulesListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.ruleslist"/>
+		</action>
+
+		<action path="/showCTFrmSearchList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTFrmSearchListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.frmsearchlist"/>
+		</action>
+
+		<action path="/showCTAplicationsList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTAplicationsListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.aplicationslist"/>
+		</action>
+
+		<action path="/showCTStagesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTStagesListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.stageslist"/>
+		</action>
+
+		<action path="/manageCTStagesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ManageCTStagesListAction"
+			name="defaultForm" scope="request" validate="false" parameter="method">
+			<forward name="listado_tramites" path="/showCTStagesList.do" redirect="true"/>
+			<forward name="appError" path="/showCTStagesList.do" redirect="false"/>
+		</action>
+
+		<action path="/showCTTasksList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTTasksListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.taskslist"/>
+		</action>
+
+		<action path="/showCTTPDocsList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTTPDocsListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.tpdocslist"/>
+		</action>
+
+		<action path="/showCTTemplatesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTTemplatesListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.templateslist"/>
+		</action>
+
+		<action path="/showCTTemplate"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTTemplateAction"
+			name="uploadForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+
+		<action path="/showCTStageTasks"
+			type="ieci.tdw.ispac.ispaccatalog.action.ctstage.ShowCTStageTasksAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.stagetasks"/>
+		</action>
+
+		<action path="/deleteCTStageTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.ctstage.DeleteCTStageTaskAction"
+				scope="request" validate="false">
+			<forward name="success" path="/showCTStageTasks.do"/>
+		</action>
+
+		<action path="/addCTStageTask"  name="selectObjForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.ctstage.AddCTStageTaskAction"
+				scope="request" validate="false">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<action path="/addTemplateToProc"  name="selectObjForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.AddTemplateToProc"
+				scope="request" validate="false">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<action path="/showCTTaskTPDocs"
+			type="ieci.tdw.ispac.ispaccatalog.action.cttask.ShowCTTaskTPDocsAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.tasktpdocs"/>
+		</action>
+
+		<action path="/deleteCTTaskTPDoc"
+			type="ieci.tdw.ispac.ispaccatalog.action.cttask.DeleteCTTaskTPDocAction"
+				scope="request" validate="false">
+			<forward name="success" path="/showCTTaskTPDocs.do"/>
+		</action>
+
+		<action path="/deleteCTStageTPDoc"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.DeleteStageTpDocAction"
+				scope="request" validate="false">
+			<forward name="success" path="/ispac/closeIFrame.jsp"/>
+		</action>
+
+		<action path="/addCTTaskTPDoc"  name="selectObjForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.cttask.AddCTTaskTPDocAction"
+				scope="request" validate="false">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<!--AJAX - Listados suggest para el tile de busqueda de entidad-->
+		<action path="/ajaxSearchEntitySuggest"
+			type="ieci.tdw.ispac.ispaccatalog.action.AjaxSearchEntitySuggestAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/ispac/common/ajax/ajaxSuggestList.jsp" />
+		</action>
+
+		<!--AJAX - Caso especial de suggest para lo procedimientos. Busca la ultima version-->
+		<action path="/ajaxSearchProcedureSuggest"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.AjaxSearchProcedureSuggestAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/ispac/common/ajax/ajaxSuggestList.jsp" />
+		</action>
+
+		<!--AJAX - Caso especial de suggest para las plantillas de documentos-->
+		<action path="/ajaxSearchTemplateSuggest"
+			type="ieci.tdw.ispac.ispaccatalog.action.templates.AjaxSearchTemplateSuggestAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/ispac/common/ajax/ajaxSuggestList.jsp" />
+		</action>
+
+		<!--*** INSERCION ***-->
+		<action path="/showCTEntityUp"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityAction"
+			name="uploadForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+
+		<!-- Formularios de busqueda -->
+		<action path="/showCTSearchForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntitySearchFormAction"
+			name="uploadForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+
+		<action path="/showReport"
+		 type="ieci.tdw.ispac.ispaccatalog.action.ShowReportAction"
+			name="uploadForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+
+		<action path="/showSystemVar"
+		 type="ieci.tdw.ispac.ispaccatalog.action.ShowSystemVarAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+
+
+		<action path="/showCTHelp"
+		 type="ieci.tdw.ispac.ispaccatalog.action.ShowCTHelpAction"
+			name="uploadForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+
+		<action path="/storeCTEntityUp"
+			type="ieci.tdw.ispac.ispaccatalog.action.StoreCTEntityAction"
+			name="uploadForm" scope="request" validate="true" input="/showCTEntityUp.do">
+			<!--forward name="ShowEntity4" path="/showCTFrmSearchList.do" redirect="true" /-->
+			<forward name="reloadShowEntity4" path="/showCTEntityUp.do" redirect="true" />
+			<forward name="reloadShowEntity62" path="/showCTEntityUp.do" redirect="true" />
+			<forward name="reloadShowEntity63" path="/showCTEntityUp.do" redirect="true" />
+			<forward name="appError" path="/showCTEntityUp.do" redirect="false" />
+			<forward name="success" path="ct.entity" />
+			<forward name="ShowEntity4" path="/showCTSearchForm.do" redirect="true" />
+			<forward name="ShowEntity61" path="/showReport.do" redirect="true" />
+
+		</action>
+
+		<action path="/showCTEntity"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+
+		<action path="/storeCTEntity"
+			type="ieci.tdw.ispac.ispaccatalog.action.StoreCTEntityAction"
+			name="defaultForm" scope="request" validate="true" input="/showCTEntity.do">
+			<forward name="reload" path="/showCTEntity.do" redirect="true" />
+			<!--forward name="ShowEntity2" path="/showCTAplicationsList.do" redirect="true" /-->
+	        <forward name="ShowEntity1" path="/showCTEntitiesList.do" redirect="true" />
+	        <!--<forward name="ShowEntity50" path="/showSignProcessList.do" redirect="true"/>-->
+	        <!--forward name="ShowEntity3" path="/showCTRulesList.do" redirect="true" /-->
+	        <!--forward name="ShowEntity5" path="/showCTStagesList.do" redirect="true" /-->
+	        <!--forward name="ShowEntity6" path="/showCTTasksList.do" redirect="true" /-->
+	        <!--forward name="ShowEntity7" path="/showCTTPDocsList.do" redirect="true" /-->
+	        <forward name="reloadShowEntity45" path="/showPubRule.do" redirect="true" />
+	        <forward name="reloadShowEntity3" path="/showCTEntity.do" redirect="true" />
+	        <forward name="reloadShowEntity5" path="/showCTStage.do" redirect="true" />
+			<forward name="reloadShowEntity6" path="/showCTTask.do" redirect="true" />
+			<forward name="reloadShowEntity7" path="/showCTEntity.do" redirect="true" />
+	        <forward name="reloadShowEntity8" path="/showCTProcedure.do" redirect="true" />
+	        <forward name="reloadShowEntity21" path="/showPStage.do" redirect="true" />
+	        <forward name="reloadShowEntity22" path="/showPProcedure.do" redirect="true" />
+	        <forward name="reloadShowEntity23" path="/showPTask.do" redirect="true" />
+	        <!--
+	        <forward name="appError" path="/showCTEntity.do" redirect="false" />
+			-->
+	        <forward name="appError" path="ct.entity" />
+		</action>
+
+		<action path="/storeCTApp"
+			type="ieci.tdw.ispac.ispaccatalog.action.StoreCTAppAction"
+			name="defaultForm" scope="request" validate="true" input="/showCTEntity.do">
+			<forward name="finalize" path="ct.finalizeapp" />
+			<forward name="reload" path="/showCTEntity.do" redirect="true" />
+			<!--forward name="ShowEntity2" path="/showCTAplicationsList.do" redirect="true" /-->
+			<forward name="reloadShowEntity2" path="/showCTEntity.do" redirect="true" />
+	        <forward name="appError" path="ct.entity" />
+		</action>
+
+		<action path="/deleteCTEntity"
+				type="ieci.tdw.ispac.ispaccatalog.action.DeleteCTEntityAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+	        <forward name="show1" path="/showCTEntitiesList.do" redirect="true" />
+			<forward name="show2" path="/showCTAplicationsList.do" redirect="true" />
+	        <forward name="show3" path="/showCTRulesList.do" redirect="true" />
+	        <forward name="show4" path="/showCTFrmSearchList.do" redirect="true" />
+	        <forward name="show5" path="/showCTStagesList.do" redirect="true" />
+	        <forward name="show6" path="/showCTTasksList.do" redirect="true" />
+	        <forward name="show7" path="/showCTTPDocsList.do" redirect="true" />
+	        <forward name="show8" path="/showCTProceduresList.do" redirect="true" />
+	        <forward name="show9" path="/showTemplatesList.do" redirect="false" />
+	        <forward name="show58" path="/showCTCalendarsList.do" redirect="true" />
+	        <forward name="show59" path="/showCTObjetosNegocioList.do?method=list" redirect="true" />
+	        <forward name="show60" path="/showCTPermisosNegocioList.do?method=list" redirect="true" />
+	        <forward name="show61" path="/showCTReportsList.do" redirect="true" />
+	        <forward name="show62" path="/showCTVbleSystemList.do" redirect="true" />
+	        <forward name="show63" path="/showCTHelpList.do" redirect="true" />
+	        <forward name="use" path="/showComponentsUseList.do" redirect="false" />
+		</action>
+
+		<action path="/showEntityWizard"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.CreateEntityWizardAction"
+			name="defaultForm" scope="request" validate="false" parameter="method">
+			<forward name="general" path="/showEntityWizard.do?method=general" redirect="true" />
+			<forward name="general_page" path="ct.entitywzgeneral" />
+			<forward name="fields" path="/showEntityWizard.do?method=fields" redirect="true" />
+			<forward name="fields_page" path="ct.entitywzfields" />
+			<forward name="field" path="/showEntityWizard.do?method=field" />
+			<forward name="field_page" path="ct.entitywzfield" />
+			<forward name="indexes" path="/showEntityWizard.do?method=indexes" redirect="true" />
+			<forward name="indexes_page" path="ct.entitywzindexes" />
+			<forward name="index" path="/showEntityWizard.do?method=index" redirect="true"/>
+			<forward name="index_page" path="ct.entitywzindex" />
+			<forward name="indexFields_page" path="ct.entitywzindexfields" />
+			<forward name="validations" path="/showEntityWizard.do?method=validations" redirect="true" />
+			<forward name="validations_page" path="ct.entitywzvalidations" />
+			<forward name="validation" path="/showEntityWizard.do?method=validation" />
+			<forward name="validation_page" path="ct.entitywzvalidation" />
+			<forward name="finalize" path="/showEntityWizard.do?method=finalize" redirect="true" />
+		</action>
+
+		<action path="/showProcedureEntity"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ShowProcedureEntityAction"
+			name="defaultForm" scope="request" validate="false"
+			parameter="method">
+			<forward name="card22" path="pcd.card" />
+			<forward name="card21" path="stage.card" />
+			<forward name="card23" path="task.card" />
+			<forward name="card7" path="typedoc.card" />
+			<forward name="card26" path="typedoc.card" />
+			<forward name="card9" path="template.card" />
+			<forward name="card31" path="syncnode.card" />
+			<forward name="card33" path="subpcd.card" />
+			<forward name="card34" path="activity.card" />
+			<forward name="properties22" path="pcd.properties" />
+			<forward name="properties21" path="stage.properties" />
+			<forward name="properties23" path="task.properties" />
+			<forward name="properties30" path="flow.properties" />
+			<forward name="properties33" path="subpcd.properties" />
+			<forward name="properties34" path="activity.properties" />
+			<forward name="events22" path="pcd.events" />
+			<forward name="events21" path="stage.events" />
+			<forward name="events23" path="task.events" />
+			<forward name="events30" path="flow.events" />
+			<forward name="events33" path="subpcd.events" />
+			<forward name="events34" path="activity.events" />
+			<forward name="entities22" path="pcd.entities" />
+			<forward name="entities23" path="task.entities" />
+			<forward name="entities21" path="stage.entities" />
+			<!--  <forward name="entities33" path="subpcd.entities" /> -->
+			<!--  <forward name="entities34" path="activity.entities" /> -->
+			<forward name="reports22" path="pcd.reports" />
+			<forward name="reports23" path="task.reports" />
+			<forward name="reports21" path="stage.reports" />
+			<forward name="rights22" path="pcd.rights" />
+			<forward name="rights23" path="pcd.rights" />
+			<!-- <forward name="rights33" path="subpcd.rights" /> -->
+			<forward name="deadlines22" path="pcd.deadlines" />
+			<forward name="deadlines21" path="stage.deadlines" />
+			<forward name="deadlines23" path="task.deadlines" />
+			<!-- <forward name="deadlines33" path="subpcd.deadlines" /> -->
+			<forward name="deadlines34" path="activity.deadlines" />
+			<forward name="ctosfirma22" path="pcd.ctosfirma" />
+			<!-- <forward name="graph22" path="pcd.graph" /> -->
+			<!-- <forward name="graph33" path="subpcd.graph" /> -->
+			<forward name="flows" path="flows" />
+			<forward name="dependencies23" path="task.dependencies" />
+		</action>
+
+		<action path="/producers"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ProducersAction"
+			name="defaultForm" scope="request" validate="false"
+			parameter="method">
+			<forward name="form" path="pcd.producer" />
+			<forward name="orgunits" path="pcd.orgunits" />
+			<forward name="pcd" path="/showProcedureEntity.do?method=card" />
+		</action>
+
+		<action path="/storeProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.StoreProcedureAction"
+			name="defaultForm" scope="request" validate="true"
+			parameter="method">
+			<forward name="card" path="/showProcedureEntity.do?method=card" />
+			<forward name="properties" path="/showProcedureEntity.do?method=properties" />
+			<forward name="deadlines" path="/showProcedureEntity.do?method=deadlines" />
+		</action>
+
+		<action path="/actionsProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ActionsProcedureAction"
+			name="defaultForm" scope="request" validate="true"
+			parameter="method">
+			<forward name="card" path="/showProcedureEntity.do?method=card" />
+			<forward name="pcd" path="/manageVistaCuadroProcedimiento.do?method=inithome" redirect="true" />
+			<forward name="subPcds" path="/showSubProceduresList.do" redirect="true" />
+			<forward name="pcds" path="/showCTProceduresTree.do" redirect="true" />
+		</action>
+
+		<action path="/showCTEntityToManage"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityToManageAction"
+			name="defaultForm" scope="request" validate="false" parameter="method">
+			<forward name="viewgeneral" path="ct.entityviewgeneral" />
+			<forward name="general" path="ct.entityviewgeneral" />
+			<forward name="fields_page" path="ct.entityfields" />
+			<forward name="field" path="/showCTEntityToManage.do?method=field" />
+			<forward name="field_page" path="ct.entityfield" />
+			<forward name="fields" path="/showCTEntityToManage.do?method=fields" redirect="true" />
+			<forward name="indexes" path="/showCTEntityToManage.do?method=indexes" redirect="true" />
+			<forward name="indexes_page" path="ct.entityindexes" />
+			<forward name="index" path="/showCTEntityToManage.do?method=index" redirect="true"/>
+			<forward name="index_page" path="ct.entityindex" />
+			<forward name="indexFields_page" path="ct.entityindexfields" />
+			<forward name="validations_page" path="ct.entityvalidations" />
+			<forward name="validations" path="/showCTEntityToManage.do?method=validations" redirect="true" />
+			<forward name="validation" path="/showCTEntityToManage.do?method=validation" />
+			<forward name="validation_page" path="ct.entityvalidation" />
+			<forward name="listado_valores" path="ct.tblvldlistadoValores" />
+			<forward name="success_remakejsp" path="ct.success" />
+			<forward name="forms_page" path="ct.entityforms" />
+			<forward name="form_page" path="ct.entityform" />
+			<forward name="form" path="/showCTEntityToManage.do?method=form" />
+			<forward name="forms" path="/showCTEntityToManage.do?method=forms" redirect="true" />
+			<forward name="success_remakeform" path="ct.success" />
+			<forward name="error_remakeform" path="ct.remakeform.error" />
+			<forward name="use" path="/showComponentsUseList.do" redirect="false" />
+			<forward name="entities_list" path="/showCTEntitiesList.do" redirect="true"  />
+			<forward name="tblvld_list" path="/showCTValueTablesList.do" redirect="true"  />
+			<forward name="entities_list_withoutredirect" path="/showCTEntitiesList.do" redirect="false"  />
+			<forward name="tblvld_list_withoutredirect" path="/showCTValueTablesList.do" redirect="false"  />
+			<forward name="resources" path="/showCTEntityToManage.do?method=resources"/>
+			<forward name="resources_page" path="ct.entityresources"/>
+			<forward name="resource_page" path="ct.entityresource"/>
+		</action>
+
+		<action path="/showCTProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.procedure" />
+		</action>
+
+		<action path="/showCTStage"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.stage" />
+		</action>
+
+		<action path="/showCTTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.task" />
+		</action>
+		<action path="/ManageTblVld"
+			type="ieci.tdw.ispac.ispaccatalog.action.ManageTblvldAction"
+			name="defaultForm" scope="request" parameter="method" validate="true" input="/ManageTblVld.do?method=show">
+			<forward name="success_show" path="ct.tblVld" />
+			<forward name="success_store" path="/showCTEntityToManage.do?method=listavalores" redirect="true" />
+		</action>
+
+		<action path="/OrderSigner"
+			type="ieci.tdw.ispac.ispaccatalog.action.signprocess.OrderSignerAction"
+			name="defaultForm" scope="request" parameter="method">
+			 <forward name="success_store" path="/showCTEntity.do" redirect="false" />
+		</action>
+
+
+		<!-- action path="/showPProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="p.modprocedure" />
+		</action -->
+
+		<action path="/showPProcedure"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="p.modprocedure" />
+		</action>
+
+		<action path="/manageVistaCuadroProcedimiento"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ManageVistaCuadroProcedimientoAction"
+			name="defaultForm" scope="request" validate="false" parameter="method">
+			<forward name="success" path="cuadro.procedure" />
+			<forward name="done" path="/ispac/common/procedure/showTreeView.jsp" />
+		    <forward name="home" path="/manageVistaCuadroProcedimiento.do?method=home" />
+		</action>
+
+		<action path="/showPcdExtendedInfo"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ShowProcedureExtendedInfoAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/manageVistaCuadroProcedimiento.do?method=crearVista" />
+		</action>
+
+		<action path="/showPStage"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="p.modstage" />
+		</action>
+
+		<action path="/addPcdStage"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdstage.AddPcdStageAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<action path="/removePcdStage"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdstage.RemovePcdStageAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="showTreeProc" path="/ispac/closeIFrame.jsp" />
+		</action>
+
+		<action path="/addActivity"
+			type="ieci.tdw.ispac.ispaccatalog.action.subprocedure.AddActivityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<action path="/removeActivity"
+			type="ieci.tdw.ispac.ispaccatalog.action.subprocedure.RemoveActivityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="showTreeProc" path="/ispac/closeIFrame.jsp" />
+		</action>
+
+		<action path="/addPcdSyncNode"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdsyncnode.AddPcdSyncNodeAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<action path="/removePcdSyncNode"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdsyncnode.RemovePcdSyncNodeAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="showTreeProc" path="/ispac/closeIFrame.jsp" />
+		</action>
+
+		<action path="/showPcdSyncNode"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowSyncNodeAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="p.syncnode" />
+		</action>
+
+		<action path="/addPcdFlow"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdflow.AddPcdFlowAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<action path="/removePcdFlow"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdflow.RemovePcdFlowAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="showTreeProc" path="/ispac/closeIFrame.jsp" />
+		</action>
+
+		<action path="/selectPcdFlow"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdflow.SelectPcdFlowAction"
+			name="selectObjForm" scope="request" validate="false">
+			<forward name="success" path="select.object"/>
+		</action>
+
+		<action path="/addPcdStageTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdstage.AddPcdStageTaskAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<action path="/removePcdStageTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdstage.RemovePcdStageTaskAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/showPStage.do?entityId=21" />
+			<forward name="showTreeProc" path="/ispac/closeIFrame.jsp" />
+		</action>
+
+		<action path="/movePcdStageTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.pcdstage.MovePcdStageTaskAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/showPStage.do?entityId=21" />
+			<forward name="showTreeProc" path="/ispac/closeIFrame.jsp" />
+		</action>
+
+		<action path="/showPTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTEntityAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="p.modtask" />
+		</action>
+
+		<!--AJAX - Entidad: obtencion de las columnas de una tabla -->
+		<action path="/getEntityTableData"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.GetTableColumnsAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/ispac/common/ajax/ajaxSuggestList.jsp" />
+		</action>
+		<!--AJAX - Entidad: filtrado por nombre de tabla -->
+		<action path="/getFilteredTables"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.GetFilteredTablesAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/ispac/common/ajax/ajaxSuggestList.jsp" />
+		</action>
+		<!--AJAX - Entidad: filtrado por nombre de secuencia -->
+		<action path="/getFilteredSequences"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.GetFilteredSequencesAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/ispac/common/ajax/ajaxSuggestList.jsp" />
+		</action>
+
+	<!-- Acciones para el mantenimiento de SPAC_P_FRMFASES -->
+		<action path="/showPFrmStages"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmstages.ShowPFrmStagesAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.appstage" />
+		</action>
+
+		<action path="/addAppFrmStage"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmstages.AddAppFrmStageAction">
+			<forward name="success" path="/showPFrmStages.do" redirect="true" />
+		</action>
+
+		<action path="/showEntPFrmStage"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmstages.ShowEntPFrmStageAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.entfrmstage" />
+		</action>
+
+		<action path="/addEntityFrmStage"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmstages.AddEntityFrmStageAction">
+			<forward name="success" path="/showPFrmStages.do" redirect="true"/>
+		</action>
+
+		<action path="/delEntityFrmStage"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmstages.DelEntityFrmStageAction">
+			<forward name="success" path="/showPFrmStages.do" redirect="true"/>
+		</action>
+
+	<!-- Acciones para el mantenimiento de SPAC_P_FRMTRAMITES -->
+		<action path="/showPFrmTasks"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmtasks.ShowPFrmTasksAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.apptask" />
+		</action>
+
+		<action path="/addAppFrmTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmtasks.AddAppFrmTaskAction">
+			<forward name="success" path="/showPFrmTasks.do" redirect="true" />
+		</action>
+
+		<action path="/showEntPFrmTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmtasks.ShowEntPFrmTaskAction"
+			name="batchForm" scope="request" validate="false">
+			<forward name="success" path="p.entfrmtask" />
+		</action>
+
+		<action path="/addEntityFrmTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmtasks.AddEntityFrmTaskAction">
+			<forward name="success" path="/showPFrmTasks.do" redirect="true"/>
+		</action>
+
+		<action path="/delEntityFrmTask"
+			type="ieci.tdw.ispac.ispaccatalog.action.frmtasks.DelEntityFrmTaskAction">
+			<forward name="success" path="/showPFrmTasks.do" redirect="true"/>
+		</action>
+
+	<!-- Acciones para el mantenimiento de Plantillas -->
+		<action path="/showTemplate"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowTemplateAction"
+			name="uploadForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+		<action path="/showTemplateFromCuadroView"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowTemplateAction"
+			name="uploadForm" scope="request" validate="false">
+			<forward name="success" path="p.template" />
+		</action>
+
+		<action path="/storeTemplate"
+			type="ieci.tdw.ispac.ispaccatalog.action.StoreTemplateAction"
+			name="uploadForm" scope="request" validate="true" input="/showTemplate.do">
+			<forward name="success" path="/showTemplate.do" redirect="true"/>
+		</action>
+
+		<action path="/storeCTTemplate"
+			type="ieci.tdw.ispac.ispaccatalog.action.StoreTemplateAction"
+			name="uploadForm" scope="request" validate="true" input="/showCTTemplate.do">
+			<forward name="success" path="/showCTTemplate.do" redirect="true"/>
+		</action>
+
+		<action path="/storeTemplateFromCuadroView"
+			type="ieci.tdw.ispac.ispaccatalog.action.StoreTemplateFromCuadroAction"
+			name="uploadForm" scope="request" validate="true" input="/showTemplateFromCuadroView.do">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<action path="/removeTemplateFromProc"
+			type="ieci.tdw.ispac.ispaccatalog.action.RemoveTemplateFromProc"
+				name="defaultForm" scope="request">
+			<forward name="showTreeProc" path="/ispac/closeIFrame.jsp" />
+		</action>
+
+		<action path="/deleteTemplate"
+				type="ieci.tdw.ispac.ispaccatalog.action.DeleteTemplateAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+			<forward name="use" path="/showComponentsUseList.do" redirect="false" />
+			<forward name="success" path="/showTemplatesList.do" redirect="true"/>
+		</action>
+
+		<action path="/deleteCTTemplate"
+				type="ieci.tdw.ispac.ispaccatalog.action.DeleteTemplateAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+			<forward name="use" path="/showComponentsUseList.do" redirect="false" />
+			<forward name="success" path="/showCTTemplatesList.do" redirect="true"/>
+		</action>
+
+		<action path="/editTemplate"
+			type="ieci.tdw.ispac.ispaccatalog.action.EditTemplateAction"/>
+
+		<action path="/showTemplatesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowTemplatesListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="templateslist"/>
+		</action>
+
+		<!--FIN, Pantallas para Catalogo-->
+
+		<action path="/loadFile"
+			type="ieci.tdw.ispac.ispaccatalog.action.UploadFileAction"
+			name="uploadForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+
+		<!-- Pantallas modales -->
+		<action path="/modalCTTasksList"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTTasksListAction"
+			scope="request" validate="false">
+			<forward name="success" path="ct.modal.taskslist"/>
+		</action>
+
+		<action path="/showComponentsUseList"
+				type="ieci.tdw.ispac.ispaccatalog.action.ShowComponentsUseListAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+			<forward name="success" path="components.use.list"/>
+		</action>
+
+		<!--User Manager action mappings-->
+	    <action path="/showInfoEntry"  name="defaultForm"  type="ieci.tdw.ispac.ispaccatalog.action.supervision.ShowEntryInfo">
+					<forward name="success" path="showDirectory" />
+	    </action>
+
+	    <action path="/entrySearch"  name="defaultForm" type="ieci.tdw.ispac.ispaccatalog.action.EntrySearchAction">
+				<forward name="successSimple" path="/ispac/common/entrySearch.jsp" />
+				<forward name="successMulti" path="/ispac/common/entrySearchMulti.jsp" />
+
+	    </action>
+
+		<action path="/permissions"
+				type="ieci.tdw.ispac.ispaccatalog.action.permissions.PermissionsAction"
+				name="defaultForm" scope="request" validate="false"
+				parameter="method">
+		</action>
+		<action path="/showPermissions" type="ieci.tdw.ispac.ispaccatalog.action.permissions.ShowPermissions"
+			name="defaultForm" scope="request" validate="false">
+				<forward name="success" path="showPermissionsProcedures"/>
+		</action>
+		<action path="/deletePermissions" type="ieci.tdw.ispac.ispaccatalog.action.usrmanager.DeletePermissionsAction">
+				<forward name="success" path="/showPermissions.do" redirect="true" />
+		</action>
+		<action path="/selectTypePermissions" type="ieci.tdw.ispac.ispaccatalog.action.permissions.SelectTypePermissionsAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="selectPermissions" />
+		</action>
+		<action path="/storePermissions" type="ieci.tdw.ispac.ispaccatalog.action.permissions.StorePermissionsAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/ispac/closeIFrame.jsp" />
+		</action>
+	    <action path="/saveFunctions" type="ieci.tdw.ispac.ispaccatalog.action.supervision.SaveFunctionsAction"
+	    	name="saveFunctionsForm" input="/showInfoEntry.do" validate="false" scope="request">
+					<forward name="success" path="/showInfoEntry.do" redirect="true" />
+	    </action>
+	    <action path="/deleteFollowedModeSuperviseds" type="ieci.tdw.ispac.ispaccatalog.action.supervision.DeleteFollowedModeSupervisedsAction"
+	    	name="deleteFollowedModeSupervisedsForm" input="/showInfoEntry.do" validate="false" scope="request" >
+					<forward name="success" path="/showInfoEntry.do" redirect="true" />
+	    </action>
+	    <action path="/deleteTotalModeSuperviseds" type="ieci.tdw.ispac.ispaccatalog.action.supervision.DeleteTotalModeSupervisedsAction"
+	    	name="deleteTotalModeSupervisedsForm" input="/showInfoEntry.do" validate="true" scope="request">
+					<forward name="success" path="/showInfoEntry.do" redirect="true" />
+	    </action>
+	    <action path="/showResponsiblesForSupervision" type="ieci.tdw.ispac.ispaccatalog.action.supervision.ShowResponsiblesForSupervision">
+					<forward name="success" path="showResponsiblesForSupervision" />
+	    </action>
+	    <action path="/addSuperviseds" type="ieci.tdw.ispac.ispaccatalog.action.supervision.AddSupervisedsAction"
+				name="addSupervisedsForm" input="/showResponsiblesForSupervision.do" validate="false" scope="request" >
+					<!-- forward name="success" path="showResponsiblesForSupervision" /
+					-->
+					<!-- forward name="alreadysupervised" path="showResponsiblesForSupervision" /
+					-->
+					<forward name="closeFrame" path="/ispac/closeIFrame.jsp" />
+	    </action>
+
+	    <action path="/deletePermissionObjectOrganization" type="ieci.tdw.ispac.ispaccatalog.action.searchfrm.DeletePermissionObjectOrganizationAction"
+	    	name="selectForm" input="/showCTSearchForm.do" validate="false" scope="request" >
+					<forward name="success" path="/showCTSearchForm.do" redirect="true" />
+	    </action>
+
+	    <action path="/showResponsiblesForSearchForm" type="ieci.tdw.ispac.ispaccatalog.action.searchfrm.ShowResponsiblesForSearchFormAction">
+			<forward name="success" path="showResponsiblesForSearchForm" />
+	    </action>
+
+	    <action path="/addResponsiblesSearchForm" type="ieci.tdw.ispac.ispaccatalog.action.searchfrm.AddResponsiblesSearchFormAction"
+				name="selectForm" input="/showResponsiblesForSearchForm.do" validate="false" scope="request" >
+					<!-- forward name="success" path="showResponsiblesForSupervision" /
+					-->
+					<!-- forward name="alreadysupervised" path="showResponsiblesForSupervision" /
+					-->
+					<forward name="closeFrame" path="/ispac/closeIFrame.jsp" />
+	    </action>
+
+
+		<action path="/showStageTPDocsList"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.ShowStageTPDocsListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="stage.tpdocslist"/>
+		</action>
+
+		<action path="/addCTStageTPDoc"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.AddStageTpDocAction">
+			<forward name="success" path="/setObject.do" redirect="false"/>
+		</action>
+
+		<action path="/deleteStageTpDoc"
+			type="ieci.tdw.ispac.ispaccatalog.action.procedure.DeleteStageTpDocAction">
+			<forward name="success" path="/showStageTPDocsList.do" redirect="true"/>
+		</action>
+
+		<action path="/selectEntity" name="selectObjForm"
+			scope="request" validate="false"
+			type="ieci.tdw.ispac.ispaccatalog.action.entities.SelectEntityAction">
+			<forward name="success" path="select.object"/>
+		</action>
+
+		<action path="/showCTAppForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.ShowCTAppFormAction"
+		 	name="upload2Form" scope="request" validate="false">
+			<forward name="success" path="show.app.form" />
+		</action>
+
+		<action path="/getCTAppForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.GetCTAppFormAction"
+		 	name="upload2Form" scope="request" validate="false" />
+
+		<action path="/getCTAppXML"
+			type="ieci.tdw.ispac.ispaccatalog.action.GetCTAppXMLAction"
+		 	name="upload2Form" scope="request" validate="false" />
+
+		<action path="/uploadCTAppForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.UploadCTAppFormAction"
+			name="upload2Form" scope="request" validate="false"
+			input="/showCTAppForm.do">
+			<forward name="success" path="/ispac/closeIFrame.jsp" />
+			<!--
+			<forward name="success_upload" path="ct.success" />
+			-->
+		</action>
+
+	<!-- Acciones para las entidades del PUBLICADOR -->
+		<action path="/showPubActionsList"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.ShowPubActionsListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="pub.actionslist"/>
+		</action>
+
+		<action path="/deletePubAction"
+				type="ieci.tdw.ispac.ispaccatalog.action.publisher.DeletePubActionAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+	        <forward name="success" path="/showPubActionsList.do" redirect="false" />
+		</action>
+
+		<action path="/showPubApplicationsList"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.ShowPubApplicationsListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="pub.applicationslist"/>
+		</action>
+
+		<action path="/deletePubApplication"
+				type="ieci.tdw.ispac.ispaccatalog.action.publisher.DeletePubApplicationAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+	        <forward name="success" path="/showPubApplicationsList.do" redirect="false" />
+		</action>
+
+		<action path="/showPubConditionsList"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.ShowPubConditionsListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="pub.conditionslist"/>
+		</action>
+
+		<action path="/deletePubCondition"
+				type="ieci.tdw.ispac.ispaccatalog.action.publisher.DeletePubConditionAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+	        <forward name="success" path="/showPubConditionsList.do" redirect="false" />
+		</action>
+
+		<action path="/showPubRulesGroupList"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.ShowPubRulesGroupListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="pub.rulesgrouplist"/>
+		</action>
+
+		<action path="/showPubRulesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.ShowPubRulesListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="pub.ruleslist"/>
+		</action>
+
+		<action path="/showPubRule"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.ShowPubRuleAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity" />
+		</action>
+
+		<action path="/deletePubRule"
+				type="ieci.tdw.ispac.ispaccatalog.action.publisher.DeletePubRuleAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+	        <forward name="success" path="/showPubRulesGroupList.do" redirect="false" />
+		</action>
+
+		<action path="/showPubErrorMilestonesList"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.ShowPubErrorMilestonesListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="pub.errormilestoneslist"/>
+		</action>
+
+		<action path="/showPubErrorMilestone"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.ShowPubErrorMilestoneAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="ct.entity"/>
+		</action>
+
+		<action path="/reactivateMilestone"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.ReactivateMilestoneAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/showPubErrorMilestonesList.do" redirect="true" />
+		</action>
+
+		<action path="/deleteErrorMilestone"
+			type="ieci.tdw.ispac.ispaccatalog.action.publisher.DeleteErrorMilestoneAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="/showPubErrorMilestonesList.do" redirect="true" />
+		</action>
+
+	<!-- Acciones para los PROCESOS DE FIRMA -->
+		<action path="/showSignProcessList"
+			type="ieci.tdw.ispac.ispaccatalog.action.signprocess.ShowSignProcessListAction"
+			name="defaultForm" scope="request" validate="false">
+			<forward name="success" path="sign.processlist"/>
+		</action>
+
+		<action path="/selectSigner" name="usersForm"
+			type="ieci.tdw.ispac.ispaccatalog.action.signprocess.SelectSignerAction"
+			scope="request" validate="false">
+			<forward name="nav" path="view.usrmgr"/>
+			<forward name="success" path="/apps/setObject.jsp"/>
+		</action>
+
+		<action path="/deleteSignProcess"
+				type="ieci.tdw.ispac.ispaccatalog.action.signprocess.DeleteSignProcessAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+	        <forward name="success" path="/showSignProcessList.do" redirect="false" />
+	        <forward name="use" path="/showComponentsUseList.do" redirect="false" />
+		</action>
+
+		<action path="/deleteSigner"
+				type="ieci.tdw.ispac.ispaccatalog.action.signprocess.DeleteSignerAction"
+				name="defaultForm"
+				scope="request"
+				validate="false">
+	        <forward name="success" path="/showCTEntity.do" redirect="false" />
+		</action>
+
+	</action-mappings>
+
+	<controller nocache="true"
+		processorClass="org.apache.struts.tiles.TilesRequestProcessor"
+		maxFileSize="10M"/>
+	<message-resources
+		parameter="ieci.tdw.ispac.ispaccatalog.resources.ApplicationResources"
+		null="false"/>
+
+	<!-- Plugins para struts -->
+
+	<!-- Configuración rewrite de ISPAC  -->
+	<plug-in className="ieci.tdw.ispac.ispacweb.plugin.ParametersPlugin">
+		<set-property property="ISPACBase" value="ispac" />
+		<set-property property="skin" value="skin1" />
+	</plug-in>
+
+	<!-- Tiles plugin -->
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config"
+			value="/WEB-INF/tiles-defs.xml, /WEB-INF/tiles-defs-custom.xml" />
+	</plug-in>
+
+	<plug-in className="net.sf.navigator.menu.MenuPlugIn">
+		<set-property property="menuConfig" value="/WEB-INF/menu-config.xml" />
+	</plug-in>
+
+	<!-- Validator plugin -->
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml,/WEB-INF/validation-custom.xml"/>
+	</plug-in>
+</struts-config>

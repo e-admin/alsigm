@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>			 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='RESPNAME'
+				readOnly='false'
+				titleKey='catalog.common.nombre'
+				fieldType='DATAB'
+				headerClass='sortable'
+				sortable='true'/>
+				
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='PERMISO_TEXT' 
+				 readOnly='false'
+				 titleKey='usrmgr.permiso.title' 
+				 fieldType='DATA'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				titleKey='empty'
+				fieldType='DELETE'
+				fieldLink='ID'
+				styleClass='aDelButton'
+				sortable='true'
+				url='deletePermissions.do'
+				id='regId'/>
+				
+	<propertyfmt type="BeanPropertySimpleFmt"
+			titleKey='empty'
+			fieldType='UPDATE'
+			fieldLink='UID_USR'
+			styleClass='aActionButton'
+			sortable='true'
+			url='selectTypePermissions.do'
+			id='uid'/>			
+</beanformatter>

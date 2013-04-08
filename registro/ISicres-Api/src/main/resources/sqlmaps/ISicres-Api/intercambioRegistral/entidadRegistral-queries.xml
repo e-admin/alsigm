@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="EntidadRegistralVO">
+
+	<select id="getEntidadRegistralVO" resultMap="entidadRegistralResultMap" parameterClass="java.lang.Integer">
+		select * from scr_entityreg where ID=#value#
+	</select>
+	<select id="getEntidadRegistralByIdOfic" resultMap="entidadRegistralResultMap" parameterClass="java.lang.Integer">
+		select * from scr_entityreg where id_ofic=#value#
+	</select>
+</sqlMap>

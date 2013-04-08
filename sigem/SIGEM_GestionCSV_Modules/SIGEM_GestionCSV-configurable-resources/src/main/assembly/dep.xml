@@ -1,0 +1,37 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<!-- Consulta de Documentos por CSV -->
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_GestionCSVWeb/src/main/resources/SIGEM_GestionCSVWeb</directory>
+			<outputDirectory>/SIGEM_GestionCSVWeb</outputDirectory>
+			<includes>
+				<include>log4j.xml</include>
+				<include>gestionCSVWebConfig.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_GestionCSVWeb/src/main/resources/SIGEM_GestionCSVWeb</directory>
+			<outputDirectory>/SIGEM_GestionCSVWeb</outputDirectory>
+			<includes>
+				<include>skin*/</include>
+			</includes>
+		</fileSet>
+		<!-- Servicio Web de Gestion de CSV -->
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_GestionCSVWS/src/main/resources/SIGEM_GestionCSVWS</directory>
+			<outputDirectory>/SIGEM_GestionCSVWS</outputDirectory>
+			<includes>
+				<include>log4j.xml</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

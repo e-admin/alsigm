@@ -1,0 +1,5 @@
+<Context path="/SIGEM_CatalogoTramitesWeb" reloadable="true">
+	
+	<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+		
+</Context>

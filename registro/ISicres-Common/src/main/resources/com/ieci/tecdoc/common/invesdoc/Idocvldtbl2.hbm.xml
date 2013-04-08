@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Idocvldtbl2" 
+    table="IDOCVLDTBL2"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IDOCVLDTBL2"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="idocid" 
+            column="IDOCID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="IDOCID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idocval" 
+            column="IDOCVAL" 
+            type="java.lang.String"
+            length="2"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="IDOCVAL"
+                length="2"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

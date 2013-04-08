@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+            "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="InteresadoVO">
+
+  <resultMap id="interesado"
+    class="es.ieci.tecdoc.isicres.terceros.business.vo.InteresadoVO">
+    <result property="id" column="id" />
+    <result property="orden" column="ord" />
+    <result property="direccionNotificacion" select="BaseDireccionVO.getBaseDireccionVO" column="id_address" />
+    <result property="idLibro" column="id_arch" />
+    <result property="idRegistro" column="id_fdr" />
+    <result property="nombre" column="name" />
+    <result property="representante" select="RepresentanteInteresadoVO.getRepresentanteInteresadoVO" column="id" />
+    <discriminator javaType="java.lang.String" column="id_person" typeHandler="es.ieci.tecdoc.isicres.terceros.business.dao.callback.TipoTerceroCallbackHandler">
+      <subMap value="VALIDADO" resultMap="terceroValidado" />
+      <subMap value="NO_VALIDADO" resultMap="terceroNoValidado" />
+    </discriminator>
+  </resultMap>
+
+  <resultMap class="es.ieci.tecdoc.isicres.terceros.business.vo.InteresadoVO" id="terceroValidado" extends="interesado">
+    <result property="tercero" select="TerceroValidadoVO.getTerceroValidadoVO" column="id_person" />
+  </resultMap>
+
+  <resultMap class="es.ieci.tecdoc.isicres.terceros.business.vo.InteresadoVO" id="terceroNoValidado" extends="interesado" >
+    <result property="tercero.id" column="id_person" />
+  </resultMap>
+
+  <select id="getInteresadoVOs" resultMap="interesado">
+    SELECT *
+    FROM scr_regint
+  </select>
+
+  <select id="getInteresadoVO" parameterClass="java.lang.String" resultMap="interesado">
+    SELECT *
+    FROM scr_regint
+    WHERE id=#value:INTEGER#
+  </select>
+
+  <select id="getInteresadosByRegistro" parameterClass="java.util.Map" resultMap="interesado">
+    SELECT *
+    FROM scr_regint
+    WHERE id_arch=#idLibro:INTEGER# AND id_fdr=#idRegistro:INTEGER#
+    ORDER BY ord
+  </select>
+
+  <insert id="addInteresadoVO" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.InteresadoVO">
+    INSERT INTO scr_regint (id, id_arch, id_fdr, name, id_person, id_address, ord)
+    VALUES (#id:INTEGER#, #idLibro:INTEGER#, #idRegistro:INTEGER#, #nombre#, #tercero.id:INTEGER#, #direccionNotificacion.id:INTEGER#, #orden#)
+  </insert>
+
+  <update id="updateInteresadoVO" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.InteresadoVO">
+  UPDATE scr_regint SET id_arch=#idLibro:INTEGER#, id_fdr=#idRegistro:INTEGER#, name=#nombre#, id_person=#tercero.id:INTEGER#, id_address=#direccionNotificacion.id:INTEGER#, ord=#orden#
+  WHERE id=#id:INTEGER#
+  
+  </update>
+
+  <delete id="deleteInteresadoVO" parameterClass="java.lang.String">
+  	DELETE FROM scr_regint WHERE id=#value:INTEGER#
+  </delete>
+
+</sqlMap>

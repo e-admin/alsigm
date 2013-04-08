@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Iuseruserhdr" 
+    table="IUSERUSERHDR"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IUSERUSERHDR"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="32"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="NAME"
+            length="32"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="password"
+        type="java.lang.String"
+        column="PASSWORD"
+        not-null="true"
+        length="68"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="PASSWORD"
+            length="68"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="deptid"
+        type="int"
+        column="DEPTID"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="DEPTID"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="flags"
+        type="int"
+        column="FLAGS"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="FLAGS"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="stat"
+        type="int"
+        column="STAT"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="STAT"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="numbadcnts"
+        type="int"
+        column="NUMBADCNTS"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="NUMBADCNTS"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="remarks"
+        type="java.lang.String"
+        column="REMARKS"
+        length="254"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="REMARKS"
+            length="254"
+        </meta>    
+    </property>
+    <property
+        name="crtrid"
+        type="int"
+        column="CRTRID"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CRTRID"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="crtndate"
+        type="java.sql.Timestamp"
+        column="CRTNDATE"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CRTNDATE"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="updrid"
+        type="java.lang.Integer"
+        column="UPDRID"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="UPDRID"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="upddate"
+        type="java.sql.Timestamp"
+        column="UPDDATE"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="UPDDATE"
+            length="7"
+        </meta>    
+    </property>
+    <property
+        name="pwdlastupdts"
+        type="java.lang.Integer"
+        column="PWDLASTUPDTS"
+        length="20"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="PWDLASTUPDTS"
+            length="20"
+        </meta>    
+    </property>
+    <property
+        name="pwdmbc"
+        type="java.lang.String"
+        column="PWDMBC"
+        length="1"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="PWDMBC"
+            length="1"
+        </meta>    
+    </property>
+    <property
+        name="pwdvpcheck"
+        type="java.lang.String"
+        column="PWDVPCHECK"
+        length="1"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="PWDVPCHECK"
+            length="1"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+</class>
+</hibernate-mapping>

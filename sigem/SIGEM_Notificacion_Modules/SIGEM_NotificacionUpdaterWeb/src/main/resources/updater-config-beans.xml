@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean name="notificacionConfigurationResourceLoader" id="configurationResourceLoader" class="ieci.tecdoc.sgm.core.config.impl.spring.SigemConfigurationResourceLoaderImpl">
+	</bean>
+
+	<bean class="ieci.tecdoc.sgm.core.config.impl.spring.SigemBasePlaceholderConfigurer">
+		<property name="configurationResourceLoader"><ref bean="notificacionConfigurationResourceLoader"/></property>
+		<property name="locations">
+			<list>
+				<value>SIGEM_NotificacionUpdaterWeb/updater.properties</value>
+			</list>
+		</property>                
+	</bean>
+    
+	<!-- Bean de configuración de Acceso a BD Sisnot desde SIGEM -->
+	<bean id="NOTIFICACIONES.UPDATER_CONFIG" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="UPDATER_LAPSO" value="${sigem.notificaciones.updater.lapso}"/>
+			</map>
+		</property>
+	</bean>
+</beans>

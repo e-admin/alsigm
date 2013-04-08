@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://docvitales.ws" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://docvitales.ws" xmlns:intf="http://docvitales.ws" xmlns:tns1="http://vos.webservice.docvitales" xmlns:tns2="http://vos.docvitales" xmlns:tns3="http://vos.common" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://docvitales.ws" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vos.common"/>
+   <import namespace="http://vos.docvitales"/>
+   <import namespace="http://vos.webservice.docvitales"/>
+   <element name="getSeriesTercero">
+    <complexType>
+     <sequence>
+      <element name="idTercero" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSeriesTerceroResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getSeriesTerceroReturn" type="tns1:Serie"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentosAntecedentes">
+    <complexType>
+     <sequence>
+      <element name="idTercero" type="xsd:string"/>
+      <element name="idSerie" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentosAntecedentesResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getDocumentosAntecedentesReturn" type="tns1:DocumentoAntecedente"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentosAntecedentesTercero">
+    <complexType>
+     <sequence>
+      <element name="idTercero" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentosAntecedentesTerceroResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getDocumentosAntecedentesTerceroReturn" type="tns1:DocumentoAntecedente"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getISADG">
+    <complexType>
+     <sequence>
+      <element name="idDocAnt" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getISADGResponse">
+    <complexType>
+     <sequence>
+      <element name="getISADGReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentosVitalesTercero">
+    <complexType>
+     <sequence>
+      <element name="idTercero" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentosVitalesTerceroResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getDocumentosVitalesTerceroReturn" type="tns1:InfoBDocumentoVital"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentosVitalesTerProc">
+    <complexType>
+     <sequence>
+      <element name="idTercero" type="xsd:string"/>
+      <element name="idProc" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentosVitalesTerProcResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getDocumentosVitalesTerProcReturn" type="tns1:InfoBDocumentoVital"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentoVital">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentoVitalResponse">
+    <complexType>
+     <sequence>
+      <element name="getDocumentoVitalReturn" type="tns1:DocumentoVital"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="altaDocumentoVital">
+    <complexType>
+     <sequence>
+      <element name="formDocVit" type="tns1:FormDocumentoVital"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="altaDocumentoVitalResponse">
+    <complexType>
+     <sequence>
+      <element name="altaDocumentoVitalReturn" type="tns1:InfoBDocumentoVital"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="vinculaExpediente">
+    <complexType>
+     <sequence>
+      <element name="idDocVit" type="xsd:string"/>
+      <element name="idExp" type="xsd:string"/>
+      <element name="idSist" type="xsd:string"/>
+      <element name="usuario" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="vinculaExpedienteResponse">
+    <complexType/>
+   </element>
+   <element name="eliminaVinculosExpediente">
+    <complexType>
+     <sequence>
+      <element name="idExp" type="xsd:string"/>
+      <element name="idSist" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminaVinculosExpedienteResponse">
+    <complexType/>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://vos.webservice.docvitales" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vos.common"/>
+   <import namespace="http://vos.docvitales"/>
+   <complexType name="Serie">
+    <sequence>
+     <element name="descEstado" nillable="true" type="xsd:string"/>
+     <element name="estado" type="xsd:int"/>
+     <element name="fondo" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="numUdocs" type="xsd:int"/>
+     <element name="titulo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DocumentoAntecedente">
+    <sequence>
+     <element name="codReferencia" nillable="true" type="xsd:string"/>
+     <element name="codSistProductor" nillable="true" type="xsd:string"/>
+     <element name="descEstado" nillable="true" type="xsd:string"/>
+     <element name="estado" type="xsd:int"/>
+     <element name="fechaFinal" nillable="true" type="xsd:string"/>
+     <element name="fechaInicial" nillable="true" type="xsd:string"/>
+     <element name="fondo" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="numExp" nillable="true" type="xsd:string"/>
+     <element name="serie" nillable="true" type="xsd:string"/>
+     <element name="tipoDocumental" nillable="true" type="xsd:string"/>
+     <element name="titulo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="InfoBDocumentoVital">
+    <sequence>
+     <element name="estadoDocVit" type="xsd:int"/>
+     <element name="extFich" nillable="true" type="xsd:string"/>
+     <element name="fechaCad" nillable="true" type="xsd:dateTime"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="idBdTerceros" nillable="true" type="xsd:string"/>
+     <element name="idFich" nillable="true" type="xsd:string"/>
+     <element name="idTipoDocVit" nillable="true" type="xsd:string"/>
+     <element name="identidad" nillable="true" type="xsd:string"/>
+     <element name="nombreOrgFich" nillable="true" type="xsd:string"/>
+     <element name="nombreTipoDocVit" nillable="true" type="xsd:string"/>
+     <element name="numIdentidad" nillable="true" type="xsd:string"/>
+     <element name="tamanoFich" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="DocumentoVital">
+    <complexContent>
+     <extension base="tns1:InfoBDocumentoVital">
+      <sequence>
+       <element name="contenido" nillable="true" type="xsd:base64Binary"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="FormDocumentoVital">
+    <sequence>
+     <element name="VO" nillable="true" type="tns2:FormDocumentoVitalVO"/>
+     <element name="contenidoFich" nillable="true" type="xsd:base64Binary"/>
+     <element name="extFich" nillable="true" type="xsd:string"/>
+     <element name="fechaCaducidad" nillable="true" type="xsd:dateTime"/>
+     <element name="idTercero" nillable="true" type="xsd:string"/>
+     <element name="idTipoDocVit" nillable="true" type="xsd:string"/>
+     <element name="nombreFich" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://vos.common" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vos.docvitales"/>
+   <import namespace="http://vos.webservice.docvitales"/>
+   <complexType name="BaseVO">
+    <sequence/>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://vos.docvitales" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vos.common"/>
+   <import namespace="http://vos.webservice.docvitales"/>
+   <complexType name="FormDocumentoVitalVO">
+    <complexContent>
+     <extension base="tns3:BaseVO">
+      <sequence>
+       <element name="contenidoFich" nillable="true" type="xsd:base64Binary"/>
+       <element name="extFich" nillable="true" type="xsd:string"/>
+       <element name="fechaCaducidad" nillable="true" type="xsd:dateTime"/>
+       <element name="idTercero" nillable="true" type="xsd:string"/>
+       <element name="idTipoDocVit" nillable="true" type="xsd:string"/>
+       <element name="nombreFich" nillable="true" type="xsd:string"/>
+       <element name="observaciones" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="altaDocumentoVitalRequest">
+
+      <wsdl:part element="impl:altaDocumentoVital" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentosVitalesTerceroResponse">
+
+      <wsdl:part element="impl:getDocumentosVitalesTerceroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSeriesTerceroResponse">
+
+      <wsdl:part element="impl:getSeriesTerceroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentosAntecedentesTerceroRequest">
+
+      <wsdl:part element="impl:getDocumentosAntecedentesTercero" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentosVitalesTerceroRequest">
+
+      <wsdl:part element="impl:getDocumentosVitalesTercero" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentosAntecedentesRequest">
+
+      <wsdl:part element="impl:getDocumentosAntecedentes" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getISADGRequest">
+
+      <wsdl:part element="impl:getISADG" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminaVinculosExpedienteRequest">
+
+      <wsdl:part element="impl:eliminaVinculosExpediente" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="vinculaExpedienteResponse">
+
+      <wsdl:part element="impl:vinculaExpedienteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaDocumentoVitalResponse">
+
+      <wsdl:part element="impl:altaDocumentoVitalResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentosAntecedentesResponse">
+
+      <wsdl:part element="impl:getDocumentosAntecedentesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentoVitalResponse">
+
+      <wsdl:part element="impl:getDocumentoVitalResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentosVitalesTerProcRequest">
+
+      <wsdl:part element="impl:getDocumentosVitalesTerProc" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminaVinculosExpedienteResponse">
+
+      <wsdl:part element="impl:eliminaVinculosExpedienteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentosAntecedentesTerceroResponse">
+
+      <wsdl:part element="impl:getDocumentosAntecedentesTerceroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getISADGResponse">
+
+      <wsdl:part element="impl:getISADGResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="vinculaExpedienteRequest">
+
+      <wsdl:part element="impl:vinculaExpediente" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentoVitalRequest">
+
+      <wsdl:part element="impl:getDocumentoVital" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSeriesTerceroRequest">
+
+      <wsdl:part element="impl:getSeriesTercero" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentosVitalesTerProcResponse">
+
+      <wsdl:part element="impl:getDocumentosVitalesTerProcResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="WSDocumentosVitales">
+
+      <wsdl:operation name="getSeriesTercero">
+
+         <wsdl:input message="impl:getSeriesTerceroRequest" name="getSeriesTerceroRequest"/>
+
+         <wsdl:output message="impl:getSeriesTerceroResponse" name="getSeriesTerceroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentosAntecedentes">
+
+         <wsdl:input message="impl:getDocumentosAntecedentesRequest" name="getDocumentosAntecedentesRequest"/>
+
+         <wsdl:output message="impl:getDocumentosAntecedentesResponse" name="getDocumentosAntecedentesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentosAntecedentesTercero">
+
+         <wsdl:input message="impl:getDocumentosAntecedentesTerceroRequest" name="getDocumentosAntecedentesTerceroRequest"/>
+
+         <wsdl:output message="impl:getDocumentosAntecedentesTerceroResponse" name="getDocumentosAntecedentesTerceroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getISADG">
+
+         <wsdl:input message="impl:getISADGRequest" name="getISADGRequest"/>
+
+         <wsdl:output message="impl:getISADGResponse" name="getISADGResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentosVitalesTercero">
+
+         <wsdl:input message="impl:getDocumentosVitalesTerceroRequest" name="getDocumentosVitalesTerceroRequest"/>
+
+         <wsdl:output message="impl:getDocumentosVitalesTerceroResponse" name="getDocumentosVitalesTerceroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentosVitalesTerProc">
+
+         <wsdl:input message="impl:getDocumentosVitalesTerProcRequest" name="getDocumentosVitalesTerProcRequest"/>
+
+         <wsdl:output message="impl:getDocumentosVitalesTerProcResponse" name="getDocumentosVitalesTerProcResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentoVital">
+
+         <wsdl:input message="impl:getDocumentoVitalRequest" name="getDocumentoVitalRequest"/>
+
+         <wsdl:output message="impl:getDocumentoVitalResponse" name="getDocumentoVitalResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaDocumentoVital">
+
+         <wsdl:input message="impl:altaDocumentoVitalRequest" name="altaDocumentoVitalRequest"/>
+
+         <wsdl:output message="impl:altaDocumentoVitalResponse" name="altaDocumentoVitalResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="vinculaExpediente">
+
+         <wsdl:input message="impl:vinculaExpedienteRequest" name="vinculaExpedienteRequest"/>
+
+         <wsdl:output message="impl:vinculaExpedienteResponse" name="vinculaExpedienteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminaVinculosExpediente">
+
+         <wsdl:input message="impl:eliminaVinculosExpedienteRequest" name="eliminaVinculosExpedienteRequest"/>
+
+         <wsdl:output message="impl:eliminaVinculosExpedienteResponse" name="eliminaVinculosExpedienteResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WSDocumentosVitalesSoapBinding" type="impl:WSDocumentosVitales">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSeriesTercero">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSeriesTerceroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSeriesTerceroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentosAntecedentes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDocumentosAntecedentesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDocumentosAntecedentesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentosAntecedentesTercero">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDocumentosAntecedentesTerceroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDocumentosAntecedentesTerceroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getISADG">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getISADGRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getISADGResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentosVitalesTercero">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDocumentosVitalesTerceroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDocumentosVitalesTerceroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentosVitalesTerProc">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDocumentosVitalesTerProcRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDocumentosVitalesTerProcResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentoVital">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDocumentoVitalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDocumentoVitalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaDocumentoVital">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="altaDocumentoVitalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="altaDocumentoVitalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="vinculaExpediente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="vinculaExpedienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="vinculaExpedienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminaVinculosExpediente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminaVinculosExpedienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminaVinculosExpedienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WSDocumentosVitalesService">
+
+      <wsdl:port binding="impl:WSDocumentosVitalesSoapBinding" name="WSDocumentosVitales">
+
+         <wsdlsoap:address location="http://localhost:8080/archidoc/services/WSDocumentosVitales"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

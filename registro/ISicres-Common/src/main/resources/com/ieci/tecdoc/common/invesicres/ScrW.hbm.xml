@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrW" 
+    table="SCR_WS"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_WS"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="nombre" 
+            column="NOMBRE" 
+            type="java.lang.String"
+            length="50"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="NOMBRE"
+                length="50"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="macaddr" 
+            column="MACADDR" 
+            type="java.lang.String"
+            length="32"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="MACADDR"
+                length="32"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="ipaddr" 
+            column="IPADDR" 
+            type="java.lang.String"
+            length="20"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="IPADDR"
+                length="20"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="code" 
+            column="CODE" 
+            type="java.lang.String"
+            length="4"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CODE"
+                length="4"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="descripcion" 
+            column="DESCRIPCION" 
+            type="java.lang.String"
+            length="250"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DESCRIPCION"
+                length="250"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to ScrOfic -->
+    <many-to-one
+        name="scrOfic"
+        class="com.ieci.tecdoc.common.invesicres.ScrOfic"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="IDOFIC"         
+        </meta>
+        <column name="IDOFIC" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

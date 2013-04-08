@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<quartz xmlns="http://www.opensymphony.com/quartz/JobSchedulingData"
+  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xsi:schemaLocation="http://www.opensymphony.com/quartz/JobSchedulingData
+  	http://www.opensymphony.com/quartz/xml/job_scheduling_data_1_5.xsd"
+  	version="1.5">
+
+  <!--
+  	Proceso de consolidación de registros telemáticos en el registro presencial.
+    -->
+  <job>
+    <job-detail>
+      <name>ConsolidacionJob</name> 
+      <group>SIGEM_JOBS</group>
+      <job-class>ieci.tecdoc.sgm.scheduler.job.consolidacion.ConsolidacionJob</job-class>
+      <volatility>false</volatility>
+      <durability>false</durability>
+      <recover>false</recover>
+    </job-detail>
+    <trigger>
+      <simple>
+        <name>ConsolidacionTrigger</name>
+        <group>SIGEM_JOBS</group>
+        <job-name>ConsolidacionJob</job-name>
+        <job-group>SIGEM_JOBS</job-group>
+        <repeat-count>-1</repeat-count>
+        <repeat-interval>300000</repeat-interval>
+      </simple>
+    </trigger>
+  </job>
+
+</quartz>

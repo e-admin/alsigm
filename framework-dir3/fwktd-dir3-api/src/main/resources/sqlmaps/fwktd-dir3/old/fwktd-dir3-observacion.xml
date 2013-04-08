@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ObservacionVO">
+
+	<typeAlias alias="observacion"
+		type="es.ieci.tecdoc.fwktd.csv.api.vo.ObservacionVO" />
+
+	<resultMap id="observacion" class="es.ieci.tecdoc.fwktd.dir3.api.vo.ObservacionVO">
+		<result property="id" column="N_ID_OBSERVACION" />
+		<result property="texto" column="C_DATA_OBSERVACION" />
+		<result property="estado" column="C_ID_ESTADO" />
+	</resultMap>
+
+	<sql id="table">DIR_OBSERVACIONES</sql>
+	<sql id="columns">
+		N_ID_OBSERVACION,
+		C_DATA_OBSERVACION,
+		C_ID_ESTADO
+	</sql>
+
+	<select id="getObservacionVOs" resultMap="observacion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY N_ID_OBSERVACION
+	</select>
+
+	<select id="getObservacionVO" parameterClass="java.lang.String" resultMap="observacion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			N_ID_OBSERVACION=#value#
+	</select>
+
+</sqlMap>

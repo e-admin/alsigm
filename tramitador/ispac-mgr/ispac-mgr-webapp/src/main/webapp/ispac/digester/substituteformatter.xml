@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter pageSize="50">
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ORDEN_TO_SHOW'
+				 titleKey='formatter.substitute.orden'
+				 fieldType='LIST'
+				 media='html'
+				 columnClass='width15percent'
+				 headerClass='sortable'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'	
+				 sortable='true'
+				 />		
+
+	<!-- Ponemos 2 veces la propiedad VALOR, 
+		 una para mostrarla solo en html (media='html')
+		 y la otra para la exportacion (media= 'xml excel csv pdf') -->
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VALOR'
+				 titleKey='formatter.substitute.valor'
+				 fieldType='LINK'
+				 media='html'
+				 columnClass='width15percent'
+				 headerClass='sortable'
+				 sortable='true'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VALOR'
+				 titleKey='formatter.substitute.valor'
+				 fieldType='LIST'
+				 media='xml excel csv pdf'
+				 />
+				 
+	<!-- Ponemos 2 veces la propiedad SUSTITUTO, 
+		 una para mostrarla solo en html (media='html')
+		 y la otra para la exportacion (media= 'xml excel csv pdf') -->
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SUSTITUTO'
+				 titleKey='formatter.substitute.sustituto'
+				 fieldType='LINK'
+				 media='html'
+				 columnClass='width85percent'
+				 headerClass='sortable'
+				 sortable='true'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SUSTITUTO'
+				 titleKey='formatter.substitute.sustituto'
+				 fieldType='LIST'
+				 media='xml excel csv pdf'
+				 />
+				 
+</beanformatter>

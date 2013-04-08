@@ -1,0 +1,17 @@
+<Context path="/fwktdsirWS" reloadable="true">
+
+	<Resource name="jdbc/fwktd-sirDS"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="oracle.jdbc.OracleDriver"
+		url="jdbc:oracle:thin:@pre-oracle.iecisa.corp:1521:orcl"
+		username="fwktdsir"
+		password="fwktdsir"
+		maxActive="5"
+		maxIdle="3"
+		maxWait="-1"
+		removeAbandoned="true"
+		removeAbandonedTimeout="60"
+		logAbandoned="true"/>
+
+</Context>

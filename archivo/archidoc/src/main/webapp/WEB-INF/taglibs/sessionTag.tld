@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>session</short-name>
+  <uri>archivo</uri>
+  <display-name>JSTL core</display-name>
+  <description>JSTL 1.0 core library</description>
+
+  <tag>
+    <name>keepAlive</name>
+    <tag-class>common.session.tag.KeepAliveTag</tag-class>
+    <body-content>empty</body-content>
+    <description>
+		Tag para mantener la sesion del usuario mediante el refresco peridico de la pagina
+    </description>
+  </tag>
+  
+</taglib>

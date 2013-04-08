@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<aplicaciones>
+    <aplicacion>
+    	<identificador>1</identificador>
+		<definicion>Administración</definicion>
+		<contextoApp>/SIGEM_AdministracionWeb/inicio.do</contextoApp>
+		<servidor></servidor>
+		<!-- <puertoApp>4443</puertoApp> -->
+		<protocolo>https</protocolo>
+    </aplicacion>
+    <aplicacion>
+    	<identificador>2</identificador>
+		<definicion>Estructura Organizativa</definicion>
+		<contextoApp>/SIGEM_EstructuraWeb/inicio.do</contextoApp>
+		<servidor></servidor>
+		<!-- <puertoApp>4443</puertoApp> -->
+		<protocolo>https</protocolo>
+    </aplicacion>
+    <aplicacion>
+    	<identificador>3</identificador>
+		<definicion>Catálogo de Procedimientos</definicion>
+		<contextoApp>/SIGEM_CatalogoProcedimientosWeb/entry.do</contextoApp>
+		<servidor></servidor>
+		<!-- <puertoApp>4443</puertoApp> -->
+		<protocolo>https</protocolo>
+    </aplicacion>
+    <aplicacion>
+    	<identificador>4</identificador>
+		<definicion>Archivo</definicion>
+		<contextoApp>/SIGEM_ArchivoWeb/action/loginAction</contextoApp>
+		<servidor></servidor>
+		<!-- <puertoApp>4443</puertoApp> -->
+		<protocolo>https</protocolo>
+    </aplicacion>
+    <aplicacion>
+    	<identificador>5</identificador>
+		<definicion>Resgistro</definicion>
+		<contextoApp>/SIGEM_RegistroPresencialAdminWeb/inicio.do</contextoApp>
+		<servidor></servidor>
+		<!-- <puertoApp>4443</puertoApp> -->
+		<protocolo>https</protocolo>
+    </aplicacion>
+    <aplicacion>
+    	<identificador>6</identificador>
+		<definicion>Repositorios Documentales</definicion>
+		<contextoApp>/SIGEM_RepositoriosDocumentalesWeb/inicio.do</contextoApp>
+		<servidor></servidor>
+		<!-- <puertoApp>4443</puertoApp> -->
+		<protocolo>https</protocolo>
+    </aplicacion>
+    <aplicacion>
+    	<identificador>7</identificador>
+		<definicion>Catálogo de Trámites</definicion>
+		<contextoApp>/SIGEM_CatalogoTramitesWeb/inicio.do</contextoApp>
+		<servidor></servidor>
+		<!-- <puertoApp>4443</puertoApp> -->
+		<protocolo>https</protocolo>
+    </aplicacion>
+    <aplicacion>
+    	<identificador>8</identificador>
+		<definicion>Usuarios Portal</definicion>
+		<contextoApp>/SIGEM_AdministracionUsuariosWeb/inicio.do</contextoApp>
+		<servidor></servidor>
+		<!-- <puertoApp>4443</puertoApp> -->
+		<protocolo>https</protocolo>
+    </aplicacion>
+</aplicaciones>
+

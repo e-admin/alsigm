@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-dir3</groupId>
+		<artifactId>fwktd-dir3-parent</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<artifactId>fwktd-dir3-sql</artifactId>
+	<name>fwktd-dir3-sql</name>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly.plugin.version}</version>
+				<configuration>
+					<descriptors>
+						<descriptor>
+							${basedir}/src/main/assembly/dep.xml
+						</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assembly-sql-resources</id>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+
+		<profile>
+			<id>db2</id>
+			<properties>
+				<dependencyDriverGroupId>com.ibm</dependencyDriverGroupId>
+				<dependencyDriverArtifactId>db2jcc</dependencyDriverArtifactId>
+				<dependencyDriverVersionId>${db2.version}</dependencyDriverVersionId>
+				<driverJdbc>com.ibm.db2.jcc.DB2Driver</driverJdbc>
+				<urlJdbc>jdbc:db2://localhost:50000/FWAUD07D</urlJdbc>
+				<usernameJdbc>iecisa</usernameJdbc>
+				<passwordJdbc>iecisa</passwordJdbc>
+				<baseDirSql>${basedir}/src/main/sql/db2</baseDirSql>
+				<autocommit>true</autocommit>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>h2</id>
+			<properties>
+				<dependencyDriverGroupId>com.h2database</dependencyDriverGroupId>
+				<dependencyDriverArtifactId>h2</dependencyDriverArtifactId>
+				<dependencyDriverVersionId>${h2.version}</dependencyDriverVersionId>
+				<driverJdbc>org.h2.Driver</driverJdbc>
+				<urlJdbc>jdbc:h2:~/fwktd-dir3</urlJdbc>
+				<usernameJdbc>fwktddir3</usernameJdbc>
+				<passwordJdbc>fwktddir3</passwordJdbc>
+				<baseDirSql>${basedir}/src/main/sql/h2</baseDirSql>
+				<autocommit>true</autocommit>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>oracle</id>
+			<properties>
+				<dependencyDriverGroupId>com.oracle</dependencyDriverGroupId>
+				<dependencyDriverArtifactId>ojdbc14</dependencyDriverArtifactId>
+				<dependencyDriverVersionId>${oracle.version}</dependencyDriverVersionId>
+				<driverJdbc>oracle.jdbc.OracleDriver</driverJdbc>
+				<urlJdbc>jdbc:oracle:thin:@localhost:1521:orcl</urlJdbc>
+				<usernameJdbc>FWKTDDIR3_0_7_DESA</usernameJdbc>
+				<passwordJdbc>FWKTDDIR3_0_7_DESA</passwordJdbc>
+				<baseDirSql>${basedir}/src/main/sql/oracle</baseDirSql>
+				<autocommit>true</autocommit>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>postgresql</id>
+
+			<properties>
+				<dependencyDriverGroupId>postgresql</dependencyDriverGroupId>
+				<dependencyDriverArtifactId>postgresql</dependencyDriverArtifactId>
+				<dependencyDriverVersionId>${postgresql.version}</dependencyDriverVersionId>
+				<driverJdbc>org.postgresql.Driver</driverJdbc>
+				<urlJdbc>jdbc:postgresql://10.228.75.106:5432/sigem3_reg</urlJdbc>
+				<usernameJdbc>postgres</usernameJdbc>
+				<passwordJdbc>postgres</passwordJdbc>
+				<baseDirSql>${basedir}/src/main/sql/postgresql</baseDirSql>
+				<autocommit>true</autocommit>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>sqlserver</id>
+			<properties>
+				<dependencyDriverGroupId>net.sourceforge.jtds</dependencyDriverGroupId>
+				<dependencyDriverArtifactId>jtds</dependencyDriverArtifactId>
+				<dependencyDriverVersionId>${sqlserver.version}</dependencyDriverVersionId>
+				<driverJdbc>net.sourceforge.jtds.jdbc.Driver</driverJdbc>
+				<!-- <urlJdbc>jdbc:jtds:sqlserver://10.228.75.75.corp:1433/FWKTDDIR3_0_7_DESA</urlJdbc>-->
+				<urlJdbc>jdbc:jtds:sqlserver://localhost:1433/FWKTDDIR3_0_7_DESA</urlJdbc>
+				<usernameJdbc>FWKTDDIR3_0_7_DESA</usernameJdbc>
+				<passwordJdbc>FWKTDDIR3_0_7_DESA</passwordJdbc>
+				<baseDirSql>${basedir}/src/main/sql/sqlserver</baseDirSql>
+				<autocommit>true</autocommit>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>resetBD</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>sql-maven-plugin</artifactId>
+						<version>${sql-maven-plugin.version}</version>
+
+						<dependencies>
+							<dependency>
+								<groupId>${dependencyDriverGroupId}</groupId>
+								<artifactId>${dependencyDriverArtifactId}</artifactId>
+								<version>${dependencyDriverVersionId}</version>
+							</dependency>
+						</dependencies>
+
+						<configuration>
+							<driver>${driverJdbc}</driver>
+							<url>${urlJdbc}</url>
+							<username>${usernameJdbc}</username>
+							<password>${passwordJdbc}</password>
+							<!-- You can comment out username/password configurations and have
+								maven to look them up in your settings.xml using ${settingsKey} -->
+							<!--<settingsKey>sensibleKey</settingsKey> --><!--all executions are ignored if -Dmaven.test.skip=true <skip>${maven.test.skip}</skip> -->
+							<printResultSet>true</printResultSet>
+						</configuration>
+
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<id>create-schema</id>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<autocommit>${autocommit}</autocommit>
+									<onError>continue</onError>
+									<printResultSet>true</printResultSet>
+									<srcFiles>
+										<srcFile>${baseDirSql}/fwktd-dir3-drop.sql</srcFile>
+										<srcFile>${baseDirSql}/fwktd-dir3-create.sql</srcFile>
+										<srcFile>${baseDirSql}/fwktd-dir3-insert.sql</srcFile>
+									</srcFiles>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>createBD</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>sql-maven-plugin</artifactId>
+						<version>${sql-maven-plugin.version}</version>
+
+						<dependencies>
+							<!-- specify the dependent jdbc driver here -->
+							<dependency>
+								<groupId>${dependencyDriverGroupId}</groupId>
+								<artifactId>${dependencyDriverArtifactId}</artifactId>
+								<version>${dependencyDriverVersionId}</version>
+							</dependency>
+						</dependencies>
+
+						<configuration>
+							<driver>${driverJdbc}</driver>
+							<url>${urlJdbc}</url>
+							<username>${usernameJdbc}</username>
+							<password>${passwordJdbc}</password>
+							<!-- You can comment out username/password configurations and have
+								maven to look them up in your settings.xml using ${settingsKey} -->
+							<!--<settingsKey>sensibleKey</settingsKey> --><!--all executions are ignored if -Dmaven.test.skip=true <skip>${maven.test.skip}</skip> -->
+							<printResultSet>true</printResultSet>
+						</configuration>
+
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<id>create-schema</id>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<autocommit>${autocommit}</autocommit>
+									<onError>abort</onError>
+									<printResultSet>true</printResultSet>
+									<srcFiles>
+										<srcFile>${baseDirSql}/fwktd-dir3-create.sql</srcFile>
+										<srcFile>${baseDirSql}/fwktd-dir3-insert.sql</srcFile>
+									</srcFiles>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>dropBD</id>
+			<build>
+				<plugins>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>sql-maven-plugin</artifactId>
+						<version>${sql-maven-plugin.version}</version>
+
+						<dependencies>
+							<!-- specify the dependent jdbc driver here -->
+							<dependency>
+								<groupId>${dependencyDriverGroupId}</groupId>
+								<artifactId>${dependencyDriverArtifactId}</artifactId>
+								<version>${dependencyDriverVersionId}</version>
+							</dependency>
+						</dependencies>
+
+						<configuration>
+							<driver>${driverJdbc}</driver>
+							<url>${urlJdbc}</url>
+							<username>${usernameJdbc}</username>
+							<password>${passwordJdbc}</password>
+							<!-- You can comment out username/password configurations and have
+								maven to look them up in your settings.xml using ${settingsKey} -->
+							<!--<settingsKey>sensibleKey</settingsKey> --><!--all executions are ignored if -Dmaven.test.skip=true <skip>${maven.test.skip}</skip> -->
+							<printResultSet>true</printResultSet>
+						</configuration>
+
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<id>create-schema</id>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<autocommit>${autocommit}</autocommit>
+									<onError>abort</onError>
+									<printResultSet>true</printResultSet>
+									<srcFiles>
+										<srcFile>${baseDirSql}/fwktd-dir3-drop.sql</srcFile>
+									</srcFiles>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

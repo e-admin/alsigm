@@ -1,0 +1,205 @@
+table.menu_level0 {
+	font-family: Verdana, Helvetica, Arial, Tahoma;		
+	font-size: 11px;
+	font-weight: bold;
+	background-color: #FFFFFF;
+	color: #616EAA;
+}
+
+td.menu_level0 {
+	color: #616EAA;
+	padding: 4 10 4 10;
+	background-color: #FFFFFF;
+}
+a.menu_level0 {
+	background-color: #FFFFFF;
+	border-color: #616EAA;
+	border-width: 1px;
+	border-style: solid;
+	color: #616EAA;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	padding:  2 10 2 10;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu_level0:hover {
+	background-color: #D7EDFA;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	color: #616EAA;
+	text-decoration: none;
+}
+table.menu_level1 {
+	background-color: #FFFFFF;
+	color: #616EAA;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	border-color: #616EAA;
+	border-width: 1px;
+	border-style: solid;/*outset*/
+	padding: 0;
+}
+td.menu_level1 {
+	color: #616EAA;
+	text-align: left;
+	padding: 2 10 2 10;
+}
+a.menu_level1 {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #616EAA;
+	padding: 2 10 2 10;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu_level1:hover {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #616EAA;
+	background-color: #D7EDFA;
+	text-decoration: none;
+}
+
+/* ejemplo de otro estilo para el menu de nivel 0 */
+table.menu0 {
+	background-color: #FFFFFF;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-weight: bold;	
+	font-size: 12px;
+}
+
+td.menu0 {
+	padding: 2 6 2 6;
+	border-color: #D3D5DD;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #FFFFFF;
+	width: 120px;
+}
+a.menu0 {
+	padding: 2 6 2 6;
+	color: #636DAD;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu0:hover {
+	color: #636DAD;
+	text-decoration: none;
+	padding: 2 6 2 6;
+	background-color: #D7EDFA;
+	
+}
+
+li.menu_item a:hover {
+	color: #636DAD;
+	text-decoration: none;
+	padding: 0px;
+	background-color: #D7EDFA;
+	
+}
+table.menu1 {
+	background-color: #FFFFFF;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #636DAD;
+	padding: 0;
+	margin:0;
+}
+td.menu1 {
+	color: #636DAD;
+	text-align: left;
+	padding: 2 6 2 6;
+	border-color: #D3D5DD; /*636DAD*/;
+	border-width: 1px;
+	border-style: solid; /*outset*/
+}
+a.menu1 {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #636DAD;
+	padding: 2 6 2 6;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu1:hover {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #636DAD;
+	text-decoration: none;
+	padding: 2 6 2 6;
+	background-color: #D7EDFA;
+	
+}
+
+/* ejemplo de otro estilo para el menu de nivel 0 
+table.menu0 {
+	background-color: #FFFFFF;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-weight: bold;	
+	font-size: 12px;
+}
+
+td.menu0 {
+	padding: 2 12 2 12;
+	border-bottom-color: #636DAD; //#5BA2E4 #2A4B69 #2A4B69 #5BA2E4;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	background-color: #FFFFFF;
+	width: 80px;
+}
+a.menu0 {
+	padding: 2 12 2 12;
+	color: #636DAD;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu0:hover {
+	color: #636DAD;
+	text-decoration: none;
+	padding: 2 12 2 12;
+	background-color: #D7EDFA;
+	
+}
+table.menu1 {
+	background-color: #FFFFFF;
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #636DAD;
+	border-color: #636DAD;
+	border-width: 1px;
+	border-style: solid;//outset
+	padding: 0;
+}
+td.menu1 {
+	color: #636DAD;
+	text-align: left;
+	padding: 2 12 2 12;
+}
+a.menu1 {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #636DAD;
+	padding: 2 12 2 12;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu1:hover {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-size: 11px;
+	text-align: left;
+	color: #636DAD;
+	text-decoration: none;
+	padding: 2 12 2 12;
+	background-color: #D7EDFA;
+	
+}
+*/

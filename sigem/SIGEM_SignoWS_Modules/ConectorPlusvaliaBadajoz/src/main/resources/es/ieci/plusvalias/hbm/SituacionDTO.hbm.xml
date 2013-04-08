@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jun-2010 12:15:53 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="es.ieci.plusvalias.domain.SituacionDTO" table="PLUSITUACION" >
+        <id name="numero" type="java.lang.Integer">
+            <column name="NUMSITUACION" precision="5" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="anyoejercicio" type="java.lang.Integer">
+            <column name="ANYEJERCICIO" precision="5" scale="0" />
+        </property>
+        <property name="texto" type="string">
+            <column name="TEXSITUACION" length="50" />
+        </property>
+        <property name="poneoperador" type="string">
+            <column name="PONEOPERADOR" length="1" />
+        </property>
+        <property name="admitepago" type="string">
+            <column name="ADMITEPAGO" length="1" />
+        </property>
+        <property name="admitenotificacion" type="string">
+            <column name="ADMITENOTIFICACION" length="1" />
+        </property>
+        <property name="admitesituacionf" type="string">
+            <column name="ADMITESITUACIONF" length="1" />
+        </property>
+        <property name="ponetesoreria" type="string">
+            <column name="PONETESORERIA" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

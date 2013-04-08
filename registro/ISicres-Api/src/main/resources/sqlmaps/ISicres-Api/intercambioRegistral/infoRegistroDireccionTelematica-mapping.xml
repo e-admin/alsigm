@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="InfoRegistroDireccionTelematicaInteresadoVO">
+
+<typeAlias alias="infoRegistroDireccionTelematicaInteresadoVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroDireccionTelematicaInteresadoVO" />
+		
+	<resultMap 
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroDireccionTelematicaInteresadoVO"
+		id="infoRegistroDireccionTelematicaInteresadoResultMap">
+		<result property="id" column="id" />
+		<result property="direccion" column="address" />
+		<result property="tipo" column="type" />
+	</resultMap>
+</sqlMap>

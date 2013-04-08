@@ -1,0 +1,82 @@
+<assembly>
+	<id>documentacion</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<files>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Adaptacion-y-Configuracion-General-book.pdf</source>
+			<destName>${product.name}_${product.version}_Adaptacion_y_Configuracion_General.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Arquitectura-Tecnologica-book.pdf</source>
+			<destName>${product.name}_${product.version}_Arquitectura_Tecnologica.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Disenio-Modelo-Fisico-Datos-book.pdf</source>
+			<destName>${product.name}_${product.version}_Disenio_Modelo_Fisico_Datos.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Guia_Actualizacion_Version-book.pdf</source>
+			<destName>${product.name}_${product.version}_Guia_Actualizacion_Version.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Integracion-de-Sistemas-Externos-XML-book.pdf</source>
+			<destName>${product.name}_${product.version}_Integracion_de_Sistemas_Externos_XML.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Manual-de-Instalacion-book.pdf</source>
+			<destName>${product.name}_${product.version}_Manual_de_Instalacion.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Notas_Version-book.pdf</source>
+			<destName>${product.name}_${product.version}_Notas_de_Version.pdf</destName>
+		</file>
+
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Permisos-book.pdf</source>
+			<destName>${product.name}_${product.version}_Permisos.pdf</destName>
+		</file>
+
+
+
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Manual-Administracion-book.pdf</source>
+			<destName>manuales_usuario/${product.name}_${product.version}_Manual_de_Usuario_Administracion.pdf</destName>
+		</file>
+
+
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Manual-Descripcion-book.pdf</source>
+			<destName>manuales_usuario/${product.name}_${product.version}_Manual_de_Usuario_Descripcion.pdf</destName>
+		</file>
+
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Manual-Digitalizacion-book.pdf</source>
+			<destName>manuales_usuario/${product.name}_${product.version}_Manual_de_Usuario_Digitalizacion.pdf</destName>
+		</file>
+
+
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Manual-Fondos-Documentales-book.pdf</source>
+			<destName>manuales_usuario/${product.name}_${product.version}_Manual_de_Usuario_Fondos_Documentales.pdf</destName>
+		</file>
+
+
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Manual-Prestamos-Consultas-book.pdf</source>
+			<destName>manuales_usuario/${product.name}_${product.version}_Manual_de_Usuario_Prestamos_Consultas.pdf</destName>
+		</file>
+
+
+		<file>
+			<source>${basedir}/target/docbkx/pdf/entregables/Manual-Transferencias-book.pdf</source>
+			<destName>manuales_usuario/${product.name}_${product.version}_Manual_de_Usuario_Transferencias.pdf</destName>
+		</file>
+
+
+	</files>
+</assembly>

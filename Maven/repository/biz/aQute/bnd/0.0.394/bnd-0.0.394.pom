@@ -1,0 +1,22 @@
+<project xmlns='http://maven.apache.org/POM/4.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd'>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>biz.aQute</groupId>
+  <artifactId>bnd</artifactId>
+  <version>0.0.394</version>
+  <description>
+    A utility and plugin to wrap, build, or print bundles
+  </description>
+  <name>aQute Bundle Tool</name>
+  <url>http://www.aQute.biz/Code/Bnd</url>
+  <organization>
+    <name>aQute SARL</name>
+    <url>http://www.aQute.biz</url>
+  </organization>
+  <licenses>
+    <license>
+    <name>All files contained in this JAR are licensed under the Apache 2.0 license, unless noted differently in their source (see swing2swt).</name>
+    <url>http://www.opensource.org/licenses/apache2.0.php</url>
+    <distribution>repo</distribution>
+    </license>
+  </licenses>
+</project>

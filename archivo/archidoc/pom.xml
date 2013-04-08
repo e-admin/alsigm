@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>es.ieci.tecdoc.archidoc</groupId>
+		<artifactId>archidoc_main</artifactId>
+		<version>5.0</version>
+	</parent>
+
+	<artifactId>archidoc</artifactId>
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>war</packaging>
+	<name>Archidoc: Código del proyecto</name>
+	<description>Modulo con el código de todo el proyecto Archidoc</description>
+
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	<properties>
+		<warName>Archivo</warName>
+		<name>producto</name>
+
+		<version>Version Archivo: ${project.version}</version>
+		<version_short>${project.version}</version_short>
+		<version_bd>Version BD: ${project.version}</version_bd>
+	</properties>
+	<build>
+		<finalName>${warName}</finalName>
+		<filters>
+			<filter>${basedir}/../archidoc_filters/${filter_name}.properties</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<!-- resource>
+				<directory>${basedir}/../archidoc_specific_resources/archidoc_specific_resources_${name}/application</directory>
+				<filtering>true</filtering>
+				<targetPath>../resources-specific</targetPath>
+			</resource-->
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>false</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+					<wtpmanifest>true</wtpmanifest>
+                    <wtpapplicationxml>true</wtpapplicationxml>
+                    <wtpversion>2.0</wtpversion>
+                    <manifest>${basedir}/src/main/resources/META-INF/MANIFEST.MF</manifest>
+				</configuration>
+			</plugin>
+
+
+			<!-- plugin>
+				<groupId>es.ieci.maven.plugins</groupId>
+				<artifactId>maven-generate-resources-archivo-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>modified-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+			             	<pathFicherosRecursos>
+			             		<param>${basedir}/target/classes/resources/ApplicationResources.properties</param>
+			             		<param>${basedir}/target/classes/resources/ApplicationResources_gl.properties</param>
+			             		<param>${basedir}/target/classes/resources/ApplicationResources_gl_ES.properties</param>
+			             		<param>${basedir}/target/classes/resources/ApplicationResources_ca.properties</param>
+			             		<param>${basedir}/target/classes/resources/ApplicationResources_ca_ES.properties</param>
+			             		<param>${basedir}/target/classes/resources/ApplicationResources_eu.properties</param>
+			             		<param>${basedir}/target/classes/resources/ApplicationResources_eu_ES.properties</param>
+			             	</pathFicherosRecursos>
+			             	<pathFicherosEspecificos>
+			             		<param>${basedir}/target/resources-specific/ApplicationResources.properties</param>
+			             		<param>${basedir}/target/resources-specific/ApplicationResources_gl.properties</param>
+			             		<param>${basedir}/target/resources-specific/ApplicationResources_gl_ES.properties</param>
+			             		<param>${basedir}/target/resources-specific/ApplicationResources_ca.properties</param>
+			             		<param>${basedir}/target/resources-specific/ApplicationResources_ca_ES.properties</param>
+			             		<param>${basedir}/target/resources-specific/ApplicationResources_eu.properties</param>
+			             		<param>${basedir}/target/resources-specific/ApplicationResources_eu_ES.properties</param>
+			             	</pathFicherosEspecificos>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin-->
+			<plugin>
+                <artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<filters>
+						<filter>${basedir}/../archidoc_filters/${filter_name}.properties</filter>
+					</filters>
+					<webResources>
+						<webResource>
+							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
+							<includes>
+								<include>web.xml</include>
+								<include>server-config.wsdd</include>
+							</includes>
+							<targetPath>WEB-INF</targetPath>
+							<filtering>true</filtering>
+						</webResource>
+					</webResources>
+				</configuration>
+            </plugin>
+		</plugins>
+
+
+	</build>
+	<profiles>
+		<profile>
+			<id>producto</id>
+			<properties>
+				<name>producto</name>
+				<filter_name>producto</filter_name>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>producto</name>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>navarra</id>
+			<properties>
+				<name>navarra</name>
+				<filter_name>navarra</filter_name>
+			</properties>
+			<activation>
+				<property>
+					<name>navarra</name>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>justicia</id>
+			<properties>
+				<name>justicia</name>
+				<filter_name>justicia</filter_name>
+			</properties>
+			<activation>
+				<property>
+					<name>justicia</name>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>cabildogc</id>
+			<properties>
+				<name>cabildogc</name>
+				<filter_name>cabildogc</filter_name>
+			</properties>
+			<activation>
+				<property>
+					<name>cabildogc</name>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>speria</id>
+			<properties>
+				<name>speria</name>
+				<filter_name>speria</filter_name>
+			</properties>
+			<activation>
+				<property>
+					<name>speria</name>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>speria_local</id>
+			<properties>
+				<name>speria</name>
+				<filter_name>speria_local</filter_name>
+			</properties>
+			<activation>
+				<property>
+					<name>speria_local</name>
+				</property>
+			</activation>
+		</profile>
+
+		<profile>
+			<id>sigem</id>
+			<properties>
+				<name>sigem</name>
+				<filter_name>sigem</filter_name>
+			</properties>
+			<activation>
+				<property>
+					<name>sigem</name>
+				</property>
+			</activation>
+		</profile>
+
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>es.ieci.tecdoc.archidoc</groupId>
+			<artifactId>archidoc_ispac_connector_jar</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.archidoc</groupId>
+					<artifactId>archidoc_jar</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.invesdoc</groupId>
+					<artifactId>invesdoc-admin</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.invesdoc</groupId>
+					<artifactId>invesdoc-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.invesdoc</groupId>
+					<artifactId>invesdoc-stdbizobj</artifactId>
+				</exclusion>
+
+				<exclusion>
+					<artifactId>ispac-invesicres</artifactId>
+					<groupId>es.ieci.tecdoc.iflow</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.archidoc</groupId>
+			<artifactId>archidoc_jar</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>junit</artifactId>
+					<groupId>junit</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- Test -->
+
+		<dependency>
+			<groupId>org.apache.xbean</groupId>
+			<artifactId>xbean-spring</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd</groupId>
+			<artifactId>fwktd-test</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>junit</artifactId>
+					<groupId>junit</groupId>
+				</exclusion>
+			</exclusions>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<artifactId>junit</artifactId>
+			<groupId>junit</groupId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+</project>

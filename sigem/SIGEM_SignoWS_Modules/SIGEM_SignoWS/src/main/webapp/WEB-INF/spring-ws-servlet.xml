@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:keystore.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>errors</value>
+				<value>keystore</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="org.notariado.ancert.xml.plusvalias.liquidacion" />
+	</bean>
+
+	<!-- Endpoint del servicio -->
+	<bean id="calculoLiquidacionEndpoint" class="es.ieci.plusvalias.endpoint.CalculoLiquidacionEndpoint">
+		<property name="service" ref="calculoLiquidacionService" />
+		<property name="marshaller" ref="jaxb2Marshaller" />
+		<property name="unmarshaller" ref="jaxb2Marshaller" />
+	</bean>
+
+	<bean id="pagoLiquidacionEndpoint" class="es.ieci.plusvalias.endpoint.PagoLiquidacionEndpoint">
+		<property name="service" ref="pagoLiquidacionService" />
+		<property name="marshaller" ref="jaxb2Marshaller" />
+		<property name="unmarshaller" ref="jaxb2Marshaller" />
+	</bean>
+
+	<bean class="es.ieci.plusvalias.endpoint.mapping.PlusvaliaEndpointMapping">
+		<property name="mappings">
+			<props>
+				<prop key="http://ancert.notariado.org/XML/Plusvalias/Liquidacion/ns1:CALCULO_LIQUIDACION">
+					calculoLiquidacionEndpoint
+				</prop>
+				<prop key="http://ancert.notariado.org/XML/Plusvalias/Liquidacion/ns1:PAGO_LIQUIDACION">
+					pagoLiquidacionEndpoint
+				</prop>
+			</props>
+		</property>
+
+		<property name="interceptors">
+			<list>
+				<ref bean="securityInterceptor" />
+				<ref bean="loggingInterceptor" />
+				<ref bean="validatingInterceptor"/>
+				<bean class="es.ieci.plusvalias.ws.MultientityInterceptor"/>
+				<bean class="es.ieci.plusvalias.ws.IpValidatorInterceptor"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="IIVTNU-WS-Ayto" class="org.springframework.xml.xsd.SimpleXsdSchema"> 
+    	<property name="xsd" value="/WEB-INF/IIVTNU-WS-Ayto.xsd" /> 
+	</bean>
+
+	<bean id="LiquidacionPlusvalias" class="org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition">
+		<constructor-arg value="/WEB-INF/plusvalias.wsdl" />
+	</bean>
+
+	<bean id="exceptionResolver" class="es.ieci.plusvalias.exception.PlusvaliaExceptionResolver">
+	</bean>
+
+	<bean id="loggingInterceptor" name="loggingInterceptor"	class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor">
+		<property name="logRequest" value="false" />
+		<property name="logResponse" value="false" />
+		<property name="logFault" value="false" />
+	</bean>
+
+	
+	<bean id="securityInterceptor"	class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">		
+		  
+		<!--  property name="validationActions" value="Timestamp Signature"/ -->
+		<property name="enableSignatureConfirmation" value="true"/>
+		<property name="validationSignatureCrypto">
+			<bean class="org.springframework.ws.soap.security.wss4j.support.CryptoFactoryBean">
+				<property name="keyStorePassword">
+					<value>${keystore.validate.password}</value>
+				</property>
+				<property name="keyStoreLocation">
+					<value>${keystore.validate.location}</value>
+				</property>
+				<property name="keyStoreType">
+					<value>${keystore.validate.type}</value>
+				</property>
+				<property name="defaultX509Alias">
+					<value>${keystore.validate.alias}</value>
+				</property>
+			</bean>
+		</property>		
+		
+		<property name="securementActions" value="Timestamp Signature" />
+		<property name="securementUsername" value="${keystore.secure.alias}" />
+		<property name="securementPassword" value="${keystore.secure.password}" />
+		<property name="securementSignatureKeyIdentifier" value="DirectReference"/>
+		<property name="securementSignatureCrypto">
+			<bean class="org.springframework.ws.soap.security.wss4j.support.CryptoFactoryBean">
+				<property name="keyStorePassword">
+					<value>${keystore.secure.password}</value>
+				</property>
+				<property name="keyStoreLocation">
+					<value>${keystore.secure.location}</value>
+				</property>
+				<property name="keyStoreType">
+					<value>${keystore.secure.type}</value>
+				</property>
+				<property name="defaultX509Alias">
+					<value>${keystore.secure.alias}</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="validatingInterceptor" class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
+		<property name="schema" value="/WEB-INF/IIVTNU-WS-Ayto.xsd" />
+		<property name="validateRequest" value="false" />
+		<property name="validateResponse" value="false" />
+	</bean>
+	
+	<bean id="springContextGetter" class="es.ieci.plusvalias.config.SpringWebContext"/>
+</beans>

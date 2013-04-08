@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt 
+				type="BeanPropertySimpleFmt" property='NOMBRE' readOnly='false'
+				titleKey='formatter.search.nombre' 
+				fieldType='LINK' 
+				fieldLink='ID' 
+				width='25%' 
+	/>
+	<propertyfmt 
+				type="BeanPropertySimpleFmt" 
+				property='APELLIDOS' 
+				readOnly='false'
+				titleKey='formatter.search.apellidos' 
+				fieldType='LIST' 
+				width='50%'
+	/>	
+	<propertyfmt 
+				type="BeanPropertySimpleFmt" 
+				property='NDOC' 
+				readOnly='false'
+				titleKey='formatter.search.numDocumento' 
+				fieldType='LIST' 
+				width='25%'
+	/>
+</beanformatter>

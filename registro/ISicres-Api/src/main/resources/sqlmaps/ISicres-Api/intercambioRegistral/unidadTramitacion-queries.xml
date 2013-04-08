@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="UnidadTramitacionIntercambioRegistralVO">
+
+	<select id="getUnidadTramitacionByIdOrgs" resultMap="unidadTramitacionIntercambioRegistralResultMap" parameterClass="java.lang.Integer">
+		select * from scr_tramunit where id_orgs=#value#
+	</select>
+	<select id="getUnidadTramitacionByCodeScrOrgs" resultMap="unidadTramitacionIntercambioRegistralResultMap" parameterClass="java.lang.String">
+		select tramunit.id, tramunit.id_orgs, tramunit.code_entity, tramunit.name_entity,
+		 tramunit.code_tramunit, tramunit.name_tramunit
+		 from scr_tramunit tramunit, scr_orgs orgs where orgs.code=#value# and tramunit.id_orgs=orgs.id
+	</select>
+
+</sqlMap>

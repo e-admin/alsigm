@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions targetNamespace="http://schemas.microsoft.com/sharepoint/soap/dws/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://schemas.microsoft.com/sharepoint/soap/dws/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/dws/">
+      <s:element name="CreateDws">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="name" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="users" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="title" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="documents" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDwsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="CreateDwsResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDws">
+        <s:complexType/>
+      </s:element>
+      <s:element name="DeleteDwsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="DeleteDwsResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDwsMetaData">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="document" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="id" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="minimal" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDwsMetaDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="GetDwsMetaDataResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDwsData">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="document" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="lastUpdate" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDwsDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="GetDwsDataResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDwsData">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="updates" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="meetingInstance" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDwsDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="UpdateDwsDataResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveDwsUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="id" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveDwsUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="RemoveDwsUserResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenameDws">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="title" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenameDwsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="RenameDwsResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindDwsDoc">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="id" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindDwsDocResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="FindDwsDocResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CanCreateDwsUrl">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="url" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CanCreateDwsUrlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="CanCreateDwsUrlResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="url" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="CreateFolderResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="url" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="DeleteFolderResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateDwsSoapIn">
+    <wsdl:part element="tns:CreateDws" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="CreateDwsSoapOut">
+    <wsdl:part element="tns:CreateDwsResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteDwsSoapIn">
+    <wsdl:part element="tns:DeleteDws" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteDwsSoapOut">
+    <wsdl:part element="tns:DeleteDwsResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetDwsMetaDataSoapIn">
+    <wsdl:part element="tns:GetDwsMetaData" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetDwsMetaDataSoapOut">
+    <wsdl:part element="tns:GetDwsMetaDataResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetDwsDataSoapIn">
+    <wsdl:part element="tns:GetDwsData" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetDwsDataSoapOut">
+    <wsdl:part element="tns:GetDwsDataResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateDwsDataSoapIn">
+    <wsdl:part element="tns:UpdateDwsData" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateDwsDataSoapOut">
+    <wsdl:part element="tns:UpdateDwsDataResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="RemoveDwsUserSoapIn">
+    <wsdl:part element="tns:RemoveDwsUser" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="RemoveDwsUserSoapOut">
+    <wsdl:part element="tns:RemoveDwsUserResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="RenameDwsSoapIn">
+    <wsdl:part element="tns:RenameDws" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="RenameDwsSoapOut">
+    <wsdl:part element="tns:RenameDwsResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="FindDwsDocSoapIn">
+    <wsdl:part element="tns:FindDwsDoc" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="FindDwsDocSoapOut">
+    <wsdl:part element="tns:FindDwsDocResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="CanCreateDwsUrlSoapIn">
+    <wsdl:part element="tns:CanCreateDwsUrl" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="CanCreateDwsUrlSoapOut">
+    <wsdl:part element="tns:CanCreateDwsUrlResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="CreateFolderSoapIn">
+    <wsdl:part element="tns:CreateFolder" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="CreateFolderSoapOut">
+    <wsdl:part element="tns:CreateFolderResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderSoapIn">
+    <wsdl:part element="tns:DeleteFolder" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderSoapOut">
+    <wsdl:part element="tns:DeleteFolderResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="DwsSoap">
+    <wsdl:operation name="CreateDws">
+      <wsdl:input message="tns:CreateDwsSoapIn"/>
+      <wsdl:output message="tns:CreateDwsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDws">
+      <wsdl:input message="tns:DeleteDwsSoapIn"/>
+      <wsdl:output message="tns:DeleteDwsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetDwsMetaData">
+      <wsdl:input message="tns:GetDwsMetaDataSoapIn"/>
+      <wsdl:output message="tns:GetDwsMetaDataSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetDwsData">
+      <wsdl:input message="tns:GetDwsDataSoapIn"/>
+      <wsdl:output message="tns:GetDwsDataSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDwsData">
+      <wsdl:input message="tns:UpdateDwsDataSoapIn"/>
+      <wsdl:output message="tns:UpdateDwsDataSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDwsUser">
+      <wsdl:input message="tns:RemoveDwsUserSoapIn"/>
+      <wsdl:output message="tns:RemoveDwsUserSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="RenameDws">
+      <wsdl:input message="tns:RenameDwsSoapIn"/>
+      <wsdl:output message="tns:RenameDwsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="FindDwsDoc">
+      <wsdl:input message="tns:FindDwsDocSoapIn"/>
+      <wsdl:output message="tns:FindDwsDocSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="CanCreateDwsUrl">
+      <wsdl:input message="tns:CanCreateDwsUrlSoapIn"/>
+      <wsdl:output message="tns:CanCreateDwsUrlSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFolder">
+      <wsdl:input message="tns:CreateFolderSoapIn"/>
+      <wsdl:output message="tns:CreateFolderSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolder">
+      <wsdl:input message="tns:DeleteFolderSoapIn"/>
+      <wsdl:output message="tns:DeleteFolderSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DwsSoap" type="tns:DwsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreateDws">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/CreateDws" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDws">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/DeleteDws" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDwsMetaData">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/GetDwsMetaData" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDwsData">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/GetDwsData" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDwsData">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/UpdateDwsData" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDwsUser">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/RemoveDwsUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameDws">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/RenameDws" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindDwsDoc">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/FindDwsDoc" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanCreateDwsUrl">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/CanCreateDwsUrl" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFolder">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/CreateFolder" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolder">
+      <soap:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/DeleteFolder" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DwsSoap12" type="tns:DwsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreateDws">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/CreateDws" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDws">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/DeleteDws" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDwsMetaData">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/GetDwsMetaData" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDwsData">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/GetDwsData" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDwsData">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/UpdateDwsData" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDwsUser">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/RemoveDwsUser" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameDws">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/RenameDws" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindDwsDoc">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/FindDwsDoc" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanCreateDwsUrl">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/CanCreateDwsUrl" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFolder">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/CreateFolder" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolder">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/dws/DeleteFolder" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Dws">
+    <wsdl:port binding="tns:DwsSoap" name="DwsSoap">
+      <soap:address location="http://localhost:2222/_vti_bin/dws.asmx"/>
+    </wsdl:port>
+    <wsdl:port binding="tns:DwsSoap12" name="DwsSoap12">
+      <soap12:address location="http://localhost:2222/_vti_bin/dws.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

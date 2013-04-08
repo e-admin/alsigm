@@ -1,0 +1,803 @@
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="css/utils.js"></script>
+	<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/genmsg.js"></script>
+	<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/global.js"></script>
+	<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/terceros.js"></script>
+	<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/vldnewinter.js"></script>
+	<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/vlddirinter.js"></script>
+	<script language="javascript">														
+		document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+	</script>
+	<link REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+	<link REL="stylesheet" TYPE="text/css" HREF="./css/terceros.css">
+	<link REL="stylesheet" TYPE="text/css" HREF="./css/table.css">	
+	<link REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+	<title>&nbsp;</title>
+
+	<script language="javascript">
+		var strPersonId = (top.ParamValue(document.location.search,"PersonId") == "") ? 0 : top.ParamValue(document.location.search,"PersonId");
+		var strPersonType = (top.ParamValue(document.location.search,"PersonType") == "") ? 0 : top.ParamValue(document.location.search,"PersonType");
+ 		var caseSensitive = top.ParamValue(document.location.search,"caseSensitive");
+     
+		top.Idioma = top.ParamValue(document.location.search,"Idioma");
+		top.numIdioma = top.ParamValue(document.location.search,"numIdioma");
+		top.SessionPId = top.ParamValue(document.location.search,"SessionPId");
+		top.g_URL = top.getURL();
+		window.returnValue = "";
+
+		if (strPersonId == "0"){  
+			if (strPersonType == "1"){   
+				document.title = top.GetIdsLan("IDS_TIT_NEWPFIS"); 
+			}
+			else {
+				document.title = top.GetIdsLan("IDS_TIT_NEWPJUR");
+			}
+		}
+		else {
+			document.title = top.GetIdsLan("IDS_TIT_MOD_INTER");
+		}
+
+      
+		function OnLoad()
+		{
+			document.getElementById("fisica").style.display = "none";
+			document.getElementById("juridica").style.display = "none";
+					
+			if (caseSensitive == 'CS'){
+				document.getElementById("oPerApe1").style.textTransform = "uppercase";
+				document.getElementById("oPerApe2").style.textTransform = "uppercase";
+				document.getElementById("oPerNombre").style.textTransform = "uppercase";
+				document.getElementById("oRazon").style.textTransform = "uppercase";
+				document.getElementById("oDocumento").style.textTransform = "uppercase";
+				document.getElementById("oDocumentoJur").style.textTransform = "uppercase";
+				document.getElementById("oTxtDir").style.textTransform = "uppercase";
+				document.getElementById("oTxtCod").style.textTransform = "uppercase";
+			}
+			
+			if (top.GetDlgParam(0) != ""){
+				if (strPersonType == "1"){ 
+					document.getElementById("oDocumento").value = top.GetDlgParam(0);
+					HabilitarAceptar();
+				}else{
+					document.getElementById("oDocumentoJur").value = top.GetDlgParam(0);
+					HabilitarAceptar();
+				}
+			}
+			if (top.GetDlgParam(1) != ""){
+				document.getElementById("oPerApe1").value = top.GetDlgParam(1);
+				HabilitarAceptar();
+			}
+			if (top.GetDlgParam(2) != ""){
+				document.getElementById("oPerApe2").value = top.GetDlgParam(2);
+				HabilitarAceptar();
+			}
+			if (top.GetDlgParam(3) != ""){
+				document.getElementById("oPerNombre").value = top.GetDlgParam(3);
+				HabilitarAceptar();
+			}
+			if (top.GetDlgParam(4) != ""){
+				document.getElementById("oRazon").value = top.GetDlgParam(4);
+				HabilitarAceptar();
+			}
+			if (strPersonId == "0"){  
+				if (strPersonType == "1"){   
+					document.getElementById("fisica").style.display = "block";
+					document.getElementById("juridica").style.display = "none";
+					document.getElementById("oDocumento").focus();
+				}
+				else {
+					document.getElementById("juridica").style.display = "block";
+					document.getElementById("fisica").style.display = "none";
+					document.getElementById("oDocumentoJur").focus();
+				}
+			}
+
+			with (document.getElementById("tbDoms")){
+				var newRow = insertRow(-1);
+				var newCell = new Array;
+	
+				newRow.id = "null";
+				newRow.className="Style5";
+
+				newCell[0] = newRow.insertCell(-1);
+				newCell[1] = newRow.insertCell(-1);
+				newCell[2] = newRow.insertCell(-1);
+				newCell[3] = newRow.insertCell(-1);
+				newCell[4] = newRow.insertCell(-1);
+				newCell[5] = newRow.insertCell(-1);
+			}
+
+			//SetTabSize();
+				
+			with (document.getElementById("tbDirs")){
+				var newRowTel = insertRow(-1);
+				var newCellTel = new Array;
+	
+				newRowTel.id = "null2";
+				newRowTel.className="Style5";
+
+				newCellTel[0] = newRowTel.insertCell(-1);
+				newCellTel[1] = newRowTel.insertCell(-1);
+				newCellTel[2] = newRowTel.insertCell(-1);
+				newCellTel[3] = newRowTel.insertCell(-1);
+			}
+
+			//SetTabSizeTel();
+			
+			top.XMLHTTPRequestGet(top.g_URL + "/vldtypeaddress.jsp?SessionPId=" + top.ParamValue(document.location.search,"SessionPId"), ResponseLoadTypeAddresses, false);
+			if (strPersonId != "0"){
+				top.XMLHTTPRequestGet(top.g_URL + "/getperson.jsp?SessionPId=" + top.ParamValue(document.location.search,"SessionPId") + "&PersonId=" + strPersonId, ResponseGetPerson, false);
+			}
+
+			top.XMLHTTPRequestGet(top.g_URL + "/vldtypedocs.jsp?SessionPId=" + top.ParamValue(document.location.search,"SessionPId") + "&PersonType=" + strPersonType, ResponseLoadTypeDocs, false);				
+			top.XMLHTTPRequestGet(top.g_URL + "/vldpoblacion.jsp?SessionPId=" + top.ParamValue(document.location.search,"SessionPId"), ResponseLoadProvinces, false);
+			
+			if (strPersonId != "0"){
+				top.XMLHTTPRequestGet(top.g_URL + "/getperson.jsp?SessionPId=" + top.ParamValue(document.location.search,"SessionPId") + "&PersonId=" + strPersonId, ResponseGetPersonDocumentType, false);	
+			}
+			
+		}
+		
+		function OnClose()
+		{
+			window.returnValue = "";
+			window.close();
+		}
+			
+		function ResponseLoadProvinces()
+		{
+			if (top.g_oXMLHTTPRequest.readyState != 4){
+				return;
+			}
+			
+			if (top.g_oXMLHTTPRequest.status != 200){
+				alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
+			return;
+			}
+
+			var XMLText = top.g_oXMLHTTPRequest.responseText;
+
+			if (XMLText.indexOf("alert(") != -1){	
+				evalAlert(XMLText);
+			}
+			else{
+				var XMLDoc = top.g_oXMLHTTPRequest.responseXML;
+				var datas = XMLDoc.documentElement.getElementsByTagName("Provincia");
+
+				if (datas != null){
+					for (var i = 0; i < datas.length; i++) {
+						var opt = document.createElement("OPTION");
+							
+						document.getElementById("oSelectProv").appendChild(opt);
+
+						opt.text = datas[i].getElementsByTagName("Nombre")[0].firstChild.data;
+						opt.value = datas[i].getElementsByTagName("Id")[0].firstChild.data;
+						opt.setAttribute("Code", datas[i].getElementsByTagName("Codigo")[0].firstChild.data);
+					}
+				}				
+			}
+		}
+		
+		function ResponseLoadTypeDocs()
+		{
+			if (top.g_oXMLHTTPRequest.readyState != 4){
+				return;
+			}
+			
+			if (top.g_oXMLHTTPRequest.status != 200){
+				alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
+			return;
+			}
+
+			var XMLText = top.g_oXMLHTTPRequest.responseText;
+
+			if (XMLText.indexOf("alert(") != -1){	
+				evalAlert(XMLText);
+			}
+			else{
+				var XMLDoc = top.g_oXMLHTTPRequest.responseXML;
+				var datas = XMLDoc.documentElement.getElementsByTagName("TipoDocumento");
+
+				if (datas != null){
+					
+					var first = true;
+					for (var i = 0; i < datas.length; i++) {
+						var opt = document.createElement("OPTION");
+							
+						if (strPersonType == 1) {
+							document.getElementById("oTipoDocu").appendChild(opt);
+						} else {
+							document.getElementById("oTipoDocuJur").appendChild(opt);
+						}
+
+						opt.text = datas[i].getElementsByTagName("Descripcion")[0].firstChild.data;
+						opt.value = datas[i].getElementsByTagName("Id")[0].firstChild.data;
+						if (first){
+							opt.selected = true;
+							first = false;
+						}
+						opt.setAttribute("Code", datas[i].getElementsByTagName("Codigo")[0].firstChild.data);
+						
+					}
+				}
+			}
+		}
+		
+		function ResponseLoadTypeAddresses()
+		{
+			if (top.g_oXMLHTTPRequest.readyState != 4){
+				return;
+			}
+			
+			if (top.g_oXMLHTTPRequest.status != 200){
+				alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
+			return;
+			}
+
+			var XMLText = top.g_oXMLHTTPRequest.responseText;
+
+			if (XMLText.indexOf("alert(") != -1){	
+				evalAlert(XMLText);
+			}
+			else{
+				var XMLDoc = top.g_oXMLHTTPRequest.responseXML;
+				var datas = XMLDoc.documentElement.getElementsByTagName("TipoDireccion");
+				
+				if (datas != null){
+					
+					for (var i = 0; i < datas.length; i++) {
+						var opt = document.createElement("OPTION");
+							
+						document.getElementById("oSelectDir").appendChild(opt);
+
+						opt.text = datas[i].getElementsByTagName("Descripcion")[0].firstChild.data;
+						opt.value = datas[i].getElementsByTagName("IdTel")[0].firstChild.data;
+						opt.setAttribute("Code", datas[i].getElementsByTagName("Codigo")[0].firstChild.data);
+						
+					}
+				}
+			}
+		}
+		
+		function ResponseGetPerson()
+		{			
+				if (top.g_oXMLHTTPRequest.readyState != 4){
+					return;
+				}
+				
+				if (top.g_oXMLHTTPRequest.status != 200){
+					alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
+				return;
+				}
+
+				var XMLText = top.g_oXMLHTTPRequest.responseText;
+
+				if (XMLText.indexOf("alert(") != -1){	
+					evalAlert(XMLText);
+				}
+				else{
+					var XMLDoc = top.g_oXMLHTTPRequest.responseXML;
+					var strTipoDoc = XMLDoc.documentElement.getElementsByTagName("TipoDoc")[0].firstChild.data;
+
+					strPersonType = XMLDoc.documentElement.getElementsByTagName("Tipo")[0].firstChild.data;
+					
+					if (strPersonType == "1"){
+						document.getElementById("fisica").style.display = "block";
+						document.getElementById("juridica").style.display = "none";
+						document.getElementById("encabezado_persona").innerHTML = top.GetIdsLan("IDS_DATOS_PFIS");
+						
+						if (XMLDoc.documentElement.getElementsByTagName("NIF")[0].firstChild != null){
+							document.getElementById("oDocumento").value = XMLDoc.documentElement.getElementsByTagName("NIF")[0].firstChild.data;
+						}
+						
+						if (XMLDoc.documentElement.getElementsByTagName("Apellido1")[0].firstChild != null){
+							document.getElementById("oPerApe1").value = XMLDoc.documentElement.getElementsByTagName("Apellido1")[0].firstChild.data;
+						}
+						
+						if (XMLDoc.documentElement.getElementsByTagName("Apellido2")[0].firstChild != null){
+							document.getElementById("oPerApe2").value = XMLDoc.documentElement.getElementsByTagName("Apellido2")[0].firstChild.data;
+						}
+						
+						if (XMLDoc.documentElement.getElementsByTagName("Nombre")[0].firstChild != null){
+							 document.getElementById("oPerNombre").value = XMLDoc.documentElement.getElementsByTagName("Nombre")[0].firstChild.data;
+						}
+
+						for (var i = 0; i < document.getElementById("oTipoDocu").options.length; i++){
+							if (document.getElementById("oTipoDocu").options[i].value == strTipoDoc){
+								document.getElementById("oTipoDocu").selectedIndex = i;
+								break;
+							}
+						}
+					}
+					else {
+						document.getElementById("juridica").style.display = "block";
+						document.getElementById("fisica").style.display = "none";
+						document.getElementById("encabezado_persona").innerHTML = top.GetIdsLan("IDS_DATOS_PJUR");
+						
+						if (XMLDoc.documentElement.getElementsByTagName("NIF")[0].firstChild != null) {
+							document.getElementById("oDocumentoJur").value = XMLDoc.documentElement.getElementsByTagName("NIF")[0].firstChild.data;
+						}
+						
+						if (XMLDoc.documentElement.getElementsByTagName("Nombre")[0].firstChild != null) {
+							document.getElementById("oRazon").value = XMLDoc.documentElement.getElementsByTagName("Nombre")[0].firstChild.data;
+						}
+
+						for (var i = 0; i < document.getElementById("oTipoDocuJur").options.length; i++){
+							if (document.getElementById("oTipoDocuJur").options[i].value == strTipoDoc){
+								document.getElementById("oTipoDocuJur").selectedIndex = i;
+								break;
+							}
+						}
+					}
+
+					var domDatas = XMLDoc.documentElement.getElementsByTagName("Domicilio");
+
+					for (var i = 0; i < domDatas.length; i++){
+						insertRowDom(domDatas[i].getElementsByTagName("Id")[0].firstChild.data, 
+							domDatas[i].getElementsByTagName("Direccion")[0].firstChild.data,
+							domDatas[i].getElementsByTagName("CodPostal")[0].firstChild.data,
+							domDatas[i].getElementsByTagName("Poblacion")[0].firstChild.data,
+							domDatas[i].getElementsByTagName("Provincia")[0].firstChild.data,
+							domDatas[i].getElementsByTagName("Preferencia")[0].firstChild.data);
+					}					
+					
+					//SetTabSize();
+					
+					var dirTelDatas = XMLDoc.documentElement.getElementsByTagName("Telematica");
+
+					for (var i = 0; i < dirTelDatas.length; i++){
+						insertRowTel(dirTelDatas[i].getElementsByTagName("IdTel")[0].firstChild.data, 
+							dirTelDatas[i].getElementsByTagName("DireccionTel")[0].firstChild.data,
+							dirTelDatas[i].getElementsByTagName("TipoTel")[0].firstChild.data,
+							dirTelDatas[i].getElementsByTagName("PreferenciaTel")[0].firstChild.data);
+					}					
+					
+					//SetTabSizeTel();
+				}
+			}
+			
+		function ResponseGetPersonDocumentType()
+		{			
+			if (top.g_oXMLHTTPRequest.readyState != 4){
+				return;
+			}
+				
+			if (top.g_oXMLHTTPRequest.status != 200){
+				alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
+				return;
+			}
+
+			var XMLText = top.g_oXMLHTTPRequest.responseText;
+
+			if (XMLText.indexOf("alert(") != -1){	
+				evalAlert(XMLText);
+			}
+			else{
+				var XMLDoc = top.g_oXMLHTTPRequest.responseXML;
+				var strTipoDoc = XMLDoc.documentElement.getElementsByTagName("TipoDoc")[0].firstChild.data;
+
+				strPersonType = XMLDoc.documentElement.getElementsByTagName("Tipo")[0].firstChild.data;
+					
+				if (strPersonType == "1"){
+					if (XMLDoc.documentElement.getElementsByTagName("NIF")[0].firstChild != null){
+						document.getElementById("oDocumento").value = XMLDoc.documentElement.getElementsByTagName("NIF")[0].firstChild.data;
+					}
+
+					for (var i = 0; i < document.getElementById("oTipoDocu").options.length; i++){
+						if (document.getElementById("oTipoDocu").options[i].value == strTipoDoc){
+							document.getElementById("oTipoDocu").selectedIndex = i;
+							break;
+						}
+					}
+				}
+				else {
+					if (XMLDoc.documentElement.getElementsByTagName("NIF")[0].firstChild != null) {
+						document.getElementById("oDocumentoJur").value = XMLDoc.documentElement.getElementsByTagName("NIF")[0].firstChild.data;
+					}
+
+					for (var i = 0; i < document.getElementById("oTipoDocuJur").options.length; i++){
+						if (document.getElementById("oTipoDocuJur").options[i].value == strTipoDoc){
+							document.getElementById("oTipoDocuJur").selectedIndex = i;
+							break;
+						}
+					}
+				}
+
+			}
+		}
+			
+			function OnOK()
+			{
+				var formatOK = true;
+				var oDocuItem = (strPersonType == "1") ? "oDocumento" : "oDocumentoJur";
+				var oTipoDocuItem = (strPersonType == "1") ? "oTipoDocu" : "oTipoDocuJur";
+				
+				if(document.getElementById(oDocuItem).value != "") {
+					formatOK = ValidateDocument(document.getElementById(oDocuItem)
+							, document.getElementById(oTipoDocuItem).options[document.getElementById(oTipoDocuItem).selectedIndex].value);
+				}
+				
+				if(!formatOK) return;
+				
+				if (caseSensitive == 'CS'){
+					document.getElementById("oPerApe1").value = top.miTrim(document.getElementById("oPerApe1").value.toUpperCase());
+					document.getElementById("oPerApe2").value = top.miTrim(document.getElementById("oPerApe2").value).toUpperCase();
+					document.getElementById("oPerNombre").value = top.miTrim(document.getElementById("oPerNombre").value).toUpperCase();
+					document.getElementById("oRazon").value = top.miTrim(document.getElementById("oRazon").value).toUpperCase();
+					document.getElementById("oDocumento").value = top.miTrim(document.getElementById("oDocumento").value).toUpperCase();
+					document.getElementById("oDocumentoJur").value = top.miTrim(document.getElementById("oDocumentoJur").value).toUpperCase();
+					document.getElementById("oTxtDir").value = top.miTrim(document.getElementById("oTxtDir").value).toUpperCase();
+					document.getElementById("oTxtCod").value = top.miTrim(document.getElementById("oTxtCod").value).toUpperCase();
+					document.getElementById("oTxtDirTel").value = top.miTrim(document.getElementById("oTxtDirTel").value);
+				} else {
+					document.getElementById("oPerApe1").value = top.miTrim(document.getElementById("oPerApe1").value);
+					document.getElementById("oPerApe2").value = top.miTrim(document.getElementById("oPerApe2").value);
+					document.getElementById("oPerNombre").value = top.miTrim(document.getElementById("oPerNombre").value);
+					document.getElementById("oRazon").value = top.miTrim(document.getElementById("oRazon").value);
+					document.getElementById("oDocumento").value = top.miTrim(document.getElementById("oDocumento").value).toUpperCase();
+					document.getElementById("oDocumentoJur").value = top.miTrim(document.getElementById("oDocumentoJur").value).toUpperCase();
+					document.getElementById("oTxtDir").value = top.miTrim(document.getElementById("oTxtDir").value).toUpperCase();
+					document.getElementById("oTxtCod").value = top.miTrim(document.getElementById("oTxtCod").value).toUpperCase();
+					document.getElementById("oTxtDirTel").value = top.miTrim(document.getElementById("oTxtDirTel").value);
+				}
+				var URL = "vldintersave.jsp?SessionPId=" + top.ParamValue(document.location.search,"SessionPId") 
+					+ "&PersonId=" + strPersonId 
+					+ "&TipoPer=" + strPersonType;
+				var tabDir = document.getElementById("tbDoms");
+				var tabDirTel = document.getElementById("tbDirs");
+				var strCadena = "", strCadenaTel = "";//, strPreference = "1", strPreferenceTel = "1";
+				var strTypeDirTel = "";
+				for (var i = 0; i < document.getElementById("tbDoms").rows.length; i++){
+					if (tabDir.rows[i].id == "rowDatas"){
+						var strDir = top.GetInnerText(tabDir.rows[i].cells[1]);
+						var strIdDir = tabDir.rows[i].cells[0].getAttribute("id");
+						var strCod = top.GetInnerText(tabDir.rows[i].cells[2]);
+						var strCiu = top.GetInnerText(tabDir.rows[i].cells[3]);
+						var strPob = top.GetInnerText(tabDir.rows[i].cells[4]);
+						var toDel = (tabDir.rows[i].style.display == "none")?"1":"0";
+						var strPreference = tabDir.rows[i].cells[5].firstChild.value;
+
+						if(caseSensitive == 'CS') {
+							strDir = strDir.toUpperCase();
+							strCod = strCod.toUpperCase();
+						}
+						
+						strCadena += strIdDir + "|" + strDir + "|" + strCod + "|" + strCiu + "|" + strPob + "|" + strPreference + "|" + toDel + "#" ;
+						//strPreference = "0"; // La direccion preferente es la primera de la lista
+					}
+				}
+								
+				for (var i = 0; i < document.getElementById("tbDirs").rows.length; i++){
+					if (tabDirTel.rows[i].id == "rowDatasTel"){
+						var strDirTel = top.GetInnerText(tabDirTel.rows[i].cells[1]);
+						var strIdDirTel = tabDirTel.rows[i].cells[0].getAttribute("id");
+						var strTypeDir = top.GetInnerText(tabDirTel.rows[i].cells[2]);
+						var strPreferenceTel = tabDirTel.rows[i].cells[3].firstChild.value;
+						
+						if (strTypeDir == top.GetIdsLan("IDS_TELEFONO_FIJO")){
+							strTypeDirTel =  document.getElementById("oSelectDir").options[1].value;
+						}
+						if (strTypeDir == top.GetIdsLan("IDS_CORREO")){
+							strTypeDirTel =  document.getElementById("oSelectDir").options[2].value;
+						}
+						if (strTypeDir == top.GetIdsLan("IDS_FAX")){
+							strTypeDirTel =  document.getElementById("oSelectDir").options[3].value;
+						}
+						if (strTypeDir == top.GetIdsLan("IDS_DEU")){
+							strTypeDirTel =  document.getElementById("oSelectDir").options[4].value;
+						} 
+						if (strTypeDir == top.GetIdsLan("IDS_TELEFONO_MOVIL")){
+							strTypeDirTel =  document.getElementById("oSelectDir").options[5].value;
+						}
+						
+						var toDel = (tabDirTel.rows[i].style.display == "none")?"1":"0";
+
+						strCadenaTel += strIdDirTel + "|" + strDirTel + "|" + strTypeDirTel + "|" + strPreferenceTel + "|" + toDel + "#" ;
+						//strPreferenceTel = "0"; // La direccion preferente es la primera de la lista
+					}
+				}
+
+				document.getElementById("btnOK").disabled = true;
+				document.getElementById("btnClose").disabled = true;
+				document.getElementById("CadenaDir").value = strCadena;
+				document.getElementById("CadenaTel").value = strCadenaTel;
+				document.getElementById("frmVldNewInterForm").action = URL;
+				document.getElementById("frmVldNewInterForm").submit();
+			}
+		
+		function ResponseSave()
+		{
+			var resp = document.frames.VldNewInterForm.document.body.innerHTML;
+
+			if (resp != ""){
+				resp = HTMLDecode(resp);
+				if (resp.indexOf("alert") != -1){
+					eval(resp);
+					document.getElementById("btnOK").disabled = false;
+					document.getElementById("btnClose").disabled = false;
+					window.close();
+				}
+				else {
+					window.returnValue = resp;
+					window.close();
+				}
+			}
+		}
+   
+		/**
+		 * Busca en una cadena un mensaje de Alert y lo ejecuta.
+		 * Se usa para poder mostrar los mensajes de error cuando hay una respuesta que lo incluya, independientemente de su posicion.
+		 * @param message Cadena que incluye el mensaje de error.
+		 */
+		function evalAlert(message) {
+			var startAlert = 0;
+			var endAler = 0;
+			
+			startAlert = message.indexOf("alert(");
+			if (startAlert != -1) {
+				endAlert = message.indexOf(");", startAlert);
+				eval(message.substr(startAlert, endAlert - startAlert + 2));
+			}
+		}
+	</script>
+</head>
+
+<body tabindex="-1" onload="OnLoad();">
+
+	<iframe id="VldNewInterForm" name="VldNewInterForm" style="display:none" onload="ResponseSave();"></iframe>
+	<form name="frmVldNewInterForm" id="frmVldNewInterForm" method="post" target="VldNewInterForm" action="vldintersave.jsp">
+	<input type="hidden" id="CadenaDir" name="CadenaDir"></input>
+	<input type="hidden" id="CadenaTel" name="CadenaTel"></input>
+	<div id="bloque">
+		<div id="contenedor_tabs">
+			<div id="tabs_popup">
+				<ul>
+					<li id="tab1" class="tabOn">
+						<h3><a href="#" onclick="javascript:showTab(1);">
+						<script language="javascript">document.write(top.GetIdsLan("IDS_DATOS_IDENT"));</script></a></h3>
+					</li>
+					<li id="tab2" class="tabOff">
+						<h3><a href="#" onclick="javascript:showTab(2);">
+						<script language="javascript">document.write(top.GetIdsLan("IDS_DIRECCION_POS"));</script></a></h3>
+					</li>
+					<li id="tab3" class="tabOff">
+						<h3><a href="#" onclick="javascript:showTab(3);">
+						<script language="javascript">document.write(top.GetIdsLan("IDS_DIRECCION_TEL"));</script></a></h3>
+					</li>
+				</ul>
+			</div>
+
+			<div class="cuerpo_tabs_popup">				
+					<div class="encabezado_cuerpo_tabs">
+						<h3 id="encabezado_persona">
+							<script language="javascript">
+								if (strPersonType == "1"){
+									document.write(top.GetIdsLan("IDS_DATOS_PFIS"));
+								}
+								else {
+									if (strPersonType == "2"){
+										document.write(top.GetIdsLan("IDS_DATOS_PJUR"));
+									}
+									else{
+										document.write("");
+									}	
+								}
+							</script>
+						</h3>
+					</div> <!-- fin encabezado cuerpo -->	
+					<!-- Pestana Datos Identificativos -->
+					<div id="cuerpo1" class="grupo_seccion_tab visible">					
+						<div class="seccion_tab">							
+							<div class="form_seccion_tab">	
+								<div id="fisica">					
+								<p class="fila_sub">
+									<label class="label" name="oDocName">
+										<script language="javascript">document.write(top.GetIdsLan("IDS_NUM_IDENT"));</script>
+									</label>
+									<input class="input_tab_popup" type="text" name="oDocumento" id="oDocumento" onblur="ValidateDocument(this, document.getElementById('oTipoDocu').options[document.getElementById('oTipoDocu').selectedIndex].value);" onkeydown="PushIntro(event);" maxlength="17" tabindex="1"></input>
+								</p>
+								<p class="fila_sub">
+									<label class="label" name="oDocName">
+										<script language="javascript">document.write(top.GetIdsLan("IDS_TIPO_DOC"));</script>
+									</label>
+									<select class="select_tab_popup" name="oTipoDocu" id="oTipoDocu" onchange="changeComboDoc();" tabindex="1">
+										<option value="0"></option>																				
+									</select>									
+								</p>
+								<p class="fila_sub">
+									<label class="label" name="oDocApe1" >
+										<script language="javascript">document.write(top.GetIdsLan("IDS_APE1"));</script>
+									</label>
+									<input class="input_tab_popup" type="text" name="oPerApe1" id="oPerApe1" onblur="doBlur(this);" onkeyup="HabilitarAceptar(this, event);" onkeypress="return onlyLetters(event);" maxlength="25" tabindex="1"></input>
+								</p>
+								<p class="fila_sub">
+									<label class="label" name="oDocApe2">
+										<script language="javascript">document.write(top.GetIdsLan("IDS_APE2"));</script>
+									</label>
+									<input class="input_tab_popup" type="text" name="oPerApe2" id="oPerApe2" onblur="doBlur(this);" onkeydown="PushIntro(event);" onkeypress="return onlyLetters(event);" maxlength="25" tabindex="1"></input>
+								</p>
+								<p class="fila_sub">
+									<label class="label" name="oDocName">
+										<script language="javascript">document.write(top.GetIdsLan("IDS_USER"));</script>
+									</label>
+									<input class="input_tab_popup" type="text" name="oPerNombre" id="oPerNombre" onblur="doBlur(this);" onkeyup="HabilitarAceptar(this, event);" onkeydown="PushIntro(event);" onkeypress="return onlyLetters(event);" maxlength="20" tabindex="1"></input>
+								</p>
+								</div><!-- fin fisica -->
+								<div id="juridica">
+									<p class="fila_sub">
+										<label class="label" name="oDocJurName">
+											<script language="javascript">document.write(top.GetIdsLan("IDS_NUM_IDENT"));</script>
+										</label>
+										<input class="input_tab_popup" type="text" name="oDocumentoJur" id="oDocumentoJur" onblur="ValidateDocument(this, document.getElementById('oTipoDocuJur').options[document.getElementById('oTipoDocuJur').selectedIndex].value);" onkeydown="PushIntro(event);" maxlength="17" tabindex="1"></input>
+									</p>
+									<p class="fila_sub">
+										<label class="label" name="oDocJurName">
+											<script language="javascript">document.write(top.GetIdsLan("IDS_TIPO_DOC"));</script>
+										</label>
+										<select class="select_tab_popup" name="oTipoDocuJur" id="oTipoDocuJur" onchange="changeComboDoc();" tabindex="1">
+											<option value="0"></option>
+										</select>
+									</p>
+									<p class="fila_sub">
+										<label class="label" name="oLblRazon">
+											<script language="javascript">document.write(top.GetIdsLan("IDS_RAZON"));</script>
+										</label>
+										<textarea class="textarea_tab_popup" name="oRazon" id="oRazon" onblur="doBlur(this);" onkeyup="LimitMaxLength(event,72);HabilitarAceptar(this, event);" tabindex="1"></textarea>
+									</p>
+								</div> <!-- juridica -->
+							</div> <!-- form seccion -->		
+						</div> <!-- fin seccion -->		
+					</div> <!-- fin cuerpo 1 -->
+					<!-- Pestana Direccion Postal -->
+					<div id="cuerpo2" class="grupo_seccion_tab oculto">			
+						<div class="seccion_tab">
+							<div class="form_seccion_tab">							
+								<p class="fila_sub">
+									<label class="label" name="oLblDir">
+										<script language="javascript">document.write(top.GetIdsLan("IDS_DIRECCION"));</script>:
+									</label>
+									<textarea class="textarea_tab_popup" ID="oTxtDir" Name="oTxtDir" Type="text" onblur="doBlur(this);" onkeyup="LimitMaxLength(event,100);" tabindex="1"></textarea>
+								</p>
+								<p class="fila_sub">
+									<label class="label" name="oLblCod">
+										<script language="javascript">document.write(top.GetIdsLan("IDS_COD_POSTAL"));</script>
+									</label>
+									<input class="input_tab_popup" ID="oTxtCod" Name="oTxtCod" Type="text" maxlength="5" tabindex="1"></input>
+								</p>
+								<p class="fila_sub">
+									<label class="label" name="oLblCiu">
+										<script language="javascript">document.write(top.GetIdsLan("IDS_CIUDAD"));</script>:
+									</label>
+									<select class="select_tab_popup" name="oSelectCiu" id="oSelectCiu" tabindex="2">
+			      							<option value="0" selected="true"></option>
+									</select>
+								</p>
+								<p class="fila_sub">
+									<label class="label" name="oLblProv">
+										<script language="javascript">document.write(top.GetIdsLan("IDS_POBLACION"));</script>:
+									</label>
+									<select class="select_tab_popup" name="oSelectProv" id="oSelectProv" onchange="CargarCiudades();" tabindex="1">
+			         						<option value='0' selected="true"></option>
+			      					</select>
+								</p>
+								<p class="fila">
+									<img id="btnAdd" src="./images/add_blue_plain_trans.png" onclick="javascript:AddDir();" />
+										<script type="text/javascript">document.getElementById("btnAdd").title = top.GetIdsLan("IDS_BTNAGREGAR");</script>
+										<script type="text/javascript">document.getElementById("btnAdd").alt = top.GetIdsLan("IDS_BTNAGREGAR");</script>
+									<img id="btnDel" src="./images/delete_blue_plain_trans.png" onclick="javascript:DelDirs();" />
+										<script type="text/javascript">document.getElementById("btnDel").title = top.GetIdsLan("IDS_BTNELIMINAR");</script>
+										<script type="text/javascript">document.getElementById("btnDel").alt = top.GetIdsLan("IDS_BTNELIMINAR");</script>
+									<img id="btnModif" src="./images/table_edit_blue_plain_trans.gif" onclick="javascript:ModifDir();" />
+										<script type="text/javascript">document.getElementById("btnModif").title = top.GetIdsLan("IDS_MODIFICAR");</script>
+										<script type="text/javascript">document.getElementById("btnModif").alt = top.GetIdsLan("IDS_MODIFICAR");</script>
+									<img id="btnPpal" src="./images/asterisk_orange.png" onclick="javascript:SetDirPrinc('tbDoms','rowDatas',5);" />
+										<script type="text/javascript">document.getElementById("btnPpal").title = top.GetIdsLan("IDS_DIR_PRINCIPAL");</script>
+										<script type="text/javascript">document.getElementById("btnPpal").alt = top.GetIdsLan("IDS_DIR_PRINCIPAL");</script>
+									
+									<!--<select name="addressList" size="3" id="addressList" classid="addressList"></select>-->
+								</p>					
+								<div id="oDivTabDom" width="550px" class="dirInterScrollbarY">
+								 	<TABLE id="tbDoms" width="99%">
+										<THEAD tabindex="-1">
+											<TR height="20">
+												<TH class="report" align="left" width="3%"/>
+												<TH class="report" align="left" width="44%">
+													<script language="javascript">document.write(top.GetIdsLan("IDS_DIRECCION"));</script>
+												</TH>
+												<TH class="report" align="left" width="12%">
+													<script language="javascript">document.write(top.GetIdsLan("IDS_COD_POSTAL_EX"));</script>
+												</TH>
+												<TH class="report" align="left" width="15%">
+													<script language="javascript">document.write(top.GetIdsLan("IDS_CIUDAD"));</script>
+												</TH>
+												<TH class="report" align="left" width="20%">
+													<script language="javascript">document.write(top.GetIdsLan("IDS_POBLACION"));</script>
+												</TH>
+												<TH class="report" align="left" width="6%"/>
+											</TR>
+										</THEAD>
+										<TBODY tabindex="-1"/>
+									</TABLE>
+								</div>
+							</div> <!-- form seccion -->	
+						</div> <!-- fin seccion -->
+					</div> <!-- fin cuerpo 2 -->
+					<!-- Pestana Direccion Telematica -->
+					<div id="cuerpo3" class="grupo_seccion_tab oculto">					
+						<div class="seccion_tab">
+							<div class="form_seccion_tab">								
+								<p class="fila_sub">
+									<label class="label" name="oLblDirTel">
+         								<script language="javascript">document.write(top.GetIdsLan("IDS_TIPO_DIR_TEL"));</script>:
+      								</label>
+		      						<select class="select_tab_popup" name="oSelectDir" id="oSelectDir" tabindex="1" onchange="changeComboTel();">
+		         						<OPTION value='0' selected="true"></OPTION>
+		      						</select>
+								</p>
+								<p class="fila_sub">
+									<label class="label" name="oLblDir">
+										<script language="javascript">document.write(top.GetIdsLan("IDS_DIRECCION"));</script>:
+									</label>
+		      						<textarea class="textarea_tab_popup"
+		      							id="oTxtDirTel"
+		      							name="oTxtDirTel"
+		      							onblur="doBlur(this);
+		      								ValidateTelematic(this, document.getElementById('oSelectDir').options[document.getElementById('oSelectDir').selectedIndex].value);" 
+		      							onkeyup="LimitMaxLength(event,100);" tabindex="1"></textarea>
+								</p>
+		
+								<p class="fila">
+									<img id="btnAddTel" src="./images/add_blue_plain_trans.png" onclick="javascript:AddDirTel();" />
+										<script type="text/javascript">document.getElementById("btnAddTel").title = top.GetIdsLan("IDS_BTNAGREGAR");</script>
+										<script type="text/javascript">document.getElementById("btnAddTel").alt = top.GetIdsLan("IDS_BTNAGREGAR");</script>
+									<img id="btnDelTel" src="./images/delete_blue_plain_trans.png" onclick="javascript:DelDirsTel();" />
+										<script type="text/javascript">document.getElementById("btnDelTel").title = top.GetIdsLan("IDS_BTNELIMINAR");</script>
+										<script type="text/javascript">document.getElementById("btnDelTel").alt = top.GetIdsLan("IDS_BTNELIMINAR");</script>
+									<img id="btnModifTel" src="./images/table_edit_blue_plain_trans.gif" onclick="javascript:ModifDirTel();" />
+										<script type="text/javascript">document.getElementById("btnModifTel").title = top.GetIdsLan("IDS_MODIFICAR");</script>
+										<script type="text/javascript">document.getElementById("btnModifTel").alt = top.GetIdsLan("IDS_MODIFICAR");</script>
+									<img id="btnPpalTel" src="./images/asterisk_orange.png" onclick="javascript:SetDirPrinc('tbDirs','rowDatasTel',3);"/>
+										<script type="text/javascript">document.getElementById("btnPpalTel").title = top.GetIdsLan("IDS_DIR_PRINCIPAL");</script>
+										<script type="text/javascript">document.getElementById("btnPpalTel").alt = top.GetIdsLan("IDS_DIR_PRINCIPAL");</script>
+										
+									<!--<select name="addressList" size="3" id="addressList" classid="addressList"></select>-->
+								</p>							
+								<div id="oDivTabDir" width="550px" class="dirInterTeleScrollbarY">
+									<TABLE id="tbDirs" width="99%">
+										<THEAD tabindex="-1">
+											<TR height="20">
+												<TH class="report" align="left" width="4%"/>
+												<TH class="report" align="left" width="45%">
+													<script language="javascript">document.write(top.GetIdsLan("IDS_DIRECCION_TEL"));</script>
+												</TH>
+												<TH class="report" align="left" width="45%">
+													<script language="javascript">document.write(top.GetIdsLan("IDS_TIPO_DIR_TEL"));</script>
+												</TH>
+												<TH class="report" align="left" width="6%"/>
+											</TR>
+										</THEAD>
+										<TBODY tabindex="-1"/>
+									</TABLE>
+								</div>
+							</div> <!-- form seccion -->		
+						</div> <!-- fin seccion -->		
+					</div> <!-- fin cuerpo 3 -->
+			</div> <!-- fin cuerpo_tabs_popup -->
+		</div> <!-- fin contenedor_tabs -->
+	
+		<p class="fila_right">
+				<input id="btnOK" class="button" type="button" onclick="OnOK();" disabled tabindex="3">
+					<SCRIPT TYPE="text/javascript">document.getElementById("btnOK").value = top.GetIdsLan("IDS_BTNACEPTAR");</SCRIPT>
+				</input>
+				<input id="btnClose" class="button" type="button" onclick="OnClose();" tabindex="3">
+					<SCRIPT TYPE="text/javascript">document.getElementById("btnClose").value = top.GetIdsLan("IDS_BTNCANCEL");</SCRIPT>
+				</input>
+		</p>
+	</div> <!-- fin bloque -->
+</form>
+
+</body>
+
+</html>

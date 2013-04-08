@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+    <object-create-rule pattern="Busqueda" classname="xml.config.Busqueda" />
+    <set-properties-rule pattern="Busqueda" >
+      <alias attr-name="version" prop-name="version" />
+      <alias attr-name="descripcion" prop-name="descripcion" />      
+       <alias attr-name="tipo" prop-name="tipo" />   
+    </set-properties-rule>
+    <pattern value="Busqueda/entrada/campo">
+	    <object-create-rule classname="xml.config.CampoBusqueda" />
+		<set-properties-rule>
+			<alias attr-name="nombre" prop-name="nombre"/>
+			<alias attr-name="mostrar" prop-name="mostrar"/>
+			<alias attr-name="valor" prop-name="valor"/>
+			<alias attr-name="tipo" prop-name="tipo"/>
+			<alias attr-name="configurable" prop-name="configurable"/>
+			<alias attr-name="tituloKey" prop-name="tituloKey"/>
+			<alias attr-name="mostrarCalificadores" prop-name="mostrarCalificadores"/>
+			<alias attr-name="mostrarOperadores" prop-name="mostrarOperadores"/>
+			<alias attr-name="activos" prop-name="activos"/>
+		</set-properties-rule>
+		<pattern value="restriccion">
+			<object-create-rule classname="xml.config.RestriccionCampoBusqueda" />
+			<set-properties-rule>
+				<alias attr-name="id" prop-name="id"/>
+				<alias attr-name="tipo" prop-name="tipo"/>
+			</set-properties-rule>
+	    	<pattern value="listasDescriptoras">
+				<call-method-rule pattern="lista" methodname="addListaDescriptora" paramcount="1" />	                
+   		 		<call-param-rule pattern="lista" paramnumber="0" />	                	
+   			</pattern>  			
+   			<set-next-rule methodname="addRestriccion" />      
+    	</pattern>
+    	<set-next-rule methodname="addCampoEntrada" />
+    </pattern>
+    <pattern value="Busqueda/salida/campo">
+	    <object-create-rule classname="xml.config.CampoBusqueda" />
+		<set-properties-rule>
+			<alias attr-name="nombre" prop-name="nombre"/>
+			<alias attr-name="mostrar" prop-name="mostrar"/>
+			<alias attr-name="tipo" prop-name="tipo"/>
+			<alias attr-name="mostrarLink" prop-name="mostrarLink"/>
+			<alias attr-name="abreviado" prop-name="abreviado"/>
+			<alias attr-name="numCaracteres" prop-name="numCaracteres"/>						
+		</set-properties-rule>  
+		<pattern value="restriccion">
+			<object-create-rule classname="xml.config.RestriccionCampoBusqueda" />
+			<set-properties-rule>
+				<alias attr-name="id" prop-name="id"/>
+				<alias attr-name="tipo" prop-name="tipo"/>				
+			</set-properties-rule>
+	    	<pattern value="listasDescriptoras">
+				<call-method-rule pattern="lista" methodname="addListaDescriptora" paramcount="1" />	                
+   		 		<call-param-rule pattern="lista" paramnumber="0" />	                	
+   			</pattern>  			
+   			<set-next-rule methodname="addRestriccion" />      
+    	</pattern>
+    	<set-next-rule methodname="addCampoSalida" />
+    </pattern>
+    <pattern value="Busqueda/ordenacion">
+   		<set-properties-rule>
+			<alias attr-name="tipo" prop-name="tipoOrdenacion"/>				
+		</set-properties-rule>
+		<call-method-rule pattern="orden" methodname="addCampoOrdenacion" paramcount="1" />	                
+   	 	<call-param-rule pattern="orden" paramnumber="0" />	                	
+    </pattern>
+    <pattern value="Busqueda/restriccion">
+   		<object-create-rule classname="xml.config.RestriccionCampoBusqueda" />
+			<set-properties-rule>
+				<alias attr-name="id" prop-name="id"/>
+				<alias attr-name="tipo" prop-name="tipo"/>				
+			</set-properties-rule>
+	    	<pattern value="listasDescriptoras">
+				<call-method-rule pattern="lista" methodname="addListaDescriptora" paramcount="1" />	                
+   		 		<call-param-rule pattern="lista" paramnumber="0" />	                	
+   			</pattern>  			
+   			<set-next-rule methodname="addRestriccion" />               	
+    </pattern>
+    <pattern value="Busqueda/acciones">
+		<call-method-rule pattern="accion" methodname="addAccion" paramcount="1" />	                
+   	 	<call-param-rule pattern="accion" paramnumber="0" />	                	
+    </pattern>
+</digester-rules>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean 
+			name="busquedaRegistrosBean" type="ieci.tecdoc.sgm.consulta_telematico.form.BusquedaRegistrosForm">
+		</form-bean>
+	</form-beans>
+	<global-forwards>
+	</global-forwards>
+	<action-mappings>
+		<action path="/listadoRegistros" 
+				type="ieci.tecdoc.sgm.consulta_telematico.action.ListadoRegistrosAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/listadoRegistros.jsp"/> 
+				<forward name="failure" path="/jsp/listadoRegistros.jsp"/> 
+				<forward name="login" path="/jsp/redireccionAutenticacion.jsp"/> 
+		</action>
+		<action path="/busquedaRegistros" 
+				name="busquedaRegistrosBean"
+				type="ieci.tecdoc.sgm.consulta_telematico.action.BusquedaRegistrosAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/busquedaRegistros.jsp"/> 
+				<forward name="failure" path="/jsp/busquedaRegistros.jsp"/> 
+				<forward name="login" path="/jsp/redireccionAutenticacion.jsp"/> 
+		</action>
+		<action path="/detalleRegistro" 
+				type="ieci.tecdoc.sgm.consulta_telematico.action.DetalleRegistroAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/detalleRegistro.jsp"/> 
+				<forward name="failure" path="/jsp/detalleRegistro.jsp"/> 
+				<forward name="login" path="/jsp/redireccionAutenticacion.jsp"/> 
+		</action>
+		<action path="/desconectar" 
+				name="BusquedaForm"
+				type="ieci.tecdoc.sgm.consulta_telematico.action.DesconectarAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/redireccionInicio.jsp"/> 
+		</action>
+		<action path="/mostrarJustificante" 
+				type="ieci.tecdoc.sgm.consulta_telematico.action.MostrarJustificanteAction"/>
+		<action path="/mostrarDocumento" 
+				type="ieci.tecdoc.sgm.consulta_telematico.action.MostrarDocumentoAction"/>
+
+	</action-mappings>
+	<message-resources parameter="resources.application" />
+	<plug-in className="ieci.tecdoc.sgm.consulta_telematico.plugin.ConfigPlugin">
+		
+	</plug-in>
+</struts-config>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="SearchForm.xsl"?>
+<queryform displaywidth="100%">	
+	<entity type="main" identifier="1">
+		<tablename>spac_expedientes</tablename>
+		<bindfield>NUMEXP</bindfield>
+		<description>Expedientes</description>
+		<field type="query">
+			<columnname>NUMEXP</columnname>
+			<description>Número de expediente:</description>	
+			<datatype>string</datatype>
+			<controltype size='50' maxlength='125'>text</controltype>
+		</field>
+		<field type="query">
+			<columnname>ASUNTO</columnname>	
+			<description>Asunto:</description>
+			<datatype>string</datatype>
+			<controltype size='50' maxlength='125'>text</controltype>
+		</field>
+		<propertyfmt type="BeanPropertySimpleFmt" 
+					property='SPAC_EXPEDIENTES.NUMEXP' 
+					readOnly='false' dataType='string' 
+					title='Expediente' 
+					fieldType='LINK' 
+					fieldLink='SPAC_EXPEDIENTES.NUMEXP' 
+					width='16%'/>
+	</entity>
+	<entity type="secondary" identifier="2">
+		<tablename>spac_dt_documentos</tablename>
+		<bindfield>NUMEXP</bindfield>
+		<description>Documentos</description>
+		<field type="query">
+			<columnname>NOMBRE</columnname>
+			<description>Nombre:</description>
+			<datatype>string</datatype>
+			<controltype size='50' maxlength='125'>text</controltype>
+		</field>
+		<field type="query">
+			<columnname>AUTOR</columnname>
+			<description>Autor:</description>
+			<datatype>string</datatype>
+			<controltype size='50' maxlength='125'>text</controltype>
+		</field>
+		<field type="query">
+			<columnname>FDOC</columnname>
+			<description>Fecha:</description>
+			<datatype>date</datatype>
+			<controltype size='10' maxlength='10'>text</controltype>
+		</field>
+		<propertyfmt type="BeanPropertySimpleFmt" 
+					property='SPAC_DT_DOCUMENTOS.NOMBRE' 
+					readOnly='false'
+					dataType='string' 
+					title='Documento' 
+					fieldType='LIST' 
+					width='34%'/>
+		<propertyfmt type="BeanPropertySimpleFmt" 
+					property='SPAC_DT_DOCUMENTOS.AUTOR' 
+					readOnly='false'			
+					dataType='string'
+					title='Autor' 
+					fieldType='LIST' 
+					width='21%'/>
+	</entity>
+</queryform>

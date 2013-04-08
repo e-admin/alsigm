@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="fwktd_csv_wsclient_servicioAplicacionesImpl"
+		class="es.ieci.tecdoc.fwktd.csv.wsclient.service.impl.ServicioAplicacionesWSClientImpl">
+		<property name="servicioAplicaciones" ref="fwktd_csv_wsclient_servicioAplicaciones" />
+	</bean>
+
+	<bean id="fwktd_csv_wsclient_servicioDocumentosImpl"
+		class="es.ieci.tecdoc.fwktd.csv.wsclient.service.impl.ServicioDocumentosWSClientImpl">
+		<property name="servicioDocumentos" ref="fwktd_csv_wsclient_servicioDocumentos" />
+	</bean>
+
+</beans>

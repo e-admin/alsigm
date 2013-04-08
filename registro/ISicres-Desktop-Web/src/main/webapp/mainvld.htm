@@ -1,0 +1,66 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/frame.css">
+		<link rel="stylesheet" type="text/css" href="./css/global.css" />
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+	</HEAD>
+	<TITLE></TITLE>
+	<SCRIPT LANGUAGE="javascript">
+		var VldCtlType    = top.ParamValue(document.location.search,"tblvalidated");
+		var TblFldId      = top.ParamValue(document.location.search,"TblFldId");
+		var VldTypeBusc   = 0;
+		var VldTypeBuscOld= 0;
+		var VldQuery      = "";
+		var VldQueryValue = "";
+		var VldTypeId     = 0;
+		var VldTypeIdOld  = 0;
+		var VldIdCrl      = 0;
+		var VldIdCrlOld   = 0;
+		var VldInterested = top.ParamValue(document.location.search,"VldInter");
+		var FolderId      = top.ParamValue(document.location.search,"FldId");
+		var VldEnabled    = (top.ParamValue(document.location.search,"Enabled") == "") ? 0 : parseInt(top.ParamValue(document.location.search,"Enabled"));
+		var bIsDtrList    = (top.ParamValue(document.location.search,"IsDtrList") == "") ? 0 : parseInt(top.ParamValue(document.location.search,"IsDtrList"));
+		var VldListPId    = 0;
+		var SessionPId    = top.ParamValue(document.location.search,"SessionPId");
+		var ArchivePId    = top.ParamValue(document.location.search,"ArchivePId");
+		var Idioma		  = top.ParamValue(document.location.search,"Idioma");
+		var EnviarIR		  = top.ParamValue(document.location.search,"EnviarIR");
+		//******************************//
+		var caseSensitive = top.ParamValue(document.location.search,"caseSensitive");
+		var VldFrmData = 0;
+		var VldFrmDataBusc = 0;
+		var VldFrmDataFldId = 0;
+
+		//******************************//
+
+		document.title = top.GetIdsLan("IDS_TITULO_VAL");
+
+		document.write('<frameset rows="20,*" border="0" onunload="top.EnableEvents(window.opener);">');
+		document.write('<FRAME src="vldtitle.htm" name="VldTitle" id="VldTitle" BORDER="0" SCROLLING="no" tabIndex="-1">');
+
+		if (EnviarIR == "1")
+		{
+			document.write('<FRAME src="BuscarDestinoIntercambioRegistral.do' + document.location.search+' id="VldDestinoIR" name="VldDestinoIR" class="Style6" SCROLLING="auto" BORDER="0">');
+		}
+		else if ( (VldInterested == "") || (VldInterested == "0") ) {
+			document.write('<FRAMESET cols="200px, *" id="TopVldFrm" name="TopVldFrm" BORDER="1">');
+			document.write('<FRAME src="vldtbl.htm' + document.location.search + '" id="VldTbl" name="VldTbl" class="Style6" SCROLLING="no" BORDER="0">');
+			document.write('<FRAMESET rows="100%,*" BORDER="0" name="VldResMain" id="VldResMain">');
+			document.write('<FRAME src="msg.htm?Txt:' + top.GetIdsLan("IDS_WAIT") + '!URL:vldres.jsp' + document.location.search + '" id="VldFld" name="VldFld" class="Style6" BORDER="0"'
+				+ ' SCROLLING="auto" tabIndex="-1">');
+			document.write('<FRAME id="VldFld" name="VldRes" class="Style6" src="blank.htm" BORDER="0" SCROLLING="auto">');
+			document.write('</FRAMESET>');
+			document.write('</FRAMESET>');
+		}
+		else {
+			document.write('<FRAME src="interesado/load.action' + document.location.search + '&interesados=' + escape(top.g_Field.value) + '" id="VldInter" name="VldInter" class="Style6" SCROLLING="auto" BORDER="0">');
+		}
+
+		document.write('</frameset>');
+	</SCRIPT>
+	<noframes>
+	</noframes>
+</HTML>

@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+	<pattern
+		value="TRANSFERENCIA">
+		<object-create-rule
+			classname="transferencias.electronicas.udoc.ContenidoUDocXML" />
+		<set-properties-rule>
+			<alias
+				attr-name="version"
+				prop-name="version" />
+		</set-properties-rule>
+		<pattern
+			value="SERIE">
+			<object-create-rule
+				classname="transferencias.electronicas.serie.InformacionSerie" />
+
+
+			<set-properties-rule>
+				<alias
+					attr-name="idPadre"
+					prop-name="idPadre" />
+
+				<alias
+					attr-name="idFichaUdocs"
+					prop-name="idFichaUdocs" />
+
+				<alias
+					attr-name="idRepEcmSerie"
+					prop-name="idRepEcmSerie" />
+
+				<alias
+					attr-name="idRepEcmUdoc"
+					prop-name="idRepEcmUdoc" />
+
+			</set-properties-rule>
+
+
+
+
+			<pattern
+				value="PROCEDIMIENTO">
+				<object-create-rule
+					classname="transferencias.electronicas.serie.Procedimiento" />
+
+				<call-method-rule
+					pattern="ID"
+					methodname="setId"
+					paramcount="0" />
+
+				<call-method-rule
+					pattern="NOMBRE"
+					methodname="setNombre"
+					paramcount="0" />
+
+				<call-method-rule
+					pattern="TITULO_CORTO"
+					methodname="setTituloCorto"
+					paramcount="0" />
+
+				<call-method-rule
+					pattern="NORMATIVA"
+					methodname="setNormativa"
+					paramcount="0" />
+
+				<call-method-rule
+					pattern="OBJETO"
+					methodname="setObjeto"
+					paramcount="0" />
+
+				<call-method-rule
+					pattern="DOCUMENTOS"
+					methodname="setDocumentos"
+					paramcount="0" />
+
+				<pattern
+					value="TRAMITES/TRAMITE">
+					<object-create-rule
+						classname="transferencias.electronicas.serie.Tramite" />
+					<call-method-rule
+						methodname="setValor"
+						paramcount="0" />
+
+					<set-next-rule
+						methodname="addTramite" />
+				</pattern>
+
+				<set-next-rule
+					methodname="setProcedimiento" />
+
+			</pattern>
+
+
+
+			<pattern
+				value="FICHA">
+				<object-create-rule
+					classname="transferencias.electronicas.ficha.CamposFicha" />
+
+				<pattern
+					value="CAMPO_TEXTO">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoTexto" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+					</set-properties-rule>
+					<call-method-rule
+						methodname="setValor"
+						paramcount="0" />
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+
+				<pattern
+					value="CAMPO_FECHA">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoFecha" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+						<alias
+							attr-name="FMT"
+							prop-name="formato" />
+						<alias
+							attr-name="SEP"
+							prop-name="separador" />
+						<alias
+							attr-name="CALIF"
+							prop-name="calificador" />
+					</set-properties-rule>
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+				<pattern
+					value="CAMPO_NUMERICO">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoNumerico" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+						<alias
+							attr-name="tipoMedida"
+							prop-name="tipoMedida" />
+						<alias
+							attr-name="unidadMedida"
+							prop-name="unidadMedida" />
+					</set-properties-rule>
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+
+				<pattern
+					value="CAMPO_DESCRIPTOR">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoDescriptor" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+						<alias
+							attr-name="idLista"
+							prop-name="idLista" />
+					</set-properties-rule>
+
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+				<pattern
+					value="CAMPO_TABLA">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoTabla" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+					</set-properties-rule>
+
+					<pattern
+						value="CAMPO_FILA">
+						<object-create-rule
+							classname="transferencias.electronicas.ficha.CampoFilaTabla" />
+
+						<set-properties-rule>
+							<alias
+								attr-name="etiqueta"
+								prop-name="etiqueta" />
+							<alias
+								attr-name="valor"
+								prop-name="valor" />
+						</set-properties-rule>
+
+						<pattern
+							value="CAMPO_TEXTO">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoTexto" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+							</set-properties-rule>
+							<call-method-rule
+								methodname="setValor"
+								paramcount="0" />
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+						<pattern
+							value="CAMPO_FECHA">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoFecha" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+								<alias
+									attr-name="valor"
+									prop-name="valor" />
+								<alias
+									attr-name="FMT"
+									prop-name="formato" />
+								<alias
+									attr-name="SEP"
+									prop-name="separador" />
+								<alias
+									attr-name="CALIF"
+									prop-name="calificador" />
+							</set-properties-rule>
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+						<pattern
+							value="CAMPO_NUMERICO">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoNumerico" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+								<alias
+									attr-name="valor"
+									prop-name="valor" />
+								<alias
+									attr-name="tipoMedida"
+									prop-name="tipoMedida" />
+								<alias
+									attr-name="unidadMedida"
+									prop-name="unidadMedida" />
+							</set-properties-rule>
+
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+
+						<pattern
+							value="CAMPO_DESCRIPTOR">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoDescriptor" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+								<alias
+									attr-name="valor"
+									prop-name="valor" />
+								<alias
+									attr-name="idLista"
+									prop-name="idLista" />
+							</set-properties-rule>
+
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+						<pattern
+							value="CAMPO_SISTEMA_EXTERNO">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoSistemaExterno" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="tipoSistema"
+									prop-name="tipoSistema" />
+
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+								<alias
+									attr-name="valor"
+									prop-name="valor" />
+								<alias
+									attr-name="tipoAtributo"
+									prop-name="tipoAtributo" />
+
+							</set-properties-rule>
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+						<set-next-rule
+							methodname="addFila" />
+					</pattern>
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+				<set-next-rule
+					methodname="setCamposFicha" />
+
+			</pattern>
+
+			<set-next-rule
+				methodname="setInformacionSerie" />
+
+		</pattern>
+
+
+		<pattern
+			value="UNIDAD_DOCUMENTAL_ELECTRONICA">
+			<object-create-rule
+				classname="transferencias.electronicas.udoc.InformacionUnidadDocumentalElectronica" />
+
+			<pattern
+				value="IDENTIFICACION">
+				<object-create-rule
+					classname="transferencias.electronicas.udoc.IdentificacionUnidadDocumental" />
+
+				<call-method-rule
+					pattern="ID"
+					methodname="setId"
+					paramcount="0" />
+
+				<call-method-rule
+					pattern="NUMEXP"
+					methodname="setNumExp"
+					paramcount="0" />
+
+				<call-method-rule
+					pattern="TITULO"
+					methodname="setTitulo"
+					paramcount="0" />
+
+				<pattern
+					value="FECHA_INICIO">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoFecha" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="FMT"
+							prop-name="formato" />
+						<alias
+							attr-name="SEP"
+							prop-name="separador" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+					</set-properties-rule>
+
+
+					<set-next-rule
+						methodname="setFechaInicio" />
+				</pattern>
+
+				<pattern
+					value="FECHA_FIN">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoFecha" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="FMT"
+							prop-name="formato" />
+						<alias
+							attr-name="SEP"
+							prop-name="separador" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+					</set-properties-rule>
+
+
+					<set-next-rule
+						methodname="setFechaFin" />
+				</pattern>
+
+
+				<pattern
+					value="PRODUCTOR">
+					<object-create-rule
+						classname="transferencias.electronicas.serie.Productor" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+
+						<alias
+							attr-name="tipoAtributo"
+							prop-name="tipoAtributo" />
+						<alias
+							attr-name="tipo"
+							prop-name="tipo" />
+					</set-properties-rule>
+
+					<set-next-rule
+						methodname="setProductor" />
+				</pattern>
+
+				<pattern
+					value="CAMPO_SISTEMA_EXTERNO">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoSistemaExterno" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="tipoSistema"
+							prop-name="tipoSistema" />
+
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+						<alias
+							attr-name="tipoAtributo"
+							prop-name="tipoAtributo" />
+
+					</set-properties-rule>
+
+					<set-next-rule
+						methodname="addCampo" />
+				</pattern>
+
+				<set-next-rule
+					methodname="setIdentificacionUnidadDocumental" />
+			</pattern>
+
+			<pattern
+				value="FICHA">
+				<object-create-rule
+					classname="transferencias.electronicas.ficha.CamposFicha" />
+
+				<pattern
+					value="CAMPO_TEXTO">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoTexto" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+					</set-properties-rule>
+					<call-method-rule
+						methodname="setValor"
+						paramcount="0" />
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+				<pattern
+					value="CAMPO_FECHA">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoFecha" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+						<alias
+							attr-name="FMT"
+							prop-name="formato" />
+						<alias
+							attr-name="SEP"
+							prop-name="separador" />
+						<alias
+							attr-name="CALIF"
+							prop-name="calificador" />
+					</set-properties-rule>
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+				<pattern
+					value="CAMPO_NUMERICO">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoNumerico" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+						<alias
+							attr-name="tipoMedida"
+							prop-name="tipoMedida" />
+						<alias
+							attr-name="unidadMedida"
+							prop-name="unidadMedida" />
+					</set-properties-rule>
+
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+
+				<pattern
+					value="CAMPO_DESCRIPTOR">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoDescriptor" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+						<alias
+							attr-name="idLista"
+							prop-name="idLista" />
+					</set-properties-rule>
+
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+
+				<pattern
+					value="CAMPO_SISTEMA_EXTERNO">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoSistemaExterno" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="tipoSistema"
+							prop-name="tipoSistema" />
+
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+						<alias
+							attr-name="tipoAtributo"
+							prop-name="tipoAtributo" />
+
+					</set-properties-rule>
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+
+				<pattern
+					value="CAMPO_TABLA">
+					<object-create-rule
+						classname="transferencias.electronicas.ficha.CampoTabla" />
+
+					<set-properties-rule>
+						<alias
+							attr-name="etiqueta"
+							prop-name="etiqueta" />
+						<alias
+							attr-name="valor"
+							prop-name="valor" />
+					</set-properties-rule>
+
+					<pattern
+						value="CAMPO_FILA">
+						<object-create-rule
+							classname="transferencias.electronicas.ficha.CampoFilaTabla" />
+
+						<set-properties-rule>
+							<alias
+								attr-name="etiqueta"
+								prop-name="etiqueta" />
+							<alias
+								attr-name="valor"
+								prop-name="valor" />
+						</set-properties-rule>
+
+						<pattern
+							value="CAMPO_TEXTO">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoTexto" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+							</set-properties-rule>
+							<call-method-rule
+								methodname="setValor"
+								paramcount="0" />
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+						<pattern
+							value="CAMPO_FECHA">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoFecha" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+								<alias
+									attr-name="valor"
+									prop-name="valor" />
+								<alias
+									attr-name="FMT"
+									prop-name="formato" />
+								<alias
+									attr-name="SEP"
+									prop-name="separador" />
+								<alias
+									attr-name="CALIF"
+									prop-name="calificador" />
+							</set-properties-rule>
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+						<pattern
+							value="CAMPO_NUMERICO">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoNumerico" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+								<alias
+									attr-name="valor"
+									prop-name="valor" />
+								<alias
+									attr-name="tipoMedida"
+									prop-name="tipoMedida" />
+								<alias
+									attr-name="unidadMedida"
+									prop-name="unidadMedida" />
+							</set-properties-rule>
+
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+
+						<pattern
+							value="CAMPO_DESCRIPTOR">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoDescriptor" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+								<alias
+									attr-name="valor"
+									prop-name="valor" />
+								<alias
+									attr-name="idLista"
+									prop-name="idLista" />
+							</set-properties-rule>
+
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+
+						<pattern
+							value="CAMPO_SISTEMA_EXTERNO">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoSistemaExterno" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="tipoSistema"
+									prop-name="tipoSistema" />
+
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+								<alias
+									attr-name="valor"
+									prop-name="valor" />
+								<alias
+									attr-name="tipoAtributo"
+									prop-name="tipoAtributo" />
+
+							</set-properties-rule>
+
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+
+						<pattern
+							value="CAMPO_DOCUMENTO_ELECTRONICO">
+							<object-create-rule
+								classname="transferencias.electronicas.ficha.CampoDocumentoElectronico" />
+
+							<set-properties-rule>
+								<alias
+									attr-name="etiqueta"
+									prop-name="etiqueta" />
+								<alias
+									attr-name="valor"
+									prop-name="valor" />
+
+
+							</set-properties-rule>
+
+							<pattern
+								value="UBICACION">
+								<object-create-rule
+									classname="transferencias.electronicas.documentos.Ubicacion" />
+
+								<set-properties-rule>
+									<alias
+										attr-name="tipo"
+										prop-name="tipo" />
+								</set-properties-rule>
+
+								<pattern
+									value="BINARIO">
+									<object-create-rule
+										classname="transferencias.electronicas.documentos.Binario" />
+
+									<call-method-rule
+										pattern="CONTENIDO"
+										methodname="setContenido"
+										paramcount="0" />
+
+									<set-next-rule
+										methodname="setBinario" />
+								</pattern>
+
+
+								<pattern
+									value="REPOSITORIO">
+									<object-create-rule
+										classname="transferencias.electronicas.documentos.Repositorio" />
+
+									<set-properties-rule>
+										<alias
+											attr-name="idRepositorio"
+											prop-name="idRepositorio" />
+
+										<alias
+											attr-name="localizador"
+											prop-name="localizador" />
+
+									</set-properties-rule>
+
+									<set-next-rule
+										methodname="setRepositorio" />
+								</pattern>
+
+								<pattern
+									value="RDE">
+									<object-create-rule
+										classname="transferencias.electronicas.documentos.RepositorioElectronico" />
+
+									<set-properties-rule>
+										<alias
+											attr-name="idRepositorio"
+											prop-name="idRepositorio" />
+
+										<alias
+											attr-name="localizador"
+											prop-name="localizador" />
+
+									</set-properties-rule>
+
+									<call-method-rule
+										pattern="localizador"
+										methodname="setLocalizador"
+										paramcount="0" />
+
+									<set-next-rule
+										methodname="setRepositorio" />
+								</pattern>
+
+
+
+								<set-next-rule
+									methodname="setUbicacion" />
+
+							</pattern>
+
+							<pattern
+								value="ALMACENAMIENTO">
+								<object-create-rule
+									classname="transferencias.electronicas.documentos.Almacenamiento" />
+
+								<set-properties-rule>
+									<alias
+										attr-name="tipo"
+										prop-name="tipo" />
+
+									<alias
+										attr-name="nombre"
+										prop-name="nombre" />
+
+									<alias
+										attr-name="extension"
+										prop-name="extension" />
+
+								</set-properties-rule>
+								<call-method-rule
+									pattern="DESCRIPCION"
+									methodname="setDescripcion"
+									paramcount="0" />
+
+								<call-method-rule
+									pattern="CLASIFICADOR"
+									methodname="setClasificador"
+									paramcount="0" />
+
+								<pattern
+									value="REPOSITORIO">
+									<object-create-rule
+										classname="transferencias.electronicas.documentos.Repositorio" />
+
+									<set-properties-rule>
+										<alias
+											attr-name="tipo"
+											prop-name="tipo" />
+
+										<alias
+											attr-name="idRepositorio"
+											prop-name="idRepositorio" />
+
+										<alias
+											attr-name="localizador"
+											prop-name="localizador" />
+									</set-properties-rule>
+									<set-next-rule
+										methodname="setRepositorio" />
+								</pattern>
+
+								<set-next-rule
+									methodname="setAlmacenamiento" />
+
+							</pattern>
+							<set-next-rule
+								methodname="addCampo" />
+						</pattern>
+
+						<set-next-rule
+							methodname="addFila" />
+					</pattern>
+
+					<set-next-rule
+						methodname="addCampoFicha" />
+				</pattern>
+
+				<set-next-rule
+					methodname="setCamposFicha" />
+
+			</pattern>
+
+			<set-next-rule
+				methodname="setInfoUnidadDocumentalElectronica" />
+		</pattern>
+
+	</pattern>
+</digester-rules>

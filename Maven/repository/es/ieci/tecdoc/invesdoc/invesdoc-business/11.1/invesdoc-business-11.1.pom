@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.invesdoc</groupId>
+		<artifactId>invesdoc-parent</artifactId>
+		<version>11.1</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.invesdoc</groupId>
+	<artifactId>invesdoc-business</artifactId>
+
+	<name>InvesDoc Business objects</name>
+	<dependencies>
+		<dependency>
+			<groupId>es.ieci.tecdoc.invesdoc</groupId>
+			<artifactId>invesdoc-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.6</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-beanutils</groupId>
+					<artifactId>commons-beanutils-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!--
+			No es la version exacta. Las que nos han pasado son
+			bcprov-jdk15-139.jar y bcprov-jdk14-125.jar
+		-->
+		<dependency>
+			<groupId>bouncycastle</groupId>
+			<artifactId>bcprov-jdk14</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>oracle</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>14</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>stdbizobj</finalName>
+	</build>
+</project>

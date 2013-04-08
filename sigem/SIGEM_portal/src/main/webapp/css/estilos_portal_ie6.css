@@ -1,0 +1,20 @@
+.seccion, .seccion_top {
+	margin: 10px 0px 20px 10px;
+}
+
+.seccion_large {
+	width: 730px;
+	margin: 10px 0px 0px 10px;
+}
+
+.seccion_short {
+	width: 230px;
+}
+
+#cabecera .des_adm {
+	top: 12px;
+}
+
+#cabecera .des_bck {
+	top: 40px;
+}

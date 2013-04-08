@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+							  "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+
+	<settings lazyLoadingEnabled="true" useStatementNamespaces="true" enhancementEnabled="false"/>
+
+	<!-- declaracion de enumerados -->
+	
+	<!-- enumerado para tipos string -->
+	<typeHandler
+		javaType="java.lang.String"
+		callback="es.ieci.tecdoc.fwktd.server.dao.ibatis.sqlmap.client.extensions.StringTypeHandlerCallback" />
+		
+	<!-- Manejadores de enumerados
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.audit.core.vo.types.ClaseEnum"
+		callback="es.ieci.tecdoc.fwktd.audit.api.dao.ibatis.handler.XXXXEnumHandlerCallback" />
+		
+		XXXXEnumHandlerCallback suele heredar de :
+		es.ieci.tecdoc.fwktd.server.dao.ibatis.sqlmap.client.extensions.StringValuedEnumTypeHandlerCallback
+	-->
+	
+	<!-- carga de sqlmaps -->
+	<sqlMap resource="sqlmaps/fwktd-audit/fwktd-audit-trazaAuditoria-mapping.xml" />
+	<sqlMap resource="sqlmaps/fwktd-audit/fwktd-audit-trazaAuditoria-queries.xml" />
+	<sqlMap resource="sqlmaps/fwktd-audit/fwktd-audit-appAuditoria-mapping.xml" />
+	<sqlMap resource="sqlmaps/fwktd-audit/fwktd-audit-appAuditoria-queries.xml" />	
+
+</sqlMapConfig>

@@ -1,0 +1,39 @@
+<!-- CONEXION LDAP PARA ACTIVE DIRECTORY -->
+<Configs>
+	<Config Entidad="ISicres">
+		<Connection>
+			<Provider>1</Provider>
+			<Pooling>N</Pooling>
+			<Pooling_TimeOut>0</Pooling_TimeOut>
+		</Connection>
+		<Auth_Config>
+			<MaxNumTries>3</MaxNumTries>
+			<User_Search_By_Dn>N</User_Search_By_Dn>
+			<User_Start>CN=Users</User_Start>
+			<User_Scope>2</User_Scope>
+			<User_Attribute>sAMAccountName</User_Attribute>
+			<Group_Start>CN=Users</Group_Start>
+			<Group_Scope>2</Group_Scope>
+		</Auth_Config>
+	</Config>
+
+</Configs>
+<!-- CONEXION LDAP PARA SUN ONE -->
+<!--Configs>
+	<Config Entidad="000">
+		<Connection>
+      		<Provider>1</Provider>
+      		<Pooling>N</Pooling>
+      		<Pooling_TimeOut>0</Pooling_TimeOut>
+   		</Connection>
+		<Auth_Config>
+			<MaxNumTries>3</MaxNumTries>
+			<User_Search_By_Dn>N</User_Search_By_Dn>
+			<User_Start>ou=Groups,DC=iecisa,dc=corp</User_Start>
+			<User_Scope>2</User_Scope>
+			<User_Attribute>uid</User_Attribute>
+			<Group_Start>ou=Groups,DC=iecisa,dc=corp</Group_Start>
+			<Group_Scope>2</Group_Scope>
+   		</Auth_Config>
+   	</Config>
+</Configs-->

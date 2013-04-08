@@ -1,0 +1,51 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<!-- Registro Telematico -->
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_RegistroTelematicoWeb/src/main/resources/SIGEM_RegistroTelematicoWeb</directory>
+			<outputDirectory>/SIGEM_RegistroTelematicoWeb</outputDirectory>
+			<includes>
+				<include>log4j.properties</include>
+				<include>registroTelematicoWebConfig.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_RegistroTelematicoWeb/src/main/resources/SIGEM_RegistroTelematicoWeb</directory>
+			<outputDirectory>/SIGEM_RegistroTelematicoWeb</outputDirectory>
+			<includes>
+				<include>skin*/</include>
+			</includes>
+		</fileSet>
+		<!-- Servicio Web de Registro Telematico -->
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_RegistroTelematicoWS/src/main/resources/SIGEM_RegistroTelematicoWS</directory>
+			<outputDirectory>/SIGEM_RegistroTelematicoWS</outputDirectory>
+			<includes>
+				<include>log4j.properties</include>
+			</includes>
+		</fileSet>
+		<!-- Servicio Web por defecto para el Conector de Terceros de Registro Telematico -->
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_RegistroTelematicoDefaultTercerosConnectorWS/src/main/resources/SIGEM_RegistroTelematicoDefaultTercerosConnectorWS</directory>
+			<outputDirectory>/SIGEM_RegistroTelematicoDefaultTercerosConnectorWS</outputDirectory>
+			<includes>
+				<include>log4j.xml</include>
+			</includes>
+		</fileSet>
+		<!-- Conector de Terceros de Registro Telematico -->
+		<fileSet>
+			<directory>../SIGEM_RegistroTelematicoTercerosConnector/src/main/resources/SIGEM_RegistroTelematicoTercerosConnector</directory>
+			<outputDirectory>/SIGEM_RegistroTelematicoTercerosConnector</outputDirectory>
+		</fileSet>
+	</fileSets>
+
+</assembly>

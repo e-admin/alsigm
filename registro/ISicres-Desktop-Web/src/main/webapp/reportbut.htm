@@ -1,0 +1,39 @@
+<HTML>
+	<HEAD>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+	</HEAD>
+	<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/report.js"></SCRIPT>
+	<SCRIPT LANGUAGE="javascript">top.Idioma = top.GetDlgParam(7);</SCRIPT>
+	<BODY TABINDEX="-1">
+		<FORM NAME="ReportBut">
+			<BR>
+			<TABLE ID="oTableBut" ALIGN="center">
+				<TR VALIGN="middle" ALIGN="center">
+					<TD ALIGN="rigth">
+						<INPUT CLASS="button" TYPE="button" ID="btnOK" STYLE="width:80;" onclick="Print()" TABINDEX="1" DISABLED="true">
+							<SCRIPT LANGUAGE="javascript">
+								document.getElementById("btnOK").value = top.GetIdsLan("IDS_OPCIMPRIMIR");
+							</SCRIPT>
+						</INPUT>
+					</TD>
+				</TR>
+				<TR HEIGHT="1px">
+				</TR>
+				<TR VALIGN="middle" ALIGN="center">
+					<TD ALIGN="left">
+						<INPUT CLASS="button" TYPE="button" ID="btnCancel" STYLE="width:80;" onclick="top.close();" TABINDEX="1" NAME="btnCancel">
+							<SCRIPT LANGUAGE="javascript">
+								document.getElementById("btnCancel").value = top.GetIdsLan("IDS_BTNCANCEL");
+							</SCRIPT>
+						</INPUT>
+					</TD>
+				</TR>
+			</TABLE>
+		</FORM>
+	</BODY>
+</HTML>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Address">
+
+	<typeAlias alias="address" type="es.ieci.tecdoc.fwktd.sampleapp.business.vo.Address"/>
+
+	<select id="getAddresss" resultClass="address">
+	  	<![CDATA[
+	    	SELECT id,street FROM address
+	    ]]>
+	</select>
+
+	<select id="getAddress" parameterClass="java.lang.String"
+		resultClass="address">
+		<![CDATA[
+			SELECT id,street FROM address WHERE id=#value#
+		]]>
+	</select>
+
+	<insert id="addAddress" parameterClass="address">
+		<![CDATA[
+			INSERT INTO address (street) VALUES (#street#)
+		]]>
+		<selectKey resultClass="java.lang.String" keyProperty="id" type="post">
+        	SELECT LAST_INSERT_ID();
+        </selectKey>
+	</insert>
+
+	<delete id="deleteAddress" parameterClass="java.lang.String">
+		<![CDATA[
+			DELETE FROM address WHERE id=#value#
+		]]>
+	</delete>
+	
+	<delete id="deleteAddresss">
+		<![CDATA[
+			DELETE FROM address
+		]]>
+	</delete>
+
+	<update id="updateAddress" parameterClass="address">
+		<![CDATA[
+			UPDATE address SET street=#street# WHERE id=#id#
+		]]>
+	</update>
+	
+	<select id="getAddressByPerson" parameterClass="java.lang.String" resultClass="address">
+		<![CDATA[
+			SELECT id,street FROM address WHERE person=#value#
+		]]>
+	</select>
+
+</sqlMap>

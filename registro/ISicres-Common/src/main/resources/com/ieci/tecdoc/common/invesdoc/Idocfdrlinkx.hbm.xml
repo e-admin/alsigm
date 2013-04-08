@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Idocfdrlinkx" 
+    table="IDOCFDRLINKX"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IDOCFDRLINKX"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="name" 
+            column="NAME" 
+            type="java.lang.String"
+            length="32"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="NAME"
+                length="32"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="cntrdbid" 
+            column="CNTRDBID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CNTRDBID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="cntrarchid" 
+            column="CNTRARCHID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CNTRARCHID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="cntrfdrid" 
+            column="CNTRFDRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CNTRFDRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="cntrclfid" 
+            column="CNTRCLFID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CNTRCLFID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="srvrdbid" 
+            column="SRVRDBID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="SRVRDBID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="srvrarchid" 
+            column="SRVRARCHID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="SRVRARCHID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="srvrfdrid" 
+            column="SRVRFDRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="SRVRFDRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="flags" 
+            column="FLAGS" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLAGS"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="stat" 
+            column="STAT" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="STAT"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="crtrid" 
+            column="CRTRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CRTRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="crtndate" 
+            column="CRTNDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CRTNDATE"
+                length="7"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

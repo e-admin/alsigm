@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>InvesSicres</artifactId>
+		<groupId>es.ieci.tecdoc.isicres</groupId>
+		<version>8.0.1</version>
+	</parent>
+
+	<artifactId>ISicres-sql</artifactId>
+	<name>ISicres-sql</name>
+	
+	<properties>
+		<dir3.unpackdirectory>${basedir}/target/dir3</dir3.unpackdirectory>
+		<audit.unpackdirectory>${basedir}/target/audit</audit.unpackdirectory>
+		<sir.unpackdirectory>${basedir}/target/sir</sir.unpackdirectory>
+		
+		
+	
+	</properties>
+
+	<profiles>
+
+		<profile>
+			<id>postgres</id>
+			<properties>
+				<database.subdirectory>postgresql</database.subdirectory>
+				<dependencyDriverGroupId>postgresql</dependencyDriverGroupId>
+				<dependencyDriverArtifactId>postgresql</dependencyDriverArtifactId>
+				<dependencyDriverVersionId>8.3-603.jdbc3</dependencyDriverVersionId>
+				<driverJdbc>org.postgresql.Driver</driverJdbc>
+				<urlJdbc>jdbc:postgresql://10.228.75.123:5432/ISicres_8_0</urlJdbc>
+				<usernameJdbc>postgres</usernameJdbc>
+				<passwordJdbc>postgres</passwordJdbc>
+
+				<baseDirSql>${basedir}/PostgreSQL/NuevaInstalacion</baseDirSql>
+				<baseDirDir3SQL>${basedir}/target/dir3/postgresql</baseDirDir3SQL>
+
+				<autocommit>true</autocommit>
+
+				<!-- actualizaciones -->
+				<urlJdbcUpdate>jdbc:postgresql://localhost:5432/ISicres_7_3</urlJdbcUpdate>
+				<usernameJdbcUpdate>postgres</usernameJdbcUpdate>
+				<passwordJdbcUpdate>postgres</passwordJdbcUpdate>
+				<baseDirSqlUpdate>${basedir}/PostgreSQL/actualizaciones</baseDirSqlUpdate>
+
+			</properties>
+		</profile>
+
+		<profile>
+			<id>sqlserver</id>
+			<properties>
+				<database.subdirectory>sqlserver</database.subdirectory>
+				<dependencyDriverGroupId>net.sourceforge.jtds</dependencyDriverGroupId>
+				<dependencyDriverArtifactId>jtds</dependencyDriverArtifactId>
+				<dependencyDriverVersionId>1.2.4</dependencyDriverVersionId>
+				<driverJdbc>net.sourceforge.jtds.jdbc.Driver</driverJdbc>
+				<urlJdbc>jdbc:jtds:sqlserver://10.228.8.158:1433/idocform;charset=ISO-8859-15;sendStringParametersAsUnicode=false</urlJdbc>
+				<usernameJdbc>pruebas</usernameJdbc>
+				<passwordJdbc>pruebas</passwordJdbc>
+				<baseDirSql>${basedir}/SQLServer/NuevaInstalacion</baseDirSql>
+				<baseDirDir3SQL>${basedir}/target/dir3/sqlserver</baseDirDir3SQL>
+				<autocommit>true</autocommit>
+
+				<!-- actualizaciones -->
+				<urlJdbcUpdate>jdbc:jtds:sqlserver://10.228.8.158:1433/idocform;charset=ISO-8859-15;sendStringParametersAsUnicode=false</urlJdbcUpdate>
+				<usernameJdbcUpdate>pruebas</usernameJdbcUpdate>
+				<passwordJdbcUpdate>pruebas</passwordJdbcUpdate>
+				<baseDirSqlUpdate>${basedir}/SQLServer/actualizaciones</baseDirSqlUpdate>
+
+			</properties>
+		</profile>
+
+		<profile>
+			<id>oracle</id>
+			<properties>
+				<database.subdirectory>oracle</database.subdirectory>
+				<dependencyDriverGroupId>com.oracle</dependencyDriverGroupId>
+				<dependencyDriverArtifactId>ojdbc14</dependencyDriverArtifactId>
+				<dependencyDriverVersionId>10.2.0.5</dependencyDriverVersionId>
+				<driverJdbc>oracle.jdbc.OracleDriver</driverJdbc>
+				<urlJdbc>jdbc:oracle:thin:@10.228.75.70:1521:ORCL</urlJdbc>
+				<usernameJdbc>ISICRES_8_0_0_DESA</usernameJdbc>
+				<passwordJdbc>ISICRES_8_0_0_DESA</passwordJdbc>
+				<baseDirSql>${basedir}/Oracle/NuevaInstalacion</baseDirSql>
+				<baseDirDir3SQL>${basedir}/target/dir3/oracle</baseDirDir3SQL>
+				<autocommit>true</autocommit>
+				<delimiterTypeBLOB>row</delimiterTypeBLOB>
+
+				<!-- actualizaciones -->
+				<urlJdbcUpdate>jdbc:oracle:thin:@10.228.20.179:1521:gdoc</urlJdbcUpdate>
+				<usernameJdbcUpdate>pruebas</usernameJdbcUpdate>
+				<passwordJdbcUpdate>pruebas</passwordJdbcUpdate>
+				<baseDirSqlUpdate>${basedir}/Oracle/actualizaciones</baseDirSqlUpdate>
+
+			</properties>
+		</profile>
+
+		<profile>
+			<id>db2</id>
+			<properties>
+				<database.subdirectory>db2</database.subdirectory>
+				<dependencyDriverGroupId>com.ibm</dependencyDriverGroupId>
+				<dependencyDriverArtifactId>db2jcc</dependencyDriverArtifactId>
+				<dependencyDriverVersionId>3.50.152</dependencyDriverVersionId>
+				<driverJdbc>com.ibm.db2.jcc.DB2Driver</driverJdbc>
+				<urlJdbc>jdbc:db2://10.228.20.65:50000/SICRESI</urlJdbc>
+				<usernameJdbc>Administrador</usernameJdbc>
+				<passwordJdbc>ieciovi</passwordJdbc>
+				<baseDirSql>${basedir}/DB2/NuevaInstalacion</baseDirSql>
+				<baseDirDir3SQL>${basedir}/target/dir3/db2</baseDirDir3SQL>
+				<autocommit>true</autocommit>
+
+				<!-- actualizaciones -->
+				<urlJdbcUpdate>jdbc:jtds:sqlserver://10.228.8.158:1433/idocform;charset=ISO-8859-15;sendStringParametersAsUnicode=false</urlJdbcUpdate>
+				<usernameJdbcUpdate>Administrador</usernameJdbcUpdate>
+				<passwordJdbcUpdate>ieciovi</passwordJdbcUpdate>
+				<baseDirSqlUpdate>${basedir}/DB2/actualizaciones</baseDirSqlUpdate>
+			</properties>
+		</profile>
+
+		<profile>
+				<!-- perfil para resetear la base de datos
+					no inserta ni datos de prueba ni modelo referente a sicres3
+				-->
+				<id>resetBD</id>
+				<build>
+					<plugins>
+
+						<plugin>
+	        				<groupId>org.codehaus.mojo</groupId>
+	        				<artifactId>sql-maven-plugin</artifactId>
+	        				<version>1.4</version>
+
+	        				 <dependencies>
+	          				<!-- specify the dependent jdbc driver here -->
+					          <dependency>
+					            <groupId>${dependencyDriverGroupId}</groupId>
+					            <artifactId>${dependencyDriverArtifactId}</artifactId>
+					            <version>${dependencyDriverVersionId}</version>
+					          </dependency>
+				       	 	</dependencies>
+
+				       	 	<configuration>
+					          <driver>${driverJdbc}</driver>
+					          <url>${urlJdbc}</url>
+					          <username>${usernameJdbc}</username>
+					          <password>${passwordJdbc}</password>
+					          <printResultSet>true</printResultSet>
+					        </configuration>
+
+					        <executions>
+								<execution>
+									<phase>compile</phase>
+						            <id>create-schema</id>
+						            <goals>
+						              <goal>execute</goal>
+						            </goals>
+						            <configuration>
+						              <autocommit>${autocommit}</autocommit>
+						              <onError>abort</onError>
+						              <printResultSet>true</printResultSet>
+						              <srcFiles>
+                						<srcFile>${baseDirSql}/../00_drop_tables_constraints_views_sequences_isicres.sql</srcFile>
+                						<srcFile>${baseDirSql}/dropSicres3.sql</srcFile>
+                						
+               							<srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-drop.sql</srcFile>
+									   	<srcFile>${audit.unpackdirectory}/${database.subdirectory}/fwktd-audit-drop.sql</srcFile>
+									   	<srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-drop.sql</srcFile>
+  										<srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-drop.sql</srcFile>
+									   
+									   	
+									   	<srcFile>${baseDirSql}/01.1_create_tables_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/01.2_create_tables_invesdoc_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/02.1_create_indexes_constraints_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/02.2_create_indexes_constraints_invesdoc_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/03.1_insert_data_invesdoc_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/03.2_insert_data_territorio_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/03.3_insert_data_orgs_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/03.4_insert_data_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/05-sicres3.sql</srcFile> 
+              						   
+              						   <srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-create.sql</srcFile>
+              						   <srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-insert.sql</srcFile>
+									   <srcFile>${audit.unpackdirectory}/${database.subdirectory}/fwktd-audit-create.sql</srcFile>
+									   
+									   <srcFile>${baseDirSql}/06-insert_data_registro_auditoria_datos_postgres.sql</srcFile>
+									   
+									   <srcFile>${baseDirSql}/loadDataTest.sql</srcFile>
+									   <srcFile>${baseDirSql}/mapeoCiudadesProvinciasDco.sql</srcFile>
+									   
+									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-create.sql</srcFile>
+									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-insert.sql</srcFile>
+									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-create.sql</srcFile>
+									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-insert.sql</srcFile>
+
+              						  </srcFiles>
+
+						            </configuration>
+						          </execution>
+
+						          <execution>
+									<phase>compile</phase>
+						            <id>insert-blob</id>
+						            <goals>
+						              <goal>execute</goal>
+						            </goals>
+						            <configuration>
+						              <delimiterType>${delimiterTypeBLOB}</delimiterType>
+						              <encoding>ISO-8859-1</encoding>
+						              <autocommit>${autocommit}</autocommit>
+						              <onError>abort</onError>
+						              <printResultSet>true</printResultSet>
+						              <srcFiles>
+                						<srcFile>${baseDirSql}/04.1_insert_clob_isicres.sql</srcFile>
+              						  </srcFiles>
+
+						            </configuration>
+						          </execution>
+
+							</executions>
+
+	        			</plugin>
+
+					</plugins>
+				</build>
+			</profile>
+
+
+
+			<profile>
+				<!-- perfil para la creacion de la base de datos e insercion de datos de test iniciales
+					no contempla modelo de sicres3
+				 -->
+				<id>createBD</id>
+				<build>
+					<plugins>
+
+						<plugin>
+	        				<groupId>org.codehaus.mojo</groupId>
+	        				<artifactId>sql-maven-plugin</artifactId>
+	        				<version>1.4</version>
+
+	        				 <dependencies>
+	          				<!-- specify the dependent jdbc driver here -->
+					          <dependency>
+					            <groupId>${dependencyDriverGroupId}</groupId>
+					            <artifactId>${dependencyDriverArtifactId}</artifactId>
+					            <version>${dependencyDriverVersionId}</version>
+					          </dependency>
+				       	 	</dependencies>
+
+				       	 	<configuration>
+					          <driver>${driverJdbc}</driver>
+					          <url>${urlJdbc}</url>
+					          <username>${usernameJdbc}</username>
+					          <password>${passwordJdbc}</password>
+					          <printResultSet>true</printResultSet>
+					        </configuration>
+
+					        <executions>
+								<execution>
+									<phase>compile</phase>
+						            <id>create-bd</id>
+						            <goals>
+						              <goal>execute</goal>
+						            </goals>
+						            <configuration>
+						              <encoding>ISO-8859-1</encoding>
+						              <autocommit>${autocommit}</autocommit>
+						              <onError>abort</onError>
+						              <printResultSet>true</printResultSet>
+						              <srcFiles>
+                						<srcFile>${baseDirSql}/01.1_create_tables_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/01.2_create_tables_invesdoc_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/02.1_create_indexes_constraints_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/02.2_create_indexes_constraints_invesdoc_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/03.1_insert_data_invesdoc_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/03.2_insert_data_territorio_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/03.3_insert_data_orgs_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/03.4_insert_data_isicres.sql</srcFile>
+										<srcFile>${baseDirSql}/05-sicres3.sql</srcFile> 
+              						   
+              						   <srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-create.sql</srcFile>
+              						   <srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-insert.sql</srcFile>
+									   <srcFile>${audit.unpackdirectory}/${database.subdirectory}/fwktd-audit-create.sql</srcFile>
+									   <srcFile>${baseDirSql}/06-insert_data_registro_auditoria_datos_postgres.sql</srcFile>
+									   
+									   <srcFile>${baseDirSql}/loadDataTest.sql</srcFile>
+									   <srcFile>${baseDirSql}/mapeoCiudadesProvinciasDco.sql</srcFile>
+									   
+									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-create.sql</srcFile>
+									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-insert.sql</srcFile>
+									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-create.sql</srcFile>
+									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-insert.sql</srcFile>
+              						   
+             					   </srcFiles>
+
+						            </configuration>
+						          </execution>
+						          <execution>
+									<phase>compile</phase>
+						            <id>insert-blob</id>
+						            <goals>
+						              <goal>execute</goal>
+						            </goals>
+						            <configuration>
+						              <delimiterType>${delimiterTypeBLOB}</delimiterType>
+						              <encoding>ISO-8859-1</encoding>
+						              <autocommit>${autocommit}</autocommit>
+						              <onError>abort</onError>
+						              <printResultSet>true</printResultSet>
+						              <srcFiles>
+                						<srcFile>${baseDirSql}/04.1_insert_clob_isicres.sql</srcFile>
+              						  </srcFiles>
+
+						            </configuration>
+						          </execution>
+
+							</executions>
+
+	        			</plugin>
+
+					</plugins>
+				</build>
+			</profile>
+
+			<profile>
+				<!-- perfil para eliminacion de base de datos, no contempla sicres3 -->
+				<id>dropBD</id>
+				<build>
+					<plugins>
+
+						<plugin>
+	        				<groupId>org.codehaus.mojo</groupId>
+	        				<artifactId>sql-maven-plugin</artifactId>
+	        				<version>1.4</version>
+
+	        				 <dependencies>
+	          				<!-- specify the dependent jdbc driver here -->
+					          <dependency>
+					            <groupId>${dependencyDriverGroupId}</groupId>
+					            <artifactId>${dependencyDriverArtifactId}</artifactId>
+					            <version>${dependencyDriverVersionId}</version>
+					          </dependency>
+				       	 	</dependencies>
+
+				       	 	<configuration>
+					          <driver>${driverJdbc}</driver>
+					          <url>${urlJdbc}</url>
+					          <username>${usernameJdbc}</username>
+					          <password>${passwordJdbc}</password>
+					          <printResultSet>true</printResultSet>
+					        </configuration>
+
+					        <executions>
+								<execution>
+									<phase>compile</phase>
+						            <id>drop-schema</id>
+						            <goals>
+						              <goal>execute</goal>
+						            </goals>
+						            <configuration>
+						              <autocommit>${autocommit}</autocommit>
+						              <onError>continue</onError>
+						              <printResultSet>true</printResultSet>
+						              <srcFiles>
+                						<srcFile>${baseDirSql}/../00_drop_tables_constraints_views_sequences_isicres.sql</srcFile>
+               							<srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-drop.sql</srcFile>
+									   	<srcFile>${audit.unpackdirectory}/${database.subdirectory}/fwktd-audit-drop.sql</srcFile>
+									   	<srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-drop.sql</srcFile>
+  										<srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-drop.sql</srcFile>
+              						  </srcFiles>
+
+						            </configuration>
+						          </execution>
+
+							</executions>
+
+	        			</plugin>
+
+					</plugins>
+				</build>
+			</profile>
+
+			
+
+			<!-- perfil para actualizar squemas -->
+			<profile>
+				<id>updateBD</id>
+				<build>
+					<plugins>
+
+						<plugin>
+	        				<groupId>org.codehaus.mojo</groupId>
+	        				<artifactId>sql-maven-plugin</artifactId>
+	        				<version>1.4</version>
+
+	        				 <dependencies>
+	          				<!-- specify the dependent jdbc driver here -->
+					         	 <dependency>
+					            <groupId>${dependencyDriverGroupId}</groupId>
+					            <artifactId>${dependencyDriverArtifactId}</artifactId>
+					            <version>${dependencyDriverVersionId}</version>
+					          </dependency>
+				       	 	</dependencies>
+
+				       	 	<configuration>
+					          <driver>${driverJdbc}</driver>
+					          <url>${urlJdbcUpdate}</url>
+					          <username>${usernameJdbcUpdate}</username>
+					          <password>${passwordJdbcUpdate}</password>
+					          <printResultSet>true</printResultSet>
+					        </configuration>
+
+					        <executions>
+								<execution>
+									<phase>compile</phase>
+						            <id>update-schema</id>
+						            <goals>
+						              <goal>execute</goal>
+						            </goals>
+						            <configuration>
+						              <autocommit>${autocommit}</autocommit>
+						              <onError>abort</onError>
+						              <printResultSet>true</printResultSet>
+						              <srcFiles>
+						              	<!--<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v6_6_0-v6_7_0-01.sql</srcFile>
+										<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v6_7_0-v6_8_0-01.sql</srcFile>
+										<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v6_8_0-v6_9_0-01.sql</srcFile>
+										<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v7_0_0-v7_1_0-01.sql</srcFile>
+										<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v7_0_0-v7_1_0-02.sql</srcFile>
+										<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v7_0_0-v7_1_0-03.sql</srcFile>
+										<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v7_0_0-v7_1_2-01.sql</srcFile>
+										<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v7_1_0-v7_1_1-01.sql</srcFile>
+										<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v7_1_0-v7_2_0-01.sql</srcFile>
+										<srcFile>${baseDirSqlUpdate}/ISicres-Parche-v7_2_0-v7_2_1-01.sql</srcFile>
+										--><srcFile>${baseDirSqlUpdate}/ISicres-Parche-v7_2_2-v8_0_0-01.sql</srcFile>
+              						  </srcFiles>
+
+						            </configuration>
+						          </execution>
+
+
+
+							</executions>
+
+	        			</plugin>
+
+
+
+					</plugins>
+				</build>
+			</profile>
+
+	</profiles>
+
+
+
+	<build>
+		<plugins>
+		
+		
+					<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-dependency-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>unpack-dir3</id>
+									<phase>validate</phase>
+									<goals>
+										<goal>unpack</goal>
+									</goals>
+									<configuration>
+										<artifactItems>
+												<!-- dir3 -->
+							                <artifactItem>
+							                    <groupId>es.ieci.tecdoc.fwktd.modules.fwktd-dir3</groupId>
+							                    <artifactId>fwktd-dir3-sql</artifactId>
+							                    <version>${fwktd.dir3.version}</version>
+							                    <type>zip</type>
+							                    <classifier>bd</classifier>
+							                    <overWrite>true</overWrite>
+							                    <outputDirectory>${dir3.unpackdirectory}</outputDirectory>
+							                    <includes>**/**.*</includes>
+							                 </artifactItem>
+							                
+							                <!-- audit -->
+							                <artifactItem>
+							                    <groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+							                    <artifactId>fwktd-audit-sql</artifactId>
+							                    <version>${fwktd.audit.version}</version>
+							                    <type>zip</type>
+							                    <classifier>bd</classifier>
+							                    <overWrite>true</overWrite>
+							                    <outputDirectory>${audit.unpackdirectory}</outputDirectory>
+							                    <includes>**/**.*</includes>
+							                    
+							                </artifactItem>
+							                
+							                <!-- SIR -->
+							                <artifactItem>
+							                    <groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
+							                    <artifactId>fwktd-sir-sql</artifactId>
+							                    <version>${fwktd-sir.version}</version>
+							                    <type>zip</type>
+							                    <classifier>bd</classifier>
+							                    <overWrite>true</overWrite>
+							                    <outputDirectory>${sir.unpackdirectory}</outputDirectory>
+							                    <includes>**/**.*</includes>
+							                </artifactItem>
+							            </artifactItems>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+		
+		
+		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-5</version>
+				<configuration>
+					<descriptors>
+						<descriptor>
+							${basedir}/src/main/assembly/dep.xml
+						</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assembly-configurable-resources</id>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<dependencies>
+
+	</dependencies>
+
+</project>

@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.rde.sgm.tecdoc.ieci" xmlns:impl="http://server.ws.rde.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.rde.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://server.ws.rde.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="recuperarDocumento">
+    <complexType>
+     <sequence>
+      <element name="poDocId" type="impl:InfoDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="InfoDocumento">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="contenidoB64" nillable="true" type="xsd:string"/>
+       <element name="extension" nillable="true" type="xsd:string"/>
+       <element name="guid" nillable="true" type="xsd:string"/>
+       <element name="hash" nillable="true" type="xsd:string"/>
+       <element name="mimeType" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="recuperarDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="recuperarDocumentoReturn" type="impl:InfoDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="guardarDocumento">
+    <complexType>
+     <sequence>
+      <element name="poDoc" type="impl:InfoDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="guardarDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="guardarDocumentoReturn" type="impl:InfoDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="guardarDocumentoGuid">
+    <complexType>
+     <sequence>
+      <element name="poDoc" type="impl:InfoDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="guardarDocumentoGuidResponse">
+    <complexType>
+     <sequence>
+      <element name="guardarDocumentoGuidReturn" type="impl:InfoDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDocumento">
+    <complexType>
+     <sequence>
+      <element name="poDoc" type="impl:InfoDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarDocumentoReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHash">
+    <complexType>
+     <sequence>
+      <element name="poDoc" type="impl:InfoDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHashResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerHashReturn" type="impl:InfoDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="almacenarDocumentos">
+    <complexType>
+     <sequence>
+      <element name="poDocs" type="impl:InfoDocumentos"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfInfoDocumento">
+    <sequence>
+     <element name="item" type="impl:InfoDocumento" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="InfoDocumentos">
+    <sequence>
+     <element name="documentos" nillable="true" type="impl:ArrayOfInfoDocumento"/>
+    </sequence>
+   </complexType>
+   <element name="almacenarDocumentosResponse">
+    <complexType>
+     <sequence>
+      <element name="almacenarDocumentosReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="almacenarDocumentoTemporal">
+    <complexType>
+     <sequence>
+      <element name="poDoc" type="impl:InfoDocumentoTemporal"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="InfoDocumentoTemporal">
+    <complexContent>
+     <extension base="impl:InfoDocumento">
+      <sequence>
+       <element name="sessionId" nillable="true" type="xsd:string"/>
+       <element name="timestamp" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="almacenarDocumentoTemporalResponse">
+    <complexType>
+     <sequence>
+      <element name="almacenarDocumentoTemporalReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDocumentoTemporal">
+    <complexType>
+     <sequence>
+      <element name="poDoc" type="impl:InfoDocumentoTemporal"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDocumentoTemporalResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarDocumentoTemporalReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDocumentosTemporales">
+    <complexType>
+     <sequence>
+      <element name="poDoc" type="impl:InfoDocumentoTemporal"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDocumentosTemporalesResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDocumentosTemporalesReturn" type="impl:InfoDocumentosTemporales"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfInfoDocumentoTemporal">
+    <sequence>
+     <element name="item" type="impl:InfoDocumentoTemporal" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="InfoDocumentosTemporales">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="documentos" nillable="true" type="impl:ArrayOfInfoDocumentoTemporal"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerDocumentosTemporalesCaducados">
+    <complexType>
+     <sequence>
+      <element name="poDocs" type="impl:CriterioBusquedaDocs"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CriterioBusquedaDocs">
+    <sequence>
+     <element name="timeout" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="obtenerDocumentosTemporalesCaducadosResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDocumentosTemporalesCaducadosReturn" type="impl:InfoDocumentosTemporales"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retrieveDocumentInfo">
+    <complexType>
+     <sequence>
+      <element name="poInfo" type="impl:InfoDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retrieveDocumentInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="retrieveDocumentInfoReturn" type="impl:ContenedorDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ContenedorDocumento">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="contentB64" nillable="true" type="xsd:string"/>
+       <element name="contentSize" nillable="true" type="xsd:string"/>
+       <element name="extension" nillable="true" type="xsd:string"/>
+       <element name="guid" nillable="true" type="xsd:string"/>
+       <element name="hash" nillable="true" type="xsd:string"/>
+       <element name="timestamp" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <import namespace="http://server.ws.rde.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Entidad">
+    <sequence>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="almacenarDocumentoTemporalResponse">
+
+      <wsdl:part name="parameters" element="impl:almacenarDocumentoTemporalResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="almacenarDocumentosResponse">
+
+      <wsdl:part name="parameters" element="impl:almacenarDocumentosResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHashRequest">
+
+      <wsdl:part name="parameters" element="impl:obtenerHash"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDocumentoTemporalRequest">
+
+      <wsdl:part name="parameters" element="impl:eliminarDocumentoTemporal"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="guardarDocumentoResponse">
+
+      <wsdl:part name="parameters" element="impl:guardarDocumentoResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="almacenarDocumentosRequest">
+
+      <wsdl:part name="parameters" element="impl:almacenarDocumentos"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentosTemporalesRequest">
+
+      <wsdl:part name="parameters" element="impl:obtenerDocumentosTemporales"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="recuperarDocumentoResponse">
+
+      <wsdl:part name="parameters" element="impl:recuperarDocumentoResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="guardarDocumentoGuidResponse">
+
+      <wsdl:part name="parameters" element="impl:guardarDocumentoGuidResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="retrieveDocumentInfoResponse">
+
+      <wsdl:part name="parameters" element="impl:retrieveDocumentInfoResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDocumentoResponse">
+
+      <wsdl:part name="parameters" element="impl:eliminarDocumentoResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="retrieveDocumentInfoRequest">
+
+      <wsdl:part name="parameters" element="impl:retrieveDocumentInfo"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentosTemporalesCaducadosRequest">
+
+      <wsdl:part name="parameters" element="impl:obtenerDocumentosTemporalesCaducados"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDocumentoTemporalResponse">
+
+      <wsdl:part name="parameters" element="impl:eliminarDocumentoTemporalResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHashResponse">
+
+      <wsdl:part name="parameters" element="impl:obtenerHashResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="guardarDocumentoRequest">
+
+      <wsdl:part name="parameters" element="impl:guardarDocumento"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="recuperarDocumentoRequest">
+
+      <wsdl:part name="parameters" element="impl:recuperarDocumento"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentosTemporalesCaducadosResponse">
+
+      <wsdl:part name="parameters" element="impl:obtenerDocumentosTemporalesCaducadosResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentosTemporalesResponse">
+
+      <wsdl:part name="parameters" element="impl:obtenerDocumentosTemporalesResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDocumentoRequest">
+
+      <wsdl:part name="parameters" element="impl:eliminarDocumento"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="almacenarDocumentoTemporalRequest">
+
+      <wsdl:part name="parameters" element="impl:almacenarDocumentoTemporal"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="guardarDocumentoGuidRequest">
+
+      <wsdl:part name="parameters" element="impl:guardarDocumentoGuid"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="RepositorioDocumentosWebService">
+
+      <wsdl:operation name="recuperarDocumento">
+
+         <wsdl:input name="recuperarDocumentoRequest" message="impl:recuperarDocumentoRequest"/>
+
+         <wsdl:output name="recuperarDocumentoResponse" message="impl:recuperarDocumentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="guardarDocumento">
+
+         <wsdl:input name="guardarDocumentoRequest" message="impl:guardarDocumentoRequest"/>
+
+         <wsdl:output name="guardarDocumentoResponse" message="impl:guardarDocumentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="guardarDocumentoGuid">
+
+         <wsdl:input name="guardarDocumentoGuidRequest" message="impl:guardarDocumentoGuidRequest"/>
+
+         <wsdl:output name="guardarDocumentoGuidResponse" message="impl:guardarDocumentoGuidResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumento">
+
+         <wsdl:input name="eliminarDocumentoRequest" message="impl:eliminarDocumentoRequest"/>
+
+         <wsdl:output name="eliminarDocumentoResponse" message="impl:eliminarDocumentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHash">
+
+         <wsdl:input name="obtenerHashRequest" message="impl:obtenerHashRequest"/>
+
+         <wsdl:output name="obtenerHashResponse" message="impl:obtenerHashResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="almacenarDocumentos">
+
+         <wsdl:input name="almacenarDocumentosRequest" message="impl:almacenarDocumentosRequest"/>
+
+         <wsdl:output name="almacenarDocumentosResponse" message="impl:almacenarDocumentosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="almacenarDocumentoTemporal">
+
+         <wsdl:input name="almacenarDocumentoTemporalRequest" message="impl:almacenarDocumentoTemporalRequest"/>
+
+         <wsdl:output name="almacenarDocumentoTemporalResponse" message="impl:almacenarDocumentoTemporalResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumentoTemporal">
+
+         <wsdl:input name="eliminarDocumentoTemporalRequest" message="impl:eliminarDocumentoTemporalRequest"/>
+
+         <wsdl:output name="eliminarDocumentoTemporalResponse" message="impl:eliminarDocumentoTemporalResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentosTemporales">
+
+         <wsdl:input name="obtenerDocumentosTemporalesRequest" message="impl:obtenerDocumentosTemporalesRequest"/>
+
+         <wsdl:output name="obtenerDocumentosTemporalesResponse" message="impl:obtenerDocumentosTemporalesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentosTemporalesCaducados">
+
+         <wsdl:input name="obtenerDocumentosTemporalesCaducadosRequest" message="impl:obtenerDocumentosTemporalesCaducadosRequest"/>
+
+         <wsdl:output name="obtenerDocumentosTemporalesCaducadosResponse" message="impl:obtenerDocumentosTemporalesCaducadosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retrieveDocumentInfo">
+
+         <wsdl:input name="retrieveDocumentInfoRequest" message="impl:retrieveDocumentInfoRequest"/>
+
+         <wsdl:output name="retrieveDocumentInfoResponse" message="impl:retrieveDocumentInfoResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="RepositorioDocumentosWebServiceSoapBinding" type="impl:RepositorioDocumentosWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="recuperarDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="recuperarDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="recuperarDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="guardarDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="guardarDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="guardarDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="guardarDocumentoGuid">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="guardarDocumentoGuidRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="guardarDocumentoGuidResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHash">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerHashRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerHashResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="almacenarDocumentos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="almacenarDocumentosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="almacenarDocumentosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="almacenarDocumentoTemporal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="almacenarDocumentoTemporalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="almacenarDocumentoTemporalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumentoTemporal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarDocumentoTemporalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarDocumentoTemporalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentosTemporales">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDocumentosTemporalesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDocumentosTemporalesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentosTemporalesCaducados">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDocumentosTemporalesCaducadosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDocumentosTemporalesCaducadosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retrieveDocumentInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="retrieveDocumentInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="retrieveDocumentInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="RepositorioDocumentosWebServiceService">
+
+      <wsdl:port name="RepositorioDocumentosWebService" binding="impl:RepositorioDocumentosWebServiceSoapBinding">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_RdeWS/services/RepositorioDocumentosWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

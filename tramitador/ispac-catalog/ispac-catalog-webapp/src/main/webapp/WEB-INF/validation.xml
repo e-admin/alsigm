@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+ "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+ "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+
+<form-validation>
+
+	<global>
+	
+		<constant>
+			<constant-name>dataBaseElementName</constant-name>
+			<constant-value>^([a-zA-Z][a-zA-Z_0-9]*)$</constant-value>
+		</constant>
+		
+		<constant>
+			<constant-name>numMayor0</constant-name>
+			<constant-value>^([1-9]|[1-9]\d*[0-9])$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>numero</constant-name>
+			<constant-value>^([\-][0-9]|[\-][0-9]\d*[0-9])$</constant-value>
+		</constant>
+
+	</global>
+	
+    <formset>
+   
+   	   	<form name="EditCTEntityResource">
+	      	<field property="property(CLAVE)"
+	            	depends="required">
+	    		<arg key="entityManage.resource.propertyLabel.key"/>	      	
+	      	</field>    	      	
+	      	<field property="property(VALOR)"
+	            	depends="required">
+	    		<arg key="entityManage.resource.propertyLabel.text"/>	   		      	
+	      	</field>  	      	  	
+	    </form>
+	    
+	    
+	   	<form name="EditCTCalendar">
+	      	<field property="property(YEAR)"
+	            	depends="required, mask">
+	    		<msg name="mask" key="errors.invalid"/>
+	    		<arg0 key="form.calendar.fixedHolidays.year"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${numMayor0}</var-value>
+	    		</var>
+			      	
+	      	</field>      	
+	    </form>
+	     
+		<form name="loginForm">
+	      		<field property="user"
+	            		depends="required">
+	        		<arg key="error.login.user"/>
+	      		</field>
+	    	</form>
+	
+		<form name="EditCTEntity">
+			<field property="property(ETIQUETA)"
+				depends="required">
+				<arg key="form.entity.propertyLabel.name"/>
+			</field>
+		</form>
+	
+		<form name="CreateCTEntity">
+			<field property="property(ETIQUETA)"
+				depends="required">
+				<arg key="form.entity.propertyLabel.name"/>
+			</field>
+			<field property="property(SPAC_CT_ENTIDADES:NOMBRE)"
+				depends="required">
+				<arg key="form.entity.propertyLabel.table"/>
+			</field>
+			<field property="property(SPAC_CT_ENTIDADES:NOMBRE)"
+				depends="mask">
+	    		<msg name="mask" key="errors.invalid"/>
+	    		<arg0 key="form.entity.propertyLabel.table"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${dataBaseElementName}</var-value>
+	    		</var>
+			</field>
+<!--
+			<field property="property(TAM_VALOR)"
+				depends="integer">
+				<arg key="form.entity.propertyLabel.tamValor"/>
+			</field>
+			<field property="property(TAM_SUSTITUTO)"
+				depends="integer">
+				<arg key="form.entity.propertyLabel.tamSustituto"/>
+			</field>
+-->
+
+			<field property="property(TAM_VALOR)"
+	            	depends="mask">
+	    		<msg name="mask" key="errors.invalid"/>
+				<arg0 key="form.entity.propertyLabel.tamValor"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${numMayor0}</var-value>
+	    		</var>
+	      	</field>      	
+			<field property="property(TAM_SUSTITUTO)"
+	            	depends="mask">
+	    		<msg name="mask" key="errors.invalid"/>
+				<arg0 key="form.entity.propertyLabel.tamValor"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${numMayor0}</var-value>
+	    		</var>
+	      	</field>      	
+
+
+		</form>
+	
+		<form name="CreateCTEntityField">
+			<field property="property(LOGICALNAME)"
+				depends="required">
+				<arg key="form.entity.field.propertyLabel.logicalName"/>
+			</field>
+			<field property="property(PHYSICALNAME)"
+				depends="required">
+				<arg key="form.entity.field.propertyLabel.physicalName"/>
+			</field>
+			<field property="property(PHYSICALNAME)"
+				depends="mask">
+	    		<msg name="mask" key="errors.invalid"/>
+	    		<arg0 key="form.entity.field.propertyLabel.physicalName"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${dataBaseElementName}</var-value>
+	    		</var>
+			</field>
+			<field property="property(TYPE)"
+				depends="required">
+				<arg key="form.entity.field.propertyLabel.type"/>
+			</field>
+
+<!-- 
+			<field property="property(TAMANO)"
+				depends="requiredif">
+				<arg0 key="form.entity.field.propertyLabel.size"/>
+				<msg name="requiredif" key="form.entity.field.error.campo.empty"/>
+				<var>
+					<var-name>field[0]</var-name>
+					<var-value>property(TYPE)</var-value>
+				</var>
+				<var>
+					<var-name>fieldTest[0]</var-name>
+					<var-value>EQUAL</var-value>
+				</var>
+				<var>
+					<var-name>fieldValue[0]</var-name>
+					<var-value>0</var-value>
+				</var>
+			</field> 
+			<field property="property(SIZE)"
+				depends="requiredif">
+				<arg key="form.entity.field.propertyLabel.size"/>
+				<msg name="requiredif" key="form.entity.field.error.campo.empty"/>
+				<var>
+					<var-name>field[0]</var-name>
+					<var-value>property(TYPE)</var-value>
+				</var>
+				<var>
+					<var-name>fieldTest[0]</var-name>
+					<var-value>EQUAL</var-value>
+				</var>
+				<var>
+					<var-name>fieldValue[0]</var-name>
+					<var-value>2</var-value>
+				</var>
+			</field>
+			<field property="property(SIZE)"
+				depends="requiredif">
+				<arg key="form.entity.field.propertyLabel.size"/>
+				<msg name="requiredif" key="form.entity.field.error.campo.empty"/>
+				<var>
+					<var-name>field[0]</var-name>
+					<var-value>property(TYPE)</var-value>
+				</var>
+				<var>
+					<var-name>fieldTest[0]</var-name>
+					<var-value>EQUAL</var-value>
+				</var>
+				<var>
+					<var-name>fieldValue[0]</var-name>
+					<var-value>4</var-value>
+				</var>
+			</field>
+-->			
+			<field property="property(SIZE)"
+				depends="mask">
+	    		<msg name="mask" key="errors.invalid"/>
+	    		<arg0 key="form.entity.field.propertyLabel.size"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${numMayor0}</var-value>
+	    		</var>
+			</field>
+			
+			
+			
+		
+			<field property="property(PRECISION)"
+				depends="mask">
+	    		<msg name="mask" key="errors.invalid"/>
+	    		<arg0 key="form.entity.field.propertyLabel.precision"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${numMayor0}</var-value>
+	    		</var>
+			</field>
+		</form>
+	
+		<form name="CreateCTEntityIndex">
+			<field property="property(NAME)"
+				depends="required">
+				<arg key="form.entity.index.propertyLabel.name"/>
+			</field>
+			<field property="property(NAME)"
+				depends="mask">
+	    		<msg name="mask" key="errors.invalid"/>
+	    		<arg0 key="form.entity.index.propertyLabel.name"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${dataBaseElementName}</var-value>
+	    		</var>
+			</field>
+		</form>
+		
+		<form name="CreateCTEntityValidation">
+			<field property="property(FIELDID)"
+				depends="required">
+				<arg key="form.entity.validation.propertyLabel.field"/>
+			</field>
+		</form>
+		
+		<form name="CreateCTHierarchicalTable">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.entity.propertyLabel.name"/>
+			</field>
+			<field property="property(ID_ENTIDAD_PADRE)"
+				depends="required">
+				<arg key="form.hierarchicaltables.entidadPadre"/>
+			</field>
+			<field property="property(ID_ENTIDAD_HIJA)"
+				depends="required">
+				<arg key="form.hierarchicaltables.entidadHija"/>
+			</field>
+		</form>
+		
+		<form name="AddCTApp">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.app.propertyLabel.name"/>
+			</field>
+			<field property="property(CLASE)"
+				depends="required">
+				<arg key="form.app.propertyLabel.class"/>
+			</field>
+		</form>
+		
+		<form name="EditCTApp">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.app.propertyLabel.name"/>
+			</field>
+			<field property="property(CLASE)"
+				depends="required">
+				<arg key="form.app.propertyLabel.class"/>
+			</field>
+			<!--
+			<field property="property(ENT_PRINCIPAL_ID)"
+				depends="required">
+				<arg key="form.app.propertyLabel.entity"/>
+			</field>
+			-->
+			<field property="property(PAGINA)"
+				depends="required">
+				<arg key="form.app.propertyLabel.page"/>
+			</field>
+		</form>
+		
+		<form name="EditCTRule">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.rule.propertyLabel.name"/>
+			</field>
+			<field property="property(CLASE)"
+				depends="required">
+				<arg key="form.rule.propertyLabel.class"/>
+			</field>		
+			<field property="property(TIPO)"
+				depends="integer">
+				<arg key="form.rule.propertyLabel.type"/>
+			</field>
+		</form>
+		
+		<form name="EditCTReport">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.report.propertyLabel.name"/>
+			</field>
+			<field property="property(XML)"
+				depends="required">
+				<arg key="form.report.propertyLabel.xml"/>
+			</field>
+	      	<field property="property(FILAS)"
+	            	depends="mask">
+	    		<msg name="mask" key="errors.invalid"/>
+	    		<arg0 key="form.report.propertyLabel.filas"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${numMayor0}</var-value>
+	    		</var>
+	      	</field>
+	      	<field property="property(COLUMNAS)"
+	            	depends="mask">
+	    		<msg name="mask" key="errors.invalid"/>
+	    		<arg0 key="form.report.propertyLabel.columnas"/>
+	    		<var>
+	        		<var-name>mask</var-name>
+	        		<var-value>${numMayor0}</var-value>
+	    		</var>
+	      	</field>
+		</form>
+	
+		<form name="EditCTStage">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.fase.propertyLabel.name"/>
+			</field>
+			<field property="property(ORDEN)"
+				depends="integer">
+				<arg key="form.fase.propertyLabel.order" name="integer"/>
+			</field>
+			<field property="property(FALTA)" 
+				depends="date">
+	        		<arg0 key="form.fase.propertyLabel.creationDate"/>
+	        		<var>
+	        			<var-name>datePattern</var-name>
+	        			<var-value>dd/MM/yyyy</var-value>
+	        		</var>
+	    		</field>	
+	    		<field property="property(NVERSION)"
+				depends="integer">
+				<arg key="form.fase.propertyLabel.version" name="integer"/>
+			</field>	
+		</form>
+		
+		<form name="EditCTTask">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.task.propertyLabel.name"/>
+			</field>
+			<field property="property(NVERSION)"
+				depends="integer">
+				<arg key="form.task.propertyLabel.version" name="integer"/>
+			</field>
+			<!--			
+			<field property="property(FCREACION)" 
+				depends="date">
+	        		<arg0 key="form.task.propertyLabel.creationDate"/>
+	        		<var>
+	        			<var-name>datePattern</var-name>
+	        			<var-value>dd/MM/yyyy</var-value>
+	        		</var>
+	    	</field>
+	    	-->	
+		</form>
+	
+		<form name="EditCTSearch">
+			
+	    	<field property="property(DESCRIPCION)"
+				depends="required">
+				<arg key="form.search.propertyLabel.description"/>
+			</field>
+	    	<!-- 
+			<field property="property(FRM_BSQ)" 
+				depends="maxlength">
+	        		<arg0 key="form.search.propertyLabel.searchForm"/>
+	        		<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+	        		<var>
+	        			<var-name>maxlength</var-name>
+	        			<var-value>4000</var-value>
+	        		</var>
+	    	</field>
+	    	-->
+		</form>
+	
+		<form name="EditCTTypeDoc">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.tpdoc.propertyLabel.name"/>
+			</field>
+			
+			<field property="property(NVERSION)"
+				depends="integer">
+				<arg key="form.tpdoc.propertyLabel.version" name="integer"/>
+			</field>	
+		</form>	
+		
+		<form name="EditCTTemplate">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.template.propertyLabel.name"/>
+			</field>
+			<field property="property(ID_TPDOC)"
+				depends="required">
+				<arg key="form.template.propertyLabel.type"/>
+			</field>
+			<field property="property(EXPRESION)" 
+				depends="maxlength">
+	        		<arg0 key="form.template.propertyLabel.expression"/>
+	        		<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+	        		<var>
+	        			<var-name>maxlength</var-name>
+	        			<var-value>2000</var-value>
+	        		</var>
+	    	</field>    				
+		</form>
+	
+		<form name="EditPubActions">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.pubAction.propertyLabel.name"/>
+			</field>
+			<field property="property(CLASE)"
+				depends="required">
+				<arg key="form.pubAction.propertyLabel.class"/>
+			</field>
+			<!--
+			<field property="property(TIPO)"
+				depends="integer">
+				<arg key="form.pubAction.propertyLabel.type"/>
+			</field>
+			-->
+		</form>
+	
+		<form name="EditPubApplications">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.pubApplication.propertyLabel.name"/>
+			</field>
+		</form>
+		
+		<form name="EditPubConditions">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.pubCondition.propertyLabel.name"/>
+			</field>
+			<field property="property(CLASE)"
+				depends="required">
+				<arg key="form.pubCondition.propertyLabel.class"/>
+			</field>
+		</form>
+		
+		<form name="EditPubApplications">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.pubApplication.propertyLabel.name"/>
+			</field>
+		</form>
+		
+		<form name="EditPubRules">
+			<field property="property(PUB_REGLAS:ID_PCD)"
+				depends="required">
+				<arg key="form.pubRule.propertyLabel.procedure"/>
+			</field>
+			<field property="property(PUB_REGLAS:ID_EVENTO)"
+				depends="required">
+				<arg key="form.pubRule.propertyLabel.event"/>
+			</field>
+			<field property="property(PUB_REGLAS:ID_ACCION)"
+				depends="required">
+				<arg key="form.pubRule.propertyLabel.action"/>
+			</field>
+			<field property="property(PUB_REGLAS:ID_CONDICION)"
+				depends="required">
+				<arg key="form.pubRule.propertyLabel.condition"/>
+			</field>
+			<field property="property(PUB_REGLAS:ID_APLICACION)"
+				depends="required">
+				<arg key="form.pubRule.propertyLabel.application"/>
+			</field>
+		</form>
+	
+		<form name="EditSignProcess">
+			<field property="property(SPAC_CTOS_FIRMA_CABECERA:DESCRIPCION)"
+				depends="required">
+				<arg key="form.signProcess.propertyLabel.name"/>
+			</field>
+		</form>	
+		<form name="EditCalendar">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.calendar.propertyLabel.name"/>
+			</field>
+		</form>
+	
+		<form name="EditCTPermisosNegocio">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.objetonegocio.propertyLabel.name"/>
+			</field>
+		</form>
+	
+		<form name="EditCTObjetoNegocio">
+			<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.permisonegocio.propertyLabel.name"/>
+			</field>
+		</form>
+		<form name="SaveHolydaysCalendar">
+			<field property="property(HOLYDAY_NAME)"
+				depends="required">
+				<arg key="form.calendar.holiday.propertyLabel.name"/>
+			</field>
+			<field property="property(HOLYDAY_DATE)"
+				depends="required">
+				<arg key="form.calendar.holiday.propertyLabel.fecha"/>
+			</field>
+			<field property="property(HOLYDAY_DATE)" 
+				depends="date">
+	        		<arg0 key="form.calendar.holiday.propertyLabel.fecha"/>
+	        		<var>
+	        			<var-name>datePattern</var-name>
+	        			<var-value>dd/MM/yyyy</var-value>
+	        		</var>
+	    	</field>	
+		</form>	
+		
+		<form name="AddFechaSutitucion">
+			<field property="property(FECHA_INICIO)"
+				depends="required">
+				<arg key="form.sustitucion.propertyLabel.fechaInicio"/>
+			</field>
+			<field property="property(FECHA_INICIO)" 
+				depends="date">
+	        		<arg0 key="form.sustitucion.propertyLabel.fechaInicio"/>
+	        		<var>
+	        			<var-name>datePattern</var-name>
+	        			<var-value>dd/MM/yyyy</var-value>
+	        		</var>
+	    	</field>	
+	    	<field property="property(FECHA_FIN)"
+				depends="required">
+				<arg key="form.sustitucion.propertyLabel.fechaFin"/>
+			</field>
+			<field property="property(FECHA_FIN)" 
+				depends="date">
+	        		<arg0 key="form.sustitucion.propertyLabel.fechaFin"/>
+	        		<var>
+	        			<var-name>datePattern</var-name>
+	        			<var-value>dd/MM/yyyy</var-value>
+	        		</var>
+	    	</field>
+			<field property="property(DESCRIPCION)"
+				depends="required">
+				<arg key="form.sustitucion.propertyLabel.description"/>
+			</field>
+		</form>
+		
+		<form name="EditCTAyuda">
+		<field property="property(NOMBRE)"
+				depends="required">
+				<arg key="form.help.propertyLabel.name"/>
+			</field>
+			<field property="property(CONTENIDO)"
+				depends="required">
+				<arg key="form.help.propertyLabel.contenido"/>
+			</field>		
+			
+		</form>
+	</formset>
+	
+</form-validation>

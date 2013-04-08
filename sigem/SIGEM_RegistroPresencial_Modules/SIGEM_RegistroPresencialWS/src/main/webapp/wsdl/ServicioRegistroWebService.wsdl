@@ -1,0 +1,2017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.registropresencial.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.registropresencial.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.registropresencial.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.registropresencial.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="getDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="distributionInfo" type="impl:DistributionInfo"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="UserInfo">
+    <sequence>
+     <element name="locale" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="userName" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PersonInfo">
+    <sequence>
+     <element name="direction" nillable="true" type="xsd:string"/>
+     <element name="domId" nillable="true" type="xsd:string"/>
+     <element name="personId" nillable="true" type="xsd:string"/>
+     <element name="personName" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPersonInfo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:PersonInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="DistributionInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="bookId" nillable="true" type="xsd:string"/>
+       <element name="bookName" nillable="true" type="xsd:string"/>
+       <element name="bookType" nillable="true" type="xsd:string"/>
+       <element name="destinationId" nillable="true" type="xsd:string"/>
+       <element name="destinationName" nillable="true" type="xsd:string"/>
+       <element name="destinationType" nillable="true" type="xsd:string"/>
+       <element name="distributionDate" nillable="true" type="xsd:string"/>
+       <element name="dtrId" nillable="true" type="xsd:string"/>
+       <element name="folderId" nillable="true" type="xsd:string"/>
+       <element name="message" nillable="true" type="xsd:string"/>
+       <element name="registerDate" nillable="true" type="xsd:string"/>
+       <element name="registerDestinationName" nillable="true" type="xsd:string"/>
+       <element name="registerMatter" nillable="true" type="xsd:string"/>
+       <element name="registerMatterTypeName" nillable="true" type="xsd:string"/>
+       <element name="registerNumber" nillable="true" type="xsd:string"/>
+       <element name="registerOffice" nillable="true" type="xsd:string"/>
+       <element name="registerSenderName" nillable="true" type="xsd:string"/>
+       <element name="senderId" nillable="true" type="xsd:string"/>
+       <element name="senderName" nillable="true" type="xsd:string"/>
+       <element name="senderType" nillable="true" type="xsd:string"/>
+       <element name="sendersOrReceivers" nillable="true" type="impl:ArrayOfPersonInfo"/>
+       <element name="state" nillable="true" type="xsd:string"/>
+       <element name="stateDate" nillable="true" type="xsd:string"/>
+       <element name="stateDescription" nillable="true" type="xsd:string"/>
+       <element name="user" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="getDistributionReturn" type="impl:DistributionInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createFolder">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element maxOccurs="unbounded" name="inter" type="impl:PersonInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="BookId">
+    <sequence>
+     <element name="bookId" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Page">
+    <sequence>
+     <element name="docID" nillable="true" type="xsd:string"/>
+     <element name="fileID" nillable="true" type="xsd:string"/>
+     <element name="folderId" nillable="true" type="xsd:string"/>
+     <element name="loc" nillable="true" type="xsd:string"/>
+     <element name="pageID" nillable="true" type="xsd:string"/>
+     <element name="pageName" nillable="true" type="xsd:string"/>
+     <element name="volidID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPage">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Page"/>
+    </sequence>
+   </complexType>
+   <complexType name="DocumentsWithPage">
+    <sequence>
+     <element name="bookId" nillable="true" type="xsd:string"/>
+     <element name="docID" nillable="true" type="xsd:string"/>
+     <element name="documentName" nillable="true" type="xsd:string"/>
+     <element name="folderId" nillable="true" type="xsd:string"/>
+     <element name="pages" nillable="true" type="impl:ArrayOfPage"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfDocumentsWithPage">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:DocumentsWithPage"/>
+    </sequence>
+   </complexType>
+   <complexType name="FolderWithPersonInfo">
+    <complexContent>
+     <extension base="impl:Folder">
+      <sequence>
+       <element name="persons" nillable="true" type="impl:ArrayOfPersonInfo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Document">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="docID" nillable="true" type="xsd:string"/>
+       <element name="documentContentB64" nillable="true" type="xsd:string"/>
+       <element name="documentName" nillable="true" type="xsd:string"/>
+       <element name="extension" nillable="true" type="xsd:string"/>
+       <element name="fileName" nillable="true" type="xsd:string"/>
+       <element name="folder" nillable="true" type="impl:Folder"/>
+       <element name="pageID" nillable="true" type="xsd:string"/>
+       <element name="pageName" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfDocument">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Document"/>
+    </sequence>
+   </complexType>
+   <complexType name="Documents">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="documents" nillable="true" type="impl:ArrayOfDocument"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="FieldInfo">
+    <sequence>
+     <element name="fieldId" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFieldInfo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:FieldInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="Fields">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="fields" nillable="true" type="impl:ArrayOfFieldInfo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Folder">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="bookId" nillable="true" type="impl:BookId"/>
+       <element name="docWithPage" nillable="true" type="impl:ArrayOfDocumentsWithPage"/>
+       <element name="documentos" nillable="true" type="impl:Documents"/>
+       <element name="fields" nillable="true" type="impl:Fields"/>
+       <element name="folderId" nillable="true" type="xsd:string"/>
+       <element name="folderNumber" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="createFolderResponse">
+    <complexType>
+     <sequence>
+      <element name="createFolderReturn" type="impl:RegisterInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RegisterInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="bookId" nillable="true" type="xsd:string"/>
+       <element name="date" nillable="true" type="xsd:string"/>
+       <element name="folderId" nillable="true" type="xsd:string"/>
+       <element name="number" nillable="true" type="xsd:string"/>
+       <element name="office" nillable="true" type="xsd:string"/>
+       <element name="officeName" nillable="true" type="xsd:string"/>
+       <element name="state" nillable="true" type="xsd:string"/>
+       <element name="userName" nillable="true" type="xsd:string"/>
+       <element name="workDate" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="updateFolder">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element maxOccurs="unbounded" name="inter" type="impl:PersonInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateFolderResponse">
+    <complexType>
+     <sequence>
+      <element name="updateFolderReturn" type="impl:RegisterInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="importFolder">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element maxOccurs="unbounded" name="inter" type="impl:PersonInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="importFolderResponse">
+    <complexType>
+     <sequence>
+      <element name="importFolderReturn" type="impl:RegisterInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consolidateFolder">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element maxOccurs="unbounded" name="inter" type="impl:PersonInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consolidateFolderResponse">
+    <complexType>
+     <sequence>
+      <element name="consolidateFolderReturn" type="impl:RegisterInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findFolder">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folderQuery" type="impl:FolderSearchCriteria"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="FieldInfoSearchCriteria">
+    <sequence>
+     <element name="fieldId" nillable="true" type="xsd:string"/>
+     <element name="operator" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFieldInfoSearchCriteria">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:FieldInfoSearchCriteria"/>
+    </sequence>
+   </complexType>
+   <complexType name="FieldsSearchCriteria">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="fields" nillable="true" type="impl:ArrayOfFieldInfoSearchCriteria"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="FolderSearchCriteria">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="bookId" nillable="true" type="impl:BookId"/>
+       <element name="fields" nillable="true" type="impl:FieldsSearchCriteria"/>
+       <element name="folderId" nillable="true" type="xsd:string"/>
+       <element name="folderNumber" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="findFolderResponse">
+    <complexType>
+     <sequence>
+      <element name="findFolderReturn" type="impl:RegistersInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfRegisterInfo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:RegisterInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="RegistersInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="registers" nillable="true" type="impl:ArrayOfRegisterInfo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getInputFolderForNumber">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getInputFolderForNumberResponse">
+    <complexType>
+     <sequence>
+      <element name="getInputFolderForNumberReturn" type="impl:Folder"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getInputRegister">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getInputRegisterResponse">
+    <complexType>
+     <sequence>
+      <element name="getInputRegisterReturn" type="impl:FolderWithPersonInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getOutputFolderForNumber">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getOutputFolderForNumberResponse">
+    <complexType>
+     <sequence>
+      <element name="getOutputFolderForNumberReturn" type="impl:Folder"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getOutputRegister">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getOutputRegisterResponse">
+    <complexType>
+     <sequence>
+      <element name="getOutputRegisterReturn" type="impl:FolderWithPersonInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentFolder">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="document" type="impl:Document"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDocumentFolderResponse">
+    <complexType>
+     <sequence>
+      <element name="getDocumentFolderReturn" type="impl:Document"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getInputDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="criteria" type="impl:DistributionSearchCriteria"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="SearchCriteria">
+    <sequence>
+     <element name="firstRow" nillable="true" type="xsd:string"/>
+     <element name="maxResults" nillable="true" type="xsd:string"/>
+     <element name="oficAsoc" nillable="true" type="xsd:string"/>
+     <element name="onlyOpenBooks" nillable="true" type="xsd:string"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="typeBookRegister" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DistributionSearchCriteria">
+    <complexContent>
+     <extension base="impl:SearchCriteria">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getInputDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="getInputDistributionReturn" type="impl:DistributionsInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfDistributionInfo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:DistributionInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="DistributionsInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="distributions" nillable="true" type="impl:ArrayOfDistributionInfo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getOutputDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="criteria" type="impl:DistributionSearchCriteria"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getOutputDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="getOutputDistributionReturn" type="impl:DistributionsInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="countInputDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="criteria" type="impl:DistributionSearchCriteria"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="countInputDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="countInputDistributionReturn" type="impl:DistributionCountInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DistributionCountInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="count" nillable="true" type="xsd:int"/>
+       <element name="oficAsoc" nillable="true" type="xsd:boolean"/>
+       <element name="state" nillable="true" type="xsd:int"/>
+       <element name="typeBookRegisterDist" nillable="true" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="countOutputDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="criteria" type="impl:DistributionSearchCriteria"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="countOutputDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="countOutputDistributionReturn" type="impl:DistributionCountInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="acceptDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="acceptDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="acceptDistributionReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="acceptDistributionEx">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="distributionInfo" type="impl:DistributionInfo"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="acceptDistributionExResponse">
+    <complexType>
+     <sequence>
+      <element name="acceptDistributionExReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="archiveDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="archiveDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="archiveDistributionReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="archiveDistributionEx">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="distributionInfo" type="impl:DistributionInfo"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="archiveDistributionExResponse">
+    <complexType>
+     <sequence>
+      <element name="archiveDistributionExReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rejectDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="options" type="impl:DistributionOptions"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DistributionOptions">
+    <sequence>
+     <element name="code" nillable="true" type="xsd:string"/>
+     <element name="remarks" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="rejectDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="rejectDistributionReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rejectDistributionEx">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="distributionInfo" type="impl:DistributionInfo"/>
+      <element name="options" type="impl:DistributionOptions"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rejectDistributionExResponse">
+    <complexType>
+     <sequence>
+      <element name="rejectDistributionExReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changeInputDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="options" type="impl:DistributionOptions"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changeInputDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="changeInputDistributionReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changeOutputDistribution">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="options" type="impl:DistributionOptions"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changeOutputDistributionResponse">
+    <complexType>
+     <sequence>
+      <element name="changeOutputDistributionReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addDocument">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addDocumentResponse">
+    <complexType>
+     <sequence>
+      <element name="addDocumentReturn" type="impl:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="getInterestedInputRegister">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getInterestedInputRegisterResponse">
+    <complexType>
+     <sequence>
+      <element name="getInterestedInputRegisterReturn" type="impl:ListaPersonInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ListaPersonInfo">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="personsInfo" nillable="true" type="impl:ArrayOfPersonInfo"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="getInterestedOutputRegister">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getInterestedOutputRegisterResponse">
+    <complexType>
+     <sequence>
+      <element name="getInterestedOutputRegisterReturn" type="impl:ListaPersonInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="canCreateRegister">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="criteria" type="impl:SearchCriteria"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="canCreateRegisterResponse">
+    <complexType>
+     <sequence>
+      <element name="canCreateRegisterReturn" type="impl:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBooksForType">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="criteria" type="impl:SearchCriteria"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBooksForTypeResponse">
+    <complexType>
+     <sequence>
+      <element name="getBooksForTypeReturn" type="impl:BooksInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="BookInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="id" nillable="true" type="xsd:string"/>
+       <element name="idocArchId" nillable="true" type="xsd:string"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="remarks" nillable="true" type="xsd:string"/>
+       <element name="state" nillable="true" type="xsd:string"/>
+       <element name="type" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfBookInfo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:BookInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="BooksInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="booksInfo" nillable="true" type="impl:ArrayOfBookInfo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getOfficeCanCreateRegisterByUser">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="folder" type="impl:Folder"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getOfficeCanCreateRegisterByUserResponse">
+    <complexType>
+     <sequence>
+      <element name="getOfficeCanCreateRegisterByUserReturn" type="impl:OfficesInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="OfficeInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="acron" nillable="true" type="xsd:string"/>
+       <element name="code" nillable="true" type="xsd:string"/>
+       <element name="deptid" nillable="true" type="xsd:string"/>
+       <element name="id" nillable="true" type="xsd:string"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfOfficeInfo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:OfficeInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="OfficesInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="officesInfo" nillable="true" type="impl:ArrayOfOfficeInfo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="existMatterTypeInOffice">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:UserInfo"/>
+      <element name="matterTypeCode" type="xsd:string"/>
+      <element name="officeCode" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="existMatterTypeInOfficeResponse">
+    <complexType>
+     <sequence>
+      <element name="existMatterTypeInOfficeReturn" type="impl:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://server.ws.registropresencial.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Entidad">
+    <sequence>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getDocumentFolderRequest">
+
+      <wsdl:part element="impl:getDocumentFolder" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addDocumentRequest">
+
+      <wsdl:part element="impl:addDocument" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOfficeCanCreateRegisterByUserRequest">
+
+      <wsdl:part element="impl:getOfficeCanCreateRegisterByUser" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeInputDistributionResponse">
+
+      <wsdl:part element="impl:changeInputDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeOutputDistributionResponse">
+
+      <wsdl:part element="impl:changeOutputDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeInputDistributionRequest">
+
+      <wsdl:part element="impl:changeInputDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="rejectDistributionResponse">
+
+      <wsdl:part element="impl:rejectDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutputFolderForNumberResponse">
+
+      <wsdl:part element="impl:getOutputFolderForNumberResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInterestedInputRegisterResponse">
+
+      <wsdl:part element="impl:getInterestedInputRegisterResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateFolderResponse">
+
+      <wsdl:part element="impl:updateFolderResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="countOutputDistributionRequest">
+
+      <wsdl:part element="impl:countOutputDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="importFolderResponse">
+
+      <wsdl:part element="impl:importFolderResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="findFolderRequest">
+
+      <wsdl:part element="impl:findFolder" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutputRegisterResponse">
+
+      <wsdl:part element="impl:getOutputRegisterResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consolidateFolderResponse">
+
+      <wsdl:part element="impl:consolidateFolderResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="acceptDistributionExResponse">
+
+      <wsdl:part element="impl:acceptDistributionExResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="countInputDistributionResponse">
+
+      <wsdl:part element="impl:countInputDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addDocumentResponse">
+
+      <wsdl:part element="impl:addDocumentResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="existMatterTypeInOfficeRequest">
+
+      <wsdl:part element="impl:existMatterTypeInOffice" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="archiveDistributionExRequest">
+
+      <wsdl:part element="impl:archiveDistributionEx" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="archiveDistributionExResponse">
+
+      <wsdl:part element="impl:archiveDistributionExResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutputRegisterRequest">
+
+      <wsdl:part element="impl:getOutputRegister" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="rejectDistributionExResponse">
+
+      <wsdl:part element="impl:rejectDistributionExResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="createFolderResponse">
+
+      <wsdl:part element="impl:createFolderResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="canCreateRegisterResponse">
+
+      <wsdl:part element="impl:canCreateRegisterResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInputRegisterResponse">
+
+      <wsdl:part element="impl:getInputRegisterResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBooksForTypeRequest">
+
+      <wsdl:part element="impl:getBooksForType" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="findFolderResponse">
+
+      <wsdl:part element="impl:findFolderResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="rejectDistributionRequest">
+
+      <wsdl:part element="impl:rejectDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="existMatterTypeInOfficeResponse">
+
+      <wsdl:part element="impl:existMatterTypeInOfficeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeOutputDistributionRequest">
+
+      <wsdl:part element="impl:changeOutputDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOfficeCanCreateRegisterByUserResponse">
+
+      <wsdl:part element="impl:getOfficeCanCreateRegisterByUserResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDistributionResponse">
+
+      <wsdl:part element="impl:getDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInterestedOutputRegisterResponse">
+
+      <wsdl:part element="impl:getInterestedOutputRegisterResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInputDistributionResponse">
+
+      <wsdl:part element="impl:getInputDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="canCreateRegisterRequest">
+
+      <wsdl:part element="impl:canCreateRegister" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInputRegisterRequest">
+
+      <wsdl:part element="impl:getInputRegister" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="rejectDistributionExRequest">
+
+      <wsdl:part element="impl:rejectDistributionEx" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInterestedOutputRegisterRequest">
+
+      <wsdl:part element="impl:getInterestedOutputRegister" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInputDistributionRequest">
+
+      <wsdl:part element="impl:getInputDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="countOutputDistributionResponse">
+
+      <wsdl:part element="impl:countOutputDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInputFolderForNumberRequest">
+
+      <wsdl:part element="impl:getInputFolderForNumber" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateFolderRequest">
+
+      <wsdl:part element="impl:updateFolder" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="archiveDistributionRequest">
+
+      <wsdl:part element="impl:archiveDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutputDistributionRequest">
+
+      <wsdl:part element="impl:getOutputDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutputFolderForNumberRequest">
+
+      <wsdl:part element="impl:getOutputFolderForNumber" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="archiveDistributionResponse">
+
+      <wsdl:part element="impl:archiveDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutputDistributionResponse">
+
+      <wsdl:part element="impl:getOutputDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDocumentFolderResponse">
+
+      <wsdl:part element="impl:getDocumentFolderResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="acceptDistributionRequest">
+
+      <wsdl:part element="impl:acceptDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInputFolderForNumberResponse">
+
+      <wsdl:part element="impl:getInputFolderForNumberResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBooksForTypeResponse">
+
+      <wsdl:part element="impl:getBooksForTypeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="importFolderRequest">
+
+      <wsdl:part element="impl:importFolder" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDistributionRequest">
+
+      <wsdl:part element="impl:getDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInterestedInputRegisterRequest">
+
+      <wsdl:part element="impl:getInterestedInputRegister" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="acceptDistributionExRequest">
+
+      <wsdl:part element="impl:acceptDistributionEx" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="countInputDistributionRequest">
+
+      <wsdl:part element="impl:countInputDistribution" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="acceptDistributionResponse">
+
+      <wsdl:part element="impl:acceptDistributionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="createFolderRequest">
+
+      <wsdl:part element="impl:createFolder" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consolidateFolderRequest">
+
+      <wsdl:part element="impl:consolidateFolder" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ServicioRegistroWebService">
+
+      <wsdl:operation name="getDistribution">
+
+         <wsdl:input message="impl:getDistributionRequest" name="getDistributionRequest"/>
+
+         <wsdl:output message="impl:getDistributionResponse" name="getDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createFolder">
+
+         <wsdl:input message="impl:createFolderRequest" name="createFolderRequest"/>
+
+         <wsdl:output message="impl:createFolderResponse" name="createFolderResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateFolder">
+
+         <wsdl:input message="impl:updateFolderRequest" name="updateFolderRequest"/>
+
+         <wsdl:output message="impl:updateFolderResponse" name="updateFolderResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="importFolder">
+
+         <wsdl:input message="impl:importFolderRequest" name="importFolderRequest"/>
+
+         <wsdl:output message="impl:importFolderResponse" name="importFolderResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consolidateFolder">
+
+         <wsdl:input message="impl:consolidateFolderRequest" name="consolidateFolderRequest"/>
+
+         <wsdl:output message="impl:consolidateFolderResponse" name="consolidateFolderResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findFolder">
+
+         <wsdl:input message="impl:findFolderRequest" name="findFolderRequest"/>
+
+         <wsdl:output message="impl:findFolderResponse" name="findFolderResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInputFolderForNumber">
+
+         <wsdl:input message="impl:getInputFolderForNumberRequest" name="getInputFolderForNumberRequest"/>
+
+         <wsdl:output message="impl:getInputFolderForNumberResponse" name="getInputFolderForNumberResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInputRegister">
+
+         <wsdl:input message="impl:getInputRegisterRequest" name="getInputRegisterRequest"/>
+
+         <wsdl:output message="impl:getInputRegisterResponse" name="getInputRegisterResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutputFolderForNumber">
+
+         <wsdl:input message="impl:getOutputFolderForNumberRequest" name="getOutputFolderForNumberRequest"/>
+
+         <wsdl:output message="impl:getOutputFolderForNumberResponse" name="getOutputFolderForNumberResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutputRegister">
+
+         <wsdl:input message="impl:getOutputRegisterRequest" name="getOutputRegisterRequest"/>
+
+         <wsdl:output message="impl:getOutputRegisterResponse" name="getOutputRegisterResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentFolder">
+
+         <wsdl:input message="impl:getDocumentFolderRequest" name="getDocumentFolderRequest"/>
+
+         <wsdl:output message="impl:getDocumentFolderResponse" name="getDocumentFolderResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInputDistribution">
+
+         <wsdl:input message="impl:getInputDistributionRequest" name="getInputDistributionRequest"/>
+
+         <wsdl:output message="impl:getInputDistributionResponse" name="getInputDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutputDistribution">
+
+         <wsdl:input message="impl:getOutputDistributionRequest" name="getOutputDistributionRequest"/>
+
+         <wsdl:output message="impl:getOutputDistributionResponse" name="getOutputDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="countInputDistribution">
+
+         <wsdl:input message="impl:countInputDistributionRequest" name="countInputDistributionRequest"/>
+
+         <wsdl:output message="impl:countInputDistributionResponse" name="countInputDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="countOutputDistribution">
+
+         <wsdl:input message="impl:countOutputDistributionRequest" name="countOutputDistributionRequest"/>
+
+         <wsdl:output message="impl:countOutputDistributionResponse" name="countOutputDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="acceptDistribution">
+
+         <wsdl:input message="impl:acceptDistributionRequest" name="acceptDistributionRequest"/>
+
+         <wsdl:output message="impl:acceptDistributionResponse" name="acceptDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="acceptDistributionEx">
+
+         <wsdl:input message="impl:acceptDistributionExRequest" name="acceptDistributionExRequest"/>
+
+         <wsdl:output message="impl:acceptDistributionExResponse" name="acceptDistributionExResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="archiveDistribution">
+
+         <wsdl:input message="impl:archiveDistributionRequest" name="archiveDistributionRequest"/>
+
+         <wsdl:output message="impl:archiveDistributionResponse" name="archiveDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="archiveDistributionEx">
+
+         <wsdl:input message="impl:archiveDistributionExRequest" name="archiveDistributionExRequest"/>
+
+         <wsdl:output message="impl:archiveDistributionExResponse" name="archiveDistributionExResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rejectDistribution">
+
+         <wsdl:input message="impl:rejectDistributionRequest" name="rejectDistributionRequest"/>
+
+         <wsdl:output message="impl:rejectDistributionResponse" name="rejectDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rejectDistributionEx">
+
+         <wsdl:input message="impl:rejectDistributionExRequest" name="rejectDistributionExRequest"/>
+
+         <wsdl:output message="impl:rejectDistributionExResponse" name="rejectDistributionExResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeInputDistribution">
+
+         <wsdl:input message="impl:changeInputDistributionRequest" name="changeInputDistributionRequest"/>
+
+         <wsdl:output message="impl:changeInputDistributionResponse" name="changeInputDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeOutputDistribution">
+
+         <wsdl:input message="impl:changeOutputDistributionRequest" name="changeOutputDistributionRequest"/>
+
+         <wsdl:output message="impl:changeOutputDistributionResponse" name="changeOutputDistributionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addDocument">
+
+         <wsdl:input message="impl:addDocumentRequest" name="addDocumentRequest"/>
+
+         <wsdl:output message="impl:addDocumentResponse" name="addDocumentResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInterestedInputRegister">
+
+         <wsdl:input message="impl:getInterestedInputRegisterRequest" name="getInterestedInputRegisterRequest"/>
+
+         <wsdl:output message="impl:getInterestedInputRegisterResponse" name="getInterestedInputRegisterResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInterestedOutputRegister">
+
+         <wsdl:input message="impl:getInterestedOutputRegisterRequest" name="getInterestedOutputRegisterRequest"/>
+
+         <wsdl:output message="impl:getInterestedOutputRegisterResponse" name="getInterestedOutputRegisterResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="canCreateRegister">
+
+         <wsdl:input message="impl:canCreateRegisterRequest" name="canCreateRegisterRequest"/>
+
+         <wsdl:output message="impl:canCreateRegisterResponse" name="canCreateRegisterResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBooksForType">
+
+         <wsdl:input message="impl:getBooksForTypeRequest" name="getBooksForTypeRequest"/>
+
+         <wsdl:output message="impl:getBooksForTypeResponse" name="getBooksForTypeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOfficeCanCreateRegisterByUser">
+
+         <wsdl:input message="impl:getOfficeCanCreateRegisterByUserRequest" name="getOfficeCanCreateRegisterByUserRequest"/>
+
+         <wsdl:output message="impl:getOfficeCanCreateRegisterByUserResponse" name="getOfficeCanCreateRegisterByUserResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existMatterTypeInOffice">
+
+         <wsdl:input message="impl:existMatterTypeInOfficeRequest" name="existMatterTypeInOfficeRequest"/>
+
+         <wsdl:output message="impl:existMatterTypeInOfficeResponse" name="existMatterTypeInOfficeResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServicioRegistroWebServiceSoapBinding" type="impl:ServicioRegistroWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createFolder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createFolderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createFolderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateFolder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateFolderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateFolderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="importFolder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="importFolderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="importFolderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consolidateFolder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consolidateFolderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consolidateFolderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findFolder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findFolderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findFolderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInputFolderForNumber">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getInputFolderForNumberRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getInputFolderForNumberResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInputRegister">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getInputRegisterRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getInputRegisterResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutputFolderForNumber">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getOutputFolderForNumberRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getOutputFolderForNumberResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutputRegister">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getOutputRegisterRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getOutputRegisterResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDocumentFolder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDocumentFolderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDocumentFolderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInputDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getInputDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getInputDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutputDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getOutputDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getOutputDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="countInputDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="countInputDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="countInputDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="countOutputDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="countOutputDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="countOutputDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="acceptDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="acceptDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="acceptDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="acceptDistributionEx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="acceptDistributionExRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="acceptDistributionExResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="archiveDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="archiveDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="archiveDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="archiveDistributionEx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="archiveDistributionExRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="archiveDistributionExResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rejectDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="rejectDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="rejectDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rejectDistributionEx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="rejectDistributionExRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="rejectDistributionExResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeInputDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changeInputDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changeInputDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeOutputDistribution">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changeOutputDistributionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changeOutputDistributionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addDocument">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addDocumentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addDocumentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInterestedInputRegister">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getInterestedInputRegisterRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getInterestedInputRegisterResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInterestedOutputRegister">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getInterestedOutputRegisterRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getInterestedOutputRegisterResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="canCreateRegister">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="canCreateRegisterRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="canCreateRegisterResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBooksForType">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBooksForTypeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBooksForTypeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOfficeCanCreateRegisterByUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getOfficeCanCreateRegisterByUserRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getOfficeCanCreateRegisterByUserResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existMatterTypeInOffice">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="existMatterTypeInOfficeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="existMatterTypeInOfficeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServicioRegistroWebServiceService">
+
+      <wsdl:port binding="impl:ServicioRegistroWebServiceSoapBinding" name="ServicioRegistroWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_RegistroPresencialWS/services/ServicioRegistroWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

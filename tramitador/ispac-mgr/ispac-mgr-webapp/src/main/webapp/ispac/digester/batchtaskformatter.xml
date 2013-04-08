@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter defaultSort="2">
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+        	     property='ID_STAGE' 
+        	     readOnly='false'
+        		 titleKey='formatter.batchTask.id' 
+        		 fieldType='CHECKBOX' 
+        		 headerClass='headerDisplay'
+        		 columnClass='width5percent'
+        		 media='html'/>
+        		 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NUMEXP' 
+				 readOnly='false'
+				 titleKey='formatter.batchTask.numExp'
+				 fieldType='LINK'
+				 fieldLink='ID_STAGE'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html '
+				 decorator=''
+				 url='showExpedient'
+				 id='stageId'
+				 columnClass='width35percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='NUMEXP' 
+	             readOnly='false'
+		         titleKey='formatter.batchTask.numExp'
+		         fieldType='LIST' 
+		         columnClass='width35percent'
+        		 media='excel csv xml pdf'/>
+        		 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='TASK_ID' 
+	             readOnly='false'
+		         titleKey='formatter.batchTask.tramiteIniciado' 
+		         fieldType='BOOLEAN_HIDDEN_VALUE' 
+		         columnClass='width30percent'
+        		 media='html'/>
+        		 
+   <propertyfmt type="BeanPropertySimpleFmt" 
+	            property='TASK_ID' 
+	            readOnly='false'
+		        titleKey='formatter.batchTask.tramiteIniciado' 
+		        fieldType='BOOLEAN_HIDDEN_VALUE_EXPORT' 
+		        columnClass='width30percent'
+        		media='excel csv xml pdf'/>
+        		
+   <propertyfmt type="BeanPropertySimpleFmt" 
+	            property='CREATE_DOC' 
+	            readOnly='false'
+		        titleKey='formatter.batchTask.documentoAsociado' 
+		        fieldType='BOOLEAN' 
+		        columnClass='width30percent'
+        		media='html excel csv xml pdf'/>
+
+
+
+   <propertyfmt type="BeanPropertySimpleFmt" 
+	            property='MADE_TASKS' 
+	            readOnly='false'
+		        titleKey='formatter.batchTask.tramitesRealizados' 
+		        fieldType='BOOLEAN' 
+		        columnClass='width30percent'
+        		media='html excel csv xml pdf'/>
+
+    
+</beanformatter>

@@ -1,0 +1,30 @@
+img, div, input, h1, h2, h3, .salir { behavior: url("./scripts/iepngfix.htc") }
+
+.fila_right {
+	margin: 0;
+	padding: 0;
+	margin-right: 10px;
+}
+
+#copyright{
+	position:absolute;
+	margin-left: 40%;
+	margin-top: 120px;
+	width: 40%;
+	text-align: center;
+}
+
+#logo_app_img2 {
+	display: block;
+	margin: 3px 50px 0px 0px;
+}
+
+#logo_app_img{
+	margin-top: 18px;
+	padding-top: 18px;	
+}
+
+#logo_app_img {
+	top: -7px;
+	position: absolute;
+}

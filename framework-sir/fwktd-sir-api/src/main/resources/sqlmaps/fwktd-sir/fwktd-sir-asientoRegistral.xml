@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AsientoRegistralVO">
+
+	<typeAlias alias="asientoRegistral"
+		type="es.ieci.tecdoc.fwktd.sir.core.vo.AsientoRegistralVO" />
+		
+
+	<resultMap id="asientoRegistral" class="es.ieci.tecdoc.fwktd.sir.core.vo.AsientoRegistralVO">
+		<result property="id" column="id" />
+		<result property="codigoEntidadRegistral" column="cd_ent_reg" />
+		<result property="identificadorIntercambio" column="cd_intercambio" />
+		<result property="estado" column="cd_estado" />
+		<result property="fechaEstado" column="fe_estado" />
+		<result property="fechaEnvio" column="fe_envio" />
+		<result property="fechaRecepcion" column="fe_recepcion" />
+		<result property="numeroReintentos" column="num_reintentos" />
+		<result property="numeroRegistro" column="num_registro" />
+		<result property="fechaRegistro" column="fe_registro" />
+		<result property="timestampRegistro" column="ts_entrada" />
+		<result property="numeroRegistroInicial" column="num_registro_inicial" />
+		<result property="fechaRegistroInicial" column="fe_registro_inicial" />
+		<result property="timestampRegistroInicial" column="ts_registro_inicial" />
+		<result property="numeroExpediente" column="num_exp" />
+		<result property="referenciaExterna" column="referencia_externa" />
+		<result property="codigoEntidadRegistralOrigen" column="cd_ent_reg_origen" />
+		<result property="descripcionEntidadRegistralOrigen" column="ds_ent_reg_origen" />
+		<result property="codigoUnidadTramitacionOrigen" column="cd_org_origen" />
+		<result property="descripcionUnidadTramitacionOrigen" column="ds_org_origen" />
+		<result property="codigoEntidadRegistralDestino" column="cd_ent_reg_destino" />
+		<result property="descripcionEntidadRegistralDestino" column="ds_ent_reg_destino" />
+		<result property="codigoUnidadTramitacionDestino" column="cd_org_destino" />
+		<result property="descripcionUnidadTramitacionDestino" column="ds_org_destino" />
+		<result property="resumen" column="ds_resumen" />
+		<result property="codigoAsunto" column="cd_asunto_destino" />
+		<result property="tipoTransporte" column="cd_tipo_transporte" />
+		<result property="numeroTransporte" column="ds_num_transporte" />
+		<result property="nombreUsuario" column="ds_nombre_usuario" />
+		<result property="contactoUsuario" column="ds_contacto_usuario" />
+		<result property="aplicacion" column="cd_app_emisora" />
+		<result property="tipoAnotacion" column="cd_tipo_anotacion" />
+		<result property="descripcionTipoAnotacion" column="ds_tipo_anotacion" />
+		<result property="tipoRegistro" column="cd_tipo_registro" />
+		<result property="documentacionFisica" column="cd_doc_fisica" />
+		<result property="observacionesApunte" column="ds_observaciones" />
+		<result property="indicadorPrueba" column="cd_prueba" />
+		<result property="codigoEntidadRegistralInicio" column="cd_ent_reg_inicio" />
+		<result property="descripcionEntidadRegistralInicio" column="ds_ent_reg_inicio" />
+		<result property="expone" column="ds_expone" />
+		<result property="solicita" column="ds_solicita" />
+		<result property="codigoError" column="cd_error" />
+		<result property="descripcionError" column="ds_error" />
+		<result property="anexos" column="id" select="AnexoVO.getAnexoVOsByAsientoRegistral" />
+		<result property="interesados" column="id" select="InteresadoVO.getInteresadoVOsByAsientoRegistral" />
+	</resultMap>
+	
+	<resultMap id="estadoAsientoRegistralMap" class="es.ieci.tecdoc.fwktd.sir.core.vo.EstadoAsientoRegistraVO">
+		<result property="estado" column="cd_estado" />
+		<result property="fechaEstado" column="fe_estado" />
+		<result property="nombreUsuario" column="ds_nombre_usuario" />
+		<result property="contactoUsuario" column="ds_contacto_usuario" />
+		<result property="observaciones" column="ds_tipo_anotacion" />
+	</resultMap>
+
+	<sql id="table">sir_asientos_registrales</sql>
+	<sql id="qualified_table">sir_asientos_registrales AREG</sql>
+	<sql id="qualified_table_interesados">sir_interesados INT</sql>
+	<sql id="qualified_table_anexos">sir_anexos ANE</sql>
+	<sql id="columns">
+		id,
+		cd_ent_reg,
+		cd_intercambio,
+		cd_estado,
+		fe_estado,
+		fe_envio,
+		fe_recepcion,
+		num_reintentos,
+		num_registro,
+		fe_registro,
+		ts_entrada,
+		num_registro_inicial,
+		fe_registro_inicial,
+		ts_registro_inicial,
+		num_exp,
+		referencia_externa,
+		cd_ent_reg_origen,
+  		ds_ent_reg_origen,
+  		cd_org_origen,
+  		ds_org_origen,
+  		cd_ent_reg_destino,
+  		ds_ent_reg_destino,
+  		cd_org_destino,
+  		ds_org_destino,
+  		ds_resumen,
+  		cd_asunto_destino,
+  		cd_tipo_transporte,
+  		ds_num_transporte,
+  		ds_nombre_usuario,
+  		ds_contacto_usuario,
+  		cd_app_emisora,
+  		cd_tipo_anotacion,
+  		ds_tipo_anotacion,
+  		cd_tipo_registro,
+  		cd_doc_fisica,
+  		ds_observaciones,
+  		cd_prueba,
+  		cd_ent_reg_inicio,
+  		ds_ent_reg_inicio,
+  		ds_expone,
+  		ds_solicita,
+  		cd_error,
+  		ds_error
+	</sql>
+	<sql id="qualified_columns">
+		AREG.id,
+		AREG.cd_ent_reg,
+		AREG.cd_intercambio,
+		AREG.cd_estado,
+		AREG.fe_estado,
+		AREG.fe_envio,
+		AREG.fe_recepcion,
+		AREG.num_reintentos,
+		AREG.num_registro,
+		AREG.fe_registro,
+		AREG.ts_entrada,
+		AREG.num_registro_inicial,
+		AREG.fe_registro_inicial,
+		AREG.ts_registro_inicial,
+		AREG.num_exp,
+		AREG.referencia_externa,
+		AREG.cd_ent_reg_origen,
+  		AREG.ds_ent_reg_origen,
+  		AREG.cd_org_origen,
+  		AREG.ds_org_origen,
+  		AREG.cd_ent_reg_destino,
+  		AREG.ds_ent_reg_destino,
+  		AREG.cd_org_destino,
+  		AREG.ds_org_destino,
+  		AREG.ds_resumen,
+  		AREG.cd_asunto_destino,
+  		AREG.cd_tipo_transporte,
+  		AREG.ds_num_transporte,
+  		AREG.ds_nombre_usuario,
+  		AREG.ds_contacto_usuario,
+  		AREG.cd_app_emisora,
+  		AREG.cd_tipo_anotacion,
+  		AREG.ds_tipo_anotacion,
+  		AREG.cd_tipo_registro,
+  		AREG.cd_doc_fisica,
+  		AREG.ds_observaciones,
+  		AREG.cd_prueba,
+  		AREG.cd_ent_reg_inicio,
+  		AREG.ds_ent_reg_inicio,
+  		AREG.ds_expone,
+  		AREG.ds_solicita,
+  		AREG.cd_error,
+  		AREG.ds_error
+	</sql>
+	<sql id="insert">
+		#id:INTEGER#,
+		#codigoEntidadRegistral#,
+		#identificadorIntercambio#,
+		#estado#,
+		#fechaEstado#,
+		#fechaEnvio#,
+		#fechaRecepcion#,
+		#numeroReintentos#,
+		#numeroRegistro#,
+		#fechaRegistro#,
+		#timestampRegistro#,
+		#numeroRegistroInicial#,
+		#fechaRegistroInicial#,
+		#timestampRegistroInicial#,
+		#numeroExpediente#,
+		#referenciaExterna#,
+		#codigoEntidadRegistralOrigen#,
+		#descripcionEntidadRegistralOrigen#,
+		#codigoUnidadTramitacionOrigen#,
+		#descripcionUnidadTramitacionOrigen#,
+		#codigoEntidadRegistralDestino#,
+		#descripcionEntidadRegistralDestino#,
+		#codigoUnidadTramitacionDestino#,
+		#descripcionUnidadTramitacionDestino#,
+		#resumen#,
+		#codigoAsunto#,
+		#tipoTransporte#,
+		#numeroTransporte#,
+		#nombreUsuario#,
+		#contactoUsuario#,
+		#aplicacion#,
+		#tipoAnotacion#,
+		#descripcionTipoAnotacion#,
+		#tipoRegistro#,
+		#documentacionFisica#,
+		#observacionesApunte#,
+		#indicadorPrueba#,
+		#codigoEntidadRegistralInicio#,
+		#descripcionEntidadRegistralInicio#,
+		#expone#,
+		#solicita#,
+		#codigoError#,
+		#descripcionError#
+	</sql>
+	<sql id="update">
+		cd_ent_reg=#codigoEntidadRegistral#,
+		cd_intercambio=#identificadorIntercambio#,
+		cd_estado=#estado#,
+		fe_estado=#fechaEstado#,
+		fe_envio=#fechaEnvio#,
+		fe_recepcion=#fechaRecepcion#,
+		num_reintentos=#numeroReintentos#,
+		num_registro=#numeroRegistro#,
+		fe_registro=#fechaRegistro#,
+		ts_entrada=#timestampRegistro#,
+		num_registro_inicial=#numeroRegistroInicial#,
+		fe_registro_inicial=#fechaRegistroInicial#,
+		ts_registro_inicial=#timestampRegistroInicial#,
+		num_exp=#numeroExpediente#,
+		referencia_externa=#referenciaExterna#,
+		cd_ent_reg_origen=#codigoEntidadRegistralOrigen#,
+		ds_ent_reg_origen=#descripcionEntidadRegistralOrigen#,
+		cd_org_origen=#codigoUnidadTramitacionOrigen#,
+		ds_org_origen=#descripcionUnidadTramitacionOrigen#,
+		cd_ent_reg_destino=#codigoEntidadRegistralDestino#,
+		ds_ent_reg_destino=#descripcionEntidadRegistralDestino#,
+		cd_org_destino=#codigoUnidadTramitacionDestino#,
+		ds_org_destino=#descripcionUnidadTramitacionDestino#,
+		ds_resumen=#resumen#,
+		cd_asunto_destino=#codigoAsunto#,
+		cd_tipo_transporte=#tipoTransporte#,
+		ds_num_transporte=#numeroTransporte#,
+		ds_nombre_usuario=#nombreUsuario#,
+		ds_contacto_usuario=#contactoUsuario#,
+		cd_app_emisora=#aplicacion#,
+		cd_tipo_anotacion=#tipoAnotacion#,
+		ds_tipo_anotacion=#descripcionTipoAnotacion#,
+		cd_tipo_registro=#tipoRegistro#,
+		cd_doc_fisica=#documentacionFisica#,
+		ds_observaciones=#observacionesApunte#,
+		cd_prueba=#indicadorPrueba#,
+		cd_ent_reg_inicio=#codigoEntidadRegistralInicio#,
+		ds_ent_reg_inicio=#descripcionEntidadRegistralInicio#,
+		ds_expone=#expone#,
+		ds_solicita=#solicita#,
+		cd_error=#codigoError#,
+		ds_error=#descripcionError#
+	</sql>
+
+	<sql id="findAsientosRegistrales_fragment">
+		FROM
+			<include refid="qualified_table" />
+			<iterate prepend="," property="tablasAuxiliares" conjunction=",">
+				<isEqual property="tablasAuxiliares[]" compareValue="INT">
+					<include refid="qualified_table_interesados" />
+				</isEqual>
+				<isEqual property="tablasAuxiliares[]" compareValue="ANE">
+					<include refid="qualified_table_anexos" />
+				</isEqual>
+			</iterate>
+		<dynamic prepend="WHERE">
+			<iterate prepend="AND" property="tablasAuxiliares" conjunction="AND">
+				<isEqual property="tablasAuxiliares[]" compareValue="INT">
+					AREG.id=INT.id_asiento_registral
+				</isEqual>
+				<isEqual property="tablasAuxiliares[]" compareValue="ANE">
+					AREG.id=ANE.id_asiento_registral
+				</isEqual>
+			</iterate>
+			<iterate prepend="AND" property="criterios" conjunction="AND">
+				<isEqual property="criterios[].operador.value" compareValue="like">
+					$criterios[].nombre.table$.$criterios[].nombre.value$ LIKE '%$criterios[].valor$%'
+				</isEqual>
+				<isNotEqual property="criterios[].operador.value" compareValue="like">
+					<isEqual property="criterios[].operador.value" compareValue="in">
+						$criterios[].nombre.table$.$criterios[].nombre.value$
+						<iterate prepend="IN" property="criterios[].valor" open="(" close=")" conjunction=",">
+							#criterios[].valor[]#
+						</iterate>
+					</isEqual>
+					<isNotEqual property="criterios[].operador.value" compareValue="in">
+						$criterios[].nombre.table$.$criterios[].nombre.value$ $criterios[].operador.value$ #criterios[].valor#
+					</isNotEqual>
+				</isNotEqual>
+			</iterate>
+		</dynamic>
+	</sql>
+
+	<select id="countFindAsientosRegistrales" resultClass="java.lang.Integer">
+		SELECT COUNT(*) <include refid="findAsientosRegistrales_fragment" />
+	</select>
+
+	<select id="findAsientosRegistrales" resultMap="asientoRegistral">
+		SELECT
+			<include refid="qualified_columns" />
+		<include refid="findAsientosRegistrales_fragment" />
+		<iterate prepend="ORDER BY" property="orden" conjunction=",">
+			$orden[].table$.$orden[].value$
+		</iterate>
+	</select>
+
+	<select id="getAsientoRegistralVOs" resultMap="asientoRegistral">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY cd_ent_reg, cd_intercambio
+	</select>
+
+	<select id="getAsientoRegistralVO" parameterClass="java.lang.String" resultMap="asientoRegistral">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+
+	<select id="getAsientoRegistralByEntidadRegistralYCodigoIntercambio" parameterClass="java.util.Map" resultMap="asientoRegistral">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			cd_ent_reg=#codigoEntidadRegistral#
+			AND cd_intercambio=#identificadorIntercambio#
+	</select>
+
+	<select id="getCodigoIntercambio" parameterClass="java.lang.String" resultClass="java.lang.String">
+		SELECT
+			cd_intercambio
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+	
+	<select id="getDescripcionTipoAnotacionIntercambio" parameterClass="java.lang.String" resultClass="java.lang.String">
+		SELECT
+			ds_tipo_anotacion
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+	
+	
+
+	<select id="getEstado" parameterClass="java.lang.String" resultMap="estadoAsientoRegistralMap">
+		SELECT
+			cd_estado,
+			fe_estado,
+			ds_nombre_usuario,
+			ds_contacto_usuario,
+			ds_tipo_anotacion
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+
+	<insert id="addAsientoRegistralVO" parameterClass="asientoRegistral">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<update id="updateAsientoRegistralVO" parameterClass="asientoRegistral">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE id=#id:INTEGER#
+	</update>
+
+	<delete id="deleteAsientoRegistralVO" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteAsientoRegistralVOs">
+		DELETE FROM
+			<include refid="table" />
+	</delete>
+
+</sqlMap>

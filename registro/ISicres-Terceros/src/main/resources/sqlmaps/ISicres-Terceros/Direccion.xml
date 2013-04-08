@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="BaseDireccionVO">
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.terceros.business.vo.BaseDireccionVO"
+		id="direccion">
+		<result property="id" column="id" />
+		<result property="principal" column="preference" />
+		<result property="tipo" column="type" />
+		<result property="tercero.id" column="id_person" />
+		<discriminator
+			javaType="es.ieci.tecdoc.isicres.terceros.business.vo.enums.DireccionType"
+			column="type"
+			typeHandler="es.ieci.tecdoc.isicres.terceros.business.dao.callback.DireccionTypeCallbackHandler">
+			<subMap value="FISICA" resultMap="direccionFisica" />
+			<subMap value="TELEMATICA" resultMap="direccionTelematica" />
+		</discriminator>
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.terceros.business.vo.DireccionFisicaVO"
+		extends="direccion" id="direccionFisica">
+		<result property="direccion" column="address" />
+		<result property="ciudad.nombre" column="city" />
+		<result property="provincia.nombre" column="country" />
+		<result property="pais" select="PaisVO.findByNombre" column="pais" />
+		<result property="codigoPostal" column="zip" />
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.terceros.business.vo.DireccionTelematicaVO"
+		extends="direccion" id="direccionTelematica">
+		<result property="direccion" column="address" />
+		<result property="tipoDireccionTelematica"
+			select="TipoDireccionTelematicaVO.getTipoDireccionTelematicaVO"
+			column="tipoTelematica" />
+	</resultMap>
+
+	<select id="getBaseDireccionVOs" resultMap="direccion">
+		SELECT * FROM (
+			SELECT addr.id, addr.id_person, addr.type, dom.address, dom.city,
+			dom.zip, dom.country, dom.pais, dom.preference, NULL as tipoTelematica
+			FROM scr_address addr RIGHT JOIN scr_dom dom ON addr.id=dom.id
+			UNION
+			SELECT addr.id, addr.id_person,
+			addr.type, tel.address, '' as city, '' as
+			zip, '' as country, '' as pais,
+			tel.preference, tel.type as tipoTelematica
+			FROM scr_address addr RIGHT JOIN scr_addrtel tel ON
+			addr.id=tel.id
+		) direcciones
+	</select>
+
+	<select id="getBaseDireccionVO" parameterClass="java.lang.String"
+		resultMap="direccion">
+		SELECT * FROM (
+		SELECT addr.id, addr.id_person, addr.type,
+		dom.address, dom.city, dom.zip,
+		dom.country, dom.pais, dom.preference, NULL as tipoTelematica
+		FROM
+		scr_address addr RIGHT JOIN scr_dom dom ON addr.id=dom.id
+		UNION
+		SELECT
+		addr.id, addr.id_person, addr.type, tel.address, '' as city, '' as
+		zip, '' as country, '' as pais, tel.preference, tel.type as tipoTelematica
+		FROM scr_address addr RIGHT JOIN
+		scr_addrtel tel ON addr.id=tel.id
+		)
+		direcciones WHERE id=#value:INTEGER#
+	</select>
+
+	<select id="getDireccionByTercero" parameterClass="java.lang.String"
+		resultMap="direccion">
+		SELECT * FROM (
+			SELECT addr.id, addr.id_person, addr.type,
+			dom.address, dom.city, dom.zip,
+			dom.country, dom.pais, dom.preference, NULL as tipoTelematica
+			FROM
+			scr_address addr RIGHT JOIN scr_dom dom ON addr.id=dom.id
+			UNION
+			SELECT
+			addr.id, addr.id_person, addr.type, tel.address, '' as city, '' as
+			zip, '' as country, '' as pais, tel.preference, tel.type as tipoTelematica
+			FROM scr_address addr RIGHT JOIN
+			scr_addrtel tel ON addr.id=tel.id
+		) direcciones
+		WHERE id_person=#value:INTEGER#
+		ORDER BY direcciones.type, direcciones.address
+	</select>
+
+	<insert id="addBaseDireccionVO"
+		parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.BaseDireccionVO">
+		INSERT INTO scr_address (id, id_person, type)
+		VALUES
+		(#id:INTEGER#, #tercero.id:INTEGER#, #tipo.value:INTEGER#)
+	</insert>
+
+	<delete id="deleteBaseDireccionVO" parameterClass="java.lang.String">
+		DELETE FROM
+		scr_address
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteBaseDireccionVOs">
+		DELETE FROM	scr_address
+	</delete>
+
+	<delete id="deleteBaseDireccionVOByTercero" parameterClass="java.lang.String">
+		DELETE FROM
+		scr_address
+		WHERE id_person=#value:INTEGER#
+	</delete>
+
+	<update id="updateBaseDireccionVO"
+		parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.BaseDireccionVO">
+		UPDATE scr_address
+		SET type=#tipo.value#
+		WHERE id=#id:INTEGER#
+	</update>
+
+</sqlMap>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:soap="http://cxf.apache.org/bindings/soap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+	default-dependency-check="none" default-lazy-init="false">
+
+	<jaxws:client id="fwktd_csv_wsclient_servicioAplicaciones"
+		serviceClass="es.ieci.tecdoc.fwktd.csv.ws.service.ServicioAplicacionesPortType"
+		address="${fwktd-csv.wsclient.servicioAplicaciones.url}">
+		<jaxws:outInterceptors>
+			<ref bean="fwktd_csv_wsclient_securityInterceptor" />
+		</jaxws:outInterceptors>
+	</jaxws:client>
+
+	<jaxws:client id="fwktd_csv_wsclient_servicioDocumentos"
+		serviceClass="es.ieci.tecdoc.fwktd.csv.ws.service.ServicioDocumentosPortType"
+		address="${fwktd-csv.wsclient.servicioDocumentos.url}">
+		<jaxws:outInterceptors>
+			<ref bean="fwktd_csv_wsclient_securityInterceptor" />
+		</jaxws:outInterceptors>
+	</jaxws:client>
+
+	<bean id="fwktd_csv_wsclient_securityInterceptorImpl" name="fwktd_csv_wsclient_securityInterceptor"
+		class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+		<constructor-arg>
+			<map>
+				<entry key="action" value="${fwktd-csv.wsclient.security.action}" />
+				<entry key="user" value="${fwktd-csv.wsclient.security.user}" />
+				<entry key="passwordType" value="${fwktd-csv.wsclient.security.passwordType}" />
+				<entry key="passwordCallbackRef">
+					<ref bean="fwktd_csv_wsclient_passwordCallback" />
+				</entry>
+				<entry key="signaturePropRefId" value="cryptoProperties"/>
+				<entry key="cryptoProperties">
+					<props>
+						<prop key="org.apache.ws.security.crypto.provider">${fwktd-csv.wsclient.security.signature.provider}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.file">${fwktd-csv.wsclient.security.signature.keystore.file}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.keystore.type">${fwktd-csv.wsclient.security.signature.keystore.type}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.keystore.alias">${fwktd-csv.wsclient.security.signature.keystore.alias}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.keystore.password">${fwktd-csv.wsclient.security.signature.keystore.password}</prop>
+					</props>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="fwktd_csv_wsclient_passwordCallbackImpl" name="fwktd_csv_wsclient_passwordCallback"
+		class="es.ieci.tecdoc.fwktd.ws.security.callback.SimplePasswordCallback">
+		<property name="password" value="${fwktd-csv.wsclient.security.password}"/>
+	</bean>
+
+</beans>

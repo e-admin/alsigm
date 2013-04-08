@@ -1,0 +1,647 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!-- Note:  A "Server" is not itself a "Container", so you may not
+     define subcomponents such as "Valves" at this level.
+     Documentation at /docs/config/server.html
+ -->
+<Server port="8005" shutdown="SHUTDOWN">
+
+  <!--APR library loader. Documentation at /docs/apr.html -->
+  <!--Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" /-->
+  <!--Initialize Jasper prior to webapps are loaded. Documentation at /docs/jasper-howto.html -->
+  <Listener className="org.apache.catalina.core.JasperListener" />
+  <!-- JMX Support for the Tomcat server. Documentation at /docs/non-existent.html -->
+  <Listener className="org.apache.catalina.mbeans.ServerLifecycleListener" />
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+
+  <!-- Global JNDI resources
+       Documentation at /docs/jndi-resources-howto.html
+  -->
+  <GlobalNamingResources>
+    <!-- Editable user database that can also be used by
+         UserDatabaseRealm to authenticate users
+    -->
+    <Resource name="UserDatabase" auth="Container"
+              type="org.apache.catalina.UserDatabase"
+              description="User database that can be updated and saved"
+              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+              pathname="conf/tomcat-users.xml" />
+
+		<Resource name="jdbc/sigemAdmin" 
+							auth="Container"
+							type="javax.sql.DataSource" 
+							driverClassName="org.postgresql.Driver"
+							url="jdbc:postgresql://localhost/sigemAdmin"
+							username="postgres" 
+							password="postgres" 
+							maxActive="20" 
+							maxIdle="10" 
+							maxWait="-1"
+							removeAbandoned="true" 
+							removeAbandonedTimeout="5" 
+							logAbandoned="true"/>
+
+		<Resource name="jdbc/eTramitacionDS_000" 
+							auth="Container"
+							type="javax.sql.DataSource" 
+							driverClassName="org.postgresql.Driver"
+							url="jdbc:postgresql://localhost/eTramitacion_000"
+							username="postgres" 
+							password="postgres" 
+							maxActive="20" 
+							maxIdle="10" 
+							maxWait="-1"
+							removeAbandoned="true" 
+							removeAbandonedTimeout="5" 
+							logAbandoned="true"/>
+
+		<Resource name="jdbc/registroDS_000" 
+							auth="Container"
+							type="javax.sql.DataSource" 
+							driverClassName="org.postgresql.Driver"
+							url="jdbc:postgresql://localhost/registro_000"
+							username="postgres" 
+							password="postgres" 
+							maxActive="20" 
+							maxIdle="10" 
+							maxWait="-1"
+							removeAbandoned="true" 
+							removeAbandonedTimeout="5" 
+							logAbandoned="true"/>
+							
+		<Resource name="jdbc/tramitadorDS_000" 
+							auth="Container"
+							type="javax.sql.DataSource" 
+							driverClassName="org.postgresql.Driver"
+							url="jdbc:postgresql://localhost/tramitador_000"
+							username="postgres" 
+							password="postgres" 
+							maxActive="20" 
+							maxIdle="10" 
+							maxWait="-1"
+							removeAbandoned="true" 
+							removeAbandonedTimeout="5" 
+							logAbandoned="true"/>
+							
+		<Resource name="jdbc/archivoDS_000" 
+							auth="Container"
+							type="javax.sql.DataSource" 
+							driverClassName="org.postgresql.Driver"
+							url="jdbc:postgresql://localhost/archivo_000"
+							username="postgres" 
+							password="postgres" 
+							maxActive="20" 
+							maxIdle="10" 
+							maxWait="-1"
+							removeAbandoned="true" 
+							removeAbandonedTimeout="5" 
+							logAbandoned="true"/>
+
+		<Resource name="jdbc/tercerosDS_000" 
+							auth="Container"
+							type="javax.sql.DataSource" 
+							driverClassName="org.postgresql.Driver"
+							url="jdbc:postgresql://localhost/registro_000"
+							username="postgres" 
+							password="postgres" 
+							maxActive="20" 
+							maxIdle="10" 
+							maxWait="-1"
+							removeAbandoned="true" 
+							removeAbandonedTimeout="5" 
+							logAbandoned="true"/>
+							
+		<Resource name="jdbc/sisnot"
+				  			auth="Container"  
+				  			type="javax.sql.DataSource"
+				  			driverClassName="org.postgresql.Driver"
+				  			url="jdbc:postgresql://localhost/sisnot"
+				  			username="postgres"
+				  			password="postgres"
+				  			maxActive="20"
+				  			maxIdle="10"
+				  			maxWait="-1"
+				  			removeAbandoned="true"
+				  			removeAbandonedTimeout="5"
+				  			logAbandoned="true"/>
+				  							
+  </GlobalNamingResources>
+
+  <!-- A "Service" is a collection of one or more "Connectors" that share
+       a single "Container" Note:  A "Service" is not itself a "Container", 
+       so you may not define subcomponents such as "Valves" at this level.
+       Documentation at /docs/config/service.html
+   -->
+  <Service name="Catalina">
+  
+    <!--The connectors can use a shared executor, you can define one or more named thread pools-->
+    <!--
+    <Executor name="tomcatThreadPool" namePrefix="catalina-exec-" 
+        maxThreads="150" minSpareThreads="4"/>
+    -->
+    
+    
+    <!-- A "Connector" represents an endpoint by which requests are received
+         and responses are returned. Documentation at :
+         Java HTTP Connector: /docs/config/http.html (blocking & non-blocking)
+         Java AJP  Connector: /docs/config/ajp.html
+         APR (HTTP/AJP) Connector: /docs/apr.html
+         Define a non-SSL HTTP/1.1 Connector on port 8080
+    -->
+    <Connector port="8080" protocol="HTTP/1.1" 
+               connectionTimeout="20000" 
+               redirectPort="8443" />
+    <!-- A "Connector" using the shared thread pool-->
+    <!--
+    <Connector executor="tomcatThreadPool"
+               port="8080" protocol="HTTP/1.1" 
+               connectionTimeout="20000" 
+               redirectPort="8443" />
+    -->           
+    <!-- Define a SSL HTTP/1.1 Connector on port 8443
+         This connector uses the JSSE configuration, when using APR, the 
+         connector should be using the OpenSSL style configuration
+         described in the APR documentation -->
+    <!--
+    <Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+               maxThreads="150" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS" />
+    -->
+
+		<!-- PUERTO SEGURO CON AUTENTICACION DE CLIENTE-->
+    <Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+               maxThreads="150" scheme="https" secure="true"
+               clientAuth="true" sslProtocol="TLS" 
+							 keystoreFile="/home/sigem/SIGEM/certificados/certificadoServidor.pfx" keystorePass="sigem" keystoreType="PKCS12"/>
+    
+		<!-- PUERTO SEGURO SIN AUTENTICACION DE CLIENTE-->
+    <Connector port="4443" protocol="HTTP/1.1" SSLEnabled="true"
+               maxThreads="150" scheme="https" secure="true"
+               clientAuth="falses" sslProtocol="TLS" 
+							 keystoreFile="/home/sigem/SIGEM/certificados/certificadoServidor.pfx" keystorePass="sigem" keystoreType="PKCS12"/>
+    
+    <!-- Define an AJP 1.3 Connector on port 8009 -->
+    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
+
+
+    <!-- An Engine represents the entry point (within Catalina) that processes
+         every request.  The Engine implementation for Tomcat stand alone
+         analyzes the HTTP headers included with the request, and passes them
+         on to the appropriate Host (virtual host).
+         Documentation at /docs/config/engine.html -->
+
+    <!-- You should set jvmRoute to support load-balancing via AJP ie :
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="jvm1">         
+    --> 
+    <Engine name="Catalina" defaultHost="localhost">
+
+      <!--For clustering, please take a look at documentation at:
+          /docs/cluster-howto.html  (simple how to)
+          /docs/config/cluster.html (reference documentation) -->
+      <!--
+      <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
+      -->        
+
+      <!-- The request dumper valve dumps useful debugging information about
+           the request and response data received and sent by Tomcat.
+           Documentation at: /docs/config/valve.html -->
+      <!--
+      <Valve className="org.apache.catalina.valves.RequestDumperValve"/>
+      -->
+
+      <!-- This Realm uses the UserDatabase configured in the global JNDI
+           resources under the key "UserDatabase".  Any edits
+           that are performed against this UserDatabase are immediately
+           available for use by the Realm.  -->
+      <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+             resourceName="UserDatabase"/>
+
+      <!-- Define the default virtual host
+           Note: XML Schema validation will not work with Xerces 2.2.
+       -->
+      <Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true"
+            xmlValidation="false" xmlNamespaceAware="false">
+
+        <!-- SingleSignOn valve, share authentication between web applications
+             Documentation at: /docs/config/valve.html -->
+        <!--
+        <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
+        -->
+
+        <!-- Access log processes all example.
+             Documentation at: /docs/config/valve.html -->
+        <!--
+        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"  
+               prefix="localhost_access_log." suffix=".txt" pattern="common" resolveHosts="false"/>
+        -->
+
+				<!-- ADMINISTRACION  SESIONES ADMINISTRADORES WS -->
+				<Context docBase="SIGEM_AdministracionSesionesAdmWS" path="/SIGEM_AdministracionSesionesAdmWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					
+				</Context>
+
+				<!-- ADMINISTRACION SESIONES BACKOFFICE WS -->
+				<Context docBase="SIGEM_AdministracionSesionesBackOfficeWS" path="/SIGEM_AdministracionSesionesBackOfficeWS" reloadable="true">
+					
+				</Context>
+				
+				<!-- ADMINISTRACION DE USUARIOS WEB-->
+				<Context docBase="SIGEM_AdministracionUsuariosWeb" path="/SIGEM_AdministracionUsuariosWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+						
+				</Context>
+				
+				<!-- ADMINISTRACION GENERAL WEB-->
+				<Context docBase="SIGEM_AdministracionWeb" path="/SIGEM_AdministracionWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+				</Context>
+
+				<!-- ARCHIVO -->	
+				<Context docBase="SIGEM_ArchivoWeb" path="/SIGEM_ArchivoWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/archivoDS_000" name="jdbc/archivoDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/tercerosDS_000" name="jdbc/tercerosDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>		
+
+				<!-- AUTENTICACION ADMINISTRACION WEB -->
+				<Context docBase="SIGEM_AutenticacionAdministracionWeb" path="/SIGEM_AutenticacionAdministracionWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+				</Context>
+				
+				<!-- AUTENTICACION BACKOFFICE WEB -->
+				<Context docBase="SIGEM_AutenticacionBackOfficeWeb" path="/SIGEM_AutenticacionBackOfficeWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+				
+				<!-- AUTENTICACION DE USUARIOS WEB SERVICE -->	
+				<Context docBase="SIGEM_AutenticacionUsuariosWS" path="/SIGEM_AutenticacionUsuariosWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+
+				<!-- AUTENTICACION DE USUARIOS WEB-->	
+				<Context docBase="SIGEM_AutenticacionWeb" path="/SIGEM_AutenticacionWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					
+				</Context>
+				
+				<!-- CATALOGO DE PROCEDIMIENTOS WEB - IspacCatalog -->	
+				<Context docBase="SIGEM_CatalogoProcedimientosWeb" path="/SIGEM_CatalogoProcedimientosWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+					
+					<!-- Habilitar cuando se active el conector de organos productores de procedimientos contra archivo -->					
+					<!-- <ResourceLink global="jdbc/archivoDS_000" name="jdbc/archivoDS_000" type="javax.sql.DataSource"/>  -->
+					
+				</Context>
+				
+				<!-- CATALOGO DE TRAMITES CIUDADANO WS-->
+				<Context docBase="SIGEM_CatalogoTramitesWS" path="/SIGEM_CatalogoTramitesWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+						
+				</Context>
+				
+				<!-- CATALOGO TRAMITES CIUDADANO WEB-->
+				<Context docBase="SIGEM_CatalogoTramitesWeb" path="/SIGEM_CatalogoTramitesWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+						
+				</Context>
+				
+				<!-- CERTIFICACION DE CIUDADANO WS-->
+				<Context docBase="SIGEM_CertificacionWS" path="/SIGEM_CertificacionWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+						
+				</Context>
+				
+				<!-- CERTIFICACION DE CIUDADANO WEB-->
+				<Context docBase="SIGEM_CertificacionWeb" path="/SIGEM_CertificacionWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+						
+				</Context>
+				
+				<!-- CONSULTA WEB-->	
+				<Context docBase="SIGEM_ConsultaWeb" path="/SIGEM_ConsultaWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+				
+				<!-- CONSULTA DE EXPEDIENTES WEB SERVICE -->	
+				<Context docBase="SIGEM_ConsultaWS" path="/SIGEM_ConsultaWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+				
+				<!-- CRIPTO-VALIDACION WEB SERVICE -->	
+				<Context docBase="SIGEM_CriptoValidacionWS" path="/SIGEM_CriptoValidacionWS" reloadable="true">
+	</Context>
+
+				<!-- ENTIDADES WEB SERVICE -->	
+				<Context docBase="SIGEM_EntidadesWS" path="/SIGEM_EntidadesWS">
+		
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+
+				</Context>
+				
+				<!-- ESTRUCTURA ORGANIZATIVA WEB-->      
+				<Context docBase="SIGEM_EstructuraWeb" path="/SIGEM_EstructuraWeb" reloadable="true">
+				
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+				
+				</Context>
+				
+				<!-- ESTRUCTURA ORGANIZATIVA WS-->
+				<Context docBase="SIGEM_EstructuraOrganizativaWS" path="/SIGEM_EstructuraOrganizativaWS" reloadable="true">
+
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+
+				</Context>
+				
+				<!-- FIRMA DIGITAL WEB SERVICE -->	
+				<Context docBase="SIGEM_FirmaDigitalWS" path="/SIGEM_FirmaDigitalWS" reloadable="true">
+				
+				</Context>
+				
+				<!-- GEOLOCALIZACION WEB -->	
+				<Context docBase="SIGEM_GeoLocalizacionWeb" path="/SIGEM_GeoLocalizacionWeb" reloadable="true">
+
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>		
+
+				</Context>
+				
+				<!-- GEOLOCALIZACION WEB SERVICE -->	
+				<Context docBase="SIGEM_GeoLocalizacionWS" path="/SIGEM_GeoLocalizacionWS" reloadable="true">
+
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					
+				</Context>
+				
+				<!-- NOTIFICACION: actualizador-->	
+				<Context docBase="SIGEM_NotificacionUpdaterWeb" path="/SIGEM_NotificacionUpdaterWeb" reloadable="true">
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					<ResourceLink global="jdbc/sisnot" name="jdbc/sisnot" type="javax.sql.DataSource"/>
+				</Context>
+
+				<!-- NOTIFICACIONES WEB SERVICE -->	
+				<Context docBase="SIGEM_NotificacionWS" path="/SIGEM_NotificacionWS" reloadable="true">
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					<ResourceLink global="jdbc/sisnot" name="jdbc/sisnot" type="javax.sql.DataSource"/>
+				</Context>
+				
+				<!-- NOTIFICACION WEB -->	
+				<Context docBase="SIGEM_NotificacionWeb" path="/SIGEM_NotificacionWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+
+				<!-- PAGO TELEMATICO WEB SERVICE -->	
+				<Context docBase="SIGEM_PagoElectronicoWS" path="/SIGEM_PagoElectronicoWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+				
+				<!-- PAGO TELEMATICO WEB-->	
+				<Context docBase="SIGEM_PagoElectronicoWeb" path="/SIGEM_PagoElectronicoWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+
+				<!-- GESTOR DE EXPEDIENTES: PUBLICADOR WEB- IspacPublicador -->	
+				<Context docBase="SIGEM_PublicadorWeb" path="/SIGEM_PublicadorWeb" reloadable="true">
+
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/sisnot" name="jdbc/sisnot" type="javax.sql.DataSource"/>
+					
+				</Context>
+
+				<!-- GESTOR DE EXPEDIENTES: PUBLICADOR WS -->	
+				<Context docBase="SIGEM_PublicadorWS" path="/SIGEM_PublicadorWS" reloadable="true">
+
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/sisnot" name="jdbc/sisnot" type="javax.sql.DataSource"/>
+					
+				</Context>
+				
+				<!-- REPOSITORIO DE DOCUMENTOS DE TRAMITACION ELECTRONICA WEB SERVICE -->	
+				<Context docBase="SIGEM_RdeWS" path="/SIGEM_RdeWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>	
+				
+				<!-- REGISTRO PRESENCIAL ADMINISTRACION -->	
+				<Context docBase="SIGEM_RegistroPresencialAdminWeb" path="/SIGEM_RegistroPresencialAdminWeb" reloadable="true">
+				
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+						
+				</Context>
+
+				<!-- REGISTRO PRESENCIAL WEB SERVICE -->
+				<Context docBase="SIGEM_RegistroPresencialWS" path="/SIGEM_RegistroPresencialWS" reloadable="true">
+				
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+								
+				</Context>
+				
+				<!-- REGISTRO PRESENCIAL WEB -->	
+				<Context docBase="SIGEM_RegistroPresencialWeb" path="/SIGEM_RegistroPresencialWeb" reloadable="true">
+				
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+								
+				</Context>
+
+				<!-- REGISTRO TELEMATICO WEB SERVICE-->	
+				<Context docBase="SIGEM_RegistroTelematicoWS" path="/SIGEM_RegistroTelematicoWS" reloadable="true">
+				
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+				
+				<!-- REGISTRO TELEMATICO -->	
+				<Context docBase="SIGEM_RegistroTelematicoWeb" path="/SIGEM_RegistroTelematicoWeb" reloadable="true">
+					
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+				
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+				
+				<!-- CONSULTA REGISTRO TELEMATICO -->
+      			<Context docBase="SIGEM_ConsultaRegistroTelematicoWeb" path="/SIGEM_ConsultaRegistroTelematicoWeb" reloadable="true">
+      			
+      				<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+      				
+      			</Context>
+				
+				<!-- REPOSITORIOS DOCUMENTALES WEB-->
+				<Context docBase="SIGEM_RepositoriosDocumentalesWeb" path="/SIGEM_RepositoriosDocumentalesWeb" reloadable="true">
+				
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+					 	
+				</Context>
+				
+				<!-- SESION DE USUARIO WEB SERVICE -->	
+				<Context docBase="SIGEM_SessionUsuarioWS" path="/SIGEM_SessionUsuarioWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+
+
+				<!--TERCEROS WEB SERVICE -->	
+				<Context docBase="SIGEM_TercerosWS" path="/SIGEM_TercerosWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/tercerosDS_000" name="jdbc/tercerosDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>
+
+				<!-- GESTION DE EXPEDIENTES WEB SERVICE -->	
+				<Context docBase="SIGEM_TramitacionWS" path="/SIGEM_TramitacionWS" reloadable="true">
+					
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+				
+				</Context>
+
+				<!-- GESTOR DE EXPEDIENTES: TRAMITADOR WEB - IspacManager -->	
+				<Context docBase="SIGEM_TramitacionWeb" path="/SIGEM_TramitacionWeb" reloadable="true">
+
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/tercerosDS_000" name="jdbc/tercerosDS_000" type="javax.sql.DataSource"/>
+					
+					<!-- Habilitar cuando se active el conector de organos productores de procedimientos contra archivo -->					
+					<!-- <ResourceLink global="jdbc/archivoDS_000" name="jdbc/archivoDS_000" type="javax.sql.DataSource"/>  -->
+					
+				</Context>		
+				
+				<!-- Buscador de documentos de tramitacion -->
+                <Context docBase="SIGEM_BuscadorDocsWeb" path="/SIGEM_BuscadorDocsWeb" reloadable="true">
+
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+					
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>	
+
+				<!-- MENSAJES CORTOS WEB SERVICE -->	
+				<Context docBase="SIGEM_MensajesCortosWS" path="/SIGEM_MensajesCortosWS" reloadable="true">
+					
+				</Context>		
+
+				<!-- SCHEDULER -->	
+				<Context docBase="SIGEM_SchedulerWeb" path="/SIGEM_SchedulerWeb" reloadable="true">
+
+					<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+					
+				</Context>	
+				
+				<!-- CALENDARIO WS -->
+				<Context docBase="SIGEM_CalendarioWS" path="/SIGEM_CalendarioWS" reloadable="true">
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+				</Context>
+				
+				<!-- ANTIVIRUS WS -->
+				<Context docBase="SIGEM_AntivirusWS" path="/SIGEM_AntivirusWS" reloadable="true">
+				
+				</Context>
+				
+      </Host>
+    </Engine>
+  </Service>
+</Server>

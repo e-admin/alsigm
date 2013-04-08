@@ -1,0 +1,10 @@
+/**************     ERRORES   ******************/
+.error{
+	font-weight: bold;
+	color: #ff0000;
+}
+
+.message{
+	font-weight: bold;
+	color: #00c000;
+}

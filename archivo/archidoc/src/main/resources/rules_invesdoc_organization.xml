@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+<pattern value="ORGANO">
+	<object-create-rule classname="se.instituciones.archivo.invesdoc.vo.OrganoVO" />
+	<call-method-rule pattern="CODIGO" methodname="setCodigo" paramcount="0"/>
+	<call-method-rule pattern="NIVEL" methodname="setNivel" paramcount="0"/>
+	<call-method-rule pattern="INSTITUCION" methodname="setInstitucion" paramcount="0"/>
+</pattern>
+</digester-rules>

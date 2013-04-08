@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<model name="iflow:iflowmodel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+    <description>Custom Model para IFlow</description>
+    <author>IECI</author>
+    <version>1.0</version>
+    <imports>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+    </imports>
+    <namespaces>
+        <namespace uri="iflow.model" prefix="iflow"/>
+    </namespaces>
+	<types>
+		<type name="iflow:documento">
+			<title>Documento Electronico de iflow</title>
+			<parent>cm:content</parent>
+			<mandatory-aspects>					
+                <aspect>iflow:aspectDocumento</aspect>
+			</mandatory-aspects>
+		</type>
+		<type name="iflow:documentoFirmado">
+			<title>Documento Electronico Firmado de iflow</title>
+			<parent>cm:content</parent>
+			<mandatory-aspects>
+				<aspect>iflow:aspectDocumento</aspect>
+                <aspect>iflow:aspectFirmaDocumento</aspect>
+			</mandatory-aspects>
+		</type>
+	</types>
+	<aspects>
+		<aspect name="iflow:aspectDocumento">
+			<title>Documento Electronico de iflow</title>
+			<properties>
+				<property name="iflow:document_id">
+					<title>document_id</title>
+					<type>d:text</type>
+				</property>
+				<property name="iflow:document_name">
+					<title>document_name</title>
+					 <type>d:text</type>					
+				</property>
+				<property name="iflow:document_type">
+					<title>document_type</title>
+					<type>d:text</type>
+				</property>
+				<property name="iflow:document_size">
+					<title>document_size</title>
+					<type>d:text</type>
+				</property>	
+				<property name="iflow:procedure_id">
+					<title>procedure_id</title>
+					<type>d:text</type>
+				</property>
+				<property name="iflow:procedure_name">
+					<title>procedure_name</title>
+					<type>d:text</type>
+				</property>	
+				<property name="iflow:expedient_id">
+					<title>expedient_id</title>
+					<type>d:text</type>
+				</property>									
+				<property name="iflow:expedient_name">
+					<title>expedient_name</title>
+					<type>d:text</type>
+				</property>			
+				<property name="iflow:user_guid">
+					<title>user_guid</title>
+					<type>d:text</type>
+				</property>	
+				<property name="iflow:user_name">
+					<title>user_name</title>
+					<type>d:text</type>
+				</property>	
+				<property name="iflow:stage_id">
+					<title>stage_id</title>
+					<type>d:text</type>
+				</property>	
+				<property name="iflow:stage_name">
+					<title>stage_name</title>
+					<type>d:text</type>
+				</property>	
+				<property name="iflow:task_id">
+					<title>task_id</title>
+					<type>d:text</type>
+				</property>	
+				<property name="iflow:task_name">
+					<title>task_name</title>
+					<type>d:text</type>
+				</property>	
+				<property name="iflow:mimetype">
+					<title>mimetype</title>
+					<type>d:text</type>
+				</property>	
+            </properties>
+		</aspect>
+		<aspect name="iflow:aspectFirmaDocumento">
+			<title>Firma de Documento de iflow</title>
+			<properties>
+				<property name="iflow:sign">
+					<title>sign</title>
+					<type>d:text</type>
+				</property>
+				<property name="iflow:creation_date">
+					<title>creation_date</title>
+					<type>d:text</type>
+				</property>	
+            </properties>
+		</aspect>
+	</aspects>
+</model>

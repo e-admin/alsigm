@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+	<pattern value="info">
+	    <object-create-rule classname="xml.config.InfoDetallePrev" />
+		<call-method-rule pattern="udocsElectronicas" methodname="setUdocsElectronicas" paramcount="0"/>
+  	    <pattern value="volumen_formato/formato">
+  	    	
+	    	<object-create-rule classname="xml.config.InfoVolumenFormato" />
+	    
+	    	<set-properties-rule>
+				<alias attr-name="formato/idFmt" prop-name="idFmt"/>
+				<alias attr-name="formato/nombreFmt" prop-name="nombreFmt"/>
+				<alias attr-name="formato/numUI" prop-name="numUI"/>
+			</set-properties-rule>          
+			<set-next-rule methodname="addVolumenFormato" />               
+			
+	    </pattern>
+	</pattern>
+</digester-rules>

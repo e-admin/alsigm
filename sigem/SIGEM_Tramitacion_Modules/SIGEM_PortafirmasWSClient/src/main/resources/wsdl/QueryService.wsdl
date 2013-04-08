@@ -1,0 +1,445 @@
+<?xml version="1.0" ?><wsdl:definitions name="QueryService" targetNamespace="urn:juntadeandalucia:cice:pfirma:query:v2.0" xmlns:pfirma="urn:juntadeandalucia:cice:pfirma:query:v2.0" xmlns:request="urn:juntadeandalucia:cice:pfirma:query:request:v2.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:type="urn:juntadeandalucia:cice:pfirma:type:v2.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+<xsd:schema targetNamespace="urn:juntadeandalucia:cice:pfirma:query:request:v2.0" xmlns:pfirma="urn:juntadeandalucia:cice:pfirma:query:v2.0" xmlns:request="urn:juntadeandalucia:cice:pfirma:query:request:v2.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:type="urn:juntadeandalucia:cice:pfirma:type:v2.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			
+			<xsd:import namespace="urn:juntadeandalucia:cice:pfirma:type:v2.0" schemaLocation="WebServiceTypes.xsd"></xsd:import>			
+			
+			<xsd:element name="queryRequestResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="request" type="type:request"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryStates">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"></xsd:element>
+						<xsd:element name="query" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryImportanceLevels">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"></xsd:element>
+						<xsd:element name="query" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryDocumentTypes">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"></xsd:element>
+						<xsd:element name="query" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryUsers">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"></xsd:element>
+						<xsd:element name="query" type="xsd:string"></xsd:element>						
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="downloadDocument">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"></xsd:element>					
+						<xsd:element name="documentId" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="downloadDocumentResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="documentBinary" type="xsd:base64Binary"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="downloadSignResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="signature" type="type:signature"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryStatesResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="stateList" type="type:stateList"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryImportanceLevelsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="importanceLevelList" type="type:importanceLevelList"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryJobsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="jobList" type="type:jobList"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="downloadSign">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"></xsd:element>
+						<xsd:element name="documentId" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"></xsd:element>
+						<xsd:element name="requestId" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryUsersResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="userList" type="type:userList"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryDocumentTypesResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="documentTypeList" type="type:documentTypeList"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="queryJobs">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"></xsd:element>
+						<xsd:element name="query" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="getCVS">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"></xsd:element>
+						<xsd:element name="firma" type="type:signature"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="getCVSResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="cvs" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<!-- xsd:element name="getReportFromCSV">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication" />
+						<xsd:element name="csv" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element -->
+
+			<!-- xsd:element name="getReportFromCSVResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="reportDocument" type="xsd:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element -->
+
+		</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="queryStatesResponse">
+    <wsdl:part element="request:queryStatesResponse" name="queryStatesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pfirmaException">
+    <wsdl:part element="type:exceptionInfo" name="pfirmaException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCVSResponse">
+    <wsdl:part element="request:getCVSResponse" name="getCVSResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryDocumentTypesResponse">
+    <wsdl:part element="request:queryDocumentTypesResponse" name="queryDocumentTypesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryRequestResponse">
+    <wsdl:part element="request:queryRequestResponse" name="queryRequestResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadSign">
+    <wsdl:part element="request:downloadSign" name="downloadSign">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryUsers">
+    <wsdl:part element="request:queryUsers" name="queryUsers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryDocumentTypes">
+    <wsdl:part element="request:queryDocumentTypes" name="queryDocumentTypes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadDocumentResponse">
+    <wsdl:part element="request:downloadDocumentResponse" name="downloadDocumentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadDocument">
+    <wsdl:part element="request:downloadDocument" name="downloadDocument">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryImportanceLevelsResponse">
+    <wsdl:part element="request:queryImportanceLevelsResponse" name="queryImportanceLevelsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryJobs">
+    <wsdl:part element="request:queryJobs" name="queryJobs">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryImportanceLevels">
+    <wsdl:part element="request:queryImportanceLevels" name="queryImportanceLevels">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryStates">
+    <wsdl:part element="request:queryStates" name="queryStates">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryRequest">
+    <wsdl:part element="request:queryRequest" name="queryRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCVS">
+    <wsdl:part element="request:getCVS" name="getCVS">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryUsersResponse">
+    <wsdl:part element="request:queryUsersResponse" name="queryUsersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadSignResponse">
+    <wsdl:part element="request:downloadSignResponse" name="downloadSignResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryJobsResponse">
+    <wsdl:part element="request:queryJobsResponse" name="queryJobsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="QueryService">
+    <wsdl:operation name="downloadSign">
+      <wsdl:input message="pfirma:downloadSign" name="downloadSign">
+    </wsdl:input>
+      <wsdl:output message="pfirma:downloadSignResponse" name="downloadSignResponse">
+    </wsdl:output>
+      <wsdl:fault message="pfirma:pfirmaException" name="pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryUsers">
+      <wsdl:input message="pfirma:queryUsers" name="queryUsers">
+    </wsdl:input>
+      <wsdl:output message="pfirma:queryUsersResponse" name="queryUsersResponse">
+    </wsdl:output>
+      <wsdl:fault message="pfirma:pfirmaException" name="pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryDocumentTypes">
+      <wsdl:input message="pfirma:queryDocumentTypes" name="queryDocumentTypes">
+    </wsdl:input>
+      <wsdl:output message="pfirma:queryDocumentTypesResponse" name="queryDocumentTypesResponse">
+    </wsdl:output>
+      <wsdl:fault message="pfirma:pfirmaException" name="pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadDocument">
+      <wsdl:input message="pfirma:downloadDocument" name="downloadDocument">
+    </wsdl:input>
+      <wsdl:output message="pfirma:downloadDocumentResponse" name="downloadDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="pfirma:pfirmaException" name="pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryStates">
+      <wsdl:input message="pfirma:queryStates" name="queryStates">
+    </wsdl:input>
+      <wsdl:output message="pfirma:queryStatesResponse" name="queryStatesResponse">
+    </wsdl:output>
+      <wsdl:fault message="pfirma:pfirmaException" name="pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryImportanceLevels">
+      <wsdl:input message="pfirma:queryImportanceLevels" name="queryImportanceLevels">
+    </wsdl:input>
+      <wsdl:output message="pfirma:queryImportanceLevelsResponse" name="queryImportanceLevelsResponse">
+    </wsdl:output>
+      <wsdl:fault message="pfirma:pfirmaException" name="pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryRequest">
+      <wsdl:input message="pfirma:queryRequest" name="queryRequest">
+    </wsdl:input>
+      <wsdl:output message="pfirma:queryRequestResponse" name="queryRequestResponse">
+    </wsdl:output>
+      <wsdl:fault message="pfirma:pfirmaException" name="pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryJobs">
+      <wsdl:input message="pfirma:queryJobs" name="queryJobs">
+    </wsdl:input>
+      <wsdl:output message="pfirma:queryJobsResponse" name="queryJobsResponse">
+    </wsdl:output>
+      <wsdl:fault message="pfirma:pfirmaException" name="pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getCVS">
+      <wsdl:input message="pfirma:getCVS" name="getCVS">
+    </wsdl:input>
+      <wsdl:output message="pfirma:getCVSResponse" name="getCVSResponse">
+    </wsdl:output>
+      <wsdl:fault message="pfirma:pfirmaException" name="pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="QueryServiceSoapBinding" type="pfirma:QueryService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="downloadSign">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="downloadSign">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="downloadSignResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryUsers">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="queryUsers">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryUsersResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryDocumentTypes">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="queryDocumentTypes">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryDocumentTypesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadDocument">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="downloadDocument">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="downloadDocumentResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryStates">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="queryStates">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryStatesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryImportanceLevels">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="queryImportanceLevels">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryImportanceLevelsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryJobs">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="queryJobs">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryJobsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="queryRequest">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="queryRequest">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryRequestResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getCVS">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getCVS">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getCVSResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="QueryService">
+    <wsdl:port binding="pfirma:QueryServiceSoapBinding" name="QueryServicePort">
+      <soap:address location="http://10.228.75.80:8080/portafirma/servicesv2/QueryService"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

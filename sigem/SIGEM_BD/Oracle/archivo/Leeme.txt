@@ -1,0 +1,43 @@
+Ejemplo de importación en la base de datos ARCHIVO con password ARCHIVO_PASS y sid ORCL. 
+El tablespace en el que se crean los índices para este ejemplo es USERS.
+
+1) Abrir una consola de sistema mediante el comando cmd
+
+2) Entrar en el directorio donde estén los scripts de creación de la base de datos limpia:
+
+	cd ~\Completa"
+
+3) Para que la importación sea correcta un usuario con permisos DBA debe haber ejecutado anteriormente la siguiente sentencia
+mediante SQLPLUS (u otra herramienta):
+
+	GRANT EXECUTE ON CTXSYS.CTX_DDL TO ARCHIVO;
+
+4) Ejecutar sqlplus mediante el comando:
+
+	ARCHIVO/ARCHIVO_PASS@ORCL
+
+5) Ejecutar los comandos correspondientes desde SQLPLUS:
+
+SET DEFINE OFF;
+@01.archivo-create-tables-oracle.sql
+@02.archivo-create-indexes-oracle.sql USERS
+@03.archivo-insert-data-oracle.sql
+@04.archivo-insert-clob-oracle.sql
+@05.archivo-create-functions-oracle.sql
+@06.archivo-create-procedures-oracle.sql
+@07.archivo-personalization-oracle.sql
+@complementario/archivo-busqueda-documental/01.ARCHIVOFTSTH.sql
+@complementario/archivo-busqueda-documental/02.ARCHIVOFTSTB.sql
+@complementario/archivo-busqueda-documental/03.ARCHIVOINTERMEDIA.sql
+@complementario/archivo-busqueda-documental/04.ARCHIVOJOBINTERMEDIA.sql
+@complementario/archivo-busqueda-documental/05.ARCHIVOOPT.sql
+
+6) Ejecutar la siguiente sentencia para hacer commit de los cambios:
+
+	COMMIT;
+	
+7) Salir de SQLPLUS:
+	
+	quit
+
+

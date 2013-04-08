@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/"
+	xmlns:java="http://xml.apache.org/axis/wsdd/providers/java"
+	xmlns:ns1="http://server.ws.registropresencial.sgm.tecdoc.ieci"
+	xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci">
+	<globalConfiguration>
+		<parameter name="sendMultiRefs" value="true" />
+		<parameter name="disablePrettyXML" value="true" />
+		<parameter name="adminPassword" value="admin" />
+		<parameter name="attachments.Directory"
+			value="/home/sigem/SIGEM/attachments" />
+		<parameter name="dotNetSoapEncFix" value="true" />
+		<parameter name="enableNamespacePrefixOptimization" value="false" />
+		<parameter name="sendXMLDeclaration" value="true" />
+		<parameter name="attachments.implementation"
+			value="org.apache.axis.attachments.AttachmentsImpl" />
+		<parameter name="sendXsiTypes" value="true" />
+		<requestFlow>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="session" />
+			</handler>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="request" />
+				<parameter name="extension" value=".jwr" />
+			</handler>
+		</requestFlow>
+	</globalConfiguration>
+	<handler name="LocalResponder"
+		type="java:org.apache.axis.transport.local.LocalResponder" />
+	<handler name="URLMapper"
+		type="java:org.apache.axis.handlers.http.URLMapper" />
+	<handler name="Authenticate"
+		type="java:org.apache.axis.handlers.SimpleAuthenticationHandler" />
+	<service name="AdminService" provider="java:MSG">
+		<parameter name="allowedMethods" value="AdminService" />
+		<parameter name="enableRemoteAdmin" value="false" />
+		<parameter name="className" value="org.apache.axis.utils.Admin" />
+		<namespace>http://xml.apache.org/axis/wsdd/</namespace>
+	</service>
+	<service name="Version" provider="java:RPC">
+		<parameter name="allowedMethods" value="getVersion" />
+		<parameter name="className" value="org.apache.axis.Version" />
+	</service>
+	<service name="ServicioRegistroWebService" provider="java:RPC"
+		style="wrapped" use="literal">
+
+		<operation name="getDistribution" qname="ns1:getDistribution"
+			returnQName="ns1:getDistributionReturn" returnType="ns1:DistributionInfo"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:distributionInfo" type="ns1:DistributionInfo" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="createFolder" qname="ns1:createFolder"
+			returnQName="ns1:createFolderReturn" returnType="ns1:RegisterInfo"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:inter" type="ns1:PersonInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="updateFolder" qname="ns1:updateFolder"
+			returnQName="ns1:updateFolderReturn" returnType="ns1:RegisterInfo"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:inter" type="ns1:PersonInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="importFolder" qname="ns1:importFolder"
+			returnQName="ns1:importFolderReturn" returnType="ns1:RegisterInfo"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:inter" type="ns1:PersonInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="consolidateFolder" qname="ns1:consolidateFolder"
+			returnQName="ns1:consolidateFolderReturn" returnType="ns1:RegisterInfo"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:inter" type="ns1:PersonInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="findFolder" qname="ns1:findFolder"
+			returnQName="ns1:findFolderReturn" returnType="ns1:RegistersInfo"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folderQuery" type="ns1:FolderSearchCriteria" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getInputFolderForNumber"
+			qname="ns1:getInputFolderForNumber"
+			returnQName="ns1:getInputFolderForNumberReturn" returnType="ns1:Folder"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getInputRegister" qname="ns1:getInputRegister"
+			returnQName="ns1:getInputRegisterReturn"
+			returnType="ns1:FolderWithPersonInfo" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getOutputFolderForNumber"
+			qname="ns1:getOutputFolderForNumber"
+			returnQName="ns1:getOutputFolderForNumberReturn" returnType="ns1:Folder"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getOutputRegister" qname="ns1:getOutputRegister"
+			returnQName="ns1:getOutputRegisterReturn"
+			returnType="ns1:FolderWithPersonInfo" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getDocumentFolder" qname="ns1:getDocumentFolder"
+			returnQName="ns1:getDocumentFolderReturn" returnType="ns1:Document"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:document" type="ns1:Document" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getInputDistribution" qname="ns1:getInputDistribution"
+			returnQName="ns1:getInputDistributionReturn"
+			returnType="ns1:DistributionsInfo" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:criteria"
+				type="ns1:DistributionSearchCriteria" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getOutputDistribution"
+			qname="ns1:getOutputDistribution"
+			returnQName="ns1:getOutputDistributionReturn"
+			returnType="ns1:DistributionsInfo" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:criteria"
+				type="ns1:DistributionSearchCriteria" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="countInputDistribution"
+			qname="ns1:countInputDistribution"
+			returnQName="ns1:countInputDistributionReturn"
+			returnType="ns1:DistributionCountInfo" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:criteria"
+				type="ns1:DistributionSearchCriteria" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="countOutputDistribution"
+			qname="ns1:countOutputDistribution"
+			returnQName="ns1:countOutputDistributionReturn"
+			returnType="ns1:DistributionCountInfo" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:criteria"
+				type="ns1:DistributionSearchCriteria" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="acceptDistribution" qname="ns1:acceptDistribution"
+			returnQName="ns1:acceptDistributionReturn" returnType="ns2:RetornoServicio"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="acceptDistributionEx" qname="ns1:acceptDistributionEx"
+			returnQName="ns1:acceptDistributionExReturn" returnType="ns2:RetornoServicio"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:distributionInfo" type="ns1:DistributionInfo" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="archiveDistribution" qname="ns1:archiveDistribution"
+			returnQName="ns1:archiveDistributionReturn" returnType="ns2:RetornoServicio"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="archiveDistributionEx"
+			qname="ns1:archiveDistributionEx"
+			returnQName="ns1:archiveDistributionExReturn"
+			returnType="ns2:RetornoServicio" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:distributionInfo" type="ns1:DistributionInfo" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="rejectDistribution" qname="ns1:rejectDistribution"
+			returnQName="ns1:rejectDistributionReturn" returnType="ns2:RetornoServicio"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:options" type="ns1:DistributionOptions" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="rejectDistributionEx" qname="ns1:rejectDistributionEx"
+			returnQName="ns1:rejectDistributionExReturn" returnType="ns2:RetornoServicio"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:distributionInfo" type="ns1:DistributionInfo" />
+			<parameter qname="ns1:options" type="ns1:DistributionOptions" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="changeInputDistribution"
+			qname="ns1:changeInputDistribution"
+			returnQName="ns1:changeInputDistributionReturn"
+			returnType="ns2:RetornoServicio" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:options" type="ns1:DistributionOptions" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="changeOutputDistribution"
+			qname="ns1:changeOutputDistribution"
+			returnQName="ns1:changeOutputDistributionReturn"
+			returnType="ns2:RetornoServicio" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:options" type="ns1:DistributionOptions" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="addDocument" qname="ns1:addDocument"
+			returnQName="ns1:addDocumentReturn" returnType="ns1:RetornoServicio"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getInterestedInputRegister"
+			qname="ns1:getInterestedInputRegister"
+			returnQName="ns1:getInterestedInputRegisterReturn"
+			returnType="ns1:ListaPersonInfo" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getInterestedOutputRegister"
+			qname="ns1:getInterestedOutputRegister"
+			returnQName="ns1:getInterestedOutputRegisterReturn"
+			returnType="ns1:ListaPersonInfo" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="canCreateRegister" qname="ns1:canCreateRegister"
+			returnQName="ns1:canCreateRegisterReturn" returnType="ns1:RetornoServicio"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:criteria" type="ns1:SearchCriteria" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getBooksForType" qname="ns1:getBooksForType"
+			returnQName="ns1:getBooksForTypeReturn" returnType="ns1:BooksInfo"
+			soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:criteria" type="ns1:SearchCriteria" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+		<operation name="getOfficeCanCreateRegisterByUser"
+			qname="ns1:getOfficeCanCreateRegisterByUser"
+			returnQName="ns1:getOfficeCanCreateRegisterByUserReturn"
+			returnType="ns1:OfficesInfo" soapAction="">
+			<parameter qname="ns1:user" type="ns1:UserInfo" />
+			<parameter qname="ns1:folder" type="ns1:Folder" />
+			<parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+
+		<operation name="existMatterTypeInOffice"
+			qname="ns1:existMatterTypeInOffice"
+			returnQName="ns1:existMatterTypeInOfficeReturn"
+			returnType="ns1:RetornoServicio" soapAction="">
+	       <parameter qname="ns1:user" type="ns1:UserInfo" />
+	       <parameter qname="ns1:matterTypeCode" type="xsd:string" />
+	       <parameter qname="ns1:officeCode" type="xsd:string"/>
+		   <parameter qname="ns1:entidad" type="ns2:Entidad" />
+		</operation>
+
+
+		<parameter name="allowedMethods"
+			value="getDistribution createFolder updateFolder importFolder consolidateFolder findFolder getInputFolderForNumber getInputRegister getOutputFolderForNumber getOutputRegister getDocumentFolder getInputDistribution getOutputDistribution countInputDistribution countOutputDistribution acceptDistribution acceptDistributionEx archiveDistribution archiveDistributionEx rejectDistribution rejectDistributionEx changeInputDistribution changeOutputDistribution addDocument getInterestedInputRegister getInterestedOutputRegister canCreateRegister getBooksForType getOfficeCanCreateRegisterByUser existMatterTypeInOffice" />
+
+
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="ServicioRegistroWebService" />
+		<parameter name="className"
+			value="ieci.tecdoc.sgm.registropresencial.ws.server.ServicioRegistroWebService" />
+		<parameter name="wsdlServicePort" value="ServicioRegistroWebService" />
+		<parameter name="schemaQualified"
+			value="http://dto.services.core.sgm.tecdoc.ieci,http://server.ws.registropresencial.sgm.tecdoc.ieci" />
+		<parameter name="wsdlTargetNamespace"
+			value="http://server.ws.registropresencial.sgm.tecdoc.ieci" />
+		<parameter name="wsdlServiceElement"
+			value="ServicioRegistroWebServiceService" />
+
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns2:Entidad"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns2:RetornoServicio"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" />
+
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:BookId"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.BookId" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:BookInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.BookInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:BooksInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.BooksInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:DistributionCountInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.DistributionCountInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:DistributionInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.DistributionInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:DistributionOptions"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.DistributionOptions" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:DistributionSearchCriteria"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.DistributionSearchCriteria" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:DistributionsInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.DistributionsInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:Document"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.Document" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:Documents"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.Documents" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:DocumentsWithPage"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.DocumentsWithPage" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:FieldInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.FieldInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:FieldInfoSearchCriteria"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.FieldInfoSearchCriteria" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:Fields"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.Fields" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:FieldsSearchCriteria"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.FieldsSearchCriteria" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:Folder"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.Folder" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:FolderSearchCriteria"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.FolderSearchCriteria" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:FolderWithPersonInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.FolderWithPersonInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:ListaPersonInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.ListaPersonInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:OfficeInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.OfficeInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:OfficesInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.OfficesInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:Page"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.Page" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:PersonInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.PersonInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:RegisterInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.RegisterInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:RegistersInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.RegistersInfo" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:SearchCriteria"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.SearchCriteria" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" qname="ns1:UserInfo"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:ieci.tecdoc.sgm.registropresencial.ws.server.UserInfo" />
+
+
+		<arrayMapping innerType="ns1:BookInfo"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.BookInfo[]"
+			qname="ns1:ArrayOfBookInfo" />
+		<arrayMapping innerType="ns1:DistributionInfo"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.DistributionInfo[]"
+			qname="ns1:ArrayOfDistributionInfo" />
+		<arrayMapping innerType="ns1:Document"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.Document[]"
+			qname="ns1:ArrayOfDocument" />
+		<arrayMapping innerType="ns1:DocumentsWithPage"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.DocumentsWithPage[]"
+			qname="ns1:ArrayOfDocumentsWithPage" />
+		<arrayMapping innerType="ns1:FieldInfo"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.FieldInfo[]"
+			qname="ns1:ArrayOfFieldInfo" />
+		<arrayMapping innerType="ns1:FieldInfoSearchCriteria"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.FieldInfoSearchCriteria[]"
+			qname="ns1:ArrayOfFieldInfoSearchCriteria" />
+		<arrayMapping innerType="ns1:Page"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.Page[]"
+			qname="ns1:ArrayOfPage" />
+		<arrayMapping innerType="ns1:PersonInfo"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.PersonInfo[]"
+			qname="ns1:ArrayOfPersonInfo" />
+		<arrayMapping innerType="ns1:OfficeInfo"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.OfficeInfo[]"
+			qname="ns1:ArrayOfOfficeInfo" />
+
+		<arrayMapping innerType="ns1:RegisterInfo"
+			languageSpecificType="java:ieci.tecdoc.sgm.registropresencial.ws.server.RegisterInfo[]"
+			qname="ns1:ArrayOfRegisterInfo" />
+
+	</service>
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+			<handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+		<parameter name="qs:list"
+			value="org.apache.axis.transport.http.QSListHandler" />
+		<parameter name="qs:wsdl"
+			value="org.apache.axis.transport.http.QSWSDLHandler" />
+		<parameter name="qs.list"
+			value="org.apache.axis.transport.http.QSListHandler" />
+		<parameter name="qs.method"
+			value="org.apache.axis.transport.http.QSMethodHandler" />
+		<parameter name="qs:method"
+			value="org.apache.axis.transport.http.QSMethodHandler" />
+		<parameter name="qs.wsdl"
+			value="org.apache.axis.transport.http.QSWSDLHandler" />
+	</transport>
+	<transport name="local">
+		<responseFlow>
+			<handler type="LocalResponder" />
+		</responseFlow>
+	</transport>
+</deployment>

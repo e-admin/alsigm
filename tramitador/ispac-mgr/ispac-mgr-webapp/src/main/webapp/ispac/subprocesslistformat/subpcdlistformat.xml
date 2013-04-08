@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<processlistformat>
+
+	<worklist name="WORKLIST"/>
+	<entity name="EXPED" entityid="1"/>
+
+<!--
+	<query> WORKLIST.NUMEXP = 'EXP/386'</query>
+-->
+
+	<beanformatter defaultSort="3">
+	
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='WORKLIST:ID_STAGE'
+					 readOnly='false'
+					 fieldType='CHECKBOX'
+					 headerClass='headerDisplay'
+					 sortable='false'
+					 media='html'
+					 columnClass='width5percent'/>
+
+		<!-- Número de expediente para mostrar (con enlace).
+			 Ver el uso del atributo media en displaytag -->
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='WORKLIST:NUMEXP'
+					 readOnly='false'
+					 titleKey='formatter.workList.numExp'
+					 fieldType='LINK'
+					 fieldLink='WORKLIST:ID_STAGE'
+					 styleClass='displayLink'
+					 headerClass='sortable'
+					 sortable='true'
+					 media='html '
+					 decorator=''
+					 url='showSubProcess'
+					 id='activityId'
+					 columnClass='width35percent'
+					 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'/>
+
+		<!-- Número de expediente para exportar. No se muestra en la página
+			 ya que el atributo "media" no tiene la cadena "html" -->
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='WORKLIST:NUMEXP'
+					 readOnly='false'
+					 titleKey='formatter.workList.numExp'
+					 fieldType='LIST'
+					 media='csv excel xml pdf'
+					 columnClass='width35percent'/>
+
+		<!--  Fecha de inicio del plazo -->
+		<propertyfmt type="BeanPropertyDateFmt"
+					 property='EXPED:FAPERTURA'
+					 readOnly='false'
+					 titleKey='formatter.workList.fechaInicio'
+					 fieldType='LIST'
+					 headerClass='sortable'
+					 sortable='true'
+					 format='dd/MM/yyyy'
+					 columnClass='width50percent'
+				 	 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+
+	</beanformatter>
+
+</processlistformat>

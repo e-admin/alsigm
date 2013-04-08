@@ -1,0 +1,31 @@
+Creación de modelo de datos
+---------------------------
+
+Pasos para crear el modelo de datos:
+
+1) Ejecutar el script create_all.sql:
+
+  	sqlplus <usuario>/<clave>@<instancia> @create_all.sql
+  
+2) Importar las plantillas básicas:
+ 
+	En el fichero plantillas_iniciales_sigem.dmp están exportados los datos de la tabla SPAC_P_BLP.
+	Para la importación de estos datos habrá que ejecutar el siguiente comando:
+	
+    imp <usuario>/<clave>@<instancia> TABLES=SPAC_P_BLP IGNORE=Y GRANTS=N FILE=plantillas_iniciales_sigem.dmp
+
+3) Importar las plantillas de los prototipos:
+
+	En el fichero plantillas_prototipos_sigem.dmp están exportados los datos de la tabla SPAC_P_BLP.
+	Para la importación de estos datos habrá que ejecutar el siguiente comando:
+	
+    imp <usuario>/<clave>@<instancia> TABLES=SPAC_P_BLP IGNORE=Y GRANTS=N FILE=plantillas_prototipos_sigem.dmp
+ 
+4) Importar plantillas de los prototipos de SIGEM v1.9:
+
+	En el fichero plantillas_prototipos_sigem_v1.9.dmp están exportados los datos de las siguientes tablas:
+	Para la importación de estos datos habrá que ejecutar el siguiente comando:
+	
+	IMP <usuario>/<clave>@<instancia> TABLES=SPAC_P_BLP IGNORE=Y GRANTS=N FILE=plantillas_prototipos_sigem_v1.9.dmp
+
+5) Importar los procedimientos de SIGEM v2.0 incluidos en el fichero 09-importar_procedimientos_2.0.zip.

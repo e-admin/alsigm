@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ispac-audit>
+	<!-- Habilita o deshabilita la auditoría de forma general.
+		Valores posibles: true  - Habilita la auditoría
+						  false - Deshabilita la auditoría
+	-->
+	<EnableAudit>false</EnableAudit>
+</ispac-audit>

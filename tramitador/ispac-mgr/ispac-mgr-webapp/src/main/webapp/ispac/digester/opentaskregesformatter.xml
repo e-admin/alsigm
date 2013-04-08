@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt 
+				type="BeanPropertySimpleFmt" 
+				property='NAME' 
+				readOnly='false'
+				titleKey='formatter.newTask.nombre'
+				fieldType='LINK'
+				fieldLink='ID'
+				styleClass='displayBullet'
+				headerClass='sortable'
+				sortable='true'
+				media='html '
+				decorator=''
+				width='47%' 				
+	/>	
+	<propertyfmt 
+	            type="BeanPropertySimpleFmt" 
+	            property='NAME'
+	            readOnly='false'
+		        titleKey='formatter.newTask.nombre' 
+		        fieldType='LIST' 
+		        width='47%'
+        		media='excel csv xml pdf'
+    />
+</beanformatter>

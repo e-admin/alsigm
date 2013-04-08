@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+	<groupId>es.ieci.tecdoc.fwktd</groupId>
+	<artifactId>fwktd-parent</artifactId>
+	<version>0.7</version>
+  </parent>
+
+  <artifactId>fwktd-ws</artifactId>
+
+  <name>Modulo para servicios Web</name>
+
+  <dependencies>
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd</groupId>
+			<artifactId>fwktd-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ws.security</groupId>
+			<artifactId>wss4j</artifactId>
+			<version>${wss4j.version}</version>
+		</dependency>
+  </dependencies>
+
+</project>

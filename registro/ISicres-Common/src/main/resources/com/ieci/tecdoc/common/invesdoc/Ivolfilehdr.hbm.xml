@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Ivolfilehdr" 
+    table="IVOLFILEHDR"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IVOLFILEHDR"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="volid"
+        type="int"
+        column="VOLID"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="VOLID"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="loc"
+        type="java.lang.String"
+        column="LOC"
+        not-null="true"
+        length="254"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="LOC"
+            length="254"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="extid1"
+        type="int"
+        column="EXTID1"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="EXTID1"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="extid2"
+        type="int"
+        column="EXTID2"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="EXTID2"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="extid3"
+        type="int"
+        column="EXTID3"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="EXTID3"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="flags"
+        type="int"
+        column="FLAGS"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="FLAGS"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="stat"
+        type="int"
+        column="STAT"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="STAT"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property 
+        name="timestamp" 
+        column="TIMESTAMP" 
+        type="java.sql.Timestamp"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TIMESTAMP"
+            length="7"
+        </meta> 
+    </property>
+    <property
+        name="filesize"
+        type="int"
+        column="FILESIZE"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="FILESIZE"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>batik</groupId>
+  <artifactId>batik-parser</artifactId>
+  <name>Batik Parser</name>
+  <version>1.6-1</version>
+  <description>Batik Parser</description>
+  <inceptionYear>2000</inceptionYear>
+  <dependencies>
+    <dependency>
+      <groupId>batik</groupId>
+      <artifactId>batik-awt-util</artifactId>
+      <version>1.6-1</version>
+    </dependency>
+  </dependencies>
+</project>

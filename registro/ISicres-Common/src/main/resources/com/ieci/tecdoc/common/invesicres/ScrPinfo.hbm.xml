@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrPinfo" 
+    table="SCR_PINFO"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_PINFO"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+    <property 
+            name="optype" 
+            column="OPTYPE" 
+            type="int"
+            length="10"
+    >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="OPTYPE"
+                length="10"
+            </meta> 
+    </property>
+    <property 
+            name="officeid" 
+            column="OFFICEID" 
+            type="int"
+            length="10"
+    >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="OFFICEID"
+                length="10"
+            </meta> 
+    </property>
+    <property 
+            name="username" 
+            column="USERNAME" 
+            type="java.lang.String"
+            length="32"
+    >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="USERNAME"
+                length="32"
+            </meta> 
+    </property>
+    <property 
+            name="opdate" 
+            column="OPDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+    >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="OPDATE"
+                length="7"
+            </meta> 
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

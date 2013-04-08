@@ -1,0 +1,1 @@
+CALL ..\comun\04_generateClient.bat ..\tiposdocvitales\defs.bat

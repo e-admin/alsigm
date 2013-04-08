@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Idocarchhdr" 
+    table="IDOCARCHHDR"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IDOCARCHHDR"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="32"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="NAME"
+            length="32"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="tblprefix"
+        type="java.lang.String"
+        column="TBLPREFIX"
+        not-null="true"
+        length="16"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TBLPREFIX"
+            length="16"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="type"
+        type="int"
+        column="TYPE"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TYPE"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="flags"
+        type="int"
+        column="FLAGS"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="FLAGS"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="remarks"
+        type="java.lang.String"
+        column="REMARKS"
+        length="254"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="REMARKS"
+            length="254"
+        </meta>    
+    </property>
+    <property
+        name="accesstype"
+        type="int"
+        column="ACCESSTYPE"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ACCESSTYPE"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="acsid"
+        type="int"
+        column="ACSID"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ACSID"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="crtrid"
+        type="int"
+        column="CRTRID"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CRTRID"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="crtndate"
+        type="java.sql.Timestamp"
+        column="CRTNDATE"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CRTNDATE"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="updrid"
+        type="java.lang.Integer"
+        column="UPDRID"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="UPDRID"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="upddate"
+        type="java.sql.Timestamp"
+        column="UPDDATE"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="UPDDATE"
+            length="7"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to ScrRegstate -->
+    <set
+        name="scrRegstates"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="IDARCHREG"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrRegstate"
+        </meta>
+        <key>
+            <column name="IDARCHREG" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrRegstate"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

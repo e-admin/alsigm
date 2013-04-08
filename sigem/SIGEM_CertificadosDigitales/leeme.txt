@@ -1,0 +1,43 @@
+Directorio con los diferentes certificados configurados en la máquina virtual
+
+certificadoServidor.pfx --> certificado del servidor de aplicaciones
+
+El siguiente listado de certificados deberán estar en el cacerts del servidor de aplicaciones correspondientes para permitir la autenticación mediante certificado digital
+DNIe.crt -->DniE
+fnmt.cer --->fnmt
+PruTecDoc.cer --> certificado de pruebas
+CEX-TD-WF.cer --> certificado de pruebas
+
+Contenido de SIGEM_CertificadosDigitales:
+
+	Certs_SSL_PagoElectronico				Carpeta con certificados SSL a añadir en el trustStore del pago Electrónico. 
+											Más información en archivo leemePagoElectronico.txt
+											
+	certificadoRedes.p12					Nuevo certificado (de pruebas) válido para conectar con el sistema de pago externo red.es
+											Utilizado utilizado en el mecanismo de seguridad de servicios web, utilizado por red.es
+											
+	certificadoRedes.pfx.oldCaducado		Certificado anterior utilizado en el módulo de pago
+											Actualmente cadudado.
+											
+	certificadoServidor.pfx					Certificado de servidor utilizado en el firmado de PDF (sin usar @firma)
+	
+	CEX-TD-WF.cer							Comentado anteriormente
+	DNIe.crt									"			"
+	fnmt.cer									"			"
+	PruTecDoc.cer								"			"
+	
+	leemePagoElectronico.txt				Información adicional para el módulo de pago electrónico.
+	
+	trustStorePagoElectronico				Nuevo truststore para JDK1.4 usado por el pago electrónico
+											Almacena las claves públicas en las que se confía, y que por tanto se pueden usar en las conexiones SSL.
+											Contiene los certificados SSL de red.es y euskadi.net
+											
+	trustStoreRedes							Truststore JDK1.4 para el pago electronico.
+											Tiene actualizado el certificado SSL de red.es
+											No contienen el certificado SSL de euskadi.net
+											
+	trustStoreRedes.oldCaducado				Truststore JDK1.4, usado en pago electrónico
+											Contiene el certificado SSL (actualmente caducado) anterior del sistema red.es
+											No contiene el certificado SSL de euskadi.net
+																			
+									

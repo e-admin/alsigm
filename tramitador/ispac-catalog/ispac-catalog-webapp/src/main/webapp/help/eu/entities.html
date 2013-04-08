@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Ayuda</title>
+<meta http-equiv="" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function close_window() {
+    window.close();
+}
+//-->
+</script>
+</head>
+<body bgcolor="#ffffff">
+<div align="center">
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+  <tr>
+   <td><img name="tabla_ayuda_r1_c1" src="../img/tabla_ayuda_r1_c1.gif" width="6" height="40" border="0" id="tabla_ayuda_r1_c1" alt="" /></td>
+   <td><img name="tabla_ayuda_ico_ayuda" src="../img/tabla_ayuda_ico_ayuda.gif" width="34" height="40" border="0" id="tabla_ayuda_ico_ayuda" alt="" /></td>
+   <td width="502" height="40" background="../img/tabla_ayuda_encabezado.gif"><span class="ayuda">COMPONENTES</span></td>
+   		<td><a href="#" onclick="close_window()"><img src="../img/tabla_ayuda_cerrar.gif" alt="" name="tabla_ayuda_cerrar" width="32" height="40" border="0" id="tabla_ayuda_cerrar" /></a></td>
+   <td><img name="tabla_ayuda_r1_c5" src="../img/tabla_ayuda_r1_c5.gif" width="6" height="40" border="0" id="tabla_ayuda_r1_c5" alt="" /></td>
+  </tr>
+  <tr>
+   <td><img name="tabla_ayuda_r2_c1" src="../img/tabla_ayuda_r2_c1.gif" width="6" height="314" border="0" id="tabla_ayuda_r2_c1" alt="" /></td>
+   		<td colspan="3" width="568" height="314">
+			<div id="contenedor">
+
+<div class="textoAyuda">
+
+<table style="font: 10px Verdana, Geneva, Arial, Helvetica, sans-serif;" border=0 width="90%">
+	<tr><td width="70%" class="titular">Componentes >> Entidades</td>
+	<td width="30%" style="text-align:right;"><a class="enlace" href="javascript:history.back();">Atrás</a></td></tr>
+</table>
+<br>	
+	Para la parametrización de procedimientos administrativos se cuenta con <b>Entidades</b>, 
+	que permiten almacenar información estructurada de los distintos expedientes.
+	<br><br>
+	Existen una serie de entidades precargadas que son comunes a todos los procedimientos, aunque 
+	adicionalmente se pueden crear nuevas entidades para cubrir los datos específicos 
+	de de cada caso. 
+	<br><br>
+	En el <b>catálogo de Entidades</b> se muestran todas las entidades dadas de alta en el sistema.
+	<br><br>
+	Al <b>crear</b> una entidad desde el catálogo de procedimientos se creará una tabla en base de datos, 
+	con los campos introducidos por el usuario, más una serie de campos de control requeridos
+	por el sistema.
+	<br><br>
+	Pulsando sobre el <b>nombre</b> de la entidad, se accede a las <b>propiedades</b> de la misma:
+	<br><br>
+
+	<ul>
+	<li><b>Datos generales de la entidad</b>:</li>
+	<br><br>
+		<ul>
+		<li>Nombre: Nombre que se utilizará en invesFlow para hacer referencia a la entidad.
+		<li>Tabla BD</li>: Indica el nombre de la tabla en la base de datos.
+		<li>Descripción: Objetivo de la entidad.
+		</ul>
+	<br><br>
+
+	<li><b>Campos de la entidad</b>: en esta ventana se visualizan los distintos campos de la entidad. 
+	Para crear uno nuevo pulsar la opción “Añadir”.
+	<br><br>
+		<ul>
+		<li>Etiqueta</li>: Nombre que tendrá el dato en los formularios 
+		<li>Columna BD</li>: Nombre que tendrá la columna en la base de datos.
+		<li>Descripción</li>: Objetivo del campo. 
+		<li>Tipo</li>: Tipo de campo, seleccionable de una lista de valores disponibles.
+		<li>Tamaño</li>: Tamaño del campo, en caso de seleccionar un campo de tipo texto o decimal 
+		<li>Precisión</li>: Precisión del campo, en caso de seleccionar un campo de tipo decimal
+		</ul>
+	<br><br>
+	
+	<li><b>Índices de entidad</b>: si se desea se pueden crear índices para algunos de los campos 
+	creados en el apartado anterior. Será interesante crear un índice sobre un campo cuando este 
+	se utilice mucho en las búsquedas y esté previsto que el volumen de datos de la entidad sea elevado. 
+	<br><br>
+		<ul>
+		<li>Clave única</li>: indica que el valor de un campo no se pueda repetir.
+		</ul>
+	<br><br>
+
+	<li><b>Validaciones de la entidad</b>: se utiliza esta opción cuando el valor de un campo está 
+	validado contra una serie de valores normalizados, en lugar de permitir que el usuario lo 
+	introduzca a mano. La validación se realiza contra tablas de validación, creadas y mantenidas
+	en el propio sistema:
+	<br><br>
+	
+		<ul>
+		<li>Tabla</li>: se indica la tabla sobre la que se realizará la validación
+		</ul>
+	<br>
+	Se ha de indicar además si es obligatorio que el campo tenga algún valor, o si por
+	el contrario puede estar vacío.
+	<br><br><br>
+	
+
+	<li><b>Formularios de la entidad</b>:Los formularios son empleados en el tramitador para 
+	que el usuario visualice e introduzca datos para una o varias entidades.
+	<br><br>
+
+	Un formulario inicialmente tiene una entidad principal, y se crea asociado a la misma, 
+	aunque puede combinar datos de varias de ellas.
+	<br><br>
+
+	Pulsando sobre el <b>nombre</b> de un formulario se pueden ver las <b>propiedades</b> de ésta:
+	<br><br>
+
+		<ul>
+		<li>Nombre</li>: nombre con que se identificará el formulario
+	<br><br>
+
+		<li>Descripción</li>: nombre que verá el usuario en el tramitador de expedientes en la pestaña 
+		correspondiente al formulario.
+	<br><br>
+
+		<li>Clase</li>: este campo viene cumplimentado por el sistema, aunque se permite cambiar. 
+		Indica la clase que va a implementar el formulario.
+	<br><br>
+
+		<li>Parámetros</li>: Se pueden indicar, por ejemplo, entidades secundarias para el formulario
+		o validaciones sobre los campos de la entidad, necesarias para la clase definida anteriormente.
+	<br><br>
+
+		Por defecto vienen definidas las validaciones usadas en los campos validados de la entidad, 
+		para que en la visualización del formulario se muestren los controles de validación correspondientes.
+	<br><br>
+
+		<li>Formateador</li>: este campo permite definir qué campos se van a visualizar cuando se 
+		muestren listas de entidades. Las listas de entidades se muestran cuando la relación de la 
+		entidad con el expediente es de n a 1.
+	<br><br>
+
+		<li>Ubicación en servidor</li>: Indica la ruta donde se almacena el formulario en el servidor; se deberá
+		modificar este valor si se desea almancenarlo en otra ubicación.
+
+		</ul>
+
+	<br>
+	
+	Al crear una entidad, automáticamente se crea un <b>formulario por defecto</b> o <b>formulario de entidad</b> 
+	que muestra todos los campos de esta, y que se podrá utilizar desde los procedimientos. 
+	<br><br>
+	Todo formulario se puede modificar, y se pueden crear cuantos formularios se deseen por entidad;
+	que se basarán en el 'formulario de entidad' creado por defecto.
+	<br><br>
+
+	<div class="aviso">
+	Si se hacen cambios en la estructura de la entidad (nuevos campos o validaciones), se deberá regenerar
+	el formulario de la entidad, y posteriormente regenerar los formularios creados a partir del mismo;
+	si se han hecho cambios de diseño o código se perderán, por lo que se recomienda guardar el diseño 
+	y/o código de los mismos para volver a introducir los cambios en los formularios regenerados.
+	</div><br>
+
+	Para <b>modificar un formulario</b>, desde la lista de formularios de una entidad, se pulsa sobre la 
+	<b>ruta del formulario</b>. Se mostrará una ventana que permite descargar el formulario, tanto
+	su diseño .html como su código .jsp, a un directorio local.
+	<br><br>
+
+	<div class="aviso">
+	Sobre el diseño del formulario en formato .html, se podrá editar y modificar con cualquier editor de 
+	formularios, el aspecto de los campos, incluso introducir nuevos elementos, pero no se pueden cambiar 
+	los nombres ni tipos de los campos existentes.
+	<br>
+	Igualmente se podrá modificar el código .jsp, para por ejemplo, introducir nuevos controles en el
+	formulario, o validaciones javascript.
+	</div>
+	<br>
+	Una vez modificado el formulario, se puede <b>actualizar</b> en el catálogo desde la misma ventana 
+	que se descargó. Se pulsará “Examinar” para localizar el formulario en el disco duro local, 
+	y “Actualizar” para subirlo al servidor y sustituir el existente. 
+	El sistema notificará con una alarma si se han modificado datos de la estructura y no 
+	puede actualizar correctamente el formulario.
+	<br><br>
+
+	Una vez hechos los cambios, el formulario estará disponible para ser usado en el tramitador.
+
+	</ul>
+
+	
+<!-- fin aqui -->
+</div>
+
+			</div>			
+			</td>
+   <td><img name="tabla_ayuda_r2_c5" src="../img/tabla_ayuda_r2_c5.gif" width="6" height="314" border="0" id="tabla_ayuda_r2_c5" alt="" /></td>
+  </tr>
+  <tr>
+   <td><img name="tabla_ayuda_r3_c1" src="../img/tabla_ayuda_r3_c1.gif" width="6" height="26" border="0" id="tabla_ayuda_r3_c1" alt="" /></td>
+   <td colspan="3"><img name="tabla_ayuda_r3_c2" src="../img/tabla_ayuda_r3_c2.gif" width="568" height="26" border="0" id="tabla_ayuda_r3_c2" alt="" /></td>
+   <td><img name="tabla_ayuda_r3_c5" src="../img/tabla_ayuda_r3_c5.gif" width="6" height="26" border="0" id="tabla_ayuda_r3_c5" alt="" /></td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

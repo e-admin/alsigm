@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+   <script TYPE="text/javascript" LANGUAGE="javascript" SRC="js/global.js"></script>
+   <script language="javascript">
+      document.write('<title>' + top.ParamValue(top.location.search, "Title") + '</title>');
+   </script>
+   <script language="javascript">
+      function cerrar()
+      {
+         window.returnValue = strPlugin;
+         window.close();
+      }
+      function asignar()
+      {
+         window.attachEvent( "onfocus", cerrar );
+      }
+      function evaluar(estado)
+      {
+         if (estado==4)
+         {
+            strPlugin = "1";
+         }
+         else
+         {
+            strPlugin = "0";
+         }
+      }
+      var strPlugin="0";
+      var strURLPlugin = top.ParamValue(top.location.search, "URLPlugin");
+   	var strClsid = top.ParamValue(top.location.search, "CLSID");
+   	var strVer = top.ParamValue(top.location.search, "VerPlugin");
+   	var strText = (top.ParamValue(document.location.search,"BgText") == "") ? "Install" : top.ParamValue(document.location.search,"BgText");
+
+   	document.write('<body onload="asignar()" bgcolor="#6699CC" style="overflow:hidden">');
+   	document.write('<center><font size=6 color="#FFFFFF">' + strText + '</font><center><br/><br/><br/><br/>');
+   	document.write('<object id=iDocScanX classid="clsid:' + strClsid + '" codebase="' + strURLPlugin + '#version=' + strVer
+   	      + '" viewastext onreadystatechange="evaluar(this.readyState)" border="none">');
+      document.write('</object>');
+      document.write('</body>');
+   </script>
+</HTML>

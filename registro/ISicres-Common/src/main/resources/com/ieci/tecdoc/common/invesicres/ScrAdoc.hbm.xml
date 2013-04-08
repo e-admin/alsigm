@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrAdoc" 
+    table="SCR_ADOC"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_ADOC"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="java.math.BigDecimal"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="22"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="timestamp" 
+            column="TIMESTAMP" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TIMESTAMP"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idca" 
+            column="IDCA" 
+            type="java.math.BigDecimal"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="IDCA"
+                length="22"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="obligatorio" 
+            column="OBLIGATORIO" 
+            type="java.math.BigDecimal"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="OBLIGATORIO"
+                length="22"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="documento" 
+            column="DOCUMENTO" 
+            type="java.lang.String"
+            length="250"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DOCUMENTO"
+                length="250"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

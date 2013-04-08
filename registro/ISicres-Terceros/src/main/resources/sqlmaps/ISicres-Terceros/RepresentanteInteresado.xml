@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="RepresentanteInteresadoVO">
+
+	<resultMap id="representanteInteresado"
+		class="es.ieci.tecdoc.isicres.terceros.business.vo.RepresentanteInteresadoVO">
+		<result property="id" column="id" />
+		<result property="direccionNotificacion" select="BaseDireccionVO.getBaseDireccionVO"
+			column="id_address" />
+		<result property="nombre" column="name" />
+		<result property="interesado" select="InteresadoVO.getInteresadoVO"
+			column="id_representado" />
+		<discriminator column="id_representante" javaType="java.lang.String"
+			typeHandler="es.ieci.tecdoc.isicres.terceros.business.dao.callback.TipoTerceroCallbackHandler">
+			<subMap value="VALIDADO" resultMap="representanteInteresadoValidado" />
+			<subMap value="NO_VALIDADO" resultMap="representanteInteresadoNoValidado" />
+		</discriminator>
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.terceros.business.vo.RepresentanteInteresadoVO"
+		id="representanteInteresadoNoValidado" extends="representanteInteresado">
+		<result property="representante.id" column="id_representante" />
+		<result property="representante.nombre" column="name" />
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.terceros.business.vo.RepresentanteInteresadoVO"
+		id="representanteInteresadoValidado" extends="representanteInteresado">
+		<result property="representante" select="TerceroValidadoVO.getTerceroValidadoVO"
+			column="id_representante" />
+	</resultMap>
+
+	<select id="getRepresentanteInteresadoVOs" resultMap="representanteInteresado">
+		SELECT *
+		FROM scr_repre
+	</select>
+
+	<select id="getRepresentanteInteresadoVO" parameterClass="java.lang.String"
+		resultMap="representanteInteresado">
+		SELECT * FROM scr_repre
+		WHERE id_representado=#value:INTEGER#
+	</select>
+
+	<insert id="addRepresentanteInteresadoVO" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.RepresentanteInteresadoVO">
+		INSERT INTO scr_repre (id, id_representante, id_representado, id_address, name)
+		VALUES (#id:INTEGER#, #representante.id:INTEGER#, #interesado.id:INTEGER#, #direccionNotificacion.id:INTEGER#, #nombre#)
+	</insert>
+
+	<update id="updateRepresentanteInteresadoVO" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.RepresentanteInteresadoVO">
+		UPDATE scr_repre
+		SET id_representante=#representante.id:INTEGER#, id_representado=#interesado.id:INTEGER#, id_address=#direccionNotificacion.id:INTEGER#, name=#nombre#
+		WHERE id=#id:INTEGER#
+	</update>
+
+	<delete id="deleteRepresentanteInteresadoVO" parameterClass="java.lang.String">
+		DELETE FROM scr_repre
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteRepresentanteInteresadoVOs">
+		DELETE FROM scr_repre
+	</delete>
+
+</sqlMap>

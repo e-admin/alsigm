@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- archivo de definicion de beans de incrementers-->
+	
+	<!-- #############  	Definición de alias  	#############  -->
+	<!-- alias a usar para injectar en el resto de bean, se encuentra externalizado en el propertyholder con fwkt-audit-api.properties -->
+	<alias name="${fwktd-audit.database}_fwktd_audit_trazaIncrementerImpl" alias="fwktd_audit_trazaIncrementer"/>
+	
+
+
+	<!-- #############  Implementación de los incrementers ############# -->
+
+	<!--
+		DB2 UDB
+	 -->
+
+	<bean id="db2_fwktd_audit_trazaIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_audit_dataSource" />
+		<constructor-arg value="AUDIT_TRAZA_SEQ" />
+	</bean>
+
+
+	<!--
+		DB2 Mainframe (DB2/390 o DB2/400)
+	 -->
+
+	<bean id="db2_400_fwktd_audit_trazaIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_audit_dataSource" />
+		<constructor-arg value="AUDIT_TRAZA_SEQ" />
+	</bean>
+
+	
+
+
+	<!--
+		H2
+	 -->
+
+	<bean id="h2_fwktd_audit_trazaIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.H2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_audit_dataSource" />
+		<constructor-arg value="AUDIT_TRAZA_SEQ" />
+	</bean>
+
+	
+
+
+	<!--
+		MySQL
+	 -->
+
+	<bean id="mysql_fwktd_audit_trazaIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer">
+		<constructor-arg ref="fwktd_audit_dataSource" />
+		<constructor-arg value="AUDIT_TRAZA_SEQ" />
+		<constructor-arg value="id" />
+	</bean>
+
+
+
+	<!--
+		Oracle
+	 -->
+
+	<bean id="oracle_fwktd_audit_trazaIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_audit_dataSource" />
+		<constructor-arg value="AUDIT_TRAZA_SEQ" />
+	</bean>
+	
+
+
+	<!--
+		PostgreSQL
+	 -->
+
+	<bean id="postgresql_fwktd_audit_trazaIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_audit_dataSource" />
+		<constructor-arg value="AUDIT_TRAZA_SEQ" />
+	</bean>
+
+
+
+	<!--
+		SQLServer
+	 -->
+
+	<bean id="sqlserver_fwktd_audit_trazaIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg ref="fwktd_audit_dataSource" />
+		<constructor-arg value="AUDIT_TRAZA_SEQ" />
+		<constructor-arg value="id" />
+	</bean>
+
+
+</beans>

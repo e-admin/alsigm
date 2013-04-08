@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<!-- Ponemos 2 veces la propiedad Nombre, 
+		 una para mostrarla solo en html (media='html')
+		 y la otra para la exportacion (media= 'xml excel csv pdf') -->
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SERVICIO' 
+				 titleKey='formatter.value.codServicio' 
+				 fieldType='LINK' 
+				 columnClass='width15percent'
+				 headerClass='sortable'
+				 sortable='true'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE' 
+				 titleKey='formatter.value.descripcion' 
+				 fieldType='LINK' 
+				 media='html'
+				 columnClass='width70percent'
+				 headerClass='sortable'
+				 sortable='true'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE' 
+				 titleKey='formatter.value.descripcion' 
+				 fieldType='LIST'
+				 media='xml excel csv pdf'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='EMISOR' 
+				 titleKey='formatter.value.emisor' 
+				 fieldType='LIST' 
+				 columnClass='width5percent'
+				 headerClass='sortable'
+				 sortable='true'/>
+				 
+</beanformatter>

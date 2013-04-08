@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Servicio de intercambio registral -->
+	<bean id="fwktd_sir_servicioIntercambioRegistralWSClientImpl"
+		class="es.ieci.tecdoc.fwktd.sir.wsclient.service.impl.ServicioIntercambioRegistralWSClientImpl">
+		<property name="intercambioRegistralWSClientFactory" ref="fwktd_sir_intercambioRegistralWSClientFactory" />
+		<property name="mapper" ref="fwktd_sir_mapper" />
+	</bean>
+	<!-- Mapper -->
+	<bean id="fwktd_sir_mapperImpl" name="fwktd_sir_mapper"
+		class="es.ieci.tecdoc.fwktd.sir.wsclient.mapper.impl.MapperImpl">
+	</bean>
+
+</beans>

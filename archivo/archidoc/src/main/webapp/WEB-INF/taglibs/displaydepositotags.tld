@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>deposito</short-name>
+  <display-name>HTML menu</display-name>
+  <description>HTML Menu</description>
+  <tag>
+	    <name>menu</name>
+	    <tag-class>util.ArchivoMenuTag</tag-class>
+	    <body-content>empty</body-content>
+	    <description>
+	        Genera menu
+	    </description>
+   </tag>
+   <tag>
+	    <name>item</name>
+	    <tag-class>util.ArchivoMenuItem</tag-class>
+	    <body-content>empty</body-content>
+	    <description>
+	        Genera menu
+	    </description>
+	    <attribute>
+	        <name>value</name>
+	        <required>true</required>
+	        <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	        <name>target</name>
+	        <required>true</required>
+	        <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    
+   </tag>
+   <tag>
+	    <name>param</name>
+	    <tag-class>util.ArchivoItemParam</tag-class>
+	    <body-content>empty</body-content>
+	    <description>
+			Parametro del target de un item
+	    </description>
+	    <attribute>
+	        <name>name</name>
+	        <required>true</required>
+	        <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	        <name>value</name>
+	        <required>true</required>
+	        <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	        <name>encode</name>
+	        <required>false</required>
+	        <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	        <name>codeencode</name>
+	        <required>false</required>
+	        <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+
+	    
+   </tag>
+	<tag>
+		<name>errors</name>
+		<tag-class>util.ErrorsTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>bundle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>messages</name>
+		<tag-class>util.MessagesTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>bundle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>	
+	<tag>
+		<name>closeButton</name>
+		<tag-class>util.CloseButtonTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>action</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>imgIcon</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>titleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>labelKey</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+  
+</taglib>

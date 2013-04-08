@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NUMEXP' 
+				 readOnly='false'
+				 title='formatter.info.numExp' 
+				 fieldType='LIST'/>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='ASUNTO' 
+				 readOnly='false'
+				 title='formatter.info.asunto' 
+				 fieldType='LIST'/>
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FESTADO' 
+				 readOnly='false'
+				 format='dd-MM-yyyy' 
+				 title='formatter.info.fechaInicio' 
+				 fieldType='LIST'/>
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FREG' 
+				 readOnly='false'
+				 format='dd-MM-yyyy' 
+				 title='formatter.info.fechaLimite' 
+				 fieldType='LIST'/>
+</beanformatter>
+

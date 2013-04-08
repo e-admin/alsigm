@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+  <artifactId>fwktd-audit-parent</artifactId>
+  <version>0.7-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20121029.092230</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20121029092230</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="GeoLocalizacionWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="verPlanoPorCoordenadas" qname="ns1:verPlanoPorCoordenadas" returnQName="ns1:verPlanoPorCoordenadasReturn" returnType="ns1:URLsPlano" soapAction="" xmlns:ns1="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns1:datosLocalizacion" type="ns1:PeticionPlanoCoordenadas"/>
+  </operation>
+  <operation name="verPlanoPorReferenciaCatastral" qname="ns2:verPlanoPorReferenciaCatastral" returnQName="ns2:verPlanoPorReferenciaCatastralReturn" returnType="ns2:URLsPlano" soapAction="" xmlns:ns2="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns2:datosLocalizacion" type="ns2:PeticionPlanoReferenciaCatastral"/>
+  </operation>
+  <operation name="verPlanoPorIdVia" qname="ns3:verPlanoPorIdVia" returnQName="ns3:verPlanoPorIdViaReturn" returnType="ns3:URLsPlano" soapAction="" xmlns:ns3="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns3:datosLocalizacion" type="ns3:PeticionPlanoVia"/>
+  </operation>
+  <operation name="verPlanoPorIdNumeroPolicia" qname="ns4:verPlanoPorIdNumeroPolicia" returnQName="ns4:verPlanoPorIdNumeroPoliciaReturn" returnType="ns4:URLsPlano" soapAction="" xmlns:ns4="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns4:datosLocalizacion" type="ns4:PeticionPlanoPortal"/>
+  </operation>
+  <operation name="verPlanosPublicados" qname="ns5:verPlanosPublicados" returnQName="ns5:verPlanosPublicadosReturn" returnType="ns5:Mapas" soapAction="" xmlns:ns5="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns5:codigoINEMunicipio" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="validarVia" qname="ns6:validarVia" returnQName="ns6:validarViaReturn" returnType="ns6:Vias" soapAction="" xmlns:ns6="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns6:nombreVia" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns6:codigoINEMunicipio" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="validarPortal" qname="ns7:validarPortal" returnQName="ns7:validarPortalReturn" returnType="ns7:Portales" soapAction="" xmlns:ns7="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns7:idVia" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns7:numeroPortal" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="obtenerPortal" qname="ns8:obtenerPortal" returnQName="ns8:obtenerPortalReturn" returnType="ns8:Portal" soapAction="" xmlns:ns8="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns8:idPortal" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="validarDireccionPostal" qname="ns9:validarDireccionPostal" returnQName="ns9:validarDireccionPostalReturn" returnType="ns9:RetornoLogico" soapAction="" xmlns:ns9="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns9:tipoVia" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:nombreVia" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:numeroPortal" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:codigoINEMunicipio" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="validarDireccionPostalCompleta" qname="ns10:validarDireccionPostalCompleta" returnQName="ns10:validarDireccionPostalCompletaReturn" returnType="ns10:Via" soapAction="" xmlns:ns10="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns10:tipoVia" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns10:nombreVia" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns10:numeroPortal" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns10:codigoINEMunicipio" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="obtenerProvincias" qname="ns11:obtenerProvincias" returnQName="ns11:obtenerProvinciasReturn" returnType="ns11:Provincias" soapAction="" xmlns:ns11="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <operation name="obtenerMunicipios" qname="ns12:obtenerMunicipios" returnQName="ns12:obtenerMunicipiosReturn" returnType="ns12:Municipios" soapAction="" xmlns:ns12="http://server.ws.geolocalizacion.sgm.tecdoc.ieci">
+   <parameter qname="ns12:idProvincia" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="obtenerTiposDeVia" qname="ns13:obtenerTiposDeVia" returnQName="ns13:obtenerTiposDeViaReturn" returnType="ns13:TiposVia" soapAction="" xmlns:ns13="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <parameter name="allowedMethods" value="obtenerProvincias obtenerMunicipios obtenerPortal validarPortal validarDireccionPostalCompleta verPlanoPorCoordenadas verPlanosPublicados verPlanoPorIdNumeroPolicia verPlanoPorIdVia verPlanoPorReferenciaCatastral obtenerTiposDeVia validarDireccionPostal validarVia"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="GeoLocalizacionWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.geolocalizacion.ws.server.GeoLocalizacionWebService"/>
+  <parameter name="wsdlServicePort" value="GeoLocalizacionWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.geolocalizacion.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="GeoLocalizacionWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns14:RetornoLogico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.RetornoLogico" xmlns:ns14="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns15="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:PeticionPlanoPortal" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.PeticionPlanoPortal" xmlns:ns16="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns17:Coordenadas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Coordenadas" xmlns:ns17="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns18:Mapas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Mapas" xmlns:ns18="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:PeticionPlano" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.PeticionPlano" xmlns:ns19="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns20:Municipios" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Municipios" xmlns:ns20="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:Municipio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Municipio" xmlns:ns21="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:Provincias" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Provincias" xmlns:ns22="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:TipoVia" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.TipoVia" xmlns:ns23="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:PeticionPlanoVia" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.PeticionPlanoVia" xmlns:ns24="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:ConjuntoCoordenadas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.ConjuntoCoordenadas" xmlns:ns25="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns26:Portales" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Portales" xmlns:ns26="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns27:Vias" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Vias" xmlns:ns27="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns28:Via" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Via" xmlns:ns28="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns29:Coordenada" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Coordenada" xmlns:ns29="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns30:PeticionPlanoReferenciaCatastral" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.PeticionPlanoReferenciaCatastral" xmlns:ns30="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns31:Portal" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Portal" xmlns:ns31="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns32:PeticionPlanoCoordenadas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.PeticionPlanoCoordenadas" xmlns:ns32="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns33:Mapa" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Mapa" xmlns:ns33="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns34:Provincia" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Provincia" xmlns:ns34="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns35:URLsPlano" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.URLsPlano" xmlns:ns35="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns36:TiposVia" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.TiposVia" xmlns:ns36="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns37:Municipio" languageSpecificType="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Municipio[]" qname="ns37:ArrayOfMunicipio" xmlns:ns37="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns38:Provincia" languageSpecificType="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Provincia[]" qname="ns38:ArrayOfProvincia" xmlns:ns38="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns39:Portal" languageSpecificType="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Portal[]" qname="ns39:ArrayOfPortal" xmlns:ns39="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns40:Coordenadas" languageSpecificType="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Coordenadas[]" qname="ns40:ArrayOfCoordenadas" xmlns:ns40="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns41:Mapa" languageSpecificType="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Mapa[]" qname="ns41:ArrayOfMapa" xmlns:ns41="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns42:Via" languageSpecificType="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Via[]" qname="ns42:ArrayOfVia" xmlns:ns42="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns43:Coordenada" languageSpecificType="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.Coordenada[]" qname="ns43:ArrayOfCoordenada" xmlns:ns43="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns44:TipoVia" languageSpecificType="java:ieci.tecdoc.sgm.geolocalizacion.ws.server.TipoVia[]" qname="ns44:ArrayOfTipoVia" xmlns:ns44="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

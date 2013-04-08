@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main</artifactId>
+		<version>3.0</version>
+	</parent>
+
+	<artifactId>SIGEM_MensajesCortos_Modules</artifactId>
+	<packaging>pom</packaging>
+	<name>SIGEM_MensajesCortos_Modules</name>
+
+	<description>Servicio de Mensajes Cortos de SIGEM</description>
+	
+	<profiles>
+		<profile>
+			<id>generate-config</id>
+			<activation>
+				<property>
+					<name>config</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_MensajesCortosWS-resources-configurable</module>
+			</modules>
+		</profile>	
+		<profile>
+			<id>generate-jars</id>
+			<activation>
+				<property>
+					<name>jars</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>			
+			<modules>
+				<module>SIGEM_MensajesCortos</module>
+				<module>SIGEM_MensajesCortosWSClient</module>
+				<module>SIGEM_MensajesCortosWS-resources-configurable</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>generate-wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_MensajesCortosWS</module>
+			</modules>
+		</profile>
+	</profiles>
+
+</project>

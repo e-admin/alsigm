@@ -1,0 +1,254 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eu.medsea.mimeutil</groupId>
+	<artifactId>mime-util</artifactId>
+	<packaging>bundle</packaging>
+	<name>Mime Detection Utility</name>
+	<organization>
+		<name>Medsea Business Solutions S.L.</name>
+		<url>http://www.medsea.eu</url>
+	</organization>
+
+	<properties>
+		<bundle.namespace>eu.medsea</bundle.namespace>
+	</properties>
+
+	<version>2.1.3</version>
+	<description>mime-util is a simple to use, small, light weight and fast open source java utility library that can detect
+		MIME types from files, input streams, URL's and byte arrays.
+		Due to the use of regular expressions and the java.nio packages it requires at least Java 1.4.
+	</description>
+	<url>http://www.medsea.eu/mime-util/</url>
+	<prerequisites>
+		<maven>2</maven>
+	</prerequisites>
+	<inceptionYear>2007</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<build>
+		<defaultGoal>jar:jar</defaultGoal>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<directory>target</directory>
+		<outputDirectory>target/classes</outputDirectory>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+		<finalName>${artifactId}-${version}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.0.1</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>
+							${bundle.namespace}.mimeutil,
+							${bundle.namespace}.mimeutil.detector,
+							${bundle.namespace}.mimeutil.handler,
+							${bundle.namespace}.util
+						</Export-Package>
+						<Import-Package>org.slf4j</Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<packageName>eu.medsea.mimeutil</packageName>
+						</manifest>
+						<manifestEntries>
+							<mode>development</mode>
+							<url>${pom.url}</url>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-ant-plugin</artifactId>
+				<version>2.1</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.4</source>
+					<target>1.4</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<inherited>true</inherited>
+					<executions>
+						<execution>
+							<id>clean</id>
+							<goals>
+								<goal>clean</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<links>
+						<link>http://java.sun.com/j2se/1.4.2/docs/api/</link>
+					</links>
+					<stylesheet>maven</stylesheet>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+			</plugin>
+			<!--
+				plugin> <groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changelog-plugin</artifactId> </plugin> <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId> <reportSets>
+				<reportSet> <reports> <report>changes-report</report> </reports>
+				</reportSet> </reportSets> </plugin
+			-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<inherited>true</inherited>
+			</plugin>
+		</plugins>
+	</reporting>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.6</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+	<mailingLists>
+		<mailingList>
+			<name>mime-util Users</name>
+			<subscribe>http://lists.sourceforge.net/lists/listinfo/mime-util-user</subscribe>
+			<unsubscribe>http://lists.sourceforge.net/lists/listinfo/mime-util-user</unsubscribe>
+			<archive>http://lists.sourceforge.net/lists/listinfo/mime-util-user</archive>
+			<post>mime-util-user@lists.sourceforge.net</post>
+		</mailingList>
+		<mailingList>
+			<name>mime-util Developers</name>
+			<subscribe>http://lists.sourceforge.net/lists/listinfo/mime-util-developer</subscribe>
+			<unsubscribe>http://lists.sourceforge.net/lists/listinfo/mime-util-developer</unsubscribe>
+			<archive>http://lists.sourceforge.net/lists/listinfo/mime-util-developer</archive>
+			<post>mime-util-developer@lists.sourceforge.net</post>
+		</mailingList>
+	</mailingLists>
+	<developers>
+		<developer>
+			<id>nlmarco</id>
+			<name>Marco Schulze</name>
+			<email>nlmarco@users.sourceforge.net</email>
+			<organization>NightLabs GMBH</organization>
+			<organizationUrl>http://www.nightlabs.de/nightlabs/html/</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>smcardle</id>
+			<name>Steven McArdle</name>
+			<email>smcardle@medsea.eu</email>
+			<organization>Medsea Business Solutions S.L.</organization>
+			<roles>
+				<role>Administrator</role>
+				<role>Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<issueManagement>
+		<system>sourceforge</system>
+		<url>http://sourceforge.net/tracker/?group_id=205064</url>
+	</issueManagement>
+	<scm>
+		<connection>scm:svn:https://mime-util.svn.sourceforge.net/svnroot/mime-util/trunk/MimeUtil</connection>
+		<developerConnection>scm:svn:https://mime-util.svn.sourceforge.net/svnroot/mime-util/trunk/MimeUtil</developerConnection>
+		<url>http://mime-util.svn.sourceforge.net/viewvc/mime-util/</url>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>sourceforge</id>
+			<name>mime-util SourceForge Maven Repository</name>
+			<url>scp://shell.sourceforge.net/home/groups/m/mi/mime-util/htdocs/maven2/repo</url>
+		</repository>
+		<snapshotRepository>
+			<id>sourceforge</id>
+			<name>mime-util SourceForge Maven SNAPSHOT Repository</name>
+			<url>scp://shell.sourceforge.net/home/groups/m/mi/mime-util/htdocs/maven2/repo-snapshot</url>
+		</snapshotRepository>
+		<site>
+			<id>sourceforge</id>
+			<url>scp://shell.sourceforge.net/home/groups/m/mi/mime-util/htdocs</url>
+			<!--
+				To create and login to a shell use : ssh -t USER,PROJECT@shell.sourceforge.net create
+			-->
+		</site>
+	</distributionManagement>
+
+</project>

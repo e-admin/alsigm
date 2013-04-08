@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <wsdl:types>
+
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="crearHashByEntidad">
+    <complexType>
+     <sequence>
+      <element name="poBase64Document" type="impl:Contenido"/>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Contenido">
+    <sequence>
+     <element name="contenidoB64" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="crearHashByEntidadResponse">
+    <complexType>
+     <sequence>
+      <element name="crearHashByEntidadReturn" type="impl:Hash"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Hash">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="hash" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="crearHash">
+    <complexType>
+     <sequence>
+      <element name="poBase64Document" type="impl:Contenido"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="crearHashResponse">
+    <complexType>
+     <sequence>
+      <element name="crearHashReturn" type="impl:Hash"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validaHashByEntidad">
+    <complexType>
+     <sequence>
+      <element name="poBase64Document" type="impl:Contenido"/>
+      <element name="poB64Hash" type="impl:Contenido"/>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validaHashByEntidadResponse">
+    <complexType>
+     <sequence>
+      <element name="validaHashByEntidadReturn" type="impl:ResultadoValidacionHash"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ResultadoValidacionHash">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="resultadoValidacion" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="validarHash">
+    <complexType>
+     <sequence>
+      <element name="poBase64Document" type="impl:Contenido"/>
+      <element name="poB64Hash" type="impl:Contenido"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarHashResponse">
+    <complexType>
+     <sequence>
+      <element name="validarHashReturn" type="impl:ResultadoValidacionHash"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarCertificadoByEntidad">
+    <complexType>
+     <sequence>
+      <element name="poB64Certificate" type="impl:Contenido"/>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarCertificadoByEntidadResponse">
+    <complexType>
+     <sequence>
+      <element name="validarCertificadoByEntidadReturn" type="impl:ResultadoValidacionCertificado"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="InfoCertificado">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="apellido1" nillable="true" type="xsd:string"/>
+       <element name="apellido2" nillable="true" type="xsd:string"/>
+       <element name="asunto" nillable="true" type="xsd:string"/>
+       <element name="cif" nillable="true" type="xsd:string"/>
+       <element name="emisor" nillable="true" type="xsd:string"/>
+       <element name="nif" nillable="true" type="xsd:string"/>
+       <element name="nombre" nillable="true" type="xsd:string"/>
+       <element name="nombreSinApellidos" nillable="true" type="xsd:string"/>
+       <element name="numeroSerie" nillable="true" type="xsd:string"/>
+       <element name="razonSocial" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ResultadoValidacionCertificado">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="certificado" nillable="true" type="impl:InfoCertificado"/>
+       <element name="mensajeValidacion" nillable="true" type="xsd:string"/>
+       <element name="resultadoValidacion" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="validarCertificado">
+    <complexType>
+     <sequence>
+      <element name="poB64Certificate" type="impl:Contenido"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="validarCertificadoReturn" type="impl:ResultadoValidacionCertificado"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="validarHashResponse">
+
+      <wsdl:part element="impl:validarHashResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarHashRequest">
+
+      <wsdl:part element="impl:validarHash" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearHashByEntidadRequest">
+
+      <wsdl:part element="impl:crearHashByEntidad" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarCertificadoByEntidadResponse">
+
+      <wsdl:part element="impl:validarCertificadoByEntidadResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarCertificadoRequest">
+
+      <wsdl:part element="impl:validarCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearHashRequest">
+
+      <wsdl:part element="impl:crearHash" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validaHashByEntidadRequest">
+
+      <wsdl:part element="impl:validaHashByEntidad" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validaHashByEntidadResponse">
+
+      <wsdl:part element="impl:validaHashByEntidadResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearHashByEntidadResponse">
+
+      <wsdl:part element="impl:crearHashByEntidadResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarCertificadoResponse">
+
+      <wsdl:part element="impl:validarCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearHashResponse">
+
+      <wsdl:part element="impl:crearHashResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarCertificadoByEntidadRequest">
+
+      <wsdl:part element="impl:validarCertificadoByEntidad" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CriptoValidacionWebService">
+
+      <wsdl:operation name="crearHashByEntidad">
+
+         <wsdl:input message="impl:crearHashByEntidadRequest" name="crearHashByEntidadRequest"/>
+
+         <wsdl:output message="impl:crearHashByEntidadResponse" name="crearHashByEntidadResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearHash">
+
+         <wsdl:input message="impl:crearHashRequest" name="crearHashRequest"/>
+
+         <wsdl:output message="impl:crearHashResponse" name="crearHashResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validaHashByEntidad">
+
+         <wsdl:input message="impl:validaHashByEntidadRequest" name="validaHashByEntidadRequest"/>
+
+         <wsdl:output message="impl:validaHashByEntidadResponse" name="validaHashByEntidadResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarHash">
+
+         <wsdl:input message="impl:validarHashRequest" name="validarHashRequest"/>
+
+         <wsdl:output message="impl:validarHashResponse" name="validarHashResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarCertificadoByEntidad">
+
+         <wsdl:input message="impl:validarCertificadoByEntidadRequest" name="validarCertificadoByEntidadRequest"/>
+
+         <wsdl:output message="impl:validarCertificadoByEntidadResponse" name="validarCertificadoByEntidadResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarCertificado">
+
+         <wsdl:input message="impl:validarCertificadoRequest" name="validarCertificadoRequest"/>
+
+         <wsdl:output message="impl:validarCertificadoResponse" name="validarCertificadoResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CriptoValidacionWebServiceSoapBinding" type="impl:CriptoValidacionWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="crearHashByEntidad">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="crearHashByEntidadRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="crearHashByEntidadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearHash">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="crearHashRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="crearHashResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validaHashByEntidad">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validaHashByEntidadRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validaHashByEntidadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarHash">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarHashRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarHashResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarCertificadoByEntidad">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarCertificadoByEntidadRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarCertificadoByEntidadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CriptoValidacionWebServiceService">
+
+      <wsdl:port binding="impl:CriptoValidacionWebServiceSoapBinding" name="CriptoValidacionWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_CriptoValidacionWS/services/CriptoValidacionWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

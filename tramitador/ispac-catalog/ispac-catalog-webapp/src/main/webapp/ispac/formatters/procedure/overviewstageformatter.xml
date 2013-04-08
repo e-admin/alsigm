@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NOMBRE'
+				readOnly='false'
+				titleKey='form.fase.propertyLabel.order'
+				fieldType='ROWNUM'
+				headerClass='headerDisplay'
+				sortable='false'
+				media='html'
+				decorator=''/>
+
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NOMBRE'
+				readOnly='false'
+				titleKey='procedure.wizard.create.selectedStages'
+				fieldType='DATA'
+				headerClass='headerDisplay'
+				sortable='false'
+				media='html'
+				decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='TRAMITES_LIST'
+				readOnly='false'
+				titleKey='empty'
+				fieldType='TASKS'
+				headerClass='headerDisplay'
+				styleClass='aActionButton'
+				sortable='false'
+				media='html'
+				decorator=''
+
+				fieldLink='ID'
+				url='relationStageTasks.do'
+				id='itemId'/>
+</beanformatter>

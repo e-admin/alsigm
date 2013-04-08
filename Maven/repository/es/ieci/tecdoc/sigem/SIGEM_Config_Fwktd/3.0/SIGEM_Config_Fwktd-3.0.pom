@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main</artifactId>
+		<version>3.0</version>
+	</parent>
+
+	<artifactId>SIGEM_Config_Fwktd</artifactId>
+	<packaging>pom</packaging>
+	<description>Ficheros de configuración para los distintos modulos del Fwktd</description>
+
+	<!--
+		 Estas dependencias son los .zip que contienen los configurables
+		 de las distintas aplicaciones web.
+	 -->
+	 <properties>
+	 </properties>
+
+	<build>
+		<plugins>
+			<!--
+				 Este Plugin descomprime las dependecias (ficheros configurables)
+				 y hace un .zip con todo lo descomprimido + el fichero
+				 SIGEM_spring.properties que hay en src/main/conf
+			 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>assembly-common-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<filters>
+								<filter>${filter.generic.system}</filter>
+								<filter>${filter.generic.server}</filter>
+								<filter>${filter.generic.database}</filter>
+								
+								<filter>${project.basedir}/../${pom.artifactId}/src/main/filters/default/default-fwktd-audit.properties</filter>
+								<filter>${project.basedir}/../${pom.artifactId}/src/main/filters/default/default-fwktd-csv.properties</filter>
+								<filter>${project.basedir}/../${pom.artifactId}/src/main/filters/default/default-fwktd-dir3.properties</filter>
+								<filter>${project.basedir}/../${pom.artifactId}/src/main/filters/default/default-fwktd-sir.properties</filter>
+								<filter>${project.basedir}/../${pom.artifactId}/src/main/filters/default/default-fwktd-time.properties</filter>
+							</filters>
+							<descriptors>
+								<descriptor>
+									src/main/assembly/dep-configurable.xml
+								</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- Perfiles de construccion en funcion del S.O. -->
+		<profile>
+			<id>unix</id>
+			<activation>
+				<property>
+					<name>unix</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../${pom.artifactId}/src/main/filters/system/unix.properties</filter.generic.system>
+			</properties>
+		</profile>
+		<profile>
+			<id>win</id>
+			<activation>
+				<property>
+					<name>win</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../${pom.artifactId}/src/main/filters/system/windows.properties</filter.generic.system>
+			</properties>
+		</profile>
+		
+		<!-- Perfiles de construccion en funcion del servidor de aplicaciones -->
+		<profile>
+			<id>tomcat</id>
+			<activation>
+				<property>
+					<name>tomcat</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<filter.generic.server>${project.basedir}/../${pom.artifactId}/src/main/filters/server/tomcat.properties</filter.generic.server>
+			</properties>
+		</profile>
+		<profile>
+			<id>jboss</id>
+			<activation>
+				<property>
+					<name>jboss</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.server>${project.basedir}/../${pom.artifactId}/src/main/filters/server/jboss.properties</filter.generic.server>
+			</properties>
+		</profile>
+		<profile>
+			<id>websphere</id>
+			<activation>
+				<property>
+					<name>websphere</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.server>${project.basedir}/../${pom.artifactId}/src/main/filters/server/websphere.properties</filter.generic.server>
+			</properties>
+		</profile>	
+
+		<!--Perfiles de construccion en funcion de la base de datos -->
+		<profile>
+			<id>oracle</id>
+			<activation>
+				<property>
+					<name>oracle</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.database>${project.basedir}/../${pom.artifactId}/src/main/filters/database/oracle.properties</filter.generic.database>
+			</properties>
+		</profile>
+		<profile>
+			<id>postgres</id>
+			<activation>
+				<property>
+					<name>postgres</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<filter.generic.database>${project.basedir}/../${pom.artifactId}/src/main/filters/database/postgres.properties</filter.generic.database>
+			</properties>			
+		</profile>
+		<profile>
+			<id>sqlserver</id>
+			<activation>
+				<property>
+					<name>sqlserver</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.database>${project.basedir}/../${pom.artifactId}/src/main/filters/database/sqlserver.properties</filter.generic.database>
+			</properties>
+		</profile>
+		<profile>
+			<id>db2</id>
+			<activation>
+				<property>
+					<name>db2</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.database>${project.basedir}/../${pom.artifactId}/src/main/filters/database/db2.properties</filter.generic.database>
+			</properties>
+		</profile>		
+	</profiles>		
+</project>

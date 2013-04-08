@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AppAuditoriaVO">
+
+	<resultMap class="es.ieci.tecdoc.fwktd.audit.core.vo.AppAuditoriaVO"
+		id="appAuditoriaResultMap">
+		
+		<result property="appId" column="APP_ID" javaType="java.lang.Long" jdbcType="BIGINT" />
+		<result property="appDescription" column="APP_DESCRIPTION" javaType="java.lang.String" jdbcType="VARCHAR"/>
+				
+	</resultMap>
+	
+</sqlMap>

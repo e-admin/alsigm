@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+
+<pattern value="entity">
+	<object-create-rule classname="ieci.tdw.ispac.ispaclib.entity.def.EntityDef" />
+	<call-method-rule pattern="editable" methodname="setEditable" paramcount="0"/>
+	<call-method-rule pattern="dropable" methodname="setDropable" paramcount="0"/>
+	<call-method-rule pattern="status" methodname="setStatus" paramcount="0"/>
+	<call-method-rule pattern="tableSystem" methodname="setTableSystem" paramcount="0"/>
+	<pattern value="fields">
+		<pattern value="field">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.entity.def.EntityField" />
+			<set-properties-rule >
+				<alias attr-name="id" prop-name="id" />
+			</set-properties-rule>
+			<call-method-rule pattern="id" methodname="setId" paramcount="0"/>
+			<call-method-rule pattern="logicalName" methodname="setLogicalName" paramcount="0"/>
+			<call-method-rule pattern="physicalName" methodname="setPhysicalName" paramcount="0"/>
+			<call-method-rule pattern="type" methodname="setType" paramcount="0"/>
+			<call-method-rule pattern="size" methodname="setSize" paramcount="0"/>
+			<call-method-rule pattern="precision" methodname="setPrecision" paramcount="0"/>
+			<call-method-rule pattern="descripcion" methodname="setDescripcion" paramcount="0"/>
+			<call-method-rule pattern="nullable" methodname="setNullable" paramcount="0"/>
+			<call-method-rule pattern="multivalue" methodname="setMultivalue" paramcount="0"/>
+			<call-method-rule pattern="rangoMax" methodname="setRangoMax" paramcount="0" paramtypes="java.lang.Double"/>
+			<call-method-rule pattern="rangoMin" methodname="setRangoMin" paramcount="0" paramtypes="java.lang.Double"/>
+			<call-method-rule pattern="documentarySearch" methodname="setDocumentarySearch" paramcount="0"  paramtypes="java.lang.String" />
+			<set-next-rule methodname="addField" />
+		</pattern>
+	</pattern>
+	<pattern value="indexes">	
+		<pattern value="index">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.entity.def.EntityIndex" />
+			<set-properties-rule >
+				<alias attr-name="id" prop-name="id" />
+			</set-properties-rule>
+			<call-method-rule pattern="id" methodname="setId" paramcount="0"/>
+			<call-method-rule pattern="name" methodname="setName" paramcount="0"/>
+			<call-method-rule pattern="primaryKey" methodname="setPrimaryKey" paramcount="0"/>
+			<call-method-rule pattern="uniqueKey" methodname="setUnique" paramcount="0"/>
+			<call-method-rule pattern="documental" methodname="setDocumental" paramcount="0"/>
+			<pattern value="fields">
+				<pattern value="field">
+					<set-properties-rule > 
+						<alias attr-name="ide" prop-name="ide" />
+					</set-properties-rule>
+					<call-method-rule pattern="ide" methodname="addId" paramcount="0"/>
+				</pattern>
+			</pattern>
+			<set-next-rule methodname="addIndex" />
+		</pattern>
+	</pattern>
+	<pattern value="validations">	
+		<pattern value="validation">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.entity.def.EntityValidation" />
+			<set-properties-rule >
+				<alias attr-name="id" prop-name="id" />
+			</set-properties-rule>
+			<call-method-rule pattern="id" methodname="setId" paramcount="0"/>
+			<call-method-rule pattern="fieldId" methodname="setFieldId" paramcount="0"/>
+			<call-method-rule pattern="table" methodname="setTable" paramcount="0"/>
+			<call-method-rule pattern="tableType" methodname="setTableType" paramcount="0"/>
+			<call-method-rule pattern="class" methodname="setClazz" paramcount="0"/>
+			<call-method-rule pattern="mandatory" methodname="setMandatory" paramcount="0"/>
+
+			<call-method-rule pattern="hierarchicalId" methodname="setHierarchicalId" paramcount="0"/>
+			<call-method-rule pattern="hierarchicalName" methodname="setHierarchicalName" paramcount="0"/>
+
+			<set-next-rule methodname="addValidation" />
+		</pattern>
+	</pattern>
+	
+</pattern>
+</digester-rules>

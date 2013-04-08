@@ -1,0 +1,19 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>taglibs</groupId>
+  <artifactId>standard</artifactId>
+  <version>1.0.4</version>
+  <dependencies>
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <version>2.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xmlParserAPIs</artifactId>
+      <version>2.6.2</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+</project>

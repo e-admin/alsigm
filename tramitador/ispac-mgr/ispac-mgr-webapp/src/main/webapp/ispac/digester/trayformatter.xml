@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt 
+				type="BeanPropertySimpleFmt" 
+				property='ID_EXPEDIENTE' 
+				readOnly='false'
+				titleKey='formatter.tray.numExp' 
+				fieldType='LINK' 
+				fieldLink='ID_EXPEDIENTE' 
+				width='10%' 
+	/>
+	<propertyfmt 
+				type="BeanPropertyDateFmt" 
+				property='FECHA' 
+				readOnly='false'
+				format='dd/MM/yyyy' 
+				titleKey='formatter.tray.fecha' 
+				fieldType='LIST' 
+				width='15%'
+				comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+	/>
+	<propertyfmt 
+				type="BeanPropertySimpleFmt" 
+				property='ESTADO_AVISO' 
+				readOnly='false'
+				titleKey='formatter.tray.estado' 
+				fieldType='LIST' 
+				fieldLink='ID' 
+				width='7%'
+	/>	
+	<propertyfmt 
+				type="BeanPropertySimpleFmt" 
+				property='MENSAJE' 
+				readOnly='false'
+				titleKey='formatter.tray.mensaje' 
+				fieldType='LIST' 
+				width='68%'
+	/>
+</beanformatter>

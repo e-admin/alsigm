@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+	</form-beans>
+	<global-forwards>
+	</global-forwards>
+	<action-mappings>
+		<action path="/verPlano" 
+				type="ieci.tecdoc.sgm.geolocalizacion.action.VerPlanoAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/index.jsp"/>
+		</action>
+		<action path="/validarDireccionPostal" 
+				type="ieci.tecdoc.sgm.geolocalizacion.action.ValidarDireccionPostalAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/callejero.jsp"/>
+				<forward name="failure" path="/jsp/callejero.jsp"/>
+		</action>
+		<action path="/obtenerMapa" 
+				type="ieci.tecdoc.sgm.geolocalizacion.action.ObtenerMapaAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/plano.jsp"/>
+				<forward name="failure" path="/jsp/plano.jsp"/>
+		</action>
+		<action path="/obtenerDetalle" 
+				type="ieci.tecdoc.sgm.geolocalizacion.action.ObtenerDetalleAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/detalle.jsp"/>
+				<forward name="failure" path="/jsp/detalle.jsp"/>
+		</action>
+	</action-mappings>
+	<message-resources parameter="resources" />
+	<plug-in className="ieci.tecdoc.sgm.geolocalizacion.plugin.ConfigPlugin">
+		<set-property property="zoomMapa" value="400" />
+		<set-property property="capaMapa" value="3" />
+		<set-property property="anchoMapa" value="300" />
+		<set-property property="altoMapa" value="300" />
+	</plug-in>
+</struts-config>

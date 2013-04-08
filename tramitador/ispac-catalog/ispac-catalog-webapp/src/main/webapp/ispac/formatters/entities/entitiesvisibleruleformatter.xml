@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt"
+			titleKey='catalog.common.id'
+			property='ID'
+			readOnly='false'
+			fieldType='LINKPARAM'
+			styleClass='displayLink'
+			headerClass='headerDisplay'
+			sortable='false'
+			media='html'
+			decorator=''
+			url='/entities.do?method=addVisibleRule&amp;inFrame=1'>
+
+		<linkParam paramId="ruleId" property="ID" />
+		<linkParam paramId="parentElementId" property="PARENT_ELEMENT_ID"/>
+		<linkParam paramId="parentEntityId"  property="PARENT_ENTITY_ID"/>
+	</propertyfmt>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+			titleKey='catalog.common.nombre'
+			property='NOMBRE'
+			readOnly='false'
+			fieldType='LINKPARAM'
+			styleClass='displayLink'
+			headerClass='headerDisplay'
+			sortable='false'
+			media='html'
+			decorator=''
+			url='/entities.do?method=addVisibleRule&amp;inFrame=1'>
+
+		<linkParam paramId="ruleId" property="ID" />
+		<linkParam paramId="parentElementId" property="PARENT_ELEMENT_ID"/>
+		<linkParam paramId="parentEntityId"  property="PARENT_ENTITY_ID"/>
+	</propertyfmt>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='catalog.common.descripcion'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+
+</beanformatter>

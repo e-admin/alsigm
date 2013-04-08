@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+        
+    <!-- archivo de definicion de beans de servicios expuestos por el api -->
+    
+    <!-- #############  	Definición de alias  	#############  -->
+    <!-- alias a usar para injectar en el resto de bean, se encuentra externalizado en el propertyholder con fwkt-audit-api.properties -->
+	<alias name="${fwktd-audit.service.audit}" alias="fwktd_audit_auditoriaService" />
+    
+
+	<!-- Manejador de excepciones del servicio de auditoría -->
+	<bean id="fwktd_audit_auditoriaExceptionHandler" class="es.ieci.tecdoc.fwktd.audit.api.exception.handler.AuditoriaExceptionHandlerImpl"/>
+	
+	<!-- Implementación del Servicio de auditoría -->
+	<bean id="fwktd_audit_auditoriaServiceImpl"
+		class="es.ieci.tecdoc.fwktd.audit.api.service.impl.ServicioAuditoriaImpl">
+		<qualifier value="main"/>
+		<property name="auditoriaManager" ref="fwktd_audit_auditoriaManager" />
+		<property name="auditoriaExceptionHandler" ref="fwktd_audit_auditoriaExceptionHandler"/>
+	</bean>
+	
+	<!-- Mock del Servicio de auditoría para pruebas -->
+	<bean id="fwktd_audit_auditoriaServiceMock"
+		class="es.ieci.tecdoc.fwktd.audit.api.service.impl.ServicioAuditoriaMockImpl">
+		<qualifier value="mock"/>
+	</bean>
+	
+
+</beans>

@@ -1,0 +1,203 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>commons-dbcp</groupId>
+  <artifactId>commons-dbcp</artifactId>
+  <name>Commons DBCP</name>
+  <version>1.2.1</version>
+  <description>Commons Database Connection Pooling</description>
+  <url>http://jakarta.apache.org/commons/dbcp/</url>
+  <issueManagement>
+    <url>http://issues.apache.org/bugzilla/</url>
+  </issueManagement>
+  <ciManagement>
+    <notifiers>
+      <notifier>
+        <address>commons-dev@jakarta.apache.org</address>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+  <inceptionYear>2001</inceptionYear>
+  <mailingLists>
+    <mailingList>
+      <name>Commons Dev List</name>
+      <subscribe>commons-dev-subscribe@jakarta.apache.org</subscribe>
+      <unsubscribe>commons-dev-unsubscribe@jakarta.apache.org</unsubscribe>
+      <archive>http://nagoya.apache.org/eyebrowse/SummarizeList?listName=commons-dev@jakarta.apache.org</archive>
+    </mailingList>
+    <mailingList>
+      <name>Commons User List</name>
+      <subscribe>commons-user-subscribe@jakarta.apache.org</subscribe>
+      <unsubscribe>commons-user-unsubscribe@jakarta.apache.org</unsubscribe>
+      <archive>http://nagoya.apache.org/eyebrowse/SummarizeList?listName=commons-user@jakarta.apache.org</archive>
+    </mailingList>
+  </mailingLists>
+  <developers>
+    <developer>
+      <id>morgand</id>
+      <name>Morgan Delagrange</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>geirm</id>
+      <name>Geir Magnusson</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>craigmcc</id>
+      <name>Craig McClanahan</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>jmcnally</id>
+      <name>John McNally</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>mpoeschl</id>
+      <name>Martin Poeschl</name>
+      <email>mpoeschl@marmot.at</email>
+      <organization>tucana.at</organization>
+    </developer>
+    <developer>
+      <id>rwaldhoff</id>
+      <name>Rodney Waldhoff</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>dweinr1</id>
+      <name>David Weinrich</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>dirkv</id>
+      <name>Dirk Verbeeck</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Todd Carmichael</name>
+      <email>toddc@concur.com</email>
+    </contributor>
+    <contributor>
+      <name>Wayne Woodfield</name>
+    </contributor>
+  </contributors>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>/LICENSE.txt</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-commons/dbcp</connection>
+    <url>http://cvs.apache.org/viewcvs/jakarta-commons/dbcp/</url>
+  </scm>
+  <organization>
+    <name>The Apache Software Foundation</name>
+    <url>http://jakarta.apache.org</url>
+  </organization>
+  <build>
+    <sourceDirectory>src/java</sourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/test</directory>
+        <includes>
+          <include>testpool.jocl</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${basedir}</directory>
+        <targetPath>META-INF</targetPath>
+        <includes>
+          <include>NOTICE.txt</include>
+        </includes>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>${basedir}/src/test</directory>
+        <includes>
+          <include>testpool.jocl</include>
+        </includes>
+      </testResource>
+    </testResources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>org/apache/commons/dbcp/TestAbandonedObjectPool.java</include>
+            <include>org/apache/commons/jocl/TestJOCLContentHandler.java</include>
+            <include>org/apache/commons/dbcp/TestDelegatingConnection.java</include>
+            <include>org/apache/commons/dbcp/TestDelegatingPreparedStatement.java</include>
+            <include>org/apache/commons/dbcp/TestDelegatingStatement.java</include>
+            <include>org/apache/commons/dbcp/TestJOCLed.java</include>
+            <include>org/apache/commons/dbcp/TestManual.java</include>
+            <include>org/apache/commons/dbcp/TestBasicDataSourceFactory.java</include>
+            <include>org/apache/commons/dbcp/TestBasicDataSource.java</include>
+            <include>org/apache/commons/dbcp/TestAbandonedBasicDataSource.java</include>
+            <include>org/apache/commons/dbcp/TestPStmtPoolingBasicDataSource.java</include>
+            <include>org/apache/commons/dbcp/datasources/TestFactory.java</include>
+            <include>org/apache/commons/dbcp/datasources/TestPerUserPoolDataSource.java</include>
+            <include>org/apache/commons/dbcp/datasources/TestSharedPoolDataSource.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-pool</groupId>
+      <artifactId>commons-pool</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.sql</groupId>
+      <artifactId>jdbc-stdext</artifactId>
+      <version>2.0</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xerces</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+  </dependencies>
+  <distributionManagement>
+    <repository>
+      <id>default</id>
+      <name>Default Repository</name>
+      <url>file:///www/jakarta.apache.org/builds/jakarta-commons/dbcp/</url>
+    </repository>
+    <site>
+      <id>default</id>
+      <name>Default Site</name>
+      <url>scp://jakarta.apache.org//www/jakarta.apache.org/commons/dbcp/</url>
+    </site>
+  </distributionManagement>
+</project>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ISicres-Events-Configuration>
+    <Events>
+        <!-- Evento que se lanza realizando la operación implementada cuando un 
+		     resgistro es distribuido manualmente-->
+        <EventImplementation eventId="DMANUAL">
+            ${event.distribution.manual}
+        </EventImplementation>
+        <!-- Evento que se lanza cuando un registro distribuido pasa al estado 
+		     aceptado (2)-->
+        <EventImplementation eventId="DACC">
+        	${event.distribution.accept}
+        </EventImplementation>
+        <!-- Evento que se lanza cuando un registro distribuido pasa al estado 
+		     archivado (3)-->
+        <EventImplementation eventId="DARC">
+        	${event.distribution.archive}
+        </EventImplementation>
+        <!-- Evento que se lanza cuando un registro distribuido pasa al estado 
+		     rechazado (4)-->
+        <EventImplementation eventId="DREJ">
+        	${event.distribution.reject}
+        </EventImplementation>
+        <!-- Evento que se lanza cuando un registro distribuido pasa al estado 
+		     redistribuido (5)-->
+        <EventImplementation eventId="DRED">
+        	${event.distribution.redistribute}
+        </EventImplementation>
+        <!-- Evento que se lanza cuando se crea un registro de entrada -->
+        <EventImplementation eventId="RCRE">
+        	${event.distribution.create}            
+        </EventImplementation>
+        <!-- Evento que se lanza cuando se modifica un registro de entrada -->
+        <EventImplementation eventId="RMOD">
+        	${event.distribution.modify}
+        </EventImplementation>
+    </Events>
+</ISicres-Events-Configuration>
+

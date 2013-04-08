@@ -1,0 +1,20 @@
+<assembly>
+	<id>Configurable</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}/target/generated-resources/SIGEM_RegistroPresencial/Isicres/</directory>
+			<outputDirectory>/SIGEM_RegistroPresencial/</outputDirectory>
+		</fileSet>
+
+		<fileSet>
+			<directory>${project.basedir}/target/SIGEM_RegistroPresencialAdminWeb/WEB-INF/classes/SIGEM_RegistroPresencialAdminWeb</directory>
+			<outputDirectory>/SIGEM_RegistroPresencialAdminWeb/</outputDirectory>
+		</fileSet>
+
+	</fileSets>
+
+</assembly>

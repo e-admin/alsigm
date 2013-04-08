@@ -1,0 +1,80 @@
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/vldnewinter.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/genmsg.js"></script>
+		<script language="javascript">
+			function OnLoadVldNewInterDir()
+			{
+				parent.VldNewInterDir.open(top.g_URL + "/vldnewinterdir.htm","_self","location=no",true);
+			}
+		</script>
+	</HEAD>
+	<BODY tabindex="-1" onload="if (top.strPersonId == '0'){document.getElementById('oPerFisica').click();}OnLoadVldNewInterDir();">
+		<form name="frmVldNewInterForm" id="frmVldNewInterForm" method="post" target="VldNewInterForm" action="vldintersave.jsp">
+			<div class="resalt" id="oDivTipoPer" style="position:absolute; top:0; left:0; width:510; height:15;">
+				<input class="radio" id="oPerFisica" type="radio" name="oRadioTypePer" onclick="document.getElementById('oDivPerJur').style.visibility = 'hidden' ;document.getElementById('oDivPerFis').style.visibility = 'visible'; top.setFocus(document.getElementById('oDocumento'));parent.HabilitarAceptar(document.getElementById('oPerApe1'), null);" value="1" tabindex="6" CHECKED>
+				<script language="javascript">document.write(top.GetIdsLan("IDS_PER_FIS"));
+				</script>
+				<input class="radio" id="oPerJuridica" type="radio" name="oRadioTypePer" onclick="document.getElementById('oDivPerFis').style.visibility = 'hidden' ;document.getElementById('oDivPerJur').style.visibility = 'visible'; top.setFocus(document.getElementById('oDocumentoJur'));parent.HabilitarAceptar(document.getElementById('oRazon'), null);" value="2" tabindex="7">
+				<script language="javascript">document.write(top.GetIdsLan("IDS_PER_JUR"));
+				</script>
+			</div>
+			<div id="oDivPerFis" class="div" style="position:absolute; top:20; left:0; width:510; height:165;">
+				<label class="label" name="oDocName" style="position:absolute; top:5; left:5;">
+					<script language="javascript">document.write(top.GetIdsLan("IDS_NUM_IDENT"));
+					</script>
+				</label>
+				<input class="input" type="text" name="oDocumento" id="oDocumento" style="position:absolute; top:5; left:125; width:360;" onblur="parent.ValidateDocument(this, document.getElementById('oTipoDocu').options[document.getElementById('oTipoDocu').selectedIndex].value);" onkeydown="parent.PushIntro(event);" maxlength="17" tabindex="1"></input>
+				<label class="label" name="oDocName" style="position:absolute; top:30; left:5;">
+					<script language="javascript">document.write(top.GetIdsLan("IDS_TIPO_DOC"));
+					</script>
+				</label>
+				<select class="combo" name="oTipoDocu" id="oTipoDocu" style="position:absolute; top:30; left:125; width:360;" onchange="parent.changeComboDoc();" tabindex="2">										
+				</select>
+				<hr style="position:absolute; top:60; left:5; width:490;">
+				</hr>
+				<label class="label" name="oDocApe1" style="position:absolute; top:75; left:5;">
+					<script language="javascript">document.write(top.GetIdsLan("IDS_APE1"));
+					</script>
+				</label>
+				<input class="input" type="text" name="oPerApe1" id="oPerApe1" style="position:absolute; top:75; left:110; width:375;" onblur="doBlur(this);" onkeyup="parent.HabilitarAceptar(this, event);" onkeypress="return parent.onlyLetters(event);" maxlength="25" tabindex="3"></input>
+				<label class="label" name="oDocApe2" style="position:absolute; top:105; left:5;">
+					<script language="javascript">document.write(top.GetIdsLan("IDS_APE2"));
+					</script>
+				</label>
+				<input class="input" type="text" name="oPerApe2" id="oPerApe2" style="position:absolute; top:105; left:110; width:375;" onblur="doBlur(this);" onkeydown="parent.PushIntro(event);" onkeypress="return parent.onlyLetters(event);" maxlength="25" tabindex="4"></input>
+				<label class="label" name="oDocName" style="position:absolute; top:135; left:5;">
+					<script language="javascript">document.write(top.GetIdsLan("IDS_USER"));
+					</script>
+				</label>
+				<input class="input" type="text" name="oPerNombre" id="oPerNombre" style="position:absolute; top:135; left:110; width:375;" onblur="doBlur(this);" onkeydown="parent.PushIntro(event);" onkeypress="return parent.onlyLetters(event);" maxlength="20" tabindex="5"></input>
+			</div>
+			<div id="oDivPerJur" class="div" style="visibility:hidden; position:absolute; top:20; left:0; width:510; height:165;">
+				<label class="label" name="oDocJurName" style="position:absolute; top:5; left:5;">
+					<script language="javascript">document.write(top.GetIdsLan("IDS_NUM_IDENT"));
+					</script>
+				</label>
+				<input class="input" type="text" name="oDocumentoJur" id="oDocumentoJur" style="position:absolute; top:5; left:125; width:360;" onblur="parent.ValidateDocument(this, document.getElementById('oTipoDocuJur').options[document.getElementById('oTipoDocuJur').selectedIndex].value);" onkeydown="parent.PushIntro(event);" maxlength="17" tabindex="1"></input>
+				<label class="label" name="oDocJurName" style="position:absolute; top:30; left:5;">
+					<script language="javascript">document.write(top.GetIdsLan("IDS_TIPO_DOC"));
+					</script>
+				</label>
+				<select class="combo" name="oTipoDocuJur" id="oTipoDocuJur" style="position:absolute; top:30; left:125; width:360;" onchange="parent.changeComboDoc();" tabindex="2">										
+				</select>
+				<hr style="position:absolute; top:60; left:5; width:490;">
+				</hr>
+				<label class="label" name="oLblRazon" style="position:absolute; top:75; left:5;">
+					<script language="javascript">document.write(top.GetIdsLan("IDS_RAZON"));
+					</script>
+				</label>
+				<textarea class="textarea" name="oRazon" id="oRazon" style="position:absolute; top:95; left:5; width:480; height:55; overflow-x:hidden;" onblur="doBlur(this);" onkeyup="parent.LimitMaxLength(event,80);parent.HabilitarAceptar(this, event);" tabindex="3"></textarea>
+			</div>
+		</form>
+	</BODY>
+</HTML>

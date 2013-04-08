@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Formateador para el uso en procedimientos -->
+<beanformatter>
+
+	
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DOCUMENTOS:NUMEXP'
+				 readOnly='false'
+				 titleKey='common.numexp'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width15percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DOCUMENTOS:NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width70percent'
+				 />
+				 
+	
+				 
+</beanformatter>

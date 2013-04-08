@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="InfoRegistroPageRepositoryVO">
+	<select id="getInfoRegistroPageRepositories" resultMap="infoRegistroPageRepositoryResultMap" parameterClass="java.util.HashMap">
+		select * from scr_pagerepository where bookid=#idLibro# AND fdrid=#idRegistro#
+	</select>
+
+</sqlMap>	

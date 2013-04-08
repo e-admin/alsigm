@@ -1,0 +1,29 @@
+<assembly>	
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>true</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}/src/main/dist</directory>
+			<outputDirectory>/</outputDirectory>			
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/lib</directory>
+			<outputDirectory>/</outputDirectory>			
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/target</directory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+	</fileSets>
+	<dependencySets>
+	    <dependencySet>
+	    	<outputDirectory>/</outputDirectory>
+	    </dependencySet>
+	</dependencySets>
+</assembly>
+

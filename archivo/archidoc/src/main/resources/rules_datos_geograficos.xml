@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+<pattern value="datos_geograficos">
+	<object-create-rule classname="common.vos.DatosGeograficosVO" />
+	<pattern value="pais">
+		<set-properties-rule>
+			<alias attr-name="codigo" prop-name="codigoPais" />
+			<alias attr-name="nombre" prop-name="nombrePais" />
+		</set-properties-rule>
+	</pattern>
+	<pattern value="provincia">
+		<set-properties-rule>
+			<alias attr-name="codigo" prop-name="codigoProvincia" />
+			<alias attr-name="nombre" prop-name="nombreProvincia" />
+		</set-properties-rule>
+	</pattern>	
+</pattern>
+</digester-rules>

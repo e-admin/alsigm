@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment
+	xmlns="http://xml.apache.org/axis/wsdd/"
+	xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<globalConfiguration>
+		<parameter
+			name="sendMultiRefs"
+			value="true" />
+		<parameter
+			name="disablePrettyXML"
+			value="true" />
+		<parameter
+			name="adminPassword"
+			value="admin" />
+		<parameter
+			name="attachments.Directory"
+			value="${attachments.directory}" />
+		<parameter
+			name="dotNetSoapEncFix"
+			value="true" />
+		<parameter
+			name="enableNamespacePrefixOptimization"
+			value="false" />
+		<parameter
+			name="sendXMLDeclaration"
+			value="true" />
+		<parameter
+			name="sendXsiTypes"
+			value="true" />
+		<parameter
+			name="attachments.implementation"
+			value="org.apache.axis.attachments.AttachmentsImpl" />
+		<requestFlow>
+			<handler
+				type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter
+					name="scope"
+					value="session" />
+			</handler>
+			<handler
+				type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter
+					name="scope"
+					value="request" />
+				<parameter
+					name="extension"
+					value=".jwr" />
+			</handler>
+		</requestFlow>
+	</globalConfiguration>
+	<handler
+		name="LocalResponder"
+		type="java:org.apache.axis.transport.local.LocalResponder" />
+	<handler
+		name="URLMapper"
+		type="java:org.apache.axis.handlers.http.URLMapper" />
+	<handler
+		name="Authenticate"
+		type="java:org.apache.axis.handlers.SimpleAuthenticationHandler" />
+	<service
+		name="AdminService"
+		provider="java:MSG">
+		<parameter
+			name="allowedMethods"
+			value="AdminService" />
+		<parameter
+			name="enableRemoteAdmin"
+			value="false" />
+		<parameter
+			name="className"
+			value="org.apache.axis.utils.Admin" />
+		<namespace>http://xml.apache.org/axis/wsdd/</namespace>
+	</service>
+	<service
+		name="Version"
+		provider="java:RPC">
+		<parameter
+			name="allowedMethods"
+			value="getVersion" />
+		<parameter
+			name="className"
+			value="org.apache.axis.Version" />
+	</service>
+	<service
+		name="WSTiposDocumentosVitales"
+		provider="java:RPC"
+		style="wrapped"
+		use="literal">
+		<operation
+			name="getTiposDocVit"
+			qname="ns1:getTiposDocVit"
+			returnQName="ns1:getTiposDocVitReturn"
+			returnType="ns2:TipoDocumentoVital"
+			soapAction=""
+			xmlns:ns1="http://tiposdocvitales.ws"
+			xmlns:ns2="http://vos.webservice.docvitales" />
+		<operation
+			name="getTiposDocVitPorProc"
+			qname="ns3:getTiposDocVitPorProc"
+			returnQName="ns3:getTiposDocVitPorProcReturn"
+			returnType="ns4:TipoDocumentoVital"
+			soapAction=""
+			xmlns:ns3="http://tiposdocvitales.ws"
+			xmlns:ns4="http://vos.webservice.docvitales">
+			<parameter
+				qname="ns3:idProc"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="getTipoDocVit"
+			qname="ns5:getTipoDocVit"
+			returnQName="ns5:getTipoDocVitReturn"
+			returnType="ns6:TipoDocumentoVital"
+			soapAction=""
+			xmlns:ns5="http://tiposdocvitales.ws"
+			xmlns:ns6="http://vos.webservice.docvitales">
+			<parameter
+				qname="ns5:id"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="addRelTipoDocVitProc"
+			qname="ns7:addRelTipoDocVitProc"
+			soapAction=""
+			xmlns:ns7="http://tiposdocvitales.ws">
+			<parameter
+				qname="ns7:idProc"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="ns7:idTipoDocVit"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="removeRelTipoDocVitProc"
+			qname="ns8:removeRelTipoDocVitProc"
+			soapAction=""
+			xmlns:ns8="http://tiposdocvitales.ws">
+			<parameter
+				qname="ns8:idProc"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="ns8:idTipoDocVit"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="removeRelsPorProc"
+			qname="ns9:removeRelsPorProc"
+			soapAction=""
+			xmlns:ns9="http://tiposdocvitales.ws">
+			<parameter
+				qname="ns9:idProc"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="removeRelsPorTiposDocProc"
+			qname="ns10:removeRelsPorTiposDocProc"
+			soapAction=""
+			xmlns:ns10="http://tiposdocvitales.ws">
+			<parameter
+				qname="ns10:idProc"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="ns10:idsTipoDocVit"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<parameter
+			name="wsdlServicePort"
+			value="WSTiposDocumentosVitales" />
+		<parameter
+			name="schemaQualified"
+			value="http://vos.webservice.docvitales,http://tiposdocvitales.ws" />
+		<parameter
+			name="className"
+			value="ws.tiposdocvitales.WSTiposDocumentosVitalesImpl" />
+		<parameter
+			name="typeMappingVersion"
+			value="1.2" />
+		<parameter
+			name="allowedMethods"
+			value="getTiposDocVitPorProc getTipoDocVit removeRelsPorProc getTiposDocVit removeRelsPorTiposDocProc addRelTipoDocVitProc removeRelTipoDocVitProc" />
+		<parameter
+			name="wsdlServiceElement"
+			value="WSTiposDocumentosVitalesService" />
+		<parameter
+			name="wsdlTargetNamespace"
+			value="http://tiposdocvitales.ws" />
+		<parameter
+			name="wsdlPortType"
+			value="WSTiposDocumentosVitales" />
+		<parameter
+			name="scope"
+			value="Request" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle=""
+			qname="ns11:TipoDocumentoVital"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:docvitales.webservice.vos.TipoDocumentoVital"
+			xmlns:ns11="http://vos.webservice.docvitales" />
+	</service>
+	<service
+		name="WSDocumentosVitales"
+		provider="java:RPC"
+		style="wrapped"
+		use="literal">
+		<operation
+			name="getSeriesTercero"
+			qname="ns12:getSeriesTercero"
+			returnQName="ns12:getSeriesTerceroReturn"
+			returnType="ns13:Serie"
+			soapAction=""
+			xmlns:ns12="http://docvitales.ws"
+			xmlns:ns13="http://vos.webservice.docvitales">
+			<parameter
+				qname="ns12:idTercero"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="getDocumentosAntecedentes"
+			qname="ns14:getDocumentosAntecedentes"
+			returnQName="ns14:getDocumentosAntecedentesReturn"
+			returnType="ns15:DocumentoAntecedente"
+			soapAction=""
+			xmlns:ns14="http://docvitales.ws"
+			xmlns:ns15="http://vos.webservice.docvitales">
+			<parameter
+				qname="ns14:idTercero"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="ns14:idSerie"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="getDocumentosAntecedentesTercero"
+			qname="ns16:getDocumentosAntecedentesTercero"
+			returnQName="ns16:getDocumentosAntecedentesTerceroReturn"
+			returnType="ns17:DocumentoAntecedente"
+			soapAction=""
+			xmlns:ns16="http://docvitales.ws"
+			xmlns:ns17="http://vos.webservice.docvitales">
+			<parameter
+				qname="ns16:idTercero"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="getISADG"
+			qname="ns18:getISADG"
+			returnQName="ns18:getISADGReturn"
+			returnType="xsd:string"
+			soapAction=""
+			xmlns:ns18="http://docvitales.ws"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<parameter
+				qname="ns18:idDocAnt"
+				type="xsd:string" />
+		</operation>
+		<operation
+			name="getDocumentosVitalesTercero"
+			qname="ns19:getDocumentosVitalesTercero"
+			returnQName="ns19:getDocumentosVitalesTerceroReturn"
+			returnType="ns20:InfoBDocumentoVital"
+			soapAction=""
+			xmlns:ns19="http://docvitales.ws"
+			xmlns:ns20="http://vos.webservice.docvitales">
+			<parameter
+				qname="ns19:idTercero"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="getDocumentosVitalesTerProc"
+			qname="ns21:getDocumentosVitalesTerProc"
+			returnQName="ns21:getDocumentosVitalesTerProcReturn"
+			returnType="ns22:InfoBDocumentoVital"
+			soapAction=""
+			xmlns:ns21="http://docvitales.ws"
+			xmlns:ns22="http://vos.webservice.docvitales">
+			<parameter
+				qname="ns21:idTercero"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="ns21:idProc"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="getDocumentoVital"
+			qname="ns23:getDocumentoVital"
+			returnQName="ns23:getDocumentoVitalReturn"
+			returnType="ns24:DocumentoVital"
+			soapAction=""
+			xmlns:ns23="http://docvitales.ws"
+			xmlns:ns24="http://vos.webservice.docvitales">
+			<parameter
+				qname="ns23:id"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="altaDocumentoVital"
+			qname="ns25:altaDocumentoVital"
+			returnQName="ns25:altaDocumentoVitalReturn"
+			returnType="ns26:InfoBDocumentoVital"
+			soapAction=""
+			xmlns:ns25="http://docvitales.ws"
+			xmlns:ns26="http://vos.webservice.docvitales">
+			<parameter
+				qname="ns25:formDocVit"
+				type="ns26:FormDocumentoVital" />
+		</operation>
+		<operation
+			name="vinculaExpediente"
+			qname="ns27:vinculaExpediente"
+			soapAction=""
+			xmlns:ns27="http://docvitales.ws">
+			<parameter
+				qname="ns27:idDocVit"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="ns27:idExp"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="ns27:idSist"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="ns27:usuario"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<operation
+			name="eliminaVinculosExpediente"
+			qname="ns28:eliminaVinculosExpediente"
+			soapAction=""
+			xmlns:ns28="http://docvitales.ws">
+			<parameter
+				qname="ns28:idExp"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="ns28:idSist"
+				type="xsd:string"
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<parameter
+			name="wsdlServicePort"
+			value="WSDocumentosVitales" />
+		<parameter
+			name="schemaQualified"
+			value="http://vos.webservice.docvitales,http://docvitales.ws,http://vos.docvitales,http://vos.common" />
+		<parameter
+			name="className"
+			value="ws.docvitales.WSDocumentosVitalesImpl" />
+		<parameter
+			name="typeMappingVersion"
+			value="1.2" />
+		<parameter
+			name="allowedMethods"
+			value="getDocumentosVitalesTerProc getDocumentosAntecedentes getDocumentoVital getDocumentosAntecedentesTercero getDocumentosVitalesTercero eliminaVinculosExpediente vinculaExpediente getSeriesTercero getISADG altaDocumentoVital" />
+		<parameter
+			name="wsdlServiceElement"
+			value="WSDocumentosVitalesService" />
+		<parameter
+			name="wsdlTargetNamespace"
+			value="http://docvitales.ws" />
+		<parameter
+			name="wsdlPortType"
+			value="WSDocumentosVitales" />
+		<parameter
+			name="scope"
+			value="Request" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle=""
+			qname="ns29:DocumentoAntecedente"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:docvitales.webservice.vos.DocumentoAntecedente"
+			xmlns:ns29="http://vos.webservice.docvitales" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle=""
+			qname="ns30:Serie"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:docvitales.webservice.vos.Serie"
+			xmlns:ns30="http://vos.webservice.docvitales" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle=""
+			qname="ns31:FormDocumentoVital"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:docvitales.webservice.vos.FormDocumentoVital"
+			xmlns:ns31="http://vos.webservice.docvitales" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle=""
+			qname="ns32:BaseVO"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:common.vos.BaseVO"
+			xmlns:ns32="http://vos.common" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle=""
+			qname="ns33:DocumentoVital"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:docvitales.webservice.vos.DocumentoVital"
+			xmlns:ns33="http://vos.webservice.docvitales" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle=""
+			qname="ns34:FormDocumentoVitalVO"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:docvitales.vos.FormDocumentoVitalVO"
+			xmlns:ns34="http://vos.docvitales" />
+		<typeMapping
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle=""
+			qname="ns35:InfoBDocumentoVital"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			type="java:docvitales.webservice.vos.InfoBDocumentoVital"
+			xmlns:ns35="http://vos.webservice.docvitales" />
+	</service>
+	<service
+		name="WSProcesosBatch"
+		provider="java:RPC"
+		style="wrapped"
+		use="literal">
+		<operation
+			name="cerrarPrevisiones"
+			qname="ns36:cerrarPrevisiones"
+			soapAction=""
+			xmlns:ns36="http://batch.ws" />
+		<operation
+			name="publicarUnidadesDocumentales"
+			qname="ns37:publicarUnidadesDocumentales"
+			soapAction=""
+			xmlns:ns37="http://batch.ws" />
+		<operation
+			name="eliminarUnidadesDocumentalesPrestadasNoDevueltas"
+			qname="ns38:eliminarUnidadesDocumentalesPrestadasNoDevueltas"
+			soapAction=""
+			xmlns:ns38="http://batch.ws" />
+		<operation
+			name="pasarAHistoricoDocumentosVitalesCaducados"
+			qname="ns39:pasarAHistoricoDocumentosVitalesCaducados"
+			soapAction=""
+			xmlns:ns39="http://batch.ws" />
+		<operation
+			name="eliminarDocumentosVitalesObsoletos"
+			qname="ns40:eliminarDocumentosVitalesObsoletos"
+			soapAction=""
+			xmlns:ns40="http://batch.ws" />
+		<parameter
+			name="wsdlServicePort"
+			value="WSProcesosBatch" />
+		<parameter
+			name="schemaQualified"
+			value="http://batch.ws" />
+		<parameter
+			name="className"
+			value="ws.batch.WSProcesosBatchImpl" />
+		<parameter
+			name="typeMappingVersion"
+			value="1.2" />
+		<parameter
+			name="allowedMethods"
+			value="eliminarDocumentosVitalesObsoletos eliminarUnidadesDocumentalesPrestadasNoDevueltas pasarAHistoricoDocumentosVitalesCaducados publicarUnidadesDocumentales cerrarPrevisiones" />
+		<parameter
+			name="wsdlServiceElement"
+			value="WSProcesosBatchService" />
+		<parameter
+			name="wsdlTargetNamespace"
+			value="http://batch.ws" />
+		<parameter
+			name="wsdlPortType"
+			value="WSProcesosBatch" />
+		<parameter
+			name="scope"
+			value="Request" />
+	</service>
+
+		<service
+		name="WSTransferencias"
+		provider="java:RPC"
+		style="wrapped"
+		use="literal">
+
+		<operation
+			name="transferirExpedienteElectronicoConDocumentos"
+			qname="operNS:transferirExpedienteElectronicoConDocumentos"
+			xmlns:operNS="http://transferencias.ws/"
+			returnQName="return"
+			returnType="rtns:boolean"
+			xmlns:rtns="http://www.w3.org/2001/XMLSchema"
+			soapAction="">
+
+			<parameter
+				qname="codigoTramitador"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="nombreTramitador"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="anioExpediente"
+				type="tns:int"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="codigoProcedimiento"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="contenidoXML"
+				type="tns:base64Binary"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="verificarUnicidad"
+				type="tns:int"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="usuario"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="password"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter
+				qname="entidad"
+				type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<parameter
+			name="wsdlServicePort"
+			value="WSTransferencias" />
+		<parameter
+			name="schemaQualified"
+			value="http://transferencias.ws" />
+		<parameter
+			name="className"
+			value="ws.transferencias.WSTransferenciasImpl" />
+		<parameter
+			name="typeMappingVersion"
+			value="1.2" />
+		<parameter
+			name="allowedMethods"
+			value="transferirExpedienteElectronicoConDocumentos" />
+		<parameter
+			name="wsdlServiceElement"
+			value="WSTransferenciasService" />
+		<parameter
+			name="wsdlTargetNamespace"
+			value="http://transferencias.ws" />
+		<parameter
+			name="wsdlPortType"
+			value="WSTransferencias" />
+		<parameter
+			name="scope"
+			value="Request" />
+
+	</service>
+	<transport
+		name="http">
+		<requestFlow>
+			<handler
+				type="URLMapper" />
+			<handler
+				type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+		<parameter
+			name="qs:list"
+			value="org.apache.axis.transport.http.QSListHandler" />
+		<parameter
+			name="qs:wsdl"
+			value="org.apache.axis.transport.http.QSWSDLHandler" />
+		<parameter
+			name="qs.list"
+			value="org.apache.axis.transport.http.QSListHandler" />
+		<parameter
+			name="qs.method"
+			value="org.apache.axis.transport.http.QSMethodHandler" />
+		<parameter
+			name="qs:method"
+			value="org.apache.axis.transport.http.QSMethodHandler" />
+		<parameter
+			name="qs.wsdl"
+			value="org.apache.axis.transport.http.QSWSDLHandler" />
+	</transport>
+	<transport
+		name="local">
+		<responseFlow>
+			<handler
+				type="LocalResponder" />
+		</responseFlow>
+	</transport>
+</deployment>

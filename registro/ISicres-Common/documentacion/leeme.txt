@@ -1,0 +1,17 @@
+1.- La clase com.ieci.tecdoc.common.utils.ConfiguratorEvents.java es 
+	nueva y es para gestionar los eventos. Actualmente solo de la 
+	distribucion.
+	Se encuentra aqui porque utiliza un fichero de configuracion.
+	Cambiará de proyecto al ISicres-ServerCore en el momento en el que
+	los eventos se configuren por BBDD
+	
+2.- Incluimos es este proyecto algunas clases del proyecto ISicres-PersonManager.
+	Son las siguientes clases:
+		- PersonKeys.java (aka com.ieci.tecdoc.common.utils.adapter.PersonKeys.java)
+		- XMLPersons.java (aka com.ieci.tecdoc.common.utils.adapter.XMLPersons.java)
+		- PersonInfo.java (aka com.ieci.tecdoc.common.isicres.PersonInfo.java)
+		- PersonAddress.java (aka com.ieci.tecdoc.common.isicres.PersonAddress.java)
+		- ProvCity.java (aka com.ieci.tecdoc.common.isicres.ProvCity.java)
+		- CriteriaAttributes.java (aka com.ieci.tecdoc.common.utils.adapter.CriteriaAttributes.java)
+		- PersonCriteria.java (aka com.ieci.tecdoc.common.utils.adapter.PersonCriteria.java)
+		

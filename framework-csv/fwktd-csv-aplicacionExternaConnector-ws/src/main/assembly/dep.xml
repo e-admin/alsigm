@@ -1,0 +1,18 @@
+<assembly>
+	<id>configurable</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/src/main/resources/fwktd-csv-aplicacionExternaConnector-ws</directory>
+			<outputDirectory>/fwktd-csv-aplicacionExternaConnector-ws</outputDirectory>
+			<includes>
+				<include>fwktd-csv-aplicacionExternaConnector-ws.properties</include>
+				<include>log4j.xml</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

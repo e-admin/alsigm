@@ -1,0 +1,96 @@
+#ifndef __AUXFNC_H__
+#define __AUXFNC_H__
+
+typedef ULONG (CALLBACK* LPFNValid)(HIGEAR);
+typedef ULONG (CALLBACK* LPFNPage)(const LPSTR,LPUINT);
+typedef ULONG (CALLBACK* LPFNLoad) (INT,LONG,UINT,UINT,LPHIGEAR);
+typedef ULONG (CALLBACK* LPFNLoadFile)(const LPSTR,LPHIGEAR);
+typedef ULONG (CALLBACK* LPFNLoadmem) (LPVOID,DWORD,UINT,UINT,LPHIGEAR);
+typedef ULONG (CALLBACK* LPFNInfo) (INT,LONG,UINT,LPAT_MODE,LPAT_MODE,LPAT_DIB);
+typedef ULONG (CALLBACK* LPFNInfomem) (LPVOID,DWORD,UINT,LPAT_MODE,LPAT_MODE,LPAT_DIB);
+typedef ULONG (CALLBACK* LPFNCenter) (HIGEAR,HWND,BOOL);
+typedef ULONG (CALLBACK* LPFNDesktop) (HIGEAR,HBITMAP,const LPAT_RGB,const LPAT_RGB,BOOL);
+typedef ULONG (CALLBACK* LPFNDIB) (HIGEAR,LPAT_DIB FAR);
+typedef ULONG (CALLBACK* LPFNResolution) (HIGEAR,LPLONG,LPLONG,LPLONG,LPLONG,LPAT_MODE);
+typedef ULONG (CALLBACK* LPFNScrollSet) (HIGEAR,BOOL);
+typedef ULONG (CALLBACK* LPFNDelete)(HIGEAR);
+typedef ULONG (CALLBACK* LPFNFit) (HIGEAR,HWND,LPAT_RECT,LPUINT,AT_MODE);
+typedef ULONG (CALLBACK* LPFNDisplay) (HIGEAR,HDC);
+typedef ULONG (CALLBACK* LPFNAliasGet) (HIGEAR,LPAT_MODE,LPUINT,LPBOOL);
+typedef ULONG (CALLBACK* LPFNAliasSet) (HIGEAR,AT_MODE,UINT,BOOL);
+typedef ULONG (CALLBACK* LPFNResize) (HIGEAR,HWND,LPAT_RECT,LPUINT);
+typedef ULONG (CALLBACK* LPFNIPResize) (HIGEAR,AT_DIMENSION,AT_DIMENSION,AT_MODE);
+typedef ULONG (CALLBACK* LPFNPan) (HIGEAR,HWND,BOOL);
+typedef ULONG (CALLBACK* LPFNDimensions) (HIGEAR,LPAT_DIMENSION,LPAT_DIMENSION,LPUINT);
+typedef ULONG (CALLBACK* LPFNDeviceRectGet) (HIGEAR,LPAT_RECT);
+typedef ULONG (CALLBACK* LPFNDeviceRectSet) (HIGEAR,const LPAT_RECT);
+typedef ULONG (CALLBACK* LPFNZoomRectSet) (HIGEAR,HWND,const LPAT_RECT,LPUINT,LPAT_RECT);
+typedef ULONG (CALLBACK* LPFNScrollImage) (HIGEAR,HWND,AT_MODE,UINT,AT_MODE);
+typedef ULONG (CALLBACK* LPFNDeviceToImage) (HIGEAR,LPAT_POINT,UINT);
+typedef ULONG (CALLBACK* LPFNZoomSet) (HIGEAR,HWND,UINT,LPAT_RECT);
+typedef ULONG (CALLBACK* LPFNAngle) (HIGEAR,LPAT_MODE);
+typedef ULONG (CALLBACK* LPFNRotate) (HIGEAR,AT_MODE);
+typedef ULONG (CALLBACK* LPFNTrackMouse) (HIGEAR,HWND,INT,INT,LPFNIG_GUISELECT,LPVOID);
+typedef ULONG (CALLBACK* LPFNPanCreate) (HIGEAR,HWND,const LPSTR,INT,INT,INT,INT,HWND FAR);
+typedef ULONG (CALLBACK* LPFNAdjust) (HIGEAR,LPAT_RECT,AT_MODE);
+typedef ULONG (CALLBACK* LPFNPrint) (HIGEAR,HDC,BOOL);
+typedef ULONG (CALLBACK* LPFNConvertGray) (HIGEAR);
+typedef ULONG (CALLBACK* LPFNContrast) (HIGEAR,DOUBLE,DOUBLE,DOUBLE);
+typedef ULONG (CALLBACK* LPFNFlip) (HIGEAR,AT_MODE);
+typedef ULONG (CALLBACK* LPFNIsGray) (HIGEAR,LPBOOL);
+typedef ULONG (CALLBACK* LPFNImageToDevice) (HIGEAR,LPAT_POINT,UINT);
+typedef ULONG (CALLBACK* LPFNDeviceToImage) (HIGEAR,LPAT_POINT,UINT);
+typedef ULONG (CALLBACK* LPFNExportDIB)(HIGEAR,LPAT_DIB FAR*);
+typedef ULONG (CALLBACK* LPFNCreateDIB) (AT_DIMENSION,AT_DIMENSION,UINT,LPAT_DIB,LPHIGEAR);
+typedef ULONG (CALLBACK* LPFNGetError) (INT,LPSTR,INT,LPINT,LPAT_ERRCODE,LPLONG,LPLONG);
+typedef VOID (CALLBACK* LPFNClearErr) (VOID);
+typedef ULONG (CALLBACK* LPFNrunToDIB) (HIGEAR);
+typedef ULONG (CALLBACK* LPFNHandlePalette) (HIGEAR,HWND,AT_MODE,LPBOOL);
+typedef ULONG (CALLBACK* LPFNNumPages) (LPSTR,LPUINT);  
+typedef ULONG (CALLBACK* LPFNROPSet) (HIGEAR, AT_LMODE);
+typedef ULONG (CALLBACK* LPFNImgRectSet) (HIGEAR, const LPAT_RECT);
+typedef ULONG (CALLBACK* LPFNImgInvert) (HIGEAR,const LPAT_RECT,AT_MODE);
+typedef ULONG (CALLBACK* LPFNSave) (HIGEAR,INT,UINT,UINT,AT_LMODE);
+typedef ULONG (CALLBACK* LPFNSaveFile) (HIGEAR,const LPSTR,AT_LMODE);
+
+
+
+   void TermImg(HIGEAR hIGear);
+
+   LONG InitPageImg(CString FileName,LONG Page,HIGEAR* phIGear);
+   LONG InitPageImgX(CString FileName,LONG Page,HIGEAR* phIGear, ULONG FAR* TypeSave);
+
+   LONG PrintPage(HIGEAR hIGear,CDC* pDC,CRect FitRectDC,UINT bpp);
+
+   LONG AddPageToFile(HIGEAR hIGear, int fd, ULONG TypeToSave);
+
+   LONG GetNumPagesFile(CString FileName, LONG& NumPages);
+
+   BOOL RotImg(CDC* pDC,int W,int H);
+   
+   LONG SetText(CDC* pDC,CString& Txt,CString& NameFont,LONG Enh,LONG Tam);
+   
+   LONG GetPrinterDefault(CString& Driver,CString& Printer,CString& Port);
+
+   void GetFitRect(const CSize& SizeToFit,const CRect& DestRect,
+                CRect FAR* FitRect);
+
+   LONG ReadStamp(CString Stp,CString& Txt,CString& NameFont,LONG& Enh,LONG& Tam);
+
+   void GetFontFromLine(CString Line,CString& NameFont,LONG& Enh,LONG& Tam);
+
+   LONG GetEndoso(LPCSTR FileName,CString& Endoso);
+
+   LONG GetBitPerPixel(HIGEAR hIGear,UINT& bpp);
+   LONG InvertPalette(HIGEAR hIGear);
+
+   LONG GetError();
+
+   LONG ReadTxt(CString FTxt,CStringArray& TxtArr,CString& NameFont,LONG& Enh,LONG& Tam);
+   LONG SetText(CDC* pDC,CStringArray& TxtArr,CString& NameFont,LONG Enh,LONG Tam,BOOL Up);
+   LONG PrintText(CDC* pDC,int InitPrint,CStringArray& TxtArr, CString& NameFont,LONG Enh,LONG Tam);
+
+   void GetTypeSave(int Type,int Compress,ULONG FAR* TypeSave);
+   LONG GetTempFile(CString& TempFile);
+
+#endif // __AUXFNC_H__

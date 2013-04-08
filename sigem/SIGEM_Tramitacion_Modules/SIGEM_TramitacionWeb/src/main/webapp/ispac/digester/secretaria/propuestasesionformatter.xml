@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SEC_PROPUESTA:TITULO'
+				 titleKey='SEC_PROPUESTA:TITULO'
+				 fieldType='LINK'
+				 columnClass='width40percent'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'/>
+
+		<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SEC_PROPUESTA:TITULO'
+				 titleKey='SEC_PROPUESTA:TITULO'
+				 fieldType='LIST'
+				 columnClass='width40percent'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='csv excel xml pdf'/>
+
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 titleKey='SEC_PROPUESTA:ORIGEN'
+				 property='SEC_PROPUESTA:ORIGEN'
+				 fieldType='LIST'
+				 columnClass='width30percent'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html csv excel xml pdf'/>
+
+	<propertyfmt type="BeanPropertyValidationFmt"
+				property='PRIO:SEC_PROPUESTA:SUSTITUTO'
+				validatedField='PRIORIDAD'
+				validationTable='SEC_VLDTBL_PRIORIDAD'
+				titleKey='SEC_PROPUESTA:PRIORIDAD'
+				fieldType='LIST'
+				columnClass='width30percent'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html csv excel xml pdf'/>
+
+
+
+</beanformatter>

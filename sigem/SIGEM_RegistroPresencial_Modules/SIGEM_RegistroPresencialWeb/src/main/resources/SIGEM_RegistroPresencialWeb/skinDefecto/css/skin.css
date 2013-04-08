@@ -1,0 +1,136 @@
+#appHeader {
+	width:100%; 
+	height:61px; 
+	background: #99d6f5 url(../logos/fondo_cab.jpg) no-repeat; 
+	border-collapse: collapse;
+}
+
+#appHeader div#logo_app { 
+	float:left; 
+	height:44px;
+	margin:0px 0px 0px 10px;
+	padding-top:0px;
+}
+
+#appHeader div#logo_cia {
+	width:111; height:61px; display:none
+}
+
+#appHeader .salir {
+	position: absolute;
+	background: url("../logos/exit.gif") top left no-repeat;
+	text-align: right;
+	top: 20px;
+	right: 10px;
+}
+
+.salir a {
+	height: 20px;
+	line-height: 20px;
+	padding-left: 30px;
+	color: #006699;
+	font-weight: bold;
+	font-family: verdana, arial, tahoma, geneva, sans-serif;
+	text-decoration: none;
+	font-size: 90%;
+}
+
+/* Barras de menus */
+/* Barra principal */
+.GreyToolbar {
+	width:100%;
+	height:24px;
+	background-color: #cfcdcd;
+}
+
+/* Opciones de la barra principal */
+.Options {
+    border-right: #cfcdcd 1px solid; border-top: #cfcdcd 1px solid; font-weight: bold; font-size: 8pt;
+    border-left: #cfcdcd 1px solid; cursor: pointer; color: #ffffff; border-bottom: #cfcdcd 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.OptionsOver {
+    border-right: 1px solid; border-top: 1px solid; font-weight: bold; font-size: 8pt;  border-left: 1px solid;
+    cursor: pointer; color: #ffffff; border-bottom: 1px solid; 
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+/** Se reutiliza para dar estilo a las opciones deshabilitadas de las barras de menu **/
+.SubOptionsDisabled {
+    font-weight: bold; font-size: 8pt; color: #666666; font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+/* Opciones de la barra de acciones sobre registros */
+
+.SubOptions {
+    border-right: #9ccfff 1px solid;
+    border-top: #9ccfff 1px solid;
+    font-weight: bold;
+    font-size: 8pt;
+    border-left: #9ccfff 1px solid;
+    cursor: pointer;
+    color: #00309c;
+    border-bottom: #9ccfff 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptionsOver {
+    border-right: #00309c 1px solid;
+    border-top: #00309c 1px solid;
+    font-weight: bold;
+    font-size: 8pt;
+    border-left: #00309c 1px solid;
+    cursor: pointer;
+    color: #00309c;
+    border-bottom: #00309c 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubMenu {
+	background-color: #9ccfff;
+}
+
+.SubMenu2 {
+	background-color: #D7EDFA;
+	margin-top: 10px;	
+}
+
+.SubOptions2 {
+    font-weight: bold;
+    font-size: 10px;
+    cursor: pointer;
+    color: #00309c;
+    border: 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.SubOptionsOver2 {
+    font-weight: bold;
+    font-size: 10px;
+    border-left: #00309c 1px solid;
+    cursor: pointer;
+    color: #00309c;
+    border: 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.SubOptionsDisabled2 {
+    font-weight: bold; font-size: 10px; color: #666666; font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+/* Estilo perteneciente a la capa de cargando... */
+.cargar{
+	display:none; 
+	color:#00309C;
+	position:absolute; 
+	font-weight:bold;
+	z-index:100; 
+	width:100%; 
+	height: 410px; 
+	text-align:center;
+	background-color: #ffffff;
+	filter: Alpha(Opacity=75);
+ 	-moz-opacity: 1.0; 
+ 	Padding-top: 100px;
+}

@@ -1,0 +1,22 @@
+img, div, input, h1, h2, h3, .salir { behavior: url("./scripts/iepngfix.htc") }
+
+#contenido_centrado {
+	width: 100%;
+	text-align: center;
+}
+
+.ficha_fixed {
+	text-align: left;
+}
+
+.fila_right {
+	margin: 0;
+	padding: 0;
+	margin-right: 10px;
+}
+
+#logo_app_img {
+	top: -7px;
+	position: absolute;
+}
+

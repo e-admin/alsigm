@@ -1,0 +1,72 @@
+<HTML>
+	<HEAD>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/global.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/font.css">
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<title>&nbsp;</title>
+		<SCRIPT LANGUAGE="javascript">
+			top.Idioma = top.GetDlgParam(4);
+			document.title = top.GetDlgParam(3);
+		</SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			var Loaded = false;
+
+			function onWindowLoad()
+			{
+				var sUrl;
+
+				document.body.style.cursor = "wait";
+				top.SetInnerText(document.getElementById("Msg"), top.GetIdsLan("IDS_WAIT"));
+
+				sUrl = top.GetDlgParam(0) + "/" + top.GetDlgParam(2) + "?" + top.GetDlgParam(1);
+
+				//comprobamos el origen de la pantalla
+				if(top.GetDlgParam(2).indexOf("reportdoc.jsp") != -1){
+					//si viene a generar informes, abrimos el informe
+					var resp = window.open(sUrl,"Informes","location=no",false);
+					//cuando nos responda el servlet de los informes
+					if(resp){
+						//cerramos esta pantalla, y mostraremos el informe
+						top.close();
+					}
+				}else{
+					//otras operativas: cerrar registros...
+					window.open(sUrl, "frmResponse","location=no",true);
+				}
+
+				Loaded = true;
+
+				return;
+			}
+
+			function OnLoadIFrame()
+			{
+				if (Loaded == true)	{
+					var resp = top.GetInnerText(top.frmResponse.document.body);
+
+					if (resp.indexOf("alert") != -1){
+						eval(resp);
+					}
+					else{
+						top.returnValue = resp;
+					}
+
+					top.close();
+				}
+
+			}
+		</SCRIPT>
+	</HEAD>
+	<BODY onload="onWindowLoad();" onunload="top.EnableEvents(window.opener);" TABINDEX="-1">
+		<IFRAME src="blank.htm" name="frmResponse" id="frmResponse" style="display:none" onload="OnLoadIFrame();"></IFRAME>
+		<CENTER>
+			<BR>
+			<BR>
+			<FONT CLASS="msg" ID="Msg"></FONT>
+	</BODY>
+</HTML>

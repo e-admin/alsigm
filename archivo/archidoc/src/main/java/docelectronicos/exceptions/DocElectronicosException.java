@@ -1,0 +1,39 @@
+package docelectronicos.exceptions;
+
+import common.definitions.ArchivoModules;
+import common.exceptions.ActionNotAllowedException;
+
+public class DocElectronicosException extends ActionNotAllowedException {
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+	public static final int XNO_SE_PUEDE_CREAR_TAREA_FALTA_REPOSITORIO_ECM_DESCRIPTOR = 1;
+	public static final int XSOLO_ES_POSIBLE_FINALIZAR_TAREAS_EN_ESTADO_PENDIENTE_O_CON_ERRORES = 2;
+	public static final int XTAREA_CON_ERRORES_NO_PUEDE_FINAL_X_TENER_CL_EN_ESTADO_NO_VALIDO = 3;
+	public static final int XTAREA_CON_ERRORES_NO_PUEDE_FINAL_X_TENER_DOC_EN_ESTADO_NO_VALIDO = 4;
+	public static final int XNO_TENER_PERMISOS_SOBRE_TAREA = 5;
+	public static final int XELEMENTOS_SIN_VALIDAR = 6;
+	public static final int XSOLO_ES_POSIBLE_ELIMINAR_TAREAS_ES_ESTADO_PENDIENTE = 7;
+	public static final int XNO_ES_POSIBLE_CAMBIAR_ESTADO_A_ELEMENTOS_PUBLICADOS = 8;
+	public static final int XPARA_VALIDAR_LA_TAREA_DEBE_ESTAR_EN_ESTADO_FINALIZADA_CAPTURA = 9;
+	public static final int XSOLO_ES_POSIBLE_FINALIZAR_VALIDACION_TAREA_FINALIZADA = 10;
+	public static final int XNO_ES_POSIBLE_MODIFICAR_LA_TAREA_EN_ESTADO_FINALIZADA = 11;
+	public static final int XESTE_ELEMENTO_AUN_TIENE_UNA_CAPTURA_CON_VALIDACION_NO_FINALIZADA = 12;
+	public static final int XNO_SE_PUEDE_CREAR_TAREA_EL_USUARIO_NO_TIENE_ACCESO_AL_ELEMENTO_SOBRE_EL_Q_SE_REALIZA_LA_TAREA = 13;
+	public static final int XNO_SE_PUEDE_CREAR_TAREA_FALTA_REPOSITORIO_ECM_NIVEL_CUADRO = 14;
+	public static final int XNO_SE_PUEDE_REALIZAR_OPERACION_FALTA_REPOSITORIO_ECM_DESCRIPTOR = 15;
+	public static final int XNO_SE_PUEDE_REALIZAR_OPERACION_FALTA_REPOSITORIO_ECM_ELEMENTO_CUADRO = 16;
+	public static final int XNO_SE_PUEDE_ELIMINAR_CLASIFICADOR_XTIENE_DESCENDIENTES = 17;
+	public static final int XNO_SE_PUEDE_ELIMINAR_DOCUMENTO_XFALTA_REPOSITORIO_ECM_DESCRIPTOR = 18;
+	public static final int XNO_SE_PUEDE_ELIMINAR_DOCUMENTO_XFALTA_REPOSITORIO_ECM_ELEMENTO_CUADRO = 19;
+	public static final int XNO_EXISTEN_DOCUMENTOS_ELECTRONICOS_ASOCIADOS_ELEMENTO_CUADRO = 20;
+	public static final int XNO_EXISTEN_DOCUMENTOS_ELECTRONICOS_ASOCIADOS_DESCRIPTOR = 21;
+	public static final int XNO_PERMITIDO_PARA_UNIDADES_SIN_VALIDAR = 22;
+
+	public DocElectronicosException(int motivo) {
+		super("", motivo, ArchivoModules.DOCUMENTOS_ELECTRONICOS_MODULE);
+	}
+
+}

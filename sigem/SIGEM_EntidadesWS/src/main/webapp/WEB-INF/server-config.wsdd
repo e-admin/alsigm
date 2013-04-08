@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="EntidadesWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="nuevaEntidad" qname="ns1:nuevaEntidad" returnQName="ns1:nuevaEntidadReturn" returnType="ns1:Entidad" soapAction="" xmlns:ns1="http://server.ws.entidades.sgm.tecdoc.ieci">
+   <parameter qname="ns1:poEntidad" type="ns1:Entidad"/>
+  </operation>
+  <operation name="eliminarEntidad" qname="ns2:eliminarEntidad" returnQName="ns2:eliminarEntidadReturn" returnType="ns3:RetornoServicio" soapAction="" xmlns:ns2="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:ns3="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns2:poEntidad" type="ns2:Entidad"/>
+  </operation>
+  <operation name="actualizarEntidad" qname="ns4:actualizarEntidad" returnQName="ns4:actualizarEntidadReturn" returnType="ns4:Entidad" soapAction="" xmlns:ns4="http://server.ws.entidades.sgm.tecdoc.ieci">
+   <parameter qname="ns4:poEntidad" type="ns4:Entidad"/>
+  </operation>
+  <operation name="obtenerEntidad" qname="ns5:obtenerEntidad" returnQName="ns5:obtenerEntidadReturn" returnType="ns5:Entidad" soapAction="" xmlns:ns5="http://server.ws.entidades.sgm.tecdoc.ieci">
+   <parameter qname="ns5:identificador" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="buscarEntidades" qname="ns6:buscarEntidades" returnQName="ns6:buscarEntidadesReturn" returnType="ns6:Entidades" soapAction="" xmlns:ns6="http://server.ws.entidades.sgm.tecdoc.ieci">
+   <parameter qname="ns6:poCriterio" type="ns6:CriterioBusquedaEntidades"/>
+  </operation>
+  <operation name="obtenerEntidades" qname="ns7:obtenerEntidades" returnQName="ns7:obtenerEntidadesReturn" returnType="ns7:Entidades" soapAction="" xmlns:ns7="http://server.ws.entidades.sgm.tecdoc.ieci"/>
+  <operation name="obtenerIdentificadorEntidad" qname="ns8:obtenerIdentificadorEntidad" returnQName="ns8:obtenerIdentificadorEntidadReturn" returnType="ns8:RetornoCadena" soapAction="" xmlns:ns8="http://server.ws.entidades.sgm.tecdoc.ieci"/>
+  <parameter name="allowedMethods" value="obtenerEntidades nuevaEntidad buscarEntidades actualizarEntidad obtenerEntidad obtenerIdentificadorEntidad eliminarEntidad"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="EntidadesWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.entidades.ws.server.EntidadesWebService"/>
+  <parameter name="wsdlServicePort" value="EntidadesWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.entidades.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.entidades.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="EntidadesWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:Entidades" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.entidades.ws.server.Entidades" xmlns:ns9="http://server.ws.entidades.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.entidades.ws.server.Entidad" xmlns:ns10="http://server.ws.entidades.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns11="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:CriterioBusquedaEntidades" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.entidades.ws.server.CriterioBusquedaEntidades" xmlns:ns12="http://server.ws.entidades.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:RetornoCadena" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.entidades.ws.server.RetornoCadena" xmlns:ns13="http://server.ws.entidades.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns14:Entidad" languageSpecificType="java:ieci.tecdoc.sgm.entidades.ws.server.Entidad[]" qname="ns14:ArrayOfEntidad" xmlns:ns14="http://server.ws.entidades.sgm.tecdoc.ieci"/>
+ </service>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

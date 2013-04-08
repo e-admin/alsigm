@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<MAP_UDOC_REL_A_DESCR Version="3.2">
+   <DATOS_SIMPLES>
+      <DATO TIPO="1" ID="14" TIPOPARAM="1">
+         <PARAM>UNIDAD_DOCUMENTAL_TRANSFERENCIA/EXPEDIENTE/SISTEMA_PRODUCTOR/NOMBRE</PARAM>
+      </DATO>  
+   	<DATO TIPO="3" ID="3" TIPOPARAM="1">
+         <PARAM>UNIDAD_DOCUMENTAL_TRANSFERENCIA/FECHA_INICIAL</PARAM>
+      </DATO>
+      <DATO TIPO="3" ID="4" TIPOPARAM="1">
+         <PARAM>UNIDAD_DOCUMENTAL_TRANSFERENCIA/FECHA_FINAL</PARAM>
+      </DATO>      
+	   <DATO TIPO="5" ID="16" TIPOPARAM="1">
+         <PARAM>UNIDAD_DOCUMENTAL_TRANSFERENCIA/PRODUCTOR/ID</PARAM>
+	   </DATO>
+      <DATO TIPO="1" ID="15" TIPOPARAM="1">
+         <PARAM>UNIDAD_DOCUMENTAL_TRANSFERENCIA/PUBLICACION_EN_SAC</PARAM>
+         <TRANSFORMA_VALOR>
+	         <VALOR ORG="S">Si</VALOR>
+	         <VALOR ORG="N">No</VALOR>
+         </TRANSFORMA_VALOR>
+      </DATO>
+      <DATO TIPO="1" ID="1" TIPOPARAM="3">         
+         <PARAM>transferencias.model.validacion.ObtencionValorIdentificacion</PARAM>
+      </DATO>         	
+   </DATOS_SIMPLES>  
+   <DATOS_TABLA>
+   	<TABLA>
+         <FILA NODO="UNIDAD_DOCUMENTAL_TRANSFERENCIA/INTERESADOS/INTERESADO">
+            <DATO TIPO="5" ID="9" TIPOPARAM="1">
+      		   <PARAM>IDENTIDAD</PARAM>
+               <DESCRIPTOR>
+                  <ID_LISTA>ID_LIST_INTERESADO</ID_LISTA>             
+      			   <SIST_EXT TIPOPARAM="2">BDTERCEROS</SIST_EXT> 
+                  <ID_SIST_EXT TIPOPARAM="1">ID_EN_TERCEROS</ID_SIST_EXT>          
+               </DESCRIPTOR>	
+   	      </DATO>  
+      		<DATO TIPO="1" ID="10" TIPOPARAM="1">
+      		   <PARAM>NUM_IDENTIDAD</PARAM>            
+   	      </DATO> 	
+            <DATO TIPO="1" ID="11" TIPOPARAM="1">
+      		   <PARAM>ROL</PARAM>            
+   	      </DATO> 	
+    		   <DATO TIPO="1" ID="12" TIPOPARAM="1">
+      		   <PARAM>VALIDADO_EN_TERCEROS</PARAM>
+               <TRANSFORMA_VALOR>
+      	         <VALOR ORG="S">Si</VALOR>
+      	         <VALOR ORG="N">No</VALOR>
+               </TRANSFORMA_VALOR>            
+   	      </DATO>             
+            <DATO TIPO="1" ID="51" TIPOPARAM="1">
+      		   <PARAM>ID_EN_TERCEROS</PARAM>            
+   	      </DATO> 
+    	  <DATO TIPO="1" ID="213" TIPOPARAM="1">
+      		   <PARAM>PRINCIPAL</PARAM>
+               <TRANSFORMA_VALOR>
+      	         <VALOR ORG="S">Si</VALOR>
+      	         <VALOR ORG="N">No</VALOR>
+               </TRANSFORMA_VALOR>            
+   	      </DATO>    	      	
+         </FILA>            		    	
+      </TABLA>
+      <TABLA>
+         <FILA NODO="UNIDAD_DOCUMENTAL_TRANSFERENCIA/EMPLAZAMIENTOS/EMPLAZAMIENTO">
+            <DATO TIPO="5" ID="2" TIPOPARAM="1">
+      		   <PARAM>PAIS</PARAM>
+		   <DESCRIPTOR>
+			<ID_LISTA>ID_LIST_PAIS</ID_LISTA>
+		   </DESCRIPTOR>            
+   	      </DATO> 
+            <DATO TIPO="5" ID="39" TIPOPARAM="1">
+      		   <PARAM>PROVINCIA</PARAM> 
+		   <DESCRIPTOR>
+			<ID_LISTA>ID_LIST_PROVINCIA</ID_LISTA>
+		   </DESCRIPTOR>           
+   	      </DATO> 
+      		<DATO TIPO="5" ID="40" TIPOPARAM="1">
+      		   <PARAM>CONCEJO</PARAM>
+               <DESCRIPTOR>
+                  <ID_LISTA>ID_LIST_CONCEJO</ID_LISTA>  
+               </DESCRIPTOR>	
+   	      </DATO>  
+            <DATO TIPO="5" ID="41" TIPOPARAM="1">
+      		   <PARAM>POBLACION</PARAM>
+               <DESCRIPTOR>
+                  <ID_LISTA>ID_LIST_POBLACION</ID_LISTA>  
+               </DESCRIPTOR>	
+   	      </DATO> 
+            <DATO TIPO="1" ID="42" TIPOPARAM="1">
+      		   <PARAM>LOCALIZACION</PARAM>            
+   	      </DATO>
+            <DATO TIPO="1" ID="212" TIPOPARAM="1">
+      		   <PARAM>VALIDADO</PARAM>
+               <TRANSFORMA_VALOR>
+      	         <VALOR ORG="S">Si</VALOR>
+      	         <VALOR ORG="N">No</VALOR>
+               </TRANSFORMA_VALOR>        		               
+   	      	</DATO>    	       
+         </FILA>	 		   
+      </TABLA>
+      <TABLA>
+         <FILA NODO="UNIDAD_DOCUMENTAL_TRANSFERENCIA/DOCUMENTOS/VOLUMEN_Y_SOPORTE/SOPORTE">
+            <DATO TIPO="1" ID="5" TIPOPARAM="1">
+               <PARAM>FORMATO</PARAM>
+            </DATO>
+            <DATO TIPO="1" ID="6" TIPOPARAM="1">
+               <PARAM>TIPO</PARAM>
+            </DATO>
+            <DATO TIPO="4" ID="7" TIPOPARAM="1">
+               <PARAM>NUM_DOCS</PARAM>
+            </DATO>
+         </FILA>
+      </TABLA>
+      <TABLA>
+         <FILA NODO="UNIDAD_DOCUMENTAL_TRANSFERENCIA/DOCUMENTOS/DOCUMENTOS_FISICOS/DOCUMENTO">
+            <DATO TIPO="1" ID="19" TIPOPARAM="1">
+      		   <PARAM>NOMBRE</PARAM>            
+   	      </DATO> 
+            <DATO TIPO="1" ID="43" TIPOPARAM="1">
+      		   <PARAM>DESCRIPCION</PARAM>            
+   	      </DATO> 
+         </FILA>      	   
+      </TABLA>
+      <TABLA>
+         <FILA NODO="UNIDAD_DOCUMENTAL_TRANSFERENCIA/DOCUMENTOS/DOCUMENTOS_ELECTRONICOS/DOCUMENTO">
+            <DATO TIPO="1" ID="49" TIPOPARAM="1">
+      		   <PARAM>NOMBRE</PARAM>            
+   	      </DATO> 
+            <DATO TIPO="1" ID="50" TIPOPARAM="1">
+      		   <PARAM>DESCRIPCION</PARAM>            
+   	      </DATO> 
+         </FILA>      	   
+      </TABLA>
+      <TABLA>
+          <FILA NODO="UNIDAD_DOCUMENTAL_TRANSFERENCIA/RANGOS/RANGO">
+              <DATO TIPO="1" ID="201" TIPOPARAM="1">
+	             <PARAM>DESDE</PARAM>                        
+              </DATO>
+              <DATO TIPO="1" ID="202" TIPOPARAM="1">
+	             <PARAM>HASTA</PARAM>                        
+	      </DATO>
+          </FILA>
+      </TABLA>     
+   </DATOS_TABLA>
+</MAP_UDOC_REL_A_DESCR>

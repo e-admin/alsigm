@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+<!-- datos de cabecera soap -->
+<!ENTITY NOMBRE_CABECERA "cabecera-implementacion">
+<!ENTITY ARGS_CABECERA
+"<constructor-arg type='java.lang.String' index='0' value='namespace'/>
+<constructor-arg type='java.lang.String' index='1' value='&NOMBRE_CABECERA;'/>">
+<!ENTITY CLASS_HEADER "org.apache.axis.message.SOAPHeaderElement">
+]>
+<beans>
+    <bean id="entidades.propiedades" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations" value="classpath:ieci/tecdoc/sgm/entidades/resources/Entidades.properties"/>
+    </bean>	
+</beans>

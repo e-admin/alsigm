@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+							  "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+
+	<settings lazyLoadingEnabled="true" useStatementNamespaces="true" enhancementEnabled="false"/>
+
+	<typeHandler
+		javaType="java.lang.String"
+		callback="es.ieci.tecdoc.fwktd.server.dao.ibatis.sqlmap.client.extensions.StringTypeHandlerCallback" />
+		
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.api.types.BandejaEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.BandejaEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.CanalNotificacionEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.CanalNotificacionEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.DocumentacionFisicaEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.DocumentacionFisicaEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.EstadoAsientoRegistralEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.EstadoAsientoRegistralEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.IndicadorPruebaEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.IndicadorPruebaEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.TipoAnotacionEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.TipoAnotacionEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.api.types.TipoContadorEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.TipoContadorEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.TipoDocumentoEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.TipoDocumentoEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.TipoDocumentoIdentificacionEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.TipoDocumentoIdentificacionEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.api.types.TipoIntercambioEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.TipoIntercambioEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.api.types.TipoMensajeEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.TipoMensajeEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.TipoRegistroEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.TipoRegistroEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.TipoTransporteEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.TipoTransporteEnumHandlerCallback" />
+
+	<typeHandler
+		javaType="es.ieci.tecdoc.fwktd.sir.core.types.ValidezDocumentoEnum"
+		callback="es.ieci.tecdoc.fwktd.sir.api.dao.ibatis.handler.ValidezDocumentoEnumHandlerCallback" />
+
+	<sqlMap resource="sqlmaps/fwktd-sir/fwktd-sir-asientoRegistral.xml" />
+	<sqlMap resource="sqlmaps/fwktd-sir/fwktd-sir-interesado.xml" />
+	<sqlMap resource="sqlmaps/fwktd-sir/fwktd-sir-anexo.xml" />
+	<sqlMap resource="sqlmaps/fwktd-sir/fwktd-sir-configuracion.xml" />
+	<sqlMap resource="sqlmaps/fwktd-sir/fwktd-sir-contador.xml" />
+
+</sqlMapConfig>

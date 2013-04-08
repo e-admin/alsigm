@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Repositories>
+	
+	<!--
+		Repositorio de documentos electronicos 
+	 -->
+	<Repository id="3" alias="iflow" default="true">
+	    <Properties>
+	    	<Property name="ALFRESCO_IP_ADDRESS">localhost</Property>
+	    	<Property name="ALFRESCO_PORT">8080</Property>
+	    	<Property name="ALFRESCO_USER">admin</Property>
+	    	<Property name="ALFRESCO_PASSWORD">admin</Property>
+
+	    	<Property name="ALFRESCO_STORE_NAMESPACE">Store</Property>
+	    	<Property name="ALFRESCO_FILE_KEY">document_name</Property>
+	    	<Property name="ALFRESCO_ASPECTS">{iflow.model}aspectDocumento</Property>
+	    	<Property name="ALFRESCO_REPOSITORY_WEBSCRIPT_URL">http://localhost:8080/alfresco/service/ieci/repository/iflow</Property>
+
+	    	<Property name="DOCUMENT_NAME_TOKEN">documentName</Property>
+		</Properties>
+	    <MetaDataMappings>
+	      	<Mapping>
+	        	<Source type="token">documentId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">document_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">documentName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">document_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">documentType</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">document_type</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">documentSize</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">document_size</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">procedureId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">procedure_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">procedureName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">procedure_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">expedientId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">expedient_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">expedientName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">expedient_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">userGUID</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">user_guid</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">userName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">user_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">stageId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">stage_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">stageName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">stage_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">taskId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">task_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">taskName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">task_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">mimetype</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">mimetype</Destination>
+	      	</Mapping>
+		</MetaDataMappings>
+		<Tokens>
+			<Token>
+				<Name>documentId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'document_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>documentName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'document_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>documentType</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'document_type')]/value</Value>
+			</Token>
+			<Token>
+				<Name>documentSize</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'document_size')]/value</Value>
+			</Token>
+			<Token>
+				<Name>procedureId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'procedure_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>procedureName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'procedure_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>expedientId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'expedient_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>expedientName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'expedient_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>userGUID</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'user_guid')]/value</Value>
+			</Token>
+			<Token>
+				<Name>userName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'user_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>stageId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'stage_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>stageName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'stage_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>taskId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'task_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>taskName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'task_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>mimetype</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'mimetype')]/value</Value>
+			</Token>
+		</Tokens>
+		<FolderPath>/app:company_home/cm:iflow</FolderPath>
+	</Repository>
+	
+	<!--
+		Repositorio de documentos electronicos firmados: custodia (opcional) 
+	 -->
+	<Repository id="4" alias="iflowCustody">
+	    <Properties>
+	    	<Property name="ALFRESCO_IP_ADDRESS">localhost</Property>
+	    	<Property name="ALFRESCO_PORT">8080</Property>
+	    	<Property name="ALFRESCO_USER">admin</Property>
+	    	<Property name="ALFRESCO_PASSWORD">admin</Property>
+
+	    	<Property name="ALFRESCO_STORE_NAMESPACE">Store</Property>
+	    	<Property name="ALFRESCO_FILE_KEY">document_name</Property>
+	    	<Property name="ALFRESCO_ASPECTS">{iflow.model}aspectDocumento,{iflow.model}aspectFirmaDocumento</Property>
+	    	<Property name="ALFRESCO_REPOSITORY_WEBSCRIPT_URL">http://localhost:8080/alfresco/service/ieci/repository/iflow_custodia</Property>
+
+	    	<Property name="DOCUMENT_NAME_TOKEN">documentName</Property>
+		</Properties>
+	    <MetaDataMappings>
+	      	<Mapping>
+	        	<Source type="token">documentId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">document_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">documentName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">document_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">documentType</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">document_type</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">documentSize</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">document_size</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">procedureId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">procedure_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">procedureName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">procedure_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">expedientId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">expedient_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">expedientName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">expedient_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">userGUID</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">user_guid</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">userName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">user_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">stageId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">stage_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">stageName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">stage_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">taskId</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">task_id</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">taskName</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">task_name</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">mimetype</Source>
+	        	<Destination type="string" aspect="aspectDocumento" model="iflow.model">mimetype</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">sign</Source>
+	        	<Destination type="string" aspect="aspectFirmaDocumento" model="iflow.model">sign</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">creationDate</Source>
+	        	<Destination type="string" aspect="aspectFirmaDocumento" model="iflow.model">creation_date</Destination>
+	      	</Mapping>
+		</MetaDataMappings>
+		<Tokens>
+			<Token>
+				<Name>documentId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Id Documento')]/value</Value>
+			</Token>
+			<Token>
+				<Name>documentName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Nombre Documento')]/value</Value>
+			</Token>
+			<Token>
+				<Name>documentType</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Tipo Documento')]/value</Value>
+			</Token>
+			<Token>
+				<Name>documentSize</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'longitud')]/value</Value>
+			</Token>
+			<Token>
+				<Name>procedureId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Código Procedimiento')]/value</Value>
+			</Token>
+			<Token>
+				<Name>procedureName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Nombre Procedimiento')]/value</Value>
+			</Token>
+			<Token>
+				<Name>expedientId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Id Expediente')]/value</Value>
+			</Token>
+			<Token>
+				<Name>expedientName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Nº Expediente')]/value</Value>
+			</Token>
+			<Token>
+				<Name>userGUID</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'GUID Usuario')]/value</Value>
+			</Token>
+			<Token>
+				<Name>userName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Nombre Usuario')]/value</Value>
+			</Token>
+			<Token>
+				<Name>stageId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Id Fase')]/value</Value>
+			</Token>
+			<Token>
+				<Name>stageName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Fase')]/value</Value>
+			</Token>
+			<Token>
+				<Name>taskId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Id Trámite')]/value</Value>
+			</Token>
+			<Token>
+				<Name>taskName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Trámite')]/value</Value>
+			</Token>
+			<Token>
+				<Name>mimetype</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Tipo Mime')]/value</Value>
+			</Token>
+			<Token>
+				<Name>sign</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Firma')]/value</Value>
+			</Token>
+			<Token>
+				<Name>creationDate</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'Fecha Creación')]/value</Value>
+			</Token>
+		</Tokens>
+		<FolderPath>/app:company_home/cm:iflow_custodia</FolderPath>
+	</Repository>
+		
+</Repositories>

@@ -1,0 +1,234 @@
+
+body {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 11px;
+	margin: 5px 5px 10px 5px;
+}
+
+a, a:active, a:hover, a:visited {
+	color: #A07150;
+	text-decoration:underline;
+}
+
+#header #logos {
+	height: 37px;
+	line-height: 34px;
+	margin-bottom: 0;
+	background: #ffffff url('../img/cabecera-interna.png') no-repeat left;
+}
+
+#logos .last, #logos-login .last {
+	text-align: right;
+}
+
+#logos img, #logos-login img {
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+#logos-login img {
+	margin-right: 16px;
+	margin-top: 1px;
+	//margin-top: 0px;
+}
+
+#logos a.salir {
+	background: url("../img/salir.png") left center no-repeat;
+	margin: 0px;
+	padding: 7px 12px 10px 30px;
+	//padding: 7px 12px 7px 30px;
+	text-decoration: none;
+}
+
+#logos a.salir span {
+	color: #000000;
+	font-weight: bold;
+	font-family: verdana, arial, tahoma, geneva, sans-serif;
+	text-decoration: none;
+	font-size: 90%;
+}
+
+#logos .logo {
+	margin:0px 14px 0px 0px;
+	padding:0px;
+	//margin-top: 2px;
+}
+
+#header #logos-login {
+	height: 60px;
+	margin-bottom: 0;
+	background: #ffffff url('../img/cabecera-generica-01.png') no-repeat left;
+}
+
+#context {
+	background: transparent url('../img/bg_usuario.jpg') no-repeat bottom left;
+	height: 23px;
+}
+
+#contextright {
+	background: transparent url('../img/bg_right_usuario.jpg') no-repeat bottom right;
+	height: 23px;
+	text-align: right;
+}
+
+#username, #appname {
+	line-height: 23px;
+	font-weight: bold;
+	font-family: arial;
+	color: #333333;
+	font-size: 12px;
+	margin: 0px 0px 0px 10px;
+	letter-spacing:1px;
+}
+/*
+#username {
+	display: inline;
+}
+*/
+#appname {
+	font-style: italic;
+	margin: 0px 15px 0px 0px;
+}
+
+#container {
+	width: 100%;
+	overflow: hidden
+}
+
+#nav {
+
+}
+
+#content {
+/*	float: left;*/
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-bottom: 8px;
+	border: 1px solid #DEDFE2;
+	background-color: #F2F2F2;
+	padding: 5px 5px 12px 5px;
+	zoom: 1;
+}
+
+#footer {
+	clear: both;
+	margin-top: 2em;
+	width: 100%;
+	font-size: 0.8em;
+}
+
+#footer #copyright {
+	margin: 0px;
+	font-size: 10px;
+}
+
+#footer p {
+	margin: 0px;
+	font-size: 9px;
+}
+
+.onecol, .twocol, .twocollefta, .twocolleftb, .twocolrighta, .twocolrightb, .threecol, .threecola, .fourcol, .fivecol, .sixcol {
+		margin: 0px;
+	}
+
+.cabecera {
+	height: 22px;
+}
+
+.cabecera .column.first h4{
+	color: #6C6C6C;
+	font-size: 100%;
+	padding: 5px 0px 4px 4px;
+}
+
+.column.first h4 {
+	color: #6C6C6C;
+	font-size: 100%;
+	padding: 0px 0px 4px 4px;
+}
+
+.upArrow {
+	float : left;
+	cursor: pointer;
+	padding: 2px 3px 0px 3px;
+}
+
+.downArrow {
+	float: left;
+	cursor: pointer;
+	padding: 2px 3px 0px 3px;
+}
+
+.login {
+	margin: 60px auto 0px;
+	width: 669px;
+	padding: 4px;
+}
+
+.login .content{
+	padding-top: 2px;
+	//padding-top: 6px;
+}
+
+.loginAuth {
+	float: right;
+	width: 260px;
+	margin: 50px 0px 0px 0px;
+	padding: 12px;
+}
+
+.errors {
+	color: red;
+	line-height: 18px;
+}
+
+
+.plegado {
+	display: none;
+}
+
+.desplegado {
+	display: block;
+}
+
+div.form-errors{
+	//display:inline-block;
+	//width: 90%;
+}
+
+#statusMessage {
+	background: url("../img/green_info.png") no-repeat scroll 4px 2px #a7e190;
+	border: 1px solid #64AF48;
+	color: #FFFFFF;
+	display:block;
+	padding: 4px 4px 4px 32px;
+	margin: 2px 0px 2px 0px;
+}
+
+#errorMessage{
+	background: url("../img/red_info.png") no-repeat scroll 4px 2px #F1A394;
+	border: 1px solid red;
+	color: #FFFFFF;
+	display:block;
+	padding: 4px 4px 4px 32px;
+	margin: 2px 0px 2px 0px;
+}
+
+#errorMessage p {
+	margin-bottom: 2px;
+}
+
+.infoDoc{
+	background-color:#FFFFFF;
+	border:1px solid #DEDFE2;
+	margin:0px;
+	padding:5px;
+	margin-top:-3px;
+	border-top:none;
+}
+
+.infoDoc .cabecera .column.first h4{
+	text-decoration: underline;
+	color: #444444;
+}
+

@@ -1,0 +1,46 @@
+<assembly>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>true</includeBaseDirectory>
+	<fileSets>
+		<!-- Recursos configurables -->
+		<fileSet>
+			<directory>${project.basedir}/src/main/resources</directory>
+			<includes>
+				<include>fwktd-csv/*</include>
+				<include>log4j.properties</include>
+			</includes>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+		<!-- Ejecutables CMDs y archivo leeme de instrucciones para la ejecucion -->
+		<fileSet>
+			<directory>${project.basedir}/src/main/dist</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+		<!-- JARs de drivers de BD -->
+		<fileSet>
+			<directory>${project.basedir}/lib</directory>
+			<outputDirectory>/drivers</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/target/drivers</directory>
+			<outputDirectory>/drivers</outputDirectory>
+		</fileSet>
+		<!-- JAR de la migracion con la clase ejecutora -->
+		<fileSet>
+			<directory>${project.basedir}/target</directory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+			<outputDirectory>/lib</outputDirectory>
+		</fileSet>
+	</fileSets>
+	<!-- JARs de dependencias -->
+	<dependencySets>
+	    <dependencySet>
+	    	<outputDirectory>/lib</outputDirectory>
+	    </dependencySet>
+	</dependencySets>
+</assembly>
+

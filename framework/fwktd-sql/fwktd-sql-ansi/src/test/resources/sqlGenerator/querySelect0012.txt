@@ -1,0 +1,2 @@
+SELECT id FROM (SELECT id FROM DATACM_4_0."Clientes" "Clientes"  ORDER BY dbms_random.value ) 
+ WHERE rownum  < 500

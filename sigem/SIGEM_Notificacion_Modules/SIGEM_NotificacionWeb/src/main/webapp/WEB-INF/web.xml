@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+  "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+	<!--
+	<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	-->
+	<display-name>SIGEM_NotificacionWeb</display-name>
+	 
+	<servlet>
+	    <servlet-name>log4j-init</servlet-name>
+	    <servlet-class>ieci.tecdoc.sgm.core.log.web.Log4jInitServlet</servlet-class>
+	    <init-param>
+	      <param-name>subdir</param-name>
+	      <param-value>/SIGEM_NotificacionWeb</param-value>
+	    </init-param>
+	    
+	    <init-param>
+	      <param-name>fileName</param-name>
+	      <param-value>log4j.properties</param-value>
+	    </init-param>
+	    <load-on-startup>1</load-on-startup>
+   </servlet>
+	 
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		<init-param>
+			<param-name>detail</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	
+	<servlet>
+	    <servlet-name>ResourceDispatcherServlet</servlet-name>
+	    <servlet-class>ieci.tecdoc.sgm.core.web.ResourceDispatcherServlet</servlet-class>
+	    <init-param>
+	      <param-name>subdir</param-name>
+	      <param-value>/SIGEM_NotificacionWeb</param-value>
+	    </init-param>
+	    
+	    <init-param>
+	      <param-name>defaultSkin</param-name>
+	      <param-value>skin</param-value>
+	    </init-param>
+  	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+			<servlet-name>ResourceDispatcherServlet</servlet-name>
+			<url-pattern>/resourceServlet/*</url-pattern>
+	</servlet-mapping> 
+	
+	
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<taglib>
+		<taglib-uri>struts-bean.tld</taglib-uri>
+		<taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>struts-html.tld</taglib-uri>
+		<taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>struts-logic.tld</taglib-uri>
+		<taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+	</taglib>
+
+</web-app>

@@ -1,0 +1,4 @@
+db2cmd
+db2 connect to <nombre-bd> user <usuario> using <clave>
+db2 -tvf sigemAdmin.sql > 00.txt 
+db2 terminate

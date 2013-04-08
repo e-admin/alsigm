@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<import resource="classpath*:beans/fwktd-csv-ws/fwktd-csv-ws-config-beans.xml" />
+	<import resource="classpath*:beans/fwktd-csv-ws/fwktd-csv-ws-delegate-beans.xml" />
+	<import resource="classpath*:beans/fwktd-csv-ws/fwktd-csv-ws-service-beans.xml" />
+	<import resource="classpath*:beans/fwktd-csv-ws/fwktd-csv-ws-*-custom-beans.xml" />
+</beans>

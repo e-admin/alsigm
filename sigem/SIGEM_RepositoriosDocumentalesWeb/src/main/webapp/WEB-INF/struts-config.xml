@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+	<data-sources/>
+	<form-beans>
+		<form-bean name="loginForm" type="ieci.tecdoc.mvc.form.access.LoginForm"/>
+		<form-bean name="usersListForm" type="ieci.tecdoc.mvc.form.adminUser.bd.UsersListForm"/>
+		<form-bean name="userFormBd" type="ieci.tecdoc.mvc.form.adminUser.bd.UserForm"/>
+		<form-bean name="basicForm" type="ieci.tecdoc.mvc.form.adminUser.bd.BasicForm"/>
+		<form-bean name="groupList" type="ieci.tecdoc.test.GroupListForm"/>
+		<form-bean name="userFormLdap" type="ieci.tecdoc.mvc.form.adminUser.ldap.UserForm"/>
+		<form-bean name="searchForm" type="ieci.tecdoc.mvc.form.adminUser.common.SearchForm"/>
+		<form-bean name="volumeListForm" type="ieci.tecdoc.mvc.form.volume.VolumeListForm"/>
+		<form-bean name="volumeForm" type="ieci.tecdoc.mvc.form.volume.VolumeForm"/>
+		<form-bean name="repositoryForm" type="ieci.tecdoc.mvc.form.volume.RepositoryForm"/>
+		<form-bean name="listForm" type="ieci.tecdoc.mvc.form.volume.ListForm"/>
+		<form-bean name="VolumeDeleteForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="id" type="java.lang.String"/>
+			<form-property name="type" type="java.lang.String"/>
+		</form-bean>
+		<form-bean name="archiveForm" type="ieci.tecdoc.mvc.form.archive.ArchiveForm"/>
+		<form-bean name="addPermsForm" type="ieci.tecdoc.mvc.form.archive.AddPermsForm"/>
+		<form-bean name="dirForm" type="ieci.tecdoc.mvc.form.archive.DirForm"/>
+		<form-bean name="changePwd" type="ieci.tecdoc.mvc.form.access.ChangePwdForm"/>
+	</form-beans>
+	<global-exceptions/>
+	<global-forwards>
+		<forward name="/header" path="/layouts/header.jsp" redirect="false"/>
+		<forward name="/menu" path="/layouts/menu.jsp" redirect="false"/>
+		<forward name="/home" path="/layouts/home.jsp" redirect="false"/>
+		<forward name="/begin" path="/acs/redireccion.jsp" redirect="false"/>
+		<forward name="error" path="/error/application_error.jsp"/>
+		<forward name="cancel" path="/blank.do"/>
+		<forward name="Welcome" path="/welcome.do"/>
+	</global-forwards>
+	<action-mappings>
+		<action forward="/welcome.jsp" path="/inicio"/>
+		<action forward="/welcome.jsp" path="/welcome"/>
+		<action forward="/layouts/blank.jsp" path="/blank"/>
+		<action input="/acs/login.jsp" name="loginForm" path="/html/login" type="ieci.tecdoc.mvc.action.access.LoginAction">
+			<forward name="success" path="/welcome.jsp" redirect="false"/>
+			<forward name="error" path="/acs/login.jsp" redirect="false"/>
+		</action>
+		<action name="loginForm" path="/html/loginCert" type="ieci.tecdoc.mvc.action.access.LoginCertAction" validate="false">
+			<forward name="success" path="/welcome.jsp"/>
+			<forward name="error" path="/acs/login.jsp"/>
+		</action>
+		<action name="usersListForm" path="/user/bd/usersList" type="ieci.tecdoc.mvc.action.adminUser.bd.UsersList" validate="false">
+			<forward name="success" path="/adminUser/bd/usersList.jsp" redirect="false"/>
+			<forward name="addPerms" path="/archive/usersList.jsp"/>
+		</action>
+		<action name="userFormBd" path="/user/bd/userEdit" type="ieci.tecdoc.mvc.action.adminUser.bd.UserEdit" validate="false">
+			<forward name="success" path="/adminUser/bd/userEditBd.jsp" redirect="false"/>
+		</action>
+		<action name="basicForm" path="/user/bd/deptEdit" type="ieci.tecdoc.mvc.action.adminUser.bd.DeptEdit" validate="false">
+			<forward name="success" path="/adminUser/bd/deptEdit.jsp" redirect="false"/>
+		</action>
+		<action name="basicForm" path="/user/bd/groupEdit" type="ieci.tecdoc.mvc.action.adminUser.bd.GroupEdit" validate="false">
+			<forward name="success" path="/adminUser/bd/groupEdit.jsp" redirect="false"/>
+		</action>
+		<action name="basicForm" path="/user/bd/groupProperties" type="ieci.tecdoc.mvc.action.adminUser.bd.GroupProperties" validate="false">
+			<forward name="success" path="/adminUser/bd/groupProperties.jsp" redirect="false"/>
+		</action>
+		<action name="basicForm" path="/user/bd/deptProperties" type="ieci.tecdoc.mvc.action.adminUser.bd.DeptProperties" validate="false">
+			<forward name="success" path="/adminUser/bd/deptProperties.jsp" redirect="false"/>
+		</action>
+		<action name="basicForm" path="/user/bd/deptDelete" type="ieci.tecdoc.mvc.action.adminUser.bd.DeptDelete" validate="false">
+			<forward name="success" path="/adminUser/common/messagesDelete.jsp" redirect="false"/>
+		</action>
+		<action name="basicForm" path="/user/bd/userProperties" type="ieci.tecdoc.mvc.action.adminUser.bd.UserProperties" validate="false">
+			<forward name="success" path="/adminUser/bd/userPropertiesBd.jsp" redirect="false"/>
+		</action>
+		<action path="/adminUser" type="ieci.tecdoc.mvc.action.access.AdminUser">
+			<forward name="adminUserBD" path="/adminUser/bd/adminUser.jsp" redirect="false"/>
+			<forward name="adminUserLDAP" path="/adminUser/ldap/adminUser.jsp" redirect="false"/>
+		</action>
+		<action name="basicForm" path="/user/bd/deptNew" type="ieci.tecdoc.mvc.action.adminUser.bd.DeptNew">
+			<forward name="success" path="/adminUser/bd/confirm/confirm.jsp"/>
+			<forward name="ok" path="/adminUser/bd/deptNew.jsp"/>
+			<forward name="cancel" path="/layouts/blank.jsp"/>
+		</action>
+		<action name="userFormBd" path="/user/bd/userNew" type="ieci.tecdoc.mvc.action.adminUser.bd.UserNew">
+			<forward name="success" path="/adminUser/bd/confirm/confirm.jsp"/>
+			<forward name="ok" path="/adminUser/bd/userNew.jsp"/>
+		</action>
+		<action path="/user/bd/groupTree" type="ieci.tecdoc.mvc.action.adminUser.bd.GroupTree">
+			<forward name="success" path="/adminUser/bd/groupTree.jsp"/>
+			<forward name="addPerms" path="/archive/groupTree.jsp"/>
+		</action>
+		<action name="basicForm" path="/user/bd/groupNew" type="ieci.tecdoc.mvc.action.adminUser.bd.GroupNew">
+			<forward name="success" path="/adminUser/bd/confirm/confirm.jsp"/>
+			<forward name="ok" path="/adminUser/bd/groupNew.jsp"/>
+		</action>
+		<action name="groupList" path="/groupList" type="ieci.tecdoc.test.GroupListAction">
+			<forward name="success" path="/test/groupList.jsp"/>
+		</action>
+		<action path="/user/ldap/userTree" type="ieci.tecdoc.mvc.action.adminUser.ldap.UserTree">
+			<forward name="success" path="/adminUser/ldap/UserTree.jsp"/>
+			<forward name="addPerms" path="/archive/userTreeLdap.jsp"/>
+		</action>
+		<action name="userFormLdap" path="/user/ldap/properties" type="ieci.tecdoc.mvc.action.adminUser.ldap.Properties">
+			<forward name="success" path="/adminUser/ldap/properties.jsp"/>
+		</action>
+		<action name="searchForm" path="/user/bd/search" type="ieci.tecdoc.mvc.action.adminUser.bd.Search">
+			<forward name="success" path="/adminUser/bd/search.jsp"/>
+		</action>
+		<action path="/user/bd/userMenu" type="ieci.tecdoc.mvc.action.adminUser.bd.UserMenu">
+			<forward name="success" path="/adminUser/bd/userMenu.jsp"/>
+		</action>
+		<action name="userFormLdap" path="/user/ldap/userEdit" type="ieci.tecdoc.mvc.action.adminUser.ldap.UserEdit">
+			<forward name="success" path="/adminUser/ldap/userEdit.jsp"/>
+		</action>
+		<action name="basicForm" path="/user/ldap/groupEdit" type="ieci.tecdoc.mvc.action.adminUser.ldap.GroupEdit">
+			<forward name="success" path="/adminUser/ldap/groupEdit.jsp"/>
+		</action>
+		<action path="/user/ldap/userNew" type="ieci.tecdoc.mvc.action.adminUser.ldap.UserNew">
+			<forward name="success" path="/user/ldap/userEdit.do"/>
+		</action>
+		<action path="/user/ldap/groupNew" type="ieci.tecdoc.mvc.action.adminUser.ldap.GroupNew">
+			<forward name="success" path="/user/ldap/groupEdit.do"/>
+		</action>
+		<action name="searchForm" path="/user/ldap/search" type="ieci.tecdoc.mvc.action.adminUser.ldap.Search">
+			<forward name="success" path="/adminUser/ldap/search.jsp"/>
+		</action>
+		<action name="basicForm" path="/user/bd/groupDelete" type="ieci.tecdoc.mvc.action.adminUser.bd.GroupDelete">
+			<forward name="success" path="/adminUser/common/messagesDelete.jsp"/>
+			<forward name="failure" path="/user/ldap/groupEdit.do" redirect="false"/>
+		</action>
+		<action name="userFormBd" path="/user/bd/userDelete" type="ieci.tecdoc.mvc.action.adminUser.bd.UserDelete">
+			<forward name="success" path="/adminUser/common/messagesDelete.jsp"/>
+		</action>
+		<action name="userFormLdap" path="/user/ldap/userDelete" type="ieci.tecdoc.mvc.action.adminUser.ldap.UserDelete">
+			<forward name="success" path="/adminUser/common/messagesDelete.jsp"/>
+			<forward name="failure" path="/user/ldap/userEdit.do" redirect="false"/>
+		</action>
+		<action name="basicForm" path="/user/ldap/groupDelete" type="ieci.tecdoc.mvc.action.adminUser.ldap.GroupDelete">
+			<forward name="success" path="/adminUser/common/messagesDelete.jsp"/>
+		</action>
+		<action path="/volume/repositoriesTree" type="ieci.tecdoc.mvc.action.volume.RepositoriesTree">
+			<forward name="success" path="/volume/volumeTree.jsp"/>
+		</action>
+		<action name="volumeListForm" path="/volume/volumeList" type="ieci.tecdoc.mvc.action.volume.VolumeList">
+			<forward name="success" path="/volume/volumeList.jsp"/>
+		</action>
+		<action name="volumeForm" path="/volume/volumeProperties" type="ieci.tecdoc.mvc.action.volume.VolumeProperties">
+			<forward name="success" path="/volume/volumeProperties.jsp"/>
+		</action>
+		<action name="volumeForm" path="/volume/volumeEdit" type="ieci.tecdoc.mvc.action.volume.VolumeEdit">
+			<forward name="success" path="/volume/volumeEdit.jsp" redirect="false"/>
+			<forward name="ok" path="/volume/messagesEdit.jsp" redirect="false"/>
+		</action>
+		<action name="repositoryForm" path="/volume/repositoryProperties" type="ieci.tecdoc.mvc.action.volume.RepositoryProperties">
+			<forward name="success" path="/volume/repositoryProperties.jsp"/>
+		</action>
+		<action name="repositoryForm" path="/volume/repositoryEdit" type="ieci.tecdoc.mvc.action.volume.RepositoryEdit">
+			<forward name="success" path="/volume/repositoryEdit.jsp"/>
+			<forward name="ok" path="/volume/messagesEdit.jsp"/>
+		</action>
+		<action path="/volume/listTree" type="ieci.tecdoc.mvc.action.volume.ListTree">
+			<forward name="success" path="/volume/volumeListTree.jsp"/>
+		</action>
+		<action name="listForm" path="/volume/listProperties" type="ieci.tecdoc.mvc.action.volume.ListProperties">
+			<forward name="success" path="/volume/ListProperties.jsp"/>
+		</action>
+		<action name="listForm" path="/volume/listEdit" type="ieci.tecdoc.mvc.action.volume.ListEdit">
+			<forward name="success" path="/volume/ListEdit.jsp"/>
+			<forward name="ok" path="/volume/messagesEdit.jsp"/>
+		</action>
+		<action name="listForm" path="/volume/listNew" type="ieci.tecdoc.mvc.action.volume.ListNew">
+			<forward name="success" path="/volume/messages.jsp"/>
+			<forward name="ok" path="/volume/ListNew.jsp"/>
+		</action>
+		<action name="volumeForm" path="/volume/volumeNew" type="ieci.tecdoc.mvc.action.volume.VolumeNew">
+			<forward name="success" path="/volume/messages.jsp"/>
+			<forward name="ok" path="/volume/volumeNew.jsp"/>
+		</action>
+		<action name="repositoryForm" path="/volume/repositoryNew" type="ieci.tecdoc.mvc.action.volume.RepositoryNew">
+			<forward name="ok_1" path="/volume/repositoryNewStep1.jsp"/>
+			<forward name="ok_2" path="/volume/repositoryNewStep2.jsp"/>
+			<forward name="success" path="/volume/messages.jsp"/>
+		</action>
+		<action name="VolumeDeleteForm" path="/volume/delete" type="ieci.tecdoc.mvc.action.volume.Delete">
+			<forward name="success" path="/volume/messages.jsp"/>
+		</action>
+		<action path="/archive/dirTree" type="ieci.tecdoc.mvc.action.archive.DirTree">
+			<forward name="success" path="/archive/DirTree.jsp"/>
+		</action>
+		<action path="/archive/archivesList" type="ieci.tecdoc.mvc.action.archive.ArchiveList">
+			<forward name="success" path="/archive/archivesList.jsp"/>
+		</action>
+		<action path="/user/bd/deptTree" type="ieci.tecdoc.mvc.action.adminUser.bd.DeptTree">
+			<forward name="success" path="/adminUser/bd/deptTree.jsp"/>
+			<forward name="addPerm" path="/archive/userTreeBd.jsp"/>
+		</action>
+		<action name="archiveForm" path="/archive/archiveProperties" type="ieci.tecdoc.mvc.action.archive.ArchiveProperties">
+			<forward name="success" path="/archive/archiveProperties.jsp"/>
+		</action>
+		<action name="archiveForm" path="/archive/archiveEdit" type="ieci.tecdoc.mvc.action.archive.ArchiveEdit">
+			<forward name="success" path="/archive/archiveEdit.jsp"/>
+		</action>
+		<action name="addPermsForm" path="/archive/archiveAddPerms" type="ieci.tecdoc.mvc.action.archive.ArchiveAddPerms">
+			<forward name="success" path="/archive/addPerms.jsp"/>
+		</action>
+		<action name="dirForm" path="/archive/dirEdit" type="ieci.tecdoc.mvc.action.archive.DirEdit">
+			<forward name="success" path="/archive/dirEdit.jsp"/>
+		</action>
+		<action name="dirForm" path="/archive/dirProperties" type="ieci.tecdoc.mvc.action.archive.DirProperties">
+			<forward name="success" path="/archive/dirProperties.jsp"/>
+		</action>
+		<action name="dirForm" path="/archive/dirNew" type="ieci.tecdoc.mvc.action.archive.DirNew">
+			<forward name="success" path="/archive/messages.jsp"/>
+			<forward name="input" path="/archive/dirNew.jsp"/>
+		</action>
+		<action name="archiveForm" path="/archive/archiveNew" type="ieci.tecdoc.mvc.action.archive.ArchiveNew">
+			<forward name="input1" path="/archive/archiveNew_Input1.jsp"/>
+			<forward name="input2" path="/archive/archiveNew_Input2.jsp"/>
+			<forward name="input3" path="/archive/archiveNew_Input3.jsp"/>
+			<forward name="input4" path="/archive/archiveNew_Input4.jsp"/>
+			<forward name="success" path="/archive/archiveNew_Success.jsp"/>
+		</action>
+		<action path="/logout" type="ieci.tecdoc.mvc.action.access.LogoutAction">
+			<forward name="success" path="/acs/logout.jsp"/>
+			<forward name="error" path="/acs/logout.jsp"/>
+		</action>
+		<action name="dirForm" path="/archive/dirDelete" type="ieci.tecdoc.mvc.action.archive.DirDelete">
+			<forward name="success" path="/archive/messages.jsp"/>
+		</action>
+		<action path="/archive/archiveCanAddPerms" type="ieci.tecdoc.mvc.action.archive.ArchiveCanAddPerms">
+			<forward name="success" path="/archive/userTreeFrame.jsp"/>
+		</action>
+		<action name="archiveForm" path="/archive/archiveDelete" type="ieci.tecdoc.mvc.action.archive.ArchiveDelete">
+			<forward name="success" path="/archive/archiveNew_Success.jsp"/>
+			<forward name="archiveDelete" path="/archive/archiveDelete.do"/>
+		</action>
+		<action input="/acs/login.jsp" name="changePwd" path="/html/changePwd" type="ieci.tecdoc.mvc.action.access.ChangePwdAction">
+			<forward name="success" path="/welcome.jsp"/>
+			<forward name="error" path="/acs/login.jsp" redirect="false"/>
+			<forward name="invalidated" path="/html/invalidated.do"/>
+		</action>
+		<action path="/html/invalidated" type="ieci.tecdoc.mvc.action.access.InvalidateLoginAction">
+			<forward name="success" path="/acs/login.jsp"/>
+		</action>
+		<action path="/loginLdap" type="ieci.tecdoc.test.LdapLogin"/>
+		
+		<action path="/chequearSession" type="ieci.tecdoc.mvc.action.ChequearSesion" scope="request" validate="false" />
+		
+	</action-mappings>
+	
+	<!-- <controller processorClass="ieci.tecdoc.mvc.control.AdmRequestProcessor"/> -->
+	<controller processorClass="ieci.tecdoc.mvc.control.ControlSesionRequestProcesor"/>
+	
+	<message-resources null="false" parameter="resources.application"/>
+	<message-resources key="api_errors" null="false" parameter="invesDoc_Admin_Error_Messages"/>
+	<message-resources key="general_errors" parameter="resources.errors"/>
+	<plug-in className="ieci.tecdoc.mvc.plugin.ConfigPluginAdm">
+		
+		<set-property property="base_dir" value="/include/"/>
+		<set-property property="images_dir" value="images"/>
+		<!-- Son optativos 
+		<set-property property="protocol" value="http"/>
+		<set-property property="httpServer" value="10.228.69.65"/>
+		<set-property property="httpPort" value="8080"/>
+		 -->
+		<set-property property="system_config_name" value="IeciTd"/>
+		<set-property property="ldap_config_name" value="IeciTd_Ldap_Cfg.xml"/>
+		<set-property property="exception_handle" value="production"/>
+		<set-property property="maxChildrenLdap" value="100"/>
+		<set-property property="useCertificate" value="false"/>
+		<set-property property="enableCertError9" value="true"/> <!-- Desactivar el error 9 del servidor de firma, para certificados -->
+	</plug-in>
+</struts-config>

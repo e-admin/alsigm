@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="NivelAdministracionVO">
+
+	<typeAlias alias="nivelAdministracion"
+		type="es.ieci.tecdoc.fwktd.csv.api.vo.NivelAdministracionVO" />
+
+	<resultMap id="nivelAdministracion" class="es.ieci.tecdoc.fwktd.dir3.api.vo.NivelAdministracionVO">
+		<result property="id" column="C_ID_NIVEL_ADMIN" />
+		<result property="nombre" column="C_DESC_NIVEL" />
+		<result property="estado" column="C_ID_ESTADO" />
+		<result property="fechaAlta" column="D_FECHA_ALTA" />
+		<result property="fechaModificacion" column="D_FECHA_MODIF" />
+		<result property="fechaInicioVigencia" column="D_INICIO_VIGENCIA" />
+		<result property="fechaFinVigencia" column="D_FIN_VIGENCIA" />
+	</resultMap>
+
+	<sql id="table">CAT_NIVEL_ADMINISTRACION</sql>
+	<sql id="columns">
+		C_ID_NIVEL_ADMIN,
+		C_DESC_NIVEL,
+		C_ID_ESTADO,
+		D_INICIO_VIGENCIA,
+		D_FIN_VIGENCIA,
+		D_FECHA_MODIF,
+		D_FECHA_ALTA
+	</sql>
+
+	<select id="getNivelAdministracionVOs" resultMap="nivelAdministracion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY C_DESC_NIVEL
+	</select>
+
+	<select id="getNivelAdministracionVO" parameterClass="java.lang.String" resultMap="nivelAdministracion">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			C_ID_NIVEL_ADMIN=#value#
+	</select>
+
+</sqlMap>

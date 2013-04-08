@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrExptask" 
+    table="SCR_EXPTASKS"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_EXPTASKS"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idUser" 
+            column="ID_USER" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_USER"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="description" 
+            column="DESCRIPTION" 
+            type="java.lang.String"
+            length="50"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DESCRIPTION"
+                length="50"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idSourcearch" 
+            column="ID_SOURCEARCH" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_SOURCEARCH"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idTargetarch" 
+            column="ID_TARGETARCH" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_TARGETARCH"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idTargetdb" 
+            column="ID_TARGETDB" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_TARGETDB"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idFilter" 
+            column="ID_FILTER" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_FILTER"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idConnection" 
+            column="ID_CONNECTION" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_CONNECTION"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="status" 
+            column="STATUS" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="STATUS"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="deleteSource" 
+            column="DELETE_SOURCE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DELETE_SOURCE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="explastdate" 
+            column="EXPLASTDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="EXPLASTDATE"
+                length="7"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

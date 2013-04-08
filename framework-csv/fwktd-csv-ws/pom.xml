@@ -1,0 +1,432 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+		<artifactId>fwktd-csv-parent</artifactId>
+		<version>1.1</version>
+	</parent>
+
+	<artifactId>fwktd-csv-ws</artifactId>
+	<packaging>war</packaging>
+	<name>fwktd-csv-ws</name>
+
+	<properties>
+		<unpack.config.directory>${project.build.directory}/generated-resources</unpack.config.directory>
+	</properties>
+
+	<dependencies>
+
+		<!-- fwktd-csv dependencies -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+			<artifactId>fwktd-csv-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- fwktd dependencies -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd</groupId>
+			<artifactId>fwktd-ws</artifactId>
+			<version>${fwktd.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.ws.security</groupId>
+					<artifactId>wss4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Third party -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+		<!-- Dependencias para CXF -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-ws-security</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.xml.ws</groupId>
+		    <artifactId>jaxws-api</artifactId>
+		    <version>${jaxws-api.version}</version>
+		    <exclusions>
+		    	<exclusion>
+				    <groupId>javax.jws</groupId>
+				    <artifactId>jsr181</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.geronimo.specs</groupId>
+		    <artifactId>geronimo-ws-metadata_2.0_spec</artifactId>
+		    <version>${geronimo-ws-metadata_2.0_spec.version}</version>
+		</dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd</groupId>
+			<artifactId>fwktd-test</artifactId>
+			<version>${fwktd.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <version>${h2.version}</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xbean</groupId>
+			<artifactId>xbean-spring</artifactId>
+			<version>${xbean.spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Provided dependencies -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+		<finalName>fwktd-csv-ws</finalName>
+
+		<filters>
+			<!-- Por defecto la base de datos h2 -->
+			<filter>${basedir}/src/main/filters/database/h2.properties</filter>
+		</filters>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>${unpack.config.directory}</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-config-resources</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+									<artifactId>fwktd-csv-core</artifactId>
+									<version>${project.version}</version>
+									<classifier>configurable</classifier>
+									<type>zip</type>
+									<overWrite>false</overWrite>
+								</artifactItem>
+								<artifactItem>
+									<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
+									<artifactId>fwktd-csv-api</artifactId>
+									<version>${project.version}</version>
+									<classifier>configurable</classifier>
+									<type>zip</type>
+									<overWrite>false</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>
+								${unpack.config.directory}
+							</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>${cxf.version}</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/wsdl/ServicioAplicaciones.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-exsh</extraarg>
+										<extraarg>true</extraarg>
+									</extraargs>
+								</wsdlOption>
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/wsdl/ServicioDocumentos.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-exsh</extraarg>
+										<extraarg>true</extraarg>
+									</extraargs>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>xerces</groupId>
+						<artifactId>xercesImpl</artifactId>
+						<version>2.8.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly.plugin.version}</version>
+				<configuration>
+					<descriptors>
+						<descriptor>
+							${basedir}/src/main/assembly/dep.xml
+						</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assembly-configurable-resources</id>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<!--
+				plugin para despliegue en un tomcat local con datasource global
+				definido
+			-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>${tomcat-maven-plugin.version}</version>
+				<configuration>
+					<path>/${project.build.finalName}</path>
+					<mode>both</mode>
+					<url>${tomcat.url}</url>
+					<username>${tomcat.username}</username>
+					<password>${tomcat.password}</password>
+					<contextFile>${project.basedir}/src/test/resources/tomcat/context.xml</contextFile>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>${h2.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+
+		<!-- DB2 -->
+		<profile>
+			<id>db2</id>
+			<build>
+				<filters>
+					<filter>${basedir}/src/main/filters/database/db2.properties</filter>
+				</filters>
+			</build>
+		</profile>
+
+		<!-- DB2/400 -->
+		<profile>
+			<id>db2_400</id>
+			<build>
+				<filters>
+					<filter>${basedir}/src/main/filters/database/db2_400.properties</filter>
+				</filters>
+			</build>
+		</profile>
+
+		<!-- H2 -->
+		<profile>
+			<id>h2</id>
+			<build>
+				<filters>
+					<filter>${basedir}/src/main/filters/database/h2.properties</filter>
+				</filters>
+			</build>
+		</profile>
+
+		<!-- POSTGRESQL -->
+		<profile>
+			<id>postgresql</id>
+			<build>
+				<filters>
+					<filter>${basedir}/src/main/filters/database/postgresql.properties</filter>
+				</filters>
+			</build>
+		</profile>
+
+		<!-- ORACLE -->
+		<profile>
+			<id>oracle</id>
+			<build>
+				<filters>
+					<filter>${basedir}/src/main/filters/database/oracle.properties</filter>
+				</filters>
+			</build>
+		</profile>
+
+		<!-- SQLSERVER -->
+		<profile>
+			<id>sqlserver</id>
+			<build>
+				<filters>
+					<filter>${basedir}/src/main/filters/database/sqlserver.properties</filter>
+				</filters>
+			</build>
+		</profile>
+
+		<profile>
+			<id>test-unitarios</id>
+			<activation>
+				<property>
+					<name>testUnitarios</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<excludes>
+								<exclude>**/*IntegrationTest.java</exclude>
+							</excludes>
+						</configuration>
+						<executions>
+							<execution>
+								<id>integration-tests</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>test-integracion</id>
+			<activation>
+				<property>
+					<name>testIntegracion</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<includes>
+								<include>**/*IntegrationTest.java</include>
+							</includes>
+						</configuration>
+						<executions>
+							<execution>
+								<id>integration-tests</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>java2ws</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-java2ws-plugin</artifactId>
+						<version>${cxf.version}</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.cxf</groupId>
+								<artifactId>cxf-rt-frontend-jaxws</artifactId>
+								<version>${cxf.version}</version>
+							</dependency>
+							<dependency>
+								<groupId>org.apache.cxf</groupId>
+								<artifactId>cxf-rt-frontend-simple</artifactId>
+								<version>${cxf.version}</version>
+							</dependency>
+						</dependencies>
+
+						<executions>
+							<execution>
+								<id>generate-sources</id>
+								<phase>generate-sources</phase>
+								<configuration>
+									<className>es.ieci.tecdoc.fwktd.csv.core.service.ServicioDocumentos</className>
+									<genWsdl>true</genWsdl>
+									<verbose>true</verbose>
+								</configuration>
+								<goals>
+									<goal>java2ws</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

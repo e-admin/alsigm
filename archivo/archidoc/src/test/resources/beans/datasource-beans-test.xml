@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="datasourceDbUnit"
+		class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean>
+
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+		<property name="url" value="jdbc:jtds:sqlserver://10.228.75.110:1433/ARCHIDOC50_TEST" />
+		<property name="username" value="sa" />
+		<property name="password" value="ieciovi" />
+
+		<!-- property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/archidocTest5" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres"/-->
+
+		<!-- property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://10.228.8.87:5432/archivo_000" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres"/-->
+
+	</bean>
+
+
+	<bean id="dataSourceSQLServer"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+		<property name="url" value="jdbc:jtds:sqlserver://10.228.75.110:1433/ARCHIDOC50_TEST" />
+		<property name="username" value="sa" />
+		<property name="password" value="ieciovi" />
+	</bean>
+
+
+	<bean id="dataSourcePostgreSQL"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/archidocTest5" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres"/>
+	</bean>
+
+
+	<bean id="dataSourceDB2"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/archidocTest5" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres"/>
+	</bean>
+
+
+	<bean id="dataSourceOracle"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/archidocTest5" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres"/>
+	</bean>
+
+
+	<alias name="dataSource" alias="archivoDS" />
+
+
+
+
+</beans>

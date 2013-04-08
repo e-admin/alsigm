@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='CTENT:ID'
+				readOnly='false'
+				titleKey='catalog.common.id'
+				fieldType='LINK'
+				fieldLink='CTENT:ID'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+				media='html'
+				decorator=''
+				url='/addEntityFrmStage.do'
+				id='EntId'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='CTENT:NOMBRE'
+				readOnly='false'
+				titleKey='catalog.common.nombre'
+				fieldType='LINK'
+				fieldLink='CTENT:ID'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+				media='html'
+				decorator=''
+				url='/addEntityFrmStage.do'
+				id='EntId'/>
+				
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTENT:DESCRIPCION'
+				 readOnly='false'
+				 titleKey='catalog.common.descripcion'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+				
+</beanformatter>

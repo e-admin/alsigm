@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://tiposdocvitales.ws" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://tiposdocvitales.ws" xmlns:intf="http://tiposdocvitales.ws" xmlns:tns1="http://vos.webservice.docvitales" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://tiposdocvitales.ws" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vos.webservice.docvitales"/>
+   <element name="getTiposDocVit">
+    <complexType/>
+   </element>
+   <element name="getTiposDocVitResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getTiposDocVitReturn" type="tns1:TipoDocumentoVital"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTiposDocVitPorProc">
+    <complexType>
+     <sequence>
+      <element name="idProc" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTiposDocVitPorProcResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getTiposDocVitPorProcReturn" type="tns1:TipoDocumentoVital"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTipoDocVit">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTipoDocVitResponse">
+    <complexType>
+     <sequence>
+      <element name="getTipoDocVitReturn" type="tns1:TipoDocumentoVital"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addRelTipoDocVitProc">
+    <complexType>
+     <sequence>
+      <element name="idProc" type="xsd:string"/>
+      <element name="idTipoDocVit" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addRelTipoDocVitProcResponse">
+    <complexType/>
+   </element>
+   <element name="removeRelTipoDocVitProc">
+    <complexType>
+     <sequence>
+      <element name="idProc" type="xsd:string"/>
+      <element name="idTipoDocVit" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeRelTipoDocVitProcResponse">
+    <complexType/>
+   </element>
+   <element name="removeRelsPorProc">
+    <complexType>
+     <sequence>
+      <element name="idProc" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeRelsPorProcResponse">
+    <complexType/>
+   </element>
+   <element name="removeRelsPorTiposDocProc">
+    <complexType>
+     <sequence>
+      <element name="idProc" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="idsTipoDocVit" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeRelsPorTiposDocProcResponse">
+    <complexType/>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://vos.webservice.docvitales" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="TipoDocumentoVital">
+    <sequence>
+     <element name="descripcion" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="removeRelTipoDocVitProcResponse">
+
+      <wsdl:part element="impl:removeRelTipoDocVitProcResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTiposDocVitPorProcResponse">
+
+      <wsdl:part element="impl:getTiposDocVitPorProcResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTiposDocVitPorProcRequest">
+
+      <wsdl:part element="impl:getTiposDocVitPorProc" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeRelsPorProcResponse">
+
+      <wsdl:part element="impl:removeRelsPorProcResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTipoDocVitRequest">
+
+      <wsdl:part element="impl:getTipoDocVit" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTiposDocVitRequest">
+
+      <wsdl:part element="impl:getTiposDocVit" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRelTipoDocVitProcRequest">
+
+      <wsdl:part element="impl:addRelTipoDocVitProc" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRelTipoDocVitProcResponse">
+
+      <wsdl:part element="impl:addRelTipoDocVitProcResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTipoDocVitResponse">
+
+      <wsdl:part element="impl:getTipoDocVitResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTiposDocVitResponse">
+
+      <wsdl:part element="impl:getTiposDocVitResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeRelsPorProcRequest">
+
+      <wsdl:part element="impl:removeRelsPorProc" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeRelTipoDocVitProcRequest">
+
+      <wsdl:part element="impl:removeRelTipoDocVitProc" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeRelsPorTiposDocProcResponse">
+
+      <wsdl:part element="impl:removeRelsPorTiposDocProcResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeRelsPorTiposDocProcRequest">
+
+      <wsdl:part element="impl:removeRelsPorTiposDocProc" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="WSTiposDocumentosVitales">
+
+      <wsdl:operation name="getTiposDocVit">
+
+         <wsdl:input message="impl:getTiposDocVitRequest" name="getTiposDocVitRequest"/>
+
+         <wsdl:output message="impl:getTiposDocVitResponse" name="getTiposDocVitResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTiposDocVitPorProc">
+
+         <wsdl:input message="impl:getTiposDocVitPorProcRequest" name="getTiposDocVitPorProcRequest"/>
+
+         <wsdl:output message="impl:getTiposDocVitPorProcResponse" name="getTiposDocVitPorProcResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTipoDocVit">
+
+         <wsdl:input message="impl:getTipoDocVitRequest" name="getTipoDocVitRequest"/>
+
+         <wsdl:output message="impl:getTipoDocVitResponse" name="getTipoDocVitResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRelTipoDocVitProc">
+
+         <wsdl:input message="impl:addRelTipoDocVitProcRequest" name="addRelTipoDocVitProcRequest"/>
+
+         <wsdl:output message="impl:addRelTipoDocVitProcResponse" name="addRelTipoDocVitProcResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRelTipoDocVitProc">
+
+         <wsdl:input message="impl:removeRelTipoDocVitProcRequest" name="removeRelTipoDocVitProcRequest"/>
+
+         <wsdl:output message="impl:removeRelTipoDocVitProcResponse" name="removeRelTipoDocVitProcResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRelsPorProc">
+
+         <wsdl:input message="impl:removeRelsPorProcRequest" name="removeRelsPorProcRequest"/>
+
+         <wsdl:output message="impl:removeRelsPorProcResponse" name="removeRelsPorProcResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRelsPorTiposDocProc">
+
+         <wsdl:input message="impl:removeRelsPorTiposDocProcRequest" name="removeRelsPorTiposDocProcRequest"/>
+
+         <wsdl:output message="impl:removeRelsPorTiposDocProcResponse" name="removeRelsPorTiposDocProcResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WSTiposDocumentosVitalesSoapBinding" type="impl:WSTiposDocumentosVitales">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getTiposDocVit">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTiposDocVitRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTiposDocVitResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTiposDocVitPorProc">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTiposDocVitPorProcRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTiposDocVitPorProcResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTipoDocVit">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTipoDocVitRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTipoDocVitResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRelTipoDocVitProc">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRelTipoDocVitProcRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addRelTipoDocVitProcResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRelTipoDocVitProc">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeRelTipoDocVitProcRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeRelTipoDocVitProcResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRelsPorProc">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeRelsPorProcRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeRelsPorProcResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRelsPorTiposDocProc">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeRelsPorTiposDocProcRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeRelsPorTiposDocProcResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WSTiposDocumentosVitalesService">
+
+      <wsdl:port binding="impl:WSTiposDocumentosVitalesSoapBinding" name="WSTiposDocumentosVitales">
+
+         <wsdlsoap:address location="http://localhost:8080/archidoc/services/WSTiposDocumentosVitales"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

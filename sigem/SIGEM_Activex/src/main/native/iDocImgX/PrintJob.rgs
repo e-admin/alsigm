@@ -1,0 +1,26 @@
+HKCR
+{
+	IDocImgX.PrintJob.1 = s 'IECISA PrintJob Class'
+	{
+		CLSID = s '{96B9165F-D4FC-4AB5-9486-89782D738820}'
+	}
+	IDocImgX.PrintJob = s 'IECISA PrintJob Class'
+	{
+		CLSID = s '{96B9165F-D4FC-4AB5-9486-89782D738820}'
+		CurVer = s 'IDocImgX.PrintJob.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {96B9165F-D4FC-4AB5-9486-89782D738820} = s 'IECISA PrintJob Class'
+		{
+			ProgID = s 'IDocImgX.PrintJob.1'
+			VersionIndependentProgID = s 'IDocImgX.PrintJob'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{24C6D590-6D0D-11D4-8128-00C0F049167F}'
+		}
+	}
+}

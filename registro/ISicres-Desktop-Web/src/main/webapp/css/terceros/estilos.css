@@ -1,0 +1,305 @@
+.tercerosContent {
+	background-color: #F2F2F2;
+	border: 1px solid #DADBDF;
+	padding: 0.5em;
+	margin: 1em;
+}
+
+.tercerosContent form {
+	background-color: white;
+	border: 1px solid #DADBDF;
+	margin: 0.3em;
+}
+
+.tercerosContent .cabecera ,#contenedorInteresados {
+	background-color: #C7CE4E;
+	}
+
+#botoneraInteresados{
+	padding-top:0.2em;
+}
+
+#editTerceroLink{
+	margin-left:5em;
+	}
+
+#selectAddressLink{
+	margin-left:2em;
+}
+
+#deleteInteresadoLink{
+	margin-left:2em;
+}
+
+#statusMessage {
+	background: url("../../images/terceros/green_info.png") no-repeat scroll
+		4px 2px #a7e190;
+	border: 1px solid #64AF48;
+	color: #FFFFFF;
+	display: block;
+	padding: 4px 4px 4px 32px;
+	margin: 2px 0px 2px 0px;
+}
+
+#errorMessage {
+	background: url("../../images/terceros/red_info.png") no-repeat scroll
+		4px 2px #F1A394;
+	border: 1px solid red;
+	color: #FFFFFF;
+	display: block;
+	padding: 4px 4px 4px 32px;
+	margin: 2px 0px 2px 0px;
+}
+
+#errorMessage p {
+	margin-bottom: 2px;
+}
+
+.principal {
+	padding-left: 1.5em;
+	background: transparent
+		url("../../images/terceros/direccion_principal.png") left no-repeat;
+}
+
+a.noprincipal {
+	padding-left: 1.5em;
+	background: transparent url("../../images/terceros/radio_button.png")
+		left no-repeat;
+	text-decoration: none;
+}
+
+.delete {
+	padding-left: 1.5em;
+	background: transparent url("../../images/terceros/delete.png") left
+		no-repeat;
+}
+
+.pagebanner,.emptybanner,.pagelinks {
+	display: block;
+	font-size: 10px;
+	color: #666666;
+}
+
+.pagelinks {
+	border-top: 1px dotted #CCCCCC;
+	padding-bottom: 4px;
+}
+
+form .pagelinks a {
+	color: #A07150;
+}
+
+.botonera {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+.botonera a,.botonera a:hover,.botonera a:visited {
+	text-decoration: none;
+	display: inline-block;
+	padding: 0px;
+	margin: 0px;
+}
+
+.botonera input {
+	font-family: Verdana, Arial, sans-serif;
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: 11px;
+	color: #6C6C6C;
+	border: 0;
+	margin-left: 8px;
+	cursor: pointer;
+	height: 20px;
+}
+
+.botonera a span {
+	font-family: Verdana, Arial, sans-serif;
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: 11px;
+	padding: 0px;
+	margin: 0px;
+	color: #6C6C6C;
+}
+
+.botonera a.nuevo {
+	background: transparent url('../../images/terceros/create.png')
+		no-repeat scroll left center;
+	padding: 2px 10px 2px 20px;
+}
+
+.botonera input.aceptar {
+	background: transparent url('../../images/terceros/aceptar.png')
+		no-repeat scroll left center;
+	padding: 0px 5px 1px 20px; //
+	padding: 0px 0px 0px 9px; //
+	vertical-align: top;
+}
+
+.botonera input.cancelar {
+	background: transparent url('../../images/terceros/cancel.png')
+		no-repeat scroll left center;
+	padding: 0px 5px 1px 20px; //
+	padding: 0px 0px 0px 7px; //
+	vertical-align: top;
+}
+
+.botonera input.guardar {
+	background: transparent url('../../images/terceros/save.gif') no-repeat
+		scroll left center;
+	padding: 0px 10px 3px 20px; //
+	padding: 0px 0px 0px 8px; //
+	vertical-align: top;
+}
+
+.botonera input.cerrar {
+	background: transparent url('../../images/terceros/close.png') no-repeat
+		scroll left center;
+	padding: 0px 10px 3px 20px; //
+	padding: 0px 0px 0px 10px; //
+	vertical-align: top;
+}
+
+.edit {
+	padding: 0px 10px 0px 20px;
+	background: transparent url('../../images/terceros/edit.png') no-repeat
+		scroll left center;
+}
+
+a.editDef,a.editDef:hover,a.editDef:visited {
+	padding: 8px 16px 8px 0px;
+	background: transparent url('../../images/terceros/edit.png') no-repeat
+		scroll left center;
+	vertical-align: top;
+	text-decoration: none;
+}
+
+a.aceptarDef,a.aceptarDef:hover,a.aceptarDef:visited {
+	padding: 8px 6px 8px 6px;
+	background: transparent url(../../images/terceros/aceptar.png) no-repeat
+		scroll left center;
+	vertical-align: top;
+	text-decoration: none;
+}
+
+td.edit {
+	width: 60px;
+	vertical-align: middle;
+}
+
+.retry {
+	padding: 0px 10px 0px 20px;
+	background: transparent url('../../images/terceros/retry.gif') no-repeat
+		scroll left center;
+	width: 60px;
+	vertical-align: middle;
+}
+
+.delete,.botonera a.delete {
+	padding: 0px 10px 0px 20px;
+	background: transparent url('../../images/terceros/delete.png')
+		no-repeat scroll left center;
+}
+
+td.delete {
+	width: 60px;
+	vertical-align: middle;
+}
+
+.add,.botonera a.add {
+	padding: 0px 10px 0px 20px;
+	background: transparent url('../../images/terceros/add.gif') no-repeat
+		scroll left center;
+}
+
+.botonera a.remove {
+	padding: 0px 10px 0px 20px;
+	background: transparent url('../../images/terceros/ico_menos.gif')
+		no-repeat scroll left center;
+}
+
+button {
+	border: 0px;
+	cursor: pointer;
+	font-weight: normal;
+	/*padding: 0px;*/
+	text-align: center;
+	margin: 10px 0px;
+}
+
+button span {
+	position: relative;
+	display: block;
+	white-space: nowrap;
+	padding: 0px 8px 0px 14px; //
+	padding: 0px 0px 0px 14px;
+	height: 20px;
+	line-height: 20px;
+}
+
+button[type=submit].aceptarBt {
+	background: url(../../img/buttons/btn_default_right.png) right center
+		no-repeat;
+}
+
+button[type=submit].aceptarBt span {
+	height: 20px;
+	line-height: 20px;
+	color: #343434;
+	font-weight: bold;
+	font-size: 11px;
+	letter-spacing: 1px;
+	background: url(../../img/buttons/btn_default_left.png) left center
+		no-repeat;
+}
+
+#tabs {
+	margin: 0.2em;
+}
+
+.addPersonaFisica {
+	padding-left: 2em;
+	background: url('../../images/terceros/man.png') left center no-repeat;
+	/*margin-left: 9em;*/
+	margin-left: 2em;
+	text-decoration: none;
+	float: left;
+}
+
+.addPersonaJuridica {
+	float: right;
+	padding-left: 2em;
+	background: url('../../images/terceros/factory-icon.png') left center
+		no-repeat;
+	text-decoration: none;
+}
+
+#editTerceroLink {
+	padding-left: 2em;
+	background: url('../../images/terceros/editar.png') left center
+		no-repeat;
+	text-decoration: none;
+}
+
+#selectAddressLink {
+	padding-left: 2em;
+	background: url('../../images/terceros/home.png') left center no-repeat;
+	text-decoration: none;
+}
+
+#deleteInteresadoLink {
+	padding-left: 2em;
+	background: url('../../images/terceros/eliminar.png') left center
+		no-repeat;
+	text-decoration: none;
+}
+
+#interesados tr.even, tr.even td {
+    background-color: #EBEA87;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}

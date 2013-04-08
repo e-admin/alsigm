@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+    default-lazy-init="true">
+
+	<!-- Carga de las propiedades de configuracion -->
+
+	<bean id="fwktd_audit_configurationResourceLoaderImpl" name="fwktd_audit_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl" />
+
+	<bean
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="configurationResourceLoader" ref="fwktd_audit_configurationResourceLoader" />
+		<property name="locations">
+			<list>
+				<value>fwktd-audit/fwktd-audit-core.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<import resource="fwktd-audit-core/fwktd-audit-core-beans.xml"/>
+
+</beans>

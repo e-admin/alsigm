@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='EVENTO_TEXT'
+				 titleKey='events.title'
+				 fieldType='EVENT'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE_REGLA'
+				 titleKey='rules.title'
+				 fieldType='RULE'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''/>
+
+</beanformatter>

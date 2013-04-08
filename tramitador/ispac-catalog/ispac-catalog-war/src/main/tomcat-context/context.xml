@@ -1,0 +1,4 @@
+<Context path="/ispaccatalog" reloadable="true">
+	<ResourceLink global="jdbc/registroDS" name="jdbc/registroDS" type="javax.sql.DataSource"/>
+	<ResourceLink global="jdbc/tramitadorDS" name="jdbc/tramitadorDS" type="javax.sql.DataSource"/>
+</Context>	

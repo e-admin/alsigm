@@ -1,0 +1,91 @@
+<beans>
+
+	<bean id="jndi" class="org.apache.xbean.spring.jndi.DefaultContext">
+		<property name="entries">
+			<map>
+				<entry key="java:comp/env/jdbc/sigemAdmin">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://ipMaquinaBD:5432/sigemAdmin" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+				</entry>
+				
+				<entry key="java:comp/env/jdbc/eTramitacionDS_000">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://ipMaquinaBD:5432/eTramitaciona_000" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+				</entry>
+				
+				<entry key="java:comp/env/jdbc/registroDS_000">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://ipMaquinaBD:5432/registro_000" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+					
+				</entry>
+				
+				
+				<entry key="java:comp/env/jdbc/tramitadorDS_000">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://ipMaquinaBD:5432/tramitador_000" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+				</entry>
+				
+				<entry key="java:comp/env/jdbc/archivoDS_000">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://ipMaquinaBD:5432/archivo_000" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+				</entry>
+				
+				<entry key="java:comp/env/jdbc/tercerosDS_000">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://ipMaquinaBD:5432/registro_000" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+					
+				</entry>
+				
+				<entry key="java:comp/env/jdbc/sisnot">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://ipMaquinaBD:5432/sisnot" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+					
+				</entry>
+				
+				
+			</map>
+		</property>
+	</bean>
+</beans>

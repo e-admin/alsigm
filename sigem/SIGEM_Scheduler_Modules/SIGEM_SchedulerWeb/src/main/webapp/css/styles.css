@@ -1,0 +1,1160 @@
+body {
+  	background-color: #FFFFFF;
+  	margin:0;
+  	padding:0;
+}
+/* 'MS Sans Serif', arial, helvetica*/
+td {
+	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+}
+th {
+	margin:0;
+	padding:0;
+	font-size: 1em;
+	background-repeat:no-repeat;
+	list-style-type:none;
+}
+a, a:hover {
+	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	color: #666666;
+	text-decoration: none;
+}
+
+
+h2 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #999;
+  color: rgb(97, 110, 170);
+  background-color: rgb(238, 238, 238);
+  font-weight:900;
+  font-size: x-large;
+}
+
+h3 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #aaa;
+  color: rgb(97, 110, 170);
+  background-color: #eee;
+  font-weight: normal;
+  font-size: large;
+}
+
+
+
+a:hover {
+	text-decoration: underline;
+}
+/* estilo para la cabecera del logo en grande */
+.header_logo {
+	background: #636DAD url(../img/head_sup.gif)
+  				repeat scroll;
+}
+
+
+#cabecera {
+	width:100%;
+	height:61px;
+	border:0px solid red;
+	background: #99d6f5 url(../img/fondo_cab.jpg) no-repeat;
+	position: relative;
+	padding:0px;
+}
+#logo {
+	float:left;
+	margin: 0px 0px 0px 10px;
+	height:60px;
+}
+#app{
+	float:right;
+	margin-right:10px;
+	font-weight:bold;
+	margin-top:40px;
+	font-family:Verdana, Arial, Helvetica, Sans-serif;
+	font-size:16px;
+	color: #0B5DC0;
+}
+
+/* color para la parte superior de la cabecera */
+.header_sup {
+	background: #636DAD url(../img/head_sup.gif)
+  				repeat scroll;
+  	padding: -1px 0 0 0;
+}
+/* color para la parte inferior de la cabecera */
+.header_inf {
+	background-color: #636DAD;
+	padding: 0 0 0 4px;
+}
+/* color para la barra del usuario en la cabecera */
+.user {
+	height:18px;
+	background-color: #E9E9E9;
+}
+/* color de la l�nea que separa
+	la cabecera del resto de la p�gina */
+.bottom {
+	background-color: #C8C8C8;
+}
+/* color para la tabla de las pesta�as */
+.tab {
+/*	background-color: #5C65A0;*/
+	margin-top:-1;
+}
+/* color del borde de las cajas de la aplicaci�n */
+.box {
+	background-color: #D7EDFA;
+	font-size: 10px;
+	border:1px solid #D3D5DD;
+}
+/* color del borde de las cajas de los formularios */
+.boxform {
+	background-color: #4477aa;
+}
+
+.boxGris {
+	background-color: #E8E9EE;
+	border:1px solid #DADBDE;
+}
+
+.boxTab {
+	background-color: #D7EDFA;
+	font-size: 10px;
+	border:1px solid #D3D5DD;
+	border-top:none;
+}
+
+.caja {
+	border:1px solid #9EA4C7;
+}
+
+/* estilo para el fondo de las cajas */
+.blank, .blankSinTop {
+	background-color: #FFFFFF;
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	border-top:1px solid #D3D5DD;
+}
+.blankSinTop {
+	border-top:0px solid #D3D5DD;
+}
+
+/* estilo para el texto de las pesta�as */
+.titleTab {
+/*	background-color: #5C65A0;*/
+/*	background-color: #6699CC;*/
+	background-color: #D7EDFA;
+/*	color: #FFFFFF;*/
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+a.titleTab {
+	font-weight:normal;
+	text-decoration: none;
+}
+a.titleTab:hover {
+	text-decoration: underline;
+}
+/* estilo para los t�tulos de las cajas */
+.title {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+}
+/* estilo para el t�tulo de configuraci�n */
+.titleConfiguration {
+/*	background-color: #5C65A0;*/
+	background-color: #D7EDFA;
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+}
+/* estilo para los t�tulos de las cajas de los formularios */
+.titlebox {
+	color: #5C65A0;
+	background-color: #D7EDFA;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+/* estilo para los textos que contienen las pesta�as */
+.elementTab {
+	color: #4477aa;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+}
+a.elementTab {
+	text-decoration: none;
+}
+a.elementTab:hover {
+	text-decoration: underline;
+}
+/* estilo para la caja que contiene el index */
+.table_index {
+	background: url(../img/login.jpg) no-repeat;
+}
+
+/* estilo para el texto del index */
+.index {
+    color:  #6166AA;
+    font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+.index_title {
+    color:  #6166AA;
+    font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    border-bottom: 1px solid #6166AA;
+}
+
+/* estilo para los objetos de los formularios */
+.input, .inputSelect, .inputSelectS {
+	color: #003b73;
+	background-color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	border-color: #5C65A0;
+	border-style: solid;
+	border-width: 1px;
+}
+/* estilo para los objetos de los formularios en readonly */
+.inputReadOnly, .inputSelectRO {
+	color: #606060;
+	background-color: #EEEEEE;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	border-color: #5C65A0;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.inputHidden {
+	color: #606060;
+	background-color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	border-color: #FFFFFF;
+	border-style: solid;
+	border-width: 1px;
+}
+.inputSelect, inputSelectRO {
+	width: 120px;
+}
+
+.inputSelectS {
+	width: 240px;
+}
+/* estilo para botones del formulario */
+.form_button {
+	color: #33469A;
+	background-color: #D7EDFA;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	border-color: #8898E0 #5C65A0 #5C65A0 #8898E0;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+}
+/* estilo para botones del formulario con fondo blanco*/
+.form_button_white {
+	color: #33469A;
+	background-color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	border-color: #8898E0 #5C65A0 #5C65A0 #8898E0;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+}
+/* estilo para la b�squeda de formularios */
+.field
+{
+    color: #5C65A0;
+    font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 10px;
+    background-color:#D7EDFA;
+}
+/* estilo para el texto del usuario */
+.username {
+	color: #4C537E;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+/* estilo para los menus que aparecen
+	en la barra del usuario */
+.user_menu {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+}
+a.user_menu {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-decoration: none;
+    cursor: hand;
+}
+a.user_menu:hover {
+	text-decoration: underline;
+    cursor: hand;
+}
+/* estilo para pie de im�genes */
+.imagefoot {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+}
+/* estilo para textos del cool-menu */
+a.titulo_menu, a.titulo_menu:hover {
+	color: #4477AA;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-decoration: none;
+    cursor: hand;
+}
+
+/* estilo para los formularios de b�squeda */
+.forms {
+	color: #4477aa;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-decoration: none;
+}
+/* estilo para el t�tulo de los campos del formulario */
+.formsTitle {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+/* estilo para los campos de TESEO */ 
+.formsTeseo {
+	color: #5A5A5A;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	
+	
+}
+a.formsTitle {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+/* estilo para el t�tulo de los campos m�s destacados */
+.formsTitleB {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+/* estilo para los errores del formulario */
+.formsTitleError {
+	color: #CD0404;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+}
+/* estilo de la navegaci�n por la que vamos */
+.navigation {
+	color: #4C537E;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+    cursor: hand;
+}
+a.navigation {
+	color: #4C537E;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-decoration: none;
+    cursor: hand;
+}
+a.navigation:hover {
+	text-decoration: underline;
+    cursor: hand;
+}
+/* estilo del esquema del expediente */
+.schema {
+	color: #4477aa;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+  	font-weight: bold;
+  	text-align : left;
+}
+a.schema, a.schema:hover {
+	color: #4477aa;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	text-align : left;
+	text-decoration: none;
+}
+a.schema:hover {
+  text-decoration: underline;
+}
+
+/* estilo para el texto de los t�tulos de tablas */
+.menuhead {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+a.menuhead, a.menuhead:hover {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+a.menuhead:hover {
+	text-decoration: underline;
+}
+/* estilo para el texto de registros seleccionados */
+.menuSelect {
+    font-size: 10px;
+    font-family:  Verdana, Arial, Helvetica, Sans-serif;
+    margin-left: 0px;
+    color: #B7C2FF;
+}
+/* estilo para texto en general */
+.menu {
+    font-family:  Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 10px;
+    margin-left: 0px;
+    color: #5C65A0;
+}
+.menu_red {
+    font-family:  Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 10px;
+    margin-left: 0px;
+    color: #FF0000;
+}
+a.menu {
+    font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 10px;
+    margin-left: 0px;
+    color: #5C65A0;
+    text-decoration: none
+}
+a.menu:hover {
+	text-decoration: underline;
+}
+/* estilo para texto en negrita */
+.menuBold {
+    font-family:  Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 8px;
+    font-weight: bold;
+    margin-left: 0px;
+    color: #5C65A0;
+}
+
+.menubold {
+  list-style-type: none;
+  background-image: url(../img/bullet.png);
+  background-repeat: no-repeat;
+  background-position: 0 0.4em;
+  padding-left: 10px;
+  list-style-position: outside;
+  line-height: 1.2em;
+  font-size: 10px;
+}
+.menu11Bold {
+    font-family:  Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 0px;
+    color: #6471AC;
+}
+
+
+
+/* estilo para t�tulos en grande del formulario */
+.titleBig {
+    font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #5C65A0;
+    text-decoration: none
+}
+/* estilo para el hito de expediente */
+.hitoexp {
+	color: #444777;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 60%;
+	background-color: #FFFFFF;
+}
+/* estilo para el hito de fase */
+.hitostage {
+	color: #565A98;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 60%;
+	background-color: #FFFFFF;
+}
+/* estilo para el hito de tr�mite */
+.hitotask {
+	color: #6E74C1;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 60%;
+	background-color: #FFFFFF;
+}
+/* estilo para el hito por defecto*/
+.hito {
+	color: #9097FD;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 60%;
+	background-color: #FFFFFF;
+}
+/* estilo para los registros de las tablas */
+.element {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	background-color: #FFFFFF;
+}
+a.element {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	background-color: #FFFFFF;
+  	text-decoration: none;
+}
+a.element:hover {
+	text-decoration: underline;
+}
+/* estilo para el t�tulo del toolbar */
+.information{
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+}
+/* estilo que indica que est� seleccionada
+	una pesta�a  del formulario*/
+.select {
+	border: #D3D5DD 1px solid;
+	border-bottom: none;
+    padding: 3 6 3 6;
+	color: #5C65A0;
+	background-color: #D7EDFA;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+    font-weight: bold;
+    cursor:pointer;
+}
+a.select {
+	color: #5C65A0;
+/*	background-color: #EEF1FB;*/
+	background-color: #F2F2F2;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+    font-weight: bold;
+	text-decoration: none;
+    cursor:pointer;
+    white-space: nowrap;
+}
+a.select:hover {
+	text-decoration: none;
+    cursor:pointer;
+}
+/* estilo que indica que la pesta�a del formulario
+	no est� seleccionada */
+.unselect {
+/*	border-right: #B6CBEB 1px solid;
+    border-top: #B6CBEB 1px solid;
+    border-bottom: #B6CBEB 0px solid;
+    border-left: #B6CBEB 1px solid;*/
+	border-right: #C8C8C8 1px solid;
+    border-top: #C8C8C8 1px solid;
+    border-bottom: #C8C8C8 0px solid;
+    border-left: #C8C8C8 1px solid;
+    padding: 3 6 3 6;
+	color: #5C65A0;
+	background-color: #eeeeee;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+    cursor:pointer;
+}
+a.unselect {
+	color: #5C65A0;
+	background-color: #eeeeee;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+    cursor:pointer;
+}
+a.unselect:hover {
+	text-decoration: underline;
+    cursor:pointer;
+}
+
+/* estilo que indica que est� seleccionada
+	una pesta�a de otra vista del formulario*/
+.tabSelect {
+	border-right: #5C65A0 1px solid;
+    border-top: #5C65A0 1px solid;
+    border-bottom: #5C65A0 0px solid;
+    border-left: #5C65A0 1px solid;
+    padding: 3 8 3 8;
+	color: #FFFFFF;
+	background-color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+    font-weight: bold;
+    cursor:pointer;
+}
+a.tabSelect {
+	color: #FFFFFF;
+	background-color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+    font-weight: bold;
+	text-decoration: none;
+    cursor:pointer;
+    white-space: nowrap;
+}
+a.tabSelect:hover {
+	text-decoration: none;
+    cursor:pointer;
+}
+/* estilo que indica que la pesta�a de otra vista del formulario
+	no est� seleccionada */
+.tabUnselect {
+	border-right: #5C65A0 1px solid;
+    border-top: #5C65A0 1px solid;
+    border-bottom: #5C65A0 0px solid;
+    border-left: #5C65A0 1px solid;
+    padding: 3 8 3 8;
+	color: #5C65A0;
+	background-color: #F1F1F1;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+    cursor:pointer;
+}
+a.tabUnselect {
+	color: #5C65A0;
+	background-color: #F1F1F1;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+    cursor:pointer;
+}
+a.tabUnselect:hover {
+	text-decoration: underline;
+    cursor:pointer;
+}
+
+/* las acciones de los formularios  */
+.formaction {
+	color: #5C65A0;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-weight: bold;
+	padding: 4 6 4 6;
+	text-decoration: none;
+}
+a.formaction, a.formaction:hover {
+	color: #5C65A0;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-weight: bold;
+	padding: 4 6 4 6;
+	text-decoration: underline;
+}
+
+/* barra de separaci�n en los formularios */
+.formbar {
+	background-color: #5C65A0;
+	border-bottom-style: none;
+	border-left-style: none;
+	border-right-style: none;
+	border-top-style: none;
+	clear: both;
+	color: #5C65A0;
+	height: 2px;
+	margin: 0px 0px;
+	padding: 0px;
+}
+
+/* texto de la barra de los formularios*/
+.textbar {
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #5C65A0;
+}
+
+.text11 {
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666666;
+}
+a.text11, a.text11:hover {
+	color: #666666;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: underline;
+    cursor: hand;
+}
+
+/* estilo de la tabla que contiene los campos del formulario */
+.formtable {
+	border-right: #D3D5DD 1px solid;
+    border-top: #D3D5DD 1px solid;
+    border-bottom: #D3D5DD 1px solid;
+    border-left: #D3D5DD 1px solid;
+    margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+/*	background-color: #EEF1FB;*/
+	background-color: #FFFFFF;
+}
+
+/* estilo de la tabla de otra vista que contiene los campos del formulario */
+.tabFormtable {
+	background-color: #7182c6;
+	border-right: #5C65A0 1px solid;
+    border-top: #5C65A0 1px solid;
+    border-bottom: #5C65A0 1px solid;
+    border-left: #5C65A0 1px solid;
+    margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+/* estilo del pie de los formularios */
+.formfoot {
+/*	border-right: #B6CBEB 0px solid;
+    border-top: #B6CBEB 1px solid;
+    border-bottom: #B6CBEB 1px solid;
+    border-left: #B6CBEB 0px solid;*/
+	border-right: #C8C8C8 0px solid;
+    border-top: #C8C8C8 1px solid;
+    border-bottom: #C8C8C8 1px solid;
+    border-left: #C8C8C8 0px solid;
+	background-color: #D7EDFA;
+}
+
+/* estilo para el texto de "Cargando" */
+.loading
+{
+    color:  #5C65A0;
+    font-family: Verdana;
+    font-size: 11px;
+    background-color: #FFFFFF;
+}
+/* estilo para el texto del error */
+.error {
+	color: #CD0404;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+}
+/* estilo para el texto de la traza de la excepci�n */
+.traza {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+}
+/* estilos para los enlaces del menu del esquema */
+
+td.menuLinkHito {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 6 12 2 12;
+	border-bottom-color: #636DAD;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	background-color: #FFFFFF;
+	width: 80px;
+}
+a.menuLinkHito {
+	padding: 6 12 2 12;
+	background-image: url(../img/hitos2.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	color: #636DAD;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menuLinkHito:hover {
+	color: #636DAD;
+	text-decoration: none;
+	padding: 6 12 2 12;
+	background-color: #D7EDFA;
+}
+
+td.menuLinkView {
+	font-family: Verdana, Helvetica, Arial, Tahoma;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 4 12 2 12;
+	border-bottom-color: #636DAD;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	background-color: #FFFFFF;
+	width: 80px;
+}
+a.menuLinkView {
+	padding: 4 12 2 12;
+	background-image: url(../img/glass.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	color: #636DAD;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menuLinkView:hover {
+	color: #636DAD;
+	text-decoration: none;
+	padding: 4 12 2 12;
+	background-color: #D7EDFA;
+}
+
+/* estilo para la tabla del listado de tr�mites */
+table.searchTableListTasks {
+    BORDER-RIGHT: #5C65A0 1px solid;
+    BORDER-TOP: #5C65A0 0px solid;
+    BORDER-BOTTOM: #5C65A0 1px solid;
+    BORDER-LEFT: #5C65A0 1px solid;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+/* estilo para la ordenaci�n de las columnas de tablas */
+a.sortheader {
+/*    background-color:#5C65A0;*/
+    background-color:#D7EDFA;
+    color:#5C65A0;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+}
+a.sortheader:hover {
+	color:#5C65A0;
+}
+
+.fondoSortable {
+	background-color: #D7EDFA;
+}
+
+table.sortable {
+	margin: 0px;
+	color: #5C65A0;
+    border-spacing: 0px 0px;
+    padding-bottom:10px;
+    border-bottom: 1px dotted #DCDCDC;
+    border-collapse: collapse;
+	TEXT-ALIGN: left;
+}
+
+TABLE.sortable TD {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-align:left;
+}
+TABLE.sortable TH {
+	background-color: #D7EDFA;
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+}
+
+span.sortarrow {
+    color: #5C65A0;
+    text-decoration: none;
+}
+
+a.tdlink, a.tdlink:hover {
+	color: #6471AC;
+  	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+  	text-decoration: underline;
+}
+a.tdlink:hover {
+	text-decoration: underline;
+}
+
+/* estilos del displaytag */
+.odd {
+  	background-color: #FFFFFF;
+  	color: #5C65A0;
+  	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-align : center;
+}
+.even {
+  	background-color: #EEEEEE;
+  	color: #5C65A0;
+  	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-align : center;
+}
+a.displayLink, a.displayLink:hover {
+/*	color: #4080BF;*/
+/*	color: #3366CC;*/
+	color: #6471AC;
+  	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	background-color: transparent;
+	text-decoration: none;
+}
+a.displayLink:hover {
+	text-decoration: underline;
+}
+
+
+a.displayBullet {
+	color: #5C65A0;
+	background-color: transparent;
+	text-decoration: none;
+	text-align: left;
+	background-image: url(../img/bullet.png);
+	background-repeat: no-repeat;
+	background-position: 0 0.4em;
+	padding-left: 10px;
+	line-height: 1.2em;
+}
+
+a.displayBullet:hover {
+	text-decoration: underline;
+}
+
+
+
+th {
+/*    background-color:#5C65A0;*/
+    background-color:#D7EDFA;
+	padding: 2px 4px 2px 4px;
+	color: #5C65A0;
+  	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-align: left;
+}
+th a, th a:visited {
+  color: #5C65A0;
+  text-decoration: none;
+}
+th a:hover {
+  text-decoration: underline;
+  color: #5C65A0;
+}
+th.sorted a, th.sortable a {
+	background-repeat:no-repeat;
+	list-style-type:none;
+	background-position: right;
+	display: block;
+	width: 100%;
+}
+th.sortable a {
+	background-image: url(../img/arrow_off_display.gif);
+}
+th.order1 a {
+	background-repeat:no-repeat;
+	list-style-type:none;
+	background-position: right;
+	display: block;
+	width: 100%;
+	background-image: url(../img/arrow_down_display.gif);
+}
+th.order2 a {
+	background-repeat:no-repeat;
+	list-style-type:none;
+	background-position: right;
+	display: block;
+	width: 100%;
+	background-image: url(../img/arrow_up_display.gif);
+}
+.tableDisplay {
+	margin: 15px 15px 15px 15px;
+	color: #5C65A0;
+	width: 98%;
+    border-spacing: 0px 0px;
+    padding-bottom:10px;
+    border-bottom: 1px dotted #DCDCDC;
+    border-collapse: collapse;
+	TEXT-ALIGN: left;
+}
+
+TABLE.tableDisplay TD {
+	TEXT-ALIGN: left;
+	padding-left:2px;
+	padding-right:2px;
+}
+TABLE.tableDisplay TH {
+	BORDER-RIGHT: #DCDCDC 0px solid; 
+	BORDER-TOP: #DCDCDC 1px solid; 
+	BORDER-LEFT: #DCDCDC 0px solid; 
+	BORDER-BOTTOM: #DCDCDC 1px solid;
+	padding-left:5px;
+	padding-right:5px;
+}
+.milestonetableDisplay {
+	border: 1px solid #C8C8C8;
+	margin: 5px 5px 5px 5px;
+	color: #5C65A0;
+	width: 100%
+	text-align : center;
+}
+
+th.headerDisplay {
+/*    background-color:#5C65A0;*/
+    background-color:#D7EDFA;
+  	color: #5C65A0;
+  	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-align : center;
+}
+th.headerDisplayLeft {
+	background-color: 5C65A0;
+  	color: #5C65A0;
+  	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	text-align : left;
+}
+span{
+	margin: 0 5px 0 5px;
+	padding:0;
+	font-size: 10px;
+	background-repeat:no-repeat;
+	list-style-type:none;
+}
+span.pagebanner {
+	background-color: #FFFFFF;
+	color: #636DAD;
+	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	text-align: left;
+	border-top: 0px dotted #999999;
+	border-bottom: 1px dotted #999999;
+	padding: 2px 4px 2px 4px;
+	margin-top: 5px;
+	display:block;
+}
+
+span.pagelinks {
+	background-color: #FFFFFF;
+	color: #636DAD;
+	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	text-align: left;
+	padding: 2px 4px 2px 4px;
+	display:block;
+	margin-bottom: 5px;
+}
+
+span.pagelinks a, span.pagelinks a:hover, span.pagelinks a:visited{
+	color: #95CFF2;
+	font-size: 12px;
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+div.exportlinks {
+	background-color: #FFFFFF;
+	color: #636DAD;
+	font-size: 10px;
+	font-family:  Verdana, Arial, Helvetica, Sans-serif;
+	text-align: left;
+	border-bottom: 1px dotted #999999;
+	padding: 2px 4px 2px 4px;
+	margin: 0px 5px 10px 5px;
+}
+
+span.export {
+	padding: 0 4px 1px 20px;
+	display:inline;display:inline-block;
+	cursor: pointer;
+}
+
+span.excel {
+	background-image: url(../img/ico_file_excel.png);
+}
+span.csv {
+	background-image: url(../img/ico_file_csv.png);
+}
+span.xml {
+	background-image: url(../img/ico_file_xml.png);
+}
+span.pdf {
+	background-image: url(../img/ico_file_pdf.png);
+}
+
+/* estilos del displaytag */
+
+
+.td_login {
+  background: url("../img/login.jpg") no-repeat;
+  text-align:center;
+  vertical-align:middle;
+  width:623px;
+  height:310px;
+}
+
+.errorRojo {
+	color: #CC0000;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.errores_li {
+	FONT-SIZE: 12px; 
+	LIST-STYLE-IMAGE: url(../img/error.gif); 
+	COLOR: #CC0000; 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	padding-left:15px;
+}
+.w99 {
+	width:99%
+}
+
+a.help {
+	color: #5C65A0;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	background-color: #FFFFFF;
+  	text-decoration: none;
+}
+a.help:hover {
+	color: #5C65A0;
+	text-decoration: underline;
+}
+
+
+/*ejemplo cuerpo con submenu*/
+
+.cuerpo{ background: #dee1e8 url(../img/bg_left_cuerpo.jpg) no-repeat left top; 
+}
+.cuerpomid{ background: url(../img/bg_mid_cuerpo.jpg) repeat-x left top; margin: 0px 6px 0px 5px; padding: 6px 0px 0px;
+}
+.cuerporight{ background: url(../img/bg_right_cuerpo.jpg) no-repeat right top;
+}
+h1{ font-weight:bold; color: #006699; font-size:100%; background: url(../img/bolo_activo.gif) no-repeat left; margin: 6px 0px 0px 10px; padding: 0px 0px 0px 10px;
+line-height:90%;
+}
+.cuadro{ background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid #c6c9d5; padding:0px; margin:0px
+}
+
+.cuerpobt{ background: #dee1e8 url(../img/bg_leftdown_cuerpo.jpg) no-repeat left bottom; }
+.cuerpomidbt{ background: url(../img/bg_middown_cuerpo.jpg) repeat-x left bottom; margin: 0px 6px 0px 5px; padding: 6px 0px 20px;
+}
+.cuerporightbt{ background: url(../img/bg_rightdown_cuerpo.jpg) no-repeat right bottom;
+}
+.submenu3{width:100%;height:17px;background: url(../img/subme3_bg.gif) repeat-x; padding:0px
+}

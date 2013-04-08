@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+					property='PPROC:NVERSION'
+					readOnly='false'
+					titleKey='form.pproc.propertyLabel.version'
+					fieldType='LINK'
+					fieldLink='CTPROC:ID'
+					styleClass='aActionButton'
+					headerClass='sortable'
+					sortable='true'
+					media='html'
+					decorator=''
+					url='showPProcedure.do?entityId=22'
+					urlTarget='ParentWindow'
+					id='regId'/>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+					property='CTPROC:COD_PCD'
+					readOnly='false'
+					titleKey='procedure.card.identif.codProc'
+					fieldType='DATA'
+					headerClass='headerDisplay'
+					sortable='false'
+					media='html'/>
+
+</beanformatter>

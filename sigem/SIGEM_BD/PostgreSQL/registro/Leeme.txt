@@ -1,0 +1,12 @@
+Pasos a seguir para ejecutar los script, es necesario ejecutar las siguientes sentencias 
+desde una ventana de línea de comandos en el servidor de base de datos postgreSQL.
+
+Ejecutar uno por uno y en este orden los siguientes comandos:
+
+ 	psql -d [nombre_bbdd] -f [ruta_fichero]/01.1_create_tables_registro_sigem_postgres.sql
+    psql -d [nombre_bbdd] -f [ruta_fichero]/01.2_create_tables_invesdoc_registro_sigem_postgres.sql
+    psql -d [nombre_bbdd] -f [ruta_fichero]/02.1_create_indexes_constraints_registro_sigem_postgres.sql
+    psql -d [nombre_bbdd] -f [ruta_fichero]/02.2_create_indexes_constraints_invesdoc_registro_sigem_postgres.sql
+    psql -d [nombre_bbdd] -f [ruta_fichero]/03.1_insert_data_registro_sigem_postgres.sql    
+    psql -d [nombre_bbdd] -f [ruta_fichero]/03.2_insert_data_invesdoc_registro_sigem_postgres.sql
+    psql -d [nombre_bbdd] -f [ruta_fichero]/04.1_insert_clob_registro_sigem_postgres.sql 

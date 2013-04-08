@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <!--
+    This is the JAX-WS API jar from Sun as of 10/29/2007.   Sometime in mid 2007, Sun released a 
+    NEW version of the jaxws-api 2.1 jar, but did not change the version number to distinguish it from 
+    the older version.   The 2.1 version on repo1.maven.org is the original version.    The 
+    repo1.maven.org maintainers will NOT change a released version.   (could break older
+     builds)  Thus, we're adding this version  with  the -1 qualifier to mark this as different 
+     than the "other" 2.1 build.
+
+     For more info, see: http://jira.codehaus.org/browse/MEV-498
+    -->
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>javax.xml.ws</groupId>
+    <artifactId>jaxws-api</artifactId>
+    <version>2.1-1</version>
+    <name>JAX-WS API</name>
+    <description>JAX-WS API</description>
+    <packaging>jar</packaging>
+    <url>https://jax-ws.dev.java.net/</url>
+
+    <organization>
+        <name>Sun Microsystems, Inc</name>
+        <url>http://www.sun.com/</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0</name>
+            <url>http://www.opensource.org/licenses/cddl1.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.soap</groupId>
+            <artifactId>saaj-api</artifactId>
+            <version>1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>jsr181</artifactId>
+            <version>1.0</version>
+            <!-- Use geronimo-specs version of jsr181 since the BEA version of 
+            of jsr181.jar is not available at central 
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-ws-metadata_2.0_spec</artifactId>
+            <version>1.1.1</version>
+            -->
+        </dependency>
+    </dependencies>
+</project>

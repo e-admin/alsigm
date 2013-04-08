@@ -1,0 +1,30 @@
+#cabecera_right {
+	width:49.8%;
+}
+
+#cabecera_int_right {
+	width:49.6%;
+}
+
+#cabecera_right h2 {
+	top: 2px;
+}
+
+#cabecera_int_right h3 {
+	top: 2px;
+}
+
+#cabecera_int_right .salir {
+	top: 6px;
+	right: 10px;
+}
+
+
+#contenido_centrado {
+	width: 100%;
+	text-align: center;
+}
+
+.ficha_fixed {
+	text-align: left;
+}

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="DatosBasicosUnidadOrganicaVO">
+
+	<typeAlias alias="datosBasicosUnidadOrganica"
+		type="es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosUnidadOrganicaVO" />
+
+	<resultMap id="datosBasicosUnidadOrganica" class="es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosUnidadOrganicaVO">
+
+		<result property="id" column="CODIGO_UNIDAD_ORGANICA" />
+		<result property="nombre" column="NOMBRE_UNIDAD_ORGANICA" />
+		<result property="idExternoFuente" column="CODIGO_EXTERNO_FUENTE" />
+
+		<result property="idUnidadOrganicaSuperior" column="CODIGO_UNIDAD_SUP_JERARQUICA" />
+		<result property="nombreUnidadOrganicaSuperior" column="DENOM_UNIDAD_SUP_JERARQUICA" />
+
+
+	</resultMap>
+
+	<sql id="table">DIR_UNIDAD_ORGANICA</sql>
+
+	<sql id="columns">
+		UO.CODIGO_UNIDAD_ORGANICA,
+		UO.NOMBRE_UNIDAD_ORGANICA,
+		UO.CODIGO_EXTERNO_FUENTE,
+
+		UO.CODIGO_UNIDAD_SUP_JERARQUICA,
+		UO.DENOM_UNIDAD_SUP_JERARQUICA
+
+	</sql>
+
+	<sql id="from">
+		<include refid="table" /> UO
+	</sql>
+
+	<sql id="columns_insert">
+		CODIGO_UNIDAD_ORGANICA,
+		NOMBRE_UNIDAD_ORGANICA,
+		CODIGO_EXTERNO_FUENTE,
+		CODIGO_UNIDAD_SUP_JERARQUICA,
+		DENOM_UNIDAD_SUP_JERARQUICA
+	</sql>
+
+	<sql id="insert">
+		#id#,
+		#nombre#,
+		#idExternoFuente#,
+		#idUnidadOrganicaSuperior#,
+		#nombreUnidadOrganicaSuperior#
+	</sql>
+
+
+	<sql id="findUnidadesOrganicas_fragment">
+		FROM
+			<include refid="from" />
+		<dynamic prepend="WHERE">
+			<iterate prepend="AND" property="criterios" conjunction="AND">
+
+				<isNotEqual property="criterios[].nombre.value" compareValue="ID_OFICINA_RELACIONADA">
+					<isEqual property="criterios[].operador.value" compareValue="like">
+						UPPER($criterios[].nombre.table$.$criterios[].nombre.value$) LIKE UPPER('%$criterios[].valor$%')
+					</isEqual>
+					<isNotEqual property="criterios[].operador.value" compareValue="like">
+						<isEqual property="criterios[].operador.value" compareValue="in">
+							UPPER($criterios[].nombre.table$.$criterios[].nombre.value$)
+							<iterate prepend="IN" property="criterios[].valor" open="(" close=")" conjunction=",">
+								UPPER(#criterios[].valor[]#)
+							</iterate>
+						</isEqual>
+						<isNotEqual property="criterios[].operador.value" compareValue="in">
+							UPPER($criterios[].nombre.table$.$criterios[].nombre.value$) $criterios[].operador.value$ UPPER(#criterios[].valor#)
+						</isNotEqual>
+					</isNotEqual>
+				</isNotEqual>
+			</iterate>
+		</dynamic>
+	</sql>
+
+	<select id="countFindUnidadesOrganicas" resultClass="java.lang.Integer">
+		SELECT COUNT(*) <include refid="findUnidadesOrganicas_fragment" />
+	</select>
+
+	<select id="findUnidadesOrganicas" resultMap="datosBasicosUnidadOrganica">
+		SELECT
+			<include refid="columns" />
+		<include refid="findUnidadesOrganicas_fragment" />
+		<iterate prepend="ORDER BY" property="orden" conjunction=",">
+			$orden[].table$.$orden[].value$
+		</iterate>
+	</select>
+
+	<select id="getDatosBasicosUnidadOrganicaVOs" resultMap="datosBasicosUnidadOrganica">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="from" />
+		ORDER BY UO.NOMBRE_UNIDAD_ORGANICA
+	</select>
+
+	<select id="getDatosBasicosUnidadOrganicaVO" parameterClass="java.lang.String" resultMap="datosBasicosUnidadOrganica">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="from" />
+		WHERE
+			UO.CODIGO_UNIDAD_ORGANICA=#value#
+	</select>
+
+	<insert id="addDatosBasicosUnidadOrganicaVO" parameterClass="datosBasicosUnidadOrganica">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns_insert" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<delete id="deleteDatosBasicosUnidadOrganicaVO" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id=#value:INTEGER#
+	</delete>
+
+</sqlMap>

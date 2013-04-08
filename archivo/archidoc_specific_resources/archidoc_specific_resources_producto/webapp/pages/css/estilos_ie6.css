@@ -1,0 +1,52 @@
+img, div, input, h1, h2, h3, .salir { 
+	behavior: url("../../js/iepngfix.htc") 
+}
+
+#cabecera_right {
+	width:49.8%;
+}
+
+#cabecera_int_right {
+	width:49.8%;
+}
+
+#cabecera_right h2 {
+	top: 2px;
+}
+
+#cabecera_int_right h3 {
+	top: 2px;
+}
+
+#cabecera_int_right .salir {
+	top: 6px;
+	right: 9px;
+}
+
+#barra_usuario_organo {
+	margin-top: -7px;
+}
+
+.hrLogin {
+	margin-bottom: 0;
+}
+
+label.superuser{
+	margin-top: -0.5%;
+	width: 153px;
+}
+
+.fila input.checkbox , .fila_sub input.checkbox {
+	margin-top: -0.3%;
+}
+
+.fila_right {
+	margin: 0;
+	padding: 0;
+	margin-right: 10px;
+}
+
+#areaContenido #pie_archigest {
+	MARGIN-LEFT: 21%;
+	WIDTH: 78%;
+}

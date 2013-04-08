@@ -1,0 +1,459 @@
+
+img {
+	border: 0;
+}
+
+.clearfix:after{content: ""; display: block; clear: both; height: 0; visibility: hidden;}
+.clearfix{min-height: 0; height: 1%;}
+
+/* CABECERA DE LAS APLICACIONES */
+
+#cabecera_left {
+	height: 62px;
+	float:left;
+	width:50%;
+	margin: 0px;
+	padding: 0px;
+	background: #000000 url("../img/inicio-banner-left.png") top right no-repeat;
+	/* border:1px solid yellow; */
+}
+
+#cabecera_right {
+	height: 62px;
+	width:50%;
+	float:left;
+	margin: 0px;
+	padding: 0px;
+	background: #FFFFFF url("../img/inicio-banner-right.png") top left no-repeat;
+	/* border:1px solid red; */
+}
+
+#cabecera_left h1 {
+	width: 245px;
+	height: 60px;
+	margin: 0px 0px 0px 10px;
+	padding: 0px;
+	text-indent: -3000px;
+	background: url("../img/inicio-ieci.png") top left no-repeat;
+	border:none;
+}
+
+#cabecera_right h2 {
+	position: absolute;
+	top: 7px;
+	right: 16px;
+	width: 179px;
+	height: 58px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	background: url("../img/inicio-nombre.png") top left no-repeat;
+	text-indent: -3000px;
+	border:none;
+}
+
+#cabecera_int_left {
+	height: 37px;
+	float:left;
+	width:50%;
+	margin: 0px;
+	padding: 0px;
+	background: #000000 url("../img/interna-banner-left.png") top right no-repeat;
+}
+
+#cabecera_int_right {
+	height: 37px;
+	width:49.8%;
+	float:left;
+	margin: 0px;
+	padding: 0px;
+	background: #FFFFFF url("../img/interna-banner-right.png") top left no-repeat;
+}
+
+#cabecera_int_left h1 {
+	width: 241px;
+	height: 37px;
+	line-height: 37px;
+	padding: 0px;
+	margin: 0px 0px 0px 10px;
+	background: url("../img/interna-gallery.png") 0px 10px no-repeat;
+	text-indent: -3000px;
+	border:none;
+}
+
+#cabecera_int_right h3 {
+	position: absolute;
+	top: 7px;
+	right: 90px;
+	width: 102px;
+	height: 33px;
+	margin: 0px;
+	padding: 0px;
+	background: url("../img/interna-nombre.png") 0px 0px no-repeat;
+	text-indent: -3000px;
+	border:none;
+}
+
+#cabecera_int_right .salir {
+	position: absolute;
+	background: url("../img/interna-salir.png") top left no-repeat;
+	text-align: right;
+	top: 11px;
+	right: 18px;
+	margin: 0px;
+	padding: 0px;
+	border:none;
+}
+
+#cabecera_int_right .salir a {
+	height: 25px;
+	line-height: 25px;
+	padding-left: 30px;
+	color: #000000;
+	font-weight: bold;
+	font-family: verdana, arial, tahoma, geneva, sans-serif;
+	text-decoration: none;
+	font-size: 90%;
+}
+
+/* BARRAS DE USUARIO */
+/* area de usuario con texto a izquierda y botón de ayuda a derecha */
+
+#usuario {
+	background: url("../img/bg_right_usuario.jpg") bottom right no-repeat;
+	height: 23px;
+	clear: both;
+}
+
+#barra_usuario {
+	margin: 0px;
+	background: url("../img/bg_left_usuario.jpg") left bottom no-repeat;
+	padding: 0px;
+	height: 23px;
+	line-height: 23px;
+}
+
+#barra_usuario h1 {
+	font-weight: bold;	
+	font-family: arial;
+	color: #333333;
+	font-size: 100%;
+	float: left;
+	margin: 0px 5px 0px 10px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario h2 {
+	font-weight: normal;
+	font-family: arial;
+	color: #333333;
+	font-size: 100%;
+	float: left;
+	margin: 0px 15px 0px 10px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario h3 {
+	font-weight: bold;
+	font-family: verdana;
+	color: #333333;
+	font-size: 90%;
+	float: left;
+	margin: 0px 15px 0px 10px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario .ayuda  {
+	margin: 0px 10px;
+	text-align: right;
+}
+
+#barra_usuario .ayuda a {
+	background: url("../img/help.gif") top right no-repeat;
+	text-decoration: none;
+	padding: 2px 10px;
+}
+
+#barra_usuario .miga {
+	float: left;
+	margin: 0px 10px;
+	font-weight: normal;
+	font-family: verdana;
+	color: #333333;
+	font-size: 90%;
+}
+
+#barra_usuario .miga .gotoExp {
+	background: url("../img/icon_go.gif") top left no-repeat;
+	padding-left: 24px;
+	margin-left: 4px;
+}
+
+#barra_usuario .miga input {
+	height:16px;
+	font-size:100%; 
+	padding:0px;
+	border:1px solid #6C6C6C;
+	margin-left:4px;
+	margin-bottom:2px;
+}
+
+#barra_usuario .bloqueo {
+	float: left;
+	margin: 0px 10px;
+	font-weight: bold;
+	font-family: verdana;
+	color: #E80000;
+	font-size: 100%;
+}
+
+#barra_usuario .usuario  {
+	background: url("../img/bg_mid_usuario.jpg") bottom;
+	margin: 0px 9px;
+	text-align: right;
+	font-weight: bold;
+	font-family: verdana;
+	color: #333333;
+	font-size: 90%;
+}
+
+
+/* area de usuario con info de organo, desplegable, y botón para desplegar a derecha */
+
+#usuario_organo {
+	background: url("../img/bg_right_usuario_organo.jpg") bottom right repeat-y;
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#barra_usuario_organo {
+	background: url("../img/bg_left_usuario_organo.jpg") left bottom repeat-y;
+	margin: 0px;
+	padding: 2px 0px 2px 0px;
+	overflow: hidden;
+}
+
+#barra_usuario_organo h2 {
+	font-weight: bold;
+	font-family: verdana;
+	color: #333333;
+	font-size: 90%;
+	float: left;
+	margin: 2px 15px 4px 10px;
+	padding: 0px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario_organo ul {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+}
+
+.usuario_plegado ul {
+	display: none;
+}
+
+.usuario_desplegado ul {
+	display: block;
+}
+
+#barra_usuario_organo ul li {
+	background: left top no-repeat;
+	padding-left: 10px;
+	height: 16px;
+	line-height: 16px;
+}
+
+#barra_usuario_organo ul.usuario_plegado li {
+	background-image: url("../img/padre_up.gif");
+}
+
+#barra_usuario_organo ul.usuario_desplegado li {
+	background-image: url("../img/padre.gif");
+}
+
+#barra_usuario_organo ul.usuario_desplegado li li {
+	background: url("../img/descendiente.gif") left 0px no-repeat;
+	padding-left: 20px;
+	position: relative;
+	left: -10px;
+}
+
+#barra_usuario_organo ul.usuario_desplegado li li li {
+	left: -10px;
+}
+
+#barra_usuario_organo ul.usuario_desplegado li.ultimo {
+	background: url("../img/descendiente_last.gif") left 0px no-repeat;
+	margin-bottom: 8px;
+}
+
+#barra_usuario_organo p {
+	margin: 0px 8px;
+	padding: 2px 0px 2px 0px;
+	text-align: right;
+}
+
+#barra_usuario_organo .imgInfoUserDown {
+	background: url("../img/arrow_down.gif") 0px 0px no-repeat;
+	padding: 4px 8px 0px 4px;
+	text-decoration:none;
+}
+
+#barra_usuario_organo .imgInfoUserUp {
+	background: url("../img/arrow_up.gif") 0px 0px no-repeat;
+	padding: 4px 8px 0px 4px;
+	text-decoration:none;
+}
+
+/****/
+
+#contenido_centrado {
+	width: 669px;
+	margin: 60px auto 0px auto;
+	overflow: hidden;
+	clear: both;
+}
+
+.ficha_fixed {
+	width: 667px;
+	background: url("../img/bottom_right.gif") bottom right no-repeat;
+}
+
+.ficha_fixed .encabezado {
+	background: url("../img/top_right.gif") top right no-repeat;	
+}
+
+.ficha_fixed .left_encabezado {
+	margin: 0px 0px 0px 0px;
+	background: url("../img/top_left.gif") left 0px no-repeat;
+	padding: 2px 0px;
+}
+
+.ficha_fixed h3 {
+	background: url("../img/bullet.gif") 14px 4px no-repeat;
+	color: #6C6C6C;
+	font-size: 100%;
+	text-decoration : none;	
+	padding: 0px 0px 0px 30px;
+	margin: 3px 0px;
+}
+
+.ficha_fixed div.cuerpo {
+	background: url("../img/bottom_left.gif") bottom left no-repeat;
+	padding-bottom: 8px;	
+}
+
+.ficha_fixed div.cuerpo div.contenido_cuerpo {
+	border: 1px solid #c7d9d3;
+	background-color: #ffffff;
+	margin: 0px 5px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.ficha_fixed div.cuerpo div.contenido_cuerpo_login {
+	border: 1px solid #CCCCCC;
+	background: #FFFFFF url("../img/inicio-sesion.png") 0px 0px no-repeat;
+	margin: 0px 7px;
+	width: 651px;
+	Height: 231px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.seccion_login {
+	margin: 10px 0px 0px 0px;
+	width:350px;
+	float:right;
+}
+
+.seccion_login h2, .seccion_login h3 {
+	font-weight: bold;	
+	font-family: arial;
+	color: #333333;
+	font-size: 120%;
+	border:none;
+	background: transparent;
+	clear:both;
+	margin: 0px;
+	padding: 0px;
+}
+
+.seccion_login h3 {
+	border-bottom: 1px solid #333333;
+	padding-bottom: 0px;
+	margin-bottom: 30px;
+}
+
+.fila, .fila_sub, .fila_right {
+	font-size: 90%;
+	margin: 3px 15px;
+	padding-bottom:3px;
+	clear:both;
+}
+
+.fila_sub {
+	background: url(../img/fondo_puntos.gif) repeat-x left bottom; 
+}
+
+.fila_right {
+	float:right;
+}
+
+.fila label, .fila_sub label {
+	color: #6C6C6C; 
+	float:left;
+	font-weight: bold;
+	padding-top: 2px
+}
+
+.fila input, .fila_sub input {
+	height:16px;
+	font-size:100%; 
+	padding:0px;
+	border:1px solid #6C6C6C;
+	margin-right:10px;
+}
+
+.errorLogin {
+	padding: 0px 2px 5px 2px;
+	margin: 0px;
+	clear: both;
+}
+
+label.login {
+	width:140px;
+	text-align:left;
+}
+input.login {
+	width:160px;
+}
+
+.fila input.checkbox , .fila_sub input.checkbox {
+	border: none;
+	width: 14px;
+	float: left;
+}
+
+.fila a, .fila a:visited, .fila a:hover {
+	color: #6C6C6C; 
+	font-size:90%; 
+	
+}
+.fila_right input.botonFondo {
+	border: none; 
+	background: url(../img/fondo_boton.jpg) no-repeat; 
+	font: bold 11px "Arial"; 
+	width: 87px; 
+	color: #fff; 
+	height: 20px
+}
+
+
+#copyright{
+	position:relative;
+	margin-top: 10%;
+	text-align: center;
+}

@@ -1,0 +1,27 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_ConsultaRegistroTelematicoWeb/src/main/resources/SIGEM_ConsultaRegistroTelematicoWeb</directory>
+			<outputDirectory>/SIGEM_ConsultaRegistroTelematicoWeb</outputDirectory>
+			<includes>
+				<include>log4j.properties</include>
+				<include>consultaRegistroTelematicoWebConfig.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_ConsultaRegistroTelematicoWeb/src/main/resources/SIGEM_ConsultaRegistroTelematicoWeb</directory>
+			<outputDirectory>/SIGEM_ConsultaRegistroTelematicoWeb</outputDirectory>
+			<includes>
+				<include>skin*/</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

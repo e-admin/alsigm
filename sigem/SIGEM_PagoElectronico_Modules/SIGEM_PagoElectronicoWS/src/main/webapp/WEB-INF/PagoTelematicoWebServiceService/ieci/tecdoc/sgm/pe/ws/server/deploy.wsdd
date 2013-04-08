@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from PagoTelematicoWebServiceService WSDL service -->
+
+  <service name="PagoTelematicoWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.pe.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="PagoTelematicoWebServiceService"/>
+      <parameter name="schemaQualified" value="http://server.ws.pe.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="PagoTelematicoWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.pe.ws.server.PagoTelematicoWebService"/>
+      <parameter name="wsdlPortType" value="PagoTelematicoWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.pe.sgm.tecdoc.ieci" name="altaLiquidacion" qname="operNS:altaLiquidacion" returnQName="retNS:altaLiquidacionReturn" returnType="rtns:Liquidacion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.pe.sgm.tecdoc.ieci" qname="pns:poLiquidacion" type="tns:Liquidacion"/>
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="bajaLiquidacion" qname="operNS:bajaLiquidacion" returnQName="retNS:bajaLiquidacionReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.pe.sgm.tecdoc.ieci" qname="pns:poLiquidacion" type="tns:Liquidacion"/>
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.pe.sgm.tecdoc.ieci" name="buscarLiquidaciones" qname="operNS:buscarLiquidaciones" returnQName="retNS:buscarLiquidacionesReturn" returnType="rtns:ListaLiquidaciones" soapAction="">
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.pe.sgm.tecdoc.ieci" qname="pns:poCriterio" type="tns:CriterioBusquedaLiquidacion"/>
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.pe.sgm.tecdoc.ieci" name="buscarTasas" qname="operNS:buscarTasas" returnQName="retNS:buscarTasasReturn" returnType="rtns:ListaTasas" soapAction="">
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.pe.sgm.tecdoc.ieci" qname="pns:poCriterio" type="tns:CriterioBusquedaTasa"/>
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.pe.sgm.tecdoc.ieci" name="detallePago" qname="operNS:detallePago" returnQName="retNS:detallePagoReturn" returnType="rtns:Pago" soapAction="">
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.pe.sgm.tecdoc.ieci" qname="pns:poPago" type="tns:Pago"/>
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.pe.sgm.tecdoc.ieci" name="modificarLiquidacion" qname="operNS:modificarLiquidacion" returnQName="retNS:modificarLiquidacionReturn" returnType="rtns:Liquidacion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.pe.sgm.tecdoc.ieci" qname="pns:poLiquidacion" type="tns:Liquidacion"/>
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.pe.sgm.tecdoc.ieci" name="obtenerDatosTasa" qname="operNS:obtenerDatosTasa" returnQName="retNS:obtenerDatosTasaReturn" returnType="rtns:Tasa" soapAction="">
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.pe.sgm.tecdoc.ieci" qname="pns:poTasa" type="tns:Tasa"/>
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.pe.sgm.tecdoc.ieci" name="obtenerDocumentoPago" qname="operNS:obtenerDocumentoPago" returnQName="retNS:obtenerDocumentoPagoReturn" returnType="rtns:DocumentoPago" soapAction="">
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.pe.sgm.tecdoc.ieci" qname="pns:poPago" type="tns:Pago"/>
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.pe.sgm.tecdoc.ieci" name="realizarPago" qname="operNS:realizarPago" returnQName="retNS:realizarPagoReturn" returnType="rtns:Pago" soapAction="">
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.pe.sgm.tecdoc.ieci" qname="pns:poPago" type="tns:Pago"/>
+        <parameter xmlns:pns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <parameter name="allowedMethods" value="realizarPago modificarLiquidacion obtenerDocumentoPago bajaLiquidacion detallePago buscarTasas altaLiquidacion obtenerDatosTasa buscarLiquidaciones"/>
+
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:RetornoServicio" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:ListaTasas" type="java:ieci.tecdoc.sgm.pe.ws.server.ListaTasas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:Entidad" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:CriterioBusquedaTasa" type="java:ieci.tecdoc.sgm.pe.ws.server.CriterioBusquedaTasa" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:Liquidacion" type="java:ieci.tecdoc.sgm.pe.ws.server.Liquidacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:ArrayOfLiquidacion" type="java:ieci.tecdoc.sgm.pe.ws.server.Liquidacion[]" innerType="cmp-ns:Liquidacion" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:DocumentoPago" type="java:ieci.tecdoc.sgm.pe.ws.server.DocumentoPago" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:Tasa" type="java:ieci.tecdoc.sgm.pe.ws.server.Tasa" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:CriterioBusquedaLiquidacion" type="java:ieci.tecdoc.sgm.pe.ws.server.CriterioBusquedaLiquidacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:Pago" type="java:ieci.tecdoc.sgm.pe.ws.server.Pago" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:ListaLiquidaciones" type="java:ieci.tecdoc.sgm.pe.ws.server.ListaLiquidaciones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.pe.sgm.tecdoc.ieci" qname="ns:ArrayOfTasa" type="java:ieci.tecdoc.sgm.pe.ws.server.Tasa[]" innerType="cmp-ns:Tasa" encodingStyle=""/>
+  </service>
+</deployment>

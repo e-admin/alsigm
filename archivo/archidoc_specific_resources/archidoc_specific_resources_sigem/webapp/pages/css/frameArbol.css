@@ -1,0 +1,22 @@
+/*	SIGEM_archivo */
+BODY {
+/*	background-color: #F2F2F2; */
+	background: #FFFFFF; /*url(../images/arboles/fondo_menu.jpg) no-repeat 98% 0;*/
+	border: 0px solid #D2D2D2;
+	width:96%;
+	height:96%;
+	margin:0px;
+	padding-left:5px;
+	padding-top:5px;
+}
+
+TD {font-size: 10px;
+	font-family: verdana,helvetica;
+	text-decoration: none;
+	color: #003399;
+	font-weight: bold;
+	white-space: nowrap;
+}
+A  {text-decoration: none;
+	color: #003399;
+}

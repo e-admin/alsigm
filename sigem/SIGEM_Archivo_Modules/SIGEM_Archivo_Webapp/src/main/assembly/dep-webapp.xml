@@ -1,0 +1,16 @@
+<assembly>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>../SIGEM_Archivo_Web/src/main/webapp</directory>
+			<outputDirectory>/</outputDirectory>			
+			<excludes>
+				<exclude>**/lib/**</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+</assembly>
+

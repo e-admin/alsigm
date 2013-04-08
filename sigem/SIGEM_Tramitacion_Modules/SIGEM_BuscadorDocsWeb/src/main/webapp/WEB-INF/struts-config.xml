@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean 
+			name="searchForm" type="com.tsol.modulos.buscador.beans.SearchForm">
+		</form-bean>
+	</form-beans>
+	<global-forwards>
+	</global-forwards>
+	<action-mappings>
+		<action path="/search"
+				name="searchForm" 
+				type="com.tsol.modulos.buscador.actions.SearchAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/search.jsp"/>
+				<forward name="input" path="/search.jsp"/> 
+		</action>
+		<action path="/searchResult" 
+				name="searchForm"
+				type="com.tsol.modulos.buscador.actions.SearchResultAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/searchResult.jsp"/> 
+				<forward name="input" path="/searchResult.jsp"/> 
+		</action>
+		<action path="/showDocument" 
+				type="com.tsol.modulos.buscador.actions.ShowDocumentAction"
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/searchResult.jsp"/> 
+		</action>
+	</action-mappings>
+	
+	<message-resources parameter="com.tsol.modulos.buscador.resources.BuscadorDocsMessage" />
+	
+</struts-config>

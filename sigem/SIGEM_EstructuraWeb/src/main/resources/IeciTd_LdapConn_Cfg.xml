@@ -1,0 +1,16 @@
+<Config>   
+   <Conection>
+      <Provider>1</Provider>
+      <Pooling>N</Pooling>
+      <Pooling_Timeout>0</Pooling_Timeout>
+   </Conection>
+   <Auth_Config>
+      <MaxNumTries>3</MaxNumTries>
+      <User_Search_By_Dn>N</User_Search_By_Dn>
+      <User_Start>CN=Users,DC=sigem,DC=es</User_Start>
+      <User_Scope>1</User_Scope>
+      <User_Attribute>sAMAccountName</User_Attribute>
+      <Group_Start>CN=Users,DC=sigem,DC=es</Group_Start>
+      <Group_Scope>1</Group_Scope>
+   </Auth_Config>
+</Config>

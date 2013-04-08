@@ -1,0 +1,25 @@
+<beans>
+
+	<bean id="jndi" class="org.apache.xbean.spring.jndi.DefaultContext">
+		<property name="entries">
+			<map>
+				<entry key="java:comp/env/jdbc/tramitadorDS">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://postgresql-9_0-server:5432/invesflow_6.4" />
+						<property name="username" value="invesflow" />
+						<property name="password" value="invesflow" />
+					</bean>
+				</entry>
+				<entry key="java:comp/env/jdbc/registroDS">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://postgresql-9_0-server:5432/invesflow_6.4" />
+						<property name="username" value="invesflow" />
+						<property name="password" value="invesflow" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

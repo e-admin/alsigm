@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<catalogo_procedimientos>
+<!-- Procedimiento P-EJEMPLO -->
+<procedimiento>
+    <id>P-EJEMPLO</id>
+    <codigo>P-EJEMPLO</codigo>
+    <nombre>Nombre Procedimiento P-EJEMPLO</nombre>
+    <sistema_productor>
+        <id>04</id>
+        <nombre>Tramitador</nombre>
+    </sistema_productor>
+    <titulo_corto>Título Corto del Procedimiento P-EJEMPLO</titulo_corto>
+    <objeto>Objeto del Procedimiento P-EJEMPLO</objeto>
+    <tramites>
+        <tramite>Trámite 1</tramite>
+        <tramite>Trámite 2</tramite>
+    </tramites>
+    <normativa>Normativa del Procedimiento P-EJEMPLO</normativa>
+    <documentos>Documentos del Procedimiento P-EJEMPLO</documentos>
+    <productores>
+        <productor>
+            <id>IdOrgano</id>
+            <fecha_inicio>01/01/2000</fecha_inicio>
+        </productor>
+    </productores>
+</procedimiento>
+<!-- Fin de Procedimiento P-EJEMPLO -->
+
+</catalogo_procedimientos>

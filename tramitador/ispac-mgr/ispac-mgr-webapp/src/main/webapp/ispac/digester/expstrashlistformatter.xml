@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter defaultSort="2">
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='PROCESOS:ID' 
+				 readOnly='false'
+				 fieldType='CHECKBOX' 
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 columnClass='width5percent'
+				 />
+	
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='PPROCEDIMIENTOS:NOMBRE'
+				 readOnly='false'
+				 titleKey='formatter.expTrash.nombreProcedimiento' 
+				 fieldType='LIST' 
+				 sortable='true'
+				 styleClass='displayLink'
+				 columnClass="width20percent"
+				 />			 
+ 
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 fieldLink='PROCESOS:NUMEXP' 
+				 titleKey='formatter.expTrash.numExp' 
+				 fieldType='LINK'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 columnClass='width15percent'
+				 styleClass='displayLink'
+				 url='selectAnActivity'
+				 id='numexp'
+				 property='PROCESOS:NUMEXP'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'/>	
+	
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='PROCESOS:NUMEXP'
+	             readOnly='false'
+		         titleKey='formatter.batchTask.numExp'
+		         fieldType='LIST' 
+		         columnClass='width15percent'
+        		 media='excel csv xml pdf'/>
+        		 
+				 	 
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='PROCESOS:FECHA_INICIO'
+				 readOnly='false'
+				 format='dd/MM/yyyy HH:mm:ss' 
+				 titleKey='formatter.expsTrash.fechaCreacion' 
+				 fieldType='LIST' 
+				 columnClass="width15percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='PROCESOS:FECHA_ELIMINACION'
+				 readOnly='false'
+				 format='dd/MM/yyyy HH:mm:ss ' 
+				 titleKey='formatter.expsTrash.fechaEliminacion' 
+				 fieldType='LIST' 
+				 columnClass="width15percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+	
+</beanformatter>

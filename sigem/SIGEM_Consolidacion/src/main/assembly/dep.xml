@@ -1,0 +1,18 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/src/main/resources/SIGEM_Consolidacion/default</directory>
+			<outputDirectory>/SIGEM_Consolidacion/default</outputDirectory>	
+			<includes>
+				<include>consolidacion.properties</include>
+			</includes>		
+		</fileSet>		
+	</fileSets>
+
+</assembly>

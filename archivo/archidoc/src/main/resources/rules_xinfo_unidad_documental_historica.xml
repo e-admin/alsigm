@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<digester-rules>
+   <pattern value="UNIDAD_DOCUMENTAL_HISTORICA">
+	                
+      <call-method-rule pattern="FECHA_INICIAL/FECHA" methodname="setFechaInicial" paramcount="0"/>	                
+      <call-method-rule pattern="FECHA_FINAL/FECHA" methodname="setFechaFinal" paramcount="0"/>
+      
+   </pattern>
+</digester-rules>

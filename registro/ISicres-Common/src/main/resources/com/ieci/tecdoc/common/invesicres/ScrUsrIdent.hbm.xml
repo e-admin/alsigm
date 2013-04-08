@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrUsrIdent" 
+    table="SCR_USRIDENT"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_USRIDENT"
+    </meta>
+
+    <id
+        name="userId"
+        type="java.lang.Integer"
+        column="USERID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="USERID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="tmstamp"
+        type="java.sql.Timestamp"
+        column="TMSTAMP"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TMSTAMP"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="firstName"
+        type="java.lang.String"
+        column="FIRST_NAME"
+        not-null="true"
+        length="25"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="FIRST_NAME"
+            length="25"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="secondName"
+        type="java.lang.String"
+        column="SECOND_NAME"
+        not-null="false"
+        length="25"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="SECOND_NAME"
+            length="25"
+            not-null="false"
+        </meta>    
+    </property>
+    <property
+        name="surName"
+        type="java.lang.String"
+        column="SURNAME"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="SURNAME"
+            length="25"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

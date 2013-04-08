@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt 
+			type="BeanPropertySimpleFmt" 
+			property='UID' 
+			readOnly='false'
+			titleKey='catalog.supervision.UID' 
+			fieldType='LIST' 
+			width='' />
+	<propertyfmt 
+			type="BeanPropertyLdapReduceSizeFmt" 
+			property='DN' 
+			readOnly='false'
+			titleKey='catalog.supervision.DN' 
+			fieldType='LIST' 
+			width='25'/>
+	<propertyfmt 
+			type="BeanPropertySimpleFmt" 
+			property='RELATIVEDN' 
+			readOnly='false'
+			titleKey='catalog.supervision.relativeDN' 
+			fieldType='LIST' 
+			width=''/>		
+	<propertyfmt 
+			type="BeanPropertySimpleFmt" 
+			property='RESPNAME' 
+			readOnly='false'
+			titleKey='catalog.common.nombre' 
+			fieldType='LIST' 
+			width=''/>		
+</beanformatter>

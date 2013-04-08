@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='empty'
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='FIELD'
+				 readOnly='false'
+				 titleKey='form.entity.validation.propertyLabel.field'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='MANDATORY'
+				 readOnly='false'
+				 titleKey='form.entity.validation.propertyLabel.mandatory'
+				 fieldType='BOOLEAN'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width10percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TBL_NAME'
+				 readOnly='false'
+				 titleKey='form.entity.validation.propertyLabel.tbl'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+			 	 columnClass='width30percent'
+			 	 />
+			
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='HIERARCHICALNAME'
+				 readOnly='false'
+				 titleKey='form.entity.validation.propertyLabel.hierarchicalTable'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+			 	 columnClass='width30percent'
+			 	 />
+			
+			
+			
+	<!-- 
+	<propertyfmt type="BeanPropertySimpleFmt"
+			property='CLAZZ'
+			readOnly='false'
+			titleKey='form.entity.validation.propertyLabel.clss'
+			fieldType='DATA'
+			headerClass='headerDisplay'
+			sortable='false'
+			decorator=''/>
+	-->
+
+</beanformatter>

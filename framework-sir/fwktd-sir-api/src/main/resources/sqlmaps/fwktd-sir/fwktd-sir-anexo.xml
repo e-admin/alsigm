@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AnexoVO">
+
+	<typeAlias alias="anexo"
+		type="es.ieci.tecdoc.fwktd.sir.core.vo.AnexoVO" />
+
+	<resultMap id="anexo" class="es.ieci.tecdoc.fwktd.sir.core.vo.AnexoVO">
+		<result property="id" column="id" />
+		<result property="idAsientoRegistral" column="id_asiento_registral" />
+		<result property="identificadorFichero" column="cd_id_fichero" />
+		<result property="nombreFichero" column="ds_nombre_fichero" />
+		<result property="validezDocumento" column="cd_validez" />
+		<result property="tipoDocumento" column="cd_tipo_documento" />
+		<result property="certificado" column="certificado" />
+		<result property="validacionOCSPCertificado" column="validacion_ocsp" />
+		<result property="firma" column="firma" />
+		<result property="timestamp" column="ts_fichero" />
+		<result property="hash" column="hash" />
+		<result property="tipoMIME" column="tipo_mime" />
+		<result property="identificadorFicheroFirmado" column="id_fichero_firmado" />
+		<result property="identificadorDocumentoFirmado" column="cd_id_documento_firmado" />
+		<result property="observaciones" column="ds_observaciones" />
+	</resultMap>
+
+	<sql id="table">sir_anexos</sql>
+	<sql id="columns">
+		id,
+		id_asiento_registral,
+		cd_id_fichero,
+		ds_nombre_fichero,
+		cd_validez,
+		cd_tipo_documento,
+		certificado,
+		validacion_ocsp,
+		firma,
+		ts_fichero,
+		hash,
+		tipo_mime,
+		id_fichero_firmado,
+		cd_id_documento_firmado,
+		ds_observaciones
+	</sql>
+	<sql id="columns_insert">
+		id,
+		id_asiento_registral,
+		cd_id_fichero,
+		ds_nombre_fichero,
+		cd_validez,
+		cd_tipo_documento,
+		certificado,
+		validacion_ocsp,
+		firma,
+		ts_fichero,
+		hash,
+		tipo_mime,
+		id_fichero_firmado,
+		cd_id_documento_firmado,
+		ds_observaciones
+	</sql>
+	<sql id="insert">
+		#id:INTEGER#,
+		#idAsientoRegistral:INTEGER#,
+		#identificadorFichero#,
+		#nombreFichero#,
+		#validezDocumento#,
+		#tipoDocumento#,
+		#certificado#,
+		#validacionOCSPCertificado#,
+		#firma#,
+		#timestamp#,
+		#hash#,
+		#tipoMIME#,
+		#identificadorFicheroFirmado:INTEGER#,
+		#identificadorDocumentoFirmado#,
+		#observaciones#
+	</sql>
+	<sql id="update">
+		id_asiento_registral=#idAsientoRegistral:INTEGER#,
+		cd_id_fichero=#identificadorFichero#,
+		ds_nombre_fichero=#nombreFichero#,
+		cd_validez=#validezDocumento#,
+		cd_tipo_documento=#tipoDocumento#,
+		certificado=#certificado#,
+		validacion_ocsp=#validacionOCSPCertificado#,
+		firma=#firma#,
+		hash=#hash#,
+		ts_fichero=#timestamp#,
+		tipo_mime=#tipoMIME#,
+		id_fichero_firmado=#identificadorFicheroFirmado:INTEGER#,
+		cd_id_documento_firmado=#identificadorDocumentoFirmado#,
+		ds_observaciones=#observaciones#
+	</sql>
+
+	<select id="getAnexoVOs" resultMap="anexo">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY ds_nombre_fichero
+	</select>
+
+	<select id="getAnexoVOsByAsientoRegistral" parameterClass="java.lang.String" resultMap="anexo">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			id_asiento_registral=#value:INTEGER#
+		ORDER BY id
+	</select>
+
+	<select id="getAnexoVO" parameterClass="java.lang.String" resultMap="anexo">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+
+<!--
+	<select id="getContenidoAnexo" parameterClass="java.lang.String" resultClass="java.util.HashMap">
+		SELECT
+			contenido
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+-->
+
+	<select id="getUIDGestorDocumental" parameterClass="java.lang.String" resultClass="java.lang.String">
+		SELECT
+			uid_dm
+		FROM
+			<include refid="table" />
+		WHERE
+			id=#value:INTEGER#
+	</select>
+
+	<insert id="addAnexoVO" parameterClass="anexo">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns_insert" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<update id="updateAnexoVO" parameterClass="anexo">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE id=#id:INTEGER#
+	</update>
+
+<!--
+	<update id="updateContenidoAnexo">
+		UPDATE
+			<include refid="table" />
+		SET
+			contenido=#contenido:BLOB#,
+			hash=#hash:BLOB#
+		WHERE
+			id=#id:INTEGER#
+	</update>
+-->
+
+	<update id="updateUIDGestorDocumental">
+		UPDATE
+			<include refid="table" />
+		SET
+			uid_dm=#uidGestorDocumental#
+		WHERE
+			id=#id:INTEGER#
+	</update>
+
+	<delete id="deleteAnexoVO" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteAnexoVOs">
+		DELETE FROM
+			<include refid="table" />
+	</delete>
+
+<!--
+	<delete id="deleteAnexosByIdAsientoRegistral" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id_asiento_registral=#value:INTEGER#
+	</delete>
+-->
+
+	<select id="getIdsAnexosByIdAsientoRegistral" parameterClass="java.lang.String" resultClass="java.lang.String">
+		SELECT
+			id
+		FROM
+			<include refid="table" />
+		WHERE
+			id_asiento_registral=#value:INTEGER#
+	</select>
+
+</sqlMap>

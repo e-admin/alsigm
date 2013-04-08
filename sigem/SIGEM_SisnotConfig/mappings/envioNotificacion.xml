@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+        <class name="es.map.sn.correspondencia.mapping.Remesa">
+                <map-to xml="NOTIF"/>
+
+                <field name="codEmisor"  type="java.lang.String">
+                        <bind-xml name="admon" />
+                </field>
+                <field name="tipoCorrespondencia"  type="java.lang.String">
+                        <bind-xml name="aplicacion" />
+                </field>
+                <field name="codRemesa"  type="java.lang.Long">
+                        <bind-xml name="remesa" />
+                </field>
+                <field name="contenidos" type="es.map.sn.correspondencia.mapping.Notificacion" collection="collection">
+                        <bind-xml name="contenido" />
+                </field>
+                <field name="firma"  type="java.lang.String">
+                        <bind-xml name="firma_de_emisor" />
+                </field>
+
+        </class>
+
+        <class name="es.map.sn.correspondencia.mapping.Notificacion">
+                <field name="DEU" type="java.lang.String">
+                        <bind-xml name="DEU" node="element"/>
+                </field>
+                <field name="nif"
+                       type="java.lang.String">
+                        <bind-xml name="nif" node="element"/>
+                </field>
+                <field name="nombreRS" type="java.lang.String">
+                        <bind-xml name="nombre	" node="element"/>
+                </field>
+
+                <field name="ncc" type="java.lang.Long">
+                        <bind-xml name="ncc" node="element"/>
+                </field>
+                <field name="codProcedimiento"
+                       type="java.lang.String">
+		                <bind-xml name="codproc" node="element"/>
+                </field>
+
+                <field name="tipoProcedimiento"
+                       type="java.lang.String">
+                        <bind-xml name="tipo_proc" node="element"/>
+                </field>
+
+                <field name="numExpediente"
+                       type="java.lang.String">
+                        <bind-xml name="NumExpediente" node="element"/>
+                </field>
+
+                <field name="numRegistro"
+                       type="java.lang.String">
+                        <bind-xml name="NumRegistro" node="element"/>
+                </field>
+
+                <field name="fechaRegistro"
+                       type="java.lang.String">
+                        <bind-xml name="FechaRegistro" node="element"/>
+                </field>
+
+                <field name="asunto"
+                       type="java.lang.String">
+                        <bind-xml name="resumen" node="element"/>
+                </field>
+
+                <field name="cuerpo"
+                       type="java.lang.String">
+                        <bind-xml name="cuerpo" node="element"/>
+                </field>
+
+                <field name="nombreArchivo"
+                       type="java.lang.String">
+                        <bind-xml name="nombre_adjunto" node="element"/>
+                </field>
+
+                <field name="firma"
+                       type="java.lang.String">
+                        <bind-xml name="firmaNotif" node="element"/>
+                </field>
+
+                <field name="documento"
+                       type="java.lang.String">
+                        <bind-xml name="notificacion" node="element"/>
+                </field>      
+
+	            <field name="codError"
+                      type="java.lang.String">
+                        <bind-xml name="recepcion" node="element"/>
+                </field>
+        </class>
+</mapping>

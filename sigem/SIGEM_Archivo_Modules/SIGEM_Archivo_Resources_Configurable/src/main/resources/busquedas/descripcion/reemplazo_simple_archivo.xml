@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Busqueda version="5.0" descripcion="Búsqueda avanzada en selección">
+	<entrada>
+ 		<campo nombre="Ambito" mostrar="S" tipo="4"/>
+ 		<campo nombre="Numero_Expediente" mostrar="S" tipo="1">
+	 		<restriccion id="Rangos" tipo="-6"/>
+ 		</campo>
+		<campo nombre="Productor" mostrar="N" tipo="4">
+			<restriccion id="Productor" tipo="5">
+				<listasDescriptoras>
+					<lista>ID_LIST_INSTITUCION</lista>
+					<lista>ID_LIST_PERSONA</lista>
+					<lista>ID_LIST_FAMILIA</lista>
+				</listasDescriptoras>
+			</restriccion>
+		</campo>
+		<campo nombre="Niveles_Descripcion" mostrar="N" tipo="4"/>
+		<campo nombre="Estado" mostrar="N" tipo="4"/>
+		<campo nombre="Condiciones_Avanzadas" mostrar="S" tipo="0">
+			<restriccion id="Ficha"/>
+		</campo>
+		<campo nombre="Tipo_Elemento" mostrar="S" tipo="4"/>
+		<campo nombre="Elementos_Excluir" mostrar="S" tipo="4"/>
+	</entrada>
+	<salida>
+		<campo nombre="Codigo_Referencia" mostrar="S"  mostrarLink="S"  tipo="1"/>
+		<campo nombre="Titulo" mostrar="S"  mostrarLink="S" tipo="1"/>
+		<campo nombre="Fecha_Inicial" mostrar="S" tipo="3">
+			<restriccion id="Fecha_Inicial"/>
+		</campo>
+		<campo nombre="Fecha_Final" mostrar="S" tipo="3">
+			<restriccion id="Fecha_Final"/>
+		</campo>
+	</salida>
+	<ordenacion tipo="ASC">
+		<orden>Codigo_Referencia</orden>
+	</ordenacion>
+</Busqueda>

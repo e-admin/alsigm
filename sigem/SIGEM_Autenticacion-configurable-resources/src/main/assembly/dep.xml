@@ -1,0 +1,33 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_AutenticacionWeb/src/main/resources/SIGEM_AutenticacionWeb</directory>
+			<outputDirectory>/SIGEM_AutenticacionWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_AutenticacionWeb/src/main/resources/SIGEM_AutenticacionWeb</directory>
+			<outputDirectory>/SIGEM_AutenticacionWeb</outputDirectory>
+			<includes>
+				<include>skin*/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_Autenticacion/src/main/resources/SIGEM_Autenticacion</directory>
+			<outputDirectory>/SIGEM_Autenticacion</outputDirectory>
+			<includes>
+				<include>Autenticacion.properties</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

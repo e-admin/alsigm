@@ -1,0 +1,980 @@
+
+<!DOCTYPE struts-config PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+   "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <form-beans>
+    <form-bean name="defaultForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.EntityForm" />
+    <form-bean name="loginForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.LoginForm" />
+    <form-bean name="formsForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.FormsForm" />
+    <form-bean name="selectSearchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.SelectSearchForm" />
+    <form-bean name="batchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.BatchForm" />
+    <form-bean name="searchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.SearchForm" />
+    <form-bean name="uploadForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.UploadForm" />
+    <form-bean name="entityDocumentsForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.EntityDocumentsForm" />
+    <form-bean name="documentsForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.DocumentsForm" />
+    <form-bean name="customBatchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.CustomBatchForm" />
+    <form-bean name="entityBatchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.EntityBatchForm" />
+    <form-bean name="batchTaskForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.BatchTaskForm" />
+    <form-bean name="signForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.SignForm" />
+    <form-bean name="batchSignForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.BatchSignForm" />
+    <form-bean name="usersForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.UsersForm" />
+    <form-bean name="thirdPartyForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.ThirdPartyForm" />
+    <form-bean name="reportForm"
+           type="ieci.tdw.ispac.ispacmgr.action.form.ReportForm" />
+    <form-bean name="producersWizardForm"
+      type="ieci.tdw.ispac.ispacmgr.action.form.ProducersWizardForm" />
+  </form-beans>
+  <global-exceptions>
+    <exception key="error.ISPACException" path="/showException.do"
+      scope="request" type="ieci.tdw.ispac.api.errors.ISPACException"/>
+  </global-exceptions>
+  <global-forwards>
+    <forward name="loading" path="/ispac/loading.jsp" />
+    <forward name="refresh" path="/ispac/refresh.jsp" />
+    <forward name="noRefresh" path="/ispac/noRefresh.jsp"/>
+    <forward name="fail" path="/ispac/index.jsp" />
+    <forward name="loadOnTarget" path="/ispac/loadOnTarget.jsp" />
+    <forward name="login" path="/ispac/index.jsp" redirect="true"/>
+    <forward name="error" path="/ispac/error.jsp" redirect="true"/>
+    <forward name="showtask" path="/showTask.do" redirect="true"/>
+    <forward name="showexp" path="/showExpedient.do" redirect="true"/>
+    <forward name="showsubprocess" path="/showSubProcess.do" redirect="true"/>
+    <forward name="showmain" path="/showProcedureList.do" redirect="true"/>
+    <forward name="showmainwithwarning" path="/showProcedureList.do" redirect="true"/>
+    <forward name="showstagelist" path="/showStagesList.do" redirect="true"/>
+    <forward name="showprocesslist" path="/showProcessList.do" redirect="true"/>
+    <forward name="showsubprocesslist" path="/showSubProcessList.do" redirect="true"/>
+    <forward name="showtasklist" path="/showTasksList.do" redirect="true"/>
+    <forward name="showclosedtasklist" path="/showClosedTasksList.do" redirect="true"/>
+    <forward name="deletetsk" path="/deleteTsk.do" redirect="true"/>
+    <forward name="showcreateprocess" path="/showCreateProcess.do" redirect="true"/>
+    <forward name="showmilestones" path="/showMilestone.do" redirect="true"/>
+    <forward name="showintraylist" path="/showIntrayList.do" redirect="true"/>
+    <forward name="showintray" path="/showIntray.do" redirect="true"/>
+    <forward name="selectInterested" path="/selectInterested.do" redirect="true"/>
+    <forward name="shownotices" path="/showNoticeList.do" redirect="true"/>
+    <forward name="setInterested" path="/setInterested.do" redirect="true"/>
+    <forward name="delegateorg" path="/delegateOrg.do" redirect="true"/>
+    <forward name="showdata" path="/showData.do" redirect="true"/>
+    <forward name="showentityreglist" path="/showData.do" redirect="true"/>
+    <forward name="showdocuments" path="/showDocuments.do" redirect="true"/>
+    <forward name="showExpiredTerms" path="/showExpiredTerms.do" redirect="true"/>
+    <forward name="selectAnActivity" path="/selectAnActivity.do" redirect="true"/>
+    <forward name="comprobarDocumentacion" path="/comprobarDocumentacion.do" redirect="true"/>
+    <forward name="documentacionCompleta" path="/documentacionCompleta.do" redirect="true"/>
+        <forward name="crearSolicitudSubsanacion" path="/crearSolicitudSubsanacion.do" redirect="true"/>
+        <forward name="createBatchTask" path="/createBatchTask.do" redirect="true"/>
+        <forward name="showBatchTaskList" path="/showBatchTaskList.do" redirect="true"/>
+        <forward name="showBatchTask" path="/showBatchTask.do" redirect="true"/>
+      <forward name="searchForm" path="/searchForm.do" redirect="true"/>
+      <forward name="closeTask" path="/closeTask.do" redirect="true"/>
+      <forward name="showtray" path="/showIntrayList.do" redirect="true"/>
+
+         <!-- Para redirigir la salida en el sellado de documentos -->
+    <forward name="getDocument" path="/getDocument.do" redirect="true"/>
+  </global-forwards>
+  <action-mappings>
+
+
+
+    <action path="/login" type="ieci.tdw.ispac.ispacmgr.action.LoginAction"
+      name="loginForm" scope="request" input="/ispac/index.jsp">
+      <forward name="success" path="/showProcedureList.do"
+        redirect="true" />
+      <forward name="error" path="/ispac/index.jsp"
+        redirect="false" />
+    </action>
+    <action path="/showProcedureList"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowProcedureListAction">
+      <forward name="success" path="procedureList" />
+      <forward name="search" path="procedureListSearch" />
+    </action>
+    <action path="/forms"
+          type="ieci.tdw.ispac.ispacmgr.action.FormsAction" name="formsForm"
+          scope="request" validate="false">
+            <forward name="success" path="/showProcedureList.do?search=true" />
+        </action>
+    <action path="/exit" type="ieci.tdw.ispac.ispacmgr.action.ExitAction">
+      <forward name="success" path="/ispac/index.jsp" redirect="true" />
+    </action>
+    <action path="/showStagesList"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowStagesListAction">
+      <forward name="success" path="stagesList" />
+    </action>
+    <action path="/showProcessList"
+      name="batchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowProcessListAction">
+      <forward name="success" path="processList" />
+    </action>
+
+    <action path="/showSubProcessList"
+      name="batchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowSubProcessListAction">
+      <forward name="success" path="subprocessList" />
+    </action>
+
+    <action path="/showTasksList"
+      name="batchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowTasksListAction">
+      <forward name="success" path="taskList" />
+    </action>
+
+    <action path="/showClosedTasksList"
+      name="batchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowClosedTasksListAction">
+      <forward name="success" path="closedtaskList" />
+    </action>
+
+    <action path="/sendTrash"
+      type="ieci.tdw.ispac.ispacmgr.action.SendTrashAction">
+      <forward name="success" path="/showProcedureList.do"
+        redirect="true" />
+    </action>
+
+    <action path="/showExpedientsSentToTrash"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowExpedientsSentToTrashAction" name="defaultForm" parameter="method">
+      <forward name="list" path="/showExpedientsSentToTrash.do?method=list" redirect="true" />
+      <forward name="view_list" path="expsTrashList" />
+      <forward name="showExp" path="/selectAnActivity.do" />
+      <forward name="procedureList" path="/showProcedureList.do"
+        redirect="true" />
+    </action>
+
+    <action path="/createBatchTask"
+      type="ieci.tdw.ispac.ispacmgr.action.CreateBatchTaskAction"
+      name="batchForm" scope="request" validate="false"/>
+    <action path="/showBatchTaskList"
+      name="batchForm" scope="request"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowBatchTaskListAction">
+      <forward name="success" path="batchTaskList" />
+    </action>
+    <action path="/showBatchTask"
+      name="batchTaskForm" scope="request"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowBatchTaskAction">
+      <forward name="success" path="batchTask" />
+      <!-- <forward name="success_generate_docs" path="/showBatchTask.do"/>-->
+    </action>
+    <action path="/deleteBatchTasks"
+      name="batchForm" scope="request"
+      type="ieci.tdw.ispac.ispacmgr.action.DeleteBatchTasksAction">
+      <forward name="success" path="/showBatchTaskList.do" redirect="true"/>
+    </action>
+
+    <action path="/deleteTsk"
+      type="ieci.tdw.ispac.ispacmgr.action.DeleteTaskAction"/>
+
+    <action path="/deleteSubProcess"
+      type="ieci.tdw.ispac.ispacmgr.action.DeleteSubProcessAction"/>
+
+    <action path="/selectSearch"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectSearchAction"
+      name="selectSearchForm" scope="request" validate="false">
+      <forward name="success1" path="/showProcedureList.do" />
+      <forward name="success2" path="/showStagesList.do" />
+    </action>
+
+    <action path="/showExpedient"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowExpedientAction"
+      name="defaultForm" scope="session" validate="false">
+      <forward name="success" path="exp.tab" />
+      <forward name="singleSuccess" path="exp.single" redirect="true"/>
+      <forward name="capture" path="exp.capture" />
+    </action>
+
+
+    <action path="/showSignDetail"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowSignDetailAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/ispac/common/documentSignDetail.jsp"/>
+    </action>
+
+    <action path="/deleteRegEntity"
+      type="ieci.tdw.ispac.ispacmgr.action.DeleteRegEntityAction"
+      name="defaultForm" scope="session" validate="false">
+    </action>
+
+    <action path="/showSubProcess"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowSubProcessAction"
+      name="defaultForm" scope="session" validate="false">
+      <forward name="success" path="exp.tab" />
+      <forward name="singleSuccess" path="exp.single" redirect="true"/>
+    </action>
+    <action path="/showData"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowDataAction"
+      name="defaultForm" scope="session" validate="false">
+      <forward name="success" path="exp.tab" />
+      <forward name="singleSuccess" path="exp.single" redirect="true"/>
+    </action>
+    <action path="/showTask"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowTaskAction"
+      name="defaultForm" scope="session" validate="false">
+      <forward name="success" path="exp.tab" />
+      <forward name="singleSuccess" path="exp.single" redirect="true"/>
+    </action>
+    <action path="/expTrans"
+      type="ieci.tdw.ispac.ispacmgr.action.ExpTransAction"
+      name="batchForm" scope="request" validate="false">
+    </action>
+    <action path="/showSearch"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowSearchAction"
+      name="searchForm" scope="request" validate="false">
+      <forward name="success" path="/searchForm.do" redirect="true" />
+    </action>
+    <action path="/searchForm"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowSearchResultsAction"
+      name="searchForm" scope="session" validate="false">
+      <forward name="success" path="searchResultsList" redirect="false" />
+    </action>
+    <action path="/selectAnActivity"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectAnActivity"/>
+    <action path="/showCreateProcess"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowCreateProcessAction">
+      <forward name="success" path="createProcedureList"
+        redirect="false"/>
+    </action>
+    <action path="/createProcess"
+      type="ieci.tdw.ispac.ispacmgr.action.CreateProcessAction"/>
+    <action path="/closeStage"
+      type="ieci.tdw.ispac.ispacmgr.action.CloseStageAction"
+      name="batchForm" scope="request" validate="false"/>
+
+    <action path="/openStage"
+      type="ieci.tdw.ispac.ispacmgr.action.OpenStageAction"
+      name="defaultForm" scope="request" validate="false"/>
+
+
+    <action path="/gotoStage"
+      type="ieci.tdw.ispac.ispacmgr.action.GoToStageAction"
+      name="batchForm" scope="request" validate="false"/>
+
+    <action path="/closeTask"
+      type="ieci.tdw.ispac.ispacmgr.action.CloseTaskAction"
+      name="batchForm" scope="request" validate="false"/>
+
+    <action path="/createTsk"
+      type="ieci.tdw.ispac.ispacmgr.action.CreateTaskAction"
+      name="batchForm" scope="request" validate="false">
+      <forward name="success" path="/ispac/common/batchTaskConfirm.jsp"/>
+    </action>
+
+
+    <action path="/showMilestone"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowMilestoneAction">
+      <forward name="success" path="milestoneList" redirect="false"/>
+    </action>
+
+    <!-- Trámites de un expediente -->
+    <action path="/showTaskListExpedient"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowTaskListExpedientAction">
+      <forward name="success" path="taskListExpedient" redirect="false"/>
+    </action>
+
+    <!-- Generación de informes -->
+    <action path="/showReports"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowReportsAction" name="reportForm">
+      <forward name="success" path="reportsList" redirect="false"/>
+    </action>
+
+    <action path="/report"
+      type="ieci.tdw.ispac.ispacmgr.action.GenerateReportAction"
+        name="reportForm" scope="request" validate="false" parameter="method">
+      <forward name="select" path="/apps/selectReportPosition.jsp"/>
+      <forward name="params" path="/apps/selectReportParams.jsp"/>
+    </action>
+
+    <action path="/storeEntity"
+      type="ieci.tdw.ispac.ispacmgr.action.StoreEntityAction"
+      name="defaultForm" scope="session"
+      input="/showManagerState.do" validate="false">
+
+      <forward name="showexp" path="/showExpedient.do" redirect="true"/>
+      <forward name="showsubprocess" path="/showSubProcess.do" redirect="true"/>
+      <forward name="showtask" path="/showTask.do" redirect="true"/>
+    </action>
+
+    <action path="/showManagerState"
+      type="ieci.tdw.ispac.ispacmgr.action.StoreEntityAction"
+      name="defaultForm" scope="request"
+      input="/showManagerState.do" validate="true">
+
+      <forward name="showexp" path="/showExpedient.do" redirect="false"/>
+      <forward name="showsubprocess" path="/showSubProcess.do" redirect="false"/>
+      <forward name="showtask" path="/showTask.do" redirect="false"/>
+    </action>
+
+    <action path="/showException"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowExceptionAction">
+      <forward name="success" path="/ispac/error.jsp"/>
+    </action>
+    <action path="/generateDocument"
+      type="ieci.tdw.ispac.ispacmgr.action.GenerateDocumentAction"
+      name="batchForm" scope="request" validate="false">
+    </action>
+    <action path="/downloadFile"
+      type="ieci.tdw.ispac.ispacmgr.action.DownloadFileAction">
+    </action>
+    <action path="/showDocument"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowDocumentAction"/>
+
+    <action path="/showSignedDocument"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowSignedDocumentAction"/>
+
+    <action path="/getDocument"
+      type="ieci.tdw.ispac.ispacmgr.action.GetDocumentAction"/>
+    <action path="/attachTemplate"
+      type="ieci.tdw.ispac.ispacmgr.action.AttachTemplateAction"/>
+    <action path="/attachFile"
+      type="ieci.tdw.ispac.ispacmgr.action.AttachFileAction">
+      <forward name="success" path="/ispac/common/attachFile.jsp"/>
+    </action>
+    <action path="/scanFiles"
+      type="ieci.tdw.ispac.ispacmgr.action.ScanFilesAction">
+      <forward name="success" path="/ispac/common/scanFiles.jsp"/>
+    </action>
+    <action path="/uploadRepoFiles"
+      type="ieci.tdw.ispac.ispacmgr.action.UploadRepoFilesAction">
+      <forward name="success" path="/ispac/common/uploadRepoFiles.jsp"/>
+    </action>
+    <action path="/uploadFile"
+      type="ieci.tdw.ispac.ispacmgr.action.UploadFileAction"
+      name="uploadForm" scope="request" validate="false">
+      <forward name="success" path="/ispac/common/uploadFile.jsp"/>
+    </action>
+    <action path="/uploadScanned"
+      type="ieci.tdw.ispac.ispacmgr.action.UploadScannedFilesAction"
+      scope="request" validate="false">
+      <forward name="success" path="/ispac/common/uploadScannedFiles.jsp"/>
+    </action>
+    <action path="/showIntrayList"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowIntrayListAction">
+      <forward name="success" path="intrayList"/>
+    </action>
+    <action path="/showIntray"
+        type="ieci.tdw.ispac.ispacmgr.action.ShowIntrayAction"
+        name="defaultForm"
+        scope="request"
+        validate="false">
+      <forward name="success" path="intray"/>
+    </action>
+    <action path="/showIntrayDocument"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowIntrayDocumentAction"/>
+
+
+    <!--Administrador para la delegacion de permisos-->
+    <action path="/viewUsersManager" name="usersForm"
+      type="ieci.tdw.ispac.ispacmgr.action.ViewUsersManagerAction"
+      scope="request" validate="false">
+      <forward name="nav" path="/apps/viewusermanager.jsp"/>
+      <forward name="success" path="/apps/setSubstitute.jsp"/>
+    </action>
+
+    <!--Gestor de productores-->
+    <action path="/producersWizard" name="producersWizardForm"
+      type="ieci.tdw.ispac.ispacmgr.action.ProducersWizardAction"
+      scope="request" validate="false">
+      <forward name="nav" path="/apps/producersWizard.jsp"/>
+      <forward name="success" path="/apps/setSubstitute.jsp"/>
+    </action>
+
+     <action path="/entrySearch"  name="defaultForm"  type="ieci.tdw.ispac.ispacmgr.action.EntrySearchAction">
+        <forward name="success" path="/ispac/common/entrySearch.jsp" />
+      </action>
+    <action path="/delegateOrg"
+      type="ieci.tdw.ispac.ispacmgr.action.DelegateOrgAction"
+      name="batchForm" scope="request" validate="false">
+      <!--  <forward name="success" path="respOrgList"/>-->
+      <forward name="success" path="respList"/>
+    </action>
+    <action path="/delegateGroup"
+      type="ieci.tdw.ispac.ispacmgr.action.DelegateGroupAction"
+      name="batchForm" scope="request" validate="false">
+      <!--<forward name="success" path="respGroupList"/>-->
+      <!-- <forward name="success" path="/ispac/common/delegateGroup.jsp"/>-->
+      <forward name="success" path="respGroupList"/>
+    </action>
+    <action path="/delegateResp" name="usersForm" validate="false"
+      type="ieci.tdw.ispac.ispacmgr.action.DelegateRespAction" />
+    <action path="/showRegEntityList"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowRegEntityListAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="entity.regentitylist"/>
+    </action>
+    <action path="/searchThirdParty"
+      type="ieci.tdw.ispac.ispacmgr.action.SearchThirdPartyAction"
+      name="thirdPartyForm" scope="request" validate="false">
+      <forward name="thirdPartyList" path="/apps/searchThirdParty.jsp"/>
+      <forward name="summaryInterested" path="/apps/summaryInterested.jsp"/>
+      <forward name="search" path="/apps/searchFormThirdParty.jsp"/>
+    </action>
+    <action path="/searchPostalAddressesThirdParty"
+      type="ieci.tdw.ispac.ispacmgr.action.SearchPostalAddressesThirdPartyAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/searchPostalAddressThirdParty.jsp"/>
+    </action>
+    <action path="/searchElectronicAddressesThirdParty"
+      type="ieci.tdw.ispac.ispacmgr.action.SearchElectronicAddressesThirdPartyAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/searchElectronicAddressesThirdParty.jsp"/>
+    </action>
+    <action path="/setInterested"
+      type="ieci.tdw.ispac.ispacmgr.action.SetInterestedAction"
+      name="thirdPartyForm" scope="request" validate="false">
+      <forward name="success" path="/apps/setSubstitute.jsp"/>
+    </action>
+    <action path="/setPostalAddress"
+      type="ieci.tdw.ispac.ispacmgr.action.SetPostalAddressAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/setSubstitute.jsp"/>
+    </action>
+    <action path="/setElectronicAddress"
+      type="ieci.tdw.ispac.ispacmgr.action.SetElectronicAddressAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/setSubstitute.jsp"/>
+    </action>
+    <action path="/selectThirdParty"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectThirdPartyAction">
+      <forward name="success" path="/apps/selectThirdParty.jsp"/>
+    </action>
+
+    <action path="/getInfoThirdParty"
+      type="ieci.tdw.ispac.ispacmgr.action.GetInfoThirdPartyExpedientAction">
+      <forward name="updateInfoDataDocument" path="/apps/setDataDocument.jsp"/>
+    </action>
+
+
+    <action path="/selectInterested"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectInterestedAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/selectInterested.jsp"/>
+    </action>
+    <action path="/changeSkin"
+      type="ieci.tdw.ispac.ispacmgr.action.ChangeSkinAction"/>
+    <action path="/selectSubstitute"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectSubstituteAction" name="defaultForm">
+      <forward name="success" path="/apps/selectSubstitute.jsp"/>
+      <forward name="setSubstitute" path="/apps/setSubstitute.jsp"/>
+    </action>
+    <action path="/searchSubstitute"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectSubstituteAction" name="defaultForm" scope="request">
+      <forward name="success" path="/apps/selectSubstitute.jsp"/>
+    </action>
+    <action path="/setSubstitute"
+      type="ieci.tdw.ispac.ispacmgr.action.SetSubstituteAction">
+      <forward name="success" path="/apps/setSubstitute.jsp"/>
+    </action>
+    <action path="/selectValue"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectValueAction" name="defaultForm">
+      <forward name="success" path="/apps/selectValue.jsp"/>
+    </action>
+    <action path="/searchValue"
+        type="ieci.tdw.ispac.ispacmgr.action.SelectValueAction" name="defaultForm" scope="request">
+        <forward name="success" path="/apps/selectValue.jsp"/>
+    </action>
+    <action path="/setValue"
+      type="ieci.tdw.ispac.ispacmgr.action.SetValueAction">
+      <forward name="success" path="/apps/setValue.jsp"/>
+    </action>
+
+    <action path="/selectMultiValue" type="ieci.tdw.ispac.ispacmgr.action.SelectMultiValueAction">
+      <forward name="success" path="/apps/selectMultiValue.jsp"/>
+    </action>
+    <action path="/setMultiValue" type="ieci.tdw.ispac.ispacmgr.action.SetMultiValueAction" name="entityBatchForm" scope="request">
+      <forward name="success" path="/apps/setMultiValue.jsp"/>
+    </action>
+
+    <action path="/showPcdGUI"
+        type="ieci.tdw.ispac.ispacmgr.action.ShowProcedureGUIAction"
+        scope="request" validate="false">
+      <forward name="success" path="/ispac/common/pcdgui.jsp" />
+    </action>
+
+
+    <action path="/showManagerState"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowManagerState"/>
+
+    <action path="/showTabExpedient"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowTabExpedientAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="exp.tab" />
+    </action>
+
+    <action path="/selectNewTask"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectNewTaskAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="newTaskList" />
+    </action>
+
+    <!-- Registro de entrada -->
+
+    <action path="/showExpiredTerms"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowExpiredTermsAction"
+      name="defaultForm"
+      scope="request">
+      <forward name="success" path="terms"/>
+      <forward name="error" path="/showExpiredTerms.do" redirect="false"/>
+    </action>
+
+    <action path="/showRelatedExpedients"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowRelatedExpedientsAction">
+      <forward name="success" path="/apps/showExpRel.jsp"/>
+    </action>
+
+    <action path="/relateExpedient" parameter="method"
+      type="ieci.tdw.ispac.ispacmgr.action.RelateExpedientAction"
+      name="searchForm"
+      scope="request"
+      validate="false">
+      <forward name="form" path="/apps/relateExpedientForm.jsp"/>
+      <forward name="results" path="/apps/relateExpedientResults.jsp"/>
+      <forward name="enter" path="/apps/relateExpedient.jsp"/>
+      <forward name="success" path="/apps/hideFrame.jsp?refresh=true"/>
+    </action>
+
+    <action path="/deleteExpedientRelation" parameter="method"
+      type="ieci.tdw.ispac.ispacmgr.action.DeleteExpedientRelationAction"
+      name="defaultForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/showRelatedExpedients.do" redirect="true"/>
+      <!--
+      <forward name="success" path="/showExpedient.do" redirect="true"/>
+      -->
+    </action>
+
+
+
+    <action path="/redeployPreviousStage"
+      type="ieci.tdw.ispac.ispacmgr.action.RedeployPreviousStageAction"
+      name="batchForm" scope="request" validate="false"/>
+
+    <action path="/closeProcess"
+      type="ieci.tdw.ispac.ispacmgr.action.CloseProcessAction"
+      name="batchForm" scope="request" validate="false"/>
+
+    <action path="/relateExpedients"
+      type="ieci.tdw.ispac.ispacmgr.action.RelateExpedientsAction"
+      name="batchForm" scope="request" validate="false"/>
+
+
+<!-- Notificaciones -->
+
+    <action path="/showNoticeList"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowNoticeListAction"
+      name="batchForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="noticeList"/>
+    </action>
+
+    <action path="/checkNotice"
+      type="ieci.tdw.ispac.ispacmgr.action.CheckNoticeAction"
+      name="batchForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/showNoticeList.do" redirect="true"/>
+    </action>
+
+<!-- Registro de entrada -->
+
+    <action path="/acceptIntray"
+      type="ieci.tdw.ispac.ispacmgr.action.AcceptIntrayAction"
+      name="defaultForm" scope="request"
+      validate="false">
+      <forward name="success" path="/showIntray.do" redirect="true"/>
+    </action>
+    <action path="/rejectIntrayConfirm"
+      type="org.apache.struts.actions.ForwardAction"
+      parameter="/ispac/common/rejectIntrayConfirm.jsp"
+      scope="request" validate="false"/>
+    <action path="/rejectIntray"
+      type="ieci.tdw.ispac.ispacmgr.action.RejectIntrayAction"
+      name="defaultForm" scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/rejectIntray.jsp"/>
+      <forward name="error" path="/ispac/common/rejectIntrayConfirm.jsp"/>
+    </action>
+    <action path="/archiveIntray"
+      type="ieci.tdw.ispac.ispacmgr.action.ArchiveIntrayAction"
+      name="defaultForm" scope="request"
+      validate="false">
+      <forward name="success" path="/showIntrayList.do"/>
+    </action>
+    <action path="/distributeIntray"
+      type="ieci.tdw.ispac.ispacmgr.action.DistributeIntrayAction"
+      name="defaultForm" scope="request"
+      validate="false">
+      <forward name="unit" path="/ispac/common/unitsIntray.jsp" />
+      <forward name="group" path="/ispac/common/groupsIntray.jsp" />
+    </action>
+    <action path="/distribute"
+      type="ieci.tdw.ispac.ispacmgr.action.DistributeAction"
+      name="defaultForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/showIntrayList.do"/>
+    </action>
+    <action path="/processIntray"
+      type="ieci.tdw.ispac.ispacmgr.action.ProcessIntrayAction"
+      name="defaultForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/processesIntray.jsp" />
+    </action>
+    <action path="/searchIntray"
+      type="ieci.tdw.ispac.ispacmgr.action.SearchIntrayAction"
+      name="searchForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/searchIntray.jsp" />
+    </action>
+    <action path="/annexIntrayProcess"
+      name="defaultForm"
+      type="ieci.tdw.ispac.ispacmgr.action.AnnexIntrayProcessAction" parameter="method">
+      <forward name="success" path="/showIntrayList.do"/>
+      <forward name="selectTask" path="/apps/taskRegESDistribuidosList.jsp"/>
+      <forward name="redirect" path="/apps/hideFrame.jsp?refresh=true"/>
+    </action>
+    <action path="/expedientIntray"
+      type="ieci.tdw.ispac.ispacmgr.action.ExpedientIntrayAction"
+      name="defaultForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/expedientsIntray.jsp" />
+    </action>
+    <action path="/createIntrayProcess"
+      type="ieci.tdw.ispac.ispacmgr.action.CreateIntrayProcessAction">
+      <!-- forward name="success" path="/showIntrayList.do"/-->
+    </action>
+
+    <!-- Generación de documentos -->
+
+    <action path="/entityDocuments"
+      type="ieci.tdw.ispac.ispacmgr.action.EntityDocumentsAction"
+      name="entityDocumentsForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/entitydocuments.jsp" />
+    </action>
+    <action path="/batchTaskDocuments"
+      type="ieci.tdw.ispac.ispacmgr.action.BatchTaskDocumentsAction"
+      name="batchTaskForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/batchtaskdocuments.jsp" />
+    </action>
+    <action path="/downloadBatchTaskDocuments"
+      type="ieci.tdw.ispac.ispacmgr.action.DownloadBatchTaskDocumentsAction"
+      name="batchTaskForm"
+      scope="request"
+      validate="false">
+    </action>
+    <action path="/generateDocuments"
+      type="ieci.tdw.ispac.ispacmgr.action.GenerateDocumentsAction"
+      name="entityDocumentsForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/generateDocuments.jsp" />
+    </action>
+    <action path="/generateDocumentsFromBatch"
+      type="ieci.tdw.ispac.ispacmgr.action.GenerateDocumentsFromBatchTaskAction"
+      name="batchTaskForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/generateDocuments.jsp" />
+    </action>
+
+    <action path="/showDocuments"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowDocumentsAction"
+      name="documentsForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/documentsList.jsp" />
+    </action>
+
+    <action path="/convertDocuments2PDF"
+      type="ieci.tdw.ispac.ispacmgr.action.ConvertDocuments2PDFAction"
+      name="documentsForm"
+      scope="request"
+      validate="false">
+    </action>
+
+    <action path="/downloadDocuments"
+      type="ieci.tdw.ispac.ispacmgr.action.DownloadDocumentsAction"
+      name="documentsForm"
+      scope="request"
+      validate="false">
+    </action>
+
+    <action path="/printDocuments"
+      type="ieci.tdw.ispac.ispacmgr.action.PrintDocumentsAction"
+      name="documentsForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/printDocuments.jsp" />
+    </action>
+
+    <action path="/deleteFile" type="ieci.tdw.ispac.ispacmgr.action.DeleteFileAction"/>
+
+    <action path="/comprobarDocumentacion"
+      type="ieci.tdw.ispac.ispacmgr.action.ComprobarDocumentacionAction"
+      name="customBatchForm" scope="request"
+      input="ispac.comprobarDocumentacion">
+      <forward name="success" path="ispac.comprobarDocumentacion" />
+    </action>
+    <action path="/documentacionCompleta"
+      type="ieci.tdw.ispac.ispacmgr.action.DocumentacionCompletaAction"
+      scope="request">
+      <forward name="error" path="/comprobarDocumentacion.do" redirect="false"/>
+    </action>
+    <action path="/crearSolicitudSubsanacion"
+      type="ieci.tdw.ispac.ispacmgr.action.CrearSolicitudSubsanacionAction"
+      name="customBatchForm" scope="request"
+      input="ispac.comprobarDocumentacion">
+      <forward name="error" path="/comprobarDocumentacion.do" redirect="false" />
+    </action>
+
+    <!-- Documentos -->
+
+    <action path="/selectTemplateDocumentType" type="ieci.tdw.ispac.ispacmgr.action.SelectTemplateDocumentTypeAction" name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/selectTemplateDocumentType.jsp" />
+    </action>
+
+
+    <action path="/generateDocumentsBloque" type="ieci.tdw.ispac.ispacmgr.action.GenerateDocumentsBloqueAction" name="defaultForm" parameter="method" scope="request" validate="false">
+      <forward name="participantes" path="/apps/selectParticipantesToGenerateDocBloque.jsp" />
+      <forward name="success"  path="/apps/hideFrame.jsp?refresh=true" />
+    </action>
+
+
+    <action path="/selectTemplateDocumentEntity" type="ieci.tdw.ispac.ispacmgr.action.SelectTemplateDocumentEntityAction" name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/selectTemplateDocumentEntity.jsp" />
+    </action>
+    <action path="/generateDocumentFromTemplate" type="ieci.tdw.ispac.ispacmgr.action.GenerateDocumentFromTemplateAction" validate="false">
+      <forward name="summary" path="/ispac/common/summaryGenerateDocFromTemplate.jsp" />
+    </action>
+
+    <action path="/generateDocumentFromTemplateEntity" type="ieci.tdw.ispac.ispacmgr.action.GenerateDocumentFromTemplateEntityAction" validate="false">
+      <forward name="summary" path="/ispac/common/selectTemplateDocumentEntity.jsp" />
+    </action>
+
+    <action path="/selectDocumentType" type="ieci.tdw.ispac.ispacmgr.action.SelectDocumentTypeAction" name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/selectDocumentType.jsp" />
+    </action>
+
+
+
+    <action path="/selectDocumentTypeEntity" type="ieci.tdw.ispac.ispacmgr.action.SelectDocumentTypeEntityAction" name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/selectDocumentTypeEntity.jsp" />
+    </action>
+
+    <action path="/deleteDocument" type="ieci.tdw.ispac.ispacmgr.action.DeleteDocumentAction" validate="false"/>
+
+    <action path="/selectThirdPartyExpedient" type="ieci.tdw.ispac.ispacmgr.action.SelectThirdPartyExpedientAction" name="defaultForm" scope="request">
+        <forward name="success" path="/apps/selectPartyValueList.jsp"/>
+      </action>
+
+      <!-- Sellado de documentos -->
+    <action path="/stampDocumentAction" type="ieci.tdw.ispac.ispacmgr.action.StampDocumentAction" validate="false"/>
+
+    <!-- SICRES -->
+
+    <action path="/searchInputRegistry" type="ieci.tdw.ispac.ispacmgr.action.SearchInputRegistryAction" name="defaultForm" scope="request" validate="false">
+        <forward name="success" path="/apps/selectInputRegister.jsp"/>
+      </action>
+
+    <action path="/searchRegistry" type="ieci.tdw.ispac.ispacmgr.action.SearchRegistryAction" name="defaultForm" scope="request" validate="false" parameter="method">
+        <forward name="success" path="/apps/selectRegister.jsp"/>
+      </action>
+
+    <action path="/insertOutputRegistry" type="ieci.tdw.ispac.ispacmgr.action.InsertOutputRegistryAction" name="defaultForm" scope="request" validate="false" parameter="method">
+        <forward name="form" path="/apps/showOutputRegisterForm.jsp"/>
+      <forward name="success" path="/apps/showOutputRegister.jsp"/>
+      </action>
+
+    <action path="/insertGroupedOutputRegistry" type="ieci.tdw.ispac.ispacmgr.action.InsertGroupedOutputRegistryAction" name="defaultForm" scope="request" validate="false" parameter="method">
+        <forward name="form" path="/apps/showGroupedOutputRegisterForm.jsp"/>
+      <forward name="success" path="/apps/showOutputRegister.jsp"/>
+      </action>
+
+    <action path="/insertBatchOutputRegistry" type="ieci.tdw.ispac.ispacmgr.action.InsertBatchOutputRegistryAction" name="defaultForm" scope="request" validate="false" parameter="method">
+        <forward name="form" path="/apps/showOutputRegisterForm.jsp"/>
+      <forward name="success" path="/apps/showBatchOutputRegister.jsp"/>
+      </action>
+
+	<action path="/notifyDocuments"
+		type="ieci.tdw.ispac.ispacmgr.action.NotifyDocumentsAction"
+		name="defaultForm" scope="request" validate="false" parameter="method">
+		<forward name="success" path="/apps/showNotifyDocumentsResult.jsp" />
+	</action>
+
+    <action path="/selectTaskRegisterES" type="ieci.tdw.ispac.ispacmgr.action.SelectTaskRegisterESAction" name="defaultForm" scope="request" validate="false">
+        <forward name="success" path="/apps/taskRegESList.jsp"/>
+      </action>
+
+    <action path="/searchRegistryByTask" type="ieci.tdw.ispac.ispacmgr.action.SearchRegistryByTaskAction" name="defaultForm" scope="request" validate="false"  parameter="method">
+        <forward name="success" path="/apps/showRegisterByTask.jsp"/>
+      </action>
+
+    <action path="/selectOrg"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectOrgAction">
+        <forward name="success" path="/apps/selectOrg.jsp"/>
+    </action>
+
+    <action path="/setOrg"
+      type="ieci.tdw.ispac.ispacmgr.action.SetOrgAction">
+      <forward name="success" path="/apps/setValue.jsp"/>
+    </action>
+
+    <action path="/initNotification"
+      type="ieci.tdw.ispac.ispacmgr.action.InitNotificacionAction">
+      <forward name="inf" path="/apps/notificationConfirm.jsp"/>
+      <forward name="success" path="/apps/hideFrame.jsp?refresh=true"/>
+    </action>
+
+    <!--  Firma electronica -->
+    <action name="signForm" path="/signDocument"
+      type="ieci.tdw.ispac.ispacmgr.action.SignDocumentAction" parameter="method" scope="request" validate="false">
+      <forward name="selectOption" path="/apps/sign/selectOption.jsp"/>
+      <forward name="selectCircuit" path="/apps/sign/selectCircuit.jsp"/>
+      <forward name="showProperties" path="/apps/sign/setPropertiesSingProcess.jsp"/>
+      <forward name="sign" path="/apps/sign/sign.jsp"/>
+      <forward name="success" path="/apps/sign/summary.jsp"/>
+      <forward name="failure" path="/apps/sign/failure.jsp"/>
+      <forward name="refresh" path="/apps/hideFrame.jsp?refresh=true"/>
+    </action>
+
+	<action name="signForm" path="/signDocuments"
+		type="ieci.tdw.ispac.ispacmgr.action.SignDocumentsAction" parameter="method"
+		scope="request" validate="false">
+		<forward name="selectOption" path="/apps/sign/selectOption.jsp" />
+		<forward name="selectCircuit" path="/apps/sign/selectCircuit.jsp" />
+		<forward name="showProperties" path="/apps/sign/setPropertiesSingProcess.jsp" />
+		<forward name="sign" path="/apps/sign/signDocs.jsp" />
+		<forward name="success" path="/apps/sign/summaryDocs.jsp" />
+		<forward name="failure" path="/apps/sign/failure.jsp" />
+		<forward name="refresh" path="/apps/hideFrame.jsp?refresh=true" />
+	</action>
+
+    <action name="defaultForm" path="/showBatchSignList"  type="ieci.tdw.ispac.ispacmgr.action.ShowBatchSignListAction" scope="request">
+      <forward name="success" path="batchSignList"/>
+    </action>
+
+    <action name="defaultForm" path="/showSignHistoric"  type="ieci.tdw.ispac.ispacmgr.action.ShowSignHistoricAction" scope="request">
+      <forward name="success" path="signHistoric" redirect="true" />
+      <forward name="error" path="/showSignHistoric.do" redirect="false" />
+    </action>
+
+    <action name="batchSignForm" path="/batchSign" type="ieci.tdw.ispac.ispacmgr.action.BatchSignAction" scope="session" parameter="method">
+      <forward name="batchSign" path="/apps/sign/batchSign.jsp"/>
+      <forward name="success" path="/apps/sign/summary.jsp"/>
+      <forward name="refresh" path="/apps/hideFrame.jsp?refresh=true"/>
+    </action>
+
+    <!--  Clonar Expediente -->
+    <action path="/cloneExpedient"
+      type="ieci.tdw.ispac.ispacmgr.action.CloneExpedientAction"
+      name="defaultForm" scope="request" parameter="method">
+      <forward name="enter" path="/cloneExpedient.do?method=viewEntities" redirect="true"/>
+      <forward name="viewEntities" path="selectDataToClone"/>
+      <forward name="addEntity" path="/apps/hideFrame.jsp?refresh=true" redirect="false"/>
+      <forward name="setEntityFields" path="/apps/hideFrame.jsp?refresh=true" redirect="false"/>
+      <forward name="deleteEntity" path="/cloneExpedient.do?method=viewEntities" redirect="true"/>
+      <forward name="notAddEntity" path="/selectEntityToClone.do" redirect="false"/>
+      <forward name="summary" path="/cloneExpedient.do?method=summary" redirect="true"/>
+      <forward name="success" path="cloneSummary"/>
+    </action>
+
+    <action path="/selectEntityToClone"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectEntityToCloneAction">
+      <forward name="success" path="/apps/selectEntityToClone.jsp"/>
+    </action>
+
+    <action path="/selectEntityFieldsToClone"
+      type="ieci.tdw.ispac.ispacmgr.action.SelectEntityFieldsToCloneAction"
+      name="defaultForm" scope="request" validate="false">
+      <forward name="success" path="/apps/selectEntityFieldsToClone.jsp"/>
+    </action>
+
+
+    <action path="/initExpedientRT" type="ieci.tdw.ispac.ispacmgr.action.TestInitExpedientRTAction"/>
+    <!--
+    <action path="/testDispatchAction" type="ieci.tdw.ispac.ispacmgr.action.TestDispatchAction" parameter="method"/>
+    -->
+
+    <action path="/captureExpedient"
+      type="ieci.tdw.ispac.ispacmgr.action.CaptureExpedientAction"
+      name="defaultForm" scope="session" validate="false">
+      <forward name="success" path="/showExpedient.do"/>
+    </action>
+
+    <action path="/createDocumentStage"
+      type="ieci.tdw.ispac.ispacmgr.action.CreateDocumentStageAction"
+      name="entityDocumentsForm"
+      scope="request"
+      validate="false">
+      <forward name="success" path="/ispac/common/documentStage.jsp" />
+    </action>
+
+    <action path="/showHelp"
+      type="ieci.tdw.ispac.ispacmgr.action.ShowHelpAction"
+      name="defaultForm" scope="session" validate="false">
+      <forward name="success" path="/help/help.jsp"/>
+    </action>
+
+  </action-mappings>
+
+  <!--  Controlador -->
+  <!--  Nota: se pone el atributo 'nocahe' a 'false' ya que si se deja a 'true' al descargar un documento (ver ShowDocumentAction) en el IE no funciona -->
+  <controller nocache="false"
+    processorClass="org.apache.struts.tiles.TilesRequestProcessor"
+    maxFileSize="10M"/>
+  <message-resources
+    parameter="ieci.tdw.ispac.ispacmgr.resources.ApplicationResources"
+    null="false"/>
+
+  <!-- Plugins para struts -->
+
+  <!-- Configuración rewrite de ISPAC  -->
+  <plug-in className="ieci.tdw.ispac.ispacweb.plugin.ParametersPlugin">
+    <set-property property="ISPACBase" value="ispac" />
+    <set-property property="skin" value="skin1" />
+  </plug-in>
+
+  <plug-in className="ieci.tdw.ispac.ispacmgr.common.InitAppPlugin">
+  </plug-in>
+
+  <!--  Tiles plugin -->
+  <plug-in className="org.apache.struts.tiles.TilesPlugin">
+    <set-property property="definitions-config"
+      value="/WEB-INF/tiles-defs.xml, /WEB-INF/tiles-defs-custom.xml" />
+  </plug-in>
+
+  <plug-in className="net.sf.navigator.menu.MenuPlugIn">
+    <set-property property="menuConfig" value="/WEB-INF/menu-config.xml" />
+  </plug-in>
+
+  <!--  Validator plugin -->
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames"
+      value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml,/WEB-INF/validation-custom.xml"/>
+  </plug-in>
+
+</struts-config>

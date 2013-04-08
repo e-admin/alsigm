@@ -1,0 +1,19 @@
+<jaas>
+	<application name="Archivo" controlFlag="required">
+		<module>common.authentication.SigemLoginModule</module>
+		<options>					 
+			<option>
+				<name>SESSION.USER.PROMPT</name>
+				<value>keySesionUsuario</value>
+			</option>
+			<option>
+				<name>SESSION.USER.ADM.PROMPT</name>
+				<value>keySesionUsuarioEntidad</value>
+			</option>	
+			<option>
+				<name>IDIOMA.PROMPT</name>
+				<value>idioma</value>
+			</option>					
+		</options>
+	</application>
+</jaas>

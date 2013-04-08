@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<expedientes>
+<!-- Expedientes del Procedimiento P-EJEMPLO -->
+<expediente>
+    <procedimiento>P-EJEMPLO</procedimiento>
+    <id>P-EJEMPLO-2008/1</id>
+    <numeroExpediente>P-EJEMPLO-2008/1</numeroExpediente>
+    <asunto>Asunto del Expediente P-EJEMPLO-2008/1 del 01/01/2008 al 31/12/2008</asunto>
+    <fechaInicio>01/01/2008</fechaInicio>
+    <fechaFinalizacion>31/12/2008</fechaFinalizacion>
+    <organo_productor>
+        <id>IdOrgano</id>
+        <nombre>Órgano de Ejemplo</nombre>
+    </organo_productor>
+    <documentosFisicos>
+        <documento>
+            <nombre>Nombre Documento 1</nombre>
+            <descripcion>Descripcion Documento 1</descripcion>
+        </documento>
+        <documento>
+            <nombre>Nombre Documento 2</nombre>
+            <descripcion>Descripcion Documento 2</descripcion>
+        </documento>
+        <documento>
+            <nombre>Nombre Documento 3</nombre>
+            <descripcion>Descripcion Documento 3</descripcion>
+        </documento>
+    </documentosFisicos>
+    <emplazamientos>
+        <emplazamiento>
+            <pais>País1</pais>
+            <comunidad>Comunidad1</comunidad>
+            <concejo>Concejo1</concejo>
+            <poblacion>Población1</poblacion>
+            <localizacion>Localización1</localizacion>
+        </emplazamiento>
+        <emplazamiento>
+            <pais>País2</pais>
+            <comunidad>Comunidad2</comunidad>
+            <concejo>Concejo2</concejo>
+            <poblacion>Población2</poblacion>
+            <localizacion>Localización2</localizacion>
+        </emplazamiento>
+        <emplazamiento>
+            <pais>País3</pais>
+            <comunidad>Comunidad3</comunidad>
+            <concejo>Concejo3</concejo>
+            <poblacion>Población3</poblacion>
+            <localizacion>Localización3</localizacion>
+        </emplazamiento>
+    </emplazamientos>
+</expediente>
+<expediente>
+    <procedimiento>P-EJEMPLO</procedimiento>
+    <id>P-EJEMPLO-2008/2</id>
+    <numeroExpediente>P-EJEMPLO-2008/2</numeroExpediente>
+    <asunto>Asunto del Expediente P-EJEMPLO-2008/2 del 01/01/2008 al 31/12/2008</asunto>
+    <fechaInicio>01/01/2008</fechaInicio>
+    <fechaFinalizacion>31/12/2008</fechaFinalizacion>
+    <organo_productor>
+        <id>IdOrgano</id>
+        <nombre>Órgano de Ejemplo</nombre>
+    </organo_productor>
+    <documentosFisicos>
+        <documento>
+            <nombre>Nombre Documento 1</nombre>
+            <descripcion>Descripcion Documento 1</descripcion>
+        </documento>
+        <documento>
+            <nombre>Nombre Documento 2</nombre>
+            <descripcion>Descripcion Documento 2</descripcion>
+        </documento>
+        <documento>
+            <nombre>Nombre Documento 3</nombre>
+            <descripcion>Descripcion Documento 3</descripcion>
+        </documento>
+    </documentosFisicos>
+    <emplazamientos>
+        <emplazamiento>
+            <pais>País1</pais>
+            <comunidad>Comunidad1</comunidad>
+            <concejo>Concejo1</concejo>
+            <poblacion>Población1</poblacion>
+            <localizacion>Localización1</localizacion>
+        </emplazamiento>
+        <emplazamiento>
+            <pais>País2</pais>
+            <comunidad>Comunidad2</comunidad>
+            <concejo>Concejo2</concejo>
+            <poblacion>Población2</poblacion>
+            <localizacion>Localización2</localizacion>
+        </emplazamiento>
+        <emplazamiento>
+            <pais>País3</pais>
+            <comunidad>Comunidad3</comunidad>
+            <concejo>Concejo3</concejo>
+            <poblacion>Población3</poblacion>
+            <localizacion>Localización3</localizacion>
+        </emplazamiento>
+    </emplazamientos>
+</expediente>
+<!-- Fin de Expedientes del Procedimiento P-EJEMPLO -->
+</expedientes>

@@ -1,0 +1,17 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>${basedir}/src/main/resources/SIGEM_CriptoValidacion</directory>
+			<outputDirectory>/SIGEM_CriptoValidacion</outputDirectory>
+
+		</fileSet>
+	</fileSets>
+
+</assembly>

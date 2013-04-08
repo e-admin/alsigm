@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="fwktd_csv_webapp_applicationContextProviderImpl" name="fwktd_csv_webapp_applicationContextProvider"
+		class="es.ieci.tecdoc.fwktd.core.spring.context.ApplicationContextProvider">
+	</bean>
+
+	<bean id="fwktd_csv_webapp_configurationResourceLoaderImpl" name="fwktd_csv_webapp_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl" />
+
+	<bean id="fwktd_csv_webapp_placeholderConfigurer"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="configurationResourceLoader" ref="fwktd_csv_webapp_configurationResourceLoader" />
+		<property name="locations">
+			<list>
+				<value>fwktd-csv-webapp/fwktd-csv-webapp.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Bean de configuración -->
+	<bean id="fwktd_csv_webapp_configurationBean" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="CONFIG_SUBDIR" value="fwktd-csv-webapp" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

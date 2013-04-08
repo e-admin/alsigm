@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+ <!-- General information -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.codehaus.woodstox</groupId>
+  <artifactId>stax2-api</artifactId>
+  <packaging>jar</packaging>
+  <name>Stax2 API</name>
+  <version>3.1.1</version>
+  <description>Stax2 API is an extension to basic Stax 1.0 API that adds significant new functionality, such as full-featured bi-direction validation interface and high-performance Typed Access API.
+</description>
+
+ <!-- Contact information -->
+
+  <!-- In future, should there be separate Stax2 home page? -->
+  <url>http://woodstox.codehaus.org/StAX2</url>
+  <issueManagement>
+    <url>http://jira.codehaus.org/browse/WSTX</url>
+  </issueManagement>
+
+ <!-- Dependency information -->
+ 
+  <dependencies>
+    <!-- Stax API jar is needed; 1.0-2 seems to be the last "official"
+         version prior to JDK 6 that bundles API
+      -->
+    <dependency>
+      <groupId>javax.xml.stream</groupId>
+      <artifactId>stax-api</artifactId>
+      <version>1.0-2</version>
+    </dependency>
+  </dependencies>
+
+  <!-- Licensing -->
+  <licenses>
+    <license>
+      <name>The BSD License</name>
+      <url>http://www.opensource.org/licenses/bsd-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>Codehaus</name>
+    <url>http://www.codehaus.org/</url>
+  </organization>
+
+</project>

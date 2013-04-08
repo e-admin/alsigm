@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+								   "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="base-layout" template="/WEB-INF/jsp/common/layout/base.jsp">
+		<put-attribute name="title" value="Default title"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/common/default-body.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>

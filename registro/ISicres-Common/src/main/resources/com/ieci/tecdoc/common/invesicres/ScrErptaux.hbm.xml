@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrErptaux" 
+    table="SCR_ERPTAUX"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_ERPTAUX"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="fdrid" 
+            column="FDRID" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FDRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="timestamp" 
+            column="TIMESTAMP" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TIMESTAMP"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld1" 
+            column="FLD1" 
+            type="java.lang.String"
+            length="20"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD1"
+                length="20"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld2" 
+            column="FLD2" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD2"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld3" 
+            column="FLD3" 
+            type="java.lang.String"
+            length="32"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD3"
+                length="32"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld4" 
+            column="FLD4" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD4"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld5" 
+            column="FLD5" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD5"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld6" 
+            column="FLD6" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD6"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld7" 
+            column="FLD7" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD7"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld8" 
+            column="FLD8" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD8"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld9" 
+            column="FLD9" 
+            type="java.lang.String"
+            length="80"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD9"
+                length="80"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld10" 
+            column="FLD10" 
+            type="java.lang.String"
+            length="20"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD10"
+                length="20"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld11" 
+            column="FLD11" 
+            type="java.lang.String"
+            length="1"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD11"
+                length="1"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld12" 
+            column="FLD12" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD12"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld13" 
+            column="FLD13" 
+            type="java.lang.String"
+            length="16"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD13"
+                length="16"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld14" 
+            column="FLD14" 
+            type="java.lang.String"
+            length="31"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD14"
+                length="31"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld15" 
+            column="FLD15" 
+            type="java.lang.String"
+            length="30"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD15"
+                length="30"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld16" 
+            column="FLD16" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD16"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fld17" 
+            column="FLD17" 
+            type="java.lang.String"
+            length="240"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLD17"
+                length="240"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

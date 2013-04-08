@@ -1,0 +1,33 @@
+<assembly>
+	<id>configurableSigem</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_Catastro/src/main/resources/SIGEM_Catastro</directory>
+			<outputDirectory>/SIGEM_Catastro</outputDirectory>
+			<includes>
+				<include>Catastro.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<filtered>true</filtered>		
+			<directory>../SIGEM_CatastroWeb/src/main/resources/SIGEM_CatastroWeb/</directory>
+			<outputDirectory>SIGEM_CatastroWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>		
+		<fileSet>
+			<filtered>true</filtered>		
+			<directory>../SIGEM_CatastroWS/src/main/resources/SIGEM_CatastroWS/</directory>
+			<outputDirectory>SIGEM_CatastroWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:soap="http://cxf.apache.org/bindings/soap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:http="http://cxf.apache.org/transports/http/configuration"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+http://cxf.apache.org/transports/http/configuration
+http://cxf.apache.org/schemas/configuration/http-conf.xsd"
+	default-dependency-check="none" default-lazy-init="false">
+	
+	<http:conduit name="${fwktd-sir.environment.webapp_url.property}/intercambioRegistral">
+		<http:client ConnectionTimeout="0" ReceiveTimeout="0"/>
+	</http:conduit>
+
+	<!-- Cliente del servicio web de intercambio registral -->
+	<jaxws:client id="intercambioRegistralWSClient"
+		serviceClass="es.ieci.tecdoc.fwktd.sir.ws.service.IntercambioRegistralWS"
+		address="${fwktd-sir.environment.webapp_url.property}/intercambioRegistral" />
+
+	<!-- Cliente del servicio web de envio de ficheros a aplicacion (WS_SIR8_A) -->
+ 	<bean id="WSSIR8AWSServiceLocator" class="es.ieci.tecdoc.fwktd.sir.ws.service.wssir8a.WS_SIR8_AServiceLocator">
+		<property name="WS_SIR8_AEndpointAddress" value="${fwktd-sir.environment.webapp_url.property}/services/WS_SIR8_A"/>
+	</bean>
+	<bean id="WSSIR8AWSClient" factory-bean="WSSIR8AWSServiceLocator" factory-method="getWS_SIR8_A">
+	</bean>
+
+	<!-- Cliente del servicio web de envio de ficheros a aplicacion (WS_SIR8_B) -->
+ 	<bean id="WSSIR8BWSServiceLocator" class="es.ieci.tecdoc.fwktd.sir.ws.service.wssir8b.WS_SIR8_BServiceLocator">
+		<property name="WS_SIR8_BEndpointAddress" value="${fwktd-sir.environment.webapp_url.property}/services/WS_SIR8_B"/>
+	</bean>
+	<bean id="WSSIR8BWSClient" factory-bean="WSSIR8BWSServiceLocator" factory-method="getWS_SIR8_B">
+	</bean>
+
+	<!-- Cliente del servicio web de envio de mensajes a aplicacion (WS-SIR9) -->
+	<bean id="WSSIR9WSServiceLocator" class="es.ieci.tecdoc.fwktd.sir.ws.service.wssir9.WS_SIR9ServiceLocator">
+		<property name="WS_SIR9EndpointAddress" value="${fwktd-sir.environment.webapp_url.property}/services/WS_SIR9"/>
+	</bean>
+	<bean id="WSSIR9WSClient" factory-bean="WSSIR9WSServiceLocator" factory-method="getWS_SIR9">
+	</bean>
+
+</beans>

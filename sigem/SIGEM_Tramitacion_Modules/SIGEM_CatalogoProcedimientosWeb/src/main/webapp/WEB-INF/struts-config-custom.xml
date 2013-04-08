@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+   "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+
+
+
+	<global-forwards>
+		<forward name="fail" path="/ispac/exit.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+
+<!-- 
+		<action path="/entry" 
+				type="ieci.tdw.ispac.ispaccatalog.action.EntryAction" 
+				name="defaultForm" 
+				scope="request" 
+				validate="false"
+		>
+			<forward name="success" path="/showProcedureList.do" redirect="true" />
+			<forward name="fail" path="/ispac/exit.jsp" redirect="false"/>
+		</action>
+-->		
+		<action path="/entry" type="ieci.tdw.ispac.ispaccatalog.action.EntryAction"
+			name="defaultForm" scope="request" input="/ispac/index.jsp" validate="true">
+			<forward name="success" path="/home.do"	redirect="true" />
+			<forward name="proceduresTree" path="/showCTProceduresTree.do" redirect="true" />
+			<forward name="fail" path="/ispac/exit.jsp" redirect="false"/>
+		</action>
+		
+		
+		
+		<action path="/exit" type="ieci.tdw.ispac.ispaccatalog.action.ExitAction">
+			<forward name="success" path="/ispac/exit.jsp" redirect="false" />
+		</action>			
+
+
+
+	</action-mappings>
+
+
+<!-- custom -->
+
+
+
+
+	<message-resources 
+		parameter="ieci.tdw.ispac.ispacmgr.resources.ApplicationResources" 
+		null="false" 
+		key="custom"
+	/>
+	<!-- 
+	<plug-in className="es.princast.spiga.common.InitAppPluginCustom">
+	</plug-in>
+	 -->
+	
+</struts-config>

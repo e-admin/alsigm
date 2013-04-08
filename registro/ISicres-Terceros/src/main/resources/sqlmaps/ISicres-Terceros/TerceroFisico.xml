@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="TerceroValidadoFisicoVO">
+
+
+	<select id="getTerceroValidadoFisicoVOs" resultMap="TerceroValidadoVO.tercero">
+		SELECT id, type_doc, nif as documento, first_name, second_name, surname, 'FISICO' AS tipoTercero
+		FROM scr_pfis
+	</select>
+
+	<insert id="addTerceroValidadoFisicoVO" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoFisicoVO">
+		INSERT INTO scr_pfis (id, type_doc, nif, first_name, second_name, surname)
+		VALUES(#id:INTEGER#, <isNotEmpty property="tipoDocumento.id" close=",">#tipoDocumento.id:INTEGER#</isNotEmpty><isEmpty property="tipoDocumento.id" close=",">null</isEmpty> #numeroDocumento#, #apellido1#, #apellido2#, #nombre#)
+	</insert>
+
+	<update id="updateTerceroValidadoFisicoVO" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoFisicoVO">
+		UPDATE scr_pfis
+		SET
+		<isEmpty property="tipoDocumento.id" close=","> type_doc=null</isEmpty><isNotEmpty property="tipoDocumento.id" close=","> type_doc=#tipoDocumento.id:INTEGER#</isNotEmpty> nif=#numeroDocumento#, first_name=#apellido1#, second_name=#apellido2#, surname=#nombre#
+		WHERE id=#id:INTEGER#
+	</update>
+
+	<delete id="deleteTerceroValidadoFisicoVO" parameterClass="java.lang.String">
+		DELETE FROM scr_pfis
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteTerceroValidadoFisicoVOs">
+		DELETE FROM scr_pfis
+	</delete>
+
+	<select id="findByCriteria" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.search.CriteriaVO"
+		resultMap="TerceroValidadoVO.terceroFisico">
+		SELECT id, type_doc, nif as documento, first_name, second_name, surname, 'FISICO' AS tipoTercero
+		FROM scr_pfis
+		<include refid="TerceroValidadoVO.dynamicCriteriaSearch" />
+	</select>
+
+	<select id="countByCriteria" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.search.CriteriaVO"
+		resultClass="java.lang.Integer">
+		SELECT count(*)
+		FROM scr_pfis
+		<include refid="TerceroValidadoVO.dynamicCriteriaSearch" />
+	</select>
+
+	<select id="findByDocumentNumber" parameterClass="java.util.HashMap"
+		resultMap="TerceroValidadoVO.terceroFisico">
+		SELECT id, type_doc, nif as documento, first_name, second_name, surname, 'FISICO' AS tipoTercero
+		FROM scr_pfis
+		WHERE type_doc=#type_doc# AND nif=#nif#
+		ORDER BY id ASC
+	</select>
+
+</sqlMap>

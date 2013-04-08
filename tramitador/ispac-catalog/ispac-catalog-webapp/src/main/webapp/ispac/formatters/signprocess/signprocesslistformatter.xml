@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_CIRCUITO'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width5percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.name'
+				 fieldType='LINK'
+				 fieldLink='ID_CIRCUITO'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 decorator=''
+				 url='showCTEntity.do?entityId=50'
+				 id='regId'
+				 columnClass='width65percent'/>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.name'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width65percent'
+				 media='csv excel xml pdf'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NUM_PASOS'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.numsteps'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TIPO'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.tipo'
+				 fieldType='TYPE'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'/>
+
+</beanformatter>

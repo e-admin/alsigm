@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="TipoDocumentoIdentificativoTerceroVO">
+
+	<resultMap id="tipoDocumentoIdentificativo"
+		class="es.ieci.tecdoc.isicres.terceros.business.vo.TipoDocumentoIdentificativoTerceroVO">
+		<result property="id" column="id" />
+		<result property="codigo" column="code" />
+		<result property="descripcion" column="description" />
+	</resultMap>
+
+	<select id="getTipoDocumentoIdentificativoTerceroVOs" resultMap="tipoDocumentoIdentificativo">
+		SELECT *
+		FROM scr_typedoc
+	</select>
+
+	<select id="getTipoDocumentoIdentificativoTerceroVO"
+		parameterClass="java.lang.String" resultMap="tipoDocumentoIdentificativo">
+		SELECT *
+		FROM scr_typedoc
+		WHERE id=#value:INTEGER#
+	</select>
+
+	<select id="getTipoDocumentoIdentificativoTerceroByTypePerson"
+		parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.search.SearchType" resultMap="tipoDocumentoIdentificativo">
+		SELECT *
+		FROM scr_typedoc
+		WHERE type_person=#value# OR type_person=0
+	</select>
+</sqlMap>

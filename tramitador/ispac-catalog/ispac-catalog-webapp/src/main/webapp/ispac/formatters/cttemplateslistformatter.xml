@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTEMPLATE:ID'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width5percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTEMPLATE:NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='LINK'
+				 fieldLink='CTTEMPLATE:ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 decorator=''
+				 url='showCTTemplate.do'
+				 id='regId'
+				 columnClass='width40percent'
+				 />
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='CTTEMPLATE:NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width40percent'
+				 media='csv excel xml pdf'/>		
+					
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTEMPLATE:COD_PLANT'
+				 readOnly='false'
+				 titleKey='form.template.propertyLabel.code'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width20percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTYPEDOC:NOMBRE'
+				 readOnly='false'
+				 titleKey='form.template.propertyLabel.type'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width40percent'
+				 />
+
+	<propertyfmt type="BeanPropertyDateFmt"
+				 property='CTTEMPLATE:FECHA'
+				 readOnly='true'
+				 titleKey='form.template.propertyLabel.creationDate'
+				 format='dd/MM/yyyy'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width20percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PROCEDURE_TEMPLATE'
+				 readOnly='false'
+				 titleKey='form.template.especifica'
+				 fieldType='TEMPLATE_PROC_IMAGE'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width40percent'
+				 />
+				 
+				 
+</beanformatter>

@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<link rel="stylesheet" href="css/global.css" type="text/css">
+	</head>
+	<body class="Resalt" onLoad="top.g_ToolBarLoaded = true; if (top.g_ArchiveName != '') top.SetArchiveName(top.g_ArchiveName); top.OnResizeWorkspace();" tabIndex="-1">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr height="28" valign="middle" align="center" tabIndex="1">
+				<td width="10"></td>
+				<td width="220"><div align="left" id="ArchiveName" class="ArchiveName"></div>
+				</td>
+				<td id="MenuSep" style="position:relative; top:-2px" width="2"><img src="images/sep.gif" width="2" height="28" border="0"></td>
+				<td>
+					<table width="100%" height="24" border="0" cellspacing="0" cellpadding="0">
+						<tr tabIndex="-1">
+							<td id="TableBtn" width="80" class="Options" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="javascript:top.Main.Table.TableData.ShowTable()" onkeydown="if (top.GetKeyCode(event)==13){top.Main.Table.TableData.ShowTable()}" tabIndex="1">
+								<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCTABLA" ) )</SCRIPT></div>
+							</td>
+							<td id="ToggleBtn" width="80" class="Options" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="javascript:top.ToggleMaximized()" onkeydown="if (top.GetKeyCode(event)==13){top.ToggleMaximized();}" tabIndex="1">
+								<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCMAXIMIZAR" ) )</SCRIPT></div>
+							</td>
+							<td>
+								<div align="center">&nbsp;</div>
+							</td>
+							<td id="ExitBtn" width="80" class="Options" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="javascript:top.window.close()" onkeydown="if (top.GetKeyCode(event)==13){top.window.close();}" tabIndex="1">
+								<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCCERRAR" ) )</SCRIPT></div>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5"></td>
+			</tr>
+		</table>
+	</body>
+</html>

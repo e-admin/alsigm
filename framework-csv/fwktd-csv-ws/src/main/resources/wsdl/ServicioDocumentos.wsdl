@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ServicioDocumentos"
+	targetNamespace="http://service.ws.csv.fwktd.tecdoc.ieci.es/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.ws.csv.fwktd.tecdoc.ieci.es/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<xs:schema xmlns:tns="http://service.ws.csv.fwktd.tecdoc.ieci.es/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified"
+			elementFormDefault="unqualified" targetNamespace="http://service.ws.csv.fwktd.tecdoc.ieci.es/">
+
+			<xs:complexType name="descripcionI18N">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="locale" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcion" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="infoDocumentoCSVForm">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="codigoAplicacion" type="xs:string" />
+					<xs:element minOccurs="0" name="disponible" type="xs:boolean" />
+					<xs:element minOccurs="0" name="fechaCaducidad" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="fechaCreacion" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="nombre" type="xs:string" />
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="descripcionesI18N" type="tns:descripcionI18N" />
+					<xs:element minOccurs="0" name="tipoMime" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="infoDocumentoCSV">
+				<xs:complexContent>
+					<xs:extension base="tns:infoDocumentoCSVForm">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="csv" type="xs:string" />
+							<xs:element minOccurs="0" name="fechaCSV" type="xs:dateTime" />
+							<xs:element minOccurs="0" name="id" type="xs:string" />
+							<xs:element minOccurs="0" name="nombreAplicacion" type="xs:string" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="documentoCSV">
+				<xs:complexContent>
+					<xs:extension base="tns:infoDocumentoCSV">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="contenido" type="xs:base64Binary" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="updateInfoDocumento" type="tns:updateInfoDocumento" />
+			<xs:complexType name="updateInfoDocumento">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="infoDocumento" type="tns:infoDocumentoCSV" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="updateInfoDocumentoResponse" type="tns:updateInfoDocumentoResponse" />
+			<xs:complexType name="updateInfoDocumentoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:infoDocumentoCSV" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getInfoDocumentoByCSV" type="tns:getInfoDocumentoByCSV" />
+			<xs:complexType name="getInfoDocumentoByCSV">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="csv" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getInfoDocumentoByCSVResponse" type="tns:getInfoDocumentoByCSVResponse" />
+			<xs:complexType name="getInfoDocumentoByCSVResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:infoDocumentoCSV" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getDocumentoByCSV" type="tns:getDocumentoByCSV" />
+			<xs:complexType name="getDocumentoByCSV">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="csv" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getDocumentoByCSVResponse" type="tns:getDocumentoByCSVResponse" />
+			<xs:complexType name="getDocumentoByCSVResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:documentoCSV" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="existeContenidoDocumento" type="tns:existeContenidoDocumento" />
+			<xs:complexType name="existeContenidoDocumento">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="existeContenidoDocumentoResponse" type="tns:existeContenidoDocumentoResponse" />
+			<xs:complexType name="existeContenidoDocumentoResponse">
+				<xs:sequence>
+					<xs:element name="return" type="xs:boolean" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getContenidoDocumento" type="tns:getContenidoDocumento" />
+			<xs:complexType name="getContenidoDocumento">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getContenidoDocumentoResponse" type="tns:getContenidoDocumentoResponse" />
+			<xs:complexType name="getContenidoDocumentoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="xs:base64Binary" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getInfoDocumento" type="tns:getInfoDocumento" />
+			<xs:complexType name="getInfoDocumento">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getInfoDocumentoResponse" type="tns:getInfoDocumentoResponse" />
+			<xs:complexType name="getInfoDocumentoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:infoDocumentoCSV" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="deleteInfoDocumento" type="tns:deleteInfoDocumento" />
+			<xs:complexType name="deleteInfoDocumento">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="deleteInfoDocumentoResponse" type="tns:deleteInfoDocumentoResponse" />
+			<xs:complexType name="deleteInfoDocumentoResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:element name="generarCSV" type="tns:generarCSV" />
+			<xs:complexType name="generarCSV">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="infoDocumentoForm"
+						type="tns:infoDocumentoCSVForm" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="generarCSVResponse" type="tns:generarCSVResponse" />
+			<xs:complexType name="generarCSVResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:infoDocumentoCSV" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getDocumento" type="tns:getDocumento" />
+			<xs:complexType name="getDocumento">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getDocumentoResponse" type="tns:getDocumentoResponse" />
+			<xs:complexType name="getDocumentoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:documentoCSV" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="saveInfoDocumento" type="tns:saveInfoDocumento" />
+			<xs:complexType name="saveInfoDocumento">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="infoDocumento" type="tns:infoDocumentoCSV" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="saveInfoDocumentoResponse" type="tns:saveInfoDocumentoResponse" />
+			<xs:complexType name="saveInfoDocumentoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:infoDocumentoCSV" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="revocarDocumento" type="tns:revocarDocumento" />
+			<xs:complexType name="revocarDocumento">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="csv" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="revocarDocumentoResponse" type="tns:revocarDocumentoResponse" />
+			<xs:complexType name="revocarDocumentoResponse">
+				<xs:sequence />
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:getDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="saveInfoDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:saveInfoDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="revocarDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:revocarDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getInfoDocumentoByCSV">
+		<wsdl:part name="parameters" element="tns:getInfoDocumentoByCSV">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="revocarDocumento">
+		<wsdl:part name="parameters" element="tns:revocarDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="saveInfoDocumento">
+		<wsdl:part name="parameters" element="tns:saveInfoDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getContenidoDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:getContenidoDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="existeContenidoDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:existeContenidoDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getInfoDocumentoByCSVResponse">
+		<wsdl:part name="parameters" element="tns:getInfoDocumentoByCSVResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getDocumento">
+		<wsdl:part name="parameters" element="tns:getDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="deleteInfoDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:deleteInfoDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getDocumentoByCSVResponse">
+		<wsdl:part name="parameters" element="tns:getDocumentoByCSVResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="generarCSV">
+		<wsdl:part name="parameters" element="tns:generarCSV">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getInfoDocumento">
+		<wsdl:part name="parameters" element="tns:getInfoDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getContenidoDocumento">
+		<wsdl:part name="parameters" element="tns:getContenidoDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="existeContenidoDocumento">
+		<wsdl:part name="parameters" element="tns:existeContenidoDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="deleteInfoDocumento">
+		<wsdl:part name="parameters" element="tns:deleteInfoDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getDocumentoByCSV">
+		<wsdl:part name="parameters" element="tns:getDocumentoByCSV">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="generarCSVResponse">
+		<wsdl:part name="parameters" element="tns:generarCSVResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="updateInfoDocumento">
+		<wsdl:part name="parameters" element="tns:updateInfoDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="updateInfoDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:updateInfoDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getInfoDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:getInfoDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ServicioDocumentosPortType">
+		<wsdl:operation name="updateInfoDocumento">
+			<wsdl:input name="updateInfoDocumento" message="tns:updateInfoDocumento">
+			</wsdl:input>
+			<wsdl:output name="updateInfoDocumentoResponse" message="tns:updateInfoDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInfoDocumentoByCSV">
+			<wsdl:input name="getInfoDocumentoByCSV" message="tns:getInfoDocumentoByCSV">
+			</wsdl:input>
+			<wsdl:output name="getInfoDocumentoByCSVResponse"
+				message="tns:getInfoDocumentoByCSVResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDocumentoByCSV">
+			<wsdl:input name="getDocumentoByCSV" message="tns:getDocumentoByCSV">
+			</wsdl:input>
+			<wsdl:output name="getDocumentoByCSVResponse" message="tns:getDocumentoByCSVResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="existeContenidoDocumento">
+			<wsdl:input name="existeContenidoDocumento" message="tns:existeContenidoDocumento">
+			</wsdl:input>
+			<wsdl:output name="existeContenidoDocumentoResponse"
+				message="tns:existeContenidoDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getContenidoDocumento">
+			<wsdl:input name="getContenidoDocumento" message="tns:getContenidoDocumento">
+			</wsdl:input>
+			<wsdl:output name="getContenidoDocumentoResponse"
+				message="tns:getContenidoDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInfoDocumento">
+			<wsdl:input name="getInfoDocumento" message="tns:getInfoDocumento">
+			</wsdl:input>
+			<wsdl:output name="getInfoDocumentoResponse" message="tns:getInfoDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteInfoDocumento">
+			<wsdl:input name="deleteInfoDocumento" message="tns:deleteInfoDocumento">
+			</wsdl:input>
+			<wsdl:output name="deleteInfoDocumentoResponse" message="tns:deleteInfoDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="generarCSV">
+			<wsdl:input name="generarCSV" message="tns:generarCSV">
+			</wsdl:input>
+			<wsdl:output name="generarCSVResponse" message="tns:generarCSVResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDocumento">
+			<wsdl:input name="getDocumento" message="tns:getDocumento">
+			</wsdl:input>
+			<wsdl:output name="getDocumentoResponse" message="tns:getDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="saveInfoDocumento">
+			<wsdl:input name="saveInfoDocumento" message="tns:saveInfoDocumento">
+			</wsdl:input>
+			<wsdl:output name="saveInfoDocumentoResponse" message="tns:saveInfoDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="revocarDocumento">
+			<wsdl:input name="revocarDocumento" message="tns:revocarDocumento">
+			</wsdl:input>
+			<wsdl:output name="revocarDocumentoResponse" message="tns:revocarDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ServicioDocumentosSoapBinding" type="tns:ServicioDocumentosPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="updateInfoDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="updateInfoDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="updateInfoDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInfoDocumentoByCSV">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getInfoDocumentoByCSV">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getInfoDocumentoByCSVResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDocumentoByCSV">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getDocumentoByCSV">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getDocumentoByCSVResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="existeContenidoDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="existeContenidoDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="existeContenidoDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getContenidoDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getContenidoDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getContenidoDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInfoDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getInfoDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getInfoDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteInfoDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="deleteInfoDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteInfoDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="generarCSV">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="generarCSV">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="generarCSVResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="saveInfoDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="saveInfoDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="saveInfoDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="revocarDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="revocarDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="revocarDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ServicioDocumentos">
+		<wsdl:port name="ServicioDocumentosPort" binding="tns:ServicioDocumentosSoapBinding">
+			<soap:address location="http://localhost:9090/ServicioDocumentosPort" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

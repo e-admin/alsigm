@@ -1,0 +1,20 @@
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
+          "/WEB-INF/validator_1_0.dtd">
+
+<form-validation>
+	<formset>
+		<!-- <form name="/guardarNuevoUsuario">
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.usuarios.nombre"/>
+			</field>
+			<field property="idPerfil" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.usuarios.perfil"/>
+			</field>
+			<field property="email" depends="email">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.usuarios.localizacion.email"/>
+			</field>
+		</form> --> 
+	</formset>
+</form-validation>
+

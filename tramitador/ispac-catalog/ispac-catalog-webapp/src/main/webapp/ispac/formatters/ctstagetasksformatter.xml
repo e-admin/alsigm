@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Formateador para el listado de tramites asociados a la fase: Edicion de Fase -> Tramites asociados -->
+<beanformatter>
+
+	<!--
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTASK:ID'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 />
+	-->
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTASK:NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+				 
+	<!--
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTASK:NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='LINK'
+				 fieldLink='CTTASK:ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 columnClass='width40percent'
+				 url='showCTEntity.do?entityId=6'
+				 id='regId'
+				 />
+	-->
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTASK:COD_TRAM'
+				 readOnly='false'
+				 titleKey='catalog.common.codigo'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width10percent'
+				 />
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTASK:DESCRIPCION'
+				 readOnly='false'
+				 titleKey='catalog.common.descripcion'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width40percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTFSTR:ID'
+				 propertyValueKey='form.fase.buttonLabel.deleteAssignedTasks'
+				 readOnly='false'
+				 fieldType='LINK_BT'
+				 fieldLink='CTFSTR:ID'
+				 styleClass='aDelButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 columnClass='width20percent'
+				 url='deleteCTStageTask.do'
+				 id='stagetaskId'
+				 />
+
+</beanformatter>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean name="bandejaSalidaIntercambioRegistralDAO"
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.impl.IbatisBandejaSalidaIntercambioRegistralDAOImpl">
+		<property name="sqlMapClient">
+			<ref bean="isicresIntercambioSqlMapClient" />
+		</property>
+	</bean>
+	<bean name="bandejaEntradaIntercambioRegistralDAO"
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.impl.IbatisBandejaEntradaIntercambioRegistralDAOImpl">
+		<property name="sqlMapClient">
+			<ref bean="isicresIntercambioSqlMapClient" />
+		</property>
+	</bean>
+	<bean name="configuracionIntercambioRegistralDAO"
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.impl.IbatisConfiguracionIntercambioRegistralDAOImpl">
+		<property name="sqlMapClient">
+			<ref bean="isicresIntercambioSqlMapClient" />
+		</property>
+	</bean>
+	<bean name="infoRegistroDAO"
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.impl.IbatisInfoRegistroDAOImpl">
+		<property name="sqlMapClient">
+			<ref bean="isicresIntercambioSqlMapClient" />
+		</property>
+	</bean>
+
+</beans>

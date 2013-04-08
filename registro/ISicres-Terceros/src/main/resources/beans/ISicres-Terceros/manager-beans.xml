@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="terceroManager"
+		class="es.ieci.tecdoc.isicres.terceros.business.manager.impl.TerceroManagerImpl">
+		<constructor-arg>
+			<ref bean="terceroDao" />
+		</constructor-arg>
+		<property name="direccionManager">
+			<ref bean="direccionManager" />
+		</property>
+		<property name="incrementer">
+			<ref bean="terceroIncrementer" />
+		</property>
+	</bean>
+
+	<bean id="direccionManager"
+		class="es.ieci.tecdoc.isicres.terceros.business.manager.impl.DireccionManagerImpl">
+		<constructor-arg>
+			<ref bean="direccionDao" />
+		</constructor-arg>
+		<property name="incrementer">
+			<ref bean="direccionIncrementer" />
+		</property>
+		<property name="terceroManager">
+			<ref bean="terceroManager" />
+		</property>
+	</bean>
+
+	<bean id="interesadoManager"
+		class="es.ieci.tecdoc.isicres.terceros.business.manager.impl.InteresadoManagerImpl">
+		<constructor-arg>
+			<ref bean="interesadoDao" />
+		</constructor-arg>
+		<property name="incrementer">
+			<ref bean="interesadoIncrementer" />
+		</property>
+		<property name="representanteInteresadoManager">
+			<ref bean="representanteInteresadoManager" />
+		</property>
+	</bean>
+
+	<bean id="representanteInteresadoManager"
+		class="es.ieci.tecdoc.isicres.terceros.business.manager.impl.RepresentanteInteresadoManagerImpl">
+		<constructor-arg>
+			<ref bean="representanteInteresadoDao" />
+		</constructor-arg>
+		<property name="incrementer">
+			<ref bean="interesadoIncrementer" />
+		</property>
+	</bean>
+
+	<bean id="masterValuesManager"
+		class="es.ieci.tecdoc.isicres.terceros.business.manager.impl.MasterValuesManagerImpl">
+		<property name="tipoDocumentoIdentificativoDao">
+			<ref bean="tipoDocumentoIdentificativoDao" />
+		</property>
+		<property name="tipoDireccionTelematicaDao">
+			<ref bean="tipoDireccionTelematicaDao" />
+		</property>
+		<property name="ciudadDao">
+			<ref bean="ciudadDao" />
+		</property>
+		<property name="provinciaDao">
+			<ref bean="provinciaDao" />
+		</property>
+		<property name="paisDao">
+			<ref bean="paisDao" />
+		</property>
+	</bean>
+
+</beans>

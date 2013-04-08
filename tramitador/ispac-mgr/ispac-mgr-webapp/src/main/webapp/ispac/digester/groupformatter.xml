@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" property='UID' readOnly='false'
+		title='UID' fieldType='LIST' width='' />
+	<propertyfmt type="BeanPropertyLdapReduceSizeFmt" property='DN' readOnly='false'
+		title='DN' fieldType='LIST' width='25'/>
+	<propertyfmt type="BeanPropertySimpleFmt" property='RELATIVEDN' readOnly='false'
+		title='DN Relativo' fieldType='LIST' width=''/>		
+	<propertyfmt type="BeanPropertySimpleFmt" property='NAME' readOnly='false'
+		title='Nombre' fieldType='LIST' width=''/>		
+</beanformatter>

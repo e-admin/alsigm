@@ -1,0 +1,21 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>batik</groupId>
+  <artifactId>batik-transcoder</artifactId>
+  <name>Batik Transcoder</name>
+  <version>1.6-1</version>
+  <description>Batik Transcoder</description>
+  <inceptionYear>2000</inceptionYear>
+  <dependencies>
+    <dependency>
+      <groupId>batik</groupId>
+      <artifactId>batik-bridge</artifactId>
+      <version>1.6-1</version>
+    </dependency>
+    <dependency>
+      <groupId>fop</groupId>
+      <artifactId>fop</artifactId>
+      <version>0.20.5</version>
+    </dependency>
+  </dependencies>
+</project>

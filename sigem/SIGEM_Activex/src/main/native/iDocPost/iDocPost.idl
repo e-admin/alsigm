@@ -1,0 +1,61 @@
+// iDocPost.idl : IDL source for iDocPost.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (iDocPost.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+	
+
+	[
+		object,
+		uuid(82C12E1E-9452-4186-B9BB-66C032E095B5),
+		dual,
+		helpstring("IUpload Interface"),
+		pointer_default(unique)
+	]
+	interface IUpload : IDispatch
+	{
+		[id(1), helpstring("method UploadFile")] HRESULT UploadFile([in] BSTR FileName, 
+                  [in] BSTR Server, [in] BSTR URL, [in] long bRemove, [out, retval] VARIANT* pErrorCode);
+		[id(2), helpstring("method SelectFile")] HRESULT SelectFile([in] long bSaving, [out, retval] VARIANT* pFileName);
+		[id(3), helpstring("method DownloadFile")] HRESULT DownloadFile([in] BSTR URL, 
+                  [in] BSTR LocalPath, [out] VARIANT* pFileLoc, [out, retval] VARIANT* pErrorCode);
+		[id(4), helpstring("method CallURL")] HRESULT CallURL([in] BSTR URL, [out] VARIANT *pResponse, [out, retval] VARIANT *pErrorCode);
+		[id(5), helpstring("method SelectDir")] HRESULT SelectDir([out, retval] VARIANT* pDir);
+		[id(6), helpstring("method DeleteFile")] HRESULT DeleteFile([in] BSTR FileName);
+		[id(7), helpstring("method GetTempPath")] HRESULT GetTempPath([out, retval] VARIANT *pTempPath);
+		[id(8), helpstring("method PUTFile")] HRESULT PUTFile([in] BSTR File, [in] BSTR URL, [out, retval] VARIANT *pErrorCode);
+		[id(9), helpstring("method GETFile")] HRESULT GETFile([in] BSTR URL, [in] BSTR LocalFile, [out, retval] VARIANT *pErrorCode);
+		[id(10), helpstring("method UploadFileX")] HRESULT UploadFileX([in] BSTR FileName, 
+                                          [in] BSTR Server,[in] BSTR Page, [in] BSTR VirtualDir, 
+				                          [in] BSTR DstFileName, [in] long bRemove,
+										  [out, retval] VARIANT* pErrorCode); 
+		[id(11), helpstring("method UploadFileM")] HRESULT UploadFileM([in] BSTR FileName, 
+                                          [in] BSTR Server,[in] BSTR Page, [in] BSTR VirtualDir, 
+				                          [in] BSTR DstFileName, [in] long bRemove,
+										  [out, retval] VARIANT* pErrorCode); 
+		
+	};
+
+[
+	uuid(AB047A64-496C-43A1-89BD-744B6B9A5DF8),
+	version(1.0),
+	helpstring("IECISA invesDoc Upload Files Type Library")
+]
+library IDOCPOSTLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(CDB30A8F-7EB9-407D-A20D-E10010CEF693),
+		helpstring("Upload Class")
+	]
+	coclass Upload
+	{
+		[default] interface IUpload;
+	};
+};

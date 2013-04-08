@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main_web</artifactId>
+		<version>3.0</version>
+	</parent>
+	
+	<artifactId>SIGEM_SignoWS</artifactId>
+	<name>SIGEM_SignoWS</name>
+	<packaging>war</packaging>
+
+	<properties>
+		<spring-ws.version>2.0.3.RELEASE</spring-ws.version>
+	</properties>
+
+  <dependencies>
+  		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_SignoCore</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_ConectorSignoMock</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+  
+		<!-- Test junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.9</version>
+		</dependency>
+
+		<!-- Common lang -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<!-- Spring web service -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+			<version>${spring-ws.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-security</artifactId>
+			<version>${spring-ws.version}</version>
+		</dependency>
+
+		<!-- Librerias para JAXB1 -->
+	    <!-- <dependency>
+	      <groupId>com.sun.xml.bind</groupId>
+	      <artifactId>jaxb-impl</artifactId>
+	      <version>1.0.6</version>
+	    </dependency>-->
+	    <dependency>
+	      <groupId>com.sun.xml.bind</groupId>
+	      <artifactId>jaxb1-impl</artifactId>
+	      <version>2.2.4-1</version>
+	    </dependency>
+	    <!-- <dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>1.0</version>
+		</dependency> -->
+		<!-- fin jaxb1 -->
+		
+		<!-- Especificacion servlet 2.4 -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.servlet</groupId> -->
+<!-- 			<artifactId>servlet-api</artifactId> -->
+<!-- 			<version>2.4</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.servlet</groupId> -->
+<!-- 			<artifactId>jsp-api</artifactId> -->
+<!-- 			<version>2.0</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
+		
+		<!-- Spring orm -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Xalan y xerces -->
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
+		<!-- Transporte saaj -->
+		<!--<dependency>
+			<groupId>javax.xml.soap</groupId>
+			<artifactId>saaj-api</artifactId>
+			<version>1.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.xml.messaging.saaj</groupId>
+			<artifactId>saaj-impl</artifactId>
+			<version>1.3</version>
+		</dependency> -->
+		<!-- fin transporte saaj -->
+		
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>3.2.5.ga</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
+		<!-- Fin hibernate -->
+		
+		<!-- Informes jasper -->
+		<dependency>
+			<groupId>jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<!-- <version>2.0.2</version> -->
+			<version>3.5.3</version>
+			<!-- <exclusions>
+				<exclusion>
+					<groupId>com.lowagie</groupId>
+					<artifactId>itext</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>eclipse</groupId>
+					<artifactId>jdtcore</artifactId>
+				</exclusion>
+			</exclusions> -->
+		</dependency>
+		
+		<!-- Clientes Web services SIGEM -->
+		<!-- Le llega por transitividad -->
+		<!-- <dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_RegistroPresencialWSClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency> -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_TramitacionWSClient</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>wss4j</groupId>
+					<artifactId>wss4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_PagoElectronicoWSClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_RegistroTelematico</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>wss4j</groupId>
+					<artifactId>wss4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>	
+		
+		<!-- Xades
+		<dependency>
+			<groupId>es.ieci</groupId>
+			<artifactId>SpringXades</artifactId>
+			<version>1.5.9</version>
+		</dependency>  -->
+		
+		<dependency>
+	      <groupId>jaxen</groupId>
+	      <artifactId>jaxen</artifactId>
+	      <version>1.1-beta-6</version>	      
+	    </dependency>
+	    
+	    <!--  Conector Badajoz -->
+		<!-- <dependency>
+			<groupId>es.ieci.tecdoc.test</groupId>
+			<artifactId>ConectorPlusvaliaBadajoz</artifactId>
+	      	<version>1.0</version>
+		</dependency> -->
+		
+		<!-- Le llega por transitividad -->
+		<!-- <dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Core</artifactId>
+			<version>${pom.version}</version>
+		</dependency> -->
+	</dependencies>
+
+	<build>
+		<finalName>SIGEM_SignoWS</finalName>
+		<filters>
+			<filter>${filter.generic.system}</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+		 	<!--  Plugin jaxb 1 para crear las clases de marshalling para el servicio
+			<plugin>
+		        <groupId>org.jvnet.jaxb1.maven2</groupId>
+		        <artifactId>maven-jaxb1-plugin</artifactId>
+		        <executions>
+		          <execution>
+		            <goals>
+		              <goal>generate</goal>
+		            </goals>
+		          </execution>
+		        </executions>
+		        
+		        <configuration>
+		          <packageName>es.ieci.plusvalia.binding</packageName>
+		          <schemaDirectory>src/main/webapp/WEB-INF</schemaDirectory>
+		          <generateDirectory>${project.build.directory}/jaxb-source</generateDirectory>
+		          <extension>true</extension>
+		          <verbose>true</verbose>
+		        </configuration>
+	      	</plugin>
+	      	 -->
+		</plugins>
+	</build>
+	
+	<profiles>
+		<!-- Perfiles de construccion en funcion del S.O. -->
+		<profile>
+			<id>unix</id>
+			<activation>
+				<property>
+					<name>unix</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../../SIGEM_Config/src/main/filters/system/unix.properties</filter.generic.system>
+			</properties>
+		</profile>
+		<profile>
+			<id>win</id>
+			<activation>
+				<property>
+					<name>win</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../../SIGEM_Config/src/main/filters/system/windows.properties</filter.generic.system>
+			</properties>
+		</profile>
+
+	</profiles>
+</project>

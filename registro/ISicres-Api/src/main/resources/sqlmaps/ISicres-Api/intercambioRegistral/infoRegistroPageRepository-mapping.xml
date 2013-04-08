@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="InfoRegistroPageRepositoryVO">
+
+<typeAlias alias="infoRegistroPageRepositoryVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroPageRepositoryVO" />
+		
+	<resultMap 
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroPageRepositoryVO"
+		id="infoRegistroPageRepositoryResultMap">
+		<result property="idLibro" column="bookid" />
+		<result property="idRegistro" column="fdrid" />
+		<result property="idPageh" column="pageid" />
+		<result property="docUID" column="docuid" />
+		<result property="infoDocumento" column="{idRegistro=fdrid, idPagina=pageid, idLibro=bookid}"
+      	select="InfoRegistroInfoDocumentoVO.getInfoDocumento"/>
+	</resultMap>
+</sqlMap>

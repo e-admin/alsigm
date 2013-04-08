@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- En este fichero se indica que usuario ldap será por defecto usuario
+	administrador de registro -->
+<UserAdmin>
+	<!-- Usuario -->
+	<User></User>
+	<!-- Ejemplo de dn: CN=Users,DC=SERVIDOR,DC=eci,DC=corp -->
+	<Dn></Dn>
+</UserAdmin>

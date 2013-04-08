@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrPjur" 
+    table="SCR_PJUR"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_PJUR"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="cif"
+        type="java.lang.String"
+        column="CIF"
+        length="17"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CIF"
+            length="17"
+        </meta>    
+    </property>
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="72"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="NAME"
+            length="72"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to ScrTypedoc -->
+    <many-to-one
+        name="scrTypedoc"
+        class="com.ieci.tecdoc.common.invesicres.ScrTypedoc"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="TYPE_DOC"         
+        </meta>
+        <column name="TYPE_DOC" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

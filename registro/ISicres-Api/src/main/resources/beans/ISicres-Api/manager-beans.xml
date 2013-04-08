@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="contextoAplicacionManager"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.ContextoAplicacionManagerImpl" />
+
+	<bean id="loginManager"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.LoginLegacyManagerImpl" />
+
+	<bean id="libroManager"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.LibroManagerImpl">
+		<property name="libroDAO" ref="libroDAO"></property>
+		<property name="permisosManager" ref="permisosManager"></property>
+		<property name="libroAdapter">
+			<bean
+				class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.LibroAdapter"></bean>
+		</property>
+
+	</bean>
+
+	<bean id="registroManagerImpl"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.RegistroManagerImpl">
+		<property name="libroManager" ref="libroManager" />
+		<property name="permisosManager" ref="permisosManager" />
+		<property name="unidadAdministrativaManager" ref="unidadAdministrativaManager" />
+		<property name="baseRegistroVOBuilder" ref="baseRegistroVOBuilder" />
+		<property name="distribucionManager" ref="distribucionManager" />
+	</bean>
+
+	<alias name="registroManagerImpl" alias="registroManager" />
+
+
+	<bean id="tipoAsuntoManager"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.TipoAsuntoManagerImpl">
+		<property name="oficinaDAO" ref="oficinaDAO" />
+		<property name="tipoAsuntoDAO" ref="tipoAsuntoDAO" />
+	</bean>
+
+
+	<bean id="unidadAdministrativaManager"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.UnidadAdministrativaManagerImpl">
+		<property name="unidadAdministrativaDAO" ref="unidadAdministrativaDAO" />
+
+	</bean>
+
+	<bean id="permisosManager"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.PermisosManagerImpl">
+		<property name="libroManager" ref="libroManager"></property>
+	</bean>
+
+	<bean id="distribucionManagerImpl"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.DistribucionManagerImpl">
+		<property name="distributionUseCase">
+			<bean
+				class="com.ieci.tecdoc.isicres.usecase.distribution.DistributionUseCase"></bean>
+		</property>
+		<property name="unidadAdministrativaManager" ref="unidadAdministrativaManager" />
+		<property name="tipoAsuntoManager" ref="tipoAsuntoManager" />
+		<property name="loginManager" ref="loginManager"/>
+		<property name="libroManager" ref="libroManager"/>
+		<property name="registroManager" ref="registroManager"/>
+	</bean>
+
+	<alias name="distribucionManagerImpl" alias="distribucionManager" />
+
+	<bean id="oficinaManager"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.OficinaManagerImpl">
+		<property name="oficinaDAO" ref="oficinaDAO" />
+	</bean>
+
+	<bean id="reportManager"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.ReportManagerImpl">
+		<property name="reportsDAO" ref="reportsDAO"></property>
+	</bean>
+
+
+	<!-- ejemplo manager transaccionales <bean id="ejemploManager"> <property
+		name="target"> <bean class="es.prueba.ejemploManager"> <property name="dao"><ref
+		bean="ejemploDAO"/></property> </bean> </property> -->
+
+	<!-- manager transction <bean name="personManager" parent="transactionTemplate">
+		<property name="target"> <bean class="es.ieci.tecdoc.fwktd.sampleWeb.business.manager.PersonaManagerImpl"
+		> <property name="personDAO"><ref bean="personDAO"/></property> </bean> </property>
+		</bean> -->
+
+
+	<!-- Clases Builder -->
+
+	<bean id="baseRegistroVOBuilder"
+		class="es.ieci.tecdoc.isicres.api.business.manager.impl.builder.BaseRegistroVOBuilder">
+		<property name="unidadAdministrativaManager" ref="unidadAdministrativaManager" />
+		<property name="tipoAsuntoManager" ref="tipoAsuntoManager" />
+		<property name="oficinaManager" ref="oficinaManager" />
+	</bean>
+
+	<bean id="personValidationManager" class="com.ieci.tecdoc.isicres.person.PersonValidationFactory"
+		factory-method="getCurrentPersonValidation">
+	</bean>
+
+</beans>

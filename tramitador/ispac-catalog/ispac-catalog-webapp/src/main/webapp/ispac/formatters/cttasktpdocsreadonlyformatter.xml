@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Formateador para el listado de documentos asociados al tramite: Edicion de Tramite -> Tipos de documentos asociados -->
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:COD_TPDOC'
+				 readOnly='false'
+				 titleKey='catalog.common.codigo'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width10percent'/>
+
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:AUTOR'
+				 readOnly='false'
+				 titleKey='form.tpdoc.propertyLabel.author'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width15percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.tpdoc.propertyLabel.descrition'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width25percent'/>
+
+</beanformatter>

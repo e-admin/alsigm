@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+	<pattern value="Map_fs_udoc">
+	    <object-create-rule classname="xml.config.ConfiguracionMapeoFSUDoc" />	    
+	    <set-properties-rule>
+	      <alias attr-name="version" prop-name="version" />
+	      <alias attr-name="descripcion" prop-name="descripcion" />      
+	    </set-properties-rule>
+	
+  	    <pattern value="Campos_Mapeo/campo">
+	    	<object-create-rule classname="xml.config.CampoDescriptivoConfigMapFSUDoc" />
+	    	<set-properties-rule>
+				<alias attr-name="descripcion" prop-name="nombre"/>
+				<alias attr-name="idCampoOrigen" prop-name="valorOrigen"/>
+				<alias attr-name="idCampoDestino" prop-name="valorDestino"/>
+				<alias attr-name="tipo" prop-name="tipo"/>
+			</set-properties-rule>          
+			<set-next-rule methodname="addCampoDescriptivo" />               
+	    </pattern>
+	</pattern>
+</digester-rules>

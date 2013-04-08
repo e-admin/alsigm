@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ISicres-Configuration>
+	<ISicres-DesktopWeb>
+
+
+		<!-- El tamaño por defecto de una pagina de las consultas -->
+		<DefaultPageTableResultsSize>${page.list.max.result}</DefaultPageTableResultsSize>
+
+		<!-- El tamaño por defecto de una página de la lista de validación -->
+		<!-- Rango permitido: 15..30 -->
+		<DefaultPageValidationListSize>${page.list.max.validation}</DefaultPageValidationListSize>
+
+		<!-- El tamaño por defecto de una página la minuta de distribución -->
+		<DefaultPageDistributionMinutaSize>${page.list.max.distribution}</DefaultPageDistributionMinutaSize>
+
+		<!-- El tamaño por defecto de una página de busqueda de interesados -->
+		<DefaultPagePersonSize>${page.list.max.person}</DefaultPagePersonSize>
+
+		<!-- Indica si se debe mostrar o no las direcciones de los interesados -->
+		<!-- 0 = false (no se muestran direcciones); 1 = true (si se muestran direcciones)-->
+		<DefaultPageInterDirecView>${page.inter.dir.view}</DefaultPageInterDirecView>
+
+		<!-- Provincia por defecto en las direcciones físicas de los terceros -->
+		<DefaultProvincia>${direccion.provincia.por.defecto}</DefaultProvincia>
+
+		<Distribution>
+			<!-- Indica si en el listado de distribuciones se mostraran las distribuciones a los
+				departamentos/oficinas agregadas al	usuario.
+				TRUE - el usuario verá las distribuciones realizadas al departamento al que
+				pertenece asi como las realizadas a los departamentos/oficinas a las que está
+				agregado.
+				FALSE - el usuario solo verá las distribuciones realizadas al departamento/oficina
+				con la que está conectado a la aplicación. -->
+			<DistributionOficAsoc>${distribution.office.asociated}</DistributionOficAsoc>
+		</Distribution>
+
+
+		<!-- Numero maximo de filas que se pueden consultar en la validacion
+			de unidades administrativas (tecla TAB en un formulario). Si el numero
+			de filas es mayor que este, no se mostrará nada, dará error. -->
+		<MaxRowsForValidationRules>${rows.rules.validation}</MaxRowsForValidationRules>
+
+		<!-- Esta propiedad activa la devolución de contenidos comprimidos por
+			parte del servidor hacia el browser. El algoritmo de compresión utilizado
+			es GZIP -->
+		<UseCompresedGZIPContents>${compresed.gzip}</UseCompresedGZIPContents>
+
+		<!-- Esta propiedad activa la selección de idioma en la pantalla de login (true)
+			o la desactiva (false).-->
+		<ActivateIdiomSelect>${idioma.select}</ActivateIdiomSelect>
+
+		<!-- Esta propiedad establece el código de idioma por defecto (10 castellano, 45 euskera, 3 catalan, 7 gallego).-->
+		<Idioma>${idioma}</Idioma>
+
+		<!-- La activación de esta propiedad permite mostar información del usuario
+			en el frame superior de las páginas. Un valor false deshabilita la presentación
+			de esta información -->
+		<ShowUserInformation>${user.information.show}</ShowUserInformation>
+
+		<!-- Propiedad que indica el tiempo que un usuario puede tener bloqueado un registro (Se indica en segundos)-->
+		<TimeLockRegisterUser>${time.lock.register.user}</TimeLockRegisterUser>
+
+		<!-- Tipo de representación para algunas columnas de la tabla de resultados de una búsqueda-->
+		<!-- Solo un tipo puede estar activado a la vez (true) el resto deben tener valor (false) -->
+		<!-- Code: mostrará el código de la entidad
+			Abbreviation: mostrará la abreviatura de la entidad
+			Name: mostrará el nombre de la entidad -->
+		<QueryResultsTableRepresentation>
+			<!-- Representación de las unidades administrativas-->
+			<AdministrativeUnits code="${query.result.representation.code.unidadesAdministrativas}"
+								 abbreviation="${query.result.representation.abbr.unidadesAdministrativas}"
+								 name="${query.result.representation.name.unidadesAdministrativas}" />
+
+			<!-- Representación de las entidades registrales-->
+			<RegistryOrganizations code="${query.result.representation.code.organizaciones}"
+								   abbreviation="${query.result.representation.abbr.organizaciones}"
+								   name="${query.result.representation.name.organizaciones}" />
+
+			<!-- Representación de las oficinas de registro-->
+			<RegistryOffices code="${query.result.representation.code.oficinas}"
+							 abbreviation="${query.result.representation.abbr.oficinas}"
+							 name="${query.result.representation.name.oficinas}" />
+
+			<!-- Representación de los tipos de asunto-->
+			<SubjectTypes code="${query.result.representation.code.asuntos}"
+						  name="${query.result.representation.name.asuntos}" />
+		</QueryResultsTableRepresentation>
+
+		<!-- Deberá aparecer comentada esta sección en caso de estar integrada
+			la capa de presentación y la de lógica de negocio-->
+		<!--<ISicres-Server-Connection>
+			<InitialFactory>${serverConnection.initialFactory}</InitialFactory>
+
+			<ProviderURL>${serverConnection.urlProvider}</ProviderURL>
+
+			<UrlPkgs>${serverConnection.urlPkgs}</UrlPkgs>
+			</ISicres-Server-Connection>-->
+
+		<!-- Nombre del directorio temporal que se creará en el contexto de sicres para el almacenamiento
+			de los ficheros subidos por los usuarios => EN CASO DE DIRECTORIO RELATIVO.
+			En el caso de NO SER UN DIRECTORIO RELATIVO, deberá proporionarse la ruta completa
+			<TemporalDirectoryName isRelative="false">C:\temp\isicres-tmp</TemporalDirectoryName>
+			Debe aparecer como primer caracter la / en caso de ser relativo-->
+		<TemporalDirectoryName isRelative="${temp.folder.relative}">${temp.folder.folder}</TemporalDirectoryName>
+
+		<!-- Nombre de directorio relativo temporal para el almacenamiento de los pdf de los informes
+			Debe aparecer como primer caracter la / -->
+		<TemporalRelativeDirectoryNameForReports isRelative="${temp.report.folder.relative}">${temp.report.folder}</TemporalRelativeDirectoryNameForReports>
+
+		<!-- Nombre de directorio relativo temporal para el almacenamiento de los zip (plantillas) de los informes
+			extraidos de la base de datos. Debe aparecer como primer caracter la / -->
+		<TemporalRelativeDirectoryTemplateForReports isRelative="${temp.report.template.folder.relative}">${temp.report.template.folder}</TemporalRelativeDirectoryTemplateForReports>
+
+		<!-- Opcion que da posibilidad de extraer los ficheros anexados (sirve para todos aquellos ficheros que utilicen el activeX IdocImgX),
+			valores posibles: true (se activa la opcion de extraer ficheros anexados)
+							o false (no se da la opcion de extraer ficheros anexados) -->
+		<IdocImgEnableSaveAs>${idocimgx.enablesaveas}</IdocImgEnableSaveAs>
+
+		<!-- Máximo tamaño del fichero que se va a subir al servidor, en bytes. -->
+		<MaxUploadFileSize>${upload.fileSize}</MaxUploadFileSize>
+
+		<!-- Máximo número de registros que se pueden mostrar en un informe. -->
+		<MaxReportRegister>${report.register.max}</MaxReportRegister>
+
+		<!-- Esta propiedad activa o desactiva el scheculer de limpieza de pdf -->
+		<UseSchedulerCleanerThread>${scheduler.cleaner}</UseSchedulerCleanerThread>
+
+		<!-- Este es el nombre del DataSource en JNDI para crear la conexión a base de datos en el módulo de
+			informes -->
+		<!-- java:comp/env/ISicres -->
+		<ReportsDataSourceJNDIName>${jdbc.jndi.name}</ReportsDataSourceJNDIName>
+		<Compulsar>
+			<!-- Nombre del directorio donde se localizará la imagen de fondo y los datos de la compulsa para la marca de agua en compulsa.
+				En el caso de NO SER UN DIRECTORIO RELATIVO, deberá proporionarse la ruta completa
+				<FondoPath isRelative="false">C:\temp\isicres-tmp</FondoPath>
+				<DatosCompulsaPath isRelative="false">C:\temp\isicres-tmp</DatosCompulsaPath>
+				Debe aparecer como primer caracter la / en caso de ser relativo-->
+
+			<FondoPath isRelative="${compulsa.path.relative}">${compulsa.path.folder}fondo.gif</FondoPath>
+			<DatosCompulsaPath isRelative="${compulsa.path.relative}">${compulsa.path.folder}datosCompulsa.txt</DatosCompulsaPath>
+
+			<!-- Posibles implementaciones: es.ieci.tecdoc.isicres.compulsa.manager.invesicres.InvesicresCompulsaManager -->
+			<CompulsaPolicy>${compulsa.policy}</CompulsaPolicy>
+		</Compulsar>
+
+		<!-- Esta seccion sirve para configurar la generacion de informes -->
+		<Reports>
+			<DtdPath isRelative="${reports.dtd.path.relative}">${reports.dtd.path}</DtdPath>
+			<LibPath isRelative="${reports.lib.path.relative}">${reports.lib.path}</LibPath>
+			<JasperReportsDtd>${reports.jasperreports.dtd}</JasperReportsDtd>
+			<JasperReportsLib>${reports.jasperreports.lib}</JasperReportsLib>
+		</Reports>
+
+
+	</ISicres-DesktopWeb>
+	<ISicres-Server>
+	    <Authentication>
+	        <!--<AuthenticationPolicy authenticationPolicyType="invesdoc">com.ieci.tecdoc.idoc.authentication.InvesDocAuthenticationPolicy</AuthenticationPolicy>-->
+	        <!--<AuthenticationPolicy authenticationPolicyType="ldap">com.ieci.tecdoc.idoc.authentication.LDAPAuthenticationPolicy</AuthenticationPolicy>-->
+	        <!--<AuthenticationPolicy authenticationPolicyType="ldap">ieci.tecdoc.sgm.registropresencial.autenticacion.SigemLDAPAuthenticationPolicy</AuthenticationPolicy>-->
+	       <AuthenticationPolicy>${authentication.policy}</AuthenticationPolicy>
+
+	       <!--
+	       		Esta variable indica el tipo de autenticación utilizada, segun la AuthenticationPolicy utilizada:
+	       		com.ieci.tecdoc.idoc.authentication.InvesDocAuthenticationPolicy:
+	       				<AuthenticationPolicyType>invesdoc</AuthenticationPolicyType>
+	       		com.ieci.tecdoc.idoc.authentication.LDAPAuthenticationPolicy:
+	       				<AuthenticationPolicyType>ldap</AuthenticationPolicyType>
+	       		ieci.tecdoc.sgm.registropresencial.autenticacion.SigemLDAPAuthenticationPolicy:
+	       				<AuthenticationPolicyType>ldap</AuthenticationPolicyType>
+	       -->
+	       <AuthenticationPolicyType>${authentication.policy.type}</AuthenticationPolicyType>
+
+	        <!--Esta propiedad habilita (true) o deshabilita (false) la comprobación del password de los usuarios -->
+	        <!-- Esta opcion tambien habilita el cambio de contraseña -->
+	        <!--<CheckPassword>true</CheckPassword>-->
+			<CheckPassword>${authentication.checkpassword}</CheckPassword>
+	    </Authentication>
+
+	    <SessionCache class="com.ieci.tecdoc.utils.cache.oscache.CacheAdapter">
+	        <!--seconds (20 minutos recomendado)-->
+	        <!-- -1 no activa la cache 60-->
+	        <CacheEntryTimeout>${sessionCache.timeout}</CacheEntryTimeout>
+	        <CacheEntrySessionIDGenerator>${sessionCache.idGenerator}</CacheEntrySessionIDGenerator>
+	        <!--seconds (2 minutos recomendado) -->
+	        <!-- -1 no activa el thread de limpieza 10-->
+	        <CacheCleanerSleepTime>${sessionCache.cleaner.sleepTime}</CacheCleanerSleepTime>
+	    </SessionCache>
+
+	    <!-- Clase de acceso a la base de datos -->
+	    <!-- Posibles implementaciones: com.ieci.tecdoc.common.entity.dao.OracleDBEntityDAO -->
+	    <!--                            com.ieci.tecdoc.common.entity.dao.SQLServerOracleDBEntityDAO -->
+	    <!--                            com.ieci.tecdoc.common.entity.dao.PostgreSQLDBEntityDAO -->
+	    <!--                            com.ieci.tecdoc.common.entity.dao.DB2DBEntityDAO -->
+	    <DatabaseDAO>
+	        <DAOImplementation>${database.dao.implementation}</DAOImplementation>
+	    </DatabaseDAO>
+
+	    <!-- Funcionalidad sobre el repositorio. -->
+	    <Repository>
+	    	<!-- Posibles implementaciones: es.ieci.tecdoc.isicres.document.manager.invesdoc.InvesDocRepositoryManager -->
+	    	<!--							es.ieci.tecdoc.isicres.document.manager.alfresco.AlfrescoRepositoryManager -->
+	    	<RepositoryManager>${repository.manager}</RepositoryManager>
+	    </Repository>
+	    <!-- Configura la implementación de la funcionalidad de validación de personas. -->
+	    <!-- Posibles implementaciones: com.ieci.tecdoc.person.validation.core.PersonValidationImpl-->
+	    <PersonValidation>
+	        <PersonValidationImplementation>${person.validation.implementation}</PersonValidationImplementation>
+	    </PersonValidation>
+	    <!-- Numero maximo de filas que se pueden consultar en la validacion
+	    	 de personas (tecla TAB en un formulario). Si el numero
+	    	 de filas es mayor que este, no se mostrará nada, dará error. -->
+	    <MaxRowsForValidationRules>${validation.maxRow}</MaxRowsForValidationRules>
+		<!--
+			Nombre del directorio donde se localizará el archivo de propiedades de la configuración
+			del servidor de correo a donde se enviarán los mensajes de correo electronico.
+			NO DEBE SER UN DIRECTORIO RELATIVO, deberá proporcionarse la ruta completa
+			<EmailConfDirectoryPath>C:\WUTemp\confEmail\resource\</EmailConfDirectoryPath>
+		-->
+		<!--
+			Nombre del archivo de configuración del servidor de correo
+			<EmailResourceName>email.properties</EmailResourceName>
+		-->
+
+		<!-- Timeout ftp para subida de archivos adjunto al repositorio de invesdoc en milisegundos-->
+   		<TimeOutSocket>${ftp.timeout}</TimeOutSocket>
+
+   		<Distribution>
+   		<!-- Configuracion de si se quiere o no distribuir los registros de
+   			 entrada que se generan cuando se acepta un registro de salida
+   			 distribuido. Posibles valores:
+   			 - true: Distribuye el registro
+   			 - false: No distribuye el registro
+   		-->
+   			<RegisterInFromDistribution>${distribution.registerIn.fromDistribution}</RegisterInFromDistribution>
+   			<!-- Indica si se habilita la distribucion manual en los libros de registro de Salida -->
+   			<DistributionManualBookOut>${distribution.manual.bookOut}</DistributionManualBookOut>
+   		</Distribution>
+
+
+	</ISicres-Server>
+	<!-- Habilita o deshabilita el intercambio registral de SICRES 3 -->
+	<ISicres-IntercambioRegistral>
+		<EnableIntercambioRegistral>${enable.intercambioRegistral}</EnableIntercambioRegistral>
+	</ISicres-IntercambioRegistral>
+
+	<ISicres-WS>
+		<Distribution>
+			<!-- Indica si en los registros importados se aplica la distribución automática. Posibles valores:
+				- true: Distribuye de forma automática el registro importado
+				- false: No distribuye el registro importado
+			 -->
+			<AutoDistributionRegisterImport>${distribution.ws.autoDistributionRegisterImport}</AutoDistributionRegisterImport>
+		</Distribution>
+	</ISicres-WS>
+
+</ISicres-Configuration>

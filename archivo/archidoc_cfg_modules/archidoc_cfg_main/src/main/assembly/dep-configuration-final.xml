@@ -1,0 +1,16 @@
+<assembly>		
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>../${name}/target/config</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>		
+		<fileSet>
+			<directory>src/main/config</directory>
+			<outputDirectory>/</outputDirectory>		
+		</fileSet>		
+	</fileSets>
+</assembly>

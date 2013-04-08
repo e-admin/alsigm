@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean
+			name="listaCertificadosBean" type="ieci.tecdoc.sgm.registro.form.ListaCertificadosForm">
+		</form-bean>
+		<form-bean
+			name="solicitudesRegistroBean" type="ieci.tecdoc.sgm.registro.form.SolicitudesRegistroForm">
+		</form-bean>
+		<form-bean
+			name="tipoAccesoBean" type="ieci.tecdoc.sgm.registro.form.TipoAccesoForm">
+		</form-bean>
+		<form-bean
+			name="formularioSolicitudBean" type="ieci.tecdoc.sgm.registro.form.FormularioSolicitudForm">
+		</form-bean>
+		<form-bean
+			name="formularioSubsanacionBean" type="ieci.tecdoc.sgm.registro.form.FormularioSubsanacionForm">
+		</form-bean>
+	</form-beans>
+	<global-forwards>
+	</global-forwards>
+	<action-mappings>
+		<!-- Subsanacion -->
+		<action path="/prepararSubsanacion"
+				type="ieci.tecdoc.sgm.registro.action.PrepararSubsanacionAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/FormularioSubsanacion.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacion.jsp"/>
+		</action>
+		<action path="/enviarSubsanacion"
+				type="ieci.tecdoc.sgm.registro.action.EnviarSubsanacionAction"
+				name="formularioSubsanacionBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/ResultadoSolicitud.jsp"/>
+				<forward name="failure" path="/jsp/MensajeErrorEnviar.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacionIFrame.jsp"/>
+		</action>
+		<!-- Registro -->
+		<action path="/prepararSolicitudRegistro"
+				type="ieci.tecdoc.sgm.registro.action.PrepararSolicitudRegistroAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/FormularioSolicitudRegistro.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacion.jsp"/>
+		</action>
+		<action path="/enviarSolicitud"
+				type="ieci.tecdoc.sgm.registro.action.EnviarSolicitudAction"
+				name="formularioSolicitudBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/ResultadoSolicitud.jsp"/>
+				<forward name="failure" path="/jsp/MensajeErrorEnviar.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacionIFrame.jsp"/>
+		</action>
+		<action path="/obtenerJustificante"
+				type="ieci.tecdoc.sgm.registro.action.ObtenerJustificanteAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/iniciarExpediente.do"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacion.jsp"/>
+		</action>
+		<action path="/registrarSolicitud"
+				type="ieci.tecdoc.sgm.registro.action.RegistrarSolicitudAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/JustificanteRegistro.jsp"/>
+				<forward name="getJustificante" path="/obtenerJustificante.do" redirect="true"/>
+				<forward name="failure" path="/mostrarErrorRegistro.do" redirect="true"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacionIFrame.jsp"/>
+				<forward name="refrescar" path="/jsp/JustificanteRegistro.jsp"/>
+		</action>
+		<!-- Certificados -->
+		<action path="/listaCertificados"
+				type="ieci.tecdoc.sgm.registro.action.ListaCertificadosAction"
+				name="listaCertificadosBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/seleccionarCertificado.do"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacion.jsp"/>
+		</action>
+		<action path="/seleccionarCertificado"
+				type="ieci.tecdoc.sgm.registro.action.SeleccionarCertificadoAction"
+				name="listaCertificadosBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/RedireccionSolicitud.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacion.jsp"/>
+		</action>
+		<!-- Trámites -->
+		<action path="/solicitudesRegistro"
+				type="ieci.tecdoc.sgm.registro.action.SolicitudesRegistroAction"
+				name="solicitudesRegistroBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/SolicitudesRegistro.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacion.jsp"/>
+		</action>
+		<action path="/realizarSolicitudRegistro"
+				type="ieci.tecdoc.sgm.registro.action.RealizarSolicitudRegistroAction"
+				name="solicitudesRegistroBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/listaCertificados.do"/> <!-- /jsp/RedireccionCertificados.jsp -->
+				<forward name="success_change_port" path="/jsp/RedireccionCertificados.jsp"/> <!-- Nuevo -->
+				<forward name="success_web" path="/prepararSolicitudRegistro.do"/>
+				<forward name="success_web_change_port" path="/jsp/RedireccionUsuarios.jsp"/> <!-- Nuevo -->
+				<forward name="error_login" path="/jsp/RedireccionAutenticacion.jsp"/> <!-- obtenerTipoAcceso.do -->
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+		</action>
+		<!-- Sesión -->
+		<action path="/desconectar"
+				type="ieci.tecdoc.sgm.registro.action.DesconectarAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/RedireccionPortal.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+		</action>
+		<!-- Expediente -->
+		<action path="/iniciarExpediente"
+				type="ieci.tecdoc.sgm.registro.action.IniciarExpedienteAction"
+				scope="request"
+				validate="false">
+				<!--
+				<forward name="success" path="/mostrarResumenRegistro.do" redirect="true"/>
+				-->
+				<forward name="success" path="/jsp/MostrarResumenRegistro.jsp"/>
+				<forward name="failure" path="/mostrarErrorRegistro.do" redirect="true"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacionIFrame.jsp"/>
+		</action>
+		<action path="/mostrarResumenRegistro"
+				type="ieci.tecdoc.sgm.registro.action.MostrarResumenRegistroAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/JustificanteRegistro.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacion.jsp"/>
+		</action>
+		<action path="/mostrarErrorRegistro"
+				type="ieci.tecdoc.sgm.registro.action.MostrarErrorRegistroAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/MensajeErrorRegistro.jsp"/>
+				<forward name="error_login" path="/jsp/RedireccionAutenticacion.jsp"/>
+		</action>
+
+		<action path="/descargarJustificante"
+				type="ieci.tecdoc.sgm.registro.action.DescargarJustificanteAction">
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+		</action>
+
+	</action-mappings>
+	<controller maxFileSize="4M" inputForward="true" />
+	<message-resources parameter="resources.application" />
+	<plug-in className="ieci.tecdoc.sgm.registro.plugin.ConfigPlugin">
+
+	</plug-in>
+</struts-config>

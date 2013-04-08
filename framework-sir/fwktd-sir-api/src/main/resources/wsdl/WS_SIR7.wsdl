@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://impl.manager.cct.map.es"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://impl.manager.cct.map.es"
+	xmlns:intf="http://impl.manager.cct.map.es" xmlns:tns1="http://bean.cct.map.es"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://impl.manager.cct.map.es"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://bean.cct.map.es" />
+			<element name="recepcionMensajeDatosControlDeAplicacion">
+				<complexType>
+					<sequence>
+						<element name="mensaje" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="recepcionMensajeDatosControlDeAplicacionResponse">
+				<complexType>
+					<sequence>
+						<element name="recepcionMensajeDatosControlDeAplicacionReturn"
+							type="tns1:RespuestaWS" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+		<schema elementFormDefault="qualified" targetNamespace="http://bean.cct.map.es"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<complexType name="RespuestaWS">
+				<sequence>
+					<element name="codigo" nillable="true" type="xsd:string" />
+					<element name="descripcion" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="recepcionMensajeDatosControlDeAplicacionResponse">
+		<wsdl:part element="impl:recepcionMensajeDatosControlDeAplicacionResponse"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="recepcionMensajeDatosControlDeAplicacionRequest">
+		<wsdl:part element="impl:recepcionMensajeDatosControlDeAplicacion"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="WS_SIR7">
+		<wsdl:operation name="recepcionMensajeDatosControlDeAplicacion">
+			<wsdl:input message="impl:recepcionMensajeDatosControlDeAplicacionRequest"
+				name="recepcionMensajeDatosControlDeAplicacionRequest" />
+			<wsdl:output message="impl:recepcionMensajeDatosControlDeAplicacionResponse"
+				name="recepcionMensajeDatosControlDeAplicacionResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="WS_SIR7SoapBinding" type="impl:WS_SIR7">
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="recepcionMensajeDatosControlDeAplicacion">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="recepcionMensajeDatosControlDeAplicacionRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="recepcionMensajeDatosControlDeAplicacionResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="WS_SIR7Service">
+		<wsdl:port binding="impl:WS_SIR7SoapBinding" name="WS_SIR7">
+			<wsdlsoap:address location="http://localhost/CIR_P2P/services/WS_SIR7" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

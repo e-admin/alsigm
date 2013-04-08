@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter defaultSort="2">
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_CTOS_FIRMA:ID' 
+				 readOnly='false'
+				 fieldType='CHECKBOX' 
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 columnClass='width5percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_DOCUMENTOS:NUMEXP'
+				 readOnly='false'
+				 titleKey='formatter.batchSign.numExp' 
+				 fieldType='LIST' 
+				 columnClass="width15percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_DOCUMENTOS:NOMBRE'
+				 readOnly='false'
+				 titleKey='formatter.batchSign.nombreDocumento' 
+				 fieldType='LINK' 
+				 media='html'
+				 sortable='true'
+				 styleClass='displayLink'
+				 url='showDocument'
+				 id='document'
+				 fieldLink='SPAC_DT_DOCUMENTOS:ID'
+				 columnClass="width20percent"
+				 />
+				 		 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_DOCUMENTOS:NOMBRE' 
+				 readOnly='false'
+				 titleKey='formatter.batchSign.nombreDocumento' 
+				 fieldType='LIST' 
+				 media='csv excel xml pdf'
+				 />
+				 
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='SPAC_DT_DOCUMENTOS:FDOC'
+				 readOnly='false'
+				 format='dd/MM/yyyy' 
+				 titleKey='formatter.batchSign.fechaGeneracion' 
+				 fieldType='LIST' 
+				 columnClass="width15percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_DOCUMENTOS:AUTOR_INFO'
+				 readOnly='false' 
+				 titleKey='formatter.batchSign.autor' 
+				 fieldType='LIST' 
+				 columnClass="width15percent"
+				 sortable='true'
+				 />
+	
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_TBL_008:SUSTITUTO' 
+				 titleKey='formatter.batchSign.estadoFirma' 
+				 readOnly='false'
+				 fieldType='LIST' 
+				 columnClass="width10percent"
+				 sortable='true'
+				 />
+
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='SPAC_DT_DOCUMENTOS:FFIRMA' 
+				 titleKey='formatter.batchSign.fechaEstado' 
+				 readOnly='false'
+				 fieldType='LIST' 
+				 format='dd/MM/yyyy'
+				 columnClass="width10percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_CTOS_FIRMA:NOMBRE_FIRMANTE'
+				 readOnly='false' 
+				 titleKey='formatter.batchSign.firmante' 
+				 fieldType='LIST' 
+				 columnClass="width10percent"
+				 sortable='true'
+				 />
+	
+</beanformatter>

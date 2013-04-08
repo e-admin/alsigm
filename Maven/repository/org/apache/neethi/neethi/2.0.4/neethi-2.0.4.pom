@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Licensed to the Apache Software Foundation (ASF) under one
+  ~ or more contributor license agreements. See the NOTICE file
+  ~ distributed with this work for additional information
+  ~ regarding copyright ownership. The ASF licenses this file
+  ~ to you under the Apache License, Version 2.0 (the
+  ~ "License"); you may not use this file except in compliance
+  ~ with the License. You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied. See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.apache.neethi</groupId>
+	<artifactId>neethi</artifactId>
+	<name>Neethi</name>
+	<version>2.0.4</version>
+	<description>Apache Neethi provides general framework for the programmers to use WS Policy. It is compliant with latest WS Policy specification which was published in March 2006. This framework is specifically written to enable the Apache Web services stack to use WS Policy as a way of expressing it's requirements and capabilities.</description>
+	<url>http://ws.apache.org/commons/neethi/</url>
+	<issueManagement>
+		<url>http://issues.apache.org/jira/browse/WSCOMMONS</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Continuum</system>
+		<url>unknown</url>
+		<notifiers>
+			<notifier>
+				<configuration>
+					<address>commons-dev@ws.apache.org</address>
+				</configuration>
+			</notifier>
+		</notifiers>
+	</ciManagement>
+	<mailingLists>
+		<mailingList>
+			<name>WS Commons Developers</name>
+			<subscribe>commons-dev-subscribe@ws.apache.org</subscribe>
+			<unsubscribe>commons-dev-unsubscribe@ws.apache.org</unsubscribe>
+			<post>commons-dev@ws.apache.org</post>
+			<archive>http://mail-archives.apache.org/mod_mbox/ws-commons-dev/</archive>
+		</mailingList>
+	</mailingLists>
+	<inceptionYear>2004</inceptionYear>
+	<developers>
+		<developer>
+			<name>Sanjiva Weerawarana</name>
+			<id>sanjiva</id>
+			<organization>WSO2 Inc.</organization>
+			<email>sanjiva@opensource.lk</email>
+		</developer>
+		<developer>
+			<name>Davanum Srinivas</name>
+			<id>dims</id>
+			<organization>IBM</organization>
+			<email>dims@yahoo.com</email>
+		</developer>
+		<developer>
+			<name>Dittmann, Werner</name>
+			<id>werner</id>
+			<organization></organization>
+			<email>werner.dittmann@siemens.com</email>
+		</developer>
+		<developer>
+			<name>Sanka Samaranayake</name>
+			<id>sanka</id>
+			<organization>WSO2 Inc.</organization>
+			<email>sanka@apache.org</email>
+		</developer>
+		<developer>
+            <!-- Documentation -->
+			<name>Chatra Nakkawita</name>
+			<id>chatra</id>
+			<organization>WSO2 Inc.</organization>
+			<email>chatra@gmail.com</email>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:svn:http://svn.apache.org/repos/asf/webservices/commons/trunk/modules/neethi</connection>
+		<developerConnection>scm:svn:https://svn.apache.org/repos/asf/webservices/commons/trunk/modules/neethi</developerConnection>
+		<url>http://svn.apache.org/viewcvs.cgi/webservices/commons/trunk/modules/neethi</url>
+	</scm>
+	<organization>
+		<name>Apache Software Foundation</name>
+		<url>http://www.apache.org/</url>
+	</organization>
+	<build>
+        <resources>
+          <resource>
+             <directory>src/main/resources</directory>
+           </resource>
+        </resources>
+		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.3</source>
+					<target>1.3</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<forkMode>once</forkMode>
+					<childDelegation>false</childDelegation>
+					<excludes>
+						<exclude>**/PolicyTestCase.java</exclude>
+					</excludes>
+					<includes>
+						<include>**/*Test*.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagBase>https://svn.apache.org/repos/asf/webservices/commons/tags/neethi</tagBase>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/bin.xml</descriptor>
+						<descriptor>src/main/assembly/src.xml</descriptor>
+					</descriptors>
+					<tarLongFileMode>gnu</tarLongFileMode>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>release</name>
+					<value></value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>javadoc</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<attach>true</attach>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+    <repositories>
+        <repository>
+            <id>maven-central</id>
+            <name>central maven repository</name>
+            <url>http://repo1.maven.org/maven/</url>
+            <layout>legacy</layout>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+            <id>apache-ws-snapshots2</id>
+            <name>Apache ws.zones - 2</name>
+            <url>http://ws.zones.apache.org/repository2</url>
+        </repository>
+    </repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>snapshot</id>
+			<name>Snapshot repository</name>
+			<url>http://snapshots.maven.codehaus.org/maven2/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<id>snapshot-apache</id>
+			<name>Apache Snapshot repository</name>
+			<url>http://people.apache.org/repo/m2-snapshot-repository</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.ws.commons.axiom</groupId>
+			<artifactId>axiom-api</artifactId>
+			<version>${axiom.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ws.commons.axiom</groupId>
+			<artifactId>axiom-impl</artifactId>
+			<version>${axiom.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>wstx-asl</artifactId>
+			<version>3.2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>avalon-framework</artifactId>
+					<groupId>avalon-framework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>logkit</artifactId>
+					<groupId>logkit</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+	<reporting>
+		<plugins>
+			<plugin>
+				 <groupId>org.apache.maven.plugins</groupId>
+				 <artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
+	<distributionManagement>
+        <repository>
+            <id>apache-repo</id>
+            <name>Maven Central Repository</name>
+            <url>scpexe://people.apache.org//www/people.apache.org/repo/m2-ibiblio-rsync-repository</url>
+        </repository>
+        <snapshotRepository>
+            <id>apache-snapshots</id>
+            <name>Apache Development Repository</name>
+            <url>scpexe://people.apache.org//www/people.apache.org/repo/m2-snapshot-repository</url>
+        </snapshotRepository>
+		<site>
+			<id>website</id>
+			<url>scpexe://people.apache.org/www/ws.apache.org/commons/neethi</url>
+		</site>
+	</distributionManagement>
+	<properties>
+		<axiom.version>1.2.7</axiom.version>
+        <neethi.osgi.version>2.0.4</neethi.osgi.version>
+        <bundle.plugin.version>1.4.0</bundle.plugin.version>
+        <failIfNoTests>false</failIfNoTests>
+	</properties>
+</project>

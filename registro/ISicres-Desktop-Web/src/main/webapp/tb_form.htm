@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<link rel="stylesheet" href="css/global.css" type="text/css">
+		<script language="javascript"> 
+   function deshabilitar()
+   {
+      document.getElementById("QryBtn").className="SubOptionsDisabled";
+      document.getElementById("TableBtn").className="SubOptionsDisabled";
+   }
+   function habilitar()
+   {
+      document.getElementById("QryBtn").className="Options";
+      document.getElementById("TableBtn").className="Options";
+      top.g_OpcAval=true;
+   }
+   
+   function OnLoadToolBar()
+   {
+      window.open(top.g_URL + "/fldbarupdate.htm", "FolderBar","location=no",true);
+      top.g_Page = "0";
+   }
+				</script>
+	</head>
+	<body onLoad="OnLoadToolBar();if (top.g_ArchiveName != '') top.SetArchiveName(top.g_ArchiveName,'FRM');" tabIndex="-1">
+		<div class="migas">
+		<ul>
+			<li><SCRIPT LANGUAGE="javascript">document.write( top.GetIdsLan( "IDS_INICIO" ) )</SCRIPT>
+				<img id="flechas" src="images/flechitas_down.gif"/>
+				<label align="left" id="ArchiveName" class="BookNameEx"></label>
+				<img id="flechas" src="images/flechitas_down.gif"/>
+				<SCRIPT LANGUAGE="javascript">document.write( top.GetIdsLan( "IDS_SEARCH_RESULT" ) )</SCRIPT>
+			</li>
+		</ul>
+		</div>
+		<table class="GreyToolbar" width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr height="24" valign="middle" align="center" tabIndex="-1">
+				<td width="232"></td>
+				<td>
+					<table width="100%" height="18" border="0" cellspacing="0" cellpadding="0">
+						<tr tabIndex="-1">
+							<td>
+								<div align="center">&nbsp;</div>
+							</td>
+							<script language="javascript"> 
+            if ( ((top.g_BookPerms >> (top.POS_PERM_CREAR)) % 2 != 0)
+                && (!top.g_bIsLockBook) )
+            {
+               document.write('<td id="NewFolderBtn" width="120" class="Options" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="javascript:top.NewFolder(this)" onkeydown="javascript:if (top.GetKeyCode(event)==13){top.NewFolder(this);}" tabIndex="1">'
+                  + '<div align="center">' + top.GetIdsLan( "IDS_OPCNUEVA" ) + '</div></td>');
+            }
+							</script>
+							<td id="TableBtn" width="80" class="Options" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="javascript:if(top.g_OpcAval){top.g_OpcAval=false;deshabilitar();top.Main.Table.TableData.ShowTable();};" onkeydown="javascript:if ((top.GetKeyCode(event)==13)&&(top.g_OpcAval)){top.g_OpcAval=false;deshabilitar();top.Main.Table.TableData.ShowTable();};" tabIndex="1">
+								<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCTABLA" ) )</SCRIPT></div>
+							</td>
+							<td id="QryBtn" width="80" class="Options" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="javascript:if(top.g_OpcAval){top.g_OpcAval=false;deshabilitar();top.ShowQuery();top.Main.Workspace.EnabledTool();};" onkeydown="javascript:if ((top.GetKeyCode(event)==13)&&(top.g_OpcAval)){top.g_OpcAval=false;deshabilitar();top.ShowQuery();top.Main.Workspace.EnabledTool();};" tabIndex="1">
+								<div align="center"><SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCVOLVER" ) )</SCRIPT></div>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5"></td>
+			</tr>
+		</table>
+	</body>
+</html>

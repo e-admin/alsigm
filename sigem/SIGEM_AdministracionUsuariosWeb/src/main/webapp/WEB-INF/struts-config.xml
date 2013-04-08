@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans >  
+    <form-bean name="LoginForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="user" type="java.lang.String" />
+      <form-property name="pass" type="java.lang.String" />
+	</form-bean>  
+	
+    <form-bean name="BusquedaUsuariosForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="finduser" type="java.lang.String" />
+	</form-bean>  	
+	
+    <form-bean name="UsuarioForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="user" type="java.lang.String" />
+      <form-property name="password" type="java.lang.String" />  
+      <form-property name="password2" type="java.lang.String" />      
+      <form-property name="email" type="java.lang.String" />            
+      <form-property name="id" type="java.lang.String" />                  
+      <form-property name="name" type="java.lang.String" />
+      <form-property name="lastname" type="java.lang.String" />      
+	</form-bean>
+
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards>
+  	<forward name="error" path="/jsp/paginaError.jsp"/>
+  	<forward name="errorAutenticacion" path="/jsp/redireccion.jsp"/>  	
+  	<forward name="desconectar" path="/desconectar.do"/>  	
+  </global-forwards>
+  <action-mappings >
+
+   <action
+   			path="/inicio" 
+   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.InicioAction">
+   		<forward name="success" path="/buscarUsuarios.do" />   
+    </action>    
+
+   <action
+   			path="/buscarUsuarios" 
+   			name="BusquedaUsuariosForm"
+   			scope="request"   			   			
+   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.BuscarUsuariosAction">
+		
+		<forward name="success" path="/jsp/busquedaUsuarios.jsp" />
+    </action>    
+
+   <action
+   			path="/eliminarUsuario" 
+   			name="UsuarioForm"
+   			scope="request"   			   			
+   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.EliminarUsuarioAction">
+		
+		<forward name="success" path="/buscarUsuarios.do"/>
+    </action>    
+
+   <action
+   			path="/consultarUsuario" 
+   			name="UsuarioForm"
+   			scope="request"   			   			
+   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.ConsultaUsuarioAction">
+		
+		<forward name="success" path="/jsp/usuario.jsp"/>
+    </action>    
+
+   <action
+   			path="/modificarUsuario" 
+   			name="UsuarioForm"
+   			scope="request"   			   			
+   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.ModificarUsuarioAction">
+		
+		<forward name="success" path="/consultarUsuario.do"/>
+    </action>    
+
+   <action
+   			path="/altaUsuario" 
+   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.AltaUsuarioAction">
+		
+		<forward name="success" path="/jsp/altaUsuario.jsp"/>   			
+    </action>    
+
+   <action
+   			path="/crearUsuario" 
+   			name="UsuarioForm"
+   			input="/altaUsuario.do"
+   			scope="request"   			   			
+   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.CrearUsuarioAction">
+		<forward name="error" path="/jsp/altaUsuario.jsp"/>  
+		<forward name="success" path="/consultarUsuario.do"/>
+    </action>    
+   	
+   	<action
+   			path="/iniciarCambioPass" 
+   			name="UsuarioForm"
+   			input="/jsp/usuario.jsp"
+	   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.IniciarCambioPassAction">
+		<forward name="success" path="/jsp/cambioPass.jsp"/>   			
+    </action>  
+ 
+   <action
+   			path="/cambiarPass" 
+   			name="UsuarioForm"
+   			input="/jsp/cambioPass.jsp"
+   			scope="request"   			   			
+   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.ModificarUsuarioAction">
+		<forward name="error" path="/jsp/cambioPass.jsp"/>  
+		<forward name="success" path="/consultarUsuario.do"/>
+    </action>   
+
+    
+   	<action 
+   			path="/desconectar" 
+   			type="ieci.tecdoc.sgm.usuario.admin.struts.action.DesconectarAction">
+   		<forward name="success" path="/jsp/redireccion.jsp" />
+    </action>
+  </action-mappings>
+  <message-resources parameter="ieci.tecdoc.sgm.usuario.admin.struts.ApplicationResources" />
+  
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+  	<set-property property="pathnames"
+       value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+  </plug-in>
+</struts-config>
+

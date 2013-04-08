@@ -1,0 +1,85 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/table.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/global.css" />
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/origdoc.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			top.Idioma = top.GetDlgParam(0);
+			document.title = top.GetIdsLan("IDS_LABEL_TYPEPROC");
+		</SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			function OnWndLoad()
+			{
+				document.getElementById("oTxtProc").value = "";
+				top.setFocus(document.getElementById("oTxtProc"));
+			}
+
+			function OnPropertyChange(oField)
+			{
+				if(top.miTrim(oField.value) != "")
+				{
+			      		document.getElementById("BtnAceptar").disabled = false;
+				}
+			   	else
+			   	{
+			      		document.getElementById("BtnAceptar").disabled = true;
+			   	}	
+			}
+
+			function OnCancel()
+			{
+				top.returnValue = "";
+				top.close();
+			}
+
+			function OnOK()
+			{
+				var sTemp = escape(document.getElementById("oTxtProc").value);
+				var pattern =/%0D%0A/g;
+				
+				document.getElementById("oTxtProc").value = unescape(sTemp.replace(pattern, "%20"));
+								
+				if (document.getElementById("oTxtProc").value == "")
+				{
+					alert(top.GetIdsLan("IDS_MSG_INTRO_TYPEPROC"));
+					top.setFocus(document.getElementById("oTxtProc"));
+				}
+				else if (document.getElementById("oTxtProc").value.length > 100)
+				{
+					alert(top.GetIdsLan("IDS_LENGTH_EXCEDEED"));
+					document.getElementById("oTxtProc").value = document.getElementById("oTxtProc").value.substr(0, 100);
+					top.setFocus(document.getElementById("oTxtProc"));
+				}
+				else
+				{
+					top.returnValue = document.getElementById("oTxtProc").value;
+					top.close();
+				}
+			}	
+	
+				</SCRIPT>
+	</HEAD>
+	<BODY onload="OnWndLoad();" onunload="top.EnableEvents(window.opener);">
+		<DIV id="oDivProc" name="oDivProc" class="div" style="position:absolute; top:2; left:2; width:290; height:200;">
+			<FORM name="frmDtrProc" id="frmDtrProc">
+				<LABEL class="label" style="position:absolute; top:7; left:7;">
+					<SCRIPT language="javascript">
+						document.write( top.GetIdsLan( "IDS_LABEL_TYPEPROC" ) )
+					</SCRIPT>
+				</LABEL>
+				<TEXTAREA class="textarea" id="oTxtProc" type="text" name="oTxtProc" tabindex="1" style="position:absolute; top:30; left:7; width:270; height:125; overflow-y:scroll; word-wrap:break-word;" onpropertychange="OnPropertyChange(this);">
+				</TEXTAREA>
+				<SCRIPT LANGUAGE="javascript">
+					document.write('<INPUT class="button" type = "button" name="BtnAceptar" ID="BtnAceptar" style="position:absolute; top:160; left: 63;width:80;" value="' + top.GetIdsLan( "IDS_BTNACEPTAR" ) + '" disabled=true tabindex="1" onclick="OnOK();">');
+			        document.write('<INPUT class="button" ID="btnCancel" style="position:absolute; top:160; left: 147;width:80;" Name="btnCancel" Type="Button" value="' + top.GetIdsLan( "IDS_BTNCANCEL" ) + '" onclick="OnCancel();" tabindex="1">');
+				</SCRIPT>
+			</FORM>
+		</DIV>
+	</BODY>
+</HTML>

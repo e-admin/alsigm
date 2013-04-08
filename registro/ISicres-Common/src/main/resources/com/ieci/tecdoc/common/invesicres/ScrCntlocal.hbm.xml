@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrCntlocal" 
+    table="SCR_CNTLOCAL"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_CNTLOCAL"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="an" 
+            column="AN" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="AN"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="puesto" 
+            column="PUESTO" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="PUESTO"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="numReg" 
+            column="NUM_REG" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="NUM_REG"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idArch" 
+            column="ID_ARCH" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_ARCH"
+                length="10"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

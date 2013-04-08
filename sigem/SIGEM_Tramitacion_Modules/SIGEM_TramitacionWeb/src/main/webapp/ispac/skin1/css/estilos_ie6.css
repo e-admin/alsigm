@@ -1,0 +1,126 @@
+html {
+	height:100%;
+}
+
+body {
+	height:90%;
+}
+
+#contenido_tree, #contenido_menu {
+	height:100%;
+}
+
+
+#cabecera .des_adm {
+	top: 12px;
+}
+
+#cabecera .des_bck {
+	top: 40px;
+}
+
+#cabecera .salir {
+	top: 125px;
+}
+
+#cabecera .salir2 {
+	top: 25px;
+}
+
+#barra_usuario_organo {
+	zoom: 1;
+}
+
+#barra_usuario_organo ul {
+	width: 80%;
+}
+
+.seccion {
+	margin: 10px 0px 20px 8px;
+}
+
+.seccion_top {
+	margin: 0px 0px 20px 10px;
+}
+
+.seccion_large, .seccion_large_bottom {
+	width: 730px;
+}
+
+.seccion_login {
+	margin: 40px 50px 20px 20px;
+}
+
+#navegacion div.cuerpo_nav div.contenido_cuerpo_nav {
+	width: 187px;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+#contenido_menu {
+	background-color: transparent;
+	margin-top:-1px;
+}
+
+div.menu_desplegado #navegacion {
+	margin-top:0px;
+	margin-right:4px;
+}
+
+
+td, .td_desplegado table, .td_desplegado tr, .td_desplegado td {
+	background-color: transparent;
+}
+
+#botonera {
+	background-color: transparent;
+}
+
+#botonera p.menu_bt .imgMenuOn {
+	background-color: transparent;
+}
+
+.cuerpo_subs {
+	margin-top: -1px;
+}
+
+.cuerpo_ficha {
+	height: 0px;
+}
+
+.td_desplegado{
+	width:21%;
+}
+
+/* estilo para el mensaje de la capa semiopaca */
+.messageShowLayer {
+	position: absolute; 
+	top: 50%; 
+	display: table-cell; 
+	vertical-align: middle;
+    left:42%;
+	text-align: center;
+	width:400px;
+	height:450px;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+}
+
+/* estilos para los botones */
+input.btnOk ,  #btnOkSubmit {
+	padding-left: 8px;
+}
+
+input.btnCancel {
+	padding-left: 8px;
+}
+
+input.btnSearch {
+	padding-left: 8px;
+}
+
+input.btnDir {
+	padding-left: 8px;
+}

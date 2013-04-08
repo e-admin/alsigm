@@ -1,0 +1,41 @@
+// IdocLDAPClient.idl : IDL source for IdocLDAPClient.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (IdocLDAPClient.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(36DA666B-FC66-40FD-8757-7B90D939EB87),
+		dual,
+		helpstring("IIdocLDAP Interface"),
+		pointer_default(unique)
+	]
+	interface IIdocLDAP : IDispatch
+	{
+		[id(1), helpstring("method GetUserDn")] HRESULT GetUserDn([out, retval] BSTR* pUserDn);
+
+		[id(2), helpstring("method GetUserDnEncode")] HRESULT GetUserDnEncode([out, retval] BSTR* pUserDn);
+	};
+
+[
+	uuid(B6D1BBCC-4C64-4963-9BC2-7642F1647AF7),
+	version(1.0),
+	helpstring("IdocLDAPClient 1.0 Type Library")
+]
+library IDOCLDAPCLIENTLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(13180912-3296-40DF-9335-88D3E00A2E53),
+		helpstring("IdocLDAP Class")
+	]
+	coclass IdocLDAP
+	{
+		[default] interface IIdocLDAP;
+	};
+};

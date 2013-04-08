@@ -1,0 +1,34 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_CertificacionWeb/src/main/resources/SIGEM_CertificacionWeb</directory>
+			<outputDirectory>/SIGEM_CertificacionWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_CertificacionWeb/src/main/resources/SIGEM_CertificacionWeb</directory>
+			<outputDirectory>/SIGEM_CertificacionWeb</outputDirectory>
+			<includes>
+				<include>skin*/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_CertificacionWS/src/main/resources/SIGEM_CertificacionWS</directory>
+			<outputDirectory>/SIGEM_CertificacionWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

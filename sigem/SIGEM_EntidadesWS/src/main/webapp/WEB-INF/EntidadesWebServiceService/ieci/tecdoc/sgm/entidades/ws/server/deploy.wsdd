@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EntidadesWebServiceService WSDL service -->
+
+  <service name="EntidadesWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.entidades.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="EntidadesWebServiceService"/>
+      <parameter name="schemaQualified" value="http://server.ws.entidades.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="EntidadesWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.entidades.ws.server.EntidadesWebService"/>
+      <parameter name="wsdlPortType" value="EntidadesWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.entidades.sgm.tecdoc.ieci" name="nuevaEntidad" qname="operNS:nuevaEntidad" returnQName="retNS:nuevaEntidadReturn" returnType="rtns:Entidad" soapAction="">
+        <parameter xmlns:pns="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.entidades.sgm.tecdoc.ieci" qname="pns:poEntidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="eliminarEntidad" qname="operNS:eliminarEntidad" returnQName="retNS:eliminarEntidadReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.entidades.sgm.tecdoc.ieci" qname="pns:poEntidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.entidades.sgm.tecdoc.ieci" name="actualizarEntidad" qname="operNS:actualizarEntidad" returnQName="retNS:actualizarEntidadReturn" returnType="rtns:Entidad" soapAction="">
+        <parameter xmlns:pns="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.entidades.sgm.tecdoc.ieci" qname="pns:poEntidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.entidades.sgm.tecdoc.ieci" name="obtenerEntidad" qname="operNS:obtenerEntidad" returnQName="retNS:obtenerEntidadReturn" returnType="rtns:Entidad" soapAction="">
+        <parameter xmlns:pns="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:identificador" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.entidades.sgm.tecdoc.ieci" name="buscarEntidades" qname="operNS:buscarEntidades" returnQName="retNS:buscarEntidadesReturn" returnType="rtns:Entidades" soapAction="">
+        <parameter xmlns:pns="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.entidades.sgm.tecdoc.ieci" qname="pns:poCriterio" type="tns:CriterioBusquedaEntidades"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.entidades.sgm.tecdoc.ieci" name="obtenerEntidades" qname="operNS:obtenerEntidades" returnQName="retNS:obtenerEntidadesReturn" returnType="rtns:Entidades" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.entidades.sgm.tecdoc.ieci" name="obtenerIdentificadorEntidad" qname="operNS:obtenerIdentificadorEntidad" returnQName="retNS:obtenerIdentificadorEntidadReturn" returnType="rtns:RetornoCadena" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="obtenerEntidades nuevaEntidad buscarEntidades actualizarEntidad obtenerEntidad obtenerIdentificadorEntidad eliminarEntidad"/>
+
+      <typeMapping xmlns:ns="http://server.ws.entidades.sgm.tecdoc.ieci" qname="ns:Entidades" type="java:ieci.tecdoc.sgm.entidades.ws.server.Entidades" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.entidades.sgm.tecdoc.ieci" qname="ns:Entidad" type="java:ieci.tecdoc.sgm.entidades.ws.server.Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:RetornoServicio" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.entidades.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.entidades.sgm.tecdoc.ieci" qname="ns:ArrayOfEntidad" type="java:ieci.tecdoc.sgm.entidades.ws.server.Entidad[]" innerType="cmp-ns:Entidad" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.entidades.sgm.tecdoc.ieci" qname="ns:CriterioBusquedaEntidades" type="java:ieci.tecdoc.sgm.entidades.ws.server.CriterioBusquedaEntidades" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.entidades.sgm.tecdoc.ieci" qname="ns:RetornoCadena" type="java:ieci.tecdoc.sgm.entidades.ws.server.RetornoCadena" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

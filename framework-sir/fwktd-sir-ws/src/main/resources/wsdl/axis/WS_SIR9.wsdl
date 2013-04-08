@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://impl.manager.cct.map.es"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://impl.manager.cct.map.es"
+	xmlns:intf="http://impl.manager.cct.map.es" xmlns:tns1="http://bean.cct.map.es"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://impl.manager.cct.map.es"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://bean.cct.map.es" />
+			<element name="envioMensajeDatosControlAAplicacion">
+				<complexType>
+					<sequence>
+						<element name="mensaje" type="xsd:string" />
+						<element name="firma" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="envioMensajeDatosControlAAplicacionResponse">
+				<complexType>
+					<sequence>
+						<element name="envioMensajeDatosControlAAplicacionReturn"
+							type="tns1:RespuestaWS" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+		<schema elementFormDefault="qualified" targetNamespace="http://bean.cct.map.es"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<complexType name="RespuestaWS">
+				<sequence>
+					<element name="codigo" nillable="true" type="xsd:string" />
+					<element name="descripcion" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="envioMensajeDatosControlAAplicacionRequest">
+		<wsdl:part element="impl:envioMensajeDatosControlAAplicacion"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="envioMensajeDatosControlAAplicacionResponse">
+		<wsdl:part element="impl:envioMensajeDatosControlAAplicacionResponse"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="WS_SIR9">
+		<wsdl:operation name="envioMensajeDatosControlAAplicacion">
+			<wsdl:input message="impl:envioMensajeDatosControlAAplicacionRequest"
+				name="envioMensajeDatosControlAAplicacionRequest" />
+			<wsdl:output message="impl:envioMensajeDatosControlAAplicacionResponse"
+				name="envioMensajeDatosControlAAplicacionResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="WS_SIR9SoapBinding" type="impl:WS_SIR9">
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="envioMensajeDatosControlAAplicacion">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="envioMensajeDatosControlAAplicacionRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="envioMensajeDatosControlAAplicacionResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="WS_SIR9Service">
+		<wsdl:port binding="impl:WS_SIR9SoapBinding" name="WS_SIR9">
+			<wsdlsoap:address location="http://localhost/services/WS_SIR9" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,271 @@
+<HTML>
+	<HEAD>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<LINK REL="stylesheet" HREF="css/global.css" TYPE="text/css">
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/qryfmt.js"></SCRIPT>
+		<script type="text/javascript" language="javascript" src="./scripts/jquery-1.6.2.min.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/jquery.hotkeys-0.8.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/custom_hotkeys.js"></script>
+		<SCRIPT LANGUAGE="javascript">
+
+			function EnabledTool()
+			{
+				if ((top.g_BookPerms >> top.POS_PERM_CREAR) % 2 != 0)
+				{
+					document.getElementById("NewFolderBtn").className = "Options";
+				}
+				else
+				{
+					document.getElementById("NewFolderBtn").className = "SubOptionsDisabled";
+				}
+
+				if (!top.g_bIsLockBook)
+				{
+					document.getElementById("RelationsBtn").className = "Options";
+				}
+				else
+				{
+					document.getElementById("RelationsBtn").className = "SubOptionsDisabled";
+			    }
+			  	if(top.g_EnabledIntercambioRegistral=="true"
+			  			&& top.g_canSendIntercambioRegistral=="true")
+			    {
+			  		document.getElementById("IntercambioRegistralBtn").className = "Options";
+			    	document.getElementById("IntercambioRegistralBtn").style.display="";
+			    }
+				document.getElementById("InformesBtn").className = "Options";
+				document.getElementById("DistBtn").className = "Options";
+				document.getElementById("ChangeOfficeBtn").className = "Options";
+
+				document.getElementById("buscar").className = "activo";
+				document.getElementById("buscar_av").className = "activo";
+				document.getElementById("limpiar").className = "activo";
+				document.getElementById("limpiar_av").className = "activo";
+				document.getElementById("ordenar").className = "activo";
+				document.getElementById("ordenar_av").className = "activo";
+				document.getElementById("ultimo").className = "activo";
+				document.getElementById("avanzada").className = "activo";
+				document.getElementById("simple").className = "activo";
+			}
+
+			function DisabledTool()
+			{
+				document.getElementById("NewFolderBtn").className = "SubOptionsDisabled";
+				document.getElementById("InformesBtn").className = "SubOptionsDisabled";
+				document.getElementById("RelationsBtn").className = "SubOptionsDisabled";
+				document.getElementById("DistBtn").className = "SubOptionsDisabled";
+				document.getElementById("ChangeOfficeBtn").className = "SubOptionsDisabled";
+
+				document.getElementById("buscar").className = "inactivo";
+				document.getElementById("buscar_av").className = "inactivo";
+				document.getElementById("limpiar").className = "inactivo";
+				document.getElementById("limpiar_av").className = "inactivo";
+				document.getElementById("ordenar").className = "inactivo";
+				document.getElementById("ordenar_av").className = "inactivo";
+				document.getElementById("ultimo").className = "inactivo";
+				document.getElementById("avanzada").className = "inactivo";
+				document.getElementById("simple").className = "inactivo";
+
+			    document.getElementById("IntercambioRegistralBtn").style.display="none";
+
+			}
+
+			function DoOnLoad()
+			{
+				if (top.g_ArchiveName != '') 	{
+					top.SetArchiveName(top.g_ArchiveName, "QRY");
+				}
+				 if(top.g_EnabledIntercambioRegistral=="true" && top.g_canSendIntercambioRegistral=="true")
+			    {
+			    	document.getElementById("IntercambioRegistralBtn").style.display="";
+			    }
+			}
+
+			function OnLoadLEST()
+			{
+				if ((top.g_SessionPId != "") && (document.getElementById("LEST").src.indexOf("blank.htm") != -1)) {
+					document.getElementById("LEST").src = top.g_URL + "/lest.jsp?SessionPId=" + top.g_SessionPId;
+				}
+			}
+
+
+			function Reset()
+			{
+				top.g_ArchiveName = "";
+				top.SetArchiveName(top.g_ArchiveName, "QRY");
+				document.getElementById("NewFolderBtn").className = "SubOptionsDisabled";
+				document.getElementById("InformesBtn").className = "SubOptionsDisabled";
+				document.getElementById("RelationsBtn").className = "SubOptionsDisabled";
+			}
+
+			function GotoQuery(obj)
+   			{
+				var disabled = obj.getAttribute("disabled");
+
+				top.g_typeSearchAdvanced = false;
+
+				if ((disabled != null) && (obj.getAttribute("disabled").toString() == "true")){
+					top.g_TreeFunc = true;
+					return;
+				}
+
+      			DisabledTool();
+
+				top.Main.Workspace.LEST.SetSelected(obj);
+      			top.SetArchiveName("", "QRY");
+
+      			document.getElementById("ArchiveName").style.visibility = "visible";
+				document.getElementById("flechas").style.visibility = "visible";
+				document.getElementById("seccion_tab").style.display = "block";
+				document.getElementById("seccion_tab_advanced").style.display = "none";
+
+      			var URL = top.g_URL + "/qryfmtmp.jsp?SessionPId=" + top.g_SessionPId + "&ArchiveId=" + obj.id
+               			+ "&ArchivePId=" + top.g_ArchivePId.toString();
+
+               	window.open(URL, "Query","location=yes",true);
+   			}
+
+			function getOrderQueryNew(){
+
+				var listOrder = top.Main.Workspace.Query.document.getElementById("listOrder");
+				var data = "";
+
+				for (var i = 0; i < listOrder.options.length; i++){
+					var opt = listOrder.options[i];
+
+					if (data == ""){
+						data = opt.value + " " + opt.getAttribute("sense");
+					}
+					else {
+						data = data + "," + opt.value + " " + opt.getAttribute("sense");
+					}
+				}
+
+				top.g_TypeSearch=0;
+				top.Main.Workspace.Query.document.getElementById("dataOrder").value = data;
+			}
+
+		</SCRIPT>
+	</HEAD>
+
+	<BODY onload="DoOnLoad();" TABINDEX="-1" style="overflow:hidden">
+		<div class="migas">
+			<ul>
+				<li><SCRIPT LANGUAGE="javascript">document.write( top.GetIdsLan( "IDS_INICIO" ) )</SCRIPT>
+					<img id="flechas" src="images/flechitas_down.gif" style="visibility: hidden"/>
+					<label ALIGN="left" ID="ArchiveName" CLASS="BookName" style="visibility: hidden" ></label>
+				</li>
+			</ul>
+		</div>
+		<TABLE height="24px" WIDTH="101%" BORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="center" class="GreyToolbar" id="tabBTN">
+			<TR HEIGHT="22" VALIGN="middle" ALIGN="center" TABINDEX="-1">
+				<TD WIDTH="232">
+				</TD>
+				<TD>
+					<TABLE WIDTH="100%" HEIGHT="18" BORDER="0" CELLSPACING="0" CELLPADING="0">
+						<TR TABINDEX="-1">
+							<TD>
+								<DIV ALIGN="center">&nbsp;</DIV>
+							</TD>
+							<TD ID="NewFolderBtn" WIDTH="120" CLASS="SubOptionsDisabled" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="if (this.className != 'SubOptionsDisabled'){top.NewFolder(this)}" onkeydown="if ((top.GetKeyCode(event)==13) && (this.className != 'SubOptionsDisabled')){top.NewFolder(this)}" TABINDEX="1">
+								<DIV ALIGN="center">
+									<SCRIPT LANGUAGE="javascript">document.write( top.GetIdsLan( "IDS_OPCNUEVA" ) )</SCRIPT>
+								</DIV>
+							</TD>
+							<TD ID="InformesBtn" WIDTH="120" CLASS="SubOptionsDisabled" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="if (this.className != 'SubOptionsDisabled'){top.DoReports()}" onkeydown="if ((top.GetKeyCode(event)==13) && (this.className != 'SubOptionsDisabled')){top.DoReports()}" TABINDEX="1">
+								<DIV ALIGN="center">
+									<SCRIPT LANGUAGE="javascript">document.write(top.GetIdsLan("IDS_OPCINFORMES"))</SCRIPT>
+								</DIV>
+							</TD>
+							<TD ID="RelationsBtn" WIDTH="120" CLASS="SubOptionsDisabled" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="if (this.className != 'SubOptionsDisabled'){top.Relations()}" onkeydown="if ((top.GetKeyCode(event)==13) && (this.className != 'SubOptionsDisabled')){top.Relations()}" TABINDEX="1">
+								<DIV ALIGN="center">
+									<SCRIPT LANGUAGE="javascript">document.write(top.GetIdsLan("IDS_OPCRELAC"))</SCRIPT>
+								</DIV>
+							</TD>
+							<TD ID="DistBtn" WIDTH="120" CLASS="Options" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="if (this.className != 'SubOptionsDisabled'){top.ShowDistribution(this.className); top.g_TypeDistr=0;}" onkeydown="if ((top.GetKeyCode(event)==13) && (this.className != 'SubOptionsDisabled')){top.ShowDistribution(this.className)}" TABINDEX="1">
+								<DIV ALIGN="center">
+									<SCRIPT LANGUAGE="javascript">document.write(top.GetIdsLan("IDS_OPCDISTRIB"))</SCRIPT>
+								</DIV>
+							</TD>
+							<TD ID="IntercambioRegistralBtn" style="display:none;" WIDTH="120" CLASS="Options" onmouseover="top.Over(this)" onmouseout="top.Out(this)" TABINDEX="1">
+								<DIV ALIGN="center">
+									<a class="linkOptions" href="BandejaEntradaIntercambioRegistral.do" > <SCRIPT LANGUAGE="javascript">document.write(top.GetIdsLan("IDS_INTERCAMBIOREGISTRAL"))</SCRIPT></a>
+								</DIV>
+							</TD>
+							<TD ID="ChangeOfficeBtn" WIDTH="120" CLASS="Options" style="display:none" onmouseover="top.Over(this)" onmouseout="top.Out(this)" onclick="if (this.className != 'SubOptionsDisabled'){top.ChangeOffice(this.className); top.g_TypeDistr=0;}" onkeydown="if ((top.GetKeyCode(event)==13) && (this.className != 'SubOptionsDisabled')){top.ChangeOffice(this.className)}" TABINDEX="1">
+								<DIV ALIGN="center">
+									<SCRIPT LANGUAGE="javascript">document.write(top.GetIdsLan("IDS_OPCCHANGEOFFICE"))</SCRIPT>
+								</DIV>
+							</TD>
+						</TR>
+					</TABLE>
+				</TD>
+				<TD width="5"></TD>
+			</TR>
+		</TABLE>
+		<table width="100%" height="100%" border="0" cellpadding="0">
+			<tr>
+				<td width="25%" id="tdLEST">
+					<iframe NAME='LEST' ID='LEST' src='blank.htm' SCROLLING='auto' FRAMEBORDER='0' BORDER='1' onload="OnLoadLEST()" style="width:100%;height:100%"></iframe>
+				</td>
+				<td width="75%">
+					<div class="seccion_tab" width="100%" id="seccion_tab" style="display: none">
+						<table width="100%" id="bluetoolbar">
+							<tr>
+								<td>
+									<div class="cabecera_seccion_tab" id="cabecera_seccion_tab">
+										<p>
+											<a href="#" id="buscar" class="inactivo" onclick="if (((this.getAttribute('disabled') != null) && (this.getAttribute('disabled').toString() == 'true')) || (this.className != 'activo')){return;}else{getOrderQueryNew();top.Main.Workspace.Query.document.getElementById('btSubmit').click();}"><img src="images/buscar2.gif"/>
+												<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCBUSCAR" ) );</SCRIPT>
+											</a>
+											<a href="#" id="limpiar" class="inactivo" onclick="if (((this.getAttribute('disabled') != null) && (this.getAttribute('disabled').toString() == 'true')) ||(this.className != 'activo')){return;}else{ClearFields();}"><img src="images/clear.gif"/>
+												<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BTNLIMPIAR" ) );</SCRIPT>
+											</a>
+											<a href="#" id="ultimo" class="inactivo" onclick="if (((this.getAttribute('disabled') != null) && (this.getAttribute('disabled').toString() == 'true')) || (this.className != 'activo')){return;}else{top.g_TypeSearch=1;top.Main.Workspace.Query.document.getElementById('btSubmit').click();}"><img src="images/buscarUltimo.gif"/>
+												<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_SEARCH_LAST" ) );</SCRIPT>
+											</a>
+											<a href="#" id="ordenar" class="inactivo" onclick="if (((this.getAttribute('disabled') != null) && (this.getAttribute('disabled').toString() == 'true')) || (this.className != 'activo')){return;}else{showOrder();}"><img src="images/sort_incr.png"/>
+												<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_LABEL_ORDER" ) );</SCRIPT>
+											</a>
+											<a href="#" id="avanzada" class="inactivo" onclick="if (((this.getAttribute('disabled') != null) && (this.getAttribute('disabled').toString() == 'true')) || (this.className != 'activo')){return;}else{changeTypeSearchAvanced();}"><img src="images/buscar_go.gif"/>
+												<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_SEARCH_ADVANCED" ) );</SCRIPT>
+											</a>
+										</p>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="seccion_tab" width="100%" id="seccion_tab_advanced" style="display: none">
+						<table width="100%" id="bluetoolbarAdvanced">
+							<tr>
+								<td>
+									<div class="cabecera_seccion_tab" id="cabecera_seccion_tab_advanced">
+										<p>
+											<a href="#" id="buscar_av" class="inactivo" onclick="if (((this.getAttribute('disabled') != null) && (this.getAttribute('disabled').toString() == 'true')) || (this.className != 'activo')){return;}else{doSearchAvanced();}"><img src="images/buscar_go.gif"/>
+												<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_OPCBUSCAR" ) );</SCRIPT>
+											</a>
+											<a href="#" id="limpiar_av" class="inactivo" onclick="if (((this.getAttribute('disabled') != null) && (this.getAttribute('disabled').toString() == 'true')) || (this.className != 'activo')){return;}else{changeTypeSearchAvanced();}"><img src="images/clear.gif"/>
+												<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_BTNLIMPIAR" ) );</SCRIPT>
+											</a>
+											<a href="#" id="ordenar_av" class="inactivo" onclick="if (((this.getAttribute('disabled') != null) && (this.getAttribute('disabled').toString() == 'true')) || (this.className != 'activo')){return;}else{showOrder();}"><img src="images/sort_incr.png"/>
+												<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_LABEL_ORDER" ) );</SCRIPT>
+											</a>
+											<a href="#" id="simple" class="inactivo" onclick="if (((this.getAttribute('disabled') != null) && (this.getAttribute('disabled').toString() == 'true')) || (this.className != 'activo')){return;}else{changeTypeSearchSimple();}"><img src="images/buscar2.gif"/>
+												<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_SEARCH_SIMPLE" ) );</SCRIPT>
+											</a>
+										</p>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<iframe NAME='Query' ID="Query" src='blank.htm' FRAMEBORDER='0' BORDER='1' SCROLLING='auto' tabIndex='-1' style="width:100%;height:100%"></iframe>
+				</td>
+			</tr>
+		</table>
+	</BODY>
+</html>

@@ -1,0 +1,37 @@
+<assembly>
+	<id>documentacion</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<files>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/fwktd-csv-Catalogo_de_requisitos-book.pdf</source>
+			<destName>${product.name}_${product.version}_Catalogo_de_requisitos.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/fwktd-csv-Analisis_funcional-book.pdf</source>
+			<destName>${product.name}_${product.version}_Analisis_funcional.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/fwktd-csv-Diseno_tecnico-book.pdf</source>
+			<destName>${product.name}_${product.version}_Diseno_tecnico.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/fwktd-csv-Modelo_de_datos-book.pdf</source>
+			<destName>${product.name}_${product.version}_Modelo_de_datos.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/fwktd-csv-Manual_de_instalacion-book.pdf</source>
+			<destName>${product.name}_${product.version}_Manual_de_instalacion.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/fwktd-csv-Manual_de_uso-book.pdf</source>
+			<destName>${product.name}_${product.version}_Manual_de_uso.pdf</destName>
+		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/fwktd-csv-webapp-Manual_de_usuario-book.pdf</source>
+			<destName>${product.name}_${product.version}_Manual_de_usuario_Aplicacion_Consulta_Documentos.pdf</destName>
+		</file>
+	</files>
+</assembly>

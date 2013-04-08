@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt 
+				type="BeanPropertySimpleFmt" 
+				property='UID' 
+				readOnly='false'
+				titleKey='formatter.organization.uid' 
+				fieldType='LIST' 
+				width='' 
+	/>
+	<propertyfmt 
+				type="BeanPropertyLdapAncestorFmt" 
+				property='NAME' 
+				readOnly='false'
+				titleKey='formatter.organization.nombre' 
+				fieldType='LIST' 
+				width=''
+	/>
+</beanformatter>

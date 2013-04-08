@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main</artifactId>
+		<version>3.0</version>
+	</parent>
+
+	<artifactId>SIGEM_Tramitacion</artifactId>
+	<packaging>jar</packaging>
+	<name>SIGEM_Tramitacion</name>
+
+	 <properties>
+	  	<!-- definimos la property donde extraeremos los archivos de configuracion -->
+	  	<unpackConfigurableResourcesPath>target/generated-resources/configurable</unpackConfigurableResourcesPath>
+ 	 </properties>
+
+	<dependencies>
+
+	  	<!-- dependencia del assembly que contiene los archivos configurables ,
+  		 para que se vean archivos de zip en wars mediante dependencias transitivas-->
+	  	<dependency>
+	  			<groupId>es.ieci.tecdoc.sigem</groupId>
+				<artifactId>SIGEM_Tramitacion-resources-configurable</artifactId>
+	  			<version>${pom.version}</version>
+	  			<type>zip</type>
+	  			<classifier>configurableSigem</classifier>
+	  	</dependency>
+
+
+		<!-- SIGEM dependencies -->
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_core</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.lowagie</groupId>
+					<artifactId>itext</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_registroPresencial</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcprov-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>net.sf.jasperreports</groupId>
+					<artifactId>jasperreports</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_registroPresencialWsClient</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					    <groupId>wsdl4j</groupId>
+    					<artifactId>wsdl4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_registroPresencialAdmin</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativaCore</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-beanutils</groupId>
+					<artifactId>commons-beanutils</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+
+				<exclusion>
+					<groupId>es.ieci.tecdoc.isicres</groupId>
+					<artifactId>ISicres-resources-configurable</artifactId>
+				</exclusion>
+
+
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_firmaDigital</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcprov-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcmail-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-lang</groupId>
+					<artifactId>commons-lang</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.lowagie</groupId>
+					<artifactId>itext</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_firmaDigitalWsClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_gestionCSV</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_gestionCSVWSClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_PortafirmasWSClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_criptoValidacion</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcprov-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcmail-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-lang</groupId>
+					<artifactId>commons-lang</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_criptoValidacionWsClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_tiempos</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<!-- iSPAC dependencies -->
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-lib</artifactId>
+			<version>${ispac.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.iflow</groupId>
+					<artifactId>ispac-lib-cfg</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.iflow</groupId>
+					<artifactId>ispac-resources</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-web</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-invesdoc</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-alfresco</artifactId>
+			<version>${ispac.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.isicres</groupId>
+					<artifactId>ISicres-Document-Connector-Alfresco</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.isicres</groupId>
+			<artifactId>ISicres-Document-Connector-Alfresco</artifactId>
+			<version>${isicres.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-invesicres</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-ldap</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-services</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+
+		<!-- Third party dependencies -->
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>${unpackConfigurableResourcesPath}</directory>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>dependency-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-configurable-resources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>es.ieci.tecdoc.sigem</groupId>
+									<artifactId>SIGEM_Tramitacion-resources-configurable</artifactId>
+									<version>${pom.version}</version>
+									<type>zip</type>
+									<classifier>configurableSigem</classifier>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${unpackConfigurableResourcesPath}</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

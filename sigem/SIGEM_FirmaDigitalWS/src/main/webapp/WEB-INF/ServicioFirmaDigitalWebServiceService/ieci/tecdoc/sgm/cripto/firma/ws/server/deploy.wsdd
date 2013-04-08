@@ -1,0 +1,145 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServicioFirmaDigitalWebServiceService WSDL service -->
+
+  <service name="FirmaDigitalWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="ServicioFirmaDigitalWebServiceService"/>
+      <parameter name="schemaQualified" value="http://server.ws.firma.cripto.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="FirmaDigitalWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.cripto.firma.ws.server.FirmaDigitalWebServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ServicioFirmaDigitalWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="registrarFirma" qname="operNS:registrarFirma" xmlns:operNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnQName="retNS:registrarFirmaReturn" xmlns:retNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnType="rtns:RegistroFirma" xmlns:rtns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:signature" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:certificate" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:hash" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+      </operation>
+      <operation name="registrarFirmaByEntidad" qname="operNS:registrarFirmaByEntidad" xmlns:operNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnQName="retNS:registrarFirmaByEntidadReturn" xmlns:retNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnType="rtns:RegistroFirma" xmlns:rtns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:signature" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:certificate" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:hash" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:idEntidad" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="firmar" qname="operNS:firmar" xmlns:operNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnQName="retNS:firmarReturn" xmlns:retNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnType="rtns:Firma" xmlns:rtns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:poContenido" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+      </operation>
+      <operation name="firmarByEntidad" qname="operNS:firmarByEntidad" xmlns:operNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnQName="retNS:firmarByEntidadReturn" xmlns:retNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnType="rtns:Firma" xmlns:rtns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:poContenido" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:idEntidad" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="validarFirma" qname="operNS:validarFirma" xmlns:operNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnQName="retNS:validarFirmaReturn" xmlns:retNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnType="rtns:ResultadoValidacionFirma" xmlns:rtns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:signature" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:contenido" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+      </operation>
+      <operation name="validarFirmaByEntidad" qname="operNS:validarFirmaByEntidad" xmlns:operNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnQName="retNS:validarFirmaByEntidadReturn" xmlns:retNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnType="rtns:ResultadoValidacionFirma" xmlns:rtns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:signature" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:contenido" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:idEntidad" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getCertInfo" qname="operNS:getCertInfo" xmlns:operNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnQName="retNS:getCertInfoReturn" xmlns:retNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnType="rtns:X509CertificadoInfo" xmlns:rtns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:signature" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+      </operation>
+      <operation name="getCertInfoByEntidad" qname="operNS:getCertInfoByEntidad" xmlns:operNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnQName="retNS:getCertInfoByEntidadReturn" xmlns:retNS="http://server.ws.firma.cripto.sgm.tecdoc.ieci" returnType="rtns:X509CertificadoInfo" xmlns:rtns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:signature" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:idEntidad" xmlns:pns="http://server.ws.firma.cripto.sgm.tecdoc.ieci" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="registrarFirmaByEntidad getCertInfoByEntidad validarFirmaByEntidad validarFirma firmar registrarFirma getCertInfo firmarByEntidad"/>
+
+      <typeMapping
+        xmlns:ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        qname="ns:X509CertificadoInfo"
+        type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.X509CertificadoInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        qname="ns:Firma"
+        type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Firma"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci"
+        qname="ns:RetornoServicio"
+        type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+
+      <arrayMapping
+        xmlns:ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        qname="ns:ArrayOfFirmante"
+        type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Firmante[]"
+        innerType="cmp-ns:Firmante" xmlns:cmp-ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        encodingStyle=""
+      />
+
+      <arrayMapping
+        xmlns:ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        qname="ns:ArrayOf_tns2_Certificate"
+        type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Contenido[]"
+        innerType="cmp-ns:Contenido" xmlns:cmp-ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        qname="ns:ResultadoValidacionFirma"
+        type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.ResultadoValidacionFirma"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+
+      <typeMapping
+        xmlns:ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        qname="ns:RegistroFirma"
+        type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.RegistroFirma"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+
+    
+      <typeMapping
+        xmlns:ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        qname="ns:Certificado"
+        type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Certificado"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        qname="ns:Contenido"
+        type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Contenido"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+     
+      <typeMapping
+        xmlns:ns="http://server.ws.firma.cripto.sgm.tecdoc.ieci"
+        qname="ns:Firmante"
+        type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Firmante"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+
+  </service>
+</deployment>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:PAGO_LIQUIDACION xmlns:p="http://ancert.notariado.org/XML/Plusvalias/Liquidacion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ancert.notariado.org/XML/Plusvalias/Liquidacion Copy of LiquidacionPlusvalias.xsd ">
+  <p:REPLY>
+    <p:CABECERA>
+      <p:APLICACION>PLV</p:APLICACION>
+      <p:ID_COMUNICACION>0</p:ID_COMUNICACION>
+      <p:FECHA>token</p:FECHA>
+      <p:HORA>token</p:HORA>
+      <p:OPERACION>01</p:OPERACION>
+      <p:EMISOR>CGN</p:EMISOR>
+      <p:RECEPTOR>p:RECEPTOR</p:RECEPTOR>
+    </p:CABECERA>
+    <p:RESULTADO>
+      <p:RETORNO>true</p:RETORNO>
+    </p:RESULTADO>
+  </p:REPLY>
+</p:PAGO_LIQUIDACION>

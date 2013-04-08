@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:ID'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='CTTPDOC:NOMBRE'
+				readOnly='false'
+				titleKey='catalog.common.nombre'
+				fieldType='DATA'
+				headerClass='headerDisplay'
+				sortable='false'
+				media='html'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='PFSTD:ID'
+				propertyValueKey='forms.button.delete'
+				readOnly='false'
+				titleKey='empty'
+				fieldType='LINK'
+				fieldLink='PFSTD:ID'
+				styleClass='aDelButton'
+				headerClass='headerDisplay'
+				sortable='false'
+				media='html'
+				decorator=''
+				url='deleteStageTpDoc.do'
+				id='StageTpDocId'/>
+
+</beanformatter>

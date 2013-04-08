@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrDctmca" 
+    table="SCR_DCTMCA"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_DCTMCA"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="timestamp" 
+            column="TIMESTAMP" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TIMESTAMP"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="bookType" 
+            column="BOOK_TYPE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="BOOK_TYPE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="dctmPath" 
+            column="DCTM_PATH" 
+            type="java.lang.String"
+            length="250"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DCTM_PATH"
+                length="250"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="modifiable" 
+            column="MODIFIABLE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="MODIFIABLE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="javaMethod" 
+            column="JAVA_METHOD" 
+            type="java.lang.String"
+            length="250"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="JAVA_METHOD"
+                length="250"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to ScrDctmdocbase -->
+    <many-to-one
+        name="scrDctmdocbase"
+        class="com.ieci.tecdoc.common.invesicres.ScrDctmdocbase"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="DOCBASEID"         
+        </meta>
+        <column name="DOCBASEID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to ScrCa -->
+    <many-to-one
+        name="scrCa"
+        class="com.ieci.tecdoc.common.invesicres.ScrCa"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="IDCA"         
+        </meta>
+        <column name="IDCA" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

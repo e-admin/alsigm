@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd</groupId>
+		<artifactId>fwktd-parent</artifactId>
+		<version>0.5</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-time</groupId>
+	<artifactId>fwktd-time-parent</artifactId>
+	<version>0.5</version>
+	<packaging>pom</packaging>
+
+	<inceptionYear>2010</inceptionYear>
+
+	<name>Modulo padre de fwktd-time</name>
+	<description>Modulo padre del modulo de tiempo</description>
+
+	<properties>
+
+		<!-- Framework dependencies -->
+		<fwktd.version>0.5</fwktd.version>
+
+		<!-- Third party dependencies -->
+		<xbean.spring.version>3.6</xbean.spring.version>
+		<postgresql.version>8.3-603.jdbc3</postgresql.version>
+		<ojdbc.version>14</ojdbc.version>
+		<jtds.version>1.2.4</jtds.version>
+		<db2jcc.version>3.50.152</db2jcc.version>
+		<commons.net.version>2.0</commons.net.version>
+	</properties>
+
+</project>

@@ -1,0 +1,34 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_ConsultaWeb/src/main/resources/SIGEM_ConsultaWeb</directory>
+			<outputDirectory>/SIGEM_ConsultaWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_ConsultaWeb/src/main/resources/SIGEM_ConsultaWeb</directory>
+			<outputDirectory>/SIGEM_ConsultaWeb</outputDirectory>
+			<includes>
+				<include>skin*/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_ConsultaWS/src/main/resources/SIGEM_ConsultaWS</directory>
+			<outputDirectory>/SIGEM_ConsultaWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

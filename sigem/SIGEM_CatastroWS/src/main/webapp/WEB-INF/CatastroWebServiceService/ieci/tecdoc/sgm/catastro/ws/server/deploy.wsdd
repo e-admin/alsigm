@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CatastroWebServiceService WSDL service -->
+
+  <service name="CatastroWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.catastro.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="CatastroWebServiceService"/>
+      <parameter name="schemaQualified" value="http://server.ws.catastro.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="CatastroWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.catastro.ws.server.CatastroWebService"/>
+      <parameter name="wsdlPortType" value="CatastroWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catastro.sgm.tecdoc.ieci" name="validarReferenciaCatastral" qname="operNS:validarReferenciaCatastral" returnQName="retNS:validarReferenciaCatastralReturn" returnType="rtns:RetornoLogico" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="pns:referenciaCatastral" type="tns:RetornoCadena"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catastro.sgm.tecdoc.ieci" name="consultarCatastro" qname="operNS:consultarCatastro" returnQName="retNS:consultarCatastroReturn" returnType="rtns:Parcelas" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="pns:referenciaCatastral" type="tns:RetornoCadena"/>
+      </operation>
+      <parameter name="allowedMethods" value="validarReferenciaCatastral consultarCatastro"/>
+
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:RetornoServicio" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:ArrayOfCultivo" type="java:ieci.tecdoc.sgm.catastro.ws.server.Cultivo[]" innerType="cmp-ns:Cultivo" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:Parcela" type="java:ieci.tecdoc.sgm.catastro.ws.server.Parcela" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:RetornoCadena" type="java:ieci.tecdoc.sgm.catastro.ws.server.RetornoCadena" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:Construccion" type="java:ieci.tecdoc.sgm.catastro.ws.server.Construccion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:Cultivo" type="java:ieci.tecdoc.sgm.catastro.ws.server.Cultivo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:ArrayOfBienInmueble" type="java:ieci.tecdoc.sgm.catastro.ws.server.BienInmueble[]" innerType="cmp-ns:BienInmueble" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:Cultivos" type="java:ieci.tecdoc.sgm.catastro.ws.server.Cultivos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:ArrayOfConstruccion" type="java:ieci.tecdoc.sgm.catastro.ws.server.Construccion[]" innerType="cmp-ns:Construccion" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:Construcciones" type="java:ieci.tecdoc.sgm.catastro.ws.server.Construcciones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:Localizacion" type="java:ieci.tecdoc.sgm.catastro.ws.server.Localizacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:BienInmueble" type="java:ieci.tecdoc.sgm.catastro.ws.server.BienInmueble" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:BienesInmuebles" type="java:ieci.tecdoc.sgm.catastro.ws.server.BienesInmuebles" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:ArrayOfParcela" type="java:ieci.tecdoc.sgm.catastro.ws.server.Parcela[]" innerType="cmp-ns:Parcela" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:Parcelas" type="java:ieci.tecdoc.sgm.catastro.ws.server.Parcelas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catastro.sgm.tecdoc.ieci" qname="ns:RetornoLogico" type="java:ieci.tecdoc.sgm.catastro.ws.server.RetornoLogico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

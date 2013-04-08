@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Person">
+
+	<typeAlias alias="person"
+		type="es.ieci.tecdoc.fwktd.sampleapp.business.vo.Person" />
+
+	<resultMap class="es.ieci.tecdoc.fwktd.sampleapp.business.vo.Person"
+		id="person">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="email" column="EMAIL" />
+		<result property="addresses" column="ID" select="Address.getAddressByPerson" />
+	</resultMap>
+
+	<select id="getPersons" resultMap="person">
+	  	<![CDATA[
+	    	SELECT * FROM person
+	    ]]>
+	</select>
+
+	<select id="getPerson" parameterClass="java.lang.String"
+		resultMap="person">
+		<![CDATA[
+		SELECT * FROM person WHERE id=#value#
+		]]>
+	</select>
+
+	<insert id="addPerson" parameterClass="person">
+		<![CDATA[
+			INSERT INTO person (name, email) VALUES (#name#, #email#)
+		]]>
+		<selectKey resultClass="java.lang.String" keyProperty="id"
+			type="post">
+			SELECT LAST_INSERT_ID();
+        </selectKey>
+	</insert>
+
+	<delete id="deletePerson" parameterClass="java.lang.String">
+		<![CDATA[
+			DELETE FROM person WHERE id=#value#
+		]]>
+	</delete>
+
+	<delete id="deletePersons">
+		<![CDATA[
+			DELETE FROM person
+		]]>
+	</delete>
+
+	<update id="updatePerson" parameterClass="person">
+		<![CDATA[
+			UPDATE person SET name=#name#, email=#email# WHERE id=#id#
+		]]>
+	</update>
+
+</sqlMap>

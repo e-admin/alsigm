@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+
+]>
+
+
+<beans>
+
+	<bean name="sigemConfigurationResourceLoader" id="sigemConfigurationResourceLoader" class="ieci.tecdoc.sgm.core.config.impl.spring.SigemConfigurationResourceLoaderImpl"/>
+    
+    <bean class="ieci.tecdoc.sgm.core.config.impl.spring.SigemBasePlaceholderConfigurer">
+        <property name="configurationResourceLoader"><ref bean="sigemConfigurationResourceLoader"/> </property>
+        <property name="locations">
+        	<list>
+        		<value>SIGEM_Core/SIGEM_spring.properties</value>
+        	</list>
+        </property>
+    </bean>
+    
+    <!-- Bean de configuración de Archivo -->
+    <bean id="ARCHIVO.CONFIGURATION.BEAN" class="org.springframework.beans.factory.config.MapFactoryBean">
+	    <property name="sourceMap">
+	    	<map>
+	    		<entry key="HTTPS_PORT" value="${HTTPS_PORT}"/>
+	    		<entry key="ARCHIDOC_BASE_CONFIG_DIR" value="${BASE_CONFIG_DIR}/SIGEM_ArchivoWeb"/>
+	    	</map>
+	    </property>
+	</bean>
+
+</beans>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<scheduler>
+    <task name="Actualizar censo"
+        class="es.map.sn.planificador.tareas.TareaSISNOT"
+        time="2009-04-16 18:22:46" period="1d">
+        <task-param>
+            <param-name>Actualizar censo</param-name>
+            <param-value>Actualizar censo</param-value>
+        </task-param>
+    </task>
+    <task name="Enviar notificaciones"
+        class="es.map.sn.planificador.tareas.TareaSISNOT"
+        time="2009-04-16 18:22:53" period="1d">
+        <task-param>
+            <param-name>Enviar notificaciones</param-name>
+            <param-value>Enviar notificaciones</param-value>
+        </task-param>
+    </task>
+    <task name="Solicitar acuses recibo"
+        class="es.map.sn.planificador.tareas.TareaSISNOT"
+        time="2009-04-16 18:22:38" period="1d">
+        <task-param>
+            <param-name>Solicitar acuses recibo</param-name>
+            <param-value>Solicitar acuses recibo</param-value>
+        </task-param>
+    </task>
+    <task name="Solicitar acuses puesta a disposicion"
+        class="es.map.sn.planificador.tareas.TareaSISNOT"
+        time="2009-04-16 18:22:41" period="1d">
+        <task-param>
+            <param-name>Solicitar acuses puesta a disposicion</param-name>
+            <param-value>Solicitar acuses puesta a disposicion</param-value>
+        </task-param>
+    </task>
+</scheduler>

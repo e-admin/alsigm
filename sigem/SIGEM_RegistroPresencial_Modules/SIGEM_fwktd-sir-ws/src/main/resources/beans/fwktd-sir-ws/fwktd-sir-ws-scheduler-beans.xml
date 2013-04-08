@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="schedulerFactory"
+		  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="applicationContextSchedulerContextKey" value="applicationContext" />
+		<property name="triggers">
+			<list>
+				<!-- triggers de SIGEM -->
+				<ref bean="comprobarTimeOutEnviosSigemJobTrigger" />
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- triggers de sigem -->
+	<bean id="comprobarTimeOutEnviosSigemJobTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerBean"
+		  lazy-init="true">
+		<property name="jobDetail" ref="comprobarTimeOutEnviosSigemJobDetailImpl" />
+		<property name="cronExpression" value="0 0 0/6 * * ?" />
+	</bean>
+	
+	
+	<!-- jobs de sigem -->
+	<!-- Job para la comprobacion del time-out en el envio de ficheros de intercambio -->
+	<bean id="comprobarTimeOutEnviosSigemJobDetailImpl" name="comprobarTimeOutEnviosSigemJobDetailImpl"
+	      class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="es.ieci.tecdoc.sgm.fwktd.sir.api.job.SigemComprobarTimeOutEnviosJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="servicioIntercambioRegistral">
+					<ref bean="fwktd_sir_servicioIntercambioRegistralImpl" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

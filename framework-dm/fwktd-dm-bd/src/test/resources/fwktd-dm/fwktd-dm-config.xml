@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<config>
+	<content-types>
+		<content-type id="1" name="bd" type="bd">
+			<properties>
+		    	<!-- property name="JDBC_DATASOURCE">java:comp/env/jdbc/testDS</property-->
+		    	<property name="JDBC_DRIVER_CLASS_NAME">org.postgresql.Driver</property>
+		    	<property name="JDBC_URL">jdbc:postgresql://localhost:5432/test</property>
+		    	<property name="JDBC_USERNAME">postgres</property>
+		    	<property name="JDBC_PASSWORD">postgres</property>
+			</properties>
+			<mappings>
+				<mapping>
+					<source type="integer">id</source>
+					<destination type="string">document_id</destination>
+				</mapping>
+				<mapping>
+					<source type="string">name</source>
+					<destination type="string">document_name</destination>
+				</mapping>
+				<mapping>
+					<source type="datetime">date</source>
+					<destination type="string">document_date</destination>
+				</mapping>
+			</mappings>
+		</content-type>
+	</content-types>
+</config>

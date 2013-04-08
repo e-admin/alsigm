@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AdministracionSesionesBackOfficeWebServiceService WSDL service -->
+
+  <service name="AdministracionSesionesBackOfficeWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="AdministracionSesionesBackOfficeWebServiceService"/>
+      <parameter name="schemaQualified" value="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="AdministracionSesionesBackOfficeWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.sesiones.backoffice.ws.server.AdministracionSesionesBackOfficeWebService"/>
+      <parameter name="wsdlPortType" value="AdministracionSesionesBackOfficeWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="nuevaSesion" qname="operNS:nuevaSesion" returnQName="retNS:nuevaSesionReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:usuario" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idEntidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="validarSesion" qname="operNS:validarSesion" returnQName="retNS:validarSesionReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" name="caducarSesion" qname="operNS:caducarSesion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" name="obtenerSesion" qname="operNS:obtenerSesion" returnQName="retNS:obtenerSesionReturn" returnType="rtns:Sesion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="modificarDatosSesion" qname="operNS:modificarDatosSesion" returnQName="retNS:modificarDatosSesionReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:key" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:datosEspecificos" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="obtenerSesion caducarSesion validarSesion nuevaSesion modificarDatosSesion"/>
+
+      <typeMapping xmlns:ns="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" qname="ns:Sesion" type="java:ieci.tecdoc.sgm.sesiones.backoffice.ws.server.Sesion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

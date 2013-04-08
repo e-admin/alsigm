@@ -1,0 +1,58 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from WSTiposDocumentosVitalesService WSDL service -->
+
+  <service name="WSTiposDocumentosVitales" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://tiposdocvitales.ws"/>
+      <parameter name="wsdlServiceElement" value="WSTiposDocumentosVitalesService"/>
+      <parameter name="schemaQualified" value="http://vos.webservice.docvitales,http://tiposdocvitales.ws"/>
+      <parameter name="wsdlServicePort" value="WSTiposDocumentosVitales"/>
+      <parameter name="className" value="ws.tiposdocvitales.WSTiposDocumentosVitalesImpl"/>
+      <parameter name="wsdlPortType" value="WSTiposDocumentosVitales"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getTiposDocVit" qname="operNS:getTiposDocVit" xmlns:operNS="http://tiposdocvitales.ws" returnQName="retNS:getTiposDocVitReturn" xmlns:retNS="http://tiposdocvitales.ws" returnType="rtns:TipoDocumentoVital" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+      </operation>
+      <operation name="getTiposDocVitPorProc" qname="operNS:getTiposDocVitPorProc" xmlns:operNS="http://tiposdocvitales.ws" returnQName="retNS:getTiposDocVitPorProcReturn" xmlns:retNS="http://tiposdocvitales.ws" returnType="rtns:TipoDocumentoVital" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+        <parameter qname="pns:idProc" xmlns:pns="http://tiposdocvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getTipoDocVit" qname="operNS:getTipoDocVit" xmlns:operNS="http://tiposdocvitales.ws" returnQName="retNS:getTipoDocVitReturn" xmlns:retNS="http://tiposdocvitales.ws" returnType="rtns:TipoDocumentoVital" xmlns:rtns="http://vos.webservice.docvitales" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://tiposdocvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addRelTipoDocVitProc" qname="operNS:addRelTipoDocVitProc" xmlns:operNS="http://tiposdocvitales.ws" soapAction="" >
+        <parameter qname="pns:idProc" xmlns:pns="http://tiposdocvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idTipoDocVit" xmlns:pns="http://tiposdocvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="removeRelTipoDocVitProc" qname="operNS:removeRelTipoDocVitProc" xmlns:operNS="http://tiposdocvitales.ws" soapAction="" >
+        <parameter qname="pns:idProc" xmlns:pns="http://tiposdocvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idTipoDocVit" xmlns:pns="http://tiposdocvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="removeRelsPorProc" qname="operNS:removeRelsPorProc" xmlns:operNS="http://tiposdocvitales.ws" soapAction="" >
+        <parameter qname="pns:idProc" xmlns:pns="http://tiposdocvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="removeRelsPorTiposDocProc" qname="operNS:removeRelsPorTiposDocProc" xmlns:operNS="http://tiposdocvitales.ws" soapAction="" >
+        <parameter qname="pns:idProc" xmlns:pns="http://tiposdocvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idsTipoDocVit" xmlns:pns="http://tiposdocvitales.ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getTiposDocVitPorProc getTipoDocVit removeRelsPorProc getTiposDocVit removeRelsPorTiposDocProc addRelTipoDocVitProc removeRelTipoDocVitProc"/>
+      <parameter name="scope" value="Request"/>
+
+      <typeMapping
+        xmlns:ns="http://vos.webservice.docvitales"
+        qname="ns:TipoDocumentoVital"
+        type="java:docvitales.webservice.vos.TipoDocumentoVital"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

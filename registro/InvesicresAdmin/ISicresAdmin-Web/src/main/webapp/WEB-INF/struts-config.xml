@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "/WEB-INF/struts-config_1_1.dtd">
+<struts-config>
+
+	<form-beans>
+		<form-bean name="usuarioForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.UsuarioForm"/>
+	    <form-bean name="oficinaForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.OficinaForm"/>
+	    <form-bean name="unidadForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.UnidadForm"/>
+   	    <form-bean name="transporteForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.TransporteForm"/>
+	    <form-bean name="libroForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.LibroForm"/>
+	    <form-bean name="permisosSicresForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.PermisosSicresForm"/>
+	    <form-bean name="oficinasLibrosForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.OficinasLibrosForm"/>
+	    <form-bean name="unidadDistribucionForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.DistribucionUnidadForm"/>
+	    <form-bean name="filtrosForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.FiltrosForm"/>
+	    <form-bean name="numeracionForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.NumeracionForm"/>
+	   	<form-bean name="usuarioOficinaForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.UsuarioOficinaForm"/>
+	   	<form-bean name="asociarUsuariosForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.AsociarUsuariosForm"/>
+	   	<form-bean name="asuntoForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.AsuntoForm"/>
+	   	<form-bean name="informeForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.InformeForm"/>
+	   	<form-bean name="busquedaDirectorioComunForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.BusquedaDirectorioComunForm"/>
+	   	<form-bean name="configuracionLdapForm" type="ieci.tecdoc.isicres.rpadmin.struts.forms.ConfiguracionLdapForm"/>
+    </form-beans>
+
+    <global-forwards>
+  		<forward name="error" path="/jsp/error.jsp"/>
+	</global-forwards>
+
+	<action-mappings>
+	    <action path="/login"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.login.LoginAction"
+	       scope="request" validate="true">
+	       <forward name="success" path="/listadoOficinas.do"/>
+	       <forward name="successUsuarios" path="/listadoUsuarios.do"/>
+	       <forward name="successUnidades" path="/listadoUnidades.do"/>
+	       <forward name="successInformes" path="/listadoInformes.do"/>
+	       <forward name="successTiposAsunto" path="/listadoAsuntos.do"/>
+	       <forward name="successTiposTransporte" path="/listadoTransportes.do"/>
+
+	       <forward name="login" path="/jsp/login.jsp"/>
+	       <forward name="error" path="/jsp/login.jsp"/>
+	    </action>
+
+	    <action path="/inicio"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.InicioAction"
+	       scope="request"  validate="true">
+	    	<forward name="success" path="/listadoOficinas.do"/>
+	    </action>
+	    <!-- USUARIOS -->
+	    <action path="/listadoUsuarios"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.ListadoUsuariosAction"
+	       scope="request"  validate="true">
+	    	<forward name="success" path="/jsp/listadoUsuarios.jsp"/>
+	    </action>
+
+	    <action path="/nuevoUsuario"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.NuevoUsuarioAction"
+	       scope="request" name="usuarioForm" validate="false">
+	    	<forward name="success" path="/jsp/nuevoUsuario.jsp"/>
+	    	<forward name="error" path="/listadoUsuarios.do"/>
+	    </action>
+
+	    <action path="/editarUsuario"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.EditarUsuarioAction"
+	       scope="request" name="usuarioForm" validate="true">
+	    	<forward name="success" path="/jsp/editarUsuario.jsp"/>
+	    	<forward name="error" path="/listadoUsuarios.do"/>
+	    </action>
+
+	    <action path="/eliminarUsuario"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.EliminarUsuarioAction"
+	       scope="request" name="usuarioForm" validate="false">
+	    	<forward name="success" path="/listadoUsuarios.do"/>
+	    	<forward name="error" path="/listadoUsuarios.do"/>
+	    </action>
+
+	    <action path="/guardarNuevoUsuario"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.GuardarNuevoUsuarioAction"
+	       scope="request" input="/nuevoUsuario.do" name="usuarioForm" validate="true">
+	    	<forward name="success" path="/listadoUsuarios.do"/>
+	    	<forward name="error" path="/nuevoUsuario.do"></forward>
+	    </action>
+
+	    <action path="/guardarEdicionUsuario"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.GuardarEdicionUsuarioAction"
+	       scope="request" input="/editarUsuario.do" name="usuarioForm" validate="true">
+	    	<forward name="success" path="/listadoUsuarios.do"/>
+	    	<forward name="error" path="/editarUsuario.do" />
+	    </action>
+
+	    <action path="/asociarOficinaUsuario"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.AsociarOficinaUsuarioAction"
+	       scope="request" name="usuarioForm" validate="true">
+	    	<forward name="success" path="/jsp/asociarOficinaUsuario.jsp"/>
+	    	<forward name="error" path="/listadoUsuarios.do" />
+	    </action>
+
+	    <action path="/asociarOficinaPreferenteAUsuario"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.AsociarOficinaPreferenteAUsuarioAction"
+	       scope="request" name="usuarioForm" validate="true">
+	    	<forward name="error" path="/asociarOficinaUsuario.do" />
+	    	<forward name="success" path="/asociarOficinaUsuario.do" />
+	    </action>
+
+	    <action path="/asociarOficinaNuevaAUsuario"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.AsociarOficinaNuevaAUsuarioAction"
+	       scope="request" name="usuarioForm" validate="true">
+	    	<forward name="success" path="/jsp/asociarOficinaNuevaAUsuario.jsp"/>
+	    	<forward name="asociacion" path="/asociarOficinaUsuario.do"/>
+	    	<forward name="error" path="/asociarOficinaUsuario.do" />
+	    </action>
+
+	    <action path="/usuariosOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.ListadoUsuariosOficinaAction"
+	       scope="request" name="usuarioOficinaForm" validate="true">
+	    	<forward name="success" path="/jsp/listadoUsuariosOficina.jsp"/>
+	    </action>
+
+
+	    <!-- OFICINAS -->
+	    <action path="/listadoSeleccionOficinas"
+	    		type="ieci.tecdoc.isicres.rpadmin.struts.acciones.oficinas.ListadoSeleccionOficinasAction"
+	       		scope="request" validate="false">
+	    		<forward name="success" path="/jsp/listadoSeleccionOficinas.jsp"/>
+	    		<forward name="error" path="/jsp/listadoSeleccionOficinas.jsp"/>
+	    </action>
+
+	    <action path="/editarUsuarioOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.EditarUsuarioAction"
+	       scope="request" name="usuarioForm" validate="true">
+	    	<forward name="success" path="/jsp/editarUsuarioOficina.jsp"/>
+	    	<forward name="error" path="/usuariosOficina.do"/>
+	    </action>
+
+	    <action path="/guardarEdicionUsuarioOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.usuarios.GuardarEdicionUsuarioAction"
+	       scope="request" input="/editarUsuario.do" name="usuarioForm" validate="true">
+	    	<forward name="success" path="/usuariosOficina.do"/>
+	    	<forward name="error" path="/editarUsuarioOficina.do" />
+	    </action>
+
+	    <action path="/listadoOficinas"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.oficinas.ListadoOficinasAction"
+	       scope="request"  validate="true">
+	    	<forward name="success" path="/jsp/listadoOficinas.jsp"/>
+	    	<forward name="oficinas" path="/jsp/buscarOficinasPopup.jsp"/>
+	    </action>
+
+	    <action path="/nuevaOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.oficinas.NuevaOficinaAction"
+	       scope="request" name="oficinaForm" validate="false">
+	    	<forward name="success" path="/jsp/nuevaOficina.jsp"/>
+	    	<forward name="error" path="/listadoOficinas.do"/>
+	    </action>
+
+	    <action path="/editarOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.oficinas.EditarOficinaAction"
+	       scope="request" input="/editarOficina.do" name="oficinaForm" validate="true">
+	    	<forward name="success" path="/jsp/editarOficina.jsp"/>
+	    	<forward name="listado" path="/listadoOficinas.do"/>
+	    	<forward name="error" path="/jsp/editarOficina.jsp"/>
+	    </action>
+
+	    <action path="/eliminarOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.oficinas.EliminarOficinaAction"
+	       scope="request" name="oficinaForm" validate="false">
+	    	<forward name="success" path="/listadoOficinas.do"/>
+	    	<forward name="error" path="/listadoOficinas.do"/>
+	    </action>
+
+	    <action path="/guardarNuevaOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.oficinas.GuardarNuevaOficinaAction"
+	       scope="request" input="/nuevaOficina.do" name="oficinaForm" validate="true">
+	    	<forward name="success" path="/listadoOficinas.do"/>
+	    	<forward name="error" path="/nuevaOficina.do" />
+	    </action>
+
+	    <action path="/guardarNuevaOficinaLdap"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.oficinas.GuardarNuevaOficinaAction"
+	       scope="request" input="/nuevaOficina.do" name="oficinaForm" validate="true">
+	    	<forward name="success" path="/listadoOficinas.do"/>
+	    	<forward name="error" path="/nuevaOficina.do" />
+	    </action>
+
+	    <action path="/guardarEdicionOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.oficinas.GuardarEdicionOficinaAction"
+	       scope="request" input="/editarOficina.do" name="oficinaForm" validate="true">
+	    	<forward name="success" path="/listadoOficinas.do"/>
+	    	<forward name="error" path="/editarOficina.do" />
+	    </action>
+
+	    <action path="/asociarUsuarioOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.oficinas.AsociarUsuarioOficinaAction"
+	       scope="request" name="asociarUsuariosForm" validate="true">
+	    	<forward name="success" path="/usuariosOficina.do"/>
+	    	<forward name="listado" path="/jsp/listadoUsuariosAsociacion.jsp"/>
+	    </action>
+
+	    <!-- LIBROS -->
+	    <action path="/listadoLibros"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.ListadoLibrosAction"
+	       scope="request" name="libroForm" validate="true">
+	    	<forward name="success" path="/jsp/listadoLibros.jsp"/>
+	    </action>
+
+	    <action path="/listadoAsociacion"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.ListadoAsociacionAction"
+	       scope="request" input="/listadoLibros.do" name="permisosSicresForm" validate="true">
+	    	<forward name="success" path="/jsp/listadoAsociacion.jsp"/>
+	    </action>
+
+	    <action path="/asociarUsuarios"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.AsociarUsuariosAction"
+	       scope="request" input="/editarLibro.do" name="permisosSicresForm" validate="true">
+	    	<forward name="success" path="/jsp/asociarUsuarios.jsp"/>
+<!--	    	<forward name="listado" path="/listadoAsociacion.do"/>-->
+	    	<forward name="edit" path="/editarLibro.do"/>
+	    </action>
+
+	    <action path="/asociarOficinas"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.AsociarOficinasAction"
+	       scope="request" name="oficinasLibrosForm" validate="true">
+<!--	    	<forward name="success" path="/jsp/asociarOficinas.jsp"/>-->
+			<forward name="success" path="/jsp/asociarOficinasLibro.jsp"/>
+	    	<forward name="listado" path="/editarLibro.do"/>
+	    </action>
+
+	    <action path="/eliminarAsociacion"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.EliminarAsociacionAction"
+	       scope="request" name="libroForm" input="/editarLibro.do" validate="false">
+<!--	    	<forward name="success" path="/listadoAsociacion.do"/>-->
+			<forward name="edit" path="/editarLibro.do"/>
+	    	<forward name="error" path="/listadoAsociacion.do"/>
+	    </action>
+
+	    <action path="/guardarAsociacion"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.GuardarAsociacionAction"
+	       scope="request" input="/listadoAsociacion.do" name="permisosSicresForm" validate="true">
+	    	<forward name="success" path="/listadoLibros.do"/>
+	    	<forward name="error" path="/listadoLibros.do"/>
+	    </action>
+
+	   	<action path="/permisosOficinasAsociadas"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.PermisosOficinasAsociadasAction"
+	       scope="request" input="/editarLibro.do" name="libroForm" validate="true">
+	    	<forward name="success" path="/jsp/permisosOficinasAsociadas.jsp"/>
+	    	<forward name="edit" path="/editarLibro.do"/>
+	    	<forward name="error" path="/listadoLibros.do"/>
+	    </action>
+
+	    <!-- UNIDADES -->
+	    <action path="/listadoUnidades"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.ListadoUnidadesAction"
+	       scope="request"  validate="true">
+	    	<forward name="success" path="/jsp/listadoUnidades.jsp"/>
+	    </action>
+
+	    <action path="/listadoUnidad"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.ListadoUnidadHijosAction"
+	       scope="request" name="unidadForm" validate="false">
+	       <forward name="showChildren" path="/jsp/listadoUnidadHijos.jsp"/>
+	       <forward name="showRoot" path="/jsp/listadoUnidadesRoot.jsp"/>
+	    </action>
+
+	    <action path="/nuevaUnidad"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.NuevaUnidadAction"
+	       scope="request" name="unidadForm" validate="false">
+	    	<forward name="success" path="/jsp/nuevaUnidad.jsp"/>
+	    </action>
+
+	    <action path="/nuevaUnidadRoot"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.NuevaUnidadRootAction"
+	       scope="request" name="unidadForm" validate="false">
+	    	<forward name="success" path="/jsp/nuevaUnidadRoot.jsp"/>
+	    </action>
+
+	    <action path="/guardarNuevaUnidad"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.GuardarNuevaUnidadAction"
+	       scope="request" input="/nuevaUnidad.do" name="unidadForm" validate="true">
+	    	<forward name="success" path="/listadoUnidad.do"/>
+	    	<forward name="error" path="/nuevaUnidad.do" />
+	    </action>
+
+	    <action path="/guardarNuevaUnidadRoot"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.GuardarNuevaUnidadRootAction"
+	       scope="request" input="/nuevaUnidadRoot.do" name="unidadForm" validate="true">
+	    	<forward name="success" path="/listadoUnidad.do"/>
+	    	<forward name="error" path="/nuevaUnidadRoot.do" />
+	    </action>
+
+	    <action path="/guardarEdicionUnidad"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.GuardarEdicionUnidadAction"
+	       scope="request" input="/editarUnidad.do" name="unidadForm" validate="true">
+	    	<forward name="success" path="/listadoUnidad.do"/>
+	    	<forward name="error" path="/editarUnidad.do" />
+	    </action>
+
+	    <action path="/guardarEdicionUnidadRoot"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.GuardarEdicionUnidadRootAction"
+	       scope="request" input="/editarUnidadRoot.do" name="unidadForm" validate="true">
+	    	<forward name="success" path="/listadoUnidad.do"/>
+	    	<forward name="error" path="/editarUnidadRoot.do" />
+	    </action>
+
+	    <action path="/eliminarUnidad"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.EliminarUnidadAction"
+	       scope="request" name="unidadForm" validate="false">
+	    	<forward name="success" path="/listadoUnidad.do"/>
+	    	<forward name="error" path="/listadoUnidad.do"/>
+	    </action>
+
+	    <action path="/editarUnidad"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.EditarUnidadAction"
+	       scope="request" input="/nuevaUnidad.do" name="unidadForm" validate="true">
+	    	<forward name="success" path="/jsp/editarUnidad.jsp"/>
+	    	<forward name="listado" path="/listadoUnidad.do"/>
+	    	<forward name="error" path="/editarUnidad.do"/>
+	    </action>
+
+	    <action path="/editarUnidadRoot"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.EditarUnidadRootAction"
+	       scope="request" input="/nuevaUnidadRoot.do" name="unidadForm" validate="true">
+	    	<forward name="success" path="/jsp/editarUnidadRoot.jsp"/>
+	    	<forward name="listado" path="/listadoUnidad.do"/>
+	    	<forward name="error" path="/editarUnidadRoot.do"/>
+	    </action>
+
+	    <action path="/eliminarDistribucion"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.EliminarDistribucionAction"
+	       scope="request" name="unidadDistribucionForm" validate="false">
+	    	<forward name="success" path="/listadoDistribucionUnidad.do"/>
+	    	<forward name="error" path="/listadoDistribucionUnidad.do"/>
+	    </action>
+
+	    <action path="/listadoDistribucionUnidad"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.ListadoDistribucionUnidadAction"
+	       scope="request" name="unidadDistribucionForm" validate="true">
+	    	<forward name="success" path="/jsp/listadoDistribucionUnidad.jsp"/>
+	    </action>
+
+	    <action path="/cargarDepartamentos"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.CargarDepartamentosDistribucionUnidadAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/iFrameDepartamentos.jsp"/>
+	    </action>
+
+	    <action path="/cargarDepartamentosNuevaOficina"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.CargarDepartamentosNuevaOficinaAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/iFrameDeptNuevaOficina.jsp"/>
+	    </action>
+
+	    <action path="/ldapGroupTree"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.ldap.LdapGroupTree"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/iFrameLdap.jsp"/>
+	    </action>
+
+	    <action path="/ldapUserTree"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.ldap.LdapUserTree"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/iFrameLdap.jsp"/>
+	    </action>
+
+	    <action path="/ldapUserGroupTree"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.ldap.LdapUserGroupTree"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/iFrameLdap.jsp"/>
+	    </action>
+
+	    <action path="/cargarGrupos"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.CargarGruposDistribucionUnidadAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/iFrameGrupos.jsp"/>
+	    </action>
+
+	    <action path="/cargarUsuarios"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.CargarUsuariosDistribucionUnidadAction"
+	       scope="request" validate="false">
+	    	<forward name="usuarios" path="/jsp/iFrameUsuarios.jsp"/>
+	    	<forward name="nuevoUsuario" path="/jsp/iFrameNuevoUsuario.jsp"/>
+	    </action>
+
+	    <action path="/guardarUsuarios"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.GuardarUsuariosDistribucionUnidadAction"
+	       scope="request" validate="false">
+	       <forward name="success" path="/listadoDistribucionUnidad.do" />
+	    </action>
+
+	    <action path="/guardarDistribucionLdap"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.GuardarDistribucionUnidadLdapAction"
+	       scope="request" validate="false">
+	       <forward name="success" path="/listadoDistribucionUnidad.do" />
+	    </action>
+
+	    <action path="/cargarUnidades"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.CargarUnidadesAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/iFrameUnidades.jsp"/>
+	    </action>
+
+	    <action path="/cargarDepartamentosImportarUnidad"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.CargarDepartamentosImportarUnidadAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/iFrameDeptNuevaOficina.jsp"/>
+	    </action>
+
+	    <action path="/guardarDepartamentosImportarUnidad"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.GuardarDepartamentosImportarUnidadAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/listadoUnidad.do"/>
+	    </action>
+
+	    <action path="/chequearSession"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.ChequearSessionAction"
+	       scope="request" validate="false">
+	    </action>
+
+	    <!--<action path="/chequearSession"
+	       type="org.apache.struts.actions.ForwardAction"
+	       scope="request" validate="false">
+	    </action>-->
+
+	    <action path="/listadoListas"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.ListadoListasAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/listadoListas.jsp"/>
+<!--	    	<forward name="listado" path="/listadoLibros.do"/>-->
+			<forward name="editarLibro" path="/editarLibro.do"/>
+			<forward name="nuevoLibro" path="/nuevoLibro.do"/>
+	    </action>
+
+	    <action path="/nuevoLibro"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.NuevoLibroAction"
+	       scope="request" name="libroForm" validate="false">
+	    	<forward name="success" path="/jsp/nuevoLibro.jsp"/>
+	    </action>
+
+	    <action path="/guardarNuevoLibro"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.GuardarNuevoLibroAction"
+	       scope="request" input="/nuevoLibro.do" name="libroForm" validate="true">
+	    	<forward name="success" path="/listadoLibros.do"/>
+	    	<forward name="error" path="/nuevoLibro.do" />
+	    </action>
+
+	    <action path="/editarLibro"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.EditarLibroAction"
+	       scope="request" input="/editarLibro.do" name="libroForm" validate="true">
+	    	<forward name="success" path="/jsp/editarLibro.jsp"/>
+	    	<forward name="error" path="/editarLibro.do"/>
+	    </action>
+
+	    <action path="/guardarEdicionLibro"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.GuardarEdicionLibroAction"
+	       scope="request" input="/editarLibro.do" name="libroForm" validate="true">
+	    	<forward name="success" path="/editarLibro.do"/>
+	    </action>
+
+	    <action path="/cambiarEstadoLibro"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.CambiarEstadoLibroAction"
+	       scope="request" name="libroForm" validate="false">
+	    	<forward name="success" path="/listadoLibros.do"/>
+	    	<forward name="error" path="/listadoLibros.do"/>
+	    </action>
+
+	    <action path="/eliminarLibro"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.EliminarLibroAction"
+	       scope="request" name="libroForm" validate="false">
+	    	<forward name="success" path="/listadoLibros.do"/>
+	    	<forward name="error" path="/listadoLibros.do"/>
+	    </action>
+
+	    <action path="/aplicarFiltros"
+	    	type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.AplicarFiltroLibroAction"
+	       scope="request" name="filtrosForm" validate="true">
+	    	<forward name="success" path="/jsp/aplicarFiltros.jsp"/>
+	    	<forward name="error" path="/listadoAsociacion.do"/>
+	    </action>
+
+	    <action path="/configurarNumeracion"
+	    	type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.ConfigurarNumeracionLibroAction"
+	       scope="request" name="numeracionForm" validate="true">
+	    	<forward name="success" path="/jsp/configurarNumeracion.jsp"/>
+	    	<forward name="error" path="/listadoLibros.do"/>
+	    </action>
+
+	    <action path="/guardarNumeracion"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.GuardarNumeracionLibroAction"
+	       scope="request" input="/configurarNumeracion.do" name="numeracionForm" validate="true">
+	       <forward name="success" path="/listadoLibros.do" />
+	    </action>
+
+	   	<action path="/actualizarNumeracion"
+	    	type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.ActualizarNumeracionOficinasAction"
+	       	scope="request" input="/editarLibro.do" validate="false">
+	    	<forward name="success" path="/editarLibro.do"/>
+	    </action>
+
+	    <action path="/guardarFiltros"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.GuardarFiltrosAction"
+	       scope="request" input="/cargarFiltros.do" name="filtrosForm" validate="true">
+	       <forward name="asociar" path="/asociarUsuarios.do" />
+	       <forward name="edit" path="/editarLibro.do" />
+	    </action>
+
+	    <action path="/cargarFiltros"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.CargarFiltrosLibroAction"
+	       scope="request" input="/cargarFiltros.do" name="filtrosForm" validate="true">
+	       <forward name="success" path="/jsp/aplicarFiltros.jsp" />
+	    </action>
+
+	    <!-- TRANSPORTES -->
+	    <action path="/listadoTransportes"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.transportes.ListadoTransportesAction"
+	       scope="request"  validate="true">
+	    	<forward name="success" path="/jsp/listadoTransportes.jsp"/>
+	    </action>
+
+	    <action path="/nuevoTransporte"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.transportes.NuevoTransporteAction"
+	       scope="request" name="transporteForm" validate="false">
+	    	<forward name="success" path="/jsp/nuevoTransporte.jsp"/>
+	    </action>
+
+	    <action path="/editarTransporte"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.transportes.EditarTransporteAction"
+	       scope="request" input="/editarTransporte.do" name="transporteForm" validate="true">
+	    	<forward name="success" path="/jsp/editarTransporte.jsp"/>
+	    	<forward name="listado" path="/listadoTransportes.do"/>
+	    	<forward name="error" path="/editarTransporte.do"/>
+	    </action>
+
+	    <action path="/eliminarTransporte"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.transportes.EliminarTransporteAction"
+	       scope="request" name="transporteForm" validate="false">
+	    	<forward name="success" path="/listadoTransportes.do"/>
+	    	<forward name="error" path="/listadoTransportes.do"/>
+	    </action>
+
+	    <action path="/guardarNuevoTransporte"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.transportes.GuardarNuevoTransporteAction"
+	       scope="request" input="/nuevaTransporte.do" name="transporteForm" validate="true">
+	    	<forward name="success" path="/listadoTransportes.do"/>
+	    	<forward name="error" path="/nuevoTransporte.do" />
+	    </action>
+
+	    <action path="/guardarEdicionTransporte"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.transportes.GuardarEdicionTransporteAction"
+	       scope="request" input="/editarTransporte.do" name="transporteForm" validate="true">
+	    	<forward name="success" path="/listadoTransportes.do"/>
+	    	<forward name="error" path="/editarTransporte.do" />
+	    </action>
+
+	    <!-- INFORMES -->
+
+		<action path ="/descargarInforme"
+	    	type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.DescargarInformeAction"
+	    	scope="request" validate="true">
+	    		<forward name="success" path="/listadoInformes.do"/>
+	    </action>
+
+	    <action path="/guardarNuevoInforme"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.GuardarNuevoInformeAction"
+	       scope="request" input="/jsp/nuevoInforme.jsp" name="informeForm" validate="true">
+	    	<forward name="success" path="/listadoInformes.do"/>
+	    	<forward name="error" path="/jsp/nuevoInforme.jsp" />
+	    </action>
+
+	   	<action path="/nuevoInforme"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.NuevoInformeAction"
+	       scope="request" name="informeForm" validate="false">
+	    	<forward name="success" path="/jsp/nuevoInforme.jsp"/>
+	    </action>
+
+	   	<action path="/guardarEdicionInforme"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.GuardarEdicionInformeAction"
+	       scope="request" input="/jsp/editarInforme.jsp" name="informeForm" validate="true">
+	    	<forward name="success" path="/listadoInformes.do"/>
+	    	<forward name="error" path="/jsp/editarInforme.jsp" />
+	    </action>
+
+	    <action path = "/listadoInformes"
+	    	type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.ListadoInformesAction"
+	    	scope="request" validate="true">
+	    		<forward name="success" path="/jsp/listadoInformes.jsp"/>
+	    </action>
+
+	   	<action path="/guardarEdicionInforme"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.GuardarEdicionInformeAction"
+	       scope="request" input="/jsp/editarInforme.jsp" name="informeForm" validate="true">
+	    	<forward name="success" path="/listadoInformes.do"/>
+	    	<forward name="error" path="/jsp/editarInforme.jsp" />
+	    </action>
+
+	   <action path="/editarInforme"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.EditarInformeAction"
+	       scope="request" input="/editarInforme.do" name="informeForm" validate="true">
+	    	<forward name="success" path="/jsp/editarInforme.jsp"/>
+	    	<forward name="listado" path="/listadoInformes.do"/>
+	    	<forward name="error" path="/listadoInformes.do"/>
+	    </action>
+
+	    <action path="/eliminarInforme"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.EliminarInformeAction"
+	       scope="request" name="informeForm" validate="false">
+	    	<forward name="success" path="/listadoInformes.do"/>
+	    	<forward name="error" path="/jsp/listadoInformes.jsp"/>
+	    </action>
+
+	    	<!-- Oficinas -->
+		    <action path="/addOficinaEditarInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.AddOficinaInformeAction"
+		       scope="request" input="/editarInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/editarInforme.jsp"/>
+		    	<forward name="error" path="/jsp/editarInforme.jsp"/>
+		    </action>
+
+		    <action path="/removeOficinaEditarInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.RemoveOficinaInformeAction"
+		       scope="request" input="/editarInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/editarInforme.jsp"/>
+		    	<forward name="error" path="/jsp/editarInforme.jsp"/>
+		    </action>
+
+		    <action path="/addOficinaNuevoInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.AddOficinaInformeAction"
+		       scope="request" input="/nuevoInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/nuevoInforme.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoInforme.jsp"/>
+		    </action>
+
+		    <action path="/removeNuevoEditarInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.RemoveOficinaInformeAction"
+		       scope="request" input="/nuevoInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/nuevoInforme.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoInforme.jsp"/>
+		    </action>
+
+
+		    <!--  Perfiles -->
+		   	<action path="/listadoSeleccionPerfiles"
+	       		type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.ListadoSeleccionPerfilesAction"
+	       		scope="request" validate="false">
+	    		<forward name="success" path="/jsp/listadoSeleccionPerfiles.jsp"/>
+	    		<forward name="error" path="/jsp/listadoSeleccionPerfiles.jsp"/>
+	    	</action>
+
+	    	<action path="/addPerfilEditarInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.AddPerfilInformeAction"
+		       scope="request" input="/editarInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/editarInforme.jsp"/>
+		    	<forward name="error" path="/jsp/editarInforme.jsp"/>
+		    </action>
+
+		    <action path="/removePerfilEditarInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.RemovePerfilInformeAction"
+		       scope="request" input="/editarInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/editarInforme.jsp"/>
+		    	<forward name="error" path="/jsp/editarInforme.jsp"/>
+		    </action>
+
+		    <action path="/addPerfilNuevoInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.AddPerfilInformeAction"
+		       scope="request" input="/nuevoInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/nuevoInforme.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoInforme.jsp"/>
+		    </action>
+
+		    <action path="/removePerfilNuevoInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.RemovePerfilInformeAction"
+		       scope="request" input="/nuevoInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/nuevoInforme.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoInforme.jsp"/>
+		    </action>
+
+	    	<!--  Libros -->
+	    	<action path="/listadoSeleccionLibros"
+	       		type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.ListadoLibrosAction"
+	       		scope="request" validate="false">
+	    		<forward name="success" path="/jsp/listadoSeleccionLibros.jsp"/>
+	    		<forward name="error" path="/jsp/listadoSeleccionLibros.jsp"/>
+	    	</action>
+
+	    	<action path="/addLibroEditarInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.AddLibroInformeAction"
+		       scope="request" input="/editarInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/editarInforme.jsp"/>
+		    	<forward name="error" path="/jsp/editarInforme.jsp"/>
+		    </action>
+
+		    <action path="/removeLibroEditarInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.RemoveLibroInformeAction"
+		       scope="request" input="/editarInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/editarInforme.jsp"/>
+		    	<forward name="error" path="/jsp/editarInforme.jsp"/>
+		    </action>
+
+		    <action path="/addLibroNuevoInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.AddLibroInformeAction"
+		       scope="request" input="/nuevoInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/nuevoInforme.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoInforme.jsp"/>
+		    </action>
+
+		    <action path="/removeLibroNuevoInforme"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.informes.RemoveLibroInformeAction"
+		       scope="request" input="/nuevoInforme.do" name="informeForm">
+		    	<forward name="success" path="/jsp/nuevoInforme.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoInforme.jsp"/>
+		    </action>
+
+
+	    <!-- ASUNTOS -->
+	    <action path="/listadoAsuntos"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.ListadoAsuntosAction"
+	       scope="request"  validate="true">
+	    	<forward name="success" path="/jsp/listadoAsuntos.jsp"/>
+	    	<forward name="asuntos" path="/jsp/buscarAsuntosPopup.jsp"/>
+	    </action>
+
+	    <action path="/nuevoAsunto"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.NuevoAsuntoAction"
+	       scope="request" name="asuntoForm" validate="false">
+	    	<forward name="success" path="/jsp/nuevoAsunto.jsp"/>
+	    </action>
+
+			<!-- Oficinas -->
+		    <action path="/addOficinaNuevoAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.AddOficinaAsuntoAction"
+		       scope="request" input="/nuevoAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/nuevoAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoAsunto.jsp"/>
+		    </action>
+
+		    <action path="/removeOficinaNuevoAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.RemoveOficinaAsuntoAction"
+		       scope="request" input="/nuevoAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/nuevoAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoAsunto.jsp"/>
+		    </action>
+
+	    	<!-- Documentos -->
+		    <action path="/addDocumentoNuevoAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.AddDocumentoAsuntoAction"
+		       scope="request" input="/nuevoAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/nuevoAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoAsunto.jsp"/>
+		    </action>
+
+		    <action path="/removeDocumentoNuevoAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.RemoveDocumentoAsuntoAction"
+		       scope="request" input="/nuevoAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/nuevoAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoAsunto.jsp"/>
+		    </action>
+
+		    <action path="/editDocumentoNuevoAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.EditDocumentoAsuntoAction"
+		       scope="request" input="/nuevoAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/nuevoAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/nuevoAsunto.jsp"/>
+		    </action>
+
+	    <action path="/guardarNuevoAsunto"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.GuardarNuevoAsuntoAction"
+	       scope="request" input="/jsp/nuevoAsunto.jsp" name="asuntoForm" validate="true">
+	    	<forward name="success" path="/listadoAsuntos.do"/>
+	    	<forward name="error" path="/jsp/nuevoAsunto.jsp" />
+	    </action>
+
+	    <!-- <action path="/listadoSeleccionOficinas"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.ListadoSeleccionOficinasAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/listadoSeleccionOficinas.jsp"/>
+	    	<forward name="error" path="/jsp/listadoSeleccionOficinas.jsp"/>
+	    </action>-->
+
+	    <action path="/editarAsunto"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.EditarAsuntoAction"
+	       scope="request" input="/editarAsunto.do" name="asuntoForm" validate="true">
+	    	<forward name="success" path="/jsp/editarAsunto.jsp"/>
+	    	<forward name="listado" path="/listadoAsuntos.do"/>
+	    	<forward name="error" path="/listadoAsuntos.do"/>
+	    </action>
+
+			<!-- Oficinas -->
+		    <action path="/addOficinaEditarAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.AddOficinaAsuntoAction"
+		       scope="request" input="/editarAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/editarAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/editarAsunto.jsp"/>
+		    </action>
+
+		    <action path="/removeOficinaEditarAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.RemoveOficinaAsuntoAction"
+		       scope="request" input="/editarAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/editarAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/editarAsunto.jsp"/>
+		    </action>
+
+	    	<!-- Documentos -->
+		    <action path="/addDocumentoEditarAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.AddDocumentoAsuntoAction"
+		       scope="request" input="/editarAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/editarAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/editarAsunto.jsp"/>
+		    </action>
+
+		    <action path="/removeDocumentoEditarAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.RemoveDocumentoAsuntoAction"
+		       scope="request" input="/editarAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/editarAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/editarAsunto.jsp"/>
+		    </action>
+
+		    <action path="/editDocumentoEditarAsunto"
+		       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.EditDocumentoAsuntoAction"
+		       scope="request" input="/editarAsunto.do" name="asuntoForm">
+		    	<forward name="success" path="/jsp/editarAsunto.jsp"/>
+		    	<forward name="error" path="/jsp/editarAsunto.jsp"/>
+		    </action>
+
+
+	    <action path="/guardarEdicionAsunto"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.GuardarEdicionAsuntoAction"
+	       scope="request" input="/jsp/editarAsunto.jsp" name="asuntoForm" validate="true">
+	    	<forward name="success" path="/listadoAsuntos.do"/>
+	    	<forward name="error" path="/jsp/editarAsunto.jsp" />
+	    </action>
+
+
+	    <action path="/eliminarAsunto"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.asuntos.EliminarAsuntoAction"
+	       scope="request" name="asuntoForm" validate="false">
+	    	<forward name="success" path="/listadoAsuntos.do"/>
+	    	<forward name="error" path="/jsp/listadoAsuntos.jsp"/>
+	    </action>
+
+	   	<action path="/cargarUnidadesAsuntos"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades.CargarUnidadesAsuntosAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/iFrameUnidadesAsuntos.jsp"/>
+	    </action>
+
+		<!-- INTERCAMBIO REGISTRAL -->
+
+	    <action path="/busquedaOficinasDirectorioComun"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.intercambio.BusquedaOficinasDirectorioComunAction"
+	       scope="request" name="busquedaDirectorioComunForm" validate="false">
+	    	<forward name="success" path="/jsp/busquedaOficinasDirectorioComun.jsp"/>
+	    </action>
+
+	    <action path="/busquedaUnidadesOrganicasDirectorioComun"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.intercambio.BusquedaUnidadesOrganicasDirectorioComunAction"
+	       scope="request" name="busquedaDirectorioComunForm" validate="false">
+	    	<forward name="success" path="/jsp/busquedaUnidadesOrganicasDirectorioComun.jsp"/>
+	    </action>
+
+	    <!-- CONFIGURACIÓN LDAP -->
+
+	    <action path="/editarConfiguracionLdap"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.configuracionLdap.EditarConfiguracionLdapAction"
+	       scope="request" name="configuracionLdapForm" validate="false">
+	    	<forward name="success" path="/jsp/editarConfiguracionLdap.jsp"/>
+	    </action>
+
+	    <action path="/guardarConfiguracionLdap"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.configuracionLdap.GuardarConfiguracionLdapAction"
+	       scope="request" input="/editarConfiguracionLdap.do" name="configuracionLdapForm">
+	    	<forward name="success" path="/editarConfiguracionLdap.do"/>
+	    	<forward name="error" path="/jsp/editarConfiguracionLdap.jsp" />
+	    </action>
+
+	    <action path="/testConfiguracionLdap"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.configuracionLdap.TestConfiguracionLdapAction"
+	       scope="request" input="/jsp/editarConfiguracionLdap.jsp" name="configuracionLdapForm" >
+	    	<forward name="success" path="/jsp/editarConfiguracionLdap.jsp"/>
+	    	<forward name="error" path="/jsp/editarConfiguracionLdap.jsp" />
+	    </action>
+
+	    <!-- CONFIGURACIÓN DCO -->
+
+	    <action path="/configuracionDCO"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.dco.ConfiguracionDCOAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/configurarDCO.jsp"/>
+	    </action>
+
+	    <action path="/gestionDCO"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.dco.GestionDCOAction"
+	       scope="request" validate="false">
+	    	<forward name="success" path="/jsp/configurarDCO.jsp"/>
+	    	<forward name="error" path="/jsp/configurarDCO.jsp"/>
+	    </action>
+
+	    <!-- Actualizar Libros a SICRES3 -->
+	    <action path="/actualizarLibroASicres3"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.ActualizarLibroASicres3Action"
+	       scope="request" input="/editarLibro.do" name="libroForm">
+	    	<forward name="success" path="/editarLibro.do"/>
+	    	<forward name="error" path="/editarLibro.do"/>
+	    </action>
+
+	    <!-- LOGOUT -->
+	    <action path="/logout"
+	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.LogoutAction"
+	       scope="request" validate="true">
+	    </action>
+
+	</action-mappings>
+
+	<message-resources parameter="ApplicationResource" />
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+
+	<plug-in className="ieci.tecdoc.isicres.rpadmin.struts.plugin.ConfigPluginAdm">
+		<set-property property="maxChildrenLdap" value="100"/>
+	</plug-in>
+</struts-config>

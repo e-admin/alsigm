@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="InfoRegistroPersonaFisicaOJuridicaVO">
+
+<typeAlias alias="InfoRegistroPersonaFisicaOJuridicaVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroPersonaFisicaOJuridicaVO" />
+		
+	<resultMap 
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroPersonaFisicaOJuridicaVO"
+		id="infoRegistroPersonaFisicaResultMap">
+		<result property="tipoDocumento" column="type_doc" />
+		<result property="documentoIdentificacion" column="nif" />
+		<result property="nombre" column="surname" />
+		<result property="primerApellido" column="first_name" />
+		<result property="segundoApellido" column="second_name" />
+	</resultMap>
+	<resultMap 
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroPersonaFisicaOJuridicaVO"
+		id="infoRegistroPersonaJuridicaResultMap">
+		<result property="tipoDocumento" column="type_doc" />
+		<result property="documentoIdentificacion" column="cif" />
+		<result property="nombre" column="name" />
+		
+	</resultMap>
+</sqlMap>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: Idiomas_spring.xml,v 1.1.2.1 2008/03/11 10:44:14 jnogales Exp $ -->
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+<!-- datos de cabecera soap -->
+<!ENTITY NOMBRE_CABECERA "cabecera-implementacion">
+<!ENTITY ARGS_CABECERA
+"<constructor-arg type='java.lang.String' index='0' value='namespace'/>
+<constructor-arg type='java.lang.String' index='1' value='&NOMBRE_CABECERA;'/>">
+<!ENTITY CLASS_HEADER "org.apache.axis.message.SOAPHeaderElement">
+]>
+<beans>
+
+	<bean name="sigemConfigurationResourceLoader" id="sigemConfigurationResourceLoader" class="ieci.tecdoc.sgm.core.config.impl.spring.SigemConfigurationResourceLoaderImpl">
+    	<!-- <property name="baseConfigurationPathDir" value="/media/DATOS/desarrollo/proyectos/sigem/framework-td/fwktd-core/src/test/resources/"></property> -->  
+    
+    </bean>
+    
+    <bean class="ieci.tecdoc.sgm.core.config.impl.spring.SigemBasePlaceholderConfigurer">
+        <property name="configurationResourceLoader"><ref bean="sigemConfigurationResourceLoader"/> </property>
+        <property name="locations">
+        	<list>
+        		<value>SIGEM_Core/SIGEM_spring.properties</value>		
+        	</list>
+        </property>
+                
+                
+    </bean>
+
+     <bean id="configIdioma" class="ieci.tecdoc.sgm.core.services.idioma.ConfigIdioma">
+        
+        <property name="mostrarComboIdioma" value="${MOSTRAR_COMBO_IDIOMA}"/>
+        <property name="mostrarIdiomaPresentacion" value="${MOSTRAR_Y_GUARDAR_IDIOMA_PRESENTACION}"/>
+        
+    </bean>
+    
+</beans>

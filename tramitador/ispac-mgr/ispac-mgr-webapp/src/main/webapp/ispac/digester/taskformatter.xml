@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter defaultSort="2"
+			   pageSize="10"
+			   export="false">
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+        	     property='ID' 
+        	     readOnly='false'
+        		 fieldType='CHECKBOX' 
+			     columnClass='width5percent'
+        		 media='html'
+        		 headerClass='headerDisplay'
+				 />
+        		 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE' 
+				 readOnly='false'
+				 titleKey='formatter.tasks.documento'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html '
+				 decorator=''
+				 url='showTask.do'
+				 id='key'
+				 columnClass='width30percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='INFOPAG' 
+				 readOnly='true'
+				 media='html'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 fieldType='SHOWDOCUMENT'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='DESCRIPCION' 
+	             readOnly='false'
+		         titleKey='formatter.tasks.descripcion' 
+		         fieldType='LIST' 
+		         columnClass='width45percent'
+		         headerClass='sortable'
+		         sortable='true'
+				 />	
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='TP_REG' 
+	             readOnly='false'
+		         titleKey='formatter.tasks.tipoRegistro' 
+		         fieldType='LIST' 
+		         columnClass='width45percent'
+		         headerClass='sortable'
+		         sortable='true'
+				 />	
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='NREG' 
+	             readOnly='false'
+		         titleKey='formatter.tasks.numeroRegistro' 
+		         fieldType='LIST' 
+		         columnClass='width45percent'
+		         headerClass='sortable'
+		         sortable='true'
+				 />	
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+	             property='DESTINO' 
+	             readOnly='false'
+		         titleKey='formatter.tasks.destino'
+		         fieldType='LIST' 
+		         columnClass='width45percent'
+		         headerClass='sortable'
+		         sortable='true'
+				 />	
+
+
+	<propertyfmt type="BeanPropertyDateFmt" 
+	             property='FAPROBACION' 
+	             readOnly='false'
+		         format='dd/MM/yyyy' 
+		         titleKey='formatter.tasks.fechaAprobacion' 
+		         fieldType='LIST' 
+		         columnClass='width20percent'
+		         headerClass='sortable'
+		         sortable='true'
+				 />	
+		         
+</beanformatter>

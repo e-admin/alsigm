@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<idoc_config>
+    <default_archive_id>3</default_archive_id>
+	<ctxpool_name>java:comp/env/jdbc/registroDS</ctxpool_name>
+	<idocuser_id>0</idocuser_id>
+    <temporary_path>C:/temp/temporary</temporary_path>
+    <archive id="3">
+		<docsize_field_id>15</docsize_field_id>
+		<mimetype_field_id>14</mimetype_field_id>
+		<fields_mapping>
+		  <field_mapping>
+			<property_name>document_id</property_name>
+			<property_type>integer</property_type>
+			<field_id>1</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>document_name</property_name>
+			<property_type>string</property_type>
+			<field_id>2</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>document_type</property_name>
+			<property_type>integer</property_type>
+			<field_id>3</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>procedure_id</property_name>
+			<property_type>integer</property_type>
+			<field_id>4</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>procedure_name</property_name>
+			<property_type>string</property_type>
+			<field_id>5</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>expedient_id</property_name>
+			<property_type>integer</property_type>
+			<field_id>6</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>expedient_name</property_name>
+			<property_type>string</property_type>
+			<field_id>7</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>user_guid</property_name>
+			<property_type>string</property_type>
+			<field_id>8</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>user_name</property_name>
+			<property_type>string</property_type>
+			<field_id>9</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>stage_id</property_name>
+			<property_type>integer</property_type>
+			<field_id>10</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>stage_name</property_name>
+			<property_type>string</property_type>
+			<field_id>11</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>task_id</property_name>
+			<property_type>integer</property_type>
+			<field_id>12</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>task_name</property_name>
+			<property_type>string</property_type>
+			<field_id>13</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>mimetype</property_name>
+			<property_type>string</property_type>
+			<field_id>14</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>document_size</property_name>
+			<property_type>integer</property_type>
+			<field_id>15</field_id>
+		  </field_mapping>
+		</fields_mapping>
+    </archive>
+	<archive id="4">                                                            
+		<!-- identificador del campo que va a contener el tamaño del fichero  --> 
+		<docsize_field_id>8</docsize_field_id>                                     
+																				  
+		<!-- identificador del campo que va a contener el tipo del fichero  -->   
+		<mimetype_field_id>7</mimetype_field_id>                                   
+																				  
+		<!-- mapeo de los campos -->                                              
+		<fields_mapping>                                                          
+		  <field_mapping>                                                         
+			<property_name>Nº Expediente</property_name>                          
+			<property_type>string</property_type>                                 
+			<field_id>1</field_id>                                                
+		  </field_mapping>                                                        
+		  <field_mapping>                                                         
+			<property_name>Código Procedimiento</property_name>                   
+			<property_type>string</property_type>                                 
+			<field_id>2</field_id>                                                
+		  </field_mapping>                                                        
+		  <field_mapping>                                                         
+			<property_name>Fase</property_name>                                   
+			<property_type>string</property_type>                                 
+			<field_id>3</field_id>                                                
+		  </field_mapping>                                                        
+		  <field_mapping>                                                         
+			<property_name>Trámite</property_name>                                   
+			<property_type>string</property_type>                                
+			<field_id>4</field_id>                                                
+		  </field_mapping>                                                        
+		  <field_mapping>                                                         
+			<property_name>Tipo Documento</property_name>                         
+			<property_type>string</property_type>                                 
+			<field_id>5</field_id>                                                
+		  </field_mapping>                                                        
+		  <field_mapping>                                                         
+			<property_name>Firma</property_name>                      
+			<property_type>string</property_type>                                   
+			<field_id>6</field_id>                                                
+		  </field_mapping>                                                        
+		  <field_mapping>                                                         
+			<property_name>Tipo Mime</property_name>                      
+			<property_type>string</property_type>                                   
+			<field_id>7</field_id>                                                
+		  </field_mapping>  
+		  <field_mapping>
+			<property_name>longitud</property_name>
+			<property_type>integer</property_type>
+			<field_id>8</field_id>
+		  </field_mapping>
+		  <field_mapping>
+			<property_name>Fecha Creación</property_name>
+			<property_type>date</property_type>
+			<field_id>9</field_id>
+		  </field_mapping>		  
+		</fields_mapping>                                                         
+	</archive>    
+</idoc_config>

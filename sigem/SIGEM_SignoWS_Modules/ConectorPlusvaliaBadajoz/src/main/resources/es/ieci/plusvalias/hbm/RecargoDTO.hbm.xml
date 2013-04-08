@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jun-2010 12:15:53 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="es.ieci.plusvalias.domain.RecargoDTO" table="PLUTIPORECA" >
+        <id name="numero" type="java.lang.Integer">
+            <column name="NUMRECARGO" precision="5" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="anyoejercicio" type="java.lang.Integer">
+            <column name="ANYEJERCICIO" precision="5" scale="0" />
+        </property>
+        <property name="maxdias" type="java.lang.Integer">
+            <column name="HASTADIAS" precision="5" scale="0" />
+        </property>
+        <property name="porcentaje" type="java.lang.Double">
+            <column name="PORTIPORECA" precision="4" />
+        </property>
+        <property name="liqinteresessn" type="string">
+            <column name="LIQINTERESESSN" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

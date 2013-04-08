@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	
+
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='empty'
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 />
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ORDEN'
+				 readOnly='false'
+				 titleKey='form.tblvld.orden'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width20percent'
+				 media='html'
+				 />
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VALOR'
+				 readOnly='false'
+				 titleKey='form.tblvld.valor'
+				 fieldType='LINKPARAM'
+				 styleClass='displayLink'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 columnClass='width30percent'
+				 url='/ManageTblVld.do?method=show'
+				 >
+		 <linkParam paramId="entityId" property="ENTITY_ID"/>
+		 <linkParam paramId="regId"  property="ID"/>
+		 <linkParam paramId="type"  property="ENTITY_TYPE"/>
+		 
+	</propertyfmt>
+	
+	
+	
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VALOR'
+				 readOnly='false'
+				 titleKey='form.tblvld.valor'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width20percent'
+				 media='xml excel csv pdf'
+				 />
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SUSTITUTO'
+				 readOnly='false'
+				 titleKey='form.tblvld.sustituto'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width40percent'
+				 media="html"
+				 />
+
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SUSTITUTO'
+				 readOnly='false'
+				 titleKey='form.tblvld.sustituto'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width40percent'
+				  media='xml excel csv pdf'
+				 />
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VIGENTE'
+				 readOnly='false'
+				 titleKey='form.tblvld.vigente'
+				 fieldType='BOOLEAN_NUMERIC'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width20percent'
+				 media="html"
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VIGENTE'
+				 readOnly='false'
+				 titleKey='form.tblvld.vigente'
+				 fieldType='BOOLEAN_NUMERIC'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width20percent'
+				 media='xml excel csv pdf'
+				 />
+	
+
+</beanformatter>

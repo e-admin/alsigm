@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<queryform displaywidth="100%">	
+<entity type="main" identifier="1">		
+	<tablename>spac_expedientes</tablename>
+	<description>Expediente:</description>		
+	<field type="query">					
+		<columnname>NUMEXP</columnname>			
+		<description>Número de expediente</description>			
+		<datatype>string</datatype>						
+		<controltype size='50' maxlength='30'>text</controltype>
+	</field>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_EXPEDIENTES.NUMEXP' 
+				 readOnly='false'
+				 dataType='string' 
+				 title='Expediente' 
+				 fieldType='LIST' 				
+				 fieldLink='SPAC_EXPEDIENTES.NUMEXP' 
+				 width='15%'/>	
+</entity>	
+<entity type="secondary" identifier="2">		
+	<tablename>spac_instaladorbt</tablename>		
+	<bindfield>NUMEXP</bindfield>		
+	<description>Instalador BT:</description>		
+	<field type="query">			
+		<columnname>CCI</columnname>			
+		<description>CCI</description>			
+		<datatype>string</datatype>						
+		<controltype size='50' maxlength='16'>text</controltype>		
+	</field>		
+	<field type="query">			
+		<columnname>NDOC</columnname>			
+		<description>Nº Doc</description>						
+		<datatype>string</datatype>						
+		<controltype size='50' maxlength='32'>text</controltype>		
+	</field>				
+	<field type="query">			
+		<columnname>NOMBRE</columnname>			
+		<description>Nombre/Razón Social</description>						
+		<datatype>string</datatype>						
+		<controltype size='50' maxlength='128'>text</controltype>		
+	</field>				
+	<field type="query">			
+		<columnname>FECHA_EXPEDICION</columnname>			
+		<description>Fecha expedición</description>						
+		<datatype>date</datatype>						
+		<controltype size='10' maxlength='10'>text</controltype>		
+	</field>		
+	<field type="query">			
+		<columnname>ESTADO</columnname>			
+		<description>Estado</description>			
+		<datatype>string</datatype>						
+		<controltype size='1' maxlength='1'>text</controltype>		
+	</field>				
+	<field type="query">			
+		<columnname>CATEGORIA</columnname>			
+		<description>Categoría</description>						
+		<datatype>string</datatype>						
+		<controltype size='1' maxlength='1'>text</controltype>		
+	</field>				
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_INSTALADORBT.CCI' 
+				 readOnly='false'			
+				 dataType='string' 
+				 title='CCI' 
+				 fieldType='LIST' 
+				 width='9%'/>		
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_INSTALADORBT.NDOC' readOnly='false'			
+				 dataType='string' 
+				 title='Documento' 
+				 fieldType='LIST' 
+				 width='9%'/>					
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_INSTALADORBT.NOMBRE' 
+				 readOnly='false'			
+				 dataType='string' 
+				 title='Nombre/Razón Social' 
+				 fieldType='LIST' 
+				 width='40%'/>					
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_INSTALADORBT.FECHA_EXPEDICION' 
+				 readOnly='false'			
+				 dataType='date' 
+				 title='F.Expedición' fieldType='LIST' width='9%'/>					
+</entity>
+</queryform>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="DatosBasicosOficinaVO">
+
+	<typeAlias alias="datosBasicosOficina"
+		type="es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosOficinaVO" />
+
+	<resultMap id="datosBasicosOficina" class="es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosOficinaVO">
+
+		<result property="id" column="CODIGO_OFICINA" />
+		<result property="nombre" column="DENOMINACION_OFICINA" />
+		<result property="idExternoFuente" column="EXTERNO_FUENTE" />
+
+		<result property="idUnidadResponsable" column="CODIGO_UNIDAD_RESPONSABLE" />
+		<result property="nombreUnidadResponsable" column="DENOMINACION_UNIDAD_RESPONSABLE" />
+
+		<result property="provincia" column="PROVINCIA" />
+		<result property="localidad" column="LOCALIDAD" />
+		<result property="direccion" column="DIRECCION" />
+
+	</resultMap>
+
+	<sql id="table">DIR_OFICINA</sql>
+
+	<sql id="columns">
+		OFI.CODIGO_OFICINA,
+		OFI.DENOMINACION_OFICINA,
+		OFI.EXTERNO_FUENTE,
+		OFI.CODIGO_UNIDAD_RESPONSABLE,
+		OFI.PROVINCIA,
+		OFI.LOCALIDAD,
+		OFI.DIRECCION,
+		UO.NOMBRE_UNIDAD_ORGANICA AS DENOMINACION_UNIDAD_RESPONSABLE
+	</sql>
+
+	<sql id="from">
+		<include refid="table" /> OFI
+			LEFT OUTER JOIN DIR_UNIDAD_ORGANICA UO ON OFI.CODIGO_UNIDAD_RESPONSABLE=UO.CODIGO_UNIDAD_ORGANICA
+	</sql>
+
+	<sql id="columns_insert">
+		CODIGO_OFICINA,
+		DENOMINACION_OFICINA,
+		EXTERNO_FUENTE,
+		CODIGO_UNIDAD_RESPONSABLE,
+		PROVINCIA,
+		LOCALIDAD,
+		DIRECCION
+	</sql>
+
+	<sql id="insert">
+		#id#,
+		#nombre#,
+		#idExternoFuente#,
+		#idUnidadResponsable#,
+		#provincia#,
+		#localidad#,
+		#direccion#
+	</sql>
+
+
+
+	<sql id="findOficinas_fragment">
+		FROM
+			<include refid="from" />
+		<dynamic prepend="WHERE">
+			<iterate prepend="AND" property="criterios" conjunction="AND">
+
+				<isNotEqual property="criterios[].nombre.value" compareValue="ID_UNIDAD_RELACIONADA">
+					<isEqual property="criterios[].operador.value" compareValue="like">
+						UPPER($criterios[].nombre.table$.$criterios[].nombre.value$) LIKE UPPER('%$criterios[].valor$%')
+					</isEqual>
+					<isNotEqual property="criterios[].operador.value" compareValue="like">
+						<isEqual property="criterios[].operador.value" compareValue="in">
+							UPPER($criterios[].nombre.table$.$criterios[].nombre.value$)
+							<iterate prepend="IN" property="criterios[].valor" open="(" close=")" conjunction=",">
+								UPPER(#criterios[].valor[]#)
+							</iterate>
+						</isEqual>
+						<isNotEqual property="criterios[].operador.value" compareValue="in">
+							UPPER($criterios[].nombre.table$.$criterios[].nombre.value$) $criterios[].operador.value$ UPPER(#criterios[].valor#)
+						</isNotEqual>
+					</isNotEqual>
+				</isNotEqual>
+			</iterate>
+		</dynamic>
+	</sql>
+
+	<select id="countFindOficinas" resultClass="java.lang.Integer">
+		SELECT COUNT(*) <include refid="findOficinas_fragment" />
+	</select>
+
+	<select id="findOficinas" resultMap="datosBasicosOficina">
+		SELECT
+			<include refid="columns" />
+		<include refid="findOficinas_fragment" />
+		<iterate prepend="ORDER BY" property="orden" conjunction=",">
+			$orden[].table$.$orden[].value$
+		</iterate>
+	</select>
+
+	<select id="getDatosBasicosOficinaVOs" resultMap="datosBasicosOficina">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="from" />
+		ORDER BY OFI.DENOMINACION_OFICINA
+	</select>
+
+	<select id="getDatosBasicosOficinaVO" parameterClass="java.lang.String" resultMap="datosBasicosOficina">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="from" />
+		WHERE
+			OFI.CODIGO_OFICINA=#value#
+	</select>
+
+	<insert id="addDatosBasicosOficinaVO" parameterClass="datosBasicosOficina">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns_insert" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<delete id="deleteDatosBasicosOficinaVO" parameterClass="java.lang.String">
+		DELETE FROM
+			<include refid="table" />
+		WHERE id=#value:INTEGER#
+	</delete>
+
+</sqlMap>

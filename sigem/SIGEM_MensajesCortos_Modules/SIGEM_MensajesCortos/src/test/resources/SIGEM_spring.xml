@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+<!-- datos de cabecera soap -->
+<!ENTITY NOMBRE_CABECERA "cabecera-implementacion">
+<!ENTITY ARGS_CABECERA
+"<constructor-arg type='java.lang.String' index='0' value='namespace'/>
+<constructor-arg type='java.lang.String' index='1' value='&NOMBRE_CABECERA;'/>">
+
+<!ENTITY CLASS_HEADER "org.apache.axis.message.SOAPHeaderElement">
+
+<!-- GENERICOS -->
+<!ENTITY SERVICE_FACTORY "SERVICE_FACTORY">
+<!ENTITY LOCATOR "LOCATOR">
+
+
+<!-- APIs -->
+<!ENTITY API "API">
+<!ENTITY WS "WEBSERVICE">
+<!ENTITY AXIS "AXIS">
+
+<!-- implementaciones -->
+<!ENTITY DEFECTO "defecto">
+<!ENTITY IMPL1 "impl1">
+<!ENTITY IMPL2 "impl2">
+<!ENTITY IMPL3 "impl3">
+<!ENTITY IMPL4 "impl4">
+<!ENTITY SIGEM "SIGEM">
+<!ENTITY AFIRMA "AFIRMA">
+<!ENTITY PORTS "PORTS">
+<!ENTITY PKCS7 "PKCS7">
+
+<!-- Constantes -->
+<!ENTITY WSCLIENT_DEFAULT_TIMEOUT "0">
+<!ENTITY WSCLIENT_DEFAULT_USERNAME "sigem">
+<!ENTITY WSCLIENT_DEFAULT_PASSWORD "sigem">
+
+<!-- SERVICIO DE MENSAJES CORTOS -->
+<!ENTITY MENSAJES_CORTOS "SIGEM_MensajesCortos">
+<!ENTITY MENSAJES_CORTOS_WS_ENDPOINT "http://localhost:8080/SIGEM_MensajesCortosWS/services/MensajesCortosWebService">
+
+]>
+
+
+<beans>
+
+<!-- ******************************************************************************************************* -->
+<!-- ********** CABECERAS DE INVOCACION REMOTA  ************************************************************ -->
+<!-- ******************************************************************************************************* -->
+<!-- Cabecera para la invocacion remota de la implementacion de SIGEM -->
+<bean id="&SIGEM;.&API;" class="&CLASS_HEADER;" lazy-init="true">
+&ARGS_CABECERA;
+<property name="value" value="&SIGEM;.&API;"/>
+</bean>
+
+<!-- ******************************************************************************************************* -->
+<!-- ********** SERVICIO DE MENSAJES CORTOS **************************************************************** -->
+<!-- ******************************************************************************************************* -->
+<alias name="SIGEM_MensajesCortos.SIGEM.API" alias="SHORT_MESSAGES_SERVICE_DEFAULT_IMPL"/>
+<!-- alias name="SIGEM_MensajesCortos.SIGEM.WEBSERVICE" alias="SHORT_MESSAGES_SERVICE_DEFAULT_IMPL"/-->
+
+<bean abstract="true" id="SIGEM_MensajesCortos" class="ieci.tecdoc.sgm.core.services.mensajes_cortos.ServicioMensajesCortos">
+</bean>
+
+<bean id="SIGEM_MensajesCortos.SIGEM.API" class="ieci.tecdoc.sgm.mensajes_cortos.SigemMensajesCortosServiceAdapter" parent="SIGEM_MensajesCortos" lazy-init="true">
+	<property name="smsManager" ref="SIGEM_MensajesCortos.SIGEM.SMS.MANAGER"/>
+	<property name="emailManager" ref="SIGEM_MensajesCortos.SIGEM.EMAIL.MANAGER"/>
+</bean>
+
+<bean id="SIGEM_MensajesCortos.SIGEM.SMS.MANAGER" class="ieci.tecdoc.sgm.mensajes_cortos.mgr.LleidanetSMSManager" lazy-init="true">
+	<property name="smsUrl" value="http://sms.lleida.net/xmlapi/smsgw.cgi"/>
+	<property name="signUrl" value="http://tsa.lleida.net/cgi-bin/pdfxmlapi.cgi"/>
+	<property name="proxyHost" value=""/>
+	<property name="proxyPort" value="0"/>
+	<property name="proxyUser" value=""/>
+	<property name="proxyPassword" value=""/>
+	<property name="defaultPrefix" value="+34"/>
+	<property name="numDigits" value="9"/>
+</bean>
+
+<bean id="SIGEM_MensajesCortos.SIGEM.EMAIL.MANAGER" class="ieci.tecdoc.sgm.mensajes_cortos.mgr.SmtpEmailManager" lazy-init="true">
+	<property name="user" value="sigem"/>
+	<property name="password" value="sigem"/>
+	<property name="serverHost" value="localhost"/>
+	<property name="serverPort" value="25"/>
+</bean>
+
+<bean id="SIGEM_MensajesCortos.SIGEM.WEBSERVICE" class="ieci.tecdoc.sgm.mensajesCortos.ws.client.ServicioMensajesCortosRemoteClient" parent="SIGEM_MensajesCortos" lazy-init="true">
+	<property name="service" ref="SIGEM_MensajesCortos.SIGEM.WEBSERVICE.SERVICE_FACTORY"/>
+</bean>
+
+<bean id="SIGEM_MensajesCortos.LOCATOR" class="ieci.tecdoc.sgm.mensajesCortos.ws.client.MensajesCortosWebServiceServiceLocator" lazy-init="true">
+	<property name="mensajesCortosWebServiceEndpointAddress" value="${MENSAJES_CORTOS_WS_ENDPOINT}"/>
+</bean>
+
+<bean id="SIGEM_MensajesCortos.SIGEM.WEBSERVICE.SERVICE_FACTORY" factory-bean="SIGEM_MensajesCortos.LOCATOR" factory-method="getMensajesCortosWebService" lazy-init="true">
+	<property name="header" ref="SIGEM.API"/>
+</bean>
+<!-- ******************************************************************************************************* -->
+
+</beans>

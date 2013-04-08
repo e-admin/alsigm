@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="terceroIncrementer"
+		class="es.ieci.tecdoc.isicres.terceros.business.manager.incrementer.TercerosIncrementer">
+		<constructor-arg value="PERSONS" />
+		<property name="dataSource">
+			<ref bean="sicres_terceros_api_dataSource" />
+		</property>
+	</bean>
+
+	<bean id="direccionIncrementer"
+		class="es.ieci.tecdoc.isicres.terceros.business.manager.incrementer.TercerosIncrementer">
+		<constructor-arg value="SCR_ADDRESS" />
+		<property name="dataSource">
+			<ref bean="sicres_terceros_api_dataSource" />
+		</property>
+	</bean>
+
+	<alias name="${isicres.database}_interesadoIncrementer" alias="interesadoIncrementer"/>
+
+
+	<!-- Oracle -->
+	<bean id="oracle_interesadoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg>
+			<ref bean="sicres_terceros_api_dataSource" />
+		</constructor-arg>
+		<constructor-arg value="scr_seqcnt" />
+	</bean>
+
+	<!-- PostgreSQL -->
+	<bean id="postgres_interesadoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg>
+			<ref bean="sicres_terceros_api_dataSource" />
+		</constructor-arg>
+		<constructor-arg value="scr_seqcnt" />
+	</bean>
+
+	<!--
+		DB2 UDB
+	 -->
+	<bean id="db2udb_interesadoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg>
+			<ref bean="sicres_terceros_api_dataSource" />
+		</constructor-arg>
+		<constructor-arg value="scr_seqcnt" />
+	</bean>
+
+
+	<!--
+		DB2 Mainframe (DB2/390 o DB2/400)
+	 -->
+	<bean id="db2400_interesadoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg>
+			<ref bean="sicres_terceros_api_dataSource" />
+		</constructor-arg>
+		<constructor-arg value="scr_seqcnt" />
+	</bean>
+
+	<!--
+		MySQL
+	 -->
+	<bean id="mysql_interesadoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer">
+		<constructor-arg>
+			<ref bean="sicres_terceros_api_dataSource" />
+		</constructor-arg>
+		<constructor-arg value="scr_seqcnt" />
+		<constructor-arg value="id" />
+	</bean>
+
+	<!--
+		SQLServer
+	 -->
+	<bean id="sqlserver_interesadoIncrementer"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg>
+			<ref bean="sicres_terceros_api_dataSource" />
+		</constructor-arg>
+		<constructor-arg value="scr_seqcnt" />
+		<constructor-arg value="id" />
+	</bean>
+	
+</beans>

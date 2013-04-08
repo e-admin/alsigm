@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Servicio de gestion de aplicaciones externas -->
+	<bean id="fwktd_csv_api_servicioAplicacionesImpl"
+		class="es.ieci.tecdoc.fwktd.csv.api.service.impl.ServicioAplicacionesImpl">
+		<property name="aplicacionManager" ref="fwktd_csv_aplicacionManager" />
+	</bean>
+
+	<!-- Servicio de gestion de documentos -->
+	<bean id="fwktd_csv_api_servicioDocumentosImpl"
+		class="es.ieci.tecdoc.fwktd.csv.api.service.impl.ServicioDocumentosImpl">
+		<property name="aplicacionManager" ref="fwktd_csv_aplicacionManager" />
+		<property name="documentoManager" ref="fwktd_csv_documentoManager" />
+		<property name="aplicacionExternaConnectorRegistry"
+			ref="fwktd_csv_aplicacionExternaConnectorRegistry" />
+		<property name="tiemposManager" ref="fwktd_csv_tiemposManager"/>
+		<property name="csvConnector" ref="fwktd_csv_csvConnectorFactory" />
+	</bean>
+
+</beans>

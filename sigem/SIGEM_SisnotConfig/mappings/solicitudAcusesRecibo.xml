@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+<mapping>
+        <class name="es.map.sn.correspondencia.mapping.Remesa">
+                <map-to xml="RECIB"/>
+
+                <field name="codEmisor"  type="java.lang.String">
+                        <bind-xml name="admon" />
+                </field>
+                <field name="tipoCorrespondencia"  type="java.lang.String">
+                        <bind-xml name="aplicacion" />
+                </field>
+                <field name="contenidos" type="es.map.sn.correspondencia.mapping.AcuseRecibo" collection="collection">
+                        <bind-xml name="contenido" />
+                </field>
+                <field name="firma"  type="java.lang.String">
+                        <bind-xml name="firma_de_emisor" />
+                </field>
+
+        </class>
+
+        <class name="es.map.sn.correspondencia.mapping.AcuseRecibo">
+                <field name="DEU" type="java.lang.String">
+                        <bind-xml name="DEU" node="element"/>
+                </field>
+                <field name="nif"
+                       type="java.lang.String">
+                        <bind-xml name="nif" node="element"/>
+                </field>
+
+                <field name="ncc" type="java.lang.Long">
+                        <bind-xml name="ncc" node="element"/>
+                </field>
+                <field name="codRemesa"
+                       type="java.lang.Long">
+		                <bind-xml name="remesa" node="element"/>
+                </field>
+            <field name="codError"
+                      type="java.lang.String">
+                        <bind-xml name="recepcion" node="element"/>
+                </field>
+        </class>
+</mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='SPAC_CT_PROCEDIMIENTO:NOMBRE'
+				 fieldType='LINK'
+				 fieldLink='SPAC_CT_PROCEDIMIENTO:ID'
+				 styleClass='displayLink'
+				 url='manageVistaCuadroProcedimiento.do?method=inithome&amp;entityId=22'
+				 id='regId'/>
+
+	<!--
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='NOMBRE'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 url='manageVistaCuadroProcedimiento.do?method=inithome&amp;entityId=22'
+				 id='regId'/>
+	-->
+				 
+</beanformatter>

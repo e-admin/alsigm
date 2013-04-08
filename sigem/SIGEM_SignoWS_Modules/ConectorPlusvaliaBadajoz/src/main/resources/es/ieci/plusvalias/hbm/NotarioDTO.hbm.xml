@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jun-2010 12:15:53 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="es.ieci.plusvalias.domain.NotarioDTO" table="NOTARIOS" >
+        <id name="numero" type="java.lang.Integer">
+            <column name="NUMNOTARIO" precision="5" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMSUJETO" length="50" />
+        </property>
+        <property name="calle" type="string">
+            <column name="CALSUJETO" length="50" />
+        </property>
+        <property name="poblacion" type="string">
+            <column name="POBSUJETO" length="30" />
+        </property>
+        <property name="postal" type="java.lang.Integer">
+            <column name="POSTALSUJETO" precision="5" scale="0" />
+        </property>
+        <property name="nif" type="string">
+            <column name="NIFSUJETO" length="10" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="40" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="OBSERVACIONES" length="100" />
+        </property>
+        <property name="codigo" type="java.lang.Long">
+            <column name="CODNOTARIO" precision="10" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

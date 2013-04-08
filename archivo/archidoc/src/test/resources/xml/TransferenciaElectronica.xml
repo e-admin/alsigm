@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TRANSFERENCIA
+	version="5.0">
+	<SERIE
+		idFichaUdocs="1"
+		idPadre="cDF10000000000000000000000100802"
+		idRepEcmSerie="1"
+		idRepEcmUdoc="1"
+		>
+		<!-- Obligatorios -->
+		<PROCEDIMIENTO>
+			<ID>ID</ID>
+			<NOMBRE>NOMBRE</NOMBRE>
+			<TITULO_CORTO>TITULO CORTO</TITULO_CORTO>
+			<NORMATIVA>NORMATIVA</NORMATIVA>
+			<OBJETO>OBJETO</OBJETO>
+			<DOCUMENTOS>DOCUMENTOS</DOCUMENTOS>
+			<TRAMITES>
+				<TRAMITE>TRAMITE1</TRAMITE>
+				<TRAMITE>TRAMITE2</TRAMITE>
+			</TRAMITES>
+		</PROCEDIMIENTO>
+		<FICHA>
+			<!-- Area de Mención de la Identididad -->
+			<CAMPO_TEXTO
+				etiqueta="Identificacion">Identificación</CAMPO_TEXTO>
+
+			<CAMPO_TABLA
+				etiqueta="Emplazamientos">
+				<CAMPO_FILA
+					etiqueta="Emplazamiento">
+					<CAMPO_DESCRIPTOR
+						etiqueta="Pais"
+						idLista="ID_LIST_PAIS"
+						valor="España" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Comunidad"
+						idLista="ID_LIST_COMUNIDAD"
+						valor="Asturias" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Concejo"
+						idLista="ID_LIST_CONCEJO"
+						valor="Lena" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Poblacion"
+						idLista="ID_LIST_POBLACION"
+						valor="Pola de Lena" />
+					<CAMPO_TEXTO
+						etiqueta="Localizacion">Localización Emplazamiento (SERIE)</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Emplazamiento_Validado">Si</CAMPO_TEXTO>
+				</CAMPO_FILA>
+
+				<CAMPO_FILA
+					etiqueta="Emplazamiento">
+					<CAMPO_DESCRIPTOR
+						etiqueta="Pais"
+						idLista="ID_LIST_PAIS"
+						valor="España" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Comunidad"
+						idLista="ID_LIST_COMUNIDAD"
+						valor="Asturias" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Concejo"
+						idLista="ID_LIST_CONCEJO"
+						valor="San Martín del Rey Aurelio" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Poblacion"
+						idLista="ID_LIST_POBLACION"
+						valor="Blimea" />
+					<CAMPO_TEXTO
+						etiqueta="Localizacion">Oficina de Turismo (SERIE)</CAMPO_TEXTO>
+
+					<!-- Emplazamiento_Validado: "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Emplazamiento_Validado">No</CAMPO_TEXTO>
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<CAMPO_TABLA
+				etiqueta="Volumenes_Soportes">
+
+				<CAMPO_FILA
+					etiqueta="Volumen_Soporte">
+
+					<!-- Formato: ======== "Caja(s)" "Carta(s)" "Documento(s)" "Fotografía(s)"
+						"Expediente(s)" -->
+					<CAMPO_TEXTO
+						etiqueta="Formato">Documento(s)</CAMPO_TEXTO>
+
+
+					<!-- Soporte ======== "Disquete" "Papel" "Electrónico" "Planos" "Transparencias"
+						"Discos de polivinilo" "Pergamino" "CD_Rom" "DVD" "CD" "Videocasete" "Casete"
+						"Diapositivas" "Microficha" "Microfilm" "Negativos fotográficos" "Películas" -->
+					<CAMPO_TEXTO
+						etiqueta="Soporte">Electrónico</CAMPO_TEXTO>
+
+					<CAMPO_NUMERICO
+						etiqueta="Num_Docs"
+						valor="2" />
+				</CAMPO_FILA>
+
+
+				<CAMPO_FILA
+					etiqueta="Volumen_Soporte">
+
+					<!-- Formato: ======== "Caja(s)" "Carta(s)" "Documento(s)" "Fotografía(s)"
+						"Expediente(s)" -->
+					<CAMPO_TEXTO
+						etiqueta="Formato">Documento(s)</CAMPO_TEXTO>
+
+
+					<!-- Soporte ======== "Disquete" "Papel" "Electrónico" "Planos" "Transparencias"
+						"Discos de polivinilo" "Pergamino" "CD_Rom" "DVD" "CD" "Videocasete" "Casete"
+						"Diapositivas" "Microficha" "Microfilm" "Negativos fotográficos" "Películas" -->
+					<CAMPO_TEXTO
+						etiqueta="Soporte">Diapositivas</CAMPO_TEXTO>
+
+					<CAMPO_NUMERICO
+						etiqueta="Num_Docs"
+						valor="3" />
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<CAMPO_TABLA
+				etiqueta="Interesados">
+				<CAMPO_FILA
+					etiqueta="Interesado">
+					<!-- Interesado: Principal: ====================== "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Principal">Si</CAMPO_TEXTO>
+					<CAMPO_DESCRIPTOR
+						etiqueta="Identidad"
+						idLista="ID_LIST_INTERESADO"
+						valor="identidad" />
+					<CAMPO_TEXTO
+						etiqueta="NumIdentidad">123456789A</CAMPO_TEXTO>
+
+					<!-- Roles: ====== "CAMBIO TITULAR" "INTERLOCUTOR" "PROMOTOR" "ASESOR
+						ESPECIALISTA SUPLENTE" "ASESOR ESPECIALISTA TITULAR" "INTERESADO" "REPRESENTANTE"
+						"LICITADOR" "DENUNCIANTE" "DENUNCIADO" "PROPIETARIO" "BENEFICIARIO" "PROPONENTE"
+						"COMPETENTE" "ARRENDATARIO" "PRESIDENTE TITULAR" "EXPROPIADOR" "PRESIDENTE
+						SUPLENTE" "SECRETARIO TITULAR" "SECRETARIO SUPLENTE" "VOCAL TITULAR" "VOCAL
+						SUPLENTE" "REPRESENTANTE SINDICAL TITULAR" "REPRESENTANTE SINDICAL SUPLENTE" -->
+					<CAMPO_TEXTO
+						etiqueta="Rol">INTERESADO</CAMPO_TEXTO>
+
+					<!-- Interesado_Validado: ====================== "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Interesado_Validado">Si</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="IdTercero">230</CAMPO_TEXTO>
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<!-- Publ_SAC ========= "Si" "No" -->
+			<CAMPO_TEXTO
+				etiqueta="Publ_SAC">Si</CAMPO_TEXTO>
+
+			<!-- Fin Area de Mención de la Identidad -->
+
+			<!-- Area de Contexto -->
+			<CAMPO_TEXTO
+				etiqueta="Historia_Institucional">Historia Institucional</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Historia_Archivistica">Historia Archivística</CAMPO_TEXTO>
+
+			<!-- Forma_Ingreso ============== "Depósito" "Transferencia" "Donación" -->
+			<CAMPO_TEXTO
+				etiqueta="Forma_Ingreso">Transferencia</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Cod_Transf">Codigo Transferencia</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Ref_Ingreso">Referencias de Ingreso</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Hoja_de_Entrega">Hoja de Entrega</CAMPO_TEXTO>
+			<!-- -->
+		</FICHA>
+	</SERIE>
+	<UNIDAD_DOCUMENTAL_ELECTRONICA>
+		<IDENTIFICACION>
+			<ID>Id</ID>
+			<NUMEXP>Numero Expediente</NUMEXP>
+			<TITULO>Título del expediente</TITULO>
+			<FECHA_INICIO
+				valor="01/01/2012"
+				FMT="DDMMAAAA"
+				SEP="/" />
+			<FECHA_FIN
+				valor="31/12/2012"
+				FMT="DDMMAAAA"
+				SEP="/" />
+			<PRODUCTOR
+				tipoSistema="ORGANIZACION"
+				tipoAtributo="ID"
+				valor="ORG1" />
+		</IDENTIFICACION>
+		<FICHA>
+			<!-- Area de Mención de la Identididad -->
+			<CAMPO_TEXTO
+				etiqueta="Identificacion">Identificación</CAMPO_TEXTO>
+
+			<CAMPO_TABLA
+				etiqueta="Emplazamientos">
+				<CAMPO_FILA
+					etiqueta="Emplazamiento">
+					<CAMPO_DESCRIPTOR
+						etiqueta="Pais"
+						idLista="ID_LIST_PAIS"
+						valor="España" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Comunidad"
+						idLista="ID_LIST_COMUNIDAD"
+						valor="Asturias" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Concejo"
+						idLista="ID_LIST_CONCEJO"
+						valor="Lena" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Poblacion"
+						idLista="ID_LIST_POBLACION"
+						valor="Pola de Lena" />
+					<CAMPO_TEXTO
+						etiqueta="Localizacion">Ayuntamiento</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Emplazamiento_Validado">Si</CAMPO_TEXTO>
+				</CAMPO_FILA>
+
+				<CAMPO_FILA
+					etiqueta="Emplazamiento">
+					<CAMPO_DESCRIPTOR
+						etiqueta="Pais"
+						idLista="ID_LIST_PAIS"
+						valor="España" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Comunidad"
+						idLista="ID_LIST_COMUNIDAD"
+						valor="Asturias" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Concejo"
+						idLista="ID_LIST_CONCEJO"
+						valor="San Martín del Rey Aurelio" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Poblacion"
+						idLista="ID_LIST_POBLACION"
+						valor="Blimea" />
+					<CAMPO_TEXTO
+						etiqueta="Localizacion">Oficina de Turismo</CAMPO_TEXTO>
+
+					<!-- Emplazamiento_Validado: "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Emplazamiento_Validado">No</CAMPO_TEXTO>
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<CAMPO_TABLA
+				etiqueta="Volumenes_Soportes">
+
+
+
+				<CAMPO_FILA
+					etiqueta="Volumen_Soporte">
+
+					<!-- Formato: ======== "Caja(s)" "Carta(s)" "Documento(s)" "Fotografía(s)"
+						"Expediente(s)" -->
+					<CAMPO_TEXTO
+						etiqueta="Formato">Documento(s)</CAMPO_TEXTO>
+
+
+					<!-- Soporte ======== "Disquete" "Papel" "Electrónico" "Planos" "Transparencias"
+						"Discos de polivinilo" "Pergamino" "CD_Rom" "DVD" "CD" "Videocasete" "Casete"
+						"Diapositivas" "Microficha" "Microfilm" "Negativos fotográficos" "Películas" -->
+					<CAMPO_TEXTO
+						etiqueta="Soporte">Electrónico</CAMPO_TEXTO>
+
+					<CAMPO_NUMERICO
+						etiqueta="Num_Docs"
+						valor="2" />
+				</CAMPO_FILA>
+
+
+				<CAMPO_FILA
+					etiqueta="Volumen_Soporte">
+
+					<!-- Formato: ======== "Caja(s)" "Carta(s)" "Documento(s)" "Fotografía(s)"
+						"Expediente(s)" -->
+					<CAMPO_TEXTO
+						etiqueta="Formato">Documento(s)</CAMPO_TEXTO>
+
+
+					<!-- Soporte ======== "Disquete" "Papel" "Electrónico" "Planos" "Transparencias"
+						"Discos de polivinilo" "Pergamino" "CD_Rom" "DVD" "CD" "Videocasete" "Casete"
+						"Diapositivas" "Microficha" "Microfilm" "Negativos fotográficos" "Películas" -->
+					<CAMPO_TEXTO
+						etiqueta="Soporte">Diapositivas</CAMPO_TEXTO>
+
+					<CAMPO_NUMERICO
+						etiqueta="Num_Docs"
+						valor="3" />
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<CAMPO_TABLA
+				etiqueta="Interesados">
+				<CAMPO_FILA
+					etiqueta="Interesado">
+					<!-- Interesado: Principal: ====================== "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Principal">Si</CAMPO_TEXTO>
+					<CAMPO_DESCRIPTOR
+						etiqueta="Identidad"
+						idLista="ID_LIST_INTERESADO"
+						valor="identidad"
+						></CAMPO_DESCRIPTOR>
+					<CAMPO_TEXTO
+						etiqueta="NumIdentidad">123456789A</CAMPO_TEXTO>
+
+					<!-- Roles: ====== "CAMBIO TITULAR" "INTERLOCUTOR" "PROMOTOR" "ASESOR
+						ESPECIALISTA SUPLENTE" "ASESOR ESPECIALISTA TITULAR" "INTERESADO" "REPRESENTANTE"
+						"LICITADOR" "DENUNCIANTE" "DENUNCIADO" "PROPIETARIO" "BENEFICIARIO" "PROPONENTE"
+						"COMPETENTE" "ARRENDATARIO" "PRESIDENTE TITULAR" "EXPROPIADOR" "PRESIDENTE
+						SUPLENTE" "SECRETARIO TITULAR" "SECRETARIO SUPLENTE" "VOCAL TITULAR" "VOCAL
+						SUPLENTE" "REPRESENTANTE SINDICAL TITULAR" "REPRESENTANTE SINDICAL SUPLENTE" -->
+					<CAMPO_TEXTO
+						etiqueta="Rol">INTERESADO</CAMPO_TEXTO>
+
+					<!-- Interesado_Validado: ====================== "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Interesado_Validado">Si</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="IdTercero">230</CAMPO_TEXTO>
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<!-- Fin Area de Mención de la Identidad -->
+
+			<!-- Area de Contexto -->
+			<CAMPO_TEXTO
+				etiqueta="Historia_Institucional">Historia Institucional</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Historia_Archivistica">Historia Archivística1</CAMPO_TEXTO>
+
+			<CAMPO_TEXTO
+				etiqueta="Historia_Archivistica">Historia Archivística2</CAMPO_TEXTO>
+
+			<!-- Forma_Ingreso ============== "Depósito" "Transferencia" "Donación" -->
+			<CAMPO_TEXTO
+				etiqueta="Forma_Ingreso">Transferencia</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Cod_Transf">Codigo Transferencia</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Ref_Ingreso">Referencias de Ingreso</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Hoja_de_Entrega">Hoja de Entrega</CAMPO_TEXTO>
+
+			<!-- Fin Area de Contexto -->
+			<CAMPO_TABLA
+				etiqueta="Documentos_Electronicos">
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Documento Texto</CAMPO_TEXTO>
+
+					<CAMPO_SISTEMA_EXTERNO
+						tipoSistema="ORGANIZACION"
+						etiqueta="Documento_Electronico_Organo"
+						tipoAtributo="ID"
+						valor="ORG1" />
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura"
+						valor="2012-07-09 12:23:56"
+						FMT="AAAAMMDD HHMMSS"
+						SEP="-" />
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Estado_Elaboracion">EE01</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre_Formato">txt</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Tipo_Documental">Documento de Texto</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Tipo_Firma">TF05</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Valor_CSV">Valor CSV</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Definicion_Generacion_CSV">Definición de Generacion CSV</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Identificador_Documento_Origen">ES_E00004101_2011_MPR000000002010000000000000002
+					</CAMPO_TEXTO>
+
+					<CAMPO_DOCUMENTO_ELECTRONICO
+						etiqueta="Documento_Electronico_Id_Interno">
+						<!-- Datos de Ubicación -->
+						<UBICACION
+							tipo="BINARIO">
+							<BINARIO>
+								<CONTENIDO>RG9jdW1lbnRvIGRlIFRleHRvLg==</CONTENIDO>
+							</BINARIO>
+						</UBICACION>
+						<!-- Almacenamiento del documento -->
+						<ALMACENAMIENTO
+							tipo="REPOSITORIO"
+							nombre="texto1"
+							extension="txt">
+							<!-- Sólo se especifica el tipo se el WS tiene que almacenar el fichero -->
+							<!-- Obligatorios -->
+							<!-- Obligatorio para tipo almacenamiento ECM -->
+
+							<!-- Opcionales -->
+							<DESCRIPCION>Fichero TXT almacenado en Invesdoc</DESCRIPCION>
+							<!-- Opcional -->
+							<CLASIFICADOR>Documentos Electrónicos/Documentos</CLASIFICADOR>
+							<!-- Opcional -->
+						</ALMACENAMIENTO>
+					</CAMPO_DOCUMENTO_ELECTRONICO>
+				</CAMPO_FILA>
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Documento PDF</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Descripcion">Documento pdf de pruebas</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Version_NTI">2.0</CAMPO_TEXTO>
+					<CAMPO_SISTEMA_EXTERNO
+						tipoSistema="ORGANIZACION"
+						etiqueta="Documento_Electronico_Organo"
+						tipoAtributo="ID"
+						valor="ORG1" />
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura"
+						valor="2012-07-09 12:30:56"
+						FMT="AAAAMMDD HHMMSS"
+						SEP="-" />
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Estado_Elaboracion">EE01</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre_Formato">PDF</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Tipo_Documental">Documento PDF</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Tipo_Firma">TF05</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Valor_CSV">Valor CSV</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Definicion_Generacion_CSV">Definición de Generacion CSV</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Identificador_Documento_Origen">ES_E00004101_2012_MPR000000002010000000000000002
+					</CAMPO_TEXTO>
+
+					<CAMPO_DOCUMENTO_ELECTRONICO
+						etiqueta="Documento_Electronico_Id_Interno">
+						<!-- Datos de Ubicación -->
+						<UBICACION
+							tipo="BINARIO">
+							<BINARIO>
+								<CONTENIDO>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Omb8J//XKaf1O8qO9pz6T/ESaeO+BX/+x0Nbzlq+Ex+xe38MNPf950E3kbX+b6DNwFz60If/AmheYbN/FOaxmf8MtIWsuTc0X7Om/1/BX2Xn/9+Evo3thI+/H0VYjx8J5Wm280fhfhb4fwXMccc/C81NLCP2zv/+j3hX6m7u7oo88NBc++jPWTK9XA9+uEH8/9PYExnXrfv62PFtpo8MD6JqUt/f+PwfNqySgQplbmRzdHJlYW0KZW5kb2JqCjEyIDAgb2JqCjw8L1R5cGUvTWV0YWRhdGEKL1N1YnR5cGUvWE1ML0xlbmd0aCAxNTc4Pj5zdHJlYW0KPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPD9hZG9iZS14YXAtZmlsdGVycyBlc2M9IkNSTEYiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLycgeDp4bXB0az0nWE1QIHRvb2xraXQgMi45LjEtMTMsIGZyYW1ld29yayAxLjYnPgo8cmRmOlJERiB4bWxuczpyZGY9J2h0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMnIHhtbG5zOmlYPSdodHRwOi8vbnMuYWRvYmUuY29tL2lYLzEuMC8nPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0ndXVpZDozODVmYjRiYy1jYzBkLTExZTEtMDAwMC1kYjljNzIyZTI0YjYnIHhtbG5zOnBkZj0naHR0cDovL25zLmFkb2JlLmNvbS9wZGYvMS4zLyc+PHBkZjpQcm9kdWNlcj5HUEwgR2hvc3RzY3JpcHQgOS4wNTwvcGRmOlByb2R1Y2VyPgo8cGRmOktleXdvcmRzPigpPC9wZGY6S2V5d29yZHM+CjwvcmRmOkRlc2NyaXB0aW9uPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0ndXVpZDozODVmYjRiYy1jYzBkLTExZTEtMDAwMC1kYjljNzIyZTI0YjYnIHhtbG5zOnhtcD0naHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyc+PHhtcDpNb2RpZnlEYXRlPjIwMTItMDctMDlUMTI6MzQ6MDYrMDI6MDA8L3htcDpNb2RpZnlEYXRlPgo8eG1wOkNyZWF0ZURhdGU+MjAxMi0wNy0wOVQxMjozNDowNiswMjowMDwveG1wOkNyZWF0ZURhdGU+Cjx4bXA6Q3JlYXRvclRvb2w+UERGQ3JlYXRvciBWZXJzaW9uIDEuMy4yPC94bXA6Q3JlYXRvclRvb2w+PC9yZGY6RGVzY3JpcHRpb24+CjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSd1dWlkOjM4NWZiNGJjLWNjMGQtMTFlMS0wMDAwLWRiOWM3MjJlMjRiNicgeG1sbnM6eGFwTU09J2h0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8nIHhhcE1NOkRvY3VtZW50SUQ9J3V1aWQ6Mzg1ZmI0YmMtY2MwZC0xMWUxLTAwMDAtZGI5YzcyMmUyNGI2Jy8+CjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSd1dWlkOjM4NWZiNGJjLWNjMGQtMTFlMS0wMDAwLWRiOWM3MjJlMjRiNicgeG1sbnM6ZGM9J2h0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvJyBkYzpmb3JtYXQ9J2FwcGxpY2F0aW9uL3BkZic+PGRjOnRpdGxlPjxyZGY6QWx0PjxyZGY6bGkgeG1sOmxhbmc9J3gtZGVmYXVsdCc+RG9jdW1lbnRvUGRmPC9yZGY6bGk+PC9yZGY6QWx0PjwvZGM6dGl0bGU+PGRjOmNyZWF0b3I+PHJkZjpTZXE+PHJkZjpsaT5JbmZvcm3DoXRpY2EgRWwgQ29ydGUgSW5nbMOpczwvcmRmOmxpPjwvcmRmOlNlcT48L2RjOmNyZWF0b3I+PGRjOmRlc2NyaXB0aW9uPjxyZGY6U2VxPjxyZGY6bGk+KCk8L3JkZjpsaT48L3JkZjpTZXE+PC9kYzpkZXNjcmlwdGlvbj48L3JkZjpEZXNjcmlwdGlvbj4KPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAo8P3hwYWNrZXQgZW5kPSd3Jz8+CmVuZHN0cmVhbQplbmRvYmoKMiAwIG9iago8PC9Qcm9kdWNlcihHUEwgR2hvc3RzY3JpcHQgOS4wNSkKL0NyZWF0aW9uRGF0ZShEOjIwMTIwNzA5MTIzNDA2KzAyJzAwJykKL01vZERhdGUoRDoyMDEyMDcwOTEyMzQwNiswMicwMCcpCi9UaXRsZShcMzc2XDM3N1wwMDBEXDAwMG9cMDAwY1wwMDB1XDAwMG1cMDAwZVwwMDBuXDAwMHRcMDAwb1wwMDBQXDAwMGRcMDAwZikKL0NyZWF0b3IoXDM3NlwzNzdcMDAwUFwwMDBEXDAwMEZcMDAwQ1wwMDByXDAwMGVcMDAwYVwwMDB0XDAwMG9cMDAwclwwMDAgXDAwMFZcMDAwZVwwMDByXDAwMHNcMDAwaVwwMDBvXDAwMG5cMDAwIFwwMDAxXDAwMC5cMDAwM1wwMDAuXDAwMDIpCi9BdXRob3IoXDM3NlwzNzdcMDAwSVwwMDBuXDAwMGZcMDAwb1wwMDByXDAwMG1cMDAwXDM0MVwwMDB0XDAwMGlcMDAwY1wwMDBhXDAwMCBcMDAwRVwwMDBsXDAwMCBcMDAwQ1wwMDBvXDAwMHJcMDAwdFwwMDBlXDAwMCBcMDAwSVwwMDBuXDAwMGdcMDAwbFwwMDBcMzUxXDAwMHMpCi9LZXl3b3JkcygpCi9TdWJqZWN0KCk+PmVuZG9iagp4cmVmCjAgMTMKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwNTYxIDAwMDAwIG4gCjAwMDAwMTI2NDUgMDAwMDAgbiAKMDAwMDAwMDUwMiAwMDAwMCBuIAowMDAwMDAwMzYxIDAwMDAwIG4gCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMDM0MiAwMDAwMCBuIAowMDAwMDAwOTg0IDAwMDAwIG4gCjAwMDAwMDEyMDAgMDAwMDAgbiAKMDAwMDAwMDYyNiAwMDAwMCBuIAowMDAwMDAxMzk2IDAwMDAwIG4gCjAwMDAwMDA2NTUgMDAwMDAgbiAKMDAwMDAxMDk5MCAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDEzIC9Sb290IDEgMCBSIC9JbmZvIDIgMCBSCi9JRCBbPEYyQzFFNTdCQ0YwRkM4RkI0NTkzMTQwMEE5MzFERDJDPjxGMkMxRTU3QkNGMEZDOEZCNDU5MzE0MDBBOTMxREQyQz5dCj4+CnN0YXJ0eHJlZgoxMzE2NgolJUVPRgo=</CONTENIDO>
+							</BINARIO>
+						</UBICACION>
+						<!-- Almacenamiento del documento -->
+						<ALMACENAMIENTO
+							tipo="REPOSITORIO"
+							nombre="prueba1"
+							extension="pdf">
+							<!-- Sólo se especifica el tipo se el WS tiene que almacenar el fichero -->
+							<!-- Obligatorios -->
+							<!-- Obligatorio para tipo almacenamiento ECM -->
+
+							<!-- Opcionales -->
+							<DESCRIPCION>Fichero PDF almacenado en Invesdoc</DESCRIPCION>
+							<!-- Opcional -->
+							<CLASIFICADOR>Documentos Electrónicos/Documentos</CLASIFICADOR>
+							<!-- Opcional -->
+						</ALMACENAMIENTO>
+					</CAMPO_DOCUMENTO_ELECTRONICO>
+				</CAMPO_FILA>
+
+
+			</CAMPO_TABLA>
+		</FICHA>
+	</UNIDAD_DOCUMENTAL_ELECTRONICA>
+</TRANSFERENCIA>

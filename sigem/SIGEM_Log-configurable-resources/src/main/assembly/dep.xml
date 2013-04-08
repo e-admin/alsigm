@@ -1,0 +1,184 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<fileSets>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_AdministracionSesionesAdmWS/src/main/resources/SIGEM_AdministracionSesionesAdmWS/</directory>
+			<outputDirectory>SIGEM_AdministracionSesionesAdmWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_AdministracionSesionesBackOfficeWS/src/main/resources/SIGEM_AdministracionSesionesBackOfficeWS/</directory>
+			<outputDirectory>SIGEM_AdministracionSesionesBackOfficeWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_AdministracionUsuariosWeb/src/main/resources/SIGEM_AdministracionUsuariosWeb/</directory>
+			<outputDirectory>SIGEM_AdministracionUsuariosWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_AdministracionWeb/src/main/resources/SIGEM_AdministracionWeb/</directory>
+			<outputDirectory>SIGEM_AdministracionWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_AntivirusWS/src/main/resources/SIGEM_AntivirusWS/</directory>
+			<outputDirectory>SIGEM_AntivirusWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_AutenticacionUsuariosWS/src/main/resources/SIGEM_AutenticacionUsuariosWS/</directory>
+			<outputDirectory>SIGEM_AutenticacionUsuariosWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_CalendarioWS/src/main/resources/SIGEM_CalendarioWS/</directory>
+			<outputDirectory>SIGEM_CalendarioWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_CatalogoTramitesWeb/src/main/resources/SIGEM_CatalogoTramitesWeb/</directory>
+			<outputDirectory>SIGEM_CatalogoTramitesWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_CatalogoTramitesWS/src/main/resources/SIGEM_CatalogoTramitesWS/</directory>
+			<outputDirectory>SIGEM_CatalogoTramitesWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_CriptoValidacionWS/src/main/resources/SIGEM_CriptoValidacionWS/</directory>
+			<outputDirectory>SIGEM_CriptoValidacionWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_EntidadesWS/src/main/resources/SIGEM_EntidadesWS/</directory>
+			<outputDirectory>SIGEM_EntidadesWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_EstructuraOrganizativaWS/src/main/resources/SIGEM_EstructuraOrganizativaWS/</directory>
+			<outputDirectory>SIGEM_EstructuraOrganizativaWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_EstructuraWeb/src/main/resources/resources/SIGEM_EstructuraWeb/</directory>
+			<outputDirectory>SIGEM_EstructuraWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_FirmaDigitalWS/src/main/resources/SIGEM_FirmaDigitalWS/</directory>
+			<outputDirectory>SIGEM_FirmaDigitalWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_RdeWS/src/main/resources/SIGEM_RdeWS/</directory>
+			<outputDirectory>SIGEM_RdeWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_RegistroPresencial_Modules/SIGEM_RegistroPresencialAdminWeb/src/main/resources/SIGEM_RegistroPresencialAdminWeb/</directory>
+			<outputDirectory>SIGEM_RegistroPresencialAdminWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_RegistroTelematico_Modules/SIGEM_RegistroTelematicoWS/src/main/resources/SIGEM_RegistroTelematicoWS/</directory>
+			<outputDirectory>SIGEM_RegistroTelematicoWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_RepositoriosDocumentalesWeb/src/main/resources/resources/SIGEM_RepositoriosDocumentalesWeb/</directory>
+			<outputDirectory>SIGEM_RepositoriosDocumentalesWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_SessionUsuarioWS/src/main/resources/SIGEM_SessionUsuarioWS/</directory>
+			<outputDirectory>SIGEM_SessionUsuarioWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+
+	</fileSets>
+
+</assembly>

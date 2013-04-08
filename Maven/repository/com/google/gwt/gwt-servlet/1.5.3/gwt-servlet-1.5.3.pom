@@ -1,0 +1,23 @@
+<project>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.google.gwt</groupId>
+  <artifactId>gwt-servlet</artifactId>
+  <version>1.5.3</version>
+  <packaging>jar</packaging>
+
+  <name>GWT Servlet Library 1.5</name>
+  <url>http://code.google.com/webtoolkit/</url>
+  <description>The GWT Servlet Library supports the server-side components for invoking a GWT-RPC endpoint.</description>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>http://google-web-toolkit.googlecode.com/svn/</url>
+  </scm>
+
+</project>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="InfoRegistroVO">
+
+<typeAlias alias="infoRegistroVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroVO" />
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroVO"
+		id="infoRegistroTipoEntradaResultMap">
+		<result property="numeroRegistro" column="fld1" />
+		<result property="fechaRegistro" column="fld2" />
+		<result property="contactoUsuario" column="fld3" />
+		<result property="unidadOrigen" column="fld7" />
+		<result property="unidadDestino" column="fld8" />
+		<result property="nombreUsuario" column="fld3" />
+		<result property="numeroRegistroInicial" column="fld10" />
+		<result property="fechaRegistroInicial" column="fld12" />
+
+		<result property="tipoTransporte" column="fld14" />
+		<result property="numeroTransporte" column="fld15" />
+		<result property="codigoAsunto" column="fld16" />
+		<result property="resumen" column="fld17" />
+
+
+		<result property="numeroExpediente" column="fld19" />
+
+		<result property="docFisicaRequerida" column="fld504" />
+		<result property="docFisicaComplementaria" column="fld505" />
+		<result property="sinDocFisica" column="fld506" />
+
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroVO"
+		id="infoRegistroTipoSalidaResultMap">
+		<result property="numeroRegistro" column="fld1" />
+		<result property="fechaRegistro" column="fld2" />
+		<result property="contactoUsuario" column="fld3" />
+		<result property="unidadOrigen" column="fld7" />
+		<result property="unidadDestino" column="fld8" />
+		<result property="numeroRegistroInicial" column="fld1" />
+		<result property="fechaRegistroInicial" column="fld2" />
+		<result property="nombreUsuario" column="fld3" />
+		
+		<result property="tipoTransporte" column="fld10" />
+		<result property="numeroTransporte" column="fld11" />
+		
+		<result property="codigoAsunto" column="fld12" />
+		<result property="resumen" column="fld13" />
+
+		<result property="docFisicaRequerida" column="fld504" />
+		<result property="docFisicaComplementaria" column="fld505" />
+		<result property="sinDocFisica" column="fld506" />
+
+
+	</resultMap>
+</sqlMap>

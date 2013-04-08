@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Repositories >
+	<Repository id="1" alias="IFLOW" default="true">
+	    <Properties>
+	    	<!--
+	    		Para utilizar NTLM hay que especificar dominio\usuario
+	    	  -->
+
+		    <Property name="user">iovideshare2007\administrador</Property>
+		    <Property name="password">iecisa</Property>
+		  	<Property name="siteUrl">http://iovideshare2007</Property>
+		  	<Property name="sitePath">sites/sigem</Property>
+		  	<Property name="library">tramitacion</Property>
+
+			<!--
+		    <Property name="user">ISTGODESA01\Administrador</Property>
+		    <Property name="password">desa01</Property>
+		  	<Property name="siteUrl">http://istgodesa01</Property>
+		  	<Property name="sitePath"></Property>
+		  	<Property name="library">IFLOW_TP</Property>
+		  	-->
+
+		  	<Property name="documentNameToken">fullDocumentName</Property>
+		</Properties>
+	    <MetaDataMappings>
+	        	<!--
+	        	tipos:
+	        	type="string" type="integer" type="float" type="date" type="datetime" type="boolean" type="currency"
+	        	format:opcional
+	        	-->
+	      	<Mapping>
+	        	<Source type="token">fullDocumentName</Source>
+	        	<Destination type="string">Title</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">documentId</Source>
+	        	<Destination type="integer">spac_documentid</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">documentType</Source>
+	        	<Destination type="integer">spac_documenttype</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">fullDocumentName</Source>
+	        	<Destination type="string" size="100">spac_documentname</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">procedureId</Source>
+	        	<Destination type="integer">spac_procedureid</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">procedureName</Source>
+	        	<Destination type="string" size="100">spac_procedurename</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">expedientId</Source>
+	        	<Destination type="integer">spac_expedientid</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">expedientName</Source>
+	        	<Destination type="string" size="100">spac_expedientname</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">userGUID</Source>
+	        	<Destination type="string" size="250">spac_userguid</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">stageId</Source>
+	        	<Destination type="integer">spac_stageid</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">stageName</Source>
+	        	<Destination type="string" size="100">spac_stagename</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">taskId</Source>
+	        	<Destination type="integer">spac_taskid</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="token">taskName</Source>
+	        	<Destination type="string" size="100">spac_taskname</Destination>
+	      	</Mapping>
+
+<!-- Campos de pruebas -->
+<!--
+	      	<Mapping>
+	        	<Source type="constant">constante</Source>
+	        	<Destination type="string" size="255">field_1</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="dynamic">_YEAR</Source>
+	        	<Destination type="string" size="255">field_2</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="constant" format="###.##">123456789.89</Source>
+	        	<Destination type="currency" format="###">moneda</Destination>
+	      	</Mapping>
+
+	      	<Mapping>
+	        	<Source type="constant" format="yyyy-MM-dd">2009-09-16</Source>
+	        	<Destination type="date" format="MM/dd/yyyy">field_3</Destination>
+	      	</Mapping>
+
+	      	<Mapping>
+	        	<Source type="constant">false</Source>
+	        	<Destination type="boolean">boolean</Destination>
+	      	</Mapping>
+-->
+<!--
+	      	<Mapping>
+	        	<Source type="constant" form>20/10/2009</Source>
+	        	<Destination type="date">field_date_1</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="constant">10-20-2009</Source>
+	        	<Destination type="date">field_date_2</Destination>
+	      	</Mapping>
+-->
+<!--
+	      	<Mapping>
+	        	<Source type="constant">2009-09-09</Source>
+	        	<Destination type="date">field_date_3</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="constant">06/06/2009 00:00</Source>
+	        	<Destination type="date">field_date_4</Destination>
+	      	</Mapping>
+	      	<Mapping>
+	        	<Source type="constant" >05-05-2009 00:00</Source>
+	        	<Destination type="date">field_date_5</Destination>
+	      	</Mapping>
+ -->
+<!--
+	      	<Mapping>
+	        	<Source type="constant" >0</Source>
+	        	<Destination type="boolean" >boolean</Destination>
+	      	</Mapping>
+-->
+<!--  -->
+
+
+		</MetaDataMappings>
+		<Tokens>
+			<Token>
+				<Name>fullDocumentName</Name>
+				 <Value type="expression">(${documentId})${documentName}</Value>
+			</Token>
+			<Token>
+				<Name>documentName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'document_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>documentId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'document_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>documentType</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'document_type')]/value</Value>
+			</Token>
+			<Token>
+				<Name>procedureId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'procedure_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>procedureName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'procedure_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>expedientId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'expedient_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>expedientName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'expedient_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>userGUID</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'user_guid')]/value</Value>
+			</Token>
+			<Token>
+				<Name>stageId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'stage_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>stageName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'stage_name')]/value</Value>
+			</Token>
+			<Token>
+				<Name>taskId</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'task_id')]/value</Value>
+			</Token>
+			<Token>
+				<Name>taskName</Name>
+				<Value type="xpath">/doc_properties/property[contains(name,'task_name')]/value</Value>
+			</Token>
+
+			<!-- Pruebas  -->
+			<Token>
+				<Name>constante</Name>
+				<Value type="constante">tokenConstante</Value>
+			</Token>
+			<Token>
+				<Name>tokenDinamico</Name>
+				<Value type="dynamic">_YEAR</Value>
+			</Token>
+			<!--  -->
+
+		</Tokens>
+		<FolderPath>/${_YEAR}/${_MONTH}/${_DAY}/${_HOUR}/${_MINUTE}/${expedientName}</FolderPath>
+		<!--
+		<FolderPath>/${procedureName}/${expedientName}</FolderPath>
+		-->
+
+	</Repository>
+
+
+	<!--
+	<Repository id="2" alias="QUERES">
+	    <Properties>
+		    <Property name="user">Administrador</Property>
+		    <Property name="password">desa01</Property>
+		  	<Property name="siteUrl">http://istgodesa01</Property>
+		  	<Property name="library">QUERES</Property>
+		</Properties>
+	    <MetaDataMappings>
+			<Mapping>
+			  <Source type="constant">12/12/2009</Source>
+			  <Destination id="1" type="date" format="dd/MM/yyyy">FechaPresentacion</Destination>
+			</Mapping>
+			<Mapping>
+			     <Source type="dynamic">_YEAR</Source>
+			     <Destination id="2" type="date" format="dd/MM/yyyy">FechaEfectiva</Destination>
+			</Mapping>
+	      	<Mapping>
+	        	<Source type="token">documentName</Source>
+	        	<Destination id="3" type="string">Title</Destination>
+	      	</Mapping>
+		</MetaDataMappings>
+		<Tokens>
+			<Token type="docName">
+				<Name>documentName</Name>
+				<Value type="xpath">'('+/doc_properties/property[contains(name,'document_id')]/value + ')' + /doc_properties/property[contains(name,'document_name')]/value</Value>
+			</Token>
+		</Tokens>
+		<FolderPath>/f1/f2/f3</FolderPath>
+	</Repository>
+	-->
+</Repositories>

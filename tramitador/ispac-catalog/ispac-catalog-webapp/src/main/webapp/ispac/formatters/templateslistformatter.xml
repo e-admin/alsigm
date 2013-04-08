@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width5percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 decorator=''
+				 url='showTemplate.do'
+				 id='key'
+				 columnClass='width40percent'
+				 />
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+					property='NOMBRE'
+					readOnly='false'
+					titleKey='catalog.common.nombre'
+					fieldType='DATA'
+					headerClass='sortable'
+					sortable='true'
+					columnClass='width40percent'
+					media='csv excel xml pdf'/>		
+					
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='COD_PLANT'
+				 readOnly='false'
+				 titleKey='form.template.propertyLabel.code'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width20percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='EXPRESION'
+				 readOnly='false'
+				 titleKey='form.template.propertyLabel.expression'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width40percent'
+				 />
+
+	<propertyfmt type="BeanPropertyDateFmt"
+				 property='FECHA'
+				 readOnly='true'
+				 titleKey='form.template.propertyLabel.creationDate'
+				 format='dd/MM/yyyy'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width20percent'
+				 />
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PROCEDURE_TEMPLATE'
+				 readOnly='false'
+				 titleKey='form.template.especifica'
+				 fieldType='TEMPLATE_PROC_IMAGE'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width40percent'
+				 />
+				 
+				 
+</beanformatter>

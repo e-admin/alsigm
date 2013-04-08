@@ -1,0 +1,1407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="IntercambioRegistralWS"
+	targetNamespace="http://service.ws.sir.fwktd.tecdoc.ieci.es/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.ws.sir.fwktd.tecdoc.ieci.es/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	
+	<!-- Declaracion de tipos -->
+	<wsdl:types>
+		<xs:schema xmlns:tns="http://service.ws.sir.fwktd.tecdoc.ieci.es/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+			targetNamespace="http://service.ws.sir.fwktd.tecdoc.ieci.es/"
+			version="1.0">
+			<xs:element name="addAnexo" type="tns:addAnexo" />
+			<xs:element name="addAnexoResponse" type="tns:addAnexoResponse" />
+			<xs:element name="addInteresado" type="tns:addInteresado" />
+			<xs:element name="addInteresadoResponse" type="tns:addInteresadoResponse" />
+			<xs:element name="anularAsientoRegistral" type="tns:anularAsientoRegistral" />
+			<xs:element name="anularAsientoRegistralResponse" type="tns:anularAsientoRegistralResponse" />
+			<xs:element name="countAsientosRegistrales" type="tns:countAsientosRegistrales" />
+			<xs:element name="countAsientosRegistralesResponse" type="tns:countAsientosRegistralesResponse" />
+			<xs:element name="deleteAsientoRegistral" type="tns:deleteAsientoRegistral" />
+			<xs:element name="deleteAsientoRegistralResponse" type="tns:deleteAsientoRegistralResponse" />
+			<xs:element name="enviarAsientoRegistral" type="tns:enviarAsientoRegistral" />
+			<xs:element name="enviarAsientoRegistralResponse" type="tns:enviarAsientoRegistralResponse" />
+			<xs:element name="enviarAsientoRegistralById" type="tns:enviarAsientoRegistralById" />
+			<xs:element name="enviarAsientoRegistralByIdResponse" type="tns:enviarAsientoRegistralByIdResponse" />
+			<xs:element name="findAsientosRegistrales" type="tns:findAsientosRegistrales" />
+			<xs:element name="findAsientosRegistralesResponse" type="tns:findAsientosRegistralesResponse" />
+			<xs:element name="getAsientoRegistral" type="tns:getAsientoRegistral" />
+			<xs:element name="getAsientoRegistralResponse" type="tns:getAsientoRegistralResponse" />
+			<xs:element name="getContenidoAnexo" type="tns:getContenidoAnexo" />
+			<xs:element name="getContenidoAnexoResponse" type="tns:getContenidoAnexoResponse" />
+			<xs:element name="getEstadoAsientoRegistral" type="tns:getEstadoAsientoRegistral" />
+			<xs:element name="getEstadoAsientoRegistralResponse" type="tns:getEstadoAsientoRegistralResponse" />
+			<xs:element name="getHistoricoAsientoRegistral" type="tns:getHistoricoAsientoRegistral" />
+			<xs:element name="getHistoricoAsientoRegistralResponse"
+				type="tns:getHistoricoAsientoRegistralResponse" />
+			
+			<xs:element name="getHistoricoMensajeIntercambioRegistral" type="tns:getHistoricoMensajeIntercambioRegistral" />
+			<xs:element name="getHistoricoMensajeIntercambioRegistralResponse"
+				type="tns:getHistoricoMensajeIntercambioRegistralResponse" />
+				
+			<xs:element name="getHistoricoCompletoAsientoRegistral" type="tns:getHistoricoCompletoAsientoRegistral" />
+			<xs:element name="getHistoricoCompletoAsientoRegistralResponse"
+				type="tns:getHistoricoCompletoAsientoRegistralResponse" />
+			
+			<xs:element name="rechazarAsientoRegistral" type="tns:rechazarAsientoRegistral" />
+			<xs:element name="rechazarAsientoRegistralResponse" type="tns:rechazarAsientoRegistralResponse" />
+			<xs:element name="reenviarAsientoRegistralById" type="tns:reenviarAsientoRegistralById" />
+			<xs:element name="reenviarAsientoRegistralByIdResponse" type="tns:reenviarAsientoRegistralByIdResponse" />
+			<xs:element name="reenviarAsientoRegistral" type="tns:reenviarAsientoRegistral" />
+			<xs:element name="reenviarAsientoRegistralResponse" type="tns:reenviarAsientoRegistralResponse" />
+			<xs:element name="removeAnexo" type="tns:removeAnexo" />
+			<xs:element name="removeAnexoResponse" type="tns:removeAnexoResponse" />
+			<xs:element name="removeInteresado" type="tns:removeInteresado" />
+			<xs:element name="removeInteresadoResponse" type="tns:removeInteresadoResponse" />
+			<xs:element name="saveAsientoRegistral" type="tns:saveAsientoRegistral" />
+			<xs:element name="saveAsientoRegistralResponse" type="tns:saveAsientoRegistralResponse" />
+			<xs:element name="updateAnexo" type="tns:updateAnexo" />
+			<xs:element name="updateAnexoResponse" type="tns:updateAnexoResponse" />
+			<xs:element name="updateAsientoRegistral" type="tns:updateAsientoRegistral" />
+			<xs:element name="updateAsientoRegistralResponse" type="tns:updateAsientoRegistralResponse" />
+			<xs:element name="setContenidoAnexo" type="tns:setContenidoAnexo" />
+			<xs:element name="setContenidoAnexoResponse" type="tns:setContenidoAnexoResponse" />
+			<xs:element name="updateInteresado" type="tns:updateInteresado" />
+			<xs:element name="updateInteresadoResponse" type="tns:updateInteresadoResponse" />
+			<xs:element name="validarAsientoRegistral" type="tns:validarAsientoRegistral" />
+			<xs:element name="validarAsientoRegistralResponse" type="tns:validarAsientoRegistralResponse" />
+			<!-- 
+			<xs:element name="validarAnexos" type="tns:validarAnexos" />
+			<xs:element name="validarAnexosResponse" type="tns:validarAnexosResponse" />
+			-->
+			<xs:element name="recibirFicheroIntercambio" type="tns:recibirFicheroIntercambio" />
+			<xs:element name="recibirFicheroIntercambioResponse" type="tns:recibirFicheroIntercambioResponse" />
+			<xs:element name="recibirMensaje" type="tns:recibirMensaje" />
+			<xs:element name="recibirMensajeResponse" type="tns:recibirMensajeResponse" />
+			<xs:element name="procesarFicherosRecibidos" type="tns:procesarFicherosRecibidos" />
+			<xs:element name="procesarFicherosRecibidosResponse" type="tns:procesarFicherosRecibidosResponse" />
+			<xs:element name="comprobarTimeOutEnvios" type="tns:comprobarTimeOutEnvios" />
+			<xs:element name="comprobarTimeOutEnviosResponse" type="tns:comprobarTimeOutEnviosResponse" />
+			<xs:complexType name="countAsientosRegistrales">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="criterios" type="tns:criteriosDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="criteriosDTO">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="criterios"
+						nillable="true" type="tns:criterioDTO" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="orderBy"
+						nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="pageInfo" type="tns:pageInfoDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="criterioDTO">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="nombre" type="xs:string" />
+					<xs:element minOccurs="0" name="operador" type="xs:string" />
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="valor" type="xs:anyType" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="pageInfoDTO">
+				<xs:sequence>
+					<xs:element name="maxNumItems" type="xs:int" />
+					<xs:element name="objectsPerPage" type="xs:int" />
+					<xs:element name="pageNumber" type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="countAsientosRegistralesResponse">
+				<xs:sequence>
+					<xs:element name="return" type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="saveAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="asiento" type="tns:asientoRegistralFormDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="asientoRegistralFormDTO">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="codigoAsunto" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistral" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistralDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistralInicio" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistralOrigen" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoUnidadTramitacionDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoUnidadTramitacionOrigen" type="xs:string" />
+					<xs:element minOccurs="0" name="contactoUsuario" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionEntidadRegistralDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionEntidadRegistralInicio" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionEntidadRegistralOrigen" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionUnidadTramitacionDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionUnidadTramitacionOrigen" type="xs:string" />
+					<xs:element minOccurs="0" name="documentacionFisica" type="xs:string" />
+					<xs:element minOccurs="0" name="expone" type="xs:string" />
+					<xs:element minOccurs="0" name="fechaRegistro" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="fechaRegistroInicial" type="xs:dateTime" />
+					<xs:element name="indicadorPrueba" type="xs:string" />
+					<xs:element minOccurs="0" name="nombreUsuario" type="xs:string" />
+					<xs:element minOccurs="0" name="numeroExpediente" type="xs:string" />
+					<xs:element minOccurs="0" name="numeroRegistro" type="xs:string" />
+					<xs:element minOccurs="0" name="numeroRegistroInicial" type="xs:string" />
+					<xs:element minOccurs="0" name="numeroTransporte" type="xs:string" />
+					<xs:element minOccurs="0" name="observacionesApunte" type="xs:string" />
+					<xs:element minOccurs="0" name="referenciaExterna" type="xs:string" />
+					<xs:element minOccurs="0" name="resumen" type="xs:string" />
+					<xs:element minOccurs="0" name="solicita" type="xs:string" />
+					<xs:element minOccurs="0" name="timestampRegistro" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="timestampRegistroInicial" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="tipoRegistro" type="xs:string" />
+					<xs:element minOccurs="0" name="tipoTransporte" type="xs:string" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="anexos" nillable="true" type="tns:anexoFormDTO" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="interesados" nillable="true" type="tns:interesadoFormDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="asientoRegistralDTO">
+				<xs:complexContent>
+					<xs:extension base="tns:infoBAsientoRegistralDTO">
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="anexos" nillable="true" type="tns:anexoDTO" />
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="interesados" nillable="true" type="tns:interesadoDTO" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="infoBAsientoRegistralDTO">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="aplicacion" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoAsunto" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistral" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistralDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistralInicio" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistralOrigen" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoError" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoUnidadTramitacionDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoUnidadTramitacionOrigen" type="xs:string" />
+					<xs:element minOccurs="0" name="contactoUsuario" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionEntidadRegistralDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionEntidadRegistralInicio" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionEntidadRegistralOrigen" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionError" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionUnidadTramitacionDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionUnidadTramitacionOrigen" type="xs:string" />
+					<xs:element minOccurs="0" name="documentacionFisica" type="xs:string" />
+					<xs:element name="estado" type="xs:int" />
+					<xs:element minOccurs="0" name="expone" type="xs:string" />
+					<xs:element minOccurs="0" name="fechaEnvio" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="fechaEstado" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="fechaRecepcion" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="fechaRegistro" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="fechaRegistroInicial" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="identificadorIntercambio" type="xs:string" />
+					<xs:element name="indicadorPrueba" type="xs:string" />
+					<xs:element minOccurs="0" name="nombreUsuario" type="xs:string" />
+					<xs:element minOccurs="0" name="numeroExpediente" type="xs:string" />
+					<xs:element minOccurs="0" name="numeroRegistro" type="xs:string" />
+					<xs:element minOccurs="0" name="numeroRegistroInicial" type="xs:string" />
+					<xs:element minOccurs="0" name="numeroReintentos" type="xs:int" />
+					<xs:element minOccurs="0" name="numeroTransporte" type="xs:string" />
+					<xs:element minOccurs="0" name="observacionesApunte" type="xs:string" />
+					<xs:element minOccurs="0" name="referenciaExterna" type="xs:string" />
+					<xs:element minOccurs="0" name="resumen" type="xs:string" />
+					<xs:element minOccurs="0" name="solicita" type="xs:string" />
+					<xs:element minOccurs="0" name="timestampRegistro" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="timestampRegistroInicial" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="tipoRegistro" type="xs:string" />
+					<xs:element minOccurs="0" name="tipoTransporte" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="anexoFormDTO">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="certificado" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="codigoFichero" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoFicheroFirmado" type="xs:string" />
+					<xs:element minOccurs="0" name="contenido" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="firma" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="identificadorFicheroFirmado" type="xs:string" />
+					<xs:element minOccurs="0" name="nombreFichero" type="xs:string" />
+					<xs:element minOccurs="0" name="observaciones" type="xs:string" />
+					<xs:element minOccurs="0" name="timestamp" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="tipoDocumento" type="xs:string" />
+					<xs:element minOccurs="0" name="tipoMIME" type="xs:string" />
+					<xs:element minOccurs="0" name="validacionOCSPCertificado" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="validezDocumento" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="anexoDTO">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="certificado" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="firma" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="hash" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="idAsientoRegistral" type="xs:string" />
+					<xs:element minOccurs="0" name="identificadorFichero" type="xs:string" />
+					<xs:element minOccurs="0" name="identificadorFicheroFirmado" type="xs:string" />
+					<xs:element minOccurs="0" name="identificadorDocumentoFirmado" type="xs:string" />
+					<xs:element minOccurs="0" name="nombreFichero" type="xs:string" />
+					<xs:element minOccurs="0" name="observaciones" type="xs:string" />
+					<xs:element minOccurs="0" name="timestamp" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="tipoDocumento" type="xs:string" />
+					<xs:element minOccurs="0" name="tipoMIME" type="xs:string" />
+					<xs:element minOccurs="0" name="validacionOCSPCertificado" type="xs:base64Binary" />
+					<xs:element minOccurs="0" name="validezDocumento" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="interesadoFormDTO">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="canalPreferenteComunicacionInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="canalPreferenteComunicacionRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoMunicipioInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoMunicipioRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoPaisInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoPaisRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoPostalInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoPostalRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoProvinciaInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoProvinciaRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="correoElectronicoInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="correoElectronicoRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="direccionElectronicaHabilitadaInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="direccionElectronicaHabilitadaRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="direccionInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="direccionRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="documentoIdentificacionInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="documentoIdentificacionRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="nombreInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="nombreRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="observaciones" type="xs:string" />
+					<xs:element minOccurs="0" name="primerApellidoInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="primerApellidoRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="razonSocialInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="razonSocialRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="segundoApellidoInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="segundoApellidoRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="telefonoInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="telefonoRepresentante" type="xs:string" />
+					<xs:element minOccurs="0" name="tipoDocumentoIdentificacionInteresado" type="xs:string" />
+					<xs:element minOccurs="0" name="tipoDocumentoIdentificacionRepresentante" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="interesadoDTO">
+				<xs:complexContent>
+					<xs:extension base="tns:interesadoFormDTO">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="id" type="xs:string" />
+							<xs:element minOccurs="0" name="idAsientoRegistral" type="xs:string" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<!-- 
+			<xs:complexType name="validacionAnexoDTO">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="anexo" type="tns:anexoDTO" />
+					<xs:element minOccurs="0" name="hashValidado" type="xs:boolean" />
+					<xs:element minOccurs="0" name="validacionCertificado" type="xs:int" />
+					<xs:element minOccurs="0" name="descripcionErrorValidacionCertificado" type="xs:string" />
+					<xs:element minOccurs="0" name="validacionOCSPCertificado" type="xs:boolean" />
+					<xs:element minOccurs="0" name="validacionFirma" type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			-->
+			<xs:complexType name="infoRechazoDTO">
+				<xs:sequence>
+					<xs:element name="aplicacion" type="xs:string" />
+					<xs:element name="contacto" type="xs:string" />
+					<xs:element name="descripcion" type="xs:string" />
+					<xs:element name="tipoRechazo" type="xs:int" />
+					<xs:element name="usuario" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="infoReenvioDTO">
+				<xs:sequence>
+					<xs:element name="aplicacion" type="xs:string" />
+					<xs:element name="codigoEntidadRegistralDestino" type="xs:string" />
+					<xs:element name="contacto" type="xs:string" />
+					<xs:element name="descripcion" type="xs:string" />
+					<xs:element name="descripcionEntidadRegistralDestino" type="xs:string" />
+					<xs:element name="usuario" type="xs:string" />
+					<xs:element name="codigoUnidadTramitacionDestino" type="xs:string" />
+					<xs:element name="descripcionUnidadTramitacionDestino" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="saveAsientoRegistralResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:asientoRegistralDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateInteresado">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="interesado" type="tns:interesadoDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateInteresadoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:interesadoDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="addAnexo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="idAsientoRegistral" type="xs:string" />
+					<xs:element minOccurs="0" name="anexo" type="tns:anexoFormDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="addAnexoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:anexoDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getContenidoAnexo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getContenidoAnexoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="xs:base64Binary" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="findAsientosRegistrales">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="criterios" type="tns:criteriosDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="findAsientosRegistralesResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="return"
+						type="tns:asientoRegistralDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="rechazarAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element name="infoRechazo" type="tns:infoRechazoDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="rechazarAsientoRegistralResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="deleteAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="deleteAsientoRegistralResponse">
+				<xs:sequence />
+			</xs:complexType>
+			
+			<xs:complexType name="getEstadoAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			
+			<xs:complexType name="getEstadoAsientoRegistralResponse">
+				<xs:sequence>
+					<xs:element name="return" type="tns:estadoAsientoRegistralDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			
+			<xs:complexType name="estadoAsientoRegistralDTO">
+				<xs:sequence>
+					<xs:element name="estado" type="xs:int" />
+					<xs:element minOccurs="0" name="observaciones" type="xs:string" />
+					<xs:element minOccurs="0" name="fechaEstado" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="contactoUsuario" type="xs:string" />
+					<xs:element minOccurs="0" name="nombreUsuario" type="xs:string" />
+					<xs:element name="informacionAdicional" type="tns:HashMapString" />
+				</xs:sequence>
+			</xs:complexType>
+			
+			<xs:complexType name="HashMapString">
+				<xs:sequence>
+					<xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="key" type="xs:string" />
+								<xs:element name="value" type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			
+			
+			<xs:complexType name="removeAnexo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="idAnexo" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="removeAnexoResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="enviarAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="asiento" type="tns:asientoRegistralFormDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="enviarAsientoRegistralResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:asientoRegistralDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="enviarAsientoRegistralById">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="enviarAsientoRegistralByIdResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="getHistoricoAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getHistoricoAsientoRegistralResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="return"
+						type="tns:trazabilidadDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			
+			<xs:complexType name="getHistoricoMensajeIntercambioRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getHistoricoMensajeIntercambioRegistralResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="return"
+						type="tns:trazabilidadDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			
+			<xs:complexType name="getHistoricoCompletoAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getHistoricoCompletoAsientoRegistralResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="return"
+						type="tns:trazabilidadDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			
+			<xs:complexType name="trazabilidadDTO">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="codigo" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcion" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoError" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEstado" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoIntercambio" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoErrorServicio" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionErrorServicio"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="codigoNodo" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistralDestino"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="codigoEntidadRegistralOrigen"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="codigoUnidadTramitacionDestino"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="codigoUnidadTramitacionOrigen"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionErrorAlternativa"
+						type="xs:string" />
+					<xs:element minOccurs="0"
+						name="descripcionEntidadRegistralDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionEntidadRegistralOrigen"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionUnidadTramitacionDestino"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionUnidadTramitacionOrigen"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="fechaAlta" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="fechaModificacion" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="motivoRechazo"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="nombreFicheroIntercambio"
+						type="xs:string" />
+					<xs:element name="registro" type="xs:boolean" />
+					<xs:element name="tamanyoDocs" type="xs:long" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateAnexo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="anexo" type="tns:anexoDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateAnexoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:anexoDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getAsientoRegistralResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:asientoRegistralDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="validarAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="numeroRegistro" type="xs:string" />
+					<xs:element minOccurs="0" name="fechaRegistro" type="xs:dateTime" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="validarAsientoRegistralResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<!-- 
+			<xs:complexType name="validarAnexos">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="validarAnexosResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="return"
+						type="tns:validacionAnexoDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			-->
+			<xs:complexType name="removeInteresado">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="idInteresado" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="removeInteresadoResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="anularAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="anularAsientoRegistralResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="reenviarAsientoRegistralById">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="reenviarAsientoRegistralByIdResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="reenviarAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element name="infoReenvio" type="tns:infoReenvioDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="reenviarAsientoRegistralResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="addInteresado">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="idAsientoRegistral" type="xs:string" />
+					<xs:element minOccurs="0" name="interesado" type="tns:interesadoFormDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="addInteresadoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:interesadoDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateAsientoRegistral">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="infoBAsiento"
+						type="tns:infoBAsientoRegistralDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateAsientoRegistralResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="setContenidoAnexo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="contenido" type="xs:base64Binary" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="setContenidoAnexoResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="recibirFicheroIntercambio">
+				<xs:sequence>
+					<xs:element name="xmlFicheroIntercambio" type="xsd:string" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="documentos"
+						type="xsd:base64Binary" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="recibirFicheroIntercambioResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:asientoRegistralDTO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="recibirMensaje">
+				<xs:sequence>
+					<xs:element name="xmlMensaje" type="xsd:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="recibirMensajeResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="procesarFicherosRecibidos">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="procesarFicherosRecibidosResponse">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="comprobarTimeOutEnvios">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="comprobarTimeOutEnviosResponse">
+				<xs:sequence />
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	
+	
+	
+	
+	<!-- declaracion de mensajes -->
+	<wsdl:message name="updateAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:updateAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="deleteAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:deleteAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="addAnexo">
+		<wsdl:part name="parameters" element="tns:addAnexo">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="removeAnexoResponse">
+		<wsdl:part name="parameters" element="tns:removeAnexoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getHistoricoAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:getHistoricoAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getHistoricoMensajeIntercambioRegistral">
+		<wsdl:part name="parameters" element="tns:getHistoricoMensajeIntercambioRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getHistoricoCompletoAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:getHistoricoCompletoAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="addAnexoResponse">
+		<wsdl:part name="parameters" element="tns:addAnexoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="updateInteresado">
+		<wsdl:part name="parameters" element="tns:updateInteresado">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="updateAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:updateAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="countAsientosRegistralesResponse">
+		<wsdl:part name="parameters" element="tns:countAsientosRegistralesResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validarAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:validarAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<!-- 
+	<wsdl:message name="validarAnexos">
+		<wsdl:part name="parameters" element="tns:validarAnexos">
+		</wsdl:part>
+	</wsdl:message>
+	-->
+	<wsdl:message name="updateInteresadoResponse">
+		<wsdl:part name="parameters" element="tns:updateInteresadoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="deleteAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:deleteAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="removeInteresadoResponse">
+		<wsdl:part name="parameters" element="tns:removeInteresadoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="removeAnexo">
+		<wsdl:part name="parameters" element="tns:removeAnexo">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="reenviarAsientoRegistralById">
+		<wsdl:part name="parameters" element="tns:reenviarAsientoRegistralById">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="reenviarAsientoRegistralByIdResponse">
+		<wsdl:part name="parameters" element="tns:reenviarAsientoRegistralByIdResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="reenviarAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:reenviarAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="reenviarAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:reenviarAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="saveAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:saveAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getEstadoAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:getEstadoAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="enviarAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:enviarAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="enviarAsientoRegistralByIdResponse">
+		<wsdl:part name="parameters" element="tns:enviarAsientoRegistralByIdResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="removeInteresado">
+		<wsdl:part name="parameters" element="tns:removeInteresado">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="findAsientosRegistralesResponse">
+		<wsdl:part name="parameters" element="tns:findAsientosRegistralesResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getContenidoAnexoResponse">
+		<wsdl:part name="parameters" element="tns:getContenidoAnexoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="setContenidoAnexoResponse">
+		<wsdl:part name="parameters" element="tns:setContenidoAnexoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="addInteresado">
+		<wsdl:part name="parameters" element="tns:addInteresado">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:getAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="updateAnexoResponse">
+		<wsdl:part name="parameters" element="tns:updateAnexoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getHistoricoAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:getHistoricoAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:message name="getHistoricoMensajeIntercambioRegistralResponse">
+		<wsdl:part name="parameters" element="tns:getHistoricoMensajeIntercambioRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getHistoricoCompletoAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:getHistoricoCompletoAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="anularAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:anularAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="updateAnexo">
+		<wsdl:part name="parameters" element="tns:updateAnexo">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getContenidoAnexo">
+		<wsdl:part name="parameters" element="tns:getContenidoAnexo">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="setContenidoAnexo">
+		<wsdl:part name="parameters" element="tns:setContenidoAnexo">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="rechazarAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:rechazarAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="countAsientosRegistrales">
+		<wsdl:part name="parameters" element="tns:countAsientosRegistrales">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:getAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="addInteresadoResponse">
+		<wsdl:part name="parameters" element="tns:addInteresadoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="anularAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:anularAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getEstadoAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:getEstadoAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="findAsientosRegistrales">
+		<wsdl:part name="parameters" element="tns:findAsientosRegistrales">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validarAsientoRegistralResponse">
+		<wsdl:part name="parameters" element="tns:validarAsientoRegistralResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<!-- 
+	<wsdl:message name="validarAnexosResponse">
+		<wsdl:part name="parameters" element="tns:validarAnexosResponse">
+		</wsdl:part>
+	</wsdl:message>
+	-->
+	<wsdl:message name="saveAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:saveAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="enviarAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:enviarAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="enviarAsientoRegistralById">
+		<wsdl:part name="parameters" element="tns:enviarAsientoRegistralById">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="rechazarAsientoRegistral">
+		<wsdl:part name="parameters" element="tns:rechazarAsientoRegistral">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recibirFicheroIntercambio">
+		<wsdl:part name="parameters" element="tns:recibirFicheroIntercambio">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recibirFicheroIntercambioResponse">
+		<wsdl:part name="parameters" element="tns:recibirFicheroIntercambioResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recibirMensaje">
+		<wsdl:part name="parameters" element="tns:recibirMensaje">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recibirMensajeResponse">
+		<wsdl:part name="parameters" element="tns:recibirMensajeResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="procesarFicherosRecibidos">
+		<wsdl:part name="parameters" element="tns:procesarFicherosRecibidos">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="procesarFicherosRecibidosResponse">
+		<wsdl:part name="parameters" element="tns:procesarFicherosRecibidosResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="comprobarTimeOutEnvios">
+		<wsdl:part name="parameters" element="tns:comprobarTimeOutEnvios">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="comprobarTimeOutEnviosResponse">
+		<wsdl:part name="parameters" element="tns:comprobarTimeOutEnviosResponse">
+		</wsdl:part>
+	</wsdl:message>
+	
+	
+	
+	<!-- declaracion de operaciones -->
+	<wsdl:portType name="IntercambioRegistralWS">
+		<wsdl:operation name="countAsientosRegistrales">
+			<wsdl:input name="countAsientosRegistrales" message="tns:countAsientosRegistrales">
+			</wsdl:input>
+			<wsdl:output name="countAsientosRegistralesResponse"
+				message="tns:countAsientosRegistralesResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="saveAsientoRegistral">
+			<wsdl:input name="saveAsientoRegistral" message="tns:saveAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="saveAsientoRegistralResponse" message="tns:saveAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateInteresado">
+			<wsdl:input name="updateInteresado" message="tns:updateInteresado">
+			</wsdl:input>
+			<wsdl:output name="updateInteresadoResponse" message="tns:updateInteresadoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addAnexo">
+			<wsdl:input name="addAnexo" message="tns:addAnexo">
+			</wsdl:input>
+			<wsdl:output name="addAnexoResponse" message="tns:addAnexoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getContenidoAnexo">
+			<wsdl:input name="getContenidoAnexo" message="tns:getContenidoAnexo">
+			</wsdl:input>
+			<wsdl:output name="getContenidoAnexoResponse" message="tns:getContenidoAnexoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setContenidoAnexo">
+			<wsdl:input name="setContenidoAnexo" message="tns:setContenidoAnexo">
+			</wsdl:input>
+			<wsdl:output name="setContenidoAnexoResponse" message="tns:setContenidoAnexoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="findAsientosRegistrales">
+			<wsdl:input name="findAsientosRegistrales" message="tns:findAsientosRegistrales">
+			</wsdl:input>
+			<wsdl:output name="findAsientosRegistralesResponse"
+				message="tns:findAsientosRegistralesResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="rechazarAsientoRegistral">
+			<wsdl:input name="rechazarAsientoRegistral" message="tns:rechazarAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="rechazarAsientoRegistralResponse"
+				message="tns:rechazarAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteAsientoRegistral">
+			<wsdl:input name="deleteAsientoRegistral" message="tns:deleteAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="deleteAsientoRegistralResponse"
+				message="tns:deleteAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getEstadoAsientoRegistral">
+			<wsdl:input name="getEstadoAsientoRegistral" message="tns:getEstadoAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="getEstadoAsientoRegistralResponse"
+				message="tns:getEstadoAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="removeAnexo">
+			<wsdl:input name="removeAnexo" message="tns:removeAnexo">
+			</wsdl:input>
+			<wsdl:output name="removeAnexoResponse" message="tns:removeAnexoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="enviarAsientoRegistral">
+			<wsdl:input name="enviarAsientoRegistral" message="tns:enviarAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="enviarAsientoRegistralResponse"
+				message="tns:enviarAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="enviarAsientoRegistralById">
+			<wsdl:input name="enviarAsientoRegistralById" message="tns:enviarAsientoRegistralById">
+			</wsdl:input>
+			<wsdl:output name="enviarAsientoRegistralByIdResponse"
+				message="tns:enviarAsientoRegistralByIdResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHistoricoAsientoRegistral">
+			<wsdl:input name="getHistoricoAsientoRegistral" message="tns:getHistoricoAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="getHistoricoAsientoRegistralResponse"
+				message="tns:getHistoricoAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHistoricoMensajeIntercambioRegistral">
+			<wsdl:input name="getHistoricoMensajeIntercambioRegistral" message="tns:getHistoricoMensajeIntercambioRegistral">
+			</wsdl:input>
+			<wsdl:output name="getHistoricoMensajeIntercambioRegistralResponse"
+				message="tns:getHistoricoMensajeIntercambioRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHistoricoCompletoAsientoRegistral">
+			<wsdl:input name="getHistoricoCompletoAsientoRegistral" message="tns:getHistoricoCompletoAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="getHistoricoCompletoAsientoRegistralResponse"
+				message="tns:getHistoricoCompletoAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateAnexo">
+			<wsdl:input name="updateAnexo" message="tns:updateAnexo">
+			</wsdl:input>
+			<wsdl:output name="updateAnexoResponse" message="tns:updateAnexoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAsientoRegistral">
+			<wsdl:input name="getAsientoRegistral" message="tns:getAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="getAsientoRegistralResponse" message="tns:getAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validarAsientoRegistral">
+			<wsdl:input name="validarAsientoRegistral" message="tns:validarAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="validarAsientoRegistralResponse"
+				message="tns:validarAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- 
+		<wsdl:operation name="validarAnexos">
+			<wsdl:input name="validarAnexos" message="tns:validarAnexos">
+			</wsdl:input>
+			<wsdl:output name="validarAnexosResponse"
+				message="tns:validarAnexosResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		-->
+		<wsdl:operation name="removeInteresado">
+			<wsdl:input name="removeInteresado" message="tns:removeInteresado">
+			</wsdl:input>
+			<wsdl:output name="removeInteresadoResponse" message="tns:removeInteresadoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="anularAsientoRegistral">
+			<wsdl:input name="anularAsientoRegistral" message="tns:anularAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="anularAsientoRegistralResponse"
+				message="tns:anularAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="reenviarAsientoRegistralById">
+			<wsdl:input name="reenviarAsientoRegistralById" message="tns:reenviarAsientoRegistralById">
+			</wsdl:input>
+			<wsdl:output name="reenviarAsientoRegistralByIdResponse"
+				message="tns:reenviarAsientoRegistralByIdResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="reenviarAsientoRegistral">
+			<wsdl:input name="reenviarAsientoRegistral" message="tns:reenviarAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="reenviarAsientoRegistralResponse"
+				message="tns:reenviarAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addInteresado">
+			<wsdl:input name="addInteresado" message="tns:addInteresado">
+			</wsdl:input>
+			<wsdl:output name="addInteresadoResponse" message="tns:addInteresadoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateAsientoRegistral">
+			<wsdl:input name="updateAsientoRegistral" message="tns:updateAsientoRegistral">
+			</wsdl:input>
+			<wsdl:output name="updateAsientoRegistralResponse"
+				message="tns:updateAsientoRegistralResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="recibirFicheroIntercambio">
+			<wsdl:input name="recibirFicheroIntercambio" message="tns:recibirFicheroIntercambio">
+			</wsdl:input>
+			<wsdl:output name="recibirFicheroIntercambioResponse"
+				message="tns:recibirFicheroIntercambioResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="recibirMensaje">
+			<wsdl:input name="recibirMensaje" message="tns:recibirMensaje">
+			</wsdl:input>
+			<wsdl:output name="recibirMensajeResponse"
+				message="tns:recibirMensajeResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="procesarFicherosRecibidos">
+			<wsdl:input name="procesarFicherosRecibidos" message="tns:procesarFicherosRecibidos">
+			</wsdl:input>
+			<wsdl:output name="procesarFicherosRecibidosResponse"
+				message="tns:procesarFicherosRecibidosResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="comprobarTimeOutEnvios">
+			<wsdl:input name="comprobarTimeOutEnvios" message="tns:comprobarTimeOutEnvios">
+			</wsdl:input>
+			<wsdl:output name="comprobarTimeOutEnviosResponse"
+				message="tns:comprobarTimeOutEnviosResponse">
+			</wsdl:output>
+		</wsdl:operation>
+
+	</wsdl:portType>
+	
+	
+	
+	<!--  declaracion de bindings -->
+	<wsdl:binding name="IntercambioRegistralWSSoapBinding"
+		type="tns:IntercambioRegistralWS">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="countAsientosRegistrales">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="countAsientosRegistrales">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="countAsientosRegistralesResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="saveAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="saveAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="saveAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateInteresado">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="updateInteresado">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="updateInteresadoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addAnexo">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="addAnexo">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="addAnexoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getContenidoAnexo">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getContenidoAnexo">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getContenidoAnexoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setContenidoAnexo">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="setContenidoAnexo">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="setContenidoAnexoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="findAsientosRegistrales">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="findAsientosRegistrales">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="findAsientosRegistralesResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="rechazarAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="rechazarAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="rechazarAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="deleteAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getEstadoAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getEstadoAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getEstadoAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="removeAnexo">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="removeAnexo">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="removeAnexoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="enviarAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="enviarAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="enviarAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="enviarAsientoRegistralById">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="enviarAsientoRegistralById">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="enviarAsientoRegistralByIdResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHistoricoAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getHistoricoAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getHistoricoAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getHistoricoMensajeIntercambioRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getHistoricoMensajeIntercambioRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getHistoricoMensajeIntercambioRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateAnexo">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="updateAnexo">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="updateAnexoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="removeInteresado">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="removeInteresado">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="removeInteresadoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validarAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="validarAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="validarAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- 
+		<wsdl:operation name="validarAnexos">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="validarAnexos">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="validarAnexosResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		-->
+		<wsdl:operation name="anularAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="anularAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="anularAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addInteresado">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="addInteresado">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="addInteresadoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="reenviarAsientoRegistralById">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="reenviarAsientoRegistralById">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="reenviarAsientoRegistralByIdResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="reenviarAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="reenviarAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="reenviarAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateAsientoRegistral">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="updateAsientoRegistral">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="updateAsientoRegistralResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="recibirFicheroIntercambio">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="recibirFicheroIntercambio">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="recibirFicheroIntercambioResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="recibirMensaje">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="recibirMensaje">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="recibirMensajeResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="procesarFicherosRecibidos">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="procesarFicherosRecibidos">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="procesarFicherosRecibidosResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="comprobarTimeOutEnvios">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="comprobarTimeOutEnvios">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="comprobarTimeOutEnviosResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	
+	<!-- declaracion del binding -->
+	<wsdl:service name="IntercambioRegistralWS">
+		<wsdl:port name="IntercambioRegistralWSPort" binding="tns:IntercambioRegistralWSSoapBinding">
+			<soap:address location="http://localhost:9090/IntercambioRegistralWS" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

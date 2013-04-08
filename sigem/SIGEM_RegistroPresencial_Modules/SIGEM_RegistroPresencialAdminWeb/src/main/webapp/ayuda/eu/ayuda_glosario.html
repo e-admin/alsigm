@@ -1,0 +1,202 @@
+<HTML>
+<HEAD>
+<TITLE>MANUAL DE USUARIO</TITLE>
+<LINK rel="stylesheet" href="css/manual.css" type="text/css">
+<LINK rel="stylesheet" href="css/estilos.css" type="text/css">
+</HEAD>
+<SCRIPT language="JavaScript" src="js/js_menu.js"></SCRIPT>  
+<SCRIPT language="JavaScript" src="js/js_content.js"></SCRIPT> 
+<style>
+	<!--
+	.txt {text-decoration:none; color: #000000; font-size: 11px; font-weight:none; text-Transform:none; font-face: Microsoft sans-serif, arial, verdana;line-height:20px;}
+	-->
+</style>
+<script>
+	
+	var check = ""; 
+	
+	function over( tipo )
+	{
+		if( tipo == 'C' && check != "C")  document.getElementById('Usuarios').className='linkGloOver';
+		if( tipo == 'A' && check != "A") document.getElementById('Oficinas').className='linkGloOver';
+		if( tipo == 'O' && check != "O") document.getElementById('Libros').className='linkGloOver';
+		if( tipo == 'V' && check != "V") document.getElementById('Unidades').className='linkGloOver';
+	}
+	
+	function out( tipo )
+	{
+		if( tipo == 'C' && check != "C")  document.getElementById('Usuarios').className='linkGloOut';
+		if( tipo == 'A' && check != "A") document.getElementById('Oficinas').className='linkGloOut';
+		if( tipo == 'O' && check != "O") document.getElementById('Libros').className='linkGloOut';
+		if( tipo == 'V' && check != "V") document.getElementById('Unidades').className='linkGloOut';
+	}
+	
+	function mostrarConcepto( tipo )
+	{
+		
+		if( tipo == 'C') usuarios();
+		if( tipo == 'A') oficinas();
+		if( tipo == 'O') libros();
+		if( tipo == 'V') unidades();
+		
+	}
+	
+	function usuarios()
+	{
+		document.getElementById('titulo').innerHTML = "<b>&raquo;</b> Usuarios";
+		document.getElementById('texto').innerHTML = "Una vez creada la oficina de registro el siguiente paso es asignarle sus usuarios. Estos al igual que en las oficinas deben existir previamente en la estructura organizativa"
+		document.getElementById('Usuarios').className = "linkGloClick";
+		deschequear("Usuarios");
+		check = "C";
+	}
+	function oficinas()
+	{
+		document.getElementById('titulo').innerHTML = "<b>&raquo;</b> Oficinas";
+		document.getElementById('texto').innerHTML = "Llevan a cabo las operaciones de registro de documentos. Son departamentos de la estructura organizativa que posteriormente se añaden al registro."
+		document.getElementById('Oficinas').className = "linkGloClick";
+		deschequear("Oficinas");
+		check = "A";
+	}
+	function libros()
+	{
+		document.getElementById('titulo').innerHTML = "<b>&raquo;</b> Libros";
+		document.getElementById('texto').innerHTML = "Mantienen constancia de los documentos que entran o salen de una oficina de registro. Las transacciones de documentos se llevan a cabo entre dos unidades administrativas, o entre una unidad y personas físicas o jurídicas."
+		document.getElementById('Libros').className = "linkGloClick";
+		deschequear("Libros");
+		check = "O";
+	}
+	function unidades()
+	{
+		document.getElementById('titulo').innerHTML = "<b>&raquo;</b> Unidades administrativas";
+		document.getElementById('texto').innerHTML = "Permiten crear y gestionar la estructura que conforman los diferentes entes de la Administración del Estado"
+		document.getElementById('Unidades').className = "linkGloClick";
+		deschequear("Unidades");
+		check = "V";
+		
+	}
+	function deschequear( tipo )
+	{
+		var concep = new Array("Usuarios","Oficinas","Libros","Unidades");
+		for(var i = 0; i < concep.length; i++ )
+			if( concep[i] != tipo ) document.getElementById( concep[i]).className = "linkGloOut";
+	}
+	
+</script>
+<BODY topmargin=0 leftmargin=0 onLoad="mostrarConcepto('A');">
+<div name="textManual" style="position:absolute;top:230px;left:130px;">
+	<table cellpadding=0 cellspacing=0 border=0 class="tableCentral" width="400" height="230">
+		<tr>
+			<td valign="top">
+				<table cellpadding=0 cellspacing=0 border=0 width="100%" height="20">
+					<tr><td height="1" width="100%" bgcolor="#EEEEEE"></td></tr>
+					<tr><td height="1" width="100%" bgcolor="#ffffff"></td></tr>
+					<tr><td height="16" width="100%" bgcolor="#EEEEEE"></td></tr>
+					<tr><td height="1" width="100%" bgcolor="#CCCCCC"></td></tr>
+					<tr><td height="1" width="100%" bgcolor="#EEEEEE"></td></tr>
+					<tr><td height="1" width="100%" bgcolor="#999999"></td></tr>
+				</table>	
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<table cellpadding=0 cellspacing=0 border=0 width="100%" style="margin-top:25px;">
+					<tr>
+						<td width="35"></td>
+						<td class="tituloGlo" id="titulo"></td>
+						<td width="35"></td>
+					</tr>
+					<tr>
+						<td width="35"></td>
+						<td bgcolor="#505050" height="1" width="80%"></td>
+						<td width="35"></td>
+					</tr>
+					<tr><td height="15" colspan="3"></td></tr>
+					<tr>
+						<td width="35"></td>
+						<td>
+							<table cellspacing=0 cellpadding=0 border=0>
+								<tr>
+									<td width="10"></td>
+									<td bgcolor="#ffffff" height="15" width="90%" id="texto" class="textoGlo"></td>
+								</tr>
+							</table>
+						</td>
+						<td width="35"></td>
+					</tr>
+				</table>	
+			</td>
+		</tr>
+		<tr><td height="100%"></td></tr>
+	</table>
+</div>
+<table cellspacing=0 cellpadding=0 border=0 width="100%" height="100%">
+			<tr><td height="10"></td></tr>
+			<tr>
+				<td align="center">
+					<table cellpadding=0 cellspacing=0 border=0 height="98%" width="752" class="titleTable" style="margin-left:15px;style="margin-right:15px;style="margin-top:15px;style="margin-bottom:15px;">
+							<tr>
+								<td bgcolor="#ffffff" valign="top" height="117" width="751" background="images/comun/logo.gif">&nbsp;</td>
+							</tr>
+							<tr>
+								<td bgcolor="#ffffff" valign="top">
+									<table cellpadding=0 cellspacing=0 border=0>
+										<tr>
+											<td width="150" height="1"></td>
+											<td colspan="2" width="589">
+												<table cellpadding=0 cellspacing=0 border=0 width="100%">
+													<tr>
+														<td height="1" bgcolor="#7F7F7F" width="467"></td>
+														<td height="1" bgcolor="#ffffff" width="104"></td>
+													</tr>
+												</table>	
+											</td>
+										</tr>
+										<tr>
+											<td width="150" height="22"></td>
+											<td width="1" height="22" bgcolor="#7F7F7F"></td>
+											<td width="589" height="22">
+													<table cellpadding=0 cellspacing=0 border=0>
+														<tr>
+															<td width="75" id="Oficinas" style="cursor:hand;" class="linkGloOut" align="center" onMouseOver="over('A')" onMouseOut="out('A')" onClick="mostrarConcepto('A')">Oficinas</td>
+															<td width="1" height="22" bgcolor="#7F7F7F"></td>
+															<td width="80" id="Usuarios" style="cursor:hand;" class="linkGloOut" align="center" onMouseOver="over('C')" onMouseOut="out('C')" onClick="mostrarConcepto('C')">Usuarios</td>
+															<td width="1" height="22" bgcolor="#7F7F7F"></td>
+															<td width="122" id="Libros" style="cursor:hand;" class="linkGloOut" align="center" onMouseOver="over('O')" onMouseOut="out('O')" onClick="mostrarConcepto('O')">Libros</td>
+															<td width="1" height="22" bgcolor="#7F7F7F"></td>
+															<td width="200" id="Unidades" style="cursor:hand;" class="linkGloOut" align="center" onMouseOver="over('V')" onMouseOut="out('V')" onClick="mostrarConcepto('V')">Unidades administrativas</td>
+															<td width="1" height="22" bgcolor="#7F7F7F"></td>
+														</tr>
+													</table>
+											</td>
+										</tr>
+										<tr><td colspan="3" height="1" bgcolor="#7F7F7F"></td></tr>
+										<tr>
+											<td width="150" height="355">
+												<table cellpadding=0 cellspacing=0 border=0 width="150" height="327" style="margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:15px;">
+													<tr>
+														<td class="txt" valign="top" align="center"><b><font color="#006699">Guía de ayuda</font></b></td>
+													</tr>
+												</table>	
+											</td>
+											<td width="1" height="355" bgcolor="#7F7F7F"></td>
+											<td width="589" height="357" bgcolor="#E9EFF0">
+												<table cellpadding=0 cellspacing=0 border=0 width="589" height="357">
+													<tr>
+														<td height="23" width="100%" bgcolor="#C8C8C8" class="hgc" align="right">Administración Registro Presencial&nbsp;&nbsp;&nbsp;&nbsp;</td>
+													</tr>
+													<tr><td height=10></td></tr>
+													<tr>
+														<td valign="bottom" align="right"><img src="images/comun/imgCentral.jpg" width="305" height="275"></td>
+													<tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+					</table>
+				</td>
+		  </tr>
+</table>
+</BODY>
+</HTML>

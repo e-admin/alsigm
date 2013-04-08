@@ -1,0 +1,1 @@
+CALL ..\comun\03_deployWs.bat ..\docvitales\defs.bat

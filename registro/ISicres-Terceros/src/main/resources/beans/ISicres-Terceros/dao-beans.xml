@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="tipoDireccionTelematicaDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.TipoDireccionTelematicaDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.TipoDireccionTelematicaVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="tipoDocumentoIdentificativoDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.TipoDocumentoIdentificativoDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.TipoDocumentoIdentificativoTerceroVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="direccionDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.DireccionDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.BaseDireccionVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+		<property name="direccionFisicaDao">
+			<ref bean="direccionFisicaDao" />
+		</property>
+		<property name="direccionTelematicaDao">
+			<ref bean="direccionTelematicaDao" />
+		</property>
+	</bean>
+
+	<bean id="direccionFisicaDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.DireccionFisicaDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.DireccionFisicaVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="direccionTelematicaDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.DireccionTelematicaDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.DireccionTelematicaVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="terceroDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.TerceroDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+		<property name="terceroFisicoDao">
+			<ref bean="terceroFisicoDao" />
+		</property>
+		<property name="terceroJuridicoDao">
+			<ref bean="terceroJuridicoDao" />
+		</property>
+	</bean>
+
+	<bean id="terceroFisicoDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.TerceroFisicoDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoFisicoVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="terceroJuridicoDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.TerceroJuridicoDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoJuridicoVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="interesadoDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.InteresadoDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.InteresadoVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="representanteInteresadoDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.RepresentanteInteresadoDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.RepresentanteInteresadoVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="ciudadDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.CiudadDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.CiudadVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="provinciaDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.ProvinciaDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.isicres.terceros.business.vo.ProvinciaVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+	<bean id="paisDao"
+		class="es.ieci.tecdoc.isicres.terceros.business.dao.impl.PaisDaoImpl">
+		<constructor-arg value="es.ieci.tecdoc.isicres.terceros.business.vo.PaisVO" />
+		<property name="sqlMapClient">
+			<ref bean="sicres_terceros_api_sqlMapClient" />
+		</property>
+	</bean>
+
+</beans>

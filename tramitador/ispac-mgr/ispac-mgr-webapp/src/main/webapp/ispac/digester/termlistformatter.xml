@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter defaultSort="4">
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 fieldLink='NUMEXP' 
+				 titleKey='formmatter.terms.numExp' 
+				 fieldType='LINK'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 columnClass='width15percent'
+				 styleClass='displayLink'
+				 url='selectAnActivity'
+				 id='numexp'
+				 property='NUMEXP'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 titleKey='formmatter.terms.numExp' 
+				 fieldType='LIST'
+				 headerClass='headerDisplay'
+				 media='csv excel xml pdf'
+				 columnClass='width15percent'
+				 property='NUMEXP'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE_PCD' 
+				 titleKey='formmatter.terms.procedimiento' 
+				 fieldType='LIST' 
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width40percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='DESCRIPCION' 
+				 titleKey='formmatter.terms.tipoPlazo' 
+				 fieldType='LIST' 
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width25percent'/>
+				 
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FECHA_LIMITE' 
+				 fieldType='LIST' 
+				 format='dd/MM/yyyy' 
+				 titleKey='formmatter.terms.fechaLimite' 
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+				 
+</beanformatter>

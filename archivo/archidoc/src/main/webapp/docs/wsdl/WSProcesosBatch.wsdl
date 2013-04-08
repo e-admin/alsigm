@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://batch.ws" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://batch.ws" xmlns:intf="http://batch.ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://batch.ws" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="cerrarPrevisiones">
+    <complexType/>
+   </element>
+   <element name="cerrarPrevisionesResponse">
+    <complexType/>
+   </element>
+   <element name="publicarUnidadesDocumentales">
+    <complexType/>
+   </element>
+   <element name="publicarUnidadesDocumentalesResponse">
+    <complexType/>
+   </element>
+   <element name="eliminarUnidadesDocumentalesPrestadasNoDevueltas">
+    <complexType/>
+   </element>
+   <element name="eliminarUnidadesDocumentalesPrestadasNoDevueltasResponse">
+    <complexType/>
+   </element>
+   <element name="pasarAHistoricoDocumentosVitalesCaducados">
+    <complexType/>
+   </element>
+   <element name="pasarAHistoricoDocumentosVitalesCaducadosResponse">
+    <complexType/>
+   </element>
+   <element name="eliminarDocumentosVitalesObsoletos">
+    <complexType/>
+   </element>
+   <element name="eliminarDocumentosVitalesObsoletosResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="eliminarDocumentosVitalesObsoletosRequest">
+
+      <wsdl:part element="impl:eliminarDocumentosVitalesObsoletos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cerrarPrevisionesRequest">
+
+      <wsdl:part element="impl:cerrarPrevisiones" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarUnidadesDocumentalesPrestadasNoDevueltasResponse">
+
+      <wsdl:part element="impl:eliminarUnidadesDocumentalesPrestadasNoDevueltasResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="publicarUnidadesDocumentalesResponse">
+
+      <wsdl:part element="impl:publicarUnidadesDocumentalesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="pasarAHistoricoDocumentosVitalesCaducadosResponse">
+
+      <wsdl:part element="impl:pasarAHistoricoDocumentosVitalesCaducadosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cerrarPrevisionesResponse">
+
+      <wsdl:part element="impl:cerrarPrevisionesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDocumentosVitalesObsoletosResponse">
+
+      <wsdl:part element="impl:eliminarDocumentosVitalesObsoletosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="publicarUnidadesDocumentalesRequest">
+
+      <wsdl:part element="impl:publicarUnidadesDocumentales" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarUnidadesDocumentalesPrestadasNoDevueltasRequest">
+
+      <wsdl:part element="impl:eliminarUnidadesDocumentalesPrestadasNoDevueltas" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="pasarAHistoricoDocumentosVitalesCaducadosRequest">
+
+      <wsdl:part element="impl:pasarAHistoricoDocumentosVitalesCaducados" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="WSProcesosBatch">
+
+      <wsdl:operation name="cerrarPrevisiones">
+
+         <wsdl:input message="impl:cerrarPrevisionesRequest" name="cerrarPrevisionesRequest"/>
+
+         <wsdl:output message="impl:cerrarPrevisionesResponse" name="cerrarPrevisionesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="publicarUnidadesDocumentales">
+
+         <wsdl:input message="impl:publicarUnidadesDocumentalesRequest" name="publicarUnidadesDocumentalesRequest"/>
+
+         <wsdl:output message="impl:publicarUnidadesDocumentalesResponse" name="publicarUnidadesDocumentalesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarUnidadesDocumentalesPrestadasNoDevueltas">
+
+         <wsdl:input message="impl:eliminarUnidadesDocumentalesPrestadasNoDevueltasRequest" name="eliminarUnidadesDocumentalesPrestadasNoDevueltasRequest"/>
+
+         <wsdl:output message="impl:eliminarUnidadesDocumentalesPrestadasNoDevueltasResponse" name="eliminarUnidadesDocumentalesPrestadasNoDevueltasResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pasarAHistoricoDocumentosVitalesCaducados">
+
+         <wsdl:input message="impl:pasarAHistoricoDocumentosVitalesCaducadosRequest" name="pasarAHistoricoDocumentosVitalesCaducadosRequest"/>
+
+         <wsdl:output message="impl:pasarAHistoricoDocumentosVitalesCaducadosResponse" name="pasarAHistoricoDocumentosVitalesCaducadosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumentosVitalesObsoletos">
+
+         <wsdl:input message="impl:eliminarDocumentosVitalesObsoletosRequest" name="eliminarDocumentosVitalesObsoletosRequest"/>
+
+         <wsdl:output message="impl:eliminarDocumentosVitalesObsoletosResponse" name="eliminarDocumentosVitalesObsoletosResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WSProcesosBatchSoapBinding" type="impl:WSProcesosBatch">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="cerrarPrevisiones">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cerrarPrevisionesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cerrarPrevisionesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="publicarUnidadesDocumentales">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="publicarUnidadesDocumentalesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="publicarUnidadesDocumentalesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarUnidadesDocumentalesPrestadasNoDevueltas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarUnidadesDocumentalesPrestadasNoDevueltasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarUnidadesDocumentalesPrestadasNoDevueltasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pasarAHistoricoDocumentosVitalesCaducados">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="pasarAHistoricoDocumentosVitalesCaducadosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="pasarAHistoricoDocumentosVitalesCaducadosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumentosVitalesObsoletos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarDocumentosVitalesObsoletosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarDocumentosVitalesObsoletosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WSProcesosBatchService">
+
+      <wsdl:port binding="impl:WSProcesosBatchSoapBinding" name="WSProcesosBatch">
+
+         <wsdlsoap:address location="http://localhost:8080/archidoc/services/WSProcesosBatch"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

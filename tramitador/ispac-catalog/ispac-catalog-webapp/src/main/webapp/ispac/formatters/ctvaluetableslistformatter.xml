@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='empty'
+				 fieldType='CHECKBOX'
+				 styleClass='displayLink'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 />
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width5percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ETIQUETA'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 url='showCTEntityToManage.do?method=init&amp;entityId=1'
+				 id='regId'
+				 media='html'
+				 columnClass='width25percent'
+				 />
+				
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ETIQUETA'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='csv excel xml pdf'
+				 columnClass='width25percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='form.entity.propertyLabel.table'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 url='showCTEntityToManage.do?method=init&amp;entityId=1'
+				 id='regId'
+				 media='html'
+				 columnClass='width20percent'
+				 />
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='form.entity.propertyLabel.table'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='csv excel xml pdf'
+				 columnClass='width20percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='catalog.common.descripcion'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width40percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE_TIPO'
+				 readOnly='false'
+				 titleKey='form.entity.propertyLabel.tipoTblvld'
+				 fieldType='MSG_RESOURCES_DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width10percent'
+				 />
+
+</beanformatter>

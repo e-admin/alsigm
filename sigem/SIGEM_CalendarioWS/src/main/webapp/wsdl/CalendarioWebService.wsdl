@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<wsdl:definitions targetNamespace="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="obtenerCalendario">
+    <complexType>
+     <sequence>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerCalendarioResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerCalendarioReturn" type="impl:Calendario"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_string">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Calendario">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="dias" nillable="true" type="impl:ArrayOf_xsd_string"/>
+       <element name="horaFin" nillable="true" type="xsd:string"/>
+       <element name="horaInicio" nillable="true" type="xsd:string"/>
+       <element name="minutoFin" nillable="true" type="xsd:string"/>
+       <element name="minutoInicio" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="nuevoCalendario">
+    <complexType>
+     <sequence>
+      <element name="calendario" type="impl:Calendario"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuevoCalendarioResponse">
+    <complexType>
+     <sequence>
+      <element name="nuevoCalendarioReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarCalendario">
+    <complexType>
+     <sequence>
+      <element name="calendario" type="impl:Calendario"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarCalendarioResponse">
+    <complexType>
+     <sequence>
+      <element name="actualizarCalendarioReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarCalendario">
+    <complexType>
+     <sequence>
+      <element name="borrarDias" type="xsd:boolean"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarCalendarioResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarCalendarioReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDiaCalendario">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDiaCalendarioResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDiaCalendarioReturn" type="impl:CalendarioDia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CalendarioDia">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="descripcion" nillable="true" type="xsd:string"/>
+       <element name="fecha" nillable="true" type="xsd:string"/>
+       <element name="fijo" type="xsd:boolean"/>
+       <element name="id" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="nuevoDiaCalendario">
+    <complexType>
+     <sequence>
+      <element name="dia" type="impl:CalendarioDia"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuevoDiaCalendarioResponse">
+    <complexType>
+     <sequence>
+      <element name="nuevoDiaCalendarioReturn" type="impl:CalendarioDia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarDiaCalendario">
+    <complexType>
+     <sequence>
+      <element name="dia" type="impl:CalendarioDia"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarDiaCalendarioResponse">
+    <complexType>
+     <sequence>
+      <element name="actualizarDiaCalendarioReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDiaCalendario">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDiaCalendarioResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarDiaCalendarioReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDiasCalendario">
+    <complexType>
+     <sequence>
+      <element name="tipo" type="xsd:int"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDiasCalendarioResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDiasCalendarioReturn" type="impl:CalendarioDias"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfCalendarioDia">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:CalendarioDia"/>
+    </sequence>
+   </complexType>
+   <complexType name="CalendarioDias">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="dias" nillable="true" type="impl:ArrayOfCalendarioDia"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="proximoLaborable">
+    <complexType>
+     <sequence>
+      <element name="fecha" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="proximoLaborableResponse">
+    <complexType>
+     <sequence>
+      <element name="proximoLaborableReturn" type="impl:RetornoCalendario"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoCalendario">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="laborable" type="xsd:boolean"/>
+       <element name="proximo" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://server.ws.calendario.sgm.tecdoc.ieci"/>
+   <complexType name="Entidad">
+    <sequence>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="nuevoDiaCalendarioResponse">
+
+      <wsdl:part element="impl:nuevoDiaCalendarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDiasCalendarioRequest">
+
+      <wsdl:part element="impl:obtenerDiasCalendario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDiaCalendarioResponse">
+
+      <wsdl:part element="impl:obtenerDiaCalendarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevoCalendarioRequest">
+
+      <wsdl:part element="impl:nuevoCalendario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevoDiaCalendarioRequest">
+
+      <wsdl:part element="impl:nuevoDiaCalendario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDiaCalendarioRequest">
+
+      <wsdl:part element="impl:obtenerDiaCalendario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDiasCalendarioResponse">
+
+      <wsdl:part element="impl:obtenerDiasCalendarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerCalendarioResponse">
+
+      <wsdl:part element="impl:obtenerCalendarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarCalendarioRequest">
+
+      <wsdl:part element="impl:actualizarCalendario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="proximoLaborableResponse">
+
+      <wsdl:part element="impl:proximoLaborableResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDiaCalendarioRequest">
+
+      <wsdl:part element="impl:eliminarDiaCalendario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarCalendarioResponse">
+
+      <wsdl:part element="impl:eliminarCalendarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDiaCalendarioResponse">
+
+      <wsdl:part element="impl:eliminarDiaCalendarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="proximoLaborableRequest">
+
+      <wsdl:part element="impl:proximoLaborable" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarCalendarioResponse">
+
+      <wsdl:part element="impl:actualizarCalendarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarDiaCalendarioResponse">
+
+      <wsdl:part element="impl:actualizarDiaCalendarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerCalendarioRequest">
+
+      <wsdl:part element="impl:obtenerCalendario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarDiaCalendarioRequest">
+
+      <wsdl:part element="impl:actualizarDiaCalendario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarCalendarioRequest">
+
+      <wsdl:part element="impl:eliminarCalendario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevoCalendarioResponse">
+
+      <wsdl:part element="impl:nuevoCalendarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CalendarioWebService">
+
+      <wsdl:operation name="obtenerCalendario">
+
+         <wsdl:input message="impl:obtenerCalendarioRequest" name="obtenerCalendarioRequest"/>
+
+         <wsdl:output message="impl:obtenerCalendarioResponse" name="obtenerCalendarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoCalendario">
+
+         <wsdl:input message="impl:nuevoCalendarioRequest" name="nuevoCalendarioRequest"/>
+
+         <wsdl:output message="impl:nuevoCalendarioResponse" name="nuevoCalendarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarCalendario">
+
+         <wsdl:input message="impl:actualizarCalendarioRequest" name="actualizarCalendarioRequest"/>
+
+         <wsdl:output message="impl:actualizarCalendarioResponse" name="actualizarCalendarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarCalendario">
+
+         <wsdl:input message="impl:eliminarCalendarioRequest" name="eliminarCalendarioRequest"/>
+
+         <wsdl:output message="impl:eliminarCalendarioResponse" name="eliminarCalendarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDiaCalendario">
+
+         <wsdl:input message="impl:obtenerDiaCalendarioRequest" name="obtenerDiaCalendarioRequest"/>
+
+         <wsdl:output message="impl:obtenerDiaCalendarioResponse" name="obtenerDiaCalendarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoDiaCalendario">
+
+         <wsdl:input message="impl:nuevoDiaCalendarioRequest" name="nuevoDiaCalendarioRequest"/>
+
+         <wsdl:output message="impl:nuevoDiaCalendarioResponse" name="nuevoDiaCalendarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarDiaCalendario">
+
+         <wsdl:input message="impl:actualizarDiaCalendarioRequest" name="actualizarDiaCalendarioRequest"/>
+
+         <wsdl:output message="impl:actualizarDiaCalendarioResponse" name="actualizarDiaCalendarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDiaCalendario">
+
+         <wsdl:input message="impl:eliminarDiaCalendarioRequest" name="eliminarDiaCalendarioRequest"/>
+
+         <wsdl:output message="impl:eliminarDiaCalendarioResponse" name="eliminarDiaCalendarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDiasCalendario">
+
+         <wsdl:input message="impl:obtenerDiasCalendarioRequest" name="obtenerDiasCalendarioRequest"/>
+
+         <wsdl:output message="impl:obtenerDiasCalendarioResponse" name="obtenerDiasCalendarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="proximoLaborable">
+
+         <wsdl:input message="impl:proximoLaborableRequest" name="proximoLaborableRequest"/>
+
+         <wsdl:output message="impl:proximoLaborableResponse" name="proximoLaborableResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CalendarioWebServiceSoapBinding" type="impl:CalendarioWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="obtenerCalendario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerCalendarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerCalendarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoCalendario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuevoCalendarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuevoCalendarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarCalendario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="actualizarCalendarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="actualizarCalendarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarCalendario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarCalendarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarCalendarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDiaCalendario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDiaCalendarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDiaCalendarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuevoDiaCalendario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuevoDiaCalendarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuevoDiaCalendarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarDiaCalendario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="actualizarDiaCalendarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="actualizarDiaCalendarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDiaCalendario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarDiaCalendarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarDiaCalendarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDiasCalendario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDiasCalendarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDiasCalendarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="proximoLaborable">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="proximoLaborableRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="proximoLaborableResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CalendarioWebServiceService">
+
+      <wsdl:port binding="impl:CalendarioWebServiceSoapBinding" name="CalendarioWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_CalendarioWS/services/CalendarioWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

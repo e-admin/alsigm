@@ -1,0 +1,65 @@
+<assembly>
+	<id>bd</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+
+		<!-- postgres -->
+		<fileSet>
+			<directory>${basedir}/PostgreSQL</directory>
+			<outputDirectory>postgresql</outputDirectory>
+			<excludes>
+				<exclude>**/loadDataTest.sql</exclude>
+				<exclude>**/00_drop_tables_constraints_views_sequences_isicres.sql</exclude>
+				
+			</excludes>
+		</fileSet>
+
+
+		<!-- sqlserver -->
+		<fileSet>
+			<directory>${basedir}/SQLServer</directory>
+			<outputDirectory>sqlserver</outputDirectory>
+			<excludes>
+				<exclude>**/loadDataTest.sql</exclude>
+				<exclude>**/00_drop_tables_constraints_views_sequences_isicres.sql</exclude>
+				
+			</excludes>
+		</fileSet>
+
+		<!-- oracle -->
+		<fileSet>
+			<directory>${basedir}/DB2</directory>
+			<outputDirectory>db2</outputDirectory>
+			<excludes>
+				<exclude>**/loadDataTest.sql</exclude>
+				<exclude>**/00_drop_tables_constraints_views_sequences_isicres.sql</exclude>
+			</excludes>
+		</fileSet>
+		
+		<!-- oracle -->
+		<fileSet>
+			<directory>${basedir}/Oracle</directory>
+			<outputDirectory>oracle</outputDirectory>
+			<excludes>
+				<exclude>**/loadDataTest.sql</exclude>
+				<exclude>**/00_drop_tables_constraints_views_sequences_isicres.sql</exclude>
+			</excludes>
+		</fileSet>
+
+		
+
+		<!-- recursos -->
+		<fileSet>
+			<directory>${basedir}/src/main/sql/insert-example-sources</directory>
+			<outputDirectory>insert-example-sources</outputDirectory>
+		</fileSet>
+
+		<fileSet>
+			<directory>${project.build.directory}/insert-example-sources</directory>
+			<outputDirectory>insert-example-sources</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>

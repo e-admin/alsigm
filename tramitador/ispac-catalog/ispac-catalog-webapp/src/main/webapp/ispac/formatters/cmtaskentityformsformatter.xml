@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Formateador para el uso en tramites -->
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PROCD:ID'
+				 readOnly='true'
+				 titleKey='form.pproc.propertyLabel.procIdShort'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTPCD:COD_PCD'
+				 readOnly='false'
+				 titleKey='procedure.card.identif.codProc'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PROCD:NOMBRE'
+				 readOnly='false'
+				 titleKey='procedure.card.identif.procName'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PROCD:NVERSION'
+				 readOnly='false'
+				 titleKey='form.pproc.propertyLabel.version'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='STAGE:ID'
+				 readOnly='true'
+				 titleKey='form.fase.propertyLabel.stageId'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='STAGE:NOMBRE'
+				 readOnly='false'
+				 titleKey='form.fase.propertyLabel.stageName'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TASK:ID'
+				 readOnly='true'
+				 titleKey='form.task.propertyLabel.taskId'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TASK:NOMBRE'
+				 readOnly='false'
+				 titleKey='form.task.propertyLabel.taskName'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTENTITY:ID'
+				 readOnly='true'
+				 titleKey='entity.title.id'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTENTITY:NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 />
+
+</beanformatter>

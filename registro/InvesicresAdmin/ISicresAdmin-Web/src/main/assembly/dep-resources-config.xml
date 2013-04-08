@@ -1,0 +1,18 @@
+<assembly>
+	<id>Config</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/target/ISicresAdminWeb/WEB-INF/classes</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/resources/resources</directory>
+			<outputDirectory>/resources/</outputDirectory>
+		</fileSet>
+	</fileSets>
+
+</assembly>

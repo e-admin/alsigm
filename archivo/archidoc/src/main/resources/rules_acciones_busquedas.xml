@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<digester-rules>
+	<pattern value="AccionesBusquedas">
+   		<object-create-rule classname="xml.config.AccionesBusqueda"/>
+		<pattern value="Accion">
+	    	<object-create-rule classname="xml.config.AccionBusqueda"/>
+	    	<set-properties-rule>
+				<alias attr-name="id" prop-name="id"/>
+				<alias attr-name="permisos" prop-name="permisos"/>
+			</set-properties-rule>
+			<pattern value="TiposPermitidos/Tipo">
+				<object-create-rule classname="xml.config.TipoAccionBusqueda" />
+
+	    		<set-properties-rule>
+					<alias attr-name="id" prop-name="id"/>
+					<alias attr-name="accion" prop-name="accion"/>
+					<alias attr-name="metodo" prop-name="metodo"/>
+				</set-properties-rule>
+
+				<pattern value="Restricciones/Restriccion">
+					<object-create-rule classname="xml.config.RestriccionTipoAccionBusqueda"/>
+
+		    		<set-properties-rule>
+						<alias attr-name="id" prop-name="id"/>
+						<alias attr-name="permitido" prop-name="permitido"/>
+					</set-properties-rule>
+
+	  			 		<set-next-rule methodname="addRestriccion" />
+	  			 	</pattern>
+
+				<set-next-rule methodname="addTipoPermitido" />
+			</pattern>
+			<set-next-rule methodname="addAccionBusqueda"/>
+		</pattern>
+	</pattern>
+</digester-rules>

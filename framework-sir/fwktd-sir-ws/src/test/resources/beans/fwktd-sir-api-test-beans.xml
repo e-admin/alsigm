@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="jndiContextLoader" class="es.ieci.tecdoc.fwktd.test.jndi.JndiContextLoader">
+	</bean>
+
+	<alias name="fwktd_sir_transactionManager" alias="transactionManager" />
+	<alias name="fwktd_sir_dataSource" alias="dataSource"/>
+
+	<bean id="datasourceDbUnit"
+		class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+		<constructor-arg ref="fwktd_sir_dataSource"/>
+	</bean>
+
+	<!-- Implementacion que utiliza el sistema de ficheros -->
+	<bean id="fwktd_sir_ficheroIntercambioManagerFSImpl" name="fwktd_sir_ficheroIntercambioManagerFS"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.fs.FicheroIntercambioManagerFSImpl"
+		parent="fwktd_sir_ficheroIntercambioManagerAbstract">
+		<property name="anexoManager" ref="fwktd_sir_anexoManager" />
+		<property name="compresorManager" ref="fwktd_sir_compresionManager" />
+		<property name="directorioTemporal" value="${fwktd-sir.directorio.temporal}" />
+		<property name="directorioEnviados" value="${fwktd-sir.directorio.enviados}" />
+
+		<property name="test" value="true" />
+
+	</bean>
+
+	<bean id="fwktd_sir_mensajeManagerFSImpl" name="fwktd_sir_mensajeManagerFS"
+		class="es.ieci.tecdoc.fwktd.sir.api.manager.impl.fs.MensajeManagerFSImpl"
+		parent="fwktd_sir_mensajeManagerAbstract">
+		<property name="codificacionFicherosManager" ref="fwktd_sir_codificacionFicherosManager" />
+		<property name="compresorManager" ref="fwktd_sir_compresionManager" />
+		<property name="directorioTemporal" value="${fwktd-sir.directorio.temporal}" />
+		<property name="directorioEnviados" value="${fwktd-sir.directorio.enviados}" />
+
+		<property name="test" value="true" />
+
+	</bean>
+
+</beans>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+
+]>
+
+<beans>
+
+	<!--
+		LDAP_GUID_ATTRIBUTE:
+		Active Directory = "objectGUID"
+		IPlanet, Sun Directory Manager = "nsuniqueid"
+		Open Ldap = "uidNumber"
+	-->
+
+	<!--
+		LDAP_ENGINE:
+		Active Directory = "1"
+		IPlanet, Sun Directory Manager = "2"
+		Open Ldap = "3"
+	-->
+
+	<!--
+		LDAP_USERS_SCOPE:
+		BASE_SCOPE = "0"
+		ONELEVEl_SCOPE = "1"
+		SUBTREE_SCOPE = "2"
+	-->
+
+   <alias name="ldapContextConfigMapLoaderActiveDirectory" alias="ldapContextConfigMapLoader"/>
+
+    <bean id="ldapContextConfigMapLoaderActiveDirectory" class="es.ieci.tecdoc.fwktd.ldap.core.config.impl.LdapContextConfigMapLoaderImpl">
+    	<property name="configMap">
+	    	<map>
+	    		<entry key="LDAP_ENGINE" value="1"/>
+	    		<entry key="LDAP_URL" value="ldap://10.228.20.177:389"/>
+	    		<entry key="LDAP_BASE" value="dc=SERVIDOR-GDOC3,dc=iecisa,dc=corp"/>
+				<entry key="LDAP_USER" value="cn=nacho,cn=Users,dc=SERVIDOR-GDOC3,dc=iecisa,dc=corp"/>
+	    		<entry key="LDAP_PASSWORD" value="archivo_2007"/>
+	    		<entry key="LDAP_POOL" value="false"/>
+	    		<entry key="LDAP_POOL_TIMEOUT" value="0"/>
+	    		<entry key="LDAP_GUID_ATTRIBUTE" value="objectGUID"/>
+	    		<entry key="LDAP_DN_ATTRIBUTE" value="distinguishedName"/>
+	    	</map>
+	    </property>
+    </bean>
+
+    <bean id="ldapContextConfigMapLoaderSunDirectoryServer" class="es.ieci.tecdoc.fwktd.ldap.core.config.impl.LdapContextConfigMapLoaderImpl">
+    	<property name="configMap">
+	    	<map>
+	    		<entry key="LDAP_ENGINE" value="2"/>
+	    		<entry key="LDAP_URL" value="ldap://10.228.20.177:3543"/>
+	    		<entry key="LDAP_BASE" value="dc=iecisa,dc=corp"/>
+				<entry key="LDAP_USER" value="cn=Directory Manager"/>
+	    		<entry key="LDAP_PASSWORD" value="ieciovi2"/>
+	    		<entry key="LDAP_POOL" value="false"/>
+	    		<entry key="LDAP_POOL_TIMEOUT" value="0"/>
+	    		<entry key="LDAP_GUID_ATTRIBUTE" value="nsuniqueid"/>
+	    		<entry key="LDAP_DN_ATTRIBUTE" value="entryDn"/>
+	    	</map>
+	    </property>
+    </bean>
+
+    <bean id="ldapContextConfigMapLoaderOpenLdap" class="es.ieci.tecdoc.fwktd.ldap.core.config.impl.LdapContextConfigMapLoaderImpl">
+    	<property name="configMap">
+	    	<map>
+	    		<entry key="LDAP_ENGINE" value="3"/>
+	    		<entry key="LDAP_URL" value="ldap://10.228.20.178:389"/>
+	    		<entry key="LDAP_BASE" value="dc=portsdebalears,dc=com"/>
+				<entry key="LDAP_USER" value="cn=Administrator,dc=portsdebalears,dc=com"/>
+	    		<entry key="LDAP_PASSWORD" value="ldap"/>
+	    		<entry key="LDAP_POOL" value="false"/>
+	    		<entry key="LDAP_POOL_TIMEOUT" value="0"/>
+	    		<entry key="LDAP_GUID_ATTRIBUTE" value="uidNumber"/>
+	    		<entry key="LDAP_DN_ATTRIBUTE" value="entryDn"/>
+	    	</map>
+	    </property>
+    </bean>
+
+    <bean id="ldapMapperSpringDefault" class="es.ieci.tecdoc.fwktd.ldap.core.mapper.impl.LdapMapperSpringDefaultImpl">
+    </bean>
+
+    <bean id="ldapMapperDefault" class="es.ieci.tecdoc.fwktd.ldap.core.mapper.impl.LdapMapperDefaultImpl">
+    </bean>
+
+    <bean id="ldapConnectorSpring" class="es.ieci.tecdoc.fwktd.ldap.core.connector.impl.LdapConnectorSpringImpl">
+    	<property name="ldapMapper"><ref bean="ldapMapperSpringDefault"/></property>
+    </bean>
+
+    <bean id="ldapConnectorSun" class="es.ieci.tecdoc.fwktd.ldap.core.connector.impl.LdapConnectorSunImpl">
+    	<property name="ldapMapper"><ref bean="ldapMapperDefault"/></property>
+    </bean>
+
+    <bean id="ldapProxySpring" class="es.ieci.tecdoc.fwktd.ldap.core.proxy.impl.LdapProxyImpl">
+    	<property name="ldapContextConfigLoader"><ref bean="ldapContextConfigMapLoader"/></property>
+    	<property name="ldapConnector"><ref bean="ldapConnectorSpring"/></property>
+    </bean>
+
+    <bean id="ldapProxySun" class="es.ieci.tecdoc.fwktd.ldap.core.proxy.impl.LdapProxyImpl">
+    	<property name="ldapContextConfigLoader"><ref bean="ldapContextConfigMapLoader"/></property>
+    	<property name="ldapConnector"><ref bean="ldapConnectorSun"/></property>
+    </bean>
+
+</beans>

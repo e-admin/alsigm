@@ -1,0 +1,26 @@
+<!DOCTYPE struts-config SYSTEM
+    "struts-config_1_1.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="LoginForm" type="common.forms.LoginForm" />
+	</form-beans>
+
+	<global-forwards>
+		<forward name="loginAction" path="/action/loginAction" />
+	</global-forwards>
+
+	<action-mappings>
+		<action path="/logoutAction" type="common.actions.LogoutAction" scope="request">
+			<forward name="success" path="/welcome.jsp" />
+		</action>
+
+		<action path="/loginAction" name="LoginForm" type="common.actions.LoginAction" scope="request" validate="false" input="/pages/tiles/login.jsp">
+			<forward name="success" path="/pages/tiles/conectado.jsp" />
+			<forward name="error" path="/pages/tiles/login.jsp" />
+		</action>
+	</action-mappings>
+
+	<controller nocache="true"/>
+</struts-config>

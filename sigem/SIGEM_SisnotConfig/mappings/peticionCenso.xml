@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+        <class name="es.map.sn.correspondencia.censo.mapping.RemesaCenso">
+                <map-to xml="CENSO"/>
+
+                <field name="codEmisor"  type="java.lang.String">
+                        <bind-xml name="admon" />
+                </field>
+                <field name="tipoCorrespondencia"  type="java.lang.String">
+                        <bind-xml name="tipocorrespondencia" />
+                </field>
+                <field name="codRemesa"  type="java.lang.Long">
+                        <bind-xml name="remesa" />
+                </field>
+                <field name="bloques"  type="java.lang.String">
+                        <bind-xml name="bloques" />
+                </field>
+                <field name="codError"  type="java.lang.String">
+                        <bind-xml name="recepcion" />
+                </field>
+                <field name="contenidos" collection="collection" type="es.map.sn.correspondencia.censo.mapping.Suscripcion">
+                        <bind-xml name="contenido"/>
+                </field>
+                <field name="firma"  type="java.lang.String">
+                        <bind-xml name="firma_de_emisor" />
+                </field>
+
+        </class>
+
+        <class name="es.map.sn.correspondencia.censo.mapping.Suscripcion">
+                <field name="DEU" type="java.lang.String">
+                        <bind-xml name="DEU" node="element"/>
+                </field>
+                <field name="tipoPersona" type="java.lang.String">
+                        <bind-xml name="tipo_persona" node="element"/>
+                </field>
+                <field name="nif"
+                       type="java.lang.String">
+                        <bind-xml name="nifcif " node="element"/>
+                </field>
+                <field name="nombreRS" type="java.lang.String">
+                        <bind-xml name="nombreRs" node="element"/>
+                </field>
+                <field name="prestador" type="java.lang.String">
+                        <bind-xml name="prestador" node="element"/>
+                </field>
+                <field name="estado"
+                       type="java.lang.String">
+		                <bind-xml name="tipo_mov" node="element"/>
+                </field>
+                <field name="codProcedimiento"
+                       type="java.lang.String">
+                        <bind-xml name="codproc" node="element"/>
+                </field>
+                <field name="tipoProcedimiento"
+                       type="java.lang.String">
+                        <bind-xml name="tipo_proc" node="element"/>
+                </field>
+                <field name="fecha"
+                       type="java.lang.String">
+                        <bind-xml name="fecha" node="element"/>
+                </field>
+
+                <field name="hora"
+                       type="java.lang.String">
+                        <bind-xml name="hora" node="element"/>
+                </field>
+	            <field name="codError"
+                       type="java.lang.String">
+                        <bind-xml name="recepcionCe" node="element"/>
+                </field>
+        </class>
+</mapping>

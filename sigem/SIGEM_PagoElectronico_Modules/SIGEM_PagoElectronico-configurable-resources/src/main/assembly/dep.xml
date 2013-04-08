@@ -1,0 +1,46 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_PagoElectronico/src/main/resources/SIGEM_PagoElectronico</directory>
+			<outputDirectory>SIGEM_PagoElectronico</outputDirectory>	
+			<includes>
+				<include>PagoElectronico.properties</include>
+			</includes>		
+		</fileSet>	
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_PagoElectronico/src/main/resources/SIGEM_PagoElectronico/red.es</directory>
+			<outputDirectory>SIGEM_PagoElectronico/red.es</outputDirectory>	
+			<includes>
+				<include>crypto.properties</include>
+				<include>SPTRedes.properties</include>
+			</includes>		
+		</fileSet>	
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_PagoElectronicoWeb/src/main/resources/SIGEM_PagoElectronicoWeb</directory>
+			<outputDirectory>SIGEM_PagoElectronicoWeb</outputDirectory>	
+			<includes>
+				<include>log4j.*</include>
+				<include>skin*/</include>
+				<include>ReceiptCreator.properties/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_PagoElectronicoWS/src/main/resources/SIGEM_PagoElectronicoWS</directory>
+			<outputDirectory>SIGEM_PagoElectronicoWS</outputDirectory>	
+			<includes>
+				<include>log4j.*</include>
+			</includes>		
+		</fileSet>
+	</fileSets>
+
+</assembly>

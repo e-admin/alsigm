@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<enableCertificate>false</enableCertificate>
+	<typeCert>1</typeCert>
+	<typesCert>
+		<type id="1" label="NIF" token="NIF"/>
+		<type id="2" label="Anagrama Fiscal" token="ANAGRAMA"/>
+		<type id="3" label="Correo Electronico" token="EMAIL"/>
+	</typesCert>
+	<ignoredErrors>
+		<!-- <error>9</error>  -->
+		<error>99</error><!-- No es un certificado expedido por la fnmt -->
+		<error>6</error>
+	</ignoredErrors>
+</config>

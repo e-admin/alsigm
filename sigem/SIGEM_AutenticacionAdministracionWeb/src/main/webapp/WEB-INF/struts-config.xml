@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean
+			name="entidadAccesoBean" type="ieci.tecdoc.sgm.administracion.form.EntidadAccesoForm">
+		</form-bean>
+		<form-bean
+			name="loginAccesoBean" type="ieci.tecdoc.sgm.administracion.form.LoginAccesoForm">
+		</form-bean>
+		<form-bean
+			name="cambioClaveBean" type="ieci.tecdoc.sgm.administracion.form.CambioClaveForm">
+		</form-bean>
+	</form-beans>
+	<global-forwards>
+	</global-forwards>
+	<action-mappings>
+		<action path="/obtenerUsuarioSSO"
+				type="ieci.tecdoc.sgm.administracion.action.ObtenerUsuarioSSOAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/inicio.do" redirect="true"/>
+		</action>
+		<action path="/seleccionEntidad"
+				name="entidadAccesoBean"
+				type="ieci.tecdoc.sgm.administracion.action.SeleccionEntidadAction"
+				scope="request"
+				validate="false">
+				<forward name="redirigir" path="/jsp/Redirigir.jsp"/>
+				<forward name="login" path="/jsp/Login.jsp"/>
+				<forward name="entidades" path="/jsp/SeleccionEntidad.jsp"/>
+				<forward name="aplicaciones" path="/jsp/SeleccionAplicacion.jsp"/>
+		</action>
+		<action path="/seleccionAplicacion"
+				type="ieci.tecdoc.sgm.administracion.action.SeleccionAplicacionAction"
+				scope="request"
+				validate="false">
+				<forward name="redirigir" path="/jsp/Redirigir.jsp"/>
+				<forward name="login" path="/jsp/Login.jsp"/>
+				<forward name="entidades" path="/jsp/SeleccionEntidad.jsp"/>
+				<forward name="aplicaciones" path="/jsp/SeleccionAplicacion.jsp"/>
+		</action>
+		<action path="/login"
+				type="ieci.tecdoc.sgm.administracion.action.LoginAction"
+				name="loginAccesoBean"
+				scope="request"
+				validate="false">
+				<forward name="redirigir" path="/jsp/Redirigir.jsp"/>
+				<forward name="login" path="/jsp/Login.jsp"/>
+				<forward name="entidades" path="/jsp/SeleccionEntidad.jsp"/>
+				<forward name="aplicaciones" path="/jsp/SeleccionAplicacion.jsp"/>
+		</action>
+		<action path="/loginInterno"
+				type="ieci.tecdoc.sgm.administracion.action.LoginInternoAction"
+				name="loginAccesoBean"
+				scope="request"
+				validate="false">
+				<forward name="redirigir" path="/jsp/Redirigir.jsp"/>
+				<forward name="login" path="/jsp/Login.jsp"/>
+				<forward name="aplicaciones" path="/jsp/SeleccionAplicacion.jsp"/>
+		</action>
+
+		<action path="/validacionCertificado"
+			type="ieci.tecdoc.sgm.administracion.action.ValidacionCertificadoAction"
+			scope="request"
+			validate="false">
+			<forward name="redirigir" path="/jsp/Redirigir.jsp"/>
+			<forward name="login" path="/jsp/Login.jsp"/>
+			<forward name="aplicaciones" path="/jsp/SeleccionAplicacion.jsp"/>
+		</action>
+
+		<action path="/inicio"
+				type="ieci.tecdoc.sgm.administracion.action.InicioAction"
+				scope="request"
+				validate="false">
+				<forward name="redirigir" path="/jsp/Redirigir.jsp"/>
+				<forward name="login" path="/jsp/Login.jsp"/>
+				<forward name="entidades" path="/jsp/SeleccionEntidad.jsp"/>
+				<forward name="aplicaciones" path="/jsp/SeleccionAplicacion.jsp"/>
+		</action>
+		<action path="/logout"
+				type="ieci.tecdoc.sgm.administracion.action.LogoutAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/Desconexion.jsp"/>
+		</action>
+		<action path="/seleccionClaveUsuario"
+				type="ieci.tecdoc.sgm.administracion.action.SeleccionClaveUsuarioAction"
+				name="cambioClaveBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/SeleccionClaveUsuario.jsp"/>
+		</action>
+		<action path="/cambiarClaveUsuario"
+				type="ieci.tecdoc.sgm.administracion.action.CambiarClaveUsuarioAction"
+				name="cambioClaveBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/claveUsuarioCambiada.do" redirect="true"/>
+				<forward name="error" path="/seleccionClaveUsuario.do"/>
+		</action>
+		<action path="/claveUsuarioCambiada"
+				type="ieci.tecdoc.sgm.administracion.action.SuccessForwardAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/ClaveModificada.jsp"/>
+		</action>
+	</action-mappings>
+	<message-resources parameter="ieci.tecdoc.sgm.administracion.resources.AutenticacionAdministracionMessage" />
+	<plug-in className="ieci.tecdoc.sgm.administracion.plugin.ConfigPlugin">
+	</plug-in>
+</struts-config>

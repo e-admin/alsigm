@@ -1,0 +1,142 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.jboss</groupId>
+    <artifactId>jboss-parent</artifactId>
+    <version>3</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jboss.javaee</groupId>
+  <artifactId>jboss-javaee-parent</artifactId>
+  <version>5.2.0.Beta1</version>
+  <packaging>pom</packaging>
+  <name>JBoss JavaEE 5.0 Parent</name>
+  <url>http://www.jboss.com</url>
+  <description>
+    The JBoss JavaEE API classes
+  </description>
+  <scm>
+    <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossas/projects/javaee/tags/5.2.0.Beta1</connection>
+    <developerConnection>scm:svn:https://svn.jboss.org/repos/jbossas/projects/javaee/tags/5.2.0.Beta1</developerConnection>
+  </scm>
+
+  <properties>
+    <version.jboss.common.core>2.2.8.GA</version.jboss.common.core>
+    <version.jboss.logging.spi>2.0.5.GA</version.jboss.logging.spi>
+  </properties>
+
+  <build>
+    <sourceDirectory>src/main</sourceDirectory>
+    <testSourceDirectory>src/tests</testSourceDirectory>
+    <finalName>${artifactId}</finalName>
+    <resources>
+      <resource>
+        <directory>src/etc</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+    <plugins>
+      <!-- define that we wish to create src jars -->
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.0</version>
+        <inherited>true</inherited>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <printSummary>false</printSummary>
+          <testFailureIgnore>true</testFailureIgnore>
+          <includes>
+            <include>**/**TestCase.java</include>
+          </includes>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+           <tagBase>https://svn.jboss.org/repos/jbossas/projects/javaee/tags</tagBase>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <repositories>
+    <repository>
+      <id>repository.jboss.org</id>
+      <name>JBoss Repository</name>
+      <layout>default</layout>
+      <url>http://repository.jboss.org/maven2/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>snapshots.jboss.org</id>
+      <name>JBoss Snapshots Repository</name>
+      <layout>default</layout>
+      <url>http://snapshots.jboss.org/maven2/</url>
+      <snapshots>
+         <enabled>true</enabled>
+      </snapshots>
+      <releases>
+         <enabled>false</enabled>
+      </releases>
+    </repository>
+  </repositories>
+  
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>dependencies</report>
+              <report>issue-tracking</report>
+              <report>license</report>
+              <report>scm</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+  
+  <dependencyManagement>
+    <!-- The parent pom manages the inter-dependencies of the modules. -->
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-common-core</artifactId>
+        <version>${version.jboss.common.core}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.jboss.logging</groupId>
+        <artifactId>jboss-logging-spi</artifactId>
+        <version>${version.jboss.logging.spi}</version>
+      </dependency>      
+    </dependencies>
+  </dependencyManagement>
+
+</project>

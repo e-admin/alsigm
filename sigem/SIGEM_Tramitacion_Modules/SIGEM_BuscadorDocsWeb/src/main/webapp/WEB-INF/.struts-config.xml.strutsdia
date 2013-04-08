@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="StrutsProcess">
+ <PROCESS-ITEM ID="#searchResult" NAME="action0" PATH="/searchResult"
+  SHAPE="32,17,0,0" TITLE="searchForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="success" NAME="forward0"
+   PATH="/searchResult.jsp" TARGET="page2" TITLE="success"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="input" NAME="forward1"
+   PATH="/searchResult.jsp" TARGET="page2" TITLE="input" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#search" NAME="action1" PATH="/search"
+  SHAPE="240,17,0,0" TITLE="searchForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="success" NAME="forward2" PATH="/search.jsp"
+   TARGET="page6" TITLE="success" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="input" NAME="forward0" PATH="/search.jsp"
+   TARGET="page6" TITLE="input" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page6" PATH="/search.jsp" SHAPE="240,353,0,0"
+  SUBTYPE="jsp" TITLE="search.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page2" PATH="/searchResult.jsp" SHAPE="448,129,0,0"
+  SUBTYPE="jsp" TITLE="searchResult.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#showDocument" NAME="action2" PATH="/showDocument"
+  SHAPE="256,177,0,0" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="success" NAME="forward0"
+   PATH="/searchResult.jsp" TARGET="page2" TITLE="success"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+</PROCESS>

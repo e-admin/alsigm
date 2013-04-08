@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+		<artifactId>fwktd-audit-parent</artifactId>
+		<version>0.7</version>
+	</parent>
+
+	<description>Generacion de distribucion de fwktd-audit</description>
+
+	<artifactId>fwktd-audit-dist</artifactId>
+	<name>fwktd-audit-dist</name>
+
+	<dependencies>
+
+ 		<!-- archivos de recursos -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+			<artifactId>fwktd-audit-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+			<artifactId>fwktd-audit-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+
+ 		<!-- archivos de recursos -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+			<artifactId>fwktd-audit-core</artifactId>
+			<version>${project.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+			<artifactId>fwktd-audit-api</artifactId>
+			<version>${project.version}</version>
+			<classifier>configurable</classifier>
+			<type>zip</type>
+		</dependency>
+		
+
+		<!-- scripts de base de datos -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+			<artifactId>fwktd-audit-sql</artifactId>
+			<version>${project.version}</version>
+			<classifier>bd</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<!-- documentacion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+			<artifactId>fwktd-audit-doc</artifactId>
+			<version>${project.version}</version>
+			<classifier>documentacion</classifier>
+			<type>zip</type>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>assembly-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>
+									src/main/assembly/dep.xml
+								</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

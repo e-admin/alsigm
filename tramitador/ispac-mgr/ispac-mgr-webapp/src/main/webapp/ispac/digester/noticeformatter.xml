@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter defaultSort="3">
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+        	     property='SPAC_AVISOS_ELECTRONICOS:ID_AVISO' 
+        	     readOnly='false'
+        		 fieldType='CHECKBOX' 
+        		 headerClass='headerDisplay'
+        		 sortable='false'
+        		 media='html'
+        		 columnClass="width5percent"
+        		 /> 
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SPAC_AVISOS_ELECTRONICOS:ID_EXPEDIENTE'
+				 readOnly='false'
+				 titleKey='formatter.notices.numExp'
+				 fieldType='CALCULATE_LINK'
+				 fieldLink='SPAC_AVISOS_ELECTRONICOS:ID_EXPEDIENTE'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 styleClass='displayLink'
+				 columnClass="width20percent"
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'
+	/>
+
+	<!-- Identificador del expediente para exportar -->
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SPAC_AVISOS_ELECTRONICOS:ID_EXPEDIENTE'
+				 readOnly='false'
+				 titleKey='formatter.notices.numExp'
+				 fieldType='LIST_EXPORT'
+				 sortable='false'
+				 media='csv excel xml pdf'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SPAC_AVISOS_ELECTRONICOS:NOMBRE_FASE'
+				 readOnly='false'
+				 titleKey='formatter.notices.fase'
+				 fieldType='LIST'
+				 headerClass='sortable'
+				 media='html'
+				 columnClass="width15percent"
+				 sortable='true'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SPAC_AVISOS_ELECTRONICOS:NOMBRE_FASE'
+				 readOnly='false'
+				 titleKey='formatter.notices.fase'
+				 fieldType='LIST_EXPORT'
+				 sortable='false'
+				 media='csv excel xml pdf'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SPAC_AVISOS_ELECTRONICOS:NOMBRE_TRAMITE'
+				 readOnly='false'
+				 titleKey='formatter.notices.tramite'
+				 fieldType='LIST'
+				 headerClass='sortable'
+				 media='html'
+				 columnClass="width15percent"
+				 sortable='true'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SPAC_AVISOS_ELECTRONICOS:NOMBRE_TRAMITE'
+				 readOnly='false'
+				 titleKey='formatter.notices.tramite'
+				 fieldType='LIST_EXPORT'
+				 sortable='false'
+				 media='csv excel xml pdf'
+				 />				 
+
+	<propertyfmt type="BeanPropertyDateFmt"
+				 property='SPAC_AVISOS_ELECTRONICOS:FECHA'
+				 readOnly='false'
+				 format='dd/MM/yyyy'
+				 titleKey='formatter.notices.fechaAviso'
+				 fieldType='LIST'
+				 headerClass='sortable'
+				 media='html'
+				 columnClass="width15percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+				 
+	<propertyfmt type="BeanPropertyDateFmt"
+				 property='SPAC_AVISOS_ELECTRONICOS:FECHA'
+				 readOnly='false'
+				 format='dd/MM/yyyy'
+				 titleKey='formatter.notices.fechaAviso'
+				 fieldType='LIST_EXPORT'
+				 headerClass='sortable'
+				 media='csv excel xml pdf'
+				 sortable='true'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ESTADO_AVISO_TEXT'
+				 readOnly='false'
+				 titleKey='formatter.notices.estado'
+				 fieldType='LIST_FROMRESOURCES'
+				 headerClass='sortable'
+				 media='html'
+				 columnClass="width15percent"
+				 sortable='true'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ESTADO_AVISO_TEXT'
+				 readOnly='false'
+				 titleKey='formatter.notices.estado'
+				 fieldType='LIST_EXPORTFROMRESOURCES'
+				 headerClass='sortable'
+				 media='csv excel xml pdf'
+				 sortable='true'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TIPO_AVISO_TEXT'
+				 readOnly='false'
+				 titleKey='formatter.notices.tipoAviso'
+				 fieldType='LIST_FROMRESOURCES'
+				 headerClass='sortable'
+				 media='html'
+				 columnClass="width15percent"
+				 sortable='true'
+				 />
+				 
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TIPO_AVISO_TEXT'
+				 readOnly='false'
+				 titleKey='formatter.notices.tipoAviso'
+				 fieldType='LIST_EXPORTFROMRESOURCES'
+				 headerClass='sortable'
+				 media='csv excel xml pdf'
+				 sortable='true'
+				 />
+
+</beanformatter>

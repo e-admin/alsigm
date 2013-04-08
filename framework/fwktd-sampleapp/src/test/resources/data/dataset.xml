@@ -1,0 +1,10 @@
+<dataset>
+
+	<person id="1" name="Pablo Muniz Garcia" email="pablo_muniz@ieci.es" />
+	<person id="2" name="Alberto Sanchez Fontecha" email="alberto_sanchez@ieci.es" />
+
+	<address id="1" street="Plaza de la Iglesia, s/n" person="1" />
+	<address id="2" street="13, Rue del percebe" person="1" />
+	<address id="3" street="Plaza de la Iglesia, s/n" person="2" />
+
+</dataset>

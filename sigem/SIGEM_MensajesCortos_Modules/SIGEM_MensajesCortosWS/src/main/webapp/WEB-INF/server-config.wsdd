@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="MensajesCortosWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="sendMail" qname="ns1:sendMail" returnQName="ns1:sendMailReturn" returnType="ns2:RetornoServicio" soapAction="" xmlns:ns1="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns1:from" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns1:to" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns1:cc" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns1:bcc" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns1:subject" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns1:content" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns1:attachments" type="ns3:Attachment" xmlns:ns3="http://dto.mensajes_cortos.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="sendCertSMS" qname="ns4:sendCertSMS" returnQName="ns4:sendCertSMSReturn" returnType="ns5:String" soapAction="" xmlns:ns4="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:ns5="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci">
+   <parameter qname="ns4:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns4:pwd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns4:src" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns4:dst" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns4:txt" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns4:lang" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="sendSMS_Multiple" qname="ns6:sendSMS_Multiple" returnQName="ns6:sendSMS_MultipleReturn" returnType="ns7:ListaString" soapAction="" xmlns:ns6="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:ns7="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci">
+   <parameter qname="ns6:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns6:pwd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns6:src" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns6:dst" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns6:txt" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="getSMSStatus" qname="ns8:getSMSStatus" returnQName="ns8:getSMSStatusReturn" returnType="ns9:Entero" soapAction="" xmlns:ns8="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:ns9="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci">
+   <parameter qname="ns8:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns8:pwd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns8:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="sendSMS" qname="ns10:sendSMS" returnQName="ns10:sendSMSReturn" returnType="ns11:String" soapAction="" xmlns:ns10="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:ns11="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci">
+   <parameter qname="ns10:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns10:pwd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns10:src" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns10:dst" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns10:txt" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="getCertSMSSignatureStatus" qname="ns12:getCertSMSSignatureStatus" returnQName="ns12:getCertSMSSignatureStatusReturn" returnType="ns13:Entero" soapAction="" xmlns:ns12="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:ns13="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci">
+   <parameter qname="ns12:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns12:pwd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns12:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="getCertSMSSignatureXML" qname="ns14:getCertSMSSignatureXML" returnQName="ns14:getCertSMSSignatureXMLReturn" returnType="ns15:String" soapAction="" xmlns:ns14="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:ns15="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci">
+   <parameter qname="ns14:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns14:pwd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns14:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="getCertSMSSignatureDocument" qname="ns16:getCertSMSSignatureDocument" returnQName="ns16:getCertSMSSignatureDocumentReturn" returnType="ns17:ListaBytes" soapAction="" xmlns:ns16="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:ns17="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci">
+   <parameter qname="ns16:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns16:pwd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns16:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <parameter name="allowedMethods" value="sendSMS getCertSMSSignatureStatus sendMail sendSMS_Multiple sendCertSMS getSMSStatus getCertSMSSignatureXML getCertSMSSignatureDocument"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="MensajesCortosWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.mensajesCortos.ws.server.MensajesCortosWebService"/>
+  <parameter name="wsdlServicePort" value="MensajesCortosWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.mensajesCortos.sgm.tecdoc.ieci,http://dto.mensajes_cortos.services.core.sgm.tecdoc.ieci,http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="MensajesCortosWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns18:ListaBytes" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.mensajesCortos.ws.server.dto.ListaBytes" xmlns:ns18="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns19="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns20:Entero" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.mensajesCortos.ws.server.dto.Entero" xmlns:ns20="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:ListaString" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.mensajesCortos.ws.server.dto.ListaString" xmlns:ns21="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:Attachment" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.mensajes_cortos.dto.Attachment" xmlns:ns22="http://dto.mensajes_cortos.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:String" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.mensajesCortos.ws.server.dto.String" xmlns:ns23="http://dto.server.ws.mensajesCortos.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="xsd:string" languageSpecificType="java:java.lang.String[]" qname="ns24:ArrayOf_xsd_string" xmlns:ns24="http://server.ws.mensajesCortos.sgm.tecdoc.ieci" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+ <wsdlFile>../../wsdl/MensajesCortosWebService.wsdl</wsdlFile>
+ </service>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

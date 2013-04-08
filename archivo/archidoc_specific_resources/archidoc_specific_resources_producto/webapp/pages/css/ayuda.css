@@ -1,0 +1,311 @@
+/*Generales*/
+body {
+	background : #FFFFFF;
+	font : normal 70%/normal "Arial", Tahoma, Helvetica, sans-serif;
+	padding : 0;
+}
+
+#contenedora {
+	background : #FFFFFF;
+	height : 100%;
+	margin : 0 auto;
+	overflow : hidden;
+	text-align : left;
+	width : 100%;
+}
+
+a:hover {
+	text-decoration : underline;
+}
+
+a {
+	color : #000000;
+	text-decoration : none;
+}
+
+.activo {
+	color : #CC3300;
+	text-decoration : none;
+}
+
+.titular {
+	color : #006699;
+	font-weight : bold;
+}
+
+.titular a {
+	color : #006699;
+	text-decoration : none;
+}
+
+/*cabecera*/
+#cabecera {
+	background : url(../img/fondo_cab.jpg) #99D6F5 no-repeat;
+	height : 61px;
+	width : 100%;
+}
+
+#logo {
+	float : left;
+	width : 140px;
+}
+
+.salir {
+	float : right;
+	font-weight : bold;
+	margin-right : 10px;
+	margin-top : 20px;
+}
+
+.salir .titular {
+	margin-left : 5px;
+}
+
+.salir img {
+	vertical-align : middle;
+}
+
+.usuario {
+	background : url(../img/bg_mid_usuario.jpg) repeat-x;
+	float : none;
+	height : 33px;
+	width : 100%;
+}
+
+.usuarioleft {
+	background : url(../img/bg_left_usuario.jpg) no-repeat left;
+	float : left;
+	height : 33px;
+	width : 80%;
+}
+
+.usuarioright {
+	height : 33px;
+	background : url(../img/bg_right_usuario.jpg) no-repeat right;
+	float : left;
+	text-align : right;
+	width : 20%;
+}
+
+p.desplegar {
+	background : url(../img/ico_desplegar.gif) no-repeat left;
+	font-size : 90%;
+	margin-right : 20px;
+	margin-top : 10px;
+	padding-left : 15px;
+	width : 80px;
+}
+
+.usuarioleft p {
+	margin-left : 15px;
+	margin-top : 10px;
+}
+
+.margen {
+	margin-left : 15px;
+	margin-right : 5px;
+}
+
+#migas {
+	padding-bottom : 10px;
+	padding-top : 10px;
+}
+
+/*submenu1*/
+.submenu {
+	background : url(../img/subme1_bg.gif) repeat-x;
+	border-left : 1px solid #C3D8E5;
+	border-right : 1px solid #C3D8E5;
+	height : 21px;
+	padding : 0px;
+	width : 100%;
+}
+
+.submenu li.submen1on {
+	background : url(../img/subme1_bgon.gif) top left repeat-x;
+	color : #006699;
+	font-weight : bold;
+	height : 21px;
+	margin : 0px;
+	padding : 0px;
+}
+
+.submenu li.submen1off {
+	background : url(../img/subme1_bgoff.gif) top left repeat-x;
+	height : 21px;
+	margin : 0px;
+	padding : 0px;
+}
+
+/*submenu2*/
+.submenu2 {
+	background : url(../img/subme2_bg.gif) repeat-x;
+	border-left : 1px solid #C3D8E5;
+	border-right : 1px solid #C3D8E5;
+	height : 21px;
+	padding : 0px;
+	width : 100%;
+}
+
+.submenu2 li.submen1on {
+	background : url(../img/subme2_bgon.gif) top left repeat-x;
+	color : #006699;
+	font-weight : bold;
+	height : 21px;
+	margin : 0px;
+	padding : 0px;
+}
+
+.submenu2 li.submen1off {
+	background : url(../img/subme2_bgoff.gif) top left repeat-x;
+	height : 21px;
+	margin : 0px;
+	padding : 0px;
+}
+
+/*submenu3*/
+.submenu3 {
+	background : url(../img/subme3_bg.gif) repeat-x;
+	height : 17px;
+	padding : 0px;
+	width : 100%;
+}
+
+.submenu3 ul {
+	float : right;
+	font-size : 100%;
+	height : 17px;
+	list-style : none;
+	margin : 0px 0px 0px 21px;
+	padding : 0px;
+	padding : 0px;
+}
+
+.submenu3 li.submen1on {
+	background : url(../img/subme3_bgon.gif) top left repeat-x;
+	color : #006699;
+	font-weight : bold;
+	height : 17px;
+	margin : 0px;
+	padding : 0px;
+}
+
+.submenu3 li.submen1off {
+	background : url(../img/subme3_bgoff.gif) top left repeat-x;
+	color : #006699;
+	height : 17px;
+	margin : 0px;
+	padding : 0px;
+}
+
+/*ejemplo cuerpo con submenu*/
+.cuerpo {
+	background : url(../img/bg_left_cuerpo.jpg) #DEE1E8 no-repeat left top;
+}
+
+.cuerpomid {
+	background : url(../img/bg_mid_cuerpo.jpg) repeat-x left top;
+	margin : 0px 6px 0px 5px;
+	padding : 6px 0px 0px;
+}
+
+.cuerporight {
+	background : url(../img/bg_right_cuerpo.jpg) no-repeat right top;
+}
+
+h1 {
+	background : url(../img/bolo_activo.gif) no-repeat left;
+	color : #006699;
+	font-size : 100%;
+	font-weight : bold;
+	line-height : 90%;
+	margin : 6px 0px 0px 10px;
+	padding : 0px 0px 0px 10px;
+}
+
+.ayuda {
+	background : transparent;
+	font : bold 11px "Arial", Tahoma, Helvetica, sans-serif;
+	color : #006699;
+	font-weight : bold;
+}
+
+.cuadro {
+	background : #FFFFFF;
+	border-bottom : 1px solid #C6C9D5;
+	border-left : 1px solid #C6C9D5;
+	border-right : 1px solid #C6C9D5;
+	margin : 0px;
+	padding : 15px;
+}
+
+.cuadro input {
+	border : 1px solid #7F9DB9;
+	font-size : 100%;
+	height : 16px;
+	margin-right : 10px;
+	padding : 0;
+	width : 160px;
+}
+
+.col {
+	background : url(../img/fondo_puntos.gif) repeat-x left bottom;
+	padding-bottom : 3px;
+	padding-top : 3px;
+}
+
+.cuadro label.gr {
+	color : #006699;
+	float : left;
+	padding-top : 2px;
+	width : 110px;
+}
+
+.cuerpobt {
+	background : url(../img/bg_leftdown_cuerpo.jpg) #DEE1E8 no-repeat left bottom;
+}
+
+.cuerpomidbt {
+	background : url(../img/bg_middown_cuerpo.jpg) repeat-x left bottom;
+	margin : 0px 6px 0px 5px;
+	padding : 6px 0px 20px;
+}
+
+.cuerporightbt {
+	background : url(../img/bg_rightdown_cuerpo.jpg) no-repeat right bottom;
+}
+
+.submenu ul, .submenu2 ul {
+	float : left;
+	font-size : 100%;
+	height : 21px;
+	list-style : none;
+	margin : 0px 0px 0px 21px;
+	padding : 0px;
+	padding : 0px;
+}
+
+.submenu3 img, .submenu img, .submenu2 img {
+	margin : 0px;
+	padding : 0px;
+	vertical-align : text-bottom;
+}
+
+.submenu3 li, .submenu li, .submenu2 li {
+	float : left;
+	margin : 0px;
+	padding : 0px;
+}
+#contenedor {
+	background : #FFFFFF;
+	font : 10px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	height : 314px;
+	overflow-x : hidden;
+	overflow-y : auto;
+	padding : 6px;
+	position : relative;
+	text-align : justify;
+	vertical-align : top;
+	visibility : visible;
+	width : 568px;
+}

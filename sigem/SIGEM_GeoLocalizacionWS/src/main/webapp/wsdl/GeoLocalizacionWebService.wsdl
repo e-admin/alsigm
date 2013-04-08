@@ -1,0 +1,997 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.geolocalizacion.sgm.tecdoc.ieci" xmlns:impl="http://server.ws.geolocalizacion.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.geolocalizacion.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://server.ws.geolocalizacion.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="verPlanoPorCoordenadas">
+    <complexType>
+     <sequence>
+      <element name="datosLocalizacion" type="impl:PeticionPlanoCoordenadas"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="PeticionPlano">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="alto" type="xsd:int"/>
+       <element name="ancho" type="xsd:int"/>
+       <element name="codigoINEMunicipio" type="xsd:int"/>
+       <element name="escala" type="xsd:int"/>
+       <element name="idMapa" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PeticionPlanoCoordenadas">
+    <complexContent>
+     <extension base="impl:PeticionPlano">
+      <sequence>
+       <element name="coordX" type="xsd:double"/>
+       <element name="coordY" type="xsd:double"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="verPlanoPorCoordenadasResponse">
+    <complexType>
+     <sequence>
+      <element name="verPlanoPorCoordenadasReturn" type="impl:URLsPlano"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="URLsPlano">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="urlGuiaUrbana" nillable="true" type="xsd:string"/>
+       <element name="urlMapServer" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="verPlanoPorReferenciaCatastral">
+    <complexType>
+     <sequence>
+      <element name="datosLocalizacion" type="impl:PeticionPlanoReferenciaCatastral"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="PeticionPlanoReferenciaCatastral">
+    <complexContent>
+     <extension base="impl:PeticionPlano">
+      <sequence>
+       <element name="referenciaCatastral" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="verPlanoPorReferenciaCatastralResponse">
+    <complexType>
+     <sequence>
+      <element name="verPlanoPorReferenciaCatastralReturn" type="impl:URLsPlano"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="verPlanoPorIdVia">
+    <complexType>
+     <sequence>
+      <element name="datosLocalizacion" type="impl:PeticionPlanoVia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="PeticionPlanoVia">
+    <complexContent>
+     <extension base="impl:PeticionPlano">
+      <sequence>
+       <element name="via" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="verPlanoPorIdViaResponse">
+    <complexType>
+     <sequence>
+      <element name="verPlanoPorIdViaReturn" type="impl:URLsPlano"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="verPlanoPorIdNumeroPolicia">
+    <complexType>
+     <sequence>
+      <element name="datosLocalizacion" type="impl:PeticionPlanoPortal"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="PeticionPlanoPortal">
+    <complexContent>
+     <extension base="impl:PeticionPlano">
+      <sequence>
+       <element name="portal" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="verPlanoPorIdNumeroPoliciaResponse">
+    <complexType>
+     <sequence>
+      <element name="verPlanoPorIdNumeroPoliciaReturn" type="impl:URLsPlano"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="verPlanosPublicados">
+    <complexType>
+     <sequence>
+      <element name="codigoINEMunicipio" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="verPlanosPublicadosResponse">
+    <complexType>
+     <sequence>
+      <element name="verPlanosPublicadosReturn" type="impl:Mapas"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Mapa">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="mapdefault" nillable="true" type="xsd:short"/>
+       <element name="mapid" nillable="true" type="xsd:int"/>
+       <element name="mapidgeopista" nillable="true" type="xsd:int"/>
+       <element name="mapidentidad" nillable="true" type="xsd:int"/>
+       <element name="mappublic" nillable="true" type="xsd:short"/>
+       <element name="maxx" nillable="true" type="xsd:double"/>
+       <element name="maxy" nillable="true" type="xsd:double"/>
+       <element name="minx" nillable="true" type="xsd:double"/>
+       <element name="miny" nillable="true" type="xsd:double"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="srid" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfMapa">
+    <sequence>
+     <element name="item" type="impl:Mapa" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="Mapas">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="mapas" nillable="true" type="impl:ArrayOfMapa"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="validarVia">
+    <complexType>
+     <sequence>
+      <element name="nombreVia" type="xsd:string"/>
+      <element name="codigoINEMunicipio" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarViaResponse">
+    <complexType>
+     <sequence>
+      <element name="validarViaReturn" type="impl:Vias"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Coordenada">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="coordX" type="xsd:double"/>
+       <element name="coordY" type="xsd:double"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCoordenada">
+    <sequence>
+     <element name="item" type="impl:Coordenada" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="Coordenadas">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="coordenadas" nillable="true" type="impl:ArrayOfCoordenada"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCoordenadas">
+    <sequence>
+     <element name="item" type="impl:Coordenadas" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="ConjuntoCoordenadas">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="conjuntoCoordenadas" nillable="true" type="impl:ArrayOfCoordenadas"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Portal">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="claseNombre" nillable="true" type="xsd:string"/>
+       <element name="codigoINEMunicipio" type="xsd:int"/>
+       <element name="coords" nillable="true" type="impl:Coordenada"/>
+       <element name="estatus" nillable="true" type="xsd:string"/>
+       <element name="fuente" nillable="true" type="xsd:string"/>
+       <element name="idPortal" type="xsd:int"/>
+       <element name="idVia" type="xsd:int"/>
+       <element name="idioma" nillable="true" type="xsd:string"/>
+       <element name="numPortal" nillable="true" type="xsd:string"/>
+       <element name="provincia" type="xsd:int"/>
+       <element name="tipoPortal" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPortal">
+    <sequence>
+     <element name="item" type="impl:Portal" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="Portales">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="portales" nillable="true" type="impl:ArrayOfPortal"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Via">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="claseNombre" nillable="true" type="xsd:string"/>
+       <element name="codigoINEMunicipio" type="xsd:int"/>
+       <element name="coordenadas" nillable="true" type="impl:ConjuntoCoordenadas"/>
+       <element name="estatus" nillable="true" type="xsd:string"/>
+       <element name="fuente" nillable="true" type="xsd:string"/>
+       <element name="idVia" type="xsd:int"/>
+       <element name="idioma" nillable="true" type="xsd:string"/>
+       <element name="nombreVia" nillable="true" type="xsd:string"/>
+       <element name="portales" nillable="true" type="impl:Portales"/>
+       <element name="provincia" type="xsd:int"/>
+       <element name="tipoVia" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfVia">
+    <sequence>
+     <element name="item" type="impl:Via" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="Vias">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="vias" nillable="true" type="impl:ArrayOfVia"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="validarPortal">
+    <complexType>
+     <sequence>
+      <element name="idVia" type="xsd:int"/>
+      <element name="numeroPortal" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarPortalResponse">
+    <complexType>
+     <sequence>
+      <element name="validarPortalReturn" type="impl:Portales"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPortal">
+    <complexType>
+     <sequence>
+      <element name="idPortal" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPortalResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerPortalReturn" type="impl:Portal"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarDireccionPostal">
+    <complexType>
+     <sequence>
+      <element name="tipoVia" type="xsd:string"/>
+      <element name="nombreVia" type="xsd:string"/>
+      <element name="numeroPortal" type="xsd:string"/>
+      <element name="codigoINEMunicipio" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarDireccionPostalResponse">
+    <complexType>
+     <sequence>
+      <element name="validarDireccionPostalReturn" type="impl:RetornoLogico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoLogico">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="valor" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="validarDireccionPostalCompleta">
+    <complexType>
+     <sequence>
+      <element name="tipoVia" type="xsd:string"/>
+      <element name="nombreVia" type="xsd:string"/>
+      <element name="numeroPortal" type="xsd:string"/>
+      <element name="codigoINEMunicipio" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarDireccionPostalCompletaResponse">
+    <complexType>
+     <sequence>
+      <element name="validarDireccionPostalCompletaReturn" type="impl:Via"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerProvincias">
+    <complexType/>
+   </element>
+   <element name="obtenerProvinciasResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerProvinciasReturn" type="impl:Provincias"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Provincia">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="codigoINE" type="xsd:int"/>
+       <element name="comunidadAutonoma" nillable="true" type="xsd:string"/>
+       <element name="nombreCoOficial" nillable="true" type="xsd:string"/>
+       <element name="nombreOficial" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfProvincia">
+    <sequence>
+     <element name="item" type="impl:Provincia" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="Provincias">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="provincias" nillable="true" type="impl:ArrayOfProvincia"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerMunicipios">
+    <complexType>
+     <sequence>
+      <element name="idProvincia" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerMunicipiosResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerMunicipiosReturn" type="impl:Municipios"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Municipio">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="codigoINE" type="xsd:int"/>
+       <element name="nombreCoOficial" nillable="true" type="xsd:string"/>
+       <element name="nombreOficial" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfMunicipio">
+    <sequence>
+     <element name="item" type="impl:Municipio" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="Municipios">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="municipios" nillable="true" type="impl:ArrayOfMunicipio"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerTiposDeVia">
+    <complexType/>
+   </element>
+   <element name="obtenerTiposDeViaResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerTiposDeViaReturn" type="impl:TiposVia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="TipoVia">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="descripcion" nillable="true" type="xsd:string"/>
+       <element name="patron" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfTipoVia">
+    <sequence>
+     <element name="item" type="impl:TipoVia" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="TiposVia">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="tiposVia" nillable="true" type="impl:ArrayOfTipoVia"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <import namespace="http://server.ws.geolocalizacion.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="validarDireccionPostalRequest">
+
+      <wsdl:part name="parameters" element="impl:validarDireccionPostal"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanosPublicadosRequest">
+
+      <wsdl:part name="parameters" element="impl:verPlanosPublicados"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanoPorReferenciaCatastralRequest">
+
+      <wsdl:part name="parameters" element="impl:verPlanoPorReferenciaCatastral"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPortalResponse">
+
+      <wsdl:part name="parameters" element="impl:obtenerPortalResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanoPorIdViaResponse">
+
+      <wsdl:part name="parameters" element="impl:verPlanoPorIdViaResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerProvinciasResponse">
+
+      <wsdl:part name="parameters" element="impl:obtenerProvinciasResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanoPorCoordenadasRequest">
+
+      <wsdl:part name="parameters" element="impl:verPlanoPorCoordenadas"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarDireccionPostalCompletaRequest">
+
+      <wsdl:part name="parameters" element="impl:validarDireccionPostalCompleta"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerMunicipiosResponse">
+
+      <wsdl:part name="parameters" element="impl:obtenerMunicipiosResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanoPorReferenciaCatastralResponse">
+
+      <wsdl:part name="parameters" element="impl:verPlanoPorReferenciaCatastralResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerProvinciasRequest">
+
+      <wsdl:part name="parameters" element="impl:obtenerProvincias"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanoPorCoordenadasResponse">
+
+      <wsdl:part name="parameters" element="impl:verPlanoPorCoordenadasResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarDireccionPostalCompletaResponse">
+
+      <wsdl:part name="parameters" element="impl:validarDireccionPostalCompletaResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanoPorIdViaRequest">
+
+      <wsdl:part name="parameters" element="impl:verPlanoPorIdVia"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarViaResponse">
+
+      <wsdl:part name="parameters" element="impl:validarViaResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerTiposDeViaRequest">
+
+      <wsdl:part name="parameters" element="impl:obtenerTiposDeVia"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarPortalResponse">
+
+      <wsdl:part name="parameters" element="impl:validarPortalResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarPortalRequest">
+
+      <wsdl:part name="parameters" element="impl:validarPortal"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanosPublicadosResponse">
+
+      <wsdl:part name="parameters" element="impl:verPlanosPublicadosResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerMunicipiosRequest">
+
+      <wsdl:part name="parameters" element="impl:obtenerMunicipios"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanoPorIdNumeroPoliciaResponse">
+
+      <wsdl:part name="parameters" element="impl:verPlanoPorIdNumeroPoliciaResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarViaRequest">
+
+      <wsdl:part name="parameters" element="impl:validarVia"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerTiposDeViaResponse">
+
+      <wsdl:part name="parameters" element="impl:obtenerTiposDeViaResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarDireccionPostalResponse">
+
+      <wsdl:part name="parameters" element="impl:validarDireccionPostalResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPortalRequest">
+
+      <wsdl:part name="parameters" element="impl:obtenerPortal"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPlanoPorIdNumeroPoliciaRequest">
+
+      <wsdl:part name="parameters" element="impl:verPlanoPorIdNumeroPolicia"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="GeoLocalizacionWebService">
+
+      <wsdl:operation name="verPlanoPorCoordenadas">
+
+         <wsdl:input name="verPlanoPorCoordenadasRequest" message="impl:verPlanoPorCoordenadasRequest"/>
+
+         <wsdl:output name="verPlanoPorCoordenadasResponse" message="impl:verPlanoPorCoordenadasResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPlanoPorReferenciaCatastral">
+
+         <wsdl:input name="verPlanoPorReferenciaCatastralRequest" message="impl:verPlanoPorReferenciaCatastralRequest"/>
+
+         <wsdl:output name="verPlanoPorReferenciaCatastralResponse" message="impl:verPlanoPorReferenciaCatastralResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPlanoPorIdVia">
+
+         <wsdl:input name="verPlanoPorIdViaRequest" message="impl:verPlanoPorIdViaRequest"/>
+
+         <wsdl:output name="verPlanoPorIdViaResponse" message="impl:verPlanoPorIdViaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPlanoPorIdNumeroPolicia">
+
+         <wsdl:input name="verPlanoPorIdNumeroPoliciaRequest" message="impl:verPlanoPorIdNumeroPoliciaRequest"/>
+
+         <wsdl:output name="verPlanoPorIdNumeroPoliciaResponse" message="impl:verPlanoPorIdNumeroPoliciaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPlanosPublicados">
+
+         <wsdl:input name="verPlanosPublicadosRequest" message="impl:verPlanosPublicadosRequest"/>
+
+         <wsdl:output name="verPlanosPublicadosResponse" message="impl:verPlanosPublicadosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarVia">
+
+         <wsdl:input name="validarViaRequest" message="impl:validarViaRequest"/>
+
+         <wsdl:output name="validarViaResponse" message="impl:validarViaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarPortal">
+
+         <wsdl:input name="validarPortalRequest" message="impl:validarPortalRequest"/>
+
+         <wsdl:output name="validarPortalResponse" message="impl:validarPortalResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPortal">
+
+         <wsdl:input name="obtenerPortalRequest" message="impl:obtenerPortalRequest"/>
+
+         <wsdl:output name="obtenerPortalResponse" message="impl:obtenerPortalResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarDireccionPostal">
+
+         <wsdl:input name="validarDireccionPostalRequest" message="impl:validarDireccionPostalRequest"/>
+
+         <wsdl:output name="validarDireccionPostalResponse" message="impl:validarDireccionPostalResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarDireccionPostalCompleta">
+
+         <wsdl:input name="validarDireccionPostalCompletaRequest" message="impl:validarDireccionPostalCompletaRequest"/>
+
+         <wsdl:output name="validarDireccionPostalCompletaResponse" message="impl:validarDireccionPostalCompletaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerProvincias">
+
+         <wsdl:input name="obtenerProvinciasRequest" message="impl:obtenerProvinciasRequest"/>
+
+         <wsdl:output name="obtenerProvinciasResponse" message="impl:obtenerProvinciasResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerMunicipios">
+
+         <wsdl:input name="obtenerMunicipiosRequest" message="impl:obtenerMunicipiosRequest"/>
+
+         <wsdl:output name="obtenerMunicipiosResponse" message="impl:obtenerMunicipiosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerTiposDeVia">
+
+         <wsdl:input name="obtenerTiposDeViaRequest" message="impl:obtenerTiposDeViaRequest"/>
+
+         <wsdl:output name="obtenerTiposDeViaResponse" message="impl:obtenerTiposDeViaResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="GeoLocalizacionWebServiceSoapBinding" type="impl:GeoLocalizacionWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="verPlanoPorCoordenadas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="verPlanoPorCoordenadasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="verPlanoPorCoordenadasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPlanoPorReferenciaCatastral">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="verPlanoPorReferenciaCatastralRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="verPlanoPorReferenciaCatastralResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPlanoPorIdVia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="verPlanoPorIdViaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="verPlanoPorIdViaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPlanoPorIdNumeroPolicia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="verPlanoPorIdNumeroPoliciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="verPlanoPorIdNumeroPoliciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPlanosPublicados">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="verPlanosPublicadosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="verPlanosPublicadosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarVia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarViaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarViaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarPortal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarPortalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarPortalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPortal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerPortalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerPortalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarDireccionPostal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarDireccionPostalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarDireccionPostalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarDireccionPostalCompleta">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarDireccionPostalCompletaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarDireccionPostalCompletaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerProvincias">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerProvinciasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerProvinciasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerMunicipios">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerMunicipiosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerMunicipiosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerTiposDeVia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerTiposDeViaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerTiposDeViaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="GeoLocalizacionWebServiceService">
+
+      <wsdl:port name="GeoLocalizacionWebService" binding="impl:GeoLocalizacionWebServiceSoapBinding">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_GeoLocalizacionWS/services/GeoLocalizacionWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

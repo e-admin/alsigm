@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_PCD'
+				 readOnly='false'
+				 titleKey='form.pubErrorMilestone.propertyLabel.procedure'
+				 fieldType='ID_PCD'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_FASE'
+				 readOnly='false'
+				 titleKey='form.pubErrorMilestone.propertyLabel.stage'
+				 fieldType='ID_FASE'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width10percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_TRAMITE'
+				 readOnly='false'
+				 titleKey='form.pubErrorMilestone.propertyLabel.task'
+				 fieldType='ID_TRAMITE'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TIPO_DOC'
+				 readOnly='false'
+				 titleKey='form.pubErrorMilestone.propertyLabel.typeDoc'
+				 fieldType='TIPO_DOC'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_OBJETO'
+				 readOnly='false'
+				 titleKey='form.pubErrorMilestone.propertyLabel.object'
+				 fieldType='LINK'
+				 fieldLink='ID_HITO'
+				 styleClass='displayLink'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='showPubErrorMilestone.do'
+				 id='id'
+				 columnClass='width15percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_HITO'
+				 readOnly='false'
+				 titleKey='form.pubErrorMilestone.propertyLabel.milestone'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width10percent'/>
+				 
+	<propertyfmt type="BeanPropertyDateFmt"
+				 property='FECHA'
+				 format='dd/MM/yyyy kk:mm:ss'
+				 readOnly='false'
+				 titleKey='form.pubErrorMilestone.propertyLabel.date'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'/>
+				
+</beanformatter>

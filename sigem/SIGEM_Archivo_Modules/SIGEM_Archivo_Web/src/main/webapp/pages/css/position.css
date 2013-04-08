@@ -1,0 +1,121 @@
+/*	SIGEM_archivo */
+body {
+	margin : 0px;
+	padding : 0px;
+}
+
+#contenedor{
+	left : 0px;
+	top : 0px;
+	width : 100%;
+	-moz-box-sizing: border-box;
+}
+
+#barra_navegacion{
+	height : 12px;
+	background : #EFEFEF;
+	position : relative;
+}
+
+#path {
+	padding-left : 10px;
+	float : left;
+}
+
+#fecha{
+	padding-right : 20px;
+	float : right;
+}
+
+#barra_estado{
+	height : 12px;
+	background : #EFEFEF;
+	position : relative;
+	font-size: 12px;
+	font-weight: bold;
+	color: #777777;
+}
+
+#cuerpo{
+	/*margin-left : 18%;*/
+	margin-left : 0;
+	margin-top : 1%;
+	margin-right : 1%;
+	margin-bottom: 0%;
+	/*position : relative;	*/
+	padding: 0px;
+	border: 1px solid #AAAAAA;
+}
+
+#captioncuerpo{
+	POSITION: relative;
+	margin: 0.3% 0% 0.3% 0%;
+	padding: 1px 1px 1px 1px;
+	font-weight: bold;
+	font-size: 13px;
+	background: #b6cbeb;
+	text-align: left;
+	border: 1px solid #D8D8D8;
+}
+
+#bodycuerpo{
+	POSITION: relative;
+	margin: 0% 0% 0.3% 0%;
+	padding: 1px 1px 1px 1px;
+	font-weight: normal;
+	font-size: 14px;
+	text-align: center;
+	border: 1px solid white;
+	background-color: #F2F2F2;
+}
+
+#piecuerpo{
+	POSITION: relative;
+	margin: 0% 0% 0.3% 0%;
+	padding: 1px 1px 1px 1px;
+	font-weight: normal;
+	font-size: 14px;
+	text-align: right;
+	border: 1px solid #D8D8D8;
+	background-color:#b6cbeb;
+}
+
+#pie_pagina{
+	text-align : center;
+	margin-left : 30%;
+	margin-top: 7%;
+	width : 50%;
+	position : relative;
+}
+
+#errores {
+	POSITION: relative;
+	margin: 0% 0% 0% 0%;
+	padding: 0px 0px 0px 0px;
+	font-weight: bold;
+	font-size: 12px;
+	background : #b6cbeb;
+	text-align: center;
+	color: red;
+}
+
+hr{
+	background-color : #003399;
+	border-bottom-style : none;
+	border-left-style : none;
+	border-right-style : none;
+	border-top-style : none;
+	clear : both;
+	color : #003399;
+	height : 1px;
+	margin : 0px 0px;
+	padding : 0px;
+}
+
+
+#mihr{
+	POSITION: relative;
+	margin: 0% 0% 0% 0%;
+	padding: 0px 0px 0px 0px;
+	border-top: 1px dotted #003399;
+}

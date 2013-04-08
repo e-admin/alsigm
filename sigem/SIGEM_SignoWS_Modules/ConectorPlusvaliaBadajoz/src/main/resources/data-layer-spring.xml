@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    	<property name="locations">
+    			<value>classpath:database.properties</value>  	
+    	</property>
+    </bean>
+	
+	<!--========== Spring Data Source ==========-->
+	<!--
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName"><value>${database.driver}</value></property>
+	    <property name="url"><value>${database.url}</value></property>
+	    <property name="username"><value>${database.username}</value></property>
+	    <property name="password"><value>${database.password}</value></property>
+	    <property name="maxActive"><value>30</value></property>
+	    <property name="maxIdle"><value>10</value></property>
+	    <property name="maxWait"><value>10000</value></property>
+	    <property name="removeAbandoned"><value>true</value></property>
+	    <property name="validationQuery"><value>select 1 from dual</value></property>
+	    <property name="testOnBorrow"><value>true</value></property>
+	</bean>
+	-->
+	
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="java:comp/env/jdbc/plusval"/>
+	</bean>
+	
+	<!--========== Hibernate SessionFactory ==========-->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource"><ref bean="dataSource" /></property>
+	    <!--  <property name="mappingDirectoryLocations"><value>classpath*:es/ieci/plusvalias/hbm/</value></property> -->
+	    <property name="mappingResources">
+	    	<list>
+	    		<value>es/ieci/plusvalias/hbm/ActjuridancertDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/BoniexenDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/CalleDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/CataDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/DeduccionDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/DerechoDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/IntedemoraDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/NotarioDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/PlusvalConfigDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/PlusvaliaDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/PlusvaliaTempDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/PorcentajeDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/RecargoDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/ReduccionDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/SituacionDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/TipoimpositivoDTO.hbm.xml</value>
+	    		<value>es/ieci/plusvalias/hbm/TipointeresDTO.hbm.xml</value>
+	    	</list>
+	    </property>
+	   
+	    <property name="hibernateProperties">
+	    	<props>
+	           	<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+	           	<prop key="hibernate.default_schema">postgres</prop>
+	            <prop key="hibernate.show_sql">true</prop>
+	            <prop key="hibernate.format_sql">true</prop>
+	            <prop key="hibernate.use_sql_comments">true</prop>	
+	            <!-- <prop key="hibernate.hbm2ddl.auto">create</prop>  -->	                             
+	        </props>
+	    </property>
+	</bean>
+
+	<!--========== TransactionManager ==========-->
+	<!--  
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	    <property name="sessionFactory"><ref local="sessionFactory" /></property>
+	</bean>
+	-->
+
+	<!--========== Hibernate Template ==========-->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory"><ref bean="sessionFactory" /></property>
+	</bean>
+	
+	<!--========== Hibernate DAO  ==============-->
+	<bean id="calledao" class="es.ieci.plusvalias.dao.CalleDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="derechodao" class="es.ieci.plusvalias.dao.DerechoDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="intedemoradao" class="es.ieci.plusvalias.dao.IntedemoraDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="catadao" class="es.ieci.plusvalias.dao.CataDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="plusvaliadao" class="es.ieci.plusvalias.dao.PlusvaliaDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="plusvaliatempdao" class="es.ieci.plusvalias.dao.PlusvaliaTempDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="plusvaliaconfigdao" class="es.ieci.plusvalias.dao.PlusvalConfigDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="notariodao" class="es.ieci.plusvalias.dao.NotarioDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="boniexendao" class="es.ieci.plusvalias.dao.BoniexenDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="situaciondao" class="es.ieci.plusvalias.dao.SituacionDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="tipointeresdao" class="es.ieci.plusvalias.dao.TipointeresDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="recargodao" class="es.ieci.plusvalias.dao.RecargoDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="porcentajedao" class="es.ieci.plusvalias.dao.PorcentajeDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="reducciondao" class="es.ieci.plusvalias.dao.ReduccionDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="tipoimpositivodao" class="es.ieci.plusvalias.dao.TipoimpositivoDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean> 
+	<bean id="inmuebledao" class="es.ieci.plusvalias.dao.InmuebleDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean> 
+	<bean id="deducciondao" class="es.ieci.plusvalias.dao.DeduccionDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="actjuridancertdao" class="es.ieci.plusvalias.dao.ActjuridancertDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+ 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean> 
+</beans>

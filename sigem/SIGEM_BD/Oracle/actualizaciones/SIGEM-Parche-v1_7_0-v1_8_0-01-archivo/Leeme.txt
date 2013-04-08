@@ -1,0 +1,7 @@
+- Lanzar el script SIGEM-Parche-v1_7_0-v1_8_0-01-archivo.sql
+- Ejecutar actualiza_clobs.cmd con los siguientes parámetros
+	* Usuario
+	* Password
+	* Nombre del origen de datos ODBC que apunta a la base de datos de archivo
+	
+	Ejemplo actualiza_clobs.cmd ARCHIVO_000 ARCHIVO_000 SERVIDOR_ODBC

@@ -1,0 +1,1 @@
+SELECT "Tarjetas".* FROM DATACM_4_0."Tarjetas" "Tarjetas"  WHERE "Tarjetas".CL_CLI  IN (SELECT "Clientes".* FROM DATACM_4_0."Clientes" "Clientes" ) 

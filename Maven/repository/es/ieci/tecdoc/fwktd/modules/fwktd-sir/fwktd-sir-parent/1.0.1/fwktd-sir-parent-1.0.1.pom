@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd</groupId>
+		<artifactId>fwktd-parent</artifactId>
+		<version>0.7</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
+	<artifactId>fwktd-sir-parent</artifactId>
+	<version>1.0.1</version>
+	<packaging>pom</packaging>
+
+	<name>fwktd-sir-parent</name>
+
+	<properties>
+
+		<!-- Framework dependencies -->
+		<fwktd.version>0.7</fwktd.version>
+		<fwktd-dm.version>0.7</fwktd-dm.version>
+		<!-- fwktd-signature.version>0.7</fwktd-signature.version-->
+		<fwktd-time.version>0.5</fwktd-time.version>
+		<fwktd-dir3.version>1.0</fwktd-dir3.version>
+
+		<!-- Third party dependencies -->
+		<axis.version>1.4</axis.version>
+		<castor.xml.version>1.3.1</castor.xml.version>
+		<cxf.version>2.5.2</cxf.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<geronimo-ws-metadata_2.0_spec.version>1.1.3</geronimo-ws-metadata_2.0_spec.version>
+		<javax.mail.version>1.4.1</javax.mail.version>
+		<jaxen.version>1.1.1</jaxen.version>
+		<jaxws-api.version>2.1-1</jaxws-api.version>
+		<quartz.version>1.8.4</quartz.version>
+		<xbean.spring.version>3.6</xbean.spring.version>
+		<joda-time.version>2.1</joda-time.version>
+		<commons-codec.version>1.5</commons-codec.version>
+		
+
+		<!-- Database dependencies -->
+		<db2.version>3.50.152</db2.version>
+		<h2.version>1.2.144</h2.version>
+		<oracle.version>10.2.0.5</oracle.version>
+		<postgresql.version>9.0-801.jdbc3</postgresql.version>
+		<sqlserver.version>1.2.4</sqlserver.version>
+
+		<!-- Provided dependencies -->
+		<servlet-api.version>2.3</servlet-api.version>
+
+		<!-- Maven plugin dependencies -->
+		<axistools-maven-plugin.version>1.4</axistools-maven-plugin.version>
+		<castor.maven.plugin>2.0</castor.maven.plugin>
+		<docbkx-maven-plugin.version>2.0.11</docbkx-maven-plugin.version>
+		<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
+		<sql-maven-plugin.version>1.4</sql-maven-plugin.version>
+
+	</properties>
+
+</project>

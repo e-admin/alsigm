@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/"
+	xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+	<globalConfiguration>
+		<parameter name="sendMultiRefs" value="true" />
+		<parameter name="disablePrettyXML" value="true" />
+		<parameter name="adminPassword" value="admin" />
+		<parameter name="attachments.Directory" value="./attachments" />
+		<parameter name="dotNetSoapEncFix" value="true" />
+		<parameter name="enableNamespacePrefixOptimization" value="false" />
+		<parameter name="sendXMLDeclaration" value="true" />
+		<parameter name="sendXsiTypes" value="false" />
+		<parameter name="attachments.implementation"
+			value="org.apache.axis.attachments.AttachmentsImpl" />
+	</globalConfiguration>
+
+	<handler name="LocalResponder"
+		type="java:org.apache.axis.transport.local.LocalResponder" />
+	<handler name="URLMapper" type="java:es.ieci.tecdoc.fwktd.sir.ws.service.multiEntity.axis.URLMultiEntityMapper" />
+	<handler name="Authenticate"
+		type="java:org.apache.axis.handlers.SimpleAuthenticationHandler" />
+
+	<service name="WS_SIR8_A" provider="java:RPC" style="rpc" use="literal">
+		<parameter name="wsdlTargetNamespace" value="http://impl.manager.cct.map.es" />
+		<parameter name="wsdlServiceElement" value="WS_SIR8_AService" />
+		<parameter name="sendMultiRefs" value="false" />
+		<parameter name="schemaUnqualified"
+			value="http://impl.manager.cct.map.es,http://impl.manager.cct.map.es/cir" />
+		<parameter name="wsdlServicePort" value="WS_SIR8_A" />
+		<parameter name="className"
+			value="es.ieci.tecdoc.fwktd.sir.ws.service.impl.WSSIR8AServiceEndPoint" />
+		<parameter name="wsdlPortType" value="WS_SIR8_A" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<operation name="envioFicherosAAplicacion" qname="envioFicherosAAplicacion"
+			returnQName="registrarReturn" returnType="rtns:RespuestaWS"
+			xmlns:rtns="http://impl.manager.cct.map.es/cir" soapAction="">
+			<parameter qname="registro" type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter qname="firmaRegistro" type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter qname="documento" type="tns:octet-stream"
+				xmlns:tns="http://xml.apache.org/xml-soap" />
+		</operation>
+		<parameter name="allowedMethods" value="envioFicherosAAplicacion" />
+
+		<typeMapping xmlns:ns="http://impl.manager.cct.map.es"
+			qname="ns:DataHandler" type="java:javax.activation.DataHandler"
+			serializer="org.apache.axis.encoding.ser.JAFDataHandlerSerializerFactory"
+			deserializer="org.apache.axis.encoding.ser.JAFDataHandlerDeserializerFactory"
+			encodingStyle="" />
+		<typeMapping xmlns:ns="http://impl.manager.cct.map.es/cir"
+			qname="ns:RespuestaWS" type="java:es.ieci.tecdoc.fwktd.sir.ws.service.wssir8a.RespuestaWS"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" />
+		<arrayMapping xmlns:ns="http://impl.manager.cct.map.es"
+			qname="ns:ArrayOf_xsd_base64Binary" type="java:byte[][]" innerType="cmp-ns:base64Binary"
+			xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" encodingStyle="" />
+	</service>
+
+	<service name="WS_SIR8_B" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="http://impl.manager.cct.map.es" />
+		<parameter name="wsdlServiceElement" value="WS_SIR8_BService" />
+		<parameter name="schemaUnqualified" value="http://cir.impl.manager.cct.map.es" />
+		<parameter name="wsdlServicePort" value="WS_SIR8_B" />
+		<parameter name="className"
+			value="es.ieci.tecdoc.fwktd.sir.ws.service.impl.WSSIR8BServiceEndPoint" />
+		<parameter name="wsdlPortType" value="WS_SIR8_B" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<operation name="envioFicherosAAplicacion" qname="operNS:envioFicherosAAplicacion"
+			xmlns:operNS="http://impl.manager.cct.map.es" returnQName="envioFicherosAAplicacionReturn"
+			returnType="rtns:RespuestaWS" xmlns:rtns="http://cir.impl.manager.cct.map.es"
+			soapAction="">
+			<parameter qname="registro" type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter qname="firmaRegistro" type="tns:string"
+				xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<parameter name="allowedMethods" value="envioFicherosAAplicacion" />
+
+		<typeMapping xmlns:ns="http://cir.impl.manager.cct.map.es"
+			qname="ns:RespuestaWS" type="java:es.ieci.tecdoc.fwktd.sir.ws.service.wssir8b.RespuestaWS"
+			serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+	</service>
+
+	<service name="WS_SIR9" provider="java:RPC" style="wrapped"
+		use="literal">
+		<parameter name="wsdlTargetNamespace" value="http://impl.manager.cct.map.es" />
+		<parameter name="wsdlServiceElement" value="WS_SIR9Service" />
+		<parameter name="schemaQualified"
+			value="http://bean.cct.map.es,http://impl.manager.cct.map.es" />
+		<parameter name="wsdlServicePort" value="WS_SIR9" />
+		<parameter name="className"
+			value="es.ieci.tecdoc.fwktd.sir.ws.service.impl.WSSIR9ServiceEndPoint" />
+		<parameter name="wsdlPortType" value="WS_SIR9" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<operation name="envioMensajeDatosControlAAplicacion" qname="operNS:envioMensajeDatosControlAAplicacion"
+			xmlns:operNS="http://impl.manager.cct.map.es" returnQName="retNS:envioMensajeDatosControlAAplicacionReturn"
+			xmlns:retNS="http://impl.manager.cct.map.es" returnType="rtns:RespuestaWS"
+			xmlns:rtns="http://bean.cct.map.es" soapAction="">
+			<parameter qname="pns:mensaje" xmlns:pns="http://impl.manager.cct.map.es"
+				type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+			<parameter qname="pns:firma" xmlns:pns="http://impl.manager.cct.map.es"
+				type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema" />
+		</operation>
+		<parameter name="allowedMethods" value="envioMensajeDatosControlAAplicacion" />
+
+		<typeMapping xmlns:ns="http://bean.cct.map.es" qname="ns:RespuestaWS"
+			type="java:es.ieci.tecdoc.fwktd.sir.ws.service.wssir9.RespuestaWS" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+			deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+			encodingStyle="" />
+	</service>
+
+	<!-- 
+	<service name="AdminService" provider="java:MSG">
+		<parameter name="allowedMethods" value="AdminService" />
+		<parameter name="enableRemoteAdmin" value="false" />
+		<parameter name="className" value="org.apache.axis.utils.Admin" />
+		<namespace>http://xml.apache.org/axis/wsdd/</namespace>
+	</service>
+
+	<service name="Version" provider="java:RPC">
+		<parameter name="allowedMethods" value="getVersion" />
+		<parameter name="className" value="org.apache.axis.Version" />
+	</service>
+	-->
+
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+			<handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+		<parameter name="qs:list"
+			value="org.apache.axis.transport.http.QSListHandler" />
+		<parameter name="qs:wsdl"
+			value="org.apache.axis.transport.http.QSWSDLHandler" />
+		<parameter name="qs.list"
+			value="org.apache.axis.transport.http.QSListHandler" />
+		<parameter name="qs.method"
+			value="org.apache.axis.transport.http.QSMethodHandler" />
+		<parameter name="qs:method"
+			value="org.apache.axis.transport.http.QSMethodHandler" />
+		<parameter name="qs.wsdl"
+			value="org.apache.axis.transport.http.QSWSDLHandler" />
+	</transport>
+	<transport name="local">
+		<responseFlow>
+			<handler type="LocalResponder" />
+		</responseFlow>
+	</transport>
+</deployment>

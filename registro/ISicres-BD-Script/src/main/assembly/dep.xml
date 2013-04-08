@@ -1,0 +1,408 @@
+<assembly>
+	<id>bd</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+
+		<!-- postgres -->
+		<fileSet>
+			<directory>${basedir}/PostgreSQL</directory>
+			<outputDirectory>postgresql</outputDirectory>
+			<excludes>
+				<exclude>**/loadDataTest.sql</exclude>
+				<exclude>**/00_drop_tables_constraints_views_sequences_isicres.sql</exclude>
+				
+			</excludes>
+		</fileSet>
+
+		<!-- sqlserver -->
+		<fileSet>
+			<directory>${basedir}/SQLServer</directory>
+			<outputDirectory>sqlserver</outputDirectory>
+			<excludes>
+				<exclude>**/loadDataTest.sql</exclude>
+				<exclude>**/00_drop_tables_constraints_views_sequences_isicres.sql</exclude>
+				
+			</excludes>
+		</fileSet>
+		
+
+		<!-- db2 -->
+		<fileSet>
+			<directory>${basedir}/DB2</directory>
+			<outputDirectory>db2</outputDirectory>
+			<excludes>
+				<exclude>**/loadDataTest.sql</exclude>
+				<exclude>**/00_drop_tables_constraints_views_sequences_isicres.sql</exclude>
+			</excludes>
+		</fileSet>
+		
+		
+		<!-- oracle -->
+		<fileSet>
+			<directory>${basedir}/Oracle</directory>
+			<outputDirectory>oracle</outputDirectory>
+			<excludes>
+				<exclude>**/loadDataTest.sql</exclude>
+				<exclude>**/00_drop_tables_constraints_views_sequences_isicres.sql</exclude>
+			</excludes>
+		</fileSet>
+		
+
+		<!-- recursos -->
+		<fileSet>
+			<directory>${basedir}/src/main/sql/insert-example-sources</directory>
+			<outputDirectory>insert-example-sources</outputDirectory>
+		</fileSet>
+
+		<fileSet>
+			<directory>${project.build.directory}/insert-example-sources</directory>
+			<outputDirectory>insert-example-sources</outputDirectory>
+		</fileSet>
+	</fileSets>
+	
+	<!-- modulos comunes -->
+	
+		
+	<files>
+		<!--  dir3  -->
+		
+			<!-- postgres -->
+					<!-- nueva instalación --> 
+		        	<file>
+		        		<source>${dir3.unpackdirectory}/postgresql/fwktd-dir3-create.sql</source>
+		        		<outputDirectory>postgresql/NuevaInstalacion</outputDirectory>
+		        		<destName>07.00-fwktd-dir3-create.sql</destName>           
+		    		</file>
+		    		<file>
+		        		<source>${dir3.unpackdirectory}/postgresql/fwktd-dir3-insert.sql</source>
+		        		<outputDirectory>postgresql/NuevaInstalacion</outputDirectory>
+		        		<destName>07.01-fwktd-dir3-insert.sql</destName>           
+		    		</file>
+		    		
+		    		<!-- actualización -->
+		    		<file>
+		        		<source>${dir3.unpackdirectory}/postgresql/fwktd-dir3-create.sql</source>
+		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-00.sql</destName>           
+		    		</file>
+		    		<file>
+		        		<source>${dir3.unpackdirectory}/postgresql/fwktd-dir3-insert.sql</source>
+		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-01.sql</destName>           
+    				</file>
+    		
+    	
+	    	<!-- sqlserver -->
+						<!-- nueva instalación --> 
+			        	<file>
+			        		<source>${dir3.unpackdirectory}/sqlserver/fwktd-dir3-create.sql</source>
+			        		<outputDirectory>sqlserver/NuevaInstalacion</outputDirectory>
+			        		<destName>07.00-fwktd-dir3-create.sql</destName>           
+			    		</file>
+			    		<file>
+			        		<source>${dir3.unpackdirectory}/sqlserver/fwktd-dir3-insert.sql</source>
+			        		<outputDirectory>sqlserver/NuevaInstalacion</outputDirectory>
+			        		<destName>07.01-fwktd-dir3-insert.sql</destName>           
+			    		</file>
+			    		
+			    		<!-- actualización -->
+			    		<file>
+			        		<source>${dir3.unpackdirectory}/sqlserver/fwktd-dir3-create.sql</source>
+			        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
+			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-00.sql</destName>           
+			    		</file>
+			    		<file>
+			        		<source>${dir3.unpackdirectory}/sqlserver/fwktd-dir3-insert.sql</source>
+			        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
+			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-01.sql</destName>           
+	    				</file>
+	    				
+	    	<!-- db2 -->
+						<!-- nueva instalación --> 
+			        	<file>
+			        		<source>${dir3.unpackdirectory}/db2/fwktd-dir3-create.sql</source>
+			        		<outputDirectory>db2/NuevaInstalacion</outputDirectory>
+			        		<destName>07.00-fwktd-dir3-create.sql</destName>           
+			    		</file>
+			    		<file>
+			        		<source>${dir3.unpackdirectory}/db2/fwktd-dir3-insert.sql</source>
+			        		<outputDirectory>db2/NuevaInstalacion</outputDirectory>
+			        		<destName>07.01-fwktd-dir3-insert.sql</destName>           
+			    		</file>
+			    		
+			    		<!-- actualización -->
+			    		<file>
+			        		<source>${dir3.unpackdirectory}/db2/fwktd-dir3-create.sql</source>
+			        		<outputDirectory>db2/actualizaciones</outputDirectory>
+			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-00.sql</destName>           
+			    		</file>
+			    		<file>
+			        		<source>${dir3.unpackdirectory}/db2/fwktd-dir3-insert.sql</source>
+			        		<outputDirectory>db2/actualizaciones</outputDirectory>
+			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-01.sql</destName>           
+	    				</file>
+	    				
+	    <!-- oracle -->
+						<!-- nueva instalación --> 
+			        	<file>
+			        		<source>${dir3.unpackdirectory}/oracle/fwktd-dir3-create.sql</source>
+			        		<outputDirectory>oracle/NuevaInstalacion</outputDirectory>
+			        		<destName>07.00-fwktd-dir3-create.sql</destName>           
+			    		</file>
+			    		<file>
+			        		<source>${dir3.unpackdirectory}/oracle/fwktd-dir3-insert.sql</source>
+			        		<outputDirectory>oracle/NuevaInstalacion</outputDirectory>
+			        		<destName>07.01-fwktd-dir3-insert.sql</destName>           
+			    		</file>
+			    		
+			    		<!-- actualización -->
+			    		<file>
+			        		<source>${dir3.unpackdirectory}/oracle/fwktd-dir3-create.sql</source>
+			        		<outputDirectory>oracle/actualizaciones</outputDirectory>
+			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-00.sql</destName>           
+			    		</file>
+			    		<file>
+			        		<source>${dir3.unpackdirectory}/oracle/fwktd-dir3-insert.sql</source>
+			        		<outputDirectory>oracle/actualizaciones</outputDirectory>
+			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-01.sql</destName>           
+	    				</file>
+	    				
+	   
+	   <!--  audit  -->
+		
+			<!-- postgres -->
+					<!-- nueva instalación --> 
+		        	<file>
+		        		<source>${audit.unpackdirectory}/postgresql/fwktd-audit-create.sql</source>
+		        		<outputDirectory>postgresql/NuevaInstalacion</outputDirectory>
+		        		<destName>06.00-fwktd-audit-create.sql</destName>           
+		    		</file>
+		    		
+		    		<!-- actualización -->
+		    		<file>
+		        		<source>${audit.unpackdirectory}/postgresql/fwktd-audit-create.sql</source>
+		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-audit-v7_2_7-v8_0_0-00.sql</destName>           
+		    		</file>
+		    		
+		    <!-- sqlserver -->
+					<!-- nueva instalación --> 
+		        	<file>
+		        		<source>${audit.unpackdirectory}/sqlserver/fwktd-audit-create.sql</source>
+		        		<outputDirectory>sqlserver/NuevaInstalacion</outputDirectory>
+		        		<destName>06.00-fwktd-audit-create.sql</destName>           
+		    		</file>
+		    		
+		    		<!-- actualización -->
+		    		<file>
+		        		<source>${audit.unpackdirectory}/sqlserver/fwktd-audit-create.sql</source>
+		        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-audit-v7_2_7-v8_0_0-00.sql</destName>           
+		    		</file>
+		    		
+		    <!-- db2 -->
+					<!-- nueva instalación --> 
+		        	<file>
+		        		<source>${audit.unpackdirectory}/db2/fwktd-audit-create.sql</source>
+		        		<outputDirectory>db2/NuevaInstalacion</outputDirectory>
+		        		<destName>06.00-fwktd-audit-create.sql</destName>           
+		    		</file>
+		    		
+		    		<!-- actualización -->
+		    		<file>
+		        		<source>${audit.unpackdirectory}/db2/fwktd-audit-create.sql</source>
+		        		<outputDirectory>db2/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-audit-v7_2_7-v8_0_0-00.sql</destName>           
+		    		</file>
+		    		
+		    <!-- oracle -->
+					<!-- nueva instalación --> 
+		        	<file>
+		        		<source>${audit.unpackdirectory}/oracle/fwktd-audit-create.sql</source>
+		        		<outputDirectory>oracle/NuevaInstalacion</outputDirectory>
+		        		<destName>06.00-fwktd-audit-create.sql</destName>           
+		    		</file>
+		    		
+		    		<!-- actualización -->
+		    		<file>
+		        		<source>${audit.unpackdirectory}/oracle/fwktd-audit-create.sql</source>
+		        		<outputDirectory>oracle/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-audit-v7_2_7-v8_0_0-00.sql</destName>           
+		    		</file>
+		    		
+		    		
+		    		
+	<!--  sir  -->
+		
+			<!-- postgres -->
+					<!-- nueva instalación --> 
+		        	<file>
+		        		<source>${sir.unpackdirectory}/postgresql/fwktd-sir-create.sql</source>
+		        		<outputDirectory>postgresql/NuevaInstalacion</outputDirectory>
+		        		<destName>07.00-fwktd-sir-create.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/postgresql/fwktd-sir-insert.sql</source>
+		        		<outputDirectory>postgresql/NuevaInstalacion</outputDirectory>
+		        		<destName>07.01-fwktd-sir-insert.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/postgresql/fwktd-dm-bd-create.sql</source>
+		        		<outputDirectory>postgresql/NuevaInstalacion</outputDirectory>
+		        		<destName>07.02-fwktd-dm-bd-create.sql</destName>           
+		    		</file>
+		    		
+		    		
+		    		
+		    		<!-- actualización -->
+		    		<file>
+		        		<source>${sir.unpackdirectory}/postgresql/fwktd-sir-create.sql</source>
+		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-00.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/postgresql/fwktd-sir-insert.sql</source>
+		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-01.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/postgresql/fwktd-dm-bd-create.sql</source>
+		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-02.sql</destName>           
+		    		</file>
+		    		
+		   <!-- sqlserver -->
+					<!-- nueva instalación --> 
+		        	<file>
+		        		<source>${sir.unpackdirectory}/sqlserver/fwktd-sir-create.sql</source>
+		        		<outputDirectory>sqlserver/NuevaInstalacion</outputDirectory>
+		        		<destName>07.00-fwktd-sir-create.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/sqlserver/fwktd-sir-insert.sql</source>
+		        		<outputDirectory>sqlserver/NuevaInstalacion</outputDirectory>
+		        		<destName>07.01-fwktd-sir-insert.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/sqlserver/fwktd-dm-bd-create.sql</source>
+		        		<outputDirectory>sqlserver/NuevaInstalacion</outputDirectory>
+		        		<destName>07.02-fwktd-dm-bd-create.sql</destName>           
+		    		</file>
+		    		
+		    		
+		    		
+		    		<!-- actualización -->
+		    		<file>
+		        		<source>${sir.unpackdirectory}/sqlserver/fwktd-sir-create.sql</source>
+		        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-00.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/sqlserver/fwktd-sir-insert.sql</source>
+		        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-01.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/sqlserver/fwktd-dm-bd-create.sql</source>
+		        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-02.sql</destName>           
+		    		</file>
+		    		
+		    		
+		   <!-- db2 -->
+					<!-- nueva instalación --> 
+		        	<file>
+		        		<source>${sir.unpackdirectory}/db2/fwktd-sir-create.sql</source>
+		        		<outputDirectory>db2/NuevaInstalacion</outputDirectory>
+		        		<destName>07.00-fwktd-sir-create.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/db2/fwktd-sir-insert.sql</source>
+		        		<outputDirectory>db2/NuevaInstalacion</outputDirectory>
+		        		<destName>07.01-fwktd-sir-insert.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/db2/fwktd-dm-bd-create.sql</source>
+		        		<outputDirectory>db2/NuevaInstalacion</outputDirectory>
+		        		<destName>07.02-fwktd-dm-bd-create.sql</destName>           
+		    		</file>
+		    		
+		    		
+		    		
+		    		<!-- actualización -->
+		    		<file>
+		        		<source>${sir.unpackdirectory}/db2/fwktd-sir-create.sql</source>
+		        		<outputDirectory>db2/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-00.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/db2/fwktd-sir-insert.sql</source>
+		        		<outputDirectory>db2/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-01.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/db2/fwktd-dm-bd-create.sql</source>
+		        		<outputDirectory>db2/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-02.sql</destName>           
+		    		</file>
+		    		
+		   <!-- oracle -->
+					<!-- nueva instalación --> 
+		        	<file>
+		        		<source>${sir.unpackdirectory}/oracle/fwktd-sir-create.sql</source>
+		        		<outputDirectory>oracle/NuevaInstalacion</outputDirectory>
+		        		<destName>07.00-fwktd-sir-create.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/oracle/fwktd-sir-insert.sql</source>
+		        		<outputDirectory>oracle/NuevaInstalacion</outputDirectory>
+		        		<destName>07.01-fwktd-sir-insert.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/oracle/fwktd-dm-bd-create.sql</source>
+		        		<outputDirectory>oracle/NuevaInstalacion</outputDirectory>
+		        		<destName>07.02-fwktd-dm-bd-create.sql</destName>           
+		    		</file>
+		    		
+		    		
+		    		
+		    		<!-- actualización -->
+		    		<file>
+		        		<source>${sir.unpackdirectory}/oracle/fwktd-sir-create.sql</source>
+		        		<outputDirectory>oracle/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-00.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/oracle/fwktd-sir-insert.sql</source>
+		        		<outputDirectory>db2/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-01.sql</destName>           
+		    		</file>
+		    		
+		    		<file>
+		        		<source>${sir.unpackdirectory}/oracle/fwktd-dm-bd-create.sql</source>
+		        		<outputDirectory>oracle/actualizaciones</outputDirectory>
+		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-02.sql</destName>           
+		    		</file>
+    		
+    		
+    		
+	</files>
+</assembly>

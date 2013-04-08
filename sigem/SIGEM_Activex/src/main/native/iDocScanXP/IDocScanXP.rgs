@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{A458EADC-EA3E-4EF9-9FBC-53EFED5342D1} = s 'IDocScanXP'
+		'IDocScanXP.EXE'
+		{
+			val AppID = s {A458EADC-EA3E-4EF9-9FBC-53EFED5342D1}
+		}
+	}
+}

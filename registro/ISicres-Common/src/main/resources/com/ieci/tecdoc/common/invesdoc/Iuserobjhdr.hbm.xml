@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Iuserobjhdr" 
+    table="IUSEROBJHDR"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IUSEROBJHDR"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="prodid" 
+            column="PRODID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="PRODID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="type" 
+            column="TYPE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TYPE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="extid1" 
+            column="EXTID1" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="EXTID1"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="extid2" 
+            column="EXTID2" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="EXTID2"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="extid3" 
+            column="EXTID3" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="EXTID3"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="ownertype" 
+            column="OWNERTYPE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="OWNERTYPE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="ownerid" 
+            column="OWNERID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="OWNERID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="crtrid" 
+            column="CRTRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CRTRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="crtndate" 
+            column="CRTNDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CRTNDATE"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="updrid" 
+            column="UPDRID" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="UPDRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="upddate" 
+            column="UPDDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="UPDDATE"
+                length="7"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<digester-rules>
+   <pattern value="DIVISION_FRACCION_SERIE">
+
+      <call-method-rule pattern="FRACCION_SERIE_DIVIDIDA/ASUNTO" methodname="setAsunto" paramcount="0" /> 
+      <call-method-rule pattern="FRACCION_SERIE_DIVIDIDA/CODIGO_REFERENCIA" methodname="setCodReferencia" paramcount="0" /> 
+      <call-method-rule pattern="FRACCION_SERIE_DIVIDIDA/IDFSRE" methodname="setIdFSEnREntrega" paramcount="0" /> 
+      <call-method-rule pattern="FRACCION_SERIE_DIVIDIDA/IDUIDEPOSITO" methodname="setIdUIDeposito" paramcount="0" />
+      <call-method-rule pattern="FRACCION_SERIE_DIVIDIDA/FECHA_INICIAL/FECHA" methodname="setFechaExtIni" paramcount="0" />	                
+      <call-method-rule pattern="FRACCION_SERIE_DIVIDIDA/FECHA_FINAL/FECHA" methodname="setFechaExtFin" paramcount="0" />	                
+	  <call-method-rule pattern="FRACCION_SERIE_DIVIDIDA/PRODUCTOR" methodname="setProductor" paramcount="2" />	                
+      <call-param-rule pattern="FRACCION_SERIE_DIVIDIDA/PRODUCTOR/ID" paramnumber ="0" />	                
+      <call-param-rule pattern="FRACCION_SERIE_DIVIDIDA/PRODUCTOR/NOMBRE" paramnumber ="1" />
+	</pattern>  
+</digester-rules>

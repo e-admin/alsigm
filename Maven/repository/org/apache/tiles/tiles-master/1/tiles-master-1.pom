@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+   
+         http://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.apache</groupId>
+      <artifactId>apache</artifactId>
+      <version>3</version>
+   </parent>
+   <groupId>org.apache.tiles</groupId>
+   <artifactId>tiles-master</artifactId>
+   <version>1</version>
+   <packaging>pom</packaging>
+   <name>Apache Tiles (Master POM)</name>
+
+   <scm>
+     <connection>scm:svn:http://svn.apache.org/repos/asf/tiles/maven/tags/tiles-master-1</connection>
+     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/tiles/maven/tags/tiles-master-1</developerConnection>
+     <url>http://svn.apache.org/repos/asf/tiles/maven/tags/tiles-master-1</url>
+   </scm>
+   
+   <description>
+      The Apache Tiles project.  This master pom provides the default values for 
+      common maven configuration throughout the Tiles project.
+   </description>
+   <url>http://tiles.apache.org/</url>
+   <inceptionYear>2001</inceptionYear>
+
+    <organization>
+        <name>Apache Software Foundation</name>
+        <url>http://www.apache.org</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments />
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>JIRA</system>
+        <url>https://issues.apache.org/struts/browse/TILES</url>
+    </issueManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>tiles-staging</id>
+            <name>Apache Tiles Staging Repository</name>
+            <url>scp://people.apache.org/www/people.apache.org/builds/tiles/m2-staging-repository</url>
+        </repository>
+        <snapshotRepository>
+            <id>apache.snapshots</id>
+            <name>Apache Development Snapshot Repository</name>
+            <url>scp://people.apache.org/www/people.apache.org/repo/m2-snapshot-repository</url>
+            <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
+        <site>
+            <id>apache-site</id>
+            <url>scp://people.apache.org/www/tiles.apache.org</url>
+        </site>
+    </distributionManagement>
+
+    <mailingLists>
+      <mailingList>
+         <name>Tiles User List</name>
+         <subscribe>users-subscribe@tiles.apache.org</subscribe>
+         <unsubscribe>users-unsubscribe@tiles.apache.org</unsubscribe>
+         <post>users@tiles.apache.org</post>
+         <archive>http://mail-archives.apache.org/mod_mbox/tiles-users/</archive>
+      </mailingList>
+      <mailingList>
+         <name>Tiles Development List</name>
+         <subscribe>dev-subscribe@tiles.apache.org</subscribe>
+         <unsubscribe>dev-unsubscribe@tiles.apache.org</unsubscribe>
+         <post>dev@tiles.apache.org</post>
+         <archive>http://mail-archives.apache.org/mod_mbox/tiles-dev/</archive>
+      </mailingList>
+      <mailingList>
+         <name>Tiles Commits List</name>
+         <subscribe>commits-subscribe@tiles.apache.org</subscribe>
+         <unsubscribe>commits-unsubscribe@tiles.apache.org</unsubscribe>
+         <archive>http://mail-archives.apache.org/mod_mbox/tiles-commits/</archive>
+      </mailingList>
+      <mailingList>
+         <name>Tiles Issues List</name>
+         <subscribe>issues-subscribe@tiles.apache.org</subscribe>
+         <unsubscribe>issues-unsubscribe@tiles.apache.org</unsubscribe>
+         <archive>http://mail-archives.apache.org/mod_mbox/tiles-issues/</archive>
+      </mailingList>
+      <mailingList>
+         <name>Tiles Notifications List</name>
+         <subscribe>notifications-subscribe@tiles.apache.org</subscribe>
+         <unsubscribe>notifications-unsubscribe@tiles.apache.org</unsubscribe>
+         <archive>http://mail-archives.apache.org/mod_mbox/tiles-notifications/</archive>
+      </mailingList>
+   </mailingLists>
+
+  <developers>
+    
+      <developer>
+         <name>Antonio Petrelli</name>
+         <id>apetrelli</id>
+         <email>apetrelli at apache.org</email>
+         <roles>
+            <role>PMC Member</role>
+         </roles>
+      </developer>
+      <developer>
+         <name>David H. DeWolf</name>
+         <id>ddewolf</id>
+         <email>ddewolf at apache.org</email>
+         <roles>
+            <role>PMC Member</role>
+         </roles>
+      </developer>
+      <developer>
+         <name>Greg Reddin</name>
+         <id>greddin</id>
+         <email>greddin at apache.org</email>
+         <roles>
+            <role>PMC Chair</role>
+         </roles>
+      </developer>
+      <developer>
+         <name>Joe Germuska</name>
+         <id>germuska</id>
+         <email>germuska at apache.org</email>
+         <roles>
+            <role>PMC Member</role>
+         </roles>
+      </developer>
+      <developer>
+         <name>Martin Cooper</name>
+         <id>martinc</id>
+         <email>martinc at apache.org</email>
+         <roles>
+            <role>PMC Member</role>
+         </roles>
+      </developer>
+      <developer>
+         <name>Nathan Bubna</name>
+         <id>nbubna</id>
+         <email>nbubna at apache.org</email>
+         <roles>
+            <role>PMC Member</role>
+         </roles>
+      </developer>
+      <developer>
+         <name>Wendy Smoak</name>
+         <id>wsmoak</id>
+         <email>wsmoak at apache.org</email>
+         <roles>
+            <role>PMC Member</role>
+         </roles>
+      </developer>
+  </developers>
+</project>

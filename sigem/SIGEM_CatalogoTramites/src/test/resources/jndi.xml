@@ -1,0 +1,31 @@
+<beans>
+	<bean id="jndi" class="org.apache.xbean.spring.jndi.DefaultContext">
+		<property name="entries">
+			<map>
+				<!--  
+				<entry key="java:comp/env/jdbc/registroDS_000">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://localhost:5432/registro_000" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+				</entry>
+				-->
+				
+				<entry key="java:comp/env/jdbc/registroDS_000">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://10.228.8.110:5432/registro_000" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

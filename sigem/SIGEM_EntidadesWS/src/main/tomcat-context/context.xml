@@ -1,0 +1,5 @@
+<Context path="/SIGEM_EntidadesWS" reloadable="true">
+
+	<ResourceLink global="jdbc/sigemAdmin" name="jdbc/sigemAdmin" type="javax.sql.DataSource"/>
+
+</Context>

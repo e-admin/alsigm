@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.iflow</groupId>
+		<artifactId>ispac-main</artifactId>
+		<version>6.4</version>
+	</parent>
+
+  <artifactId>ispac-catalog-ear</artifactId>
+	<name>ispac-catalog-ear</name>
+	<packaging>ear</packaging>
+
+	<dependencies>
+
+		<!-- IECI dependencies -->
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-catalog-war</artifactId>
+			<version>${pom.version}</version>
+			<type>war</type>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>ispaccatalog</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+    		<configuration>
+					<displayName>ispaccatalog</displayName>
+    		  <description>Catalogo de Procedimientos</description>
+					<modules>
+						<webModule>
+							<groupId>es.ieci.tecdoc.iflow</groupId>
+							<artifactId>ispac-catalog-war</artifactId>
+							<bundleFileName>ispaccatalog.war</bundleFileName>
+							<contextRoot>/ispaccatalog</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

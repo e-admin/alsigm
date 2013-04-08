@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ContadorVO">
+
+	<typeAlias alias="contador"
+		type="es.ieci.tecdoc.fwktd.sir.api.vo.ContadorVO" />
+
+	<resultMap id="contador" class="es.ieci.tecdoc.fwktd.sir.api.vo.ContadorVO">
+		<result property="codigoEntidadRegistral" column="cd_ent_reg" />
+		<result property="tipoContador" column="tipo" />
+		<result property="contador" column="contador" />
+	</resultMap>
+
+	<sql id="table">sir_contadores</sql>
+	<sql id="columns">
+		cd_ent_reg,
+		tipo,
+		contador
+	</sql>
+	<sql id="insert">
+		#codigoEntidadRegistral#,
+		#tipoContador#,
+		#contador#
+	</sql>
+	<sql id="update">
+		contador=#contador#
+	</sql>
+
+	<select id="getContadorVOs" resultMap="contador">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY cd_ent_reg, tipo
+	</select>
+
+	<select id="getContadorVO" parameterClass="java.util.Map" resultMap="contador">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			cd_ent_reg=#codigoEntidadRegistral#
+			AND tipo=#tipoContador#
+	</select>
+
+	<insert id="addContadorVO" parameterClass="contador">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<update id="updateContadorVO" parameterClass="contador">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE
+			cd_ent_reg=#codigoEntidadRegistral#
+			AND tipo=#tipoContador#
+	</update>
+
+	<delete id="deleteContadorVO" parameterClass="java.util.Map">
+		DELETE FROM
+			<include refid="table" />
+		WHERE
+			cd_ent_reg=#codigoEntidadRegistral#
+			AND tipo=#tipoContador#
+	</delete>
+
+	<delete id="deleteContadorVOs">
+		DELETE FROM
+			<include refid="table" />
+	</delete>
+
+</sqlMap>

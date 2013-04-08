@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='form.report.propertyLabel.id'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width5percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'				 
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NOMBRE'
+				readOnly='false'
+				titleKey='form.report.propertyLabel.name'
+				fieldType='LINK'
+				fieldLink='ID'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+				media='html'
+				decorator=''
+				url='showReport.do?entityId=61'
+				id='regId'
+				columnClass='width30percent'				
+				/>
+				
+	<propertyfmt type='BeanPropertySimpleFmt'
+				property='NOMBRE'
+				readOnly='false'
+				titleKey='form.report.propertyLabel.name'
+				fieldType='DATA'
+				headerClass='sortable'
+				sortable='true'
+				columnClass='width30percent'
+				media='excel xml csv pdf'/>		
+						
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.report.propertyLabel.description'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width40percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TIPO'
+				 readOnly='false'
+				 titleKey='form.report.propertyLabel.type'
+				 fieldType='REPORT_TYPE'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width25percent'
+				 />
+
+</beanformatter>

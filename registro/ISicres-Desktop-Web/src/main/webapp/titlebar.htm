@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script language="javascript">
+		document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+	</script>
+<link REL="stylesheet" TYPE="text/css" HREF="css/global.css" />
+<link REL="stylesheet" TYPE="text/css" HREF="css/font.css" />
+<link rel="stylesheet" type="text/css" href="css/estilos.css">
+
+<!--[if lte IE 5]>
+	<link rel="stylesheet" type="text/css" href="css/estilos_ie5.css"/>
+<![endif]-->
+
+<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="css/estilos_ie6.css">
+<![endif]-->
+
+<!--[if gte IE 7]>
+	<link rel="stylesheet" type="text/css" href="css/estilos_ie7.css">
+<![endif]-->
+
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./scripts/iepngfix_tilebg.js"></script>
+<![endif]-->
+	<script type="text/javascript" language="javascript" src="./scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./scripts/jquery.hotkeys-0.8.js"></script>
+    <script type="text/javascript" language="javascript" src="./scripts/custom_hotkeys.js"></script>
+	<script type="text/javascript" language="javascript">
+			var urlLogo = cargarLogo();
+
+			function cargarLogo() {
+				var url = top.getURL();
+				var urlImgLogo = url + "/resourceServlet/logos/logo.jpg";
+				return urlImgLogo;
+			}
+		</script>
+</head>
+<body tabIndex="-1" class="cabecera">
+	<!-- Cabecera del login -->
+	<div id="appHeaderLogin" cellpadding="0">
+		<div id="logo_app_login">
+			<img  src="./images/inicio-ieci.png" id="logo_app_img_login"/>
+		</div>
+		<div id="logo_cia_login">
+			<img  src="./images/inicio-nombre.png" id="logo_app_img2_login" align="right"/>
+		</div>
+	</div>
+
+	<!-- Cabecera del resto de las paginas -->
+	<div id="appHeader" cellpadding="0"  style="visibility:hidden">
+		<div id="logo_app">
+			<img  src="./images/interna-gallery.png" id="logo_app_img"/>
+		</div>
+		<div id="logo_cia">
+			<img  src="images/invesicres-logo.png" id="logo_app_img2" align="right"/>
+			<div id="salir" class="salir">
+				<a href="#" onclick="top.Logout(false);">
+					<script language="javascript">document.write( top.GetIdsLan( "IDS_OPCSALIR" ) );</script>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="usuario" style="display:none">
+		<div id="barra_usuario">
+			<h3><label id="textUser"></label></h3>
+			<ul class="usuario_plegado">
+				<li id="imgPoint" style="visibility:hidden"><label id="textOffice"></label></li>
+			</ul>
+			<p class="ayuda">
+				<a href="#" onclick="javascript:top.OpenHelp();">&nbsp;</a>
+			</p>
+		</div>
+	</div>
+
+</body>
+</html>

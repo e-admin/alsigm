@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>						
+<beanformatter defaultSort="4"> >
+
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='SPAC_DT_TRAMITES:NOMBRE'
+				readOnly='false'
+				titleKey='formatter.tasks.exp.nombre'
+				fieldType='LINK'
+				fieldLink='SPAC_DT_TRAMITES:ID'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+				media='html'
+				decorator=''
+				url='showTask.do'
+				id='key'/>
+	
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_TRAMITES:NOMBRE' 
+				 titleKey='formatter.tasks.exp.nombre' 
+				 fieldType='LIST' 
+				 media='csv excel xml pdf'
+				 columnClass="width17percent"
+				 />
+				 
+		<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_DT_TRAMITES:ESTADO' 
+				 titleKey='formatter.tasks.exp.estado' 
+				 sortable='true'
+				 readOnly='false'
+				 fieldType='STATETASK' 
+				 columnClass="width8percent"
+				 />
+				 
+		<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SPAC_P_FASES:NOMBRE' 
+				 titleKey='formatter.tasks.exp.fase' 
+				 readOnly='false'
+				 fieldType='LIST' 
+				 sortable='true'
+				 columnClass="width10percent"
+				 />		 
+		<propertyfmt type="BeanPropertyDateFmt" 
+				 property='SPAC_DT_TRAMITES:FECHA_INICIO'
+				 readOnly='false'
+				 format='dd/MM/yyyy HH:mm:ss' 
+				 titleKey='formatter.tasks.exp.fechaInicio' 
+				 fieldType='LIST' 
+				 columnClass="width18percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+		<propertyfmt type="BeanPropertyDateFmt" 
+				 property='SPAC_DT_TRAMITES:FECHA_CIERRE'
+				 readOnly='false'
+				 format='dd/MM/yyyy HH:mm:ss' 
+				 titleKey='formatter.tasks.exp.fechaCierre' 
+				 fieldType='LIST' 
+				 columnClass="width18percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+				 
+			<propertyfmt type="BeanPropertyDateFmt" 
+				 property='SPAC_DT_TRAMITES:FECHA_LIMITE'
+				 readOnly='false'
+				 format='dd/MM/yyyy HH:mm:ss' 
+				 titleKey='formatter.tasks.exp.fechaLimite' 
+				 fieldType='LIST' 
+				 columnClass="width18percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+				<propertyfmt type="BeanPropertyDateFmt" 
+				 property='SPAC_DT_TRAMITES:FECHA_INICIO_PLAZO'
+				 readOnly='false'
+				 format='dd/MM/yyyy HH:mm:ss' 
+				 titleKey='formatter.tasks.exp.fechaInicioPlazo' 
+				 fieldType='LIST' 
+				 columnClass="width18percent"
+				 sortable='true'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+</beanformatter>

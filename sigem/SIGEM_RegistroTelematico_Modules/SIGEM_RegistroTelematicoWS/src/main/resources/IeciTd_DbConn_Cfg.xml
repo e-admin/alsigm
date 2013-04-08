@@ -1,0 +1,6 @@
+<Config>   
+   <Pooling>Y</Pooling>
+   <DataSource>java:comp/env/jdbc/registroDS_{0}</DataSource>
+   <User></User>
+   <Password></Password>
+</Config>

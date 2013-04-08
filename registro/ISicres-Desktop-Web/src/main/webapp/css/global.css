@@ -1,0 +1,892 @@
+BODY {
+    font-size: 8pt;
+    margin: 0px;
+    color: #000000;
+    font-family: Verdana;
+}
+
+P {
+    font-weight: bold;
+    font-size: 10px;
+    color: #fafcff;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptions {
+    border-right: #EBEA87 1px solid;
+    border-top: #EBEA87 1px solid;
+    font-weight: bold;
+    font-size: 8pt;
+    border-left: #EBEA87 1px solid;
+    cursor: pointer;
+    color: #000000;
+    border-bottom: #EBEA87 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+.SubOptions2{
+    font-weight: bold;
+    font-size: 10px;
+    cursor: pointer;
+    color: #000000;
+    border: 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptionsOver {
+    border-right: #C7CE4E 1px solid;
+    border-top: #C7CE4E 1px solid;
+    font-weight: bold;
+    font-size: 8pt;
+    border-left: #C7CE4E 1px solid;
+    cursor: pointer;
+    color: #000000;
+    border-bottom: #C7CE4E 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptionsOver2 {
+    font-weight: bold;
+    font-size: 10px;
+    cursor: pointer;
+    color: #000000;
+    border: 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptionsContainer {
+    font-weight: bold;
+    font-size: 8pt;
+    color: #000000;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+.SubMenu {
+    background-color: #C7CE4E;
+}
+
+.SubMenu2 {
+	background-color: #C7CE4E;
+	margin-top: 10px;
+}
+
+/*Generales*/
+body.resalt {
+    background-color: #C7CE4E;
+}
+
+.input {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; color: #000000; background-color: #FFFFFF;
+}
+
+.inputRO {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; color: #000000; background-color: #DDDDDD;
+}
+
+.textarea {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; color: #000000; background-color: #FFFFFF;
+}
+
+.textareaRO {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; color: #000000; background-color: #DDDDDD;
+}
+
+.button {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; width: 80;
+}
+
+.label{
+    font-weight: normal; font-size: 8pt; font-family: Verdana;
+}
+
+.combo {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; color: #000000;
+}
+
+.msg {
+    font-weight: bold;
+}
+
+.BookName, .BookNameEx {
+    font-size: 8pt; color: #CC3300; font-family: Verdana
+}
+
+.labelWhite {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; color: white;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+/* Pantalla de Login*/
+#login {
+	position:absolute;
+	top:45;
+	left:30;
+	/*background: url(../images/archivador.gif) no-repeat;*/
+}
+
+.OptionsOver {
+    border-right: 1px solid; border-top: 1px solid; font-weight: bold; font-size: 8pt;  border-left: 1px solid;
+    cursor: pointer; color: #ffffff; border-bottom: 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptionsDisabled {
+    font-weight: bold; font-size: 8pt; color: #666666; font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptionsDisabled2 {
+    font-weight: bold; font-size: 10px; color: #666666; font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+.active{
+	font-weight: normal; font-size: 8pt; font-family: Verdana; color:#003366; text-decoration: none;
+}
+
+.inactive{
+	font-weight: normal; font-size: 8pt; font-family: Verdana; color: #666666; text-decoration: none;
+}
+/*Tablas */
+.title{
+    font-weight: bold; font-size: 8pt; font-family: Verdana; color: #000000; background-color: #C7CE4E;
+}
+
+.title2{
+    font-weight: bold; font-size: 10; font-family: Verdana; color: #006699; background-color: #bee8f9;
+}
+
+.books{
+	font-weight: bold; font-size: 8pt; font-family: Verdana; color: #000000;
+}
+
+.resalt {
+    background-color: #C7CE4E;
+}
+
+TD.report {
+    font-size: 8pt; color: #000000; font-family: Verdana; background-color: #fafcff
+}
+
+TH.report {
+    font-weight: bold; font-size: 8pt; color: #000000; font-family: Verdana; background-color: #C7CE4E
+}
+
+TH.reportDisable {
+    font-weight: bold; font-size: 8pt; color: #666666; font-family: Verdana; background-color: #EBEA87
+}
+
+TH.reportDisable2 {
+	font-weight: bold; font-size: 8pt; color: #ECE8DD; font-family: Verdana; background-color: #FFFFFF
+}
+
+TABLE.report {
+    border-right: medium none; padding-right: 2px; border-top: medium none; padding-left: 2px;
+    padding-bottom: 2px; margin: 2px; border-left: medium none; padding-top: 2px;
+    border-bottom: medium none; background-color: #C7CE4E;
+}
+
+TH.report2 {
+    font-weight: bold; font-size: 7pt; color: #000000; font-family: Verdana; background-color: #EBEA87
+}
+
+/*Frame */
+frame.Style1 {
+    border-top: 1px solid #003366; border-right: 1px solid #ECE8DD;
+}
+
+frame.Style2 {
+    border-top: 1px solid #003366; border-left: 2px groove #ECE8DD;
+}
+
+frame.Style6 {
+    border-left: 2px solid #C7CE4E; border-right: 2px solid #C7CE4E; border-bottom: 2px solid #C7CE4E;
+}
+
+iframe.Style6 {
+    border-left: 2px solid #C7CE4E; border-right: 2px solid #C7CE4E; border-bottom: 2px solid #C7CE4E;
+}
+
+td#tdLEST {
+	border-right:3px solid #CFCDCD;
+}
+
+.divTitle {
+    border: 2px solid #C7CE4E; background-color: #C7CE4E;
+}
+.div {
+    border: 1px solid #C7CE4E;
+}
+
+div#divOrder {
+    left:5px; position:absolute; top:5px; width:80%;
+    border-left: 2px solid #C7CE4E; border-right: 2px solid #C7CE4E; border-bottom: 2px solid #C7CE4E;
+    margin: auto;
+}
+
+iframe#Vld {
+    height:98%; left:5px; position:absolute; top:5px; width:99%;
+    border: 1px solid #C7CE4E;
+}
+
+frameset#TopVldFrm {
+    border: 1px solid #C7CE4E;
+}
+
+td.tdLabel {
+    padding-left:10; padding-top:15;
+}
+
+td.tdBody {
+    padding-left:10;
+}
+
+input#btnAgreg, input#btnAgregAll, input#btnRemove, input#btnRemoveAll{
+    width:110;
+}
+
+input#btnUp, input#btnDown, input#btnClose{
+    width:80;
+}
+
+td#compulsa {
+	display:block;
+}
+
+/* pantalla de busqueda avanzada */
+
+.buttonSearchAvanced {
+    font-weight: normal;
+    font-size: 8pt;
+    font-family: Verdana;
+    width: 75px;
+    height: 22px;
+}
+
+.comboSearchAvanced {
+	font-weight: normal;
+	font-size: 8pt;
+	font-family: Verdana;
+	color: #000000;
+	width: 180px;
+	height: 22px;
+}
+
+.inputTextSearchAvanced{
+	font-weight: normal;
+	font-size: 8pt;
+	font-family: Verdana;
+	color: #000000;
+	width: 154px;
+	height: 22px;
+}
+
+.inputTextSearchAvancedImg{
+	font-weight: normal;
+	font-size: 8pt;
+	font-family: Verdana;
+	color: #000000;
+	width: 127px;
+	height: 22px;
+}
+
+.comboSearchAvancednexo {
+	font-weight: normal;
+	font-size: 8pt;
+	font-family: Verdana;
+	color: #000000;
+	height: 22px;
+	width: 70px;
+}
+
+.searchTitle {
+      text-align:left;
+      vertical-align: middle;
+}
+
+.tableButtonSearchAvanced
+{
+	position: Absolute;
+	left: 750px;
+	top: 40px;
+}
+
+.titleSearch{
+    font-weight: bold;
+    font-size: 11pt;
+    font-family: Verdana;
+    color: #006699;
+}
+
+.searchTitle2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #EBEA87;
+}
+
+.imgInvalidValidatedField{
+	position: relative;
+	left: -17px;
+	top: 2px;
+	height: 11px;
+	width: 11px;
+	cursor:pointer;
+}
+
+.imgInvalidNotValidatedField{
+	position: relative;
+	/*left: -17px;*/
+	top: 2px;
+	height: 11px;
+	width: 11px;
+	cursor:pointer;
+}
+
+/* imagenes de ayuda */
+.imgHelpSearch{
+	left: 70%;
+	height: 17px;
+	width: 17px;
+}
+
+.imgHelpCalendar{
+	left: 70%;
+	height: 15px;
+	width: 20px;
+}
+
+.imgHelpReports{
+	position: relative; top: 0; left:216; height:17; width:17; cursor:pointer;
+}
+
+.imgHelpEdit{
+	position:absolute; top:32; left:344; height:17; width:17; cursor:pointer;
+}
+
+.imgHelpInt{
+	position:relative;top:-20;left:97%;width:17px;height:17px;
+}
+
+/* area usuario-oficina-ayuda */
+.usuario_organo_left {
+	background: url("../images/bg_right_usuario_organo.jpg") bottom right repeat-y;
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#usuario_organo {
+	background: url("../images/bg_left_usuario_organo.jpg") left bottom repeat-y;
+	margin: 0px;
+	padding: 2px 0px 2px 0px;
+	overflow: hidden;
+}
+
+#usuario_organo h2 {
+	font-weight: bold;
+	font-family: verdana;
+	color: #333333;
+	font-size: 90%;
+	float: left;
+	margin: 2px 15px 4px 10px;
+	padding: 0px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#usuario_organo ul {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+}
+
+#usuario_organo ul li {
+	background: left top no-repeat;
+	padding-left: 10px;
+	height: 16px;
+	line-height: 16px;
+	float: left;
+}
+
+#usuario_organo p {
+	margin: 0px 8px;
+	padding: 0px;
+	text-align: right;
+}
+
+#usuario_organo img {
+	border: 0px;
+
+}
+.usuario_plegado ul {
+	display: none;
+}
+
+#usuario_organo ul li {
+	background: left top no-repeat;
+	padding-left: 10px;
+	height: 16px;
+	line-height: 16px;
+}
+
+#usuario_organo ul.usuario_plegado li {
+	background-image: url("../images/padre_up.gif");
+}
+
+.GreyToolbar {
+	background-color: #cfcdcd;
+}
+
+.Options {
+    border-right: #cfcdcd 1px solid; border-top: #cfcdcd 1px solid; font-weight: bold; font-size: 8pt;
+    border-left: #cfcdcd 1px solid; cursor: pointer; color: #ffffff; border-bottom: #cfcdcd 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+.linkOptions:hover, .linkOptions:visited, .linkOptions:link {
+color: #ffffff;
+text-decoration: none;
+}
+
+.migas {
+	margin-left: 10px;
+	padding: 0px 0px 5px 0px;
+}
+
+.migas ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+}
+
+.migas ul li {
+	background: url("../images/flecha_migas_sinfondo.gif") left 9px no-repeat;
+	color : #CC3300;
+	text-decoration : none;
+	padding-left: 20px;
+	height: 18px;
+	line-height: 18px;
+}
+
+/* botonera azul */
+
+div.seccion_tab div.cabecera_seccion_tab {
+	background: #C7CE4E;
+	border-bottom: 1px solid #c7d9d3;
+	font-size: 100%;
+	height: 19px;
+	line-height: 19px;
+	width: 100%;
+	margin-top: 5px;
+	position: relative;
+
+}
+
+div.seccion_tab div.cabecera_seccion_tab p {
+	text-align: right;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+}
+
+div.seccion_tab div.cabecera_seccion_tab p .activo{
+	text-decoration: none;
+	font-weight: bold;
+	color: #000000;
+	padding: 0px 5px 2px 5px;
+	height: 19px;
+	line-height: 19px;
+	vertical-align: middle;
+}
+
+div.seccion_tab div.cabecera_seccion_tab p .inactivo{
+	text-decoration: none;
+	font-weight: bold;
+	color: #666666;
+	padding: 0px 5px 2px 5px;
+	height: 19px;
+	line-height: 19px;
+	vertical-align: middle;
+}
+
+div.seccion_tab div.cabecera_seccion_tab p a img {
+	height: 17px;
+	line-height: 17px;
+	vertical-align: middle;
+	padding: 0px 0px 3px 0px;
+	border: 0px;
+}
+
+/* informes */
+.labelBusqueda {
+	display: block;
+	width: 20%;
+	float: left;
+	font-size: 8pt;
+}
+
+.select_busqueda {
+	width: 430px;
+	font-weight: normal;
+	font-size: 8pt;
+	font-family: Verdana;
+	color: #000000;
+	margin-right: 20px;
+}
+
+.fila_sub_busqueda label {
+	color: #000000;
+	float:left;
+	padding-top:2px;
+	width: 156px;
+}
+
+.form_busqueda {
+	padding: 5px 5px 15px 15px;
+}
+
+/* arbol de navegacion de nuevo registro */
+
+.tree_ie {
+	width: 244px;
+	float: left;
+	height: 300px;
+	/*border: 1px solid #C7C9d3;*/
+	zoom: 1;
+	z-index: 1;
+	margin-left: -16px;
+	margin-top: 10px;
+	background-color: #FFFFFF;
+	overflow: auto;
+	clear:right;
+}
+
+.tree_ff {
+	width: 244px;
+	float: left;
+	height: 300px;
+	/*border: 1px solid #C7C9d3;*/
+	zoom: 1;
+	z-index: 1;
+	margin-left: -27px;
+	background-color: #FFFFFF;
+	overflow: auto;
+	clear:right;
+}
+
+.contenido_tree {
+	padding: 0px 2px;
+	position: relative;
+	clear: both;
+	zoom: 1;
+}
+
+
+#botonera {
+	float: left;
+	z-index: 100;
+	position: relative;
+	height:100px;
+}
+
+#botonera p.imgTree {
+	padding: 0px;
+	margin: 12px 0px 0px 0px;
+}
+
+#botonera p.imgTree .img_menu_on {
+	background: url("../images/menu_on_blue.gif") top left no-repeat;
+	padding-left: 24px;
+	padding-bottom: 22px;
+	margin: 2px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#botonera p.imgTree .img_menu_off {
+	background: url("../images/menu_off.gif") top left no-repeat;
+	padding-left: 24px;
+	padding-bottom: 22px;
+	margin: 2px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+HR
+{
+    color: #C7CE4E;
+}
+BODY.resalt
+{
+    background-color: #C7CE4E
+}
+/*BODY.SubMenu
+{
+    background-color: #9ccfff
+}*/
+.resalt
+{
+    background-color: #C7CE4E
+}
+/*DIV.SubMenu
+{
+    background-color: #9ccfff
+}*/
+
+/* Para fijar la cabecera de la tabla de resultados de consulta*/
+div.fixedHeaderTable {
+    position: relative;
+    z-index:1;
+}
+
+div.fixedHeaderTable tbody {
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    background-color: #FFFFFF;
+}
+div.fixedHeaderTable thead td, div.fixedHeaderTable thead th {
+    position:relative;
+}
+
+   /* IE7 hacks */
+div.fixedHeaderTable {
+    *position: relative;
+    *height: 400px;
+    *overflow-y: scroll;
+   	*overflow-x: scroll;
+}
+
+div.fixedHeaderTable thead tr {
+    *position: relative;
+    _position: absolute;
+    *top: expression(this.offsetParent.scrollTop-2);
+}
+
+div.fixedHeaderTable tbody {
+    *height: auto;
+    *position:absolute;
+	*top:50px;
+	*background-color: #FFFFFF;
+}
+
+	/* IE6 hacks */
+div.fixedHeaderTable {
+	_width:expression(this.offsetParent.clientWidth-20);
+	_overflow: auto;
+	_overflow-y: scroll;
+	_overflow-x: scroll;
+}
+div.fixedHeaderTable thead tr {
+  _position: relative
+}
+
+/* */
+
+.ordenarResults{
+	font-weight: bold;
+	font-size: 7pt;
+	color: #000000;
+	font-family: Verdana;
+	background-color: #EBEA87;
+}
+
+.cargar{
+	display:none;
+	color:#000000;
+	position:absolute;
+	font-weight:bold;
+	z-index:100;
+	width:100%;
+	height: 410px;
+	text-align:center;
+	background-color: #ffffff;
+	filter: Alpha(Opacity=75);
+ 	-moz-opacity: 1.0;
+ 	Padding-top: 100px;
+}
+
+.cargarSaveRegisterOculto{
+	display:none;
+	color:#000000;
+	position:absolute;
+	font-weight:bold;
+	z-index:100;
+	width:100%;
+	height: 550px;
+	background-color: #ffffff;
+	filter: Alpha(Opacity=75);
+ 	-moz-opacity: 1.0;
+	text-align:center;
+ 	Padding-top: 230px;
+}
+
+/* Para fijar la cabecera de la tabla de resultados de la distribucion*/
+div.fixedHeaderTableDistrib {
+    position: relative;
+    top: 2px;
+    z-index:1;
+}
+
+div.fixedHeaderTableDistrib tbody {
+    height: 340px;
+    overflow-y: auto;
+    overflow-x: auto;
+    background-color: #FFFFFF;
+}
+
+div.fixedHeaderTableDistrib thead td, div.fixedHeaderTableDistrib thead th {
+    position:relative;
+}
+
+   /* IE7 hacks */
+div.fixedHeaderTableDistrib {
+    *position: relative;
+    *height: 348px;
+    *overflow-y: scroll;
+   	*overflow-x: scroll;
+}
+
+div.fixedHeaderTableDistrib thead tr {
+    *position: relative;
+    _position: absolute;
+    *top: expression(this.offsetParent.scrollTop-2);
+}
+
+div.fixedHeaderTableDistrib tbody {
+    *height: auto;
+    *position:absolute;
+	*top:50px;
+	*background-color: #FFFFFF;
+}
+
+	/* IE6 hacks */
+div.fixedHeaderTableDistrib {
+	_width:expression(this.offsetParent.clientWidth-2);
+	_overflow: auto;
+	_overflow-y: scroll;
+	_overflow-x: scroll;
+}
+div.fixedHeaderTableDistrib thead tr {
+  _position: relative
+}
+
+/* */
+
+/* Estilos que cargan las imagenes de ordenar en Distribucion */
+
+#tblMain thead tr .report2{
+	background-image: url(../images/bg.gif);
+    background-repeat: no-repeat;
+	background-position: center left;
+	cursor: pointer;
+	padding-left: 20px;
+	margin-left: -1px;
+}
+
+#tblMain thead tr .headerSortUp {
+	background-image: url(../images/asc.gif);
+}
+
+#tblMain thead tr .headerSortDown {
+	background-image: url(../images/desc.gif);
+}
+
+#tblMain tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+
+TH.report3 {
+    font-weight: bold; font-size: 8pt; color: #000000; font-family: Verdana;
+}
+
+TH.report4 {
+    font-weight: bold; font-size: 8pt; color: #000000; font-family: Verdana; background-color: #EBEA87
+}
+
+#MenuFolderBar{
+	background-color: #EBEA87;
+}
+
+#tableTbSearch{
+	border: 2px solid #EBEA87;
+}
+
+/* */
+/* Seleccion de idioma en pantalla de login Isicres */
+#idiomas{
+	text-align:right;
+	margin-right: 10px;
+}
+
+#selIdioma {
+	border:1px solid #7F9DB9;
+	font-size:99%;
+	padding:0;
+	width:100px;
+}
+#Recargar{
+	width:13px;
+	margin-right: 10px;
+}
+
+/* */
+#ChangePwd{
+	text-decoration: underline;
+}
+
+/* Para las tablas de direcciones de los interesados*/
+.dirInterScrollbarY{
+	height:190px;
+	overflow-x:hidden;
+	overflow-y:auto
+}
+
+.dirInterTeleScrollbarY{
+	height:239px;
+	overflow-x:hidden;
+	overflow-y:auto
+}
+
+/* */
+
+div.closeRegBetweenDate{
+	position:relative;
+	width:100%;
+	margin-left:10px;
+	clear: both;
+}
+
+.historialIntercambio{
+	font-size:14pt;
+	text-align:left;
+	padding-bottom: 10px;
+	padding-top: 15px;
+}
+
+/* */
+div.historialDist{
+	position:relative;
+	width: 98%;
+	left: 1%;
+	top: 10px;
+	bottom: 10px;
+	height: 450px;
+	overflow:auto;
+}
+
+#documentoElectronicoPropiedades{
+	margin:auto;
+	width:400px;
+}
+
+#documentoElectronicoPropiedades p{
+	color: #000000;
+	font-weight: normal;
+}
+#documentoElectronicoPropiedades h3{
+	border-bottom:1px solid #000000;
+}

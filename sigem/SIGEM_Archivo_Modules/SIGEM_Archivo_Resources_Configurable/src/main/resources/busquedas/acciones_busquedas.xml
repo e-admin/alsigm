@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<AccionesBusquedas version="5.0">
+	<Accion id="MOVER_ELEMENTOS" permisos="506">
+		<TiposPermitidos>
+			<Tipo id="2" forward="mover_fondo_busquedas">
+				<Restricciones>
+					<Restriccion id="VARIOS_ELEMENTOS" permitido="N"/>
+				</Restricciones>
+			</Tipo>
+			<Tipo id="3" forward="mover_clasificador_serie_busquedas">
+				<Restricciones>
+					<Restriccion id="VARIOS_ELEMENTOS" permitido="N"/>
+				</Restricciones>
+			</Tipo>
+			<Tipo id="4" forward="mover_serie_busquedas">
+				<Restricciones>
+					<Restriccion id="VARIOS_ELEMENTOS" permitido="N"/>
+				</Restricciones>
+			</Tipo>
+			<Tipo id="6" forward="mover_unidades_documentales_busquedas">
+				<Restricciones>
+					<Restriccion id="VARIOS_ELEMENTOS" permitido="S"/>
+					<Restriccion id="DISTINTO_PADRE" permitido="N"/>
+				</Restricciones>
+			</Tipo>
+		</TiposPermitidos>
+	</Accion>
+	<Accion id="CREAR_PRESTAMO" permisos="300,301,302,303">
+		<TiposPermitidos>
+			<Tipo id="6" forward="crear_prestamo_busquedas">
+				<Restricciones>
+					<Restriccion id="DISTINTO_ARCHIVO" permitido="N"/>
+					<Restriccion id="PERMISOS" permitido="300,301,302,303"/>
+				</Restricciones>
+			</Tipo>
+		</TiposPermitidos>
+	</Accion>
+	<Accion id="ANIADIR_A_PRESTAMO" permisos="300,301,302,303">
+		<TiposPermitidos>
+			<Tipo id="6" forward="aniadir_a_prestamo_busquedas">
+				<Restricciones>
+					<Restriccion id="DISTINTO_ARCHIVO" permitido="N"/>
+					<Restriccion id="PERMISOS" permitido="300,301,302,303"/>
+				</Restricciones>
+			</Tipo>
+		</TiposPermitidos>
+	</Accion>
+	<Accion id="CREAR_CONSULTA" permisos="304,305">
+		<TiposPermitidos>
+			<Tipo id="6" forward="crear_consulta_busquedas">
+				<Restricciones>
+					<Restriccion id="DISTINTO_ARCHIVO" permitido="N"/>
+					<Restriccion id="PERMISOS" permitido="304,305"/>
+				</Restricciones>
+			</Tipo>
+		</TiposPermitidos>
+	</Accion>
+	<Accion id="ANIADIR_A_CONSULTA" permisos="304,305">
+		<TiposPermitidos>
+			<Tipo id="6" forward="aniadir_a_consulta_busquedas">
+				<Restricciones>
+					<Restriccion id="DISTINTO_ARCHIVO" permitido="N"/>
+					<Restriccion id="PERMISOS" permitido="304,305"/>
+				</Restricciones>
+			</Tipo>
+		</TiposPermitidos>
+	</Accion>
+	<Accion id="BLOQUEAR" permisos="212">
+		<TiposPermitidos>
+			<Tipo id="6" forward="bloquear_udocs_busquedas">
+				<Restricciones>
+					<Restriccion id="PERMISOS" permitido="212"/>
+				</Restricciones>
+			</Tipo>
+		</TiposPermitidos>
+	</Accion>
+	<Accion id="DESBLOQUEAR" permisos="212">
+		<TiposPermitidos>
+			<Tipo id="6" forward="desbloquear_udocs_busquedas">
+				<Restricciones>
+					<Restriccion id="PERMISOS" permitido="212"/>
+				</Restricciones>
+			</Tipo>
+		</TiposPermitidos>
+	</Accion>
+	<Accion id="NO_CONSERVAR" permisos="1003">
+		<TiposPermitidos>
+			<Tipo id="6" forward="no_conservar_udocs_serie">
+				<Restricciones>
+					<Restriccion id="VARIOS_ELEMENTOS" permitido="S"/>
+					<Restriccion id="DISTINTO_PADRE" permitido="N"/>
+					<Restriccion id="PERMISOS" permitido="1003"/>
+				</Restricciones>
+			</Tipo>
+		</TiposPermitidos>
+	</Accion>
+</AccionesBusquedas>

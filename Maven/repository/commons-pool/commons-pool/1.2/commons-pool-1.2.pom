@@ -1,0 +1,153 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>commons-pool</groupId>
+  <artifactId>commons-pool</artifactId>
+  <name>Commons Pool</name>
+  <version>1.2</version>
+  <description>Commons Object Pooling Library</description>
+  <url>http://jakarta.apache.org/commons/pool/</url>
+  <issueManagement>
+    <url>http://issues.apache.org/bugzilla/</url>
+  </issueManagement>
+  <ciManagement>
+    <notifiers>
+      <notifier>
+        <address>commons-dev@jakarta.apache.org</address>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+  <inceptionYear>2001</inceptionYear>
+  <mailingLists>
+    <mailingList>
+      <name>Commons Dev List</name>
+      <subscribe>commons-dev-subscribe@jakarta.apache.org</subscribe>
+      <unsubscribe>commons-dev-unsubscribe@jakarta.apache.org</unsubscribe>
+      <archive>http://nagoya.apache.org/eyebrowse/SummarizeList?listName=commons-dev@jakarta.apache.org</archive>
+    </mailingList>
+    <mailingList>
+      <name>Commons User List</name>
+      <subscribe>commons-user-subscribe@jakarta.apache.org</subscribe>
+      <unsubscribe>commons-user-unsubscribe@jakarta.apache.org</unsubscribe>
+      <archive>http://nagoya.apache.org/eyebrowse/SummarizeList?listName=commons-user@jakarta.apache.org</archive>
+    </mailingList>
+  </mailingLists>
+  <developers>
+    <developer>
+      <id>morgand</id>
+      <name>Morgan Delagrange</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>geirm</id>
+      <name>Geir Magnusson</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>craigmcc</id>
+      <name>Craig McClanahan</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>rwaldhoff</id>
+      <name>Rodney Waldhoff</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>dweinr1</id>
+      <name>David Weinrich</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>dirkv</id>
+      <name>Dirk Verbeeck</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Todd Carmichael</name>
+      <email>toddc@concur.com</email>
+    </contributor>
+  </contributors>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>/LICENSE.txt</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-commons/pool</connection>
+    <url>http://cvs.apache.org/viewcvs/jakarta-commons/pool/</url>
+  </scm>
+  <organization>
+    <name>The Apache Software Foundation</name>
+    <url>http://jakarta.apache.org</url>
+  </organization>
+  <build>
+    <sourceDirectory>src/java</sourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>${basedir}</directory>
+        <targetPath>META-INF</targetPath>
+        <includes>
+          <include>NOTICE.txt</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>org/apache/commons/pool/Test*Factory.java</include>
+            <include>org/apache/commons/pool/TestBaseObjectPool.java</include>
+            <include>org/apache/commons/pool/TestBaseKeyedObjectPool.java</include>
+            <include>org/apache/commons/pool/impl/Test*Pool.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xerces</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+  </dependencies>
+  <distributionManagement>
+    <repository>
+      <id>default</id>
+      <name>Default Repository</name>
+      <url>file:///www/jakarta.apache.org/builds/jakarta-commons/pool/</url>
+    </repository>
+    <site>
+      <id>default</id>
+      <name>Default Site</name>
+      <url>scp://jakarta.apache.org//www/jakarta.apache.org/commons/pool/</url>
+    </site>
+  </distributionManagement>
+</project>

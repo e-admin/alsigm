@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Iuserusermap" 
+    table="IUSERUSERMAP"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IUSERUSERMAP"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="srcdbid" 
+            column="SRCDBID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="SRCDBID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="srcuserid" 
+            column="SRCUSERID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="SRCUSERID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="dstdbid" 
+            column="DSTDBID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DSTDBID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="dstuserid" 
+            column="DSTUSERID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="DSTUSERID"
+                length="10"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,262 @@
+body {
+	font-family: verdana, arial, tahoma, geneva, sans-serif;
+	font-size: 69%;
+	margin: 0px 0px 30px 0px;
+}
+
+img {
+	border:0;
+}
+
+input,
+select,
+option,
+textarea {
+	font-size: 100%;
+}
+
+#cabecera {
+	height: 61px;
+	background: #99D6F5 url("../img/fondo_cab.jpg") top left no-repeat;
+	margin: 5px 10px 0px 10px;
+}
+
+#cabecera h1 {
+	margin: 0px 0px 0px 8px;
+	
+	height: 61px;
+	background: url("../img/logo.gif") 0px 0px no-repeat;
+	text-indent: -3000px;
+}
+
+#cabecera h2 {
+	margin: 0px;
+	position: absolute;
+	top: 6px;
+	left: 284px;
+/*	para cabecera sin margen:
+	top: 0px; 
+	left: 278px; */
+	width: 415px;
+	height: 60px;
+	/*background: url("../img/portal_organismo.gif") 0px 0px no-repeat;*/
+	text-indent: -3000px;
+}
+
+#cabecera .des_adm {
+	position: absolute;
+	background: url("../img/logout.gif") top left no-repeat;
+	text-align: right;
+	top: 2px;
+	right: 20px;
+}
+
+#cabecera .des_bck {
+	position: absolute;
+	background: url("../img/logout.gif") top left no-repeat;
+	text-align: right;
+	top: 30px;
+	right: 22px;
+}
+
+#cabecera p a {
+	height: 16px;
+	line-height: 16px;
+	padding-left: 20px;
+	color: #307CB6;
+	font-weight: bold;
+	font-family: verdana, arial, tahoma, geneva, sans-serif;
+	text-decoration: none;
+	font-size: 90%;
+}
+
+#usuario {
+	margin: 0px 10px;
+	height: 33px;
+}
+
+#usuario .usuarioleft {
+	background: url("../img/bg_right_usuario.jpg") top right no-repeat;
+	height: 33px;
+}
+
+#barra_usuario {
+	margin: 0px;
+	background: url("../img/bg_left_usuario.jpg") left 0px no-repeat;
+	padding: 0px 20px;
+	height: 33px;
+	line-height: 33px;
+}
+
+#barra_usuario h1 {
+	font-weight: bold;	
+	font-family: arial;
+	color: #333333;
+	font-size: 100%;
+	float: left;
+	margin: 0px 5px 0px 10px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario h2 {
+	font-weight: normal;
+	font-family: arial;
+	color: #333333;
+	font-size: 100%;
+	float: left;
+	margin: 0px 15px 0px 10px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#barra_usuario p  {
+	display: block;
+	margin: 0px;
+	text-align: right;
+}
+
+#barra_usuario p a {
+	background: url("../img/help.gif") top right no-repeat;
+	text-decoration: none;
+	padding: 2px 20px;
+}
+
+/*************/
+/* CONTENIDO */
+/*************/
+
+#contenido_centrado {
+	margin: 0px auto;
+	width: 780px;
+	overflow: hidden;
+}
+
+.migas {
+	padding: 15px 0px 8px 0px;
+}
+
+.migas ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+}
+
+.migas ul li {
+	background: url("../img/flecha_migas.gif") left 4px no-repeat;
+	color : #CC3300;
+	text-decoration : none;	
+	padding-left: 20px;
+	height: 18px;
+	line-height: 18px;
+}
+
+.bloque {
+	width: 778px;
+	background: url("../img/bottom_right_big.gif") bottom right no-repeat;
+}
+
+.bloque h3 {
+	color: #003399;
+	font-size: 110%;
+	margin: 0px 0px 0px 0px;
+	background: url("../img/top_left.gif") left 0px no-repeat;
+	padding: 2px 0px;
+}
+
+.bloque .encabezado {
+	background: url("../img/top_right.gif") top right no-repeat;	
+}
+
+.bloque div.cuerpo {
+	background: url("../img/bottom_left_big.gif") bottom left no-repeat;
+	padding-bottom: 20px;	
+}
+
+.bloque div.cuerpo div.contenido_cuerpo {
+	border: 1px solid #c7d9d3;
+	background-color: #ffffff;
+	margin: 0px 5px 0px 5px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+
+.seccion, .seccion_top {
+	margin: 10px 6px 20px 14px;
+	width: 360px;
+	float:left;
+}
+
+.seccion_top {
+	margin: 10px 6px 0px 14px;
+}
+
+.seccion_large {
+	margin: 10px 6px 0px 14px;
+	width: 740px;
+	float:left;
+}
+
+.seccion_short {
+	margin: 10px 6px 20px 14px;
+	width: 233px;
+	float:left;
+	padding:0px;
+}
+
+div.clear {
+	clear:both;
+}
+
+.seccion .encabezado_sec,  .seccion_large .encabezado_sec, .seccion_short .encabezado_sec  {
+	background-color: #BEE8F9;
+	border: 1px solid #C3D8E5;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 10px;
+	font-weight: bold;	
+	color: #333333;
+}
+
+.cuerpo_sec {
+	padding: 10px 0px 0px 0px;
+}
+
+._outter {
+	padding: 0px;
+}
+
+._inner {
+	padding: 10px 0px 20px 0px;
+}
+
+.cuerpo_sec ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.cuerpo_sec ul li {
+	background: url("../img/bullet_portal.gif") left 3px no-repeat;
+	padding-left: 14px;
+	margin: 5px 0px 10px 0px;
+}
+
+.cuerpo_sec a {
+	height: 12px;
+	line-height: 12px;
+	color: #333333;
+	text-decoration: none;	
+	font-weight: bold;	
+}
+
+.cuerpo_sec a:hover {
+	text-decoration: underline;
+}
+
+.cuerpo_sec p {
+	margin: 8px 0px 0px 0px;
+	font-family: arial;
+	color: #999999;
+	font-size: 100%; 
+}
+

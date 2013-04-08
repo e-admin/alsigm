@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sistema_organizacion>
+<!--************************************************************-->
+<!-- Entidad: EJEMPLO DE ORGANIZACIÓN		                				-->
+<!--************************************************************-->
+	
+	<!-- Instituciones -->
+	<organo>
+	   <id>Id_Institucion</id>
+	   <codigo>Id_Institucion</codigo>
+	   <nombre>NOMBRE INSTITUCIÓN</nombre>
+	   <nivel>0</nivel>
+	   <id_padre>0</id_padre>
+	   <institucion>si</institucion>
+	</organo>
+	
+	<!-- Órganos -->
+		  <organo>
+		     <id>Identificador</id>
+		     <codigo>Código</codigo>
+		     <nombre>Nombre Organo</nombre>
+		     <nivel>1</nivel>
+		     <id_padre>Id_Institucion</id_padre>
+		  </organo>
+		  
+	<!-- Asociación de Usuario a Órganos/Instituciones -->
+  <organo_usuario>
+     	<usuario>Id_Usuario</usuario>
+     	<organo>Id_Organo</organo>
+  </organo_usuario>
+
+</sistema_organizacion>

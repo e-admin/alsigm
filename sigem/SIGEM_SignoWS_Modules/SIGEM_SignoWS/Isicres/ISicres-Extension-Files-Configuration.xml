@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ISicres-Extension-Files-Configuration>
+	<!-- Operativa por defecto a realizar para la extensiones
+		 TRUE - Se fuerza cuadro de dialogo de abrir/guardar ficheros
+		 FALSE - Se visualiza el fichero en el navegador
+	-->
+	<showDialogDownloadFileByDefault>${showdialog.extension.files.default}</showDialogDownloadFileByDefault>
+
+	<extensions-configuration>
+		<!-- Coleccion con las diferentes extensiones y operativa a seguir -->
+		<extension-configuration>
+			<!-- Se define la extension del fichero -->
+			<extension>XADES</extension>
+			<!--
+				Operativa a realizar para la extensiones
+				 TRUE - Se fuerza cuadro de dialogo de abrir/guardar ficheros
+				 FALSE - Se visualiza el fichero en el navegador
+			-->
+			<showDialogDownloadFile>true</showDialogDownloadFile>
+		</extension-configuration>
+
+		<!-- Ejemplo de configuracion de mas extensiones
+		<extension-configuration>
+			<extension>txt</extension>
+			<showDialogDownloadFile>true</showDialogDownloadFile>
+		</extension-configuration>
+
+		<extension-configuration>
+			<extension>XML</extension>
+			<showDialogDownloadFile>false</showDialogDownloadFile>
+		</extension-configuration>
+
+		-->
+	</extensions-configuration>
+
+</ISicres-Extension-Files-Configuration>

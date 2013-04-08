@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='RESPNAME'
+				 titleKey='viewusermanager.organization'
+				 fieldType='ITEMLINK'
+				 fieldLink='UID'
+				 styleClass='resplink'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='viewUsersManager.do?type=organization'
+				 id='uidint'
+				 columnClass='width100percent'
+				 />
+		
+	<!-- Ruta hasta la raiz, no se utiliza en la tabla -->
+	<propertyfmt type="BeanPropertyLdapAncestorFmt" 
+				 property='RESPNAME' 
+				 readOnly='false'
+				 titleKey='mgr.common.nombre'
+				 fieldLink='UID'
+				 styleClass='displayLinkAncestors'
+				 fieldType='ANCESTOR'
+				 url='viewUsersManager.do?type=organization'
+				 id='uidint'
+				 />
+	
+</beanformatter>

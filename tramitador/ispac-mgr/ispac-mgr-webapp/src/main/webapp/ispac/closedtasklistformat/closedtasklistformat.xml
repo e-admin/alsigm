@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<processlistformat>
+
+	<tasklist name="TASKLIST"/>
+	
+	<!-- Si se necesita algún campo del expediente
+	<entity name="EXPED" entityid="1"/>
+	-->
+	
+	<beanformatter defaultSort="2" export="true">
+
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='ID'
+					 readOnly='false'
+					 fieldType='CHECKBOX'
+					 headerClass='headerDisplay'
+					 columnClass='width5percent'
+					 sortable='false'
+					 media='html'
+					 />
+
+		<!-- Número de expediente para mostrar (con enlace).
+			 Ver el uso del atributo media en displaytag -->
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='NUMEXP'
+					 readOnly='false'
+					 titleKey='formattaer.taskProcess.numExp'
+					 fieldType='LINK'
+					 fieldLink='ID'
+					 styleClass='displayLink'
+					 headerClass='sortable'
+					 sortable='true'
+					 media='html '
+					 decorator=''
+					 url='showTask'
+					 id='taskId'
+					 columnClass='width15percent'
+					 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'
+					 />
+
+		<!-- Número de expediente para exportar. No se muestra en la página
+			 ya que el atributo "media" no tiene la cadena "html" -->
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='NUMEXP'
+					 readOnly='false'
+					 titleKey='formattaer.taskProcess.numExp'
+					 fieldType='LIST'
+					 media='csv excel xml pdf'
+					 />
+		
+		<!-- Nombre del procedimiento -->
+		<propertyfmt type="BeanPropertySimpleFmt" 
+	             	 property='NAME_PROC' 
+	             	 readOnly='false'
+		         	 titleKey='formattaer.taskProcess.procedimiento' 
+		         	 fieldType='LIST'
+		         	 headerClass='sortable'
+		         	 sortable='true'
+		         	 columnClass='width25percent'
+					 />
+		
+		<!-- Nombre de la fase -->
+		<propertyfmt type="BeanPropertySimpleFmt" 
+	             	 property='NAME_STAGE' 
+	             	 readOnly='false'
+		         	 titleKey='formattaer.taskProcess.fase' 
+		         	 fieldType='LIST'
+		         	 headerClass='sortable'
+		         	 sortable='true'
+		         	 columnClass='width25percent'
+		         	 />
+		
+		<!-- Fecha de inicio -->
+		<propertyfmt type="BeanPropertyDateFmt" 
+	             	 property='INITDATE' 
+					 readOnly='false'
+					 titleKey='formattaer.taskProcess.fechaInicio'
+					 fieldType='LIST'
+					 headerClass='sortable'
+					 sortable='true'
+					 format='dd/MM/yyyy'
+					 columnClass='width15percent'
+				 	 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 	 />
+
+		<!-- Fecha fin -->
+		<propertyfmt type="BeanPropertyDateFmt" 
+	             	 property='ENDDATE' 
+	             	 readOnly='false'
+		         	 titleKey='formattaer.taskProcess.fechaFin'
+		         	 fieldType='LIST'
+					 headerClass='sortable'
+					 sortable='true'
+					 format='dd/MM/yyyy'
+		         	 columnClass='width15percent'
+				 	 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 	 />
+		
+	</beanformatter>
+
+</processlistformat>

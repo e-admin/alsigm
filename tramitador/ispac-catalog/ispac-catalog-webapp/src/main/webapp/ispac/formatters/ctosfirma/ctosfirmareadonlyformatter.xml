@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CFC:ID_CIRCUITO'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width5percent'/>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='CFC:DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.name'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width65percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CFC:NUM_PASOS'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.numsteps'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CFC:TIPO'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.tipo'
+				 fieldType='TYPE'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'/>
+
+</beanformatter>

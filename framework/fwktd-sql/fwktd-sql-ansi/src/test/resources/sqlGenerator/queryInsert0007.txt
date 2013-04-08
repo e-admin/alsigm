@@ -1,0 +1,1 @@
+INSERT INTO A_SCHEMA."A_TABLE" ( col1 , col2 , col3 )  VALUES (1, 'String' , 2)

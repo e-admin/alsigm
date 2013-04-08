@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="WSTransferencias"
+	targetNamespace="http://transferencias.ws/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://transferencias.ws/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://transferencias.ws/"
+			attributeFormDefault="unqualified" elementFormDefault="unqualified"
+			targetNamespace="http://transferencias.ws/">
+
+			<!-- transferirExpedienteElectronicoConDocumentos -->
+			<xs:element name="transferirExpedienteElectronicoConDocumentos"
+				type="tns:transferirExpedienteElectronicoConDocumentos" />
+
+
+			<xs:complexType name="transferirExpedienteElectronicoConDocumentos">
+				<xs:sequence>
+					<xs:element minOccurs="1" maxOccurs="1" name="codigoTramitador"
+						type="xs:string" />
+					<xs:element minOccurs="1" maxOccurs="1" name="nombreTramitador"
+						type="xs:string" />
+
+					<xs:element minOccurs="1" maxOccurs="1" name="anioExpediente"
+						type="xs:int" />
+					<xs:element minOccurs="1" maxOccurs="1"
+						name="codigoProcedimiento" type="xs:string" />
+
+					<xs:element minOccurs="1" maxOccurs="1" name="contenidoXML"
+						type="xs:base64Binary" />
+
+					<!-- Verificar unicidad 0 - No verifica (Valor por defecto) 1 - Por
+						número de expediente no nulo 2 - Por número de expediente no nulo + titulo
+						(asunto) 3 - Por número de expediente no nulo + titulo (asunto) + fecha inicial
+						4 - Por número de expediente no nulo + titulo (asunto) + fecha inicial +
+						fecha final -->
+					<xs:element name="verificarUnicidad" type="xs:int"
+						maxOccurs="1" minOccurs="1"></xs:element>
+
+					<xs:element minOccurs="1" maxOccurs="1" name="usuario"
+						type="xs:string" />
+					<xs:element minOccurs="1" maxOccurs="1" name="password"
+						type="xs:string" />
+
+					<xs:element minOccurs="0" maxOccurs="1" name="entidad"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:element name="transferirExpedienteElectronicoConDocumentosResponse"
+				type="tns:transferirExpedienteElectronicoConDocumentosResponse" />
+
+			<xs:complexType
+				name="transferirExpedienteElectronicoConDocumentosResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="xs:boolean" />
+				</xs:sequence>
+			</xs:complexType>
+
+		</xs:schema>
+	</wsdl:types>
+
+	<wsdl:message name="transferirExpedienteElectronicoConDocumentosResponse">
+		<wsdl:part name="parameters"
+			element="tns:transferirExpedienteElectronicoConDocumentosResponse">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="transferirExpedienteElectronicoConDocumentos">
+		<wsdl:part name="parameters"
+			element="tns:transferirExpedienteElectronicoConDocumentos">
+		</wsdl:part>
+	</wsdl:message>
+
+	<!-- operaciones del servicio web de ServicioTransferenciasArchivoWS -->
+	<wsdl:portType name="WSTransferencias">
+		<wsdl:operation name="transferirExpedienteElectronicoConDocumentos">
+			<wsdl:input name="transferirExpedienteElectronicoConDocumentos"
+				message="tns:transferirExpedienteElectronicoConDocumentos">
+			</wsdl:input>
+			<wsdl:output name="transferirExpedienteElectronicoConDocumentosResponse"
+				message="tns:transferirExpedienteElectronicoConDocumentosResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="WSTransferenciasSoapBinding"
+		type="tns:WSTransferencias">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="transferirExpedienteElectronicoConDocumentos">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="transferirExpedienteElectronicoConDocumentos">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="transferirExpedienteElectronicoConDocumentosResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="WSTransferenciasService">
+		<wsdl:port name="WSTransferencias"
+			binding="tns:WSTransferenciasSoapBinding">
+			<soap:address location="http://localhost:8080/SIGEM_ArchivoWeb/services/WSTransferencias"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,27 @@
+<assembly>
+	<id>src</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>..</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>**</include>
+			</includes>	
+			<excludes>
+				<exclude>**/.settings/**</exclude>
+				<exclude>**/.gwt-cache/**</exclude>
+				<exclude>**/.externalToolBuilders/**</exclude>
+				<exclude>**/target/**</exclude>
+				<exclude>**/.classpath</exclude>
+				<exclude>**/.project</exclude>
+				<exclude>**/maven-eclipse.xml</exclude>
+				<exclude>**/ispac-db/**</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+</assembly>
+

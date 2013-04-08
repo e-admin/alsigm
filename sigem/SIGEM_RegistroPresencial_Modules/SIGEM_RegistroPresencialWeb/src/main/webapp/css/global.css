@@ -1,0 +1,880 @@
+BODY {
+    font-size: 8pt;
+    margin: 0px;
+    color: #003366;
+    font-family: Verdana;
+    background-color: #fafcff
+}
+
+P {
+    font-weight: bold;
+    font-size: 10px;
+    color: #fafcff;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+/*
+.SubOptions {
+    border-right: #9ccfff 1px solid;
+    border-top: #9ccfff 1px solid;
+    font-weight: bold;
+    font-size: 8pt;
+    border-left: #9ccfff 1px solid;
+    cursor: pointer;
+    color: #00309c;
+    border-bottom: #9ccfff 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+
+.SubOptions2 {
+    font-weight: bold;
+    font-size: 10px;
+    cursor: pointer;
+    color: #00309c;
+    border: 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptionsOver {
+    border-right: #00309c 1px solid;
+    border-top: #00309c 1px solid;
+    font-weight: bold;
+    font-size: 8pt;
+    border-left: #00309c 1px solid;
+    cursor: pointer;
+    color: #00309c;
+    border-bottom: #00309c 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptionsOver2 {
+    font-weight: bold;
+    font-size: 10px;
+    border-left: #00309c 1px solid;
+    cursor: pointer;
+    color: #00309c;
+    border: 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+*/
+ /* Este estilo se utiliza en la paginacion entre registros al navegar entre ellos despues en forma de formulario */
+.SubOptionsContainer {
+    font-weight: bold;
+    font-size: 8pt;
+    color: #00309c;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+/*.SubMenu {
+    background-color: #9ccfff
+}
+
+.SubMenu2 {
+	background-color: #D7EDFA;
+	margin-top: 10px;
+} */
+
+/*Generales SIGEM*/
+body.resalt {
+    width:100%;height:33px;background: url(../images/bg_mid_usuario.jpg) repeat-x;float: none;
+}
+
+.input {
+    height:16px; font-size:8pt; padding:0; border:1px solid #7f9db9; margin-right:10px;
+}
+
+.inputRO {
+    height:16px; font-size:8pt; padding:0; border:1px solid #7f9db9; width:160px; margin-right:10px; color: #003366; background-color: #DDDDDD;
+}
+
+.textarea {
+    height:16px; font-size:100%; padding:0; border:1px solid #7f9db9; width:160px; margin-right:10px; color: #003366; background-color: #FFFFFF;
+}
+
+.textareaRO {
+    height:16px; font-size:100%; padding:0; border:1px solid #7f9db9; width:160px; margin-right:10px; color: #003366; background-color: #DDDDDD;
+}
+
+.button {
+    width:90px; height:20px; background: url(../images/fondo_boton.jpg) no-repeat; font-weight:bold; font-size:8pt; font-family:Arial; color:white;
+}
+
+.label, .field{
+    color: #006699; float:left; padding-top:2px;font-size:8pt
+}
+
+.combo {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; color: #003366;
+}
+
+.msg {
+    font-weight: bold;
+}
+
+/*.BookName {
+    font-weight: bold; font-size: 10pt; color: #006699; font-family: Verdana; margin: 6px 0px 0px 10px;        padding: 0px 0px 0px 10px;line-height:90%;
+}
+
+.BookNameEx {
+    font-weight: bold; font-size: 10pt; color: #006699; font-family: Verdana; margin: 6px 0px 0px 10px;        padding: 0px 0px 0px 10px;line-height:90%;
+    background: url(../images/bolo_activo.gif) no-repeat left;
+}*/
+
+.books{
+	font-weight: bold; font-size: 8pt; font-family: Verdana; color: #00309c;
+}
+
+.labelWhite {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; font-weight: bold; color: #006699;
+}
+
+h1.title {
+	font-weight:bold; color: #006699; font-size:8pt; background: url(../images/bolo_activo.gif) no-repeat left;
+	margin: 6px 0px 0px 10px; padding: 0px 0px 0px 10px; line-height:90%;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+/*#appHeader {
+	width:100%; height:61px; background: #99d6f5 url(../images/fondo_cab.jpg) no-repeat; border-collapse: collapse;
+}
+
+#appHeader div#logo_app {
+	width:140;
+	height:61px;
+
+	float:left;
+}
+
+#appHeader div#logo_cia {
+	width:111; height:61px; display:none
+}
+
+#appHeader .salir {
+	position: absolute;
+	background: url("../images/exit.gif") top left no-repeat;
+	text-align: right;
+	top: 20px;
+	right: 10px;
+}
+
+.salir a {
+	height: 20px;
+	line-height: 20px;
+	padding-left: 30px;
+	color: #006699;
+	font-weight: bold;
+	font-family: verdana, arial, tahoma, geneva, sans-serif;
+	text-decoration: none;
+	font-size: 90%;
+}*/
+
+/* Pantalla de Login*/
+#login {
+	position:absolute; top:10%; left:15%; background: url(../images/foto_llave.jpg) no-repeat;
+	border: 1px solid #c6c9d5;
+}
+
+/*
+.Options {
+    border-right: #cfcdcd 1px solid; border-top: #cfcdcd 1px solid; font-weight: bold; font-size: 8pt;
+    border-left: #cfcdcd 1px solid; cursor: pointer; color: #ffffff; border-bottom: #cfcdcd 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.OptionsOver {
+    border-right: 1px solid; border-top: 1px solid; font-weight: bold; font-size: 8pt;  border-left: 1px solid;
+    cursor: pointer; color: #ffffff; border-bottom: 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.SubOptionsDisabled {
+    font-weight: bold; font-size: 8pt; color: #666666; font-family: Verdana, Arial, Helvetica, sans-serif
+}*/
+
+/*.SubOptionsDisabled2 {
+    font-weight: bold; font-size: 10px; color: #666666; font-family: Verdana, Arial, Helvetica, sans-serif
+}*/
+
+/*Tablas */
+.title {
+    font-weight: bold; font-size: 10; font-family: Verdana; color: #006699; background-color: #bee8f9;
+}
+
+.title2 {
+    font-size: 10; font-family: Verdana; color: #006699;  background-color: #bee8f9;
+}
+
+.resalt {
+    background: url(../images/bg_mid_usuario.jpg) repeat-x;float: none;
+}
+
+.cuadro{
+	background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid 	#c6c9d5; padding:6px; margin:0px
+}
+
+TD.report {
+    font-size: 8pt; color: #003366; font-family: Verdana; background-color: #fafcff
+}
+
+TH.report {
+    font-size: 10; font-family: Verdana; color: #006699;  background-color: #bee8f9;
+}
+
+TH.reportDisable {
+    font-size: 10; font-family: Verdana; color: #666666;  background-color: #bee8f9;
+}
+
+TH.reportDisable2 {
+	font-weight: bold; font-size: 8pt; color: #00309C; font-family: Verdana; background-color: #FFFFFF
+}
+
+TABLE.report {
+    border: 1px solid #c6c9d5
+}
+
+TH.report2 {
+    font-weight: bold; font-size: 7pt; color: #00309c; font-family: Verdana; background-color: #bee8f9
+}
+/*Frame */
+
+frame.Style1 {
+    border-top: 1px solid #003366;
+}
+
+frame.Style2 {
+    border-top: 1px solid #003366;
+}
+
+frame.Style6 {
+    border-left: 1px solid #c6c9d5; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5;
+}
+
+iframe.Style6 {
+    border-left: 1px solid #c6c9d5; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5;
+}
+
+.div {
+    border: 1px solid #c6c9d5;
+}
+
+.divTitle {
+    border: 1px solid #c6c9d5; background-color: #0EAAE8;
+}
+
+td#tdLEST {
+	border-right:3px solid #c6c9d5;
+}
+
+div#divOrder {
+    left:5px; position:absolute; top:5px; width:80%;
+    border-left: 1px solid #c6c9d5; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5;
+	margin: auto;
+}
+
+iframe#Vld {
+    height:98%; left:5px; position:absolute; top:5px; width:99%;
+    border: 1px solid #c6c9d5;
+}
+
+frameset#TopVldFrm {
+    border: 1px solid #c6c9d5;
+}
+
+td.tdLabel {
+    padding-left:10; padding-top:15;
+}
+
+td.tdBody {
+    padding-left:10;
+}
+
+input#btnAgreg, input#btnAgregAll, input#btnRemove, input#btnRemoveAll{
+    width:110;
+}
+
+input#btnUp, input#btnDown, input#btnClose{
+    width:80;
+}
+
+td#compulsa {
+	display:block;
+}
+
+
+.buttonSearchAvanced {
+    width:90px; height: 22px; background: url(../images/fondo_boton.jpg) no-repeat; font-weight:bold; font-size:8pt; font-family:Arial; color:white;
+}
+
+.comboSearchAvanced {
+	font-weight: normal; font-size: 8pt; font-family: Verdana; color: #003366; width: 180px; heigth: 22px;
+}
+
+.inputTextSearchAvanced{
+	font-weight: normal; font-size: 8pt; font-family: Verdana; color: #003366; width: 154px; heigth: 22px;
+}
+
+.inputTextSearchAvancedImg{
+	font-weight: normal; font-size: 8pt; font-family: Verdana; color: #003366; width: 127px; heigth: 22px;
+}
+
+.comboSearchAvancednexo {
+	font-weight: normal; font-size: 8pt; font-family: Verdana; color: #003366; heigth: 22px; width: 70px;
+}
+
+.searchTitle {
+      text-align:left; vertical-align: middle;
+}
+
+.tableButtonSearchAvanced{
+	position: Absolute; left: 750px; top: 40px;
+}
+
+.titleSearch{
+    font-weight: bold; font-size: 11pt; font-family: Verdana; color: #006699;
+}
+
+.searchTitle2{
+    font-weight: bold; font-size: 8pt; font-family: Verdana; color: #00309c; background-color: #bee8f9;
+}
+
+.imgInvalidValidatedField{
+	position: relative; left: -17px; top: 2px; height: 11px; width: 11px; cursor:pointer;
+}
+
+.imgInvalidNotValidatedField{
+	position: relative; /*left: -17px;*/ top: 2px; height: 11px; width: 11px; cursor:pointer;
+}
+
+/* imagenes de ayuda */
+.imgHelpSearch{
+	left: 70%;
+	height: 17px;
+	width: 17px;
+}
+
+.imgHelpCalendar{
+	left: 70%;
+	height: 15px;
+	width: 20px;
+}
+.imgHelpReports{
+	cursor:pointer; height:17px; left:222px; position:relative; width:17px;
+}
+
+.imgHelpEdit{
+	position:absolute; top:30; left:344; height:17; width:17; cursor:pointer;
+}
+
+.imgHelpInt{
+	position:relative;top:-18;left:95%;width:17px;height:17px;
+}
+
+/* area usuario-oficina-ayuda */
+.usuario_organo_left {
+	background: url("../images/bg_right_usuario_organo.jpg") bottom right repeat-y;
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#usuario_organo {
+	background: url("../images/bg_left_usuario_organo.jpg") left bottom repeat-y;
+	margin: 0px;
+	padding: 2px 0px 2px 0px;
+	overflow: hidden;
+}
+
+#usuario_organo h2 {
+	font-weight: bold;
+	font-family: verdana;
+	color: #333333;
+	font-size: 90%;
+	float: left;
+	margin: 2px 15px 4px 10px;
+	padding: 0px;
+	display: inline; /* para quitar el doble margen del IE */
+}
+
+#usuario_organo ul {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+}
+
+#usuario_organo ul li {
+	background: left top no-repeat;
+	padding-left: 10px;
+	height: 16px;
+	line-height: 16px;
+	float: left;
+}
+
+#usuario_organo p {
+	margin: 0px 8px;
+	padding: 0px;
+	text-align: right;
+
+}
+
+#usuario_organo img {
+	border: 0px;
+
+}
+.usuario_plegado ul {
+	display: none;
+}
+
+#usuario_organo ul li {
+	background: left top no-repeat;
+	padding-left: 10px;
+	height: 16px;
+	line-height: 16px;
+}
+
+#usuario_organo ul.usuario_plegado li {
+	background-image: url("../images/padre_up.gif");
+}
+
+.GreyToolbar {
+	background-color: #cfcdcd;
+}
+
+.Options {
+    border-right: #cfcdcd 1px solid; border-top: #cfcdcd 1px solid; font-weight: bold; font-size: 8pt;
+    border-left: #cfcdcd 1px solid; cursor: pointer; color: #ffffff; border-bottom: #cfcdcd 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+.linkOptions:hover, .linkOptions:visited, .linkOptions:link {
+color: #ffffff;
+text-decoration: none;
+}
+
+.migas {
+	margin-left: 10px;
+	padding: 0px 0px 5px 0px;
+}
+
+.migas ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type:none;
+}
+
+.migas ul li {
+	background: url("../images/flecha_migas_sinfondo.gif") left 9px no-repeat;
+	color : #CC3300;
+	text-decoration : none;
+	padding-left: 20px;
+	height: 18px;
+	line-height: 18px;
+}
+
+/*
+.GreyToolbar {
+	width:100%;height:24px;background-color: #cfcdcd;
+}
+*/
+
+/* botonera azul */
+
+div.seccion_tab div.cabecera_seccion_tab {
+	background: #D7EDFA;
+	border-bottom: 1px solid #c7d9d3;
+	font-size: 100%;
+	height: 19px;
+	line-height: 19px;
+	width: 100%;
+	margin-top: 5px;
+	position: relative;
+
+}
+
+div.seccion_tab div.cabecera_seccion_tab p {
+	text-align: right;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+}
+
+div.seccion_tab div.cabecera_seccion_tab p .activo{
+	text-decoration: none;
+	font-weight: bold;
+	color: #006699;
+	padding: 0px 5px 2px 5px;
+	height: 19px;
+	line-height: 19px;
+	vertical-align: middle;
+}
+
+div.seccion_tab div.cabecera_seccion_tab p .inactivo{
+	text-decoration: none;
+	font-weight: bold;
+	color: #666666;
+	padding: 0px 5px 2px 5px;
+	height: 19px;
+	line-height: 19px;
+	vertical-align: middle;
+}
+
+div.seccion_tab div.cabecera_seccion_tab p a img {
+	height: 17px;
+	line-height: 17px;
+	vertical-align: middle;
+	padding: 0px 0px 3px 0px;
+	border: 0px;
+}
+
+/* informes */
+.labelBusqueda {
+	display: block;
+	width: 20%;
+	float: left;
+	font-size: 8pt;
+}
+
+.select_busqueda {
+	width: 430px;
+	font-weight: normal;
+	font-size: 8pt;
+	font-family: Verdana;
+	color: #003366;
+	margin-right: 20px;
+}
+
+.fila_sub_busqueda label {
+	color: #006699;
+	float:left;
+	padding-top:2px;
+	width: 156px;
+}
+
+.form_busqueda {
+	padding: 5px 5px 15px 15px;
+}
+
+/* arbol de navegacion de nuevo registro */
+
+.tree_ie {
+	width: 244px;
+	float: left;
+	height: 300px;
+	zoom: 1;
+	z-index: 1;
+	margin-left: -16px;
+	margin-top: 10px;
+	background-color: #fafcff;
+	overflow: auto;
+	clear:right;
+}
+
+.tree_ff {
+	width: 244px;
+	float: left;
+	height: 300px;
+	zoom: 1;
+	z-index: 1;
+	margin-left: -27px;
+	background-color: #fafcff;
+	overflow: auto;
+	clear:right;
+}
+
+.contenido_tree {
+	padding: 0px 2px;
+	position: relative;
+	clear: both;
+	zoom: 1;
+}
+
+
+#botonera {
+	float: left;
+	z-index: 100;
+	position: relative;
+	height:100px;
+}
+
+#botonera p.imgTree {
+	padding: 0px;
+	margin: 12px 0px 0px 0px;
+}
+
+#botonera p.imgTree .img_menu_on {
+	background: url("../images/menu_on_blue.gif") top left no-repeat;
+	padding-left: 24px;
+	padding-bottom: 22px;
+	margin: 2px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#botonera p.imgTree .img_menu_off {
+	background: url("../images/menu_off.gif") top left no-repeat;
+	padding-left: 24px;
+	padding-bottom: 22px;
+	margin: 2px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+HR
+{
+    color: #6699cc;
+}
+
+BODY.resalt
+{
+    background-color: #6699cc
+}
+
+/*BODY.SubMenu
+{
+    background-color: #9ccfff
+}*/
+
+.resalt
+{
+    background-color: #6699cc
+}
+
+/* DIV.SubMenu
+{
+    background-color: #9ccfff
+}*/
+/* Para fijar la cabecera de la tabla de resultados de consulta*/
+div.fixedHeaderTable {
+    position: relative;
+    z-index:1;
+}
+
+div.fixedHeaderTable tbody {
+    height: 390px;
+    overflow-y: auto;
+    overflow-x: auto;
+    background-color: #FFFFFF;
+}
+div.fixedHeaderTable thead td, div.fixedHeaderTable thead th {
+    position:relative;
+}
+
+   /* IE7 hacks */
+div.fixedHeaderTable {
+    *position: relative;
+    *height: 390px;
+    *overflow-y: scroll;
+   	*overflow-x: scroll;
+}
+
+div.fixedHeaderTable thead tr {
+    *position: relative;
+    _position: absolute;
+    *top: expression(this.offsetParent.scrollTop-2);
+}
+
+div.fixedHeaderTable tbody {
+    *height: auto;
+    *position:absolute;
+	*top:50px;
+	*background-color: #FFFFFF;
+}
+
+	/* IE6 hacks */
+div.fixedHeaderTable {
+	_width:expression(this.offsetParent.clientWidth-20);
+	_overflow: auto;
+	_overflow-y: scroll;
+	_overflow-x: scroll;
+}
+div.fixedHeaderTable thead tr {
+  _position: relative
+}
+
+/* */
+
+/*Estilo de la cabecera de la tabla de resultados la consulta de registros*/
+.ordenarResults{
+	font-weight: bold;
+	font-size: 7pt;
+	color: #00309c;
+	font-family: Verdana;
+	background-color: #BEE8F9;
+}
+
+.cargar{
+	display:none;
+	color:#00309c;
+	position:absolute;
+	font-weight:bold;
+	z-index:100;
+	width:100%;
+	height: 410px;
+	text-align:center;
+	background-color: #ffffff;
+	filter: Alpha(Opacity=75);
+ 	-moz-opacity: 1.0;
+ 	Padding-top: 100px;
+}
+
+.cargarSaveRegisterOculto{
+	display:none;
+	color:#00309c;
+	position:absolute;
+	font-weight:bold;
+	z-index:100;
+	width:100%;
+	height: 550px;
+	background-color: #ffffff;
+	filter: Alpha(Opacity=75);
+ 	-moz-opacity: 1.0;
+	text-align:center;
+ 	Padding-top: 230px;
+}
+
+/* Para fijar la cabecera de la tabla de resultados de la distribucion*/
+div.fixedHeaderTableDistrib {
+    position: relative;
+    top: 2px;
+    z-index:1;
+}
+
+div.fixedHeaderTableDistrib tbody {
+    height: 340px;
+    overflow-y: auto;
+    overflow-x: auto;
+    background-color: #FFFFFF;
+}
+div.fixedHeaderTableDistrib thead td, div.fixedHeaderTableDistrib thead th {
+    position:relative;
+}
+
+   /* IE7 hacks */
+div.fixedHeaderTableDistrib {
+    *position: relative;
+    *height: 348px;
+    *overflow-y: scroll;
+   	*overflow-x: scroll;
+}
+
+div.fixedHeaderTableDistrib thead tr {
+    *position: relative;
+    _position: absolute;
+    *top: expression(this.offsetParent.scrollTop-2);
+}
+
+div.fixedHeaderTableDistrib tbody {
+    *height: auto;
+    *position:absolute;
+	*top:50px;
+	*background-color: #FFFFFF;
+}
+
+	/* IE6 hacks */
+div.fixedHeaderTableDistrib {
+	_width:expression(this.offsetParent.clientWidth-2);
+	_overflow: auto;
+	_overflow-y: scroll;
+	_overflow-x: scroll;
+}
+div.fixedHeaderTableDistrib thead tr {
+  _position: relative
+}
+
+/* */
+
+/* Estilos que cargan las imagenes de ordenar en Distribucion */
+
+#tblMain thead tr .report2{
+	background-image: url(../images/bg.gif);
+    background-repeat: no-repeat;
+	background-position: center left;
+	cursor: pointer;
+	padding-left: 20px;
+	margin-left: -1px;
+}
+
+#tblMain thead tr .headerSortUp {
+	background-image: url(../images/asc.gif);
+}
+
+#tblMain thead tr .headerSortDown {
+	background-image: url(../images/desc.gif);
+}
+
+#tblMain tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+
+TH.report3 {
+    font-weight: bold; font-size: 8pt; color: #00309c; font-family: Verdana;
+}
+
+TH.report4 {
+    font-weight: bold; font-size: 8pt; color: #00309c; font-family: Verdana; background-color: #BEE8F9
+}
+
+#MenuFolderBar{
+	background-color: #9ccfff;
+}
+
+#tableTbSearch{
+	border: 2px solid #ddeeff;
+}
+
+/* */
+/* Para las tablas de direcciones de los interesados*/
+.dirInterScrollbarY{
+	height:190px;
+	overflow-x:hidden;
+	overflow-y:auto
+}
+
+.dirInterTeleScrollbarY{
+	height:239px;
+	overflow-x:hidden;
+	overflow-y:auto
+}
+
+/* */
+div.closeRegBetweenDate{
+	position:relative;
+	width:100%;
+	margin-left: 15px;
+	clear: both;
+}
+
+.historialIntercambio{
+	font-size:14pt;
+	text-align:left;
+	padding-bottom: 10px;
+	padding-top: 15px;
+}
+
+/* */
+div.historialDist{
+	position:relative;
+	width: 98%;
+	left: 1%;
+	top: 10px;
+	bottom: 10px;
+	height: 450px;
+	overflow:auto;
+}
+
+#documentoElectronicoPropiedades{
+	margin:auto;
+	width:400px;
+}
+
+#documentoElectronicoPropiedades p{
+	color: #000000;
+	font-weight: normal;
+}
+#documentoElectronicoPropiedades h3{
+	border-bottom:1px solid #000000;
+}

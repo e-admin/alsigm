@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>postgresql</groupId>
+  <artifactId>postgresql</artifactId>
+  <packaging>jar</packaging>
+  <name>PostgreSQL JDBC Driver</name>
+  <version>9.0-801.jdbc3</version>
+  <url>http://jdbc.postgresql.org</url>
+  <description>The PostgreSQL Driver JDBC3</description>
+  <licenses>
+    <license>
+      <name>BSD License</name>
+      <url>http://jdbc.postgresql.org/license.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+</project>

@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script language="javascript">
+		document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+	</script>
+	<link REL="stylesheet" TYPE="text/css" HREF="css/global.css" />
+	<link REL="stylesheet" TYPE="text/css" HREF="css/font.css" />
+	<script type="text/javascript" language="javascript" src="./scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./scripts/jquery.hotkeys-0.8.js"></script>
+    <script type="text/javascript" language="javascript" src="./scripts/custom_hotkeys.js"></script>
+	<script type="text/javascript" language="javascript">
+			var urlLogo = cargarLogo();
+			var urlLogoMinetur = cargarLogoMinetur();
+			
+			function cargarLogo() {
+				var url = top.getURL();
+				var urlImgLogo = url + "/resourceServlet/logos/logo.gif";				
+				return urlImgLogo;
+			}
+			
+			function cargarLogoMinetur() {
+				var url = top.getURL();				
+				var urlImgMinetur = url +"/images/minetur.jpg";
+				return urlImgMinetur;
+			}
+		</script>
+</head>
+<body tabIndex="-1">
+	<div id="appHeader" cellpadding="0">
+		<div id="logo_app">
+			<script language="javascript">
+				document.write('<img  src="' + urlLogoMinetur + '" id="logo_minetur_img" />');
+				document.write('<img  src="' + urlLogo + '" id="logo_app_img" />');
+			</script>
+		</div>
+		<div id="logo_cia"></div>
+		<div id="salir" class="salir" style="visibility:visible">
+			<a href='#' onclick="top.Logout(false);">
+				<script language="javascript">document.write( top.GetIdsLan( "IDS_OPCSALIR" ) );</script>
+			</a>
+		</div>
+	</div>
+	<div class="usuario_organo_left">
+		<div id="usuario_organo">
+			<h2><label id="textUser"></label></h2>
+			<ul id="infoUser" class="usuario_plegado">
+				<li id="imgPoint" style="visibility:hidden"><label id="textOffice"></label></li>
+			</ul>
+			<p><a href="#"><img src="images/help.gif" id="ayuda" onclick="top.OpenHelp();"/>
+				<script type="text/javascript">document.getElementById("ayuda").title = top.GetIdsLan("IDS_HELP");</script>
+				<script type="text/javascript">document.getElementById("ayuda").alt = top.GetIdsLan("IDS_HELP");</script>
+				</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

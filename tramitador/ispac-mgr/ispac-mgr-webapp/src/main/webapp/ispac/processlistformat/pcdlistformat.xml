@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<processlistformat>
+
+	<worklist name="WORKLIST"/>
+	<entity name="EXPED" entityid="1"/>
+
+	<codetable name="SUST" table="SPAC_TBL_004" code="VALOR" value="SUSTITUTO">
+		<substitute name="EXPED" property="ESTADOADM"/>
+	</codetable>
+
+<!--
+	<query> WORKLIST.NUMEXP = 'EXP/386'</query>
+-->
+
+	<beanformatter defaultSort="3">
+	
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='WORKLIST:ID_STAGE'
+					 readOnly='false'
+					 fieldType='CHECKBOX'
+					 headerClass='headerDisplay'
+					 sortable='false'
+					 media='html'
+					 columnClass='width5percent'/>
+
+		<!-- Número de expediente para mostrar (con enlace).
+			 Ver el uso del atributo media en displaytag -->
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='WORKLIST:NUMEXP'
+					 readOnly='false'
+					 titleKey='formatter.workList.numExp'
+					 fieldType='LINK'
+					 fieldLink='WORKLIST:ID_STAGE'
+					 styleClass='displayLink'
+					 headerClass='sortable'
+					 sortable='true'
+					 media='html '
+					 decorator=''
+					 url='showExpedient'
+					 id='stageId'
+					 columnClass='width15percent'
+					 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'/>
+
+		<!-- Número de expediente para exportar. No se muestra en la página
+			 ya que el atributo "media" no tiene la cadena "html" -->
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='WORKLIST:NUMEXP'
+					 readOnly='false'
+					 titleKey='formatter.workList.numExp'
+					 fieldType='LIST'
+					 media='csv excel xml pdf'
+					 columnClass='width15percent'/>
+
+		<!-- Referencia interna -->
+		<!--
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='EXPED:REFERENCIA_INTERNA'
+					 readOnly='false'
+					 titleKey='formatter.workList.referenciaInterna'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 media='csv excel xml pdf html'
+					 columnClass='width20percent'/>
+		-->
+
+		<!--  Fecha de inicio del plazo -->
+		<propertyfmt type="BeanPropertyDateFmt"
+					 property='EXPED:FAPERTURA'
+					 readOnly='false'
+					 titleKey='formatter.workList.fechaInicio'
+					 fieldType='LIST'
+					 headerClass='sortable'
+					 sortable='true'
+					 format='dd/MM/yyyy'
+					 columnClass='width15percent'
+				 	 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
+
+		<!-- Interesado principal -->
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='EXPED:IDENTIDADTITULAR'
+					 readOnly='false'
+					 titleKey='formatter.workList.interesadoPrincipal'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 columnClass='width25percent'/>
+
+		<!-- Estado administrativo -->
+		<!-- 
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='EXPED:ESTADOADM'
+					 readOnly='false'
+					 titleKey='Estado Administrativo'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='headerDisplay'
+					 sortable='true'
+					 media='csv excel xml pdf html'
+					 columnClass='width15percent'/>
+		-->
+
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='SUST:EXPED:SUSTITUTO'
+					 readOnly='false'
+					 titleKey='formatter.workList.estadoAdministrativo'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 columnClass='width20percent'/>
+
+		<!-- Asunto -->
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='EXPED:ASUNTO'
+					 readOnly='false'
+					 titleKey='formatter.workList.asunto'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 columnClass='width20percent'/>
+					 
+		<!-- Forma de terminacion -->
+		<!--
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='SUST:EXPED:FORMATERMINACION'
+					 readOnly='false'
+					 titleKey='formatter.workList.formaTerminacion'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='headerDisplay'
+					 sortable='true'
+					 media='csv excel xml pdf html'
+					 columnClass='width10percent'/>
+		-->
+		
+		<!--
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='WORKLIST:NAME_PROC'
+					 readOnly='false'
+					 titleKey='Procedimiento'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 media='html csv excel xml pdf'
+					 decorator=''
+					 url=''
+					 id=''
+					 columnClass='width20percent'/>
+
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='EXPED:ASUNTO'
+					 readOnly='true'
+					 titleKey='formatter.workList.asunto'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 media='html csv excel xml pdf'
+					 decorator=''
+					 url=''
+					 id=''
+					 columnClass='width15percent'/>
+
+		<propertyfmt type="BeanPropertySimpleFmt"
+					 property='WORKLIST:NAME_STAGE'
+					 readOnly='false'
+					 titleKey='Fase'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 media='html csv excel xml pdf'
+					 decorator=''
+					 url=''
+					 id=''
+					 columnClass='width20percent'/>
+
+		<propertyfmt type="BeanPropertyDateFmt"
+					 property='WORKLIST:INITDATE'
+					 readOnly='false'
+					 format='dd/MM/yyyy'
+					 titleKey='Fecha inicio'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 media='html csv excel xml pdf'
+					 decorator=''
+					 url=''
+					 id=''
+					 columnClass='width14percent'/>
+
+		<propertyfmt type="BeanPropertyDateFmt"
+					 property='WORKLIST:LIMITDATE'
+					 readOnly='false'
+					 format='dd/MM/yyyy'
+					 titleKey='Fecha límite'
+					 fieldType='LIST'
+					 styleClass=''
+					 headerClass='sortable'
+					 sortable='true'
+					 media='html csv excel xml pdf'
+					 decorator=''
+					 url=''
+					 id=''
+					 columnClass='width14percent'/>
+		-->
+					 
+	</beanformatter>
+
+</processlistformat>

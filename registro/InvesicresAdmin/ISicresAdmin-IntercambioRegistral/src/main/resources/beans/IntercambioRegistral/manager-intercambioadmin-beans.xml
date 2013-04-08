@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="applicationContextProvider"
+		class="es.ieci.tecdoc.isicres.admin.business.spring.ApplicationContextProvider"></bean>
+
+
+	<bean id="intercambioRegistralManager"
+		class="es.ieci.tecdoc.isicres.admin.business.manager.impl.IntercambioRegistralManagerImpl">
+		<property name="intercambioRegistralDAO">
+			<ref bean="intercambioRegistralDAO" />
+		</property>
+		<property name="entidadRegistralIncrementer" ref="entityregIncrementer"></property>
+		<property name="unidadRegistralIncrementer" ref="tramunitIncrementer"></property>
+		<property name="servicioConsultaDirectorioComun" ref="fwktd_dir3_servicioConsultaDirectorioComun"></property>
+	</bean>
+
+	<bean id="gestionDCOManager"
+		class="es.ieci.tecdoc.isicres.admin.business.manager.impl.GestionDCOManagerImpl">
+		<property name="servicioInicializacionDirectorioComun" ref="fwktd_dir3_servicioInicializacionDirectorioComun"></property>
+		<property name="servicioActualizacionDirectorioComun" ref="fwktd_dir3_servicioActualizacionDirectorioComun"></property>
+	</bean>
+
+
+</beans>

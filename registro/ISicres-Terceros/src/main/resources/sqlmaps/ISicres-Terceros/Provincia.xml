@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ProvinciaVO">
+
+	<resultMap class="es.ieci.tecdoc.isicres.terceros.business.vo.ProvinciaVO"
+		id="provincia">
+		<result property="id" column="id" />
+		<result property="codigo" column="code" />
+		<result property="nombre" column="name" />
+	</resultMap>
+
+	<select id="getProvinciaVOs" resultMap="provincia">
+		SELECT id, name, code
+		FROM SCR_PROV
+		ORDER BY name ASC
+	</select>
+
+	<select id="getProvinciaVO" parameterClass="java.lang.String"
+		resultMap="provincia">
+		SELECT id, name, code
+		FROM SCR_PROV
+		WHERE
+		id=#value:INTEGER#
+	</select>
+
+	<select id="findByCodigo" parameterClass="java.lang.String"
+		resultMap="provincia">
+		SELECT id, name, code
+		FROM SCR_PROV
+		WHERE code=#value#
+	</select>
+
+	<select id="findByNombre" parameterClass="java.lang.String"
+		resultMap="provincia">
+		SELECT id, name, code
+		FROM SCR_PROV
+		WHERE name=#value#
+	</select>
+
+</sqlMap>

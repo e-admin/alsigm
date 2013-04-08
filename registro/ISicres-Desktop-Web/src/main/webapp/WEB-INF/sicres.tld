@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<description>Sicres JSP Tag Library</description>
+	<tlib-version>1.0</tlib-version>
+	<short-name>catalog</short-name>
+	<uri>es.ieci.tecdoc.isicres.terceros.web.view.tag</uri>
+
+	<tag>
+		<description>Etiqueta para renderizar la cabecera de los formularios de edición de la aplicación.</description>
+		<name>formHeader</name>
+		<tag-class>es.ieci.tecdoc.sicres.terceros.web.view.tag.FormHeaderTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>titleKey</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>submitId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>submitKey</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>submitCssClass</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>cancelId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>cancelKey</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>cancelCssClass</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Etiqueta para renderizar un mensaje de estado.</description>
+		<name>statusMessage</name>
+		<tag-class>es.ieci.tecdoc.sicres.terceros.web.view.tag.StatusMessageTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Mensaje de estado a mostrar.</description>
+			<name>message</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Identificador del div en el que se muestra el mensaje de estado.</description>
+			<name>messageId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

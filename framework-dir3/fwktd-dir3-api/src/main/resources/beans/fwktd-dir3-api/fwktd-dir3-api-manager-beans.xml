@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="fwktd_dir3_datosBasicosOficinaManagerImpl" name="fwktd_dir3_datosBasicosOficinaManager"
+		class="es.ieci.tecdoc.fwktd.dir3.api.manager.impl.DatosBasicosOficinaManagerImpl">
+		<constructor-arg ref="fwktd_dir3_datosBasicosOficinaDao" />
+	</bean>
+
+	<bean id="fwktd_dir3_datosBasicosUnidadOrganicaManagerImpl" name="fwktd_dir3_datosBasicosUnidadOrganicaManager"
+		class="es.ieci.tecdoc.fwktd.dir3.api.manager.impl.DatosBasicosUnidadOrganicaManagerImpl">
+		<constructor-arg ref="fwktd_dir3_datosBasicosUnidadOrganicaDao" />
+	</bean>
+
+	<bean id="fwktd_dir3_datosEstadoActualizacionDCOManager" name="fwktd_dir3_datosEstadoActualizacionDCOManager"
+		class="es.ieci.tecdoc.fwktd.dir3.api.manager.impl.EstadoActualizacionDCOManagerImpl">
+		<constructor-arg ref="fwktd_dir3_datosEstadoActualizacionDcoDao" />
+	</bean>
+
+	<bean id="fwktd_dir3_generateScriptSQLOficinaManagerImpl" name="fwktd_dir3_generateScriptSQLOficinaManager"
+		class="es.ieci.tecdoc.fwktd.dir3.api.manager.impl.GenerateScriptSQLOficinaManagerImpl">
+		<property name="datosBasicosOficinaManager" ref="fwktd_dir3_datosBasicosOficinaManager" />
+		<property name="scriptsFilesDir" value="${fwktd-dir3-dco.scriptsFilesDir}" />
+	</bean>
+
+	<bean id="fwktd_dir3_generateScriptSQLUnidadOrganicaManagerImpl" name="fwktd_dir3_generateScriptSQLUnidadOrganicaManager"
+		class="es.ieci.tecdoc.fwktd.dir3.api.manager.impl.GenerateScriptSQLUnidadOrganicaManagerImpl">
+		<property name="datosBasicosUnidadOrganicaManager" ref="fwktd_dir3_datosBasicosUnidadOrganicaManager" />
+		<property name="scriptsFilesDir" value="${fwktd-dir3-dco.scriptsFilesDir}" />
+	</bean>
+
+
+</beans>

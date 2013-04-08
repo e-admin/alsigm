@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Iuserdepthdr" 
+    table="IUSERDEPTHDR"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IUSERDEPTHDR"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="128"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="NAME"
+            length="128"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="parentid"
+        type="int"
+        column="PARENTID"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="PARENTID"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="mgrid"
+        type="int"
+        column="MGRID"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="MGRID"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="type"
+        type="int"
+        column="TYPE"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TYPE"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="remarks"
+        type="java.lang.String"
+        column="REMARKS"
+        length="254"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="REMARKS"
+            length="254"
+        </meta>    
+    </property>
+    <property
+        name="crtrid"
+        type="int"
+        column="CRTRID"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CRTRID"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="crtndate"
+        type="java.sql.Timestamp"
+        column="CRTNDATE"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CRTNDATE"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="updrid"
+        type="java.lang.Integer"
+        column="UPDRID"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="UPDRID"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="upddate"
+        type="java.sql.Timestamp"
+        column="UPDDATE"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="UPDDATE"
+            length="7"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

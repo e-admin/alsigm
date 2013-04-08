@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<TRANSFERENCIA version="5.0">
+	<!-- Identificación de la serie, es obligatorio para crear la serie, si
+		la serie ya existe no es necesario -->
+	<SERIE>
+		<!-- Obligatorios -->
+		<CODIGO_FONDO></CODIGO_FONDO>
+		<IDENTIFICADOR_FICHA_UDOCS></IDENTIFICADOR_FICHA_UDOCS>
+
+
+		<PROCEDIMIENTO>
+			<ID></ID>
+			<CODIGO></CODIGO>
+			<NOMBRE></NOMBRE>
+			<SISTEMA_PRODUCTOR>
+				<ID></ID><!-- Código de Sistema tramitador Texto corto (16) -->
+				<NOMBRE></NOMBRE><!-- Nombre del sistema Tramitador Texto corto(64) -->
+			</SISTEMA_PRODUCTOR>
+			<TITULO_CORTO></TITULO_CORTO>
+			<OBJETO></OBJETO>
+			<NORMATIVA></NORMATIVA>
+			<PRODUCTORES>
+				<PRODUCTOR tipo="ORGANIZACION" tipoAtributo="ID|CODIGO"
+					valor="">
+					<FECHA_INICIO></FECHA_INICIO>
+					<FECHA_FIN></FECHA_FIN>
+				</PRODUCTOR>
+			</PRODUCTORES>
+
+			<!-- Opcionales -->
+			<TRAMITES>
+				<TRAMITE></TRAMITE>
+			</TRAMITES>
+
+			<DOCUMENTOS></DOCUMENTOS>
+		</PROCEDIMIENTO>
+
+		<CAMPOS_FICHA_SERIE>
+			<!-- Campos de la ficha de Series -->
+
+		</CAMPOS_FICHA_SERIE>
+
+	</SERIE>
+
+	<UNIDAD_DOCUMENTAL nivel="UNIDAD DOCUMENTAL" tipo="ELECTRONICA">
+
+		<!-- Identificación de la Unidad documental -->
+		<IDENTIFICACION>
+			<ID></ID>
+			<NUMEXP></NUMEXP>
+			<TITULO></TITULO>
+			<FECHA_INICIAL FMT="" SEP="" CALIF=""></FECHA_INICIAL>
+			<FECHA_FINAL FMT="" SEP="" CALIF=""></FECHA_FINAL>
+			<PRODUCTOR tipo="ORGANIZACION" tipoAtributo="ID|CODIGO"></PRODUCTOR>
+			<PROCEDIMIENTO codigo="" />
+		</IDENTIFICACION>
+
+
+
+		<CAMPOS_FICHA_UNIDAD_DOCUMENTAL>
+			<!-- Datos de la ficha de Unidad documental asociada a la serie -->
+
+			<Descripcion_Contenido></Descripcion_Contenido>
+			<Cod_Sist_Productor></Cod_Sist_Productor>
+			<Publ_SAC></Publ_SAC>
+			<Historia_Institucional></Historia_Institucional>
+			<Historia_Archivistica></Historia_Archivistica>
+			<FechaEliminacion FMT="" SEP="" CALIF=""></FechaEliminacion>
+			<Nuevos_Ingresos></Nuevos_Ingresos>
+			<Condiciones_Acceso></Condiciones_Acceso>
+			<Condiciones_Reproduccion></Condiciones_Reproduccion>
+			<Lenguas></Lenguas>
+			<Caracteristicas_Fisicas></Caracteristicas_Fisicas>
+			<Instrumentos_Descripcion></Instrumentos_Descripcion>
+			<Originales_Existen></Originales_Existen>
+			<Originales_Descripcion></Originales_Descripcion>
+			<Copias_Existen></Copias_Existen>
+			<Copias_Descripcion></Copias_Descripcion>
+			<Unidades_Relacionadas></Unidades_Relacionadas>
+			<Nota_Publicacion></Nota_Publicacion>
+			<Normas_Utilizadas></Normas_Utilizadas>
+			<Notas></Notas>
+			<Alcance_Contenido></Alcance_Contenido>
+			<Descriptor></Descriptor>
+			<Valoracion_Serie></Valoracion_Serie>
+			<Admite_Ingresos></Admite_Ingresos>
+			<Valoracion_Porcentaje></Valoracion_Porcentaje>
+			<Forma_Ingreso></Forma_Ingreso>
+			<Cod_Transf></Cod_Transf>
+			<Ref_Ingreso></Ref_Ingreso>
+			<Hoja_de_Entrega></Hoja_de_Entrega>
+			<Materia></Materia>
+			<FechaIngreso FMT="" SEP="" CALIF=""></FechaIngreso>
+			<Geografico></Geografico>
+			<Onomastico></Onomastico>
+			<Version_NTI></Version_NTI>
+			<Estado></Estado>
+
+			<!-- Campos de Indice Electrónico -->
+			<IE_Nombre></IE_Nombre>
+			<IE_Descripcion></IE_Descripcion>
+			<IE_Id_Externo></IE_Id_Externo>
+			<IE_Version_NTI></IE_Version_NTI>
+			<IE_Organo tipo="ORGANIZACION" tipoAtributo="ID|CODIGO"></IE_Organo>
+			<IE_Fecha_Captura FMT="" SEP="" CALIF=""></IE_Fecha_Captura>
+			<IE_Origen></IE_Origen>
+			<IE_Estado_Elaboracion></IE_Estado_Elaboracion>
+			<IE_Nombre_Formato></IE_Nombre_Formato>
+			<IE_Tipo_Documental></IE_Tipo_Documental>
+			<IE_Tipo_Firma></IE_Tipo_Firma>
+			<IE_Valor_CSV></IE_Valor_CSV>
+			<IE_Definicion_Generacion_CSV></IE_Definicion_Generacion_CSV>
+			<IE_Identificador_Documento_Origen></IE_Identificador_Documento_Origen>
+
+			<Indice_electronico tipo="documentoElectronico">
+
+				<!-- Datos de Ubicación -->
+				<UBICACION tipo="BINARIO|ECM">
+					<!-- Atributos tipo BINARIO -->
+					<CONTENIDO></CONTENIDO>
+
+					<!-- Atributos tipo ECM -->
+					<REPOSITORIO tipo="INVESDOC|ALFRESCO">
+						<ID></ID>
+						<LOCALIZADOR></LOCALIZADOR>
+					</REPOSITORIO>
+				</UBICACION>
+
+				<!-- Almacenamiento del documento -->
+				<ALMACENAMIENTO tipo="ECM"><!-- Sólo se especifica el tipo se
+						el WS tiene que almacenar el fichero -->
+					<!-- Obligatorios -->
+					<NOMBRE></NOMBRE>
+					<EXTENSION></EXTENSION>
+
+					<!-- Obligatorio para tipo almacenamiento ECM -->
+					<REPOSITORIO tipo="INVESDOC|ALFRESCO">
+						<ID></ID><!-- Identificador del repositorio definido en el fichero
+							de configuración -->
+						<LOCALIZADOR></LOCALIZADOR>
+					</REPOSITORIO>
+
+					<!-- Opcionales -->
+					<DESCRIPCION></DESCRIPCION><!-- Opcional -->
+					<CLASIFICADOR></CLASIFICADOR><!-- Opcional -->
+				</ALMACENAMIENTO>
+			</Indice_electronico>
+
+			<!-- Definición Alternativa: Pendiente de Aprobar -->
+			<Indice_electronico tipo="documentoElectronico">
+
+				<FICHA>
+					<IE_Nombre></IE_Nombre>
+					<IE_Descripcion></IE_Descripcion>
+					<IE_Id_Externo></IE_Id_Externo>
+					<IE_Version_NTI></IE_Version_NTI>
+					<IE_Organo tipo="ORGANIZACION" tipoAtributo="ID|CODIGO"></IE_Organo>
+					<IE_Fecha_Captura FMT="" SEP="" CALIF=""></IE_Fecha_Captura>
+					<IE_Origen></IE_Origen>
+					<IE_Estado_Elaboracion></IE_Estado_Elaboracion>
+					<IE_Nombre_Formato></IE_Nombre_Formato>
+					<IE_Tipo_Documental></IE_Tipo_Documental>
+					<IE_Tipo_Firma></IE_Tipo_Firma>
+					<IE_Valor_CSV></IE_Valor_CSV>
+					<IE_Definicion_Generacion_CSV></IE_Definicion_Generacion_CSV>
+					<IE_Identificador_Documento_Origen></IE_Identificador_Documento_Origen>
+				</FICHA>
+
+				<!-- Datos de Ubicación -->
+				<UBICACION tipo="BINARIO|ECM">
+					<!-- Atributos tipo BINARIO -->
+					<CONTENIDO></CONTENIDO>
+
+					<!-- Atributos tipo ECM -->
+					<REPOSITORIO tipo="INVESDOC|ALFRESCO">
+						<ID></ID>
+						<LOCALIZADOR></LOCALIZADOR>
+					</REPOSITORIO>
+				</UBICACION>
+
+				<!-- Almacenamiento del documento -->
+				<ALMACENAMIENTO tipo="ECM"><!-- Sólo se especifica el tipo se
+						el WS tiene que almacenar el fichero -->
+					<!-- Obligatorios -->
+					<NOMBRE></NOMBRE>
+					<EXTENSION></EXTENSION>
+
+					<!-- Obligatorio para tipo almacenamiento ECM -->
+					<REPOSITORIO tipo="INVESDOC|ALFRESCO">
+						<ID></ID><!-- Identificador del repositorio definido en el fichero
+							de configuración -->
+						<LOCALIZADOR></LOCALIZADOR>
+					</REPOSITORIO>
+
+					<!-- Opcionales -->
+					<DESCRIPCION></DESCRIPCION><!-- Opcional -->
+					<CLASIFICADOR></CLASIFICADOR><!-- Opcional -->
+				</ALMACENAMIENTO>
+
+			</Indice_electronico>
+
+			<!-- Tablas -->
+			<Volumenes_Soportes>
+				<Volumen_Soporte>
+					<Formato></Formato>
+					<Soporte></Soporte>
+					<Num_Docs></Num_Docs>
+				</Volumen_Soporte>
+				...
+			</Volumenes_Soportes>
+
+			<Interesados>
+				<Interesado>
+					<Identidad></Identidad>
+					<NumIdentidad></NumIdentidad>
+					<Rol></Rol>
+					<Validado></Validado>
+					<IdTercero></IdTercero>
+					<Principal></Principal>
+				</Interesado>
+				...
+			</Interesados>
+
+			<Documentos_Fisicos>
+				<Documento_Fisico>
+					<Nombre></Nombre>
+					<Descripcion></Descripcion>
+					<Fecha></Fecha>
+				</Documento_Fisico>
+				...
+			</Documentos_Fisicos>
+
+			<Productores_Serie>
+				<Productor>
+					<Nombre></Nombre>
+					<Fecha_Ini FMT="" SEP="" CALIF=""></Fecha_Ini>
+					<Fecha_Fin FMT="" SEP="" CALIF=""></Fecha_Fin>
+				</Productor>
+				...
+			</Productores_Serie>
+
+			<Emplazamientos>
+				<Emplazamiento>
+					<Pais></Pais>
+					<Provincia></Provincia>
+					<Concejo></Concejo>
+					<Poblacion></Poblacion>
+					<Localizacion></Localizacion>
+					<Validado></Validado>
+				</Emplazamiento>
+				...
+			</Emplazamientos>
+			<Firmas>
+				<Firma>
+					<Tipo_Firma></Tipo_Firma>
+					<Valor_CSV></Valor_CSV>
+					<Definicion_Generacion_CSV></Definicion_Generacion_CSV>
+				</Firma>
+				...
+			</Firmas>
+			<Volumenes_FormasDoc>
+				<Volumen_FormaDoc>
+					<Soporte_Documental></Soporte_Documental>
+					<Cantidad></Cantidad>
+				</Volumen_FormaDoc>
+				...
+			</Volumenes_FormasDoc>
+			<Documentos_Electronicos>
+				<Documento_Electronico tipo="documentoElectronico">
+					<Nombre></Nombre>
+					<Descripcion></Descripcion>
+					<Version_NTI></Version_NTI>
+					<Organo tipo="ORGANIZACION" tipoAtributo="ID|CODIGO"></Organo>
+					<Fecha_Captura FMT="" SEP="" CALIF=""></Fecha_Captura>
+					<Origen></Origen>
+					<Estado_Elaboracion></Estado_Elaboracion>
+					<Nombre_Formato></Nombre_Formato>
+					<Tipo_Documental></Tipo_Documental>
+					<Tipo_Firma></Tipo_Firma>
+					<Valor_CSV></Valor_CSV>
+					<Definicion_Generacion_CSV></Definicion_Generacion_CSV>
+					<Identificador_Documento_Origen></Identificador_Documento_Origen>
+
+					<!-- Datos de Ubicación -->
+					<UBICACION tipo="BINARIO|ECM">
+						<!-- Atributos tipo BINARIO -->
+						<CONTENIDO></CONTENIDO>
+
+						<!-- Atributos tipo ECM -->
+						<REPOSITORIO tipo="INVESDOC|ALFRESCO">
+							<ID></ID>
+							<LOCALIZADOR></LOCALIZADOR>
+						</REPOSITORIO>
+					</UBICACION>
+
+					<!-- Almacenamiento del documento -->
+					<ALMACENAMIENTO tipo="ECM"><!-- Sólo se especifica el tipo
+							se el WS tiene que almacenar el fichero -->
+						<!-- Obligatorios -->
+						<NOMBRE></NOMBRE>
+						<EXTENSION></EXTENSION>
+
+						<!-- Obligatorio para tipo almacenamiento ECM -->
+						<REPOSITORIO tipo="INVESDOC|ALFRESCO">
+							<ID></ID><!-- Identificador del repositorio definido en el fichero
+								de configuración -->
+							<LOCALIZADOR></LOCALIZADOR>
+						</REPOSITORIO>
+
+						<!-- Opcionales -->
+						<DESCRIPCION></DESCRIPCION><!-- Opcional -->
+						<CLASIFICADOR></CLASIFICADOR><!-- Opcional -->
+					</ALMACENAMIENTO>
+				</Documento_Electronico>
+				...
+			</Documentos_Electronicos>
+		</CAMPOS_FICHA_UNIDAD_DOCUMENTAL>
+	</UNIDAD_DOCUMENTAL>
+</TRANSFERENCIA>

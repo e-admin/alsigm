@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="crearUsuario">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:Usuario"/>
+      <element name="entidad" type="impl:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Usuario">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="email" nillable="true" type="xsd:string"/>
+       <element name="id" nillable="true" type="xsd:string"/>
+       <element name="lastname" nillable="true" type="xsd:string"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="password" nillable="true" type="xsd:string"/>
+       <element name="user" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Entidad">
+    <sequence>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="crearUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="crearUsuarioReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarUsuario">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:Usuario"/>
+      <element name="entidad" type="impl:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarUsuarioReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarUsuarios">
+    <complexType>
+     <sequence>
+      <element name="criteria" type="impl:CriterioBusquedaUsuario"/>
+      <element name="entidad" type="impl:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CriterioBusquedaUsuario">
+    <sequence>
+     <element name="user" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="buscarUsuariosResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarUsuariosReturn" type="impl:ListaUsuarios"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfUsuario">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Usuario"/>
+    </sequence>
+   </complexType>
+   <complexType name="ListaUsuarios">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="users" nillable="true" type="impl:ArrayOfUsuario"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="autenticarUsuario">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:Usuario"/>
+      <element name="entidad" type="impl:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="autenticarUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="autenticarUsuarioReturn" type="impl:Usuario"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerUsuario">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:Usuario"/>
+      <element name="entidad" type="impl:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerUsuarioReturn" type="impl:Usuario"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarUsuario">
+    <complexType>
+     <sequence>
+      <element name="user" type="impl:Usuario"/>
+      <element name="entidad" type="impl:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="actualizarUsuarioReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://server.ws.usuario.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="buscarUsuariosResponse">
+
+      <wsdl:part element="impl:buscarUsuariosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarUsuariosRequest">
+
+      <wsdl:part element="impl:buscarUsuarios" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarUsuarioResponse">
+
+      <wsdl:part element="impl:actualizarUsuarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearUsuarioResponse">
+
+      <wsdl:part element="impl:crearUsuarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerUsuarioRequest">
+
+      <wsdl:part element="impl:obtenerUsuario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarUsuarioResponse">
+
+      <wsdl:part element="impl:eliminarUsuarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="autenticarUsuarioResponse">
+
+      <wsdl:part element="impl:autenticarUsuarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="autenticarUsuarioRequest">
+
+      <wsdl:part element="impl:autenticarUsuario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarUsuarioRequest">
+
+      <wsdl:part element="impl:eliminarUsuario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarUsuarioRequest">
+
+      <wsdl:part element="impl:actualizarUsuario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerUsuarioResponse">
+
+      <wsdl:part element="impl:obtenerUsuarioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearUsuarioRequest">
+
+      <wsdl:part element="impl:crearUsuario" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AdministracionUsuariosPortalWebService">
+
+      <wsdl:operation name="crearUsuario">
+
+         <wsdl:input message="impl:crearUsuarioRequest" name="crearUsuarioRequest"/>
+
+         <wsdl:output message="impl:crearUsuarioResponse" name="crearUsuarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarUsuario">
+
+         <wsdl:input message="impl:eliminarUsuarioRequest" name="eliminarUsuarioRequest"/>
+
+         <wsdl:output message="impl:eliminarUsuarioResponse" name="eliminarUsuarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarUsuarios">
+
+         <wsdl:input message="impl:buscarUsuariosRequest" name="buscarUsuariosRequest"/>
+
+         <wsdl:output message="impl:buscarUsuariosResponse" name="buscarUsuariosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="autenticarUsuario">
+
+         <wsdl:input message="impl:autenticarUsuarioRequest" name="autenticarUsuarioRequest"/>
+
+         <wsdl:output message="impl:autenticarUsuarioResponse" name="autenticarUsuarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerUsuario">
+
+         <wsdl:input message="impl:obtenerUsuarioRequest" name="obtenerUsuarioRequest"/>
+
+         <wsdl:output message="impl:obtenerUsuarioResponse" name="obtenerUsuarioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarUsuario">
+
+         <wsdl:input message="impl:actualizarUsuarioRequest" name="actualizarUsuarioRequest"/>
+
+         <wsdl:output message="impl:actualizarUsuarioResponse" name="actualizarUsuarioResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AdministracionUsuariosPortalWebServiceSoapBinding" type="impl:AdministracionUsuariosPortalWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="crearUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="crearUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="crearUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarUsuarios">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarUsuariosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarUsuariosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="autenticarUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="autenticarUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="autenticarUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="actualizarUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="actualizarUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AdministracionUsuariosPortalWebServiceService">
+
+      <wsdl:port binding="impl:AdministracionUsuariosPortalWebServiceSoapBinding" name="AdministracionUsuariosPortalWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_AutenticacionUsuariosWS/services/AdministracionUsuariosPortalWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

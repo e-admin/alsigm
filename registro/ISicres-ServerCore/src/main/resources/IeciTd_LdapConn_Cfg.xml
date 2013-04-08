@@ -1,0 +1,10 @@
+<!--Config>   -->
+<!--   Connection>-->
+<!--      Provider>1</Provider>-->
+<!--      Pooling>N</Pooling>-->
+<!--      Pooling_Timeout>0</Pooling_Timeout>-->
+<!--      -->
+<!--      Connect_User_Admin_By_DN>Y</Connect_User_Admin_By_DN>    -->
+<!--	  Connect_User_Admin_DN>cn=usuario,OU=DELEG. BLIMEA,OU=Delegaciones,DC=iecisa,DC=corp</Connect_User_Admin_DN>-->
+<!--   /Connection>-->
+<!--/Config>-->

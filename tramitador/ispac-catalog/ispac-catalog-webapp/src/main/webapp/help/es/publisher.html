@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Ayuda</title>
+<meta http-equiv="" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function close_window() {
+    window.close();
+}
+//-->
+</script>
+</head>
+<body bgcolor="#ffffff">
+<div align="center">
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+  <tr>
+   <td><img name="tabla_ayuda_r1_c1" src="../img/tabla_ayuda_r1_c1.gif" width="6" height="40" border="0" id="tabla_ayuda_r1_c1" alt="" /></td>
+   <td><img name="tabla_ayuda_ico_ayuda" src="../img/tabla_ayuda_ico_ayuda.gif" width="34" height="40" border="0" id="tabla_ayuda_ico_ayuda" alt="" /></td>
+   <td width="502" height="40" background="../img/tabla_ayuda_encabezado.gif"><span class="ayuda">PUBLICADOR</span></td>
+   		<td><a href="#" onclick="close_window()"><img src="../img/tabla_ayuda_cerrar.gif" alt="" name="tabla_ayuda_cerrar" width="32" height="40" border="0" id="tabla_ayuda_cerrar" /></a></td>
+   <td><img name="tabla_ayuda_r1_c5" src="../img/tabla_ayuda_r1_c5.gif" width="6" height="40" border="0" id="tabla_ayuda_r1_c5" alt="" /></td>
+  </tr>
+  <tr>
+   <td><img name="tabla_ayuda_r2_c1" src="../img/tabla_ayuda_r2_c1.gif" width="6" height="314" border="0" id="tabla_ayuda_r2_c1" alt="" /></td>
+   		<td colspan="3" width="568" height="314">
+			<div id="contenedor">
+
+<div class="textoAyuda">
+
+<table style="font: 10px Verdana, Geneva, Arial, Helvetica, sans-serif;" border=0 width="90%">
+	<tr><td width="70%" class="titular">Publicador</td>
+	<td width="30%" style="text-align:right;"><a class="enlace" href="javascript:history.back();">Atrás</a></td></tr>
+</table>
+<br>	
+
+	invesFlow dispone de un componente denominado <b>Publicador</b>, encargado de comunicarse con sistemas externos
+	de forma asíncrona. Un uso común de dicho publicador es el envío de información de la tramitación de un
+	expediente a un sistema externo, por ejemplo un sistema de información al ciudadano.
+	<br><br>
+	La lógica de dicho publicador se recoge en <b>reglas</b>, que recogen la acción que se ejecutará, para un evento 
+	de tramitación determinado si se cumple una determinada condición. Tanto acciones como condiciones son
+	clases java que se han de implementar y posteriormente dar de alta en el catálogo.
+	
+	<br><br>
+	
+	El publicador se compone de los siguientes elementos:
+	<ul>
+	<li><b>Acciones</b></li><br><br>
+	Son clases java que realizan una acción concreta, que irán asociadas a determinadas reglas, 
+	y que ejecutará el publicador si se dispara una de dichas reglas.
+	<br><br>
+
+	<li><b>Condiciones</b></li><br><br>
+	Son clases de java que realizan una comprobación, y que determinarán si se ejecuta o no
+	la acción de la regla disparada.
+	<br><br>
+	
+	<li><b>Aplicaciones</b></li><br><br>
+	Contexto o sistema externo destino de la publicación de una regla y que recogerá la información 
+	publicada; las reglas se clasificarán en función de dicha aplicación.
+	<br><br>
+
+	<li><b>Reglas</b></li><br><br>
+
+	Una regla recoge la acción que se desea ejecutar para un evento determinado. La regla vendrá
+	asociado a un contexto Procedimiento/Fase/Trámite/Tipo de documento, y su ejecución vendrá 
+	deteminada por el cumplimiento de una determinada condición. 
+
+	<br><br>
+	Se deberá indicar para cada regla:
+	<br><br>
+
+	<ul>
+	<li><b>Procedimiento</b>: procedimiento sobre el que se aplica la regla. Este campo es obligatorio.
+	</li><br>
+
+	<li><b>Fase</b>: fase sobre la que se aplica la regla.
+	</li><br>
+
+	<li><b>Trámite</b>: trámite sobre el que se aplica la regla.
+	</li><br>
+	
+	<li><b>Tipo de documento</b>: tipo de documento sobre el que se aplica la regla.
+	</li><br>
+	
+	<li><b>Evento</b>: momento en el que se disparará la ejecución de la regla. Este campo es obligatorio.
+	</li><br>		
+
+	<li><b>Info</b>: Información adicional sobre determinados eventos.
+	</li><br>		
+
+	<li><b>Acción</b>: acción que se ejecutará al disparar la regla, seleccionada entre las definidas en
+	el sistema.
+	</li><br>		
+
+	<li><b>Condición</b>: condición que se ejecutará para determinar si se dispara la regla, seleccionada 
+	entre las definidas en el sistema.
+	</li><br>		
+
+	<li><b>Atributos</b>: xml de configuración para la clase java que implementa la acción de la regla.
+	Para más detalle consultar la documentación técnica.
+	</li><br>		
+
+	<li><b>Aplicación</b>: aplicación contexto de la regla, seleccionada entre las definidas en el sistema.
+	</li><br>		
+
+	</ul>
+	<br>
+	
+	<li><b>Hitos erróneos</b></li><br><br>
+	
+	Desde esta opción se permite realizar el seguimientos de los errores que se han producido en la publicación.
+	Un hito erróneo podrá ser reactivado para que el publicador vuelva a tratarlo.
+
+</div>
+
+			</div>			
+			</td>
+   <td><img name="tabla_ayuda_r2_c5" src="../img/tabla_ayuda_r2_c5.gif" width="6" height="314" border="0" id="tabla_ayuda_r2_c5" alt="" /></td>
+  </tr>
+  <tr>
+   <td><img name="tabla_ayuda_r3_c1" src="../img/tabla_ayuda_r3_c1.gif" width="6" height="26" border="0" id="tabla_ayuda_r3_c1" alt="" /></td>
+   <td colspan="3"><img name="tabla_ayuda_r3_c2" src="../img/tabla_ayuda_r3_c2.gif" width="568" height="26" border="0" id="tabla_ayuda_r3_c2" alt="" /></td>
+   <td><img name="tabla_ayuda_r3_c5" src="../img/tabla_ayuda_r3_c5.gif" width="6" height="26" border="0" id="tabla_ayuda_r3_c5" alt="" /></td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

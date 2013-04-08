@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="FICHERO" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${sigem.log.path}${sigem.path.separator}SIGEM_PublicadorWeb${sigem.path.separator}SIGEM_PublicadorWeb.log"/>
+		<param name="MaxFileSize" value="5000KB"/>
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%p] %C %M %m %n"/>
+		</layout>
+	</appender>
+
+	<appender name="CONSOLA" class="org.apache.log4j.ConsoleAppender">
+       <param name="Target" value="System.out"/>
+       <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+       </layout>
+	</appender>	
+
+	<appender name="APP_MILESTONE_PROCESS" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${sigem.log.path}${sigem.path.separator}SIGEM_PublicadorWeb${sigem.path.separator}SIGEM_PublicadorWeb_hitos.log"/>
+		<param name="MaxFileSize" value="5000KB"/>
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %m %n"/>
+		</layout>
+	</appender>
+
+	<appender name="APP_CONSULTA_TELEMATICA" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${sigem.log.path}${sigem.path.separator}SIGEM_PublicadorWeb${sigem.path.separator}SIGEM_PublicadorWeb_CT.log"/>
+		<param name="MaxFileSize" value="5000KB"/>
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %m %n"/>
+		</layout>
+	</appender>
+
+	<appender name="APP_NOTIFICACION_TELEMATICA" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${sigem.log.path}${sigem.path.separator}SIGEM_PublicadorWeb${sigem.path.separator}SIGEM_PublicadorWeb_NT.log"/>
+		<param name="MaxFileSize" value="5000KB"/>
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %m %n"/>
+		</layout>
+	</appender>
+
+	<category name="MILESTONE_PROCESS">
+		<priority value="info"/>
+		<appender-ref ref="APP_MILESTONE_PROCESS"/>
+	</category>
+
+	<category name="MILESTONE_LOGGER">
+		<priority value="WARN"/>
+		<appender-ref ref="FICHERO"/>
+	</category>
+
+	<category name="CONSULTA_TELEMATICA">
+		<priority value="INFO"/>
+		<appender-ref ref="APP_CONSULTA_TELEMATICA"/>
+	</category>
+
+	<category name="NOTIFICACION_TELEMATICA">
+		<priority value="INFO"/>
+		<appender-ref ref="APP_NOTIFICACION_TELEMATICA"/>
+	</category>
+
+    <root>
+		<priority value ="WARN" />
+		<appender-ref ref="FICHERO"/>
+    </root>
+
+</log4j:configuration>

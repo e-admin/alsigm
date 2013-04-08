@@ -1,0 +1,73 @@
+/*
+body {
+
+	SCROLLBAR-FACE-COLOR:#6699CC; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #6699CC; 
+	SCROLLBAR-SHADOW-COLOR: #6699CC; 
+	SCROLLBAR-3DLIGHT-COLOR: #FFFFFF;
+	SCROLLBAR-ARROW-COLOR: #FFFFFF; 
+	SCROLLBAR-TRACK-COLOR: #E3E3E3; 
+	SCROLLBAR-DARKSHADOW-COLOR: #000000;
+
+	background: #F2F2F2;
+	margin: 0;
+	color: #000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	overflow: auto;
+
+}
+
+p, tr, td, ul, li {
+	color: #000;
+	font: 11px verdana, arial, helvetica, sans-serif;
+}
+
+td {
+	margin: 0;
+	padding: 0;
+}
+
+hr {
+	border: 1px #000 solid;
+}
+*/
+/*
+Estilos de formularios
+*/
+/*
+input, select, textarea {
+	color:#000;
+	background-color:#FFF;
+	font: 11px verdana, arial, helvetica, sans-serif;
+}
+
+input:focus,textarea:focus {
+	border: 1px #000 solid;
+}
+*/
+/*
+ Estilos de Tablas
+ */
+
+/*
+table.tableBase {
+	border: 1px;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	empty-cells: show;
+	margin: 0;
+	padding: 0;
+}
+
+td.index {
+	font-size: 8pt;
+	color: #000;
+}
+
+.genericButton {
+	font: 11px verdana, arial, helvetica, sans-serif;
+	border-collapse: collapse;
+	border: 1px #000 solid;
+}
+*/

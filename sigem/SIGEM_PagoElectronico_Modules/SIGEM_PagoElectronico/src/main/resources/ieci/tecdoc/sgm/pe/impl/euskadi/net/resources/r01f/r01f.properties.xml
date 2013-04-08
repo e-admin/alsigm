@@ -1,0 +1,66 @@
+<properties>
+	<!-- Diferentes urls -->
+	<uri>
+		<utilEjie>
+			<staticContent>/utilEjie</staticContent>
+		</utilEjie>
+	</uri>
+	<!-- Para cargar los ficheros de auxiliares se pueden utilizar dos formas:
+		 FILESYSTEM Carga de ficheros con acceso directo de forma absoluta a la ruta del fichero 
+		 	        en el disco:	/aplic/r01f/html/datos/testMap.xml
+		 CLASSPATH  Carga de los ficheros utilizando el classLoader de forma que el fichero de mapeo
+		 	        tiene que estar colocado en una ruta del classpath, por ejemplo, si /aplic pertenece
+		 	        al classPath, basta con solicitar la carga de /r01f/html/datos/testMap
+	-->
+	<resourcesLoader>
+		<!-- <resourceFilesLoader>FILESYSTEM</resourceFilesLoader> -->
+		<resourceFilesLoader>CLASSPATH</resourceFilesLoader>
+	</resourcesLoader>
+
+	<!-- Logging settings (el nivel global tiene preferencia a no ser que se
+         especifique el parametro ignoreGlobal='true' en un componente)
+		 Existen diferentes niveles de log que de mayor a menor nivel son:  
+		       ALL: 		(Integer.MIN_VALUE)	Todo; 
+		       FINEST:		(300)				Mensajes de debug de nivel bajo;
+		       FINER:		(400)				Mensajes de debug de nivel medio;
+		       FINE:		(500)				Mensajes de debug de alto nivel;
+		       CONFIG:		(700)				Partes de configuracion;
+		       INFO:		(800)				Informacion; 
+		       WARNING: 	(900)				Alertas importantes; 
+		       SEVERE: 		(1000)				Condiciones extremas (excepciones, etc);
+		       OFF:			(Integer.MAX_VALUE)	No se hace log
+		En la seccion <handler id='__'></handler> se especifica el handler que se
+		encarga de escribir las trazas. Como handler de las trazas se pueden utilizar:
+				CONSOLE:	Escribe las trazas en la consola
+				FILE:		Escribe las trazas en un fichero.
+							Hay que especificar las siguientes propiedades
+				            	<property id='fileName'>NombreFichero</property>
+				SOCKET:		Escribe las trazas en un socket
+							Hay que especificar las siguientes propiedades
+				            	<property id='host'>dns/IP_Host</property>
+				            	<property id='port'>puertoSocket</property>
+    -->
+	<log level='INFO'>
+		<handler id='CONSOLE'/>
+		<!--
+		<handler id='FILE'>
+			<property id='fileName'>d:\temp\R01HLog.log</property>
+		</handler>
+		-->
+		<component name='xoMap' level='FINE' ignoreGlobal='true'/>
+		<component name='adapter' level='OFF'/>
+		<component name='xTags' level='OFF' ignoreGlobal='true'/>
+		<component name='auth' level='ALL' ignoreGlobal='true'/>
+		<component name='xlnets' level='ALL' ignoreGlobal='true'/>		
+		<component name='sql' level='INFO'/>
+		<component name='ejb' level='INFO'/>
+		<component name='bzd' level='INFO' ignoreGlobal='true'/>
+		<component name='util' level='INFO'/>
+		<component name='search' level='INFO'/>
+		<component name='io' level='ALL'/>
+		<component name='guid' level='INFO'/>
+		<component name='servlet' level='ALL' ignoreGlobal='true'/>
+		<component name='rpcDispatcher' level='ALL' ignoreGlobal='true'/>
+	</log>
+	
+</properties>

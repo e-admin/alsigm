@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.invesdoc</groupId>
+		<artifactId>invesdoc-parent</artifactId>
+		<version>11.1</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.invesdoc</groupId>
+	<artifactId>invesdoc-core</artifactId>
+
+	<name>InvesDoc Core</name>
+	<dependencies>
+		<!--
+			No es la version exacta. Las que nos han pasado son
+			bcprov-jdk15-139.jar y bcprov-jdk14-125.jar
+		-->
+		<dependency>
+			<groupId>bouncycastle</groupId>
+			<artifactId>bcprov-jdk14</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.filepool</groupId>
+			<artifactId>fplibrary</artifactId>
+			<version>2.1.267</version>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>core</finalName>		
+	</build>
+</project>

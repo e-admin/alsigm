@@ -1,0 +1,23 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/report.js"></SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			top.Idioma = top.GetDlgParam(7);
+			document.title = top.GetIdsLan("IDS_OPCRELAC");
+		</SCRIPT>
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+	</HEAD>
+	<SCRIPT LANGUAGE="javascript">
+		document.write('<FRAMESET NAME="RelFrm" COLS="47%,*" BORDER="0" frameSpacing="0" frameBorder="0" onunload="top.EnableEvents(window.opener);" NORESIZE>');
+		document.write('<FRAME NAME="RelFilter" scrolling="no" BORDER="0" SRC="RelFilter.jsp?SessionPId=' + top.GetDlgParam(1) + '">');
+		document.write('<FRAME NAME="RelOpc" SRC="relationsReport.htm" BORDER="0">');
+		document.write('</FRAMESET>');
+	</SCRIPT>
+</HTML>

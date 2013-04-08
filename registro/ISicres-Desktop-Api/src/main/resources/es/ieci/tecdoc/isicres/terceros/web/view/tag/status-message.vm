@@ -1,0 +1,5 @@
+#if ($!message != "")
+	<div id="$messageId">
+		<p>$message</p>
+	</div>
+#end

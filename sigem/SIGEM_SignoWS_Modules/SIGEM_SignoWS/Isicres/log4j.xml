@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "dtd/log4j.dtd">
+<!-- Fichero de configuración del sistema de trazas log4j -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- Parte genérica de Sicres -->
+    <appender name="ISicresFileWeb" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="${log.path}${log.isicres.web}.log"/>
+        <param name="MaxFileSize" value="${log.filesize}"/>
+        <param name="MaxBackupIndex" value="${log.maxBackupIndex}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} [%p] %C %M %m %n"/>
+        </layout>
+    </appender>
+
+    <appender name="ISicresFileHTMLWeb" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="${log.path}${log.isicres.web}.html"/>
+        <param name="MaxFileSize" value="${log.filesize}"/>
+        <param name="MaxBackupIndex" value="${log.maxBackupIndex}"/>
+        <layout class="org.apache.log4j.HTMLLayout">
+        </layout>
+    </appender>
+
+    <appender name="ISicresFileXMLWeb" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="${log.path}${log.isicres.web}.xml"/>
+        <param name="MaxFileSize" value="${log.filesize}"/>
+        <param name="MaxBackupIndex" value="${log.maxBackupIndex}"/>
+        <layout class="org.apache.log4j.xml.XMLLayout">
+        </layout>
+    </appender>
+
+    <!-- Parte específica de los informes -->
+    <appender name="ISicresReportsFileWeb" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="${log.path}${log.isicres.reports}.log"/>
+        <param name="MaxFileSize" value="${log.filesize}"/>
+        <param name="MaxBackupIndex" value="${log.maxBackupIndex}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} [%p] %C %M %m %n"/>
+        </layout>
+    </appender>
+
+    <appender name="ISicresReportsFileHTMLWeb" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="${log.path}${log.isicres.reports}.html"/>
+        <param name="MaxFileSize" value="${log.filesize}"/>
+        <param name="MaxBackupIndex" value="${log.maxBackupIndex}"/>
+        <layout class="org.apache.log4j.HTMLLayout">
+        </layout>
+    </appender>
+
+    <appender name="ISicresReportsFileXMLWeb" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="${log.path}${log.isicres.reports}.xml"/>
+        <param name="MaxFileSize" value="${log.filesize}"/>
+        <param name="MaxBackupIndex" value="${log.maxBackupIndex}"/>
+        <layout class="org.apache.log4j.xml.XMLLayout">
+        </layout>
+    </appender>
+
+    <logger name="com" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="ISicresFileWeb"/>
+        <appender-ref ref="ISicresFileHTMLWeb"/>
+        <appender-ref ref="ISicresFileXMLWeb"/>
+    </logger>
+
+    <logger name="ieci" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="ISicresFileWeb"/>
+        <appender-ref ref="ISicresFileHTMLWeb"/>
+        <appender-ref ref="ISicresFileXMLWeb"/>
+    </logger>
+
+    <logger name="es" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="ISicresFileWeb"/>
+        <appender-ref ref="ISicresFileHTMLWeb"/>
+        <appender-ref ref="ISicresFileXMLWeb"/>
+    </logger>
+
+    <logger name="net" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="ISicresReportsFileWeb"/>
+        <appender-ref ref="ISicresReportsFileHTMLWeb"/>
+        <appender-ref ref="ISicresReportsFileXMLWeb"/>
+    </logger>
+</log4j:configuration>
+

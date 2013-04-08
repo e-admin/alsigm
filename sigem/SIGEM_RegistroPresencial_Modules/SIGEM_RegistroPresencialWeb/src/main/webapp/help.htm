@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>SIGEM Ayuda</title>
+<SCRIPT LANGUAGE="javascript">
+	//help.html de SIGEM_RegistroPresencialWeb
+   function OnHelpLoad()
+   {
+      try
+      {
+         if(opener.top.numIdioma != 86)
+             window.open(opener.top.g_URL + "/help/" + opener.top.numIdioma + "/AyudaSicresWeb.htm", "frHelpMain","top=30,left=50,height=480,width=700,toolbar=yes,scrollbars=auto,status=no,titlebar=no,resizable=yes,location=no",true);
+         else
+        	 window.open(opener.top.g_URL + "/help/" + "7" + "/AyudaSicresWeb.htm", "frHelpMain","top=30,left=50,height=480,width=700,toolbar=yes,scrollbars=auto,status=no,titlebar=no,resizable=yes,location=no",true);
+      }
+      catch(e){}
+   }
+   function OnHelpUnload()
+   {
+      try
+      {
+         opener.top.g_oHelpWindow = null;
+      }
+      catch(e){}
+   }
+</SCRIPT>
+</head>
+<frameset id="frSetHelp" name="frSetHelp" cols="100%" onload="OnHelpLoad();" onunload="OnHelpUnload();">
+   <frame id="frHelpMain" name="frHelpMain" src="blank.htm"></frame>
+</frameset>
+<body tabIndex="-1">
+</body>
+</html>

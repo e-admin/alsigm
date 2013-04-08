@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<dataset reset_sequences="scr_seqcnt">
+  <scr_regint id="1" id_arch="1" id_fdr="1" name="PEREZ PEREZ, PABLO" id_person="1" id_address="2" ord="1"/>
+  <scr_regint id="11" id_arch="1" id_fdr="4" name="ANTONIO ALCANTARA" id_person="0" ord="1"/>
+  <scr_repre id="1" id_representante="1" id_representado="1" name="REPRESENTANTE VALIDADO" id_address="2" />
+  <scr_repre id="2" id_representante="0" id_representado="1" name="REPRESENTANTE NO VALIDADO" id_address="2" />
+  <scr_typedoc id="1" description="CIF" type_person="2" code="C"/>
+  <scr_typedoc id="2" description="NIF" type_person="1" code="N"/>
+  <scr_typedoc id="3" description="Pasaporte" type_person="1" code="P"/>
+  <scr_typedoc id="4" description="Documento de identificación de extranjeros" type_person="1" code="E"/>
+  <scr_typedoc id="5" description="Otros" type_person="0" code="X"/>
+  <scr_typedoc id="6" description="Origen" type_person="0" code="O"/>
+  <scr_pfis id="1" type_doc="2" nif="12345678Z" first_name="PEREZ" second_name="PEREZ" surname="PABLO"/>
+  <scr_pfis id="3" type_doc="2" nif="12415555V" first_name="Marcos" second_name="Toño" surname="Silvio"/>
+  <scr_pfis id="4" type_doc="2" nif="78229110S" first_name="Emiliano" second_name="Benigno" surname="Juan"/>
+  <scr_pjur id="2" type_doc="1" cif="A28855260" name="IECI" />
+  <scr_address id="1" id_person="1" type="1"/>
+  <scr_address id="2" id_person="1" type="0"/>
+  <scr_address id="3" id_person="1" type="0"/>
+  <scr_dom id="3" address="RUE 13 DEL PERCEBE" city="Oviedo" zip="33001" country="Asturias" pais="España" preference="0"/>
+  <scr_dom id="2" address="RUE 13 DEL PERCEBE" city="Oviedo" zip="33001" country="Asturias" pais="España" preference="1"/>
+  <scr_typeaddress id="1" description="Teléfono (fijo)" code="TF"/>
+  <scr_typeaddress id="2" description="Correo electrónico" code="CE"/>
+  <scr_typeaddress id="3" description="Fax" code="FX"/>
+  <scr_typeaddress id="4" description="Dirección electrónica única" code="DU"/>
+  <scr_typeaddress id="5" description="Teléfono (móvil)" code="TM"/>
+  <scr_addrtel id="1" address="666666666" type="5" preference="1"/>
+  <scr_contador tablaid="SCR_REPORTS" contador="8"/>
+  <scr_contador tablaid="SCR_TYPEADM" contador="11"/>
+  <scr_contador tablaid="SCR_REPORT" contador="8"/>
+  <scr_contador tablaid="SCR_BOOKOFIC" contador="5"/>
+  <scr_contador tablaid="SCR_CA" contador="13"/>
+  <scr_contador tablaid="SCR_OFIC" contador="3"/>
+  <scr_contador tablaid="SCR_TYPEOFIC" contador="2"/>
+  <scr_contador tablaid="IUSERDEPTHDR" contador="7"/>
+  <scr_contador tablaid="SCR_WS" contador="6"/>
+  <scr_contador tablaid="SCR_DELTAS" contador="2"/>
+  <scr_contador tablaid="PERSONS" contador="3"/>
+  <scr_contador tablaid="SCR_ADDRESS" contador="7"/>
+  <scr_contador tablaid="SCR_CITIES" contador="8067"/>
+  <scr_contador tablaid="SCR_DISTLIST" contador="0"/>
+  <scr_contador tablaid="SCR_ORGS" contador="5000"/>
+  <scr_contador tablaid="SCR_PROV" contador="52"/>
+  <scr_contador tablaid="SCR_REGSTATE" contador="2"/>
+  <scr_country id="1" tmstamp="2011-10-04 17:21:34.604601" code="AF" name="Afganistán"/>
+  <scr_country id="2" tmstamp="2011-10-04 17:21:34.604601" code="AX" name="Islas Gland"/>
+  <scr_country id="3" tmstamp="2011-10-04 17:21:34.604601" code="AL" name="Albania"/>
+  <scr_country id="4" tmstamp="2011-10-04 17:21:34.604601" code="DE" name="Alemania"/>
+  <scr_country id="5" tmstamp="2011-10-04 17:21:34.604601" code="AD" name="Andorra"/>
+  <scr_country id="6" tmstamp="2011-10-04 17:21:34.604601" code="AO" name="Angola"/>
+  <scr_country id="7" tmstamp="2011-10-04 17:21:34.604601" code="AI" name="Anguilla"/>
+  <scr_country id="8" tmstamp="2011-10-04 17:21:34.604601" code="AQ" name="Antártida"/>
+  <scr_country id="9" tmstamp="2011-10-04 17:21:34.604601" code="AG" name="Antigua y Barbuda"/>
+  <scr_country id="10" tmstamp="2011-10-04 17:21:34.604601" code="AN" name="Antillas Holandesas"/>
+  <scr_country id="11" tmstamp="2011-10-04 17:21:34.604601" code="SA" name="Arabia Saudí"/>
+  <scr_country id="12" tmstamp="2011-10-04 17:21:34.604601" code="DZ" name="Argelia"/>
+  <scr_country id="13" tmstamp="2011-10-04 17:21:34.604601" code="AR" name="Argentina"/>
+  <scr_country id="14" tmstamp="2011-10-04 17:21:34.604601" code="AM" name="Armenia"/>
+  <scr_country id="15" tmstamp="2011-10-04 17:21:34.604601" code="AW" name="Aruba"/>
+  <scr_country id="16" tmstamp="2011-10-04 17:21:34.604601" code="AU" name="Australia"/>
+  <scr_country id="17" tmstamp="2011-10-04 17:21:34.604601" code="AT" name="Austria"/>
+  <scr_country id="18" tmstamp="2011-10-04 17:21:34.604601" code="AZ" name="Azerbaiyán"/>
+  <scr_country id="19" tmstamp="2011-10-04 17:21:34.604601" code="BS" name="Bahamas"/>
+  <scr_country id="20" tmstamp="2011-10-04 17:21:34.604601" code="BH" name="Bahréin"/>
+  <scr_country id="21" tmstamp="2011-10-04 17:21:34.604601" code="BD" name="Bangladesh"/>
+  <scr_country id="22" tmstamp="2011-10-04 17:21:34.604601" code="BB" name="Barbados"/>
+  <scr_country id="23" tmstamp="2011-10-04 17:21:34.604601" code="BY" name="Bielorrusia"/>
+  <scr_country id="24" tmstamp="2011-10-04 17:21:34.604601" code="BE" name="Bélgica"/>
+  <scr_country id="25" tmstamp="2011-10-04 17:21:34.604601" code="BZ" name="Belice"/>
+  <scr_country id="26" tmstamp="2011-10-04 17:21:34.604601" code="BJ" name="Benin"/>
+  <scr_country id="27" tmstamp="2011-10-04 17:21:34.604601" code="BM" name="Bermudas"/>
+  <scr_country id="28" tmstamp="2011-10-04 17:21:34.604601" code="BT" name="Bhután"/>
+  <scr_country id="29" tmstamp="2011-10-04 17:21:34.604601" code="BO" name="Bolivia"/>
+  <scr_country id="30" tmstamp="2011-10-04 17:21:34.604601" code="BA" name="Bosnia y Herzegovina"/>
+  <scr_country id="31" tmstamp="2011-10-04 17:21:34.604601" code="BW" name="Botsuana"/>
+  <scr_country id="32" tmstamp="2011-10-04 17:21:34.604601" code="BV" name="Isla Bouvet"/>
+  <scr_country id="33" tmstamp="2011-10-04 17:21:34.604601" code="BR" name="Brasil"/>
+  <scr_country id="34" tmstamp="2011-10-04 17:21:34.604601" code="BN" name="Brunéi"/>
+  <scr_country id="35" tmstamp="2011-10-04 17:21:34.604601" code="BG" name="Bulgaria"/>
+  <scr_country id="36" tmstamp="2011-10-04 17:21:34.604601" code="BF" name="Burkina Faso"/>
+  <scr_country id="37" tmstamp="2011-10-04 17:21:34.604601" code="BI" name="Burundi"/>
+  <scr_country id="38" tmstamp="2011-10-04 17:21:34.604601" code="CV" name="Cabo Verde"/>
+  <scr_country id="39" tmstamp="2011-10-04 17:21:34.604601" code="KY" name="Islas Caimán"/>
+  <scr_country id="40" tmstamp="2011-10-04 17:21:34.604601" code="KH" name="Camboya"/>
+  <scr_country id="41" tmstamp="2011-10-04 17:21:34.604601" code="CM" name="Camerún"/>
+  <scr_country id="42" tmstamp="2011-10-04 17:21:34.604601" code="CA" name="Canadá"/>
+  <scr_country id="43" tmstamp="2011-10-04 17:21:34.604601" code="CF" name="República Centroafricana"/>
+  <scr_country id="44" tmstamp="2011-10-04 17:21:34.604601" code="TD" name="Chad"/>
+  <scr_country id="45" tmstamp="2011-10-04 17:21:34.604601" code="CZ" name="República Checa"/>
+  <scr_country id="46" tmstamp="2011-10-04 17:21:34.604601" code="CL" name="Chile"/>
+  <scr_country id="47" tmstamp="2011-10-04 17:21:34.604601" code="CN" name="China"/>
+  <scr_country id="48" tmstamp="2011-10-04 17:21:34.604601" code="CY" name="Chipre"/>
+  <scr_country id="49" tmstamp="2011-10-04 17:21:34.604601" code="CX" name="Isla de Navidad"/>
+  <scr_country id="50" tmstamp="2011-10-04 17:21:34.604601" code="VA" name="Ciudad del Vaticano"/>
+  <scr_country id="51" tmstamp="2011-10-04 17:21:34.604601" code="CC" name="Islas Cocos"/>
+  <scr_country id="52" tmstamp="2011-10-04 17:21:34.604601" code="CO" name="Colombia"/>
+  <scr_country id="53" tmstamp="2011-10-04 17:21:34.604601" code="KM" name="Comoras"/>
+  <scr_country id="54" tmstamp="2011-10-04 17:21:34.604601" code="CD" name="República Democrática del Congo"/>
+  <scr_country id="55" tmstamp="2011-10-04 17:21:34.604601" code="CG" name="Congo"/>
+  <scr_country id="56" tmstamp="2011-10-04 17:21:34.604601" code="CK" name="Islas Cook"/>
+  <scr_country id="57" tmstamp="2011-10-04 17:21:34.604601" code="KP" name="Corea del Norte"/>
+  <scr_country id="58" tmstamp="2011-10-04 17:21:34.604601" code="KR" name="Corea del Sur"/>
+  <scr_country id="59" tmstamp="2011-10-04 17:21:34.604601" code="CI" name="Costa de Marfil"/>
+  <scr_country id="60" tmstamp="2011-10-04 17:21:34.604601" code="CR" name="Costa Rica"/>
+  <scr_country id="61" tmstamp="2011-10-04 17:21:34.604601" code="HR" name="Croacia"/>
+  <scr_country id="62" tmstamp="2011-10-04 17:21:34.604601" code="CU" name="Cuba"/>
+  <scr_country id="63" tmstamp="2011-10-04 17:21:34.604601" code="DK" name="Dinamarca"/>
+  <scr_country id="64" tmstamp="2011-10-04 17:21:34.604601" code="DM" name="Dominica"/>
+  <scr_country id="65" tmstamp="2011-10-04 17:21:34.604601" code="DO" name="República Dominicana"/>
+  <scr_country id="66" tmstamp="2011-10-04 17:21:34.604601" code="EC" name="Ecuador"/>
+  <scr_country id="67" tmstamp="2011-10-04 17:21:34.604601" code="EG" name="Egipto"/>
+  <scr_country id="68" tmstamp="2011-10-04 17:21:34.604601" code="SV" name="El Salvador"/>
+  <scr_country id="69" tmstamp="2011-10-04 17:21:34.604601" code="AE" name="Emiratos Árabes Unidos"/>
+  <scr_country id="70" tmstamp="2011-10-04 17:21:34.604601" code="ER" name="Eritrea"/>
+  <scr_country id="71" tmstamp="2011-10-04 17:21:34.604601" code="SK" name="Eslovaquia"/>
+  <scr_country id="72" tmstamp="2011-10-04 17:21:34.604601" code="SI" name="Eslovenia"/>
+  <scr_country id="73" tmstamp="2011-10-04 17:21:34.604601" code="ES" name="España"/>
+  <scr_country id="74" tmstamp="2011-10-04 17:21:34.604601" code="UM" name="Islas ultramarinas de Estados Unidos"/>
+  <scr_country id="75" tmstamp="2011-10-04 17:21:34.604601" code="US" name="Estados Unidos"/>
+  <scr_country id="76" tmstamp="2011-10-04 17:21:34.604601" code="EE" name="Estonia"/>
+  <scr_country id="77" tmstamp="2011-10-04 17:21:34.604601" code="ET" name="Etiopía"/>
+  <scr_country id="78" tmstamp="2011-10-04 17:21:34.604601" code="FO" name="Islas Feroe"/>
+  <scr_country id="79" tmstamp="2011-10-04 17:21:34.604601" code="PH" name="Filipinas"/>
+  <scr_country id="80" tmstamp="2011-10-04 17:21:34.604601" code="FI" name="Finlandia"/>
+  <scr_country id="81" tmstamp="2011-10-04 17:21:34.604601" code="FJ" name="Fiyi"/>
+  <scr_country id="82" tmstamp="2011-10-04 17:21:34.604601" code="FR" name="Francia"/>
+  <scr_country id="83" tmstamp="2011-10-04 17:21:34.604601" code="GA" name="Gabón"/>
+  <scr_country id="84" tmstamp="2011-10-04 17:21:34.604601" code="GM" name="Gambia"/>
+  <scr_country id="85" tmstamp="2011-10-04 17:21:34.604601" code="GE" name="Georgia"/>
+  <scr_country id="86" tmstamp="2011-10-04 17:21:34.604601" code="GS" name="Islas Georgias del Sur y Sandwich del Sur"/>
+  <scr_country id="87" tmstamp="2011-10-04 17:21:34.604601" code="GH" name="Ghana"/>
+  <scr_country id="88" tmstamp="2011-10-04 17:21:34.604601" code="GI" name="Gibraltar"/>
+  <scr_country id="89" tmstamp="2011-10-04 17:21:34.604601" code="GD" name="Granada"/>
+  <scr_country id="90" tmstamp="2011-10-04 17:21:34.604601" code="GR" name="Grecia"/>
+  <scr_country id="91" tmstamp="2011-10-04 17:21:34.604601" code="GL" name="Groenlandia"/>
+  <scr_country id="92" tmstamp="2011-10-04 17:21:34.604601" code="GP" name="Guadalupe"/>
+  <scr_country id="93" tmstamp="2011-10-04 17:21:34.604601" code="GU" name="Guam"/>
+  <scr_country id="94" tmstamp="2011-10-04 17:21:34.604601" code="GT" name="Guatemala"/>
+  <scr_country id="95" tmstamp="2011-10-04 17:21:34.604601" code="GF" name="Guayana Francesa"/>
+  <scr_country id="96" tmstamp="2011-10-04 17:21:34.604601" code="GN" name="Guinea"/>
+  <scr_country id="97" tmstamp="2011-10-04 17:21:34.604601" code="GQ" name="Guinea Ecuatorial"/>
+  <scr_country id="98" tmstamp="2011-10-04 17:21:34.604601" code="GW" name="Guinea-Bissau"/>
+  <scr_country id="99" tmstamp="2011-10-04 17:21:34.604601" code="GY" name="Guyana"/>
+  <scr_country id="100" tmstamp="2011-10-04 17:21:34.604601" code="HT" name="Haití"/>
+  <scr_country id="101" tmstamp="2011-10-04 17:21:34.604601" code="HM" name="Islas Heard y McDonald"/>
+  <scr_country id="102" tmstamp="2011-10-04 17:21:34.604601" code="HN" name="Honduras"/>
+  <scr_country id="103" tmstamp="2011-10-04 17:21:34.604601" code="HK" name="Hong Kong"/>
+  <scr_country id="104" tmstamp="2011-10-04 17:21:34.604601" code="HU" name="Hungría"/>
+  <scr_country id="105" tmstamp="2011-10-04 17:21:34.604601" code="IN" name="India"/>
+  <scr_country id="106" tmstamp="2011-10-04 17:21:34.604601" code="ID" name="Indonesia"/>
+  <scr_country id="107" tmstamp="2011-10-04 17:21:34.604601" code="IR" name="Irán"/>
+  <scr_country id="108" tmstamp="2011-10-04 17:21:34.604601" code="IQ" name="Iraq"/>
+  <scr_country id="109" tmstamp="2011-10-04 17:21:34.604601" code="IE" name="Irlanda"/>
+  <scr_country id="110" tmstamp="2011-10-04 17:21:34.604601" code="IS" name="Islandia"/>
+  <scr_country id="111" tmstamp="2011-10-04 17:21:34.604601" code="IL" name="Israel"/>
+  <scr_country id="112" tmstamp="2011-10-04 17:21:34.604601" code="IT" name="Italia"/>
+  <scr_country id="113" tmstamp="2011-10-04 17:21:34.604601" code="JM" name="Jamaica"/>
+  <scr_country id="114" tmstamp="2011-10-04 17:21:34.604601" code="JP" name="Japón"/>
+  <scr_country id="115" tmstamp="2011-10-04 17:21:34.604601" code="JO" name="Jordania"/>
+  <scr_country id="116" tmstamp="2011-10-04 17:21:34.604601" code="KZ" name="Kazajstán"/>
+  <scr_country id="117" tmstamp="2011-10-04 17:21:34.604601" code="KE" name="Kenia"/>
+  <scr_country id="118" tmstamp="2011-10-04 17:21:34.604601" code="KG" name="Kirguistán"/>
+  <scr_country id="119" tmstamp="2011-10-04 17:21:34.604601" code="KI" name="Kiribati"/>
+  <scr_country id="120" tmstamp="2011-10-04 17:21:34.604601" code="KW" name="Kuwait"/>
+  <scr_country id="121" tmstamp="2011-10-04 17:21:34.604601" code="LA" name="Laos"/>
+  <scr_country id="122" tmstamp="2011-10-04 17:21:34.604601" code="LS" name="Lesotho"/>
+  <scr_country id="123" tmstamp="2011-10-04 17:21:34.604601" code="LV" name="Letonia"/>
+  <scr_country id="124" tmstamp="2011-10-04 17:21:34.604601" code="LB" name="Líbano"/>
+  <scr_country id="125" tmstamp="2011-10-04 17:21:34.604601" code="LR" name="Liberia"/>
+  <scr_country id="126" tmstamp="2011-10-04 17:21:34.604601" code="LY" name="Libia"/>
+  <scr_country id="127" tmstamp="2011-10-04 17:21:34.604601" code="LI" name="Liechtenstein"/>
+  <scr_country id="128" tmstamp="2011-10-04 17:21:34.604601" code="LT" name="Lituania"/>
+  <scr_country id="129" tmstamp="2011-10-04 17:21:34.604601" code="LU" name="Luxemburgo"/>
+  <scr_country id="130" tmstamp="2011-10-04 17:21:34.604601" code="MO" name="Macao"/>
+  <scr_country id="131" tmstamp="2011-10-04 17:21:34.604601" code="MK" name="ARY Macedonia"/>
+  <scr_country id="132" tmstamp="2011-10-04 17:21:34.604601" code="MG" name="Madagascar"/>
+  <scr_country id="133" tmstamp="2011-10-04 17:21:34.604601" code="MY" name="Malasia"/>
+  <scr_country id="134" tmstamp="2011-10-04 17:21:34.604601" code="MW" name="Malawi"/>
+  <scr_country id="135" tmstamp="2011-10-04 17:21:34.604601" code="MV" name="Maldivas"/>
+  <scr_country id="136" tmstamp="2011-10-04 17:21:34.604601" code="ML" name="Malí"/>
+  <scr_country id="137" tmstamp="2011-10-04 17:21:34.604601" code="MT" name="Malta"/>
+  <scr_country id="138" tmstamp="2011-10-04 17:21:34.604601" code="FK" name="Islas Malvinas"/>
+  <scr_country id="139" tmstamp="2011-10-04 17:21:34.604601" code="MP" name="Islas Marianas del Norte"/>
+  <scr_country id="140" tmstamp="2011-10-04 17:21:34.604601" code="MA" name="Marruecos"/>
+  <scr_country id="141" tmstamp="2011-10-04 17:21:34.604601" code="MH" name="Islas Marshall"/>
+  <scr_country id="142" tmstamp="2011-10-04 17:21:34.604601" code="MQ" name="Martinica"/>
+  <scr_country id="143" tmstamp="2011-10-04 17:21:34.604601" code="MU" name="Mauricio"/>
+  <scr_country id="144" tmstamp="2011-10-04 17:21:34.604601" code="MR" name="Mauritania"/>
+  <scr_country id="145" tmstamp="2011-10-04 17:21:34.604601" code="YT" name="Mayotte"/>
+  <scr_country id="146" tmstamp="2011-10-04 17:21:34.604601" code="MX" name="México"/>
+  <scr_country id="147" tmstamp="2011-10-04 17:21:34.604601" code="FM" name="Micronesia"/>
+  <scr_country id="148" tmstamp="2011-10-04 17:21:34.604601" code="MD" name="Moldavia"/>
+  <scr_country id="149" tmstamp="2011-10-04 17:21:34.604601" code="MC" name="Mónaco"/>
+  <scr_country id="150" tmstamp="2011-10-04 17:21:34.604601" code="MN" name="Mongolia"/>
+  <scr_country id="151" tmstamp="2011-10-04 17:21:34.604601" code="MS" name="Montserrat"/>
+  <scr_country id="152" tmstamp="2011-10-04 17:21:34.604601" code="MZ" name="Mozambique"/>
+  <scr_country id="153" tmstamp="2011-10-04 17:21:34.604601" code="MM" name="Myanmar"/>
+  <scr_country id="154" tmstamp="2011-10-04 17:21:34.604601" code="NA" name="Namibia"/>
+  <scr_country id="155" tmstamp="2011-10-04 17:21:34.604601" code="NR" name="Nauru"/>
+  <scr_country id="156" tmstamp="2011-10-04 17:21:34.604601" code="NP" name="Nepal"/>
+  <scr_country id="157" tmstamp="2011-10-04 17:21:34.604601" code="NI" name="Nicaragua"/>
+  <scr_country id="158" tmstamp="2011-10-04 17:21:34.604601" code="NE" name="Níger"/>
+  <scr_country id="159" tmstamp="2011-10-04 17:21:34.604601" code="NG" name="Nigeria"/>
+  <scr_country id="160" tmstamp="2011-10-04 17:21:34.604601" code="NU" name="Niue"/>
+  <scr_country id="161" tmstamp="2011-10-04 17:21:34.604601" code="NF" name="Isla Norfolk"/>
+  <scr_country id="162" tmstamp="2011-10-04 17:21:34.604601" code="NO" name="Noruega"/>
+  <scr_country id="163" tmstamp="2011-10-04 17:21:34.604601" code="NC" name="Nueva Caledonia"/>
+  <scr_country id="164" tmstamp="2011-10-04 17:21:34.604601" code="NZ" name="Nueva Zelanda"/>
+  <scr_country id="165" tmstamp="2011-10-04 17:21:34.604601" code="OM" name="Omán"/>
+  <scr_country id="166" tmstamp="2011-10-04 17:21:34.604601" code="NL" name="Países Bajos"/>
+  <scr_country id="167" tmstamp="2011-10-04 17:21:34.604601" code="PK" name="Pakistán"/>
+  <scr_country id="168" tmstamp="2011-10-04 17:21:34.604601" code="PW" name="Palau"/>
+  <scr_country id="169" tmstamp="2011-10-04 17:21:34.604601" code="PS" name="Palestina"/>
+  <scr_country id="170" tmstamp="2011-10-04 17:21:34.604601" code="PA" name="Panamá"/>
+  <scr_country id="171" tmstamp="2011-10-04 17:21:34.604601" code="PG" name="Papúa Nueva Guinea"/>
+  <scr_country id="172" tmstamp="2011-10-04 17:21:34.604601" code="PY" name="Paraguay"/>
+  <scr_country id="173" tmstamp="2011-10-04 17:21:34.604601" code="PE" name="Perú"/>
+  <scr_country id="174" tmstamp="2011-10-04 17:21:34.604601" code="PN" name="Islas Pitcairn"/>
+  <scr_country id="175" tmstamp="2011-10-04 17:21:34.604601" code="PF" name="Polinesia Francesa"/>
+  <scr_country id="176" tmstamp="2011-10-04 17:21:34.604601" code="PL" name="Polonia"/>
+  <scr_country id="177" tmstamp="2011-10-04 17:21:34.604601" code="PT" name="Portugal"/>
+  <scr_country id="178" tmstamp="2011-10-04 17:21:34.604601" code="PR" name="Puerto Rico"/>
+  <scr_country id="179" tmstamp="2011-10-04 17:21:34.604601" code="QA" name="Qatar"/>
+  <scr_country id="180" tmstamp="2011-10-04 17:21:34.604601" code="GB" name="Reino Unido"/>
+  <scr_country id="181" tmstamp="2011-10-04 17:21:34.604601" code="RE" name="Reunión"/>
+  <scr_country id="182" tmstamp="2011-10-04 17:21:34.604601" code="RW" name="Ruanda"/>
+  <scr_country id="183" tmstamp="2011-10-04 17:21:34.604601" code="RO" name="Rumania"/>
+  <scr_country id="184" tmstamp="2011-10-04 17:21:34.604601" code="RU" name="Rusia"/>
+  <scr_country id="185" tmstamp="2011-10-04 17:21:34.604601" code="EH" name="Sahara Occidental"/>
+  <scr_country id="186" tmstamp="2011-10-04 17:21:34.604601" code="SB" name="Islas Salomón"/>
+  <scr_country id="187" tmstamp="2011-10-04 17:21:34.604601" code="WS" name="Samoa"/>
+  <scr_country id="188" tmstamp="2011-10-04 17:21:34.604601" code="AS" name="Samoa Americana"/>
+  <scr_country id="189" tmstamp="2011-10-04 17:21:34.604601" code="KN" name="San Cristóbal y Nevis"/>
+  <scr_country id="190" tmstamp="2011-10-04 17:21:34.604601" code="SM" name="San Marino"/>
+  <scr_country id="191" tmstamp="2011-10-04 17:21:34.604601" code="PM" name="San Pedro y Miquelón"/>
+  <scr_country id="192" tmstamp="2011-10-04 17:21:34.604601" code="VC" name="San Vicente y las Granadinas"/>
+  <scr_country id="193" tmstamp="2011-10-04 17:21:34.604601" code="SH" name="Santa Helena"/>
+  <scr_country id="194" tmstamp="2011-10-04 17:21:34.604601" code="LC" name="Santa Lucía"/>
+  <scr_country id="195" tmstamp="2011-10-04 17:21:34.604601" code="ST" name="Santo Tomé y Príncipe"/>
+  <scr_country id="196" tmstamp="2011-10-04 17:21:34.604601" code="SN" name="Senegal"/>
+  <scr_country id="197" tmstamp="2011-10-04 17:21:34.604601" code="CS" name="Serbia y Montenegro"/>
+  <scr_country id="198" tmstamp="2011-10-04 17:21:34.604601" code="SC" name="Seychelles"/>
+  <scr_country id="199" tmstamp="2011-10-04 17:21:34.604601" code="SL" name="Sierra Leona"/>
+  <scr_country id="200" tmstamp="2011-10-04 17:21:34.604601" code="SG" name="Singapur"/>
+  <scr_country id="201" tmstamp="2011-10-04 17:21:34.604601" code="SY" name="Siria"/>
+  <scr_country id="202" tmstamp="2011-10-04 17:21:34.604601" code="SO" name="Somalia"/>
+  <scr_country id="203" tmstamp="2011-10-04 17:21:34.604601" code="LK" name="Sri Lanka"/>
+  <scr_country id="204" tmstamp="2011-10-04 17:21:34.604601" code="SZ" name="Suazilandia"/>
+  <scr_country id="205" tmstamp="2011-10-04 17:21:34.604601" code="ZA" name="Sudáfrica"/>
+  <scr_country id="206" tmstamp="2011-10-04 17:21:34.604601" code="SD" name="Sudán"/>
+  <scr_country id="207" tmstamp="2011-10-04 17:21:34.604601" code="SE" name="Suecia"/>
+  <scr_country id="208" tmstamp="2011-10-04 17:21:34.604601" code="CH" name="Suiza"/>
+  <scr_country id="209" tmstamp="2011-10-04 17:21:34.604601" code="SR" name="Surinam"/>
+  <scr_country id="210" tmstamp="2011-10-04 17:21:34.604601" code="SJ" name="Svalbard y Jan Mayen"/>
+  <scr_country id="211" tmstamp="2011-10-04 17:21:34.604601" code="TH" name="Tailandia"/>
+  <scr_country id="212" tmstamp="2011-10-04 17:21:34.604601" code="TW" name="Taiwán"/>
+  <scr_country id="213" tmstamp="2011-10-04 17:21:34.604601" code="TZ" name="Tanzania"/>
+  <scr_country id="214" tmstamp="2011-10-04 17:21:34.604601" code="TJ" name="Tayikistán"/>
+  <scr_country id="215" tmstamp="2011-10-04 17:21:34.604601" code="IO" name="Territorio Británico del Océano Índico"/>
+  <scr_country id="216" tmstamp="2011-10-04 17:21:34.604601" code="TF" name="Territorios Australes Franceses"/>
+  <scr_country id="217" tmstamp="2011-10-04 17:21:34.604601" code="TL" name="Timor Oriental"/>
+  <scr_country id="218" tmstamp="2011-10-04 17:21:34.604601" code="TG" name="Togo"/>
+  <scr_country id="219" tmstamp="2011-10-04 17:21:34.604601" code="TK" name="Tokelau"/>
+  <scr_country id="220" tmstamp="2011-10-04 17:21:34.604601" code="TO" name="Tonga"/>
+  <scr_country id="221" tmstamp="2011-10-04 17:21:34.604601" code="TT" name="Trinidad y Tobago"/>
+  <scr_country id="222" tmstamp="2011-10-04 17:21:34.604601" code="TN" name="Túnez"/>
+  <scr_country id="223" tmstamp="2011-10-04 17:21:34.604601" code="TC" name="Islas Turcas y Caicos"/>
+  <scr_country id="224" tmstamp="2011-10-04 17:21:34.604601" code="TM" name="Turkmenistán"/>
+  <scr_country id="225" tmstamp="2011-10-04 17:21:34.604601" code="TR" name="Turquía"/>
+  <scr_country id="226" tmstamp="2011-10-04 17:21:34.604601" code="TV" name="Tuvalu"/>
+  <scr_country id="227" tmstamp="2011-10-04 17:21:34.604601" code="UA" name="Ucrania"/>
+  <scr_country id="228" tmstamp="2011-10-04 17:21:34.604601" code="UG" name="Uganda"/>
+  <scr_country id="229" tmstamp="2011-10-04 17:21:34.604601" code="UY" name="Uruguay"/>
+  <scr_country id="230" tmstamp="2011-10-04 17:21:34.604601" code="UZ" name="Uzbekistán"/>
+  <scr_country id="231" tmstamp="2011-10-04 17:21:34.604601" code="VU" name="Vanuatu"/>
+  <scr_country id="232" tmstamp="2011-10-04 17:21:34.604601" code="VE" name="Venezuela"/>
+  <scr_country id="233" tmstamp="2011-10-04 17:21:34.604601" code="VN" name="Vietnam"/>
+  <scr_country id="234" tmstamp="2011-10-04 17:21:34.604601" code="VG" name="Islas Vírgenes Británicas"/>
+  <scr_country id="235" tmstamp="2011-10-04 17:21:34.604601" code="VI" name="Islas Vírgenes de los Estados Unidos"/>
+  <scr_country id="236" tmstamp="2011-10-04 17:21:34.604601" code="WF" name="Wallis y Futuna"/>
+  <scr_country id="237" tmstamp="2011-10-04 17:21:34.604601" code="YE" name="Yemen"/>
+  <scr_country id="238" tmstamp="2011-10-04 17:21:34.604601" code="DJ" name="Yibuti"/>
+  <scr_country id="239" tmstamp="2011-10-04 17:21:34.604601" code="ZM" name="Zambia"/>
+  <scr_country id="240" tmstamp="2011-10-04 17:21:34.604601" code="ZW" name="Zimbabue"/>
+</dataset>

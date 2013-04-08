@@ -1,0 +1,31 @@
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+    <!-- handler name="log" type="java:org.apache.axis.handlers.LogHandler"/-->
+    
+    <!-- MTOM Axis 1 Handler -->
+    <handler name="xop1" type="java:axis.mtom.client.handler.XOPHandler">
+        <parameter name="serviceName" value="{urn:juntadeandalucia:cice:pfirma:query:v2.0}QueryService"/>
+        <parameter name="operationName" value="downloadDocument"/>
+        <parameter name="mtomNodePath" value="downloadDocumentResponse.documentBinary"/>
+    </handler>
+    
+    <handler name="xop2" type="java:axis.mtom.client.handler.XOPHandler">
+        <parameter name="serviceName" value="{urn:juntadeandalucia:cice:pfirma:query:v2.0}QueryService"/>
+        <parameter name="operationName" value="downloadSign"/>
+        <parameter name="mtomNodePath" value="downloadSignResponse.signature.content"/>
+    </handler>    
+    
+    <globalConfiguration>
+       <!-- requestFlow>
+           <handler type="log"/>
+       </requestFlow-->
+       <responseFlow>
+            <!-- handler type="log"/-->
+            <handler type="xop1"/>
+            <handler type="xop2"/>
+       </responseFlow>
+    </globalConfiguration>
+    
+    <transport name="http" pivot="java:org.apache.axis.transport.http.HTTPSender"/>
+    
+</deployment>

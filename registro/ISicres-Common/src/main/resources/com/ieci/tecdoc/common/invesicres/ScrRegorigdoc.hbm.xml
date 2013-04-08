@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrRegorigdoc" 
+    table="SCR_REGORIGDOC"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_REGORIGDOC"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="idarch"
+        type="int"
+        column="IDARCH"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="IDARCH"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idfdr"
+        type="int"
+        column="IDFDR"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="IDFDR"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="regdate"
+        type="java.sql.Timestamp"
+        column="REGDATE"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="REGDATE"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="summary"
+        type="java.lang.String"
+        column="SUMMARY"
+        not-null="true"
+        length="100"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="SUMMARY"
+            length="100"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to ScrTypeproc -->
+    <many-to-one
+        name="scrTypeproc"
+        class="com.ieci.tecdoc.common.invesicres.ScrTypeproc"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="IDPROC"         
+        </meta>
+        <column name="IDPROC" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to ScrOrg -->
+    <many-to-one
+        name="scrOrg"
+        class="com.ieci.tecdoc.common.invesicres.ScrOrg"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="DESTINATION"         
+        </meta>
+        <column name="DESTINATION" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to ScrOfic -->
+    <many-to-one
+        name="scrOfic"
+        class="com.ieci.tecdoc.common.invesicres.ScrOfic"
+        not-null="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.many-to-one
+            not-null="true"
+           @hibernate.column name="IDOFIC"         
+        </meta>
+        <column name="IDOFIC" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

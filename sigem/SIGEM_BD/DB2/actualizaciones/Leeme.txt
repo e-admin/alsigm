@@ -1,0 +1,4 @@
+db2cmd
+db2 connect to <nombre-bd> user <usuario> using <clave>
+db2 -tvf [nombre_script_parche] > [nombre_log_resultado].txt 
+db2 terminate

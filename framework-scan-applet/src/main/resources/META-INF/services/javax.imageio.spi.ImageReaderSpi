@@ -1,0 +1,6 @@
+uk.co.mmscomputing.imageio.bmp.BMPImageReaderSpi
+uk.co.mmscomputing.imageio.gif.GIFImageReaderSpi
+uk.co.mmscomputing.imageio.sff.SFFImageReaderSpi
+uk.co.mmscomputing.imageio.ppm.PPMImageReaderSpi
+uk.co.mmscomputing.imageio.tiff.TIFFImageReaderSpi
+uk.co.mmscomputing.imageio.jpeg.JPEGImageReaderSpi

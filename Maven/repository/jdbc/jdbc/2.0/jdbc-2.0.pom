@@ -1,0 +1,19 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jdbc</groupId>
+  <artifactId>jdbc</artifactId>
+  <version>2.0</version>
+  <name>JDBC 2.0 Optional Package</name>
+  <description>
+    The javax.sql package. It is appropriate for inclusion in a classpath, and may be added to a Java 2 installation.
+  </description>
+  <url>http://java.sun.com/products/jdbc</url>
+  <distributionManagement>
+    <downloadUrl>http://java.sun.com/products/jdbc/download.html#spec</downloadUrl>
+    <relocation>
+      <groupId>javax.sql</groupId>
+      <artifactId>jdbc-stdext</artifactId>
+      <version>2.0</version>
+    </relocation>
+  </distributionManagement>
+</project>

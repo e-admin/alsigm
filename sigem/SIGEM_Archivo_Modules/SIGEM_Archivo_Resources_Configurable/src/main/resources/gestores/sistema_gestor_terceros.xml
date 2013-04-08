@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<terceros>
+  <tercero id="Id_Tercero1">
+    <identificacion>DNI/NIF Tercero</identificacion>
+    <nombre>Nombre del Tercero</nombre>
+    <apellido1>1ºApellido</apellido1>
+    <apellido2>2º Apellido</apellido2>
+    <direccion>Dirección</direccion>
+    <email></email>
+  </tercero>
+  <tercero id="Id_Tercero2">
+    <identificacion>CIF Tercero</identificacion>
+    <nombre>Nombre Tercero</nombre>
+    <direccion>Dirección</direccion>
+    <email></email>
+  </tercero>
+</terceros>

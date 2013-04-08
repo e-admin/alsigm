@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Busqueda version="5.0" descripcion="Búsqueda avanzada en fondos">
+	<entrada>
+ 		<campo nombre="Ambito" mostrar="S" tipo="4"/>
+ 		<campo nombre="Numero_Expediente" mostrar="S" tipo="1">
+	 		<restriccion id="Rangos" tipo="-6"/>
+ 		</campo>
+ 		<campo nombre="Titulo" mostrar="S" tipo="1">
+		 	<restriccion id="Interesado_Identidad" tipo="5">
+				<listasDescriptoras>
+					<lista>ID_LIST_INTERESADO_IDENTIDAD</lista>
+				</listasDescriptoras>
+			</restriccion>
+			<restriccion id="Localizacion" tipo="1"/>
+ 			<restriccion id="Emplazamiento_Pais" tipo="5">
+				<listasDescriptoras>
+					<lista>ID_LIST_PAIS</lista>
+				</listasDescriptoras>
+			</restriccion>
+ 			<restriccion id="Emplazamiento_Comunidad" tipo="5">
+				<listasDescriptoras>
+					<lista>ID_LIST_COMUNIDAD</lista>
+				</listasDescriptoras>
+			</restriccion>
+ 			<restriccion id="Emplazamiento_Concejo" tipo="5">
+				<listasDescriptoras>
+					<lista>ID_LIST_CONCEJO</lista>
+				</listasDescriptoras>
+			</restriccion>
+ 			<restriccion id="Emplazamiento_Poblacion" tipo="5">
+				<listasDescriptoras>
+					<lista>ID_LIST_POBLACION</lista>
+				</listasDescriptoras>
+			</restriccion>
+		</campo>
+		<campo nombre="Niveles_Descripcion" mostrar="S" tipo="4"/>
+
+		<campo nombre="Condiciones_Avanzadas" mostrar="S" tipo="0"/>
+	</entrada>
+	<salida>
+		<campo nombre="Codigo_Referencia" mostrar="S"  mostrarLink="S"  tipo="1"/>
+		<campo nombre="Titulo" mostrar="S"  mostrarLink="S" tipo="1"/>
+		<campo nombre="Fecha_Inicial" mostrar="S" tipo="3">
+			<restriccion id="Fecha_Inicial"/>
+		</campo>
+		<campo nombre="Fecha_Final" mostrar="S" tipo="3">
+			<restriccion id="Fecha_Final"/>
+		</campo>
+		<campo nombre="Nivel" mostrar="S" tipo="4"/>
+	</salida>
+	<ordenacion tipo="ASC">
+		<orden>Codigo_Referencia</orden>
+	</ordenacion>
+	<acciones>
+		<accion>MOVER_ELEMENTOS</accion>
+		<accion>CREAR_PRESTAMO</accion>
+		<accion>ANIADIR_A_PRESTAMO</accion>
+		<accion>CREAR_CONSULTA</accion>
+		<accion>ANIADIR_A_CONSULTA</accion>
+		<accion>BLOQUEAR</accion>
+		<accion>DESBLOQUEAR</accion>
+	</acciones>
+</Busqueda>

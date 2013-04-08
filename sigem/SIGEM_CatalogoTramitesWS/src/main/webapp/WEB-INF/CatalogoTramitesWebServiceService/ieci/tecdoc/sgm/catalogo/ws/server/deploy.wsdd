@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CatalogoTramitesWebServiceService WSDL service -->
+
+  <service name="CatalogoTramitesWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.catalogo.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="CatalogoTramitesWebServiceService"/>
+      <parameter name="schemaQualified" value="http://dto.services.core.sgm.tecdoc.ieci,http://server.ws.catalogo.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="CatalogoTramitesWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.catalogo.ws.server.CatalogoTramitesWebService"/>
+      <parameter name="wsdlPortType" value="CatalogoTramitesWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="query" qname="operNS:query" returnQName="retNS:queryReturn" returnType="rtns:Tramites" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:query" type="tns:TramiteConsulta"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getDocument" qname="operNS:getDocument" returnQName="retNS:getDocumentReturn" returnType="rtns:Documento" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:documentId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getDocuments" qname="operNS:getDocuments" returnQName="retNS:getDocumentsReturn" returnType="rtns:Documentos" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="updateDocument" qname="operNS:updateDocument" returnQName="retNS:updateDocumentReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:document" type="tns:Documento"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="addProcedure" qname="operNS:addProcedure" returnQName="retNS:addProcedureReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:procedure" type="tns:Tramite"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getProcedure" qname="operNS:getProcedure" returnQName="retNS:getProcedureReturn" returnType="rtns:Tramite" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:procedureId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:loadDocuments" type="tns:RetornoLogico"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="deleteProcedure" qname="operNS:deleteProcedure" returnQName="retNS:deleteProcedureReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:procedureId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="updateProcedure" qname="operNS:updateProcedure" returnQName="retNS:updateProcedureReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:procedure" type="tns:Tramite"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="isDocumentReferenced" qname="operNS:isDocumentReferenced" returnQName="retNS:isDocumentReferencedReturn" returnType="rtns:RetornoLogico" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:documentId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="addProcedureDocument" qname="operNS:addProcedureDocument" returnQName="retNS:addProcedureDocumentReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:procedureDocument" type="tns:DocumentoTramite"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="deleteProcedureDocument" qname="operNS:deleteProcedureDocument" returnQName="retNS:deleteProcedureDocumentReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:procedureDocument" type="tns:DocumentoTramite"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="addDocument" qname="operNS:addDocument" returnQName="retNS:addDocumentReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:document" type="tns:Documento"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="deleteDocument" qname="operNS:deleteDocument" returnQName="retNS:deleteDocumentReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:documentId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getProcedureDocuments" qname="operNS:getProcedureDocuments" returnQName="retNS:getProcedureDocumentsReturn" returnType="rtns:Documentos" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:procedureId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getProcedureDocument" qname="operNS:getProcedureDocument" returnQName="retNS:getProcedureDocumentReturn" returnType="rtns:DocumentoTramite" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:procedureId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:documentId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getProcedureDocumentByCode" qname="operNS:getProcedureDocumentByCode" returnQName="retNS:getProcedureDocumentByCodeReturn" returnType="rtns:DocumentoTramite" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:procedureId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:documentId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:code" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="updateProcedureDocument" qname="operNS:updateProcedureDocument" returnQName="retNS:updateProcedureDocumentReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:procedureDocument" type="tns:DocumentoTramite"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getProcedures" qname="operNS:getProcedures" returnQName="retNS:getProceduresReturn" returnType="rtns:Tramites" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getDocumentfromCode" qname="operNS:getDocumentfromCode" returnQName="retNS:getDocumentfromCodeReturn" returnType="rtns:Documento" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:code" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getAddressee" qname="operNS:getAddressee" returnQName="retNS:getAddresseeReturn" returnType="rtns:OrganoDestinatario" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:addresseeId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="addAddressee" qname="operNS:addAddressee" returnQName="retNS:addAddresseeReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:addressee" type="tns:OrganoDestinatario"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="deleteAddressee" qname="operNS:deleteAddressee" returnQName="retNS:deleteAddresseeReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:addresseeId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="updateAddressee" qname="operNS:updateAddressee" returnQName="retNS:updateAddresseeReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:addressee" type="tns:OrganoDestinatario"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getAddressees" qname="operNS:getAddressees" returnQName="retNS:getAddresseesReturn" returnType="rtns:OrganosDestinatarios" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getHook" qname="operNS:getHook" returnQName="retNS:getHookReturn" returnType="rtns:Conector" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:hookId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="addHook" qname="operNS:addHook" returnQName="retNS:addHookReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:hook" type="tns:Conector"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="deleteHook" qname="operNS:deleteHook" returnQName="retNS:deleteHookReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:hookId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="updateHook" qname="operNS:updateHook" returnQName="retNS:updateHookReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:hook" type="tns:Conector"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getHooks" qname="operNS:getHooks" returnQName="retNS:getHooksReturn" returnType="rtns:Conectores" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getHooksByType" qname="operNS:getHooksByType" returnQName="retNS:getHooksByTypeReturn" returnType="rtns:Conectores" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:hookType" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getHookType" qname="operNS:getHookType" returnQName="retNS:getHookTypeReturn" returnType="rtns:TipoConector" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:typeId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="addHookType" qname="operNS:addHookType" returnQName="retNS:addHookTypeReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:hookType" type="tns:TipoConector"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="deleteHookType" qname="operNS:deleteHookType" returnQName="retNS:deleteHookTypeReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:typeId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="updateHookType" qname="operNS:updateHookType" returnQName="retNS:updateHookTypeReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:hookType" type="tns:TipoConector"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getHookTypes" qname="operNS:getHookTypes" returnQName="retNS:getHookTypesReturn" returnType="rtns:TiposConectores" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getAuthHooks" qname="operNS:getAuthHooks" returnQName="retNS:getAuthHooksReturn" returnType="rtns:ConectoresAutenticacion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:tramiteId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="addAuthHooks" qname="operNS:addAuthHooks" returnQName="retNS:addAuthHooksReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:authHook" type="tns:ConectorAutenticacion"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="deleteAuthHooks" qname="operNS:deleteAuthHooks" returnQName="retNS:deleteAuthHooksReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:tramiteId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:conectorId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="updateAuthHooks" qname="operNS:updateAuthHooks" returnQName="retNS:updateAuthHooksReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="pns:conectorAutenticacion" type="tns:ConectorAutenticacion"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:oldHookId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.catalogo.sgm.tecdoc.ieci" name="getAuthHook" qname="operNS:getAuthHook" returnQName="retNS:getAuthHookReturn" returnType="rtns:ConectorAutenticacion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:tramiteId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:conectorId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <parameter name="allowedMethods" value="deleteProcedureDocument updateProcedure getHook getHooksByType deleteHookType getDocument getProcedureDocuments updateDocument updateProcedureDocument addAddressee addDocument deleteAuthHooks query getHookTypes getProcedureDocumentByCode updateHookType getProcedure getDocuments deleteHook getHooks getHookType getDocumentfromCode updateHook addAuthHooks deleteDocument getAuthHook addHook addProcedure getProcedures addHookType deleteProcedure getAddressee isDocumentReferenced updateAuthHooks addProcedureDocument updateAddressee getAuthHooks getAddressees deleteAddressee getProcedureDocument"/>
+
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:Entidad" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:ArrayOfTipoConector" type="java:ieci.tecdoc.sgm.catalogo.ws.server.TipoConector[]" innerType="cmp-ns:TipoConector" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:Documentos" type="java:ieci.tecdoc.sgm.catalogo.ws.server.Documentos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:ConectoresAutenticacion" type="java:ieci.tecdoc.sgm.catalogo.ws.server.ConectoresAutenticacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:ArrayOfOrganoDestinatario" type="java:ieci.tecdoc.sgm.catalogo.ws.server.OrganoDestinatario[]" innerType="cmp-ns:OrganoDestinatario" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:OrganoDestinatario" type="java:ieci.tecdoc.sgm.catalogo.ws.server.OrganoDestinatario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:DocumentoExtendido" type="java:ieci.tecdoc.sgm.catalogo.ws.server.DocumentoExtendido" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:ArrayOfConector" type="java:ieci.tecdoc.sgm.catalogo.ws.server.Conector[]" innerType="cmp-ns:Conector" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:Conector" type="java:ieci.tecdoc.sgm.catalogo.ws.server.Conector" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:ArrayOfTramite" type="java:ieci.tecdoc.sgm.catalogo.ws.server.Tramite[]" innerType="cmp-ns:Tramite" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:RetornoLogico" type="java:ieci.tecdoc.sgm.catalogo.ws.server.RetornoLogico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:TramiteConsulta" type="java:ieci.tecdoc.sgm.catalogo.ws.server.TramiteConsulta" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:RetornoServicio" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:TiposConectores" type="java:ieci.tecdoc.sgm.catalogo.ws.server.TiposConectores" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:ArrayOfDocumentoExtendido" type="java:ieci.tecdoc.sgm.catalogo.ws.server.DocumentoExtendido[]" innerType="cmp-ns:DocumentoExtendido" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:TipoConector" type="java:ieci.tecdoc.sgm.catalogo.ws.server.TipoConector" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:Documento" type="java:ieci.tecdoc.sgm.catalogo.ws.server.Documento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:ConectorAutenticacion" type="java:ieci.tecdoc.sgm.catalogo.ws.server.ConectorAutenticacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:ArrayOfConectorAutenticacion" type="java:ieci.tecdoc.sgm.catalogo.ws.server.ConectorAutenticacion[]" innerType="cmp-ns:ConectorAutenticacion" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:Tramites" type="java:ieci.tecdoc.sgm.catalogo.ws.server.Tramites" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:Conectores" type="java:ieci.tecdoc.sgm.catalogo.ws.server.Conectores" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:Tramite" type="java:ieci.tecdoc.sgm.catalogo.ws.server.Tramite" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:OrganosDestinatarios" type="java:ieci.tecdoc.sgm.catalogo.ws.server.OrganosDestinatarios" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.catalogo.sgm.tecdoc.ieci" qname="ns:DocumentoTramite" type="java:ieci.tecdoc.sgm.catalogo.ws.server.DocumentoTramite" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<Fichero_Intercambio_SICRES_3 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <De_Origen_o_Remitente>
+    <Codigo_Entidad_Registral_Origen><![CDATA[O00001301]]></Codigo_Entidad_Registral_Origen>
+    <Decodificacion_Entidad_Registral_Origen><![CDATA[REGISTRO ELECTRÃ“NICO COMÃšN DE LA AGE]]></Decodificacion_Entidad_Registral_Origen>
+    <Numero_Registro_Entrada><![CDATA[1201055826]]></Numero_Registro_Entrada>
+    <Fecha_Hora_Entrada><![CDATA[20120517162706]]></Fecha_Hora_Entrada>
+    <Timestamp_Entrada><![CDATA[MIIKNwYJKoZIhvcNAQcCoIIKKDCCCiQCAQMxCzAJBgUrDgMCGgUAMGMGCyqGSIb3DQEJEAEEoFQE
+UjBQAgEBBgcrBAYBAwQGMCEwCQYFKw4DAhoFAAQUpIrIqQ4hA3VJKU1G/2GmSTQF6gkCA1jTnhgP
+MjAxMjA1MTcxNDI3MTZaMAkCAQGAAQGBAQKgggdzMIIHbzCCBlegAwIBAgIDBQeeMA0GCSqGSIb3
+DQEBBQUAMEQxCzAJBgNVBAYTAkVTMQ0wCwYDVQQKEwRNREVGMQwwCgYDVQQLEwNQS0kxGDAWBgNV
+BAMTD01JTklTREVGLUVDLVdQRzAeFw0xMTA4MTcwOTUwMjJaFw0yMTA4MTcwOTUwMjJaMHIxCzAJ
+BgNVBAYTAkVTMQ0wCwYDVQQKDARNREVGMQwwCgYDVQQLDANQS0kxEjAQBgNVBAUTCVMyODMzMDAy
+RTEyMDAGA1UEAwwpU2VsbG8gZGUgdGllbXBvIFRTQCAtIEBmaXJtYSAtIGRlc2Fycm9sbG8wggEi
+MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCgwVZQB5Lfhe7nJeuBHJ3ft88sv9GZjwZVrJ31
+IWcozouIdMo19UABAZ0rHrOUbX/35J0TmRWIt/61mFo3QqXlQJRQYRvMHAZtMQhLRECI4nbYkkkw
+vSGln/GEJ2g3j8g2u4JOMxVmj1jLtZMaAlPWKiH2B7UcR8cjvNalD0XHA1z542YD6WHTWvb9ojXD
+6zHa1N2HCc+TVt1h1ja9RbNJ2QL9KizQHkRwTP7HbjIfRjOB7HZdHdXtw8ZvuIoYLAD4YujnUkaY
++Z0t/w5qhDMQiKKXiEkPDFU7GG1578dLDqYTuAmPDuGKBhFCbdTxRhIuhXLz438uEskGdZAXrC+n
+AgMBAAGjggQ6MIIENjCB8QYDVR0RBIHpMIHmgRZzb3BvcnRlLmFmaXJtYTVAbXB0LmVzpIHLMIHI
+MR4wHAYJYIVUAQMFAgIBDA9zZWxsbyBkZSB0aWVtcG8xUDBOBglghVQBAwUCAgIMQU1pbmlzdGVy
+aW8gZGUgbGEgUG9sw610aWNhIFRlcnJpdG9yaWFsIHkgQWRtaW5pc3RyYWNpw7NuIFDDumJsaWNh
+MRgwFgYJYIVUAQMFAgIDDAlTMjgzMzAwMkUxOjA4BglghVQBAwUCAgUMK1RTQC0gQXV0b3JpZGFk
+IFNlbGxhZG8gZGUgdGllbXBvLWRlc2Fycm9sbG8wgcQGA1UdEgSBvDCBuYEPYWdwbWRAb2MubWRl
+LmVzpIGlMIGiMQswCQYDVQQGEwJFUzENMAsGA1UECgwETURFRjEMMAoGA1UECwwDUEtJMSYwJAYD
+VQQHDB1BcnR1cm8gU29yaWEgMjg5IDI4MDcxIE1hZHJpZDESMBAGA1UEBRMJUzI4MDAyMzFJMSkw
+JwYDVQQLDCBNaW5pc3RlcmlvIGRlIERlZmVuc2EgZGUgRXNwYcOxYTEPMA0GA1UEAwwGUEtJREVG
+MAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgbAMBYGA1UdJQEB/wQMMAoGCCsGAQUFBwMIMB0G
+A1UdDgQWBBTrdJ9nNZTm0L9WlyFzLCWOt/Pt1zA4BggrBgEFBQcBAQQsMCowKAYIKwYBBQUHMAGG
+HGh0dHA6Ly9ldjAxLXdwZy5tZGVmLmVzOjkzMDgwRAYDVR0gBD0wOzA5BglghVQBAQEBAwQwLDAq
+BggrBgEFBQcCARYeaHR0cDovL3BraS5tZGVmLmVzL2Nwcy9jcHMuaHRtMB8GA1UdIwQYMBaAFKvj
+uSGAW/p2D8dG27CbiAtascqyMIIBgQYDVR0fBIIBeDCCAXQwggFwoIIBbKCCAWiGgbZsZGFwOi8v
+L0NOPU1JTklTREVGLUVDLVdQRyxDTj1FQy1XUEcsQ049Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNl
+cnZpY2VzLENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9ZXQsREM9bWRlLERDPWVzP2Nl
+cnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RjbGFzcz1jUkxEaXN0cmlidXRpb25Q
+b2ludIZ9bGRhcDovL2xkYXAubWRlZi5lcy9jbj1NSU5JU0RFRi1DUkwtRUMtV1BHLE9VPVBLSSxP
+PU1ERUYsQz1FUz9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jhc2U/b2JqZWN0Y2xhc3M9Y1JM
+RGlzdHJpYnV0aW9uUG9pbnSGLmh0dHA6Ly9wa2kubWRlZi5lcy9jcmwvTUlOSVNERUYtQ1JMLUVD
+LVdQRy5jcmwwDQYJKoZIhvcNAQEFBQADggEBALk7tZzaf/jGkbiahLjLGaMrnxUaPcD8rC3keurx
+XJberQDC9FjZ3Oi3424lQ2SgPYZsT1sFHmGHylMJ6Rj0k8dcWCJ/JFM8UU4xU3z8WtyfxpQBz6JM
+/OxGsqPwawwSSVgh8PnsdZ3VKTWsryLj4ROTlst7h2IOkGIh1+d5A0XWQy0A9BjLuvJKAuhI7IA+
+y0kojfAkblLXDDDxQemxmqgj/84xYOgev1P/2Ecfxll6II9FrsfVmYywaEcERzBiuwX2AU1+NCO4
+l+GDk9FaHBz63GwKDuXgA0CEL+1RnTi469L+RVYSeZd731hkbWcj3Yy9+lPoB8/c7rHJ7gIHa+gx
+ggI0MIICMAIBATBLMEQxCzAJBgNVBAYTAkVTMQ0wCwYDVQQKEwRNREVGMQwwCgYDVQQLEwNQS0kx
+GDAWBgNVBAMTD01JTklTREVGLUVDLVdQRwIDBQeeMAkGBSsOAwIaBQCggb8wGgYJKoZIhvcNAQkD
+MQ0GCyqGSIb3DQEJEAEEMCMGCSqGSIb3DQEJBDEWBBQ/zpk/T2iyX6X48pvY+wcimJn3GjB8Bgsq
+hkiG9w0BCRACDDFtMGswaTBnBBT3oha42ij3HgcZMRG9GKsqVen0qzBPMEikRjBEMQswCQYDVQQG
+EwJFUzENMAsGA1UEChMETURFRjEMMAoGA1UECxMDUEtJMRgwFgYDVQQDEw9NSU5JU0RFRi1FQy1X
+UEcCAwUHnjANBgkqhkiG9w0BAQEFAASCAQAGnWp7L36TKI46AKoMvgqstb4GOooLy+roD1L43sXw
+heEjEJC4n/qAcjHl0nUJfq2aoUDpu2NYqHF2aNQRK9Muja7wbaPp7npRsxCJf81K37p3AvFOv9NE
+qsLPdD9HnxtPABBRtXqyjJ6+vuaVnJ5b+SU/GmB+8KCrdHH/XNPhEDO1kfBZZq69uIjR14CprEDM
+Azv1OmEMNOCUAb63TT2o4yuLmcV1ZFQ5tFfZNnuXt0CoxXzSkDzyX14wRkijiND4QkHd6q9C9jvC
+Xrd1SLeS6p7+WsC9dRC24KI3c0F8FAnHmoQwVSu4GBuznZlMSZHCSPYvL7k7iH75bMJtiXeS]]></Timestamp_Entrada>
+    <Codigo_Unidad_Tramitacion_Origen><![CDATA[]]></Codigo_Unidad_Tramitacion_Origen>
+    <Decodificacion_Unidad_Tramitacion_Origen><![CDATA[]]></Decodificacion_Unidad_Tramitacion_Origen>
+  </De_Origen_o_Remitente>
+  <De_Destino>
+    <Codigo_Entidad_Registral_Destino><![CDATA[O00002102]]></Codigo_Entidad_Registral_Destino>
+    <Decodificacion_Entidad_Registral_Destino><![CDATA[REGISTRO GENERAL DEL AYUNTAMIENTO DE CIUDAD REAL]]></Decodificacion_Entidad_Registral_Destino>
+    <Codigo_Unidad_Tramitacion_Destino><![CDATA[L01130343]]></Codigo_Unidad_Tramitacion_Destino>
+    <Decodificacion_Unidad_Tramitacion_Destino><![CDATA[Ayuntamiento de Ciudad Real]]></Decodificacion_Unidad_Tramitacion_Destino>
+  </De_Destino>
+  <De_Interesado>
+    <Tipo_Documento_Identificacion_Interesado><![CDATA[E]]></Tipo_Documento_Identificacion_Interesado>
+    <Documento_Identificacion_Interesado><![CDATA[X0000000A]]></Documento_Identificacion_Interesado>
+    <Razon_Social_Interesado><![CDATA[]]></Razon_Social_Interesado>
+    <Nombre_Interesado><![CDATA[AssunÃ§Ã£o]]></Nombre_Interesado>
+    <Primer_Apellido_Interesado><![CDATA[Petkovi?]]></Primer_Apellido_Interesado>
+    <Segundo_Apellido_Interesado><![CDATA[O'Sullivan]]></Segundo_Apellido_Interesado>
+    <Tipo_Documento_Identificacion_Representante><![CDATA[]]></Tipo_Documento_Identificacion_Representante>
+    <Documento_Identificacion_Representante><![CDATA[]]></Documento_Identificacion_Representante>
+    <Nombre_Representante><![CDATA[]]></Nombre_Representante>
+    <Primer_Apellido_Representante><![CDATA[]]></Primer_Apellido_Representante>
+    <Segundo_Apellido_Representante><![CDATA[]]></Segundo_Apellido_Representante>
+    <Pais_Interesado><![CDATA[724]]></Pais_Interesado>
+    <Provincia_Interesado><![CDATA[28]]></Provincia_Interesado>
+    <Municipio_Interesado><![CDATA[0796]]></Municipio_Interesado>
+    <Direccion_Interesado><![CDATA[CALLE MARÃA DE MOLINA, 50]]></Direccion_Interesado>
+    <Codigo_Postal_Interesado><![CDATA[28006]]></Codigo_Postal_Interesado>
+    <Correo_Electronico_Interesado><![CDATA[carlos.suarez@externos.seap.minhap.es]]></Correo_Electronico_Interesado>
+    <Telefono_Contacto_Interesado><![CDATA[]]></Telefono_Contacto_Interesado>
+    <Direccion_Electronica_Habilitada_Interesado><![CDATA[]]></Direccion_Electronica_Habilitada_Interesado>
+    <Canal_Preferente_Comunicacion_Interesado><![CDATA[01]]></Canal_Preferente_Comunicacion_Interesado>
+  </De_Interesado>
+  <De_Asunto>
+    <Resumen><![CDATA[Prueba SIR-IN-PR-061]]></Resumen>
+    <Codigo_Asunto_Segun_Destino><![CDATA[]]></Codigo_Asunto_Segun_Destino>
+    <Referencia_Externa><![CDATA[]]></Referencia_Externa>
+  </De_Asunto>
+  <De_Anexo>
+    <Nombre_Fichero_Anexado><![CDATA[JustificanteCSV_1201055826.pdf]]></Nombre_Fichero_Anexado>
+    <Identificador_Fichero><![CDATA[O00001301_12_32061575_01_5826.pdf]]></Identificador_Fichero>
+    <Tipo_Documento><![CDATA[02]]></Tipo_Documento>
+    <Hash><![CDATA[YjIzOGQyZDhmZTQ2NzNlYzMxY2U5MjdiYTliMjIyOTdmMDA1ODk4Yg==]]></Hash>
+    <Identificador_Documento_Firmado><![CDATA[]]></Identificador_Documento_Firmado>
+    <Observaciones><![CDATA[]]></Observaciones>
+  </De_Anexo>
+  <De_Anexo>
+    <Nombre_Fichero_Anexado><![CDATA[XMLResumenSolicitudENI.xml]]></Nombre_Fichero_Anexado>
+    <Identificador_Fichero><![CDATA[O00001301_12_32061575_01_5827.xml]]></Identificador_Fichero>
+    <Tipo_Documento><![CDATA[03]]></Tipo_Documento>
+    <Hash><![CDATA[YzBjMTU0NzYyNWM1NzUyZGY0MmQ5MTU5NzdhNjk5OWEzYjIyYjUxMQ==]]></Hash>
+    <Identificador_Documento_Firmado><![CDATA[]]></Identificador_Documento_Firmado>
+    <Observaciones><![CDATA[]]></Observaciones>
+  </De_Anexo>
+  <De_Internos_Control>
+    <Tipo_Transporte_Entrada><![CDATA[]]></Tipo_Transporte_Entrada>
+    <Numero_Transporte_Entrada><![CDATA[]]></Numero_Transporte_Entrada>
+    <Nombre_Usuario><![CDATA[Registro ElectrÃ³nico ComÃºn de la AGE]]></Nombre_Usuario>
+    <Contacto_Usuario><![CDATA[gestion.rec@mpt.es]]></Contacto_Usuario>
+    <Identificador_Intercambio><![CDATA[O00001301_12_32061575]]></Identificador_Intercambio>
+    <Aplicacion_Version_Emisora><![CDATA[REC2]]></Aplicacion_Version_Emisora>
+    <Tipo_Anotacion><![CDATA[02]]></Tipo_Anotacion>
+    <Tipo_Registro><![CDATA[0]]></Tipo_Registro>
+    <Documentacion_Fisica><![CDATA[3]]></Documentacion_Fisica>
+    <Indicador_Prueba><![CDATA[0]]></Indicador_Prueba>
+    <Codigo_Entidad_Registral_Inicio><![CDATA[O00001301]]></Codigo_Entidad_Registral_Inicio>
+    <Decodificacion_Entidad_Registral_Inicio><![CDATA[REGISTRO ELECTRÃ“NICO COMÃšN DE LA AGE]]></Decodificacion_Entidad_Registral_Inicio>
+  </De_Internos_Control>
+  <De_Formulario_Generico>
+    <Expone><![CDATA[Expone SIR-IN-PR-061]]></Expone>
+    <Solicita><![CDATA[Solicita SIR-IN-PR-061]]></Solicita>
+  </De_Formulario_Generico>
+</Fichero_Intercambio_SICRES_3>

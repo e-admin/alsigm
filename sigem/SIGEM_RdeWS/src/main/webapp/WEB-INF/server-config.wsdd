@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="RepositorioDocumentosWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="recuperarDocumento" qname="ns1:recuperarDocumento" returnQName="ns1:recuperarDocumentoReturn" returnType="ns1:InfoDocumento" soapAction="" xmlns:ns1="http://server.ws.rde.sgm.tecdoc.ieci">
+   <parameter qname="ns1:poDocId" type="ns1:InfoDocumento"/>
+   <parameter qname="ns1:entidad" type="ns2:Entidad" xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="guardarDocumento" qname="ns3:guardarDocumento" returnQName="ns3:guardarDocumentoReturn" returnType="ns3:InfoDocumento" soapAction="" xmlns:ns3="http://server.ws.rde.sgm.tecdoc.ieci">
+   <parameter qname="ns3:poDoc" type="ns3:InfoDocumento"/>
+   <parameter qname="ns3:entidad" type="ns4:Entidad" xmlns:ns4="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="guardarDocumentoGuid" qname="ns5:guardarDocumentoGuid" returnQName="ns5:guardarDocumentoGuidReturn" returnType="ns5:InfoDocumento" soapAction="" xmlns:ns5="http://server.ws.rde.sgm.tecdoc.ieci">
+   <parameter qname="ns5:poDoc" type="ns5:InfoDocumento"/>
+   <parameter qname="ns5:entidad" type="ns6:Entidad" xmlns:ns6="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="eliminarDocumento" qname="ns7:eliminarDocumento" returnQName="ns7:eliminarDocumentoReturn" returnType="ns8:RetornoServicio" soapAction="" xmlns:ns7="http://server.ws.rde.sgm.tecdoc.ieci" xmlns:ns8="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns7:poDoc" type="ns7:InfoDocumento"/>
+   <parameter qname="ns7:entidad" type="ns8:Entidad"/>
+  </operation>
+  <operation name="obtenerHash" qname="ns9:obtenerHash" returnQName="ns9:obtenerHashReturn" returnType="ns9:InfoDocumento" soapAction="" xmlns:ns9="http://server.ws.rde.sgm.tecdoc.ieci">
+   <parameter qname="ns9:poDoc" type="ns9:InfoDocumento"/>
+   <parameter qname="ns9:entidad" type="ns10:Entidad" xmlns:ns10="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="almacenarDocumentos" qname="ns11:almacenarDocumentos" returnQName="ns11:almacenarDocumentosReturn" returnType="ns12:RetornoServicio" soapAction="" xmlns:ns11="http://server.ws.rde.sgm.tecdoc.ieci" xmlns:ns12="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns11:poDocs" type="ns11:InfoDocumentos"/>
+   <parameter qname="ns11:entidad" type="ns12:Entidad"/>
+  </operation>
+  <operation name="almacenarDocumentoTemporal" qname="ns13:almacenarDocumentoTemporal" returnQName="ns13:almacenarDocumentoTemporalReturn" returnType="ns14:RetornoServicio" soapAction="" xmlns:ns13="http://server.ws.rde.sgm.tecdoc.ieci" xmlns:ns14="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns13:poDoc" type="ns13:InfoDocumentoTemporal"/>
+   <parameter qname="ns13:entidad" type="ns14:Entidad"/>
+  </operation>
+  <operation name="eliminarDocumentoTemporal" qname="ns15:eliminarDocumentoTemporal" returnQName="ns15:eliminarDocumentoTemporalReturn" returnType="ns16:RetornoServicio" soapAction="" xmlns:ns15="http://server.ws.rde.sgm.tecdoc.ieci" xmlns:ns16="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns15:poDoc" type="ns15:InfoDocumentoTemporal"/>
+   <parameter qname="ns15:entidad" type="ns16:Entidad"/>
+  </operation>
+  <operation name="obtenerDocumentosTemporales" qname="ns17:obtenerDocumentosTemporales" returnQName="ns17:obtenerDocumentosTemporalesReturn" returnType="ns17:InfoDocumentosTemporales" soapAction="" xmlns:ns17="http://server.ws.rde.sgm.tecdoc.ieci">
+   <parameter qname="ns17:poDoc" type="ns17:InfoDocumentoTemporal"/>
+   <parameter qname="ns17:entidad" type="ns18:Entidad" xmlns:ns18="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerDocumentosTemporalesCaducados" qname="ns19:obtenerDocumentosTemporalesCaducados" returnQName="ns19:obtenerDocumentosTemporalesCaducadosReturn" returnType="ns19:InfoDocumentosTemporales" soapAction="" xmlns:ns19="http://server.ws.rde.sgm.tecdoc.ieci">
+   <parameter qname="ns19:poDocs" type="ns19:CriterioBusquedaDocs"/>
+   <parameter qname="ns19:entidad" type="ns20:Entidad" xmlns:ns20="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="retrieveDocumentInfo" qname="ns21:retrieveDocumentInfo" returnQName="ns21:retrieveDocumentInfoReturn" returnType="ns21:ContenedorDocumento" soapAction="" xmlns:ns21="http://server.ws.rde.sgm.tecdoc.ieci">
+   <parameter qname="ns21:poInfo" type="ns21:InfoDocumento"/>
+   <parameter qname="ns21:entidad" type="ns22:Entidad" xmlns:ns22="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <parameter name="allowedMethods" value="obtenerDocumentosTemporales guardarDocumentoGuid retrieveDocumentInfo almacenarDocumentoTemporal obtenerHash recuperarDocumento almacenarDocumentos eliminarDocumento guardarDocumento eliminarDocumentoTemporal obtenerDocumentosTemporalesCaducados"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="RepositorioDocumentosWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.rde.ws.server.RepositorioDocumentosWebService"/>
+  <parameter name="wsdlServicePort" value="RepositorioDocumentosWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.rde.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.rde.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="RepositorioDocumentosWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:InfoDocumentoTemporal" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.rde.ws.server.InfoDocumentoTemporal" xmlns:ns23="http://server.ws.rde.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:InfoDocumentosTemporales" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.rde.ws.server.InfoDocumentosTemporales" xmlns:ns24="http://server.ws.rde.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:ContenedorDocumento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.rde.ws.server.ContenedorDocumento" xmlns:ns25="http://server.ws.rde.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns26:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns26="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns27:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" xmlns:ns27="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns28:InfoDocumentos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.rde.ws.server.InfoDocumentos" xmlns:ns28="http://server.ws.rde.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns29:CriterioBusquedaDocs" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.rde.ws.server.CriterioBusquedaDocs" xmlns:ns29="http://server.ws.rde.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns30:InfoDocumento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.rde.ws.server.InfoDocumento" xmlns:ns30="http://server.ws.rde.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns31:InfoDocumentoTemporal" languageSpecificType="java:ieci.tecdoc.sgm.rde.ws.server.InfoDocumentoTemporal[]" qname="ns31:ArrayOfInfoDocumentoTemporal" xmlns:ns31="http://server.ws.rde.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns32:InfoDocumento" languageSpecificType="java:ieci.tecdoc.sgm.rde.ws.server.InfoDocumento[]" qname="ns32:ArrayOfInfoDocumento" xmlns:ns32="http://server.ws.rde.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

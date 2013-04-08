@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Manager de aplicaciones -->
+	<bean id="fwktd_csv_aplicacionManagerImpl" name="fwktd_csv_aplicacionManager"
+		parent="fwktd_csv_transactionTemplate">
+		<property name="target">
+			<bean class="es.ieci.tecdoc.fwktd.csv.api.manager.impl.AplicacionManagerImpl">
+				<constructor-arg ref="fwktd_csv_aplicacionDao" />
+				<property name="incrementer" ref="fwktd_csv_aplicacionIncrementer" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Manager de documentos -->
+	<bean id="fwktd_csv_documentoManagerImpl" name="fwktd_csv_documentoManager"
+		parent="fwktd_csv_transactionTemplate">
+		<property name="target">
+			<bean
+				class="es.ieci.tecdoc.fwktd.csv.api.manager.impl.DocumentoManagerImpl">
+				<constructor-arg ref="fwktd_csv_documentoDao" />
+				<property name="incrementer" ref="fwktd_csv_documentoIncrementer" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Manager de tiempos -->
+	<bean id="fwktd_csv_tiemposManagerImpl" name="fwktd_csv_tiemposManager"
+		class="es.ieci.tecdoc.fwktd.csv.api.manager.impl.TiemposManagerImpl">
+		<property name="servicioTiempos" ref="fwktd_csv_timeService" />
+	</bean>
+
+	<!-- Servicio de tiempos -->
+	<bean id="fwktd_csv_timeServiceImpl" name="fwktd_csv_timeService"
+		factory-bean="fwktd_time_factoryTimeService" factory-method="getTimeService" />
+
+</beans>

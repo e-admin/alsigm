@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrDistreg" 
+    table="SCR_DISTREG"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_DISTREG"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="idArch"
+        type="int"
+        column="ID_ARCH"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_ARCH"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idFdr"
+        type="int"
+        column="ID_FDR"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_FDR"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="distDate"
+        type="java.sql.Timestamp"
+        column="DIST_DATE"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="DIST_DATE"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="typeOrig"
+        type="int"
+        column="TYPE_ORIG"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TYPE_ORIG"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idOrig"
+        type="int"
+        column="ID_ORIG"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_ORIG"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="typeDest"
+        type="int"
+        column="TYPE_DEST"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TYPE_DEST"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idDest"
+        type="int"
+        column="ID_DEST"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_DEST"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="state"
+        type="int"
+        column="STATE"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="STATE"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="stateDate"
+        type="java.sql.Timestamp"
+        column="STATE_DATE"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="STATE_DATE"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="message"
+        type="java.lang.String"
+        column="MESSAGE"
+        length="250"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="MESSAGE"
+            length="250"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

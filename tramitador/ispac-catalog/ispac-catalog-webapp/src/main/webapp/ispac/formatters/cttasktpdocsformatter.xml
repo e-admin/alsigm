@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Formateador para el listado de documentos asociados al tramite: Edicion de Tramite -> Tipos de documentos asociados -->
+<beanformatter>
+
+	<!--
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:ID'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 />
+	-->
+	
+	<!--  
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='LINK'
+				 fieldLink='CTTPDOC:ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 decorator=''
+				 url='showCTEntity.do?entityId=7'
+				 id='regId'/>
+	-->
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:COD_TPDOC'
+				 readOnly='false'
+				 titleKey='catalog.common.codigo'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width10percent'/>
+
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:AUTOR'
+				 readOnly='false'
+				 titleKey='form.tpdoc.propertyLabel.author'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width15percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTPDOC:DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.tpdoc.propertyLabel.descrition'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width25percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CTTRTD:ID'
+				 propertyValueKey='form.tasktpdocs.buttonLabel.deleteAssigned'
+				 readOnly='false'
+				 fieldType='LINK_BT'
+				 fieldLink='CTTRTD:ID'
+				 styleClass='aDelButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''
+				 url='deleteCTTaskTPDoc.do'
+				 id='tasktpdocId'
+				 columnClass='width20percent'
+				 />
+
+</beanformatter>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - A parent pom with default settings for jboss projects.
+  - Each jboss project should have something similar to the following lines in their pom file.
+  - <parent>
+  -   <groupId>org.jboss</groupId>
+  -   <artifactId>jboss-parent</artifactId>
+  -   <version>3</version>
+  - </parent>
+  -
+  - To build this project, maven 2 should be installed and "mvn" should be in the system path.  
+  - From the command line, run "mvn install".  This will run the build goal "install".
+ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jboss</groupId>
+  <version>3</version>
+  <artifactId>jboss-parent</artifactId>
+  <packaging>pom</packaging>
+  <name>JBoss Parent POM</name>
+  <description>Parent POM for all JBoss Projects. Provides default project build
+    configuration.</description>
+  <url>http://www.jboss.org</url>
+  <prerequisites>
+    <maven>2.0</maven>
+  </prerequisites>
+  <issueManagement>
+    <system>jira</system>
+    <url>http://jira.jboss.com/</url>
+  </issueManagement>
+  <!-- 
+    - The parent pom should not include scm configuration, because we don't want child projects
+    - to inherit this information.  The child projects should each set their own repository URL
+    - <scm>
+    -   <connection>scm:svn:http://anonsvn.jboss.org/repos/labs/labs/jbossbuild/jboss-parent/trunk/</connection>    
+    -   <developerConnection>scm:svn:https://svn.jboss.org/repos/labs/labs/jbossbuild/jboss-parent/trunk/</developerConnection>   
+    - </scm>
+    - This section should stay commented out.
+    -->
+  <licenses>
+    <license>
+      <name>lgpl</name>
+      <url>http://repository.jboss.com/licenses/lgpl.txt</url>
+    </license>
+  </licenses>
+  <organization>
+    <name>JBoss Inc.</name>
+    <url>http://www.jboss.org</url>
+  </organization>
+  <build>
+    <extensions>
+      <extension>
+	      <groupId>org.apache.maven.wagon</groupId>
+	      <artifactId>wagon-webdav</artifactId>
+	      <version>1.0-beta-2</version>
+      </extension>
+    </extensions>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>        
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.0-beta-5</version>          
+        <configuration>
+          <!-- The tagBase property is needed during the release process so that the maven release plugin
+            -  will create the release tag in the appropriate location. -->
+          <tagBase>https://svn.jboss.org/repos/labs/labs/jbossbuild/jboss-parent/tags/</tagBase>
+          <!-- We don't want to use the default release profile because it creates javadoc jars for the repo.
+            -  Since we include source jars in the repo, we don't need the javadoc jars. -->
+          <useReleaseProfile>false</useReleaseProfile>
+          <!-- The release plugin activates a custom profile called "release". -->
+          <arguments>-Prelease</arguments>
+        </configuration>
+        <inherited>false</inherited>
+      </plugin>
+      <!-- Define how we want compilation to take place.
+        -  We accept most of the defaults but say that we want the
+        -  optimization, warnings, and deprecation flags on, and define the source and target to be 1.5,
+        -  these setting will be inherited by child projects, but can be overridden as needed. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+          <showDeprecation>true</showDeprecation>
+          <showWarnings>true</showWarnings>
+          <optimize>true</optimize>
+        </configuration>
+      </plugin>
+      <!-- define that we wish to create src jars -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.0.3</version>
+        <inherited>true</inherited>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+            <manifestEntries>
+              <Implementation-URL>${pom.url}</Implementation-URL>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.jboss.maven.plugins</groupId>
+          <artifactId>maven-jboss-deploy-plugin</artifactId>
+          <version>1.3</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>jboss-deploy</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <jbossDeployRoot>${jboss.repository.root}</jbossDeployRoot>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <profiles>
+    <!-- This profile is activated when a project is released. -->
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <inherited>true</inherited>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>2.3</version>
+            <configuration>
+              <updateReleaseInfo>true</updateReleaseInfo>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://repo1.maven.org/maven2</url>
+          <releases>
+            <enabled>false</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+    <!-- Activating this profile will cause developer reports to be generated.
+      -  These are reports that are not required for the project site, but
+      -  may be useful to developers. -->
+    <profile>
+      <id>dev-reports</id>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>1.1</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+              <targetJdk>1.5</targetJdk>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>2.1</version>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jdepend-maven-plugin</artifactId>
+            <version>2.0-beta-1</version>
+          </plugin>         
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>javancss-maven-plugin</artifactId>
+            <version>2.0-beta-2</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>2.1</version>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
+    <!-- Profile to include code coverage reports -->
+    <profile>
+      <id>code-coverage</id>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <version>2.1</version>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
+  </profiles>
+  <repositories>
+    <repository>
+      <id>jboss</id>
+      <name>JBoss Repository</name>
+      <url>http://repository.jboss.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>jboss-snapshots</id>
+      <name>JBoss Snapshot Repository</name>
+      <url>http://snapshots.jboss.org/maven2</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jboss</id>
+      <name>JBoss Plugin Repository</name>
+      <url>http://repository.jboss.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>jboss-snapshots</id>
+      <name>JBoss Snapshot Plugin Repository</name>
+      <url>http://snapshots.jboss.org/maven2</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.0.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <links>
+            <link>http://java.sun.com/j2se/1.5.0/docs/api</link>
+          </links>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>      
+        <version>2.3</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>report-only</report>
+            </reports>
+          </reportSet>
+        </reportSets>          
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <version>2.0</version>
+      </plugin>
+    </plugins>    
+  </reporting>
+  <distributionManagement>
+    <repository>
+      <!-- Copy the distribution jar file to a local checkout of the maven repository 
+        -  This variable can be set in $MAVEN_HOME/conf/settings.xml -->
+      <id>repository.jboss.org</id>
+      <url>file://${maven.repository.root}</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots.jboss.org</id>
+      <name>JBoss Snapshot Repository</name>
+      <url>dav:https://snapshots.jboss.org/maven2</url>
+    </snapshotRepository>
+  </distributionManagement>
+</project>

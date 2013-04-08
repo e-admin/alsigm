@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="AdministracionUsuariosPortalWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="crearUsuario" qname="ns1:crearUsuario" returnQName="ns1:crearUsuarioReturn" returnType="ns2:RetornoServicio" soapAction="" xmlns:ns1="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns1:user" type="ns1:Usuario"/>
+   <parameter qname="ns1:entidad" type="ns1:Entidad"/>
+  </operation>
+  <operation name="eliminarUsuario" qname="ns3:eliminarUsuario" returnQName="ns3:eliminarUsuarioReturn" returnType="ns4:RetornoServicio" soapAction="" xmlns:ns3="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:ns4="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns3:user" type="ns3:Usuario"/>
+   <parameter qname="ns3:entidad" type="ns3:Entidad"/>
+  </operation>
+  <operation name="buscarUsuarios" qname="ns5:buscarUsuarios" returnQName="ns5:buscarUsuariosReturn" returnType="ns5:ListaUsuarios" soapAction="" xmlns:ns5="http://server.ws.usuario.sgm.tecdoc.ieci">
+   <parameter qname="ns5:criteria" type="ns5:CriterioBusquedaUsuario"/>
+   <parameter qname="ns5:entidad" type="ns5:Entidad"/>
+  </operation>
+  <operation name="autenticarUsuario" qname="ns6:autenticarUsuario" returnQName="ns6:autenticarUsuarioReturn" returnType="ns6:Usuario" soapAction="" xmlns:ns6="http://server.ws.usuario.sgm.tecdoc.ieci">
+   <parameter qname="ns6:user" type="ns6:Usuario"/>
+   <parameter qname="ns6:entidad" type="ns6:Entidad"/>
+  </operation>
+  <operation name="obtenerUsuario" qname="ns7:obtenerUsuario" returnQName="ns7:obtenerUsuarioReturn" returnType="ns7:Usuario" soapAction="" xmlns:ns7="http://server.ws.usuario.sgm.tecdoc.ieci">
+   <parameter qname="ns7:user" type="ns7:Usuario"/>
+   <parameter qname="ns7:entidad" type="ns7:Entidad"/>
+  </operation>
+  <operation name="actualizarUsuario" qname="ns8:actualizarUsuario" returnQName="ns8:actualizarUsuarioReturn" returnType="ns9:RetornoServicio" soapAction="" xmlns:ns8="http://server.ws.usuario.sgm.tecdoc.ieci" xmlns:ns9="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns8:user" type="ns8:Usuario"/>
+   <parameter qname="ns8:entidad" type="ns8:Entidad"/>
+  </operation>
+  <parameter name="allowedMethods" value="autenticarUsuario eliminarUsuario buscarUsuarios actualizarUsuario crearUsuario obtenerUsuario"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="AdministracionUsuariosPortalWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.usuario.ws.server.AdministracionUsuariosPortalWebService"/>
+  <parameter name="wsdlServicePort" value="AdministracionUsuariosPortalWebService"/>
+  <parameter name="schemaQualified" value="http://dto.services.core.sgm.tecdoc.ieci,http://server.ws.usuario.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.usuario.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="AdministracionUsuariosPortalWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.usuario.ws.server.Entidad" xmlns:ns10="http://server.ws.usuario.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns11="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:Usuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.usuario.ws.server.Usuario" xmlns:ns12="http://server.ws.usuario.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:CriterioBusquedaUsuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.usuario.ws.server.CriterioBusquedaUsuario" xmlns:ns13="http://server.ws.usuario.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns14:ListaUsuarios" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.usuario.ws.server.ListaUsuarios" xmlns:ns14="http://server.ws.usuario.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns15:Usuario" languageSpecificType="java:ieci.tecdoc.sgm.usuario.ws.server.Usuario[]" qname="ns15:ArrayOfUsuario" xmlns:ns15="http://server.ws.usuario.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

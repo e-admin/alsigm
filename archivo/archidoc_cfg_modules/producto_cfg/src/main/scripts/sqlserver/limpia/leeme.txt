@@ -1,0 +1,5 @@
+El script 09_add_content_search_sqlserver.sql, es opcional:
+
+Añade un linked server al servicio de index server 'Web', que debe tener definido como
+uno de sus directorios la dirección de red del repositorio electrónico (Ej: \\10.228.20.176\repfs)
+con la información de usuario y contraseña rellenas.

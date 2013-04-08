@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	xmlns:p="http://www.springframework.org/schema/p"	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  	
+  	<!--========== Services ==========-->
+    <bean id="calculoPlusvaliaManager" class="es.ieci.plusvalias.manager.CalculoPlusvaliaManager">
+		<property name="derechodao"><ref bean="derechodao"/></property>
+		<property name="catadao"><ref bean="catadao"/></property>
+		<property name="plusvaliatempdao"><ref bean="plusvaliatempdao"/></property>
+		<property name="plusvaliaconfigdao"><ref bean="plusvaliaconfigdao"/></property>
+		<property name="porcentajedao"><ref bean="porcentajedao"/></property>
+		<property name="reducciondao"><ref bean="reducciondao"/></property>
+		<property name="tipoimpositivodao"><ref bean="tipoimpositivodao"/></property>
+		<property name="inmuebledao"><ref bean="inmuebledao"/></property>
+		<property name="deducciondao"><ref bean="deducciondao"/></property>
+		<property name="recargodao"><ref bean="recargodao"/></property>
+		<property name="actjuridancertdao"><ref bean="actjuridancertdao"/></property>
+		<property name="intedemoradao"><ref bean="intedemoradao"/></property>
+		<property name="situaciondao"><ref bean="situaciondao"/></property>
+  	</bean>
+  	
+  	<bean id="pagoPlusvaliaManager" class="es.ieci.plusvalias.manager.PagoPlusvaliaManager">
+		<property name="plusvaliatempdao"><ref bean="plusvaliatempdao"/></property>
+		<property name="plusvaliaHelper"><ref bean="plusvaliaHelper"/></property>
+  	</bean>
+
+    <bean id="plusvaliaHelper" class="es.ieci.plusvalias.util.PlusvaliaHelper"/>
+
+  	<bean id="badajozPlusvaliaService" class="es.ieci.plusvalias.service.BadajozPlusvaliaServiceImpl">
+  		<property name="calculoManager" ref="calculoPlusvaliaManager"/>
+  		<property name="pagoManager" ref="pagoPlusvaliaManager"/>
+  	</bean>
+</beans>

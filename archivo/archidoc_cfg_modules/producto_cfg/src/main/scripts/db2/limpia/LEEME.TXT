@@ -1,0 +1,10 @@
+db2cmd
+db2 connect to <nombre-bd> user <usuario> using <clave>
+db2 -tvf 01_create_tables_db2.sql > R01_create_tables_db2.txt 
+db2 -tvf 02_create_indexes_db2.sql > R02_create_indexes_db2.txt
+db2 -tvf 03_insert_data_db2.sql > R03_insert_data_db2.txt
+db2 -td@ -vf 04_create_functions_db2.sql > R04_create_functions_db2.txt
+db2 -tvf 05_insert_clobs_db2.sql > R05_insert_clobs_db2.txt
+db2 -tvf 06_drop_tables_organizacion_db2.sql > R06_drop_tables_organizacion_db2.txt
+db2 -tvf 07_create_tables_organizacion_db2.sql > R07_create_tables_organizacion_db2.txt
+db2 terminate

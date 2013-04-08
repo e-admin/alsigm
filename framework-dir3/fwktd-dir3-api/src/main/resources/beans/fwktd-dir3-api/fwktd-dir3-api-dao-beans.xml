@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="fwktd_dir3_datosBasicosOficinaDaoImpl" name="fwktd_dir3_datosBasicosOficinaDao"
+		class="es.ieci.tecdoc.fwktd.dir3.api.dao.impl.DatosBasicosOficinaDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosOficinaVO" />
+		<property name="sqlMapClient" ref="fwktd_dir3_sqlMapClient" />
+	</bean>
+
+	<bean id="fwktd_dir3_datosBasicosUnidadOrganicaDaoImpl" name="fwktd_dir3_datosBasicosUnidadOrganicaDao"
+		class="es.ieci.tecdoc.fwktd.dir3.api.dao.impl.DatosBasicosUnidadOrganicaDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosUnidadOrganicaVO" />
+		<property name="sqlMapClient" ref="fwktd_dir3_sqlMapClient" />
+	</bean>
+
+	<bean id="fwktd_dir3_datosEstadoActualizacionDcoDaoImpl" name="fwktd_dir3_datosEstadoActualizacionDcoDao"
+		class="es.ieci.tecdoc.fwktd.dir3.api.dao.impl.EstadoActualizacionDcoDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.fwktd.dir3.api.vo.EstadoActualizacionDcoVO" />
+		<property name="sqlMapClient" ref="fwktd_dir3_sqlMapClient" />
+	</bean>
+
+	<bean id="fwktd_dir3_sqlMapClientImpl" name="fwktd_dir3_sqlMapClient"
+		class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation"
+			value="classpath:sqlmaps/fwktd-dir3/fwktd-dir3-sqlmap-config.xml" />
+		<property name="dataSource" ref="fwktd_dir3_dataSource" />
+	</bean>
+
+</beans>

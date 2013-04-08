@@ -1,0 +1,230 @@
+TH.sorted {
+	BACKGROUND-COLOR: #CECEDB;
+}
+TH A {
+	PADDING-RIGHT: 2px; 
+	PADDING-LEFT: 2px; 
+	PADDING-BOTTOM: 2px; 
+	MARGIN: 0px; 
+	COLOR: #003399; 
+	PADDING-TOP: 2px; 
+	BACKGROUND-REPEAT: no-repeat; 
+	TEXT-DECORATION: underline
+}
+TH A:visited {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; MARGIN: 0px; COLOR: #003399; PADDING-TOP: 2px; BACKGROUND-REPEAT: no-repeat; TEXT-DECORATION: underline
+}
+TH A:hover {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; MARGIN: 0px; COLOR: #003399; PADDING-TOP: 2px; BACKGROUND-REPEAT: no-repeat; TEXT-DECORATION: underline
+}
+TH A:link {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; MARGIN: 0px; COLOR: #003399; PADDING-TOP: 2px; BACKGROUND-REPEAT: no-repeat; TEXT-DECORATION: underline
+}
+TH.sorted A {
+	BACKGROUND-POSITION: right 50%; DISPLAY: block; WIDTH: 100%
+}
+TH.sortable A {
+	BACKGROUND-POSITION: right 50%; 
+	DISPLAY: block; 
+	WIDTH: 100%
+}
+TH.sortable A {
+	BACKGROUND-IMAGE: url(../images/displaytag/arrow_off.gif)
+}
+TH.deleteFolderIcon {
+    BACKGROUND-POSITION: center; 
+	BACKGROUND-IMAGE: url(../images/delete.gif);
+	BACKGROUND-REPEAT: no-repeat;
+}
+TH.deleteDocIcon {
+    BACKGROUND-POSITION: center; 
+	BACKGROUND-IMAGE: url(../images/deleteDoc.gif);
+	BACKGROUND-REPEAT: no-repeat;
+}
+TH.minusDocIcon {
+    BACKGROUND-POSITION: center; 
+	BACKGROUND-IMAGE: url(../images/delDoc.gif);
+	BACKGROUND-REPEAT: no-repeat;
+}
+TH.deleteDocFolderIcon {
+    BACKGROUND-POSITION: center; 
+	BACKGROUND-IMAGE: url(../images/delDocFolder.gif);
+	BACKGROUND-REPEAT: no-repeat;
+}
+TH.relsRelatedIcon {
+    BACKGROUND-POSITION: center; 
+	BACKGROUND-IMAGE: url(../images/related.gif);
+	BACKGROUND-REPEAT: no-repeat;
+}
+TH.addIcon {
+    BACKGROUND-POSITION: center; 
+	BACKGROUND-IMAGE: url(../images/add_l.gif);
+	BACKGROUND-REPEAT: no-repeat;
+}
+TH.establecerNivelIcon {
+    BACKGROUND-POSITION: center; 
+	BACKGROUND-IMAGE: url(../images/nivel.gif);
+	BACKGROUND-REPEAT: no-repeat;
+}
+TH.marcarRevisadaIcon {
+    BACKGROUND-POSITION: center; 
+	BACKGROUND-IMAGE: url(../images/caja_ok.gif);
+	BACKGROUND-REPEAT: no-repeat;
+}
+TH.order1 A {
+	BACKGROUND-IMAGE: url(../images/displaytag/arrow_down.gif)
+}
+TH.order2 A {
+	BACKGROUND-IMAGE: url(../images/displaytag/arrow_up.gif)
+}
+TR.odd {
+/*	BACKGROUND-COLOR: #dcdcdc*/
+	BACKGROUND-COLOR: #FFF;
+}
+TR.checked {
+	BACKGROUND-COLOR: #B0B0C6;
+}
+TR.tableRowEven {
+	BACKGROUND-COLOR: #fea
+}
+TABLE.its {
+    border-spacing: 0px 0px;
+    padding-bottom:10px;
+    border-bottom: 1px dotted #999999;
+    width: 100%;	
+    border-collapse: collapse;
+	TEXT-ALIGN: left;
+}
+TABLE.its THEAD TR {
+	FONT-SIZE: 11px; 
+	COLOR: #003399; 
+	FONT-STYLE: normal; 
+	FONT-FAMILY: Verdana,Arial, Helvetica, sans-serif; 
+/*	BACKGROUND-COLOR: #B2B2C4;*/
+	BACKGROUND-COLOR: #CECEDB;
+}
+TABLE.its TR.even {
+	BACKGROUND-COLOR: #eeeeee
+}
+TABLE.its TD {
+	FONT-WEIGHT: normal; 
+	FONT-SIZE: 11px; 
+	COLOR: black; 
+	FONT-STYLE: normal; 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	TEXT-ALIGN: left;
+	padding-left:2px;
+	padding-right:2px;
+	BORDER-RIGHT: #DCDCDC 1px solid; 
+	BORDER-TOP: #DCDCDC 1px solid; 
+	BORDER-LEFT: #DCDCDC 1px solid; 
+	BORDER-BOTTOM: #DCDCDC 1px solid
+}
+TABLE.its TH {
+	BORDER-RIGHT: #999 1px solid; 
+	BORDER-TOP: #999 1px solid; 
+	BORDER-LEFT: #999 1px solid; 
+	BORDER-BOTTOM: #999 1px solid;
+	padding-left:5px;
+	padding-right:5px;
+}
+SPAN.excel {
+	BACKGROUND-IMAGE: url(../images/displaytag/ico_file_excel.png); BACKGROUND-REPEAT: no-repeat
+}
+SPAN.csv {
+	BACKGROUND-IMAGE: url(../images/displaytag/ico_file_csv.png); BACKGROUND-REPEAT: no-repeat
+}
+SPAN.xml {
+	BACKGROUND-IMAGE: url(../images/displaytag/ico_file_xml.png); BACKGROUND-REPEAT: no-repeat
+}
+SPAN.pdf {
+	BACKGROUND-IMAGE: url(../images/displaytag/ico_file_pdf.png); BACKGROUND-REPEAT: no-repeat
+}
+SPAN.rtf {
+	BACKGROUND-IMAGE: url(../images/displaytag/ico_file_rtf.png); BACKGROUND-REPEAT: no-repeat
+}
+
+SPAN.exportlinks {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 20px; PADDING-BOTTOM: 1px; CURSOR: pointer; PADDING-TOP: 0px
+}
+SPAN.pagebanner{
+	PADDING-TOP: 2px; 
+	PADDING-RIGHT: 4px; 
+	PADDING-LEFT: 4px; 
+	PADDING-BOTTOM: 2px; 
+	DISPLAY: block; 
+	FONT-SIZE: 10px; 
+	WIDTH: 99%; 
+	COLOR: #003399; 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; 
+	BACKGROUND-COLOR: #fff; 
+	TEXT-ALIGN: right;
+}
+SPAN.pagelinks{
+	BORDER: none; 
+	PADDING-TOP: 4px; 
+	PADDING-RIGHT: 4px; 
+	PADDING-LEFT: 4px; 
+	PADDING-BOTTOM: 4px; 
+	DISPLAY: block; 
+	FONT-SIZE: 11px; 
+	font-weight: bold;
+	WIDTH: 99%; 
+	COLOR: #003399; 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; 
+	BACKGROUND-COLOR: #fff; 
+	TEXT-ALIGN: right
+}
+a.pagelink, a.pagelink:link, a.pagelink:visited, a.pagelink:hover {
+	text-decoration : underline;
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-style:normal; 
+	font-size: 11px; 
+	font-weight: normal;
+	color: #1440E6;
+}
+a.pagelinkAzul, a.pagelinkAzul:link, a.pagelinkAzul:visited, a.pagelinkAzul:hover {
+	text-decoration : underline;
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-style:normal; 
+	font-size: 11px; 
+	font-weight: normal;
+	color: #0099FF;
+}
+
+DIV.exportlinks {
+	BORDER-RIGHT: #999 0px solid; 
+	BORDER-LEFT: #999 0px solid; 
+	BORDER-TOP: #999999 1px dotted; 
+	BORDER-BOTTOM: #999 0px solid; 
+	PADDING-RIGHT: 5px; 
+	PADDING-LEFT: 5px; 
+	PADDING-TOP: 5px; 
+	PADDING-BOTTOM: 2px; 
+	FONT-SIZE: 11px; 
+	COLOR: black; 
+	FONT-STYLE: normal; 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	MARGIN: 10px 0px; 
+	WIDTH: 99%; 
+/*	BACKGROUND-COLOR: #CECEDB; */
+	TEXT-ALIGN: right
+}
+DIV.exportlinks A:visited {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; MARGIN: 0px; COLOR: #003399; PADDING-TOP: 2px; BACKGROUND-REPEAT: no-repeat; TEXT-DECORATION: none
+}
+DIV.exportlinks A:hover {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; MARGIN: 0px; COLOR: #003399; PADDING-TOP: 2px; BACKGROUND-REPEAT: no-repeat; TEXT-DECORATION: none
+}
+DIV.exportlinks A:link {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; MARGIN: 0px; COLOR: #003399; PADDING-TOP: 2px; BACKGROUND-REPEAT: no-repeat; TEXT-DECORATION: none
+}
+
+DIV#body {
+	BORDER-RIGHT: #ffffff; PADDING-RIGHT: 10px; BORDER-TOP: #aaa 1px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; MARGIN: 2% 4% 2% 2%; BORDER-LEFT: #ffffff; PADDING-TOP: 10px; BORDER-BOTTOM: #aaa 1px solid
+}
+/* Color de fondo para las filas de datos ya visualizadas en el detalle */
+TABLE.its TR.loaded 
+{
+	background-color: #FFE0DF;
+}

@@ -1,0 +1,15 @@
+<assembly>	
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	
+	<!-- fuentes -->
+	<fileSets>
+		<fileSet>
+		  <directory>${project.basedir}/src/main/native</directory>
+		  <outputDirectory>/ActiveX</outputDirectory>		  
+		</fileSet>
+	</fileSets>
+	
+</assembly>

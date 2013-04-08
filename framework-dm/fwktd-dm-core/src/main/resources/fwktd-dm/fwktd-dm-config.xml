@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+	Configuración de los tipos de contenido.
+ -->
+<config>
+
+	<!--
+		Se pueden definir propiedades globales a todos los tipos de contenido.
+		Ejemplo:
+
+		<properties>
+			<property name="nombre-propiedad-1">valor-propiedad-1</property>
+			<property name="nombre-propiedad-2">valor-propiedad-2</property>
+		</properties>
+	 -->
+
+	<!--
+		Definición de los tipos de contenido.
+
+		Ejemplos:
+
+		- Tipo de contenido almacenado en alfresco:
+
+			<content-type id="1" name="tipoContenido1" type="alfresco">
+				<properties>
+			    	<property name="ALFRESCO_ENDPOINT_ADDRESS">http://localhost:8080/alfresco/api</property>
+			    	<property name="ALFRESCO_USERNAME">admin</property>
+			    	<property name="ALFRESCO_PASSWORD">admin</property>
+			    	<property name="ALFRESCO_PATH">/app:company_home/cm:fwktd_dm</property>
+
+					<! - - OPCIONAL: por defecto {http://www.alfresco.org/model/content/1.0}content - - >
+			    	<property name="ALFRESCO_TYPE">{http://www.alfresco.org/model/content/1.0}content</property>
+
+			    	<! - - OPCIONAL - - >
+			    	<property name="ALFRESCO_ASPECTS"></property>
+
+			    	<! - - OPCIONAL: por defecto UTF-8 - - >
+			    	<property name="ALFRESCO_ENCODING">UTF-8</property>
+
+			    	<! - - OPCIONAL: por defecto SpacesStore - - >
+			    	<property name="ALFRESCO_STORE_NAMESPACE">SpacesStore</property>
+				</properties>
+			    <mappings>
+					<mapping>
+						<source type="string">descripcion</source>
+						<destination type="string">{http://www.alfresco.org/model/content/1.0}description</destination>
+					</mapping>
+				</mappings>
+			</content-type>
+
+		- Tipo de contenido almacenado en base de datos:
+
+			<content-type id="2" name="tipoContenido2" type="bd">
+				<properties>
+			    	<! - - property name="JDBC_DATASOURCE">java:comp/env/jdbc/testDS</property - - >
+			    	<property name="JDBC_DRIVER_CLASS_NAME">org.postgresql.Driver</property>
+			    	<property name="JDBC_URL">jdbc:postgresql://localhost:5432/test</property>
+			    	<property name="JDBC_USERNAME">postgres</property>
+			    	<property name="JDBC_PASSWORD">postgres</property>
+				</properties>
+				<mappings>
+					<mapping>
+						<source type="integer">id</source>
+						<destination type="string">document_id</destination>
+					</mapping>
+					<mapping>
+						<source type="string">name</source>
+						<destination type="string">document_name</destination>
+					</mapping>
+					<mapping>
+						<source type="datetime">date</source>
+						<destination type="string">document_date</destination>
+					</mapping>
+				</mappings>
+			</content-type>
+
+		- Tipo de contenido almacenado en invesdoc:
+
+			<content-type id="1" name="invesdoc" type="invesdoc">
+				<properties>
+			    	<! - - property name="JDBC_DATASOURCE">java:comp/env/jdbc/invesDocDS</property - ->
+			    	<property name="JDBC_DRIVER_CLASS_NAME">org.postgresql.Driver</property>
+			    	<property name="JDBC_URL">jdbc:postgresql://localhost:5432/invesdoc</property>
+			    	<property name="JDBC_USERNAME">postgres</property>
+			    	<property name="JDBC_PASSWORD">postgres</property>
+			    	<property name="ARCHIVE_ID">1</property>
+			    	<property name="USER_ID">0</property>
+			    	<property name="TEMPORARY_PATH">C:/temp</property>
+				</properties>
+			    <mappings>
+					<mapping>
+						<source type="integer">document_id</source>
+						<destination type="integer" fld="1">document_id</destination>
+					</mapping>
+					<mapping>
+						<source type="string">document_name</source>
+						<destination type="string" fld="2">document_name</destination>
+					</mapping>
+				</mappings>
+			</content-type>
+	 -->
+	<content-types>
+
+	</content-types>
+
+</config>

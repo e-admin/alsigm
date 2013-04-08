@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+
+	<pattern value="catalogdef">
+		<object-create-rule classname="ieci.tdw.ispac.ispaclib.catalog.CTCatalogBuilder"/>
+
+		<pattern value="applicationdef">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.catalog.CTAppDef"/>
+			<set-properties-rule>
+				<alias attr-name='id' prop-name='id' />
+				<alias attr-name='name' prop-name='name' />
+				<alias attr-name='description' prop-name='description' />
+				<alias attr-name='class' prop-name='className' />
+				<alias attr-name='page' prop-name='page' />
+				<alias attr-name='parameters' prop-name='parameters' />
+				<alias attr-name='formatter' prop-name='formatter' />
+			</set-properties-rule>
+			<set-next-rule methodname="addAppDef"/>
+		</pattern>
+
+		<pattern value="entitydef">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.catalog.CTEntityDef"/>
+			<set-properties-rule>
+				<alias attr-name='id' prop-name='id' />
+				<alias attr-name='type' prop-name='type' />
+				<alias attr-name='name' prop-name='name' />
+				<alias attr-name='keyfield' prop-name='keyField' />
+				<alias attr-name='keynumexp' prop-name='keyNumExp' />
+				<alias attr-name='schemaexpr' prop-name='schemaExpr' />
+				<alias attr-name='appid' prop-name='appId' />
+				<alias attr-name='description' prop-name='description' />
+				<alias attr-name='sequence' prop-name='sequence' />
+			</set-properties-rule>
+			<set-next-rule methodname="addEntityDef"/>
+		</pattern>
+
+	</pattern>
+</digester-rules>

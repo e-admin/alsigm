@@ -1,0 +1,6 @@
+<Config>
+   <Pooling>Y</Pooling>
+   <DataSource>jdbc/invesdocDS</DataSource>
+   <User></User>
+   <Password></Password>
+</Config>

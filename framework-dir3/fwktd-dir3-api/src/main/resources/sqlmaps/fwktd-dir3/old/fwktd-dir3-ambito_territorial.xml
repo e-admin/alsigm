@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AmbitoTerritorialVO">
+
+	<typeAlias alias="ambitoTerritorial"
+		type="es.ieci.tecdoc.fwktd.csv.api.vo.AmbitoTerritorialVO" />
+
+	<resultMap id="ambitoTerritorial" class="es.ieci.tecdoc.fwktd.dir3.api.vo.AmbitoTerritorialVO">
+		<result property="id" column="C_ID_AMBITO" />
+		<result property="nombre" column="C_DENOMINACION_AMBITO" />
+		<result property="estado" column="C_ID_ESTADO" />
+		<result property="fechaAlta" column="D_FECHA_ALTA" />
+		<result property="fechaModificacion" column="D_FECHA_MODIF" />
+		<result property="fechaInicioVigencia" column="D_INICIO_VIGENCIA" />
+		<result property="fechaFinVigencia" column="D_FIN_VIGENCIA" />
+		<result property="idNivelAdministracion" column="C_ID_NIVEL_ADMIN" />
+		<result property="idAmbitoGeografico" column="C_ID_AMBITO_GEOGRAFICO" />
+		<result property="tipoEntidadGeografica" column="C_TIPO_ENTIDAD_GEOGRAFICA" />
+		<result property="idAmbitoDIR2" column="N_ID_AMBITO_DIR2" />
+	</resultMap>
+
+	<sql id="table">CAT_AMBITO_TERRITORIAL</sql>
+	<sql id="columns">
+		C_ID_AMBITO,
+		C_DENOMINACION_AMBITO,
+		C_ID_ESTADO,
+		D_INICIO_VIGENCIA,
+		D_FIN_VIGENCIA,
+		D_FECHA_MODIF,
+		D_FECHA_ALTA,
+		C_ID_NIVEL_ADMIN,
+		C_ID_AMBITO_GEOGRAFICO,
+		C_TIPO_ENTIDAD_GEOGRAFICA,
+		N_ID_AMBITO_DIR2
+	</sql>
+
+	<select id="getAmbitoTerritorialVOs" resultMap="ambitoTerritorial">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY C_DENOMINACION_AMBITO
+	</select>
+
+	<select id="getAmbitoTerritorialByUnidadOrganica" parameterClass="java.lang.String" resultMap="ambitoTerritorial">
+		SELECT
+			A.C_ID_AMBITO,
+			A.C_DENOMINACION_AMBITO,
+			A.C_ID_ESTADO,
+			A.D_INICIO_VIGENCIA,
+			A.D_FIN_VIGENCIA,
+			A.D_FECHA_MODIF,
+			A.D_FECHA_ALTA,
+			A.C_ID_NIVEL_ADMIN,
+			A.C_ID_AMBITO_GEOGRAFICO,
+			A.C_TIPO_ENTIDAD_GEOGRAFICA,
+			A.N_ID_AMBITO_DIR2
+		FROM
+			<include refid="table" /> A,
+			DIR_UNIDAD_ORGANICA U
+		WHERE
+			U.C_ID_UD_ORGANICA=#value#
+			AND A.C_ID_AMBITO=U.C_ID_AMB_TERR_COMPET
+			AND A.C_ID_NIVEL_ADMIN=U.C_ID_NIVEL_ADMON
+	</select>
+
+</sqlMap>

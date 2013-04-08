@@ -1,0 +1,95 @@
+<assembly>	
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	
+	
+	<!-- fuentes -->
+	<fileSets>
+    <fileSet>
+      <directory>${project.basedir}/../</directory>
+      <outputDirectory>/Fuentes</outputDirectory>
+      <useDefaultExcludes>true</useDefaultExcludes>
+      <excludes>
+        <exclude>${project.build.directory}/**</exclude>
+        <exclude>**/target/</exclude>
+        <exclude>**/.project</exclude>
+        <exclude>**/.classpath</exclude>
+        <exclude>**/.settings/**</exclude>
+        <exclude>**/cambia.conf</exclude>
+        <exclude>**/modificar_version.*</exclude>
+        <exclude>**/doc/</exclude>
+        
+      </excludes>
+    </fileSet>
+  </fileSets>
+	
+	
+	<dependencySets>
+	
+		<!-- dependencias de zip de tipo configuracion -->
+		<dependencySet>
+			<unpack>true</unpack>	
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<useProjectArtifact>false</useProjectArtifact>				
+			<includes>
+				<include>es.ieci.tecdoc.isicres.admin:ISicresAdmin-resources-configurable:zip:*</include>
+				<include>es.ieci.tecdoc.isicres:ISicres-Desktop-Web:zip:Config</include>
+				<include>es.ieci.tecdoc.isicres:ISicres-WS-legacy:zip:Config</include>
+				
+				<include>es.ieci.tecdoc.fwktd.modules.fwktd-sir:fwktd-sir-config:zip:configurable</include>
+				
+				<include>es.ieci.tecdoc.fwktd.modules.fwktd-audit:fwktd-audit-core:zip:configurable</include>
+				<include>es.ieci.tecdoc.fwktd.modules.fwktd-audit:fwktd-audit-api:zip:configurable</include>
+						
+			</includes>
+			<outputDirectory>Binarios/config</outputDirectory>
+			<unpackOptions>
+	        <excludes>
+	          <exclude>/resources</exclude>
+	        </excludes>
+      </unpackOptions>
+					
+								
+		</dependencySet>
+		
+		<!-- dependencias de tipo war -->
+		<dependencySet>
+			<unpack>false</unpack>	
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<useProjectArtifact>false</useProjectArtifact>				
+			<includes>
+				<include>*:war</include>
+			</includes>
+			<outputDirectory>Binarios/wars/</outputDirectory>		
+			<outputFileNameMapping>${artifact.build.finalName}.${artifact.extension}</outputFileNameMapping>					
+		</dependencySet>
+		
+		<!-- dependencias de tipo base de datos -->
+		<dependencySet>
+			<unpack>true</unpack>	
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<useProjectArtifact>false</useProjectArtifact>				
+			<includes>
+				<include>*:zip:bd</include>
+			</includes>
+			<outputDirectory>BD</outputDirectory>							
+		</dependencySet>
+		
+		<!-- dependencias de documentacion -->
+		<dependencySet>
+			<unpack>true</unpack>	
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<useProjectArtifact>false</useProjectArtifact>				
+			<includes>
+				<include>*:zip:documentacion</include>
+			</includes>
+			<outputDirectory>Doc</outputDirectory>							
+		</dependencySet>
+		
+	</dependencySets>	
+	
+	
+	
+</assembly>

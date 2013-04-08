@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+                         "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+	<display-name>SIGEM_RepositoriosDocumentalesWeb</display-name>
+	
+		
+	
+ 	<filter>
+  		<filter-name>checkInitFilter</filter-name>
+  		<filter-class>ieci.tecdoc.mvc.filter.CheckInitFilter</filter-class>
+ 	</filter>
+ 	<filter-mapping>
+  		<filter-name>checkInitFilter</filter-name>
+  		<url-pattern>/acs/login.jsp</url-pattern>
+ 	</filter-mapping>
+ 	
+ 	
+ 	<servlet>
+		<servlet-name>log4j-init</servlet-name>
+		<servlet-class>ieci.tecdoc.sgm.core.log.web.Log4jInitServlet</servlet-class>
+		<init-param>
+			<param-name>subdir</param-name>
+			<param-value>/SIGEM_RepositoriosDocumentalesWeb</param-value>
+		</init-param>
+		<init-param>
+			<param-name>fileName</param-name>
+			<param-value>log4j.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+ 	
+ 	<servlet>
+  		<servlet-name>action</servlet-name>
+  		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+  		<init-param>
+   			<param-name>config</param-name>
+   			<param-value>/WEB-INF/struts-config.xml</param-value>
+  		</init-param>
+  		<load-on-startup>2</load-on-startup>
+ 	</servlet>
+ 	<servlet>
+  		<servlet-name>start</servlet-name>
+  		<servlet-class>ieci.tecdoc.mvc.util.servlet.control.CheckStartSystemServlet</servlet-class>
+  		<load-on-startup>4</load-on-startup>
+ 	</servlet>
+ 	<servlet-mapping>
+  		<servlet-name>action</servlet-name>
+  		<url-pattern>*.do</url-pattern>
+ 	</servlet-mapping>
+ 	<welcome-file-list>
+  		<welcome-file>index.jsp</welcome-file>
+ 	</welcome-file-list>
+ 	<taglib>
+  		<taglib-uri>/WEB-INF/struts-bean</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+ 	</taglib>
+ 	<taglib>
+  		<taglib-uri>/WEB-INF/struts-logic</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+ 	</taglib>
+ 	<taglib>
+  		<taglib-uri>/WEB-INF/struts-html</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+ 	</taglib>
+ 	<taglib>
+  		<taglib-uri>/WEB-INF/c</taglib-uri>
+  		<taglib-location>/WEB-INF/c.tld</taglib-location>
+ 	</taglib>
+ 	<taglib>
+  		<taglib-uri>/WEB-INF/struts-tiles</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+ 	</taglib>
+ 	<taglib>
+  		<taglib-uri>/WEB-INF/struts-nested</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+ 	</taglib>
+ 	<taglib>
+  		<taglib-uri>/WEB-INF/struts-html-el</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-html-el.tld</taglib-location>
+ 	</taglib>
+ 	<taglib>
+  		<taglib-uri>/WEB-INF/struts-menu</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-menu.tld</taglib-location>
+ 	</taglib>
+ 	<taglib>
+  		<taglib-uri>/WEB-INF/ieci</taglib-uri>
+  		<taglib-location>/WEB-INF/ieci.tld</taglib-location>
+ 	</taglib>
+</web-app>

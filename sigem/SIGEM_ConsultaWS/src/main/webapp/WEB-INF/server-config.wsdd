@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="ConsultaExpedientesWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="consultarExpedientesNIF" qname="ns1:consultarExpedientesNIF" returnQName="ns1:consultarExpedientesNIFReturn" returnType="ns1:Expedientes" soapAction="" xmlns:ns1="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns1:poNif" type="ns1:CriterioBusquedaExpedientes"/>
+   <parameter qname="ns1:entidad" type="ns2:Entidad" xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="consultarExpedientes" qname="ns3:consultarExpedientes" returnQName="ns3:consultarExpedientesReturn" returnType="ns3:Expedientes" soapAction="" xmlns:ns3="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns3:poCriterio" type="ns3:CriterioBusquedaExpedientes"/>
+   <parameter qname="ns3:entidad" type="ns4:Entidad" xmlns:ns4="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerURLAportacionExpedientes" qname="ns5:obtenerURLAportacionExpedientes" returnQName="ns5:obtenerURLAportacionExpedientesReturn" returnType="ns5:Url" soapAction="" xmlns:ns5="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <operation name="obtenerURLNotificacionExpedientes" qname="ns6:obtenerURLNotificacionExpedientes" returnQName="ns6:obtenerURLNotificacionExpedientesReturn" returnType="ns6:Url" soapAction="" xmlns:ns6="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <operation name="obtenerURLPagoTasas" qname="ns7:obtenerURLPagoTasas" returnQName="ns7:obtenerURLPagoTasasReturn" returnType="ns7:Url" soapAction="" xmlns:ns7="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <operation name="obtenerDetalle" qname="ns8:obtenerDetalle" returnQName="ns8:obtenerDetalleReturn" returnType="ns8:Expediente" soapAction="" xmlns:ns8="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns8:poNumExpediente" type="ns8:Expediente"/>
+   <parameter qname="ns8:entidad" type="ns9:Entidad" xmlns:ns9="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerHistoricoExpediente" qname="ns10:obtenerHistoricoExpediente" returnQName="ns10:obtenerHistoricoExpedienteReturn" returnType="ns10:HitosExpediente" soapAction="" xmlns:ns10="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns10:poNumExpediente" type="ns10:Expediente"/>
+   <parameter qname="ns10:entidad" type="ns11:Entidad" xmlns:ns11="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerHitoEstado" qname="ns12:obtenerHitoEstado" returnQName="ns12:obtenerHitoEstadoReturn" returnType="ns12:HitoExpediente" soapAction="" xmlns:ns12="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns12:poNumExpediente" type="ns12:Expediente"/>
+   <parameter qname="ns12:entidad" type="ns13:Entidad" xmlns:ns13="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerFicherosHito" qname="ns14:obtenerFicherosHito" returnQName="ns14:obtenerFicherosHitoReturn" returnType="ns14:FicherosHito" soapAction="" xmlns:ns14="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns14:poGuidHito" type="ns14:HitoExpediente"/>
+   <parameter qname="ns14:entidad" type="ns15:Entidad" xmlns:ns15="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerFicherosHitos" qname="ns16:obtenerFicherosHitos" returnQName="ns16:obtenerFicherosHitosReturn" returnType="ns16:FicherosHitos" soapAction="" xmlns:ns16="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns16:poHitos" type="ns16:HitosExpediente"/>
+   <parameter qname="ns16:entidad" type="ns17:Entidad" xmlns:ns17="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="nuevoExpediente" qname="ns18:nuevoExpediente" returnQName="ns18:nuevoExpedienteReturn" returnType="ns19:RetornoServicio" soapAction="" xmlns:ns18="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns19="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns18:poExpediente" type="ns18:Expediente"/>
+   <parameter qname="ns18:poInteresado" type="ns18:Interesado"/>
+   <parameter qname="ns18:entidad" type="ns19:Entidad"/>
+  </operation>
+  <operation name="eliminarExpediente" qname="ns20:eliminarExpediente" returnQName="ns20:eliminarExpedienteReturn" returnType="ns21:RetornoServicio" soapAction="" xmlns:ns20="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns21="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns20:poExpediente" type="ns20:Expediente"/>
+   <parameter qname="ns20:entidad" type="ns21:Entidad"/>
+  </operation>
+  <operation name="nuevoInteresado" qname="ns22:nuevoInteresado" returnQName="ns22:nuevoInteresadoReturn" returnType="ns23:RetornoServicio" soapAction="" xmlns:ns22="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns23="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns22:poInteresado" type="ns22:Interesado"/>
+   <parameter qname="ns22:entidad" type="ns23:Entidad"/>
+  </operation>
+  <operation name="eliminarInteresado" qname="ns24:eliminarInteresado" returnQName="ns24:eliminarInteresadoReturn" returnType="ns25:RetornoServicio" soapAction="" xmlns:ns24="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns25="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns24:poInteresado" type="ns24:Interesado"/>
+   <parameter qname="ns24:entidad" type="ns25:Entidad"/>
+  </operation>
+  <operation name="eliminarInteresadoExpediente" qname="ns26:eliminarInteresadoExpediente" returnQName="ns26:eliminarInteresadoExpedienteReturn" returnType="ns27:RetornoServicio" soapAction="" xmlns:ns26="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns27="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns26:numeroExpediente" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns26:entidad" type="ns27:Entidad"/>
+  </operation>
+  <operation name="establecerHitoActual" qname="ns28:establecerHitoActual" returnQName="ns28:establecerHitoActualReturn" returnType="ns29:RetornoServicio" soapAction="" xmlns:ns28="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns29="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns28:poHito" type="ns28:HitoExpediente"/>
+   <parameter qname="ns28:poFicheros" type="ns28:FicherosHito"/>
+   <parameter qname="ns28:poHistorico" type="ns28:Historico"/>
+   <parameter qname="ns28:entidad" type="ns29:Entidad"/>
+  </operation>
+  <operation name="eliminarHitoActual" qname="ns30:eliminarHitoActual" returnQName="ns30:eliminarHitoActualReturn" returnType="ns31:RetornoServicio" soapAction="" xmlns:ns30="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns31="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns30:poNumExpediente" type="ns30:Expediente"/>
+   <parameter qname="ns30:entidad" type="ns31:Entidad"/>
+  </operation>
+  <operation name="nuevoHitoHistorico" qname="ns32:nuevoHitoHistorico" returnQName="ns32:nuevoHitoHistoricoReturn" returnType="ns33:RetornoServicio" soapAction="" xmlns:ns32="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns33="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns32:poHito" type="ns32:HitoExpediente"/>
+   <parameter qname="ns32:entidad" type="ns33:Entidad"/>
+  </operation>
+  <operation name="eliminarHitoHistorico" qname="ns34:eliminarHitoHistorico" returnQName="ns34:eliminarHitoHistoricoReturn" returnType="ns35:RetornoServicio" soapAction="" xmlns:ns34="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns35="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns34:poHito" type="ns34:HitoExpediente"/>
+   <parameter qname="ns34:entidad" type="ns35:Entidad"/>
+  </operation>
+  <operation name="cargarDocumento" qname="ns36:cargarDocumento" returnQName="ns36:cargarDocumentoReturn" returnType="ns36:InfoDocumento" soapAction="" xmlns:ns36="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns36:poInfodoc" type="ns36:InfoDocumento"/>
+   <parameter qname="ns36:entidad" type="ns37:Entidad" xmlns:ns37="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="recogerDocumento" qname="ns38:recogerDocumento" returnQName="ns38:recogerDocumentoReturn" returnType="ns38:InfoDocumento" soapAction="" xmlns:ns38="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns38:poInfodoc" type="ns38:InfoDocumento"/>
+   <parameter qname="ns38:entidad" type="ns39:Entidad" xmlns:ns39="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="busquedaExpediente" qname="ns140:busquedaExpediente" returnQName="ns140:busquedaExpedienteReturn" returnType="ns140:Expediente" soapAction="" xmlns:ns140="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns140:poExpediente" type="ns140:Expediente"/>
+   <parameter qname="ns140:entidad" type="ns141:Entidad" xmlns:ns141="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="busquedaExpedientes" qname="ns40:busquedaExpedientes" returnQName="ns40:busquedaExpedientesReturn" returnType="ns40:Expedientes" soapAction="" xmlns:ns40="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns40:poCriterio" type="ns40:CriterioBusquedaExpedientes"/>
+   <parameter qname="ns40:entidad" type="ns41:Entidad" xmlns:ns41="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="anexarFicherosHitoActual" qname="ns42:anexarFicherosHitoActual" returnQName="ns42:anexarFicherosHitoActualReturn" returnType="ns43:RetornoServicio" soapAction="" xmlns:ns42="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns43="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns42:poFicheros" type="ns42:FicherosHito"/>
+   <parameter qname="ns42:entidad" type="ns43:Entidad"/>
+  </operation>
+  <operation name="recogerNotificaciones" qname="ns44:recogerNotificaciones" returnQName="ns44:recogerNotificacionesReturn" returnType="ns44:NotificacionesPendientes" soapAction="" xmlns:ns44="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns44:poExpediente" type="ns44:Expediente"/>
+   <parameter qname="ns44:entidad" type="ns45:Entidad" xmlns:ns45="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="altaSolicitudSubsanacion" qname="ns46:altaSolicitudSubsanacion" returnQName="ns46:altaSolicitudSubsanacionReturn" returnType="ns47:RetornoServicio" soapAction="" xmlns:ns46="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns47="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns46:poSubsanacion" type="ns46:Subsanacion"/>
+   <parameter qname="ns46:entidad" type="ns47:Entidad"/>
+  </operation>
+  <operation name="obtenerSubsanacionesHitoActual" qname="ns48:obtenerSubsanacionesHitoActual" returnQName="ns48:obtenerSubsanacionesHitoActualReturn" returnType="ns48:Subsanaciones" soapAction="" xmlns:ns48="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns48:poExpediente" type="ns48:Expediente"/>
+   <parameter qname="ns48:entidad" type="ns49:Entidad" xmlns:ns49="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerSubsanacionesHito" qname="ns50:obtenerSubsanacionesHito" returnQName="ns50:obtenerSubsanacionesHitoReturn" returnType="ns50:Subsanaciones" soapAction="" xmlns:ns50="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns50:poHitoExp" type="ns50:HitoExpediente"/>
+   <parameter qname="ns50:entidad" type="ns51:Entidad" xmlns:ns51="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="altaSolicitudPago" qname="ns52:altaSolicitudPago" returnQName="ns52:altaSolicitudPagoReturn" returnType="ns53:RetornoServicio" soapAction="" xmlns:ns52="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns53="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns52:poPago" type="ns52:Pago"/>
+   <parameter qname="ns52:entidad" type="ns53:Entidad"/>
+  </operation>
+  <operation name="obtenerPagosHitoActual" qname="ns54:obtenerPagosHitoActual" returnQName="ns54:obtenerPagosHitoActualReturn" returnType="ns54:Pagos" soapAction="" xmlns:ns54="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns54:poExpediente" type="ns54:Expediente"/>
+   <parameter qname="ns54:entidad" type="ns55:Entidad" xmlns:ns55="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerPagosHito" qname="ns56:obtenerPagosHito" returnQName="ns56:obtenerPagosHitoReturn" returnType="ns56:Pagos" soapAction="" xmlns:ns56="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns56:poHitoExp" type="ns56:HitoExpediente"/>
+   <parameter qname="ns56:entidad" type="ns57:Entidad" xmlns:ns57="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="altaNotificacion" qname="ns58:altaNotificacion" returnQName="ns58:altaNotificacionReturn" returnType="ns59:RetornoServicio" soapAction="" xmlns:ns58="http://server.ws.ct.sgm.tecdoc.ieci" xmlns:ns59="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns58:poNotificacion" type="ns58:Notificacion"/>
+   <parameter qname="ns58:entidad" type="ns59:Entidad"/>
+  </operation>
+  <operation name="obtenerNotificionesHitoActual" qname="ns60:obtenerNotificionesHitoActual" returnQName="ns60:obtenerNotificionesHitoActualReturn" returnType="ns60:Notificaciones" soapAction="" xmlns:ns60="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns60:poExpediente" type="ns60:Expediente"/>
+   <parameter qname="ns60:entidad" type="ns61:Entidad" xmlns:ns61="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerNotificionesHito" qname="ns62:obtenerNotificionesHito" returnQName="ns62:obtenerNotificionesHitoReturn" returnType="ns62:Notificaciones" soapAction="" xmlns:ns62="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns62:poHitoExp" type="ns62:HitoExpediente"/>
+   <parameter qname="ns62:entidad" type="ns63:Entidad" xmlns:ns63="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="existenNotificaciones" qname="ns64:existenNotificaciones" returnQName="ns64:existenNotificacionesReturn" returnType="ns64:RetornoLogico" soapAction="" xmlns:ns64="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns64:poExpediente" type="ns64:Expediente"/>
+   <parameter qname="ns64:entidad" type="ns65:Entidad" xmlns:ns65="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="existenPagos" qname="ns66:existenPagos" returnQName="ns66:existenPagosReturn" returnType="ns66:RetornoLogico" soapAction="" xmlns:ns66="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns66:poExpediente" type="ns66:Expediente"/>
+   <parameter qname="ns66:entidad" type="ns67:Entidad" xmlns:ns67="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="existenSubsanaciones" qname="ns68:existenSubsanaciones" returnQName="ns68:existenSubsanacionesReturn" returnType="ns68:RetornoLogico" soapAction="" xmlns:ns68="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns68:poExpediente" type="ns68:Expediente"/>
+   <parameter qname="ns68:entidad" type="ns69:Entidad" xmlns:ns69="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="actualizarEstadoLocalGIS" qname="ns70:actualizarEstadoLocalGIS" returnQName="ns70:actualizarEstadoLocalGISReturn" returnType="ns70:RetornoLogico" soapAction="" xmlns:ns70="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns70:idExpediente" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns70:estado" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns70:entidad" type="ns71:Entidad" xmlns:ns71="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="publicarExpedienteLocalGIS" qname="ns72:publicarExpedienteLocalGIS" returnQName="ns72:publicarExpedienteLocalGISReturn" returnType="ns72:RetornoLogico" soapAction="" xmlns:ns72="http://server.ws.ct.sgm.tecdoc.ieci">
+   <parameter qname="ns72:idExpediente" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns72:nif" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns72:tipoExpediente" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns72:estado" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns72:fecha" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns72:entidad" type="ns73:Entidad" xmlns:ns73="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <parameter name="allowedMethods" value="obtenerFicherosHitos anexarFicherosHitoActual obtenerNotificionesHitoActual obtenerSubsanacionesHito altaSolicitudPago nuevoHitoHistorico nuevoExpediente obtenerSubsanacionesHitoActual busquedaExpediente busquedaExpedientes obtenerDetalle existenNotificaciones nuevoInteresado recogerDocumento obtenerHitoEstado obtenerURLPagoTasas eliminarInteresadoExpediente eliminarInteresado obtenerURLNotificacionExpedientes altaSolicitudSubsanacion publicarExpedienteLocalGIS obtenerPagosHito consultarExpedientesNIF cargarDocumento altaNotificacion establecerHitoActual obtenerPagosHitoActual obtenerNotificionesHito obtenerFicherosHito obtenerHistoricoExpediente existenPagos consultarExpedientes existenSubsanaciones obtenerURLAportacionExpedientes eliminarHitoActual eliminarHitoHistorico actualizarEstadoLocalGIS eliminarExpediente recogerNotificaciones"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="ConsultaExpedientesWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.ct.ws.server.ConsultaExpedientesWebService"/>
+  <parameter name="wsdlServicePort" value="ConsultaExpedientesWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.ct.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="ConsultaExpedientesWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns74:Expediente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Expediente" xmlns:ns74="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns75:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" xmlns:ns75="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns76:FicheroHito" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.FicheroHito" xmlns:ns76="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns77:Historico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Historico" xmlns:ns77="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns78:Pagos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Pagos" xmlns:ns78="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns79:InfoDocumento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.InfoDocumento" xmlns:ns79="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns80:Subsanaciones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Subsanaciones" xmlns:ns80="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns81:Notificacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Notificacion" xmlns:ns81="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns82:HitoExpediente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.HitoExpediente" xmlns:ns82="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns83:NotificacionesPendientes" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.NotificacionesPendientes" xmlns:ns83="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns84:Interesado" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Interesado" xmlns:ns84="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns85:Subsanacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Subsanacion" xmlns:ns85="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns86:Pago" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Pago" xmlns:ns86="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns87:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns87="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns88:Url" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Url" xmlns:ns88="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns89:Expedientes" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Expedientes" xmlns:ns89="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns90:FicherosHitos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.FicherosHitos" xmlns:ns90="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns91:RetornoLogico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.RetornoLogico" xmlns:ns91="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns92:Notificaciones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.Notificaciones" xmlns:ns92="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns93:CriterioBusquedaExpedientes" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.CriterioBusquedaExpedientes" xmlns:ns93="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns94:HitosExpediente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.HitosExpediente" xmlns:ns94="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns95:FicherosHito" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.ct.ws.server.FicherosHito" xmlns:ns95="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns96:Expediente" languageSpecificType="java:ieci.tecdoc.sgm.ct.ws.server.Expediente[]" qname="ns96:ArrayOfExpediente" xmlns:ns96="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns97:Notificacion" languageSpecificType="java:ieci.tecdoc.sgm.ct.ws.server.Notificacion[]" qname="ns97:ArrayOfNotificacion" xmlns:ns97="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns98:FicherosHito" languageSpecificType="java:ieci.tecdoc.sgm.ct.ws.server.FicherosHito[]" qname="ns98:ArrayOfFicherosHito" xmlns:ns98="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns99:Pago" languageSpecificType="java:ieci.tecdoc.sgm.ct.ws.server.Pago[]" qname="ns99:ArrayOfPago" xmlns:ns99="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns100:HitoExpediente" languageSpecificType="java:ieci.tecdoc.sgm.ct.ws.server.HitoExpediente[]" qname="ns100:ArrayOfHitoExpediente" xmlns:ns100="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns101:FicheroHito" languageSpecificType="java:ieci.tecdoc.sgm.ct.ws.server.FicheroHito[]" qname="ns101:ArrayOfFicheroHito" xmlns:ns101="http://server.ws.ct.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns102:Subsanacion" languageSpecificType="java:ieci.tecdoc.sgm.ct.ws.server.Subsanacion[]" qname="ns102:ArrayOfSubsanacion" xmlns:ns102="http://server.ws.ct.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

@@ -1,0 +1,9 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>javax.xml.parsers</groupId>
+  <artifactId>jaxp-api</artifactId>
+  <version>1.4.2</version>
+  <dependencies>
+  </dependencies>
+</project>
+

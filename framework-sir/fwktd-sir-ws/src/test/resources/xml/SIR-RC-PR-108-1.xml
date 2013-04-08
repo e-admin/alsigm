@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Fichero_Intercambio_SICRES_3 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <De_Origen_o_Remitente>
+    <Codigo_Entidad_Registral_Origen>O00001223</Codigo_Entidad_Registral_Origen>
+    <Decodificacion_Entidad_Registral_Origen />
+    <Numero_Registro_Entrada>110110108</Numero_Registro_Entrada>
+    <Fecha_Hora_Entrada>20111003142545</Fecha_Hora_Entrada>
+    <Timestamp_Entrada />
+    <Codigo_Unidad_Tramitacion_Origen>E00106103</Codigo_Unidad_Tramitacion_Origen>
+    <Decodificacion_Unidad_Tramitacion_Origen />
+  </De_Origen_o_Remitente>
+  <De_Destino>
+    <Codigo_Entidad_Registral_Destino>O00002061</Codigo_Entidad_Registral_Destino>
+    <Decodificacion_Entidad_Registral_Destino/>
+    <Codigo_Unidad_Tramitacion_Destino/>
+    <Decodificacion_Unidad_Tramitacion_Destino/>
+  </De_Destino>
+  <De_Interesado>
+    <Tipo_Documento_Identificacion_Interesado />
+    <Documento_Identificacion_Interesado />
+    <Razon_Social_Interesado />
+    <Nombre_Interesado />
+    <Primer_Apellido_Interesado />
+    <Segundo_Apellido_Interesado />
+    <Tipo_Documento_Identificacion_Representante />
+    <Documento_Identificacion_Representante />
+    <Razon_Social_Representante />
+    <Nombre_Representante />
+    <Primer_Apellido_Representante />
+    <Segundo_Apellido_Representante />
+    <Pais_Interesado />
+    <Provincia_Interesado />
+    <Municipio_Interesado />
+    <Direccion_Interesado />
+    <Codigo_Postal_Interesado />
+    <Correo_Electronico_Interesado />
+    <Telefono_Contacto_Interesado />
+    <Direccion_Electronica_Habilitada_Interesado />
+    <Canal_Preferente_Comunicacion_Interesado />
+    <Pais_Representante />
+    <Provincia_Representante />
+    <Municipio_Representante />
+    <Direccion_Representante />
+    <Codigo_Postal_Representante />
+    <Correo_Electronico_Representante />
+    <Telefono_Contacto_Representante />
+    <Direccion_Electronica_Habilitada_Representante />
+    <Canal_Preferente_Comunicacion_Representante />
+    <Observaciones />
+  </De_Interesado>
+  <De_Asunto>
+    <Resumen>Asunto de Caso de Prueba SIR-RC-PR-108</Resumen>
+    <Codigo_Asunto_Segun_Destino />
+    <Referencia_Externa/>
+    <Numero_Expediente/>
+  </De_Asunto>
+  <De_Anexo>
+                <Nombre_Fichero_Anexado>Adjunto_110110108.xsig</Nombre_Fichero_Anexado>
+                <Identificador_Fichero>O00001223_11_00010108_01_1081.xsig</Identificador_Fichero>
+                <Validez_Documento/>
+                <Tipo_Documento>03</Tipo_Documento>
+                <Certificado/>
+                <Firma_Documento/>
+                <TimeStamp/>
+                <Validacion_OCSP_Certificado/>
+                <Hash>YjA0ODQ5ZGFhZGM5NDk3MzJjNDhjMWQ3MzcyODM0Y2ExZDg1NzA1Zg==</Hash>
+                <Tipo_MIME/>
+                <Anexo>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48QUZJUk1BPjxDT05URU5UIEVu
+Y29kaW5nPSJiYXNlNjQiIElkPSJDT05URU5ULWMyZTE2NTRiLTA1ZmMtNDM1NS05YmIyLTk5ZGY3
+ZTI1ZDE3NCIgTWltZVR5cGU9Imhhc2gvc2hhMSIgaGFzaEFsZ29yaXRobT0iaHR0cDovL3d3dy53
+My5vcmcvMjAwMC8wOS94bWxkc2lnI3NoYTEiPisrSXl0eGsyT3ZBK2lqRU1KWk85THJ4dUJRaz08
+L0NPTlRFTlQ+PGRzOlNpZ25hdHVyZSB4bWxuczpkcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8w
+OS94bWxkc2lnIyIgSWQ9IlNpZ25hdHVyZS1iMmU5NDNjMy0zM2RkLTRhOTQtYjcyNy1lOWQ2MTU5
+OTE0ZmYtU2lnbmF0dXJlIj48ZHM6U2lnbmVkSW5mbz48ZHM6Q2Fub25pY2FsaXphdGlvbk1ldGhv
+ZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLXhtbC1jMTRuLTIwMDEw
+MzE1Ii8+PGRzOlNpZ25hdHVyZU1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIw
+MDAvMDkveG1sZHNpZyNyc2Etc2hhMSIvPjxkczpSZWZlcmVuY2UgSWQ9IlJlZmVyZW5jZS0yMTc2
+N2Y2My04OTQzLTQ0YjktOWIwZS0yZmQ1NjFlZWRiOTMiIFVSST0iI0NPTlRFTlQtYzJlMTY1NGIt
+MDVmYy00MzU1LTliYjItOTlkZjdlMjVkMTc0Ij48ZHM6RGlnZXN0TWV0aG9kIEFsZ29yaXRobT0i
+aHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI3NoYTEiLz48ZHM6RGlnZXN0VmFsdWU+
+VFV1YXFaWENiVlkva0djdFJPclNMdEF5VDVBPTwvZHM6RGlnZXN0VmFsdWU+PC9kczpSZWZlcmVu
+Y2U+PGRzOlJlZmVyZW5jZSBUeXBlPSJodHRwOi8vdXJpLmV0c2kub3JnLzAxOTAzI1NpZ25lZFBy
+b3BlcnRpZXMiIFVSST0iI1NpZ25hdHVyZS1iMmU5NDNjMy0zM2RkLTRhOTQtYjcyNy1lOWQ2MTU5
+OTE0ZmYtU2lnbmVkUHJvcGVydGllcyI+PGRzOkRpZ2VzdE1ldGhvZCBBbGdvcml0aG09Imh0dHA6
+Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyNzaGExIi8+PGRzOkRpZ2VzdFZhbHVlPjRKRldr
+TTdUTFloWENOUExUMTBFU2tIeWxYRT08L2RzOkRpZ2VzdFZhbHVlPjwvZHM6UmVmZXJlbmNlPjxk
+czpSZWZlcmVuY2UgVVJJPSIjU2lnbmF0dXJlLWIyZTk0M2MzLTMzZGQtNGE5NC1iNzI3LWU5ZDYx
+NTk5MTRmZi1LZXlJbmZvIj48ZHM6RGlnZXN0TWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
+My5vcmcvMjAwMC8wOS94bWxkc2lnI3NoYTEiLz48ZHM6RGlnZXN0VmFsdWU+WjFqbTJobHlRMnQ1
+SHNIeXpoWk0vYUJ3eTNVPTwvZHM6RGlnZXN0VmFsdWU+PC9kczpSZWZlcmVuY2U+PC9kczpTaWdu
+ZWRJbmZvPjxkczpTaWduYXR1cmVWYWx1ZSBJZD0iU2lnbmF0dXJlLWIyZTk0M2MzLTMzZGQtNGE5
+NC1iNzI3LWU5ZDYxNTk5MTRmZi1TaWduYXR1cmVWYWx1ZSI+ZzFHVzVsYWp6dVp5VnoxQ2huZ0xZ
+a20rWU4xZHhSbCtWY3d5azdDYm1QWHhpSi9uUDRpYzZMVExCd0xYTDB0SVBLbXdWVnh5c1dLRApW
+Q3ZZcTJlejVUOGwxV041UGh1eDh0QVF0bC9UYUwxR1NEKyt1cGhqQ1lDWXkzWXNkZE9sRk1RR0Fo
+R1BCMlVvSnJGTkcwUjRUL3RoCldabk92Zk9tU0xCK2lDQkY3b2M9PC9kczpTaWduYXR1cmVWYWx1
+ZT48ZHM6S2V5SW5mbyBJZD0iU2lnbmF0dXJlLWIyZTk0M2MzLTMzZGQtNGE5NC1iNzI3LWU5ZDYx
+NTk5MTRmZi1LZXlJbmZvIj48ZHM6S2V5VmFsdWU+PGRzOlJTQUtleVZhbHVlPjxkczpNb2R1bHVz
+PmtVQXd0cmlveGRlbHNSMjNRWEYrU0pTcEJmZTJ0NXhxZ3RVMjY3SXdiaG93VmZPS3NMd1dsWkZH
+YTZyS3N0SStra0NuRjJFYWIwMWQKbm8zZnhUc280UHAwaHBlc0hhUFBYQ0s2VCt5Z0plK0Y0ZmZa
+MFA5d3JVY3lsZ0ZGNEphV0FmdXZNdUNjNkhaZVE2Nit2aHF6eXpqOApaM1ppeVNkeHBaYWZKZmRB
+bDhjPTwvZHM6TW9kdWx1cz48ZHM6RXhwb25lbnQ+QVFBQjwvZHM6RXhwb25lbnQ+PC9kczpSU0FL
+ZXlWYWx1ZT48L2RzOktleVZhbHVlPjxkczpYNTA5RGF0YT48ZHM6WDUwOUNlcnRpZmljYXRlPk1J
+SUZPakNDQktPZ0F3SUJBZ0lFUExLaGF6QU5CZ2txaGtpRzl3MEJBUVVGQURBMk1Rc3dDUVlEVlFR
+R0V3SkZVekVOTUFzR0ExVUUKQ2hNRVJrNU5WREVZTUJZR0ExVUVDeE1QUms1TlZDQkRiR0Z6WlNB
+eUlFTkJNQjRYRFRBNU1EZ3hNREV3TXpVMU9Wb1hEVEV5TURneApNREV3TXpVMU9Wb3dnWUV4Q3pB
+SkJnTlZCQVlUQWtWVE1RMHdDd1lEVlFRS0V3UkdUazFVTVJnd0ZnWURWUVFMRXc5R1RrMVVJRU5z
+CllYTmxJRElnUTBFeEVqQVFCZ05WQkFzVENUY3dNVEF3TURNek5ERTFNRE1HQTFVRUF4TXNUazlO
+UWxKRklGTlZRVkpGV2lCQlRGWkIKVWtWYUlFTkJVa3hQVXlBdElFNUpSaUEzTVRZME9EWTBPVk13
+Z1o4d0RRWUpLb1pJaHZjTkFRRUJCUUFEZ1kwQU1JR0pBb0dCQUpGQQpNTGE0cU1YWHBiRWR0MEZ4
+ZmtpVXFRWDN0cmVjYW9MVk51dXlNRzRhTUZYemlyQzhGcFdSUm11cXlyTFNQcEpBcHhkaEdtOU5Y
+WjZOCjM4VTdLT0Q2ZElhWHJCMmp6MXdpdWsvc29DWHZoZUgzMmREL2NLMUhNcFlCUmVDV2xnSDdy
+ekxnbk9oMlhrT3V2cjRhczhzNC9HZDIKWXNrbmNhV1dueVgzUUpmSEFnTUJBQUdqZ2dNSE1JSURB
+ekNCaGdZRFZSMFJCSDh3ZllFWFEwRlNURTlUVFU5U1JVOUFTRTlVVFVGSgpUQzVEVDAya1lqQmdN
+Umd3RmdZSkt3WUJCQUdzWmdFRUV3azNNVFkwT0RZME9WTXhGakFVQmdrckJnRUVBYXhtQVFNVEIw
+Rk1Wa0ZTClJWb3hGVEFUQmdrckJnRUVBYXhtQVFJVEJsTlZRVkpGV2pFVk1CTUdDU3NHQVFRQnJH
+WUJBUk1HUTBGU1RFOVRNQWtHQTFVZEV3UUMKTUFBd0t3WURWUjBRQkNRd0lvQVBNakF3T1RBNE1U
+QXhNRE0xTlRsYWdROHlNREV5TURneE1ERXdNelUxT1Zvd0N3WURWUjBQQkFRRApBZ1dnTUJFR0NX
+Q0dTQUdHK0VJQkFRUUVBd0lGb0RBZEJnTlZIUTRFRmdRVTQ1RHFoczcvbW1mbmNKa1BGcFJySXhN
+eGt5WXdId1lEClZSMGpCQmd3Rm9BVVFKcDJSSmQwQjhTc0ZNc2VqVTg2Ulh3dzEyRXdnZ0V4QmdO
+VkhTQUVnZ0VvTUlJQkpEQ0NBU0FHQ1NzR0FRUUIKckdZREJUQ0NBUkV3TkFZSUt3WUJCUVVIQWdF
+V0tHaDBkSEE2THk5M2QzY3VZMlZ5ZEM1bWJtMTBMbVZ6TDJOdmJuWmxibWx2TDJSdwpZeTV3WkdZ
+d2dkZ0dDQ3NHQVFVRkJ3SUNNSUhMR29ISVEyVnlkR2xtYVdOaFpHOGdVbVZqYjI1dlkybGtieUJs
+ZUhCbFpHbGtieUJ6ClpXZjZiaUJzWldkcGMyeGhZMm56YmlCMmFXZGxiblJsTGxWemJ5QnNhVzFw
+ZEdGa2J5QmhJR3hoSUVOdmJYVnVhV1JoWkNCRmJHVmoKZEhMemJtbGpZU0J3YjNJZ2RtRnNiM0ln
+YmVGNGFXMXZJR1JsSURFd01DQmxJSE5oYkhadklHVjRZMlZ3WTJsdmJtVnpJR1Z1SUVSUQpReTVE
+YjI1MFlXTjBieUJHVGsxVU9rTXZTbTl5WjJVZ1NuVmhiaUF4TURZdE1qZ3dNRGt0VFdGa2NtbGtM
+VVZ6Y0dIeFlTNHdIUVlKCkt3WUJCQUdzWmdFaEJCQVdEbEJGVWxOUFRrRWdSa2xUU1VOQk1DOEdD
+Q3NHQVFVRkJ3RURCQ013SVRBSUJnWUVBSTVHQVFFd0ZRWUcKQkFDT1JnRUNNQXNUQTBWVlVnSUJa
+QUlCQURCYkJnTlZIUjhFVkRCU01GQ2dUcUJNcEVvd1NERUxNQWtHQTFVRUJoTUNSVk14RFRBTApC
+Z05WQkFvVEJFWk9UVlF4R0RBV0JnTlZCQXNURDBaT1RWUWdRMnhoYzJVZ01pQkRRVEVRTUE0R0Ex
+VUVBeE1IUTFKTU5qSXlPREFOCkJna3Foa2lHOXcwQkFRVUZBQU9CZ1FDSWoyZ3hzTDlUYlZmNG1k
+UUxTVkg1OHVXaVE4Qi91RkNlTWZFazlBV0ZFSFN3WWp6cFd2ejYKakN2ODcwQktEdG12RWVoWVJj
+NjdCRnN1YkxZNnduaXgyZUpzajROdzdxQTV5NHM4b0x5VVMvdTR6UWxQcUY3K3dGaTBwQUdnRkMz
+KwpBWEVMWVYwdHpnNGhwVk5WcjI5MVNHL20vUERhY21xekxockNIdDBqcFE9PTwvZHM6WDUwOUNl
+cnRpZmljYXRlPjwvZHM6WDUwOURhdGE+PC9kczpLZXlJbmZvPjxkczpPYmplY3Q+PHhhZGVzOlF1
+YWxpZnlpbmdQcm9wZXJ0aWVzIHhtbG5zOnhhZGVzPSJodHRwOi8vdXJpLmV0c2kub3JnLzAxOTAz
+L3YxLjMuMiMiIElkPSJTaWduYXR1cmUtYjJlOTQzYzMtMzNkZC00YTk0LWI3MjctZTlkNjE1OTkx
+NGZmLVF1YWxpZnlpbmdQcm9wZXJ0aWVzIiBUYXJnZXQ9IiNTaWduYXR1cmUtYjJlOTQzYzMtMzNk
+ZC00YTk0LWI3MjctZTlkNjE1OTkxNGZmLVNpZ25hdHVyZSI+PHhhZGVzOlNpZ25lZFByb3BlcnRp
+ZXMgSWQ9IlNpZ25hdHVyZS1iMmU5NDNjMy0zM2RkLTRhOTQtYjcyNy1lOWQ2MTU5OTE0ZmYtU2ln
+bmVkUHJvcGVydGllcyI+PHhhZGVzOlNpZ25lZFNpZ25hdHVyZVByb3BlcnRpZXM+PHhhZGVzOlNp
+Z25pbmdUaW1lPjIwMTEtMDMtMThUMTA6NDc6MzArMDE6MDA8L3hhZGVzOlNpZ25pbmdUaW1lPjx4
+YWRlczpTaWduaW5nQ2VydGlmaWNhdGU+PHhhZGVzOkNlcnQ+PHhhZGVzOkNlcnREaWdlc3Q+PGRz
+OkRpZ2VzdE1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNp
+ZyNzaGExIi8+PGRzOkRpZ2VzdFZhbHVlPm0xeitEbFY2R1dHcHNXWnVEMGJMRzFnQS9MVT08L2Rz
+OkRpZ2VzdFZhbHVlPjwveGFkZXM6Q2VydERpZ2VzdD48eGFkZXM6SXNzdWVyU2VyaWFsPjxkczpY
+NTA5SXNzdWVyTmFtZT5PVT1GTk1UIENsYXNlIDIgQ0EsIE89Rk5NVCwgQz1FUzwvZHM6WDUwOUlz
+c3Vlck5hbWU+PGRzOlg1MDlTZXJpYWxOdW1iZXI+MTAxODMzOTY5MTwvZHM6WDUwOVNlcmlhbE51
+bWJlcj48L3hhZGVzOklzc3VlclNlcmlhbD48L3hhZGVzOkNlcnQ+PC94YWRlczpTaWduaW5nQ2Vy
+dGlmaWNhdGU+PC94YWRlczpTaWduZWRTaWduYXR1cmVQcm9wZXJ0aWVzPjx4YWRlczpTaWduZWRE
+YXRhT2JqZWN0UHJvcGVydGllcz48eGFkZXM6RGF0YU9iamVjdEZvcm1hdCBPYmplY3RSZWZlcmVu
+Y2U9IiNSZWZlcmVuY2UtMjE3NjdmNjMtODk0My00NGI5LTliMGUtMmZkNTYxZWVkYjkzIj48eGFk
+ZXM6T2JqZWN0SWRlbnRpZmllcj48eGFkZXM6SWRlbnRpZmllciBRdWFsaWZpZXI9Ik9JREFzVVJO
+Ij51cm46b2lkOjEuMi44NDAuMTAwMDMuNS4xMDkuMzwveGFkZXM6SWRlbnRpZmllcj48L3hhZGVz
+Ok9iamVjdElkZW50aWZpZXI+PHhhZGVzOk1pbWVUeXBlPmhhc2gvc2hhMTwveGFkZXM6TWltZVR5
+cGU+PHhhZGVzOkVuY29kaW5nPmJhc2U2NDwveGFkZXM6RW5jb2Rpbmc+PC94YWRlczpEYXRhT2Jq
+ZWN0Rm9ybWF0PjwveGFkZXM6U2lnbmVkRGF0YU9iamVjdFByb3BlcnRpZXM+PC94YWRlczpTaWdu
+ZWRQcm9wZXJ0aWVzPjwveGFkZXM6UXVhbGlmeWluZ1Byb3BlcnRpZXM+PC9kczpPYmplY3Q+PC9k
+czpTaWduYXR1cmU+PC9BRklSTUE+</Anexo>
+                <Identificador_Documento_Firmado/>
+                <Observaciones/>
+  </De_Anexo>
+  <De_Internos_Control>
+    <Tipo_Transporte_Entrada/>
+    <Numero_Transporte_Entrada/>
+    <Nombre_Usuario/>
+    <Contacto_Usuario/>
+    <Identificador_Intercambio>O00001223_11_00010108</Identificador_Intercambio>
+    <Aplicacion_Version_Emisora />
+    <Tipo_Anotacion>02</Tipo_Anotacion>
+    <Descripcion_Tipo_Anotacion />
+    <Tipo_Registro>0</Tipo_Registro>
+    <Documentacion_Fisica>1</Documentacion_Fisica>
+    <Observaciones_Apunte/>
+    <Indicador_Prueba>0</Indicador_Prueba>
+    <Codigo_Entidad_Registral_Inicio>O00001223</Codigo_Entidad_Registral_Inicio>
+    <Decodificacion_Entidad_Registral_Inicio />
+  </De_Internos_Control>
+  <De_Formulario_Generico>
+    <Expone/>
+    <Solicita/>
+  </De_Formulario_Generico>
+</Fichero_Intercambio_SICRES_3>

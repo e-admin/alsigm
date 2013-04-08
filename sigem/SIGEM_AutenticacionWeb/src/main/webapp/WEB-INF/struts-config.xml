@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean
+			name="tipoAccesoBean" type="ieci.tecdoc.sgm.autenticacion.form.TipoAccesoForm">
+		</form-bean>
+	</form-beans>
+	<global-forwards>
+	</global-forwards>
+	<action-mappings>
+		<action path="/seleccionarTipoAcceso"
+				type="ieci.tecdoc.sgm.autenticacion.action.SeleccionarTipoAccesoAction"
+				name="tipoAccesoBean"
+				scope="request"
+				validate="false">
+				<forward name="login" path="/jsp/Autenticacion.jsp"/>
+				<forward name="certificado" path="/jsp/RedireccionCertificados.jsp"/>
+				<forward name="failure" path="/jsp/NoAutenticacion.jsp"/>
+		</action>
+		<!-- Usuarios -->
+		<action path="/validacionUsuario"
+				type="ieci.tecdoc.sgm.autenticacion.action.ValidacionUsuarioAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/Redireccion.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+				<forward name="invalid_user" path="/jsp/Autenticacion.jsp"/>
+		</action>
+		<!-- Certificados -->
+		<action path="/validacionCertificado"
+				type="ieci.tecdoc.sgm.autenticacion.action.ValidacionCertificadoAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/Redireccion.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+		</action>
+		<!-- Acceso -->
+		<action path="/obtenerTipoAcceso"
+				type="ieci.tecdoc.sgm.autenticacion.action.ObtenerTipoAccesoAction"
+				scope="request"
+				name="tipoAccesoBean"
+				validate="false">
+				<forward name="success" path="/jsp/MostrarTipoAcceso.jsp"/>
+				<forward name="only_cert" path="/jsp/RedireccionCertificados.jsp"/>
+				<forward name="only_login" path="/jsp/Autenticacion.jsp"/>
+				<forward name="none" path="/jsp/NoAutenticacion.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+				<forward name="logged" path="/jsp/Redireccion.jsp"/>
+		</action>
+
+		<!-- Acceso -->
+		<action path="/seleccionEntidad"
+				type="ieci.tecdoc.sgm.autenticacion.action.SeleccionEntidadAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/obtenerTipoAcceso.do"/> 
+				<forward name="failure" path="/jsp/MensajeError.jsp"/> 
+				<forward name="entidades" path="/jsp/SeleccionEntidad.jsp"/> 
+				<forward name="logged" path="/jsp/Redireccion.jsp"/>
+		</action>
+
+		<!-- Sesión -->
+		<action path="/desconectar"
+				type="ieci.tecdoc.sgm.autenticacion.action.DesconectarAction"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/RedireccionPortal.jsp"/>
+				<forward name="failure" path="/jsp/MensajeError.jsp"/>
+		</action>
+	</action-mappings>
+	<message-resources parameter="resources.application" />
+	<plug-in className="ieci.tecdoc.sgm.autenticacion.plugin.ConfigPlugin">
+		<set-property property="redirConsulta" value="SIGEM_ConsultaWeb/" />
+		<set-property property="redirPagoElectronico" value="SIGEM_PagoElectronicoWeb/" />
+		<set-property property="redirNotificacion" value="SIGEM_NotificacionWeb/" />
+		<set-property property="redirRegistroTelematico" value="SIGEM_RegistroTelematicoWeb/" />
+		<set-property property="redirCertificacion" value="SIGEM_CertificacionWeb/" />
+		<set-property property="redirConsultaRegistroTelematico" value="SIGEM_ConsultaRegistroTelematicoWeb/" />
+	</plug-in>
+</struts-config>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="RegistroTelematicoWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="query" qname="ns1:query" returnQName="ns1:queryReturn" returnType="ns1:Registros" soapAction="" xmlns:ns1="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns1:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns1:query" type="ns1:RegistroConsulta"/>
+   <parameter qname="ns1:entidad" type="ns2:Entidad" xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="crearPeticionRegistro" qname="ns3:crearPeticionRegistro" returnQName="ns3:crearPeticionRegistroReturn" returnType="ns3:StringB64" soapAction="" xmlns:ns3="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns3:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns3:requestInfo" type="ns3:RegistroPeticion"/>
+   <parameter qname="ns3:idiom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns3:organismo" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns3:numeroExpediente" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns3:entidad" type="ns4:Entidad" xmlns:ns4="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="establecerDocumentosSubsanacion" qname="ns5:establecerDocumentosSubsanacion" returnQName="ns5:establecerDocumentosSubsanacionReturn" returnType="ns5:RetornoCadena" soapAction="" xmlns:ns5="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns5:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns5:procedureDocuments" type="ns5:Documentos"/>
+   <parameter qname="ns5:requestDocuments" type="ns5:PeticionDocumentos"/>
+   <parameter qname="ns5:entidad" type="ns6:Entidad" xmlns:ns6="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="registrar" qname="ns7:registrar" returnQName="ns7:registrarReturn" returnType="ns7:StringB64" soapAction="" xmlns:ns7="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns7:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns7:registryRequest" type="ns7:StringB64"/>
+   <parameter qname="ns7:additionalInfo" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns7:idiom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns7:oficina" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns7:plantilla" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns7:certificado" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns7:entidad" type="ns8:Entidad" xmlns:ns8="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="registrarConJustificante" qname="ns9:registrarConJustificante" returnQName="ns9:registrarReturn" returnType="ns9:StringB64" soapAction="" xmlns:ns9="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns9:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:registryRequest" type="ns9:StringB64"/>
+   <parameter qname="ns9:additionalInfo" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:idiom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:oficina" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:plantilla" type="xsd:StringB64" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:certificado" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:entidad" type="ns10:Entidad" xmlns:ns10="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="registrarTelematicoAndIniciarExpediente" qname="ns11:registrarTelematicoAndIniciarExpediente" returnQName="ns11:registrarTelematicoAndIniciarExpedienteReturn" returnType="ns11:StringB64" soapAction="" xmlns:ns11="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns11:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns11:registryRequest" type="ns11:StringB64"/>
+   <parameter qname="ns11:additionalInfo" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns11:idiom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns11:oficina" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns11:plantilla" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns11:certificado" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns11:tramiteId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns11:entidad" type="ns12:Entidad" xmlns:ns12="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="registrarTelematicoConJustificanteAndIniciarExpediente" qname="ns13:registrarTelematicoConJustificanteAndIniciarExpediente" returnQName="ns13:registrarTelematicoAndIniciarExpedienteReturn" returnType="ns13:StringB64" soapAction="" xmlns:ns13="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns13:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns13:registryRequest" type="ns13:StringB64"/>
+   <parameter qname="ns13:additionalInfo" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns13:idiom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns13:oficina" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns13:plantilla" type="xsd:StringB64" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns13:certificado" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns13:tramiteId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns13:entidad" type="ns14:Entidad" xmlns:ns14="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="deshacerRegistro" qname="ns15:deshacerRegistro" returnQName="ns15:deshacerRegistroReturn" returnType="ns16:RetornoServicio" soapAction="" xmlns:ns15="http://server.ws.registro.sgm.tecdoc.ieci" xmlns:ns16="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns15:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns15:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns15:entidad" type="ns16:Entidad"/>
+  </operation>
+  <operation name="obtenerNumeroRegistro" qname="ns17:obtenerNumeroRegistro" returnQName="ns17:obtenerNumeroRegistroReturn" returnType="ns17:RetornoCadena" soapAction="" xmlns:ns17="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns17:entidad" type="ns18:Entidad" xmlns:ns18="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="eliminarDocumentosTemporales" qname="ns19:eliminarDocumentosTemporales" returnQName="ns19:eliminarDocumentosTemporalesReturn" returnType="ns20:RetornoServicio" soapAction="" xmlns:ns19="http://server.ws.registro.sgm.tecdoc.ieci" xmlns:ns20="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns19:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns19:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns19:entidad" type="ns20:Entidad"/>
+  </operation>
+  <operation name="obtenerRegistrosParaMostrar" qname="ns21:obtenerRegistrosParaMostrar" returnQName="ns21:obtenerRegistrosParaMostrarReturn" returnType="ns21:Registros" soapAction="" xmlns:ns21="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns21:query" type="ns21:RegistroConsulta"/>
+   <parameter qname="ns21:entidad" type="ns22:Entidad" xmlns:ns22="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerRegistro" qname="ns23:obtenerRegistro" returnQName="ns23:obtenerRegistroReturn" returnType="ns23:Registro" soapAction="" xmlns:ns23="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns23:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns23:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns23:entidad" type="ns24:Entidad" xmlns:ns24="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerDatosDocumentosRegistro" qname="ns25:obtenerDatosDocumentosRegistro" returnQName="ns25:obtenerDatosDocumentosRegistroReturn" returnType="ns25:ContenedorDocumentos" soapAction="" xmlns:ns25="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns25:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns25:entidad" type="ns26:Entidad" xmlns:ns26="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerJustificanteRegistro" qname="ns27:obtenerJustificanteRegistro" returnQName="ns27:obtenerJustificanteRegistroReturn" returnType="ns27:StringB64" soapAction="" xmlns:ns27="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns27:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns27:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns27:entidad" type="ns28:Entidad" xmlns:ns28="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerPeticionRegistro" qname="ns29:obtenerPeticionRegistro" returnQName="ns29:obtenerPeticionRegistroReturn" returnType="ns29:StringB64" soapAction="" xmlns:ns29="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns29:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns29:entidad" type="ns30:Entidad" xmlns:ns30="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerRegistrosConsolidados" qname="ns31:obtenerRegistrosConsolidados" returnQName="ns31:obtenerRegistrosConsolidadosReturn" returnType="ns31:Registros" soapAction="" xmlns:ns31="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns31:entidad" type="ns32:Entidad" xmlns:ns32="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="tieneDocumentos" qname="ns33:tieneDocumentos" returnQName="ns33:tieneDocumentosReturn" returnType="ns33:RetornoLogico" soapAction="" xmlns:ns33="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns33:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns33:entidad" type="ns34:Entidad" xmlns:ns34="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerContenidoDocumento" qname="ns35:obtenerContenidoDocumento" returnQName="ns35:obtenerContenidoDocumentoReturn" returnType="ns35:ByteArrayB64" soapAction="" xmlns:ns35="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns35:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns35:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns35:code" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns35:entidad" type="ns36:Entidad" xmlns:ns36="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerDocumento" qname="ns37:obtenerDocumento" returnQName="ns37:obtenerDocumentoReturn" returnType="ns37:StringB64" soapAction="" xmlns:ns37="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns37:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns37:code" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns37:entidad" type="ns38:Entidad" xmlns:ns38="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="establecerEstadoRegistro" qname="ns39:establecerEstadoRegistro" returnQName="ns39:establecerEstadoRegistroReturn" returnType="ns40:RetornoServicio" soapAction="" xmlns:ns39="http://server.ws.registro.sgm.tecdoc.ieci" xmlns:ns40="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns39:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns39:status" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns39:entidad" type="ns40:Entidad"/>
+  </operation>
+  <operation name="obtenerDocumentosRegistro" qname="ns41:obtenerDocumentosRegistro" returnQName="ns41:obtenerDocumentosRegistroReturn" returnType="ns41:RegistroDocumentos" soapAction="" xmlns:ns41="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns41:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns41:entidad" type="ns42:Entidad" xmlns:ns42="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="obtenerDocumentoRegistro" qname="ns43:obtenerDocumentoRegistro" returnQName="ns43:obtenerDocumentoRegistroReturn" returnType="ns43:RegistroDocumento" soapAction="" xmlns:ns43="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns43:sessionId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns43:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns43:code" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns43:entidad" type="ns44:Entidad" xmlns:ns44="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="insertarDocumentoRegistro" qname="ns45:insertarDocumentoRegistro" returnQName="ns45:insertarDocumentoRegistroReturn" returnType="ns45:RegistroDocumento" soapAction="" xmlns:ns45="http://server.ws.registro.sgm.tecdoc.ieci">
+   <parameter qname="ns45:registryDocument" type="ns45:RegistroDocumento"/>
+   <parameter qname="ns45:entidad" type="ns46:Entidad" xmlns:ns46="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="actualizarDocumentoRegistro" qname="ns47:actualizarDocumentoRegistro" returnQName="ns47:actualizarDocumentoRegistroReturn" returnType="ns48:RetornoServicio" soapAction="" xmlns:ns47="http://server.ws.registro.sgm.tecdoc.ieci" xmlns:ns48="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns47:registryDocument" type="ns47:RegistroDocumento"/>
+   <parameter qname="ns47:entidad" type="ns48:Entidad"/>
+  </operation>
+  <operation name="eliminarDocumentoRegistro" qname="ns49:eliminarDocumentoRegistro" returnQName="ns49:eliminarDocumentoRegistroReturn" returnType="ns50:RetornoServicio" soapAction="" xmlns:ns49="http://server.ws.registro.sgm.tecdoc.ieci" xmlns:ns50="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns49:registryNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns49:entidad" type="ns50:Entidad"/>
+  </operation>
+  <parameter name="allowedMethods" value="obtenerRegistrosParaMostrar tieneDocumentos actualizarDocumentoRegistro crearPeticionRegistro obtenerRegistro obtenerContenidoDocumento eliminarDocumentosTemporales insertarDocumentoRegistro registrar registrarConJustificante registrarTelematicoAndIniciarExpediente registrarTelematicoConJustificanteAndIniciarExpediente obtenerNumeroRegistro obtenerDocumento obtenerPeticionRegistro obtenerDocumentoRegistro obtenerDatosDocumentosRegistro query establecerDocumentosSubsanacion establecerEstadoRegistro obtenerJustificanteRegistro deshacerRegistro obtenerDocumentosRegistro obtenerRegistrosConsolidados eliminarDocumentoRegistro"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="RegistroTelematicoWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.registro.ws.server.RegistroTelematicoWebService"/>
+  <parameter name="wsdlServicePort" value="RegistroTelematicoWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.registro.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="RegistroTelematicoWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns51:Registro" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.Registro" xmlns:ns51="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns52:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns52="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns53:RegistroDocumento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.RegistroDocumento" xmlns:ns53="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns54:RetornoCadena" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.RetornoCadena" xmlns:ns54="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns55:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" xmlns:ns55="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns56:PeticionDocumentos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.PeticionDocumentos" xmlns:ns56="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns57:RegistroDocumentos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.RegistroDocumentos" xmlns:ns57="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns58:DocumentoExtendido" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.DocumentoExtendido" xmlns:ns58="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns59:Documentos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.Documentos" xmlns:ns59="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns60:ContenedorDocumentos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.ContenedorDocumentos" xmlns:ns60="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns61:RegistroConsulta" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.RegistroConsulta" xmlns:ns61="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns62:RegistroPeticion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.RegistroPeticion" xmlns:ns62="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns63:ContenedorDocumento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.ContenedorDocumento" xmlns:ns63="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns64:RetornoLogico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.RetornoLogico" xmlns:ns64="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns65:StringB64" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.StringB64" xmlns:ns65="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns66:ByteArrayB64" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.ByteArrayB64" xmlns:ns66="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns67:PeticionDocumento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.PeticionDocumento" xmlns:ns67="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns68:Registros" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.registro.ws.server.Registros" xmlns:ns68="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns69:Registro" languageSpecificType="java:ieci.tecdoc.sgm.registro.ws.server.Registro[]" qname="ns69:ArrayOfRegistro" xmlns:ns69="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns70:RegistroDocumento" languageSpecificType="java:ieci.tecdoc.sgm.registro.ws.server.RegistroDocumento[]" qname="ns70:ArrayOfRegistroDocumento" xmlns:ns70="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns71:ContenedorDocumento" languageSpecificType="java:ieci.tecdoc.sgm.registro.ws.server.ContenedorDocumento[]" qname="ns71:ArrayOfContenedorDocumento" xmlns:ns71="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns72:DocumentoExtendido" languageSpecificType="java:ieci.tecdoc.sgm.registro.ws.server.DocumentoExtendido[]" qname="ns72:ArrayOfDocumentoExtendido" xmlns:ns72="http://server.ws.registro.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns73:PeticionDocumento" languageSpecificType="java:ieci.tecdoc.sgm.registro.ws.server.PeticionDocumento[]" qname="ns73:ArrayOfPeticionDocumento" xmlns:ns73="http://server.ws.registro.sgm.tecdoc.ieci"/>
+ </service>
+
+  <!-- Services from AplicacionExternaCSVConnectorWSService WSDL service -->
+
+
+  <service name="AplicacionExternaCSVConnectorWS" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.connector.csv.ws.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="AplicacionExternaCSVConnectorWSService"/>
+      <parameter name="schemaQualified" value="http://server.connector.csv.ws.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="AplicacionExternaCSVConnectorWS"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.ws.csv.connector.server.AplicacionExternaCSVConnectorWS"/>
+      <parameter name="wsdlPortType" value="AplicacionExternaCSVConnectorWS"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.connector.csv.ws.sgm.tecdoc.ieci" xmlns:retNS="http://server.connector.csv.ws.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getContenidoDocumento" qname="operNS:getContenidoDocumento" returnQName="retNS:getContenidoDocumentoReturn" returnType="rtns:base64Binary" soapAction="">
+        <parameter xmlns:pns="http://server.connector.csv.ws.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:csv" type="tns:string"/>
+        <parameter xmlns:pns="http://server.connector.csv.ws.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://server.connector.csv.ws.sgm.tecdoc.ieci" xmlns:retNS="http://server.connector.csv.ws.sgm.tecdoc.ieci" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="existeDocumento" qname="operNS:existeDocumento" returnQName="retNS:existeDocumentoReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://server.connector.csv.ws.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:csv" type="tns:string"/>
+        <parameter xmlns:pns="http://server.connector.csv.ws.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:entidad" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getContenidoDocumento existeDocumento"/>
+
+  </service>
+
+
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

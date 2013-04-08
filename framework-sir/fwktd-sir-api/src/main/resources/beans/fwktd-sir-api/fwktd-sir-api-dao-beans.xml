@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="fwktd_sir_anexoDaoImpl" name="fwktd_sir_anexoDao"
+		class="es.ieci.tecdoc.fwktd.sir.api.dao.impl.AnexoDaoImpl">
+		<constructor-arg value="es.ieci.tecdoc.fwktd.sir.core.vo.AnexoVO" />
+		<property name="sqlMapClient" ref="fwktd_sir_sqlMapClient" />
+	</bean>
+
+	<bean id="fwktd_sir_asientoRegistralDaoImpl" name="fwktd_sir_asientoRegistralDao"
+		class="es.ieci.tecdoc.fwktd.sir.api.dao.impl.AsientoRegistralDaoImpl">
+		<constructor-arg value="es.ieci.tecdoc.fwktd.sir.core.vo.AsientoRegistralVO" />
+		<property name="sqlMapClient" ref="fwktd_sir_sqlMapClient" />
+	</bean>
+
+	<bean id="fwktd_sir_configuracionDaoImpl" name="fwktd_sir_configuracionDao"
+		class="es.ieci.tecdoc.fwktd.sir.api.dao.impl.ConfiguracionDaoImpl">
+		<constructor-arg value="es.ieci.tecdoc.fwktd.sir.api.vo.ConfiguracionVO" />
+		<property name="sqlMapClient" ref="fwktd_sir_sqlMapClient" />
+	</bean>
+
+	<bean id="fwktd_sir_contadorDaoImpl" name="fwktd_sir_contadorDao"
+		class="es.ieci.tecdoc.fwktd.sir.api.dao.impl.ContadorDaoImpl">
+		<constructor-arg value="es.ieci.tecdoc.fwktd.sir.api.vo.ContadorVO" />
+		<property name="sqlMapClient" ref="fwktd_sir_sqlMapClient" />
+	</bean>
+
+	<bean id="fwktd_sir_interesadoDaoImpl" name="fwktd_sir_interesadoDao"
+		class="es.ieci.tecdoc.fwktd.sir.api.dao.impl.InteresadoDaoImpl">
+		<constructor-arg value="es.ieci.tecdoc.fwktd.sir.core.vo.InteresadoVO" />
+		<property name="sqlMapClient" ref="fwktd_sir_sqlMapClient" />
+	</bean>
+
+	<bean id="fwktd_sir_sqlMapClientImpl" name="fwktd_sir_sqlMapClient"
+		class="es.ieci.tecdoc.fwktd.core.spring.orm.ibatis.SqlMapClientMultiEntity">
+		<property name="configLocation"
+			value="classpath:sqlmaps/fwktd-sir/fwktd-sir-sqlmap-config.xml" />
+		<property name="dataSource" ref="fwktd_sir_dataSource" />
+	</bean>
+
+</beans>

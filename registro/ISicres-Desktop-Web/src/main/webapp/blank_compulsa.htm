@@ -1,0 +1,33 @@
+<!-- Html que se carga en el frame "top.Main.Folder.FolderData.FolderFormData" cuando se cancela la compulsa -->
+<html>
+	<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');	
+
+			//Cargar de nuevo el formulario del registro
+			function onLoad() {
+				top.Main.Folder.FolderData.FolderFormTree.ReActivateMenuBar();
+				top.Main.Folder.FolderData.FolderFormTree.OpenPageDataFromDtr();			
+			}
+								
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/global.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/list.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/menuclf.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/font.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/table.css">
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/frmt.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/frmdata.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/frmint.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/lest.js"></SCRIPT>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/clfdoc.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/global.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/genmsg.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/calendar.js" charset="ISO-8859-1"></script>
+		
+	</head>
+	<body tabIndex="-1" onunload="" onload="onLoad();">
+	</body>
+</html>

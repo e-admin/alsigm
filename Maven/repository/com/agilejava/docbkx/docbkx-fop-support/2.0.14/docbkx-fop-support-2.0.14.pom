@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.agilejava.docbkx</groupId>
+    <artifactId>docbkx</artifactId>
+    <version>2.0.14</version>
+  </parent>
+  <artifactId>docbkx-fop-support</artifactId>
+  <name>Docbkx FOP Support</name>
+  <packaging>maven-plugin</packaging>
+  <description>
+    Additional support for Apache FOP.
+  </description>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>fop</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+    </dependency>
+  </dependencies>
+</project>

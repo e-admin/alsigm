@@ -1,0 +1,131 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/table.css">
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/global.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/genmsg.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/frmint.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/frmdata.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/calendar.js" charset="ISO-8859-1"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/vldbuscinter.js"></script>
+		<script type="text/javascript" language="javascript" src="./scripts/jquery-1.6.2.min.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/jquery.hotkeys-0.8.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/custom_hotkeys.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/jquery.blockUI.js"></script>
+
+	 	<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" />
+	 	<link rel="stylesheet" href="css/terceros/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+
+		<script language="javascript">
+			var caseSensitive = GetCaseSensitive();
+
+			function OnFocusFree(){
+				if (caseSensitive == 'CS'){
+					document.getElementById("freeText").style.textTransform = "uppercase";
+				}
+			}
+
+			function OnFocusValidate(){
+				if (caseSensitive == 'CS'){
+					document.getElementById("validInt").style.textTransform = "uppercase";
+				}
+			}
+
+			function UpperCaseFree(){
+				var freeText = document.getElementById("freeText");
+
+				if (caseSensitive == 'CS'){
+					freeText.value = top.miTrim(freeText.value).toUpperCase();
+				} else {
+					freeText.value = top.miTrim(freeText.value);
+				}
+			}
+
+		</script>
+	</head>
+	<body tabIndex="-1" onload="LoadFrame();">
+		<input type="hidden" id="hasChanged" name="hasChanged" value="0"></input>
+		<div id="free" style="display:block;width:100%;position:absolute;height:100%">
+			<textarea id="freeText" class="textarea" style="display:block;overflow:auto;width:100%;position:absolute;height:100%"
+					  tabindex="1" onkeydown="SetChange();" onpaste="SetChange();" onblur="UpperCaseFree();try{Blur(this);}catch(e){}"
+					  onhelp="top.PreventDefault(event);" onfocus="OnFocusFree();"></textarea>
+		</div>
+		<div id="validate" style="display:none;width:100%;position:absolute;height:100%">
+			<input type="hidden" id="cadena" name="cadena" value="0" tblvalidated="9" FldId="9"></input>
+			<input type="text" id="validInt" name="validInt" class="input" style="width:97%"
+				   tabindex="1" onhelp="document.getElementById('imgHelp').click();top.PreventDefault(event);"
+				   onfocus="OnFocusValidate();"></input>
+			<img id="imgHelp" src="images/buscar2.gif" class="imgHelpInt" onclick="top.Main.Folder.FolderData.FolderFormData.VldHelp(event, document.getElementById('cadena'));" onkeydown="if (top.GetKeyCode(event)==13){top.Main.Folder.FolderData.FolderFormData.VldHelp(document.getElementById('cadena'));}" tabindex="-1" onmouseover="this.style.cursor='pointer';"></img>
+			<div id="divTab" style="left:0;top:20px;width:100%;position:absolute;overflow:auto">
+				<table width="98%" id="TabInt" class="report" border="0" cellspacing="1">
+					<thead width="100%">
+						<tr id="head">
+							<th class="report" align="left">
+								<script language="javascript">document.write(top.GetIdsLan("IDS_LABEL_INT"));</script>
+							</th>
+							<th class="report" align="left">
+								<script language="javascript">document.write(top.GetIdsLan("IDS_DIRECCION"));</script>
+							</th>
+							<th class="report" align="left">
+								<script language="javascript">document.write(top.GetIdsLan("IDS_LABEL_REPRE"));</script>
+							</th>
+							<th class="report" align="left">
+								<script language="javascript">document.write(top.GetIdsLan("IDS_DIRECCION"));</script>
+							</th>
+						</tr>
+					</thead>
+					<tr id="null">
+						<td class="report"></td>
+						<td class="report"></td>
+						<td class="report"></td>
+						<td class="report"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<script type="text/javascript">
+			<!--
+			jQuery(document).ready(function($){
+				$('#validInt').blur(function(e){
+					if(this.value != ""){
+						//paramos la propagacion del evento
+						e.preventDefault();
+
+						//comprobamos si el valor tiene que ser pasado a mayusculas
+						if (caseSensitive == 'CS'){
+							this.value=this.value.toUpperCase();
+						}
+
+						//seteamos las variables necesarias
+						top.g_Field   = document.getElementById('cadena');
+						top.g_FormVld = top.Main.Folder.FolderData.FolderFormData.document.getElementById("FrmData");
+						top.g_WndVld  = top.Main.Folder.FolderData.FolderFormData;
+
+						//bloqueamos el formulario, he informamos que se estan cargando datos
+						top.Main.Folder.FolderData.FolderFormData.showCapaLoading();
+
+						//invocamos al controlador para obtener los datos de los interesados
+						$.ajax({
+							   type: 'POST',
+							   cache: false,
+							   url: 'interesado/seachTerceros.action',
+							   dataType: 'html',
+							   data: {'Code': this.value, 'interesados': top.g_Field.value},
+							   success: function(data) {
+								   top.Main.Folder.FolderData.FolderFormData.showCapaInteresados(data);
+							   }
+						});
+					   	this.value = "";
+					}
+				});
+			});
+
+			//-->
+		</script>
+	</body>
+</html>

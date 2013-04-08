@@ -1,0 +1,10 @@
+<classloading xmlns="urn:jboss:classloading:1.0"
+	name="sigem-pago-electronico-ws" 
+	domain="sigem-pago-electronico-ws_domain"
+	parent-domain="DefaultDomain"
+	export-all="NON_EMPTY"
+	import-all="true"
+	parent-first="true"
+	excluded="org.apache.commons.logging"
+	> 
+</classloading>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="CalendarioWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="obtenerCalendario" qname="ns1:obtenerCalendario" returnQName="ns1:obtenerCalendarioReturn" returnType="ns1:Calendario" soapAction="" xmlns:ns1="http://server.ws.calendario.sgm.tecdoc.ieci">
+   <parameter qname="ns1:entidad" type="ns2:Entidad" xmlns:ns2="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="nuevoCalendario" qname="ns3:nuevoCalendario" returnQName="ns3:nuevoCalendarioReturn" returnType="ns4:RetornoServicio" soapAction="" xmlns:ns3="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns:ns4="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns3:calendario" type="ns3:Calendario"/>
+   <parameter qname="ns3:entidad" type="ns4:Entidad"/>
+  </operation>
+  <operation name="actualizarCalendario" qname="ns5:actualizarCalendario" returnQName="ns5:actualizarCalendarioReturn" returnType="ns6:RetornoServicio" soapAction="" xmlns:ns5="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns:ns6="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns5:calendario" type="ns5:Calendario"/>
+   <parameter qname="ns5:entidad" type="ns6:Entidad"/>
+  </operation>
+  <operation name="eliminarCalendario" qname="ns7:eliminarCalendario" returnQName="ns7:eliminarCalendarioReturn" returnType="ns8:RetornoServicio" soapAction="" xmlns:ns7="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns:ns8="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns7:borrarDias" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns7:entidad" type="ns8:Entidad"/>
+  </operation>
+  <operation name="obtenerDiaCalendario" qname="ns9:obtenerDiaCalendario" returnQName="ns9:obtenerDiaCalendarioReturn" returnType="ns9:CalendarioDia" soapAction="" xmlns:ns9="http://server.ws.calendario.sgm.tecdoc.ieci">
+   <parameter qname="ns9:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns9:entidad" type="ns10:Entidad" xmlns:ns86="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="nuevoDiaCalendario" qname="ns11:nuevoDiaCalendario" returnQName="ns11:nuevoDiaCalendarioReturn" returnType="ns11:CalendarioDia" soapAction="" xmlns:ns11="http://server.ws.calendario.sgm.tecdoc.ieci">
+   <parameter qname="ns11:dia" type="ns11:CalendarioDia"/>
+   <parameter qname="ns11:entidad" type="ns12:Entidad" xmlns:ns88="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="actualizarDiaCalendario" qname="ns13:actualizarDiaCalendario" returnQName="ns13:actualizarDiaCalendarioReturn" returnType="ns14:RetornoServicio" soapAction="" xmlns:ns13="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns:ns14="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns13:dia" type="ns13:CalendarioDia"/>
+   <parameter qname="ns13:entidad" type="ns14:Entidad"/>
+  </operation>
+  <operation name="eliminarDiaCalendario" qname="ns15:eliminarDiaCalendario" returnQName="ns15:eliminarDiaCalendarioReturn" returnType="ns16:RetornoServicio" soapAction="" xmlns:ns15="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns:ns16="http://dto.services.core.sgm.tecdoc.ieci">
+   <parameter qname="ns15:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns15:entidad" type="ns16:Entidad"/>
+  </operation>
+  <operation name="obtenerDiasCalendario" qname="ns17:obtenerDiasCalendario" returnQName="ns17:obtenerDiasCalendarioReturn" returnType="ns17:CalendarioDias" soapAction="" xmlns:ns17="http://server.ws.calendario.sgm.tecdoc.ieci">
+   <parameter qname="ns17:tipo" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns17:entidad" type="ns94:Entidad" xmlns:ns18="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <operation name="proximoLaborable" qname="ns95:proximoLaborable" returnQName="ns95:proximoLaborableReturn" returnType="ns95:RetornoCalendario" soapAction="" xmlns:ns95="http://server.ws.calendario.sgm.tecdoc.ieci">
+   <parameter qname="ns19:fecha" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <parameter qname="ns19:entidad" type="ns20:Entidad" xmlns:ns20="http://dto.services.core.sgm.tecdoc.ieci"/>
+  </operation>
+  <parameter name="allowedMethods" value="actualizarDiaCalendario actualizarCalendario obtenerDiasCalendario eliminarDiaCalendario obtenerCalendario nuevoCalendario eliminarCalendario obtenerDiaCalendario nuevoDiaCalendario proximoLaborable"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="CelandarioWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.calendario.ws.server.CalendarioWebService"/>
+  <parameter name="wsdlServicePort" value="CalendarioWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.calendario.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.calendario.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="CalendarioWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:CalendarioDia" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.calendario.ws.server.CalendarioDia" xmlns:ns21="http://server.ws.calendario.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:CalendarioDias" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.calendario.ws.server.CalendarioDias" xmlns:ns22="http://server.ws.calendario.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" xmlns:ns23="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:Calendario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.calendario.ws.server.Calendario" xmlns:ns24="http://server.ws.calendario.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:RetornoCalendario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.calendario.ws.server.RetornoCalendario" xmlns:ns25="http://server.ws.calendario.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns26:CalendarioDia" languageSpecificType="java:ieci.tecdoc.sgm.calendario.ws.server.CalendarioDia[]" qname="ns26:ArrayOfCalendarioDia" xmlns:ns26="http://server.ws.calendario.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="xsd:string" languageSpecificType="java:java.lang.String[]" qname="ns27:ArrayOf_xsd_string" xmlns:ns27="http://server.ws.calendario.sgm.tecdoc.ieci" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

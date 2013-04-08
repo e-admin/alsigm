@@ -1,0 +1,17 @@
+<Context path="/fwktdsirWS" reloadable="true">
+
+	<Resource name="jdbc/fwktd-sirDS"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://pre-postgresql.iecisa.corp:5432/fwktd-sir"
+		username="fwktdsir"
+		password="fwktdsir"
+		maxActive="5"
+		maxIdle="3"
+		maxWait="-1"
+		removeAbandoned="true"
+		removeAbandonedTimeout="60"
+		logAbandoned="true"/>
+
+</Context>

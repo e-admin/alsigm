@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<bean id="defaultHandlerMapping"
+		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+
+	<bean id="methodNameResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.InternalPathMethodNameResolver">
+		<property name="prefix" value="do"/>
+	</bean>
+
+	<bean name="/index"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="redirect:/action/documento/form"/>
+	</bean>
+
+	<bean name="/documento/*"
+		class="es.ieci.tecdoc.fwktd.csv.web.controller.DocumentoController">
+		<property name="methodNameResolver" ref="methodNameResolver" />
+		<property name="documentoDelegate" ref="documentoDelegate"/>
+		<property name="captchaDelegate" ref="captchaDelegateFactory"/>
+		<property name="viewName" value="documento"/>
+		<property name="downloadErrorViewName" value="download.error"/>
+		<property name="useCaptcha" value="${fwktd-csv-webapp.useCaptcha}"/>
+	</bean>
+
+	<bean name="/captcha"
+		class="es.ieci.tecdoc.fwktd.csv.web.controller.CaptchaController">
+		<property name="captchaDelegate" ref="captchaDelegateFactory"/>
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>labels</value>
+				<value>messages</value>
+				<value>errors</value>
+				<value>es.ieci.tecdoc.fwktd.csv.core.errors</value>
+				<value>es.ieci.tecdoc.fwktd.csv.api.errors</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="messagesService"
+		class="es.ieci.tecdoc.fwktd.core.services.messages.MessagesService"
+		lazy-init="false" factory-method="getInstance">
+		<property name="messageSource" ref="messageSource"></property>
+	</bean>
+
+</beans>

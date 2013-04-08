@@ -1,0 +1,11 @@
+<assembly>
+	<id>src</id>
+	<formats>
+		<format>tar</format>
+	</formats>
+	<componentDescriptors>
+    	<componentDescriptor>src/main/assembly/component.xml</componentDescriptor>
+  	</componentDescriptors>	
+	<includeBaseDirectory>false</includeBaseDirectory>
+</assembly>
+

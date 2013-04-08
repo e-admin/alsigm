@@ -1,0 +1,484 @@
+<html>
+<head>
+    <title>GUIA DE AYUDA</title>
+<LINK rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<SCRIPT language="JavaScript" src="js/js_menu.js"></SCRIPT>  
+<SCRIPT language="JavaScript" src="js/js_content.js"></SCRIPT> 
+<script language="JavaScript">
+<!--
+
+var variables = location.search.substring(1,location.search.length)
+var tosCachos = variables.split("&")
+var datos
+var m
+var u
+
+onload = init
+
+function init() {
+	collapse.activate();
+	// set the height of the document based on the height of the menu
+	if (is.ns) {document.height = collapse.lyr.y + collapse.h}
+	if ((m >= 0) && (m < 5) && (m != 4)) {collapse.toggle (m)}
+	return;
+}
+
+collapse = new CollapseMenu(11,10,138,4,null);
+collapse.openStyle = 'glide';
+collapse.bgColor= 'transparent';
+collapse.build();
+writeCSS(collapse.css);
+
+//-->
+</script>
+
+<BODY leftMargin=0 topMargin=0  marginheight="0" marginwidth="0">
+<form name="f1">
+<div id="div1" name="capa" style="position:absolute; width:150; height:96%;top:10px;left:10px;z-index:0;">
+		<table border="0" height="100%" width="140" cellpadding="0" cellspacing=0 class="fondMenu" valign="top">
+			<tr valign="top" class="white"><td valign="top"><br></td></tr>
+			<tr><td class="white"><br></td></tr>
+		</table>
+</div>
+<div id="div2" name="capa2" style="position:absolute; width:150; height:20px;top:10px;left:10px;z-index:120;">
+	<table border="0" height="2%" width="140" cellpadding="0" cellspacing=0 bgcolor="ffffff">
+		<tr>
+			<td width="2%"><img src="images/comun/esqTit2.gif" valign="top"></td>
+			<td valign="middle" class="titleTable" height="21">&nbsp;&nbsp;Glosario</td>
+		</tr>
+		<!--Linea de separación-->
+		<tr><td colspan="2" height="2" width="100%" class="blue"></td></tr>
+	</table>
+</div>
+<div id="div3" name="capa3" style="position:absolute; width:150; height:1;top:484px;left:10px;z-index:121;">
+		<table border="0" height="1" width="140" cellpadding="0" cellspacing=0 valign="top">
+			
+			<tr valign="top"><td valign="top" height="24" align="right"><a href="ayuda_glosario.html" target="glosario" class="inicio"> Inicio <span class="flecha">&raquo;</span></a>&nbsp;&nbsp;&nbsp;</td></tr>
+			<tr valign="top"><td valign="top" height="1" bgcolor="#006699"></td></tr>
+		</table>
+</div>
+<script language="JavaScript">
+<!--
+document.write(collapse.divStart)
+//-->
+</script>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+<!--OFICINAS-->
+<div id="CollapseMenu0Block0"> 
+			<div id="CollapseMenu0Block0Item">
+				<table height="100%" width="100%" cellSpacing=0 cellPadding=0 border=0 class="tableMenu">
+					<tr>
+						<td width="2%">&nbsp;</td>
+						<td valign="middle">&nbsp;</td>
+					</tr>
+					<tr><td colspan="2" height="2" width="100%"></td></tr>
+					<tr><td colspan="2" class="white"><br></td></tr>
+					<tr>
+						<td height="98%" colspan=2 valign="top" class="white" width="100%">
+									<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+									<tr>
+										<td colspan="2" height="10%">
+											<table height="10%" width="100%" border="0" cellSpacing="0" class="cdoTableMenu">
+												<tr>
+													<td width="4%" id="carp0"><a href="javascript:collapse.toggle(0)"><img src="images/comun/carpeta.gif" border="0" name="ImgmasF" onClick="javascript:cambiarImg('ImgmasF','cli');"></a></td>
+													<td width="96%"><a href="javascript:collapse.toggle(0)" class="atxtb" onClick="javascript:cambiarImg('ImgmasF','cli');">OFICINAS</a></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+			</div>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+<!--SUBMENU OFICINAS-->
+					<div id="CollapseMenu0Block0Content"> 
+							<table height="100%" cellSpacing=0 width="100%" cellPadding=0 border=0 class="tableMenu">
+								<tr>
+									<td height="98%" colspan=2 valign="top" class="white">
+												<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+												<tr>
+													<td colspan="2" height="10%">
+														<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+															<tr>
+																<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+																<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+																<td width="94%"><a href="ayuda_listado_oficinas.html" target="glosario" class="atxt">Listado oficinas</a></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" height="10%">
+														<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+															<tr>
+																<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+																<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+																<td width="94%"><a href="ayuda_alta_oficinas.html" target="glosario" class="atxt">Alta oficina</a></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" height="10%">
+														<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+															<tr>
+																<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+																<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+																<td width="94%"><a href="ayuda_edicion_oficinas.html" target="glosario" class="atxt">Modificación oficina</a></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+						</div>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--USUARIOS-->
+<div id="CollapseMenu0Block1">
+	<div id="CollapseMenu0Block1Item">
+				<table height="100%" width="100%" cellSpacing=0 cellPadding=0  border=0 class="tableMenu">
+					<tr>
+						<td height="98%" colspan=2 valign="top" class="white">
+								<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+									<tr>
+										<td colspan="2" height="10%">
+											<table height="10%" width="100%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenu">
+												<tr>
+													<td width="4%" id="carp1"><a href="javascript:collapse.toggle(1)" onClick="javascript:cambiarImg('ImgmasC','age');"><img src="images/comun/carpeta.gif" name="ImgmasC" border="0"></a></td>
+													<td width="96%"><a href="javascript:collapse.toggle(1)" onClick="javascript:cambiarImg('ImgmasC','age');" class="atxtb">USUARIOS</a></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+						</td>
+					</tr>
+				</table>
+	</div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--SUBMENU USUARIOS-->
+	<div id="CollapseMenu0Block1Content"> 
+				<table height="100%" width="100%" cellSpacing=0 cellPadding=0 width="23%" border=0 class="tableMenu">
+					<tr>
+						<td height="98%" colspan=2 valign="top" class="white">
+								<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+									<tr>
+										<td colspan="2" height="10%">
+											<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+												<tr>
+													<td colspan="2" height="10%">
+														<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+															<tr>
+																<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+																<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+																<td width="94%"><a href="ayuda_listado_usuarios.html" target="glosario" class="atxt">Listado usuarios</a></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" height="10%">
+														<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+															<tr>
+																<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+																<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+																<td width="94%"><a href="ayuda_asociaroficinas_usuarios.html" target="glosario" class="atxt">Asociar oficinas</a></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" height="10%">
+														<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+															<tr>
+																<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+																<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+																<td width="94%"><a href="ayuda_alta_usuarios.html" target="glosario" class="atxt">Alta usuario</a></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" height="10%">
+														<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+															<tr>
+																<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+																<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+																<td width="94%"><a href="ayuda_edicion_usuarios.html" target="glosario" class="atxt">Edición usuario</a></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+		</div>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------->													
+<!--LIBROS-->
+<div id="CollapseMenu0Block2">
+	<div id="CollapseMenu0Block2Item">
+				<table height="100%" width="100%" cellSpacing=0 cellPadding=0 border=0 class="tableMenu">
+					<tr>
+						<td height="98%" colspan=2 valign="top" class="white">
+								<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+									<tr>
+										<td colspan="2" height="10%">
+									<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+									<tr>
+										<td colspan="2" height="10%">
+											<table height="10%" width="100%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenu">
+												<tr>
+													<td width="4%" id="carp2"><a href="javascript:collapse.toggle(2)" onClick="javascript:cambiarImg('ImgmasO','opo');"><img src="images/comun/carpeta.gif" border="0" name="ImgmasO"></a></td>
+													<td width="96%" ><a href="javascript:collapse.toggle(2)" class="atxtb" onClick="javascript:cambiarImg('ImgmasO','opo');">LIBROS</a></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>	
+				</td>
+			</tr>
+		</table>
+	</div>
+<!------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--SUBMENU OPORTUNIDADES-->
+	<div id="CollapseMenu0Block2Content">
+				<table height="100%" width="100%" cellSpacing=0 cellPadding=0 border=0 class="tableMenu">
+					<tr>
+						<td height="98%" colspan=2 valign="top" class="white">
+								<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+									<tr>
+										<td colspan="2" height="10%">
+											<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_listado_libros.html" target="glosario" class="atxt">Listado Libros</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_alta_libros.html" target="glosario" class="atxt">Alta Libros</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_edicion_libros.html" target="glosario" class="atxt">Edición Libros</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>											
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_numeracion_libros.html" target="glosario" class="atxt">Configurar Numeración</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_permisos_oficinas_libros.html" target="glosario" class="atxt">Permisos libros</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_asociar_oficinas_libros.html" target="glosario" class="atxt">Asociar oficinas</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_permisos_usuarios_libros.html" target="glosario" class="atxt">Permisos usuarios</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_filtros_libros.html" target="glosario" class="atxt">Configurar filtros</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>											
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_lista_libros.html" target="glosario" class="atxt">Lista de almacenamiento</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+	</div>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------->													
+<!--UNIDADES-->
+<div id="CollapseMenu0Block3">
+	<div id="CollapseMenu0Block3Item">
+				<table height="100%" width="100%" cellSpacing=0 cellPadding=0 border=0 class="tableMenu">
+					<tr>
+						<td height="98%" colspan=2 valign="top" class="white">
+								<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+									<tr>
+										<td colspan="2" height="10%">
+									<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+									<tr>
+										<td colspan="2" height="10%">
+											<table height="10%" width="100%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenu">
+												<tr>
+													<td width="4%" id="carp3"><a href="javascript:collapse.toggle(3)" onClick="javascript:cambiarImg('ImgmasG','act');"><img src="images/comun/carpeta.gif" border="0" name="ImgmasG"></a></td>
+													<td width="96%" ><a href="javascript:collapse.toggle(3)" class="atxtb" onClick="javascript:cambiarImg('ImgmasG','act');">UNIDADES ADMIN.</a></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>	
+				</td>
+			</tr>
+		</table>
+	</div>
+<!------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--SUBMENU UNIDADES ADMINISTRATIVAS-->
+	<div id="CollapseMenu0Block3Content">
+				<table height="100%" width="100%" cellSpacing=0 cellPadding=0 border=0 class="tableMenu">
+					<tr>
+						<td height="98%" colspan=2 valign="top" class="white">
+								<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+									<tr>
+										<td colspan="2" height="10%">
+											<table width="100%" border="0" cellSpacing="0" cellPadding="0">
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_listado_unidades.html" target="glosario" class="atxt">Listado Unidades</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_alta_unidades.html" target="glosario" class="atxt">Alta Unidades</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_edicion_unidades.html" target="glosario" class="atxt">Edición Unidades</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" height="10%">
+													<table width="100%" height="10%" border="0" cellSpacing="0" cellpadding="0" class="cdoTableMenuDesp">
+														<tr>
+															<td width="4%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+															<td width="2%"><img src="images/comun/flecha_submenu.gif"></td>
+															<td width="94%"><a href="ayuda_lista_distribucion_unidades.html" target="glosario" class="atxt">Lista Distribución</a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+	</div>
+
+
+
+	
+
+<script language="JavaScript">
+document.write(collapse.divEnd)
+</script>
+<!--</div>--><!--cierro la Capa id="CollapseMenu0Block11"-->
+<!--</div>--><!--cierro la Capa id="CollapseMenu0Block10"-->
+<!--</div>--><!--cierro la Capa id="CollapseMenu0Block9"-->
+<!--</div>--><!--cierro la Capa id="CollapseMenu0Block8"-->
+<!--</div>--><!--cierro la Capa id="CollapseMenu0Block7"-->
+<!--</div>--><!--cierro la Capa id="CollapseMenu0Block6"-->
+<!--</div>--><!--cierro la Capa id="CollapseMenu0Block5"-->
+</div><!--cierro la Capa id="CollapseMenu0Block2"-->
+</div><!--cierro la Capa id="CollapseMenu0Block1"-->
+</div><!--cierro la Capa id="CollapseMenu0Block0"-->
+<!--Campo oculto para controlar el refresco de la ventana-->
+<input type="hidden" name="estado" value="0">
+</form>
+</body>
+</html>

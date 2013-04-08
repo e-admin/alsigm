@@ -1,0 +1,36 @@
+/**
+ * RegistroTelematicoWebService_PortType.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.3 Oct 05, 2005 (05:23:37 EDT) WSDL2Java emitter.
+ */
+
+package ieci.tecdoc.sgm.registro.ws.client.axis;
+
+public interface RegistroTelematicoWebService_PortType extends java.rmi.Remote {
+    public ieci.tecdoc.sgm.registro.ws.client.axis.Registros query(java.lang.String sessionId, ieci.tecdoc.sgm.registro.ws.client.axis.RegistroConsulta query, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 crearPeticionRegistro(java.lang.String sessionId, ieci.tecdoc.sgm.registro.ws.client.axis.RegistroPeticion requestInfo, java.lang.String idiom, java.lang.String organismo, java.lang.String numeroExpediente, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RetornoCadena establecerDocumentosSubsanacion(java.lang.String sessionId, ieci.tecdoc.sgm.registro.ws.client.axis.Documentos procedureDocuments, ieci.tecdoc.sgm.registro.ws.client.axis.PeticionDocumentos requestDocuments, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 registrar(java.lang.String sessionId, ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 registryRequest, java.lang.String additionalInfo, java.lang.String idiom, java.lang.String oficina, java.lang.String plantilla, java.lang.String certificado, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 registrarConJustificante(java.lang.String sessionId, ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 registryRequest, java.lang.String additionalInfo, java.lang.String idiom, java.lang.String oficina, ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 plantilla, java.lang.String certificado, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 registrarTelematicoAndIniciarExpediente(java.lang.String sessionId, ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 registryRequest, java.lang.String additionalInfo, java.lang.String idiom, java.lang.String oficina, java.lang.String plantilla, java.lang.String certificado, java.lang.String tramiteId, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 registrarTelematicoConJustificanteAndIniciarExpediente(java.lang.String sessionId, ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 registryRequest, java.lang.String additionalInfo, java.lang.String idiom, java.lang.String oficina, ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 plantilla, java.lang.String certificado, java.lang.String tramiteId, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RetornoServicio deshacerRegistro(java.lang.String sessionId, java.lang.String registryNumber, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RetornoCadena obtenerNumeroRegistro(ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RetornoServicio eliminarDocumentosTemporales(java.lang.String sessionId, java.lang.String registryNumber, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.Registros obtenerRegistrosParaMostrar(ieci.tecdoc.sgm.registro.ws.client.axis.RegistroConsulta query, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.Registro obtenerRegistro(java.lang.String sessionId, java.lang.String registryNumber, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.ContenedorDocumentos obtenerDatosDocumentosRegistro(java.lang.String registryNumber, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 obtenerJustificanteRegistro(java.lang.String sessionId, java.lang.String registryNumber, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 obtenerPeticionRegistro(java.lang.String registryNumber, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.Registros obtenerRegistrosConsolidados(ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RetornoLogico tieneDocumentos(java.lang.String registryNumber, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.ByteArrayB64 obtenerContenidoDocumento(java.lang.String sessionId, java.lang.String registryNumber, java.lang.String code, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.StringB64 obtenerDocumento(java.lang.String registryNumber, java.lang.String code, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RetornoServicio establecerEstadoRegistro(java.lang.String registryNumber, java.lang.String status, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RegistroDocumentos obtenerDocumentosRegistro(java.lang.String registryNumber, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RegistroDocumento obtenerDocumentoRegistro(java.lang.String sessionId, java.lang.String registryNumber, java.lang.String code, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RegistroDocumento insertarDocumentoRegistro(ieci.tecdoc.sgm.registro.ws.client.axis.RegistroDocumento registryDocument, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RetornoServicio actualizarDocumentoRegistro(ieci.tecdoc.sgm.registro.ws.client.axis.RegistroDocumento registryDocument, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+    public ieci.tecdoc.sgm.registro.ws.client.axis.RetornoServicio eliminarDocumentoRegistro(java.lang.String registryNumber, ieci.tecdoc.sgm.registro.ws.client.axis.Entidad entidad) throws java.rmi.RemoteException;
+}

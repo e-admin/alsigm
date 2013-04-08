@@ -1,0 +1,2 @@
+SELECT "Clientes".CL_CLI  AS "id_cliente" , "Clientes".NOMBRE , "Clientes".PROVINCIA , "Tarjetas".CL_TAR  AS "id_tarjeta" , "Tarjetas".CL_TAR  AS "id_tarjeta" , SUM ("Tarjetas".SALDO ) AS "SUMA_SALDO" FROM DATACM_4_0."Clientes" "Clientes" , DATACM_4_0."Tarjetas" "Tarjetas"  WHERE ((( "Tarjetas".CL_CLI  =  "Clientes".CL_CLI ) AND ( "Clientes".NOMBRE  = 'Pepe' )) OR ( SUMA_SALDO  > '20000' )) GROUP BY "Clientes".PROVINCIA  HAVING 
+AVG (SALDO ) > '5000' 

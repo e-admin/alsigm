@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='A:VALOR'
+				readOnly='false'
+				titleKey='form.hierarchicaltables.valueTablePrev'
+				fieldType='DATA'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+	/>
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='A:SUSTITUTO'
+				readOnly='false'
+				titleKey='form.hierarchicaltables.substituteTablePrev'
+				fieldType='DATA'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+	/>
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='D:VALOR'
+				readOnly='false'
+				titleKey='form.hierarchicaltables.valueTableDesc'
+				fieldType='DATA'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+	/>
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='D:SUSTITUTO'
+				readOnly='false'
+				titleKey='form.hierarchicaltables.substituteTableDesc'
+				fieldType='DATA'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+	/>
+</beanformatter>

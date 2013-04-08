@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: Pago_spring.xml,v 1.1 2007/07/23 10:59:30 cnavas Exp $ -->
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+<!-- datos de cabecera soap -->
+<!ENTITY NOMBRE_CABECERA "cabecera-implementacion">
+<!ENTITY ARGS_CABECERA
+"<constructor-arg type='java.lang.String' index='0' value='namespace'/>
+<constructor-arg type='java.lang.String' index='1' value='&NOMBRE_CABECERA;'/>">
+<!ENTITY CLASS_HEADER "org.apache.axis.message.SOAPHeaderElement">
+]>
+<beans>
+    <bean id="pago.propiedades" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations" value="classpath:ieci/tecdoc/sgm/pe/resources/PagoElectronicoEuskadi.properties"/>
+    </bean>
+    
+    <!--  Implementación del sistema de pago electronico -->
+    <bean id="pago.SPT.impl" class="ieci.tecdoc.sgm.pe.impl.euskadi.net.EuskadiNetSistemaPagoElectronico"/> 
+    
+    <bean abstract="true" id="pago.SPT.conector.pasarela.base" class="ieci.tecdoc.sgm.pe.struts.pasarela.ConectorPasarelaPago"/>
+    <bean id="pago.SPT.conector.pasarela" class="ieci.tecdoc.sgm.pe.pasarela.impl.ConectorPasarelaPagoEuskadiNet" parent="pago.SPT.conector.pasarela.base">
+    	<property name="urlRetorno" value="http://192.168.8.4:8080/SIGEM_PagoElectronicoWeb/retornoPasarela.do"/>
+    </bean>
+    
+    <bean id="pago.SPT.cuadernos" class="org.springframework.beans.factory.config.MapFactoryBean">
+	    <property name="sourceMap">
+	    	<map>
+	    		<entry key="C60M1" value-ref="C60M1"/>
+	    		<entry key="C60M2" value-ref="C60M2"/>
+	    		<entry key="C60M3" value-ref="C60M3"/>
+	    		<entry key="C57"   value-ref="C57"/>
+	    	</map>
+	    </property>
+	</bean>
+	
+	<bean id="C60M1" class="ieci.tecdoc.sgm.pe.cuadernos.impl.ManejadorCuaderno60M1"/>
+	<bean id="C60M2" class="ieci.tecdoc.sgm.pe.cuadernos.impl.ManejadorCuaderno60M2"/>
+	<bean id="C60M3" class="ieci.tecdoc.sgm.pe.cuadernos.impl.ManejadorCuaderno60M3"/>
+	<bean id="C57" class="ieci.tecdoc.sgm.pe.cuadernos.impl.ManejadorCuaderno57"/>
+    
+<!-- <bean id="pago.configuracion" class="ieci.tecdoc.sgm.pe.Configuracion">
+		<property name="propiedades" ref="pago.propiedades"/>
+	</bean>
+-->	
+</beans>

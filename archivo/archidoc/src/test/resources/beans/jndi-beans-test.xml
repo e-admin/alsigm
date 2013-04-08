@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="archidocDSName" class="java.lang.String">
+		<constructor-arg type="String" value="java:comp/env/jdbc/archivoDS"/>
+	</bean>
+
+	<bean id="archidocDSNamePostgres" class="java.lang.String">
+		<constructor-arg type="String" value="java:comp/env/jdbc/archivoDSPostgres"/>
+	</bean>
+
+	<bean id="archidocManager" class="common.manager.impl.ArchidocManagerImpl">
+		<constructor-arg type="String" ref="archidocDSName"/>
+		<constructor-arg type="String" ref="oracle9Factory"/>
+	</bean>
+
+	<!-- Multientidad
+	<bean id="archidocDSMultiEntityName" class="java.lang.String">
+		<constructor-arg type="String" value="java:comp/env/jdbc/archivoDS_{0}"/>
+	</bean>
+
+	<bean id="archidocManager" class="common.db.impl.ArchidocManager">
+		<constructor-arg type="String" ref="archidocDSMultiEntityName"/>
+		<constructor-arg type="String" value="000"/>
+		<constructor-arg type="String" ref="sqlserverFactory"/>
+	</bean>
+
+	 -->
+
+	<!-- Definición de Factorías -->
+	<bean id="postgresFactory" class="java.lang.String">
+    	<constructor-arg type="String" value="common.db.DBEntityFactoryPostgreSQL"/>
+    </bean>
+
+	<bean id="oracle8Factory" class="java.lang.String">
+    	<constructor-arg type="String" value="common.db.DBEntityFactoryOracle8i"/>
+    </bean>
+
+	<bean id="oracle9Factory" class="java.lang.String">
+    	<constructor-arg type="String" value="common.db.DBEntityFactoryOracle9i"/>
+    </bean>
+
+	<bean id="sqlserverFactory" class="java.lang.String">
+    	<constructor-arg type="String" value="common.db.DBEntityFactorySqlServer2000"/>
+    </bean>
+
+	<bean id="DB2Factory" class="java.lang.String">
+    	<constructor-arg type="String" value="common.db.DBEntityFactoryDB2"/>
+    </bean>
+
+</beans>

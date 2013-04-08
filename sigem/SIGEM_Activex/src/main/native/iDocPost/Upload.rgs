@@ -1,0 +1,33 @@
+HKCR
+{
+	IDocPost.Upload.1 = s 'Upload Class'
+	{
+		CLSID = s '{CDB30A8F-7EB9-407D-A20D-E10010CEF693}'
+	}
+	IDocPost.Upload = s 'Upload Class'
+	{
+		CLSID = s '{CDB30A8F-7EB9-407D-A20D-E10010CEF693}'
+		CurVer = s 'IDocPost.Upload.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {CDB30A8F-7EB9-407D-A20D-E10010CEF693} = s 'Upload Class'
+		{
+			ProgID = s 'IDocPost.Upload.1'
+			VersionIndependentProgID = s 'IDocPost.Upload'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 102'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '132497'
+			}
+			'TypeLib' = s '{AB047A64-496C-43A1-89BD-744B6B9A5DF8}'
+			'Version' = s '1.0'
+		}
+	}
+}

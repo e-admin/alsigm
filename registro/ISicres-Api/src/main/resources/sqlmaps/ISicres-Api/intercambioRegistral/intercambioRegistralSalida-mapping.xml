@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="IntercambioRegistralSalidaVO">
+
+<typeAlias alias="intercambioRegistralSalidaVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.IntercambioRegistralSalidaVO" />
+<typeAlias alias="estadoIntercambioRegistralSalidaVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaVO" />
+<typeAlias alias="bandejaSalidaItemVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.BandejaSalidaItemVO" />
+
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.IntercambioRegistralSalidaVO"
+		id="intercambioRegistralSalidaResultMap">
+		<result property="id" column="id" jdbcType="INT" javaType="java.lang.Long" />
+		<result property="idLibro" column="id_arch" jdbcType="INT" javaType="java.lang.Long"/>
+		<result property="idRegistro" column="id_fdr"   jdbcType="INT" javaType="java.lang.Long"/>
+		<result property="fechaEstado" column="state_date" />
+		<result property="idIntercambioRegistral" column="id_exchange_sir" />
+		<result property="idIntercambioInterno" column="id_exchange" jdbcType="INT" javaType="java.lang.Long" />
+		<result property="fechaIntercambio" column="exchange_date"/>
+		<result property="tipoOrigen" column="type_orig" />
+		<result property="idOfic" column="id_ofic" jdbcType="INT" javaType="java.lang.Integer"  />
+		<result property="nombreOfic" column="nameOfic" />
+		<result property="estado" column="state" />
+		<result property="username" column="username" />
+
+		<result property="codeEntity" column="code_entity" />
+		<result property="nameEntity" column="name_entity" />
+		<result property="codeTramunit" column="code_tramunit" />
+		<result property="nameTramunit" column="name_tramunit" />
+		
+		<result property="comentarios" column="comments" />
+
+
+
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaVO"
+		id="intercambioRegistralSalidaDetalleEstadosResultMap">
+		<result property="id" column="id"/>
+		<result property="idExReg" column="id_exreg" />
+		<result property="fechaEstado" column="state_date" />
+		<result property="estado" column="state" />
+		<result property="userName" column="username" />
+		<result property="comentarios" column="comments" />
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.BandejaSalidaItemVO"
+		id="bandejaSalidaItemResultmap">
+		<result property="id" column="id"/>
+		<result property="idLibro" column="id_arch" />
+		<result property="idRegistro" column="id_fdr" />
+		<result property="tipoLibro" column="type_orig" />
+		<result property="estado" column="state" />
+		<result property="idOfic" column="id_ofic" />
+		<result property="fechaEstado" column="state_date" />
+		<result property="idIntercambioRegistral" column="id_exchange_sir" />
+		<result property="idIntercambioInterno" column="id_exchange" jdbcType="INT" javaType="java.lang.Long" />
+		<result property="codeEntity" column="code_entity" />
+		<result property="nameEntity" column="name_entity" />
+		<result property="codeTramunit" column="code_tramunit" />
+		<result property="nameTramunit" column="name_tramunit" />
+		<result property="numeroRegistro" column="fld1"/>
+		<result property="fechaRegistro" column="fld2" />
+		
+		<result property="codeEntity" column="code_entity" />
+		<result property="nameEntity" column="name_entity" />
+		<result property="codeTramunit" column="code_tramunit" />
+		<result property="nameTramunit" column="name_tramunit" />
+		<result property="comentarios" column="comments" />
+		
+	</resultMap>
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.BandejaSalidaItemVO"
+		id="bandejaSalidaItemRegistroResultmap">
+		<result property="numeroRegistro" column="fld1"/>
+		<result property="fechaRegistro" column="fld2" />
+		<result property="estadoRegistro" column="fld6" />
+
+	</resultMap>
+
+
+</sqlMap>

@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ieci.tecdoc.common.invesdoc.Iuserusersys"
+    table="IUSERUSERSYS"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IUSERUSERSYS"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property
+            name="maxbaccnt"
+            column="MAXBADCNTS"
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="MAXBADCNTS"
+                length="10"
+            </meta>
+        </key-property>
+        <key-property
+            name="pwdvp"
+            column="PWDVP"
+            type="int"
+            length="20"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="PWDVP"
+                length="20"
+            </meta>
+        </key-property>
+        <key-property
+            name="pwdmbc"
+            column="PWDMBC"
+            type="java.lang.String"
+            length="1"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="PWDMBC"
+                length="1"
+            </meta>
+        </key-property>
+        <key-property
+            name="pwdminlen"
+            column="PWDMINLEN"
+            type="int"
+            length="5"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="PWDMINLEN"
+                length="5"
+            </meta>
+        </key-property>
+        <key-property
+            name="pwexpiredap"
+            column="PWDEXPIREDAP"
+            type="int"
+            length="20"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="PWDEXPIREDAP"
+                length="20"
+            </meta>
+        </key-property>
+        <key-property
+            name="numpwdlock"
+            column="NUMPWDLOCK"
+            type="int"
+            length="5"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="NUMPWDLOCK"
+                length="5"
+            </meta>
+        </key-property>
+        <key-property
+            name="flags"
+            column="FLAGS"
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FLAGS"
+                length="10"
+            </meta>
+        </key-property>
+        <key-property
+            name="updrid"
+            column="UPDRID"
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="UPDRID"
+                length="10"
+            </meta>
+        </key-property>
+        <key-property
+            name="upddate"
+            column="UPDDATE"
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="UPDDATE"
+                length="7"
+            </meta>
+        </key-property>
+    </composite-id>
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="TercerosWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="lookupByCode" qname="ns1:lookupByCode" returnQName="ns1:lookupByCodeReturn" returnType="ns1:ListaTerceros" soapAction="" xmlns:ns1="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns1:idEntidad"/>
+   <parameter qname="ns1:codigo"/>
+  </operation>
+  <operation name="lookupByCodeValues" qname="ns4:lookupByCodeValues" returnQName="ns4:lookupByCodeValuesReturn" returnType="ns4:ListaTerceros" soapAction="" xmlns:ns4="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns4:idEntidad"/>
+   <parameter qname="ns4:codigo"/>
+   <parameter qname="ns4:onlyDefaultValues"/>
+  </operation>
+  <operation name="lookupByName" qname="ns2:lookupByName" returnQName="ns2:lookupByNameReturn" returnType="ns2:ListaTerceros" soapAction="" xmlns:ns2="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns2:idEntidad"/>
+   <parameter qname="ns2:nombre"/>
+   <parameter qname="ns2:apellido1"/>
+   <parameter qname="ns2:apellido2"/>
+  </operation>
+  <operation name="lookupByNameValues" qname="ns2:lookupByNameValues" returnQName="ns2:lookupByNameValuesReturn" returnType="ns2:ListaTerceros" soapAction="" xmlns:ns2="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns2:idEntidad"/>
+   <parameter qname="ns2:nombre"/>
+   <parameter qname="ns2:apellido1"/>
+   <parameter qname="ns2:apellido2"/>
+   <parameter qname="ns2:onlyDefaultValues"/>
+  </operation>
+  <operation name="lookupById" qname="ns3:lookupById" returnQName="ns3:lookupByIdReturn" returnType="ns3:InfoTercero" soapAction="" xmlns:ns3="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns3:idEntidad"/>
+   <parameter qname="ns3:id"/>
+  </operation>
+  <operation name="lookupByIdValues" qname="ns6:lookupByIdValues" returnQName="ns6:lookupByIdValuesReturn" returnType="ns6:InfoTercero" soapAction="" xmlns:ns6="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns6:idEntidad"/>
+   <parameter qname="ns6:id"/>
+   <parameter qname="ns6:onlyDefaultValues"/>
+  </operation>
+  <operation name="lookupByIdAddresses" qname="ns5:lookupByIdAddresses" returnQName="ns5:lookupByIdAddressesReturn" returnType="ns5:InfoTercero" soapAction="" xmlns:ns5="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns5:idEntidad"/>
+   <parameter qname="ns5:id"/>
+   <parameter qname="ns5:postalAddressId"/>
+   <parameter qname="ns5:electronicAddressId"/>
+  </operation>
+  <operation name="lookupPostalAddresses" qname="ns7:lookupPostalAddresses" returnQName="ns7:lookupPostalAddressesReturn" returnType="ns7:ListaDireccionesPostales" soapAction="" xmlns:ns7="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns7:idEntidad"/>
+   <parameter qname="ns7:id"/>
+  </operation>
+  <operation name="lookupDefaultPostalAddress" qname="ns8:lookupDefaultPostalAddress" returnQName="ns8:lookupDefaultPostalAddressReturn" returnType="ns8:InfoDireccionPostal" soapAction="" xmlns:ns8="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns8:idEntidad"/>
+   <parameter qname="ns8:id"/>
+  </operation>
+  <operation name="lookupElectronicAddresses" qname="ns9:lookupElectronicAddresses" returnQName="ns9:lookupElectronicAddressesReturn" returnType="ns9:ListaDireccionesElectronicas" soapAction="" xmlns:ns9="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns9:idEntidad"/>
+   <parameter qname="ns9:id"/>
+  </operation>
+  <operation name="lookupDefaultElectronicAddress" qname="ns10:lookupDefaultElectronicAddress" returnQName="ns10:lookupDefaultElectronicAddressReturn" returnType="ns10:InfoDireccionElectronica" soapAction="" xmlns:ns10="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns10:idEntidad"/>
+   <parameter qname="ns10:id"/>
+  </operation>
+  <operation name="getPostalAddress" qname="ns11:getPostalAddress" returnQName="ns11:getPostalAddressReturn" returnType="ns11:InfoDireccionPostal" soapAction="" xmlns:ns11="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns11:idEntidad"/>
+   <parameter qname="ns11:id"/>
+  </operation>
+  <operation name="getElectronicAddress" qname="ns12:getElectronicAddress" returnQName="ns12:getElectronicAddressReturn" returnType="ns12:InfoDireccionElectronica" soapAction="" xmlns:ns12="http://server.ws.terceros.sgm.tecdoc.ieci">
+   <parameter qname="ns12:idEntidad"/>
+   <parameter qname="ns12:id"/>
+  </operation>
+  <parameter name="allowedMethods" value="*"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="TercerosWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.terceros.ws.server.TercerosWebService"/>
+  <parameter name="wsdlServicePort" value="TercerosWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.terceros.sgm.tecdoc.ieci,http://dto.server.ws.terceros.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="TercerosWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns13="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns14:Tercero" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.terceros.ws.server.dto.Tercero" xmlns:ns14="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:ListaTerceros" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.terceros.ws.server.dto.ListaTerceros" xmlns:ns15="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:InfoTercero" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.terceros.ws.server.dto.InfoTercero" xmlns:ns16="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns17:DireccionPostal" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.terceros.ws.server.dto.DireccionPostal" xmlns:ns17="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns18:ListaDireccionesPostales" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.terceros.ws.server.dto.ListaDireccionesPostales" xmlns:ns18="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:InfoDireccionPostal" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.terceros.ws.server.dto.InfoDireccionPostal" xmlns:ns19="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns20:DireccionElectronica" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.terceros.ws.server.dto.DireccionElectronica" xmlns:ns20="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:ListaDireccionesElectronicas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.terceros.ws.server.dto.ListaDireccionesElectronicas" xmlns:ns21="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:InfoDireccionElectronica" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.terceros.ws.server.dto.InfoDireccionElectronica" xmlns:ns22="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns23:Tercero" languageSpecificType="java:ieci.tecdoc.sgm.terceros.ws.server.dto.Tercero[]" qname="ns23:ArrayOfTerceros" xmlns:ns23="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns24:DireccionPostal" languageSpecificType="java:ieci.tecdoc.sgm.terceros.ws.server.dto.DireccionPostal[]" qname="ns24:ArrayOfDireccionesPostales" xmlns:ns24="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+  <arrayMapping innerType="ns25:DireccionElectronica" languageSpecificType="java:ieci.tecdoc.sgm.terceros.ws.server.dto.DireccionElectronica[]" qname="ns25:ArrayOfDireccionesElectronicas" xmlns:ns25="http://server.ws.terceros.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

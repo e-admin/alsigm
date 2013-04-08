@@ -1,0 +1,38 @@
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<LINK rel="stylesheet" TYPE="text/css" HREF="css/global.css">
+		<LINK rel="stylesheet" TYPE="text/css" HREF="css/font.css">
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+	</HEAD>
+	<script language="javascript">
+		function onWindowLoad()
+		{
+			var ParamArr = window.document.location.search.split('!');
+			var ValueArr;
+
+			for( var ii=0; ii<ParamArr.length; ii++ ) {
+				ValueArr = ParamArr[ii].split(':');
+				
+				switch( ValueArr[0] ){
+					case "?Txt":
+						SetInnerText(window.document.getElementById("Msg"), "     " + unescape(ValueArr[1]));
+						break;
+					case "URL":
+						parent.VldRes.location.href = ValueArr[1];
+						break;
+				}
+			}
+			
+			return;
+		}
+	</script>
+	<BODY onload="onWindowLoad()" tabIndex="-1">
+		<BR>
+		<BR>
+		<label class="msg" id="Msg"></label>
+	</BODY>
+</HTML>

@@ -1,0 +1,69 @@
+<HTML>
+	<HEAD>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/table.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<link rel="stylesheet" type="text/css" href="./css/global.css" />
+	</HEAD>
+	<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+	<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/report.js"></SCRIPT>
+	<SCRIPT LANGUAGE="javascript">top.Idioma = top.GetDlgParam(7);</SCRIPT>
+	<BODY TABINDEX="-1">
+		<TABLE CLASS="report" WIDTH="99%" TABINDEX="-1">
+			<THEAD>
+				<TR>
+					<TH CLASS="report" ALIGN="left">
+						<SCRIPT LANGUAGE="javascript">
+							document.write(top.GetIdsLan( "IDS_TITSELTPINF"));
+						</SCRIPT>
+					</TH>
+				</TR>
+			</THEAD>
+			<TR>
+				<TD CLASS="report">
+					<SCRIPT LANGUAGE="javascript">
+							if ((top.GetDlgParam(5) == 0) || (top.GetDlgParam(5) == 3))
+							{
+								document.write("<DIV class='label'>");
+								document.write("<INPUT CLASS=\"radio\" TYPE=\"radio\" NAME=\"opcimp\" VALUE=\"LM\" TABINDEX=\"1\" onclick=\"SelectTpInf(this);\"></INPUT>");
+								document.write(top.GetIdsLan("IDS_OPCLISTAD"));
+								document.write("<BR/>");
+								document.write("<DIV/>");		
+							}
+							
+							if ((top.GetDlgParam(5) == 0) || (top.GetDlgParam(5) == 1) || (top.GetDlgParam(5) == 3))
+							{
+								document.write("<DIV class='label'>");
+								document.write("<INPUT CLASS=\"radio\" TYPE=\"radio\" NAME=\"opcimp\" VALUE=\"CM\" TABINDEX=\"1\" onclick=\"SelectTpInf(this);\"></INPUT>");
+								document.write(top.GetIdsLan("IDS_OPCCERTIF"));
+								document.write("<BR/>");
+								document.write("<DIV/>");		
+							}
+							
+							if ((top.GetDlgParam(5) == 0) || (top.GetDlgParam(5) == 2) || (top.GetDlgParam(5) == 3))
+							{
+								document.write("<DIV class='label'>");
+								document.write("<INPUT CLASS=\"radio\" TYPE=\"radio\" NAME=\"opcimp\" VALUE=\"RMD\" TABINDEX=\"1\" onclick=\"SelectTpInf(this);\"></INPUT>");
+								document.write(top.GetIdsLan("IDS_OPCRELACDEST"));
+								document.write("<BR/>");
+								document.write("<INPUT CLASS=\"radio\" TYPE=\"radio\" NAME=\"opcimp\" VALUE=\"RMO\" TABINDEX=\"1\" onclick=\"SelectTpInf(this);\"></INPUT>");
+								document.write(top.GetIdsLan("IDS_OPCRELACORIG"));
+								document.write("<BR/>");
+								document.write("<DIV/>");		
+							}
+					</SCRIPT>
+				</TD>
+			</TR>
+		</TABLE>
+		<SCRIPT LANGUAGE="javascript">
+			if (top.GetDlgParam(5) == 0)
+			{
+				document.write("<BR/>");
+				document.write("<DIV class='label'>");
+				document.write("<INPUT CLASS=\"check\" TYPE=\"checkbox\" ID=\"chkSelected\" NAME=\"chkSelected\" TABINDEX=\"1\"></INPUT>");
+				document.write(top.GetIdsLan("IDS_LABEL_PRINT_ONLY_SELECTED"));
+				document.write("<DIV/>");		
+			}
+		</SCRIPT>
+	</BODY>
+</HTML>

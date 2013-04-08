@@ -1,0 +1,574 @@
+[test] -----> number: 0
+[test]          name: `'
+[test]         title: `Number of options'
+[test]   description: `Read-only option that specifies how many options a specific devices supports.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 1
+[test]          name: `'
+[test]         title: `Scan Mode'
+[test]   description: `'
+[test]          type: SANE_TYPE_GROUP
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 2
+[test]          name: `mode'
+[test]         title: `Scan mode'
+[test]   description: `Selects the scan mode (e.g., lineart, monochrome, or color).'
+[test]          type: SANE_TYPE_STRING
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 6
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_STRING_LIST
+
+
+[test] -----> number: 3
+[test]          name: `depth'
+[test]         title: `Bit depth'
+[test]   description: `Number of bits per sample, typical values are 1 for "line-art" and 8 for multibit scans.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_WORD_LIST
+
+
+[test] -----> number: 4
+[test]          name: `hand-scanner'
+[test]         title: `Hand-scanner simulation'
+[test]   description: `Simulate a hand-scanner.  Hand-scanners do not know the image height a priori.  Instead, they return a height of -1.  Setting this option allows to test whether a frontend can handle this correctly.  This option also enables a fixed width of 11 cm.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 5
+[test]          name: `three-pass'
+[test]         title: `Three-pass simulation'
+[test]   description: `Simulate a three-pass scanner. In color mode, three frames are transmitted.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 6
+[test]          name: `three-pass-order'
+[test]         title: `Set the order of frames'
+[test]   description: `Set the order of frames in three-pass color mode.'
+[test]          type: SANE_TYPE_STRING
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE 
+[test] constraint type: SANE_CONSTRAINT_STRING_LIST
+
+
+[test] -----> number: 7
+[test]          name: `resolution'
+[test]         title: `Scan resolution'
+[test]   description: `Sets the resolution of the scanned image.'
+[test]          type: SANE_TYPE_FIXED
+[test]          unit: SANE_UNIT_DPI
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 8
+[test]          name: `source'
+[test]         title: `Scan source'
+[test]   description: `If Automatic Document Feeder is selected, the feeder will be 'empty' after 10 scans.'
+[test]          type: SANE_TYPE_STRING
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 26
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_STRING_LIST
+
+
+[test] -----> number: 9
+[test]          name: `'
+[test]         title: `Special Options'
+[test]   description: `'
+[test]          type: SANE_TYPE_GROUP
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 10
+[test]          name: `test-picture'
+[test]         title: `Select the test picture'
+[test]   description: `Select the kind of test picture. Available options:
+Solid black: fills the whole scan with black.
+Solid white: fills the whole scan with white.
+Color pattern: draws various color test patterns depending on the mode.
+Grid: draws a black/white grid with a width and height of 10 mm per square.'
+[test]          type: SANE_TYPE_STRING
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 14
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_STRING_LIST
+
+
+[test] -----> number: 11
+[test]          name: `invert-endianess'
+[test]         title: `Invert endianness'
+[test]   description: `Exchange upper and lower byte of image data in 16 bit modes. This option can be used to test the 16 bit modes of frontends, e.g. if the frontend uses the correct endianness.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 12
+[test]          name: `read-limit'
+[test]         title: `Read limit'
+[test]   description: `Limit the amount of data transferred with each call to sane_read().'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 13
+[test]          name: `read-limit-size'
+[test]         title: `Size of read-limit'
+[test]   description: `The (maximum) amount of data transferred with each call to sane_read().'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 14
+[test]          name: `read-delay'
+[test]         title: `Read delay'
+[test]   description: `Delay the transfer of data to the pipe.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 15
+[test]          name: `read-delay-duration'
+[test]         title: `Duration of read-delay'
+[test]   description: `How long to wait after transferring each buffer of data through the pipe.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_MICROSECOND
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 16
+[test]          name: `read-return-value'
+[test]         title: `Return-value of sane_read'
+[test]   description: `Select the return-value of sane_read(). "Default" is the normal handling for scanning. All other status codes are for testing how the frontend handles them.'
+[test]          type: SANE_TYPE_STRING
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 26
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_STRING_LIST
+
+
+[test] -----> number: 17
+[test]          name: `ppl-loss'
+[test]         title: `Loss of pixels per line'
+[test]   description: `The number of pixels that are wasted at the end of each line.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_PIXEL
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 18
+[test]          name: `fuzzy-parameters'
+[test]         title: `Fuzzy parameters'
+[test]   description: `Return fuzzy lines and bytes per line when sane_parameters() is called before sane_start().'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 19
+[test]          name: `non-blocking'
+[test]         title: `Use non-blocking IO'
+[test]   description: `Use non-blocking IO for sane_read() if supported by the frontend.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 20
+[test]          name: `select-fd'
+[test]         title: `Offer select file descriptor'
+[test]   description: `Offer a select filedescriptor for detecting if sane_read() will return data.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 21
+[test]          name: `enable-test-options'
+[test]         title: `Enable test options'
+[test]   description: `Enable various test options. This is for testing the ability of frontends to view and modify all the different SANE option types.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 22
+[test]          name: `print-options'
+[test]         title: `Print options'
+[test]   description: `Print a list of all options.'
+[test]          type: SANE_TYPE_BUTTON
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 23
+[test]          name: `'
+[test]         title: `Geometry'
+[test]   description: `'
+[test]          type: SANE_TYPE_GROUP
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 24
+[test]          name: `tl-x'
+[test]         title: `Top-left x'
+[test]   description: `Top-left x position of scan area.'
+[test]          type: SANE_TYPE_FIXED
+[test]          unit: SANE_UNIT_MM
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 25
+[test]          name: `tl-y'
+[test]         title: `Top-left y'
+[test]   description: `Top-left y position of scan area.'
+[test]          type: SANE_TYPE_FIXED
+[test]          unit: SANE_UNIT_MM
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 26
+[test]          name: `br-x'
+[test]         title: `Bottom-right x'
+[test]   description: `Bottom-right x position of scan area.'
+[test]          type: SANE_TYPE_FIXED
+[test]          unit: SANE_UNIT_MM
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 27
+[test]          name: `br-y'
+[test]         title: `Bottom-right y'
+[test]   description: `Bottom-right y position of scan area.'
+[test]          type: SANE_TYPE_FIXED
+[test]          unit: SANE_UNIT_MM
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 28
+[test]          name: `'
+[test]         title: `Bool test options'
+[test]   description: `'
+[test]          type: SANE_TYPE_GROUP
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 29
+[test]          name: `bool-soft-select-soft-detect'
+[test]         title: `(1/6) Bool soft select soft detect'
+[test]   description: `(1/6) Bool test option that has soft select and soft detect (and advanced) capabilities. That's just a normal bool option.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 30
+[test]          name: `bool-hard-select-soft-detect'
+[test]         title: `(2/6) Bool hard select soft detect'
+[test]   description: `(2/6) Bool test option that has hard select and soft detect (and advanced) capabilities. That means the option can't be set by the frontend but by the user (e.g. by pressing a button at the device).'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_HARD_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 31
+[test]          name: `bool-hard-select'
+[test]         title: `(3/6) Bool hard select'
+[test]   description: `(3/6) Bool test option that has hard select (and advanced) capabilities. That means the option can't be set by the frontend but by the user (e.g. by pressing a button at the device) and can't be read by the frontend.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_HARD_SELECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 32
+[test]          name: `bool-soft-detect'
+[test]         title: `(4/6) Bool soft detect'
+[test]   description: `(4/6) Bool test option that has soft detect (and advanced) capabilities. That means the option is read-only.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 33
+[test]          name: `bool-soft-select-soft-detect-emulated'
+[test]         title: `(5/6) Bool soft select soft detect emulated'
+[test]   description: `(5/6) Bool test option that has soft select, soft detect, and emulated (and advanced) capabilities.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_EMULATED SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 34
+[test]          name: `bool-soft-select-soft-detect-auto'
+[test]         title: `(6/6) Bool soft select soft detect auto'
+[test]   description: `(6/6) Bool test option that has soft select, soft detect, and automatic (and advanced) capabilities. This option can be automatically set by the backend.'
+[test]          type: SANE_TYPE_BOOL
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_AUTOMATIC SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 35
+[test]          name: `'
+[test]         title: `Int test options'
+[test]   description: `'
+[test]          type: SANE_TYPE_GROUP
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 36
+[test]          name: `int'
+[test]         title: `(1/6) Int'
+[test]   description: `(1/6) Int test option with no unit and no constraint set.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 37
+[test]          name: `int-constraint-range'
+[test]         title: `(2/6) Int constraint range'
+[test]   description: `(2/6) Int test option with unit pixel and constraint range set. Minimum is 4, maximum 192, and quant is 2.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_PIXEL
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 38
+[test]          name: `int-constraint-word-list'
+[test]         title: `(3/6) Int constraint word list'
+[test]   description: `(3/6) Int test option with unit bits and constraint word list set.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_BIT
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_WORD_LIST
+
+
+[test] -----> number: 39
+[test]          name: `int-constraint-array'
+[test]         title: `(4/6) Int array'
+[test]   description: `(4/6) Int test option with unit mm and using an array without constraints.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_MM
+[test]          size: 24
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 40
+[test]          name: `int-constraint-array-constraint-range'
+[test]         title: `(5/6) Int array constraint range'
+[test]   description: `(5/6) Int test option with unit dpi and using an array with a range constraint. Minimum is 4, maximum 192, and quant is 2.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_DPI
+[test]          size: 24
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 41
+[test]          name: `int-constraint-array-constraint-word-list'
+[test]         title: `(6/6) Int array constraint word list'
+[test]   description: `(6/6) Int test option with unit percent and using an array with a word list constraint.'
+[test]          type: SANE_TYPE_INT
+[test]          unit: SANE_UNIT_PERCENT
+[test]          size: 24
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_WORD_LIST
+
+
+[test] -----> number: 42
+[test]          name: `'
+[test]         title: `Fixed test options'
+[test]   description: `'
+[test]          type: SANE_TYPE_GROUP
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 43
+[test]          name: `fixed'
+[test]         title: `(1/3) Fixed'
+[test]   description: `(1/3) Fixed test option with no unit and no constraint set.'
+[test]          type: SANE_TYPE_FIXED
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 44
+[test]          name: `fixed-constraint-range'
+[test]         title: `(2/3) Fixed constraint range'
+[test]   description: `(2/3) Fixed test option with unit microsecond and constraint range set. Minimum is -42.17, maximum 32767.9999, and quant is 2.0.'
+[test]          type: SANE_TYPE_FIXED
+[test]          unit: SANE_UNIT_MICROSECOND
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_RANGE
+
+
+[test] -----> number: 45
+[test]          name: `fixed-constraint-word-list'
+[test]         title: `(3/3) Fixed constraint word list'
+[test]   description: `(3/3) Fixed test option with no unit and constraint word list set.'
+[test]          type: SANE_TYPE_FIXED
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 4
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE SANE_CAP_ADVANCED 
+[test] constraint type: SANE_CONSTRAINT_WORD_LIST
+
+
+[test] -----> number: 46
+[test]          name: `'
+[test]         title: `String test options'
+[test]   description: `'
+[test]          type: SANE_TYPE_GROUP
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 47
+[test]          name: `string'
+[test]         title: `(1/3) String'
+[test]   description: `(1/3) String test option without constraint.'
+[test]          type: SANE_TYPE_STRING
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 97
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 48
+[test]          name: `string-constraint-string-list'
+[test]         title: `(2/3) String constraint string list'
+[test]   description: `(2/3) String test option with string list constraint.'
+[test]          type: SANE_TYPE_STRING
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 84
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE 
+[test] constraint type: SANE_CONSTRAINT_STRING_LIST
+
+
+[test] -----> number: 49
+[test]          name: `string-constraint-long-string-list'
+[test]         title: `(3/3) String constraint long string list'
+[test]   description: `(3/3) String test option with string list constraint. Contains some more entries...'
+[test]          type: SANE_TYPE_STRING
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 13
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE 
+[test] constraint type: SANE_CONSTRAINT_STRING_LIST
+
+
+[test] -----> number: 50
+[test]          name: `'
+[test]         title: `Button test options'
+[test]   description: `'
+[test]          type: SANE_TYPE_GROUP
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: 
+[test] constraint type: SANE_CONSTRAINT_NONE
+
+
+[test] -----> number: 51
+[test]          name: `button'
+[test]         title: `(1/1) Button'
+[test]   description: `(1/1) Button test option. Prints some text...'
+[test]          type: SANE_TYPE_BUTTON
+[test]          unit: SANE_UNIT_NONE
+[test]          size: 0
+[test]  capabilities: SANE_CAP_SOFT_SELECT SANE_CAP_SOFT_DETECT SANE_CAP_INACTIVE 
+[test] constraint type: SANE_CONSTRAINT_NONE

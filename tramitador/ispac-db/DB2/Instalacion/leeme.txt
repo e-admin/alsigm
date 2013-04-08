@@ -1,0 +1,13 @@
+Pasos para crear el contenido de la base de datos inicial:
+
+En un sistema DB2  AS/400 habría que cambiar los END@ por END; en 01-create_sequences.sql
+
+db2 connect to <nombre-bd> user <usuario> using <clave>
+db2 -td@ -vf 01-create_sequences.sql
+db2 -tvf 02-create_tables.sql
+db2 -tvf 03-create_views.sql
+db2 -tvf 04-datos_iniciales.sql
+db2 -tvf 05-plantillas.sql
+db2 -tvf 06-datos_prototipos.sql
+db2 -tvf 07-create_tables_conector_sharepoint.sql
+db2 terminate

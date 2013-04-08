@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<MenuConfig>
+
+  <Displayers>
+    <Displayer   name="ListMenu"
+                 type="net.sf.navigator.displayer.ListMenuDisplayer"/>
+	<Displayer   name="DropDown"
+                 type="net.sf.navigator.displayer.DropDownMenuDisplayer"/>
+  </Displayers>
+
+  <Menus>
+
+   	<Menu name="Usuarios" title="Usuarios">
+
+    	<Item name="Departamentos" title="Departamentos" location="javascript:carga('Departamentos')"/>
+    	<Item name="Grupos" title="Grupos" location="javascript:carga('Grupos')" />
+		<Item name="Usuarios" title="Usuarios" location="javascript:carga('Usuarios')"/>
+
+	</Menu>
+	
+   	<Menu name="Almacenamiento" title="Almacenamiento">
+   	<!-- 
+    	<Item name="Repositorios" title="Repositorios" location="javascript:carga('Repositorios')"/>
+        <Item name="Volumenes" title="Volumenes" location="javascript:carga('Volumenes')"/>
+    	<Item name="Listas" title="Listas" location="javascript:carga('Listas')"/>
+    	-->
+	</Menu>
+	
+   	<Menu name="Archivadores" title="Archivadores">
+   	<!-- 
+    	<Item name="Directorios" title="Directorios" location="javascript:carga('Directorios')"/>		
+    	<Item name="Archivadores" title="Archivadores" location="javascript:carga('Archivadores')"/>
+    	-->
+	</Menu>
+
+	<!-- Opciones Usuarios -->
+	
+	<Menu name="OpDptos" title="Opciones">
+		<Item name="Nuevo" title="Nuevo"/>
+		<Item name="Editar" title="Editar"/>
+		<Item name="Eliminar" title="Eliminar"/>
+		<Item name="Propiedades" title="Propiedades"/>
+	</Menu>
+	
+	<Menu name="OpGrupos" title="Opciones">
+		<Item name="Nuevo" title="Nuevo"/>
+		<Item name="Editar" title="Editar"/>
+		<Item name="Eliminar" title="Eliminar"/>
+		<Item name="Propiedades" title="Propiedades"/>
+	</Menu>
+	
+	<Menu name="OpUsuarios" title="Opciones">
+		<Item name="Nuevo" title="Nuevo"/>
+		<Item name="Editar" title="Editar"/>
+		<Item name="Eliminar" title="Eliminar"/>
+		<Item name="Propiedades" title="Propiedades"/>
+		<Item name="Bloquear" title="Bloquear"/>
+	</Menu>
+	
+	<!-- Opciones Almacenamiento -->
+
+	<Menu name="OpRepositorios" title="Opciones">
+		<Item name="Nuevo" title="Nuevo"/>
+		<Item name="Editar" title="Editar"/>
+		<Item name="Eliminar" title="Eliminar"/>
+		<Item name="Propiedades" title="Propiedades"/>
+	</Menu>
+	
+	<Menu name="OpVolumenes" title="Opciones">
+		<Item name="Nuevo" title="Nuevo"/>
+		<Item name="Editar" title="Editar"/>
+		<Item name="Eliminar" title="Eliminar"/>
+		<Item name="Propiedades" title="Propiedades"/>
+	</Menu>
+	
+	<Menu name="OpListas" title="Opciones">
+		<Item name="Nuevo" title="Nuevo"/>
+		<Item name="Editar" title="Editar"/>
+		<Item name="Eliminar" title="Eliminar"/>
+		<Item name="Propiedades" title="Propiedades"/>
+		<Item name="Match" title="Asociar a volumen"/>
+		<Item name="UnMatch" title="Eliminar de lista"/>
+	</Menu>
+	
+	<!-- Opciones de Archivadores -->
+	<Menu name="OpDirectorios" title="Opciones">
+		<Item name="Nuevo" title="Nuevo"/>
+		<Item name="Editar" title="Editar"/>
+		<Item name="Eliminar" title="Eliminar"/>
+		<Item name="Propiedades" title="Propiedades"/>
+	</Menu>
+	
+	<Menu name="OpArchivadores" title="Opciones">
+		<Item name="Nuevo" title="Nuevo"/>
+		<Item name="Editar" title="Editar"/>
+		<Item name="Eliminar" title="Eliminar"/>
+		<Item name="Propiedades" title="Propiedades"/>
+		<Item name="AsigPermiso" title="Permisos"/>
+		<Item name="DesblogCarpeta" title="Desbloquear Carpeta"/>
+	</Menu>
+
+  </Menus>
+
+</MenuConfig>

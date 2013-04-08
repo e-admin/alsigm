@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="./attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="TramitacionWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="getProcedimientosPorTipo" qname="ns1:getProcedimientosPorTipo" returnQName="ns1:getProcedimientosPorTipoReturn" returnType="ns1:ListaInfoBProcedimientos" soapAction="" xmlns:ns1="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns1:tipoProc"/>
+   <parameter qname="ns1:nombre"/>
+  </operation>
+  <operation name="getProcedimientos" qname="ns2:getProcedimientos" returnQName="ns2:getProcedimientosReturn" returnType="ns2:ListaInfoBProcedimientos" soapAction="" xmlns:ns2="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns2:idProcs" type="ns2:ArrayOfString"/>
+  </operation>
+  <operation name="getProcedimiento" qname="ns3:getProcedimiento" returnQName="ns3:getProcedimientoReturn" returnType="ns3:Procedimiento" soapAction="" xmlns:ns3="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns3:idProc"/>
+  </operation>
+  <operation name="getFichero" qname="ns4:getFichero" returnQName="ns4:getFicheroReturn" returnType="ns4:Binario" soapAction="" xmlns:ns4="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns4:guid"/>
+  </operation>
+  <operation name="getInfoFichero" qname="ns5:getInfoFichero" returnQName="ns5:getInfoFicheroReturn" returnType="ns5:InfoFichero" soapAction="" xmlns:ns5="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns5:guid"/>
+  </operation>
+  <operation name="getInfoOcupacion" qname="ns6:getInfoOcupacion" returnQName="ns6:getInfoOcupacionReturn" returnType="ns6:InfoOcupacion" soapAction="" xmlns:ns6="http://server.ws.services.ispac.tdw.ieci"/>
+  <operation name="eliminaFicheros" qname="ns7:eliminaFicheros" returnQName="ns7:eliminaFicherosReturn" returnType="ns7:RetornoServicio" soapAction="" xmlns:ns7="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns7:guids" type="ns7:ArrayOfString"/>
+  </operation>
+  <operation name="getIdsExpedientes" qname="ns8:getIdsExpedientes" returnQName="ns8:getIdsExpedientesReturn" returnType="ns8:ListaIdentificadores" soapAction="" xmlns:ns8="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns8:idProc"/>
+   <parameter qname="ns8:fechaIni"/>
+   <parameter qname="ns8:fechaFin"/>
+   <parameter qname="ns8:tipoOrd"/>
+  </operation>
+  <operation name="getExpedientes" qname="ns9:getExpedientes" returnQName="ns9:getExpedientesReturn" returnType="ns9:ListaInfoBExpedientes" soapAction="" xmlns:ns9="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns9:idExps" type="ns9:ArrayOfString"/>
+  </operation>
+  <operation name="getExpediente" qname="ns10:getExpediente" returnQName="ns10:getExpedienteReturn" returnType="ns10:Expediente" soapAction="" xmlns:ns10="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns10:idExp"/>
+  </operation>
+  <operation name="archivarExpedientes" qname="ns13:archivarExpedientes" returnQName="ns13:archivarExpedientesReturn" returnType="ns13:RetornoServicio" soapAction="" xmlns:ns13="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns13:idExps" type="ns13:ArrayOfString"/>
+  </operation>
+  <operation name="iniciarExpediente" qname="ns11:iniciarExpediente" returnQName="ns11:iniciarExpedienteReturn" returnType="ns11:Booleano" soapAction="" xmlns:ns11="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns11:datosComunes" type="ns11:DatosComunesExpediente"/>
+   <parameter qname="ns11:datosEspecificos"/>
+   <parameter qname="ns11:documentos" type="ns11:ArrayOfDocumentoExpedientes"/>
+  </operation>
+  <operation name="anexarDocsExpediente" qname="ns12:anexarDocsExpediente" returnQName="ns12:anexarDocsExpedienteReturn" returnType="ns12:Booleano" soapAction="" xmlns:ns12="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns12:numExp"/>
+   <parameter qname="ns12:numReg"/>
+   <parameter qname="ns12:fechaReg"/>
+   <parameter qname="ns12:documentos" type="ns12:ArrayOfDocumentoExpedientes"/>
+  </operation>
+
+  <operation name="crearExpediente" qname="ns47:crearExpediente" returnQName="ns47:crearExpedienteReturn" returnType="ns47:Cadena" soapAction="" xmlns:ns47="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns47:datosComunes" type="ns47:DatosComunesExpediente"/>
+   <parameter qname="ns47:datosEspecificos"/>
+   <parameter qname="ns47:documentos" type="ns47:ArrayOfDocumentoExpedientes"/>
+   <parameter qname="ns47:initSystem"/>
+  </operation>
+
+  <operation name="cambiarEstadoAdministrativo" qname="ns49:cambiarEstadoAdministrativo" returnQName="ns49:cambiarEstadoAdministrativo" returnType="ns49:Booleano" soapAction="" xmlns:ns49="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns49:numExp"/>
+   <parameter qname="ns49:estadoAdm"/>
+  </operation>
+
+  <operation name="moverExpedienteAFase" qname="ns50:moverExpedienteAFase" returnQName="ns50:moverExpedienteAFase" returnType="ns50:Booleano" soapAction="" xmlns:ns50="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns50:numExp"/>
+   <parameter qname="ns50:idFaseCatalogo"/>
+  </operation>
+
+  <operation name="busquedaAvanzada" qname="ns51:busquedaAvanzada" returnQName="ns51:busquedaAvanzada" returnType="ns51:Cadena" soapAction="" xmlns:ns51="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns51:nombreGrupo"/>
+   <parameter qname="ns51:nombreFrmBusqueda"/>
+   <parameter qname="ns51:xmlBusqueda"/>
+   <parameter qname="ns51:dominio"/>
+  </operation>
+
+
+  <operation name="establecerDatosRegistroEntidad" qname="ns53:establecerDatosRegistroEntidad" returnQName="ns53:establecerDatosRegistroEntidad" returnType="ns53:Entero" soapAction="" xmlns:ns53="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns53:nombreEntidad"/>
+   <parameter qname="ns53:numExp"/>
+   <parameter qname="ns53:xmlDatosEspecificos"/>
+  </operation>
+
+
+  <operation name="obtenerRegistroEntidad" qname="ns54:obtenerRegistroEntidad" returnQName="ns54:obtenerRegistroEntidad" returnType="ns54:Cadena" soapAction="" xmlns:ns54="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns54:nombreEntidad"/>
+   <parameter qname="ns54:numExp"/>
+   <parameter qname="ns54:idRegistro"/>
+  </operation>
+
+  <operation name="obtenerRegistrosEntidad" qname="ns55:obtenerRegistrosEntidad" returnQName="ns55:obtenerRegistrosEntidad" returnType="ns55:Cadena" soapAction="" xmlns:ns55="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns55:nombreEntidad"/>
+   <parameter qname="ns55:numExp"/>
+  </operation>
+
+
+
+  <parameter name="allowedMethods" value="*"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="TramitacionWebService"/>
+  <parameter name="className" value="ieci.tdw.ispac.services.ws.server.TramitacionWebService"/>
+  <parameter name="wsdlServicePort" value="TramitacionWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.services.ispac.tdw.ieci,http://dto.server.ws.services.ispac.tdw.ieci,http://dto.services.ispac.tdw.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.services.ispac.tdw.ieci"/>
+  <parameter name="wsdlServiceElement" value="TramitacionWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.dto.RetornoServicio" xmlns:ns13="http://dto.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns14:Binario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Binario" xmlns:ns14="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:Booleano" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Booleano" xmlns:ns15="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:DatosComunesExpediente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.DatosComunesExpediente" xmlns:ns16="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns17:DocElectronico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.DocElectronico" xmlns:ns17="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns18:DocFisico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.DocFisico" xmlns:ns18="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:Documento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Documento" xmlns:ns19="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns20:DocumentoExpediente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.DocumentoExpediente" xmlns:ns20="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:Emplazamiento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Emplazamiento" xmlns:ns21="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:Expediente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Expediente" xmlns:ns22="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:Firma" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Firma" xmlns:ns23="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:InfoBExpediente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.InfoBExpediente" xmlns:ns24="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:InfoBProcedimiento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.InfoBProcedimiento" xmlns:ns25="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns26:InfoFichero" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.InfoFichero" xmlns:ns26="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns27:InfoOcupacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.InfoOcupacion" xmlns:ns27="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns28:Interesado" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Interesado" xmlns:ns28="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns29:InteresadoExpediente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.InteresadoExpediente" xmlns:ns29="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns30:ListaIdentificadores" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.ListaIdentificadores" xmlns:ns30="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns31:ListaInfoBExpedientes" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.ListaInfoBExpedientes" xmlns:ns31="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns32:ListaInfoBProcedimientos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.ListaInfoBProcedimientos" xmlns:ns32="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns33:Organo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Organo" xmlns:ns33="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns34:OrganoProductor" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.OrganoProductor" xmlns:ns34="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns35:Procedimiento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Procedimiento" xmlns:ns35="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns48:Cadena" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Cadena" xmlns:ns48="http://server.ws.services.ispac.tdw.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns52:Entero" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tdw.ispac.services.ws.server.dto.Entero" xmlns:ns52="http://server.ws.services.ispac.tdw.ieci"/>
+  
+  
+  <arrayMapping innerType="java:java.lang.String" languageSpecificType="java:java.lang.String[]" qname="ns36:ArrayOfString" xmlns:ns36="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns37:InteresadoExpediente" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.InteresadoExpediente[]" qname="ns37:ArrayOfInteresadoExpedientes" xmlns:ns37="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns38:DocumentoExpediente" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.DocumentoExpediente[]" qname="ns38:ArrayOfDocumentoExpedientes" xmlns:ns38="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns39:DocFisico" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.DocFisico[]" qname="ns39:ArrayOfDocFisicos" xmlns:ns39="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns40:DocElectronico" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.DocElectronico[]" qname="ns40:ArrayOfDocElectronicos" xmlns:ns40="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns41:Interesado" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.Interesado[]" qname="ns41:ArrayOfInteresados" xmlns:ns41="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns42:Emplazamiento" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.Emplazamiento[]" qname="ns42:ArrayOfEmplazamientos" xmlns:ns42="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns43:Firma" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.Firma[]" qname="ns43:ArrayOfFirmas" xmlns:ns43="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns44:InfoBExpediente" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.InfoBExpediente[]" qname="ns44:ArrayOfInfoBExpedientes" xmlns:ns44="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns45:InfoBProcedimiento" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.InfoBProcedimiento[]" qname="ns45:ArrayOfInfoBProcedimientos" xmlns:ns45="http://server.ws.services.ispac.tdw.ieci"/>
+  <arrayMapping innerType="ns46:OrganoProductor" languageSpecificType="java:ieci.tdw.ispac.services.ws.server.dto.OrganoProductor[]" qname="ns46:ArrayOfOrganosProductores" xmlns:ns46="http://server.ws.services.ispac.tdw.ieci"/>
+ 
+  <wsdlFile>../../wsdl/TramitacionWebService.wsdl</wsdlFile>
+ 
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

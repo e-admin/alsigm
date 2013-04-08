@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='SPAC_P_TRAMITES:ID'
+				 readOnly='false'
+				 titleKey='form.task.propertyLabel.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width5percent'/>
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='SPAC_P_TRAMITES:NOMBRE'
+				 readOnly='false'
+				 titleKey='form.task.propertyLabel.name'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width65percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 propertyValueKey='forms.button.delete'
+				 property=''
+				 readOnly='false'
+				 titleKey='empty'
+				 fieldType='BUTTON'
+				 fieldLink='SPAC_P_DEP_TRAMITES:ID'
+				 styleClass='aDelButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width15percent'
+				 media='html'
+				 decorator=''
+				 url='dependencies.do?method=delete'
+				 id='depId'/>
+				 
+</beanformatter>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- [ildfns]-->
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='ID' 
+				 title='' 
+				 fieldType='CHECKBOX' 
+				 width='5%'/>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='VALOR' 
+				 title='Valor' 
+				 fieldType='LIST' 
+				 width='75%'/>
+</beanformatter>

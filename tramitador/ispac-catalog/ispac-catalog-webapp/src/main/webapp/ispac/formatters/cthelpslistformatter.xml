@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='form.help.propertyLabel.id'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width5percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'				 
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NOMBRE'
+				readOnly='false'
+				titleKey='form.help.propertyLabel.name'
+				fieldType='LINK'
+				fieldLink='ID'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+				media='html'
+				decorator=''
+				url='showCTHelp.do?entityId=63'
+				id='regId'
+				columnClass='width30percent'				
+				/>
+	
+		<propertyfmt type='BeanPropertySimpleFmt'
+				property='TIPO_OBJ'
+				readOnly='false'
+				titleKey='form.help.propertyLabel.tipo'
+				fieldType='TIPO_OBJ_AYUDA'
+				headerClass='sortable'
+				sortable='true'
+				columnClass='width25percent'
+				media='excel xml csv pdf'/>		
+						
+	
+						
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='IDIOMA'
+				 readOnly='false'
+				 titleKey='form.help.propertyLabel.idioma'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+
+	
+</beanformatter>

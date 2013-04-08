@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NUMEXP' 
+				 titleKey='formatter.signedDocuemnt.numExp' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 columnClass="width20percent"
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE' 
+				 titleKey='formatter.signedDocuemnt.nombreDocumento' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 columnClass="width20percent"
+				 />
+
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FDOC' 
+				 format='dd/MM/yyyy' 
+				 titleKey='formatter.signedDocuemnt.fechaGeneracion' 
+				 headerClass='headerDisplay'
+				 columnClass="width15percent"
+				 fieldType='LIST'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='AUTOR_CERT' 
+				 titleKey='formatter.signedDocuemnt.autor' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 columnClass="width15percent"
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SUSTITUTO_ESTADOFIRMA' 
+				 titleKey='formatter.signedDocuemnt.estadoFirma' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 columnClass="width15percent"
+				 />
+
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FFIRMA'
+				 format='dd/MM/yyyy'
+				 titleKey='formatter.signedDocuemnt.fechaFirma' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 columnClass="width15percent" 
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+				 
+</beanformatter>

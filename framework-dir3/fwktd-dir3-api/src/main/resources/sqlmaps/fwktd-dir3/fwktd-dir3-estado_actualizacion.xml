@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EstadoActualizacionDcoVO">
+
+
+
+	<resultMap id="EstadoActualizacionDco" class="es.ieci.tecdoc.fwktd.dir3.api.vo.EstadoActualizacionDcoVO">
+		<result property="id" column="ID" />
+		<result property="fechaActualizacion" column="FECHA_ACTUALIZACION" />
+		<result property="estado" column="ESTADO" />
+	</resultMap>
+
+	<sql id="table">DIR_ESTADO_ACTUALIZACION</sql>
+
+	<sql id="columns">
+		ESTADO.ID,
+		ESTADO.FECHA_ACTUALIZACION,
+		ESTADO.ESTADO
+	</sql>
+
+	<sql id="from">
+		<include refid="table" /> ESTADO
+	</sql>
+
+
+
+
+	<select id="getLastSuccessUpdate" resultMap="EstadoActualizacionDco">
+		SELECT
+			<include refid="columns" />
+		from
+		  <include refid="from" />
+		where ESTADO.ESTADO='OK' and ESTADO.ID=(SELECT MAX(EA.ID) from DIR_ESTADO_ACTUALIZACION EA)
+	</select>
+
+
+</sqlMap>

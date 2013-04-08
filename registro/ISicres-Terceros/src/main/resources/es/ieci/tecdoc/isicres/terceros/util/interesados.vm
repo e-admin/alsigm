@@ -1,0 +1,5 @@
+#set($separator="#")
+#if($interesado.tercero.id eq "0")
+$!{interesado.tercero.id}${separator}$!{interesado.nombre}${separator}${separator}${separator}${separator}${separator}${separator}${separator}${separator}## Cadena que identifica a un tercero no validado
+#else
+$!{interesado.tercero.id}${separator}$!{interesado.tercero.descripcion}${separator}$!{interesado.direccionNotificacion.id}${separator}#if($interesado.direccionNotificacion.id)$!{interesado.direccionNotificacion}#end${separator}$!{interesado.direccionNotificacion.tipo.value}${separator}$!{interesado.representante.representante.id}${separator}$!{interesado.representante.representante.descripcion}${separator}$!{interesado.representante.direccionNotificacion.id}${separator}#if($interesado.representante.direccionNotificacion.id)$!{interesado.representante.direccionNotificacion}#end${separator}$!{interesado.representante.direccionNotificacion.tipo.value}#end

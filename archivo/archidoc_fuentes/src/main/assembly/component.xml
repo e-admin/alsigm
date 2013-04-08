@@ -1,0 +1,47 @@
+<component>
+	<fileSets>
+		<fileSet>
+			<directory>..</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>**</include>
+			</includes>
+			<excludes>
+				<exclude>**/target/**</exclude>
+				<exclude>**/.settings/**</exclude>
+				<exclude>**/.classpath/**</exclude>
+				<exclude>**/.project/**</exclude>
+				<exclude>**/dist/lib/**</exclude>
+				<exclude>**/dist/*.jar</exclude>
+				<exclude>archidoc_documentation/**</exclude>
+
+				<exclude>archidoc_cfg_modules/producto_cfg**/**</exclude>
+				<exclude>archidoc_cfg_modules/cabildogc_cfg**/**</exclude>
+				<exclude>archidoc_cfg_modules/justicia_cfg**/**</exclude>
+				<exclude>archidoc_cfg_modules/navarra_cfg**/**</exclude>
+				<exclude>archidoc_cfg_modules/sigia_cfg**/**</exclude>
+				<exclude>archidoc_cfg_modules/speria_cfg**/**</exclude>
+
+				<!--exclude>archidoc_specific_resources/archidoc_specific_resources_producto/**</exclude-->
+				<exclude>archidoc_specific_resources/archidoc_specific_resources_cabildogc/**</exclude>
+				<exclude>archidoc_specific_resources/archidoc_specific_resources_justicia/**</exclude>
+				<exclude>archidoc_specific_resources/archidoc_specific_resources_navarra/**</exclude>
+				<exclude>archidoc_specific_resources/archidoc_specific_resources_sigia/**</exclude>
+				<exclude>archidoc_specific_resources/archidoc_specific_resources_speria/**</exclude>
+
+				<!-- exclude>archidoc_filters/**producto**</exclude-->
+				<exclude>archidoc_filters/cabildogc**</exclude>
+				<exclude>archidoc_filters/justicia**</exclude>
+				<exclude>archidoc_filters/navarra**</exclude>
+				<exclude>archidoc_filters/sigia**</exclude>
+				<exclude>archidoc_filters/speria**</exclude>
+
+				<exclude>archidoc_fuentes/**</exclude>
+
+				<exclude>*.bat</exclude>
+				<exclude>*.sh</exclude>
+				<exclude>cambia.conf</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+</component>

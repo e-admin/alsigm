@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="fwktd_dir3_api_servicioConsultaDirectorioComunImpl"
+		class="es.ieci.tecdoc.fwktd.dir3.api.service.impl.ServicioConsultaDirectorioComunImpl">
+		<property name="datosBasicosOficinaManager" ref="fwktd_dir3_datosBasicosOficinaManager" />
+		<property name="datosBasicosUnidadOrganicaManager" ref="fwktd_dir3_datosBasicosUnidadOrganicaManager" />
+	</bean>
+
+	<bean id="fwktd_dir3_api_servicioInicializacionDirectorioComunImpl"
+		class="es.ieci.tecdoc.fwktd.dir3.api.service.impl.ServicioInicializacionDirectorioComunImpl">
+		<property name="datosBasicosOficinaManager" ref="fwktd_dir3_datosBasicosOficinaManager" />
+		<property name="datosBasicosUnidadOrganicaManager" ref="fwktd_dir3_datosBasicosUnidadOrganicaManager" />
+		<property name="generateScriptSQLOficinaManager" ref="fwktd_dir3_generateScriptSQLOficinaManager" />
+		<property name="generateScriptSQLUnidadOrganicaManagerImpl" ref="fwktd_dir3_generateScriptSQLUnidadOrganicaManager" />
+		<property name="servicioObtenerInicializacionDCO" ref="fwktd_dir3_dco_servicioObtenerInicializacionDCO" />
+	</bean>
+
+
+	<bean id="fwktd_dir3_api_servicioActualizacionnDirectorioComunImpl"
+		class="es.ieci.tecdoc.fwktd.dir3.api.service.impl.ServicioActualizacionDirectorioComunImpl">
+		<property name="datosBasicosOficinaManager" ref="fwktd_dir3_datosBasicosOficinaManager" />
+		<property name="datosBasicosUnidadOrganicaManager" ref="fwktd_dir3_datosBasicosUnidadOrganicaManager" />
+		<property name="estadoActualizacionDCOManager" ref="fwktd_dir3_datosEstadoActualizacionDCOManager" />
+		<property name="generateScriptSQLOficinaManager" ref="fwktd_dir3_generateScriptSQLOficinaManager" />
+		<property name="generateScriptSQLUnidadOrganicaManagerImpl" ref="fwktd_dir3_generateScriptSQLUnidadOrganicaManager" />
+		<property name="servicioObtenerActualizacionesDCO" ref="fwktd_dir3_dco_servicioObtenerActualizacionDCO" />
+	</bean>
+
+
+</beans>

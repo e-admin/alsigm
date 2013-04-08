@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<!-- Ponemos 2 veces la propiedad Nombre, 
+		 una para mostrarla solo en html (media='html')
+		 y la otra para la exportacion (media= 'xml excel csv pdf') -->
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE' 
+				 titleKey='SPAC_DT_INTERVINIENTES:NOMBRE' 
+				 fieldType='LINK'
+				 columnClass='width40percent'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE' 
+				 titleKey='SPAC_DT_INTERVINIENTES:NOMBRE' 
+				 fieldType='LIST'
+				 columnClass='width40percent'
+				 headerClass='headerDisplay'
+				 media='csv excel xml pdf'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NDOC' 
+				 titleKey='SPAC_DT_INTERVINIENTES:NUMDOCUMENTO' 
+				 fieldType='LIST' 
+				 columnClass='width20percent'
+				 headerClass='sortable'
+				 sortable='true'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='DIRNOT' 
+				 titleKey='SPAC_DT_INTERVINIENTES:DIRNOT' 
+				 fieldType='LIST' 
+				 columnClass='width40percent'
+				 headerClass='sortable'
+				 sortable='true'/>
+				 
+</beanformatter>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans >  
+    <form-bean name="PagoForm" type="org.apache.struts.validator.DynaValidatorForm">
+      <form-property name="expediente" type="java.lang.String" />
+      <form-property name="idEntidadEmisora" type="java.lang.String" />
+      <form-property name="idTasa" type="java.lang.String" />   
+      <form-property name="importe" type="java.lang.String" />    
+      <form-property name="nif" type="java.lang.String" />
+      <form-property name="idioma" type="java.lang.String" />
+      <form-property name="fecha" type="java.lang.String" />
+      <form-property name="hora" type="java.lang.String" />
+      <form-property name="entidadBancaria" type="java.lang.String" />      
+      <form-property name="medioPago" type="java.lang.String" />            
+      <form-property name="ccc" type="java.lang.String" />                            
+      <form-property name="numeroTarjetaCredito" type="java.lang.String" />                                  
+      <form-property name="fechaCaducidadTarjetaCredito" type="java.lang.String" />                                  
+      <form-property name="referencia" type="java.lang.String" />                                  
+      <form-property name="domiciliacion" type="java.lang.String" />   
+      <form-property name="cccDomiciliacion" type="java.lang.String" />            
+      <form-property name="nrc" type="java.lang.String" />   
+      <form-property name="estado" type="java.lang.String" />   
+      <form-property name="tasa" type="java.lang.String" />       
+      <form-property name="ejercicio" type="java.lang.String" />                                     
+      <form-property name="remesa" type="java.lang.String" />    
+      <form-property name="acreditacion" type="java.lang.String" />          
+      <form-property name="fechaDevengo" type="java.lang.String" />                                                       
+      <form-property name="informacionEspecifica" type="java.lang.String" />         
+      <form-property name="firma" type="java.lang.String" />
+      <form-property name="datosFirmados" type="java.lang.String" />
+      <form-property name="nombre" type="java.lang.String" />
+    </form-bean>
+    
+    <form-bean name="BusquedaForm" type="org.apache.struts.validator.DynaValidatorForm">
+      <form-property name="idEntidadEmisora" type="java.lang.String" />
+      <form-property name="idTasa" type="java.lang.String" />
+      <form-property name="ejercicio" type="java.lang.String" />
+      <form-property name="nif" type="java.lang.String" />
+      <form-property name="nrc" type="java.lang.String" />    
+      <form-property name="estado" type="java.lang.String" />
+      <form-property name="referencia" type="java.lang.String" />
+      <form-property name="tipo" type="java.lang.String" />
+    </form-bean>
+    
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards>
+  	<forward name="errorGlobal" path="/jsp/paginaError.jsp"/>
+  	<forward name="errorAutenticacion" path="/jsp/paginaErrorAutenticacion.jsp"/>  	
+  	<forward name="desconectar" path="/desconectar.do"/>  	
+  </global-forwards>
+  <action-mappings >
+   <action path="/liquidacionesPendientes" type="ieci.tecdoc.sgm.pe.struts.action.LiquidacionesPendientesAction">
+      <forward name="success" path="/jsp/liquidacionesPendientes.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+    </action>
+
+   <action path="/login" type="ieci.tecdoc.sgm.pe.struts.action.LoginAction">
+      <forward name="success" path="/liquidacionesPendientes.do" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+    </action>
+
+   <action path="/cargarFormulario" type="ieci.tecdoc.sgm.pe.struts.action.CargarFormularioLiquidacionAction">
+      <forward name="success" path="/jsp/formularioPago.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+      <forward name="pasarela" path="/mostrarLiquidacionParaFirmar.do" />
+    </action>
+
+   <action 
+   			path="/recargarFormulario" 
+   			name="PagoForm"
+   			type="ieci.tecdoc.sgm.pe.struts.action.ReCargarFormularioLiquidacionAction" >
+      <forward name="success" path="/jsp/formularioPago.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+    </action>
+
+   <action 
+   			path="/mostrarLiquidacionParaFirmar" 
+   			name="PagoForm"
+   			type="ieci.tecdoc.sgm.pe.struts.action.MostrarLiquidacionPararFirmarAction" >
+      <forward name="success" path="/jsp/resumenPago.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+    </action>
+
+   <action 
+   			path="/realizarPago" 
+   			name="PagoForm"
+   			type="ieci.tecdoc.sgm.pe.struts.action.RealizarPagoAction" >
+      <forward name="success" path="/jsp/finalPago.jsp" />
+      <forward name="error" path="/cargarFormulario.do" />
+    </action>
+
+   <action 
+   			path="/obtenerJustificante" 
+   			name="PagoForm"
+   			type="ieci.tecdoc.sgm.pe.struts.action.ObtenerJustificanteAction" >
+			
+			<forward name="error" path="/jsp/paginaError.jsp" />   			
+    </action>
+    
+   <action 
+   			path="/buscarLiquidaciones" 
+   			name="BusquedaForm"
+   			scope="request"
+   			type="ieci.tecdoc.sgm.pe.struts.action.BuscarLiquidacionesAction" >
+      <forward name="success" path="/jsp/busquedaLiquidaciones.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+    </action>
+
+   <action 
+   			path="/consultaLiquidacion" 
+   			name="PagoForm"
+   			scope="request"
+   			type="ieci.tecdoc.sgm.pe.struts.action.ConsultaLiquidacionAction" >
+      <forward name="success" path="/jsp/consultaPago.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+    </action>
+
+   <action 
+   			path="/buscarTasas" 
+   			name="BusquedaForm"
+   			scope="request"
+   			type="ieci.tecdoc.sgm.pe.struts.action.BuscarTasasAction" >
+      <forward name="success" path="/jsp/busquedaTasas.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+    </action>
+
+   <action 
+   		path="/cargarFormularioAutoliquidacion" 
+   		name="PagoForm"
+   		scope="request"
+   		type="ieci.tecdoc.sgm.pe.struts.action.CargarFormularioAutoLiquidacionAction" >
+      <forward name="success" path="/jsp/formularioPagoAutoliquidacion.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+      <forward name="pasarela" path="/mostrarAutoLiquidacionParaFirmar.do" />
+    </action>
+
+   <action 
+   			path="/mostrarAutoLiquidacionParaFirmar" 
+   			name="PagoForm"
+   			type="ieci.tecdoc.sgm.pe.struts.action.MostrarAutoLiquidacionPararFirmarAction">
+      <forward name="success" path="/jsp/resumenPagoAutoliquidacion.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+    </action>
+
+   <action 
+   			path="/realizarPagoAutoliquidacion" 
+   			name="PagoForm"
+   			type="ieci.tecdoc.sgm.pe.struts.action.RealizarPagoAutoliquidacionAction" >
+      <forward name="success" path="/jsp/finalPagoAutoliquidacion.jsp" />
+      <forward name="error" path="/cargarFormularioAutoliquidacion.do" />
+    </action>
+
+   <action 
+   			path="/consultaAutoliquidacion" 
+   			name="PagoForm"
+   			scope="request"
+   			type="ieci.tecdoc.sgm.pe.struts.action.ConsultaAutoliquidacionAction">
+      <forward name="success" path="/jsp/consultaPagoAutoliquidacion.jsp" />
+      <forward name="error" path="/jsp/paginaError.jsp" />
+    </action>
+
+   <action 
+   			path="/desconectar" 
+   			type="ieci.tecdoc.sgm.pe.struts.action.DesconectarAction">
+    </action>
+    
+    <action 
+   			path="/retornoPasarela" 
+   			type="ieci.tecdoc.sgm.pe.struts.action.RetornoPasarelaMostrarFinalPagoAction" >
+      <forward name="success" path="/jsp/finalPago.jsp" />
+      <forward name="error" path="/cargarFormulario.do" />
+    </action>
+
+  </action-mappings>
+
+  <message-resources parameter="ieci.tecdoc.sgm.pe.struts.ApplicationResources" />
+  
+      <!-- ========================= Validator plugin ================================= -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames"
+        	value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+  
+</struts-config>
+

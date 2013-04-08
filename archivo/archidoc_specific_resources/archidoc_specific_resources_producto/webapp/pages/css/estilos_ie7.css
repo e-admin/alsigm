@@ -1,0 +1,36 @@
+
+#cabecera_right {
+	width:49.8%;
+}
+
+#cabecera_int_right {
+	width:49.8%;
+}
+
+#usuario_organo {
+	margin-top: -7px;
+}
+
+.hrLogin {
+	margin-bottom: 0;
+}
+
+label.superuser{
+	margin-top: -0.5%;
+	width: 153px;
+}
+
+.fila input.checkbox , .fila_sub input.checkbox {
+	margin-top: -0.3%;
+}
+
+.fila_right {
+	margin: 0;
+	padding: 0;
+	margin-right: 16px;
+}
+
+#areaContenido #pie_archigest {
+	MARGIN-LEFT: 21%;
+	WIDTH: 78%;
+}

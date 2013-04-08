@@ -1,0 +1,56 @@
+@import url(common.css);
+
+/*
+  Estilos de las páginas de errores
+ */
+td.blue {
+	color: #fff;
+	padding: 1px 10px 1px 10px;
+	border-top: 1px #000 solid;
+	border-bottom: 1px #000 solid;
+	background: #639ACE;
+	font: bold 13px verdana, arial, helvetica, sans-serif;
+}
+
+table.tableGeneralErrors {
+	color: #404040;
+	border: 1px #d1d1d1 solid;
+	border-spacing: 7px;
+	padding-left: 25px;
+	background: #fafafa;
+	font: 11px verdana, arial, helvetica, sans-serif;
+	width:100%;
+}
+
+td.cabecera {
+    font-weight: bold;
+    font-size: 16px;
+    color:  #4275BD;
+}
+
+table.tableGeneralErrors {
+	color: #404040;
+	padding-left: 25px;
+	background: #fafafa;
+	font: 11px verdana, arial, helvetica, sans-serif;
+	width:100%;
+}
+
+table.tableGeneralErrors td {
+	padding-left: 25px;
+	padding-bottom: 5px;
+}
+
+div.errors {
+	background-color: #fafafa;
+	border: 1px #000 solid;
+	position: absolute;
+	top: 70px;
+	left: 170px;
+	overflow: auto;
+	width: 50%;
+	height: 50%;
+	visibility: hidden;
+	z-index: 1;
+	scrollbar-base-color:  #f2f2f2;
+}

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TRANSFERENCIA
+	version="5.0">
+	<SERIE
+		codigoFondo="F1"
+		idFichaUdocs="FICHA1">
+		<!-- Obligatorios -->
+		<PROCEDIMIENTO>
+			<ID></ID>
+			<CODIGO></CODIGO>
+			<NOMBRE></NOMBRE>
+			<TITULO_CORTO></TITULO_CORTO>
+			<NORMATIVA></NORMATIVA>
+			<OBJETO></OBJETO>
+			<DOCUMENTOS></DOCUMENTOS>
+			<TRAMITES>
+				<!-- 1..* -->
+				<TRAMITE></TRAMITE>
+			</TRAMITES>
+			<SISTEMA_TRAMITADOR>
+				<ID></ID>
+				<NOMBRE></NOMBRE>
+			</SISTEMA_TRAMITADOR>
+			<PRODUCTORES>
+				<!-- 1..* -->
+				<PRODUCTOR
+					origen="ORGANIZACION"
+					tipoAtributo="ID|CODIGO"
+					valor="">
+					<!-- Fecha Inicio del productor -->
+					<FECHA_INICIO
+						valor="DD/MM/AAAA"
+						FMT="DDMMAAAA"
+						SEP="/" />
+				</PRODUCTOR>
+
+			</PRODUCTORES>
+		</PROCEDIMIENTO>
+		<FICHA>
+			<!-- 0..* CAMPO_TEXTO -->
+			<!-- 0..* CAMPO_FECHA -->
+			<!-- 0..* CAMPO_NUMERICO -->
+			<!-- 0..* CAMPO_DESCRIPTOR -->
+			<CAMPO_TEXTO
+				etiqueta=""></CAMPO_TEXTO>
+			<CAMPO_FECHA
+				etiqueta=""
+				valor=""
+				FMT=""
+				SEP=""
+				CALIF="" />
+			<CAMPO_NUMERICO
+				etiqueta=""
+				valor=""
+				tipoMedida="1|2"
+				unidadMedida="" />
+			<CAMPO_DESCRIPTOR
+				etiqueta=""
+				valor=""
+				idLista="" />
+		</FICHA>
+	</SERIE>
+	<UNIDAD_DOCUMENTAL_ELECTRONICA>
+		<IDENTIFICACION>
+			<ID></ID>
+			<NUMEXP></NUMEXP>
+			<TITULO></TITULO>
+			<FECHA_INICIO
+				valor=""
+				FMT="DDMMAAAA"
+				SEP="/" />
+			<FECHA_FIN
+				valor=""
+				FMT="DDMMAAAA"
+				SEP="/" />
+			<CODIGO_PROCEDIMIENTO></CODIGO_PROCEDIMIENTO>
+			<PRODUCTOR
+				tipoAtributo="ID|CODIGO"
+				valor="" />
+		</IDENTIFICACION>
+		<FICHA>
+			<!-- 0..* CAMPO_TEXTO -->
+			<!-- 0..* CAMPO_FECHA -->
+			<!-- 0..* CAMPO_NUMERICO -->
+			<!-- 0..* CAMPO_DESCRIPTOR -->
+			<!-- 0..* CAMPO_ORGANIZACION -->
+			<!-- 0..* CAMPO_TABLA -->
+
+			<CAMPO_TEXTO
+				etiqueta=""></CAMPO_TEXTO>
+			<CAMPO_FECHA
+				etiqueta=""
+				valor=""
+				FMT=""
+				SEP=""
+				CALIF="" />
+			<CAMPO_NUMERICO
+				etiqueta=""
+				valor=""
+				tipoMedida="1|2"
+				unidadMedida="" />
+			<CAMPO_DESCRIPTOR
+				etiqueta=""
+				valor=""
+				idLista="" />
+
+			<CAMPO_ORGANIZACION
+				etiqueta=""
+				tipoAtributo="ID|CODIGO"
+				valor="" />
+
+			<CAMPO_TABLA
+				etiqueta="">
+				<!-- 0..* CAMPO_FILA -->
+				<CAMPO_FILA
+					etiqueta="">
+					<CAMPO_TEXTO
+						etiqueta=""></CAMPO_TEXTO>
+					<CAMPO_FECHA
+						etiqueta=""
+						valor=""
+						FMT=""
+						SEP=""
+						CALIF="" />
+					<CAMPO_NUMERICO
+						etiqueta=""
+						valor=""
+						tipoMedida="1|2"
+						unidadMedida="" />
+					<CAMPO_DESCRIPTOR
+						etiqueta=""
+						valor=""
+						idLista="" />
+
+					<CAMPO_ORGANIZACION
+						etiqueta=""
+						tipoAtributo="ID|CODIGO"
+						valor="" />
+					<!-- Campo tipo Documento Electrónico -->
+					<CAMPO_DOCUMENTO_ELECTRONICO
+						etiqueta="">
+						<!-- Datos de Ubicación -->
+						<UBICACION
+							tipo="BINARIO">
+							<BINARIO>
+								<CONTENIDO></CONTENIDO>
+							</BINARIO>
+
+							<REPOSITORIO
+								tipo="ALFRESCO|INVESDOC"
+								idRepositorio=""
+								localizador="" />
+
+						</UBICACION>
+						<!-- Almacenamiento del documento -->
+						<ALMACENAMIENTO
+							tipo="REPOSITORIO"
+							nombre=""
+							extension="">
+
+							<!-- Sólo se especifica el tipo se el WS tiene que almacenar el fichero -->
+							<!-- Obligatorios -->
+							<REPOSITORIO
+								tipo="INVESDOC|ALFRESCO"
+								idRepositorio=""
+								localizador="" />
+
+							<!-- Opcionales -->
+							<DESCRIPCION></DESCRIPCION>
+							<!-- Opcional -->
+							<CLASIFICADOR></CLASIFICADOR>
+							<!-- Opcional -->
+						</ALMACENAMIENTO>
+					</CAMPO_DOCUMENTO_ELECTRONICO>
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+		</FICHA>
+	</UNIDAD_DOCUMENTAL_ELECTRONICA>
+</TRANSFERENCIA>

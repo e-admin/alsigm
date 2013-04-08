@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Servicio de intercambio registral -->
+	<!-- <alias name="${fwktd-audit.service.audit}" alias="fwktd_audit_servicioAuditoria" /> -->
+
+	<!-- contextAware para usar implmentaciones sin tecnologia spring -->
+	<bean id="iSicresSpringContextApplicationContextProvider"
+		class="com.ieci.tecdoc.isicres.context.ISicresSpringApplicationContextProvider"></bean>
+
+</beans>

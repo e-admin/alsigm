@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Criterios sesionId="" entidadId="" personType="" inicio="" rango="">
+	<Criterio>
+		<Campo>Campo1</Campo>
+		<Operador>operador</Operador>
+		<Valor>valor1</Valor>
+	</Criterio>
+	<Criterio>
+		<Campo>Campo2</Campo>
+		<Operador>operador</Operador>
+		<Valor>valor2</Valor>
+	</Criterio>
+</Criterios>

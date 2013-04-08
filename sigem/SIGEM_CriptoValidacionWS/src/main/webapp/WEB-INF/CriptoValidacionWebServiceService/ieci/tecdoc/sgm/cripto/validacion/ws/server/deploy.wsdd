@@ -1,0 +1,97 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CriptoValidacionWebServiceService WSDL service -->
+
+  <service name="CriptoValidacionWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="CriptoValidacionWebServiceService"/>
+      <parameter name="schemaQualified" value="http://server.ws.validacion.cripto.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="CriptoValidacionWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.cripto.validacion.ws.server.CriptoValidacionWebServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="CriptoValidacionWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="crearHashByEntidad" qname="operNS:crearHashByEntidad" xmlns:operNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnQName="retNS:crearHashByEntidadReturn" xmlns:retNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnType="rtns:Hash" xmlns:rtns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:poBase64Document" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:idEntidad" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="crearHash" qname="operNS:crearHash" xmlns:operNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnQName="retNS:crearHashReturn" xmlns:retNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnType="rtns:Hash" xmlns:rtns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:poBase64Document" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+      </operation>
+      <operation name="validaHashByEntidad" qname="operNS:validaHashByEntidad" xmlns:operNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnQName="retNS:validaHashByEntidadReturn" xmlns:retNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnType="rtns:ResultadoValidacionHash" xmlns:rtns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:poBase64Document" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:poB64Hash" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:idEntidad" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="validarHash" qname="operNS:validarHash" xmlns:operNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnQName="retNS:validarHashReturn" xmlns:retNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnType="rtns:ResultadoValidacionHash" xmlns:rtns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:poBase64Document" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:poB64Hash" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+      </operation>
+      <operation name="validarCertificadoByEntidad" qname="operNS:validarCertificadoByEntidad" xmlns:operNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnQName="retNS:validarCertificadoByEntidadReturn" xmlns:retNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnType="rtns:ResultadoValidacionCertificado" xmlns:rtns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:poB64Certificate" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+        <parameter qname="pns:idEntidad" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="validarCertificado" qname="operNS:validarCertificado" xmlns:operNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnQName="retNS:validarCertificadoReturn" xmlns:retNS="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" returnType="rtns:ResultadoValidacionCertificado" xmlns:rtns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" soapAction="" >
+        <parameter qname="pns:poB64Certificate" xmlns:pns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci" type="tns:Contenido" xmlns:tns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+      </operation>
+      <parameter name="allowedMethods" value="validaHashByEntidad validarCertificadoByEntidad crearHashByEntidad validarHash crearHash validarCertificado"/>
+
+      <typeMapping
+        xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci"
+        qname="ns:RetornoServicio"
+        type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"
+        qname="ns:Hash"
+        type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.Hash"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"
+        qname="ns:ResultadoValidacionCertificado"
+        type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.ResultadoValidacionCertificado"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"
+        qname="ns:InfoCertificado"
+        type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.InfoCertificado"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"
+        qname="ns:ResultadoValidacionHash"
+        type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.ResultadoValidacionHash"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"
+        qname="ns:Contenido"
+        type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.Contenido"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

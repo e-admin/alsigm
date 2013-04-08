@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:impl="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.certificacion.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns2="http://dto.services.core.sgm.tecdoc.ieci" xmlns:tns1="http://pago.server.ws.certificacion.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://server.ws.certificacion.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <import namespace="http://pago.server.ws.certificacion.sgm.tecdoc.ieci"/>
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="generarCertificacionPagos">
+    <complexType>
+     <sequence>
+      <element name="pagos" type="tns1:Pago" maxOccurs="unbounded"/>
+      <element name="usuario" type="impl:Usuario"/>
+      <element name="entidad" type="tns2:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Usuario">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="apellidos" nillable="true" type="xsd:string"/>
+       <element name="cp" nillable="true" type="xsd:string"/>
+       <element name="domicilio" nillable="true" type="xsd:string"/>
+       <element name="email" nillable="true" type="xsd:string"/>
+       <element name="idioma" nillable="true" type="xsd:string"/>
+       <element name="localidad" nillable="true" type="xsd:string"/>
+       <element name="nif" nillable="true" type="xsd:string"/>
+       <element name="nombre" nillable="true" type="xsd:string"/>
+       <element name="provincia" nillable="true" type="xsd:string"/>
+       <element name="telefono" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="generarCertificacionPagosResponse">
+    <complexType>
+     <sequence>
+      <element name="generarCertificacionPagosReturn" type="impl:RetornoPdf"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoPdf">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="contenido" nillable="true" type="xsd:base64Binary"/>
+       <element name="identificador" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="altaCertificacion">
+    <complexType>
+     <sequence>
+      <element name="idUsuario" type="xsd:string"/>
+      <element name="idFichero" type="xsd:string"/>
+      <element name="entidad" type="tns2:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="altaCertificacionResponse">
+    <complexType>
+     <sequence>
+      <element name="altaCertificacionReturn" type="tns2:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarCertificacion">
+    <complexType>
+     <sequence>
+      <element name="idFichero" type="xsd:string"/>
+      <element name="entidad" type="tns2:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarCertificacionResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarCertificacionReturn" type="tns2:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerCertificacion">
+    <complexType>
+     <sequence>
+      <element name="idUsuario" type="xsd:string"/>
+      <element name="idFichero" type="xsd:string"/>
+      <element name="entidad" type="tns2:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerCertificacionResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerCertificacionReturn" type="impl:Certificacion"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Certificacion">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="idFichero" nillable="true" type="xsd:string"/>
+       <element name="idUsuario" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <import namespace="http://server.ws.certificacion.sgm.tecdoc.ieci"/>
+   <import namespace="http://pago.server.ws.certificacion.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Entidad">
+    <sequence>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://pago.server.ws.certificacion.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <import namespace="http://server.ws.certificacion.sgm.tecdoc.ieci"/>
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <complexType name="Tasa">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="captura" nillable="true" type="xsd:string"/>
+       <element name="codigo" nillable="true" type="xsd:string"/>
+       <element name="datosEspecificos" nillable="true" type="xsd:string"/>
+       <element name="idEntidadEmisora" nillable="true" type="xsd:string"/>
+       <element name="modelo" nillable="true" type="xsd:string"/>
+       <element name="nombre" nillable="true" type="xsd:string"/>
+       <element name="tipo" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Liquidacion">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="datosEspecificos" nillable="true" type="xsd:string"/>
+       <element name="discriminante" nillable="true" type="xsd:string"/>
+       <element name="ejercicio" nillable="true" type="xsd:string"/>
+       <element name="estado" nillable="true" type="xsd:string"/>
+       <element name="fechaPago" nillable="true" type="xsd:string"/>
+       <element name="finPeriodo" nillable="true" type="xsd:string"/>
+       <element name="idEntidadEmisora" nillable="true" type="xsd:string"/>
+       <element name="idTasa" nillable="true" type="xsd:string"/>
+       <element name="importe" nillable="true" type="xsd:string"/>
+       <element name="inicioPeriodo" nillable="true" type="xsd:string"/>
+       <element name="nif" nillable="true" type="xsd:string"/>
+       <element name="nombre" nillable="true" type="xsd:string"/>
+       <element name="nrc" nillable="true" type="xsd:string"/>
+       <element name="referencia" nillable="true" type="xsd:string"/>
+       <element name="remesa" nillable="true" type="xsd:string"/>
+       <element name="solicitud" nillable="true" type="xsd:base64Binary"/>
+       <element name="tasa" nillable="true" type="tns1:Tasa"/>
+       <element name="vencimiento" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Pago">
+    <complexContent>
+     <extension base="tns2:RetornoServicio">
+      <sequence>
+       <element name="acreditacion" nillable="true" type="xsd:string"/>
+       <element name="ccc" nillable="true" type="xsd:string"/>
+       <element name="cccDomiciliacion" nillable="true" type="xsd:string"/>
+       <element name="domiciliacion" nillable="true" type="xsd:string"/>
+       <element name="ejercicio" nillable="true" type="xsd:string"/>
+       <element name="entidadBancaria" nillable="true" type="xsd:string"/>
+       <element name="estado" nillable="true" type="xsd:string"/>
+       <element name="expediente" nillable="true" type="xsd:string"/>
+       <element name="fecha" nillable="true" type="xsd:string"/>
+       <element name="fechaCaducidadTarjetaCredito" nillable="true" type="xsd:string"/>
+       <element name="fechaDevengo" nillable="true" type="xsd:string"/>
+       <element name="hora" nillable="true" type="xsd:string"/>
+       <element name="idEntidadEmisora" nillable="true" type="xsd:string"/>
+       <element name="idTasa" nillable="true" type="xsd:string"/>
+       <element name="idioma" nillable="true" type="xsd:string"/>
+       <element name="importe" nillable="true" type="xsd:string"/>
+       <element name="informacionEspecifica" nillable="true" type="xsd:string"/>
+       <element name="liquidacion" nillable="true" type="tns1:Liquidacion"/>
+       <element name="medioPago" nillable="true" type="xsd:string"/>
+       <element name="nif" nillable="true" type="xsd:string"/>
+       <element name="nrc" nillable="true" type="xsd:string"/>
+       <element name="numeroTarjetaCredito" nillable="true" type="xsd:string"/>
+       <element name="referencia" nillable="true" type="xsd:string"/>
+       <element name="remesa" nillable="true" type="xsd:string"/>
+       <element name="tasa" nillable="true" type="tns1:Tasa"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="altaCertificacionRequest">
+
+      <wsdl:part name="parameters" element="impl:altaCertificacion"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="generarCertificacionPagosRequest">
+
+      <wsdl:part name="parameters" element="impl:generarCertificacionPagos"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerCertificacionRequest">
+
+      <wsdl:part name="parameters" element="impl:obtenerCertificacion"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="generarCertificacionPagosResponse">
+
+      <wsdl:part name="parameters" element="impl:generarCertificacionPagosResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarCertificacionRequest">
+
+      <wsdl:part name="parameters" element="impl:eliminarCertificacion"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerCertificacionResponse">
+
+      <wsdl:part name="parameters" element="impl:obtenerCertificacionResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaCertificacionResponse">
+
+      <wsdl:part name="parameters" element="impl:altaCertificacionResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarCertificacionResponse">
+
+      <wsdl:part name="parameters" element="impl:eliminarCertificacionResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CertificacionWebService">
+
+      <wsdl:operation name="generarCertificacionPagos">
+
+         <wsdl:input name="generarCertificacionPagosRequest" message="impl:generarCertificacionPagosRequest"/>
+
+         <wsdl:output name="generarCertificacionPagosResponse" message="impl:generarCertificacionPagosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaCertificacion">
+
+         <wsdl:input name="altaCertificacionRequest" message="impl:altaCertificacionRequest"/>
+
+         <wsdl:output name="altaCertificacionResponse" message="impl:altaCertificacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarCertificacion">
+
+         <wsdl:input name="eliminarCertificacionRequest" message="impl:eliminarCertificacionRequest"/>
+
+         <wsdl:output name="eliminarCertificacionResponse" message="impl:eliminarCertificacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerCertificacion">
+
+         <wsdl:input name="obtenerCertificacionRequest" message="impl:obtenerCertificacionRequest"/>
+
+         <wsdl:output name="obtenerCertificacionResponse" message="impl:obtenerCertificacionResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CertificacionWebServiceSoapBinding" type="impl:CertificacionWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="generarCertificacionPagos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="generarCertificacionPagosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="generarCertificacionPagosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="altaCertificacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="altaCertificacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="altaCertificacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarCertificacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarCertificacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarCertificacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerCertificacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerCertificacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerCertificacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CertificacionWebServiceService">
+
+      <wsdl:port name="CertificacionWebService" binding="impl:CertificacionWebServiceSoapBinding">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_CertificacionWS/services/CertificacionWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,115 @@
+.tableborderfortabs
+{
+	border-top: 0px none black;
+	border-bottom: 1px solid #D3D5DD;
+	border-left: 1px solid #D3D5DD;
+	border-right: 1px solid #D3D5DD;
+	background-color: #F5FBFE;
+	text-align: left;
+	height: 80%;
+}
+
+.tableborder
+{
+	border: 1px solid #D3D5DD;
+	background-color: #F5FBFE;
+	text-align: left;
+}
+
+.boldlabel
+{
+	color: #4477aa;
+	font-family: 'MS Sans Serif', verdana, arial, helvetica;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.label
+{
+	color: #4477aa;
+	font-family: 'MS Sans Serif', verdana, arial, helvetica;
+	font-size: 10px;
+}
+.labelPermisos{
+	color: #4477aa;
+	font-family: 'MS Sans Serif', verdana, arial, helvetica;
+	font-size: 10px;
+	margin-bottom: 5px;
+}
+
+.ldapentry {
+	color: #4477aa;
+	font-family: 'MS Sans Serif', verdana, arial, helvetica;
+	font-size: 10px;
+}
+
+.ldapentryGroupOrg {
+	color: #4477aa;
+	font-family: 'MS Sans Serif', verdana, arial, helvetica;
+	font-size: 10px;
+	padding-left:4em;
+	text-align : left;
+}
+
+.scroll 
+{	
+	width: 250px;	
+	height: 317px;	
+	overflow: auto;	
+	padding: 15px;
+	spacing: 8px;
+	/*position: relative;*/
+}
+
+.scroll_hor
+{	
+	height: 330px;	
+	overflow: auto;	
+	padding: 15px;
+	spacing: 8px;
+	position: relative;
+}
+
+.link
+{
+	color: #4477aa;
+	font-family: 'MS Sans Serif', verdana, arial, helvetica;
+	font-size: 10px;
+  text-decoration: none;
+}
+
+a.link:hover {
+	text-decoration: underline;
+}
+
+.scrollsupervision
+{	
+	width: 100%;	
+	height: 95px;	
+	overflow: auto;	
+	padding: 0px;
+	spacing: 8px;
+	position: relative;
+}
+
+
+a.resplink {
+	color: #4477aa;
+	font-family: 'MS Sans Serif', verdana, arial, helvetica;
+	font-size: 10px;
+  text-decoration: none;
+}
+
+a.resplink:hover {
+	text-decoration: underline;
+}
+
+#fondoAzul{
+	border-right: #D3D5DD 1px solid;
+    border-top: #D3D5DD 1px solid;
+    border-bottom: #D3D5DD 1px solid;
+    border-left: #D3D5DD 1px solid;
+    margin: 0px 0px 0px 0px;
+	padding: 15px 15px 15px 15px;
+	background-color: #F5FBFE;
+}

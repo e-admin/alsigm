@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+ 	
+]>
+
+<beans>
+	<bean name="ispacConfigurationResourceLoader" id="ispacConfigurationResourceLoader" 
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl"/>
+
+	<bean id="ispacConfigurationBean" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="CONFIG_SUBDIR" value="SIGEM_Tramitacion" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

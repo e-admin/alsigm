@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SCHEME_ID' 
+				 readOnly='false'
+				 titleKey='formatter.documentsList.documento' 
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 width='25%' />
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SCHEME_NUMEXP' 
+				 titleKey='formatter.documentsList.numExp' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 width='25%' />
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='SCHEME_EXPR' 
+				 titleKey='formatter.documentsList.nombre' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 width='55%' />
+</beanformatter>

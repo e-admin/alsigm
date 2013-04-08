@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrRegasoc" 
+    table="SCR_REGASOC"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_REGASOC"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="idArchprim"
+        type="int"
+        column="ID_ARCHPRIM"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_ARCHPRIM"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idFdrprim"
+        type="int"
+        column="ID_FDRPRIM"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_FDRPRIM"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idArchsec"
+        type="int"
+        column="ID_ARCHSEC"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_ARCHSEC"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="idFdrsec"
+        type="int"
+        column="ID_FDRSEC"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_FDRSEC"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

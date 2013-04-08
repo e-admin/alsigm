@@ -1,0 +1,14 @@
+Ficheros:
+	iflowModel.xml
+	iflowModel-context.xml
+	web-client-config-custom.xml
+
+La funcion de estos ficheros es la de cargar el tipo de aspecto iflow en alfresco
+para poder utilizar los metadatos especificos. 
+
+Deben de ser copiados en: /alfresco/tomcat/shared/classes/alfresco/extension
+Este paso es necesario para poder realizar los test unitarios.	
+	
+El fichero web-client-config-custom.xml ya existe por lo que si este 
+fichero fue modificado con anterioridad debera de crearse un unico fichero con 
+las partes diferentes de ambos ficheros, si nunca se ha modificado se podra sobreescribir.

@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Idocglbdoch" 
+    table="IDOCGLBDOCH"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IDOCGLBDOCH"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="fdrid" 
+            column="FDRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="FDRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="archid" 
+            column="ARCHID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ARCHID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="name" 
+            column="NAME" 
+            type="java.lang.String"
+            length="32"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="NAME"
+                length="32"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="clfid" 
+            column="CLFID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CLFID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="type" 
+            column="TYPE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TYPE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="title" 
+            column="TITLE" 
+            type="java.lang.String"
+            length="128"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TITLE"
+                length="128"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="author" 
+            column="AUTHOR" 
+            type="java.lang.String"
+            length="64"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="AUTHOR"
+                length="64"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="keywords" 
+            column="KEYWORDS" 
+            type="java.lang.String"
+            length="254"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="KEYWORDS"
+                length="254"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="stat" 
+            column="STAT" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="STAT"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="refcount" 
+            column="REFCOUNT" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="REFCOUNT"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="remarks" 
+            column="REMARKS" 
+            type="java.lang.String"
+            length="254"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="REMARKS"
+                length="254"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="accesstype" 
+            column="ACCESSTYPE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ACCESSTYPE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="acsid" 
+            column="ACSID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ACSID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="crtrid" 
+            column="CRTRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CRTRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="crtndate" 
+            column="CRTNDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="CRTNDATE"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="updrid" 
+            column="UPDRID" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="UPDRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="upddate" 
+            column="UPDDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="UPDDATE"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="accrid" 
+            column="ACCRID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ACCRID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="accdate" 
+            column="ACCDATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ACCDATE"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="acccount" 
+            column="ACCCOUNT" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ACCCOUNT"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="timestamp" 
+            column="TIMESTAMP" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="TIMESTAMP"
+                length="7"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

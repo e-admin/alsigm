@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ProvinciaVO">
+
+	<typeAlias alias="provincia"
+		type="es.ieci.tecdoc.fwktd.csv.api.vo.ProvinciaVO" />
+
+	<resultMap id="provincia" class="es.ieci.tecdoc.fwktd.dir3.api.vo.ProvinciaVO">
+		<result property="id" column="C_ID_PROVINCIA" />
+		<result property="nombre" column="C_DESC_PROV" />
+		<result property="estado" column="C_ID_ESTADO" />
+		<result property="idComunidadAutonoma" column="C_ID_COMUNIDAD" />
+		<result property="fechaAlta" column="D_FECHA_ALTA" />
+		<result property="fechaModificacion" column="D_FECHA_MODIF" />
+		<result property="fechaInicioVigencia" column="D_INICIO_VIGENCIA" />
+		<result property="fechaFinVigencia" column="D_FIN_VIGENCIA" />
+	</resultMap>
+
+	<sql id="table">CAT_PROVINCIA</sql>
+	<sql id="columns">
+		C_ID_PROVINCIA,
+		C_DESC_PROV,
+		C_ID_ESTADO,
+		C_ID_COMUNIDAD,
+		D_INICIO_VIGENCIA,
+		D_FIN_VIGENCIA,
+		D_FECHA_MODIF,
+		D_FECHA_ALTA
+	</sql>
+
+	<select id="getProvinciaVOs" resultMap="provincia">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		ORDER BY C_DESC_PROV
+	</select>
+
+	<select id="getProvinciaVO" parameterClass="java.lang.String" resultMap="provincia">
+		SELECT
+			<include refid="columns" />
+		FROM
+			<include refid="table" />
+		WHERE
+			C_ID_PROVINCIA=#value#
+	</select>
+
+</sqlMap>

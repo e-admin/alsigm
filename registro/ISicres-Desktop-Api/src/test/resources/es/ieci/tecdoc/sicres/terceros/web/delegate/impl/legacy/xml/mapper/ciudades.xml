@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Ciudades>
+	<Ciudad>
+		<Id>57</Id>
+	 	<Codigo>28017</Codigo>
+	 	<Nombre>Madrid</Nombre>
+	 	<IdProvincia>28</IdProvincia>
+	 </Ciudad>
+	 <Ciudad>
+	 	<Id>58</Id>
+	 	<Codigo>29001</Codigo>
+	 	<Nombre>Malaga</Nombre>
+		<IdProvincia>29</IdProvincia>
+	</Ciudad>
+</Ciudades>

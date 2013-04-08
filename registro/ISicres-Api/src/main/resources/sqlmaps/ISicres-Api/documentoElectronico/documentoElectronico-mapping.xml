@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="DocumentoElectronicoAnexoVO">
+
+<typeAlias alias="documentoElectronicoAnexoVO"
+		type="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.DocumentoElectronicoAnexoVO" />
+		
+<typeAlias alias="documentoElectronicoAnexoDatosFirmaVO"
+		type="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.DocumentoElectronicoAnexoDatosFirmaVO" />
+
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.DocumentoElectronicoAnexoVO"
+		id="documentoElectronicoAnexo">
+		<result property="id" resultMap="DocumentoElectronicoAnexoVO.identificadorDocumentoElectronicoAnexoVO"/>
+		<result property="comentario" column="comments" />
+		<result property="mimeType" column="mime_type" />
+		<result property="name" column="name" />
+		<result property="codeName" column="code_name" />
+		<result property="tipoValidez" column="validity_type" />
+		<result property="tipoDocumentoAnexo" column="document_type" />
+		<result property="datosFirma" resultMap="DocumentoElectronicoAnexoVO.documentoElectronicoAnexoDatosFirma"/>
+	</resultMap>
+	
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.DocumentoElectronicoAnexoDatosFirmaVO"
+		id="documentoElectronicoAnexoDatosFirma">
+		<!-- NOTA la columna id esta mapeada con el aliad idDatosFirma para que no colisionen el mapeo con join con la otra tabla scr_attach -->
+		<result property="id" column="idDatosFirma" />
+		<result property="idAttachment" column="id_attachment" />
+		<result property="certificado" column="cert" jdbcType="BINARY" />
+		<result property="firma" column="signature" jdbcType="BINARY" />
+		<result property="algFirma" column="signature_alg" />
+		<result property="formatoFirma" column="signature_format" />
+		<result property="selloTiempo" column="time_signature" jdbcType="BINARY"/>
+		<result property="ocspValidation" column="ocsp_validation" jdbcType="BINARY"/>
+		<result property="hash" column="hash" jdbcType="BINARY" />
+		<result property="hashAlg" column="hash_alg" />
+		<result property="idAttachmentFirmado" column="id_attachment_signed" />
+	</resultMap>
+	
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.IdentificadorDocumentoElectronicoAnexoVO"
+		id="identificadorDocumentoElectronicoAnexoVO">
+		<result property="id" column="id" />
+		<result property="idLibro" column="bookid" />
+		<result property="idRegistro" column="folderid" />
+		<result property="idPagina" column="pageid" />
+	</resultMap>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</sqlMap>

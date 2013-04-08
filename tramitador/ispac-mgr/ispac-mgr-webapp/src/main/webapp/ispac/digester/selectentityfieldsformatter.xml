@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='empty'
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 decorator=''
+				 columnClass='width5percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ETIQUETA'
+				 readOnly='false'
+				 titleKey='formatter.entities.nombre'
+				 fieldType='DATA'
+				 sortable='true'
+				 headerClass='sortable'
+				 columnClass='width45percent'
+				 />
+				
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='formatter.entities.descripcion'
+				 fieldType='DATA'
+				 sortable='true'
+				 headerClass='sortable'
+				 columnClass='width55percent'
+				 />
+				 
+</beanformatter>

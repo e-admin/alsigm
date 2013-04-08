@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CLAVE'
+				 readOnly='false'
+				 titleKey='form.entity.field.propertyLabel.physicalName'
+				 fieldType='CLAVE'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width35percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VALOR'
+				 readOnly='false'
+				 titleKey='form.entity.field.propertyLabel.logicalName'
+				 fieldType='VALOR'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width65percent'
+				 />
+
+</beanformatter>

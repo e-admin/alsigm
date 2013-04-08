@@ -1,0 +1,6 @@
+<Context path="/productoPostgres" debug="1" reloadable="true">
+	<Resource name="jdbc/archivoDS" auth="Container" type="javax.sql.DataSource" driverClassName="org.postgresql.Driver" url="jdbc:postgresql://10.228.20.178:5432/ARCHPROD" username="postgres" password="postgresadmin" maxActive="20" maxIdle="10" maxWait="-1"/>
+	<Resource name="jdbc/registroDS" auth="Container" type="javax.sql.DataSource" driverClassName="org.postgresql.Driver" url="jdbc:postgresql://10.228.20.178:5432/ARCHPROD" username="postgres" password="postgresadmin" maxActive="20" maxIdle="10" maxWait="-1"/>
+	<Resource name="jdbc/tramitadorDS" auth="Container" type="javax.sql.DataSource" driverClassName="org.postgresql.Driver" url="jdbc:postgresql://10.228.20.178:5432/ARCHPROD" username="postgres" password="postgresadmin" maxActive="20" maxIdle="10" maxWait="-1"/>
+	<Resource name="jdbc/tercerosDS" auth="Container" type="javax.sql.DataSource" driverClassName="org.postgresql.Driver" url="jdbc:postgresql://10.228.20.178:5432/ARCHPROD" username="postgres" password="postgresadmin" maxActive="20" maxIdle="10" maxWait="-1"/>
+</Context>

@@ -1,0 +1,290 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/frmint.js"></SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			top.Idioma = top.GetDlgParam(4);			
+			document.title = top.GetIdsLan( "IDS_OPC_EDITAR" );
+			var caseSensitive = top.GetDlgParam(5);
+			
+		</SCRIPT>
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/table.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<SCRIPT LANGUAGE="JavaScript">
+			var lastCode = "";
+			var SendRequest = false;
+
+			function OnLoadCS (){
+				if (caseSensitive == 'CS'){
+					document.getElementById("oCode").style.textTransform = "uppercase";									
+					document.getElementById("oDesc").style.textTransform = "uppercase";
+				}
+			}
+
+			function SelectField(check)
+			{
+				if (check.checked)	{
+					document.getElementById("oCode").value = "";
+					document.getElementById("oDesc").value = "";
+			
+					if (check.value == "8")	{	
+						top.SetInnerText(document.getElementById("tdHeader2"), top.GetIdsLan("IDS_TITSETUNITDESTEX"));
+					}
+					else{
+						top.SetInnerText(document.getElementById("tdHeader2"), top.GetIdsLan("IDS_TITSETUNITORIGEX"));
+					}
+					
+					document.getElementById("oCode").focus();
+				}
+			}
+			
+			function ShowUnitList()
+			{
+				var FldId = GetFldId();
+				var wnd = top.GetDlgParam(0) + "/mainvld.htm?SessionPId=" + top.GetDlgParam(1)
+					+ "&ArchivePId=" + top.GetDlgParam(2) 
+					+ "&FldId=1000"
+					+ "&tblvalidated=1" 
+					+ "&TblFldId=" + FldId 
+					+ "&VldInter=0" 
+					+ "&Idioma=" + top.GetDlgParam(4) 
+					+ "&Enabled=1&IsDtrList=2"
+					+ "&caseSensitive=" + caseSensitive;
+
+				var	sRet = top.ShowModalDialog(wnd, "name", 500, 700, "");	
+
+				if (sRet && (sRet != "")){
+					var tokens = new Array;
+					
+					tokens = top.getTokens(sRet, "#", "#", 3);
+				
+					idProc = tokens[0];
+					document.getElementById("oCode").value = tokens[1];
+					document.getElementById("oDesc").value = tokens[2];
+					document.getElementById("btnOK").disabled = false;
+				}
+			}
+			
+			function ValidateCode(oField)
+			{
+				oField.value = top.miTrim(oField.value);
+				oField.value = oField.value.toUpperCase();
+				
+				if (oField.value == "")	{
+					document.getElementById("oDesc").value = "";
+					return
+				}
+	
+				if (oField.value != lastCode){
+					var FldId = GetFldId();
+					var URL;
+					
+					document.body.style.cursor = "wait";
+	
+					document.getElementById("btnOK").disabled = true;
+					document.getElementById("btnCancel").disabled = true;
+					
+					URL = top.GetDlgParam(0) + "/validatecode.jsp?SessionPId=" + top.GetDlgParam(1) 
+							+ "&ArchivePId=" + top.GetDlgParam(2) 
+							+ "&FldId=" + FldId
+							+ "&Code=" + oField.value;
+							
+					top.XMLHTTPRequestGet(URL, GetResponse, false);
+				}
+			}
+			
+			function GetResponse()
+			{
+				if (top.g_oXMLHTTPRequest.readyState != 4){
+					return;
+				}
+				
+				if (top.g_oXMLHTTPRequest.status != 200){
+					alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
+					return;
+				}
+				
+				var XMLDoc = top.g_oXMLHTTPRequest.responseXML;
+		
+				document.body.style.cursor = "cursor";
+
+				if ((XMLDoc == null) || (XMLDoc.documentElement == null)){
+					eval(top.g_oXMLHTTPRequest.responseText);
+					document.getElementById("oCode").focus();
+					document.getElementById("oCode").select();
+				}
+				else{
+					if (XMLDoc.documentElement.getElementsByTagName("Error").length != 0) {
+						document.getElementById("oCode").value = "";
+						document.getElementById("oDesc").value = "";
+		
+						if (SendRequest == false){
+							alert(XMLDoc.documentElement.getElementsByTagName("Error")[0].firstChild.data);
+						}
+		
+						document.getElementById("oCode").focus();
+						document.getElementById("oCode").select();
+						lastCode = "";
+					}
+					else {
+						document.getElementById("oDesc").value = XMLDoc.documentElement.getElementsByTagName("Description")[0].firstChild.data;
+						lastCode = document.getElementById("oCode").value;
+					}
+				}
+	
+				document.getElementById("btnOK").disabled = false;
+				document.getElementById("btnCancel").disabled = false;
+			}
+			
+			function OnCancel()
+			{
+				top.returnValue = "";
+				top.close();
+			}
+			
+			function OnOK()
+			{
+				SendRequest = true;
+				
+				if (document.getElementById("oCode").value == ""){
+					alert(top.GetIdsLan("IDS_MSG_INTRO_UNIT"));
+					document.getElementById("oCode").focus();
+					SendRequest = false;
+					return;
+				}
+				
+				var FldId = GetFldId();
+				var args = new Array();
+				
+				document.getElementById("btnOK").disabled = true;
+				document.getElementById("btnCancel").disabled = true;
+	
+				args[0] = top.GetDlgParam(0);
+				args[1] = "SessionPId=" + top.GetDlgParam(1) +
+					"&ArchivePId=" + top.GetDlgParam(2) + 
+					"&FldId=" + FldId +
+					"&Code=" + document.getElementById("oCode").value +
+					"&List=" + top.GetDlgParam(3);
+				args[2] = "updatefields.jsp";
+				args[3] = top.GetIdsLan( "IDS_EDITING" );
+				args[4] = top.GetDlgParam(4);
+			
+				sRet = top.ShowModalDialog(top.GetDlgParam(0) + "/waiting.htm", args, 50, 350, "");	
+
+				if (sRet != undefined)	{
+					top.returnValue = FldId + "#" + sRet + "#";
+					top.close();
+				}
+				else{
+					document.getElementById("btnOK").disabled = false;
+					document.getElementById("btnCancel").disabled = false;
+				}
+				
+				SendRequest = false;
+			}	
+			
+			function GetFldId()
+			{
+				var FldId;
+				var tpFld = document.getElementsByName("field");
+		
+				for (var i = 0; i < tpFld.length; i++)	{
+					if (tpFld[i].checked == true){
+						FldId = tpFld[i].value;
+						break;
+					}
+				}
+				
+				return (FldId);
+			}					
+	</SCRIPT>
+	</HEAD>
+	<BODY onload="OnLoadCS ();document.getElementById('oCode').focus();" onunload="top.EnableEvents(window.opener);">
+		<DIV style="position:absolute;top:5px;left:5px;width:200px">
+			<TABLE CLASS="report" WIDTH="100%" TABINDEX="-1">
+				<THEAD>
+					<TR>
+						<TH CLASS="report" ALIGN="left">
+							<SCRIPT LANGUAGE="javascript">
+								document.write(top.GetIdsLan( "IDS_TITSELFIELD"));
+							</SCRIPT>
+						</TH>
+					</TR>
+				</THEAD>
+				<TR>
+					<TD CLASS="report"><div class="label">
+						<SCRIPT LANGUAGE="javascript">
+							document.write("<INPUT CLASS=\"radio\" TYPE=\"radio\" NAME=\"field\" VALUE=\"7\" TABINDEX=\"1\" CHECKED onclick=\"SelectField(this);\"></INPUT>");
+							document.write(top.GetIdsLan("IDS_LABEL_ORIGEN"));
+							document.write("<BR/>");
+							document.write("<INPUT CLASS=\"radio\" TYPE=\"radio\" NAME=\"field\" VALUE=\"8\" TABINDEX=\"1\" onclick=\"SelectField(this);\"></INPUT>");
+							document.write(top.GetIdsLan("IDS_LABEL_DESTINO"));
+							document.write("<BR/>");
+						</SCRIPT>
+					</div></TD>
+				</TR>
+			</TABLE>
+		</DIV>
+		<DIV style="position:absolute;top:5px;left:205px;width:125px">
+			<FORM NAME="ReportBut">
+				<TABLE ID="oTableBut" ALIGN="center">
+					<TR VALIGN="middle" ALIGN="center">
+						<TD ALIGN="rigth">
+							<INPUT CLASS="button" TYPE="button" ID="btnOK" STYLE="width:80;" onclick="OnOK()" TABINDEX="1">
+								<SCRIPT LANGUAGE="javascript">
+									document.getElementById("btnOK").value = top.GetIdsLan("IDS_BTNACEPTAR");
+								</SCRIPT>
+							</INPUT>
+						</TD>
+					</TR>
+					<TR HEIGHT="1px">
+					</TR>
+					<TR VALIGN="middle" ALIGN="center">
+						<TD ALIGN="left">
+							<INPUT CLASS="button" TYPE="button" ID="btnCancel" STYLE="width:80;" onclick="OnCancel();" TABINDEX="1" NAME="btnCancel">
+								<SCRIPT LANGUAGE="javascript">
+									document.getElementById("btnCancel").value = top.GetIdsLan("IDS_BTNCANCEL");
+								</SCRIPT>
+							</INPUT>
+						</TD>
+					</TR>
+				</TABLE>
+			</FORM>
+		</DIV>
+		<DIV style="position:absolute;top:100px;left:5px;width:350px">
+			<TABLE WIDTH="100%" CLASS="report">
+				<THEAD>
+					<TR>
+						<TH CLASS="report" ALIGN="left" colspan="2" id="tdHeader2">
+							<SCRIPT LANGUAGE="javascript">
+								document.write(top.GetIdsLan( "IDS_TITSETUNITORIGEX"));
+							</SCRIPT>
+						</TH>
+					</TR>
+				</THEAD>
+				<TR>
+					<TD CLASS="report" STYLE="padding:10;">
+						<LABEL CLASS="label" ID="oLbCode">
+							<SCRIPT LANGUAGE="javascript">
+								document.write(top.GetIdsLan("IDS_LABEL_CODE") + ":")
+							</SCRIPT>
+						</LABEL>
+						<INPUT CLASS="input" ID="oCode" TYPE="text" NAME="oCode" TABINDEX="1" onblur="ValidateCode(this);" onhelp="ShowUnitList();" onfocus="lastCode=this.value;" MAXLENGTH="16" STYLE="position:absolute;width:280;left:62">
+						</INPUT><IMG ID="imgHelp" SRC="images/buscar2.gif" class="imgHelpEdit" onclick="ShowUnitList();" onkeydown="if (top.GetKeyCode(event)==13){ShowUnitList();}" WIDTH="11" HEIGHT="11" TABINDEX="1">
+						<BR/>
+						<BR/>
+						<TEXTAREA CLASS="textarea" NAME="oDesc" ID="oDesc" STYLE="overflow-x:hidden; height:100; width:350;" READONLY="true" TABINDEX="-1">
+						</TEXTAREA>
+					</TD>
+				</TR>
+			</TABLE>
+		</DIV>
+	</BODY>
+</HTML>

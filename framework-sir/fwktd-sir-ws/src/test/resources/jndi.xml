@@ -1,0 +1,17 @@
+<beans>
+
+	<bean id="jndi" class="org.apache.xbean.spring.jndi.DefaultContext">
+		<property name="entries">
+			<map>
+				<entry key="java:comp/env/jdbc/fwktd-sirDS">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+						<property name="driverClassName" value="org.h2.Driver" />
+						<property name="url" value="jdbc:h2:~/fwktd-sir;MVCC=TRUE" />
+						<property name="username" value="fwktdsir" />
+						<property name="password" value="fwktdsir" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

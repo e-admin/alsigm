@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.ieci.tecdoc.isicres</groupId>
+	<artifactId>InvesSicres</artifactId>
+	<packaging>pom</packaging>
+	<name>InvesSicres</name>
+	<version>8.0</version>
+	<inceptionYear>2009</inceptionYear>
+	<description>Producto InvesSicres</description>
+	<issueManagement>
+		<system>Trac</system>
+		<url>https://10.228.75.66/trac/Sicres</url>
+	</issueManagement>
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	<properties>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<jdk.version>1.5</jdk.version>
+		<fwktd.version>0.7</fwktd.version>
+		<fwktd.audit.version>0.7</fwktd.audit.version>
+		<fwktd-sir.version>1.0</fwktd-sir.version>
+		<fwktd.dir3.version>1.0</fwktd.dir3.version>
+		<spring.version>3.0.2.RELEASE</spring.version>
+		<struts.version>1.2.9</struts.version>
+		<dwr.version>3.0.M1</dwr.version>
+		<log4j.version>1.2.8</log4j.version>
+		<hibernate.version>2.1.6</hibernate.version>
+		<ibatis.version>2.3.4.726</ibatis.version>
+		<junit.version>3.8.1</junit.version>
+		<invesdoc.version>9.2.3.1</invesdoc.version>
+		<commons.collections.version>3.2.1</commons.collections.version>
+		<quartz.version>1.6.6</quartz.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<jaxen.version>1.1</jaxen.version>
+		<itext.version>2.1.7</itext.version>
+		<skipDeploy>false</skipDeploy>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<build>
+
+		<pluginManagement>
+			<plugins>
+				<!-- configuraci�n del plugin de deploy -->
+				<plugin>
+     				<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.4</version>
+     			    <configuration>
+       						<skip>${skipDeploy}</skip>
+     				</configuration>
+   				</plugin>
+   			</plugins>
+   		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>iso-8859-1</encoding>
+					<fork>true</fork>
+					<executable>${JAVA_1_5_HOME}/bin/javac</executable>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<downloadSources>false</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<outputDirectory>target</outputDirectory>
+					<attach>true</attach>
+				</configuration>
+			</plugin>
+
+			<!-- plugin para despliegue en un tomcat local -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+				<configuration>
+					<path>/${project.build.finalName}</path>
+				</configuration>
+			</plugin>
+
+			<!-- plugin para documentacion en docbook -->
+			<plugin>
+				<groupId>com.agilejava.docbkx</groupId>
+				<artifactId>docbkx-maven-plugin</artifactId>
+				<version>2.0.10</version>
+			</plugin>
+
+		</plugins>
+
+
+	</build>
+
+	<profiles>
+		<!-- Este es el perfil por defecto. En el que se generan los Jars -->
+		<!--
+			Los modulos que tengan como resultado un jar deben incluirse en este perfil
+		-->
+		<profile>
+			<id>generate-jars</id>
+			<activation>
+				<property>
+					<name>jars</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>ISicres-Document-Connector</module>
+				<module>ISicres-Compulsa-Connector</module>
+				<module>ISicres-Common</module>
+				<module>ISicres-ServerCore</module>
+				<module>ISicres-PersonManager</module>
+				<module>ISicres-EventsManager</module>
+				<module>ISicres-Document-Connector-Invesdoc</module>
+				<module>ISicres-Document-Connector-Alfresco</module>
+				<module>ISicres-Server</module>
+				<module>ISicres-Compulsa-Connector-Invesicres</module>
+				<module>ISicres-Desktop-Jar</module>
+				<module>ISicres-resources-configurable</module>
+				<module>ISicres-resources-config</module>
+				<module>ISicres-resources-web</module>
+
+				<module>ISicres-Api</module>
+				<module>ISicres-Desktop-Api</module>
+				<module>ISicres-ConfigLocation</module>
+				<module>InvesicresAdmin</module>
+
+				<module>ISicres-Audit</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>generate-wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>ISicres-Desktop-Web</module>
+				<module>ISicres-WS-legacy</module>
+				<module>InvesicresAdmin</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>generate-ears</id>
+			<activation>
+				<property>
+					<name>ears</name>
+				</property>
+			</activation>
+			<modules>
+				<module>ISicres-Desktop-Ear</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>distribucion</id>
+			<modules>
+				<module>ISicres-Document-Connector</module>
+				<module>ISicres-Compulsa-Connector</module>
+				<module>ISicres-Common</module>
+				<module>ISicres-ServerCore</module>
+				<module>ISicres-PersonManager</module>
+				<module>ISicres-EventsManager</module>
+				<module>ISicres-Document-Connector-Invesdoc</module>
+				<module>ISicres-Document-Connector-Alfresco</module>
+				<module>ISicres-Server</module>
+				<module>ISicres-Compulsa-Connector-Invesicres</module>
+				<module>ISicres-Desktop-Jar</module>
+				<module>ISicres-resources-configurable</module>
+				<module>ISicres-resources-config</module>
+				<module>ISicres-resources-web</module>
+
+				<module>ISicres-Api</module>
+				<module>ISicres-Desktop-Api</module>
+				<module>ISicres-ConfigLocation</module>
+
+				<module>ISicres-Audit</module>
+
+				<!-- sql -->
+				<module>ISicres-BD-Script</module>
+
+				<!-- wars -->
+				<module>ISicres-Desktop-Web</module>
+				<module>ISicres-WS-legacy</module>
+
+				<module>ISicres-documentation</module>
+
+				<!-- admin-->
+				<module>InvesicresAdmin</module>
+
+				<!-- distribucion 
+				<module>ISicres-Distribucion</module>
+-->
+			</modules>
+
+		</profile>
+
+	</profiles>
+
+
+
+	<distributionManagement>
+		<repository>
+			<id>inhouse_releases</id>
+			<name>Repositorio tecdoc de releases</name>
+			<url>http://10.228.75.66:8081/nexus/content/repositories/releases/</url>
+
+		</repository>
+		<snapshotRepository>
+			<id>inhouse_snapshots</id>
+			<name>Repositorio tecdoc de snapshots</name>
+			<url>http://10.228.75.66:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+  <modules>
+    <module>ISicres-Terceros</module>
+  </modules>
+</project>

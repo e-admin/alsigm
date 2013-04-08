@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ETIQUETA'
+				 readOnly='false'
+				 titleKey='formatter.entities.nombre'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 decorator=''
+				 url='/cloneExpedient.do?method=addEntity'
+				 id='entity'
+				 columnClass='width40percent'
+				 />
+				
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='formatter.entities.descripcion'
+				 fieldType='DATA'
+				 sortable='true'
+				 headerClass='sortable'
+				 columnClass='width60percent'
+				 />
+				 
+</beanformatter>

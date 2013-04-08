@@ -1,0 +1,21 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <packaging>jar</packaging>
+    <name>PostgreSQL JDBC Driver</name>
+    <version>8.2-504.jdbc3</version>
+    <url>http://jdbc.postgresql.org</url>
+    <description>The PostgreSQL JDBC3 Driver for PostgreSQL 8.2 databases</description>
+    <licenses>
+        <license>
+            <name>BSD License</name>
+            <url>http://jdbc.postgresql.org/license.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>http://gborg.postgresql.org/project/pgjdbc/cvs/cvs.php</url>
+    </scm>
+</project>
+

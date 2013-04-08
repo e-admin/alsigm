@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+	<groupId>es.ieci.tecdoc.fwktd</groupId>
+	<artifactId>fwktd-parent</artifactId>
+	<version>0.7</version>
+  </parent>
+  
+  <artifactId>fwktd-sql</artifactId>
+  <packaging>pom</packaging>
+  
+  <name>Modulo para la generacion de SQL</name>
+  
+  <modules>
+	<module>fwktd-sql-ansi</module>
+	<module>fwktd-sql-db2</module>
+	<module>fwktd-sql-mssqlserver</module>
+	<module>fwktd-sql-oracle</module>
+	<module>fwktd-sql-postgresql</module>
+  </modules>
+  
+  <dependencies>
+	<dependency>
+		<groupId>${project.groupId}</groupId>
+		<artifactId>fwktd-core</artifactId>
+		<version>${project.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>${project.groupId}</groupId>
+		<artifactId>fwktd-test</artifactId>
+		<version>${project.version}</version>
+	</dependency>
+  </dependencies>
+</project>

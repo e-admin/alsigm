@@ -1,0 +1,396 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/global.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/list.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/table.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/font.css" />
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			top.g_URL = top.GetDlgParam(1);
+			top.g_SessionPId = top.GetDlgParam(2);
+			top.Idioma = top.GetDlgParam(5);
+			document.title = top.GetDlgParam(6);			
+		</SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			var rowSelected = -1;
+			var tagNode = "Registro";
+			var tagBookId = "BookId";
+			var tagFolderId = "FolderId";						
+			var tagFolderNumber = "FolderNumber"; //tagCode
+			var tagFolderDate = "FolderDate"; //tagName
+			var tagSummary = "Summary";
+			
+			
+			function onWindowLoad(XMLDoc)
+			{				
+				var init = parseInt(XMLDoc.documentElement.getElementsByTagName("Init")[0].firstChild.data, 10);
+				var paso = parseInt(XMLDoc.documentElement.getElementsByTagName("Paso")[0].firstChild.data, 10);
+				var end = parseInt(XMLDoc.documentElement.getElementsByTagName("End")[0].firstChild.data, 10);				
+				var total = parseInt(XMLDoc.documentElement.getElementsByTagName("Total")[0].firstChild.data, 10);				
+								
+				var datas = XMLDoc.documentElement.getElementsByTagName(tagNode);												
+								
+				var arrBookId = new Array();
+				var arrFolderId = new Array();
+				var arrFolderNumber = new Array(); //var arrCodes
+				var arrFolderDate = new Array(); //var arrNames
+				var arrSummary = new Array();
+
+				for (var i = 0; i < datas.length; i++){
+					var bookId = datas[i].getElementsByTagName(tagBookId)[0].firstChild.data;					
+					var folderId = datas[i].getElementsByTagName(tagFolderId)[0].firstChild.data;					
+					var folderNumber = datas[i].getElementsByTagName(tagFolderNumber)[0].firstChild.data;					
+					var folderDate = datas[i].getElementsByTagName(tagFolderDate)[0].firstChild.data;					
+					var summary = " ";
+					if ((datas[i].getElementsByTagName(tagSummary)[0] != null) && 
+					    (datas[i].getElementsByTagName(tagSummary)[0].firstChild != null)){
+					 summary = datas[i].getElementsByTagName(tagSummary)[0].firstChild.data;
+					}					
+				
+					arrBookId[i] = bookId;							
+					arrFolderId[i] = folderId;
+					arrFolderNumber[i] = folderNumber;	
+					arrFolderDate[i] = folderDate;
+					arrSummary[i] = summary;										
+				}
+								
+								
+				with (document.body.all("tbRegs"))	{					
+					with (tHead.rows[0]){						
+						top.SetInnerText(cells[1], top.GetIdsLan("IDS_LABEL_FOLDERNUMBER"));
+						top.SetInnerText(cells[2], top.GetIdsLan("IDS_LABEL_FOLDERDATE"));
+						top.SetInnerText(cells[3], top.GetIdsLan("IDS_LABEL_FOLDERSUMMARY"));	
+					}
+										
+					for (var i = rows.length - 1; i > 0; i--){
+						deleteRow(i);
+					}
+					
+					for (var i = 0; i < arrFolderId.length; i++){					
+						var newRow = insertRow();
+						var datas = new Array;
+						var newCell = new Array();
+	
+						newRow.id = "rowDatas";
+						newRow.className="Style5";
+						newRow.onclick = OnCheckClick;						
+						newRow.ondblclick = OnOK;
+
+						newCell[0] = newRow.insertCell();
+						newCell[0].width="5%";
+						newCell[0].setAttribute("bookId", arrBookId[i]);
+						newCell[0].setAttribute("folderId", arrFolderId[i]);											
+						
+						//datas[0]=document.createElement("input");
+						//datas[0].setAttribute ("type", "radio");
+						//datas[0].setAttribute("class", "radio");
+						datas[0]=document.createElement("IMG");
+						datas[0].setAttribute ("width", "16");
+						datas[0].setAttribute("height", "16");
+						datas[0].setAttribute("src", "images/select.gif");
+
+						newCell[0].appendChild(datas[0]);
+
+						newCell[1] = newRow.insertCell();
+						newCell[1].width="20%";
+						top.SetInnerText(newCell[1], arrFolderNumber[i]);
+
+						newCell[2] = newRow.insertCell();
+						newCell[2].width="20%";
+						top.SetInnerText(newCell[2], arrFolderDate[i]);
+
+						newCell[3] = newRow.insertCell();
+						newCell[3].width="55%";												
+						top.SetInnerText(newCell[3], arrSummary[i]);
+												
+					}					
+					
+					rows("rowDatas", 0).style.backgroundColor = g_color4;
+				}
+				
+				with (document.body.all("tbButtons")){					
+					with (rows("rowButtons")){						
+						cells[1].firstChild.value = top.GetIdsLan("IDS_BTNACEPTAR");
+						cells[2].firstChild.value = top.GetIdsLan("IDS_BTNCANCEL");
+					}
+					
+					with (rows("tbNav").cells[0]){						
+						all("imgFirst").style.display = (init == 1)?"none":"inline";
+						all("trans1").style.display = (init == 1)?"none":"inline";
+						all("imgPrev").style.display = (init == 1)?"none":"inline";
+						
+						all("imgNext").style.display = (total - end > 1)?"inline":"none";
+						all("trans2").style.display = (total - end > 1)?"inline":"none";
+						all("imgLast").style.display = (total - end > 1)?"inline":"none";
+						
+
+						all("imgFirst").title = top.GetIdsLan("IDS_ETQPRINCIPIO");
+						all("imgPrev").title = top.GetIdsLan("IDS_ETQANTERIOR");
+						all("imgNext").title = top.GetIdsLan("IDS_ETQSIGUIENTE");
+						all("imgLast").title = top.GetIdsLan("IDS_ETQFINAL");
+						
+				
+						top.SetInnerText(all("lbRango"), init.toString() + " - " + end.toString());
+						top.SetInnerText(all("lbPrepDe"), " " + top.GetIdsLan("IDS_PREPDE") + " ");
+						top.SetInnerText(all("lbTotal"), total.toString());
+												
+						top.SetInnerText(all("Init"), init.toString());
+						top.SetInnerText(all("Paso"), paso.toString());
+						top.SetInnerText(all("Total"), total.toString());						
+						top.SetInnerText(all("FolderNumber"), XMLDoc.documentElement.getElementsByTagName("FolderNumber")[0].firstChild.data);
+						
+					}
+					
+				}
+		
+				rowSelected = document.body.all("tbRegs").rows("rowDatas", 0).rowIndex;				
+				top.SetTableFocus(document.body.all("tbRegs").rows("rowDatas", 0));				
+
+				document.body.style.cursor = "cursor";
+										
+				return;
+			}
+			
+			function OnOK()
+			{												
+				var result = document.body.all("tbRegs").rows[rowSelected].cells[0].getAttribute("bookId") + ";" +
+							 document.body.all("tbRegs").rows[rowSelected].cells[0].getAttribute("folderId") + ";" + 
+							 top.GetInnerText(document.body.all("tbRegs").rows[rowSelected].cells[1]) + ";" + 
+							 top.GetInnerText(document.body.all("tbRegs").rows[rowSelected].cells[2]) + ";" +
+							 top.GetInnerText(document.body.all("tbRegs").rows[rowSelected].cells[3]) + ";#";								
+											
+				top.returnValue = result;
+												
+				top.close();
+			}
+						
+			function OnCancel()
+			{
+				top.returnValue = null;
+				top.close();
+			}
+			
+			function OnCheckClick()
+			{			
+				var srcElement = top.GetSrcElement(event);
+				
+				if (srcElement.nodeName != "TD"){
+					srcElement = srcElement.parentNode;
+				}
+				
+				ChangeToRow(srcElement.parentNode);
+			}
+			
+			function OnDelRows()
+			{				
+
+				with (document.getElementById("tbRegs")){
+					for (var i = rows.length - 2; i >= 1; i--){
+						if (rows[i].cells[0].firstChild.checked){
+							deleteRow(i);
+							//SetTabSize();
+						}
+					}
+				}
+
+				OnCheckClick();
+			}
+						
+			
+			function ChangeToRow(row)
+			{
+				document.body.all("tbRegs").rows[rowSelected].style.backgroundColor = "#fafcff";
+				row.style.backgroundColor= g_color4;
+				rowSelected = row.rowIndex;
+				top.SetTableFocus(row);
+			}
+			
+			function DoDownload(InitValue)
+			{				
+				
+				document.body.style.cursor = "wait";
+				
+					var URL = top.GetDlgParam(1) + "/validatesearchasociacionregistros.jsp?SessionPId=" + top.GetDlgParam(2)
+						+ "&Idioma=" + top.GetDlgParam(5)
+						+ "&InitValue=" + InitValue.toString()
+						+ "&ArchiveId=" + top.g_ArchiveId
+						+ "&FolderId=" + top.g_FolderId;
+
+					top.XMLHTTPRequestGet(URL, GetResponseEx, true);
+			}
+			
+			function GetResponseEx()
+			{
+				if (top.g_oXMLHTTPRequest.readyState != 4){
+					return;
+				}
+				
+				if (top.g_oXMLHTTPRequest.status != 200){
+					alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
+					return;
+				}
+				
+				document.body.style.cursor = "cursor";
+				
+				var XMLDoc = top.g_oXMLHTTPRequest.responseXML;
+		
+				if ((XMLDoc == null) || (XMLDoc.documentElement == null)){
+					eval(top.g_oXMLHTTPRequest.responseText);
+					OnCancel();
+				}
+				else{
+					if (XMLDoc.documentElement.getElementsByTagName("Error").length != 0){
+						alert(XMLDoc.documentElement.getElementsByTagName("Error")[0].firstChild.data);
+						OnCancel();
+					}
+					else {
+						onWindowLoad(XMLDoc);
+					}
+				}
+			}
+			
+			function FirstValue()
+			{
+				DoDownload("0");
+			}
+			
+			function PrevValue()
+			{
+				var Init, Paso, Prev;
+				
+				with (document.body.all("tbButtons").rows["tbNav"].cells[0]) {
+					Init = parseInt(top.GetInnerText(all("Init")), 10);
+					Paso = parseInt(top.GetInnerText(all("Paso")), 10);
+				}
+				Prev = Init - Paso - 1;
+				
+				DoDownload(Prev.toString());
+			}
+			
+			function NextValue()
+			{
+				var Init, Paso, Next;
+				
+				with (document.body.all("tbButtons").rows["tbNav"].cells[0]) {
+					Init = parseInt(top.GetInnerText(all("Init")), 10);
+					Paso = parseInt(top.GetInnerText(all("Paso")), 10);
+				}
+				
+				Next = Init + Paso - 1;
+				
+				DoDownload(Next.toString());
+			}
+			
+			function LastValue()
+			{
+				var Init, Paso, Total, Last;
+				
+				with (document.body.all("tbButtons").rows["tbNav"].cells[0]){
+					Init = parseInt(top.GetInnerText(all("Init")), 10);
+					Paso = parseInt(top.GetInnerText(all("Paso")), 10);
+					Total = parseInt(top.GetInnerText(all("Total")), 10);
+				}
+					
+				Last = Init - 1;
+				
+				while (Last + Paso < Total){
+					Last += Paso;
+				}
+				
+				DoDownload(Last.toString());
+			}
+			
+			function OnPressKey(aEvent)
+			{
+				var key = top.GetKeyCode(aEvent);
+				
+				switch(key) {
+					case 40: {
+						if (rowSelected < document.body.all("tbRegs").rows["rowDatas"].length) {
+							ChangeToRow(document.body.all("tbRegs").rows("rowDatas", rowSelected))
+						}
+						break;
+					}
+					case 38: {
+						if (rowSelected - 1 > 0) {
+							ChangeToRow(document.body.all("tbRegs").rows("rowDatas", rowSelected-2))
+						}
+						break;
+					}
+					case 13: {
+						OnOK();
+						break;
+					}
+					case 27: {
+						OnCancel();
+						break;
+					}
+				}
+			}
+		</SCRIPT>
+	</HEAD>
+	<BODY onload="onWindowLoad(top.GetDlgParam(0));" TABINDEX="-1" onkeydown="OnPressKey(event);" onunload="top.EnableEvents(window.opener);">
+		<DIV style="width:'100%';height='450px';top='0px';left='0px';overflow:'auto'" tabindex="-1">
+			<TABLE id="tbRegs" width="98%" align="left" cellpadding="0" cellspacing="0" border="0" tabindex="-1">
+				<THEAD tabindex="-1">
+					<TR>
+						<TH class="report" width="5%" />
+						<TH id="FolderNumber" class="report" align="left" width="20%">
+						</TH>
+						<TH id="FolderDate" class="report" align="left" width="20%">
+						</TH>
+						<TH id="Summary" class="report" align="left" width="55%">
+						</TH>					
+					</TR>
+				</THEAD>
+				<TBODY tabindex="1"></TBODY>
+			</TABLE>
+		</DIV>
+		<DIV style="width:'98%';height='50px';top='450px';left='0px'">
+			<TABLE id="tbButtons" width="100%" align="left" cellpadding="0" cellspacing="0" border="0">
+				<TR id="tbNav" tabindex="-1">
+					<TH class="report" colspan="3">
+						<IMG id="imgFirst" src="images/firstarrow.gif" width="10" height="11" title="" border="0" onclick="FirstValue();" onmouseover="this.style.cursor='pointer';" />
+						<IMG id="trans1" src="images/trans.gif" width="7" height="1" /> <IMG id="imgPrev" src="images/leftarrow.gif" width="10" height="11" title="" border="0" onclick="PrevValue();" onmouseover="this.style.cursor='pointer';" />
+						<IMG src="images/trans.gif" width="10" height="1" />
+						<LABEL id="lbRango"></LABEL>
+						<LABEL id="lbPrepDe"></LABEL>
+						<LABEL id="lbTotal"></LABEL>
+						<IMG src="images/trans.gif" width="10" height="1" /> <IMG id="imgNext" src="images/rightarrow.gif" width="10" height="11" title="" border="0" onclick="NextValue();" onmouseover="this.style.cursor='pointer';" />
+						<IMG id="trans2" src="images/trans.gif" width="7" height="1" /> <IMG id="imgLast" src="images/lastarrow.gif" width="10" height="11" title="" border="0" onclick="LastValue();" onmouseover="this.style.cursor='pointer';" />
+						<LABEL id="FolderNumber" style="display:none">
+							<xsl:value-of select="NAME" />
+						</LABEL>
+						<LABEL id="Init" style="display:none">
+							<xsl:value-of select="INIT" />
+						</LABEL>
+						<LABEL id="Paso" style="display:none">
+							<xsl:value-of select="PASO" />
+						</LABEL>
+						<LABEL id="Total" style="display:none">
+							<xsl:value-of select="TOTAL" />
+						</LABEL>												
+					</TH>
+				</TR>
+				<TR class="Style5" align="center" id="rowButtons">
+					<TD width="80%" />
+					<TD width="10%">
+						<INPUT class="button" type="button" value="" onclick="OnOK();" tabindex="1" style="cursor:pointer; font-family:'sans-serif,'; font-size:8pt; width:80;" ID="Button1" NAME="Button1">
+						</INPUT>
+					</TD>
+					<TD width="10%">
+						<INPUT class="button" type="button" value="" onclick="OnCancel();" tabindex="1" style="cursor:pointer; font-family:'sans-serif,'; font-size:8pt; width:80;" ID="Button2" NAME="Button2">
+						</INPUT>
+					</TD>
+				</TR>
+			</TABLE>
+		</DIV>
+	</BODY>
+</HTML>

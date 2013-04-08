@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!--
+		Factoria de gestion de configuracion con soporte a multientidad
+	 -->
+	<bean id="fwktd_time_configurationResourceLoaderImpl" name="fwktd_time_configurationResourceLoader"
+		  class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl"/>
+
+	<bean id="fwktd_time_configurationFactoryBeanImpl" name="fwktd_time_configurationFactoryBean"
+	      class="es.ieci.tecdoc.fwktd.core.config.business.MultiEntityPropertiesFactory">
+		<property name="configurationResourceLoader" ref="fwktd_time_configurationResourceLoader"/>
+		<property name="fileName" value="fwktd-time/fwktd-time.properties"/>
+	</bean>
+
+	<bean id="fwktd_time_configurationFactoryImpl" name="fwktd_time_configurationFactory"
+	      factory-bean="fwktd_time_configurationFactoryBean"
+	      factory-method="getProperties" scope="prototype">
+	</bean>
+
+
+	<bean id="fwktd_time_factoryTimeService" class="es.ieci.tecdoc.fwktd.time.FactoryTimeService" scope="prototype">
+		<constructor-arg name="properties" ref="fwktd_time_configurationFactory"/>
+	</bean>
+
+	<!--
+		Implementacion del servicio de tiempo sobre el sistema
+	 -->
+	<bean id="fwktd_time_dateRetrieverSystem" class="es.ieci.tecdoc.fwktd.time.system.SystemTimeServiceImpl" lazy-init="true"/>
+
+
+	<!--
+		Implementacion del servicio de tiempo sobre servidor NTP
+	 -->
+
+	<bean id="fwktd_time_dateRetrieverNTP" class="es.ieci.tecdoc.fwktd.time.ntp.NTPTimeServiceImpl" lazy-init="true" scope="prototype">
+		<constructor-arg ref="fwktd_time_configurationFactory"/>
+	</bean>
+
+
+	<!--
+		Definicion de la fuente de datos
+	 -->
+	<bean id="fwktd_time_jndiBaseName" class="es.ieci.tecdoc.fwktd.util.spring.Property" lazy-init="true" scope="prototype">
+		<constructor-arg ref="fwktd_time_configurationFactory"/>
+		<constructor-arg value="fwktd-time.jdbc.datasource"/>
+	</bean>
+
+	<bean id="fwktd_time_jndiBaseNamenFactoryImpl" name="fwktd_time_jndiBaseNameFactory"
+	      factory-bean="fwktd_time_jndiBaseName"
+	      factory-method="getProperty" lazy-init="true" scope="prototype">
+	</bean>
+
+	<bean id="fwktd_time_dataSourceImpl" name="fwktd_time_dataSource"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.jdbc.datasource.MultiEntityJndiDatasource" lazy-init="true" scope="prototype">
+		<property name="jndiBaseName"  ref="fwktd_time_jndiBaseNameFactory" />
+	</bean>
+
+	<!--
+		Implementaciones sobre JDBC del servicio de tiempo
+	 -->
+
+	<bean id="fwktd_time_dateRetrieverPostgres" class="es.ieci.tecdoc.fwktd.time.jdbc.PostgresTimeServiceImpl" lazy-init="true" scope="prototype">
+		<constructor-arg ref="fwktd_time_dataSource"/>
+	</bean>
+
+	<bean id="fwktd_time_dateRetrieverOracle" class="es.ieci.tecdoc.fwktd.time.jdbc.OracleTimeServiceImpl" lazy-init="true" scope="prototype">
+		<constructor-arg ref="fwktd_time_dataSource"/>
+	</bean>
+
+	<bean id="fwktd_time_dateRetrieverSqlServer" class="es.ieci.tecdoc.fwktd.time.jdbc.SqlServerTimeServiceImpl" lazy-init="true" scope="prototype">
+		<constructor-arg ref="fwktd_time_dataSource"/>
+	</bean>
+
+	<bean id="fwktd_time_dateRetrieverDB2" class="es.ieci.tecdoc.fwktd.time.jdbc.DB2TimeServiceImpl" lazy-init="true" scope="prototype">
+		<constructor-arg ref="fwktd_time_dataSource"/>
+	</bean>
+
+	<bean id="fwktd_time_dateRetrieverJdbcGeneric" class="es.ieci.tecdoc.fwktd.time.jdbc.JdbcTimeServiceImpl" lazy-init="true" scope="prototype">
+		<constructor-arg ref="fwktd_time_dataSource"/>
+		<!-- validao incluso si la query tuviera que invocar a una funcion -->
+		<property name="query" value="SELECT NOW()"/>
+	</bean>
+
+</beans>

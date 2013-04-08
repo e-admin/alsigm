@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %3L:%-40F- %m%n"/>
+        </layout>
+    </appender>
+
+	<appender name="PROFILE_FILE_APPENDER" class="org.apache.log4j.FileAppender">
+	    <param name="File" value="C:/Aplicaciones Web/archidoc/logs/profileInfo.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%t %-12p %m%n"/>
+        </layout>
+	</appender>
+
+    <appender name="HTML" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="C:/Aplicaciones Web/archidoc/logs/archivo-log.html"/>
+        <layout class="org.apache.log4j.HTMLLayout">
+            <param name="title" value="Archivo"/>
+        </layout>
+    </appender>
+
+    <appender name="AUDIT" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="C:/Aplicaciones Web/archidoc/logs/archivo-audit.html"/>
+        <layout class="org.apache.log4j.HTMLLayout">
+            <param name="title" value="Archivo"/>
+        </layout>
+    </appender>
+
+    <appender name="PERFORMANCE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="C:/Aplicaciones Web/archidoc/logs/archivo-performance.html" />
+        <layout class="org.apache.log4j.HTMLLayout">
+            <param name="title" value="Archivo"/>
+        </layout>
+    </appender>
+
+    <category name="PISTA_AUDITORIA">
+        <priority value="INFO"/>
+        <appender-ref ref="AUDIT"/>
+    </category>
+
+    <category name="PISTA_RENDIMIENTO">
+        <priority value ="INFO" />
+        <appender-ref ref="PERFORMANCE" />
+    </category>
+
+    <category name="org.apache.commons">
+        <priority value ="INFO" />
+    </category>
+        
+    <category name="org.apache.struts">
+        <priority value ="INFO" />
+    </category>
+
+
+    <category name="common">
+        <priority value ="INFO" />
+    </category>
+
+
+    <category name="org.displaytag">
+        <priority value ="INFO" />
+    </category>
+
+    <category name="net.sf.navigator">
+        <priority value ="INFO" />
+    </category>
+
+    <category name="org.apache.axis">
+        <priority value ="INFO" />
+    </category>
+
+    <category name="org.apache.fop">
+		<priority value ="ERROR"/>
+	</category>
+
+    <logger name="EVIDENCE">
+        <level value="INFO" />
+    </logger>
+
+    <logger name="PROFILE">
+        <appender-ref ref="PROFILE_FILE_APPENDER" />
+    </logger>
+
+    <root>
+        <priority value ="WARN" />
+        <appender-ref ref="HTML" />
+  <!--      <appender-ref ref="STDOUT" /> -->
+    </root>
+
+</log4j:configuration>

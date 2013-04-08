@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<MenuConfig>
+   <Displayers>
+      <Displayer name="DropDown" type="net.sf.navigator.displayer.DropDownMenuDisplayer"/>
+      <Displayer name="ExpandedClasifiers" type="common.view.menu.ExpandedClasifiersMenuDisplayer"/>
+      <Displayer name="CoolMenu" type="net.sf.navigator.displayer.CoolMenuDisplayer"/>
+   </Displayers>
+
+   <Menus>
+      <!-- ****** -->
+      <!-- FONDOS -->
+      <!-- ****** -->
+      <Menu name="MenuFondos" title="archigest.archivo.menu.fondosDocumentales" roles="100,101,500,501,502,503,504,505,506,507,508,1000,1001,1002">
+         <Item name="MenuVerFondos" title="archigest.archivo.menu.fondosDocumentales.organizar" roles="100,101,500,501,502,505,506,507"
+            action="/navigateAction?method=menuOption&amp;menuOption=verFondos" />
+         <Item name="MenuExportarCuadro" title="archigest.archivo.menu.fondosDocumentales.exportar.cuadro" roles="100,101,500,501,502,505,506,507"
+            action="/navigateAction?method=menuOption&amp;menuOption=exportarCuadro" />
+         <Item name="MenuBusquedas" title="archigest.archivo.menu.fondosDocumentales.busquedas" roles="100,101,500,501,502,503,504,505,506,507,1000,1001,1002">
+             <Item name="MenuBusquedaRapida" title="archigest.archivo.menu.fondosDocumentales.rapida" roles="100,101,500,501,502,503,504,505,506,507,1000,1001,1002"
+                   action="/navigateAction?method=menuOption&amp;menuOption=busquedaRapidaElementos" />
+             <Item name="MenuBusquedaAvanzada" title="archigest.archivo.menu.fondosDocumentales.avanzada" roles="100,101,500,501,502,503,504,505,506,507,1000,1001,1002"
+                   action="/navigateAction?method=menuOption&amp;menuOption=busquedaAvanzadaElementos" />
+         </Item>
+         <Item name="MenuSeries" title="archigest.archivo.menu.fondosDocumentales.gestionSeries" roles="100,101,502,503,1000,1001,1002">
+            <Item name="MenuIdentificar" title="archigest.archivo.menu.fondosDocumentales.gestionSeries.identificar" roles="100,101,502,503"
+               action="/navigateAction?method=menuOption&amp;menuOption=homeIdentificacionSeries" />
+            <Item name="MenuValorar" title="archigest.archivo.menu.fondosDocumentales.gestionSeries.valorar" roles="100,101,502,1000"
+               action="/navigateAction?method=menuOption&amp;menuOption=homeValoracionSeries" />
+            <Item name="MenuSeleccionar" title="archigest.archivo.menu.fondosDocumentales.gestionSeries.seleccionar" roles="100,101,1001,1002"
+               action="/navigateAction?method=menuOption&amp;menuOption=homeSeleccionSeries" />
+            <!--Item name="MenuBuscarSolicitudesSeries" title="archigest.archivo.menu.fondosDocumentales.gestionSeries.buscarSolicitudes" roles="100,101,1001,1002"
+               action="/navigateAction?method=menuOption&amp;menuOption=busquedaSolicitudesSeries" /-->
+         </Item>
+		 <Item name="MenuFondosIngresoDirecto" title="archigest.archivo.menu.fondos.ingreso.directo" roles="508">
+			 <Item name="MenuFondosGestionarIngresoDirecto" title="archigest.archivo.crear" roles="508"
+				action="/navigateAction?method=menuOption&amp;menuOption=ingresoDirecto" />
+
+			 <Item name="MenuFondosGestionarIngresoDirecto" title="archigest.archivo.gestionar" roles="508"
+				action="/navigateAction?method=menuOption&amp;menuOption=ingresosEnElaboracion" />
+
+			 <Item name="MenuFondosBusquedaIngresoDirecto" title="archigest.archivo.buscar" roles="508"
+				action="/navigateAction?method=menuOption&amp;menuOption=busquedaIngresosDirectos" />
+		 </Item>
+      </Menu>
+
+      <!-- ************** -->
+      <!-- TRANSFERENCIAS -->
+      <!-- ************** -->
+      <Menu name="MenuTransferencias" title="archigest.archivo.menu.transferencias" roles="100,101,200,201,202,203,204,205,206,207,208,209">
+         <Item name="Calendario" title="archigest.archivo.menu.transferencias.calendarioPrevisiones" roles="100,101,205"
+                action="/navigateAction?method=menuOption&amp;menuOption=calendarioPrevisiones"/>
+         <Item name="MenuPrevisiones" title="archigest.archivo.menu.transferencias.previsiones" roles="100,101,200,201,202,203,204,205,209">
+            <Item name="MenuCrearPrevisiones" title="archigest.archivo.menu.transferencias.previsiones.crear" roles="100,200,201,202,203,209"
+                action="/navigateAction?method=menuOption&amp;menuOption=crearPrevision"/>
+            <Item name="MenuPrevisionesEnGestion" title="archigest.archivo.menu.transferencias.previsiones.gestionar" roles="100,200,201,202,203,209"
+                action="/navigateAction?method=menuOption&amp;menuOption=homePrevisiones"/>
+            <Item name="MenuBuscarPrevisiones" title="archigest.archivo.menu.transferencias.previsiones.buscar" roles="100,101,200,201,202,203,204,205,209"
+                action="/navigateAction?method=menuOption&amp;menuOption=busquedaPrevisiones" />
+         </Item>
+         <Item name="MenuRelaciones" title="archigest.archivo.menu.transferencias.relaciones" roles="100,101,200,201,202,203,204,205,206,207,208,209">
+            <Item name="MenuCrearRelaciones" title="archigest.archivo.menu.transferencias.relaciones.crear" roles="100,200,201,202,203,209"
+                action="/navigateAction?method=menuOption&amp;menuOption=crearRelacion" />
+            <Item name="MenuRelacionesEnGestion" title="archigest.archivo.menu.transferencias.relaciones.gestionar" roles="100,200,201,202,203,205,206,207,208,209"
+                action="/navigateAction?method=menuOption&amp;menuOption=homeRelaciones"/>
+            <Item name="MenuBuscarRelaciones" title="archigest.archivo.menu.transferencias.relaciones.buscar" roles="100,101,200,201,202,203,204,205,206,207,208,209"
+                action="/navigateAction?method=menuOption&amp;menuOption=busquedaRelaciones" />
+         </Item>
+      </Menu>
+
+      <!-- *********** -->
+      <!-- DESCRIPCION -->
+      <!-- *********** -->
+      <Menu name="MenuDescripcion" title="archigest.archivo.menu.descripcion" roles="100,101,600,601,604,605">
+         <Item name="MenuDescripcionFondo" title="archigest.archivo.menu.descripcion.archivistica" roles="100,101,600,601"
+            action="/navigateAction?method=menuOption&amp;menuOption=busquedaEnCuadroClasificacion" />
+         <Item name="MenuDescripcionAutoridades" title="archigest.archivo.menu.descripcion.autoridades" roles="100,101,604,605"
+               action="/navigateAction?method=menuOption&amp;menuOption=busquedaAutoridades" />
+      </Menu>
+
+      <!-- ********************* -->
+      <!-- PRESTAMOS Y CONSULTAS -->
+      <!-- ********************* -->
+      <Menu name="MenuServicios" title="archigest.archivo.menu.servicios" roles="100,101,300,301,302,303,304,305,306,1402,1403,1404">
+         <Item name="MenuPrestamos" title="archigest.archivo.menu.servicios.prestamos" roles="100,101,300,301,302,303,306">
+            <Item name="MenuNuevoPrestamo" title="archigest.archivo.menu.servicios.prestamos.crear" roles="100,300,301,302,303"
+                  action="/navigateAction?method=menuOption&amp;menuOption=crearPrestamo" />
+            <Item name="MenuGestionPrestamos" title="archigest.archivo.menu.servicios.prestamos.gestionar" roles="100,300,301,302,306"
+               action="/navigateAction?method=menuOption&amp;menuOption=homePrestamos" />
+            <Item name="MenuBuscarPrestamos" title="archigest.archivo.menu.servicios.prestamos.buscar" roles="100,101,300,301,302,303,306"
+               action="/navigateAction?method=menuOption&amp;menuOption=busquedaPrestamos" />
+         </Item>
+         <Item name="MenuConsultas" title="archigest.archivo.menu.servicios.consultas" roles="100,101,304,305,306">
+            <Item name="MenuNuevaConsulta" title="archigest.archivo.menu.servicios.consultas.crear" roles="100,304"
+                  action="/navigateAction?method=menuOption&amp;menuOption=crearConsulta" />
+            <Item name="MenuGestionConsultas" title="archigest.archivo.menu.servicios.consultas.gestionar" roles="100,304,305,306"
+               action="/navigateAction?method=menuOption&amp;menuOption=homeConsultas"/>
+            <Item name="MenuBuscarConsultas" title="archigest.archivo.menu.servicios.consultas.buscar" roles="100,101,304,305,306"
+               action="/navigateAction?method=menuOption&amp;menuOption=busquedaConsultas" />
+         </Item>
+         <Item name="PrestamosDevolver" title="archigest.archivo.menu.servicios.devoluciones" roles="100,302,305"
+            action="/navigateAction?method=menuOption&amp;menuOption=devolucionPrestamo" />
+
+         <Item name="MenuInformes" title="archigest.archivo.menu.servicios.informesUDocs" roles="100,101,300,301,302,303,304,305,306">
+	         <Item name="MenuRegistroEntregas" title="archigest.archivo.menu.servicios.registroEntregas" roles="100,101,300,301,302,303,304,305,306"
+	            action="/navigateAction?method=menuOption&amp;menuOption=consultarUnidadesDocumentales" />
+             <Item name="MenuDevoluciones" title="archigest.archivo.menu.servicios.devoluciones" roles="100,302,305"
+                action="/navigateAction?method=menuOption&amp;menuOption=devolverSolicitudes" />
+         </Item>
+         <Item name="MenuServicioSalas" title="archigest.archivo.menu.servicios.salas" roles="100,101,304,305,1402,1403,1404">
+            <Item name="MenuRegistroEntrada" title="archigest.archivo.menu.servicios.salas.registro.entrada" roles="100,101,1404"
+                  action="/navigateAction?method=menuOption&amp;menuOption=registroEntradaSala" />
+            <Item name="MenuBusquedaRegistro" title="archigest.archivo.menu.servicios.salas.gestionar" roles="100,101,1404"
+                  action="/navigateAction?method=menuOption&amp;menuOption=busquedaRegistroConsulta" />
+            <Item name="MenuSalasInformes" title="archigest.archivo.menu.servicios.salas.informes" roles="100,101,304,305,1402,1403,1404">
+            	<Item name="MenuSalasInformeUsuariosConsulta" title="archigest.archivo.menu.servicios.salas.informes.usuarios.consulta" roles="100,101,1402,1403"
+                	  action="/navigateAction?method=menuOption&amp;menuOption=informeUsuariosConsulta" />
+            	<Item name="MenuSalasInformeUsuariosConsultaAsistencia" title="archigest.archivo.menu.servicios.salas.informes.usuarios.consulta.asistencia" roles="100,101,1404"
+                	  action="/navigateAction?method=menuOption&amp;menuOption=informeUsuariosConsultaAsistencia" />
+            	<Item name="MenuSalasInformeExpUsuarioConsulta" title="archigest.archivo.menu.servicios.salas.informes.exp.usuario.consulta" roles="100,101,1404"
+                	  action="/navigateAction?method=menuOption&amp;menuOption=informeExpedientesUsuarioConsulta" />
+            	<Item name="MenuSalasInformeResumenServicios" title="archigest.archivo.menu.servicios.salas.informes.resumen.servicios" roles="100,101,1402,1403,1404"
+                	  action="/navigateAction?method=menuOption&amp;menuOption=informeResumenServicios" />
+            	<Item name="MenuSalasInformeTemasInvestigacion" title="archigest.archivo.menu.servicios.salas.informes.temas.investigacion" roles="100,101,304,305,1402,1403"
+                	  action="/navigateAction?method=menuOption&amp;menuOption=informeTemasInvestigacion" />
+            	<Item name="MenuSalasInformeUnidadesConsultadas" title="archigest.archivo.menu.servicios.salas.informes.unidades.consultadas" roles="100,101,1402,1403,1404"
+                	  action="/navigateAction?method=menuOption&amp;menuOption=informeUnidadesConsultadas" />
+            </Item>
+         </Item>
+      </Menu>
+
+      <!-- ************** -->
+      <!-- DIGITALIZACIÓN -->
+      <!-- ************** -->
+      <Menu name="MenuDigitalizacion" title="archigest.archivo.menu.digitalizacion" roles="100,101,902,903">
+          <Item name="MenuCrearTareas" title="archigest.archivo.menu.digitalizacion.crear" roles="100,902"
+              action="/navigateAction?method=menuOption&amp;menuOption=crearTarea"/>
+          <Item name="MenuGestionTareas" title="archigest.archivo.menu.digitalizacion.gestionar" roles="100,902,903"
+              action="/navigateAction?method=menuOption&amp;menuOption=homeDigitalizacion"/>
+          <Item name="MenuBusquedaTareas" title="archigest.archivo.menu.digitalizacion.buscar" roles="100,101,902"
+              action="/navigateAction?method=menuOption&amp;menuOption=busquedaTareasDigitalizacion"/>
+      </Menu>
+
+      <!-- ****************** -->
+      <!-- DOCUMENTOS VITALES -->
+      <!-- ****************** -->
+      <Menu name="MenuDocumentosVitales" title="archigest.archivo.menu.documentosVitales" roles="100,101,800,801" >
+          <Item name="MenuGestionDocumentosVitales" title="archigest.archivo.menu.documentosVitales.crear" roles="100,801"
+              action="/navigateAction?method=menuOption&amp;menuOption=crearDocumentoVital"/>
+          <Item name="MenuGestionDocumentosVitales" title="archigest.archivo.menu.documentosVitales.gestionar" roles="100,801"
+              action="/navigateAction?method=menuOption&amp;menuOption=homeDocumentosVitales"/>
+          <Item name="MenuBusquedaDocumentosVitales" title="archigest.archivo.menu.documentosVitales.buscar" roles="100,101,800,801"
+              action="/navigateAction?method=menuOption&amp;menuOption=busquedaDocumentosVitales"/>
+
+      </Menu>
+
+      <!-- ************** -->
+      <!-- ADMINISTRACION -->
+      <!-- ************** -->
+      <Menu name="MenuAdministracion" title="archigest.archivo.menu.admin" roles="100,101,204,205,302,303,400,401,402,403,404,504,602,603,606,700,701,800,801,1400,1401,1402,1403">
+         <!-- ******** -->
+         <!-- DEPOSITO -->
+         <!-- ******** -->
+         <Item title="archigest.archivo.menu.admin.depositos" name="MenuDeposito" roles="100,101,400,401,402,403,404">
+             <Item title="archigest.archivo.menu.admin.depositos.fisicos" name="MenuDepositosFisicos" roles="100,101,400,401,402,403,404"
+                action="/navigateAction?method=menuOption&amp;menuOption=verDepositosFisicos" />
+             <Item title="archigest.archivo.menu.admin.depositos.electronicos" name="MenuDepositosElectronicos" roles="100,101,400,402,403,404"
+                action="/navigateAction?method=menuOption&amp;menuOption=verDepositosElectronicos"/>
+             <Item title="archigest.archivo.menu.admin.depositos.Formatos" name="MenuFormatos" roles="100,101,400,401,402,403,404"
+	             action="/navigateAction?method=menuOption&amp;menuOption=gestionFormatos" />
+             <Item title="archigest.archivo.menu.admin.deposito.niveles" name="MenuDepositoNiveles" roles="100"
+                action="/navigateAction?method=menuOption&amp;menuOption=gestionNivelesDeposito"/>
+         </Item>
+
+         <Item title="archigest.archivo.menu.admin.usuarios" name="MenuAdmonAcceso" roles="100,101,700,701">
+            <Item title="archigest.archivo.menu.admin.usuarios.usuarios" name="MenuListaUsuarios" roles="100,101,700,701"
+               action="/navigateAction?method=menuOption&amp;menuOption=listaUsuarios" />
+            <Item title="archigest.archivo.menu.admin.usuarios.perfiles" name="MenuListaRoles" roles="100,101,700,701"
+              action="/navigateAction?method=menuOption&amp;menuOption=listaRoles" />
+            <Item title="archigest.archivo.menu.admin.usuarios.grupos" name="MenuListaGrupos" roles="100,101,700,701"
+              action="/navigateAction?method=menuOption&amp;menuOption=listaGrupos" />
+            <Item title="archigest.archivo.menu.admin.usuarios.organos" name="MenuListaOrganos" roles="100,101,700,701"
+              action="/navigateAction?method=menuOption&amp;menuOption=listaOrganos" />
+            <Item title="archigest.archivo.menu.admin.usuarios.listasAcceso" name="MenuListaListasAcceso" roles="100,101,700,701"
+              action="/navigateAction?method=menuOption&amp;menuOption=listaListasAcceso" />
+         </Item>
+
+         <Item title="archigest.archivo.menu.admin.auditoria" name="MenuAdmonAuditoria" roles="100,101">
+            <Item title="archigest.archivo.menu.admin.auditoria.critAcciones" name="MenuAccionesAuditoria" roles="100"
+               action="/navigateAction?method=menuOption&amp;menuOption=verAcciones" />
+            <Item title="archigest.archivo.menu.admin.auditoria.critUsuarios" name="MenuUsuariosAuditoria" roles="100"
+               action="/navigateAction?method=menuOption&amp;menuOption=verUsuarios" />
+            <Item title="archigest.archivo.menu.admin.auditoria.consultar" name="MenuConsultasAuditoria" roles="100,101"
+               action="/navigateAction?method=menuOption&amp;menuOption=buscarPistas" />
+         </Item>
+
+         <!--Item name="MenuAdministracionPlantillas" title="Plantillas" roles="100,101,603,604,605" /-->
+
+         <Item name="MenuAdmonListasValores" title="archigest.archivo.menu.admin.listasValores" roles="100,101,602">
+            <Item name="MenuDescripcionValidacionCrear" title="archigest.archivo.menu.admin.listasValores.crear" roles="100,602"
+               action="/navigateAction?method=menuOption&amp;menuOption=crearTablaValidacion" />
+            <Item name="MenuDescripcionValidacionVer" title="archigest.archivo.menu.admin.listasValores.gestionar" roles="100,101,602"
+               action="/navigateAction?method=menuOption&amp;menuOption=tablasValidacion" />
+         </Item>
+
+         <Item name="MenuAdministracionDescriptores" title="archigest.archivo.menu.admin.descriptores" roles="100,101,603">
+            <Item name="MenuDescripcionDescriptoresCrear" title="archigest.archivo.menu.admin.descriptores.crear" roles="100,603"
+               action="/navigateAction?method=menuOption&amp;menuOption=crearListaDescriptora" />
+            <Item name="MenuDescripcionDescriptoresVer" title="archigest.archivo.menu.admin.descriptores.gestionar" roles="100,101,603"
+               action="/navigateAction?method=menuOption&amp;menuOption=listasDescriptoras" />
+            <Item name="MenuDescripcionDescriptoresUnificar" title="archigest.archivo.menu.admin.descriptores.unificar" roles="100,603"
+               action="/navigateAction?method=menuOption&amp;menuOption=unificarDescriptores" />
+         </Item>
+
+		<Item name="MenuGestionDescripcion" title="archigest.archivo.menu.admin.gestionDescripcion" roles="100,101,606">
+			<Item name="MenuAreas" title="archigest.archivo.menu.admin.Areas" roles="100,101"
+           	action="/navigateAction?method=menuOption&amp;menuOption=gestionArea"/>
+           	<Item name="MenuCampos" title="archigest.archivo.menu.admin.campos" roles="100,101">
+           		<Item name="MenuSimples" title="archigest.archivo.menu.admin.camposSimples" roles="100,101"
+           		action="/navigateAction?method=menuOption&amp;menuOption=gestionCampoDato"/>
+           		<Item name="MenuTablas" title="archigest.archivo.menu.admin.camposTablas" roles="100,101"
+           		action="/navigateAction?method=menuOption&amp;menuOption=gestionCampoTabla"/>
+           	</Item>
+			<Item name="MenuFichas" title="archigest.archivo.menu.admin.Fichas" roles="100,101"
+            	action="/navigateAction?method=menuOption&amp;menuOption=gestionFicha"/>
+			<Item name="MenuFichas" title="archigest.archivo.menu.admin.FormatosFicha" roles="100,101"
+            	action="/navigateAction?method=menuOption&amp;menuOption=gestionFormatoFicha"/>
+            <Item name="MenuDescripcionReemplazar" title="archigest.archivo.menu.descripcion.reemplazar" roles="100,606">
+	         	<Item name="MenuDescripcionReemplazarSimple" title="archigest.archivo.menu.descripcion.reemplazar.simple" roles="100,606"
+	                action="/navigateAction?method=menuOption&amp;menuOption=reemplazoSimple" />
+	          	<Item name="MenuDescripcionReemplazarAvanzado" title="archigest.archivo.menu.descripcion.reemplazar.avanzado" roles="100,606"
+	                action="/navigateAction?method=menuOption&amp;menuOption=reemplazoAvanzado" />
+         	</Item>
+        </Item>
+
+
+         <Item name="MenuAdministracionDocVitales" title="archigest.archivo.menu.admin.documentosVitales" roles="100,101,800,801">
+            <Item name="MenuAdmTiposDocumentos" title="archigest.archivo.menu.admin.documentosVitales.tipos" roles="100,101,800,801"
+               action="/navigateAction?method=menuOption&amp;menuOption=admTiposDocumentos" />
+         </Item>
+
+         <!--Item name="MenuAdministracionTesauros" title="Tesauros" roles="100,101,603,604,605" /-->
+
+         <Item name="MenuCederControl" title="archigest.archivo.menu.admin.cesionControl" roles="100,204,205,302,303,504">
+            <Item name="MenuCambioGestorSerie" title="archigest.archivo.menu.admin.cesionControl.series" roles="100,504"
+               action="/navigateAction?method=menuOption&amp;menuOption=asignacionGestorSerie" />
+            <Item name="MenuCambioGestorPrestamo" title="archigest.archivo.menu.admin.cesionControl.prestamos" roles="100,302,303"
+               action="/navigateAction?method=menuOption&amp;menuOption=asignacionGestorPrestamo" />
+            <Item name="MenuCambioGestorPrevision" title="archigest.archivo.menu.admin.cesionControl.previsiones" roles="100,204"
+               action="/navigateAction?method=menuOption&amp;menuOption=asignacionGestorPrevision" />
+            <Item name="MenuCambioGestorRelacionEnOrganoRemitente" title="archigest.archivo.menu.admin.cesionControl.relacionesOficina" roles="100,204"
+               action="/navigateAction?method=menuOption&amp;menuOption=asignacionGestorRelacionOrgRemitente" />
+            <Item name="MenuCambioGestorRelacionEnArchivoReceptor" title="archigest.archivo.menu.admin.cesionControl.relacionesArchivo" roles="100,205"
+               action="/navigateAction?method=menuOption&amp;menuOption=asignacionGestorRelacionArchivo" />
+            <Item name="MenuCambioGestorIngresoDirecto" title="archigest.archivo.menu.admin.cesionControl.ingresoDirecto" roles="100,508"
+               action="/navigateAction?method=menuOption&amp;menuOption=asignacionGestorIngresoDirecto" />
+            <Item name="MenuCambioUsuarioCaptura" title="archigest.archivo.menu.admin.cesionControl.tareasCaptura" roles="100,902"
+               action="/navigateAction?method=menuOption&amp;menuOption=cesionControlTareaCaptura" />
+            <Item name="MenuCambioGestorRevisionDocumentacion" title="archigest.archivo.menu.admin.cesionControl.revisionesDoc" roles="100,601,606"
+               action="/navigateAction?method=menuOption&amp;menuOption=cesionControlRevisionDocumentacion" />
+         </Item>
+
+          <!-- ARCHIVO -->
+         <Item title="archigest.archivo.menu.admin.archivos" name="MenuArchivo" roles="100">
+             <Item title="archigest.archivo.gestionar" name="MenuArchivoDefinicion" roles="100"
+              action="/navigateAction?method=menuOption&amp;menuOption=listadoArchivos"/>
+             <Item title="archigest.archivo.menu.admin.archivos.niveles" name="MenuArchivoNiveles" roles="100"
+                action="/navigateAction?method=menuOption&amp;menuOption=init"/>
+         </Item>
+
+         <!-- ORGANIZACION -->
+		<Item title="archigest.archivo.menu.admin.organizacion" name="MenuOrganizacion"
+			roles="100">
+			<Item title="archigest.archivo.gestionar" name="MenuOrganizacionGestion"
+				roles="100" action="/navigateAction?method=menuOption&amp;menuOption=verEstructuraOrganizaciones" />
+			<!-- <Item title="organizacion.menu.crear" name="MenuOrganizacionCrear"
+				roles="100" action="/navigateAction?method=menuOption&amp;menuOption=crearOrganizacion" />  -->
+			<Item title="organizacion.menu.buscar" name="MenuOrganizacionBuscar"
+				roles="100" action="/navigateAction?method=menuOption&amp;menuOption=buscarOrganizacion" />
+		</Item>
+
+		<!-- CUADRO CLASIFICACION - NIVELES -->
+		<Item title="archigest.archivo.menu.admin.cuadro" name="MenuCuadroClasificacion" roles="100">
+			<Item title="archigest.archivo.menu.admin.cuadro.niveles" name="MenuCuadroNiveles"
+				roles="100" action="/navigateAction?method=menuOption&amp;menuOption=gestionNiveles" />
+		</Item>
+
+		<!-- MOTIVOS - PRESTAMOS Y CONSULTAS -->
+		<Item title="archigest.archivo.menu.servicios" name="MenuMotivoServicios" roles="100">
+			<Item title="archigest.archivo.menu.admin.servicios.motivo.consulta" name="MenuMotivoConsulta"
+				roles="100" action="/navigateAction?method=menuOption&amp;menuOption=gestionMotivosConsulta" />
+			<Item title="archigest.archivo.menu.admin.servicios.motivo.prestamos" name="MenuMotivoPrestamo"
+				roles="100" action="/navigateAction?method=menuOption&amp;menuOption=gestionMotivosPrestamo" />
+			<Item title="archigest.archivo.menu.admin.servicios.motivo.rechazo" name="MenuMotivoRechazo"
+				roles="100" action="/navigateAction?method=menuOption&amp;menuOption=gestionMotivosRechazo" />
+		</Item>
+
+		<!-- SALAS DE CONSULTA -->
+		<Item title="archigest.archivo.menu.salas" name="MenuSalasConsulta" roles="100,101,1400,1401,1402,1403">
+			<Item name="MenuEstructuraSalasConsulta" title="archigest.archivo.menu.salas.estructura" roles="100,101,1400,1401"
+    	        action="/navigateAction?method=menuOption&amp;menuOption=verEstructuraSalasConsulta" />
+
+			<Item name="MenuUsuariosSalasConsulta" title="archigest.archivo.salas.usuarios.menu.gestion" roles="100,101,1402,1403"
+    	        action="/navigateAction?method=menuOption&amp;menuOption=verUsuariosSalasConsulta" />
+
+		</Item>
+
+      </Menu>
+   </Menus>
+</MenuConfig>

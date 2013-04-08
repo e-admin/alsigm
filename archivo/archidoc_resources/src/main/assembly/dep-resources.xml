@@ -1,0 +1,13 @@
+<assembly>		
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>../archidoc/src/main/resources</directory>
+			<outputDirectory>/</outputDirectory>			
+		</fileSet>
+	</fileSets>
+</assembly>
+

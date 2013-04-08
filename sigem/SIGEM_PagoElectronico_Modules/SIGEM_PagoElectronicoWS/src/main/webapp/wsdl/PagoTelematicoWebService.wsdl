@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.pe.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.pe.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="altaLiquidacion">
+    <complexType>
+     <sequence>
+      <element name="poLiquidacion" type="impl:Liquidacion"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Tasa">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="captura" nillable="true" type="xsd:string"/>
+       <element name="codigo" nillable="true" type="xsd:string"/>
+       <element name="datosEspecificos" nillable="true" type="xsd:string"/>
+       <element name="idEntidadEmisora" nillable="true" type="xsd:string"/>
+       <element name="modelo" nillable="true" type="xsd:string"/>
+       <element name="nombre" nillable="true" type="xsd:string"/>
+       <element name="tipo" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Liquidacion">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="datosEspecificos" nillable="true" type="xsd:string"/>
+       <element name="discriminante" nillable="true" type="xsd:string"/>
+       <element name="ejercicio" nillable="true" type="xsd:string"/>
+       <element name="estado" nillable="true" type="xsd:string"/>
+       <element name="fechaPago" nillable="true" type="xsd:dateTime"/>
+       <element name="finPeriodo" nillable="true" type="xsd:dateTime"/>
+       <element name="idEntidadEmisora" nillable="true" type="xsd:string"/>
+       <element name="idTasa" nillable="true" type="xsd:string"/>
+       <element name="importe" nillable="true" type="xsd:string"/>
+       <element name="inicioPeriodo" nillable="true" type="xsd:dateTime"/>
+       <element name="nif" nillable="true" type="xsd:string"/>
+       <element name="nombre" nillable="true" type="xsd:string"/>
+       <element name="nrc" nillable="true" type="xsd:string"/>
+       <element name="referencia" nillable="true" type="xsd:string"/>
+       <element name="remesa" nillable="true" type="xsd:string"/>
+       <element name="solicitud" nillable="true" type="xsd:base64Binary"/>
+       <element name="tasa" nillable="true" type="impl:Tasa"/>
+       <element name="vencimiento" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="altaLiquidacionResponse">
+    <complexType>
+     <sequence>
+      <element name="altaLiquidacionReturn" type="impl:Liquidacion"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="bajaLiquidacion">
+    <complexType>
+     <sequence>
+      <element name="poLiquidacion" type="impl:Liquidacion"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="bajaLiquidacionResponse">
+    <complexType>
+     <sequence>
+      <element name="bajaLiquidacionReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarLiquidaciones">
+    <complexType>
+     <sequence>
+      <element name="poCriterio" type="impl:CriterioBusquedaLiquidacion"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CriterioBusquedaLiquidacion">
+    <sequence>
+     <element name="ejercicio" nillable="true" type="xsd:string"/>
+     <element name="estado" nillable="true" type="xsd:string"/>
+     <element name="idEntidadEmisora" nillable="true" type="xsd:string"/>
+     <element name="idTasa" nillable="true" type="xsd:string"/>
+     <element name="nif" nillable="true" type="xsd:string"/>
+     <element name="nrc" nillable="true" type="xsd:string"/>
+     <element name="referencia" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="buscarLiquidacionesResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarLiquidacionesReturn" type="impl:ListaLiquidaciones"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfLiquidacion">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Liquidacion"/>
+    </sequence>
+   </complexType>
+   <complexType name="ListaLiquidaciones">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="liquidaciones" nillable="true" type="impl:ArrayOfLiquidacion"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="buscarTasas">
+    <complexType>
+     <sequence>
+      <element name="poCriterio" type="impl:CriterioBusquedaTasa"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CriterioBusquedaTasa">
+    <sequence>
+     <element name="tipo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="buscarTasasResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarTasasReturn" type="impl:ListaTasas"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfTasa">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Tasa"/>
+    </sequence>
+   </complexType>
+   <complexType name="ListaTasas">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="tasas" nillable="true" type="impl:ArrayOfTasa"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="detallePago">
+    <complexType>
+     <sequence>
+      <element name="poPago" type="impl:Pago"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Pago">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="acreditacion" nillable="true" type="xsd:string"/>
+       <element name="ccc" nillable="true" type="xsd:string"/>
+       <element name="cccDomiciliacion" nillable="true" type="xsd:string"/>
+       <element name="domiciliacion" nillable="true" type="xsd:string"/>
+       <element name="ejercicio" nillable="true" type="xsd:string"/>
+       <element name="entidadBancaria" nillable="true" type="xsd:string"/>
+       <element name="estado" nillable="true" type="xsd:string"/>
+       <element name="expediente" nillable="true" type="xsd:string"/>
+       <element name="fecha" nillable="true" type="xsd:string"/>
+       <element name="fechaCaducidadTarjetaCredito" nillable="true" type="xsd:string"/>
+       <element name="fechaDevengo" nillable="true" type="xsd:string"/>
+       <element name="hora" nillable="true" type="xsd:string"/>
+       <element name="idEntidadEmisora" nillable="true" type="xsd:string"/>
+       <element name="idTasa" nillable="true" type="xsd:string"/>
+       <element name="idioma" nillable="true" type="xsd:string"/>
+       <element name="importe" nillable="true" type="xsd:string"/>
+       <element name="informacionEspecifica" nillable="true" type="xsd:string"/>
+       <element name="liquidacion" nillable="true" type="impl:Liquidacion"/>
+       <element name="medioPago" nillable="true" type="xsd:string"/>
+       <element name="nif" nillable="true" type="xsd:string"/>
+       <element name="nrc" nillable="true" type="xsd:string"/>
+       <element name="numeroTarjetaCredito" nillable="true" type="xsd:string"/>
+       <element name="referencia" nillable="true" type="xsd:string"/>
+       <element name="remesa" nillable="true" type="xsd:string"/>
+       <element name="tasa" nillable="true" type="impl:Tasa"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="detallePagoResponse">
+    <complexType>
+     <sequence>
+      <element name="detallePagoReturn" type="impl:Pago"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modificarLiquidacion">
+    <complexType>
+     <sequence>
+      <element name="poLiquidacion" type="impl:Liquidacion"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modificarLiquidacionResponse">
+    <complexType>
+     <sequence>
+      <element name="modificarLiquidacionReturn" type="impl:Liquidacion"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDatosTasa">
+    <complexType>
+     <sequence>
+      <element name="poTasa" type="impl:Tasa"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDatosTasaResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDatosTasaReturn" type="impl:Tasa"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDocumentoPago">
+    <complexType>
+     <sequence>
+      <element name="poPago" type="impl:Pago"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDocumentoPagoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDocumentoPagoReturn" type="impl:DocumentoPago"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DocumentoPago">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="documentoPago" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="realizarPago">
+    <complexType>
+     <sequence>
+      <element name="poPago" type="impl:Pago"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="realizarPagoResponse">
+    <complexType>
+     <sequence>
+      <element name="realizarPagoReturn" type="impl:Pago"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://server.ws.pe.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Entidad">
+    <sequence>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="obtenerDocumentoPagoRequest">
+
+      <wsdl:part element="impl:obtenerDocumentoPago" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modificarLiquidacionResponse">
+
+      <wsdl:part element="impl:modificarLiquidacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarLiquidacionesRequest">
+
+      <wsdl:part element="impl:buscarLiquidaciones" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDatosTasaResponse">
+
+      <wsdl:part element="impl:obtenerDatosTasaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentoPagoResponse">
+
+      <wsdl:part element="impl:obtenerDocumentoPagoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="detallePagoResponse">
+
+      <wsdl:part element="impl:detallePagoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modificarLiquidacionRequest">
+
+      <wsdl:part element="impl:modificarLiquidacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaLiquidacionResponse">
+
+      <wsdl:part element="impl:altaLiquidacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="realizarPagoRequest">
+
+      <wsdl:part element="impl:realizarPago" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="bajaLiquidacionResponse">
+
+      <wsdl:part element="impl:bajaLiquidacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="bajaLiquidacionRequest">
+
+      <wsdl:part element="impl:bajaLiquidacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarTasasResponse">
+
+      <wsdl:part element="impl:buscarTasasResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="altaLiquidacionRequest">
+
+      <wsdl:part element="impl:altaLiquidacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarLiquidacionesResponse">
+
+      <wsdl:part element="impl:buscarLiquidacionesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDatosTasaRequest">
+
+      <wsdl:part element="impl:obtenerDatosTasa" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarTasasRequest">
+
+      <wsdl:part element="impl:buscarTasas" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="realizarPagoResponse">
+
+      <wsdl:part element="impl:realizarPagoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="detallePagoRequest">
+
+      <wsdl:part element="impl:detallePago" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PagoTelematicoWebService">
+
+      <wsdl:operation name="altaLiquidacion">
+
+         <wsdl:input message="impl:altaLiquidacionRequest" name="altaLiquidacionRequest"/>
+
+         <wsdl:output message="impl:altaLiquidacionResponse" name="altaLiquidacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bajaLiquidacion">
+
+         <wsdl:input message="impl:bajaLiquidacionRequest" name="bajaLiquidacionRequest"/>
+
+         <wsdl:output message="impl:bajaLiquidacionResponse" name="bajaLiquidacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarLiquidaciones">
+
+         <wsdl:input message="impl:buscarLiquidacionesRequest" name="buscarLiquidacionesRequest"/>
+
+         <wsdl:output message="impl:buscarLiquidacionesResponse" name="buscarLiquidacionesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarTasas">
+
+         <wsdl:input message="impl:buscarTasasRequest" name="buscarTasasRequest"/>
+
+         <wsdl:output message="impl:buscarTasasResponse" name="buscarTasasResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="detallePago">
+
+         <wsdl:input message="impl:detallePagoRequest" name="detallePagoRequest"/>
+
+         <wsdl:output message="impl:detallePagoResponse" name="detallePagoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modificarLiquidacion">
+
+         <wsdl:input message="impl:modificarLiquidacionRequest" name="modificarLiquidacionRequest"/>
+
+         <wsdl:output message="impl:modificarLiquidacionResponse" name="modificarLiquidacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDatosTasa">
+
+         <wsdl:input message="impl:obtenerDatosTasaRequest" name="obtenerDatosTasaRequest"/>
+
+         <wsdl:output message="impl:obtenerDatosTasaResponse" name="obtenerDatosTasaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentoPago">
+
+         <wsdl:input message="impl:obtenerDocumentoPagoRequest" name="obtenerDocumentoPagoRequest"/>
+
+         <wsdl:output message="impl:obtenerDocumentoPagoResponse" name="obtenerDocumentoPagoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="realizarPago">
+
+         <wsdl:input message="impl:realizarPagoRequest" name="realizarPagoRequest"/>
+
+         <wsdl:output message="impl:realizarPagoResponse" name="realizarPagoResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PagoTelematicoWebServiceSoapBinding" type="impl:PagoTelematicoWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="altaLiquidacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="altaLiquidacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="altaLiquidacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bajaLiquidacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="bajaLiquidacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="bajaLiquidacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarLiquidaciones">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarLiquidacionesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarLiquidacionesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarTasas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarTasasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarTasasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="detallePago">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="detallePagoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="detallePagoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modificarLiquidacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modificarLiquidacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modificarLiquidacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDatosTasa">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDatosTasaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDatosTasaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentoPago">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDocumentoPagoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDocumentoPagoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="realizarPago">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="realizarPagoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="realizarPagoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PagoTelematicoWebServiceService">
+
+      <wsdl:port binding="impl:PagoTelematicoWebServiceSoapBinding" name="PagoTelematicoWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_PagoElectronicoWS/services/PagoTelematicoWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

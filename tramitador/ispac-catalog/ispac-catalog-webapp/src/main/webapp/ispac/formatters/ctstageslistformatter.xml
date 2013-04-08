@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Formateador para el listado de fases: Inventario -> Fases -->
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ORDEN'
+				 readOnly='false'
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width5percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 url='showCTStage.do?entityId=5'
+				 id='regId'
+				 columnClass='width80percent'
+				 />
+				
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='csv excel xml pdf'
+				 />							
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ORDEN'
+				 readOnly='false'
+				 titleKey='form.fase.propertyLabel.order'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'
+				 />
+
+</beanformatter>

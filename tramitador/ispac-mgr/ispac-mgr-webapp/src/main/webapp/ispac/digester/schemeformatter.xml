@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NUMEXP'
+				 titleKey='formatter.scheme.numExp' 
+				 fieldType='LINK' 
+				 fieldLink='ID_STAGE'/>
+</beanformatter>

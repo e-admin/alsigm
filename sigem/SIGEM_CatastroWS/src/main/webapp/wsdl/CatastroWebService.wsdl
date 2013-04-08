@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:impl="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.catastro.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://server.ws.catastro.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="validarReferenciaCatastral">
+    <complexType>
+     <sequence>
+      <element name="referenciaCatastral" type="impl:RetornoCadena"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoCadena">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="cadena" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="validarReferenciaCatastralResponse">
+    <complexType>
+     <sequence>
+      <element name="validarReferenciaCatastralReturn" type="impl:RetornoLogico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoLogico">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="valor" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="consultarCatastro">
+    <complexType>
+     <sequence>
+      <element name="referenciaCatastral" type="impl:RetornoCadena"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultarCatastroResponse">
+    <complexType>
+     <sequence>
+      <element name="consultarCatastroReturn" type="impl:Parcelas"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Localizacion">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="bloque" nillable="true" type="xsd:string"/>
+       <element name="codigoPostal" nillable="true" type="xsd:int"/>
+       <element name="kilometro" nillable="true" type="xsd:double"/>
+       <element name="nombreMunicipio" nillable="true" type="xsd:string"/>
+       <element name="nombreProvincia" nillable="true" type="xsd:string"/>
+       <element name="nombreVia" nillable="true" type="xsd:string"/>
+       <element name="primerNumero" nillable="true" type="xsd:int"/>
+       <element name="primeraLetra" nillable="true" type="xsd:string"/>
+       <element name="segundaLetra" nillable="true" type="xsd:string"/>
+       <element name="segundoNumero" nillable="true" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Construccion">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="codigoUso" nillable="true" type="xsd:string"/>
+       <element name="escalera" nillable="true" type="xsd:string"/>
+       <element name="identificador" nillable="true" type="xsd:string"/>
+       <element name="planta" nillable="true" type="xsd:string"/>
+       <element name="puerta" nillable="true" type="xsd:string"/>
+       <element name="superficieTotal" nillable="true" type="xsd:double"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfConstruccion">
+    <sequence>
+     <element name="item" type="impl:Construccion" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="Construcciones">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="construcciones" nillable="true" type="impl:ArrayOfConstruccion"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Cultivo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="calificacion" nillable="true" type="xsd:string"/>
+       <element name="denominacion" nillable="true" type="xsd:string"/>
+       <element name="identificador" nillable="true" type="xsd:string"/>
+       <element name="intensidadProductiva" nillable="true" type="xsd:int"/>
+       <element name="superficie" nillable="true" type="xsd:double"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCultivo">
+    <sequence>
+     <element name="item" type="impl:Cultivo" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="Cultivos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="cultivos" nillable="true" type="impl:ArrayOfCultivo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="BienInmueble">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="claseBienInmueble" nillable="true" type="xsd:string"/>
+       <element name="claseUso" nillable="true" type="xsd:string"/>
+       <element name="direccionLocalizacion" nillable="true" type="impl:Localizacion"/>
+       <element name="lstConstrucciones" nillable="true" type="impl:Construcciones"/>
+       <element name="lstCultivos" nillable="true" type="impl:Cultivos"/>
+       <element name="referencia_catastral" nillable="true" type="xsd:string"/>
+       <element name="superficie" nillable="true" type="xsd:double"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfBienInmueble">
+    <sequence>
+     <element name="item" type="impl:BienInmueble" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="BienesInmuebles">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="bienesInmuebles" nillable="true" type="impl:ArrayOfBienInmueble"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Parcela">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="direccion" nillable="true" type="impl:Localizacion"/>
+       <element name="lstBienesInmuebles" nillable="true" type="impl:BienesInmuebles"/>
+       <element name="refCatastral" nillable="true" type="xsd:string"/>
+       <element name="superficie" nillable="true" type="xsd:double"/>
+       <element name="superficieConstruida" nillable="true" type="xsd:double"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfParcela">
+    <sequence>
+     <element name="item" type="impl:Parcela" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="Parcelas">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="parcelas" nillable="true" type="impl:ArrayOfParcela"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <import namespace="http://server.ws.catastro.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="consultarCatastroResponse">
+
+      <wsdl:part name="parameters" element="impl:consultarCatastroResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarReferenciaCatastralRequest">
+
+      <wsdl:part name="parameters" element="impl:validarReferenciaCatastral"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarCatastroRequest">
+
+      <wsdl:part name="parameters" element="impl:consultarCatastro"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarReferenciaCatastralResponse">
+
+      <wsdl:part name="parameters" element="impl:validarReferenciaCatastralResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CatastroWebService">
+
+      <wsdl:operation name="validarReferenciaCatastral">
+
+         <wsdl:input name="validarReferenciaCatastralRequest" message="impl:validarReferenciaCatastralRequest"/>
+
+         <wsdl:output name="validarReferenciaCatastralResponse" message="impl:validarReferenciaCatastralResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultarCatastro">
+
+         <wsdl:input name="consultarCatastroRequest" message="impl:consultarCatastroRequest"/>
+
+         <wsdl:output name="consultarCatastroResponse" message="impl:consultarCatastroResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CatastroWebServiceSoapBinding" type="impl:CatastroWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="validarReferenciaCatastral">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarReferenciaCatastralRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarReferenciaCatastralResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultarCatastro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultarCatastroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultarCatastroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CatastroWebServiceService">
+
+      <wsdl:port name="CatastroWebService" binding="impl:CatastroWebServiceSoapBinding">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_CatastroWS/services/CatastroWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

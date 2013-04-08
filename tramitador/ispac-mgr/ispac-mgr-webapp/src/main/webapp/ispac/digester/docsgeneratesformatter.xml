@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NUMEXP' 
+				 titleKey='formatter.docsGenerate.numExp' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 media='html'
+				 width='25%' />
+	<propertyfmt type="BeanPropertyDateFmt" 
+				 property='FDOC' 
+				 format='dd/MM/yyyy' 
+				 titleKey='formatter.docsGenerate.fechaGeneracion' 
+				 headerClass='headerDisplay'
+				 media='html'
+				 width='25%' 
+				 fieldType='LIST'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'
+				 />
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='NOMBRE' 
+				 titleKey='formatter.docsGenerate.nombreDocumento' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 media='html'
+				 width='25%' />
+	<propertyfmt type="BeanPropertySimpleFmt" 
+				 property='AUTOR' 
+				 titleKey='formatter.docsGenerate.autor' 
+				 fieldType='LIST' 
+				 headerClass='headerDisplay'
+				 media='html'
+				 width='25%' />
+</beanformatter>

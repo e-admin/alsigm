@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='form.pubAction.propertyLabel.id'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width5percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='form.pubAction.propertyLabel.name'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 decorator=''
+				 url='showCTEntity.do?entityId=40'
+				 id='regId'
+				 columnClass='width20percent'
+				 />
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='form.pubAction.propertyLabel.name'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'
+				 media='csv excel xml pdf'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CLASE'
+				 readOnly='false'
+				 titleKey='form.pubAction.propertyLabel.class'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+						
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='form.pubAction.propertyLabel.description'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width35percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertyBooleanFmt"
+				 property='ACTIVA'
+				 readOnly='false'
+				 titleKey='form.pubAction.propertyLabel.active'
+				 fieldType='BOOLEAN'
+				 headerClass='headerDisplay'
+				 sortable='true'
+				 columnClass='width10percent'
+				 />
+
+</beanformatter>

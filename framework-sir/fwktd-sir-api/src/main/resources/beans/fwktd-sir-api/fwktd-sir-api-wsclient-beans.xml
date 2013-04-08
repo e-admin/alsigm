@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- WS_SIR1 -->
+	<bean id="fwktd_sir_WSSIR1_serviceLocatorImpl" name="fwktd_sir_WSSIR1_serviceLocator"
+		class="es.ieci.tecdoc.fwktd.sir.api.service.wssir1.WS_SIR1ServiceLocator">
+	</bean>
+
+	<!-- WS_SIR6_A -->
+	<bean id="fwktd_sir_WSSIR6A_serviceLocatorImpl" name="fwktd_sir_WSSIR6A_serviceLocator"
+		class="es.ieci.tecdoc.fwktd.sir.api.service.wssir6a.WS_SIR6_AServiceLocator">
+	</bean>
+
+	<!-- WS_SIR6_B -->
+	<bean id="fwktd_sir_WSSIR6B_serviceLocatorImpl" name="fwktd_sir_WSSIR6B_serviceLocator"
+		class="es.ieci.tecdoc.fwktd.sir.api.service.wssir6b.WS_SIR6_BServiceLocator">
+	</bean>
+
+	<!-- WS_SIR7 -->
+	<bean id="fwktd_sir_WSSIR7_serviceLocatorImpl" name="fwktd_sir_WSSIR7_serviceLocator"
+		class="es.ieci.tecdoc.fwktd.sir.api.service.wssir7.WS_SIR7ServiceLocator">
+	</bean>
+
+</beans>

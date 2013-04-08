@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<title>Ayuda ..:: Exportar Entidad ::..</title>
+		<link href="../../../../jsp/ayudas/css/estilos.css" type=text/css rel=stylesheet>
+		<script language=JavaScript type=text/JavaScript>
+			<!--
+				function close_window() {
+				    window.close();
+				}
+			//-->
+		</script>
+	</head>
+	<body bgColor=#ffffff>
+		<div align=center>
+            <table width="580" height="380" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width=6px height=40px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_r1_c1.gif)"></td>
+                <td width=34px height=40px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_ico_ayuda.gif)"></td>
+                <td width=502px height=40px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_encabezado.gif)"><label class=gr>Exportar Entidad</td>
+                <td width=32px height=40px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_cerrar.gif); cursor: pointer" onclick=close_window()></td>
+                <td width=6px height=40px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_r1_c5.gif)"></td>
+              </tr>
+              <tr valign=top>
+                <td width=6px height=314px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_r2_c1.gif)"></td>
+                <td colspan=3 width=568px height=314px>
+                	<div class="manual">
+                		Pasos a seguir para realizar una exportación completa:<br/><br/>
+                		<div class=izq_der>
+							1) <img src="../../../../jsp/ayudas/img/vacio.jpg"/>Para exportar una entidad pulse sobre el botón <b>Exportar</b> de la entidad correspondiente del listado de entidades.<br/>
+							2) Introducir los datos ralativos a las bases de datos:<br/><br/>
+								<div class=izq>
+									Datos generales de la exportación<br/>
+									<img src="../../../../jsp/ayudas/img/exportarEntidad1.jpg" border=1/><br/><br/>
+									<li>Identificador de Entidad: Identificador de la entidad a exportar (obligatorio)</li><br/><br/>
+									Datos de la base de datos de origen<br/>
+									<img src="../../../../jsp/ayudas/img/exportarEntidad2.jpg" border=1/><br/><br/>
+									<li>Dirección BBDD: Dirección IP o nombre de la máquina con la base de datos (obligatorio)</li>
+									<li>Puerto BBDD: Puerto de trabajo de la base de datos (obligatorio)</li>
+									<li>Tipo de BBDD: Tipo de base de datos disponible (obligatorio)</li>
+									<li>Usuario: Nombre del usuario de base de datos (obligatorio)</li>
+									<li>Contraseña: Contraseña de la base de datos (obligatorio)</li>
+									<li>Repita contraseña: Repetición de la contraseña de la base de datos (obligatorio)</li><br/><br/>
+									En caso de seleccionar como tipo de base de datos "Oracle" o "Db2", se deberá especificar la instancia con la que trabajar y los diferentes esquemas de conexión para cada uno de los módulos.<br/><br/>
+									Una vez introducidor todos los datos, pulse sobre el botón <b>Comprobar</b>. Si todos los datos son correctos y se ha podido establecer la conexión correctamente con la base de datos de la entidad de origen, se habilitará el botón <b>Aceptar</b>. Si el usuario está de acuerdo con los datos introducidos pulse el botón <b>Aceptar</b> para iniciar el proceso de exportación.<br/><br/>
+									En caso de haber validado los datos y estos ser correctos, si se modifica alguno de los valores introducidos, el usuario deberá repetir el proceso de validación pulsando de nuevo el botón <b>Comprobar</b>. <br/><br/>
+									Tanto si el proceso ha sido correctamente iniciado como si no, el usuario será informado del estado actual.<br/><br/>
+								</div>
+							3) <img src="../../../../jsp/ayudas/img/ico_monitorizar.jpg"/> Una vez iniciado correctamente la exportación, el usuario podrá seguir al detalle el proceso pulsando sobre el botón de <b>Monitorización</b><br/><br/>
+							<div class=izq>
+								Seleccione del desplegable de exportaciones el proceso de exportación iniciado (identificación del proceso mediante la hora de inicio).
+								<img src="../../../../jsp/ayudas/img/monitorizarProceso1.jpg" border=1/><br/><br/>
+								En la parte superior se mostrará un aviso indicando si el proceso se encuentra en estado de ejecución o si ya ha finalizado. En la parte central de la pantalla se visualizará el log asociado al proceso seleccionado<br/>
+								<img src="../../../../jsp/ayudas/img/monitorizarProceso2.jpg" border=1/><br/><br/>
+								En la parte inferior, el usuario tiene la posibilidad de actualizar automáticante el log del proceso cada x segundos (introducir cada cuantos segundo se desea actualizar, con un valor mínimo de 10 segundos, y pulsar el botón <b>Actualizar</b>). Este proceso de actualización sólo se realizará si el proceso seleccionado no ha finalizado. En caso de querer detener el proceso de actualización automática, deje vacío el campo de tiempo y pulse sobre el botón <b>Actualizar</b>
+								<img src="../../../../jsp/ayudas/img/monitorizarProceso3.jpg" border=1/><br/><br/>
+							</div>
+                	</div>
+                </td>
+                <td width=6px height=314px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_r2_c5.gif)"></td>
+              </tr>
+              <tr>
+                <td width=6px height=26px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_r3_c1.gif)"></td>
+                <td colspan=3 width=568px height=26px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_r3_c2.gif)"></td>
+                <td width=6px height=26px style="background: url(../../../../jsp/ayudas/img/tabla_ayuda_r3_c5.gif)"></td>
+              </tr>
+            </table>
+		</div>
+	</body>
+</html>

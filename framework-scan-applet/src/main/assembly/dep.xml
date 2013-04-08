@@ -1,0 +1,47 @@
+<assembly>	
+	<id>distribucion</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	
+	
+	<fileSets>
+	<!-- fuentes  -->
+    <fileSet>
+      <directory>${project.basedir}/</directory>
+      <outputDirectory>/Fuentes</outputDirectory>
+      <useDefaultExcludes>true</useDefaultExcludes>
+      <excludes>
+        <exclude>${project.build.directory}/**</exclude>
+        <exclude>**/target/</exclude>
+        <exclude>**/.project</exclude>
+        <exclude>**/.classpath</exclude>
+        <exclude>**/.settings/**</exclude>
+        <exclude>**/cambia.conf</exclude>
+        <exclude>**/modificar_version.*</exclude>
+        <exclude>**/doc/</exclude>
+      </excludes>
+    </fileSet>
+    
+    <!-- Binarios -->
+    <fileSet>
+      <directory>${basedir}/target</directory>
+      <outputDirectory>Binarios/</outputDirectory>
+      <useDefaultExcludes>true</useDefaultExcludes>
+      <includes>
+        <include>${project.build.finalName}.jar</include>
+         </includes>
+    </fileSet>
+    <!-- Documentacion -->
+    <fileSet>
+			<directory>${basedir}/target/docbkx/pdf</directory>
+			<outputDirectory>Doc/</outputDirectory>
+			<includes>
+        		<include>*.pdf</include>
+      		</includes>
+		</fileSet>			
+  </fileSets>
+	
+	
+</assembly>

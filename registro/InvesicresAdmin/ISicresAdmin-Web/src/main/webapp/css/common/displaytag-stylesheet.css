@@ -1,0 +1,134 @@
+/**************    DISPLAYTAG   ******************/
+.table-display-tag {
+	width: 100%;
+}
+
+.table-display-tag th {
+	padding: 2px 4px 2px 4px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.table-display-tag td {
+	padding: 4px 4px 4px 4px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.table-display-tag td.seleccion {
+	padding: 4px 4px 4px 4px;
+	vertical-align: middle;
+	width: 90px;
+}
+
+.table-display-tag thead tr {
+  background-color: #fc0;
+}
+
+.table-display-tag th.sorted {
+    background-color: orange;
+}
+
+.table-display-tagth a {
+  color: black;
+}
+
+.table-display-tag th a:hover {
+  color: white;
+}
+
+.table-display-tag th.sorted a, th.sortable a {
+	background-position: right;
+	display: block;
+	width: 100%;
+}
+
+.table-display-tag th.sortable a {
+	background-image: url(../images/ico/arrow_off.png);
+	background-repeat: no-repeat;	
+	color: black;	
+}
+.table-display-tag th.order1 a {
+	background-image: url(../images/ico/arrow_down.png);
+	background-repeat: no-repeat;		
+	color: black;
+}
+
+.table-display-tag th.order2 a {
+	background-image: url(../images/ico/arrow_up.png);
+	background-repeat: no-repeat;		
+	color: black;	
+}
+
+.table-display-tag tr.odd {
+  background-color: #fff;
+}
+
+.table-display-tag tr.tableRowEven, tr.even {
+  background-color: #fea;
+}
+
+.table-display-tag ul#showsource {
+	float: right;
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	margin: 5px;
+	width:100px;
+	list-style-type: none;
+}
+
+/* test styles */
+.table-display-tag table.its thead tr {
+  background-color: #69c;
+}
+
+.table-display-tag table.its tr.even {
+  background-color: #def;
+}
+
+.table-display-tag table.mars thead tr {
+  background-color: #9c9;
+}
+
+.table-display-tag table.mars tr.even {
+  background-color: #ccb;
+}
+
+.table-display-tag table.mars tr.odd {
+  background-color: #eec;
+}
+
+/* estilo para la ordenación de las columnas de tablas */
+a.sortheader {
+    background-color:#616EAA;
+    color:#FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+}
+
+a.sortheader:hover {
+	color:#FFE017;
+}
+
+table.sortable {
+    color: #616EAA;
+    text-decoration: none;
+}
+
+span.sortarrow {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.tablaListado{
+	border: 1px dotted #c3d8e5;
+	background-color: #FFFFFF;
+	width: 100%;
+}
+
+.cabeceraTabla{
+	color: #666600; 
+	background-color:#c3d8e5;
+}

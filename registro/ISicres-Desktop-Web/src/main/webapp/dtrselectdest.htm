@@ -1,0 +1,157 @@
+<html>
+	<head>
+		<title>&nbsp;</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/dtrlist.js"></script>
+		<SCRIPT LANGUAGE="javascript">
+			top.Idioma = top.GetDlgParam(7);
+			document.title = top.GetDlgParam(2);
+			var caseSensitive = top.GetDlgParam(8);
+		</script>
+		<script language="javascript">
+		
+			var UnitId = 0;
+			
+			function OnWindowLoad()
+			{
+				document.getElementById("oTxtDestino").value = "";
+				document.getElementById("oTxtDescrip").value = "";
+				document.getElementById("oTxtDestino").focus();
+				document.getElementById("btnAceptar").disabled = true;
+				document.getElementById("btnAceptar").value = top.GetIdsLan("IDS_BTNACEPTAR");
+				document.getElementById("btnCancel").value = top.GetIdsLan("IDS_BTNCANCEL");
+				if (caseSensitive == 'CS'){
+					document.getElementById("oTxtDestino").style.textTransform = "uppercase";									
+					document.getElementById("oTxtDescrip").style.textTransform = "uppercase";
+				}
+			}
+			
+			function ValidateCode()
+			{
+				var Code = document.getElementById("oTxtDestino").value, URL;
+				var URL;
+				
+				document.body.style.cursor = "wait";
+				
+				Code = Code.toUpperCase();
+				Code = top.miTrim(Code);
+				document.getElementById("oTxtDestino").value = Code;
+				document.getElementById("btnAceptar").disabled = true;
+				
+				if (Code == ""){
+					document.getElementById("oTxtDescrip").value = "";
+					return;
+				}
+				
+				URL = top.GetDlgParam(3) + "/validatecode.jsp?SessionPId=" + top.GetDlgParam(4)
+						+ "&ArchivePId=" + top.GetDlgParam(5)
+						+ "&FldId=" + top.GetDlgParam(6)
+						+ "&Code=" + Code;
+						
+				top.XMLHTTPRequestGet(URL, GetResponse, false);
+			}
+			
+			function GetResponse()
+			{
+				if (top.g_oXMLHTTPRequest.readyState != 4){
+					return;
+				}
+				
+				if (top.g_oXMLHTTPRequest.status != 200){
+					alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
+					return;
+				}
+				
+				var XMLDoc = top.g_oXMLHTTPRequest.responseXML;
+		
+				document.body.style.cursor = "cursor";
+				
+				if ((XMLDoc == null) || (XMLDoc.documentElement == null)){
+					eval(top.g_oXMLHTTPRequest.responseText);
+					document.getElementById("oCode").focus();
+					document.getElementById("oCode").select();
+				}
+				else{
+					if (XMLDoc.documentElement.getElementsByTagName("Error").length != 0) {
+						document.getElementById("oTxtDestino").value = "";
+						document.getElementById("oTxtDescrip").value = "";
+
+						alert(XMLDoc.documentElement.getElementsByTagName("Error")[0].firstChild.data);
+					
+						document.getElementById("oTxtDestino").focus();
+					}
+					else {
+						document.getElementById("oTxtDescrip").value = XMLDoc.documentElement.getElementsByTagName("Description")[0].firstChild.data;
+					}
+				}
+				
+				document.getElementById("btnAceptar").disabled = false;
+			}
+			
+			function ShowUnitList()
+			{
+				
+				var sRet = "";
+				var args = new Array;
+
+				args[0] = top.GetDlgParam(3);
+				args[1] = top.GetDlgParam(4);
+				args[2] = top.GetDlgParam(5);
+				args[3] = top.GetDlgParam(6);
+				args[4] = top.GetDlgParam(6);
+				args[5] = top.GetDlgParam(6);
+				args[6] = top.GetDlgParam(3);
+				args[7] = 1;
+
+				sRet = top.ValidateList(args, caseSensitive);
+			
+				if (sRet && (sRet != ""))
+				{
+					var tokens = new Array;
+					
+					tokens = top.getTokens(sRet, "#", "#", 3);
+				
+					document.getElementById("oTxtDestino").value = tokens[1];
+					document.getElementById("oTxtDescrip").value = tokens[2];
+					document.getElementById("btnAceptar").disabled = false;
+				}
+				
+				document.body.style.cursor = "cursor";
+			}
+			
+			function OnOK()
+			{
+				var resp = top.miTrim(document.getElementById("oTxtDestino").value).toUpperCase();
+			
+				if (resp == "")
+				{
+					alert(top.GetIdsLan("IDS_MSG_INTRO_UNIT"));
+					document.getElementById("oTxtDestino").focus();
+					return;
+				}
+			
+				top.returnValue = resp;
+				top.close();
+			}							
+						
+					</script>
+	</head>
+	<body tabIndex="-1" onload="OnWindowLoad();" onunload="top.EnableEvents(window.opener);">
+		<label class="label" style="position:absolute;top:5;left:7">
+			<script language="javascript">document.write( top.GetIdsLan("IDS_LABEL_CODE") + ":")</script>
+		</label>
+		<input class="input" id="oTxtDestino" type="text" name="oTxtDestino" tabindex="1" style="position:absolute;position:absolute;top:5;left:57;width:280;height:20;" onblur="ValidateCode();" onhelp="ShowValidateList();" tabindex="1" onkeyup="document.getElementById('btnAceptar').disabled = (this.value.length == 0);"></input>
+		<img id="imgHelp" src="images/buscar2.gif" style="position:absolute;top:6;left:337;height:17;width:17;cursor:pointer;" onclick="ShowUnitList();" onkeydown="if (top.GetKeyCode(event)==13){ShowUnitList();}" tabIndex="1">
+		<textarea class="textarea" name="oTxtDescrip" id="oTxtDescrip" style="position:absolute;top:35;left:7;width:350;height:120;overflow-y:scroll;word-wrap:break-word" readonly="true" tabindex="-1"></textarea>
+		<INPUT class="button" type="Button" id="btnAceptar" name="btnAceptar" style="position:absolute;top:165;left:187;width:80;" disabled="true" tabindex="1" onclick="OnOK();">
+		<INPUT class="button" id="btnCancel" style="position:absolute;top:165;left:277;width:80;" name="btnCancel" Type="Button" onclick="top.close();" tabindex="1">
+	</body>
+</html>

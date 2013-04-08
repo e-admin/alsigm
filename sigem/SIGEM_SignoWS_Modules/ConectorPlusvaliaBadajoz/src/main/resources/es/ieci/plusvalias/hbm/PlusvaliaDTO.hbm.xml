@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jun-2010 10:06:14 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="es.ieci.plusvalias.domain.PlusvaliaDTO" table="MAEPLUSVAL" >
+        <id name="numero" type="java.lang.Long">
+        	<column name="NUMLIQUIDACION" precision="14" scale="0" />
+        </id>
+        <property name="anyoejercicio" type="java.lang.Integer">
+	        <column name="ANYEJERCICIO" precision="5" scale="0" />
+        </property>
+        <property name="division" type="java.lang.Integer">
+        	<column name="DIVLIQUIDACION" precision="5" scale="0" />
+        </property>
+        <property name="anyoexppro" type="java.lang.Integer">
+            <column name="ANYEXPPRO" precision="5" scale="0" />
+        </property>
+        <property name="numnotario" type="java.lang.Integer">
+            <column name="NUMNOTARIO" precision="5" scale="0" />
+        </property>
+        <property name="numexppro" type="java.lang.Long">
+            <column name="NUMEXPPRO" precision="10" scale="0" />
+        </property>
+        <property name="nombretrans" type="string">
+            <column name="NOMSUJETOTR" length="50" />
+        </property>
+        <property name="calletrans" type="string">
+            <column name="CALSUJETOTR" length="50" />
+        </property>
+        <property name="poblaciontrans" type="string">
+            <column name="POBSUJETOTR" length="30" />
+        </property>
+        <property name="cptrans" type="java.lang.Integer">
+            <column name="POSTALSUJETOTR" precision="5" scale="0" />
+        </property>
+        <property name="niftrans" type="string">
+            <column name="NIFSUJETOTR" length="12" />
+        </property>
+        <property name="nombreadqui" type="string">
+            <column name="NOMSUJETOAD" length="50" />
+        </property>
+        <property name="calleadqui" type="string">
+            <column name="CALSUJETOAD" length="50" />
+        </property>
+        <property name="poblacionadqui" type="string">
+            <column name="POBSUJETOAD" length="30" />
+        </property>
+        <property name="cpadqui" type="java.lang.Integer">
+            <column name="POSTALSUJETOAD" precision="5" scale="0" />
+        </property>
+        <property name="nifadqui" type="string">
+            <column name="NIFSUJETOAD" length="12" />
+        </property>
+        <property name="numvia" type="string">
+            <column name="NUMVIASIT" length="5" />
+        </property>
+        <property name="numcalle" type="string">
+            <column name="NUMCALLESIT" length="4" />
+        </property>
+        <property name="km" type="java.lang.Integer">
+            <column name="KMSIT" precision="5" scale="0" />
+        </property>
+        <property name="bloque" type="string">
+            <column name="BLOQUESIT" length="2" />
+        </property>
+        <property name="portal" type="string">
+            <column name="PORTALSIT" length="2" />
+        </property>
+        <property name="escalera" type="string">
+            <column name="ESCALERASIT" length="2" />
+        </property>
+        <property name="piso" type="string">
+            <column name="PISOSIT" length="3" />
+        </property>
+        <property name="puerta" type="string">
+            <column name="PUERTASIT" length="3" />
+        </property>
+        <property name="cp" type="java.lang.Integer">
+            <column name="POSTALSIT" precision="5" scale="0" />
+        </property>
+        <property name="anyoliquidacion" type="java.lang.Integer">
+            <column name="ANYLIQUIDACION" precision="5" scale="0" />
+        </property>
+        <property name="superficiesolar" type="java.lang.Double">
+            <column name="SUPSOLAR" precision="8" />
+        </property>
+        <property name="cuotaparti" type="java.lang.Double">
+            <column name="CUOPARTI" precision="10" scale="6" />
+        </property>
+        <property name="partetrans1" type="java.lang.Integer">
+            <column name="PARTETR1" precision="5" scale="0" />
+        </property>
+        <property name="partetrans2" type="java.lang.Integer">
+            <column name="PARTETR2" precision="5" scale="0" />
+        </property>
+        <property name="superficietr" type="java.lang.Double">
+            <column name="SUPERFICIETR" precision="8" />
+        </property>
+        <property name="refcatastral" type="string">
+            <column name="REFCATASTRAL" length="20" />
+        </property>
+        <property name="fijocatastral" type="string">
+            <column name="FIJOCATASTRAL" length="9" />
+        </property>
+        <property name="valorunitario" type="java.lang.Double">
+            <column name="VALUNITARIO" precision="14" />
+        </property>
+        <property name="valorterreno" type="java.lang.Double">
+            <column name="VALTERRENO" precision="14" />
+        </property>
+        <property name="valorterrenofin" type="java.lang.Double">
+            <column name="VALTERRENOFIN" precision="14" />
+        </property>
+        <property name="derecho" type="java.lang.Integer">
+            <column name="NUMDERECHO" precision="5" scale="0" />
+        </property>
+        <property name="dedderecho" type="java.lang.Double">
+            <column name="DEDDERECHO" precision="5" />
+        </property>
+        <property name="fechatanterior" type="timestamp">
+            <column name="FECHTRAN" length="7" />
+        </property>
+        <property name="fechatactual" type="timestamp">
+            <column name="FECHTRAC" length="7" />
+        </property>
+        <property name="numanyo" type="java.lang.Integer">
+            <column name="NUMANY" precision="5" scale="0" />
+        </property>
+        <property name="porcentaje" type="java.lang.Double">
+            <column name="PORPLUS" precision="5" />
+        </property>
+        <property name="baseimponible" type="java.lang.Double">
+            <column name="BASIMPONIBLE" precision="14" />
+        </property>
+        <property name="tipoimpo" type="java.lang.Double">
+            <column name="TIPPLUS" precision="5" />
+        </property>
+        <property name="boniexen" type="java.lang.Integer">
+            <column name="NUMBONIEXEN" precision="5" scale="0" />
+        </property>
+        <property name="cuotaliquida" type="java.lang.Double">
+            <column name="CUOTALIQUIDA" precision="14" />
+        </property>
+        <property name="cuotayaboniexen" type="java.lang.Double">
+            <column name="CUOTAYABONIEXEN" precision="14" />
+        </property>
+        <property name="recargo" type="java.lang.Double">
+            <column name="RECARGO" precision="14" />
+        </property>
+        <property name="intedemora" type="java.lang.Double">
+            <column name="INTEDEMORA" precision="14" />
+        </property>
+        <property name="totalliquida" type="java.lang.Double">
+            <column name="TOTALLIQUIDA" precision="14" />
+        </property>
+        <property name="monedaliquidacion" type="string">
+            <column name="MONEDALIQUIDACION" length="1" />
+        </property>
+        <property name="monedapago" type="string">
+            <column name="MONEDAPAGO" length="1" />
+        </property>
+        <property name="fechmeca" type="timestamp">
+            <column name="FECHMECA" length="7" />
+        </property>
+        <property name="numsituacion" type="java.lang.Integer">
+            <column name="NUMSITUACION" precision="5" scale="0" />
+        </property>
+        <property name="fechnoti" type="timestamp">
+            <column name="FECHNOTI" length="7" />
+        </property>
+        <property name="fechpago" type="timestamp">
+            <column name="FECHPAGO" length="7" />
+        </property>
+        <property name="cartapago" type="java.lang.Integer">
+            <column name="CARTAPAGO" precision="5" scale="0" />
+        </property>
+        <property name="anycargo" type="java.lang.Integer">
+            <column name="ANYCARGO" precision="5" scale="0" />
+        </property>
+        <property name="numcargo" type="java.lang.Integer">
+            <column name="NUMCARGO" precision="5" scale="0" />
+        </property>
+        <property name="numlotenoti" type="java.lang.Integer">
+            <column name="NUMLOTENOTI" precision="5" scale="0" />
+        </property>
+        <property name="numloteejec" type="java.lang.Integer">
+            <column name="NUMLOTEEJEC" precision="5" scale="0" />
+        </property>
+        <property name="numsituacionant" type="java.lang.Integer">
+            <column name="NUMSITUACIONANT" precision="5" scale="0" />
+        </property>
+        <property name="sancion" type="java.lang.Double">
+            <column name="SANCION" precision="14" />
+        </property>
+        <property name="tiposancion" type="java.lang.Integer">
+            <column name="TIPOSANCION" precision="5" scale="0" />
+        </property>
+        <property name="localizacion" type="string">
+            <column name="LOCALIZACION" length="120" />
+        </property>
+        <property name="anyejercicioacta" type="java.lang.Integer">
+            <column name="ANYEJERCICIOACTA" precision="5" scale="0" />
+        </property>
+        <property name="numliquidacionacta" type="java.lang.Long">
+            <column name="NUMLIQUIDACIONACTA" precision="10" scale="0" />
+        </property>
+        <property name="divliquidacionacta" type="java.lang.Integer">
+            <column name="DIVLIQUIDACIONACTA" precision="5" scale="0" />
+        </property>
+        <property name="totalliquidaacta" type="java.lang.Double">
+            <column name="TOTALLIQUIDAACTA" precision="14" />
+        </property>
+        <property name="cuotayaboniexenact" type="java.lang.Double">
+            <column name="CUOTAYABONIEXENACT" precision="14" />
+        </property>
+        <property name="intedemoraacta" type="java.lang.Double">
+            <column name="INTEDEMORAACTA" precision="14" />
+        </property>
+        <property name="recargoacta" type="java.lang.Double">
+            <column name="RECARGOACTA" precision="14" />
+        </property>
+        <property name="sancionacta" type="java.lang.Double">
+            <column name="SANCIONACTA" precision="14" />
+        </property>
+        <property name="numordinal" type="java.lang.Long">
+            <column name="NUMORDINAL" precision="10" scale="0" />
+        </property>
+        <property name="anylotenoti" type="java.lang.Integer">
+            <column name="ANYLOTENOTI" precision="4" scale="0" />
+        </property>
+        <property name="anyedicto" type="java.lang.Integer">
+            <column name="ANYEDICTO" precision="4" scale="0" />
+        </property>
+        <property name="numedicto" type="java.lang.Integer">
+            <column name="NUMEDICTO" precision="4" scale="0" />
+        </property>
+        <property name="numcausa" type="java.lang.Integer">
+            <column name="NUMCAUSA" precision="1" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

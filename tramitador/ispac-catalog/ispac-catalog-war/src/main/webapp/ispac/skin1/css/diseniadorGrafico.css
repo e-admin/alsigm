@@ -1,0 +1,17 @@
+  .estiloTabla {
+	border-width: 4px 4px 4px 4px;
+	border-spacing: 1px;
+	border-style: inset inset inset inset;
+	border-color: green green green green;
+	border-collapse: collapse;
+	border: 5;
+}
+
+
+.mover {
+              
+     height: 100px;
+      width: 100px;
+                position: absolute;
+                z-index: 10;
+}

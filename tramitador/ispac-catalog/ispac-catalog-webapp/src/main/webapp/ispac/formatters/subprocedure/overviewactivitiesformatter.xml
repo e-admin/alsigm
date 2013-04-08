@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NOMBRE'
+				readOnly='false'
+				titleKey='form.fase.propertyLabel.order'
+				fieldType='ROWNUM'
+				headerClass='headerDisplay'
+				sortable='false'
+				media=''
+				decorator=''/>
+
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NOMBRE'
+				readOnly='false'
+				titleKey='subprocedure.wizard.create.selectedActivities'
+				fieldType='DATA'
+				headerClass='headerDisplay'
+				sortable='false'
+				media=''
+				decorator=''/>
+
+</beanformatter>

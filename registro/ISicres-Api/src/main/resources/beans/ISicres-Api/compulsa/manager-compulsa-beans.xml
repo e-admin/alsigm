@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       					   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="isicresCompulsaManager" parent="isicresTransactionTemplate">
+		<property name="target">
+			<bean  class="es.ieci.tecdoc.isicres.api.compulsa.business.manager.impl.CompulsaManagerImpl">
+				<property name="registroManager"><ref bean="registroManager"/></property>
+				<property name="compulsaJustificanteManager"><ref bean="compulsaJustificanteManager"/></property>
+				<property name="documentoElectronicoAnexoManager"><ref bean="documentoElectronicoAnexoManager"/></property>
+				<property name="registroDAO"><ref bean="registroIbatisDAO"/> </property>
+		    </bean>
+		</property>
+	</bean>
+	
+	<bean id="compulsaJustificanteManager" class="es.ieci.tecdoc.isicres.api.compulsa.justificante.business.manager.impl.CompulsaJustificanteManager">
+	</bean>
+	
+
+
+
+</beans>

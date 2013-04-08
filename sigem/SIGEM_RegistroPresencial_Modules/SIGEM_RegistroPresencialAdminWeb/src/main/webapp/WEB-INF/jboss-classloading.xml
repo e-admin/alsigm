@@ -1,0 +1,10 @@
+<classloading xmlns="urn:jboss:classloading:1.0"
+	name="sigem-registro-presencial-admin-web" 
+	domain="sigem-registro-presencial-admin-web_domain"
+	parent-domain="DefaultDomain"
+	export-all="NON_EMPTY"
+	import-all="true"
+	parent-first="true"
+	excluded="org.apache.commons.logging"
+	> 
+</classloading>

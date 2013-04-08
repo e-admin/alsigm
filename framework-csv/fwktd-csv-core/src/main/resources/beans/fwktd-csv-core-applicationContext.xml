@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+    default-lazy-init="true">
+
+	<!-- Carga de las propiedades de configuracion -->
+
+	<bean id="fwktd_csv_core_configurationResourceLoaderImpl" name="fwktd_csv_core_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl" />
+
+	<bean
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="configurationResourceLoader" ref="fwktd_csv_core_configurationResourceLoader" />
+		<property name="locations">
+			<list>
+				<value>fwktd-csv/fwktd-csv-core.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<import resource="classpath*:/beans/fwktd-csv-core/fwktd-csv-core-beans.xml"/>
+	<import resource="classpath*:/beans/fwktd-csv-api-applicationContext.xml"/>
+	<import resource="classpath*:/beans/fwktd-csv-wsclient-applicationContext.xml"/>
+
+</beans>

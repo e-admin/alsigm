@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Criterios sesionId="$!configuracionUsuario.sessionID" entidadId="$!configuracionUsuario.idEntidad" personType="$!criteria.type.value" inicio="$!inicio" rango="$!rango">
+#foreach($filter in $criteria.filters)
+	<Criterio>
+#if($filter.field)
+		<Campo>$filter.field</Campo>
+#end
+#if($filter.operator)
+		<Operador>$filter.operator</Operador>
+#end
+#if($filter.value)
+		<Valor>$filter.value</Valor>
+#end
+	</Criterio>
+#end
+#if($criteria.clausulaWhere)
+	<ClausulaWhere>$criteria.clausulaWhere</ClausulaWhere>
+#end
+#if($criteria.clausulaOrder)
+	<ClausulaOrder>$criteria.clausulaOrder</ClausulaOrder>
+#end
+</Criterios>

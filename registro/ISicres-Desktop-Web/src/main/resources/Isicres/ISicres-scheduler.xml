@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<quartz xmlns="http://www.opensymphony.com/quartz/JobSchedulingData"
+  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xsi:schemaLocation="http://www.opensymphony.com/quartz/JobSchedulingData
+  	http://www.opensymphony.com/quartz/xml/job_scheduling_data_1_5.xsd"
+  	version="1.5">
+
+  <!--
+  	Proceso de actualización de estados de los intercambios registrales
+    -->
+  <job>
+    <job-detail>
+      <name>UpdateStatesSIRJob</name>
+      <group>ISICRES_JOBS</group>
+      <job-class>${scheduler.job.class}</job-class>
+      <volatility>false</volatility>
+      <durability>false</durability>
+      <recover>false</recover>
+    </job-detail>
+    <trigger>
+      <simple>
+        <name>UpdateStatesSIRTrigger</name>
+        <group>ISICRES_JOBS</group>
+        <job-name>UpdateStatesSIRJob</job-name>
+        <job-group>ISICRES_JOBS</job-group>
+        <repeat-count>-1</repeat-count>
+        <repeat-interval>30000</repeat-interval>
+      </simple>
+    </trigger>
+  </job>
+
+</quartz>

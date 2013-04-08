@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+                         "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+
+	<display-name>ISicresAdmin 8.0.1</display-name>
+	<description>IECISA InveSicres Admin 8.0.1 Java</description>
+
+	<!-- Configuracion Spring -->
+    <context-param>
+   	  <param-name>contextConfigLocation</param-name>
+  	  <param-value>classpath:beans/ISicresAdmin-IntercambioRegistral-applicationContext.xml</param-value>
+    </context-param>
+	<!-- <filter>
+		<filter-name>localeFilter</filter-name>
+		<filter-class>
+			ieci.tecdoc.sgm.core.web.locale.LocaleFilter
+		</filter-class>
+	</filter>
+		<filter-mapping>
+		<filter-name>localeFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		</filter-mapping>-->
+
+	<filter>
+		<filter-name>entityFilter</filter-name>
+		<filter-class>
+			ieci.tecdoc.isicres.rpadmin.struts.filters.EntityFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>entityFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+    <listener>
+  	<listener-class>
+  		org.springframework.web.context.ContextLoaderListener
+  	</listener-class>
+  </listener>
+
+  <listener>
+  	<listener-class>
+  		org.springframework.web.context.request.RequestContextListener
+  	</listener-class>
+  </listener>
+
+	<servlet>
+		<servlet-name>log4j-init</servlet-name>
+		<servlet-class>
+			es.ieci.tecdoc.isicres.admin.core.log.web.Log4jInitServlet
+		</servlet-class>
+		<init-param>
+			<param-name>subdir</param-name>
+			<param-value>/ISicresAdminWeb</param-value>
+		</init-param>
+		<init-param>
+			<param-name>fileName</param-name>
+			<param-value>log4j.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>
+			org.apache.struts.action.ActionServlet
+		</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>detail</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<welcome-file-list>
+		<welcome-file>/jsp/__index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<taglib>
+		<taglib-uri>/tags/struts-bean</taglib-uri>
+		<taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/tags/struts-html</taglib-uri>
+		<taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/tags/struts-html-el</taglib-uri>
+		<taglib-location>/WEB-INF/struts-html-el.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/tags/struts-logic</taglib-uri>
+		<taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/c</taglib-uri>
+		<taglib-location>/WEB-INF/c.tld</taglib-location>
+	</taglib>
+</web-app>

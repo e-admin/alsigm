@@ -1,0 +1,8 @@
+1.- La clase com.ieci.tecdoc.idoc.utils.ISicresQueries.java se ha movido al
+	proyecto ISicres-Common. 
+	Ahora es com.ieci.tecdoc.common.utils.ISicresQueries.java
+	
+2.- Renombrado de los paquete ieci.tectoc por com.ieci.tecdoc
+
+3.- Los paquetes renombrados se han movido a un nuevo jar ISicres-InvesDoc.
+    Los paquetes se renombram otra vez a ieci.tecdoc... sin el com.

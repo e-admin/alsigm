@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<digester-rules>
+    <object-create-rule pattern="Configuracion_Sistema_Archivo" classname="xml.config.ConfiguracionSistemaArchivo" />
+    <set-properties-rule pattern="Configuracion_Sistema_Archivo" >
+      <alias attr-name="Version" prop-name="version" />
+    </set-properties-rule>
+    <pattern value="Configuracion_Sistema_Archivo/Sistemas_Gestores_Organismos/Sistemas_Externos/Sistema">
+    	<object-create-rule classname="xml.config.SistemaGestorOrganismos" />
+    	<call-method-rule pattern="Id" methodname="setId" paramcount="0"/>
+    	<call-method-rule pattern="Nombre" methodname="setNombre" paramcount="0"/>
+    	<call-method-rule pattern="Clase" methodname="setClase" paramcount="0"/>
+        <call-method-rule pattern="init-param" methodname="addParametro" paramcount="2" />
+    	<call-param-rule pattern="init-param/param-name" paramnumber ="0" />
+    	<call-param-rule pattern="init-param/param-value" paramnumber ="1" />
+    	<set-next-rule methodname="addSistemaGestorOrganismos" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Sistemas_Gestores_Organismos/Sistema_Interno">
+    	<object-create-rule classname="xml.config.SistemaGestorOrganismos" />
+    	<call-method-rule pattern="Id" methodname="setId" paramcount="0"/>
+    	<call-method-rule pattern="Clase" methodname="setClase" paramcount="0"/>
+        <call-method-rule pattern="init-param" methodname="addParametro" paramcount="2" />
+    	<call-param-rule pattern="init-param/param-name" paramnumber ="0" />
+    	<call-param-rule pattern="init-param/param-value" paramnumber ="1" />
+    	<set-next-rule methodname="setSistemaInternoGestorOrganismos" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Sistemas_Gestores_Usuarios/Sistema">
+    	<object-create-rule classname="xml.config.Sistema" />
+    	<call-method-rule pattern="Id" methodname="setId" paramcount="0"/>
+    	<call-method-rule pattern="Nombre" methodname="setNombre" paramcount="0"/>
+    	<call-method-rule pattern="Clase" methodname="setClase" paramcount="0"/>
+        <call-method-rule pattern="init-param" methodname="addParametro" paramcount="2" />
+    	<call-param-rule pattern="init-param/param-name" paramnumber ="0" />
+    	<call-param-rule pattern="init-param/param-value" paramnumber ="1" />
+    	<set-next-rule methodname="addSistemaGestorUsuarios" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Sistema_Gestor_Catalogo">
+    	<object-create-rule classname="xml.config.SistemaGestorCatalogo" />
+       	<call-method-rule pattern="Id_SistGestor_Org" methodname="setIdSistGestorOrg" paramcount="0"/>
+       	<call-method-rule pattern="Clase" methodname="setClase" paramcount="0"/>
+        <call-method-rule pattern="init-param" methodname="addParametro" paramcount="2" />
+    	<call-param-rule pattern="init-param/param-name" paramnumber ="0" />
+    	<call-param-rule pattern="init-param/param-value" paramnumber ="1" />
+    	<set-next-rule methodname="setSistemaGestorCatalogo" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Sistemas_Tramitadores/Sistema">
+    	<object-create-rule classname="xml.config.SistemaTramitador" />
+    	<call-method-rule pattern="Id" methodname="setId" paramcount="0"/>
+    	<call-method-rule pattern="Nombre" methodname="setNombre" paramcount="0"/>
+    	<call-method-rule pattern="Id_SistGestor_Org" methodname="setIdSistGestorOrg" paramcount="0"/>
+    	<call-method-rule pattern="Clase" methodname="setClase" paramcount="0"/>
+        <call-method-rule pattern="init-param" methodname="addParametro" paramcount="2" />
+    	<call-param-rule pattern="init-param/param-name" paramnumber ="0" />
+    	<call-param-rule pattern="init-param/param-value" paramnumber ="1" />
+    	<set-next-rule methodname="addSistemaTramitador" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Sistema_Gestor_Geograficos">
+    	<object-create-rule classname="xml.config.SistemaGestorGeograficos" />
+    	<call-method-rule pattern="Id" methodname="setId" paramcount="0"/>
+    	<call-method-rule pattern="Nombre" methodname="setNombre" paramcount="0"/>
+    	<call-method-rule pattern="Clase" methodname="setClase" paramcount="0"/>
+        <call-method-rule pattern="init-param" methodname="addParametro" paramcount="2" />
+    	<call-param-rule pattern="init-param/param-name" paramnumber ="0" />
+    	<call-param-rule pattern="init-param/param-value" paramnumber ="1" />
+    	<set-next-rule methodname="setSistemaGestorGeograficos" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Sistema_Gestor_Terceros">
+    	<object-create-rule classname="xml.config.SistemaGestorTerceros" />
+    	<call-method-rule pattern="Id" methodname="setId" paramcount="0"/>
+    	<call-method-rule pattern="Nombre" methodname="setNombre" paramcount="0"/>
+    	<call-method-rule pattern="Clase" methodname="setClase" paramcount="0"/>
+        <call-method-rule pattern="init-param" methodname="addParametro" paramcount="2" />
+    	<call-param-rule pattern="init-param/param-name" paramnumber ="0" />
+    	<call-param-rule pattern="init-param/param-value" paramnumber ="1" />
+    	<set-next-rule methodname="setSistemaGestorTerceros" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Sistema_Gestor_Repositorio_Electronico">
+    	<object-create-rule classname="xml.config.SistemaGestorRepositorioElectronico" />
+    	<call-method-rule pattern="Id" methodname="setId" paramcount="0"/>
+    	<call-method-rule pattern="Nombre" methodname="setNombre" paramcount="0"/>
+    	<call-method-rule pattern="Clase" methodname="setClase" paramcount="0"/>
+        <call-method-rule pattern="init-param" methodname="addParametro" paramcount="2" />
+    	<call-param-rule pattern="init-param/param-name" paramnumber ="0" />
+    	<call-param-rule pattern="init-param/param-value" paramnumber ="1" />
+    	<set-next-rule methodname="setSistemaGestorRepositorioElectronico" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Configuracion_ControlAcceso">
+    	<object-create-rule classname="xml.config.ConfiguracionControlAcceso" />
+        <pattern value="Usuarios/Usuario">
+        	<object-create-rule classname="xml.config.Usuario" />
+            <set-properties-rule>
+              <alias attr-name="Tipo" prop-name="tipo" />
+            </set-properties-rule>
+        	<call-method-rule pattern="Nombre_Tipo" methodname="setNombre" paramcount="0"/>
+        	<call-method-rule pattern="Id_SistGestor_Usr" methodname="setIdSistGestorUsr" paramcount="0"/>
+        	<call-method-rule pattern="Id_SistGestor_Org" methodname="setIdSistGestorOrg" paramcount="0"/>
+        	<set-next-rule methodname="addUsuario" />
+        </pattern>
+        <pattern value="Superusuarios_Sistema_Archivo/Superusuario">
+        	<object-create-rule classname="xml.config.Superusuario" />
+        	<call-method-rule pattern="Usuario" methodname="setNombre" paramcount="0"/>
+        	<call-method-rule pattern="Clave" methodname="setClave" paramcount="0"/>
+        	<set-next-rule methodname="addSuperusuario" />
+        </pattern>
+    	<call-method-rule pattern="Perfil_Usuarios_Externos" methodname="setPerfilUsuariosExternos" paramcount="0"/>
+    	<set-next-rule methodname="setConfiguracionControlAcceso" />
+    </pattern>
+	<pattern value="Configuracion_Sistema_Archivo/Configuracion_Servicios">
+    	<object-create-rule classname="xml.config.ConfiguracionServicios" />
+       	<call-method-rule pattern="Prestamos/Plazo" methodname="setPlazoPrestamo" paramcount="0"/>
+       	<call-method-rule pattern="Prestamos/Plazo_tras_reclamacion" methodname="setPlazoTrasReclamacion" paramcount="0"/>
+		<call-method-rule pattern="Prestamos/Plazo_Reserva" methodname="setPlazoReserva" paramcount="0"/>
+		<call-method-rule pattern="Prestamos/Plazo_Prorroga" methodname="setPlazoProrroga" paramcount="0"/>
+		<call-method-rule pattern="Prestamos/Expediente_Fraccion_Serie/Patron" methodname="setPatronExpFS" paramcount="0"/>
+		<call-method-rule pattern="Prestamos/Expediente_Fraccion_Serie/Etiqueta_Validacion" methodname="setEtiquetaValExpFS" paramcount="0"/>
+		<call-method-rule pattern="Prestamos/Expediente_Fraccion_Serie/Autocompletar_Izquierda/Caracter" methodname="setCaracterAutoExpFS" paramcount="0"/>
+		<call-method-rule pattern="Prestamos/Expediente_Fraccion_Serie/Autocompletar_Izquierda/Limite" methodname="setLimiteAutoExpFS" paramcount="0"/>
+		<call-method-rule pattern="Tabla_Validacion_Tipo_Entrega" methodname="setListaValidacionTipoEntrega" paramcount="0"/>
+       	<set-next-rule methodname="setConfiguracionServicios" />
+    </pattern>
+	<pattern value="Configuracion_Sistema_Archivo/Configuracion_Descripcion">
+    	<object-create-rule classname="xml.config.ConfiguracionDescripcion" />
+       	<call-method-rule pattern="Campos_Descriptivos/Fecha_Extrema_Inicial" methodname="setFechaExtremaInicial" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Fecha_Extrema_Final" methodname="setFechaExtremaFinal" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Id_Tercero_Interesado" methodname="setIdTerceroInteresado" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Campos_no_reemplazables/Campo" methodname="addIdCampo" paramcount="0"/><!--
+       	<call-method-rule pattern="Plantillas_XSL/Consulta" methodname="setPlantillaXSLConsulta" paramcount="0"/>
+       	<call-method-rule pattern="Plantillas_XSL/Edicion" methodname="setPlantillaXSLEdicion" paramcount="0"/>
+       	<call-method-rule pattern="Plantillas_XSL/Exportacion" methodname="setPlantillaXSLExportacion" paramcount="0"/>
+       	--><call-method-rule pattern="Campos_Descriptivos/Productor" methodname="setProductor" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Cantidad_Volumen_Soporte" methodname="setCantidadVolumenSoporte" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Cantidad_Volumen_Soporte_Documental" methodname="setCantidadVolumenSoporteDocumental" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Soporte_Documental" methodname="setSoporteDocumental" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Productor_Serie" methodname="setProductorSerie" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Fecha_Inicio_Productor_Serie" methodname="setFechaInicioProductorSerie" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Fecha_Fin_Productor_Serie" methodname="setFechaFinProductorSerie" paramcount="0"/>
+  		<call-method-rule pattern="Campos_Descriptivos/Id_Tabla_Rangos" methodname="setIdTablaRangos" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/RangoInicial" methodname="setRangoInicial" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/RangoFinal" methodname="setRangoFinal" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/RangoInicialNorm" methodname="setRangoInicialNormalizado" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/RangoFinalNorm" methodname="setRangoFinalNormalizado" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Id_Interesado_Identidad" methodname="setInteresadoIdentidad" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Id_Interesado_Principal" methodname="setInteresadoPrincipal" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Id_Interesado_Numero_Identidad" methodname="setInteresadoNumeroIdentidad" paramcount="0"/>
+       	<call-method-rule pattern="Campos_Descriptivos/Id_Interesado_Rol" methodname="setInteresadoRol" paramcount="0"/>
+  		<call-method-rule pattern="Campos_Descriptivos/Id_Interesado_Validado" methodname="setInteresadoValidado" paramcount="0"/>
+  		<call-method-rule pattern="Campos_Descriptivos/Id_Tabla_Interesados" methodname="setIdTablaInteresados" paramcount="0"/>
+  		<call-method-rule pattern="Campos_Descriptivos/Valor_Interesado_Principal" methodname="setValorInteresadoPrincipal" paramcount="0"/>
+  		<call-method-rule pattern="Campos_Descriptivos/Denominacion_Expediente" methodname="setDenominacionExpediente" paramcount="0"/>
+  		<call-method-rule pattern="Campos_Descriptivos/Unidades_Relacionadas" methodname="setUdocsRel" paramcount="0"/>
+  		<call-method-rule pattern="Campos_Descriptivos/Condiciones_Acceso" methodname="setCondicionesAcceso" paramcount="0"/>
+  		<call-method-rule pattern="Campos_Descriptivos/Fecha_Documento" methodname="setIdFechaDoc" paramcount="0"/>
+       	<set-next-rule methodname="setConfiguracionDescripcion" />
+    </pattern><!--
+	<pattern value="Configuracion_Sistema_Archivo/Configuracion_Auditoria">
+    	<object-create-rule classname="xml.config.ConfiguracionAuditoria" />
+       	<call-method-rule pattern="Plantilla_XSL" methodname="setPlantillaXSL" paramcount="0"/>
+       	<set-next-rule methodname="setConfiguracionAuditoria" />
+    </pattern>
+	--><pattern value="Configuracion_Sistema_Archivo/Configuracion_Fondos">
+    	<object-create-rule classname="xml.config.ConfiguracionFondos" />
+    	<!--
+		<call-method-rule pattern="Lista_Paises_Mapping_File" methodname="setListaPaisesMappingFile" paramcount="0"/>
+		<call-method-rule pattern="Rules_Processing_Paises_Mapping_File" methodname="setReglasProcesPaisesMappingFile" paramcount="0"/>
+		<call-method-rule pattern="Rules_Processing_Identificacion_Serie" methodname="setReglasProcesoIdentificacionSerie" paramcount="0"/>
+		-->
+		<call-method-rule pattern="Directorio_Logs_Eliminacion" methodname="setDirectorioLogsEliminacion" paramcount="0"/>
+     	<call-method-rule pattern="Num_Resultados_Pag_Seleccion_Udoc_Conservar" methodname="setNumResultadosPagSeleccionUdocConservar" paramcount="0" paramtypes="java.lang.Integer"/>
+		<call-method-rule pattern="Numero_Maximo_Resultados_Serie" methodname="setNumMaxResultadosSerie" paramcount="0" paramtypes="java.lang.Integer"/>
+		<call-method-rule pattern="Delimitador_Codigo_Referencia" methodname="setDelimitadorCodigoReferencia" paramcount="0"/>
+		<call-method-rule pattern="Tabla_Validacion_Boletines_Oficiales" methodname="setTablaValidacionBoletinesOficiales" paramcount="0"/>
+		<call-method-rule pattern="Tabla_Validacion_Tipo_Documentacion" methodname="setTablaValidacionTipoDocumentacion" paramcount="0"/>
+      	<call-method-rule pattern="Instituciones_Productoras/Id_SistGestor_Org" methodname="setIdSistGestorOrg" paramcount="0"/>
+      <set-next-rule methodname="setConfiguracionFondos" />
+    </pattern>
+	<pattern value="Configuracion_Sistema_Archivo/Configuracion_Transferencias">
+    	<object-create-rule classname="xml.config.ConfiguracionTransferencias" />
+		<!-- <call-method-rule pattern="Udoc_Fields_Mapping_File" methodname="setUdocFieldsMappingFile" paramcount="0"/>
+		<call-method-rule pattern="Rules_Processing_Info_Unidad_Documental" methodname="setReglasProcesoInfoUnidadDocumental" paramcount="0"/>-->
+		<call-method-rule pattern="Tabla_Validacion_Rol_Interesado" methodname="setIdTablaValidacionRolInteresado" paramcount="0"/>
+		<call-method-rule pattern="Tabla_Validacion_Forma_Documental" methodname="setIdTablaValidacionFormaDocumental" paramcount="0"/><!--
+		<call-method-rule pattern="Pais" methodname="setPais" paramcount="2"/>
+      <call-param-rule pattern="Pais/Codigo" paramnumber ="0" />
+      <call-param-rule pattern="Pais/Nombre" paramnumber ="1" />
+		<call-method-rule pattern="Provincia" methodname="setProvincia" paramcount="2"/>
+      <call-param-rule pattern="Provincia/Codigo" paramnumber ="0" />
+      <call-param-rule pattern="Provincia/Nombre" paramnumber ="1" />
+       	--><set-next-rule methodname="setConfiguracionTransferencias" />
+    </pattern>
+	<pattern value="Configuracion_Sistema_Archivo/Configuracion_Documentos_Vitales">
+    	<object-create-rule classname="xml.config.ConfiguracionDocumentosVitales" />
+		<call-method-rule pattern="Id_Lista_Volumenes" methodname="setIdRepEcm" paramcount="0"/>
+		<call-method-rule pattern="Id_Repositorio_ECM" methodname="setIdRepEcm" paramcount="0"/>
+		<set-next-rule methodname="setConfiguracionDocumentosVitales" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Configuracion_Almacenamiento">
+      <object-create-rule classname="xml.config.ConfiguracionAlmacenamiento" />
+      <call-method-rule pattern="Data_Source_Almacenamiento" methodname="setDataSourceNameAlmacenamiento" paramcount="0"/>
+      <call-method-rule pattern="Motor_Documental/Plataforma" methodname="setPlataformaMotorDocumental" paramcount="0"/>
+      <call-method-rule pattern="Motor_Documental/Ruta_Plataforma" methodname="setRutaPlataformaMotorDocumental" paramcount="0"/>
+	  <call-method-rule pattern="Motor_Documental/Extensiones" methodname="setExtensionesMotorDocumental" paramcount="0"/>
+      <set-next-rule methodname="setConfiguracionAlmacenamiento" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Configuracion_Ws_Transferencias">
+      <object-create-rule classname="xml.config.ConfiguracionWsTransferencias" />
+      <call-method-rule pattern="Url" methodname="setUrl" paramcount="0"/>
+      <call-method-rule pattern="Timeout" methodname="setTimeout" paramcount="0"/>
+      <call-method-rule pattern="TransferenciasAutomatizadas" methodname="setTransferenciasAutomatizadas" paramcount="0"/>
+      <call-method-rule pattern="IdFichaSeries" methodname="setIdFichaSeries" paramcount="0"/>
+	  <call-method-rule pattern="IdNivelSerie" methodname="setIdNivelSerie" paramcount="0"/>
+	  <call-method-rule pattern="IdNivelUnidadDocumental" methodname="setsetIdNivelUdoc" paramcount="0"/>
+	  <call-method-rule pattern="AniadirProductores" methodname="setAniadirProductores" paramcount="0"/>
+      <set-next-rule methodname="setConfiguracionWsTransferencias" />
+    </pattern>
+    <pattern value="Configuracion_Sistema_Archivo/Configuracion_General">
+      <object-create-rule classname="xml.config.ConfiguracionGeneral" />
+      <call-method-rule pattern="Data_Source" methodname="setDataSourceName" paramcount="0"/>
+      <call-method-rule pattern="Data_Source_Almacenamiento" methodname="setDataSourceNameAlmacenamiento" paramcount="0"/>
+      <call-method-rule pattern="Data_Source_Auth" methodname="setDataSourceNameAuth" paramcount="0"/>
+	  <call-method-rule pattern="Keep_alive" methodname="setKeepAlive" paramcount="0"/>
+      <call-method-rule pattern="Periodo_Maximo_Bloqueo" methodname="setPeriodoMaximoBloqueo" paramcount="0"/>
+      <call-method-rule pattern="Periodo_Evento_Sesion" methodname="setPeriodoEventoSesion" paramcount="0"/>
+      <call-method-rule pattern="Numero_Maximo_Resultados" methodname="setNumMaxResultados" paramcount="0" paramtypes="java.lang.Integer"/>
+      <call-method-rule pattern="Numero_Maximo_Intentos" methodname="setNumMaxIntentos" paramcount="0" paramtypes="java.lang.Integer"/>
+      <call-method-rule pattern="Numero_Resultados_Por_Pagina" methodname="setNumResultadosPorPagina" paramcount="0" paramtypes="java.lang.Integer"/>
+      <call-method-rule pattern="DB_Factory_Class" methodname="setDBFactoryClass" paramcount="0" />
+      <call-method-rule pattern="Tabla_Validacion_Soporte" methodname="setListaValidacionSoportes" paramcount="0"/>
+      <call-method-rule pattern="Tabla_Validacion_Formato" methodname="setListaValidacionFormatos" paramcount="0"/>
+      <pattern value="Listas_Descriptoras_Productores/lista">
+        	<object-create-rule classname="xml.config.ListaProductores" />
+            <set-properties-rule>
+              <alias attr-name="productor" prop-name="productor" />
+              <alias attr-name="tipoproductor" prop-name="tipo" />
+            </set-properties-rule>
+            <call-method-rule methodname="setIdLista" paramcount="0" />
+        	<set-next-rule methodname="addListaProductores" />
+      </pattern>
+      <call-method-rule pattern="Encriptacion/Algoritmo" methodname="setAlgoritmoEncriptacion" paramcount="0"/>
+      <call-method-rule pattern="Encriptacion/Clave_Secreta" methodname="setClaveSecretaEncriptacion" paramcount="0"/>
+      <call-method-rule pattern="Usuario_Anonimo_Servicios_Web/Usuario" methodname="setUsuarioAnonimoWS" paramcount="0"/>
+      <call-method-rule pattern="Usuario_Anonimo_Servicios_Web/Clave" methodname="setClaveUsuarioAnonimoWS" paramcount="0"/>
+      <set-next-rule methodname="setConfiguracionGeneral" />
+    </pattern>
+	<pattern value="Configuracion_Sistema_Archivo/Configuracion_Parametros">
+		<object-create-rule classname="xml.config.ConfiguracionParametros"/>
+		<pattern value="parametro">
+			<object-create-rule classname="xml.config.Parametro"/>
+		      <call-method-rule pattern="id" methodname="setId" paramcount="0"/>
+		      <call-method-rule pattern="valor" methodname="setValor" paramcount="0"/>
+			<set-next-rule methodname="addParametro"/>
+		</pattern>
+		<set-next-rule methodname="setConfiguracionParametros"/>
+	</pattern>
+	<pattern value="Configuracion_Sistema_Archivo/Configuracion_Parametros_Sistemas_Externos">
+		<object-create-rule classname="xml.config.ConfiguracionParametrosSE"/>
+		<pattern value="parametro">
+			<object-create-rule classname="xml.config.Parametro"/>
+		      <call-method-rule pattern="id" methodname="setId" paramcount="0"/>
+		      <call-method-rule pattern="valor" methodname="setValor" paramcount="0"/>
+			<set-next-rule methodname="addParametroSE"/>
+		</pattern>
+		<set-next-rule methodname="setConfiguracionParametrosSE"/>
+	</pattern>
+</digester-rules>

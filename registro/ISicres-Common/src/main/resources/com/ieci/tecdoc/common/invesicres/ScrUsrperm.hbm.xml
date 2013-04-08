@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrUsrperm" 
+    table="SCR_USRPERMS"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_USRPERMS"
+    </meta>
+
+    <id
+        name="idUsr"
+        type="java.lang.Integer"
+        column="ID_USR"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID_USR"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="tmstamp"
+        type="java.sql.Timestamp"
+        column="TMSTAMP"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TMSTAMP"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="perms"
+        type="int"
+        column="PERMS"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="PERMS"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    	<property name="locations">
+    		<list>
+    			<value>classpath:keystore.properties</value>
+    		</list>    	
+    	</property>
+    </bean>
+
+	<bean id="jaxb1Marshaller" class="org.springframework.oxm.jaxb.Jaxb1Marshaller">
+		<property name="contextPath"
+			value="org.notariado.ancert.xml.plusvalias.liquidacion" />
+	</bean>
+
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<property name="defaultUri"
+			value="http://localhost:8080/plusvaliaService/services/SOAPGateway" />
+		<property name="marshaller" ref="jaxb1Marshaller" />
+		<property name="unmarshaller" ref="jaxb1Marshaller" />
+		<!-- <property name="interceptors" ref="wsSecurityInterceptor"/> -->
+	</bean>
+
+<!-- <bean id="wsSecurityInterceptor" class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
+	    <property name="securementActions" value="Signature"/>
+	    <property name="securementUsername" value="${keystore.alias}"/>
+	    <property name="securementPassword" value="${keystore.pkpassword}"/>
+	    <property name="securementSignatureCrypto">
+	        <bean class="org.springframework.ws.soap.security.wss4j.support.CryptoFactoryBean">
+				<property name="keyStorePassword">
+					<value>${keystore.password}</value>
+				</property>
+				<property name="keyStoreLocation">
+					<value>${keystore.location}</value>
+				</property>
+				<property name="keyStoreType">
+					<value>${keystore.type}</value>
+				</property>
+				<property name="defaultX509Alias">
+					<value>${keystore.alias}</value>
+				</property>
+	        </bean>
+	    </property>
+	    
+	    <property name="validationActions" value="Signature"/>
+	    <property name="enableSignatureConfirmation" value="true"/>
+	    <property name="validationSignatureCrypto">
+	        <bean class="org.springframework.ws.soap.security.wss4j.support.CryptoFactoryBean">
+		            <property name="keyStorePassword"><value>${keystore.password}</value></property>
+					<property name="keyStoreLocation"><value>${keystore.location}</value></property>
+					<property name="keyStoreType"><value>${keystore.type}</value></property>
+					<property name="defaultX509Alias"><value>${keystore.alias}</value></property>
+	        </bean>
+	    </property>
+	</bean>
+--> 
+	<bean id="calculoLiquidacionService" class="es.ieci.plusvalias.service.CalculoLiquidacionSoapImpl">
+		<property name="template" ref="webServiceTemplate" />
+	</bean>
+
+</beans>

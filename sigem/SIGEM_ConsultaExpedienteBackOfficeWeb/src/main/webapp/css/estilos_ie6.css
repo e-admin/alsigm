@@ -1,0 +1,21 @@
+#cabecera .salir {
+	top: 28px;
+}
+
+#barra_usuario .ayuda a {
+	padding: 0px 0px 0px 6px;
+}
+
+#barra_usuario .idioma a {
+	padding: 0px 0px 0px 6px;
+}
+
+.cuerpomid { 
+	height:0px;
+}
+
+.cuerpo_subs {
+	margin: -1px 5px 0px 5px;
+}
+
+hr { display: none !important; }

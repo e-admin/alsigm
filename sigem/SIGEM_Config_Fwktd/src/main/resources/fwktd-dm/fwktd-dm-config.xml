@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<config>
+	<content-types>
+
+		<!--
+			Repositorio para los documentos de los anexos de los asientos registrales.
+		 -->
+		<content-type id="1" name="fwktdsir" type="bd">
+			<properties>
+		    	<property name="JDBC_DATASOURCE">${server.fwktd-sir.jdbc.datasource}</property>
+			</properties>
+			<mappings>
+				<mapping>
+					<source type="string">nombreFichero</source>
+					<destination type="string">nombreFichero</destination>
+				</mapping>
+				<mapping>
+					<source type="string">hash</source>
+					<destination type="string">hash</destination>
+				</mapping>
+				<mapping>
+					<source type="string">tipoDocumento</source>
+					<destination type="string">tipoDocumento</destination>
+				</mapping>
+				<mapping>
+					<source type="string">validezDocumento</source>
+					<destination type="string">validezDocumento</destination>
+				</mapping>
+				<mapping>
+					<source type="string">timestamp</source>
+					<destination type="string">timestamp</destination>
+				</mapping>
+				<mapping>
+					<source type="string">firma</source>
+					<destination type="string">firma</destination>
+				</mapping>
+				<mapping>
+					<source type="string">certificado</source>
+					<destination type="string">certificado</destination>
+				</mapping>
+				<mapping>
+					<source type="string">validacionOCSPCertificado</source>
+					<destination type="string">validacionOCSPCertificado</destination>
+				</mapping>
+				<mapping>
+					<source type="string">observaciones</source>
+					<destination type="string">observaciones</destination>
+				</mapping>
+			</mappings>
+		</content-type>
+
+		<!--
+			Repositorio para los XML de mensajes intercambiados.
+		 -->
+		<content-type id="2" name="fwktdsir-auditoria-mensajes" type="bd">
+			<properties>
+		    	<property name="JDBC_DATASOURCE">${server.fwktd-sir.jdbc.datasource}</property>
+			</properties>
+			<mappings>
+				<mapping>
+					<source type="string">bandeja</source>
+					<destination type="string">bandeja</destination>
+				</mapping>
+				<mapping>
+					<source type="datetime">fechaCreacion</source>
+					<destination type="string">fechaCreacion</destination>
+				</mapping>
+				<mapping>
+					<source type="string">codigoEntidadRegistralOrigen</source>
+					<destination type="string">codigoEntidadRegistralOrigen</destination>
+				</mapping>
+				<mapping>
+					<source type="string">codigoEntidadRegistralDestino</source>
+					<destination type="string">codigoEntidadRegistralDestino</destination>
+				</mapping>
+				<mapping>
+					<source type="string">identificadorIntercambio</source>
+					<destination type="string">identificadorIntercambio</destination>
+				</mapping>
+				<mapping>
+					<source type="string">tipoMensaje</source>
+					<destination type="string">tipoMensaje</destination>
+				</mapping>
+				<mapping>
+					<source type="string">descripcionMensaje</source>
+					<destination type="string">descripcionMensaje</destination>
+				</mapping>
+				<mapping>
+					<source type="string">numeroRegistroEntradaDestino</source>
+					<destination type="string">numeroRegistroEntradaDestino</destination>
+				</mapping>
+				<mapping>
+					<source type="datetime">fechaEntradaDestino</source>
+					<destination type="string">fechaEntradaDestino</destination>
+				</mapping>
+				<mapping>
+					<source type="string">indicadorPrueba</source>
+					<destination type="string">indicadorPrueba</destination>
+				</mapping>
+				<mapping>
+					<source type="string">identificadoresFicheros</source>
+					<destination type="string">identificadoresFicheros</destination>
+				</mapping>
+				<mapping>
+					<source type="string">codigoError</source>
+					<destination type="string">codigoError</destination>
+				</mapping>
+			</mappings>
+		</content-type>
+
+		<!--
+			Repositorio para los XML de ficheros de intercambio.
+		 -->
+		<content-type id="3" name="fwktdsir-auditoria-ficherosIntercambio" type="bd">
+			<properties>
+		    	<property name="JDBC_DATASOURCE">${server.fwktd-sir.jdbc.datasource}</property>
+			</properties>
+			<mappings>
+				<mapping>
+					<source type="string">bandeja</source>
+					<destination type="string">bandeja</destination>
+				</mapping>
+				<mapping>
+					<source type="datetine">fechaCreacion</source>
+					<destination type="string">fechaCreacion</destination>
+				</mapping>
+				<mapping>
+					<source type="string">codigoEntidadRegistralOrigen</source>
+					<destination type="string">codigoEntidadRegistralOrigen</destination>
+				</mapping>
+				<mapping>
+					<source type="string">descripcionEntidadRegistralOrigen</source>
+					<destination type="string">descripcionEntidadRegistralOrigen</destination>
+				</mapping>
+				<mapping>
+					<source type="string">codigoUnidadTramitacionOrigen</source>
+					<destination type="string">codigoUnidadTramitacionOrigen</destination>
+				</mapping>
+				<mapping>
+					<source type="string">descripcionUnidadTramitacionOrigen</source>
+					<destination type="string">descripcionUnidadTramitacionOrigen</destination>
+				</mapping>
+				<mapping>
+					<source type="string">codigoEntidadRegistralDestino</source>
+					<destination type="string">codigoEntidadRegistralDestino</destination>
+				</mapping>
+				<mapping>
+					<source type="string">descripcionEntidadRegistralDestino</source>
+					<destination type="string">descripcionEntidadRegistralDestino</destination>
+				</mapping>
+				<mapping>
+					<source type="string">codigoUnidadTramitacionDestino</source>
+					<destination type="string">codigoUnidadTramitacionDestino</destination>
+				</mapping>
+				<mapping>
+					<source type="string">descripcionUnidadTramitacionDestino</source>
+					<destination type="string">descripcionUnidadTramitacionDestino</destination>
+				</mapping>
+				<mapping>
+					<source type="string">numeroRegistro</source>
+					<destination type="string">numeroRegistro</destination>
+				</mapping>
+				<mapping>
+					<source type="datetime">fechaRegistro</source>
+					<destination type="string">fechaRegistro</destination>
+				</mapping>
+				<mapping>
+					<source type="string">timestampRegistro</source>
+					<destination type="string">timestampRegistro</destination>
+				</mapping>
+				<mapping>
+					<source type="string">resumen</source>
+					<destination type="string">resumen</destination>
+				</mapping>
+				<mapping>
+					<source type="string">codigoAsunto</source>
+					<destination type="string">codigoAsunto</destination>
+				</mapping>
+				<mapping>
+					<source type="string">referenciaExterna</source>
+					<destination type="string">referenciaExterna</destination>
+				</mapping>
+				<mapping>
+					<source type="string">numeroExpediente</source>
+					<destination type="string">numeroExpediente</destination>
+				</mapping>
+				<mapping>
+					<source type="string">tipoTransporte</source>
+					<destination type="string">tipoTransporte</destination>
+				</mapping>
+				<mapping>
+					<source type="string">numeroTransporte</source>
+					<destination type="string">numeroTransporte</destination>
+				</mapping>
+				<mapping>
+					<source type="string">nombreUsuario</source>
+					<destination type="string">nombreUsuario</destination>
+				</mapping>
+				<mapping>
+					<source type="string">contactoUsuario</source>
+					<destination type="string">contactoUsuario</destination>
+				</mapping>
+				<mapping>
+					<source type="string">identificadorIntercambio</source>
+					<destination type="string">identificadorIntercambio</destination>
+				</mapping>
+				<mapping>
+					<source type="string">aplicacionEmisora</source>
+					<destination type="string">aplicacionEmisora</destination>
+				</mapping>
+				<mapping>
+					<source type="string">tipoAnotacion</source>
+					<destination type="string">tipoAnotacion</destination>
+				</mapping>
+				<mapping>
+					<source type="string">descripcionTipoAnotacion</source>
+					<destination type="string">descripcionTipoAnotacion</destination>
+				</mapping>
+				<mapping>
+					<source type="string">tipoRegistro</source>
+					<destination type="string">tipoRegistro</destination>
+				</mapping>
+				<mapping>
+					<source type="string">documentacionFisica</source>
+					<destination type="string">documentacionFisica</destination>
+				</mapping>
+				<mapping>
+					<source type="string">observacionesApunte</source>
+					<destination type="string">observacionesApunte</destination>
+				</mapping>
+				<mapping>
+					<source type="string">indicadorPrueba</source>
+					<destination type="string">indicadorPrueba</destination>
+				</mapping>
+				<mapping>
+					<source type="string">codigoEntidadRegistralInicio</source>
+					<destination type="string">codigoEntidadRegistralInicio</destination>
+				</mapping>
+				<mapping>
+					<source type="string">descripcionEntidadRegistralInicio</source>
+					<destination type="string">descripcionEntidadRegistralInicio</destination>
+				</mapping>
+				<mapping>
+					<source type="string">expone</source>
+					<destination type="string">expone</destination>
+				</mapping>
+				<mapping>
+					<source type="string">solicita</source>
+					<destination type="string">solicita</destination>
+				</mapping>
+			</mappings>
+		</content-type>
+
+	</content-types>
+</config>

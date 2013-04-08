@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.ostermiller</groupId>
+  <artifactId>utils</artifactId>
+  <version>1.07.00</version>
+  <packaging>jar</packaging>
+  <name>Ostermiller Java Utilities</name>
+  <url>http://ostermiller.org/utils/</url>
+  <description>Open source (GPL) Java utilities maintained by Stephen Ostermiller with help from many contributors.</description>
+  <licenses>
+    <license>
+      <name>GNU General Public License, version 2</name>
+      <url>http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+</project>

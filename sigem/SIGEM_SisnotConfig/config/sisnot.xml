@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SISNOT>
+<mail>
+	<administradores>adminSisnot@sisnot.es</administradores>
+</mail>
+
+
+<Certificado_Firma_SN>sisnot</Certificado_Firma_SN>
+<Clave_Firma_SN>sisnot</Clave_Firma_SN>
+
+<Mensajes_Entrantes>
+	<guardar>true</guardar>
+	<ruta>/home/sisnot/mensajes/</ruta>
+</Mensajes_Entrantes>
+
+<Mensajes_Salientes>
+	<guardar>true</guardar>
+	<ruta>/home/sisnot/mensajes/</ruta>
+</Mensajes_Salientes>
+
+<proxy>
+	<usar>true</usar>
+	<Host>proxy.ieci.geci</Host>
+	<Port>8080</Port>
+	<User>abc</User>
+	<Password>abc</Password>
+</proxy>
+
+<longitud_maxima_mensajes>524288</longitud_maxima_mensajes>
+
+<reintentos>3</reintentos>
+
+<certificados_cliente>
+	<usar>false</usar>
+	<vista>/home/sisnot/keystore/sisnot.jceks</vista>
+	<clave_vista>sisnot</clave_vista>
+	<alias></alias>
+	<clave_alias></clave_alias>
+</certificados_cliente>
+
+<vista_certificados_CA>/home/sisnot/keystore/confiables.jceks</vista_certificados_CA>
+<clave_certificados_CA>sisnot</clave_certificados_CA>
+
+
+<PC>
+	<url_censo>https://193.148.159.136/PC/SIGEM/censo.ashx</url_censo>
+	<certificadoFirma>/home/sisnot/correos/CERTIFICADO_SNTS.cer</certificadoFirma>
+	<verificar_Firma>false</verificar_Firma>
+
+</PC>
+
+
+<SNTS>
+	<url_notificaciones>https://193.148.159.136/SNTS/SIGEM/remesa.ashx</url_notificaciones>
+	<url_puestaDispo>https://193.148.159.136/SNTS/SIGEM/disposicion.ashx</url_puestaDispo>
+	<url_acuses>https://193.148.159.136/SNTS/SIGEM/acuse.ashx</url_acuses>
+	<certificadoFirma>/home/sisnot/correos/CERTIFICADO_SNTS.cer</certificadoFirma>
+	<verificar_Firma_Usuario>true</verificar_Firma_Usuario>
+	<verificar_Firma>true</verificar_Firma>
+</SNTS>
+
+<Certificado_Firma_SGN>sisnot</Certificado_Firma_SGN>
+</SISNOT>

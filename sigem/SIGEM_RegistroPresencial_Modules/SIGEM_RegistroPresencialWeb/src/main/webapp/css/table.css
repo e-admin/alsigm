@@ -1,0 +1,243 @@
+TD.Style1
+{
+    BACKGROUND-COLOR: #fafcff
+}
+TD.Style2
+{
+    BACKGROUND-COLOR: #99ccff
+}
+TD.Style3
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 7pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #99ccff
+}
+TD.Header2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana
+}
+
+TD.FldPersist
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana
+}
+TR.Style1
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #d6d3ce
+}
+TR.Style2
+{
+    BACKGROUND-COLOR: #ffffff
+}
+TR.Style3
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #99ccff
+}
+TR.Style4
+{
+    BACKGROUND-COLOR: #fafcff
+}
+TR.Style5
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #fafcff
+}
+TR.Style6
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana
+}
+TR.Style7
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 7pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    POSITION: relative;
+    TOP: -4px;
+    BACKGROUND-COLOR: #d1f1ff
+}
+TR.Style8
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 7pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    POSITION: relative;
+    TOP: -4px;
+    BACKGROUND-COLOR: #99ccff
+}
+TR.Style9
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #e2f5ff
+}
+TR.Style10
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: red;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #fafcff
+}
+
+TABLE.Style2
+{
+    BACKGROUND-COLOR: #ffffff
+}
+TABLE.Style3
+{
+    BACKGROUND-COLOR: #99ccff
+}
+TABLE.resalt
+{
+    background-color: #6699cc
+}
+THEAD.Style1
+{
+    BACKGROUND-COLOR: #bbeeff
+}
+TBODY.Style1
+{
+    BACKGROUND-COLOR: #fafcff
+}
+TD.Header1
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #9ccfff
+}
+TR.Header1
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #9ccfff
+}
+TD.reportRO
+{
+    FONT-SIZE: 8pt;
+    COLOR: #003366;
+    FONT-FAMILY: Verdana;
+    background-color: #DDDDDD;
+}
+
+TD.seleccion
+{
+    cursor: pointer;
+}
+
+TD.Style11
+{
+    FONT-SIZE: 10px;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #D7EDFA;
+}
+
+TR.Style11
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #D7EDFA;
+}
+
+TABLE.Style11
+{
+    BACKGROUND-COLOR: #D7EDFA;
+}
+
+TR.Style11 a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #006699;
+	padding: 0px 5px 2px 5px;
+	height: 19px;
+	line-height: 19px;
+	vertical-align: middle;
+}
+
+TR.Style11 a:hover {
+	text-decoration: none;
+}
+
+TR.Style11 a img {
+	vertical-align: middle;
+	padding: 0px 5px 3px;
+	border: 0 none;
+}
+
+TD.Style12
+{
+    FONT-SIZE: 10px;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #FFFFFF;
+}
+
+TR.Style12
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #FFFFFF;
+}
+
+TR.Style12 a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #006699;
+	padding: 0px 5px 2px 5px;
+	height: 19px;
+	line-height: 19px;
+	vertical-align: middle;
+}
+
+TR.Style12 a:hover {
+	text-decoration: none;
+}
+
+TR.Style12 a img {
+	vertical-align: middle;
+	padding: 0px 5px 3px;
+	border: 0 none;
+}
+
+TR.odd{
+	FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: #00309c;
+    FONT-FAMILY: Verdana;
+	BACKGROUND-COLOR:#F0F0F6;
+}
+/* */

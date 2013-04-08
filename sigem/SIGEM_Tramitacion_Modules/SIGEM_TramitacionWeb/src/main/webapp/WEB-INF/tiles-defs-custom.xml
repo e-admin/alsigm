@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+   "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+	<definition name="default" />
+
+	<!-- Servicio de Intermediacion de datos -->
+    <definition name="serviciosIntermediacionList"  extends="ispac_simplelayout">
+		<put name="body" value="/apps/showServiciosIntermediacion.jsp"/>
+    </definition>
+
+    <definition name="formRequestIntermediacion"  extends="ispac_simplelayout">
+		<put name="body" value="/apps/formRequestIntermediacion.jsp"/>
+    </definition>
+
+    <definition name="summaryRequestIntermediacion"  extends="ispac_simplelayout">
+		<put name="body" value="/apps/summaryRequestIntermediacion.jsp"/>
+    </definition>
+
+
+    <definition name="errorHttps"  extends="ispac_simplelayout">
+		<put name="body" value="/apps/errorHttps.jsp"/>
+    </definition>
+
+</tiles-definitions>

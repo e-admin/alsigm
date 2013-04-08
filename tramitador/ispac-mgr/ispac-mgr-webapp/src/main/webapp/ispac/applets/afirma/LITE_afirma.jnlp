@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" href="LITE_afirma.jnlp">
+ <information>
+   <title>Cliente @firma</title>
+   <vendor>Ministerio de politica Territorial y Administracion Publica</vendor>
+   <homepage href="http://www.mpt.es" />
+   <description>Cliente de firma @firma</description>
+ </information>
+ <offline-allowed/>
+ <security>
+   <all-permissions/>
+ </security>
+ <resources>
+   <property name="jnlp.packEnabled" value="true"/>
+   <property name="jnlp.versionEnabled" value="true"/>
+   <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se" />
+   <jar href="LITE_j6_afirma5_core.jar" main="true" version="3.2"/>
+ </resources>
+ <applet-desc
+   name="Cliente @firma"
+   main-class="es.gob.afirma.cliente.SignApplet"
+   width="1"
+   height="1" />
+ <update check="background"/>
+</jnlp>

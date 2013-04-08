@@ -1,0 +1,22 @@
+Creación de modelo de datos
+---------------------------
+
+Pasos para crear el modelo de datos:
+
+1) Ejecutar el script create_all.sql:
+
+  	sqlplus <usuario>/<clave>@<instancia> @create_all.sql
+  
+2) Importar las plantillas básicas:
+ 
+	En el fichero plantillas_iniciales.dmp están exportados los datos de la tabla SPAC_P_BLP.
+	Para la importación de estos datos habrá que ejecutar el siguiente comando:
+	
+    imp <usuario>/<clave>@<instancia> TABLES=SPAC_P_BLP IGNORE=Y GRANTS=N FILE=plantillas_iniciales.dmp
+
+3) Importar las plantillas de los prototipos:
+
+	En el fichero plantillas_prototipos.dmp están exportados los datos de la tabla SPAC_P_BLP.
+	Para la importación de estos datos habrá que ejecutar el siguiente comando:
+	
+    imp <usuario>/<clave>@<instancia> TABLES=SPAC_P_BLP IGNORE=Y GRANTS=N FILE=plantillas_prototipos.dmp

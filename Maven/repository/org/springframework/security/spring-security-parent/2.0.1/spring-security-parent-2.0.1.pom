@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-parent</artifactId>
+    <version>2.0.1</version>
+    <name>Spring Security</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>core</module>            
+        <module>core-tiger</module>        
+        <module>adapters</module>
+        <module>portlet</module>
+        <module>ntlm</module>
+        <module>openid</module>
+        <module>samples</module>
+        <module>cas</module>
+        <module>acl</module>
+        <module>taglibs</module>
+  </modules>
+
+    <description>Spring Security</description>
+    <organization>
+        <name>SpringSource, Inc</name>
+        <url>http://www.springsource.com/</url>
+    </organization>
+    <inceptionYear>2004</inceptionYear>
+    <url>http://static.springframework.org/spring-security/site/index.html</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- Note when doing releases: tagBase is set in release plugin configuration below -->
+    <scm>
+        <connection>scm:svn:https://acegisecurity.svn.sourceforge.net/svnroot/acegisecurity/spring-security/tags/spring-security-parent-2.0.1</connection>
+        <developerConnection>scm:svn:https://acegisecurity.svn.sourceforge.net/svnroot/acegisecurity/spring-security/tags/spring-security-parent-2.0.1</developerConnection>
+        <url>http://acegisecurity.svn.sourceforge.net/viewcvs.cgi/acegisecurity/spring-security/tags/spring-security-parent-2.0.1</url>
+    </scm>
+
+    <issueManagement>
+        <system>jira</system>
+        <url>http://jira.springframework.org/browse/SEC</url>
+    </issueManagement>
+    <ciManagement>
+        <system>bamboo</system>
+        <url>https://build.springframework.org/browse/SEC</url>
+    </ciManagement>    
+
+    <distributionManagement>	
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring Milestone Repository</name>
+            <url>s3://maven.springframework.org/milestone</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshot Repository</name>
+            <url>s3://maven.springframework.org/snapshot</url>
+        </snapshotRepository>
+
+        <site>
+            <id>local</id>
+            <name>Local Site Directory</name>
+            <!--
+            This variable is set by the build release script. You can also set it on the command line if
+            you are running maven directly. e.g. mvn site -DsiteDirectory=file:///home/joe/mysite
+            -->
+            <url>${siteDirectory}</url>
+        </site>
+    </distributionManagement>
+
+    <repositories>
+		<repository>
+			<id>spring-release</id>
+			<name>Spring Portfolio Release Repository</name>
+			<url>http://s3.amazonaws.com/maven.springframework.org/release</url>
+		</repository>
+		<repository>
+			<id>spring-external</id>
+			<name>Spring Portfolio Release Repository</name>
+			<url>http://s3.amazonaws.com/maven.springframework.org/external</url>
+		</repository>
+    </repositories>
+
+    <mailingLists>
+        <mailingList>
+            <name>Acegi Developer List</name>
+            <subscribe>
+                https://lists.sourceforge.net/lists/listinfo/acegisecurity-developer
+            </subscribe>
+            <!--
+                   <unsubscribe>https://lists.sourceforge.net/lists/listinfo/acegisecurity-developer</unsubscribe>
+                   <post>acegisecurity-developer@lists.sourceforge.net</post>
+               -->
+            <archive>
+                http://sourceforge.net/mailarchive/forum.php?forum_id=40659
+            </archive>
+            <otherArchives>
+                <otherArchive>
+                    http://news.gmane.org/gmane.comp.java.springframework.acegisecurity.devel/
+                </otherArchive>
+                <otherArchive>
+                    http://www.mail-archive.com/acegisecurity-developer@lists.sourceforge.net/
+                </otherArchive>
+            </otherArchives>
+        </mailingList>
+    </mailingLists>
+
+    <developers>
+        <developer>
+            <name>Ben Alex</name>
+            <id>benalex</id>
+            <email>benalex at users.sourceforge.net</email>
+            <organization>
+                SpringSource
+            </organization>
+            <timezone>+10</timezone>
+        </developer>
+        <developer>
+            <name>Colin Sampaleanu</name>
+            <id>colins</id>
+            <email>colinml1 at exis.com</email>
+        </developer>
+        <developer>
+            <name>Carlos Sanchez</name>
+            <id>carlossg</id>
+            <email>carlossg at users.sourceforge.net</email>
+            <timezone>+1</timezone>
+        </developer>
+        <developer>
+            <name>Luke Taylor</name>
+            <id>luke_t</id>
+            <email>luke_t at users.sourceforge.net</email>
+            <organization>
+                SpringSource
+            </organization>
+            <timezone>0</timezone>
+        </developer>
+        <developer>
+            <name>Ray Krueger</name>
+            <id>raykrueger</id>
+            <email>raykrueger at users.sourceforge.net</email>
+        </developer>
+        <developer>
+            <name>Mark St.Godard</name>
+            <id>markstg</id>
+            <email>markstg at users.sourceforge.net</email>
+        </developer>
+        <developer>
+            <name>John A. Lewis</name>
+            <id>johnalewis</id>
+            <email>johnalewis at users.sourceforge.net</email>
+        </developer>
+    </developers>
+
+    <contributors>
+        <contributor>
+            <name>Alan Stewart</name>
+        </contributor>
+        <contributor>
+            <name>Cameron Braid</name>
+        </contributor>
+        <contributor>
+            <name>Patrick Burleson</name>
+        </contributor>
+        <contributor>
+            <name>Francois Beausoleil</name>
+        </contributor>
+        <contributor>
+            <name>Wesley Hall</name>
+        </contributor>
+        <contributor>
+            <name>Scott Evans</name>
+        </contributor>
+        <contributor>
+            <name>Travis Gregg</name>
+        </contributor>
+        <contributor>
+            <name>Karel Miarka</name>
+        </contributor>
+        <contributor>
+            <name>James Monaghan</name>
+        </contributor>
+        <contributor>
+            <name>Andrew Petro</name>
+        </contributor>
+        <contributor>
+            <name>Aaron Tang</name>
+        </contributor>
+        <contributor>
+            <name>Orlando Garcia Carmona</name>
+        </contributor>
+        <contributor>
+            <name>Joni Suominen</name>
+        </contributor>
+        <contributor>
+            <name>Sergio Berna</name>
+        </contributor>
+        <contributor>
+            <name>Paulo Neves</name>
+        </contributor>
+        <contributor>
+            <name>Mike Perham</name>
+        </contributor>
+        <contributor>
+            <name>Robin Bramley</name>
+        </contributor>
+        <contributor>
+            <name>Robert Sanders</name>
+        </contributor>
+        <contributor>
+            <name>Vishal Puri</name>
+        </contributor>
+        <contributor>
+            <name>Martin Algesten</name>
+        </contributor>
+        <contributor>
+            <name>Ruud Senden</name>
+        </contributor>                
+        <contributor>
+            <name>Michael Mayr</name>
+        </contributor>        
+    </contributors>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.aws</groupId>
+                <artifactId>spring-aws-maven</artifactId>
+                <version>1.2.2</version>
+            </extension>
+        </extensions>
+        <plugins>            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>2.0.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.4.2</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Tests.class</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/Abstract*</exclude>
+                    </excludes>
+                    <forkMode>once</forkMode>
+                    <systemProperties>
+                        <!-- The working directory for the embedded apache Ldap test server -->
+                        <property>
+                            <name>apacheDSWorkDir</name>
+                            <value>
+                                ${basedir}/target/apacheds-work
+                            </value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <executions>
+                    <execution>
+                        <id>java-1.4-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <source>1.4</source>
+                            <target>1.4</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>java-1.5-compile</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <source>1.5</source>
+                            <target>1.5</target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.0.3</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Other -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.0.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.0-beta-7</version>
+                <configuration>
+                    <tagBase>
+                        https://acegisecurity.svn.sourceforge.net/svnroot/acegisecurity/spring-security/tags
+                    </tagBase>
+                </configuration>
+            </plugin>
+            <!-- IDE -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <wtpversion>2.0</wtpversion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-idea-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <!--<downloadJavadocs>true</downloadJavadocs>-->
+                    <dependenciesAsLibraries>
+                        true
+                    </dependenciesAsLibraries>
+                </configuration>
+            </plugin>
+            <!-- Site -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>2.0-beta-6</version>
+            </plugin>
+
+            <plugin>
+                <groupId>com.agilejava.docbkx</groupId>
+                <artifactId>docbkx-maven-plugin</artifactId>
+                <version>2.0.7</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate-html</goal>
+                            <goal>generate-pdf</goal>
+                        </goals>
+                        <phase>pre-site</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.docbook</groupId>
+                        <artifactId>docbook-xml</artifactId>
+                        <version>4.4</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <includes>springsecurity.xml</includes>
+                    <chunkedOutput>true</chunkedOutput>
+                    <htmlStylesheet>css/html.css</htmlStylesheet>
+                    <xincludeSupported>true</xincludeSupported>
+                    <htmlCustomization>src/docbkx/resources/xsl/html_chunk.xsl</htmlCustomization>
+                    <foCustomization>src/docbkx/resources/xsl/fopdf.xsl</foCustomization>
+                    <entities>
+                        <entity>
+                            <name>version</name>
+                            <value>${pom.version}</value>
+                        </entity>
+                    </entities>
+                    <postProcess>
+                        <copy todir="target/site/reference">
+                            <fileset dir="target/docbkx">
+                                <include name="**/*.html" />
+                                <include name="**/*.pdf" />
+                            </fileset>
+                        </copy>
+                        <copy todir="target/site/reference/html">
+                            <fileset dir="src/docbkx/resources">
+                                <include name="**/*.css" />
+                                <include name="**/*.png" />
+                                <include name="**/*.gif" />
+                                <include name="**/*.jpg" />
+                            </fileset>
+                        </copy>
+                    </postProcess>
+                </configuration>
+            </plugin>
+             <!-- OSGi Felix bundle plugin -->
+             <plugin>
+                 <groupId>org.apache.felix</groupId>
+                 <artifactId>maven-bundle-plugin</artifactId>
+                 <version>1.4.0</version>
+                 <extensions>true</extensions>
+
+                 <configuration>
+                     <obrRepository>NONE</obrRepository>        
+                     <instructions>
+                         <!-- bundle specific conf -->      
+                         <Bundle-Name>${artifactId}</Bundle-Name>
+                         <Bundle-SymbolicName>${spring.osgi.symbolic.name}</Bundle-SymbolicName>
+                         <Bundle-Vendor>SpringSource</Bundle-Vendor>
+                         <Export-Package>${spring.osgi.export}</Export-Package>
+                         <Import-Package>${spring.osgi.import}</Import-Package>
+                         <Private-Package>${spring.osgi.private.pkg}</Private-Package>
+                         <!--Include-Resource>${spring.osgi.include.res}</Include-Resource-->
+                         <!-- jar entries -->
+                         <Implementation-Title>Spring Security</Implementation-Title>
+                         <Implementation-Version>${pom.version}</Implementation-Version>
+                         <Implementation-Vendor>SpringSource</Implementation-Vendor>
+                         <Implementation-Vendor-Id>org.springframework.security</Implementation-Vendor-Id>
+                         <!-- Spring specific entries -->                         
+                         <!--Spring-Version>${spring.maven.artifact.version}</Spring-Version-->
+                     </instructions>
+                     <excludeDependencies>true</excludeDependencies> 
+                 </configuration>
+             </plugin>             
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.4.2</version>
+<!--                
+                <configuration>
+                    <aggregate>true</aggregate>
+                </configuration>                
+-->                
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <excludes>
+                        <exclude>bigbank/**</exclude>
+                    </excludes>
+                </configuration>                
+            </plugin>
+            <!--
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <configuration>
+                        <configLocation>
+                            acegi_checkstyle.xml
+                        </configLocation>
+                    </configuration>
+                </plugin>
+            -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>                    
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <header>Spring Security Framework</header>
+                    <quiet>true</quiet>
+                    <excludePackageNames>sample,bigbank,zzz</excludePackageNames>                                        
+                    <links>
+                        <link>
+                            http://java.sun.com/j2se/1.5.0/docs/api
+                        </link>
+                        <link>
+                            http://static.springframework.org/spring/docs/2.5.x/api/
+                        </link>
+                        <link>
+                            http://commons.apache.org/dbcp/apidocs/
+                        </link>
+                        <link>
+                            http://commons.apache.org/httpclient/apidocs/
+                        </link>
+                        <link>
+                            http://commons.apache.org/pool/apidocs/
+                        </link>
+                        <link>
+                            http://commons.apache.org/lang/api/
+                        </link>
+                        <link>
+                            http://commons.apache.org/codec/apidocs/
+                        </link>
+                        <link>
+                            http://commons.apache.org/collections/apidocs/
+                        </link>
+                        <link>
+                            http://velocity.apache.org/engine/releases/velocity-1.5/apidocs/
+                        </link>
+                        <link>
+                            http://developer.ja-sig.org/projects/cas/cas-server-core/cas-server/cas-server-core/apidocs/
+                        </link>
+                        <link>
+                            http://tomcat.apache.org/tomcat-5.5-doc/servletapi/
+                        </link>
+                    </links>
+                </configuration>
+                <reportSets>
+                  <reportSet>
+                    <reports>
+                      <report>javadoc</report>
+                      <!--<report>test-javadoc</report> -->
+                    </reports>
+                  </reportSet>
+                </reportSets>                
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.0.1</version>
+<!--                
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>dependencies</report>
+                            <report>project-team</report>
+                            <report>mailing-list</report>
+                            <report>issue-tracking</report>
+                            <report>license</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+-->                
+            </plugin>           
+        </plugins>
+    </reporting>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-mock</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-remoting</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-dao</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ldap</groupId>
+                <artifactId>spring-ldap</artifactId>
+                <version>1.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <optional>true</optional>
+                <version>1.5.4</version>
+            </dependency>	    
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>1.5.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>                
+            </dependency>            
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib-nodep</artifactId>
+                <scope>test</scope>
+                <optional>true</optional>
+                <version>2.1_3</version>
+            </dependency>	    
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.14</version>  <!-- 1.2.15 has some JMX dependencies we don't want in its POM -->
+                <optional>true</optional>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>1.4.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <version>1.8.0.7</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.4</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${jstl.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>taglibs</groupId>
+                <artifactId>standard</artifactId>
+                <version>${jstl.version}</version>
+                <scope>runtime</scope>
+            </dependency>                        
+        </dependencies>
+    </dependencyManagement>
+    <properties>        
+        <spring.version>2.0.8</spring.version>
+        <spring.version.osgi>[2.0.8, 3.0.0)</spring.version.osgi>
+        <jstl.version>1.1.2</jstl.version>
+
+        <docbook.source>${basedir}/src/docbkx</docbook.source>
+        <docbook.target>${basedir}/target/site/guide</docbook.target>        
+    </properties>
+
+</project>

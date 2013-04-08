@@ -1,0 +1,20 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+  <allow>
+  	<!-- clases a exponer con dwr -->
+    <create creator="new" javascript="RemoteFunctions">
+      <param name="class" value="ieci.tecdoc.sgm.registro.form.remote.RemoteFunctions"/>
+    </create>
+    <create creator="new" javascript="TercerosRemoteFunctions">
+      <param name="class" value="ieci.tecdoc.sgm.registro.form.remote.TercerosRemoteFunctions"/>
+    </create>
+
+    <convert converter="bean" match="ieci.tecdoc.sgm.registro.form.remote.vo.*"/>
+
+  </allow>
+
+</dwr>

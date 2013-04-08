@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrRecvreg" 
+    table="SCR_RECVREG"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_RECVREG"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idMsg" 
+            column="ID_MSG" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_MSG"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idArch" 
+            column="ID_ARCH" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_ARCH"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idFdr" 
+            column="ID_FDR" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_FDR"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="regorigCode" 
+            column="REGORIG_CODE" 
+            type="java.lang.String"
+            length="16"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="REGORIG_CODE"
+                length="16"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="regorigNum" 
+            column="REGORIG_NUM" 
+            type="java.lang.String"
+            length="20"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="REGORIG_NUM"
+                length="20"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="regorigDate" 
+            column="REGORIG_DATE" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="REGORIG_DATE"
+                length="7"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="regorigType" 
+            column="REGORIG_TYPE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="REGORIG_TYPE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="attachPages" 
+            column="ATTACH_PAGES" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ATTACH_PAGES"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="attachDoc" 
+            column="ATTACH_DOC" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ATTACH_DOC"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idAckmsg" 
+            column="ID_ACKMSG" 
+            type="java.lang.Integer"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID_ACKMSG"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="rcvState" 
+            column="RCV_STATE" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="RCV_STATE"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="rcvNumreg" 
+            column="RCV_NUMREG" 
+            type="java.lang.String"
+            length="20"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="RCV_NUMREG"
+                length="20"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="rcvDatereg" 
+            column="RCV_DATEREG" 
+            type="java.sql.Timestamp"
+            length="7"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="RCV_DATEREG"
+                length="7"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

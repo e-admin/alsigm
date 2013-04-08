@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<calendar>
+	<name>Calendario para pruebas</name>
+	<holydays>
+	   <week>
+	   		<day>sabado</day>
+	   		<day>domingo</day>
+	   </week>
+	   <anual>
+	   		<holyday>
+	   			<name>Navidad</name>
+	   			<date>24/12/2004</date>
+	   		</holyday>
+	   		<holyday>
+	   			<name>Año nuevo</name>
+	   			<date>1/1/2005</date>
+	   		</holyday>
+	   </anual>
+	</holydays>
+</calendar>

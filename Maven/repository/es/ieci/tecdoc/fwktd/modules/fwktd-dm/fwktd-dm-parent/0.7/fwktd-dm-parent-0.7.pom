@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd</groupId>
+		<artifactId>fwktd-parent</artifactId>
+		<version>0.7</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-dm</groupId>
+	<artifactId>fwktd-dm-parent</artifactId>
+	<version>0.7</version>
+	<packaging>pom</packaging>
+
+	<name>fwktd-dm-parent</name>
+
+	<properties>
+
+		<!-- Framework dependencies -->
+		<fwktd.version>0.7</fwktd.version>
+
+		<!-- Third party dependencies -->
+		<alfresco.version>4.0.d</alfresco.version>
+		<bcprov.version>1.40</bcprov.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<jaxen.version>1.1.1</jaxen.version>
+		<invesdoc.version>11.1</invesdoc.version>
+		<mime-util.version>2.1.3</mime-util.version>
+
+		<!-- Test dependencies -->
+		<commons-logging.version>1.1.1</commons-logging.version>
+		<postgresql.version>8.4-701.jdbc3</postgresql.version>
+
+	</properties>
+
+	<modules>
+		<module>fwktd-dm-parent-jar</module>
+	</modules>
+</project>

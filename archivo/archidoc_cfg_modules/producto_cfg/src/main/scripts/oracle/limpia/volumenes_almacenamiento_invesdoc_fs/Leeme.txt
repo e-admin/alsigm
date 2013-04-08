@@ -1,0 +1,9 @@
+Para que funcione la búsqueda en contenido de ficheros en una base de datos de 
+Oracle, deben de haberse ejecutado los scripts correspondientes dentro de la carpeta
+busqueda_contenido_fichero.
+
+Una vez hecho esto, será necesario adaptar los scripts de inserción del repositorio
+en el sistema de ficheros al entorno en el que se vaya a instalar, es decir, dentro del 
+fichero ivolrephdr.txt habrá que sustituir la cadena "\\10.228.20.179\repfs" por la correspondiente
+al repositorio a utilizar en la instalación y dentro del fichero ivolvolhdr.txt, habrá que sustituir
+la cadena "RepFS" por el nombre de la carpeta a utilizar dentro del respositorio.

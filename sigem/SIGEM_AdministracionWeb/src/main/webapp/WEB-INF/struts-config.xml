@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean 
+			name="entidadBean" type="ieci.tecdoc.sgm.admsistema.form.EntidadForm">
+		</form-bean>
+		<form-bean 
+			name="busquedaBean" type="ieci.tecdoc.sgm.admsistema.form.BusquedaForm">
+		</form-bean>
+		<form-bean 
+			name="baseDatosBean" type="ieci.tecdoc.sgm.admsistema.form.BaseDatosForm">
+		</form-bean>
+		<form-bean 
+			name="baseDatosAndFtpBean" type="ieci.tecdoc.sgm.admsistema.form.BaseDatosAndFtpForm">
+		</form-bean>
+		<form-bean 
+			name="baseDatosx2AndFtpBean" type="ieci.tecdoc.sgm.admsistema.form.BaseDatosx2AndFtpForm">
+		</form-bean>
+		<form-bean 
+			name="usuarioBean" type="ieci.tecdoc.sgm.admsistema.form.UsuarioForm">
+		</form-bean>
+		<form-bean 
+			name="accionMultientidadBean" type="ieci.tecdoc.sgm.admsistema.form.AccionMultientidadForm">
+		</form-bean>
+		<form-bean 
+			name="configuracionXMLBean" type="ieci.tecdoc.sgm.admsistema.form.ConfiguracionXMLForm">
+		</form-bean>
+	</form-beans>
+	<global-forwards>
+		<forward name="errorGlobal" path="/jsp/error.jsp" />
+  		<forward name="errorAutenticacion" path="/jsp/autenticacion.jsp" />
+	</global-forwards>
+	<action-mappings>
+		<!-- Inicio y final de la aplicación -->
+		<action path="/inicio" 
+				type="ieci.tecdoc.sgm.admsistema.action.InicioAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/listadoEntidades.do"/>
+		</action>
+		<action path="/logout" 
+				type="ieci.tecdoc.sgm.admsistema.action.LogoutAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/desconectar.jsp"/>
+		</action>
+		<!-- Gestión de entidades -->
+		<action path="/listadoEntidades" 
+				type="ieci.tecdoc.sgm.admsistema.action.ListadoEntidadesAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/entidades/entidades.jsp"/>
+				<forward name="failure" path="/jsp/entidades/entidades.jsp"/>
+		</action>
+		<action path="/accionesEntidad" 
+				type="ieci.tecdoc.sgm.admsistema.action.AccionesEntidadAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="administrar" path="/jsp/entidades/administrarEntidad.jsp"/>
+				<forward name="exportar" path="/exportarEntidad.do"/>
+				<forward name="nueva" path="/jsp/entidades/nuevaEntidad.jsp"/>
+				<forward name="clonar" path="/jsp/entidades/nuevaEntidad.jsp"/>
+				<forward name="buscar" path="/busquedaEntidades.do"/>
+				<forward name="segregar" path="/segregarEntidad.do"/>
+				<forward name="modificar" path="/modificarEntidad.do"/>
+				<forward name="monitorizar" path="/monitorizarProceso.do"/>
+				<forward name="borrar" path="/borrarProceso.do"/>
+				<forward name="configurar" path="/configurarServidor.do"/>
+				<forward name="accionesMultientidad" path="/listadoAccionesMultientidad.do"/>
+				<forward name="sinAccion" path="/listadoEntidades.do"/>
+		</action>
+		<action path="/nuevaEntidad" 
+				type="ieci.tecdoc.sgm.admsistema.action.NuevaEntidadAction" 
+				name="entidadBean"
+				scope="request"
+				validate="false"> 
+				<forward name="importar" path="/importarEntidad.do"/>
+				<forward name="clonar" path="/clonarEntidad.do"/>
+				<forward name="failure" path="/jsp/entidades/nuevaEntidad.jsp"/>
+		</action>
+		<action path="/listadoMunicipios" 
+				type="ieci.tecdoc.sgm.admsistema.action.ListadoMunicipiosAction" 
+				scope="request"
+				validate="false">
+				<forward name="municipios" path="/jsp/entidades/municipios.jsp"/>
+		</action>
+		<action path="/busquedaEntidades" 
+				type="ieci.tecdoc.sgm.admsistema.action.BusquedaEntidadesAction" 
+				name="busquedaBean"
+				scope="request"
+				validate="false">
+				<forward name="busqueda" path="/jsp/entidades/resultadoBusqueda.jsp"/>
+				<forward name="buscar_vacio" path="/jsp/entidades/entidades.jsp"/>
+		</action>
+		<action path="/modificarEntidad" 
+				type="ieci.tecdoc.sgm.admsistema.action.ModificarEntidadAction" 
+				name="entidadBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/listadoEntidades.do"/>
+				<forward name="modificar" path="/jsp/entidades/modificarEntidad.jsp"/>
+				<forward name="failure" path="/listadoEntidades.do"/>
+		</action>
+		<action path="/exportarEntidad" 
+				type="ieci.tecdoc.sgm.admsistema.action.ExportarEntidadAction" 
+				name="baseDatosBean"
+				scope="request"
+				validate="false">
+				<forward name="exportar" path="/jsp/entidades/exportarEntidad.jsp"/>
+				<forward name="success" path="/listadoEntidades.do"/>
+				<forward name="failure" path="/listadoEntidades.do"/>
+		</action>
+		<action path="/clonarEntidad" 
+				type="ieci.tecdoc.sgm.admsistema.action.ClonarEntidadAction" 
+				name="baseDatosx2AndFtpBean"
+				scope="request"
+				validate="false">
+				<forward name="clonar" path="/jsp/entidades/clonarEntidad.jsp"/>
+				<forward name="success" path="/listadoEntidades.do"/>
+				<forward name="failure" path="/listadoEntidades.do"/>
+		</action>
+		<action path="/segregarEntidad" 
+				type="ieci.tecdoc.sgm.admsistema.action.BorrarEntidadAction" 
+				name="baseDatosBean"
+				scope="request"
+				validate="false">
+				<forward name="borrar" path="/jsp/entidades/segregarEntidad.jsp"/>
+				<forward name="success" path="/listadoEntidades.do"/>
+				<forward name="failure" path="/listadoEntidades.do"/>
+		</action>
+		<action path="/importarEntidad" 
+				type="ieci.tecdoc.sgm.admsistema.action.ImportarEntidadAction" 
+				name="baseDatosAndFtpBean"
+				scope="request"
+				validate="false">
+				<forward name="importar" path="/jsp/entidades/importarEntidad.jsp"/>
+				<forward name="success" path="/listadoEntidades.do"/>
+				<forward name="failure" path="/listadoEntidades.do"/>
+		</action>
+		<action path="/monitorizarProceso" 
+				type="ieci.tecdoc.sgm.admsistema.action.MonitorizarProcesoAction" 
+				scope="request"
+				validate="false">
+				<forward name="monitorizar" path="/jsp/entidades/monitorizarProceso.jsp"/>
+		</action>
+		<action path="/borrarProceso" 
+				type="ieci.tecdoc.sgm.admsistema.action.BorrarProcesoAction" 
+				scope="request"
+				validate="false">
+				<forward name="borrar" path="/jsp/entidades/borrarProceso.jsp"/>
+				<forward name="failure" path="/jsp/entidades/borrarProceso.jsp"/>
+		</action>
+		<action path="/comprobarConexionBBDD" 
+				type="ieci.tecdoc.sgm.admsistema.action.ComprobarConexionBBDDAction" 
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/entidades/comprobarConexionBBDD.jsp"/>
+				<forward name="failure" path="/jsp/entidades/comprobarConexionBBDD.jsp"/>
+		</action>
+		<action path="/comprobarConexionBBDDInstancia" 
+				type="ieci.tecdoc.sgm.admsistema.action.ComprobarConexionBBDDInstanciaAction" 
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/entidades/comprobarConexionBBDDInstancia.jsp"/>
+				<forward name="failure" path="/jsp/entidades/comprobarConexionBBDDInstancia.jsp"/>
+		</action>
+		<action path="/comprobarConexionBBDDyFTP" 
+				type="ieci.tecdoc.sgm.admsistema.action.ComprobarConexionBBDDyFTPAction" 
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/entidades/comprobarConexionBBDDyFTP.jsp"/>
+				<forward name="failure" path="/jsp/entidades/comprobarConexionBBDDyFTP.jsp"/>
+		</action>
+		<action path="/comprobarConexionBBDDyFTPInstancia" 
+				type="ieci.tecdoc.sgm.admsistema.action.ComprobarConexionBBDDyFTPInstanciaAction" 
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/entidades/comprobarConexionBBDDyFTPInstancia.jsp"/>
+				<forward name="failure" path="/jsp/entidades/comprobarConexionBBDDyFTPInstancia.jsp"/>
+		</action>
+		<action path="/comprobarConexionBBDDx2yFTP" 
+				type="ieci.tecdoc.sgm.admsistema.action.ComprobarConexionBBDDx2yFTPAction" 
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/entidades/comprobarConexionBBDDx2yFTP.jsp"/>
+				<forward name="failure" path="/jsp/entidades/comprobarConexionBBDDx2yFTP.jsp"/>
+		</action>
+		<action path="/comprobarConexionBBDDx2yFTPInstancia" 
+				type="ieci.tecdoc.sgm.admsistema.action.ComprobarConexionBBDDx2yFTPInstanciaAction" 
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/entidades/comprobarConexionBBDDx2yFTPInstancia.jsp"/>
+				<forward name="failure" path="/jsp/entidades/comprobarConexionBBDDx2yFTPInstancia.jsp"/>
+		</action>
+		<action path="/actualizarMonitorizacion" 
+				type="ieci.tecdoc.sgm.admsistema.action.ActualizarMonitorizacionAction" 
+				scope="request"
+				validate="false">
+				<forward name="actualizar" path="/jsp/entidades/actualizarMonitorizacion.jsp"/>
+		</action>
+		<action path="/informacionProceso" 
+				type="ieci.tecdoc.sgm.admsistema.action.InformacionProcesoAction" 
+				scope="request"
+				validate="false">
+				<forward name="informacion" path="/jsp/entidades/informacionProceso.jsp"/>
+				<forward name="no_informacion" path="/jsp/entidades/informacionProceso.jsp"/>
+		</action>
+		<action path="/configurarServidor" 
+				type="ieci.tecdoc.sgm.admsistema.action.ConfigurarServidorAction" 
+				name="configuracionXMLBean"
+				scope="request"
+				validate="false">
+				<forward name="configurar" path="/jsp/entidades/configurarServidor.jsp"/>
+				<forward name="mostrar" path="/jsp/entidades/mostrarConfiguracionServidor.jsp"/>
+				<forward name="failure" path="/jsp/entidades/configurarServidor.jsp"/>
+		</action>
+		<action path="/listadoAccionesMultientidad" 
+				type="ieci.tecdoc.sgm.admsistema.action.ListadoAccionesMultientidadAction" 
+				name="accionMultientidadBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/entidades/acciones/accionesMultientidad.jsp"/>
+				<forward name="failure" path="/jsp/entidades/acciones/accionesMultientidad.jsp"/>
+		</action>
+		<action path="/ejecutarConfiguracionAccionMultientidad" 
+				type="ieci.tecdoc.sgm.admsistema.action.accionesmultientidad.EjecutarConfiguracionAccionMultientidadAction" 
+				name="accionMultientidadBean"
+				scope="request"
+				validate="false">
+				<forward name="seleccionEntidades" path="/jsp/entidades/acciones/seleccionEntidades.jsp"/>
+				<forward name="seleccionFichero" path="/jsp/entidades/acciones/seleccionFichero.jsp"/>
+				<forward name="seleccionOpcion" path="/jsp/entidades/acciones/seleccionOpcion.jsp"/>
+				<forward name="resumenConfiguracion" path="/jsp/entidades/acciones/resumenConfiguracion.jsp"/>
+				<forward name="ejecucionConfiguracion" path="/listadoAccionesMultientidad.do"/>
+				<forward name="errorConfiguracion" path="/jsp/entidades/acciones/errorConfiguracion.jsp"/>
+				<forward name="errorEjecucion" path="/jsp/entidades/acciones/errorEjecucion.jsp"/>
+				<forward name="failure" path="/jsp/entidades/acciones/errorConfiguracion.jsp"/>
+		</action>
+				
+		
+		<!-- Gestión de usuarios -->
+		<action path="/listadoUsuarios" 
+				type="ieci.tecdoc.sgm.admsistema.action.ListadoUsuariosAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/usuarios/usuarios.jsp"/>
+				<forward name="failure" path="/jsp/usuarios/usuarios.jsp"/>
+		</action>
+		<action path="/listadoUsuariosInternos" 
+				type="ieci.tecdoc.sgm.admsistema.action.ListadoUsuariosInternosAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/jsp/usuarios/usuariosInternos.jsp"/>
+				<forward name="failure" path="/jsp/usuarios/usuariosInternos.jsp"/>
+		</action>
+		<action path="/busquedaUsuarios" 
+				type="ieci.tecdoc.sgm.admsistema.action.BusquedaUsuariosAction" 
+				name="busquedaBean"
+				scope="request"
+				validate="false">
+				<forward name="busqueda" path="/jsp/usuarios/resultadoBusqueda.jsp"/>
+				<forward name="buscar_vacio" path="/jsp/usuarios/usuarios.jsp"/>
+		</action>
+		<action path="/busquedaUsuariosInternos" 
+				type="ieci.tecdoc.sgm.admsistema.action.BusquedaUsuariosInternosAction" 
+				name="busquedaBean"
+				scope="request"
+				validate="false">
+				<forward name="busqueda" path="/jsp/usuarios/resultadoBusquedaInternos.jsp"/>
+				<forward name="buscar_vacio" path="/jsp/usuarios/usuariosInternos.jsp"/>
+		</action>
+		<action path="/accionesUsuario" 
+				type="ieci.tecdoc.sgm.admsistema.action.AccionesUsuarioAction" 
+				scope="request"
+				validate="false"> 
+				<forward name="eliminar" path="/listadoUsuarios.do"/>
+				<forward name="nuevo" path="/jsp/usuarios/nuevoUsuario.jsp"/>
+				<forward name="buscar" path="/busquedaUsuarios.do"/>
+				<forward name="modificar" path="/modificarUsuario.do"/>
+				<forward name="sinAccion" path="/listadoUsuarios.do"/>
+		</action>
+		<action path="/nuevoUsuario" 
+				type="ieci.tecdoc.sgm.admsistema.action.NuevoUsuarioAction" 
+				name="usuarioBean"
+				scope="request"
+				validate="false"> 
+				<forward name="success" path="/listadoUsuarios.do"/>
+				<forward name="failure" path="/jsp/usuarios/nuevoUsuario.jsp"/>
+		</action>
+		<action path="/modificarUsuario" 
+				type="ieci.tecdoc.sgm.admsistema.action.ModificarUsuarioAction" 
+				name="usuarioBean"
+				scope="request"
+				validate="false">
+				<forward name="success" path="/listadoUsuarios.do"/>
+				<forward name="modificar" path="/jsp/usuarios/modificarUsuario.jsp"/>
+				<forward name="failure" path="/listadoUsuarios.do"/>
+		</action>
+		<action path="/comprobarUsuario" 
+				type="ieci.tecdoc.sgm.admsistema.action.ComprobarUsuarioAction" 
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/usuarios/comprobarUsuario.jsp"/>
+				<forward name="failure" path="/jsp/usuarios/comprobarUsuario.jsp"/>
+		</action>
+		<action path="/mostrarEntidadesAsociadas" 
+				type="ieci.tecdoc.sgm.admsistema.action.MostrarEntidadesAsociadasAction" 
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/usuarios/mostrarEntidadesAsociadas.jsp"/>
+				<forward name="failure" path="/jsp/usuarios/mostrarEntidadesAsociadas.jsp"/>
+		</action>
+		<action path="/asociarEntidades" 
+				type="ieci.tecdoc.sgm.admsistema.action.AsociarEntidadesAction" 
+				scope="request"
+				validate="false">
+				<forward name="success" path="/jsp/usuarios/asociarEntidades.jsp"/>
+				<forward name="failure" path="/jsp/usuarios/asociarEntidades.jsp"/>
+		</action>
+	</action-mappings>
+	<message-resources parameter="ieci.tecdoc.sgm.admsistema.resources.AdministracionMessage" />
+	<plug-in className="ieci.tecdoc.sgm.admsistema.plugin.ConfigPlugin" />
+</struts-config>

@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+   "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+  <definition name="ispac_simplelayout" path="/ispac/layouts/simpleLayout.jsp">
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+  <definition name="ispac_mainlayout" path="/ispac/layouts/mainLayout.jsp">
+  	<put name="header" value="/ispac/common/header.jsp"/>
+  	<put name="menu" value="/ispac/common/menu.jsp"/>
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+  <definition name="ispac_listlayout" path="/ispac/layouts/listLayout.jsp">
+    <put name="header" value="/ispac/common/header.jsp"/>
+    <put name="menu" value="/ispac/common/menu.jsp"/>
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+  <definition name="ispac_datalayout" path="/ispac/layouts/dataLayout.jsp">
+    <put name="header" value="/ispac/common/header.jsp"/>
+	<put name="menu" value="/ispac/common/scheme.jsp"/>
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+  <definition name="ispac_singlelayout" path="/ispac/layouts/singleLayout.jsp">
+    <put name="header" value="/ispac/common/headerHome.jsp"/>
+    <put name="menu" value="/ispac/common/menu.jsp"/>
+	<put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+<!--                                                    -->
+
+  <!--Tiles para administración de permisos a usuarios-->
+  <definition name="view.usrmgr" extends="ispac_simplelayout">
+  	<put name="body" value="/ispac/common/viewusermanager.jsp"/>
+  </definition>
+
+  <definition name="processList" extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/expList.jsp"/>
+  </definition>
+
+  <definition name="subprocessList" extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/subprocessList.jsp"/>
+  </definition>
+  <definition name="taskList" extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/tasksList.jsp"/>
+  </definition>
+  <definition name="closedtaskList" extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/closedtasksList.jsp"/>
+  </definition>
+
+ 
+  <definition name="batchTaskList"  extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/batchTaskList.jsp"/>
+  </definition>
+    
+   <definition name="batchTask"  extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/batchTask.jsp"/>
+   </definition>
+
+ <definition name="expsTrashList"  extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/expsTrashList.jsp"/>
+  </definition>
+  <definition name="searchResultsList" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/searchResults.jsp"/>
+  </definition>
+
+  <definition name="createProcedureList" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/createProcess.jsp"/>
+  </definition>
+
+  <definition name="intrayList" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/intrayList.jsp"/>
+  </definition>
+  <definition name="intray" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/intray.jsp"/>
+  </definition>
+
+  <definition name="noticeList" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/noticeList.jsp"/>
+  </definition>
+
+  <definition name="respList" extends="ispac_mainlayout">
+    <put name="menu" value="/ispac/common/delegateInfo.jsp"/>
+    <put name="body" value="/ispac/common/delegateOrg.jsp"/>
+  </definition>
+
+  <definition name="respGroupList" extends="respList">
+  	<put name="body" value="/ispac/common/delegateGroup.jsp"/>
+  </definition>
+  
+
+  <definition name="entity.form" extends="ispac_datalayout">
+  </definition>
+
+  <definition name="exp.form" extends="ispac_datalayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+<!--
+  <definition name="procedureList" extends="ispac_datalayout">
+    <put name="menu" value="/ispac/common/menu.jsp"/>
+    <put name="toolbar" value="/ispac/common/selectSearch.jsp"/>
+    <put name="body" value="/ispac/common/searchForm.jsp"/>
+  </definition>
+-->
+
+  <definition name="procedureList" extends="ispac_singlelayout">
+    <put name="body" value="/ispac/common/cover.jsp"/>
+  </definition>
+
+  <definition name="procedureListSearch" extends="ispac_datalayout">
+    <put name="menu" value="/ispac/common/menu.jsp"/>
+    <put name="toolbar" value="/ispac/common/empty.jsp"/>
+    <put name="body" value="/ispac/common/searchForm.jsp"/>
+  </definition>
+
+  <definition name="stagesList" extends="procedureList">
+    <put name="menu" value="/ispac/common/stages.jsp"/>
+  </definition>
+
+  <definition name="upload" extends="ispac_datalayout">
+    <put name="body" value="/ispac/common/upload.jsp"/>
+  </definition>
+
+  <!-- <definition name="milestoneList" extends="ispac_datalayout">
+    <put name="body" value="/ispac/common/milestones.jsp"/>
+  </definition>-->
+  
+  <definition name="milestoneList" extends="ispac_listlayout">
+  	<put name="body" value="/ispac/common/milestones.jsp"/>
+  </definition>
+  
+  <definition name="taskListExpedient"  extends="ispac_simplelayout">
+  	<put name="body" value="/ispac/common/taskListExpedient.jsp"/>
+  </definition>
+  
+   <definition name="reportsList"  extends="ispac_simplelayout">
+  	<put name="body" value="/ispac/common/reports.jsp"/>
+  </definition>
+
+  <definition name="entity.regentitylist" extends="ispac_simplelayout">
+    <put name="body" value="/ispac/common/regentityList.jsp"/>
+  </definition>
+  
+  <definition name="exp.tab" extends="ispac_mainlayout">
+    <put name="menu" value="/ispac/common/actionsMenu.jsp"/>
+    <put name="body" value="body.tab"/>
+  </definition>
+  
+  <definition name="exp.capture" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/capture.jsp"/>
+  </definition>
+  
+  <definition name="body.tab" path="/ispac/common/schemeTabs.jsp">
+  	<put name="tabform" value="/ispac/common/application.jsp"/>
+  	<put name="tablist" value="/ispac/common/entityList.jsp"/>
+  </definition>
+
+  <definition name="exp.single" extends="ispac_simplelayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+    <put name="layer" value="" direct="true"/>
+    <put name="iframe" value="" direct="true"/>
+  </definition>
+  
+  <definition name="terms" extends="ispac_singlelayout">
+    <put name="body" value="/ispac/common/terms.jsp"/>
+  </definition>
+
+  <definition name="newTaskList" extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/newTaskList.jsp"/>
+  </definition>              
+
+  <definition name="ispac.comprobarDocumentacion" extends="exp.tab">
+    <put name="body" value="/ispac/common/comprobarDocumentacion.jsp" />
+  </definition>	
+
+  <definition name="batchSignList" extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/batchSignList.jsp"/>
+  </definition>
+
+  <definition name="signHistoric" extends="ispac_listlayout">
+    <put name="body" value="/ispac/common/signHistoric.jsp"/>
+  </definition>
+
+  <definition name="selectDataToClone" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/selectDataToClone.jsp"/>
+  </definition>
+  
+  <definition name="cloneSummary" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/cloneSummary.jsp"/>
+  </definition>  
+  
+  <definition name="select.entity" extends="ispac_simplelayout">
+  	<put name="body" value="/apps/selectEntity.jsp"/>
+  </definition>
+  
+</tiles-definitions>

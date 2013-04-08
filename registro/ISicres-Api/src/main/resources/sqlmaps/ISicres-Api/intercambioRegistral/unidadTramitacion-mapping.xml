@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="UnidadTramitacionIntercambioRegistralVO">
+
+<typeAlias alias="unidadTramitacionIntercambioRegistralVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.UnidadTramitacionIntercambioRegistralVO" />
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.UnidadTramitacionIntercambioRegistralVO"
+		id="unidadTramitacionIntercambioRegistralResultMap">
+		<result property="id" column="id" />
+		<result property="idOrgs" column="id_orgs" />
+		<result property="codeEntity" column="code_entity" />
+		<result property="nameEntity" column="name_entity" />
+		<result property="codeTramunit" column="code_tramunit" />
+		<result property="nameTramunit" column="name_tramunit" />
+
+	</resultMap>
+</sqlMap>

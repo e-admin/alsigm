@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ISicres-Audit>
+	<!-- Habilita o deshabilita la auditoría: acceso a aplicación, acceso a registro, creación de registro,...
+		Valores posibles: true  - Habilita la auditoría
+						  false - Deshabilita la auditoría
+	-->
+	<EnableAudit>true</EnableAudit>
+
+</ISicres-Audit>

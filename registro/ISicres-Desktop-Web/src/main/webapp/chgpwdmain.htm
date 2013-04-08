@@ -1,0 +1,222 @@
+<html>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<link REL="stylesheet" TYPE="text/css" HREF="css/global.css" />
+		<link REL="stylesheet" TYPE="text/css" HREF="css/font.css" />
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+	</HEAD>
+	<script language="javascript">
+   
+   		// Comprueba que el string solo contiene caracteres alfanumericos
+   		function IsValidPassword(strValid)
+   		{
+      			for(var ii=0; ii < strValid.length; ii++){
+		        	if ( ((strValid.charAt(ii) < 'A') || (strValid.charAt(ii) > 'Z')) 
+            				&& ((strValid.charAt(ii) < 'a') || (strValid.charAt(ii) > 'z'))
+            				&& ((strValid.charAt(ii) < '0') || (strValid.charAt(ii) > '9')) ) {
+            				return false;
+         			}
+      			}
+      
+			return true;
+   		}
+   
+   		function Validate()
+   		{
+      			var Pwd, Pwd2;
+         
+      			if (document.ChgPwdForm.NameCtrlP.value == "") {
+         			alert( top.GetIdsLan( "IDS_MUST_FILL_USER" ) );
+         			document.ChgPwdForm.NameCtrlP.focus();
+         			return(false);
+      			}
+
+      			if (document.ChgPwdForm.PasswordCtrl.value == "") {
+         			alert( top.GetIdsLan( "IDS_MUST_FILL_PASSWORD" ) );
+         			document.ChgPwdForm.PasswordCtrl.focus();
+         			return(false);
+      			}
+         
+      			Pwd  = document.ChgPwdForm.NewPwdCtrl.value;
+      			Pwd2 = document.ChgPwdForm.ReNewPwdCtrl.value;
+         
+      			if (Pwd == ""){
+         			alert( top.GetIdsLan( "IDS_MUST_FILL_NEWPASSWORD" ) );
+         			document.ChgPwdForm.NewPwdCtrl.focus();
+         			return(false);
+      			}
+         
+      			if (Pwd2 == "") {
+         			alert( top.GetIdsLan( "IDS_MUST_FILL_RENEWPASSWORD" ) );
+         			document.ChgPwdForm.ReNewPwdCtrl.focus();
+         			return(false);
+      			}
+         
+      			if (Pwd != Pwd2) {
+         			alert( top.GetIdsLan( "IDS_PWD_NO_MATCH" ) );
+         			document.ChgPwdForm.NewPwdCtrl.focus();
+         			document.ChgPwdForm.NewPwdCtrl.select();
+         			return(false);
+      			}
+         
+      			if (Pwd == document.ChgPwdForm.PasswordCtrl.value) {
+         			alert( top.GetIdsLan( "IDS_PWD_SAME" ) );
+         			document.ChgPwdForm.NewPwdCtrl.focus();
+         			document.ChgPwdForm.NewPwdCtrl.select();
+         			return(false);
+      			}
+      
+      			if (! IsValidPassword(Pwd) ) {
+         			alert( top.GetIdsLan( "IDS_PWD_ALFANUMERIC" ) );
+         			document.ChgPwdForm.NewPwdCtrl.focus();
+         			document.ChgPwdForm.NewPwdCtrl.select();
+         			return(false);
+      			}
+
+      			return(true);
+   		}
+
+   		function ChangePwd()
+   		{
+			if (Validate()) {
+				document.getElementById("tabData").style.visibility = "hidden";
+				document.getElementById("Wait").style.visibility = "visible";
+				document.getElementById("ChgPwdForm").action = top.g_URL + "/chgpwdsrv.jsp?AppId=" + top.g_AppId.toString();
+	        		return(true);
+			}
+			else {
+				return(false);
+			}
+   		}
+      
+   		function Cancel()
+   		{
+      			top.Main.WorkspaceLog.document.getElementById("ChangePwd").className = "Options";
+      			window.open(top.g_URL + "/login.jsp?AppId=" + top.g_AppId + "&Idioma=" + top.Idioma 
+            			+ "&numIdioma=" + top.numIdioma + "&UseLDAP=" + top.g_UseLDAP + "&UsingOSAuth=" + top.g_UseOSAuth  
+	         		+ "&UserDn=" + top.g_UserDN, "WorkspaceLog","location=no",true);
+      			
+			return;
+   		}
+      
+   		function ProcError(Error)
+   		{
+      			document.getElementById("Wait").style.visibility = "hidden";
+      			document.getElementById("tabData").style.visibility = "visible";
+
+      			if (Error == 0) {
+         			alert( top.GetIdsLan( "IDS_PWD_CHANGED" ) );
+         			Cancel();
+      			}
+         
+      			if (Error == 1) {
+         			document.ChgPwdForm.NameCtrlP.focus();
+         			document.ChgPwdForm.NameCtrlP.select();
+      			}      
+
+      			if (Error == 2){
+         			document.ChgPwdForm.PasswordCtrl.focus();
+         			document.ChgPwdForm.PasswordCtrl.select();
+      			}      
+   		}
+   
+		// Detecta si pulsamos espacios en blanco y los quita
+  		function PushBackSpace(aEvent)
+   		{
+			var code = top.GetKeyCode(aEvent);
+		
+			if (code == 32){
+				top.PreventDefault(aEvent);
+				return false;
+			}
+		
+			return true;
+   		}
+
+		function doOnload()
+		{
+			document.getElementById('PasswordCtrl').value = "";
+			document.getElementById('NameCtrlP').focus();
+		}
+	</script>
+	<BODY tabIndex="-1" onload="doOnload();">
+		<iframe id="ChgPwdSrvFrame" name="ChgPwdSrvFrame" src="blank.htm" style="display:none"></iframe>
+		<table border="0" cellPadding="0" cellSpacing="0" height="20" width="445" style="position:absolute; top:0; left:0" tabIndex="-1">
+			<tr class="title">
+				<td>
+					<font class="title">
+						<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_CHANGE_PWD" ) )</SCRIPT>
+					</font>
+				</td>
+			</tr>
+		</table>
+		<form id="ChgPwdForm" Name="ChgPwdForm" method="post" action="chgpwdsrv.jsp" target="ChgPwdSrvFrame" onsubmit="return ChangePwd();">
+		    <table width="100%" style="position:absolute; top:20; left:0" id="tabData">
+		        <tr height="35" style="padding-top:70">
+		            <td style="padding-left:15px">
+        				<label class="label">
+		        			<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_USER" ) )</SCRIPT>
+				        </label>
+		            </td>
+		            <td align="left">
+		                <input class="input" id="NameCtrlP" Name="NameCtrlP" Maxlength="32" tabindex="1">
+		            </td>		            
+		            <td align="left">
+		                <input class="button" name="SubmitCtrl" Type="submit" id="SubmitCtrl" style="width:80px">
+         			        <script language="javascript">
+					            document.getElementById("SubmitCtrl").value = top.GetIdsLan("IDS_BTNACEPTAR");
+				            </script>										
+			            </input>
+		            </td>		            
+		        </tr>
+		        <tr height="35">
+		            <td style="padding-left:15px">
+        				<label class="label">
+		        			<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_PASSWORD" ) )</SCRIPT>
+				        </label>
+		            </td>
+		            <td align="left">
+		                <input class="input" id="PasswordCtrl" name="PasswordCtrl" type="Password" maxlength="32" tabindex="1">
+		            </td>		            
+		            <td align="left">
+			            <input class="button" name="CancelCtrl" Type="button" id="CancelCtrl" onclick="Cancel();" style="width:80px">
+         			        <script language="javascript">
+					            document.getElementById("CancelCtrl").value = top.GetIdsLan("IDS_BTNCANCEL");
+				            </script>										
+			            </input>
+		            </td>		            
+		        </tr>
+		        <tr height="35">
+		            <td style="padding-left:15px">
+        				<label class="label">
+		        			<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_NEW_PWD" ) )</SCRIPT>
+				        </label>
+		            </td>
+		            <td align="left">
+		                <input class="input" Name="NewPwdCtrl" type="Password" Maxlength="32" tabindex="1"
+							onkeypress="return PushBackSpace(event);">
+		            </td>		            
+		            <td align="left"></td>		            
+       	        	</tr>
+		        <tr height="35">
+		            <td style="padding-left:15px">
+        				<label class="label">
+		        			<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_REWRITE_NEW_PWD" ) )</SCRIPT>
+				        </label>
+		            </td>
+		            <td align="left">
+                        <input class="input" Name="ReNewPwdCtrl" type="Password" Maxlength="32" tabindex="1"
+							onkeypress="return PushBackSpace(event);">
+		            </td>		            
+		            <td align="left"></td>		            
+		        </tr>
+		    </table>
+			<font id="Wait" name="Wait" class="msg" style="position:absolute; left:145; top:150; visibility:hidden">
+				<SCRIPT language="javascript">document.write( top.GetIdsLan( "IDS_WAIT" ) )</SCRIPT>
+			</font>
+		</form>
+	</BODY>
+</html>

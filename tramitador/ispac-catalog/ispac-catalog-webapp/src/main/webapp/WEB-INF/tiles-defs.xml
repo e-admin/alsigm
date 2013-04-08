@@ -1,0 +1,884 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+   "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+  <definition name="ispac_modallayout" path="/ispac/layouts/modalLayout.jsp">
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+  <definition name="ispac_mainlayout" path="/ispac/layouts/mainLayout.jsp">
+  	<put name="header" value="/ispac/common/header.jsp"/>
+  	<put name="menu" value="/ispac/common/ctmenu.jsp"/>
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+<!-- ************************************************************** -->
+
+  <definition name="ispac_treelayout" path="/ispac/layouts/treeLayout.jsp">
+  	<put name="header" value="/ispac/common/header.jsp"/>
+	<put name="menu" value="/ispac/common/ctmenu.jsp"/>
+  	<put name="directory" value="/ispac/common/tree.jsp"/>
+  	<put name="info" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+  <definition name="ispac_treeFrameLayout" path="/ispac/layouts/TreeFrameLayout.jsp">
+	<put name="header" value="/ispac/common/header.jsp"/>
+	<put name="menu" value="/ispac/common/ctmenu.jsp"/>
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+
+<!-- =======================================================  -->
+
+  <definition name="ispac_wizardlayout" path="/ispac/layouts/wizardLayout.jsp">
+  	<put name="header" value="/ispac/common/header.jsp"/>
+  	<put name="menu" value="/ispac/common/ctmenu.jsp"/>
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+<!-- =======================================================  -->
+
+  <definition name="ispac_entitymanagelayout" path="/ispac/layouts/entityManageLayout.jsp">
+  	<put name="header" value="/ispac/common/header.jsp"/>
+  	<put name="menu" value="/ispac/common/ctmenu.jsp"/>
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+<!-- =======================================================  -->
+
+  <definition name="ispac_pcdlayout" path="/ispac/layouts/pcdLayout.jsp">
+  	<put name="header" value="/ispac/common/header.jsp"/>
+  	<put name="menu" value="/ispac/common/ctmenu.jsp"/>
+    <put name="body" value="/ispac/common/empty.jsp"/>
+  </definition>
+
+<!-- =======================================================  -->
+
+  <definition name="home" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/home.jsp"/>
+  </definition>
+
+  <definition name="select.object" extends="ispac_modallayout">
+  	<put name="body" value="/apps/selectObject.jsp"/>
+  </definition>
+
+  <definition name="select.procedure" extends="ispac_modallayout">
+  	<put name="body" value="/apps/selectProcedure.jsp"/>
+  </definition>
+
+  <definition name="select.orgunit" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/usrmanager/viewusermanager.jsp"/>
+  	<!--  <put name="body" value="/apps/selectOrgUnit.jsp"/>-->
+  </definition>
+
+
+  <!--Gestión de eventos-->
+
+  <definition name="events" extends="ispac_modallayout">
+      <put name="body" value="/ispac/common/events/events.jsp"/>
+  </definition>
+
+  <definition name="rules" extends="ispac_modallayout">
+      <put name="body" value="/ispac/common/events/rules.jsp"/>
+  </definition>
+
+  <definition name="p.events" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/events/showpevents.jsp"/>
+  </definition>
+
+  <definition name="p.addevents" extends="ispac_modallayout">
+      <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+
+  <!--Tiles para mostrar usuarios, grupos y departamentos de la organizacion-->
+  <definition name="view.usrmgr" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/usrmanager/viewusermanager.jsp"/>
+  </definition>
+
+  <!--Tiles para mostrar los firmantes del portafirmas-->
+  <definition name="portafirmas.signers" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/signprocess/listSigners.jsp"/>
+  </definition>
+
+  <!--Tiles para la asignacion de Entidades a Procedimientos-->
+  <definition name="p.entities" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/entities/selectentities.jsp"/>
+  </definition>
+
+  <!--Tiles para modificacion de Fases y Tramites de un procedimiento-->
+  <definition name="p.modstage" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+  <definition name="p.appstage" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/frmstages/pfrmstages.jsp"/>
+  </definition>
+
+  <definition name="p.entfrmstage" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/frmstages/entpfrmstages.jsp"/>
+  </definition>
+
+  <definition name="p.modtask" extends="ispac_mainlayout">
+  	<put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+  <definition name="p.apptask" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/frmtasks/pfrmtasks.jsp"/>
+  </definition>
+
+  <definition name="p.entfrmtask" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/frmtasks/entpfrmtasks.jsp"/>
+  </definition>
+
+  <!-- Creación de Procedimientos -->
+  <definition name="p.newprocedure" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/newprocedure.jsp"/>
+  </definition>
+
+  <definition name="p.overviewprocedure" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/overviewprocedure.jsp"/>
+  </definition>
+
+  <definition name="p.createprocedure" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/resultcreateprocedure.jsp"/>
+  </definition>
+
+  <definition name="p.selstages" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/selectstages.jsp"/>
+  </definition>
+
+
+  <definition name="p.showseltasks" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/selecttasks.jsp"/>
+  </definition>
+
+  <definition name="p.showselstagetasks" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/relationstagetasks.jsp"/>
+  </definition>
+
+  <!--  Exportar procedimiento -->
+  <definition name="p.exportprocedure" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/exportprocedure.jsp"/>
+  </definition>
+
+  <!--  Importar procedimiento -->
+  <definition name="p.importprocedure" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/importprocedure.jsp"/>
+  </definition>
+
+
+
+  <!-- Creación de Subprocesos -->
+  <definition name="p.newsubprocedure" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/subprocedure/newsubprocedure.jsp"/>
+  </definition>
+
+  <definition name="p.selactivities" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/subprocedure/selectactivities.jsp"/>
+  </definition>
+
+  <definition name="p.overviewsubprocedure" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/subprocedure/overviewsubprocedure.jsp"/>
+  </definition>
+
+  <definition name="p.createsubprocedure" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/subprocedure/resultcreatesubprocedure.jsp"/>
+  </definition>
+
+  <!--Tiles para el catálogo-->
+  <definition name="ct.procedureslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctproceduresList.jsp"/>
+  </definition>
+
+   <definition name="ct.eventsctosignlist" extends="ispac_mainlayout">
+    <put name="body" value="/forms/signprocess/eventssigncircuit.jsp"/>
+  </definition>
+
+  <definition name="ct.procedurestree" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctproceduresTree.jsp"/>
+  </definition>
+
+  <definition name="ct.subprocedureslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/subprocedure/subproceduresList.jsp"/>
+  </definition>
+
+  <definition name="ct.entitieslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctentitiesList.jsp"/>
+  </definition>
+
+  <definition name="ct.calendarslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctcalendarsList.jsp"/>
+  </definition>
+
+    <definition name="ct.reportslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctreportsList.jsp"/>
+  </definition>
+
+   <definition name="ct.vbleSystemlist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctvbleSystemList.jsp"/>
+  </definition>
+
+   <definition name="ct.Helplist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/cthelpList.jsp"/>
+  </definition>
+
+  <definition name="ct.valuetableslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctvalueTablesList.jsp"/>
+  </definition>
+
+  <definition name="ct.hierarchicaltableslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/cthierarchicalTablesList.jsp"/>
+  </definition>
+
+  <definition name="ct.hierarchicaltablegeneral" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/hierarchicaltables/general.jsp"/>
+  </definition>
+
+  <definition name="ct.hierarchicaltablevalues" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/hierarchicaltables/valuelist.jsp"/>
+  </definition>
+
+  <definition name="ct.hierarchicaltablevaluesadd" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/hierarchicaltables/addvalue.jsp"/>
+  </definition>
+
+
+
+  <definition name="ct.ruleslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctrulesList.jsp"/>
+  </definition>
+
+  <definition name="ct.frmsearchlist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctfrmsearchList.jsp"/>
+  </definition>
+
+  <definition name="ct.aplicationslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctaplicationsList.jsp"/>
+  </definition>
+
+  <definition name="ct.stageslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctstagesList.jsp"/>
+  </definition>
+
+
+  <definition name="ct.taskslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/cttasksList.jsp"/>
+  </definition>
+
+  <definition name="ct.tpdocslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/cttpdocsList.jsp"/>
+  </definition>
+
+  <definition name="ct.templateslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/cttemplatesList.jsp"/>
+  </definition>
+
+  <definition name="ct.success" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/operacionexitosa.jsp"/>
+  </definition>
+
+  <definition name="ct.remakeform.error" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/entidadsinformulario.jsp"/>
+  </definition>
+
+  <definition name="stage.tpdocslist" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/stagetpdocsList.jsp"/>
+  </definition>
+
+  <definition name="sutitute.historic.list" extends="ispac_modallayout">
+	<put name="body" value="/ispac/common/supervision/sustituteHistoricList.jsp"/>
+  </definition>
+
+  <definition name="p.gui" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/procedure/pcdgui.jsp"/>
+  </definition>
+
+  <definition  name="pcd.pcdpage" extends="ispac_pcdlayout">
+	<put name="tabEntityId" value="22"/>
+	<putList name="tabNames">
+		<add type="string">card</add>
+		<add type="string">properties</add>
+		<add type="string">events</add>
+		<add type="string">entities</add>
+		<add type="string">rights</add>
+		<add type="string">deadlines</add>
+		<add type="string">ctosfirma</add>
+		<add type="string">reports</add>
+		<!-- <add type="string">graph</add>  -->
+	</putList>
+  </definition>
+
+  <definition name="pcd.card" extends="pcd.pcdpage">
+    <put name="currentTabName" value="card"/>
+    <put name="body" value="/ispac/common/procedure/pcdcard.jsp"/>
+  </definition>
+
+  <definition name="pcd.properties" extends="pcd.pcdpage">
+    <put name="currentTabName" value="properties"/>
+    <put name="body" value="/ispac/common/procedure/pcdproperties.jsp"/>
+  </definition>
+
+  <definition name="pcd.events" extends="pcd.pcdpage">
+    <put name="currentTabName" value="events"/>
+    <put name="body" value="/ispac/common/procedure/pcdevents.jsp"/>
+  </definition>
+
+
+  <definition name="pcd.reports" extends="pcd.pcdpage">
+    <put name="currentTabName" value="reports"/>
+    <put name="body" value="/ispac/common/procedure/pcdreports.jsp"/>
+  </definition>
+
+
+
+  <definition name="pcd.entities" extends="pcd.pcdpage">
+    <put name="currentTabName" value="entities"/>
+    <put name="body" value="/ispac/common/procedure/pcdentities.jsp"/>
+  </definition>
+
+  <definition name="pcd.rights" extends="pcd.pcdpage">
+    <put name="currentTabName" value="rights"/>
+    <put name="body" value="/ispac/common/procedure/pcdrights.jsp"/>
+  </definition>
+
+  <definition name="pcd.deadlines" extends="pcd.pcdpage">
+    <put name="currentTabName" value="deadlines"/>
+    <put name="body" value="/ispac/common/procedure/pcddeadlines.jsp"/>
+  </definition>
+
+  <definition name="pcd.ctosfirma" extends="pcd.pcdpage">
+    <put name="currentTabName" value="ctosfirma"/>
+    <put name="body" value="/ispac/common/procedure/pcdctosfirma.jsp"/>
+  </definition>
+
+<!--
+  <definition name="pcd.graph" extends="pcd.pcdpage">
+    <put name="currentTabName" value="graph"/>
+    <put name="body" value="/ispac/common/procedure/pcdgraph.jsp"/>
+  </definition>
+ -->
+
+  <definition name="pcd.producer" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/procedure/pcdproducer.jsp"/>
+  </definition>
+
+  <definition name="pcd.orgunits" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/procedure/pcdorgunits.jsp"/>
+  </definition>
+
+  <definition name="pcd.subpcdpage" extends="ispac_pcdlayout">
+	<put name="tabEntityId" value="33"/>
+	<putList name="tabNames">
+		<add type="string">card</add>
+		<add type="string">properties</add>
+		<add type="string">events</add>
+		<!-- <add type="string">entities</add> -->
+		<!-- <add type="string">rights</add> -->
+		<!-- <add type="string">deadlines</add> -->
+		<!-- <add type="string">graph</add> -->
+	</putList>
+  </definition>
+
+  <definition name="subpcd.card" extends="pcd.subpcdpage">
+    <put name="currentTabName" value="card"/>
+    <put name="body" value="/ispac/common/procedure/subpcdcard.jsp"/>
+  </definition>
+
+  <definition name="subpcd.properties" extends="pcd.subpcdpage">
+    <put name="currentTabName" value="properties"/>
+    <put name="body" value="/ispac/common/procedure/pcdproperties.jsp"/>
+  </definition>
+
+  <definition name="subpcd.events" extends="pcd.subpcdpage">
+    <put name="currentTabName" value="events"/>
+    <put name="body" value="/ispac/common/procedure/pcdevents.jsp"/>
+  </definition>
+
+<!--
+  <definition name="subpcd.entities" extends="pcd.subpcdpage">
+    <put name="currentTabName" value="entities"/>
+    <put name="body" value="/ispac/common/procedure/subpcdentities.jsp"/>
+  </definition>
+-->
+
+<!--
+  <definition name="subpcd.rights" extends="pcd.subpcdpage">
+    <put name="currentTabName" value="rights"/>
+    <put name="body" value="/ispac/common/procedure/pcdrights.jsp"/>
+  </definition>
+ -->
+
+ <!--
+  <definition name="subpcd.deadlines" extends="pcd.subpcdpage">
+    <put name="currentTabName" value="deadlines"/>
+    <put name="body" value="/ispac/common/procedure/pcddeadlines.jsp"/>
+  </definition>
+ -->
+
+ <!--
+  <definition name="subpcd.graph" extends="pcd.subpcdpage">
+    <put name="currentTabName" value="graph"/>
+    <put name="body" value="/ispac/common/procedure/pcdgraph.jsp"/>
+  </definition>
+-->
+
+  <definition name="pcd.stagepage" extends="ispac_pcdlayout">
+	<put name="tabEntityId" value="21"/>
+	<putList name="tabNames">
+		<add type="string">card</add>
+		<add type="string">properties</add>
+		<add type="string">events</add>
+		<add type="string">entities</add>
+		<add type="string">deadlines</add>
+		<add type="string">reports</add>
+	</putList>
+  </definition>
+
+  <definition name="stage.card" extends="pcd.stagepage">
+    <put name="currentTabName" value="card"/>
+    <put name="body" value="/ispac/common/procedure/stagecard.jsp"/>
+  </definition>
+
+  <definition name="stage.properties" extends="pcd.stagepage">
+    <put name="currentTabName" value="properties"/>
+    <put name="body" value="/ispac/common/procedure/stageproperties.jsp"/>
+  </definition>
+
+  <definition name="stage.events" extends="pcd.stagepage">
+    <put name="currentTabName" value="events"/>
+    <put name="body" value="/ispac/common/procedure/pcdevents.jsp"/>
+  </definition>
+
+    <definition name="stage.reports" extends="pcd.stagepage">
+    <put name="currentTabName" value="reports"/>
+    <put name="body" value="/ispac/common/procedure/pcdreports.jsp"/>
+  </definition>
+
+  <definition name="stage.entities" extends="pcd.stagepage">
+    <put name="currentTabName" value="entities"/>
+    <put name="body" value="/ispac/common/frmstages/stagesentities.jsp"/>
+  </definition>
+
+  <definition name="stage.deadlines" extends="pcd.stagepage">
+    <put name="currentTabName" value="deadlines"/>
+    <put name="body" value="/ispac/common/procedure/stagedeadlines.jsp"/>
+  </definition>
+
+  <definition name="pcd.activitypage" extends="ispac_pcdlayout">
+	<put name="tabEntityId" value="34"/>
+	<putList name="tabNames">
+		<add type="string">card</add>
+		<add type="string">properties</add>
+		<add type="string">events</add>
+		<!-- <add type="string">entities</add> -->
+		<add type="string">deadlines</add>
+	</putList>
+  </definition>
+
+  <definition name="activity.card" extends="pcd.activitypage">
+    <put name="currentTabName" value="card"/>
+    <put name="body" value="/ispac/common/procedure/activitycard.jsp"/>
+  </definition>
+
+  <definition name="activity.properties" extends="pcd.activitypage">
+    <put name="currentTabName" value="properties"/>
+    <put name="body" value="/ispac/common/procedure/stageproperties.jsp"/>
+  </definition>
+
+  <definition name="activity.events" extends="pcd.activitypage">
+    <put name="currentTabName" value="events"/>
+    <put name="body" value="/ispac/common/procedure/pcdevents.jsp"/>
+  </definition>
+
+<!--
+  <definition name="activity.entities" extends="pcd.activitypage">
+    <put name="currentTabName" value="entities"/>
+    <put name="body" value="/ispac/common/frmstages/stagesentities.jsp"/>
+  </definition>
+-->
+
+  <definition name="activity.deadlines" extends="pcd.activitypage">
+    <put name="currentTabName" value="deadlines"/>
+    <put name="body" value="/ispac/common/procedure/stagedeadlines.jsp"/>
+  </definition>
+
+  <definition name="pcd.flowspage" extends="ispac_pcdlayout">
+	<putList name="tabNames">
+		<add type="string">card</add>
+	</putList>
+  </definition>
+
+  <definition  name="syncnode.pcdpage" extends="ispac_pcdlayout">
+	<put name="tabEntityId" value="31"/>
+	<putList name="tabNames">
+		<add type="string">card</add>
+	</putList>
+  </definition>
+
+  <definition name="syncnode.card" extends="syncnode.pcdpage">
+    <put name="currentTabName" value="card"/>
+    <put name="body" value="/ispac/common/procedure/syncnodecard.jsp"/>
+  </definition>
+
+  <definition name="flows" extends="ispac_pcdlayout">
+    <put name="currentTabName" value="card"/>
+    <put name="body" value="/ispac/common/procedure/flows.jsp"/>
+	<putList name="tabNames">
+		<add type="string">card</add>
+	</putList>
+  </definition>
+
+  <definition  name="flow.pcdpage" extends="ispac_pcdlayout">
+	<put name="tabEntityId" value="30"/>
+	<putList name="tabNames">
+		<add type="string">properties</add>
+		<add type="string">events</add>
+	</putList>
+  </definition>
+
+  <definition name="flow.properties" extends="flow.pcdpage">
+    <put name="currentTabName" value="properties"/>
+    <put name="body" value="/ispac/common/procedure/flowproperties.jsp"/>
+  </definition>
+
+  <definition name="flow.events" extends="flow.pcdpage">
+    <put name="currentTabName" value="events"/>
+    <put name="body" value="/ispac/common/procedure/pcdevents.jsp"/>
+  </definition>
+
+  <definition name="pcd.taskpage" extends="ispac_pcdlayout">
+	<put name="tabEntityId" value="23"/>
+	<putList name="tabNames">
+		<add type="string">card</add>
+		<add type="string">properties</add>
+		<add type="string">events</add>
+		<add type="string">entities</add>
+		<add type="string">deadlines</add>
+		<add type="string">reports</add>
+		<add type="string">dependencies</add>
+	</putList>
+  </definition>
+
+  <definition name="task.card" extends="pcd.taskpage">
+    <put name="currentTabName" value="card"/>
+    <put name="body" value="/ispac/common/procedure/taskcard.jsp"/>
+  </definition>
+
+  <definition name="pcd.doctypepage" extends="ispac_pcdlayout">
+	<put name="tabEntityId" value="7"/>
+	<putList name="tabNames">
+		<add type="string">card</add>
+	</putList>
+  </definition>
+
+  <definition name="pcd.templatepage" extends="ispac_pcdlayout">
+	<put name="tabEntityId" value="28"/>
+	<putList name="tabNames">
+		<add type="string">card</add>
+	</putList>
+  </definition>
+
+  <definition name="task.entities" extends="pcd.taskpage">
+    <put name="currentTabName" value="entities"/>
+    <put name="body" value="/ispac/common/frmtasks/tasksentities.jsp"/>
+  </definition>
+
+  <definition name="task.properties" extends="pcd.taskpage">
+    <put name="currentTabName" value="properties"/>
+    <put name="body" value="/ispac/common/procedure/taskproperties.jsp"/>
+  </definition>
+
+  <definition name="task.events" extends="pcd.taskpage">
+    <put name="currentTabName" value="events"/>
+    <put name="body" value="/ispac/common/procedure/pcdevents.jsp"/>
+  </definition>
+
+    <definition name="task.reports" extends="pcd.taskpage">
+    <put name="currentTabName" value="reports"/>
+    <put name="body" value="/ispac/common/procedure/pcdreports.jsp"/>
+  </definition>
+
+
+  <definition name="task.deadlines" extends="pcd.taskpage">
+    <put name="currentTabName" value="deadlines"/>
+    <put name="body" value="/ispac/common/procedure/taskdeadlines.jsp"/>
+  </definition>
+
+  <definition name="task.dependencies" extends="pcd.taskpage">
+    <put name="currentTabName" value="dependencies"/>
+    <put name="body" value="/ispac/common/procedure/taskdependencies.jsp"/>
+  </definition>
+
+  <definition name="entity.events" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/procedure/pcdentityevents.jsp"/>
+  </definition>
+
+
+  <definition name="typedoc.card" extends="pcd.doctypepage">
+    <put name="currentTabName" value="card"/>
+    <put name="body" value="/ispac/common/procedure/doctypecard.jsp"/>
+  </definition>
+
+  <definition name="template.card" extends="pcd.templatepage">
+    <put name="currentTabName" value="card"/>
+    <put name="body" value="/ispac/common/procedure/templatecard.jsp"/>
+  </definition>
+
+
+  <definition name="ct.procedure" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+  <definition name="p.modprocedure" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+  <definition name="cuadro.procedure" extends="ispac_treeFrameLayout">
+	<put name="showTreeViewAction" direct="true" value="/manageVistaCuadroProcedimiento.do" />
+  </definition>
+
+  <definition name="ct.stage" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+  <definition name="ct.task" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+  <definition name="ct.entity" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+  <definition name="ct.entitywzgeneral" extends="ispac_wizardlayout">
+    <put name="body" value="/ispac/common/entities/general.jsp"/>
+  </definition>
+
+  <definition name="ct.entitywzfields" extends="ispac_wizardlayout">
+    <put name="body" value="/ispac/common/entities/fields.jsp"/>
+  </definition>
+
+  <definition name="ct.entitywzfield" extends="ispac_wizardlayout">
+    <put name="body" value="/ispac/common/entities/field.jsp"/>
+  </definition>
+
+  <definition name="ct.entitywzindexes" extends="ispac_wizardlayout">
+    <put name="body" value="/ispac/common/entities/indexes.jsp"/>
+  </definition>
+
+  <definition name="ct.entitywzindex" extends="ispac_wizardlayout">
+    <put name="body" value="/ispac/common/entities/index.jsp"/>
+  </definition>
+
+  <definition name="ct.entitywzindexfields" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/entities/indexFields.jsp"/>
+  </definition>
+
+  <definition name="ct.entitywzvalidations" extends="ispac_wizardlayout">
+    <put name="body" value="/ispac/common/entities/validations.jsp"/>
+  </definition>
+
+  <definition name="ct.entitywzvalidation" extends="ispac_wizardlayout">
+    <put name="body" value="/ispac/common/entities/validation.jsp"/>
+  </definition>
+
+  <definition name="ct.entityviewgeneral" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/general.jsp"/>
+  </definition>
+
+  <definition name="ct.entitygeneral" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/general.jsp"/>
+  </definition>
+
+  <definition name="ct.entityfields" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/fields.jsp"/>
+  </definition>
+
+   <definition name="ct.fmrsearchreport" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/searchform/reportsSearch.jsp"/>
+  </definition>
+
+  <definition name="ct.entityresources" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/resources.jsp"/>
+  </definition>
+
+  <definition name="ct.entityresource" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/entities/resource.jsp"/>
+  </definition>
+
+  <definition name="ct.entityfield" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/field.jsp"/>
+  </definition>
+
+  <definition name="ct.entityindexes" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/indexes.jsp"/>
+  </definition>
+
+  <definition name="ct.entityindex" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/index.jsp"/>
+  </definition>
+
+  <definition name="ct.entityindexfields" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/entities/indexFields.jsp"/>
+  </definition>
+
+  <definition name="ct.entityvalidations" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/validations.jsp"/>
+  </definition>
+
+  <definition name="ct.entityvalidation" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/validation.jsp"/>
+  </definition>
+
+  <definition name="ct.tblvldlistadoValores" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/tblvldlistadovalores.jsp"/>
+  </definition>
+
+  <definition name="ct.tblVld" extends="ispac_mainlayout">
+    <put name="body" value="/forms/catalog/cttblvld.jsp"/>
+  </definition>
+
+  <definition name="ct.entityforms" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/forms.jsp"/>
+  </definition>
+
+  <definition name="ct.entityform" extends="ispac_entitymanagelayout">
+    <put name="body" value="/ispac/common/entities/form.jsp"/>
+  </definition>
+
+   <definition name="substitute.select" extends="ispac_modallayout">
+    <put name="body" value="/apps/selectObject.jsp"/>
+   </definition>
+
+  <definition name="templateslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/templatesList.jsp"/>
+  </definition>
+
+<!-- Calendarios -->
+
+  <definition name="ct.holydayForm" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/holydayForm.jsp"/>
+  </definition>
+
+  <definition name="ct.copyCalendar" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/copyCalendarForm.jsp"/>
+  </definition>
+
+  <definition name="ct.fixedHolidays" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/fixedHolidays.jsp"/>
+  </definition>
+
+
+  <!--Relaciones Catalogo-->
+
+  <definition name="ct.stagetasks" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/ctstagetasks.jsp"/>
+  </definition>
+
+	<definition name="ct.tasktpdocs" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/cttasktpdocs.jsp"/>
+  </definition>
+
+
+  <definition name="components.use.list" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/componentsuselist.jsp"/>
+  </definition>
+
+  <!--FIN, Tiles Catalogo-->
+
+  <definition name="ct.modal.taskslist" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/portlet/modalcttasksList.jsp"/>
+  </definition>
+
+  <!--Tile para la prueba del Tree-->
+  <definition name="maestro.tree" extends="ispac_treelayout">
+  </definition>
+
+  <!-- Tile para la pagina de gestion de error -->
+  <definition name="errorhandler" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/error.jsp"/>
+  </definition>
+
+  <!--User manager tiles-->
+  <definition name="showDirectory" extends="ispac_treelayout">
+	<put name="directory" value="/ispac/common/application.jsp"/>
+	<put name="info" value="/ispac/common/supervision/showproperties.jsp"/>
+	<put name="subtitle" value="/ispac/common/supervision/supervisionTitle.jsp"/>
+  </definition>
+
+  <definition name="showResponsiblesForSupervision" extends="ispac_modallayout">
+	<put name="body" value="/ispac/common/supervision/addsuperviseds.jsp"/>
+  </definition>
+
+  <definition name="showResponsiblesForSearchForm" extends="ispac_modallayout">
+	<put name="body" value="/ispac/common/searchform/addresponsibles.jsp"/>
+  </definition>
+
+  <definition name="showAddFechaSustitucion" extends="ispac_modallayout">
+	<put name="body" value="/ispac/common/supervision/addfechasustitucion.jsp"/>
+  </definition>
+
+  <definition name="showPermissionsProcedures" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+  <definition name="selectPermissions" extends="ispac_modallayout">
+    <put name="body" value="/ispac/common/application.jsp"/>
+  </definition>
+
+  <definition name="showResponsiblesForReport" extends="ispac_modallayout">
+	<put name="body" value="/ispac/common/reports/addresponsibles.jsp"/>
+  </definition>
+  <!-- Wizard tiles -->
+
+  <definition name="show.app.form" extends="ispac_modallayout">
+  	<put name="body" value="/apps/showAppForm.jsp"/>
+  </definition>
+
+  <definition name="p.template" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/newtemplate.jsp"/>
+  </definition>
+
+  <definition name="p.syncnode" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/procedure/newsyncnode.jsp"/>
+  </definition>
+
+  <!-- Publicador tiles -->
+  <definition name="pub.actionslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/publisher/pubactionsList.jsp"/>
+  </definition>
+
+  <definition name="pub.applicationslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/publisher/pubapplicationsList.jsp"/>
+  </definition>
+
+  <definition name="pub.conditionslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/publisher/pubconditionsList.jsp"/>
+  </definition>
+
+  <definition name="pub.rulesgrouplist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/publisher/pubrulesgroupList.jsp"/>
+  </definition>
+
+  <definition name="pub.ruleslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/publisher/pubrulesList.jsp"/>
+  </definition>
+
+  <definition name="pub.errormilestoneslist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/publisher/puberrormilestonesList.jsp"/>
+  </definition>
+
+  <!-- Procesos de firma tiles -->
+  <definition name="sign.processlist" extends="ispac_mainlayout">
+    <put name="body" value="/ispac/common/signprocess/signprocessList.jsp"/>
+  </definition>
+
+  <definition name="select.signer" extends="ispac_modallayout">
+  	<put name="body" value="/ispac/common/signprocess/selectsigner.jsp"/>
+  </definition>
+
+</tiles-definitions>

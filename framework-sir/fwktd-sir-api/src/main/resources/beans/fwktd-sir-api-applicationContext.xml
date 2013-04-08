@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+    default-lazy-init="true">
+
+	<!-- Carga de los modulos del framework utilizados -->
+
+	<import resource="classpath*:/beans/fwktd-dm-applicationContext.xml"/>
+	<import resource="classpath*:/beans/fwktd-time-applicationContext.xml"/>
+	<import resource="classpath*:/beans/fwktd-signature-applicationContext.xml"/>
+	
+	<!-- servcio de directorio comun -->
+	<import resource="classpath*:/beans/fwktd-dir3-api-applicationContext.xml"/>
+	
+	<!-- Carga de las propiedades de configuracion -->
+
+	<bean id="fwktd_sir_configurationResourceLoaderImpl" name="fwktd_sir_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl" />
+
+	<bean
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciBasePlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="configurationResourceLoader" ref="fwktd_sir_configurationResourceLoader" />
+		<property name="locations">
+			<list>
+				<value>fwktd-sir/fwktd-sir-api.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	 
+	<import resource="classpath*:/beans/fwktd-sir-api/fwktd-sir-api-beans.xml"/>
+	<import resource="classpath*:/beans/fwktd-sir-api/fwktd-sir-api-dao-beans.xml"/>
+	<import resource="classpath*:/beans/fwktd-sir-api/fwktd-sir-api-datasource-beans.xml"/>
+	<import resource="classpath*:/beans/fwktd-sir-api/fwktd-sir-api-incrementer-beans.xml"/>
+	<import resource="classpath*:/beans/fwktd-sir-api/fwktd-sir-api-job-beans.xml"/>
+	<import resource="classpath*:/beans/fwktd-sir-api/fwktd-sir-api-manager-beans.xml"/>
+	<import resource="classpath*:/beans/fwktd-sir-api/fwktd-sir-api-transaction-beans.xml"/>
+	<import resource="classpath*:/beans/fwktd-sir-api/fwktd-sir-api-wsclient-beans.xml"/>
+	 
+
+</beans>

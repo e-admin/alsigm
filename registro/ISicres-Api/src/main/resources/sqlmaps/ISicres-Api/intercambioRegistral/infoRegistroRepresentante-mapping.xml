@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="InfoRegistroRepresentanteVO">
+
+<typeAlias alias="InfoRegistroRepresentanteVO"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroRepresentanteVO" />
+
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroRepresentanteVO"
+		id="infoRegistroRepresentanteResultMap">
+		<result property="id" column="id" />
+		<result property="idRepresentante" column="id_representante" />
+		<result property="idRepresentado" column="id_representado" />
+		<result property="idAddress" column="id_address" />
+		<result property="nombre" column="name" />
+	</resultMap>
+
+</sqlMap>

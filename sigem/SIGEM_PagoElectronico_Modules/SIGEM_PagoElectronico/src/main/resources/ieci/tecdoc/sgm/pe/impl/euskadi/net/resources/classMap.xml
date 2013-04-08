@@ -1,0 +1,570 @@
+<classes>
+
+<!-- ************************** OBJETOS PRINCIPALES ******************************* -->
+
+	<!-- Datos de la operacion de pago (simple o multiple). -->
+	<class name='PaymentData' package='p12f.exe.pasarelapagos.objects' fromElement='paymentData'>
+		<member name='pagos' dataType='Pago' collection='Map' fromElement='pagos'/>
+		<member name='datosAdicionales' dataType='DatoAdicional' collection='Map' fromElement='datosAdicionales'/>		
+	</class>
+
+	<!-- Datos del estado de un pago. -->
+	<class name='PaymentStateData' package='p12f.exe.pasarelapagos.objects' fromElement='paymentStateData'>
+		<member name='id' dataType='String' fromAttribute='id' isOID='true'/>
+		<member name='datosPago' dataType='DatosPago' fromElement='datosPago'/>	
+		<member name='estado' dataType='Estado' fromElement='estado'/>	
+	</class>
+	
+	<!-- Resultado de una operacion de pasarela. -->
+	<class name='OperationResult' package='p12f.exe.pasarelapagos.objects' fromElement='operationResult'>
+		<member name='resultado' dataType='Resultado' fromElement='resultado'/>
+		<member name='operationData' dataType='OperationData' fromElement='operationData'/>
+		<member name='aditionalDataList' dataType='AditionalData'  collection='Map' fromElement='aditionalDataList'/>
+		
+	</class>
+	
+	<!-- Datos del estado de un pago. -->
+	<class name='PaymentResult' package='p12f.exe.pasarelapagos.objects' fromElement='paymentResult'>
+		<member name='paymentStateDatas' dataType='PaymentStateData' collection='Map' fromElement='paymentStateDatas'/>	
+	</class>
+	
+	<!-- Datos de presentacion. -->
+	<class name='PresentationData' package='p12f.exe.pasarelapagos.objects' fromElement='presentationData'>
+		<member name='idioma' dataType='String' fromElement='idioma'/>
+		<member name='imagenes' dataType='Imagen' collection='Map' fromElement='imagenes'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>
+	</class>
+	
+	
+	<!-- Datos de presentacion. -->
+	<class name='CreditCardData' package='p12f.exe.pasarelapagos.objects' fromElement='creditCardData'>		
+		<member name='timeStamp' dataType='String' fromElement='timeStamp' isCDATA='true'/>
+		<member name='aditionalDataList' dataType='AditionalData'  collection='Map' fromElement='aditionalDataList'/>
+		<member name='encData' dataType='EncData' fromElement='encData'/>
+	</class>
+	<class name='EncData' package='p12f.exe.pasarelapagos.objects' fromElement='encData'>		
+		<member name='encType' dataType='String' fromAttribute='encType' />
+		<member name='value' dataType='String'    fromElement='value' isCDATA='true'/>
+	</class>
+	
+
+	
+	<!-- Datos Adicionales -->
+    <class name='AditionalData' package='p12f.exe.pasarelapagos.objects' fromElement='aditionalData'>
+		<member name='name' dataType='String' fromElement='name' isOID='true'/>
+		<member name='description' dataType='String'  fromElement='description'/>
+		<member name='value' dataType='String' fromElement='value' isCDATA='true'/>
+	</class>	
+	
+	<!-- Datos de protocolo. -->
+	<class name='ProtocolData' package='p12f.exe.pasarelapagos.objects' fromElement='protocolData'>
+		<member name='token' dataType='String' fromElement='token'/>
+		<member name='responseURL' dataType='String' fromElement='responseURL' isCDATA='true'/>
+		<member name='sourceSessionId' dataType='String' fromElement='sourceSessionId'/>
+		<member name='destinationSessionId' dataType='String' fromElement='destinationSessionId'/>
+		<member name='timeStamp' dataType='long' fromElement='timeStamp'/>
+		<member name='sourceOperationNumber' dataType='String' fromElement='sourceOperationNumber'/>
+		<member name='urls' dataType='Url' collection='Map' fromElement='urls'/>
+	</class>
+	
+	
+	
+	
+	<!-- Resultado de la validacion. -->
+	<class name='ValidationResult' package='p12f.exe.pasarelapagos.objects' fromElement='validationResult'>
+		<member name='resultado' dataType='boolean' fromElement='resultado'/>
+		<member name='pago' dataType='Pago' fromElement='pago'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>
+	</class>
+	
+	<!-- Datos de consulta del pago. -->
+	<class name='PaymentQueryData' package='p12f.exe.pasarelapagos.objects' fromElement='paymentQueryData'>
+		<member name='csb' dataType='String' fromElement='csb'/>
+		<member name='nrc' dataType='String' fromElement='nrc'/>
+	</class>
+
+<!-- ************************** OBJETOS PRINCIPALES ******************************** -->
+			
+<!-- ************************** OBJETOS AUXILIARES ******************************** -->
+
+	<!-- Instancia de pago. -->
+	<class name='Pago' package='p12f.exe.pasarelapagos.objects' fromElement='pago'>
+		<member name='id' dataType='String' fromAttribute='id' isOID='true'/>
+		<member name='datosPago' dataType='DatosPago' fromElement='datosPago'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+		<member name='conceptos' dataType='Concepto' collection='List' fromElement='conceptos'/>
+		<member name='emisor' dataType='Emisor' fromElement='emisor'/>
+		<member name='expediente' dataType='Expediente' fromElement='expediente'/>
+		<member name='imagenes' dataType='Imagen' collection='Map' fromElement='imagenes'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>
+		<member name='domiciliacion' dataType='Domiciliacion' fromElement='domiciliacion'/>
+		<member name='tpvVirtual' dataType='TPVVirtual' fromElement='tpvVirtual'/>
+		<member name='datosAdicionales' dataType='DatoAdicional' collection='List' fromElement='datosAdicionales'/>
+	</class>
+	
+	<!-- Trama en el formato correspondiente 57 / 60. -->
+	<class name='DatosPago' package='p12f.exe.pasarelapagos.objects' fromElement='datosPago'>
+		<member name='formato' dataType='String' fromElement='formato'/>
+		<member name='validar' dataType='int' fromElement='validar'/>
+		<member name='cpr' dataType='String' fromElement='cpr'/>		
+		<member name='codigo' dataType='String' fromElement='codigo'/>	
+		<member name='emisor' dataType='String' fromElement='emisor'/>	
+		<member name='referencia' dataType='String' fromElement='referencia'/>
+		<member name='tipo' dataType='String' fromElement='tipo'/>	
+		<member name='periodosPago' dataType='PeriodoPago' collection='Map' fromElement='periodosPago'/>	
+	</class>
+
+	<!-- Peticion de pago recibida de la aplicacion departamental -->
+	<class name='PeriodoPago' package='p12f.exe.pasarelapagos.objects' fromElement='periodoPago'>
+		<member name='id' dataType='String' fromAttribute='id' isOID='true'/>
+		<member name='identificacion' dataType='String' fromElement='identificacion'/>
+		<member name='importe' dataType='long' fromElement='importe'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+		<member name='fechaInicio' dataType='String' fromElement='fechaInicio'/>
+		<member name='fechaFin' dataType='String' fromElement='fechaFin'/>
+		<member name='validarFechaFin' dataType='boolean' fromElement='validarFechaFin'/>
+		<member name='activo' dataType='boolean' fromElement='activo'/>
+	</class>
+	
+	<!-- Concepto individual del pago. -->
+	<class name='Concepto' package='p12f.exe.pasarelapagos.objects' fromElement='concepto'>
+		<member name='numeroLinea' dataType='int' fromElement='numeroLinea'/>
+		<member name='importe' dataType='long' fromElement='importe'/>
+		<member name='unidades' dataType='int' fromElement='unidades'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+		<member name='tieneIVARepercutido' dataType='boolean' fromElement='tieneIVARepercutido'/>
+		<member name='IVARepercutido' dataType='boolean' fromElement='IVARepercutido'/>
+		<member name='baseImponible' dataType='long' fromElement='baseImponible'/>
+		<member name='importeIVA' dataType='long' fromElement='importeIVA'/>
+		<member name='tipoIVA' dataType='int' fromElement='tipoIVA'/>		
+	</class>
+	
+	<!-- Datos del emisor del pago -->
+	<class name='Emisor' package='p12f.exe.pasarelapagos.objects' fromElement='emisor'>
+		<member name='codigo' dataType='String' fromElement='codigo'/>
+		<member name='cif' dataType='String' fromElement='cif'/>
+		<member name='nombre' dataType='Map' fromElement='nombre'/>
+		<member name='calle' dataType='String' fromElement='calle'/>
+		<member name='municipio' dataType='String' fromElement='municipio'/>
+		<member name='territorio' dataType='String' fromElement='territorio'/>
+		<member name='pais' dataType='String' fromElement='pais'/>
+		<member name='codigoPostal' dataType='String' fromElement='codigoPostal'/>
+		<member name='entidadTesorera' dataType='String' fromElement='entidadTesorera'/>
+	</class>
+	
+	<!-- Datos del tercero al que hay que imputar el pago -->
+	<class name='Tercero' package='p12f.exe.pasarelapagos.objects' fromElement='tercero'>
+		<member name='dniNif' dataType='String' fromElement='dniNif'/>
+		<member name='razonSocial' dataType='String' fromElement='razonSocial'/>
+		<member name='calle' dataType='String' fromElement='calle'/>
+		<member name='municipio' dataType='String' fromElement='municipio'/>
+		<member name='territorio' dataType='String' fromElement='territorio'/>
+		<member name='pais' dataType='String' fromElement='pais'/>
+		<member name='codigoPostal' dataType='String' fromElement='codigoPostal'/>
+		<member name='datosAdicionales' dataType='DatoAdicional' collection='List' fromElement='datosAdicionales'/>
+		<member name='tipoTercero' dataType='String' fromElement='tipoTercero'/>
+		<member name='primerApellido' dataType='String' fromElement='primerApellido'/>
+		<member name='segundoApellido' dataType='String' fromElement='segundoApellido'/>
+	</class>
+	
+	<!-- Datos del expediente al que se refiere el pago -->
+	<class name='Expediente' package='p12f.exe.pasarelapagos.objects' fromElement='expediente'>
+		<member name='codigo' dataType='String' fromElement='codigo'/>
+		<member name='familia' dataType='String' fromElement='familia'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+		<member name='tercero' dataType='Tercero' fromElement='tercero'/>
+	</class>
+	
+	<!-- Estado del pago -->
+	<class name='Estado' package='p12f.exe.pasarelapagos.objects' fromElement='estado'>
+		<member name='codigo' dataType='String' fromElement='codigo'/>
+		<member name='paymentID' dataType='String' fromElement='paymentID'/>
+		<member name='fechaPago' dataType='String' fromElement='fechaPago'/>
+		<member name='horaPago' dataType='String' fromElement='horaPago'/>
+		<member name='razonError' dataType='String' fromElement='razonError'/>
+		<member name='importe' dataType='String' fromElement='importe'/>
+		<member name='entidad' dataType='String' fromElement='entidad'/>
+		<member name='oficina' dataType='String' fromElement='oficina'/>
+		<member name='numeroOperacion' dataType='String' fromElement='numeroOperacion'/>
+		<member name='nrc' dataType='String' fromElement='nrc'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>	
+		<member name='backendDataMap' dataType='BackendData' collection='Map' fromElement='backendDataMap'/>
+	</class>	    
+	
+	<!-- Resultado de la operacion. -->
+	<class name='Resultado' package='p12f.exe.pasarelapagos.objects' fromElement='resultado'>
+		<member name='resultadoOK' dataType='boolean' fromElement='resultadoOK'/>
+		<member name='returnValue' dataType='XML' fromElement='returnValue'/>
+		<member name='returnCode' dataType='int' fromElement='returnCode'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>	
+	</class>
+		
+	<class name='NRCValidationResponse' package='p12f.exe.pasarelapagos.objects' fromElement='nrcValidationResponse'>
+		<member name='isValid'   dataType='boolean' fromElement='isValid'/>
+		<member name='timeStamp' dataType='String' fromElement='timeStamp'/>	
+	</class>
+		
+	<!-- Datos sobre la llamada. -->
+	<class name='OperationData' package='p12f.exe.pasarelapagos.objects' fromElement='operationData'>
+		<member name='module' dataType='String' fromElement='module'/>
+		<member name='function' dataType='String' fromElement='function'/>
+		<member name='parameters' dataType='Parameter' collection='Map' fromElement='parameters'/>	
+	</class>	
+	
+	<!-- Datos de domiciliacion del pago. -->
+	<class name='Domiciliacion' package='p12f.exe.pasarelapagos.objects' fromElement='domiciliacion'>
+		<member name='permitir' dataType='boolean' fromElement='permitir'/>
+	</class>
+	
+	<!-- Datos del TPV Virtual. -->
+	<class name='TPVVirtual' package='p12f.exe.pasarelapagos.objects' fromElement='tpvVirtual'>
+		<member name='codigoComercio' dataType='String' fromElement='codigoComercio'/>
+	</class>
+	
+	<!-- Evento de la Pasarela -->
+	<class name='GatewayEvent' package='p12f.exe.pasarelapagos.objects' fromElement='gatewayEvent'>
+		<member name='tipo' dataType='String' fromElement='tipo'/>
+		<member name='timeStamp' dataType='long' fromElement='timeStamp'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>	
+		<member name='id' dataType='String' fromElement='id'/>
+		<member name='datosPago' dataType='DatosPago' fromElement='datosPago'/>
+		<member name='estado' dataType='Estado' fromElement='estado'/>
+	</class>	    
+	
+<!-- ************************** OBJETOS AUXILIARES ******************************** -->
+
+<!-- ************************** COMUNES ******************************** -->
+	
+	<!-- Dato adicional -->
+	<class name='DatoAdicional' package='p12f.exe.pasarelapagos.objects' fromElement='datoAdicional'>
+		<member name='id' dataType='String' fromAttribute='id' isOID='true'/>
+		<member name='texto' dataType='Map' fromElement='texto'/>
+		<member name='valor' dataType='String' fromElement='valor' isCDATA='true'/>
+	</class>	
+	
+	<!-- Mensaje sobre la consulta: errores, informacion... -->
+	<class name='Mensaje' package='p12f.exe.pasarelapagos.objects' fromElement='mensaje'>
+		<member name='id' dataType='String' fromAttribute='id' isOID='true'/>
+		<member name='texto' dataType='Map' fromElement='texto'/>	
+	</class>
+	
+	<!-- Parametro individual. -->
+	<class name='Parameter' package='p12f.exe.pasarelapagos.objects' fromElement='parameter'>
+		<member name='name' dataType='String' fromElement='name' isOID='true'/>
+		<member name='value' dataType='String' fromElement='value' isCDATA='true'/>
+	</class>
+	
+	<!-- Imagen individual. -->
+	<class name='Imagen' package='p12f.exe.pasarelapagos.objects' fromElement='imagen'>
+		<member name='id' dataType='String' fromAttribute='id' isOID='true'/>
+		<member name='alt' dataType='Map' fromElement='alt'/>
+		<member name='url' dataType='String' fromElement='url' isCDATA='true'/>
+		<member name='bin' dataType='String' fromElement='bin'/>
+	</class>	
+	
+	<!-- Url. -->
+	<class name='Url' package='p12f.exe.pasarelapagos.objects' fromElement='url'>
+		<member name='id' dataType='String' fromAttribute='id' isOID='true'/>
+		<member name='url' dataType='String' fromElement='url' isCDATA='true'/>
+	</class>
+
+<!-- ************************** COMUNES ******************************** -->	
+
+<!-- ************************** PETICIONES ******************************** -->	
+
+	<!-- Datos de la operacion de pago (simple o multiple). -->
+	<class name='PaymentRequestData' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='paymentRequestData'>
+		<member name='peticionesPago' dataType='PeticionPago' collection='Map' fromElement='peticionesPago'/>
+		<member name='datosAdicionales' dataType='DatoAdicional' collection='Map' fromElement='datosAdicionales'/>
+	</class>
+	
+	<!-- Datos de la operacion de pago (simple o multiple). -->
+	<class name='PaymentGatewayData' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='paymentGatewayData'>
+		<member name='paymentRequestData' dataType='PaymentRequestData'  fromElement='paymentRequestData'/>
+		<member name='presentationData' dataType='PresentationRequestData' fromElement='presentationRequestData'/>
+		<member name='protocolData' dataType='ProtocolData' fromElement='ProtocolData'/>
+	</class>
+	
+    <!-- Instancia de Peticion de Pago. -->
+	<class name='PeticionPago' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='peticionPago'>
+		<member name='id' dataType='String' fromAttribute='id' isOID='true'/>
+		<member name='datosPago' dataType='DatosPago' fromElement='datosPago'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+		<member name='conceptos' dataType='ConceptoPeticion' collection='List' fromElement='conceptos'/>
+		<member name='emisor' dataType='Emisor' fromElement='emisor'/>
+		<member name='expediente' dataType='Expediente' fromElement='expediente'/>
+		<member name='imagenes' dataType='Imagen' collection='Map' fromElement='imagenes'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>
+		<member name='domiciliacion' dataType='Domiciliacion' fromElement='domiciliacion'/>
+		<member name='aplicacion' dataType='Aplicacion' fromElement='aplicacion'/>
+		<member name='liquidacion' dataType='Liquidacion' fromElement='liquidacion'/>
+		<member name='backend' dataType='Backend' fromElement='backend'/>
+		<member name='finantialOrgs' dataType='FinantialOrg' collection='Map' fromElement='finantialOrgs'/>	
+		<member name='paymentModes' dataType='PaymentMode' collection='Map' fromElement='paymentModes'/>
+		<member name='datosAdicionales' dataType='DatoAdicional' collection='List' fromElement='datosAdicionales'/>
+		<member name='validacion' dataType='Validacion' fromElement='validacion'/>
+		<member name='devengo' dataType='String' fromElement='devengo'/>
+	</class>
+	
+	<!-- Resultado de la validación de un Pago. -->
+	<class name='Validacion' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='validacion'>	
+		<member name='valido' dataType='boolean' fromElement='valido'/>
+		<member name='codigoError' dataType='String' fromElement='codigoError'/>
+		<member name='mensaje' dataType='String' fromElement='mensaje'/>
+	</class>
+
+	<!-- Concepto individual de Peticion de Pago. -->
+	<class name='ConceptoPeticion' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='conceptoPeticion'>
+		<member name='numeroLinea' dataType='int' fromElement='numeroLinea'/>
+		<member name='importe' dataType='long' fromElement='importe'/>
+		<member name='unidades' dataType='int' fromElement='unidades'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+		<member name='tieneIVARepercutido' dataType='boolean' fromElement='tieneIVARepercutido'/>
+		<member name='IVARepercutido' dataType='boolean' fromElement='IVARepercutido'/>
+		<member name='baseImponible' dataType='long' fromElement='baseImponible'/>
+		<member name='importeIVA' dataType='long' fromElement='importeIVA'/>
+		<member name='tipoIVA' dataType='long' fromElement='tipoIVA'/>
+		<member name='backendDataMap' dataType='BackendData' collection='Map' fromElement='backendDataMap'/>
+	</class>
+	
+	<!-- Backend. -->	
+	<class name='Backend' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='backend'>
+	    <member name='systemID' dataType='String'  fromElement='systemID' isOID='true'/>
+	    <member name='enabled' dataType='boolean'   fromElement='enabled'/>
+	    <member name='backendDataMap' dataType='BackendData' collection='Map' fromElement='backendDataMap'/>
+	</class>
+	
+	<!-- Backend data. -->	
+	<class name='BackendData' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='BackendData'>
+		<member name='id' dataType='String' fromAttribute='id' isOID='true'/>
+	    <member name='value' dataType='String' fromElement='value'/>
+	</class>
+	
+	<!-- Datos de una aplicacion que van en la peticion de pago -->
+	<class name='Aplicacion' package='p12f.exe.pasarelapagos.paymentrequest'  fromElement='aplicacion'>
+		<member name='codigo' dataType='String' fromAttribute='codigo'/>
+		<member name='nombre' dataType='Map' fromElement='nombre'/>		
+		<member name='responsable' dataType='String' fromElement='responsable'/>
+		<member name='imagen' dataType='Imagen' fromElement='imagen'/>			
+		<member name='eventListenerConfig' dataType='EventListenerConfig' fromElement='eventListenerConfig'/>
+		<member name='datosAdicionales' dataType='DatoAdicional' collection='Map' fromElement='datosAdicionales'/>
+	</class>
+
+	<!-- Liquidacion -->
+	<class name='Liquidacion' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='liquidacion'>
+		<member name='paymentGatewayVersion' dataType='String' fromElement='paymentGatewayVersion'/>
+		<member name='urlPlantilla' dataType='String' fromElement='urlPlantilla' isCDATA='true'/>
+		<member name='imagenes' dataType='Imagen' collection='Map' fromElement='imagenes'/>
+		<!-- <member name='id' dataType='String'  fromAttribute='id' isOID='true'/>
+		<member name='plantillasLiquidacion' dataType='Plantilla'  collection='Map' fromElement='plantillasLiquidacion'/>		
+		<member name='idCartaPago' dataType='String' fromElement='idCartaPago'/>
+		<member name='textoPie' dataType='Map' fromElement='textoPie'/>
+		<member name='lugarFirma' dataType='Map' fromElement='lugarFirma'/>
+		<member name='numeroLiquidacion' dataType='String' fromElement='numeroLiquidacion'/>-->
+	</class>
+			
+	<!-- PresentationRequestData. -->
+	<class name='PresentationRequestData' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='presentationRequestData'>
+		<member name='idioma' dataType='String' fromElement='idioma'/>
+		<member name='imagenes' dataType='Imagen' collection='Map' fromElement='imagenes'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>
+		<member name='paymentModes' dataType='PaymentMode' collection='Map' fromElement='paymentModes'/>
+		<member name='finantialOrgs' dataType='FinantialOrg' collection='Map' fromElement='finantialOrgs'/>
+		<!--<member name='liquidaciones' dataType='Liquidacion' collection='Map' fromElement='liquidaciones'/>-->
+	</class>
+	
+	<!-- PaymentMode. -->
+	<class name='PaymentMode' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='paymentMode'>
+		<member name='oid' dataType='String' fromAttribute='oid' isOID='true'/>
+		<member name='text' dataType='String' fromElement='text'/>
+	</class>
+	
+	<!-- FinantialOrg. -->
+	<class name='FinantialOrg' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='finantialOrg'>
+		<member name='oid' dataType='String' fromAttribute='oid' isOID='true'/>
+		<member name='text' dataType='String' fromElement='text'/>
+	</class>			
+	
+	<!-- InitializeCSBPaymentResult -->
+	<class name='InitializeCSBPaymentResult' package='p12f.exe.pasarelapagos.paymentrequest' fromElement='initializeCSBPaymentResult'>
+		<member name='resultadoOK' dataType='boolean' fromElement='resultadoOK'/>
+		<member name='datosPago' dataType='DatosPago' fromElement='datosPago'/>
+		<member name='modificado' dataType='boolean' fromElement='modificado'/>
+		<member name='cancelado' dataType='boolean' fromElement='cancelado'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>
+	</class>			
+				
+<!-- ************************** PETICIONES ******************************** -->	
+
+<!-- ************************** CONFIGURACIONES ******************************** -->	
+	
+	<!-- Configuracion de una Administración -->
+	<class name='AdminConfig' package='p12f.exe.pasarelapagos.objects.config' fromElement='adminConfig'>
+		<member name='oid' dataType='String' fromAttribute='oid' isOID='true'/>
+		<member name='cif' dataType='String' fromElement='cif'/>
+		<member name='grupo' dataType='String' fromElement='grupo'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+		<member name='calle' dataType='String' fromElement='calle'/>
+		<member name='municipio' dataType='String' fromElement='municipio'/>
+		<member name='territorio' dataType='String' fromElement='territorio'/>
+		<member name='pais' dataType='String' fromElement='pais'/>
+		<member name='codigoPostal' dataType='String' fromElement='codigoPostal'/>
+		<member name='imagenes' dataType='Imagen' collection='Map' fromElement='imagenes'/>
+		<member name='finantialOrgs' dataType='FinantialOrg' collection='Map' fromElement='finantialOrgs'/>
+		<member name='paymentModes' dataType='PaymentMode' collection='Map' fromElement='paymentModes'/>
+		<member name='codEmisor' dataType='Map' fromElement='codEmisor'/>	
+	</class>
+	
+	<!-- Configuracion de un grupo de Entidades Emisoras -->
+	<class name='GroupConfig' package='p12f.exe.pasarelapagos.objects.config' fromElement='groupConfig'>
+		<member name='oid' dataType='String' fromAttribute='oid' isOID='true'/>
+		<member name='orden' dataType='int' fromElement='orden'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+	</class>
+	
+	<!-- Configuracion de la presentacion de la pasarela -->
+	<class name='InstanceConfig' package='p12f.exe.pasarelapagos.objects.config' fromElement='instanceConfig'>
+		<member name='oid' dataType='String' fromAttribute='oid'/>
+		<member name='activa' dataType='boolean' fromAttribute='activa'/>
+		<member name='esInstanciaPorDefecto' dataType='boolean' fromAttribute='esInstanciaPorDefecto'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+		<member name='idioma' dataType='String' fromElement='idioma'/>
+		<!-- <member name='imagenes' dataType='Imagen' collection='Map' fromElement='imagenes'/>
+		<member name='tipoLetra' dataType='String' fromElement='tipoLetra'/>
+		<member name='colores' dataType='Color' collection='Map' fromElement='colores'/>
+		<member name='urls' dataType='Url' collection='Map' fromElement='urls'/>
+		<member name='headerPath' dataType='Url' collection='Map' fromElement='headerPath'/>
+		<member name='footerPath' dataType='Url' collection='Map' fromElement='footerPath'/>-->
+		<member name='finantialOrgs' dataType='FinantialOrg' collection='Map' fromElement='finantialOrgs'/>
+		<member name='paymentModes' dataType='PaymentMode' collection='Map' fromElement='paymentModes'/>	
+	</class>
+	
+	<!-- Configuracion de una Entidad Financiera -->
+	<class name='FinantialOrgConfig' package='p12f.exe.pasarelapagos.objects.config' fromElement='finantialOrgConfig'>
+		<member name='oid' dataType='String' fromAttribute='oid' isOID='true'/>
+		<member name='activa' dataType='boolean' fromAttribute='activa'/>
+		<member name='TPVVirtual' dataType='boolean' fromAttribute='isTPVVirtual'/>
+		<member name='orden' dataType='int' fromElement='orden'/>
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+		<member name='imagenes' dataType='Imagen' collection='Map' fromElement='imagenes'/>
+		<member name='urls' dataType='Url' collection='Map' fromElement='urls'/>
+		<member name='caracteristicas' dataType='Map' fromElement='caracteristicas'/>	
+		<member name='paymentGatewayVersion' dataType='String' fromElement='paymentGatewayVersion'/>	
+		<member name='claves' dataType='Map' fromElement='claves'/>		
+	</class>
+	
+	<!-- Configuracion de un sufijo -->
+	<class name='PaymentTypeConfig' package='p12f.exe.pasarelapagos.objects.config' fromElement='paymentTypeConfig'>
+		<member name='oid' dataType='String' fromAttribute='oid' isOID='true'/>	
+		<member name='activa' dataType='boolean' fromAttribute='activa'/>
+		<member name='emisor' dataType='String' fromElement='emisor'/>	
+		<member name='tributo' dataType='String' fromElement='tributo'/>	
+		<member name='formato' dataType='String' fromElement='formato'/>
+		<member name='validar' dataType='int' fromElement='validar'/>	
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>		
+		<member name='conceptos' dataType='ConceptoPeticion' collection='List' fromElement='conceptos'/>
+		<member name='imagenes' dataType='Imagen' collection='Map' fromElement='imagenes'/>
+		<member name='mensajes' dataType='Mensaje' collection='Map' fromElement='mensajes'/>
+		<member name='backend' dataType='Backend' fromElement='backend'/>
+		<member name='aplicacion' dataType='Aplicacion' fromElement='aplicacion'/>
+		<member name='liquidacion' dataType='Liquidacion' fromElement='liquidacion'/>
+		<member name='domiciliacion' dataType='Domiciliacion' fromElement='domiciliacion'/>
+		<member name='finantialOrgs' dataType='FinantialOrg' collection='Map' fromElement='finantialOrgs'/>
+		<member name='paymentModes' dataType='PaymentMode' collection='Map' fromElement='paymentModes'/>	
+		<member name='codigosComercio' dataType='CodigoComercio' collection='Map' fromElement='codigosComercio'/>
+	</class>
+	
+	<!-- Codigo de comercio en un TPV Virtual. -->
+	<class name='CodigoComercio' package='p12f.exe.pasarelapagos.objects.config' fromElement='codigoComercio'>
+		<member name='entidad' dataType='String' fromAttribute='entidad' isOID='true'/>	
+		<member name='comercio' dataType='String' fromElement='comercio'/>	
+	</class>
+	
+	<class name='EventListenerConfig' package='p12f.exe.pasarelapagos.objects.config' fromElement='eventListenerConfig'>
+		<member name='eventListenerMethodBitMap' dataType='String' fromElement='eventListenerMethodBitMap'/>
+		<member name='eventListenerClass' dataType='String' fromElement='eventListenerClass'/>
+		<member name='properties' dataType='Map' fromElement='properties'/>
+	</class>
+	
+	<!-- Configuracion de un uso -->
+	<class name='UseConfig' package='p12f.exe.pasarelapagos.objects.config' fromElement='useConfig'>
+		<member name='oid' dataType='String' fromAttribute='oid' isOID='true'/>		
+		<member name='descripcion' dataType='Map' fromElement='descripcion'/>
+	</class>
+	
+	<!--Relacion de un pago y un uso -->
+	<class name='PaymentUse' package='p12f.exe.pasarelapagos.objects.config' fromElement='paymentUse'>		
+		<member name='admin' dataType='String' fromElement='admin'/>
+		<member name='tipo' dataType='String' fromElement='tipo'/>
+		<member name='format' dataType='String' fromElement='format'/>
+		<member name='use' dataType='String' fromElement='use'/>
+	</class>
+	
+	<!-- ********************************************* CONSULTA DE CONFIGURACIONES ************************************* -->
+	<class name='BaseConfigQueryResult' package='p12f.exe.pasarelapagos.objects.config.query' fromElement='baseConfigQueryResult'>		
+		<member name='numResult' dataType='int' fromElement='numResult'/>
+		<member name='results' dataType='String' collection='Map' fromElement='results'/>
+	</class>
+
+	<!--  ************************** CONFIGURACIONES ******************************** --> 
+ 	<class name="MarshallerArrayContainer" package="com.ejie.r01f.xml.marshalling" fromElement="arrayContainer">
+  		<member name="array" dataType="String" collection="Array" ofElements="oid" fromElement="array" /> 
+ 	</class>
+ 	
+ 	<!--  ************************** BUSQUEDAS ******************************** --> 
+ 	
+    <class name='PaymentQuery' package='p12f.exe.search' fromElement='paymentQuery'>	
+ 	    <member name='thirdPartyList' dataType='ThirdPartySearchedParam' collection='List' fromElement='thirdPartyList'/>
+		<member name='expList' dataType='EXPSearchedParam' collection='List' fromElement='expList'/>
+		<member name='paymentDataParameterList' dataType='PaymentDataSearchedParam' collection='List'  fromElement='paymentDataSearchedParamList'/>
+		<member name='stateParameterList' dataType='PaymentStateSearchedParam'  collection='List' fromElement='paymentStateSearchedParamList'/>
+	</class>
+	
+	<class name='ThirdPartySearchedParam' package='p12f.exe.search.parameters' fromElement='thrirdPartySearchedParam'>	
+		<member name='dniNIF' dataType='String' fromElement='dniNIF'/>
+		<member name='razonSocial' dataType='String' fromElement='razonSocial'/>
+	</class>	
+	
+	
+	<class name='EXPSearchedParam' package='p12f.exe.search.parameters' fromElement='EXPSearchedParam'>	
+		<member name='codExp' dataType='String' fromElement='codExp'/>
+		<member name='codFamily' dataType='String' fromElement='codFamily'/>
+	</class>
+	
+ 	<class name='PaymentStateSearchedParam' package='p12f.exe.search.parameters' fromElement='paymentStateSearchedParam'>	
+		<member name='stateCode' dataType='String' fromElement='stateCode'/>
+		<member name='nrc' dataType='String' fromElement='nrc'/>
+		<member name='dateFrom' dataType='String' fromElement='dateFrom'/>
+		<member name='dateTo' dataType='String' fromElement='dateTo'/>
+		<member name='finantialOrg' dataType='String' fromElement='finantialOrg'/>
+	</class>	
+	
+	 <class name='PaymentDataSearchedParam' package='p12f.exe.search.parameters' fromElement='paymentDataSearchedParam'>	
+		<member name='oidPago' dataType='String' fromElement='oidPago'/>
+		<member name='admin' dataType='String' fromElement='admin'/>
+		<member name='typo' dataType='String' fromElement='typo'/>
+		<member name='format' dataType='String' fromElement='format'/>
+	</class>
+	
+	<class name='PaymentSearchResult' package='p12f.exe.search' fromElement='paymentSearchResult'>	
+		<member name='expCode' dataType='String' fromElement='expCode'/>
+		<member name='nrcCode' dataType='String' fromElement='nrcCode'/>
+		<member name='stateCode' dataType='String' fromElement='stateCode'/>
+		<member name='dni' dataType='String' fromElement='dni'/>
+		<member name='pagoIdField' dataType='String' fromElement='pagoIdField'/>
+		<member name='expFamily' dataType='String' fromElement='expFamily'/>
+		<member name='adminField' dataType='String' fromElement='adminField'/>
+		<member name='typoField' dataType='String' fromElement='typoField'/>
+		<member name='importe' dataType='long' fromElement='importe'/>	
+		<member name='initDate' dataType='Date(dd-MM-yyyy)' fromElement='initDate'/>	
+	</class>
+	
+	<!--  ************************** SEGURIDAD ******************************** --> 
+	
+	<class name='SecurityContext' package='p12f.exe.pasarelapagos.objects.security' fromElement='securityContext'>	
+		<member name='userID' dataType='String' fromElement='userID'/>
+		<member name='token' dataType='String' fromElement='token'/>	
+	</class>
+
+</classes>
+

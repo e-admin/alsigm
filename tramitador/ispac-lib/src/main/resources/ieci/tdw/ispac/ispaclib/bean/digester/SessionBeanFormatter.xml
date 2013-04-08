@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt" property='ID' readOnly='false'
+		title='' fieldType='CHECKBOX' width='6%' />
+	<propertyfmt type="BeanPropertySimpleFmt" property='USUARIO' readOnly='false'
+		title='Usuario' fieldType='LIST' width='14%' />
+	<propertyfmt type="BeanPropertySimpleFmt" property='HOST' readOnly='false'
+		title='Host' fieldType='LIST' width='10%' />
+	<propertyfmt type="BeanPropertySessionFmt" property='TIEMPO_SS' readOnly='false'
+		format='hh:mm:ss - dd/MM/yyyy' title='Inicio Sesión' fieldType='LIST' 
+		width='26%'/>
+	<propertyfmt type="BeanPropertyDateFmt" property='FECHA' readOnly='false'
+		format='hh:mm:ss - dd/MM/yyyy' title='Última operación' fieldType='LIST' 
+		width='26%'/>
+	<propertyfmt type="BeanPropertySessionFmt" property='TIEMPO_OP' readOnly='false'
+		format='TOHHMMSS' title='Tiempo Op. (sg)' fieldType='LIST' width='18%' />
+	<propertyfmt type="BeanPropertySimpleFmt" property='HITS' readOnly='false'
+		title='Hits' fieldType='LIST' width='10%' />
+</beanformatter>

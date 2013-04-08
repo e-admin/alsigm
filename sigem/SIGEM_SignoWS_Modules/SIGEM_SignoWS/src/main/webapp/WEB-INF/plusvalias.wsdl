@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ancert.notariado.org/XML/Plusvalias/Liquidacion" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ancert.notariado.org/XML/Plusvalias/Liquidacion" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema targetNamespace="http://ancert.notariado.org/XML/Plusvalias/Liquidacion" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:include schemaLocation="IIVTNU-WS-Ayto.xsd"/>
+			<xsd:element name="MESSAGE_REQUEST">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element ref="impl:CALCULO_LIQUIDACION"/>
+						<xsd:element ref="impl:EXENCIONES_BONIFICACIONES"/>
+						<xsd:element ref="impl:PAGO_LIQUIDACION"/>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="MESSAGE_RESPONSE">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element ref="impl:CALCULO_LIQUIDACION"/>
+						<xsd:element ref="impl:EXENCIONES_BONIFICACIONES"/>
+						<xsd:element ref="impl:PAGO_LIQUIDACION"/>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="processRequest">
+		<wsdl:part element="impl:MESSAGE_REQUEST" name="part"/>
+	</wsdl:message>
+	<wsdl:message name="processResponse">
+		<wsdl:part element="impl:MESSAGE_RESPONSE" name="processReturn"/>
+	</wsdl:message>
+	<wsdl:portType name="SOAPGateway">
+		<wsdl:operation name="process">
+			<wsdl:input message="impl:processRequest" name="processRequest"/>
+			<wsdl:output message="impl:processResponse" name="processResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SOAPGatewaySoapBinding" type="impl:SOAPGateway">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="process">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="processRequest">
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="processResponse">
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SOAPGatewayService">
+		<wsdl:port binding="impl:SOAPGatewaySoapBinding" name="SOAPGateway">
+			<wsdlsoap:address location="http://localhost:8080/SIGEM_SignoWS/services/LiquidacionPlusvalias"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

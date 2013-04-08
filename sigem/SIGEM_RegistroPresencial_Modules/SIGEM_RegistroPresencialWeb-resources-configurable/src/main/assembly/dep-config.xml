@@ -1,0 +1,44 @@
+<assembly>
+	<id>configurableSigem</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}/target/generated-resources/SIGEM_RegistroPresencialWeb</directory>
+			<filtered>true</filtered>
+			<outputDirectory>/SIGEM_RegistroPresencialWeb/</outputDirectory>
+			<excludes>
+				<exclude>**/Isicres/**</exclude>
+			</excludes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/target/generated-resources/SIGEM_RegistroPresencialWeb/Isicres</directory>
+			<filtered>true</filtered>
+			<outputDirectory>/SIGEM_RegistroPresencialWeb/</outputDirectory>
+			<includes>
+				<include>**/log4j.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/target/generated-resources/SIGEM_RegistroPresencialWeb</directory>
+			<filtered>false</filtered>
+			<outputDirectory>/SIGEM_RegistroPresencial/</outputDirectory>
+			<includes>
+				<include>**/ISicres-resources*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/../SIGEM_RegistroPresencialWeb/src/main/resources/SIGEM_RegistroPresencialWeb</directory>
+			<filtered>false</filtered>
+			<includes>
+				<include>**/*.jpg</include>
+				<include>**/*.gif</include>
+				<include>**/*.css</include>
+			</includes>
+			<outputDirectory>/SIGEM_RegistroPresencialWeb/</outputDirectory>
+		</fileSet>
+	</fileSets>
+
+</assembly>

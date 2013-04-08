@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="TerceroValidadoJuridicoVO">
+
+	<select id="getTerceroValidadoJuridicoVOs" resultMap="TerceroValidadoVO.tercero">
+		SELECT id, type_doc, cif as documento, name as first_name, 'NULL' as second_name, 'NULL' as surname, 'JURIDICO' as tipoTercero
+		FROM scr_pjur
+	</select>
+
+	<insert id="addTerceroValidadoJuridicoVO"
+		parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoJuridicoVO">
+		INSERT INTO scr_pjur (id, <isNotEmpty property="tipoDocumento.id" close=",">type_doc</isNotEmpty> cif, name)
+		VALUES
+		(#id:INTEGER#, <isNotEmpty property="tipoDocumento.id" close=",">#tipoDocumento.id:INTEGER#</isNotEmpty> #numeroDocumento#,
+		#razonSocial#)
+	</insert>
+
+	<update id="updateTerceroValidadoJuridicoVO" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoJuridicoVO">
+		UPDATE scr_pjur
+		SET <isEmpty property="tipoDocumento.id" close=","> type_doc=null</isEmpty><isNotEmpty property="tipoDocumento.id" close=",">type_doc=#tipoDocumento.id:INTEGER#</isNotEmpty> cif=#numeroDocumento#, name=#razonSocial#
+		WHERE id=#id:INTEGER#
+	</update>
+
+	<delete id="deleteTerceroValidadoJuridicoVO" parameterClass="java.lang.String">
+		DELETE FROM scr_pjur
+		WHERE id=#value:INTEGER#
+	</delete>
+
+	<delete id="deleteTerceroValidadoJuridicoVOs">
+		DELETE FROM scr_pjur
+	</delete>
+
+	<select id="findByCriteria" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.search.CriteriaVO"
+		resultMap="TerceroValidadoVO.terceroJuridico">
+		SELECT id, type_doc, cif as documento, name as first_name, 'NULL' as second_name, 'NULL' as surname, 'JURIDICO' as tipoTercero
+		FROM scr_pjur
+		<include refid="TerceroValidadoVO.dynamicCriteriaSearch" />
+	</select>
+
+	<select id="countByCriteria" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.search.CriteriaVO"
+		resultClass="java.lang.Integer">
+		SELECT count(*)
+		FROM scr_pjur
+		<include refid="TerceroValidadoVO.dynamicCriteriaSearch" />
+	</select>
+
+	<select id="findByDocumentNumber" parameterClass="java.util.HashMap"
+		resultMap="TerceroValidadoVO.terceroJuridico">
+		SELECT id, type_doc, cif as documento, name as first_name, 'NULL' as second_name, 'NULL' as surname, 'JURIDICO' as tipoTercero
+		FROM scr_pjur
+		WHERE type_doc=#type_doc# AND nif=#nif#
+		ORDER BY id ASC
+	</select>
+
+</sqlMap>

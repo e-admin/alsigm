@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="DocumentoVO">
+
+	<typeAlias alias="documento"
+		type="es.ieci.tecdoc.fwktd.dm.bd.vo.DocumentoVO" />
+
+	<resultMap id="documentoResultMap" class="documento">
+		<result property="id" column="id" />
+		<result property="nombre" column="nombre" />
+		<result property="tipoMime" column="tipo_mime" />
+		<result property="tamano" column="tamano" />
+		<result property="fechaCreacion" column="fecha_creacion" />
+		<result property="fechaModificacion" column="fecha_modificacion" />
+		<result property="metadatos" column="metadatos" />
+	</resultMap>
+
+	<sql id="table">documentos</sql>
+	<sql id="select_columns">id, nombre, tipo_mime, tamano, fecha_creacion, fecha_modificacion, metadatos</sql>
+	<sql id="insert_columns">id, nombre, tipo_mime, tamano, fecha_creacion, fecha_modificacion, metadatos, contenido</sql>
+	<sql id="content_column">contenido</sql>
+	<sql id="insert">#id#, #nombre#, #tipoMime#, #tamano#, #fechaCreacion#, #fechaModificacion#, #metadatos#, #contenido#</sql>
+	<sql id="update">nombre=#nombre#, tipo_mime=#tipoMime#, tamano=#tamano#, fecha_modificacion=#fechaModificacion#, metadatos=#metadatos#</sql>
+	<sql id="updateContent">nombre=#nombre#, tipo_mime=#tipoMime#, tamano=#tamano#, fecha_modificacion=#fechaModificacion#, metadatos=#metadatos#, contenido=#contenido#</sql>
+
+	<select id="getDocumentoVOs" resultMap="documentoResultMap">
+		SELECT <include refid="select_columns"/> FROM  <include refid="table"/>
+	</select>
+
+	<select id="existeDocumentoVO" parameterClass="java.lang.String" resultClass="java.lang.Integer">
+		SELECT count(*) FROM <include refid="table"/>
+		WHERE id=#value#
+	</select>
+
+	<select id="getDocumentoVO" parameterClass="java.lang.String" resultMap="documentoResultMap">
+		SELECT <include refid="select_columns"/> FROM  <include refid="table"/>
+		WHERE id=#value#
+	</select>
+
+	<select id="getContenidoDocumentoVO" parameterClass="java.lang.String" resultClass="java.lang.Object">
+		SELECT <include refid="content_column"/> FROM  <include refid="table"/>
+		WHERE id=#value#
+	</select>
+
+	<insert id="addDocumentoVO" parameterClass="documento">
+		INSERT INTO <include refid="table"/> (<include refid="insert_columns"/>)
+		VALUES (<include refid="insert"/>)
+	</insert>
+
+	<update id="updateDocumentoVO" parameterClass="documento">
+		UPDATE <include refid="table"/> SET	<include refid="update"/>
+		WHERE id=#id#
+	</update>
+
+	<update id="updateDocumentoVOWithContent" parameterClass="documento">
+		UPDATE <include refid="table"/> SET	<include refid="updateContent"/>
+		WHERE id=#id#
+	</update>
+
+	<delete id="deleteDocumentoVO" parameterClass="java.lang.String">
+		DELETE FROM <include refid="table"/>
+		WHERE id=#value#
+	</delete>
+
+</sqlMap>

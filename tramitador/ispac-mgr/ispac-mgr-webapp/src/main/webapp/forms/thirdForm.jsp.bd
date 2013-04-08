@@ -1,0 +1,785 @@
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
+<%@ taglib uri="/WEB-INF/ispac-util.tld" prefix="ispac"%>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ page import='ieci.tdw.ispac.api.ISPACEntities'%>
+
+<c:set var="thirdPartyAPIClass" value="${ISPACConfiguration.THIRDPARTY_API_CLASS}" />
+
+<script language='JavaScript' type='text/javascript'><!--
+	
+	var block = 1;
+
+	function showTab(i) {
+	
+		if (document.getElementById('block'+ i) != undefined) {
+		
+			document.getElementById('block'+ block).style.display='none';
+			document.getElementById('tdlink'+ block).className="unselect";
+			document.getElementById('block'+ i).style.display='block';
+			document.getElementById('tdlink'+ i).className = 'select';
+			block = i;
+		}
+		else {
+			document.getElementById('block'+ block).style.display='block';
+			document.getElementById('tdlink'+ block).className = 'select';
+		}
+		
+		// Guardar la solapa que se muestra
+    	document.defaultForm.block.value = block;
+	}
+
+	function save() {
+		
+		document.defaultForm.target = "ParentWindow";
+		document.defaultForm.action = "storeEntity.do";
+		document.defaultForm.name = "Intervinientes";
+		
+		<logic:notEmpty scope="request" name="displayTagOrderParams">
+			document.defaultForm.action = document.defaultForm.action + "?" + '<bean:write scope="request" name="displayTagOrderParams" filter="false"/>';
+		</logic:notEmpty>
+		
+		/*
+		idext = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:ID_EXT)' ];
+    	if (idext.value == '') {
+    	
+    		document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ].value = '';
+    	}
+    	*/
+		
+		if (validateIntervinientes(document.defaultForm)) {
+			
+			document.defaultForm.submit();
+		}
+		
+		ispac_needToConfirm = true;
+	}
+	
+	function selectThirdParty(target, action) {
+		
+		/*
+		ndoc = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ];
+		
+		if (!ndoc.readOnly) {
+			
+			executeFrame(target, action);
+		}
+		*/
+		
+		nombre = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NOMBRE)' ];
+		
+		if (nombre.readOnly) {
+			
+			executeFrame(target, action);
+		}
+	}
+	
+	function delete_THIRD_SEARCH_THIRD_PARTY() {
+		
+		/*
+		idext = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:ID_EXT)' ];
+		if (idext.value != '') {
+		*/
+	
+	 	if (confirm('<bean:message key="forms.participantes.msg.delete.data.thirdParty"/>')) {
+	 		
+	 		checkRadioById('validatedThirdParty');
+	 		ndoc = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ];
+	 		setNotReadOnly(ndoc);
+	 		setReadOnly(document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NOMBRE)' ]);
+			clearThirdParty();
+	 		ndoc.focus();
+	 	}
+	 	
+	 	ispac_needToConfirm = true;
+	}
+	
+	function clearThirdParty() {
+	
+		document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ].value = '';
+		clearSearchedDataThirdParty();
+	}
+	
+	function clearSearchedDataThirdParty() {
+	
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:ID_EXT)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:TIPO_PERSONA)' ].value = '';
+		document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NOMBRE)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:DIRNOT)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:LOCALIDAD)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:C_POSTAL)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:CAUT)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:TFNO_FIJO)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:TFNO_MOVIL)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:DIRECCIONTELEMATICA)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:TIPO_DIRECCION)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(TIPO_DIRECCION_SPAC_TBL_005:SUSTITUTO)' ].value = '';
+ 	    document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:ROL)' ].value = '';
+   	    document.defaultForm.elements[ 'property(ROL_SPAC_TBL_002:SUSTITUTO)' ].value = '';
+	}
+	
+	function return_THIRD_SEARCH_THIRD_PARTY() {	
+
+		setReadOnly(document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ]);
+		setReadOnly(document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NOMBRE)' ]);
+	}
+	
+	function clickValidatedThirdParty() {
+	
+		/*
+		if (document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:ID_EXT)' ].value == '') {
+	
+			clearThirdParty();
+		}
+		
+		setReadOnly(document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NOMBRE)' ]);
+		ndoc = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ];
+		setNotReadOnly(ndoc);
+		ndoc.focus();
+		*/
+		
+		nombre = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NOMBRE)' ];
+		
+		if (!nombre.readOnly) {
+		
+			clearSearchedDataThirdParty();
+			setReadOnly(nombre);
+			ndoc = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ];
+			setNotReadOnly(ndoc);
+			ndoc.focus();
+		}
+	}
+	
+	function clickNotValidatedThirdParty() {
+	
+		if (document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:ID_EXT)' ].value != '') {
+	
+			clearThirdParty();
+		}
+		
+		//setReadOnly(document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ]);
+		nombre = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NOMBRE)' ];
+		setNotReadOnly(nombre);
+		//nombre.focus();
+		ndoc = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ];
+		setNotReadOnly(ndoc);
+		ndoc.focus();
+	}
+
+//--></script>
+
+<ispac:rewrite id="imgcalendar" href="img/calendar/"/>
+<ispac:rewrite id="jscalendar" href="../scripts/calendar.js"/>
+<ispac:rewrite id="buttoncalendar" href="img/calendar/calendarM.gif"/>
+<ispac:calendar-config imgDir='<%= imgcalendar %>' scriptFile='<%= jscalendar %>'/>
+
+<html:form action="storeEntity.do">
+
+	<!-- Nombre del formulario, necesario para realizar la validación -->
+	<html:javascript formName="Intervinientes"/>
+
+	<!-- Solapa que se muestra -->
+	<html:hidden property="block" value="1"/>
+	
+	<!-- Nombre de Aplicación -->
+	<html:hidden property="entityAppName"/>
+	<!-- Identificador de la entidad -->
+	<html:hidden property="entity"/>
+	<!-- Identificador del registro -->
+	<html:hidden property="key"/>
+	<!-- Indicador de sólo lectura -->
+	<html:hidden property="readonly"/>
+	
+	<html:hidden property="property(SPAC_DT_INTERVINIENTES:ID_EXT)"/>
+	<html:hidden property="property(SPAC_DT_INTERVINIENTES:TIPO_PERSONA)"/>
+	
+	<c:set var="ENTITY_NULLREGKEYID" scope="page"><%=ISPACEntities.ENTITY_NULLREGKEYID%></c:set>
+
+	<table cellpadding="0" cellspacing="0" width="100%">
+	
+		<tr>
+			<td>
+			
+				<table class="boxTab" width="100%" border="0" cellspacing="0" cellpadding="0">
+				
+					<tr>
+						<td class="title" height="28px">
+						
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+							
+								<tr>
+									<td>
+									
+										<table align="center" cellpadding="0" cellspacing="0" border="0" width="100%">
+										
+											<tr>
+												<td>
+												
+													<!-- COMIENZO DE LAS ACCIONES -->
+													<table cellpadding="0" cellspacing="0" border="0" height="100%">
+													
+														<tr>
+															<td width="4px" height="28px"><img height="1" width="4px" src='<ispac:rewrite href="img/pixel.gif"/>'/></td>
+																		
+															<logic:equal value="false" property="readonly" name="defaultForm">
+	
+																<!--ACCION NUEVO -->
+																<td class="formaction" height="28px" width="70px">
+																	
+																	<c:url value="${urlExpDisplayTagOrderParams}" var="link">
+																		<c:if test="${!empty param.stageId}">
+																			<c:param name="stageId" value='${param.stageId}'/>
+																		</c:if>
+																		<c:if test="${!empty param.taskId}">
+																			<c:param name="taskId" value='${param.taskId}'/>
+																		</c:if>
+																		<c:if test="${!empty param.activityId}">
+																			<c:param name="activityId" value='${param.activityId}'/>
+																		</c:if>
+																		<c:param name="entity" value="${defaultForm.entity}"/>
+																		<c:param name="key" value="${ENTITY_NULLREGKEYID}"/>
+																	</c:url>
+																	
+																	<a href='<c:out value="${link}"/>' class="formaction"><bean:message key="forms.button.new"/></a>
+																	
+																</td>
+																<!--FIN ACCION NUEVO -->
+																
+																<td height="28px"><img height="1" src='<ispac:rewrite href="img/pixel.gif"/>'/></td>
+																
+																<!--ACCION SALVAR -->
+																<td class="formaction" height="28px" width="70px">
+																
+																	<a onclick="javascript: ispac_needToConfirm = false;" href="javascript:save();" class="formaction">
+																		<bean:message key="forms.button.save"/>
+																	</a>
+																	
+																</td>
+																<!--FIN ACCION SALVAR -->
+																
+																<!--ACCION ELIMINAR -->
+																<c:if test="${defaultForm.key != ENTITY_NULLREGKEYID}">
+																
+																	<td height="28px"><img height="1" src='<ispac:rewrite href="img/pixel.gif"/>'/></td>
+																	
+																	<td class="formaction" height="28px" width="70px">
+																	
+																		<c:url value='deleteRegEntity.do' var="deleteLink">
+																			<c:if test="${!empty param.stageId}">
+																				<c:param name="stageId" value='${param.stageId}'/>
+																			</c:if>
+																			<c:if test="${!empty param.taskId}">
+																				<c:param name="taskId" value='${param.taskId}'/>
+																			</c:if>
+																			<c:if test="${!empty param.activityId}">
+																				<c:param name="activityId" value='${param.activityId}'/>
+																			</c:if>
+																			<c:param name="entity" value="${defaultForm.entity}"/>
+																			<c:param name="key" value="${defaultForm.key}"/>
+																		</c:url>
+																		
+																		<logic:notEmpty scope="request" name="displayTagOrderParams">
+																		
+																			<a onclick="javascript: ispac_needToConfirm = false;" href="javascript: _confirm('<c:out value="${deleteLink}"/>' + '&' + '<bean:write scope="request" name="displayTagOrderParams" filter="false"/>', <bean:message key="ispac.action.entity.delete"/>, true);" class="formaction">
+																				<bean:message key="forms.button.delete"/>
+																			</a>
+																			
+																		</logic:notEmpty>
+																		
+																		<logic:empty scope="request" name="displayTagOrderParams">
+																		
+																			<a onclick="javascript: ispac_needToConfirm = false;" href="javascript: _confirm('<c:out value="${deleteLink}"/>', <bean:message key="ispac.action.entity.delete"/>, true);" class="formaction">
+																				<bean:message key="forms.button.delete"/>
+																			</a>
+																			
+																		</logic:empty>
+																		
+																	</td>
+																	
+																</c:if>
+																<!--FIN ACCION ELIMINAR -->
+																
+															</logic:equal>
+															
+															<td height="28px"><img height="1" src='<ispac:rewrite href="img/pixel.gif"/>'/></td>
+														</tr>
+														
+													</table>
+													<!-- FINAL DE LAS ACCIONES -->
+													
+												</td>
+											</tr>
+											
+										</table>
+										
+									</td>
+								</tr>
+								
+							</table>
+							
+						</td>
+					</tr>
+					
+					<!-- FORMULARIO -->
+					<tr>
+						<td class="blank">
+						
+							<table width="100%" border="0" cellspacing="2" cellpadding="2">
+							
+								<tr>
+									<td height="5px" colspan="3"><html:errors/></td>
+								</tr>
+								<tr>
+									<td width="8"><img height="1" width="8px" src='<ispac:rewrite href="img/pixel.gif"/>'/></td>
+									<td width="100%">
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
+<%@ taglib uri="/WEB-INF/ispac-util.tld" prefix="ispac" %>
+<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+
+<!-- DEFINICION DE LAS ANCLAS A LOS BLOQUES DE CAMPOS -->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td class="select" id="tdlink1" align="center">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:SPAC_DT_INTERVINIENTES_TAB_DATOS_PARTICIPANTE)" />
+</nobr>
+</td>
+</tr>
+</table>
+
+<table width="100%" border="0" class="formtable" cellspacing="0" cellpadding="0">
+<tr>
+<td><img height="8" src='<ispac:rewrite href="img/pixel.gif"/>'/></td>
+</tr>
+<tr>
+<td>
+
+<!-- BLOQUE1 DE CAMPOS -->
+<div style="display:block" id="block1">
+<div id="dataBlock_SPAC_DT_INTERVINIENTES_TAB_DATOS_PARTICIPANTE" style="position: relative; height: 340px; width: 600px;">
+
+<c:choose>
+<c:when test="${!empty thirdPartyAPIClass}">
+<div id="label_SPAC_DT_INTERVINIENTES:LBL_VALIDADO" style="position: absolute; top: 5px; left: 10px;"  class="formsTitleB">
+<nobr>
+<input type="radio" name="validationThirdParty" id="validatedThirdParty" onclick="javascript: clickValidatedThirdParty();" checked="checked" tabindex="101"/>
+&nbsp;<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:LBL_VALIDADO)" /></nobr>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:LBL_NO_VALIDADO" style="position: absolute; top: 5px; left: 100px;"  class="formsTitleB">
+<nobr>
+<input type="radio" name="validationThirdParty" id="notValidatedThirdParty" onclick="javascript: clickNotValidatedThirdParty();" tabindex="102"/>
+&nbsp;<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:LBL_NO_VALIDADO)" /></nobr>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:NDOC" style="position: absolute; top: 37px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:NDOC)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:NDOC" style="position: absolute; top: 34px; left: 175px;">
+<nobr>
+	<ispac:htmlTextImageFrame property="property(SPAC_DT_INTERVINIENTES:NDOC)"
+				  readonly="false"
+				  readonlyTag="false"
+				  propertyReadonly="readonly"
+				  styleClass="input"
+				  styleClassReadonly="inputReadOnly"
+				  size="30"
+				  maxlength="12"
+			  	  id="THIRD_SEARCH_THIRD_PARTY"
+				  target="workframe"
+			  	  action="searchThirdParty.do" 
+			  	  image="img/search-mg.gif" 
+			  	  titleKeyLink="search.thirdparty" 
+			  	  showFrame="false"
+			  	  inputField="SPAC_DT_INTERVINIENTES:NDOC"
+			  	  showDelete="true"
+			  	  jsDelete="delete_THIRD_SEARCH_THIRD_PARTY"
+			  	  titleKeyImageDelete="forms.participantes.title.delete.data.thirdParty"
+			  	  jsExecuteFrame="selectThirdParty" tabindex="103">
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:TIPO_PERSONA)" property="TIPOPERSONA"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:ID_EXT)" property="IDTITULAR"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:NOMBRE)" property="IDENTIDADTITULAR"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:DIRNOT)" property="DOMICILIO"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:C_POSTAL)" property="CPOSTAL"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:LOCALIDAD)" property="CIUDAD"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:CAUT)" property="REGIONPAIS"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:TFNO_FIJO)" property="TFNOFIJO"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:TFNO_MOVIL)" property="TFNOMOVIL"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:DIRECCIONTELEMATICA)" property="DIRECCIONTELEMATICA"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(SPAC_DT_INTERVINIENTES:TIPO_DIRECCION)" property="TIPODIRECCIONINTERESADO"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="property(TIPO_DIRECCION_SPAC_TBL_005:SUSTITUTO)" property="SUSTITUTOTIPODIRECCIONINTERESADO"/>
+		<ispac:parameter name="THIRD_SEARCH_THIRD_PARTY" id="JAVASCRIPT" property="return_THIRD_SEARCH_THIRD_PARTY"/>
+	</ispac:htmlTextImageFrame>
+</nobr>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:NOMBRE" style="position: absolute; top: 67px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:NOMBRE)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:NOMBRE" style="position: absolute; top: 64px; left: 175px;">
+<ispac:htmlTextarea property="property(SPAC_DT_INTERVINIENTES:NOMBRE)" readonly="true" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" rows="2" cols="80" tabindex="104">
+</ispac:htmlTextarea>
+</div>
+</c:when>
+<c:otherwise>
+<div id="label_SPAC_DT_INTERVINIENTES:LBL_VALIDADO" style="position: absolute; top: 5px; left: 10px;"  class="formsTitleB">
+<nobr>
+<input type="radio" name="validationThirdParty" id="validatedThirdParty" disabled="true" tabindex="101"/>
+&nbsp;<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:LBL_VALIDADO)" /></nobr>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:LBL_NO_VALIDADO" style="position: absolute; top: 5px; left: 100px;"  class="formsTitleB">
+<nobr>
+<input type="radio" name="validationThirdParty" id="notValidatedThirdParty" checked="checked" disabled="true" tabindex="102"/>
+&nbsp;<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:LBL_NO_VALIDADO)" /></nobr>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:NDOC" style="position: absolute; top: 37px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:NDOC)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:NDOC" style="position: absolute; top: 34px; left: 175px;">
+	<ispac:htmlText property="property(SPAC_DT_INTERVINIENTES:NDOC)" readonly="false" styleClass="input" size="30" maxlength="12" tabindex="103"/>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:NOMBRE" style="position: absolute; top: 67px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:NOMBRE)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:NOMBRE" style="position: absolute; top: 64px; left: 175px;">
+<ispac:htmlTextarea property="property(SPAC_DT_INTERVINIENTES:NOMBRE)" readonly="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" rows="2" cols="80" tabindex="104">
+</ispac:htmlTextarea>
+</div>
+</c:otherwise>
+</c:choose>
+
+<div id="label_SPAC_DT_INTERVINIENTES:ROL" style="position: absolute; top: 321px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:ROL)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:ROL" style="position: absolute; top: 318px; left: 175px;">
+<html:hidden property="property(SPAC_DT_INTERVINIENTES:ROL)" />
+<nobr>
+<ispac:htmlTextImageFrame property="property(ROL_SPAC_TBL_002:SUSTITUTO)" readonly="true" readonlyTag="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" size="50" id="SEARCH_SPAC_DT_INTERVINIENTES_ROL" target="workframe" action="selectSubstitute.do?entity=SPAC_TBL_002" image="img/search-mg.gif" titleKeyLink="select.rol" imageDelete="img/borrar.gif" titleKeyImageDelete="title.delete.data.selection" styleClassDeleteLink="tdlink" confirmDeleteKey="msg.delete.data.selection" showDelete="true" showFrame="true" width="640" height="480" tabindex="113">
+<ispac:parameter name="SEARCH_SPAC_DT_INTERVINIENTES_ROL" id="property(SPAC_DT_INTERVINIENTES:ROL)" property="VALOR" />
+<ispac:parameter name="SEARCH_SPAC_DT_INTERVINIENTES_ROL" id="property(ROL_SPAC_TBL_002:SUSTITUTO)" property="SUSTITUTO" />
+</ispac:htmlTextImageFrame>
+</nobr>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:DIRNOT" style="position: absolute; top: 103px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:DIRNOT)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:DIRNOT" style="position: absolute; top: 100px; left: 175px;">
+<ispac:htmlTextarea property="property(SPAC_DT_INTERVINIENTES:DIRNOT)" readonly="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" rows="2" cols="80" tabindex="105">
+</ispac:htmlTextarea>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:C_POSTAL" style="position: absolute; top: 165px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:C_POSTAL)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:C_POSTAL" style="position: absolute; top: 162px; left: 175px;">
+<ispac:htmlText property="property(SPAC_DT_INTERVINIENTES:C_POSTAL)" readonly="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" size="10" maxlength="10" tabindex="107">
+</ispac:htmlText>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:LOCALIDAD" style="position: absolute; top: 139px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:LOCALIDAD)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:LOCALIDAD" style="position: absolute; top: 136px; left: 175px;">
+<ispac:htmlText property="property(SPAC_DT_INTERVINIENTES:LOCALIDAD)" readonly="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" size="80" maxlength="150" tabindex="106">
+</ispac:htmlText>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:CAUT" style="position: absolute; top: 191px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:CAUT)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:CAUT" style="position: absolute; top: 188px; left: 175px;">
+<ispac:htmlText property="property(SPAC_DT_INTERVINIENTES:CAUT)" readonly="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" size="80" maxlength="150" tabindex="108">
+</ispac:htmlText>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:TFNO_FIJO" style="position: absolute; top: 217px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:TFNO_FIJO)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:TFNO_FIJO" style="position: absolute; top: 214px; left: 175px;">
+<ispac:htmlText property="property(SPAC_DT_INTERVINIENTES:TFNO_FIJO)" readonly="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" size="20" maxlength="32" tabindex="109">
+</ispac:htmlText>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:TFNO_MOVIL" style="position: absolute; top: 243px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:TFNO_MOVIL)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:TFNO_MOVIL" style="position: absolute; top: 240px; left: 175px;">
+<ispac:htmlText property="property(SPAC_DT_INTERVINIENTES:TFNO_MOVIL)" readonly="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" size="20" maxlength="32" tabindex="110">
+</ispac:htmlText>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:TIPO_DIRECCION" style="position: absolute; top: 295px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:TIPO_DIRECCION)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:TIPO_DIRECCION" style="position: absolute; top: 292px; left: 175px;">
+<html:hidden property="property(SPAC_DT_INTERVINIENTES:TIPO_DIRECCION)" />
+<nobr>
+<ispac:htmlTextImageFrame property="property(TIPO_DIRECCION_SPAC_TBL_005:SUSTITUTO)" readonly="true" readonlyTag="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" size="35" id="SEARCH_SPAC_DT_INTERVINIENTES_TIPO_DIRECCION" target="workframe" action="selectSubstitute.do?entity=SPAC_TBL_005" image="img/search-mg.gif" titleKeyLink="select.tipoDireccionNotificacion" imageDelete="img/borrar.gif" titleKeyImageDelete="title.delete.data.selection" styleClassDeleteLink="tdlink" confirmDeleteKey="msg.delete.data.selection" showDelete="true" showFrame="true" width="640" height="480" tabindex="112">
+<ispac:parameter name="SEARCH_SPAC_DT_INTERVINIENTES_TIPO_DIRECCION" id="property(SPAC_DT_INTERVINIENTES:TIPO_DIRECCION)" property="VALOR" />
+<ispac:parameter name="SEARCH_SPAC_DT_INTERVINIENTES_TIPO_DIRECCION" id="property(TIPO_DIRECCION_SPAC_TBL_005:SUSTITUTO)" property="SUSTITUTO" />
+</ispac:htmlTextImageFrame>
+</nobr>
+</div>
+<div id="label_SPAC_DT_INTERVINIENTES:DIRECCIONTELEMATICA" style="position: absolute; top: 269px; left: 10px;" class="formsTitleB">
+<nobr>
+<bean:write name="defaultForm" property="entityApp.label(SPAC_DT_INTERVINIENTES:DIRECCIONTELEMATICA)" />:</nobr>
+</div>
+<div id="data_SPAC_DT_INTERVINIENTES:DIRECCIONTELEMATICA" style="position: absolute; top: 266px; left: 175px;">
+<ispac:htmlText property="property(SPAC_DT_INTERVINIENTES:DIRECCIONTELEMATICA)" readonly="false" propertyReadonly="readonly" styleClass="input" styleClassReadonly="inputReadOnly" size="80" maxlength="60" tabindex="111">
+</ispac:htmlText>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td height="15"><img src='<ispac:rewrite href="img/pixel.gif"/>'/></td>
+</tr>
+</table><%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
+<%@ taglib uri="/WEB-INF/ispac-util.tld" prefix="ispac"%>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="/WEB-INF/displaytag.tld" prefix="display"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+
+									<logic:notEmpty name="defaultForm" property="items">
+										
+										<br/>
+										
+										<table width="100%" border="0" class="formtable" cellspacing="0" cellpadding="0">
+										
+											<tr>
+												<td><img height="8px" src='<ispac:rewrite href="img/pixel.gif"/>'/></td>
+											</tr>
+											<tr>
+												<td>
+
+													<table width="100%" border="0" cellspacing="0" cellpadding="0"> <!-- 9 -->
+
+														<tr>
+															<td colspan="3" align="center">
+															
+																<table width="95%" cellpadding="0" cellspacing="0">
+																
+																	<tr>			 
+																		<td width="95%" class="formsTitleB" >
+																			<b><nobr>
+																				<c:set var="_lista"><bean:write name="defaultForm" property="entityApp.label(LISTA)"/></c:set>
+																				<jsp:useBean id="_lista" type="java.lang.String"/>
+																				<logic:notEmpty name="_lista">
+																					<bean:write name="_lista"/>
+																				</logic:notEmpty>
+																				<logic:empty name="_lista">
+																					<bean:message key="forms.label.list"/>
+																				</logic:empty>
+																			</nobr></b>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td width="95%" height="2px" class="formsTitleB">
+																			<hr class="formbar"/>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																		
+																		  	<c:set var="_imagen"><bean:write name="defaultForm" property="entityApp.label(IMAGEN)"/></c:set>
+																			<jsp:useBean id="_imagen" type="java.lang.String"/>
+																			
+																			<!-- displayTag con formateador -->
+																			<bean:define name="defaultForm" property="formatter" id="formatter" type="ieci.tdw.ispac.ispaclib.bean.BeanFormatter"/>
+																		
+																			<display:table 	name="sessionScope.defaultForm.items"
+																							id="object"
+																							export='<%=formatter.getExport()%>'
+																							class='<%=formatter.getStyleClass()%>'
+																							sort='<%=formatter.getSort()%>'
+																							pagesize='<%=formatter.getPageSize()%>'
+																							defaultorder='<%=formatter.getDefaultOrder()%>'
+																							defaultsort='<%=formatter.getDefaultSort()%>'
+																							requestURI='<%=formatter.getRequestURI()%>'
+																							excludedParams="d-*"
+																							decorator="ieci.tdw.ispac.ispacweb.decorators.SelectedRowTableDecorator">
+																							
+																				<c:url value="${urlExpDisplayTagOrderParams}" var="link">
+																					<c:if test="${!empty param.stageId}">
+																						<c:param name="stageId" value='${param.stageId}'/>
+																					</c:if>
+																					<c:if test="${!empty param.taskId}">
+																						<c:param name="taskId" value='${param.taskId}'/>
+																					</c:if>
+																					<c:if test="${!empty param.activityId}">
+																						<c:param name="activityId" value='${param.activityId}'/>
+																					</c:if>
+																					<c:if test="${!empty param.numexp}">
+																						<c:param name="numexp" value="${param.numexp}"/>
+																					</c:if>
+																					<c:param name="entity" value="${defaultForm.entity}"/>
+																					<c:param name="key" value="${object.keyProperty}"/>
+																				</c:url>
+
+																			  	<display:setProperty name="export.csv" value="false"/>
+																			  	<display:setProperty name="export.xml" value="false"/>
+																			  	<display:setProperty name="export.pdf" value="false"/>
+																			  	
+																				<logic:notEmpty name="_imagen">
+																				  	
+																			       	<display:column headerClass="headerDisplay" media="html">
+																		                <a href='<c:out value="${link}"/>'><img height="16" width="16px" src='<ispac:rewrite href='<%="img/" + _imagen + ".gif"%>'/>' border="0"/></a>
+																			       	</display:column>
+																			       	
+																			    </logic:notEmpty>
+																		       	
+																				<c:set var="_entityApp" value="${defaultForm.entityApp}"/>
+																				<jsp:useBean id="_entityApp" type="ieci.tdw.ispac.ispaclib.app.EntityApp"/>
+																		       	
+																		       	<logic:iterate name="defaultForm" property="formatter" id="format" type="ieci.tdw.ispac.ispaclib.bean.BeanPropertyFmt">
+																		       																			       	
+																					<!-- ENLACE -->
+																					<logic:equal name="format" property="fieldType" value="LINK">
+																					
+																					  	<display:column title='<%=format.getTitle(_entityApp)%>'
+																					  					media='<%=format.getMedia()%>'
+																					  					headerClass='<%=format.getHeaderClass()%>'
+																					  					sortable='<%=format.getSortable()%>'
+																					  					sortProperty='<%=format.getPropertyName()%>'
+																					  					class='<%=format.getColumnClass()%>'
+																					  					decorator='<%=format.getDecorator()%>'
+																					  					comparator='<%=format.getComparator()%>'>
+
+																			                <a href='<c:out value="${link}"/>' class="tdlink">
+																			                	<%=format.formatProperty(object)%>
+																			                </a>
+																			                
+																					  	</display:column>
+																					  	
+																		   			</logic:equal>
+																		   			
+																		   			<!-- DATO DE LA LISTA -->
+																		   			<logic:equal name="format" property="fieldType" value="LIST">
+																		   			
+																						<display:column title='<%=format.getTitle(_entityApp)%>'
+																									    media='<%=format.getMedia()%>'
+																					  					headerClass='<%=format.getHeaderClass()%>'
+																					  					sortable='<%=format.getSortable()%>'
+																					  					sortProperty='<%=format.getPropertyName()%>'
+																					  					class='<%=format.getColumnClass()%>'
+																					  					decorator='<%=format.getDecorator()%>'
+																					  					comparator='<%=format.getComparator()%>'>
+																					  					
+																							<%=format.formatProperty(object)%>
+																							
+																						</display:column>
+																						
+																		   			</logic:equal>
+																		   			
+																				</logic:iterate>
+																				
+																			</display:table>
+
+																		</td>
+																	</tr>
+																
+																</table>
+															
+															</td>
+														</tr>
+														
+													</table>
+													
+												</td>
+											</tr>
+											
+										</table>
+										
+									</logic:notEmpty>
+
+									</td>
+									<td width="8"><img height="1" width="8px" src='<ispac:rewrite href="img/pixel.gif"/>'/></td>
+								</tr>
+								<tr>
+									<td height="5px" colspan="3"><img src='<ispac:rewrite href="img/pixel.gif"/>' height="5px"/></td>
+								</tr>
+								
+							</table>
+							
+						</td>
+					</tr>
+					
+				</table>
+				
+			</td>
+		</tr>
+		
+	</table>
+	
+</html:form>
+
+<%-- Para resituarse en la pestaña en la que nos encontrabamos --%>
+<logic:present parameter="block"> 
+	<bean:parameter id="_block" name="block"/>
+	<script language='JavaScript' type='text/javascript'><!--
+	
+		showTab(<bean:write name="_block"/>);
+	
+	//--></script>
+</logic:present>
+<%--
+<logic:notPresent parameter="block">
+	<script language='JavaScript' type='text/javascript'><!--
+	
+		var activeBlock = document.defaultForm.block.value;
+		if (activeBlock != '') {
+			showTab(activeBlock);
+		}
+		else {
+			showTab(block);
+		}
+		
+	//--></script>
+</logic:notPresent>
+--%>
+
+<%-- Control de campos al mostrar el formulario --%>
+<script language='JavaScript' type='text/javascript'><!--
+
+	var thirdPartyAPIClass = '<c:out value="${thirdPartyAPIClass}"/>';
+	var readonly = document.defaultForm.elements[ 'readonly' ].value;
+	
+	if (thirdPartyAPIClass != '') {
+	    idext = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:ID_EXT)' ];
+	    if (idext.value != '') {
+	    	checkRadioById('validatedThirdParty');
+	    	setReadOnly(document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ]);
+	    } else {
+	    	 nombre = document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NOMBRE)' ];
+	    	 if (nombre.value != '') {
+	    	 	
+	    	 	checkRadioById('notValidatedThirdParty');
+	    	 	//setReadOnly(document.defaultForm.elements[ 'property(SPAC_DT_INTERVINIENTES:NDOC)' ]);
+	    	 	
+	    	 	if (readonly != 'true') {
+		    	 	setNotReadOnly(nombre);
+		    	 }
+	    	 }
+	    }
+	}
+	
+	if (readonly != 'true') {
+		
+		// Para informar si se intenta salir del formulario sin guardar
+		ispac_formobserver_install(this, '<bean:message key="forms.message.confirm.exit"/>');
+		ispac_load_formvalues();
+	}
+	else {
+		disabledRadioById('validatedThirdParty');
+		disabledRadioById('notValidatedThirdParty');
+	}
+	
+//--></script>

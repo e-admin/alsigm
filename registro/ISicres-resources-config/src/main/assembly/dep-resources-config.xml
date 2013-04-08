@@ -1,0 +1,27 @@
+<assembly>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>../ISicres-Desktop-Web/src/main/resources</directory>
+			<outputDirectory>/</outputDirectory>
+			<excludes>
+				<exclude>Isicres/hibernate.cfg.xml</exclude>
+				<exclude>Isicres/ISicres-Configuration.xml</exclude>
+				<exclude>Isicres/ISicres-Events-Configuration.xml</exclude>
+				<exclude>Isicres/ISicres-Extension-Files-Configuration.xml</exclude>
+				<exclude>Isicres/log4j.xml</exclude>
+				<exclude>Isicres/quartz.properties</exclude>
+				<exclude>Isicres/ISicres-scheduler.xml</exclude>
+				<exclude>Isicres/database.properties</exclude>
+				<exclude>Isicres/intercambioRegistral.properties</exclude>
+				<exclude>commons-logging.properties</exclude>
+
+			</excludes>
+		</fileSet>
+
+	</fileSets>
+
+</assembly>

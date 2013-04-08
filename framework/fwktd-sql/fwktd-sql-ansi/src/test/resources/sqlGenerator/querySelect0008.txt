@@ -1,0 +1,2 @@
+SELECT "T".* FROM DATACM_4_0."Tarjetas" "T"  WHERE 
+"T".CL_CLI  IN (1, 2, 3) 

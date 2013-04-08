@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sistema_gestor_usuarios>
+	  <usuario>
+	    <externalUserId>IdEnSistemaExterno</externalUserId>
+	    <organizationUserId>IdEnSistemaOrganización</organizationUserId>
+	    <address>Dirección del Usuario</address>
+	    <email>email del Usuario</email>
+	    <name>Nombre</name>
+	    <surname>Apellidos</surname>
+	    <username>usuario1</username>
+	    <password>password encriptado</password>
+	  </usuario>
+	  <usuario>
+	    <externalUserId>IdEnSistemaExterno2</externalUserId>
+	    <organizationUserId>IdEnSistemaOrganizacion2</organizationUserId>
+	    <address>Dirección del Usuario</address>
+	    <email>email del Usuario</email>
+	    <name>Nombre</name>
+	    <surname>Apellidos</surname>
+	    <username>usuario2</username>
+	    <password>password encriptado</password>
+	  </usuario>	  
+</sistema_gestor_usuarios>

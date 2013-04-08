@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Factoria de gestion de configuracion -->
+
+	<bean id="fwktd_dm_configurationResourceLoaderImpl" name="fwktd_dm_configurationResourceLoader"
+		class="es.ieci.tecdoc.fwktd.core.spring.configuration.IeciSystemConfigurationResourceLoaderImpl" />
+
+	<bean id="fwktd_dm_configurationFactoryBeanImpl" name="fwktd_dm_configurationFactoryBean"
+		class="es.ieci.tecdoc.fwktd.dm.business.config.ConfigurationFactory">
+		<property name="configurationResourceLoader" ref="fwktd_dm_configurationResourceLoader" />
+		<property name="fileName" value="fwktd-dm/fwktd-dm-config.xml" />
+	</bean>
+
+	<bean id="fwktd_dm_configurationFactoryImpl" name="fwktd_dm_configurationFactory"
+		factory-bean="fwktd_dm_configurationFactoryBean" factory-method="getConfiguration">
+	</bean>
+
+
+	<!-- Factoria de servicio -->
+
+	<bean id="fwktd_dm_serviceFactoryImpl" name="fwktd_dm_serviceFactory"
+		class="es.ieci.tecdoc.fwktd.dm.business.service.impl.GestionDocumentalServiceFactoryImpl">
+		<property name="configuration" ref="fwktd_dm_configurationFactory" />
+	</bean>
+
+</beans>

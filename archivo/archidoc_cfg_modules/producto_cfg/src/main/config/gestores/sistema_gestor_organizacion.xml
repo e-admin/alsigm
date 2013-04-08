@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<sistema_organizacion>
+<!--************************************************************-->
+<!-- Entidad: EJEMPLO DE ORGANIZACIÓN		                				-->
+<!--************************************************************-->
+	
+	<!-- Instituciones
+	<organo>
+	   <id>Id_Institucion</id>
+	   <codigo>Id_Institucion</codigo>
+	   <nombre>NOMBRE INSTITUCIÓN</nombre>
+	   <nivel>0</nivel>
+	   <id_padre>0</id_padre>
+	   <institucion>si</institucion>
+	</organo>
+	 -->
+	<!-- Órganos 
+		  <organo>
+		     <id>Identificador</id>
+		     <codigo>Código</codigo>
+		     <nombre>Nombre Organo</nombre>
+		     <nivel>1</nivel>
+		     <id_padre>Id_Institucion</id_padre>
+		  </organo>
+	-->	  
+	<!-- Asociación de Usuario a Órganos/Instituciones
+  <organo_usuario>
+     	<usuario>Id_Usuario</usuario>
+     	<organo>Id_Organo</organo>
+  </organo_usuario>
+   -->
+   
+   <!-- Instituciones -->
+   	<organo>
+	   <id>INST1</id>
+	   <codigo>INST1</codigo>
+	   <nombre>Institución 1</nombre>
+	   <nivel>0</nivel>
+	   <id_padre>0</id_padre>
+	   <institucion>si</institucion>
+	</organo>
+   	<organo>
+	   <id>INST2</id>
+	   <codigo>INST2</codigo>
+	   <nombre>Institución 2</nombre>
+	   <nivel>0</nivel>
+	   <id_padre>0</id_padre>
+	   <institucion>si</institucion>
+	</organo>
+   	<organo>
+	   <id>INST3</id>
+	   <codigo>INST3</codigo>
+	   <nombre>Institución 3</nombre>
+	   <nivel>0</nivel>
+	   <id_padre>0</id_padre>
+	   <institucion>si</institucion>
+	</organo>
+   	<organo>
+	   <id>INST4</id>
+	   <codigo>INST4</codigo>
+	   <nombre>Institución 4</nombre>
+	   <nivel>0</nivel>
+	   <id_padre>0</id_padre>
+	   <institucion>si</institucion>
+	</organo>	
+   	<organo>
+	   <id>INST5</id>
+	   <codigo>INST5</codigo>
+	   <nombre>Institución 5</nombre>
+	   <nivel>0</nivel>
+	   <id_padre>0</id_padre>
+	   <institucion>si</institucion>
+	</organo>
+   	<organo>
+	   <id>INST6</id>
+	   <codigo>INST6</codigo>
+	   <nombre>Institución 6</nombre>
+	   <nivel>0</nivel>
+	   <id_padre>0</id_padre>
+	   <institucion>si</institucion>
+	</organo>	
+	
+   <!-- Instituciones -->
+   	<organo>
+	   <id>ORG1</id>
+	   <codigo>ORG1</codigo>
+	   <nombre>Órgano 1</nombre>
+	   <nivel>1</nivel>
+	   <id_padre>INST1</id_padre>
+	</organo>
+   	<organo>
+	   <id>ORG2</id>
+	   <codigo>ORG2</codigo>
+	   <nombre>Órgano 2</nombre>
+	   <nivel>1</nivel>
+	   <id_padre>INST2</id_padre>
+	</organo>
+   	<organo>
+	   <id>ORG3</id>
+	   <codigo>ORG3</codigo>
+	   <nombre>Órgano 3</nombre>
+	   <nivel>1</nivel>
+	   <id_padre>INST3</id_padre>
+	</organo>
+   	<organo>
+	   <id>ORG4</id>
+	   <codigo>ORG4</codigo>
+	   <nombre>Órgano 4</nombre>
+	   <nivel>1</nivel>
+	   <id_padre>INST4</id_padre>
+	</organo>	
+   	<organo>
+	   <id>ORG5</id>
+	   <codigo>ORG5</codigo>
+	   <nombre>Órgano 5</nombre>
+	   <nivel>1</nivel>
+	   <id_padre>INST5</id_padre>
+	</organo>	
+   	<organo>
+	   <id>ORG6</id>
+	   <codigo>ORG6</codigo>
+	   <nombre>Órgano 6</nombre>
+	   <nivel>1</nivel>
+	   <id_padre>INST6</id_padre>
+	</organo>
+	
+	<!-- Asociación de Usuario a Órganos/Instituciones -->
+  <organo_usuario>
+     	<usuario>USR1</usuario>
+     	<organo>ORG1</organo>
+  </organo_usuario>
+  <organo_usuario>
+     	<usuario>USR2</usuario>
+     	<organo>ORG2</organo>
+  </organo_usuario>
+  <organo_usuario>
+     	<usuario>USR3</usuario>
+     	<organo>ORG3</organo>
+  </organo_usuario>
+  <organo_usuario>
+     	<usuario>USR4</usuario>
+     	<organo>ORG4</organo>
+  </organo_usuario>
+  <organo_usuario>
+     	<usuario>USR5</usuario>
+     	<organo>ORG5</organo>
+  </organo_usuario>  
+  <organo_usuario>
+     	<usuario>USR6</usuario>
+     	<organo>ORG6</organo>
+  </organo_usuario>   
+</sistema_organizacion>

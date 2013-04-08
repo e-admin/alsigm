@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:soap="http://cxf.apache.org/bindings/soap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+	default-dependency-check="none" default-lazy-init="false">
+
+	<!-- Load the needed resources that are present in the cxf* jars -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+
+	<!-- servicio de intercambio registral -->
+
+	<jaxws:endpoint id="fwktd_sir_ws_intercambioRegistralEndpoint"
+		implementor="#fwktd_sir_ws_intercambioRegistralService"
+		address="/intercambioRegistral" />
+
+	<bean id="fwktd_sir_ws_intercambioRegistralServiceImpl" name="fwktd_sir_ws_intercambioRegistralService"
+		class="es.ieci.tecdoc.fwktd.sir.ws.service.impl.IntercambioRegistralServiceImpl">
+		<property name="intercambioRegistralManager" ref="fwktd_sir_ws_intercambioRegistralManager" />
+	</bean>
+
+	<!-- servicio de envio de ficheros a aplicacion -->
+
+	<bean id="fwktd_sir_ws_wssir8aEndpointImpl" name="fwktd_sir_ws_wssir8aEndpoint"
+		class="es.ieci.tecdoc.fwktd.sir.ws.service.impl.WSSIR8AServiceEndPoint">
+	</bean>
+
+	<bean id="fwktd_sir_ws_wssir8aServiceImpl" name="fwktd_sir_ws_wssir8aService"
+		class="es.ieci.tecdoc.fwktd.sir.ws.service.impl.WSSIR8AServiceImpl">
+		<property name="envioManager" ref="fwktd_sir_ws_envioManager" />
+	</bean>
+
+	<bean id="fwktd_sir_ws_wssir8bEndpointImpl" name="fwktd_sir_ws_wssir8bEndpoint"
+		class="es.ieci.tecdoc.fwktd.sir.ws.service.impl.WSSIR8BServiceEndPoint">
+	</bean>
+
+	<bean id="fwktd_sir_ws_wssir8bServiceImpl" name="fwktd_sir_ws_wssir8bService"
+		class="es.ieci.tecdoc.fwktd.sir.ws.service.impl.WSSIR8BServiceImpl">
+		<property name="envioManager" ref="fwktd_sir_ws_envioManager" />
+	</bean>
+
+	<!-- servicio de envio de mensaje de datos de control a aplicacion -->
+
+	<bean id="fwktd_sir_ws_wssir9EndpointImpl" name="fwktd_sir_ws_wssir9Endpoint"
+		class="es.ieci.tecdoc.fwktd.sir.ws.service.impl.WSSIR9ServiceEndPoint">
+	</bean>
+
+	<bean id="fwktd_sir_ws_wssir9ServiceImpl" name="fwktd_sir_ws_wssir9Service"
+		class="es.ieci.tecdoc.fwktd.sir.ws.service.impl.WSSIR9ServiceImpl">
+		<property name="envioManager" ref="fwktd_sir_ws_envioManager" />
+	</bean>
+
+</beans>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://impl.manager.cct.map.es"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://impl.manager.cct.map.es"
+	xmlns:intf="http://impl.manager.cct.map.es" xmlns:tns1="http://bean.cct.map.es"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://impl.manager.cct.map.es"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://bean.cct.map.es" />
+			<element name="recuperarTrazabilidad">
+				<complexType>
+					<sequence>
+						<element name="cdIntercambio" type="xsd:string" />
+						<element name="isRegistro" type="xsd:string" />
+						<element name="isEstadoFinal" type="xsd:boolean" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="recuperarTrazabilidadResponse">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="recuperarTrazabilidadReturn"
+							type="tns1:TrazabilidadWS" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="insertarTrazabilidad">
+				<complexType>
+					<sequence>
+						<element name="cdNodoError" type="xsd:string" />
+						<element name="cdOrDestino" type="xsd:string" />
+						<element name="cdOrOrigen" type="xsd:string" />
+						<element name="dsOrDestino" type="xsd:string" />
+						<element name="dsOrOrigen" type="xsd:string" />
+						<element name="cdUgDestino" type="xsd:string" />
+						<element name="dsUgDestino" type="xsd:string" />
+						<element name="cdUgOrigen" type="xsd:string" />
+						<element name="dsUgOrigen" type="xsd:string" />
+						<element name="dsErrorAlternativa" type="xsd:string" />
+						<element name="fechaAlta" type="xsd:dateTime" />
+						<element name="fechaMod" type="xsd:dateTime" />
+						<element name="cdIntercambio" type="xsd:string" />
+						<element name="dsNombreFichero" type="xsd:string" />
+						<element name="cdError" type="xsd:string" />
+						<element name="cdEstado" type="xsd:string" />
+						<element name="dsMotivoRechazo" type="xsd:string" />
+						<element name="tamanyoDocs" type="xsd:long" />
+						<element name="isRegistro" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="insertarTrazabilidadResponse">
+				<complexType>
+					<sequence>
+						<element name="insertarTrazabilidadReturn" type="tns1:RespuestaWS" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+		<schema elementFormDefault="qualified" targetNamespace="http://bean.cct.map.es"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<complexType name="TrazabilidadWS">
+				<sequence>
+					<element name="codigo" nillable="true" type="xsd:string" />
+					<element name="descripcion" nillable="true" type="xsd:string" />
+					<element name="cdError" nillable="true" type="xsd:string" />
+					<element name="cdErrorServicio" nillable="true" type="xsd:string" />
+					<element name="cdEstado" nillable="true" type="xsd:string" />
+					<element name="cdIntercambio" nillable="true" type="xsd:string" />
+					<element name="cdNodoError" nillable="true" type="xsd:string" />
+					<element name="cdOrDestino" nillable="true" type="xsd:string" />
+					<element name="cdOrOrigen" nillable="true" type="xsd:string" />
+					<element name="cdUgDestino" nillable="true" type="xsd:string" />
+					<element name="cdUgOrigen" nillable="true" type="xsd:string" />
+					<element name="dsErrorAlternativa" nillable="true" type="xsd:string" />
+					<element name="dsErrorServicio" nillable="true" type="xsd:string" />
+					<element name="dsMotivoRechazo" nillable="true" type="xsd:string" />
+					<element name="dsNombreFichero" nillable="true" type="xsd:string" />
+					<element name="dsOrDestino" nillable="true" type="xsd:string" />
+					<element name="dsOrOrigen" nillable="true" type="xsd:string" />
+					<element name="dsUgDestino" nillable="true" type="xsd:string" />
+					<element name="dsUgOrigen" nillable="true" type="xsd:string" />
+					<element name="fechaAlta" nillable="true" type="xsd:string" />
+					<element name="fechaMod" nillable="true" type="xsd:string" />
+					<element name="registro" type="xsd:string" />
+					<element name="tamanyoDocs" nillable="true" type="xsd:long" />
+				</sequence>
+			</complexType>
+			<complexType name="RespuestaWS">
+				<sequence>
+					<element name="codigo" nillable="true" type="xsd:string" />
+					<element name="descripcion" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="recuperarTrazabilidadResponse">
+		<wsdl:part element="impl:recuperarTrazabilidadResponse"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="insertarTrazabilidadRequest">
+		<wsdl:part element="impl:insertarTrazabilidad" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="recuperarTrazabilidadRequest">
+		<wsdl:part element="impl:recuperarTrazabilidad" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="insertarTrazabilidadResponse">
+		<wsdl:part element="impl:insertarTrazabilidadResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="WS_SIR1">
+		<wsdl:operation name="recuperarTrazabilidad">
+			<wsdl:input message="impl:recuperarTrazabilidadRequest"
+				name="recuperarTrazabilidadRequest" />
+			<wsdl:output message="impl:recuperarTrazabilidadResponse"
+				name="recuperarTrazabilidadResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="insertarTrazabilidad">
+			<wsdl:input message="impl:insertarTrazabilidadRequest"
+				name="insertarTrazabilidadRequest" />
+			<wsdl:output message="impl:insertarTrazabilidadResponse"
+				name="insertarTrazabilidadResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="WS_SIR1SoapBinding" type="impl:WS_SIR1">
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="recuperarTrazabilidad">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="recuperarTrazabilidadRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="recuperarTrazabilidadResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="insertarTrazabilidad">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="insertarTrazabilidadRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="insertarTrazabilidadResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="WS_SIR1Service">
+		<wsdl:port binding="impl:WS_SIR1SoapBinding" name="WS_SIR1">
+			<wsdlsoap:address location="http://localhost/services/WS_SIR1" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

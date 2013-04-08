@@ -1,0 +1,24 @@
+<assembly>
+	<id>configurable</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/src/main/resources/fwktd-csv</directory>
+			<outputDirectory>/fwktd-csv</outputDirectory>
+			<includes>
+				<include>fwktd-csv-api.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/resources/fwktd-time</directory>
+			<outputDirectory>/fwktd-time</outputDirectory>
+			<includes>
+				<include>fwktd-time.properties</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

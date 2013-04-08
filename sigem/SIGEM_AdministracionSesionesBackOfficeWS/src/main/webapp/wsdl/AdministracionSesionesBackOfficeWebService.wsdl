@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:impl="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" elementFormDefault="qualified">
+   <element name="nuevaSesion">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="xsd:string"/>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuevaSesionResponse">
+    <complexType>
+     <sequence>
+      <element name="nuevaSesionReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarSesion">
+    <complexType>
+     <sequence>
+      <element name="key" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarSesionResponse">
+    <complexType>
+     <sequence>
+      <element name="validarSesionReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="caducarSesion">
+    <complexType>
+     <sequence>
+      <element name="key" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="caducarSesionResponse">
+    <complexType/>
+   </element>
+   <element name="obtenerSesion">
+    <complexType>
+     <sequence>
+      <element name="key" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerSesionResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerSesionReturn" type="impl:Sesion"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Sesion">
+    <sequence>
+     <element name="datosEspecificos" nillable="true" type="xsd:string"/>
+     <element name="idEntidad" nillable="true" type="xsd:string"/>
+     <element name="idSesion" nillable="true" type="xsd:string"/>
+     <element name="usuario" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="modificarDatosSesion">
+    <complexType>
+     <sequence>
+      <element name="key" type="xsd:string"/>
+      <element name="datosEspecificos" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modificarDatosSesionResponse">
+    <complexType>
+     <sequence>
+      <element name="modificarDatosSesionReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="modificarDatosSesionRequest">
+
+      <wsdl:part name="parameters" element="impl:modificarDatosSesion"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerSesionResponse">
+
+      <wsdl:part name="parameters" element="impl:obtenerSesionResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="caducarSesionResponse">
+
+      <wsdl:part name="parameters" element="impl:caducarSesionResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevaSesionResponse">
+
+      <wsdl:part name="parameters" element="impl:nuevaSesionResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerSesionRequest">
+
+      <wsdl:part name="parameters" element="impl:obtenerSesion"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarSesionResponse">
+
+      <wsdl:part name="parameters" element="impl:validarSesionResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuevaSesionRequest">
+
+      <wsdl:part name="parameters" element="impl:nuevaSesion"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modificarDatosSesionResponse">
+
+      <wsdl:part name="parameters" element="impl:modificarDatosSesionResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="caducarSesionRequest">
+
+      <wsdl:part name="parameters" element="impl:caducarSesion"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarSesionRequest">
+
+      <wsdl:part name="parameters" element="impl:validarSesion"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AdministracionSesionesBackOfficeWebService">
+
+      <wsdl:operation name="nuevaSesion">
+
+         <wsdl:input name="nuevaSesionRequest" message="impl:nuevaSesionRequest"/>
+
+         <wsdl:output name="nuevaSesionResponse" message="impl:nuevaSesionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarSesion">
+
+         <wsdl:input name="validarSesionRequest" message="impl:validarSesionRequest"/>
+
+         <wsdl:output name="validarSesionResponse" message="impl:validarSesionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="caducarSesion">
+
+         <wsdl:input name="caducarSesionRequest" message="impl:caducarSesionRequest"/>
+
+         <wsdl:output name="caducarSesionResponse" message="impl:caducarSesionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerSesion">
+
+         <wsdl:input name="obtenerSesionRequest" message="impl:obtenerSesionRequest"/>
+
+         <wsdl:output name="obtenerSesionResponse" message="impl:obtenerSesionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modificarDatosSesion">
+
+         <wsdl:input name="modificarDatosSesionRequest" message="impl:modificarDatosSesionRequest"/>
+
+         <wsdl:output name="modificarDatosSesionResponse" message="impl:modificarDatosSesionResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AdministracionSesionesBackOfficeWebServiceSoapBinding" type="impl:AdministracionSesionesBackOfficeWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="nuevaSesion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuevaSesionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuevaSesionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarSesion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarSesionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarSesionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="caducarSesion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="caducarSesionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="caducarSesionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerSesion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerSesionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerSesionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modificarDatosSesion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modificarDatosSesionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modificarDatosSesionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AdministracionSesionesBackOfficeWebServiceService">
+
+      <wsdl:port name="AdministracionSesionesBackOfficeWebService" binding="impl:AdministracionSesionesBackOfficeWebServiceSoapBinding">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_AdministracionSesionesBackOfficeWS/services/AdministracionSesionesBackOfficeWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,79 @@
+<dataset>
+ 
+	<AUDIT_TRAZA 
+		id="1000" 
+		app_id="1" 
+		app_description="Descripción app 1"
+		event_type="1"
+		event_date="2012-06-27 12:00:00.000000000"
+		event_description="Desc"
+		user_id="1"
+		user_name="name"
+		user_host_name="host"
+		user_ip="10.228.20.1"
+		object_type="1"
+		object_type_description="descripcion"
+		object_id="1"
+		object_field="field"
+		old_value="1"
+		new_value="2"/>
+		
+		<AUDIT_TRAZA 
+			id="1001" 
+			app_id="2" 
+			app_description="Descripción app 2"
+			event_type="2"
+			event_date="2012-06-28 00:00:00.000000000"
+			event_description="Descripción"
+			user_id="2"
+			user_name="name user 2"
+			user_host_name="host"
+			user_ip="10.228.20.2"
+			object_type="2"
+			object_type_description="descripcion"
+			object_id="2"
+			object_field="field"
+			old_value="1"
+			new_value="2"/>
+		
+		<AUDIT_TRAZA 
+			id="1002" 
+			app_id="3" 
+			app_description="Descripción app 3"
+			event_type="3"
+			event_date="2012-07-28 00:00:00.000000000"
+			event_description="Descripción"
+			user_id="3"
+			user_name="name user 3"
+			user_host_name="host"
+			user_ip="10.228.20.2"
+			object_type="3"
+			object_type_description="descripcion"
+			object_id="3"
+			object_field="field"
+			old_value="1"
+			new_value="2"/>
+			
+		<AUDIT_TRAZA 
+			id="1003" 
+			app_id="1" 
+			app_description="Descripción app 1"
+			event_type="2"
+			event_date="2012-06-28 00:00:00.000000000"
+			event_description="Event Descripción"
+			user_id="3"
+			user_name="name user 3"
+			user_host_name="host"
+			user_ip="10.228.20.2"
+			object_type="4"
+			object_type_description="Object type descripcion"
+			object_id="198_4_76"
+			object_field="field"
+			old_value="1"
+			new_value="2"/>
+			
+		<AUDIT_APPS
+			app_id="1"
+			app_description="app1"/>
+		
+</dataset>

@@ -1,0 +1,74 @@
+.capaArbolLdap {
+	border: 1px solid #000000;
+	position: absolute;
+	width: 299px;
+	top: 17px;
+	left: 32px;
+	height: 475px;
+	padding: 5px;
+	overflow: auto;
+	background-color: #F2F2F2;
+	layer-background-color: #F2F2F2;
+}
+
+.webfx-tree-container {
+	margin: 0px;
+	padding: 0px;
+	font: icon;
+	white-space: nowrap;
+}
+
+.webfx-tree-item {
+	padding: 0px;
+	margin: 0px;
+	font: icon;
+	color: black;
+	white-space: nowrap;
+}
+
+.webfx-tree-item a, .webfx-tree-item a:active, .webfx-tree-item a:hover {
+	margin-left: 3px;
+	padding: 1px 2px 1px 2px;
+}
+
+.webfx-tree-item a {
+	color: #5888b8;
+	/*
+	color: black;
+	text-decoration: none;
+	*/
+}
+
+.webfx-tree-item a:hover {
+	background-color: #639ACE;
+	color: #ffffff;
+	/*
+	color: blue;
+	text-decoration: underline;
+	*/
+}
+
+.webfx-tree-item a:active {
+	background-color: #639ACE;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.webfx-tree-item img {
+	vertical-align: middle;
+	border: 0px;
+}
+
+.webfx-tree-icon {
+	width: 16px;
+	height: 16px;
+}
+.webfx-tree-item a.selected {
+	color: selectedtext;
+	background: selected;
+}
+
+.webfx-tree-item a.selected-inactive {
+	color: windowtext;
+	background: buttonface;
+}

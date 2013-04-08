@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+
+]>
+
+<beans>
+
+	<!--
+		LDAP_GUID_ATTRIBUTE:
+		Active Directory = "objectGUID"
+		IPlanet, Sun Directory Manager = "nsuniqueid"
+		Open Ldap = "uidNumber"
+	-->
+
+	<!--
+		LDAP_ENGINE:
+		Active Directory = "1"
+		IPlanet, Sun Directory Manager = "2"
+		Open Ldap = "3"
+	-->
+
+	<!--
+		LDAP_USERS_SCOPE:
+		BASE_SCOPE = "0"
+		ONELEVEl_SCOPE = "1"
+		SUBTREE_SCOPE = "2"
+	-->
+
+	<bean id="ldapUserAttributesActiveDirectory" class="es.ieci.tecdoc.fwktd.ldap.core.vo.LdapAttributeContainerVO">
+	    <property name="configMap">
+	    	<map>
+				<entry key="LDAP_USER_ATTRIBUTE_ACCOUNT_NAME" value="sAMAccountName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_CN" value="cn"/>
+				<entry key="LDAP_USER_ATTRIBUTE_DN" value="distinguishedName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_DESCRIPTION" value="description"/>
+				<entry key="LDAP_USER_ATTRIBUTE_DISPLAY_NAME" value="displayName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_EMAIL" value="mail"/>
+				<entry key="LDAP_USER_ATTRIBUTE_GIVEN_NAME" value="givenName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_GUID" value="objectGUID"/>
+				<entry key="LDAP_USER_ATTRIBUTE_NAME" value="name"/>
+				<entry key="LDAP_USER_ATTRIBUTE_OBJECT_CLASS" value="objectClass"/>
+				<entry key="LDAP_USER_ATTRIBUTE_POSTAL_ADDRESS" value="postalAddress"/>
+				<entry key="LDAP_USER_ATTRIBUTE_SURNAME" value="sn"/>
+				<entry key="LDAP_USER_ATTRIBUTE_TELEPHONE_NUMBER" value="telephoneNumber"/>
+				<entry key="LDAP_USER_ATTRIBUTE_PRINCIPAL_NAME" value="userPrincipalName"/>
+			</map>
+		</property>
+	</bean>
+
+
+	<bean id="ldapGroupAttributesActiveDirectory" class="es.ieci.tecdoc.fwktd.ldap.core.vo.LdapAttributeContainerVO">
+	    <property name="configMap">
+	    	<map>
+				<entry key="LDAP_GROUP_ATTRIBUTE_ACCOUNT_NAME" value="sAMAccountName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_CN" value="cn"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_DN" value="distinguishedName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_DESCRIPTION" value="description"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_DISPLAY_NAME" value="displayName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_EMAIL" value="mail"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_GIVEN_NAME" value="givenName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_GUID" value="objectGUID"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_NAME" value="name"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_OBJECT_CLASS" value="objectClass"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_POSTAL_ADDRESS" value="postalAddress"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_SURNAME" value="sn"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_TELEPHONE_NUMBER" value="telephoneNumber"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_PRINCIPAL_NAME" value="userPrincipalName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_MEMBER" value="member"/>
+	    	</map>
+	    </property>
+	</bean>
+
+	<bean id="ldapUserAttributesSunDirectoryManager" class="es.ieci.tecdoc.fwktd.ldap.core.vo.LdapAttributeContainerVO">
+	    <property name="configMap">
+	    	<map>
+				<entry key="LDAP_USER_ATTRIBUTE_ACCOUNT_NAME" value="givenName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_CN" value="cn"/>
+				<entry key="LDAP_USER_ATTRIBUTE_DN" value="entryDn"/>
+				<entry key="LDAP_USER_ATTRIBUTE_DESCRIPTION" value="description"/>
+				<entry key="LDAP_USER_ATTRIBUTE_DISPLAY_NAME" value="displayName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_EMAIL" value="mail"/>
+				<entry key="LDAP_USER_ATTRIBUTE_GIVEN_NAME" value="givenName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_GUID" value="nsuniqueid"/>
+				<entry key="LDAP_USER_ATTRIBUTE_NAME" value="givenName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_OBJECT_CLASS" value="objectClass"/>
+				<entry key="LDAP_USER_ATTRIBUTE_POSTAL_ADDRESS" value="postalAddress"/>
+				<entry key="LDAP_USER_ATTRIBUTE_SURNAME" value="sn"/>
+				<entry key="LDAP_USER_ATTRIBUTE_TELEPHONE_NUMBER" value="telephoneNumber"/>
+				<entry key="LDAP_USER_ATTRIBUTE_PRINCIPAL_NAME" value="userPrincipalName"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="ldapGroupAttributesSunDirectoryManager" class="es.ieci.tecdoc.fwktd.ldap.core.vo.LdapAttributeContainerVO">
+	    <property name="configMap">
+	    	<map>
+				<entry key="LDAP_GROUP_ATTRIBUTE_ACCOUNT_NAME" value="givenName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_CN" value="cn"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_DN" value="entryDn"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_DESCRIPTION" value="description"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_DISPLAY_NAME" value="displayName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_EMAIL" value="mail"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_GIVEN_NAME" value="givenName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_GUID" value="nsuniqueid"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_NAME" value="givenName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_OBJECT_CLASS" value="objectClass"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_POSTAL_ADDRESS" value="postalAddress"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_SURNAME" value="sn"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_TELEPHONE_NUMBER" value="telephoneNumber"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_PRINCIPAL_NAME" value="userPrincipalName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_MEMBER" value="uniqueMember"/>
+	    	</map>
+	    </property>
+	</bean>
+
+	<bean id="ldapUserAttributesOpenLdap" class="es.ieci.tecdoc.fwktd.ldap.core.vo.LdapAttributeContainerVO">
+	    <property name="configMap">
+	    	<map>
+	    		<entry key="LDAP_USER_ATTRIBUTE_ACCOUNT_NAME" value="givenName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_CN" value="cn"/>
+				<entry key="LDAP_USER_ATTRIBUTE_DN" value="entryDn"/>
+				<entry key="LDAP_USER_ATTRIBUTE_DESCRIPTION" value="description"/>
+				<entry key="LDAP_USER_ATTRIBUTE_DISPLAY_NAME" value="displayName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_EMAIL" value="mail"/>
+				<entry key="LDAP_USER_ATTRIBUTE_GIVEN_NAME" value="givenName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_GUID" value="uidNumber"/>
+				<entry key="LDAP_USER_ATTRIBUTE_NAME" value="givenName"/>
+				<entry key="LDAP_USER_ATTRIBUTE_OBJECT_CLASS" value="objectClass"/>
+				<entry key="LDAP_USER_ATTRIBUTE_POSTAL_ADDRESS" value="postalAddress"/>
+				<entry key="LDAP_USER_ATTRIBUTE_SURNAME" value="sn"/>
+				<entry key="LDAP_USER_ATTRIBUTE_TELEPHONE_NUMBER" value="telephoneNumber"/>
+				<entry key="LDAP_USER_ATTRIBUTE_PRINCIPAL_NAME" value="userPrincipalName"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="ldapGroupAttributesOpenLdap" class="es.ieci.tecdoc.fwktd.ldap.core.vo.LdapAttributeContainerVO">
+	    <property name="configMap">
+	    	<map>
+	    		<entry key="LDAP_GROUP_ATTRIBUTE_ACCOUNT_NAME" value="givenName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_CN" value="cn"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_DN" value="entryDn"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_DESCRIPTION" value="description"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_DISPLAY_NAME" value="displayName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_EMAIL" value="mail"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_GIVEN_NAME" value="givenName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_GUID" value="uidNumber"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_NAME" value="givenName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_OBJECT_CLASS" value="objectClass"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_POSTAL_ADDRESS" value="postalAddress"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_SURNAME" value="sn"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_TELEPHONE_NUMBER" value="telephoneNumber"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_PRINCIPAL_NAME" value="userPrincipalName"/>
+				<entry key="LDAP_GROUP_ATTRIBUTE_MEMBER" value="uniqueMember"/>
+	    	</map>
+	    </property>
+	</bean>
+
+	<alias name="ldapManagerConfigMapLoaderActiveDirectory" alias="ldapManagerConfigMapLoader"/>
+    <bean id="ldapManagerConfigMapLoaderActiveDirectory" class="es.ieci.tecdoc.fwktd.ldap.core.config.impl.LdapManagerConfigMapLoaderImpl">
+    	<property name="configMap">
+	    	<map>
+	    		<!-- Valores para búsqueda de usuarios -->
+	    		<entry key="LDAP_USERS_SEARCH_START" value="cn=Users"/>
+	    		<entry key="LDAP_USERS_SEARCH_SCOPE" value="2"/>
+	    		<entry key="LDAP_USERS_SEARCH_ATTRIBUTE" value="cn"/>
+	    		<entry key="LDAP_USERS_SEARCH_OBJECTCLASSES" value="person, user"/> <!-- Separadas por , si hay varias -->
+
+	    		<!-- Valores para búsqueda de grupos -->
+	    		<entry key="LDAP_GROUPS_SEARCH_START" value="cn=Users"/>
+	    		<entry key="LDAP_GROUPS_SEARCH_SCOPE" value="2"/>
+	    		<entry key="LDAP_GROUPS_SEARCH_ATTRIBUTE" value="member"/>
+	    		<entry key="LDAP_GROUPS_SEARCH_OBJECTCLASSES" value="group"/> <!-- Separadas por , si hay varias -->
+
+	    		<entry key="LDAP_USERS_ATTRIBUTES" value-ref="ldapUserAttributesActiveDirectory"/>
+	    		<entry key="LDAP_GROUPS_ATTRIBUTES" value-ref="ldapGroupAttributesActiveDirectory"/>
+	    	</map>
+	    </property>
+    </bean>
+
+    <bean id="ldapManagerConfigMapLoaderSunDirectoryServer" class="es.ieci.tecdoc.fwktd.ldap.core.config.impl.LdapManagerConfigMapLoaderImpl">
+    	<property name="configMap">
+	    	<map>
+	    		<!-- Valores para búsqueda de usuarios -->
+	    		<entry key="LDAP_USERS_SEARCH_START" value="ou=Users"/>
+	    		<entry key="LDAP_USERS_SEARCH_SCOPE" value="2"/>
+	    		<entry key="LDAP_USERS_SEARCH_ATTRIBUTE" value="uid"/>
+	    		<entry key="LDAP_USERS_SEARCH_OBJECTCLASSES" value="person"/> <!-- Separadas por , si hay varias -->
+
+	    		<entry key="LDAP_GROUPS_SEARCH_START" value="ou=Groups"/>
+	    		<entry key="LDAP_GROUPS_SEARCH_SCOPE" value="2"/>
+	    		<entry key="LDAP_GROUPS_SEARCH_ATTRIBUTE" value="uniqueMember"/>
+	    		<entry key="LDAP_GROUPS_SEARCH_OBJECTCLASSES" value="groupofuniquenames"/> <!-- Separadas por , si hay varias -->
+
+	    		<entry key="LDAP_USERS_ATTRIBUTES" value-ref="ldapUserAttributesSunDirectoryManager"/>
+	    		<entry key="LDAP_GROUPS_ATTRIBUTES" value-ref="ldapGroupAttributesSunDirectoryManager"/>
+	    	</map>
+	    </property>
+    </bean>
+
+    <bean id="ldapManagerConfigMapLoaderOpenLdap" class="es.ieci.tecdoc.fwktd.ldap.core.config.impl.LdapManagerConfigMapLoaderImpl">
+    	<property name="configMap">
+	    	<map>
+	    		<!-- Valores para búsqueda de usuarios -->
+	    		<entry key="LDAP_USERS_SEARCH_START" value="ou=Usuarios"/>
+	    		<entry key="LDAP_USERS_SEARCH_SCOPE" value="2"/>
+	    		<entry key="LDAP_USERS_SEARCH_ATTRIBUTE" value="cn"/>
+	    		<entry key="LDAP_USERS_SEARCH_OBJECTCLASSES" value="person"/> <!-- Separadas por , si hay varias -->
+
+	    		<entry key="LDAP_GROUPS_SEARCH_START" value=""/>
+	    		<entry key="LDAP_GROUPS_SEARCH_SCOPE" value="2"/>
+	    		<entry key="LDAP_GROUPS_SEARCH_ATTRIBUTE" value="uniqueMember"/>
+	    		<entry key="LDAP_GROUPS_SEARCH_OBJECTCLASSES" value="groupofuniquenames"/> <!-- Separadas por , si hay varias -->
+
+	    		<entry key="LDAP_USERS_ATTRIBUTES" value-ref="ldapUserAttributesOpenLdap"/>
+	    		<entry key="LDAP_GROUPS_ATTRIBUTES" value-ref="ldapGroupAttributesOpenLdap"/>
+	    	</map>
+	    </property>
+    </bean>
+
+
+   <alias name="ldapContextConfigMapLoaderActiveDirectory" alias="ldapContextConfigMapLoader"/>
+    <bean id="ldapContextConfigMapLoaderActiveDirectory" class="es.ieci.tecdoc.fwktd.ldap.core.config.impl.LdapContextConfigMapLoaderImpl">
+    	<property name="configMap">
+	    	<map>
+	    		<entry key="LDAP_ENGINE" value="1"/>
+	    		<entry key="LDAP_URL" value="ldap://10.228.20.177:389"/>
+	    		<entry key="LDAP_BASE" value="dc=SERVIDOR-GDOC3,dc=iecisa,dc=corp"/>
+				<entry key="LDAP_USER" value="cn=nacho,cn=Users,dc=SERVIDOR-GDOC3,dc=iecisa,dc=corp"/>
+	    		<entry key="LDAP_PASSWORD" value="archivo_2007"/>
+	    		<entry key="LDAP_POOL" value="false"/>
+	    		<entry key="LDAP_POOL_TIMEOUT" value="0"/>
+	    		<entry key="LDAP_GUID_ATTRIBUTE" value="objectGUID"/>
+	    		<entry key="LDAP_DN_ATTRIBUTE" value="distinguishedName"/>
+
+	    	</map>
+	    </property>
+    </bean>
+
+    <bean id="ldapContextConfigMapLoaderSunDirectoryServer" class="es.ieci.tecdoc.fwktd.ldap.core.config.impl.LdapContextConfigMapLoaderImpl">
+    	<property name="configMap">
+	    	<map>
+	    		<entry key="LDAP_ENGINE" value="2"/>
+	    		<entry key="LDAP_URL" value="ldap://10.228.20.177:3543"/>
+	    		<entry key="LDAP_BASE" value="dc=iecisa,dc=corp"/>
+				<entry key="LDAP_USER" value="cn=Directory Manager"/>
+	    		<entry key="LDAP_PASSWORD" value="ieciovi2"/>
+	    		<entry key="LDAP_POOL" value="false"/>
+	    		<entry key="LDAP_POOL_TIMEOUT" value="0"/>
+	    		<entry key="LDAP_GUID_ATTRIBUTE" value="nsuniqueid"/>
+	    		<entry key="LDAP_DN_ATTRIBUTE" value="entryDn"/>
+	    	</map>
+	    </property>
+    </bean>
+
+    <bean id="ldapContextConfigMapLoaderOpenLdap" class="es.ieci.tecdoc.fwktd.ldap.core.config.impl.LdapContextConfigMapLoaderImpl">
+    	<property name="configMap">
+	    	<map>
+	    		<entry key="LDAP_ENGINE" value="3"/>
+	    		<entry key="LDAP_URL" value="ldap://10.228.20.178:389"/>
+	    		<entry key="LDAP_BASE" value="dc=portsdebalears,dc=com"/>
+				<entry key="LDAP_USER" value="cn=Administrator,dc=portsdebalears,dc=com"/>
+	    		<entry key="LDAP_PASSWORD" value="ldap"/>
+	    		<entry key="LDAP_POOL" value="false"/>
+	    		<entry key="LDAP_POOL_TIMEOUT" value="0"/>
+	    		<entry key="LDAP_GUID_ATTRIBUTE" value="uidNumber"/>
+	    		<entry key="LDAP_DN_ATTRIBUTE" value="entryDn"/>
+	    	</map>
+	    </property>
+    </bean>
+
+    <bean id="ldapMapperSpringDefault" class="es.ieci.tecdoc.fwktd.ldap.core.mapper.impl.LdapMapperSpringDefaultImpl">
+    </bean>
+
+    <bean id="ldapMapperDefault" class="es.ieci.tecdoc.fwktd.ldap.core.mapper.impl.LdapMapperDefaultImpl">
+    </bean>
+
+    <bean id="ldapConnectorSun" class="es.ieci.tecdoc.fwktd.ldap.core.connector.impl.LdapConnectorSunImpl">
+    	<property name="ldapMapper"><ref bean="ldapMapperDefault"/></property>
+    </bean>
+
+    <bean id="ldapProxySun" class="es.ieci.tecdoc.fwktd.ldap.core.proxy.impl.LdapProxyImpl">
+    	<property name="ldapContextConfigLoader"><ref bean="ldapContextConfigMapLoader"/></property>
+    	<property name="ldapConnector"><ref bean="ldapConnectorSun"/></property>
+    </bean>
+
+    <bean id="ldapManagerSun" class="es.ieci.tecdoc.fwktd.ldap.core.manager.impl.LdapManagerImpl">
+    	<property name="ldapManagerConfigLoader"><ref bean="ldapManagerConfigMapLoader"/></property>
+    	<property name="ldapProxy"><ref bean="ldapProxySun"/></property>
+    </bean>
+
+</beans>

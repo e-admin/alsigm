@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+							  "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+
+	<settings lazyLoadingEnabled="true" useStatementNamespaces="true" enhancementEnabled="false" />
+
+	<!--
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-ambito_territorial.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-comunidad_autonoma.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-estado_entidad.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-entidad_geografica.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-isla.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-localidad.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-nivel_administracion.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-observacion.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-pais.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-poder.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-provincia.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-tipo_entidad_publica.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-tipo_unidad_organica.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-unidad_organica.xml" />
+	-->
+
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-estado_actualizacion.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-datos_basicos_oficina.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-datos_basicos_unidad_organica.xml" />
+
+</sqlMapConfig>

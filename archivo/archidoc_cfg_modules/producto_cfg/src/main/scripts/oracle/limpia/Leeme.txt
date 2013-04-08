@@ -1,0 +1,61 @@
+Ejemplo de importación en la base de datos PRODUCTOARCHIVO con password PRODUCTOARCHIVO y sid GDOC179
+
+1) Abrir una consola de sistema mediante el comando cmd
+
+2) Entrar en el directorio donde estén los scripts de creación de la base de datos limpia:
+
+	cd ~\limpia"
+
+3) Ejecutar sqlplus
+
+	Usuario: NOMBRE_USUARIO
+	Password: PASSWORD@NOMBREINSTANCIA
+
+4) Eliminar las tablas anteriores mediante el comando
+
+	@00_drop_tables_oracle.sql
+
+5) Crear las nuevas tablas mediante el comando
+
+	@01_create_tables_oracle.sql
+
+6) Crear los índices pasándole al comando un parámetro con el tablespace donde se guardarán los índices:
+
+	@02_create_indexes_oracle.sql "NOMBRE_TABLESPACE"
+
+7) Inicializar la base de datos
+
+	@03_insert_data_oracle.sql
+
+8) Inicializar los campos CLOB
+
+	@04_insert_clob_oracle.sql
+
+9) Crear la búsqueda documental
+
+	@05_create_documentary_search_oracle.sql
+
+10) Crear las funciones y procedimientos necesarios
+
+	@06_create_functions_procedures_oracle.sql
+
+11) Crear las tablas de organización:
+
+	Si existían previamente ejecutar antes el script:
+
+	@07_drop_tables_organizacion_oracle.sql
+
+	Ejecutar el script
+
+	@08_create_tables_organizacion_oracle.sql
+
+	Ejecutar el script
+	10_organization_personalization_oracle.sql
+
+12) Salir del sqlplus mediante el comando:
+
+	quit
+
+13) Insertar los XML en los campos CLOB mediante el comando 09_insert_clobs_data.cmd pasándole como parámetros el usuario, la contraseña y el sid:
+
+	09_insert_clobs_data.cmd USUARIO PASSWORD NOMBRE_ODBC

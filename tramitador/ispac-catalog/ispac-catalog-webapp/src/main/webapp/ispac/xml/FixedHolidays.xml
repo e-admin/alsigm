@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<Holydays>
+	<Holyday>
+		<Date>01/01</Date>
+		<Labels>
+			<Label Lang="ca">Día de Año Nuevo</Label>
+			<Label Lang="es">Día de Año Nuevo</Label>
+			<Label Lang="eu">Día de Año Nuevo</Label>
+			<Label Lang="gl">Día de Año Nuevo</Label>
+		</Labels>
+	</Holyday>
+	<Holyday>
+		<Date>06/01</Date>
+		<Labels>
+			<Label Lang="ca">Día de Reyes</Label>
+			<Label Lang="es">Día de Reyes</Label>
+			<Label Lang="eu">Día de Reyes</Label>
+			<Label Lang="gl">Día de Reyes</Label>
+		</Labels>
+	</Holyday>
+	<Holyday>
+		<Date>01/05</Date>
+		<Labels>
+			<Label Lang="ca">Día del trabajador</Label>
+			<Label Lang="es">Día del trabajador</Label>
+			<Label Lang="eu">Día del trabajador</Label>
+			<Label Lang="gl">Día del trabajador</Label>
+		</Labels>
+	</Holyday>
+	<Holyday>
+		<Date>15/08</Date>
+		<Labels>
+			<Label Lang="ca">Día de la Virgen de la Asunción</Label>
+			<Label Lang="es">Día de la Virgen de la Asunción</Label>
+			<Label Lang="eu">Día de la Virgen de la Asunción</Label>
+			<Label Lang="gl">Día de la Virgen de la Asunción</Label>
+		</Labels>
+	</Holyday>
+	<Holyday>
+		<Date>12/10</Date>
+		<Labels>
+			<Label Lang="ca">Fiesta Nacional de España</Label>
+			<Label Lang="es">Fiesta Nacional de España</Label>
+			<Label Lang="eu">Fiesta Nacional de España</Label>
+			<Label Lang="gl">Fiesta Nacional de España</Label>
+		</Labels>
+	</Holyday>
+	<Holyday>
+		<Date>01/11</Date>
+		<Labels>
+			<Label Lang="ca">Día de Todos los Santos</Label>
+			<Label Lang="es">Día de Todos los Santos</Label>
+			<Label Lang="eu">Día de Todos los Santos</Label>
+			<Label Lang="gl">Día de Todos los Santos</Label>
+		</Labels>
+	</Holyday>
+	<Holyday>
+		<Date>06/12</Date>
+		<Labels>
+			<Label Lang="ca">Día de la Constitución Española</Label>
+			<Label Lang="es">Día de la Constitución Española</Label>
+			<Label Lang="eu">Día de la Constitución Española</Label>
+			<Label Lang="gl">Día de la Constitución Española</Label>
+		</Labels>
+	</Holyday>
+	<Holyday>
+		<Date>08/12</Date>
+		<Labels>
+			<Label Lang="ca">Día de la Inmaculada Concepción</Label>
+			<Label Lang="es">Día de la Inmaculada Concepción</Label>
+			<Label Lang="eu">Día de la Inmaculada Concepción</Label>
+			<Label Lang="gl">Día de la Inmaculada Concepción</Label>
+		</Labels>
+	</Holyday>
+	<Holyday>
+		<Date>25/12</Date>
+		<Labels>
+			<Label Lang="ca">Navidad</Label>
+			<Label Lang="es">Navidad</Label>
+			<Label Lang="eu">Navidad</Label>
+			<Label Lang="gl">Navidad</Label>
+		</Labels>
+	</Holyday>
+</Holydays>

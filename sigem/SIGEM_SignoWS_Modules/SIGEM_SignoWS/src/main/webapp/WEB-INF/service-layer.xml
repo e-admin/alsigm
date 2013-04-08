@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	xmlns:p="http://www.springframework.org/schema/p"	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  	<!--========== Services ==========-->
+    <bean id="calculoPlusvaliaHelper" class="es.ieci.plusvalias.util.CalculoPlusvaliaHelper"/>
+  	<bean id="pagoPlusvaliaHelper" class="es.ieci.plusvalias.util.PagoPlusvaliaHelper"/>
+  	<bean id="calculoPlusvaliaValidatorHelper" class="es.ieci.plusvalias.util.CalculoPlusvaliaValidatorHelper"/>
+  	<bean id="sigmHelper" class="es.ieci.plusvalias.util.SigmHelper"/>
+
+  	<bean id="reportService" class="es.ieci.plusvalias.service.ReportService">
+  	 	   <property name="reportDir" value="WEB-INF/reports"/>
+  	 	<!-- <property name="reportDir" value="src/main/webapp/WEB-INF/reports"/> -->
+  	</bean>
+
+  	<bean id="calculoLiquidacionService" class="es.ieci.plusvalias.service.CalculoLiquidacionService">
+  		<property name="helper" ref="calculoPlusvaliaHelper"/>
+  		<property name="validatorHelper" ref="calculoPlusvaliaValidatorHelper"/>
+  		<property name="reporter" ref="reportService"/>
+  	</bean>
+  	
+  	<bean id="pagoLiquidacionService" class="es.ieci.plusvalias.service.PagoLiquidacionService">
+  		<property name="calculoHelper" ref="calculoPlusvaliaHelper"/>
+  		<property name="calculoValidatorHelper" ref="calculoPlusvaliaValidatorHelper"/>
+  		<property name="pagoHelper" ref="pagoPlusvaliaHelper"/>
+  	  	<property name="reporter" ref="reportService"/>
+  	  	<property name="expedienteService" ref="expedienteService"/>
+  	  	<property name="calculoService" ref="calculoLiquidacionService"/>
+  	</bean>
+  	
+  	<bean id="expedienteService" class="es.ieci.plusvalias.service.GestorExpedienteService">
+  		<property name="sigemHelper" ref="sigmHelper"/>
+  	</bean>
+</beans>

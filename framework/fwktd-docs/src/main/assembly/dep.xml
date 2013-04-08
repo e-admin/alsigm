@@ -1,0 +1,17 @@
+<assembly>
+	<id>documentacion</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/target/docbkx/pdf</directory>
+			<outputDirectory>/</outputDirectory>
+			<useDefaultExcludes>true</useDefaultExcludes>
+			<includes>
+				<include>*.pdf</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>

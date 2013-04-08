@@ -1,0 +1,148 @@
+// iDocImgX.idl : IDL source for iDocImgX.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (iDocImgX.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+		
+	
+
+[
+	uuid(24C6D590-6D0D-11D4-8128-00C0F049167F),
+	version(1.0),
+	helpstring("IECISA iDocImgX Type Library")
+]
+library IDOCIMGXLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	typedef enum tagFitMode
+	{
+		IMG_FIT_TO_WIDTH  = 0,
+		IMG_FIT_TO_WINDOW = 1,
+		IMG_FIT_TO_HEIGHT = 2,
+		IMG_FIT_NONE      = 3
+	} FitMode;
+
+	typedef enum tagEnhancement
+	{
+		IMG_PRESERVE_WHITE = 0,
+		IMG_PRESERVE_BLACK = 1,
+		IMG_SCALE_TO_GRAY = 2
+	} Enhancement;
+
+
+	[
+		uuid(4065D205-AD66-4EC5-8898-803B6E1BD7EA),
+		helpstring("_iControlEvents Interface")
+	]
+	dispinterface _iControlEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("IsModifyNotes")] HRESULT IsModifyNotes();
+		[id(2), helpstring("IsSaveNotes")] HRESULT IsSaveNotes();
+	};
+
+
+
+	[
+		object,
+		uuid(24C6D59D-6D0D-11D4-8128-00C0F049167F),
+		dual,
+		helpstring("IControl Interface"),
+		pointer_default(unique)
+	]
+	interface IControl : IDispatch
+	{
+		[propget, id(1), helpstring("FileName")] HRESULT FileName([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("FileName")] HRESULT FileName([in] BSTR newVal);
+		[id(2), helpstring("Display")] HRESULT Display();
+		[propget, id(3), helpstring("Page")] HRESULT Page([out, retval] long *pVal);
+		[propput, id(3), helpstring("Page")] HRESULT Page([in] long newVal);
+		[propget, id(4), helpstring("PageCount")] HRESULT PageCount([out, retval] long *pVal);
+		[id(5), helpstring("Clear")] HRESULT Clear();
+		[propget, id(6), helpstring("FitMode")] HRESULT FitMode([out, retval] short *pVal);
+		[propput, id(6), helpstring("FitMode")] HRESULT FitMode([in] short newVal);
+		[propget, id(7), helpstring("Zoom")] HRESULT Zoom([out, retval] double *pVal);
+		[propput, id(7), helpstring("Zoom")] HRESULT Zoom([in] double newVal);
+		[propget, id(8), helpstring("Enhancement")] HRESULT Enhancement([out, retval] short *pVal);
+		[propput, id(8), helpstring("Enhancement")] HRESULT Enhancement([in] short newVal);	
+		[propput, id(9), helpstring("EnablePrint")] HRESULT EnablePrint([in] VARIANT_BOOL newVal);
+		[propget, id(9), helpstring("EnablePrint")] HRESULT EnablePrint([out, retval] VARIANT_BOOL *pVal);		
+		[propput, id(10), helpstring("ShowToolbar")] HRESULT ShowToolbar([in] VARIANT_BOOL newVal);
+		[propget, id(10), helpstring("ShowToolbar")] HRESULT ShowToolbar([out, retval] VARIANT_BOOL *pVal);		
+		[propput, id(11), helpstring("Rotation")] HRESULT Rotation([in] short newVal);
+		[propget, id(11), helpstring("Rotation")] HRESULT Rotation([out, retval] short *pVal);
+		[propput, id(12), helpstring("FileNote")] HRESULT FileNote([in] BSTR newVal);
+		[propget, id(12), helpstring("FileNote")] HRESULT FileNote([out, retval] BSTR *pVal);
+		[id(13), helpstring("SaveNotes")] HRESULT SaveNotes();
+		[id(14), helpstring("IsNotesModified")] HRESULT IsNotesModified([out, retval] VARIANT_BOOL* Modified);		
+		[id(15), helpstring("HasAnyNotesModified")] HRESULT HasAnyNotesModified([out, retval] VARIANT_BOOL* Modified);
+		[id(16), helpstring("SaveNotesToFile")] HRESULT SaveNotesToFile([in] BSTR FileName);	
+		[propput, id(17), helpstring("EnableSaveAs")] HRESULT EnableSaveAs([in] VARIANT_BOOL newVal);
+		[propget, id(17), helpstring("EnableSaveAs")] HRESULT EnableSaveAs([out, retval] VARIANT_BOOL *pVal);					
+		[propput, id(18), helpstring("EnableEditAnn")] HRESULT EnableEditAnn([in] VARIANT_BOOL newVal);
+		[propget, id(18), helpstring("EnableEditAnn")] HRESULT EnableEditAnn([out, retval] VARIANT_BOOL *pVal);					
+		[id(19), helpstring("ExistsSelection")] HRESULT ExistsSelection([out, retval] VARIANT_BOOL *pVal);	
+		[id(20), helpstring("SaveSelectionToFile")] HRESULT SaveSelectionToFile([in] BSTR FileName);	
+		[propget, id(21), helpstring("ImgWidth")] HRESULT ImgWidth([out, retval] long *pVal);					
+		[propget, id(22), helpstring("ImgHeight")] HRESULT ImgHeight([out, retval] long *pVal);				
+		[id(23), helpstring("SaveFileWithRotation")] HRESULT SaveFileWithRotation([in] BSTR FileName);		
+		[id(24), helpstring("SaveFile")] HRESULT SaveFile([out, retval] BSTR *pVal);
+		[id(25), helpstring("ExtractPagesToFile")] 
+		HRESULT ExtractPagesToFile([in] BSTR FileName,[in] BSTR Pages,[out, retval] BSTR *pVal);
+		[id(26), helpstring("JoinFiles")] 
+		HRESULT JoinFiles([in] BSTR FileNameFirst,[in] BSTR FileNameSecond,[out, retval] BSTR *pVal);
+		[id(27), helpstring("DeletePages")] 
+		HRESULT DeletePages([in] BSTR FileName,[in] BSTR Pages);
+		[propput, id(28), helpstring("Drag")] HRESULT Drag([in] VARIANT_BOOL newVal);
+		[propget, id(28), helpstring("Drag")] HRESULT Drag([out, retval] VARIANT_BOOL *pVal);					
+
+	
+	};
+		
+	[
+		uuid(24C6D59E-6D0D-11D4-8128-00C0F049167F),
+		helpstring("Control Class")
+	]
+	coclass Control
+	{
+		[default] interface IControl;
+		[default, source] dispinterface _iControlEvents;
+	};
+
+
+	[
+		object,
+		uuid(496F91CC-7E33-4CF3-8B94-BE06290777D2),
+		dual,
+		helpstring("iPrintJob Interface"),
+		pointer_default(unique)
+	]
+	interface iPrintJob : IDispatch
+	{
+		[id(1), helpstring("PrintFile")] HRESULT PrintFile([in] BSTR newVal,[in] VARIANT_BOOL newVa);
+		[id(2), helpstring("PrintFileWStamp")] HRESULT PrintFileWStamp([in] BSTR newVal,[in] BSTR newStamp,[in] VARIANT_BOOL newVa);
+		[id(3), helpstring("InitializePrint")] HRESULT InitializePrint([in] BSTR newVal);
+		[id(4), helpstring("PagePrint")] HRESULT PagePrint([in] BSTR newVal,[in] BSTR newStamp,[in] VARIANT_BOOL newVa);
+		[id(5), helpstring("TerminatePrint")] HRESULT TerminatePrint();
+		[id(6), helpstring("PrintFileWTxt")] HRESULT PrintFileWTxt([in] BSTR newVal,[in] BSTR newTxt,[in] VARIANT_BOOL newVa,[in] VARIANT_BOOL up);
+		[id(7), helpstring("PageNormalSizePrint")] HRESULT PageNormalSizePrint([in] BSTR newVal,[in] BSTR newStamp);
+	};
+
+
+
+	[
+		uuid(96B9165F-D4FC-4AB5-9486-89782D738820),
+		helpstring("PrintJob Class")
+	]
+	coclass PrintJob
+	{
+		[default] interface iPrintJob;
+	};
+};

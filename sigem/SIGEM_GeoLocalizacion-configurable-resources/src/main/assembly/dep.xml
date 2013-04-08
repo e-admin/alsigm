@@ -1,0 +1,33 @@
+<assembly>
+	<id>configurableSigem</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_GeoLocalizacion/src/main/resources/SIGEM_GeoLocalizacion</directory>
+			<outputDirectory>/SIGEM_GeoLocalizacion</outputDirectory>
+			<includes>
+				<include>GeoLocalizacion.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_GeoLocalizacionWeb/src/main/resources/SIGEM_GeoLocalizacionWeb/</directory>
+			<outputDirectory>SIGEM_GeoLocalizacionWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<filtered>true</filtered>		
+			<directory>../SIGEM_GeoLocalizacionWS/src/main/resources/SIGEM_GeoLocalizacionWS/</directory>
+			<outputDirectory>SIGEM_GeoLocalizacionWS</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>		
+	</fileSets>
+</assembly>

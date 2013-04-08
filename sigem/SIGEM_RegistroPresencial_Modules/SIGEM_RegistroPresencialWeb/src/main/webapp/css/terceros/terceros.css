@@ -1,0 +1,180 @@
+
+body {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 11px;
+	margin: 5px 5px 10px 5px;
+}
+
+#container {
+	width: 100%;
+	overflow: hidden
+}
+
+#nav {
+
+}
+.onecol, .twocol, .twocollefta, .twocolleftb, .twocolrighta, .twocolrightb, .threecol, .threecola, .fourcol, .fivecol, .sixcol {
+		margin: 0px;
+	}
+
+.cabecera {
+	height: 22px;
+}
+
+.column.first h4 {
+	color: #6C6C6C;
+	font-size: 100%;
+	padding: 0px 0px 4px 4px;
+}
+
+.upArrow {
+	float : left;
+	cursor: pointer;
+	padding: 2px 3px 0px 3px;
+}
+
+.downArrow {
+	float: left;
+	cursor: pointer;
+	padding: 2px 3px 0px 3px;
+}
+
+.errors {
+	color: red;
+	line-height: 18px;
+}
+
+
+#tabs.ui-widget-content {
+	border: none;
+	background-image: none;
+	background-color: #F2F2F2;
+}
+
+#tabs .ui-tabs-panel {
+	border: 1px solid #DADBDF;
+	background-color: #FFFFFF;
+}
+
+#tabs .ui-widget-header {
+	border: none;
+	background-image: none;
+	background-color: #F2F2F2;
+}
+
+#tabs .ui-state-active, #tabs .ui-widget-content .ui-state-active, #tabs .ui-widget-header .ui-state-active {
+	border: 1px solid #DADBDF;
+	background: #ffffff url(../smoothness/images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
+}
+
+#tabs .ui-state-hover, #tabs .ui-widget-content .ui-state-hover, #tabs .ui-widget-header .ui-state-hover, #tabs .ui-state-focus, #tabs .ui-widget-content .ui-state-focus, #tabs .ui-widget-header .ui-state-focus {
+	border: 1px solid #CCCCCC;
+}
+
+.ui-datepicker {
+	width: 17em;
+	padding: .2em .2em 0;
+	background-color: #FFFFFF;
+	border: 2px solid #AAAAAA;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+	border-width: 0px;
+}
+
+.plegado {
+	display: none;
+}
+
+.desplegado {
+	display: block;
+}
+
+div.form-errors{
+	//display:inline-block;
+	//width: 90%;
+}
+
+#statusMessage {
+	background: url("../../images/terceros/green_info.png") no-repeat scroll 4px 2px #a7e190;
+	border: 1px solid #006699;
+	color: #FFFFFF;
+	display:block;
+	padding: 4px 4px 4px 32px;
+	margin: 2px 0px 2px 0px;
+}
+
+#errorMessage{
+	background: url("../../images/terceros/red_info.png") no-repeat scroll 4px 2px #F1A394;
+	border: 1px solid red;
+	color: #FFFFFF;
+	display:block;
+	padding: 4px 4px 4px 32px;
+	margin: 2px 0px 2px 0px;
+}
+
+#errorMessage p {
+	margin-bottom: 2px;
+}
+
+.tercerosContent h1 {
+	font-size : 1.2em;
+	margin:0;
+	padding-left:0.5em;
+	color: black;
+	}
+
+a{
+	font-weight:bold;
+	color:black;
+}
+
+.searchRepresentanteLink{
+	display:inline-block;
+	width:10px;
+	height:10px;
+	background: url("../../images/terceros/add.png") no-repeat ;
+	padding-left: 1em;
+	}
+
+#busqueda-tercero-form .formulario {
+	width: 75%;
+	margin: 0pt 15em;
+	}
+
+#dialog-confirm {
+	display:none;
+}
+
+#representanteErrorMessage,#interesadosErrorMessage{
+	background: url("../../images/terceros/red_info.png") no-repeat scroll 4px 2px #F1A394;
+	border: 1px solid red;
+	color: #FFFFFF;
+	display:none;
+	padding: 4px 4px 4px 32px;
+	margin: 2px 0px 2px 0px;
+	}
+
+#slideUpInteresado{
+	padding-left: 2em;
+	margin-left: 2em;
+	background: url("../../images/terceros/arrow-up.png") left center no-repeat;
+	text-decoration: none;
+	cursor:pointer;
+	}
+
+#slideDownInteresado{
+	padding-left: 2em;
+	background: url("../../images/terceros/arrow-down.png") left center no-repeat;
+	text-decoration: none;
+	margin-left: 1em;
+	cursor:pointer;
+	}
+
+#errorNumeroDocumento{
+	color:#E11D03;
+}
+
+#infoNumeroDocumento{
+	color:#006699;
+	}

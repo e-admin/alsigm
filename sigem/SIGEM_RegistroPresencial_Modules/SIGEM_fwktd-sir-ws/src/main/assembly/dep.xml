@@ -1,0 +1,25 @@
+<assembly>
+	<id>config</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<dependencySets>
+
+		<!-- dependencias de zip de tipo configuracion -->
+		<dependencySet>
+			<unpack>true</unpack>
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<useProjectArtifact>false</useProjectArtifact>
+			<includes>
+				<include>*:zip:configurable</include>
+			</includes>
+			<outputDirectory></outputDirectory>
+		</dependencySet>
+		
+	</dependencySets>
+
+
+
+</assembly>

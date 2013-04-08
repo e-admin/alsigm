@@ -1,0 +1,1012 @@
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="fichaExpediente"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="842"
+		 pageHeight="595"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="20"
+		 rightMargin="20"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="ISO-8859-1" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="NUM_EXP" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="IMAGES_REPOSITORY_PATH" isForPrompting="true" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT
+     spac_expedientes.numexp,
+     spac_expedientes.asunto,
+     spac_expedientes.poblacion,
+     spac_expedientes.localizacion,
+     spac_expedientes.municipio,
+     spac_expedientes.fapertura,
+     spac_expedientes.fcierre,
+     spac_expedientes.identidadtitular,
+     spac_expedientes.nifciftitular,
+      spac_dt_intervinientes.nombre ,
+     spac_dt_intervinientes.ndoc,
+    spac_dt_intervinientes.localidad,
+   spac_dt_intervinientes.email,
+   spac_dt_intervinientes.tfno_fijo,
+   spac_dt_intervinientes.tfno_movil
+FROM
+SPAC_EXPEDIENTES left outer join
+     SPAC_DT_INTERVINIENTES ON SPAC_EXPEDIENTES.numexp = SPAC_DT_INTERVINIENTES.numexp
+WHERE
+     spac_expedientes.numexp = $P{NUM_EXP}]]></queryString>
+
+	<field name="numexp" class="java.lang.String"/>
+	<field name="asunto" class="java.lang.String"/>
+	<field name="poblacion" class="java.lang.String"/>
+	<field name="localizacion" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="fapertura" class="java.sql.Timestamp"/>
+	<field name="fcierre" class="java.sql.Timestamp"/>
+	<field name="identidadtitular" class="java.lang.String"/>
+	<field name="nifciftitular" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="ndoc" class="java.lang.String"/>
+	<field name="localidad" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="tfno_fijo" class="java.lang.String"/>
+	<field name="tfno_movil" class="java.lang.String"/>
+
+	<variable name="title" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Ficha del expediente"]]></variableExpression>
+	</variable>
+	<variable name="es.title" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Ficha del expediente"]]></variableExpression>
+	</variable>
+	<variable name="ca.title" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Fitxa de l'expedient"]]></variableExpression>
+	</variable>
+	<variable name="eu.title" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Espedientearen fitxa"]]></variableExpression>
+	</variable>
+	<variable name="gl.title" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Ficha do expediente"]]></variableExpression>
+	</variable>
+	<variable name="field.numexp" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nº Expediente"]]></variableExpression>
+	</variable>
+	<variable name="es.field.numexp" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nº Expediente"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.numexp" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nº Expedient"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.numexp" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Espediente-zk"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.numexp" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nº Expediente"]]></variableExpression>
+	</variable>
+	<variable name="field.asunto" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Asunto"]]></variableExpression>
+	</variable>
+	<variable name="es.field.asunto" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Asunto"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.asunto" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Assumpte"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.asunto" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Gaia"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.asunto" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Asunto"]]></variableExpression>
+	</variable>
+	<variable name="field.fapertura" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["F. Apertura"]]></variableExpression>
+	</variable>
+	<variable name="es.field.fapertura" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["F. Apertura"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.fapertura" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["D. d'obertura"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.fapertura" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Irekitze-data"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.fapertura" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["D. Apertura"]]></variableExpression>
+	</variable>
+	<variable name="field.fcierre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["F. Cierre"]]></variableExpression>
+	</variable>
+	<variable name="es.field.fcierre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["F. Cierre"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.fcierre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["D. de tancament"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.fcierre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Ixte-data"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.fcierre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["D. Peche"]]></variableExpression>
+	</variable>
+	<variable name="title.titular" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Titular"]]></variableExpression>
+	</variable>
+	<variable name="es.title.titular" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Titular"]]></variableExpression>
+	</variable>
+	<variable name="ca.title.titular" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Titular"]]></variableExpression>
+	</variable>
+	<variable name="eu.title.titular" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Titularra"]]></variableExpression>
+	</variable>
+	<variable name="gl.title.titular" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Titular"]]></variableExpression>
+	</variable>
+	<variable name="field.nombre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nombre"]]></variableExpression>
+	</variable>
+	<variable name="es.field.nombre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nombre"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.nombre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nom"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.nombre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Izena"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.nombre" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nome"]]></variableExpression>
+	</variable>
+	<variable name="field.ndoc" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nº Doc"]]></variableExpression>
+	</variable>
+	<variable name="es.field.ndoc" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nº Doc"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.ndoc" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nº Doc"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.ndoc" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nº Dok"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.ndoc" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Nº Doc"]]></variableExpression>
+	</variable>
+	<variable name="title.participantes" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Listado de Participantes"]]></variableExpression>
+	</variable>
+	<variable name="es.title.participantes" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Listado de Participantes"]]></variableExpression>
+	</variable>
+	<variable name="ca.title.participantes" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Llista de Participants"]]></variableExpression>
+	</variable>
+	<variable name="eu.title.participantes" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Parte-hartzaileen zerrenda"]]></variableExpression>
+	</variable>
+	<variable name="gl.title.participantes" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Listado do Participantes"]]></variableExpression>
+	</variable>
+	<variable name="field.municipio" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Municipio"]]></variableExpression>
+	</variable>
+	<variable name="es.field.municipio" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Municipio"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.municipio" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Municipi"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.municipio" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Udalerria"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.municipio" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Municipio"]]></variableExpression>
+	</variable>
+	<variable name="field.localizacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Localización"]]></variableExpression>
+	</variable>
+	<variable name="es.field.localizacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Localización"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.localizacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Localització"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.localizacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Aurkitzea"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.localizacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Localización"]]></variableExpression>
+	</variable>
+	<variable name="field.poblacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Población"]]></variableExpression>
+	</variable>
+	<variable name="es.field.poblacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Población"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.poblacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Població"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.poblacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Populazioa"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.poblacion" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Poboación"]]></variableExpression>
+	</variable>
+	<variable name="field.localidad" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Localidad"]]></variableExpression>
+	</variable>
+	<variable name="es.field.localidad" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Localidad"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.localidad" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Localitat"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.localidad" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Herria"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.localidad" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Localidade"]]></variableExpression>
+	</variable>
+	<variable name="field.email" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["E-mail"]]></variableExpression>
+	</variable>
+	<variable name="es.field.email" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["E-mail"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.email" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["E-mail"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.email" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["E-mail"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.email" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["E-mail"]]></variableExpression>
+	</variable>
+	<variable name="field.tfnofijo" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tfno Fijo"]]></variableExpression>
+	</variable>
+	<variable name="es.field.tfnofijo" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tfno Fijo"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.tfnofijo" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tfn Fix"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.tfnofijo" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tel Finkoa"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.tfnofijo" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tel Fixo"]]></variableExpression>
+	</variable>
+	<variable name="field.tfnomovil" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tfno Móvil"]]></variableExpression>
+	</variable>
+	<variable name="es.field.tfnomovil" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tfno Móvil"]]></variableExpression>
+	</variable>
+	<variable name="ca.field.tfnomovil" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tfn Móbil"]]></variableExpression>
+	</variable>
+	<variable name="eu.field.tfnomovil" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tel. Mugikorra"]]></variableExpression>
+	</variable>
+	<variable name="gl.field.tfnomovil" class="java.lang.String" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA["Tel Móbil"]]></variableExpression>
+	</variable>
+	<variable name="properties" class="ieci.tdw.ispac.ispaclib.reports.JasperReportsProperties" resetType="Report" calculation="Nothing">
+		<initialValueExpression><![CDATA[new ieci.tdw.ispac.ispaclib.reports.JasperReportsProperties (new String[]{"title", "field.numexp", "field.asunto", "field.fapertura", "field.fcierre", "field.municipio", "title.titular", "field.nombre", "field.ndoc", "title.participantes", "field.localizacion", "field.poblacion", "field.localidad", "field.email", "field.tfnofijo", "field.tfnomovil"},	
+		new String[]{"", "es", "ca", "eu", "gl"},		
+		new String[][]{	new String[]{$V{title},$V{field.numexp},$V{field.asunto},$V{field.fapertura},$V{field.fcierre},$V{field.municipio},$V{title.titular},$V{field.nombre},$V{field.ndoc},$V{title.participantes},$V{field.localizacion},$V{field.poblacion},$V{field.localidad},$V{field.email},$V{field.tfnofijo},$V{field.tfnomovil}}, 
+						new String[]{$V{es.title},$V{es.field.numexp},$V{es.field.asunto},$V{es.field.fapertura},$V{es.field.fcierre},$V{es.field.municipio},$V{es.title.titular},$V{es.field.nombre},$V{es.field.ndoc},$V{es.title.participantes},$V{es.field.localizacion},$V{es.field.poblacion},$V{es.field.localidad},$V{es.field.email},$V{es.field.tfnofijo},$V{es.field.tfnomovil}}, 
+						new String[]{$V{ca.title},$V{ca.field.numexp},$V{ca.field.asunto},$V{ca.field.fapertura},$V{ca.field.fcierre},$V{ca.field.municipio},$V{ca.title.titular},$V{ca.field.nombre},$V{ca.field.ndoc},$V{ca.title.participantes},$V{ca.field.localizacion},$V{ca.field.poblacion},$V{ca.field.localidad},$V{ca.field.email},$V{ca.field.tfnofijo},$V{ca.field.tfnomovil}}, 
+						new String[]{$V{eu.title},$V{eu.field.numexp},$V{eu.field.asunto},$V{eu.field.fapertura},$V{eu.field.fcierre},$V{eu.field.municipio},$V{eu.title.titular},$V{eu.field.nombre},$V{eu.field.ndoc},$V{eu.title.participantes},$V{eu.field.localizacion},$V{eu.field.poblacion},$V{eu.field.localidad},$V{eu.field.email},$V{eu.field.tfnofijo},$V{eu.field.tfnomovil}}, 
+						new String[]{$V{gl.title},$V{gl.field.numexp},$V{gl.field.asunto},$V{gl.field.fapertura},$V{gl.field.fcierre},$V{gl.field.municipio},$V{gl.title.titular},$V{gl.field.nombre},$V{gl.field.ndoc},$V{gl.title.participantes},$V{gl.field.localizacion},$V{gl.field.poblacion},$V{gl.field.localidad},$V{gl.field.email},$V{gl.field.tfnofijo},$V{gl.field.tfnomovil}}
+			      }
+	    )]]></initialValueExpression>
+	</variable>
+
+		<group  name="numexp" >
+			<groupExpression><![CDATA[$F{numexp}]]></groupExpression>
+			<groupHeader>
+			<band height="27"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="0"
+						width="139"
+						height="27"
+						forecolor="#FFFFFF"
+						backcolor="#000000"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.numexp")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="139"
+						y="0"
+						width="663"
+						height="27"
+						forecolor="#FFFFFF"
+						backcolor="#000000"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{numexp}]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="asunto" >
+			<groupExpression><![CDATA[$F{asunto}]]></groupExpression>
+			<groupHeader>
+			<band height="28"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="0"
+						width="139"
+						height="27"
+						backcolor="#CCCCFF"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.asunto")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="139"
+						y="0"
+						width="663"
+						height="27"
+						backcolor="#CCCCFF"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{asunto}]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="27"
+						width="800"
+						height="1"
+						key="line"
+						positionType="FixRelativeToBottom"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="fapertura" >
+			<groupExpression><![CDATA[$F{fapertura}]]></groupExpression>
+			<groupHeader>
+			<band height="28"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="139"
+						height="27"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.fapertura")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="139"
+						y="0"
+						width="663"
+						height="27"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.sql.Timestamp"><![CDATA[$F{fapertura}]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="27"
+						width="800"
+						height="1"
+						key="line"
+						positionType="FixRelativeToBottom"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="fcierre" >
+			<groupExpression><![CDATA[$F{fcierre}]]></groupExpression>
+			<groupHeader>
+			<band height="28"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="139"
+						height="27"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.fcierre")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="139"
+						y="0"
+						width="663"
+						height="27"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.sql.Timestamp"><![CDATA[$F{fcierre}]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="27"
+						width="800"
+						height="1"
+						key="line"
+						positionType="FixRelativeToBottom"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="municipio" >
+			<groupExpression><![CDATA[$F{municipio}]]></groupExpression>
+			<groupHeader>
+			<band height="28"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="140"
+						y="-1"
+						width="662"
+						height="28"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{municipio}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="0"
+						width="139"
+						height="28"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.municipio")]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="27"
+						width="800"
+						height="1"
+						key="line"
+						positionType="FixRelativeToBottom"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="localizacion" >
+			<groupExpression><![CDATA[$F{localizacion}]]></groupExpression>
+			<groupHeader>
+			<band height="28"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="141"
+						y="-1"
+						width="661"
+						height="28"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{localizacion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="-1"
+						y="-1"
+						width="139"
+						height="28"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.localizacion")]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="27"
+						width="800"
+						height="1"
+						key="line"
+						positionType="FixRelativeToBottom"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="poblacion" >
+			<groupExpression><![CDATA[$F{poblacion}]]></groupExpression>
+			<groupHeader>
+			<band height="45"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="139"
+						y="-1"
+						width="663"
+						height="29"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{poblacion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="-1"
+						width="139"
+						height="28"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.poblacion")]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="27"
+						width="800"
+						height="1"
+						key="line"
+						positionType="FixRelativeToBottom"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="Titular" >
+			<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+			<groupHeader>
+			<band height="50"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="1"
+						y="0"
+						width="799"
+						height="30"
+						backcolor="#CCCCCC"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="18" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "title.titular")]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="nifciftitular" >
+			<groupExpression><![CDATA[$F{nifciftitular}]]></groupExpression>
+			<groupHeader>
+			<band height="64"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="28"
+						width="136"
+						height="28"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.ndoc")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="138"
+						y="28"
+						width="662"
+						height="28"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nifciftitular}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="137"
+						y="0"
+						width="663"
+						height="28"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{identidadtitular}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="0"
+						width="136"
+						height="28"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.nombre")]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="Lista participantes" >
+			<groupExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></groupExpression>
+			<groupHeader>
+			<band height="57"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="1"
+						y="0"
+						width="799"
+						height="30"
+						backcolor="#CCCCCC"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="18" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "title.participantes")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="3"
+						y="30"
+						width="122"
+						height="20"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.ndoc")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="265"
+						y="30"
+						width="139"
+						height="20"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.localidad")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="404"
+						y="30"
+						width="133"
+						height="20"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.email")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="536"
+						y="30"
+						width="139"
+						height="20"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.tfnofijo")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="675"
+						y="30"
+						width="124"
+						height="20"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.tfnomovil")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="126"
+						y="30"
+						width="139"
+						height="20"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "field.nombre")]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="53"  isSplitAllowed="true" >
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="8"
+						width="800"
+						height="1"
+						key="line"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="51"
+						width="800"
+						height="1"
+						key="line"
+						positionType="FixRelativeToBottom"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="65"
+						y="13"
+						width="593"
+						height="35"
+						key="staticText"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="26" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{properties}.getProperty($P{REPORT_LOCALE}, "title")]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="30"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="126"
+						y="0"
+						width="137"
+						height="20"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="0"
+						width="122"
+						height="20"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{ndoc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="265"
+						y="0"
+						width="139"
+						height="20"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{localidad}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="382"
+						y="0"
+						width="130"
+						height="20"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{email}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="516"
+						y="0"
+						width="142"
+						height="20"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tfno_fijo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="675"
+						y="0"
+						width="124"
+						height="20"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tfno_movil}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="26"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="516"
+						y="6"
+						width="36"
+						height="19"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="342"
+						y="6"
+						width="170"
+						height="19"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{PAGE_NUMBER} + "/"]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

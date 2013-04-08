@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: Registro_spring.xml,v 1.1 2007/09/10 10:20:09 jnogales Exp $ -->
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+<!-- datos de cabecera soap -->
+<!ENTITY NOMBRE_CABECERA "cabecera-implementacion">
+<!ENTITY ARGS_CABECERA
+"<constructor-arg type='java.lang.String' index='0' value='namespace'/>
+<constructor-arg type='java.lang.String' index='1' value='&NOMBRE_CABECERA;'/>">
+<!ENTITY CLASS_HEADER "org.apache.axis.message.SOAPHeaderElement">
+]>
+<beans>
+    <bean id="registro.propiedades" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations" value="classpath:ieci/tecdoc/sgm/registro/resources/Registro.properties"/>
+    </bean>
+</beans>

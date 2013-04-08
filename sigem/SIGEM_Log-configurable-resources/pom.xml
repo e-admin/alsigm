@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main</artifactId>
+		<version>3.0</version>
+	</parent>
+	
+	<artifactId>sigem_log-configurable-resources</artifactId>	
+	<packaging>pom</packaging>
+	<description>Ficheros de configuración de log4j para las distintas aplicaciones de SIGEM que no tienen su propio configurable</description>
+		
+	<!--
+		 Estas dependencias son los .zip que contienen los configurables
+		 de las distintas aplicaciones web. 
+	 -->	
+	
+
+	<build>				
+		<plugins>
+			
+			
+			
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly.plugin.version}</version>				
+				<executions>
+					<execution>
+						<id>assembly-common-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>	
+						<configuration>
+							<filters>
+								<filter>${filter.generic.system}</filter>
+							</filters>
+							<descriptors>						
+								<descriptor>
+									src/main/assembly/dep.xml
+								</descriptor>
+							</descriptors>
+						</configuration>					
+					</execution>
+				</executions>
+			</plugin>	
+				
+		</plugins>
+	</build>	
+	
+	<profiles>
+		<!-- Perfiles de construccion en funcion del S.O. -->
+		<profile>
+			<id>unix</id>
+			<activation>
+				<property>
+					<name>unix</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../SIGEM_Config/src/main/filters/system/unix.properties</filter.generic.system>
+			</properties>
+		</profile>
+		<profile>
+			<id>win</id>
+			<activation>
+				<property>
+					<name>win</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../SIGEM_Config/src/main/filters/system/windows.properties</filter.generic.system>
+			</properties>
+		</profile>
+	</profiles>
+</project>

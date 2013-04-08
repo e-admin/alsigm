@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<catalogo_procedimientos>
+<!-- Procedimiento P-EJEMPLO -->
+<!-- <procedimiento>
+    <id>P-EJEMPLO</id>
+    <codigo>P-EJEMPLO</codigo>
+    <nombre>Nombre Procedimiento P-EJEMPLO</nombre>
+    <sistema_productor>
+        <id>04</id>
+        <nombre>Tramitador</nombre>
+    </sistema_productor>
+    <titulo_corto>Título Corto del Procedimiento P-EJEMPLO</titulo_corto>
+    <objeto>Objeto del Procedimiento P-EJEMPLO</objeto>
+    <tramites>
+        <tramite>Trámite 1</tramite>
+        <tramite>Trámite 2</tramite>
+    </tramites>
+    <normativa>Normativa del Procedimiento P-EJEMPLO</normativa>
+    <documentos>Documentos del Procedimiento P-EJEMPLO</documentos>
+    <productores>
+        <productor>
+            <id>IdOrgano</id>
+            <fecha_inicio>01/01/2000</fecha_inicio>
+        </productor>
+    </productores>
+</procedimiento>
+ -->
+<!-- Fin de Procedimiento P-EJEMPLO -->
+
+<!-- Procedimiento PROC1 -->
+<procedimiento>
+    <id>PROC1</id>
+    <codigo>PROC1</codigo>
+    <nombre>Nombre Procedimiento PROC1</nombre>
+    <sistema_productor>
+        <id>04</id>
+        <nombre>Tramitador</nombre>
+    </sistema_productor>
+    <titulo_corto>Título Corto del Procedimiento PROC1</titulo_corto>
+    <objeto>Objeto del Procedimiento PROC1</objeto>
+    <tramites>
+        <tramite>Trámite 1</tramite>
+        <tramite>Trámite 2</tramite>
+    </tramites>
+    <normativa>Normativa del Procedimiento PROC1</normativa>
+    <documentos>Documentos del Procedimiento PROC1</documentos>
+    <productores>
+        <productor>
+            <id>ORG1</id>
+            <fecha_inicio>01/01/2000</fecha_inicio>
+        </productor>
+    </productores>
+</procedimiento>
+<!-- Fin de Procedimiento PROC1 -->
+
+<!-- Procedimiento PROC2 -->
+<procedimiento>
+    <id>PROC2</id>
+    <codigo>PROC2</codigo>
+    <nombre>Nombre Procedimiento PROC2</nombre>
+    <sistema_productor>
+        <id>04</id>
+        <nombre>Tramitador</nombre>
+    </sistema_productor>
+    <titulo_corto>Título Corto del Procedimiento PROC2</titulo_corto>
+    <objeto>Objeto del Procedimiento PROC2</objeto>
+    <tramites>
+        <tramite>Trámite 1</tramite>
+        <tramite>Trámite 2</tramite>
+    </tramites>
+    <normativa>Normativa del Procedimiento PROC2</normativa>
+    <documentos>Documentos del Procedimiento PROC2</documentos>
+    <productores>
+        <productor>
+            <id>ORG2</id>
+            <fecha_inicio>01/01/2000</fecha_inicio>
+        </productor>
+    </productores>
+</procedimiento>
+<!-- Fin de Procedimiento PROC2 -->
+
+<!-- Procedimiento PROC3 -->
+<procedimiento>
+    <id>PROC3</id>
+    <codigo>PROC3</codigo>
+    <nombre>Nombre Procedimiento PROC3</nombre>
+    <sistema_productor>
+        <id>04</id>
+        <nombre>Tramitador</nombre>
+    </sistema_productor>
+    <titulo_corto>Título Corto del Procedimiento PROC3</titulo_corto>
+    <objeto>Objeto del Procedimiento PROC3</objeto>
+    <tramites>
+        <tramite>Trámite 1</tramite>
+        <tramite>Trámite 2</tramite>
+    </tramites>
+    <normativa>Normativa del Procedimiento PROC3</normativa>
+    <documentos>Documentos del Procedimiento PROC3</documentos>
+    <productores>
+        <productor>
+            <id>ORG3</id>
+            <fecha_inicio>01/01/2000</fecha_inicio>
+        </productor>
+    </productores>
+</procedimiento>
+<!-- Fin de Procedimiento PROC3 -->
+
+<!-- Procedimiento PROC4 -->
+<procedimiento>
+    <id>PROC4</id>
+    <codigo>PROC4</codigo>
+    <nombre>Nombre Procedimiento PROC4</nombre>
+    <sistema_productor>
+        <id>04</id>
+        <nombre>Tramitador</nombre>
+    </sistema_productor>
+    <titulo_corto>Título Corto del Procedimiento PROC4</titulo_corto>
+    <objeto>Objeto del Procedimiento PROC4</objeto>
+    <tramites>
+        <tramite>Trámite 1</tramite>
+        <tramite>Trámite 2</tramite>
+    </tramites>
+    <normativa>Normativa del Procedimiento PROC4</normativa>
+    <documentos>Documentos del Procedimiento PROC4</documentos>
+    <productores>
+        <productor>
+            <id>ORG4</id>
+            <fecha_inicio>01/01/2000</fecha_inicio>
+        </productor>
+    </productores>
+</procedimiento>
+<!-- Fin de Procedimiento PROC4 -->
+
+<!-- Procedimiento PROC5 -->
+<procedimiento>
+    <id>PROC5</id>
+    <codigo>PROC5</codigo>
+    <nombre>Nombre Procedimiento PROC5</nombre>
+    <sistema_productor>
+        <id>04</id>
+        <nombre>Tramitador</nombre>
+    </sistema_productor>
+    <titulo_corto>Título Corto del Procedimiento PROC5</titulo_corto>
+    <objeto>Objeto del Procedimiento PROC5</objeto>
+    <tramites>
+        <tramite>Trámite 1</tramite>
+        <tramite>Trámite 2</tramite>
+    </tramites>
+    <normativa>Normativa del Procedimiento PROC5</normativa>
+    <documentos>Documentos del Procedimiento PROC5</documentos>
+    <productores>
+        <productor>
+            <id>ORG5</id>
+            <fecha_inicio>01/01/2000</fecha_inicio>
+        </productor>
+    </productores>
+</procedimiento>
+<!-- Fin de Procedimiento PROC5 -->
+
+<!-- Procedimiento PROC6 -->
+<procedimiento>
+    <id>PROC6</id>
+    <codigo>PROC6</codigo>
+    <nombre>Nombre Procedimiento PROC6</nombre>
+    <sistema_productor>
+        <id>04</id>
+        <nombre>Tramitador</nombre>
+    </sistema_productor>
+    <titulo_corto>Título Corto del Procedimiento PROC6</titulo_corto>
+    <objeto>Objeto del Procedimiento PROC6</objeto>
+    <tramites>
+        <tramite>Trámite 1</tramite>
+        <tramite>Trámite 2</tramite>
+    </tramites>
+    <normativa>Normativa del Procedimiento PROC6</normativa>
+    <documentos>Documentos del Procedimiento PROC6</documentos>
+    <productores>
+        <productor>
+            <id>ORG6</id>
+            <fecha_inicio>01/01/2000</fecha_inicio>
+        </productor>
+    </productores>
+</procedimiento>
+<!-- Fin de Procedimiento PROC6 -->
+
+</catalogo_procedimientos>

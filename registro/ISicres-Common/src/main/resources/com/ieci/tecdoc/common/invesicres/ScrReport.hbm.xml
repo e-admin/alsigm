@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrReport" 
+    table="SCR_REPORTS"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_REPORTS"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="report"
+        type="java.lang.String"
+        column="REPORT"
+        not-null="true"
+        length="250"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="REPORT"
+            length="250"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="typeReport"
+        type="int"
+        column="TYPE_REPORT"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TYPE_REPORT"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="typeArch"
+        type="int"
+        column="TYPE_ARCH"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="TYPE_ARCH"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="allArch"
+        type="int"
+        column="ALL_ARCH"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ALL_ARCH"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="allOfics"
+        type="int"
+        column="ALL_OFICS"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ALL_OFICS"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="allPerfs"
+        type="int"
+        column="ALL_PERFS"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ALL_PERFS"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="description"
+        type="java.lang.String"
+        column="DESCRIPTION"
+        not-null="true"
+        length="250"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="DESCRIPTION"
+            length="250"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

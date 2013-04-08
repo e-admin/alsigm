@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+   "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+
+
+
+	<global-forwards>
+		<forward name="fail" path="/ispac/exit.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+
+
+		<action path="/entry" 
+				type="ieci.tdw.ispac.ispacmgr.action.EntryAction" 
+				name="defaultForm" 
+				scope="request" 
+				validate="false"
+		>
+			<forward name="success" path="/showProcedureList.do" redirect="true" />
+			<forward name="fail" path="/ispac/exit.jsp" redirect="false"/>
+		</action>
+		
+		<action path="/datosPadron" 
+				type="ieci.tdw.ispac.ispacmgr.action.GetDatosDomicilioPadronAction" 
+				name="defaultForm" 
+				scope="request" 
+				validate="false"
+		>
+			<forward name="success" path="/apps/setValue.jsp"/>
+			<forward name="fail" path="/ispac/exit.jsp" redirect="false"/>
+		</action>
+		
+		<action path="/solicitudAltaDomicilio" 
+				type="ieci.tdw.ispac.ispacmgr.action.SolicitudAltaDomicilioAction" 
+				name="defaultForm" 
+				scope="request" 
+				validate="false"
+		>
+			<forward name="success" path="/apps/setValue.jsp"/>
+			<forward name="fail" path="/ispac/exit.jsp" redirect="false"/>
+		</action>
+
+		<action path="/getDatosPersonales" 
+				type="ieci.tdw.ispac.ispacmgr.action.GetDatosPersonalesAction" 
+				name="defaultForm" 
+				scope="request" 
+				validate="false"
+		>
+			<forward name="success" path="/apps/setValue.jsp"/>
+			<forward name="fail" path="/ispac/exit.jsp" redirect="false"/>
+		</action>
+		
+		<action path="/updateDatosPersonales" 
+				type="ieci.tdw.ispac.ispacmgr.action.UpdateDatosPersonalesAction" 
+				name="defaultForm" 
+				scope="request" 
+				validate="false"
+		>
+			<forward name="success" path="/apps/setValue.jsp"/>
+			<forward name="fail" path="/ispac/exit.jsp" redirect="false"/>
+		</action>		
+				
+		
+		<action path="/generateLibroDecretos" type="ieci.tecdoc.sgm.tram.secretaria.action.GenerateLibroDecretosAction" validate="false">
+		</action>
+
+		<action path="/generateLibroActasSesionesPlenariasAction" type="ieci.tecdoc.sgm.tram.secretaria.action.GenerateLibroActasSesionesPlenariasAction" validate="false">
+		</action>
+
+		<action path="/generateLibroActasJuntasGobiernoAction" type="ieci.tecdoc.sgm.tram.secretaria.action.GenerateLibroActasJuntasGobiernoAction" validate="false">
+		</action>
+
+		<action path="/sendToSesion" 	name="defaultForm"  parameter="method" type="ieci.tecdoc.sgm.tram.secretaria.action.SendToSesionAction" validate="false">
+			<forward name="results" path="/ispac/common/selectExpToSendPropuesta.jsp" />
+			<forward name="success" path="/apps/hideFrame.jsp?refresh=true"/>
+		</action>
+
+
+		<action path="/importIntegrantes" type="ieci.tecdoc.sgm.tram.secretaria.action.ImportIntegrantesAction" validate="false">
+			<forward name="success" path="/apps/hideFrame.jsp?refresh=true"/>
+		</action>
+
+		<action path="/generateAutomaticAcuerdosPropuesta" type="ieci.tecdoc.sgm.tram.secretaria.action.NotificacionAcuerdosPropuestaAction" validate="false">
+			<forward name="summary" path="/ispac/common/summaryNotificaciones.jsp" />
+		</action>
+
+
+		<action path="/generateAutomaticAcuerdosPropuestaUrg" type="ieci.tecdoc.sgm.tram.secretaria.action.NotificacionUrgAcuerdosPropuestaAction" validate="false">
+			<forward name="summary" path="/ispac/common/summaryNotificaciones.jsp" />
+		</action>
+
+
+
+		<action path="/orderPropuestaSesion"  name="defaultForm"  type="ieci.tecdoc.sgm.tram.secretaria.action.OrderPropuestaSesionAction"  parameter="method"  validate="false">
+			<forward name="showexp" path="/showExpedient.do" redirect="true"/>
+			<forward name="showsubprocess" path="/showSubProcess.do" redirect="true"/>
+			<forward name="showtask" path="/showTask.do" redirect="true"/>
+		</action>
+
+
+		<action path="/geoLocalizacion"  name="defaultForm"  type="ieci.tdw.ispac.ispacmgr.action.GeoLocalizacionAction" scope="request" parameter="method"  validate="false">
+			   <forward name="success" path="/forms/geolocalizacion/selectValor.jsp"/>
+     		   <forward name="setSubstitute" path="/apps/setSubstitute.jsp"/>
+     		   <forward name="verPlano" path="/forms/geolocalizacion/verPlano.jsp" />
+     		    <forward name="return"  path="/apps/hideFrame.jsp?refresh=false" />
+		</action>
+
+
+
+		<action path="/exit" type="ieci.tdw.ispac.ispacmgr.action.ExitAction">
+			<forward name="success" path="/ispac/exit.jsp" redirect="false" />
+		</action>			
+
+
+		<!-- Servicio de Intermediacion de datos -->
+		<action path="/obtenerServiciosIntermediacion" type="ieci.tdw.ispac.ispacmgr.action.ObtenerServiciosIntermediacionAction">
+			<forward name="success" path="serviciosIntermediacionList" />
+			<forward name="error" path="errorHttps"/>
+		</action>
+		<action path="/peticionSincrona" type="ieci.tdw.ispac.ispacmgr.action.PeticionSincronaAction" name="defaultForm" parameter="method">
+			<forward name="form" path="formRequestIntermediacion" />
+			<forward name="success" path="summaryRequestIntermediacion"/>
+			<forward name="error" path="errorHttps"/>
+		</action>
+
+	</action-mappings>
+
+
+<!-- custom -->
+
+
+
+
+	<message-resources 
+		parameter="ieci.tdw.ispac.ispacmgr.resources.ApplicationResources" 
+		null="false" 
+		key="custom"
+	/>
+	<!-- 
+	<plug-in className="es.princast.spiga.common.InitAppPluginCustom">
+	</plug-in>
+	 -->
+	
+</struts-config>

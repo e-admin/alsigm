@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<alias name="${fwktd-csv.database}_fwktd_csv_aplicacionIncrementerImpl" alias="fwktd_csv_aplicacionIncrementer"/>
+	<alias name="${fwktd-csv.database}_fwktd_csv_documentoIncrementerImpl" alias="fwktd_csv_documentoIncrementer"/>
+
+
+	<!--
+		DB2 UDB
+	 -->
+
+	<bean id="db2_fwktd_csv_aplicacionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_apps_seq" />
+	</bean>
+
+	<bean id="db2_fwktd_csv_documentoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_docs_seq" />
+	</bean>
+
+	<!--
+		DB2 Mainframe (DB2/390 o DB2/400)
+	 -->
+
+	<bean id="db2_400_fwktd_csv_aplicacionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_apps_seq" />
+	</bean>
+
+	<bean id="db2_400_fwktd_csv_documentoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.DB2MainframeSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_docs_seq" />
+	</bean>
+
+
+	<!--
+		H2
+	 -->
+
+	<bean id="h2_fwktd_csv_aplicacionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.H2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_apps_seq" />
+	</bean>
+
+	<bean id="h2_fwktd_csv_documentoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.H2SequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_docs_seq" />
+	</bean>
+
+
+	<!--
+		Oracle
+	 -->
+
+	<bean id="oracle_fwktd_csv_aplicacionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_apps_seq" />
+	</bean>
+
+	<bean id="oracle_fwktd_csv_documentoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_docs_seq" />
+	</bean>
+
+
+	<!--
+		PostgreSQL
+	 -->
+
+	<bean id="postgresql_fwktd_csv_aplicacionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_apps_seq" />
+	</bean>
+
+	<bean id="postgresql_fwktd_csv_documentoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_docs_seq" />
+	</bean>
+
+
+	<!--
+		SQLServer
+	 -->
+
+	<bean id="sqlserver_fwktd_csv_aplicacionIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_apps_seq" />
+		<constructor-arg value="id" />
+	</bean>
+
+	<bean id="sqlserver_fwktd_csv_documentoIncrementerImpl"
+		class="org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer">
+		<constructor-arg ref="fwktd_csv_dataSource" />
+		<constructor-arg value="csv_docs_seq" />
+		<constructor-arg value="id" />
+	</bean>
+
+</beans>

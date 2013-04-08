@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings enhancementEnabled="true" maxTransactions="5"
+		maxRequests="32" maxSessions="10" useStatementNamespaces="true" lazyLoadingEnabled="true"/>
+		
+	<!-- -->
+	<typeHandler javaType="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.TipoValidezDocumentoAnexoEnumVO"
+		callback="es.ieci.tecdoc.isicres.api.documento.electronico.business.dao.impl.typehandler.TipoValidezDocumentoAnexoEnumTypeHandlerCallback"/>
+	
+	<typeHandler javaType="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.TipoDocumentoAnexoEnumVO"  
+		callback="es.ieci.tecdoc.isicres.api.documento.electronico.business.dao.impl.typehandler.TipoDocumentoAnexoEnumTypeHandlerCallback"/>
+	
+	<typeHandler callback="es.ieci.tecdoc.isicres.api.documento.electronico.business.dao.impl.typehandler.StringByteArrayTypeHandlerCallback" javaType="java.lang.String" jdbcType="BINARY"/>
+	
+	<typeHandler javaType="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.TipoDocumentalSicresEnumVO"
+		callback="es.ieci.tecdoc.isicres.api.documento.electronico.business.dao.impl.typehandler.TipoDocumentalSicresEnumTypeHandlerCallback"/>
+ 
+  
+	<sqlMap resource="sqlmaps/ISicres-Api/documentoElectronico/documentoElectronico-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/documentoElectronico/documentoElectronico-queries.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/documentoElectronico/documentoTipoDocumentalSicres-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/documentoElectronico/documentoTipoDocumentalSicres-queries.xml" />
+
+</sqlMapConfig>

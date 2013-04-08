@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PaisVO">
+
+	<resultMap class="es.ieci.tecdoc.isicres.terceros.business.vo.PaisVO"
+		id="pais">
+		<result property="id" column="id" />
+		<result property="codigo" column="code" />
+		<result property="nombre" column="name" />
+	</resultMap>
+
+	<select id="getPaisVOs" resultMap="pais">
+		SELECT id, name, code
+		FROM
+		SCR_COUNTRY
+		ORDER BY name ASC
+	</select>
+
+	<select id="getPaisVO" parameterClass="java.lang.String"
+		resultMap="pais">
+		SELECT id, name, code
+		FROM SCR_COUNTRY
+		WHERE
+		id=#value:INTEGER#
+	</select>
+
+	<select id="findByCodigo" parameterClass="java.lang.String"
+		resultMap="pais">
+		SELECT id, name, code
+		FROM SCR_COUNTRY
+		WHERE code=#value#
+	</select>
+
+	<select id="findByNombre" parameterClass="java.lang.String"
+		resultMap="pais">
+		SELECT id, name, code
+		FROM SCR_COUNTRY
+		WHERE name=#value#
+	</select>
+
+</sqlMap>

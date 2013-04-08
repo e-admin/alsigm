@@ -1,0 +1,5 @@
+=======================================
+Fichero: createAllBD.sh
+Descripción: Script para borrar por completo todas las bases de datos de la máquina virtual y volverlas a crear desde cero. 
+Nota: Lanzar con tomcat apagado, sinó habrá conexiones con la bd y no se ejecutará correctamente el script
+=======================================

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+	<pattern value="catalog">
+		<object-create-rule classname="ieci.tdw.ispac.ispacweb.app.EntityAppCatalog"/>
+
+		<pattern value="entityapp">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.dao.cat.CTApplicationDAO"/>
+			<set-properties-rule>
+				<alias attr-name='id' prop-name='id' />
+				<alias attr-name='name' prop-name='name' />
+				<alias attr-name='description' prop-name='description' />
+				<alias attr-name='type' prop-name='type' />
+				<alias attr-name='page' prop-name='page' />
+				<alias attr-name='params' prop-name='params' />
+				<alias attr-name='formatter' prop-name='formatter' />
+			</set-properties-rule>
+			<set-next-rule methodname="add"/>
+		</pattern>
+
+	</pattern>
+</digester-rules>

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ISicres-Common" default="local" basedir=".">
+
+	<property name="root.dir" value="." />
+	<property name="src.dir" value="${root.dir}/src/main/java" />
+	<property name="resources.dir" value="${root.dir}/src/main/resources" />
+	<property name="dist.dir" value="${root.dir}/dist" />
+	<property name="target.dir" value="${root.dir}/target" />
+	<property name="jar.dir" value="${dist.dir}/jar" />
+	<property name="build.dir" value="${root.dir}/build" />
+
+	<buildnumber file="${src.dir}/build.number" />
+	<property file="${resources.dir}/build.version" />
+	<property file="${resources.dir}/build.properties" />
+	<property file="${resources.dir}/build.release" />
+	<property file="${resources.dir}/log4j.properties" />
+
+
+	<target name="init">
+		<echo message="Init"/>
+		
+		<available property="xdoclet1.2+" classname="xdoclet.modules.hibernate.HibernateDocletTask" classpath="${compile_classpath}"/>
+	    
+		<jar destfile="${dist.dir}/${ant.project.name}-${build.version}.${build.release}.${build.number}-sources.jar">
+			<fileset dir="${src.dir}" >
+				<include name="**/*.java"/>
+			</fileset>
+			<fileset dir="${resources.dir}" >
+				<include name="**/*.hbm.xml"/>
+			</fileset>
+			
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />			
+				<attribute name="${ant.project.name}-Version" value="v${build.version}.${build.release}.${build.number}-sources" />
+			</manifest>
+		</jar>
+		
+		<echo message="Realizada copia del codigo de: ${ant.project.name}-${build.version}.${build.release}.${build.number}"/>
+	    
+	    <delete dir="${target.dir}"/>
+	    <delete dir="${build.dir}"/>
+	    
+	    <mkdir dir="${target.dir}"/>
+		<mkdir dir="${build.dir}"/>		
+	</target>
+	
+	<target name="init-database" depends="init">
+	    <echo message="init-database"/>
+		
+		<delete>
+			<fileset dir="${resources.dir}">
+			    <include name="**/*.hbm.xml"/>
+			</fileset>
+		</delete>
+		
+	</target>	
+	
+	<target name="init-local" depends="init">
+		<echo message="init-local"/>
+		
+		<delete>
+			<fileset dir="${src.dir}">
+			    <include name="**/*.java"/>			    
+			</fileset>
+		</delete>
+		
+	</target>
+	
+	<target name="init-all" depends="init">
+		<echo message="init-all"/>
+		
+		<delete>
+			<fileset dir="${src.dir}">
+			    <include name="**/*.java"/>			    
+			</fileset>
+		</delete>
+		
+		<delete>
+			<fileset dir="${resources.dir}">
+			    <include name="**/*.hbm.xml"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="generate_hbm_xml"  	
+			description="Run Middlegen" unless="generate_hbm.skip">
+	    <echo message="generate_hbm Class path = ${basedir}"/>
+		<echo message="generate_hbm"/>
+	    
+	    <taskdef name="middlegen" classname="middlegen.MiddlegenTask"  classpath="${compile_classpath}"/>
+		
+	    <middlegen appname="${ant.project.name}" 
+	    		   prefsdir="${resources.dir}" gui="false" 
+	    		   databaseurl="${database.url}" 
+	    		   initialContextFactory="${java.naming.factory.initial}" 
+	    		   providerURL="${java.naming.provider.url}" 
+	    		   datasourceJNDIName="${datasource.jndi.name}" 
+	    		   driver="${database.driver}" 
+	    		   username="${database.userid}" 
+	    		   password="${database.password}" 
+		    	   schema="${database.schema}" 
+		    	   catalog="${database.catalog}">
+	        <hibernate destination="${resources.dir}" 
+	        		   package="com.ieci.tecdoc.common.invesicres" 
+	        		   javaTypeMapper="middlegen.plugins.hibernate.HibernateJavaTypeMapper" 
+	        		   genIntergratedCompositeKeys="true" 
+	        		   genXDocletTags="true">
+	        </hibernate>
+	    </middlegen>
+			    
+	    <move todir="${resources.dir}/com/ieci/tecdoc/common/invesdoc">
+	        <fileset dir="${resources.dir}/com/ieci/tecdoc/common/invesicres">
+	            <include name="**/Idoc*.hbm.xml"/>
+	            <include name="**/Ivol*.hbm.xml"/>
+	            <include name="**/Iuser*.hbm.xml"/>
+	        </fileset>
+	    </move>
+	    <replace dir="${resources.dir}/com/ieci/tecdoc/common/invesdoc" token="com.ieci.tecdoc.common.invesicres" value="com.ieci.tecdoc.common.invesdoc">
+	        <include name="**/*.hbm.xml"/>
+	    </replace>
+	    <delete>
+	        <fileset dir="${resources.dir}" includes="**/A*.*"/>
+	    	<fileset dir="${resources.dir}" includes="**/invesicres/Dtproperty.hbm.xml"/>
+	    </delete>
+	    <replace dir="${resources.dir}/com/ieci/tecdoc/common/invesicres" token="type=&quot;java.lang.Long&quot;" value="type=&quot;java.lang.Integer&quot;">
+	        <include name="**/*.hbm.xml"/>
+	    </replace>
+	    <replace dir="${resources.dir}/com/ieci/tecdoc/common/invesdoc" token="type=&quot;java.lang.Long&quot;" value="type=&quot;java.lang.Integer&quot;">
+	        <include name="**/*.hbm.xml"/>
+	    </replace>
+	    <replace dir="${resources.dir}/com/ieci/tecdoc/common/invesicres" token="type=&quot;long&quot;" value="type=&quot;int&quot;">
+	        <include name="**/*.hbm.xml"/>
+	    </replace>
+	    <replace dir="${resources.dir}/com/ieci/tecdoc/common/invesdoc" token="type=&quot;long&quot;" value="type=&quot;int&quot;">
+	        <include name="**/*.hbm.xml"/>
+	    </replace>
+	    <replace dir="${resources.dir}/com/ieci/tecdoc/common/invesicres" token="java.io.InputStream" value="java.sql.Blob">
+	        <include name="**/*.hbm.xml"/>
+	    </replace>
+	    <replace dir="${resources.dir}/com/ieci/tecdoc/common/invesdoc" token="java.io.InputStream" value="java.sql.Blob">
+	        <include name="**/*.hbm.xml"/>
+	    </replace>
+	    
+	    <!-- ASOCIACIONES -->
+	    <replace dir="${resources.dir}/com/ieci/tecdoc/common/invesicres" token="invesicres.Idocarchhdr" value="invesdoc.Idocarchhdr">
+	        <include name="**/ScrRegstate.hbm.xml"/>
+	    </replace>
+	    <replace dir="${resources.dir}/com/ieci/tecdoc/common/invesdoc" token="invesdoc.ScrRegstate" value="invesicres.ScrRegstate">
+	        <include name="**/Idocarchhdr.hbm.xml"/>
+	    </replace>
+	</target>
+	
+	<target name="hbm2java" 
+		description="Generate .java from .hbm files.">
+		<echo message="hbm2java"/>
+		
+		<taskdef name="hbm2java" classname="net.sf.hibernate.tool.hbm2java.Hbm2JavaTask" classpath="${compile_classpath}" />
+		
+		<hbm2java output="${src.dir}">
+			<fileset dir="${resources.dir}">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</hbm2java>
+		
+		<replace dir="${src.dir}/com/ieci/tecdoc/common/invesicres" token="implements Serializable" value="implements Serializable">
+			<include name="**/*.java" />
+		</replace>
+		
+
+		<replace dir="${src.dir}/com/ieci/tecdoc/common/invesdoc" token="implements Serializable" value="implements Serializable">
+			<include name="**/*.java" />
+		</replace>
+
+		<replace dir="${src.dir}/com/ieci/tecdoc/common/invesicres" token="public int hashCode() {">
+			<include name="**/*.java" />
+
+			<replacevalue>
+				<![CDATA[
+                                       
+	//************************************
+		
+	public String toXML() {
+	       String className = getClass().getName();
+	       className = className.substring(className.lastIndexOf(".") + 1, className.length()).toUpperCase();
+	       StringBuffer buffer = new StringBuffer();
+	       buffer.append("<");
+	       buffer.append(className);
+	       buffer.append(">");
+	       try {
+	           java.lang.reflect.Field[] fields = getClass().getDeclaredFields();
+	           java.lang.reflect.Field field = null;
+	           String name = null;
+	           int size = fields.length;
+	           for (int i = 0; i < size; i++) {
+	               field = fields[i];
+	               name = field.getName();
+	               buffer.append("<");
+	               buffer.append(name.toUpperCase());
+	               buffer.append(">");
+	               if (field.get(this) != null) {
+	                   buffer.append(field.get(this));
+	               }
+	               buffer.append("</");
+	               buffer.append(name.toUpperCase());
+	               buffer.append(">");
+	           }
+	       } catch (Exception e) {
+	           e.printStackTrace(System.err);
+	       }
+	       buffer.append("</");
+	       buffer.append(className);
+	       buffer.append(">");
+	       return buffer.toString();
+	}
+	                               
+	//************************************  
+	                                                                                                                                                                   
+	public int hashCode() {]]>
+			</replacevalue>
+		</replace>
+
+		<replace dir="${src.dir}/com/ieci/tecdoc/common/invesdoc" token="public int hashCode() {">
+			<include name="**/*.java" />
+
+			<replacevalue>
+				<![CDATA[
+                                       
+	//************************************
+		
+	public String toXML() {
+	       String className = getClass().getName();
+	       className = className.substring(className.lastIndexOf(".") + 1, className.length()).toUpperCase();
+	       StringBuffer buffer = new StringBuffer();
+	       buffer.append("<");
+	       buffer.append(className);
+	       buffer.append(">");
+	       try {
+	           java.lang.reflect.Field[] fields = getClass().getDeclaredFields();
+	           java.lang.reflect.Field field = null;
+	           String name = null;
+	           int size = fields.length;
+	           for (int i = 0; i < size; i++) {
+	               field = fields[i];
+	               name = field.getName();
+	               buffer.append("<");
+	               buffer.append(name.toUpperCase());
+	               buffer.append(">");
+	               if (field.get(this) != null) {
+	                   buffer.append(field.get(this));
+	               }
+	               buffer.append("</");
+	               buffer.append(name.toUpperCase());
+	               buffer.append(">");
+	           }
+	       } catch (Exception e) {
+	           e.printStackTrace(System.err);
+	       }
+	       buffer.append("</");
+	       buffer.append(className);
+	       buffer.append(">");
+	       return buffer.toString();
+	}
+	                               
+	//************************************  
+	                                                                                                                                                                   
+	public int hashCode() {]]>
+			</replacevalue>
+		</replace>
+	</target>
+
+	
+	<target name="compile-hibernate" description="Compile hibernate Business Domain Model">
+		<javac srcdir="${src.dir}" destdir="${build.dir}/classes" classpathref="lib.class.path" debug="off" optimize="on">
+			<include name="**/com/ieci/tecdoc/common/invesicres/**" />
+			<include name="**/com/ieci/tecdoc/common/invesdoc/**" />
+		</javac>
+
+		<copy todir="${build.dir}/classes">
+			<fileset dir="${src.dir}">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</copy>
+
+		<jar destfile="${dist.dir}/${ant.project.name}.jar">
+			<fileset dir="${build.dir}/classes" />
+
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+
+				<attribute name="${ant.project.name}-Version" value="v_${build.version}${build.release}_${build.number} Oracle 9i y 10g" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="generate_hbm" depends="init-database,generate_hbm_xml" />
+	<target name="local" depends="init-local,hbm2java" />
+	
+	<target name="all" depends="init-all,generate_hbm_xml,hbm2java" description="Build everything" />
+	
+</project>
+

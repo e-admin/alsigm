@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- $Id: index2.html,v 1.1 2008/04/07 17:43:33 jconca Exp $ -->
+
+<head>
+
+<link rel="stylesheet" type="text/css" media="all" href="skins/aqua/theme.css" title="Aqua" />
+<!--link rel="alternate stylesheet" type="text/css" media="all" href="calendar-blue.css" title="winter" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-blue2.css" title="blue" /-->
+
+
+<!-- import the calendar script -->
+<script type="text/javascript" src="calendar.js"></script>
+
+<!-- import the language module -->
+<script type="text/javascript" src="lang/calendar-es.js"></script>
+<script type="text/javascript" src="calendario.js"></script>
+
+<!-- other languages might be available in the lang directory; please check
+your distribution archive. -->
+
+<!-- helper script that uses the calendar -->
+<script type="text/javascript">
+
+var oldLink = null;
+
+</script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+setActiveStyleSheet(document.getElementById("defaultTheme"), "Aqua");
+</script>
+
+<form action="#">
+<input type="text" name="date3" id="sel3" size="30">
+<input type="reset" value=" ... " onclick="return showCalendar('sel3', '%d/%m/%Y');">
+</form>
+<div id="display" style="float: right; clear: both;"></div>
+<div id="contenedora">
+	<%@ include file="Cabecera.jsp" %>
+    <div class="cuerpo">
+     
+          <h1>Expedientes del interesado</h1>
+		
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='empty'
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 columnClass='width5percent'
+				 sortable='false'
+				 media='html'
+				 />	
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CLAVE'
+				 readOnly='false'
+				 titleKey='entityManage.resource.propertyLabel.key'
+				 fieldType='CLAVE'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width30percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VALOR'
+				 readOnly='false'
+				 titleKey='entityManage.resource.propertyLabel.text'
+				 fieldType='VALOR'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width65percent'
+				 />
+
+</beanformatter>

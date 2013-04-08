@@ -1,0 +1,12 @@
+<resources>
+	<resource actor="CITIZEN" level="0">
+		<url-pattern>/*</url-pattern>	
+	</resource>
+	<resource actor="CITIZEN" level="1" >
+		<url-pattern>/action/*</url-pattern>
+		<login-page>/pages/tiles/login.jsp</login-page>		
+		<no-login-page>/pages/tiles/login.jsp</no-login-page>
+		<no-role-page>/pages/tiles/login.jsp</no-role-page>
+		<error-page>/pages/tiles/login.jsp</error-page>
+	</resource>
+</resources>

@@ -1,0 +1,252 @@
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
+          "/WEB-INF/validator_1_0.dtd">
+
+<form-validation>
+	<formset>
+		<form name="/guardarNuevoUsuario">
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.usuarios.nombre"/>
+			</field>
+			<field property="idPerfil" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.usuarios.perfil"/>
+			</field>
+			<field property="email" depends="email">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.usuarios.localizacion.email"/>
+			</field>
+		</form>
+		<form name="/guardarEdicionUsuario">
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.usuarios.nombre"/>
+			</field>
+			<field property="idPerfil" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.usuarios.perfil"/>
+			</field>
+			<field property="email" depends="email">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.usuarios.localizacion.email"/>
+			</field>
+		</form>
+		<form name="/guardarNuevaOficina">
+			<field property="deptId" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.departamento"/>
+			</field>
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.nombre"/>
+			</field>
+			<field property="codigo" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.codigo"/>
+			</field>
+			<field property="abreviatura" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.abreviatura"/>
+			</field>
+			<field property="sello" depends="maxlength">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.sello"/>
+        		<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        		<var><var-name>maxlength</var-name><var-value>240</var-value></var>
+			</field>
+			<field property="fechaVista" depends="date">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.fechaAlta"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="/guardarNuevaOficinaLdap">
+			<field property="deptId" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.distribucion.grupo"/>
+			</field>
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.nombre"/>
+			</field>
+			<field property="codigo" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.codigo"/>
+			</field>
+			<field property="abreviatura" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.abreviatura"/>
+			</field>
+			<field property="sello" depends="maxlength">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.sello"/>
+        		<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        		<var><var-name>maxlength</var-name><var-value>240</var-value></var>
+			</field>
+			<field property="fechaVista" depends="date">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.fechaAlta"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="/guardarEdicionOficina">
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.nombre"/>
+			</field>
+			<field property="codigo" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.codigo"/>
+			</field>
+			<field property="abreviatura" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.abreviatura"/>
+			</field>
+			<field property="sello" depends="maxlength">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.sello"/>
+        		<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        		<var><var-name>maxlength</var-name><var-value>240</var-value></var>
+			</field>
+			<field property="fechaVista" depends="date">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.oficinas.fechaAlta"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="/guardarNuevaUnidad">
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.nombre"/>
+			</field>
+			<field property="abreviatura" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.abreviatura"/>
+			</field>
+			<field property="uid" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.uid"/>
+			</field>
+		</form>
+		<form name="/guardarNuevaUnidadRoot">
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.nombre"/>
+			</field>
+			<field property="uid" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.uid"/>
+			</field>
+		</form>
+		<form name="/guardarEdicionUnidad">
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.nombre"/>
+			</field>
+			<field property="abreviatura" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.abreviatura"/>
+			</field>
+			<field property="uid" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.uid"/>
+			</field>
+		</form>
+		<form name="/guardarEdicionUnidadRoot">
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.nombre"/>
+			</field>
+			<field property="uid" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.unidades.nueva.uid"/>
+			</field>
+		</form>
+		<form name="/guardarNuevoLibro">
+			<field property="nombre" depends="required, mask">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.libros.nombre"/>
+				<var>
+                	<var-name>mask</var-name>
+                	<var-value>^[^\']*$</var-value>
+            	</var>
+			</field>
+			<field property="numeracion" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.libros.numeracion"/>
+			</field>
+			<field property="tipo" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.libros.tipo.libro"/>
+			</field>
+		</form>
+		<form name="/guardarEdicionLibro">
+			<field property="nombre" depends="required, mask">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.libros.nombre"/>
+				<var>
+                	<var-name>mask</var-name>
+                	<var-value>^[^\']*$</var-value>
+            	</var>
+			</field>
+			<field property="numeracion" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.libros.numeracion"/>
+			</field>
+			<field property="tipo" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.libros.tipo.libro"/>
+			</field>
+		</form>
+		<form name="/guardarNumeracion">
+			<field property="central" depends="required,integer">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.libros.configurar.central"/>
+			</field>
+		</form>
+		<form name="/guardarNuevoAsunto">
+			<field property="codigo" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.asuntos.codigo"/>
+			</field>
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.asuntos.nombre"/>
+			</field>
+			<field property="fechaCreacion" depends="required,date">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.asuntos.fecha.creacion"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="fechaBaja" depends="date">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.asuntos.fecha.baja"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="/guardarEdicionAsunto">
+			<field property="codigo" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.asuntos.codigo"/>
+			</field>
+			<field property="nombre" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.asuntos.nombre"/>
+			</field>
+			<field property="fechaCreacion" depends="required,date">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.asuntos.fecha.creacion"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="fechaBaja" depends="date">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.asuntos.fecha.baja"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="/guardarNuevaEntidadRegistral">
+
+			<field property="code" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.intercambioRegistral.nuevaEntidad.codigo"/>
+			</field>
+			<field property="name" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.intercambioRegistral.nuevaEntidad.nombre"/>
+			</field>
+			<field property="idOrgs" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.intercambioRegistral.nuevaEntidad.unidadOrganizacion"/>
+			</field>
+		</form>
+		<form name="/guardarNuevaUnidadRegistral">
+
+			<field property="code" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.intercambioRegistral.nuevaEntidad.codigo"/>
+			</field>
+			<field property="name" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.intercambioRegistral.nuevaEntidad.nombre"/>
+			</field>
+			<field property="idOrgs" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.intercambioRegistral.nuevaEntidad.unidadOrganizacion"/>
+			</field>
+			<field property="idEntityReg" depends="required">
+				<arg0 key="ieci.tecdoc.sgm.rpadmin.intercambioRegistral.nuevaUnidadRegistral.idEntidadPadre"/>
+			</field>
+
+		</form>
+
+	</formset>
+</form-validation>
+

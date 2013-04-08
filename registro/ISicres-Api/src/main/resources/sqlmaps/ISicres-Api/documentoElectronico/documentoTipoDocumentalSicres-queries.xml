@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="DocumentoTipoDocumentalSicresVO">
+	
+	<!-- obtiene los datos del documentoTipoDocumento de la tabla  SCR_PAGEREPOSITORY y SCR_PAGETYPE a partir de idLibro, idCarpeta, idPagina e idDocumento -->
+	<select id="getPageRepositoryById" parameterClass="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.IdentificadorDocumentoElectronicoAnexoVO"  resultMap="documentoTipoDocumentalSicres">
+		SELECT PAGEREP.BOOKID,
+			   PAGEREP.FDRID as folderid,
+			   PAGEREP.PAGEID,
+			   PAGEREP.DOCUID,
+			   PAGEREP.ID_PAGETYPE
+		FROM SCR_PAGEREPOSITORY PAGEREP
+		WHERE PAGEREP.BOOKID=#idLibro# AND
+			  PAGEREP.FDRID=#idRegistro# AND
+			  PAGEREP.PAGEID=#idPagina#
+	</select>
+	
+		
+	<!-- inserta datos en la tabla SCR_PAGEREPOSITORY -->
+	<insert  id="addPageRepository"  parameterClass="documentoTipoDocumentalSicresVO" >	
+		INSERT INTO SCR_PAGEREPOSITORY (
+			BOOKID,
+			FDRID,
+			PAGEID,
+			DOCUID,
+			ID_PAGETYPE
+	    ) 
+		VALUES (
+		    #id.idLibro:INT#,
+			#id.idRegistro:INT#,
+			#id.idPagina:INT#,
+			#idDocumento:VARCHAR#,
+			#tipoDocumentalSicres:INT#	
+		)
+	</insert>
+	
+	<!-- actualiza el tipoDocumentalSicres en la tabla SCR_PAGEREPOSITORY -->
+	<update  id="updatePageRepository"  parameterClass="java.util.Map" >	
+		UPDATE SCR_PAGEREPOSITORY
+		SET ID_PAGETYPE=#tipoDocumentalSicres.value#
+	    WHERE BOOKID=#idDocumento.idLibro# AND
+			  FDRID=#idDocumento.idRegistro# AND
+			  PAGEID=#idDocumento.idPagina#
+	</update>
+</sqlMap>	

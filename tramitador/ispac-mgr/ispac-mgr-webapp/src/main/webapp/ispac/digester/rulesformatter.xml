@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<digester-rules>
+	<object-create-rule pattern="beanformatter" classname="ieci.tdw.ispac.ispaclib.bean.BeanFormatter"/>
+	<!-- 
+	  Busca cualquier campo de tipo propertyfmt y por cada uno de ellos crea
+	  un objeto de tipo BeanPropertyFmt a través del factory, que luego es
+	  añadido al beanformatter 
+	-->
+	<pattern value="*/propertyfmt">
+		<factory-create-rule classname="ieci.tdw.ispac.ispaclib.bean.BeanPropertyFmtFactory"/>
+		<set-properties-rule>
+			<alias attr-name='property' prop-name='property' />
+			<alias attr-name='readOnly' prop-name='readOnly' />
+			<alias attr-name='format' prop-name='format' />
+			<alias attr-name='title' prop-name='title' />
+			<alias attr-name='fieldType' prop-name='fieldType' />
+			<alias attr-name='fieldLink' prop-name='fieldLink' />
+			<alias attr-name='width' prop-name='width' />
+			<alias attr-name='headerClass' prop-name='headerClass' />
+			<alias attr-name='sortable' prop-name='sortable' />
+			<alias attr-name='media' prop-name='media' />
+			<alias attr-name='decorator' prop-name='decorator' />
+			<alias attr-name='url' prop-name='url' />
+			<alias attr-name='id' prop-name='id' />
+		</set-properties-rule>		
+		<set-next-rule methodname="add"/>
+	</pattern>
+</digester-rules>

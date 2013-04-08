@@ -1,0 +1,1 @@
+SELECT "Clientes".CL_CLI  AS "id_cliente" , "Clientes".NOMBRE , "Tarjetas".CL_TAR  AS "id_tarjeta" FROM DATACM_4_0."Clientes" "Clientes" , DATACM_4_0."Tarjetas" "Tarjetas"  WHERE ( "Tarjetas".CL_CLI  =  "Clientes".CL_CLI ) AND ( "Clientes".NOMBRE  = 'Pepe' )

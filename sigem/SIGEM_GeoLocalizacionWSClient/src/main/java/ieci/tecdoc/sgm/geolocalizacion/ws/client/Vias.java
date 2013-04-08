@@ -1,0 +1,133 @@
+/**
+ * Vias.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.3 Oct 05, 2005 (05:23:37 EDT) WSDL2Java emitter.
+ */
+
+package ieci.tecdoc.sgm.geolocalizacion.ws.client;
+
+public class Vias  extends ieci.tecdoc.sgm.geolocalizacion.ws.client.RetornoServicio  implements java.io.Serializable {
+    private ieci.tecdoc.sgm.geolocalizacion.ws.client.Via[] vias;
+
+    public Vias() {
+    }
+
+    public Vias(
+           java.lang.String errorCode,
+           java.lang.String returnCode,
+           ieci.tecdoc.sgm.geolocalizacion.ws.client.Via[] vias) {
+        super(
+            errorCode,
+            returnCode);
+        this.vias = vias;
+    }
+
+
+    /**
+     * Gets the vias value for this Vias.
+     * 
+     * @return vias
+     */
+    public ieci.tecdoc.sgm.geolocalizacion.ws.client.Via[] getVias() {
+        return vias;
+    }
+
+
+    /**
+     * Sets the vias value for this Vias.
+     * 
+     * @param vias
+     */
+    public void setVias(ieci.tecdoc.sgm.geolocalizacion.ws.client.Via[] vias) {
+        this.vias = vias;
+    }
+
+    private java.lang.Object __equalsCalc = null;
+    public synchronized boolean equals(java.lang.Object obj) {
+        if (!(obj instanceof Vias)) return false;
+        Vias other = (Vias) obj;
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (__equalsCalc != null) {
+            return (__equalsCalc == obj);
+        }
+        __equalsCalc = obj;
+        boolean _equals;
+        _equals = super.equals(obj) && 
+            ((this.vias==null && other.getVias()==null) || 
+             (this.vias!=null &&
+              java.util.Arrays.equals(this.vias, other.getVias())));
+        __equalsCalc = null;
+        return _equals;
+    }
+
+    private boolean __hashCodeCalc = false;
+    public synchronized int hashCode() {
+        if (__hashCodeCalc) {
+            return 0;
+        }
+        __hashCodeCalc = true;
+        int _hashCode = super.hashCode();
+        if (getVias() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getVias());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getVias(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        __hashCodeCalc = false;
+        return _hashCode;
+    }
+
+    // Type metadata
+    private static org.apache.axis.description.TypeDesc typeDesc =
+        new org.apache.axis.description.TypeDesc(Vias.class, true);
+
+    static {
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://server.ws.geolocalizacion.sgm.tecdoc.ieci", "Vias"));
+        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("vias");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://server.ws.geolocalizacion.sgm.tecdoc.ieci", "vias"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://server.ws.geolocalizacion.sgm.tecdoc.ieci", "Via"));
+        elemField.setNillable(true);
+        elemField.setItemQName(new javax.xml.namespace.QName("http://server.ws.geolocalizacion.sgm.tecdoc.ieci", "item"));
+        typeDesc.addFieldDesc(elemField);
+    }
+
+    /**
+     * Return type metadata object
+     */
+    public static org.apache.axis.description.TypeDesc getTypeDesc() {
+        return typeDesc;
+    }
+
+    /**
+     * Get Custom Serializer
+     */
+    public static org.apache.axis.encoding.Serializer getSerializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanSerializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+    /**
+     * Get Custom Deserializer
+     */
+    public static org.apache.axis.encoding.Deserializer getDeserializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanDeserializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+}

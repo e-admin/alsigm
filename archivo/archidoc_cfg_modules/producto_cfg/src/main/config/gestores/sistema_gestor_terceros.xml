@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<terceros>
+  <!-- <tercero id="Id_Tercero1">
+    <identificacion>DNI/NIF Tercero</identificacion>
+    <nombre>Nombre del Tercero</nombre>
+    <apellido1>1ºApellido</apellido1>
+    <apellido2>2º Apellido</apellido2>
+    <direccion>Dirección</direccion>
+    <email></email>
+  </tercero>
+  <tercero id="Id_Tercero2">
+    <identificacion>CIF Tercero</identificacion>
+    <nombre>Nombre Tercero</nombre>
+    <direccion>Dirección</direccion>
+    <email></email>
+  </tercero>
+   -->
+   
+  <tercero id="F00000001">
+    <identificacion>10876543G</identificacion>
+    <nombre>Juan</nombre>
+    <apellido1>Pérez</apellido1>
+    <apellido2>Díaz</apellido2>
+    <direccion>Oviedo</direccion>
+    <email>juan@ce.es</email>
+  </tercero>
+  <tercero id="F00000002">
+    <identificacion>12876541T</identificacion>
+    <nombre>Luis</nombre>
+    <apellido1>Gómez</apellido1>
+    <apellido2>González</apellido2>
+    <direccion>Gijón</direccion>
+    <email>luis@ce.es</email>
+  </tercero>
+  <tercero id="F00000003">
+    <identificacion>12345344H</identificacion>
+    <nombre>Eva</nombre>
+    <apellido1>Martínez</apellido1>
+    <apellido2>González</apellido2>
+    <direccion>Avilés</direccion>
+    <email>eva@ce.es</email>
+  </tercero>
+  <tercero id="J00000001">
+    <identificacion>P3304400K</identificacion>
+    <nombre>Ayuntamiento 1</nombre>
+    <direccion>Dirección Ayuntamiento 1</direccion>
+    <email>ay1@ce.es</email>
+  </tercero>
+  <tercero id="J00000002">
+    <identificacion>P4405500J</identificacion>
+    <nombre>Ayuntamiento 2</nombre>
+    <direccion>Dirección Ayuntamiento 2</direccion>
+    <email>ay2@ce.es</email>
+  </tercero>
+  <tercero id="J00000003">
+    <identificacion>P5506600T</identificacion>
+    <nombre>Ayuntamiento 3</nombre>
+    <direccion>Dirección Ayuntamiento 3</direccion>
+    <email>ay3@ce.es</email>
+  </tercero>  
+</terceros>

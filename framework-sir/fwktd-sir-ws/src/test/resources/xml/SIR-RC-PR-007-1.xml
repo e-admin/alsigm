@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Fichero_Intercambio_SICRES_3 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <De_Origen_o_Remitente>
+    <Codigo_Entidad_Registral_Origen>O00001223</Codigo_Entidad_Registral_Origen>
+    <Numero_Registro_Entrada>110110007</Numero_Registro_Entrada>
+    <Fecha_Hora_Entrada>20111003121535</Fecha_Hora_Entrada>
+    <Codigo_Unidad_Tramitacion_Origen>E00106103</Codigo_Unidad_Tramitacion_Origen>
+  </De_Origen_o_Remitente>
+  <De_Destino>
+    <Codigo_Entidad_Registral_Destino>O00002061</Codigo_Entidad_Registral_Destino>
+  </De_Destino>
+  <De_Interesado />
+  <De_Asunto>
+    <Resumen>Asunto de Prueba SIR-RC-PR-007</Resumen>
+  </De_Asunto>
+  <De_Formulario_Generico>
+    <Expone />
+    <Solicita />
+  </De_Formulario_Generico>
+</Fichero_Intercambio_SICRES_3>

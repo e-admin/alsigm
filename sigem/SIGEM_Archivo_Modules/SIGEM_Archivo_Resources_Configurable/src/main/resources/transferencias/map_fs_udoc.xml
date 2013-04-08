@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Map_fs_udoc version="5.0" descripcion="Configuración de los mapeos de campos descriptivos de fracción de serie a unidad documental">
+    <Campos_Mapeo>
+	<!-- Referencias ADVCREFCF -->
+    <campo descripcion="Productor" idCampoOrigen="16" idCampoDestino="16" tipo="5"/>
+	<campo descripcion="Interesado_Identidad" idCampoOrigen="9" idCampoDestino="9" tipo="5"/>
+	<campo descripcion="Emplazamiento_Localizacion" idCampoOrigen="42" idCampoDestino="42" tipo="1"/>
+	<campo descripcion="Emplazamiento_Pais" idCampoOrigen="2" idCampoDestino="2" tipo="5"/>
+	<campo descripcion="Emplazamiento_Comunidad" idCampoOrigen="39" idCampoDestino="39" tipo="5"/>
+	<campo descripcion="Emplazamiento_Concejo" idCampoOrigen="40" idCampoDestino="40" tipo="5"/>
+	<campo descripcion="Emplazamiento_Poblacion" idCampoOrigen="41" idCampoDestino="41" tipo="5"/>
+
+	<!-- Numéricos ADVCNUMCF -->
+
+	<!-- Textos Cortos ADVCTEXTCF -->
+	<campo descripcion="Forma_Ingreso" idCampoOrigen="203" idCampoDestino="203" tipo="1"/>
+	<campo descripcion="Ref_Ingreso" idCampoOrigen="205" idCampoDestino="205" tipo="1"/>
+	<campo descripcion="Interesado_Validado" idCampoOrigen="12" idCampoDestino="12" tipo="1"/>
+	<campo descripcion="Emplazamiento_Localización" idCampoOrigen="42" idCampoDestino="42" tipo="1"/>
+	<campo descripcion="Hoja de Entrega" idCampoOrigen="206" idCampoDestino="206" tipo="1"/>
+   	<campo descripcion="Id_Tercero_Interesado" idCampoOrigen="51" idCampoDestino="51" tipo="1"/>
+
+	<!-- Textos Largos ADVCTEXTLCF -->
+	<campo descripcion="Descripción Contenido" idCampoOrigen="13" idCampoDestino="13" tipo="2"/>
+	<campo descripcion="Historia Archivística" idCampoOrigen="18" idCampoDestino="18" tipo="2"/>
+	<campo descripcion="Código de transferencia" idCampoOrigen="204" idCampoDestino="204" tipo="2"/>
+
+	<!-- Fechas ADVCFECHACF (Excluyendo FechaIni y FechaFin de udocs que se copian siempre) -->
+
+    </Campos_Mapeo>
+</Map_fs_udoc>

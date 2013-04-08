@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.firma.cripto.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.firma.cripto.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.firma.cripto.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:tns2="http://cert.security.java" xmlns:tns3="http://security.java" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.firma.cripto.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <import namespace="http://cert.security.java"/>
+   <import namespace="http://security.java"/>
+   <element name="registrarFirma">
+    <complexType>
+     <sequence>
+      <element name="signature" type="impl:Contenido"/>
+      <element name="certificate" type="impl:Contenido"/>
+      <element name="hash" type="impl:Contenido"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Contenido">
+    <sequence>
+     <element name="contenidoB64" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="registrarFirmaResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarFirmaReturn" type="impl:RegistroFirma"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RegistroFirma">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="idRegistro" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="registrarFirmaByEntidad">
+    <complexType>
+     <sequence>
+      <element name="signature" type="impl:Contenido"/>
+      <element name="certificate" type="impl:Contenido"/>
+      <element name="hash" type="impl:Contenido"/>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarFirmaByEntidadResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarFirmaByEntidadReturn" type="impl:RegistroFirma"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="firmar">
+    <complexType>
+     <sequence>
+      <element name="poContenido" type="impl:Contenido"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="firmarResponse">
+    <complexType>
+     <sequence>
+      <element name="firmarReturn" type="impl:Firma"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Firma">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="firmaB64" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="firmarByEntidad">
+    <complexType>
+     <sequence>
+      <element name="poContenido" type="impl:Contenido"/>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="firmarByEntidadResponse">
+    <complexType>
+     <sequence>
+      <element name="firmarByEntidadReturn" type="impl:Firma"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarFirma">
+    <complexType>
+     <sequence>
+      <element name="signature" type="impl:Contenido"/>
+      <element name="contenido" type="impl:Contenido"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarFirmaResponse">
+    <complexType>
+     <sequence>
+      <element name="validarFirmaReturn" type="impl:ResultadoValidacionFirma"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Certificado">
+    <sequence>
+     <element name="issuer" nillable="true" type="xsd:string"/>
+     <element name="serialNumber" nillable="true" type="xsd:string"/>
+     <element name="subject" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Firmante">
+    <sequence>
+     <element name="certificate" nillable="true" type="impl:Certificado"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="nif" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFirmante">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Firmante"/>
+    </sequence>
+   </complexType>
+   <complexType name="ResultadoValidacionFirma">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="firmantes" nillable="true" type="impl:ArrayOfFirmante"/>
+       <element name="resultadoValidacion" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="validarFirmaByEntidad">
+    <complexType>
+     <sequence>
+      <element name="signature" type="impl:Contenido"/>
+      <element name="contenido" type="impl:Contenido"/>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validarFirmaByEntidadResponse">
+    <complexType>
+     <sequence>
+      <element name="validarFirmaByEntidadReturn" type="impl:ResultadoValidacionFirma"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCertInfo">
+    <complexType>
+     <sequence>
+      <element name="signature" type="impl:Contenido"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCertInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="getCertInfoReturn" type="impl:X509CertificadoInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns2_Certificate">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Contenido"/>
+    </sequence>
+   </complexType>
+   <complexType name="X509CertificadoInfo">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="cert" nillable="true" type="xsd:anyType"/>
+       <element name="certStore" nillable="true" type="xsd:anyType"/>
+       <element name="certs" nillable="true" type="impl:ArrayOf_tns2_Certificate"/>
+       <element name="privKey" nillable="true" type="xsd:anyType"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getCertInfoByEntidad">
+    <complexType>
+     <sequence>
+      <element name="signature" type="impl:Contenido"/>
+      <element name="idEntidad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCertInfoByEntidadResponse">
+    <complexType>
+     <sequence>
+      <element name="getCertInfoByEntidadReturn" type="impl:X509CertificadoInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+ 
+   <import namespace="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="registrarFirmaRequest">
+
+      <wsdl:part element="impl:registrarFirma" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertInfoResponse">
+
+      <wsdl:part element="impl:getCertInfoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarFirmaRequest">
+
+      <wsdl:part element="impl:validarFirma" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarFirmaResponse">
+
+      <wsdl:part element="impl:validarFirmaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="firmarResponse">
+
+      <wsdl:part element="impl:firmarResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarFirmaByEntidadRequest">
+
+      <wsdl:part element="impl:validarFirmaByEntidad" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarFirmaByEntidadRequest">
+
+      <wsdl:part element="impl:registrarFirmaByEntidad" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="firmarByEntidadResponse">
+
+      <wsdl:part element="impl:firmarByEntidadResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarFirmaByEntidadResponse">
+
+      <wsdl:part element="impl:registrarFirmaByEntidadResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertInfoRequest">
+
+      <wsdl:part element="impl:getCertInfo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarFirmaResponse">
+
+      <wsdl:part element="impl:registrarFirmaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="firmarRequest">
+
+      <wsdl:part element="impl:firmar" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="firmarByEntidadRequest">
+
+      <wsdl:part element="impl:firmarByEntidad" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertInfoByEntidadRequest">
+
+      <wsdl:part element="impl:getCertInfoByEntidad" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCertInfoByEntidadResponse">
+
+      <wsdl:part element="impl:getCertInfoByEntidadResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="validarFirmaByEntidadResponse">
+
+      <wsdl:part element="impl:validarFirmaByEntidadResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ServicioFirmaDigitalWebService">
+
+      <wsdl:operation name="registrarFirma">
+
+         <wsdl:input message="impl:registrarFirmaRequest" name="registrarFirmaRequest"/>
+
+         <wsdl:output message="impl:registrarFirmaResponse" name="registrarFirmaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarFirmaByEntidad">
+
+         <wsdl:input message="impl:registrarFirmaByEntidadRequest" name="registrarFirmaByEntidadRequest"/>
+
+         <wsdl:output message="impl:registrarFirmaByEntidadResponse" name="registrarFirmaByEntidadResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="firmar">
+
+         <wsdl:input message="impl:firmarRequest" name="firmarRequest"/>
+
+         <wsdl:output message="impl:firmarResponse" name="firmarResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="firmarByEntidad">
+
+         <wsdl:input message="impl:firmarByEntidadRequest" name="firmarByEntidadRequest"/>
+
+         <wsdl:output message="impl:firmarByEntidadResponse" name="firmarByEntidadResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarFirma">
+
+         <wsdl:input message="impl:validarFirmaRequest" name="validarFirmaRequest"/>
+
+         <wsdl:output message="impl:validarFirmaResponse" name="validarFirmaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarFirmaByEntidad">
+
+         <wsdl:input message="impl:validarFirmaByEntidadRequest" name="validarFirmaByEntidadRequest"/>
+
+         <wsdl:output message="impl:validarFirmaByEntidadResponse" name="validarFirmaByEntidadResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertInfo">
+
+         <wsdl:input message="impl:getCertInfoRequest" name="getCertInfoRequest"/>
+
+         <wsdl:output message="impl:getCertInfoResponse" name="getCertInfoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertInfoByEntidad">
+
+         <wsdl:input message="impl:getCertInfoByEntidadRequest" name="getCertInfoByEntidadRequest"/>
+
+         <wsdl:output message="impl:getCertInfoByEntidadResponse" name="getCertInfoByEntidadResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="FirmaDigitalWebServiceSoapBinding" type="impl:ServicioFirmaDigitalWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="registrarFirma">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarFirmaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarFirmaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarFirmaByEntidad">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarFirmaByEntidadRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarFirmaByEntidadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="firmar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="firmarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="firmarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="firmarByEntidad">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="firmarByEntidadRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="firmarByEntidadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarFirma">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarFirmaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarFirmaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validarFirmaByEntidad">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validarFirmaByEntidadRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validarFirmaByEntidadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCertInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCertInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCertInfoByEntidad">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCertInfoByEntidadRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCertInfoByEntidadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServicioFirmaDigitalWebServiceService">
+
+      <wsdl:port binding="impl:FirmaDigitalWebServiceSoapBinding" name="FirmaDigitalWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_FirmaDigitalWS/services/FirmaDigitalWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,244 @@
+CREATE OR REPLACE FUNCTION ISNUMERIC
+        ( cad in VARCHAR2)
+        RETURN NUMBER AS
+     aux_number NUMBER;
+BEGIN
+     aux_number := cad;
+     RETURN 1;
+EXCEPTION
+     WHEN others THEN
+         RETURN 0;
+END;
+/
+
+CREATE OR REPLACE FUNCTION GETNUMERICPOSITIVE
+        ( cad in VARCHAR2)
+        RETURN NUMBER AS
+     aux_number NUMBER;
+BEGIN
+     aux_number := cad;
+     RETURN aux_number;
+EXCEPTION
+     WHEN others THEN
+         RETURN -1;
+END;
+/
+
+CREATE OR REPLACE FUNCTION DEVOLVERMARCA ( numeroEnBase10 in NUMBER,posicionBit in NUMBER)
+            RETURN NUMBER
+     AS
+         vNumeros VARCHAR(10);
+         nuevoNumero VARCHAR(120);
+         auxNumeroEnBase10 NUMBER;
+ BEGIN
+     vNumeros:= '0123456789';
+     nuevoNumero:='';
+     auxNumeroEnBase10:=numeroEnBase10;
+     IF (posicionBit<0) THEN
+        RETURN 0;
+     END IF;
+
+     WHILE (auxNumeroEnBase10 <> 0) LOOP
+            nuevoNumero := (SUBSTR(vNumeros, MOD(auxNumeroEnBase10,2) + 1, 1) || nuevoNumero);
+            auxNumeroEnBase10 := FLOOR(auxNumeroEnBase10 / 2);
+     END LOOP;
+
+     IF (posicionBit>=LENGTH(nuevoNumero)) THEN
+        RETURN 0;
+     END IF;
+
+     IF SUBSTR(nuevoNumero, LENGTH(nuevoNumero)-posicionBit,1) ='1' THEN
+        RETURN 1;
+     END IF;
+     RETURN 0;
+END;
+/
+
+CREATE OR REPLACE FUNCTION CALCULARFINALCODREFPADRE
+(   vCodReferencia in VARCHAR2,
+    vCodRefFondo in VARCHAR2,
+    vCodigo in VARCHAR2,
+    vFinalCodRefPadreActual in VARCHAR2,
+    vDelimitador in VARCHAR2 )
+    return VARCHAR2
+AS
+    vCodRefSinCodRefFondo  VARCHAR2(255);
+    iNumCars INTEGER;
+    vReturnValue VARCHAR2(255);
+BEGIN
+    -- algoritmo: Ej
+    -- vCodReferencia            ES/NA/AJRP/CF1/CF2/F1/CS1/CS2/S1/U1
+    -- vCodRefFondo                ES/NA/AJRP/CF1/CF2/F1
+    -- vCodigo                    U1
+    -- vFinalCodRefPadreActual    CF1/CF2/F2/CS1/CS2/S1/U1
+    -- vDelimitador                /
+
+    -- valor retornado:
+    --    sin lanzar excepciones:        CS1/CS2/S1
+    --    si algo fala:                CF1/CF2/F2/CS1/CS2/S1/U1
+
+    --reemplazar en la cadena la parte del fondo+delimitador por la cadena vacia
+
+
+    -- El codigo de referencia del fondo nunca puede llegar nulo, si llega nulo => error
+    IF(LENGTH(vCodRefFondo)=0) THEN
+        RETURN vFinalCodRefPadreActual;
+    END IF;
+
+    -- El codigo de referencia nunca puede llegar nulo, si llega nulo => error
+    IF(LENGTH(vCodReferencia)=0) THEN
+        RETURN vFinalCodRefPadreActual;
+    END IF;
+
+    -- Si el codigo de referencia del fondo no esta contenido ,en el codigo de referencia => error
+    IF(INSTR(vCodReferencia,vCodRefFondo)=0) THEN
+        RETURN vFinalCodRefPadreActual;
+    END IF;
+
+    -- Quitamos la parte con el codigo de referencia del fondo, del codigo de referencia
+	vCodRefSinCodRefFondo := REPLACE(vCodReferencia, vCodRefFondo || vDelimitador,'');
+
+	-- codigo vacio
+	IF(LENGTH(vCodigo)=0) THEN
+		RETURN vCodRefSinCodRefFondo;
+	END IF;
+
+    -- quitamos el codigo al final de la cadena y el caracter delimitador
+	iNumCars:=LENGTH(vCodRefSinCodRefFondo)-LENGTH(vCodigo);
+	vReturnValue:=null;
+
+	IF (iNumCars>0) THEN
+		vReturnValue:=SUBSTR(vCodRefSinCodRefFondo,1,iNumCars-1);
+	END IF;
+
+	RETURN vReturnValue;
+EXCEPTION
+    WHEN others THEN
+        RETURN vFinalCodRefPadreActual;
+END;
+/
+
+CREATE OR REPLACE FUNCTION GETCODREF (IDELEMENTO IN VARCHAR2, SEPARATOR IN VARCHAR2) RETURN VARCHAR2 AS
+
+	CURSOR ELEMENTOS IS
+		SELECT CODIGO
+		FROM ASGFELEMENTOCF
+		START WITH ID = IDELEMENTO
+		CONNECT BY PRIOR IDPADRE = ID;
+
+	CURSOR FONDO IS
+		SELECT CODPAIS, CODCOMUNIDAD, CODARCHIVO
+		FROM ASGFELEMENTOCF ASGFELEMENTOCF, ASGFFONDO ASGFFONDO
+		WHERE	ASGFELEMENTOCF.ID=IDELEMENTO AND
+				ASGFELEMENTOCF.IDFONDO=ASGFFONDO.IDELEMENTOCF;
+
+	AUXCODREFERENCIA VARCHAR2(1024);
+	CODIGO VARCHAR2(128);
+	CODPAIS VARCHAR2(16);
+	CODCOMUNIDAD VARCHAR2(16);
+	CODARCHIVO VARCHAR2(32);
+
+
+BEGIN
+
+	IF (IDELEMENTO IS NULL) THEN
+	 	AUXCODREFERENCIA := NULL;
+	ELSE
+		AUXCODREFERENCIA := NULL;
+		CODPAIS := NULL;
+
+		FOR ELEMENTO IN ELEMENTOS
+		LOOP
+			IF (ELEMENTO.CODIGO IS NOT NULL) THEN
+				IF (LENGTH(ELEMENTO.CODIGO)>0) THEN
+					IF (AUXCODREFERENCIA IS NULL) THEN
+						AUXCODREFERENCIA := ELEMENTO.CODIGO;
+					ELSE
+						AUXCODREFERENCIA := ELEMENTO.CODIGO || SEPARATOR || AUXCODREFERENCIA;
+					END IF;
+				END IF;
+			END IF;
+		END LOOP;
+
+		IF (LENGTH(AUXCODREFERENCIA)>0) THEN
+
+			FOR ELEMENTOFONDO IN FONDO
+			LOOP
+				CODPAIS:= ELEMENTOFONDO.CODPAIS;
+				CODCOMUNIDAD:= ELEMENTOFONDO.CODCOMUNIDAD;
+				CODARCHIVO:= ELEMENTOFONDO.CODARCHIVO;
+			END LOOP;
+
+			IF (LENGTH(CODPAIS)>0) THEN
+				AUXCODREFERENCIA := CODPAIS || SEPARATOR || CODCOMUNIDAD || SEPARATOR || CODARCHIVO || SEPARATOR || AUXCODREFERENCIA;
+			END IF;
+
+		END IF;
+	END IF;
+
+	IF (LENGTH(AUXCODREFERENCIA)=0) THEN
+		AUXCODREFERENCIA := NULL;
+	END IF;
+	RETURN AUXCODREFERENCIA;
+
+END;
+/
+
+CREATE OR REPLACE FUNCTION GETFINCODREFPADRE (IDELEMENTO IN VARCHAR2, SEPARATOR IN VARCHAR2) RETURN VARCHAR2 AS
+
+   	CURSOR ELEMENTOCF IS
+	   		  SELECT TIPO
+			  FROM ASGFELEMENTOCF
+			  WHERE ID = IDELEMENTO;
+
+	CURSOR CODSREFERENCIAELEMENTO IS
+	   		  SELECT GETCODREF(IDPADRE,SEPARATOR) CODIGOREFERENCIAELEMENTOPADRE, GETCODREF(IDFONDO,SEPARATOR) CODIGOREFERENCIAFONDO
+			  FROM ASGFELEMENTOCF
+			  WHERE ID = IDELEMENTO;
+
+	AUXFINALCODREFPADRE VARCHAR2(1024);
+	CODIGOREFERENCIAELEMENTOPADRE VARCHAR2(1024);
+	CODIGOREFERENCIAFONDO VARCHAR2(1024);
+	IDFONDO VARCHAR2(32);
+	TIPO NUMBER (1);
+
+BEGIN
+
+	IF (IDELEMENTO IS NULL) THEN
+		AUXFINALCODREFPADRE := NULL;
+	ELSE
+		TIPO:=-1;
+
+		FOR ELEMENTO IN ELEMENTOCF
+		LOOP
+			TIPO := ELEMENTO.TIPO;
+		END LOOP;
+
+		IF (TIPO IN (-1,2,6)) THEN
+			AUXFINALCODREFPADRE := NULL;
+		ELSE
+			FOR ELEMENTO IN CODSREFERENCIAELEMENTO
+			LOOP
+				CODIGOREFERENCIAELEMENTOPADRE := ELEMENTO.CODIGOREFERENCIAELEMENTOPADRE;
+				CODIGOREFERENCIAFONDO := ELEMENTO.CODIGOREFERENCIAFONDO;
+			END LOOP;
+
+			IF (LENGTH(CODIGOREFERENCIAFONDO)>0) THEN
+			   AUXFINALCODREFPADRE := REPLACE(CODIGOREFERENCIAELEMENTOPADRE,CODIGOREFERENCIAFONDO || SEPARATOR,'');
+			   AUXFINALCODREFPADRE := REPLACE(AUXFINALCODREFPADRE,CODIGOREFERENCIAFONDO,'');
+			ELSE
+			   AUXFINALCODREFPADRE := CODIGOREFERENCIAELEMENTOPADRE;
+			END IF;
+		END IF;
+	END IF;
+
+	IF (LENGTH(AUXFINALCODREFPADRE)=0) THEN
+		AUXFINALCODREFPADRE := NULL;
+	END IF;
+
+    RETURN AUXFINALCODREFPADRE;
+END;
+/
+
+
+

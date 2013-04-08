@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<persistence-unit name="clienteligero" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>es.ieci.scsp.verifdata.model.mapping.clienteligero.CertificadosAutorizaciones</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.clienteligero.Postprocesadores</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.clienteligero.PostprocesadoresId</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.clienteligero.Preprocesadores</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.clienteligero.PreprocesadoresId</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.clienteligero.Sinonimos</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.clienteligero.SinonimosId</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.clienteligero.UsuariosAutorizaciones</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.clienteligero.UsuariosAutorizacionesId</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreClavePrivada</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreClavePublica</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreEmisorCertificado</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreModulo</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreModuloConfiguracion</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreModuloConfiguracionId</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CorePeticionRespuesta</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreServicio</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreTipoMensaje</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreTokenData</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreTokenDataId</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreTransmision</class>
+		<class>es.ieci.scsp.verifdata.model.mapping.scsp.CoreTransmisionId</class>
+
+
+
+		<properties>
+<!-- EXTERNALIZAO EN FICHERO DE CONFIGURACION -->		
+<!-- mySql -->
+<!--		
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/scsp322_cliente_ligero"></property>
+			<property name="hibernate.connection.username" value="root"></property>
+			<property name="hibernate.connection.password" value="root"></property>
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>                       
+-->
+
+<!-- postgres EXTERNALIZADO-->
+<!-- 
+			<property name="hibernate.connection.url" value="jdbc:postgresql://10.228.75.80/scsp-cliente"></property>
+			<property name="hibernate.connection.username" value="postgres"></property>
+			<property name="hibernate.connection.password" value="postgres"></property>
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"></property>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>                       
+
+
+			<property name="hibernate.connection.nombre" value="clienteligero" />
+			
+			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.min_size" value="0" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="0" />
+			<property name="hibernate.c3p0.timeout" value="1800" />
+-->			
+		</properties>
+	</persistence-unit>
+	
+	<persistence-unit name="scsp" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+<!-- EXTERNALIZAO EN FICHERO DE CONFIGURACION -->
+
+<!-- mySql -->
+<!--		
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/scsp322_requirente"></property>
+			<property name="hibernate.connection.username" value="root"></property>
+			<property name="hibernate.connection.password" value="root"></property>
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>                       
+-->
+<!-- postgres -->
+<!-- 
+			<property name="hibernate.connection.url" value="jdbc:postgresql://10.228.75.80/scsp-requirente"></property>
+			<property name="hibernate.connection.username" value="postgres"></property>
+			<property name="hibernate.connection.password" value="postgres"></property>
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"></property>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>                       
+
+
+			<property name="hibernate.connection.nombre" value="SCSP" />
+			
+			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.min_size" value="0" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="0" />
+			<property name="hibernate.c3p0.timeout" value="1800" />
+-->			
+		</properties>
+	</persistence-unit>
+</persistence>

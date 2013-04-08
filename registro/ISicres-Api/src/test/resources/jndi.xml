@@ -1,0 +1,23 @@
+<beans>
+
+	<bean id="jndi" class="org.apache.xbean.spring.jndi.DefaultContext">
+		<property name="entries">
+			<map>
+			
+				
+				<entry key="java:comp/env/ISicres">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://localhost:5433/ISicres_7_2" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres" />
+						
+					</bean>
+					
+				</entry>
+								
+			</map>
+		</property>
+	</bean>
+</beans>

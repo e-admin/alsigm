@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<De_Mensaje xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Codigo_Entidad_Registral_Origen>O00001222</Codigo_Entidad_Registral_Origen>
+  <Codigo_Entidad_Registral_Destino>O00002102</Codigo_Entidad_Registral_Destino>
+  <Identificador_Intercambio>O00002102_12_20000027</Identificador_Intercambio>
+  <Tipo_Mensaje>01</Tipo_Mensaje>
+  <Descripcion_Mensaje/>
+  <Indicador_Prueba>1</Indicador_Prueba>
+  <Codigo_Error/>
+</De_Mensaje>
+

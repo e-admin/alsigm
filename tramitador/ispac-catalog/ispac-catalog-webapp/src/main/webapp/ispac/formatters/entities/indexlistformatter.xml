@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='empty'
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NAME'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 decorator=''
+				 url='/showCTEntityToManage.do?method=showIndex'
+				 id='indexId'
+				 columnClass='width30percent'
+				 />
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NAME'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='csv excel xml pdf'
+				 columnClass='width30percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='UNIQUE'
+				 readOnly='false'
+				 titleKey='form.entity.index.propertyLabel.uniqueKey'
+				 fieldType='BOOLEAN'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width20percent'
+				 />
+
+	<!-- 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DOCUMENTAL'
+				 readOnly='false'
+				 titleKey='form.entity.index.propertyLabel.documental'
+				 fieldType='BOOLEAN'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 decorator=''/>
+	-->
+ 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CAMPOS_INDICE'
+				 readOnly='false'
+				 titleKey='form.entity.index.propertyLabel.flds'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width50percent'
+				 />
+
+</beanformatter>

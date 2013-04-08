@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="AdministracionSesionesBackOfficeWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="nuevaSesion" qname="ns1:nuevaSesion" returnQName="ns1:nuevaSesionReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <parameter qname="ns1:usuario" type="xsd:string"/>
+   <parameter qname="ns1:idEntidad" type="xsd:string"/>
+  </operation>
+  <operation name="validarSesion" qname="ns2:validarSesion" returnQName="ns2:validarSesionReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <parameter qname="ns2:key" type="xsd:string"/>
+  </operation>
+  <operation name="caducarSesion" qname="ns3:caducarSesion" soapAction="" xmlns:ns3="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci">
+   <parameter qname="ns3:key" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="obtenerSesion" qname="ns4:obtenerSesion" returnQName="ns4:obtenerSesionReturn" returnType="ns4:Sesion" soapAction="" xmlns:ns4="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci">
+   <parameter qname="ns4:key" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="modificarDatosSesion" qname="ns5:modificarDatosSesion" returnQName="ns5:modificarDatosSesionReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <parameter qname="ns5:key" type="xsd:string"/>
+   <parameter qname="ns5:datosEspecificos" type="xsd:string"/>
+  </operation>
+  <parameter name="allowedMethods" value="obtenerSesion caducarSesion validarSesion nuevaSesion modificarDatosSesion"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="AdministracionSesionesBackOfficeWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.sesiones.backoffice.ws.server.AdministracionSesionesBackOfficeWebService"/>
+  <parameter name="wsdlServicePort" value="AdministracionSesionesBackOfficeWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="AdministracionSesionesBackOfficeWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:Sesion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.sesiones.backoffice.ws.server.Sesion" xmlns:ns6="http://server.ws.backoffice.sesiones.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

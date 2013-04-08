@@ -1,0 +1,16 @@
+<assembly>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>../ISicresAdmin-Web/src/main/resources</directory>
+			<outputDirectory>/</outputDirectory>
+			<excludes>
+				<exclude>**/log4j.properties</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

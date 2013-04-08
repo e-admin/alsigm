@@ -1,0 +1,26 @@
+<assembly>
+	<id>configurableSigem</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<filtered>true</filtered>
+			<directory>../SIGEM_ConsultaExpedienteBackOfficeWeb/src/main/resources/SIGEM_ConsultaExpedienteBackOfficeWeb</directory>
+			<outputDirectory>/SIGEM_ConsultaExpedienteBackOfficeWeb</outputDirectory>
+			<includes>
+				<include>log4j.*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../SIGEM_ConsultaExpedienteBackOfficeWeb/src/main/resources/SIGEM_ConsultaExpedienteBackOfficeWeb</directory>
+			<outputDirectory>/SIGEM_ConsultaExpedienteBackOfficeWeb</outputDirectory>
+			<includes>
+				<include>skin*/</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

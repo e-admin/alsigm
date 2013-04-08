@@ -1,0 +1,270 @@
+span#conectores-wrapper {
+	display: block;
+	margin-top: 8px;
+}
+
+#conectores-wrapper p {
+	height: 22px;
+/*	line-height: 18px;*/
+	margin: 0px;
+	margin-left: 30px;
+	border-bottom: none;
+}
+
+#conectores-wrapper p input[type=checkbox] {
+	float: left;
+	margin-right: 4px;
+}
+
+#conectores-wrapper label {
+	width: 250px;
+}
+
+#systemConectorData label {
+	width: 250px;
+}
+
+.floatnone {
+	float: none;
+}
+
+.ext-wrapper {
+	float: left;
+	width: 100%;
+}
+
+div.ext-wrapper span {
+	display: block;
+	padding-left: 30px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	clear: both;
+	min-height: 12px;
+}
+
+div.ext-wrapper input {
+	float: left;
+	height: 12px;
+}
+
+div.ext-wrapper label {
+	padding-left: 3px;
+}
+
+form {
+	/* set width in form, not fieldset (still takes up more room w/ fieldset width */
+	margin: 0;
+	padding: 0;
+	/*min-width: 500px;*/
+	/*max-width: 600px;*/
+	/*width: 100%;*/
+}
+
+#formTypeData, #systemConectorData {
+	padding-top: 8px;
+}
+
+#formTypeData h4, #systemConectorData h4 {
+	padding-bottom: 8px;
+}
+
+form fieldset, form .formulario {
+	/* clear: both; note that this clear causes inputs to break to left in ie5.x mac, commented out */
+	background-color: #FFFFFF;
+	padding: 5px;
+	margin-bottom: 12px;
+}
+
+form fieldset legend {
+	font-size: 1.1em;
+	/* bump up legend font size, not too large or it'll overwrite border on left */
+	/* be careful with padding, it'll shift the nice offset on top of border  */
+	padding: 0px;
+	margin:0;
+	height: 14px;
+	line-height: 14px;
+	display: block;
+}
+
+form p, form .formulario p {
+	padding: 0px;
+	margin: 0px;
+}
+
+form .formulario p {
+	border-bottom: 1px solid #DEDFE2;
+}
+
+form p label {
+	display: block; /* block float the labels to left column, set a width */
+	float: left;
+	width: 120px;
+	padding: 0;
+	margin: 0px 5px 0px 0px;
+	/* set top margin same as form input - textarea etc. elements */
+	text-align: left;
+}
+
+form p.check {
+	//padding-bottom: 4px;
+}
+
+form p.check input {
+	margin-left: 12px;
+	float:left;
+}
+
+form p.check label {
+	margin-left: 40px;
+	width: 60%;
+	float: none;
+}
+
+form p input, form p textarea, form p select {
+	border:#5c65a0 1px solid;
+	padding: 0px;
+	margin: 2px 0px;
+}
+
+form label, form input, form textarea, form select {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 11px;
+}
+
+form p input.smallest, form p textarea.smallest, form p select.smallest {
+	width: 10%;
+}
+
+form p input.small, form p textarea.small, form p select.small {
+	width: 20%;
+}
+
+form p input.medium, form p textarea.medium, form p select.medium {
+	width: 40%;
+}
+
+form p input.large, form p textarea.large, form p select.large {
+	width: 60%;
+}
+
+form p input.largest, form p textarea.largest, form p select.largest {
+	width: 80%;
+}
+
+form p textarea.largeDef {
+	width: 70%;
+}
+
+form p textarea.largestHigh {
+	width: 80%;
+	height: 80px;
+	overflow-x: hidden;
+}
+
+form p input[type=checkbox] {
+	border: none;
+}
+
+form p input.date {
+	width: 80px;
+	text-align: right;
+	padding-right: 5px;
+}
+
+form p.auth {
+	padding-left: 30px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	clear: both;
+	min-height: 14px;
+}
+
+form p.auth input {
+	float: left;
+	height: 14px;
+}
+
+form p.auth label {
+	padding-left: 3px;
+}
+
+form fieldset label:first-letter {
+	/* use first-letter pseudo-class to underline accesskey, note that */
+	text-decoration: underline;
+	/* Firefox 1.07 WIN and Explorer 5.2 Mac don't support first-letter */
+	/* pseudo-class on legend elements, but do support it on label elements */
+	/* we instead underline first letter on each label element and accesskey */
+	/* each input. doing only legends would  lessens cognitive load */
+	/* opera breaks after first letter underlined legends but not labels */
+}
+
+form input, form textarea, form select {
+	/* display: inline; inline display must not be set or will hide submit buttons in IE 5x mac */
+	width: auto;
+	/* set width of form elements to auto-size, otherwise watch for wrap on resize */
+	margin: 0 0 5px 0;
+	/*set margin on left of form elements rather than right of
+                              label aligns textarea better in IE */
+}
+
+form input#reset {
+	margin-left: 0px;
+	/* set margin-left back to zero on reset button (set above) */
+}
+
+textarea {
+	overflow: auto;
+}
+
+select {
+	overflow: auto;
+}
+
+form small {
+	display: block;
+	margin: 0 0 5px 160px;
+	/* instructions/comments left margin set to align w/ right column inputs */
+	padding: 1px 3px;
+	font-size: 88%;
+}
+
+form .required {
+	font-weight: bold;
+}  /* uses class instead of div, more efficient */
+
+form br {
+	clear: left;
+	/* setting clear on inputs didn't work consistently, so brs added for degrade */
+}
+
+form.block button[type="submit"] {
+	display:inline;
+}
+
+.form-errors {
+	background: url("../../images/terceros/red_info.png") no-repeat scroll 4px 2px #F1A394;
+	border: 1px solid red;
+	color: #FFFFFF;
+	display:block;
+	padding: 4px 4px 4px 32px;
+	margin: 2px 0px 2px 0px;
+}
+
+.form-errors br {
+	clear: right;
+}
+
+
+dl.form {
+}
+
+dl.form dt, dl.form dd{
+	margin:0;
+}
+
+dl.form dt {
+}
+
+dl.form dd {
+	padding-left : 3em;
+}

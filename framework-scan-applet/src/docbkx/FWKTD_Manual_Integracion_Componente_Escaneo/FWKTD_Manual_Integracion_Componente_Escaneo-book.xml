@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.0" xmlns="http://docbook.org/ns/docbook"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:ns="http://www.springframework.org/schema/beans"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Manual de Integración</title>
+
+    <subtitle>Componente de escaneo idocScan J2EE</subtitle>
+
+    <abstract>
+      <para>FWKTD Componente de escaneo idocScan J2EE</para>
+    </abstract>
+
+    <productname>Framework Tecnología Documental</productname>
+
+    <productnumber>0.7</productnumber>
+
+    <date>Noviembre 2012</date>
+
+    <author>
+      <orgname>IECISA</orgname>
+    </author>
+
+    <revhistory>
+      <revision>
+        <date>1.0 21/07/2011</date>
+
+        <author>
+          <personname><surname>IECISA</surname></personname>
+        </author>
+
+        <revdescription>
+          <para>Versión inicial manual de integración del componente de
+          escaneo</para>
+        </revdescription>
+      </revision>
+    </revhistory>
+
+    <copyright>
+      <year>2011</year>
+
+      <holder>Informática El Corte Inglés, S. A.</holder>
+    </copyright>
+
+    <legalnotice>
+      <para>Este documento contiene información y material confidencial
+      propiedad de <orgname>Informática El Corte Inglés S.A</orgname>. Los
+      materiales, ideas y conceptos contenidos en esta propuesta serán
+      utilizados exclusivamente para evaluar las capacidades de
+      <orgname>Informática El Corte Inglés</orgname> y no deberán ser
+      divulgados fuera de su organización o utilizados con propósitos
+      distintos a los mencionados. No está permitido su reproducción total o
+      parcial ni su uso con otras organizaciones para ningún otro propósito,
+      excepto autorización previa por escrito.</para>
+    </legalnotice>
+  </info>
+
+  <chapter>
+    <title>Introducción</title>
+
+    <para>El <application>framework de tecnología documental</application>
+    (<application>FWKTD</application>) desarrollado por <orgname>Informática
+    El Corte Inglés</orgname>, es un conjunto de herramientas, librerías y
+    buenas prácticas metodológicas y de desarrollo, que permite la
+    construcción de componentes reutilizables y con un alto grado de calidad.
+    Dichos componentes se integran y distribuyen como parte de las soluciones
+    que conforman la <application>plataforma de gestión documental y
+    workflow</application>, aunque pueden ser usados de manera
+    independiente.</para>
+
+    <para>Algunos de estos componentes son:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Módulo de eventos</para>
+      </listitem>
+
+      <listitem>
+        <para>Módulo de firma</para>
+      </listitem>
+
+      <listitem>
+        <para>Módulo de envío de ficheros</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>El presenta manual describe la <remark>integración</remark> del
+    componente de escaneo, denominado <application>idocScan</application>, con
+    las aplicaciones que hacen uso del mismo.</para>
+
+    <section>
+      <title>Documentos relacionados</title>
+
+      <itemizedlist>
+        <listitem>
+          <para><citetitle>Manual de usuario de
+          <application>idocScan</application></citetitle></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>El componente de escaneo</title>
+
+    <para>El componente de escaneo <application>idocScan J2EE</application> es
+    un <foreignphrase>applet</foreignphrase> de Java que se puede integrar en
+    cualquier aplicación web.</para>
+
+    <para>Este componente permite realizar operativas de escaneado de
+    imágenes, a través de diferentes dispositivos de captura.</para>
+
+    <section>
+      <title>Requisitos de sistema</title>
+
+      <para>Al ser el componente un <foreignphrase>applet</foreignphrase>, los
+      requisitos de sistema son de la parte cliente, ya que es donde se
+      ejecuta.</para>
+
+      <para>Los requisitos mínimos para la ejecución del módulo de escaneo
+      son:</para>
+
+      <section>
+        <title>Hardware</title>
+
+        <para>Se deberá disponer de una estación cliente con al menos las
+        siguientes características:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Procesador Pentium 4</para>
+          </listitem>
+
+          <listitem>
+            <para>1Gb de RAM</para>
+          </listitem>
+
+          <listitem>
+            <para>2 Gb de disco duro</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <section>
+        <title>Software</title>
+
+        <para>Para garantizar el pleno funcionamiento de la herramienta será
+        necesario satisfacer los siguientes requerimientos:</para>
+
+        <section>
+          <title>Sistema Operativo</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>Windows</para>
+            </listitem>
+
+            <listitem>
+              <para>Linux</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Navegador de internet</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>Internet Explorer 7 / 8</para>
+            </listitem>
+
+            <listitem>
+              <para>Mozilla Firefox 2.x / 3.x</para>
+            </listitem>
+
+            <listitem>
+              <para>Google Chrome 8.x</para>
+            </listitem>
+
+            <listitem>
+              <para>Apple Safari 5.x</para>
+            </listitem>
+
+            <listitem>
+              <para>Opera 11.x</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Máquina Virtual Java</title>
+
+          <para><itemizedlist>
+              <listitem>
+                <para>JRE 1.5 o superior</para>
+              </listitem>
+            </itemizedlist></para>
+        </section>
+      </section>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Declaración del <foreignphrase>applet</foreignphrase></title>
+
+    <para>El <foreignphrase>applet</foreignphrase>
+    <application>idocScan</application> se puede definir en cualquier pantalla
+    de una aplicación web (jsp, html...). La definición del mismo es la
+    siguiente:</para>
+
+    <programlisting>&lt;APPLET MAYSCRIPT="true" id="appletEscaneo" width="0" height="0" CODE="es.ieci.tecdoc.fwktd.applets.scan.applet.IdocAppletLauncher"
+ARCHIVE="applet/fwktd-scan-applet-0.5.jar"&gt;
+&lt;param name="tipoDoc" value="PDF" /&gt;
+&lt;param name="color" value="1" /&gt;
+&lt;param name="resolucion" value="100.0" /&gt;
+&lt;param name="returnJSFunction" value="returnFiles" /&gt;
+&lt;/APPLET&gt;</programlisting>
+
+    <para>Todos los parámetros de la definición son opcionales. Su significado
+    y uso es el siguiente:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><remark>tipoDoc</remark>: si se indica, en la creación de
+        perfiles se limitan los posibles formatos al aquí indicado. Los
+        valores posibles son: "PDF", "JPEG", "TIFF" o "TIFF_MULTIPAGE".</para>
+      </listitem>
+
+      <listitem>
+        <para><remark>color</remark>: si se indica, en la creación de perfiles
+        se limitan los posibles colores al aquí indicado. Los valores posibles
+        son: "0" (Blanco y Negro), "1" (Escala de grises), o "2"
+        (Color).</para>
+      </listitem>
+
+      <listitem>
+        <para><remark>resolucion</remark>: si se indica, en la creación de
+        perfiles se limitan las posibles resoluciones a la aquí indicada. Los
+        posibles valores son: "100.0", "200.0", "300.0", "400.0", "600.0",
+        "800.0", o "1200.0".</para>
+      </listitem>
+
+      <listitem>
+        <para><remark>returnJSFunction</remark>: nombre de una función
+        <foreignphrase>Javascript</foreignphrase> que ha de implementar la
+        aplicación usuaria del componente, a modo de
+        <foreignphrase>callback</foreignphrase>. El
+        <foreignphrase>applet</foreignphrase> llamará a esta función al
+        finalizar una captura, para retornar los ficheros obtenidos. Esta
+        función ha de recibir un <foreignphrase>array</foreignphrase> del
+        siguiente tipo:
+        <code>[rutaFile1][tamañoFile1][rutaFile2][tamañoFile2]</code>...</para>
+
+        <para>A continuación se muestra un ejemplo de esta función:</para>
+
+        <programlisting>function returnFiles(files) {
+ for (i=0; i &lt; files.length; i=i+2) {
+  addFileToTable(files[i], files[i+1] ); //Donde files[i] es la ruta del fichero, y files[i+1] el tamaño
+ }
+}</programlisting>
+      </listitem>
+    </itemizedlist>
+  </chapter>
+
+  <chapter>
+    <title>Configuración y arranque</title>
+
+    <para>El <foreignphrase>applet</foreignphrase> se arranca invocando a la
+    función <code>startScanApplet(boolean permitirGuardarComo, boolean
+    obligarPerfil, boolean mostrarUI)</code>.</para>
+
+    <programlisting>var applet = document.getElementById("appletScan");
+var codigoResultado = applet.startScanApplet(true, true, true);</programlisting>
+
+    <para>En el arranque se permiten los parámetros "permitirGuardarComo" ,
+    "obligarPerfil" y "mostrarUI" que controlan si el componente ofrece la
+    opción de guardar una copia de las imágenes obtenidas, si obliga a crear
+    un perfil de escaneo previamente a cualquier operación y si se muestra o
+    no la interfaz gráfica respectivamente.</para>
+
+    <para>En el ejemplo se arranca el <foreignphrase>applet</foreignphrase>
+    permitiendo la opción de menú <guibutton>Guardar Como...</guibutton> (para
+    que el usuario se pueda guardar una copia de lo que escanea), obligando a
+    disponer de un perfil de captura seleccionado antes de realizar cualquier
+    operación de escaneado, y mostrando la interfaz gráfica.</para>
+
+    <para>En caso de arrancar el applet sin interfaz gráfica (con el tercer
+    parámetro a false), automáticamente se escanea y retorna el documento. Si
+    no se encuentra ningún perfil para escanear, se muestra un aviso y
+    directamente la pantalla de configuración de perfiles.</para>
+
+    <para>Además, se puede arrancar sólo la pantalla de configuración de
+    perfiles, por si se requiere realizar una configuración previa. Para ello,
+    hay que invocar al método <code>configure()</code>.<programlisting>var applet = document.getElementById("appletScan");
+applet.configure();</programlisting></para>
+  </chapter>
+
+  <chapter>
+    <title>Función <foreignphrase>Javascript</foreignphrase> de aviso de carga
+    completada</title>
+
+    <para>Debido a que el <foreignphrase>applet</foreignphrase> tiene un
+    tamaño importante y puede verse ralentizada la primera carga, se puede
+    implementar una función <foreignphrase>Javascript</foreignphrase> que será
+    llamada desde el <foreignphrase>applet</foreignphrase> cuando esté
+    totalmente cargado. La función a implementar se llama
+    <code>finishLoadJSFunction</code>. Un ejemplo de uso de dicha función,
+    sería deshabilitar el botón de escaneo del
+    <foreignphrase>applet</foreignphrase> hasta que éste esté totalmente
+    cargado, y en dicha función volver a habilitarlo, por ejemplo:</para>
+
+    <programlisting>function finishLoadJSFunction()
+{
+  document.getElementById("buttonScan").disabled=false;
+}</programlisting>
+  </chapter>
+  
+  <chapter>
+    <title>Solución a problema detectado en JRE anteriores a la 6u10, en el 
+    manejo desde <foreignphrase>Javascript</foreignphrase> de arrays devueltos 
+    desde java (LiveConnect)</title>
+
+    <para>Se ha detectado que en JRE anteriores a la 6u10, el array devuelto desde
+    una función <foreignphrase>Java</foreignphrase>, invocada por 
+    <foreignphrase>LiveConnect</foreignphrase>, desde <foreignphrase>Javascript</foreignphrase>,
+    no es convertido correctamente, lo que provoca errores 
+    <foreignphrase>javascript</foreignphrase> sin mensaje, cuando se trata  
+    de acceder a su contenido.</para>
+    
+    <para>Para evitar este problema, se ha añadido el método <foreignphrase>LiveConnect</foreignphrase> 
+    'toJavascriptString' que se encarga de convertir el array <foreignphrase>Java</foreignphrase> que recibe
+    como parámetro, en un <foreignphrase>String</foreignphrase> con la misma información, utilizando como 
+    separado el caracter pipe '|'. Ej: "nombre_fichero1|100|nombreFichero2|200". 
+    Posteriormente, a partir de esta cadena, se puede obtener fácilmente el arrary
+    javascript invocando a la función .spit("|"). A continuación puede verse un ejemplo:</para> 
+
+    <programlisting>
+    	[...]
+    	function returnFiles(filesReturned) {
+        	var applet = document.getElementById("appletScan");
+        	var strFiles=applet.toJavascriptString(filesReturned);
+        	var files=strFiles.split("|");
+        [...]
+    </programlisting>
+  </chapter>
+</book>

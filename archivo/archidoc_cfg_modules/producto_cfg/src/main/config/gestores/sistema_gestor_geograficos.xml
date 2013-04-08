@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<geograficos>
+  <paises>
+    <pais id="108" name="ESPAÑA">
+      <provincias>
+        <provincia id="1" name="ALAVA"/>
+        <provincia id="2" name="ALBACETE"/>
+        <provincia id="3" name="ALICANTE"/>
+        <provincia id="4" name="ALMERIA"/>
+        <provincia id="5" name="ÁVILA"/>
+        <provincia id="6" name="BADAJOZ"/>
+        <provincia id="7" name="BALEARES"/>
+        <provincia id="8" name="BARCELONA"/>
+        <provincia id="9" name="BURGOS"/>
+        <provincia id="10" name="CÁCERES"/>
+        <provincia id="11" name="CÁDIZ"/>
+        <provincia id="12" name="CASTELLÓN"/>
+        <provincia id="13" name="CIUDAD REAL"/>
+        <provincia id="14" name="CÓRDOBA"/>
+        <provincia id="15" name="CORUÑA"/>
+        <provincia id="16" name="CUENCA"/>
+        <provincia id="17" name="GERONA"/>
+        <provincia id="18" name="GRANADA"/>
+        <provincia id="19" name="GUADALAJARA"/>
+        <provincia id="20" name="GUIPÚZCOA"/>
+        <provincia id="21" name="HUELVA"/>
+        <provincia id="22" name="HUESCA"/>
+        <provincia id="23" name="JAÉN"/>
+        <provincia id="24" name="LEÓN"/>
+        <provincia id="25" name="LÉRIDA"/>
+        <provincia id="26" name="RIOJA (LA)"/>
+        <provincia id="27" name="LUGO"/>
+        <provincia id="28" name="MADRID"/>
+        <provincia id="29" name="MÁLAGA"/>
+        <provincia id="30" name="MURCIA"/>
+        <provincia id="31" name="NAVARRA">
+          <municipios>
+            <municipio id="0050000" name="ABERIN">
+              <localidades>
+                <localidad id="0050001" name="Aberin"/>
+                <localidad id="0050004" name="Muniáin de la Solana (Capital)"/>
+              </localidades>
+            </municipio>
+            <municipio id="0060000" name="ABLITAS">
+              <localidades>
+              </localidades>
+            </municipio>
+            <municipio id="0070000" name="ADIÓS">
+              <localidades>
+              </localidades>
+            </municipio>
+            <municipio id="0080000" name="AGUILAR DE CODÉS">
+              <localidades>
+              </localidades>
+            </municipio>
+            <municipio id="0090000" name="AIBAR &lt;&gt; OIBAR">
+              <localidades>
+              </localidades>
+            </municipio>
+            <municipio id="0100000" name="ALTSASU/ALSASUA">
+              <localidades>
+              </localidades>
+            </municipio>
+            <municipio id="0110000" name="ALLÍN">
+              <localidades>
+                <localidad id="0110001" name="Amillano"/>
+                <localidad id="0110002" name="Aramendía"/>
+                <localidad id="0110003" name="Arbeiza"/>
+                <localidad id="0110004" name="Artavia"/>
+                <localidad id="0110005" name="Echávarri"/>
+                <localidad id="0110006" name="Eulz"/>
+                <localidad id="0110007" name="Galdeano"/>
+                <localidad id="0110008" name="Larrión (Capital)"/>
+                <localidad id="0110009" name="Muneta"/>
+                <localidad id="0110010" name="Zubielqui"/>
+              </localidades>
+            </municipio>
+            <municipio id="0120000" name="ALLO">
+              <localidades>
+              </localidades>
+            </municipio>
+            <municipio id="0130000" name="AMÉSCOA BAJA">
+              <localidades>
+                <localidad id="0130001" name="Artaza"/>
+                <localidad id="0130002" name="Baquedano"/>
+                <localidad id="0130003" name="Baríndano"/>
+                <localidad id="0130004" name="Ecala"/>
+                <localidad id="0130005" name="Gollano"/>
+                <localidad id="0130006" name="San Martín de Améscoa"/>
+                <localidad id="0130008" name="Zudaire (Capital)"/>
+              </localidades>
+            </municipio>
+          </municipios>
+        </provincia>
+        <provincia id="32" name="ORENSE"/>
+        <provincia id="33" name="ASTURIAS">
+          <municipios>
+            <municipio id="3" name="AMIEVA">
+              <localidades>
+                <localidad id="1_1" name="AMIEVA"/>
+                <localidad id="2_1" name="ARGOLIBIO"/>
+                <localidad id="5_1" name="ARNAÑO"/>
+                <localidad id="5_10" name="BERDUCÉU"/>
+                <localidad id="3_13" name="BUXIL"/>
+                <localidad id="5_11" name="CAMPERÓN, EL"/>
+                <localidad id="2_5" name="CAMPORRIONDI"/>
+                <localidad id="2_6" name="CANEYONES, LOS"/>
+                <localidad id="3_1" name="CARBES"/>
+                <localidad id="2_7" name="CARMENERU"/>
+                <localidad id="2_2" name="CENEYA"/>
+                <localidad id="2_9" name="CETREDA, LA"/>
+                <localidad id="2_3" name="CIEN"/>
+                <localidad id="5_2" name="CIRIEÑO"/>
+                <localidad id="3_2" name="CORIGOS"/>
+                <localidad id="5_3" name="ENO"/>
+                <localidad id="3_14" name="ESTAZAES, LES"/>
+                <localidad id="3_3" name="FRESNEDA, LA"/>
+                <localidad id="2_10" name="FUENTE DEL SAPU, LA"/>
+                <localidad id="2_11" name="GORGOYONES"/>
+                <localidad id="3_15" name="GRAZOS, LOS"/>
+                <localidad id="3_16" name="JUMORIU"/>
+                <localidad id="4_2" name="LLANA, LA"/>
+                <localidad id="3_17" name="LLANDERA, LA"/>
+                <localidad id="3_18" name="LLOMBA, LA"/>
+                <localidad id="2_8" name="MATA, LA"/>
+                <localidad id="3_19" name="MATABUEYES"/>
+                <localidad id="3_10" name="MIYARES"/>
+                <localidad id="5_9" name="MOLLERA, LA"/>
+                <localidad id="2_12" name="MOLÍN DE LA LLASTRA, EL"/>
+                <localidad id="2_13" name="PALOMBIERGA"/>
+                <localidad id="3_11" name="PARCIA"/>
+                <localidad id="5_4" name="PEN"/>
+                <localidad id="3_4" name="PERVÍS"/>
+                <localidad id="5_12" name="POLVOROSAS"/>
+                <localidad id="3_12" name="PONTIGO, EL"/>
+                <localidad id="3_5" name="PRECENDI"/>
+                <localidad id="2_14" name="PUENTE DE VEGA"/>
+                <localidad id="3_20" name="PUENTE DOBRA"/>
+                <localidad id="2_15" name="RAÑES"/>
+                <localidad id="1_2" name="RESTAÑO, EL"/>
+                <localidad id="3_6" name="SAMES"/>
+                <localidad id="4_1" name="SAN ROMÁN"/>
+                <localidad id="5_5" name="SANTA OLAYA"/>
+                <localidad id="3_7" name="SANTILLÁN"/>
+                <localidad id="5_6" name="SANTOVEÑA"/>
+                <localidad id="1_3" name="SIETE, EL"/>
+                <localidad id="5_13" name="SIÑA"/>
+                <localidad id="3_21" name="TEYACRESPA"/>
+                <localidad id="2_16" name="TEYERA, LA"/>
+                <localidad id="2_17" name="VEGA DE CAMPORRIONDI"/>
+                <localidad id="2_4" name="VEGA DE CIEN"/>
+                <localidad id="3_8" name="VEGA DE PERVÍS"/>
+                <localidad id="5_7" name="VEGA DE SEBARGA"/>
+                <localidad id="3_22" name="VEGUES, LES"/>
+                <localidad id="5_14" name="VILLANUEVA"/>
+                <localidad id="5_8" name="VILLAVERDE"/>
+                <localidad id="3_9" name="VIS"/>
+              </localidades>
+            </municipio>
+            <municipio id="5" name="BELMONTE DE MIRANDA">
+              <localidades>
+                <localidad id="11_1" name="ABANGO"/>
+                <localidad id="1_1" name="ABEDUL"/>
+                <localidad id="7_4" name="ACICORBO"/>
+                <localidad id="2_2" name="AGUASMESTAS"/>
+                <localidad id="1_2" name="AGÜERA"/>
+                <localidad id="1_3" name="AGÜERINA"/>
+                <localidad id="11_2" name="ALCEDO"/>
+                <localidad id="2_1" name="ALMURFE"/>
+                <localidad id="4_1" name="ALVARIZA"/>
+                <localidad id="8_1" name="ANTOÑANA"/>
+                <localidad id="1_9" name="ARENA, LA"/>
+                <localidad id="7_1" name="BALBONA"/>
+                <localidad id="1_10" name="BAZALES, LOS"/>
+                <localidad id="3_1" name="BEGEGA"/>
+                <localidad id="8_2" name="BELLO"/>
+                <localidad id="4_15" name="BELLOSA, LA"/>
+                <localidad id="4_2" name="BELMONTE"/>
+                <localidad id="11_3" name="BOINÁS"/>
+                <localidad id="2_3" name="BUSTIASMAL"/>
+                <localidad id="7_2" name="CARRICEDO"/>
+                <localidad id="1_11" name="CASA BLANCA, LA"/>
+                <localidad id="1_12" name="CASA EL SOL, LA"/>
+                <localidad id="13_7" name="CASA LA ABUELA"/>
+                <localidad id="2_4" name="CASILLA, LA"/>
+                <localidad id="5_1" name="CASTAÑEDO"/>
+                <localidad id="1_4" name="CASTAÑERA"/>
+                <localidad id="11_8" name="CAUTIELLA"/>
+                <localidad id="14_3" name="CEREZALES, LOS"/>
+                <localidad id="4_3" name="CEZANA"/>
+                <localidad id="1_5" name="CIGÜEDRES"/>
+                <localidad id="4_16" name="COLADIELLO"/>
+                <localidad id="4_4" name="CORIAS"/>
+                <localidad id="4_17" name="CRUCES, LAS"/>
+                <localidad id="6_1" name="CUEVAS"/>
+                <localidad id="12_1" name="CUTIELLOS"/>
+                <localidad id="4_5" name="DOLÍA"/>
+                <localidad id="4_6" name="DORERA, LA"/>
+                <localidad id="7_3" name="ESTACAS, LAS"/>
+                <localidad id="4_18" name="ESTILLEIRO, EL"/>
+                <localidad id="4_7" name="FAEDO"/>
+                <localidad id="4_8" name="FAIDIELLO"/>
+                <localidad id="11_4" name="FERREDAL"/>
+                <localidad id="1_13" name="FERREIRÍA, LA"/>
+                <localidad id="13_1" name="FONTORIA"/>
+                <localidad id="8_8" name="FORNIELLA, LA"/>
+                <localidad id="4_9" name="FRESNEDO"/>
+                <localidad id="4_19" name="GRANDA, LA"/>
+                <localidad id="12_2" name="HOSPITAL"/>
+                <localidad id="8_3" name="LEIGUARDA"/>
+                <localidad id="9_1" name="LLAMOSO"/>
+                <localidad id="13_2" name="LONGORIA"/>
+                <localidad id="12_3" name="LORERO"/>
+                <localidad id="8_4" name="MENES"/>
+                <localidad id="4_10" name="MERUJA"/>
+                <localidad id="8_5" name="MODREROS"/>
+                <localidad id="4_20" name="MONTESCUSO"/>
+                <localidad id="10_1" name="MONTOVO"/>
+                <localidad id="14_1" name="ONDES"/>
+                <localidad id="13_3" name="OVIÑANA"/>
+                <localidad id="8_6" name="PANDO"/>
+                <localidad id="4_21" name="PASCUAL"/>
+                <localidad id="12_6" name="PIQUERO"/>
+                <localidad id="3_2" name="PONTIGO"/>
+                <localidad id="4_11" name="POSADORIO"/>
+                <localidad id="1_14" name="PUMADÍN"/>
+                <localidad id="12_4" name="PUMARADA"/>
+                <localidad id="11_5" name="QUINTANA"/>
+                <localidad id="1_6" name="QUINTANAL"/>
+                <localidad id="4_12" name="REPENERENCIA"/>
+                <localidad id="1_15" name="ROZOS"/>
+                <localidad id="12_5" name="SAN BARTOLOMÉ"/>
+                <localidad id="13_4" name="SAN CRISTÓBAL"/>
+                <localidad id="1_7" name="SAN ESTEBAN"/>
+                <localidad id="13_5" name="SAN MARTÍN DE LODÓN"/>
+                <localidad id="14_2" name="SAN MARTÍN DE ONDES"/>
+                <localidad id="3_3" name="SANTA MARINA"/>
+                <localidad id="8_7" name="SELVIELLA"/>
+                <localidad id="4_13" name="TABLADO"/>
+                <localidad id="4_14" name="TIBLÓS"/>
+                <localidad id="3_4" name="VALLE, EL"/>
+                <localidad id="11_6" name="VEGA, LA"/>
+                <localidad id="15_1" name="VIGAÑA"/>
+                <localidad id="13_6" name="VILLANUEVA"/>
+                <localidad id="11_7" name="VILLAR DE TEJÓN"/>
+                <localidad id="1_8" name="VILLAR DE ZUEPOS"/>
+                <localidad id="3_5" name="VILLAVERDE"/>
+                <localidad id="8_9" name="VIÑA, LA"/>
+              </localidades>
+            </municipio>
+          </municipios>        
+        </provincia>
+        <provincia id="34" name="PALENCIA"/>
+        <provincia id="35" name="LAS PALMAS G. CANARIA">
+          <municipios>
+            <municipio id="35001000000" name="Agaete">
+              <localidades>
+                <localidad id="35001000201" name="BERRAZALES (LOS)"/>
+                <localidad id="35001000202" name="CASAS DEL CAMINO"/>
+                <localidad id="35001000203" name="CUEVECILLAS (LAS)"/>
+                <localidad id="35001000400" name="GUAYEDRA"/>
+                <localidad id="35001000500" name="HORNILLO (EL)"/>
+                <localidad id="35001000600" name="LLANOS (LOS)"/>
+                <localidad id="35001000700" name="PUERTO DE LAS NIEVES"/>
+                <localidad id="35001000800" name="RISCO (EL)"/>
+                <localidad id="35001000204" name="SAN PEDRO"/>
+                <localidad id="35001001000" name="SAO (EL)"/>
+                <localidad id="35001000102" name="TURMAN (EL)"/>
+                <localidad id="35001000702" name="URBANIZACION EL PALMERAL"/>
+                <localidad id="35001000205" name="URBANIZACION LA SUERTE"/>
+                <localidad id="35001000200" name="VALLE DE AGAETE"/>
+                <localidad id="35001000206" name="VECINDAD DE ENFRENTE"/>
+              </localidades>
+            </municipio>
+            <municipio id="35002000000" name="Agüimes">
+              <localidades>
+                <localidad id="35002000300" name="BANDA (LA)"/>
+                <localidad id="35002000501" name="CABEZO EL"/>
+                <localidad id="35002000401" name="CORRALILLOS (LOS)"/>
+                <localidad id="35002000400" name="CORRALILLOS LOS"/>
+                <localidad id="35002000500" name="CRUCE DE ARINAGA"/>
+                <localidad id="35002001200" name="CUARTERIA EL UNO"/>
+                <localidad id="35002000102" name="CUEVA BERMEJA"/>
+                <localidad id="35002000901" name="EDEN"/>
+                <localidad id="35002002302" name="ESPINALES (LOS)"/>
+                <localidad id="35002000600" name="GOLETA (LA)"/>
+                <localidad id="35002000701" name="LAGUNA LA"/>
+                <localidad id="35002000302" name="LLANO BLANCO"/>
+                <localidad id="35002001900" name="MONTAÑA LOS VELEZ"/>
+                <localidad id="35002001800" name="MONTAÑA SAN FRANCISCO"/>
+                <localidad id="35002000902" name="OASIS EL"/>
+                <localidad id="35002001902" name="PALMILLAS LAS"/>
+                <localidad id="35002000503" name="PIE DE LA CUESTA"/>
+                <localidad id="35002000200" name="PLAYA DE ARINAGA"/>
+                <localidad id="35002000202" name="PLAYA DEL CABRON"/>
+                <localidad id="35002000504" name="POLIGONO INDUSTRIAL DE ARINAGA"/>
+                <localidad id="35002002300" name="POLIGONO RESIDENCIAL DE ARINAGA"/>
+                <localidad id="35002000700" name="ROSAS (LAS)"/>
+                <localidad id="35002000703" name="ROSAS VIEJAS"/>
+                <localidad id="35002000800" name="TEMISAS"/>
+                <localidad id="35002000900" name="VARGAS"/>
+              </localidades>
+            </municipio>
+          </municipios>
+        </provincia>
+        <provincia id="36" name="PONTEVEDRA"/>
+        <provincia id="37" name="SALAMANCA"/>
+        <provincia id="38" name="SANTA CRUZ DE TENERIFE">
+          <municipios>
+            <municipio id="38001000000" name="Adeje">
+              <localidades>
+                <localidad id="38001000102" name="AMPLIACION LOS OLIVOS"/>
+                <localidad id="38001000200" name="ARMEÑIME"/>
+                <localidad id="38001000104" name="BARRANCO DE LAS TORRES"/>
+                <localidad id="38001000501" name="BERIL (EL)"/>
+                <localidad id="38001000400" name="CALDERA (LA)"/>
+                <localidad id="38001000500" name="CALETA (LA)"/>
+                <localidad id="38001000600" name="CALLAO SALVAJE"/>
+                <localidad id="38001000700" name="CANCELAS (LAS)"/>
+                <localidad id="38001002501" name="CONCEPCION (LA)"/>
+                <localidad id="38001000202" name="EXTENSION ARMEÑIME-LAS ROSAS"/>
+                <localidad id="38001000900" name="FAÑABE"/>
+                <localidad id="38001001500" name="IBOYBO"/>
+                <localidad id="38001001000" name="IFONCHE Y BENITEZ"/>
+                <localidad id="38001000503" name="JARDINES DEL DUQUE"/>
+                <localidad id="38001001100" name="MARAZUL"/>
+                <localidad id="38001000203" name="MENORES (LOS)"/>
+                <localidad id="38001001701" name="MIRAVERDE"/>
+                <localidad id="38001001400" name="MORADITAS (LAS)"/>
+                <localidad id="38001000103" name="OLIVOS-LA POSTURA (LOS)"/>
+                <localidad id="38001001700" name="PLAYA DE LAS AMERICAS"/>
+                <localidad id="38001000602" name="PLAYA PARAISO"/>
+                <localidad id="38001001703" name="PLAYAS DE FAÑABE"/>
+                <localidad id="38001001708" name="PLAYAS DE FAÑABE ALTO"/>
+                <localidad id="38001000504" name="PLAYAS DEL DUQUE"/>
+                <localidad id="38001001900" name="PUERTITO (EL)"/>
+                <localidad id="38001002001" name="QUINTA (LA)"/>
+                <localidad id="38001002000" name="QUINTA (LA) - TAUCHO"/>
+                <localidad id="38001002100" name="RICASA"/>
+                <localidad id="38001001704" name="SAN EUGENIO ALTO"/>
+                <localidad id="38001001705" name="SAN EUGENIO BAJO"/>
+                <localidad id="38001000603" name="SUEÑO AZUL"/>
+                <localidad id="38001002002" name="TAUCHO"/>
+                <localidad id="38001002502" name="TIJOCO ALTO"/>
+                <localidad id="38001002500" name="TIJOCO BAJO"/>
+                <localidad id="38001001709" name="TORVISCAS ALTO"/>
+                <localidad id="38001001706" name="TORVISCAS BAJO"/>
+                <localidad id="38001001707" name="TORVISCAS CENTRO"/>
+              </localidades>
+            </municipio>
+            <municipio id="38002000000" name="Agulo">
+              <localidades>
+                <localidad id="38002000401" name="ASOMADA DE MEDINA"/>
+                <localidad id="38002000301" name="CHORRO (EL)"/>
+                <localidad id="38002000402" name="CRUZ DE TIERNO"/>
+                <localidad id="38002000302" name="JUEGO DE BOLAS"/>
+                <localidad id="38002000200" name="LEPE"/>
+                <localidad id="38002000700" name="MERIGA"/>
+                <localidad id="38002000403" name="PAJAR DE BENTO"/>
+                <localidad id="38002000300" name="PALMITA (LA)"/>
+                <localidad id="38002000900" name="PIEDRA GORDA"/>
+                <localidad id="38002000400" name="ROSAS (LAS)"/>
+                <localidad id="38002000303" name="SERPA"/>
+                <localidad id="38002000404" name="VEGA (LA)"/>
+              </localidades>
+            </municipio>
+          </municipios>        
+        </provincia>
+        <provincia id="39" name="CANTABRIA"/>
+        <provincia id="40" name="SEGOVIA"/>
+        <provincia id="41" name="SEVILLA"/>
+        <provincia id="42" name="SORIA"/>
+        <provincia id="43" name="TARRAGONA"/>
+        <provincia id="44" name="TERUEL"/>
+        <provincia id="45" name="TOLEDO"/>
+        <provincia id="46" name="VALENCIA"/>
+        <provincia id="47" name="VALLADOLID"/>
+        <provincia id="48" name="VIZCAYA"/>
+        <provincia id="49" name="ZAMORA"/>
+        <provincia id="50" name="ZARAGOZA"/>
+      </provincias>
+    </pais>
+  </paises>
+</geograficos>

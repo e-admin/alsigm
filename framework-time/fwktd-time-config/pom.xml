@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-time</groupId>
+		<artifactId>fwktd-time-parent</artifactId>
+		<version>0.5</version>
+	</parent>
+
+	<artifactId>fwktd-time-config</artifactId>
+	<packaging>pom</packaging>
+
+	<name>fwktd-time-config</name>
+
+	<!--
+		 Estas dependencias son los .zip que contienen los configurables
+		 de las distintas aplicaciones web.
+	 -->
+	<dependencies>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-time</groupId>
+			<artifactId>fwktd-time-resources</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>configurable</classifier>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!--
+				 Este Plugin descomprime las dependecias (ficheros configurables)
+				 y hace un .zip con todo lo descomprimido
+			 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>assembly-common-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/dep-resources-configurable.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

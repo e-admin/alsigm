@@ -1,0 +1,29 @@
+<jaas>
+	<application name="Archivo" controlFlag="required">
+		 	
+		<module>common.authentication.ArchivoLoginModule</module>
+		<options>
+			<option>
+				<name>USER.TYPE.PROMPT</name>
+				<value>userType</value>
+			</option>
+			<option>
+				<name>SUPERUSER.PROMPT</name>
+				<value>superuser</value>
+			</option>
+			<option>
+				<name>USER.PROMPT</name>
+				<value>login</value>
+			</option>
+			<option>
+				<name>PASSWORD.PROMPT</name>
+				<value>password</value>
+			</option>
+			<option>
+				<name>IDIOMA.PROMPT</name>
+				<value>idioma</value>
+			</option>			
+		</options>
+
+	</application>
+</jaas>

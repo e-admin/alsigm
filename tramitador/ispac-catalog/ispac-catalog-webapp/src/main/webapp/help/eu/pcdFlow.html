@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Ayuda</title>
+<meta http-equiv="" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function close_window() {
+    window.close();
+}
+//-->
+</script>
+</head>
+<body bgcolor="#ffffff">
+<div align="center">
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+  <tr>
+   <td><img name="tabla_ayuda_r1_c1" src="../img/tabla_ayuda_r1_c1.gif" width="6" height="40" border="0" id="tabla_ayuda_r1_c1" alt="" /></td>
+   <td><img name="tabla_ayuda_ico_ayuda" src="../img/tabla_ayuda_ico_ayuda.gif" width="34" height="40" border="0" id="tabla_ayuda_ico_ayuda" alt="" /></td>
+   <td width="502" height="40" background="../img/tabla_ayuda_encabezado.gif"><span class="ayuda">PROPIEDADES DEL PROCEDIMIENTO</span></td>
+   		<td><a href="#" onclick="close_window()"><img src="../img/tabla_ayuda_cerrar.gif" alt="" name="tabla_ayuda_cerrar" width="32" height="40" border="0" id="tabla_ayuda_cerrar" /></a></td>
+   <td><img name="tabla_ayuda_r1_c5" src="../img/tabla_ayuda_r1_c5.gif" width="6" height="40" border="0" id="tabla_ayuda_r1_c5" alt="" /></td>
+  </tr>
+  <tr>
+   <td><img name="tabla_ayuda_r2_c1" src="../img/tabla_ayuda_r2_c1.gif" width="6" height="314" border="0" id="tabla_ayuda_r2_c1" alt="" /></td>
+   		<td colspan="3" width="568" height="314">
+			<div id="contenedor">
+
+<div class="textoAyuda">
+
+<table style="font: 10px Verdana, Geneva, Arial, Helvetica, sans-serif;" border=0 width="90%">
+	<tr><td width="70%" class="titular">Procedimiento >> Esquema de tramitación</td>
+	<td width="30%" style="text-align:right;"><a class="enlace" href="javascript:history.back();">Atrás</a></td></tr>
+</table>
+<br>
+
+	El <b>esquema de tramitación</b> de un procedimiento se conforma con una serie de fases secuenciales, cada una
+	con unos determinados trámites asociados. Esta información se define en el momento de la creación del 
+	procedimiento; no así los tipos de documentos que son genéricos por trámite. Las plantillas para cada
+	tipo de documento pueden ser genéricas (creadas a través del inventario), o específicas para uno o varios
+	procedimientos.
+	<br><br>
+	
+	Seleccionando un elemento del esquema de tramitación, veremos su información específica (ficha catalográfica,
+	propiedades...) desplegada en la parte derecha de la pantalla; así como las acciones posibles para cada contexto:
+	<br><br>
+	
+	<li><b>Procedimiento</b></li>: 
+	<br><br>
+
+	<b>Clonar procedimiento</b>
+	<br><br>
+	
+	Se creará un procedimiento clonado del actual, pudiendo en el proceso modificarse la asociación
+	de fases y trámites. Así mismo se puede definir si el nuevo procedimiento conformará una nueva 
+	familia, o será hermano o hijo del actual.
+	<br><br>
+	
+	<li><b>Fase</b></li>
+	<br><br>
+
+	<b>Añadir trámite</b>
+	<br><br>
+	
+	Se permite añadir un trámite a la fase actual, seleccionando entre aquellos definidos en el
+	inventario para dicha fase.
+	<br><br>
+	
+	<li><b>Trámite</b></li>
+	<br><br>
+
+	<b>Eliminar trámite</b>
+	<br><br>
+	
+	Se permite desasociar el trámite actual de su fase correspondiente dentro del contexto del procedimiento. 
+	Esta acción no implica la eliminación del trámite, que quedará asociado a la misma fase en el inventario.
+	<br><br>
+	
+	<li><b>Tipo de documento</b></li>
+	<br><br>
+
+	En el árbol del procedimiento se verán las plantillas dependiendo del tipo de documento seleccionado: 
+	se mostrarán tanto las genéricas como las específicas al procedimiento. <br><br>
+	
+	<b>Crear plantillas asociadas a un procedimiento</b>
+	<br><br>
+	
+	Para crear plantillas asociadas a un procedimiento, hay que situarse en el árbol del 
+	procedimiento, en un tipo de documento concreto, y pulsar “Crear plantilla”. 
+	<br><br>
+	
+	Esta acción creará una plantilla accesible únicamente desde el procedimiento actual, aunque
+	se podrá gestionar desde el inventario de tipos de documentos, y asociar a otros procedimientos
+	a través de la opción "Añadir plantilla".
+	<br><br>
+	
+	<b>Añadir a un procedimiento una plantilla existente</b>
+	<br><br>
+	
+	Además de poder crear plantillas específicas para un procedimiento también se pueden asociar otras 
+	ya existentes en otros procedimientos.
+	<br><br>
+	
+	Para ello desde el árbol del procedimiento, pulsar sobre el tipo de documento. En la parte superior 
+	pulsar la opción “Añadir plantilla”.
+	<br><br>
+	
+	El sistema mostrará las plantillas asociadas a ese tipo de documento en otros procedimientos. 
+	Seleccionarndo el deseado se añadirá al prodecimiento actual.
+	<br><br>
+
+	<div class="aviso">
+		Al asociar una plantilla a varios procedimientos, hay que tener en cuenta que cualquier modificación
+		a dicha plantilla afectará a todos los procedimientos implicados.
+	</div><br>
+
+	<li><b>Plantilla</b></li>
+	<br><br>
+
+	<b>Eliminar Plantilla</b>
+	<br><br>
+	
+	Para las plantillas específicas, se permite eliminar la asociación al procedimiento actual.
+	<br><br>
+
+	<div class="aviso">
+		Si se elimina una plantilla asociada únicamente a un procedimiento, esta plantilla se borrará
+		físicamente.
+	</div><br>
+
+</div>
+
+			</div>			
+			</td>
+   <td><img name="tabla_ayuda_r2_c5" src="../img/tabla_ayuda_r2_c5.gif" width="6" height="314" border="0" id="tabla_ayuda_r2_c5" alt="" /></td>
+  </tr>
+  <tr>
+   <td><img name="tabla_ayuda_r3_c1" src="../img/tabla_ayuda_r3_c1.gif" width="6" height="26" border="0" id="tabla_ayuda_r3_c1" alt="" /></td>
+   <td colspan="3"><img name="tabla_ayuda_r3_c2" src="../img/tabla_ayuda_r3_c2.gif" width="568" height="26" border="0" id="tabla_ayuda_r3_c2" alt="" /></td>
+   <td><img name="tabla_ayuda_r3_c5" src="../img/tabla_ayuda_r3_c5.gif" width="6" height="26" border="0" id="tabla_ayuda_r3_c5" alt="" /></td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

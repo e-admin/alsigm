@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+	<definition name="documento" extends="base-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/documento.jsp"></put-attribute>
+	</definition>
+
+	<definition name="download.error" extends="base-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/download-error.jsp"></put-attribute>
+	</definition>
+
+	<definition name="general-error" extends="base-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/error.jsp"></put-attribute>
+	</definition>
+
+	<definition name="data-error" extends="base-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/error.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>

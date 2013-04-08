@@ -1,0 +1,1 @@
+INSERT INTO A_SCHEMA."A_TABLE" ( id )  SELECT "Alias".* FROM A_SCHEMA."Table" "Alias"

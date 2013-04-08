@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TipoDocumentos>
+	<TipoDocumento>
+		<Id>2</Id>
+	 	<Descripcion>NIF</Descripcion>
+	 	<TipoPersona>1</TipoPersona>
+	 	<Codigo>N</Codigo>
+	 </TipoDocumento>
+	 <TipoDocumento>
+	 	<Id>5</Id>
+	 	<Descripcion>Otros</Descripcion>
+	 	<TipoPersona>0</TipoPersona>
+		<Codigo>X</Codigo>
+	</TipoDocumento>
+</TipoDocumentos>

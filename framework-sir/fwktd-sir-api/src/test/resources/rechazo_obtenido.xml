@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Fichero_Intercambio_SICRES_3>
+	<De_Origen_o_Remitente>
+		<Codigo_Entidad_Registral_Origen><![CDATA[O00002061]]></Codigo_Entidad_Registral_Origen>
+		<Decodificacion_Entidad_Registral_Origen><![CDATA[REGISTRO GENERAL DE LA DIPUTACI&#xD3;N PROVINCIAL DE SORIA]]></Decodificacion_Entidad_Registral_Origen>
+		<Numero_Registro_Entrada><![CDATA[O00002741_13_0000012]]></Numero_Registro_Entrada>
+		<Fecha_Hora_Entrada><![CDATA[20130109122537]]></Fecha_Hora_Entrada>
+		<Timestamp_Entrada><![CDATA[MTM1NzczMDczNw==]]></Timestamp_Entrada>
+		<Decodificacion_Unidad_Tramitacion_Origen><![CDATA[]]></Decodificacion_Unidad_Tramitacion_Origen>
+	</De_Origen_o_Remitente>
+	<De_Destino>
+		<Codigo_Entidad_Registral_Destino><![CDATA[O00002741]]></Codigo_Entidad_Registral_Destino>
+		<Decodificacion_Entidad_Registral_Destino><![CDATA[REGISTRO GENERAL DEL AYUNTAMIENTO DE JUN]]></Decodificacion_Entidad_Registral_Destino>
+		<Codigo_Unidad_Tramitacion_Destino><![CDATA[L02000042]]></Codigo_Unidad_Tramitacion_Destino>
+		<Decodificacion_Unidad_Tramitacion_Destino><![CDATA[Diputaci&#xF3;n Provincial de Soria]]></Decodificacion_Unidad_Tramitacion_Destino>
+	</De_Destino>
+	<De_Interesado>
+		<Tipo_Documento_Identificacion_Interesado><![CDATA[N]]></Tipo_Documento_Identificacion_Interesado>
+		<Documento_Identificacion_Interesado><![CDATA[11111111H]]></Documento_Identificacion_Interesado>
+		<Razon_Social_Interesado><![CDATA[razon Inte 1]]></Razon_Social_Interesado>
+		<Nombre_Interesado><![CDATA[NombreInt]]></Nombre_Interesado>
+		<Primer_Apellido_Interesado><![CDATA[PrimerApInt]]></Primer_Apellido_Interesado>
+		<Segundo_Apellido_Interesado><![CDATA[SegndoApInt]]></Segundo_Apellido_Interesado>
+		<Tipo_Documento_Identificacion_Representante><![CDATA[N]]></Tipo_Documento_Identificacion_Representante>
+		<Documento_Identificacion_Representante><![CDATA[09346781H]]></Documento_Identificacion_Representante>
+		<Razon_Social_Representante><![CDATA[razon social rep]]></Razon_Social_Representante>
+		<Nombre_Representante><![CDATA[Nombre Reperesentante]]></Nombre_Representante>
+		<Primer_Apellido_Representante><![CDATA[PrimerApRep]]></Primer_Apellido_Representante>
+		<Segundo_Apellido_Representante><![CDATA[SegundoApRep]]></Segundo_Apellido_Representante>
+		<Pais_Interesado><![CDATA[724]]></Pais_Interesado>
+		<Provincia_Interesado><![CDATA[47]]></Provincia_Interesado>
+		<Municipio_Interesado><![CDATA[1126]]></Municipio_Interesado>
+		<Direccion_Interesado><![CDATA[direccion del interesado 1 1 1]]></Direccion_Interesado>
+		<Codigo_Postal_Interesado><![CDATA[11111]]></Codigo_Postal_Interesado>
+		<Correo_Electronico_Interesado><![CDATA[emailInt@correo.es]]></Correo_Electronico_Interesado>
+		<Telefono_Contacto_Interesado><![CDATA[666111111]]></Telefono_Contacto_Interesado>
+		<Direccion_Electronica_Habilitada_Interesado><![CDATA[dehInt@deh.es]]></Direccion_Electronica_Habilitada_Interesado>
+		<Canal_Preferente_Comunicacion_Interesado><![CDATA[02]]></Canal_Preferente_Comunicacion_Interesado>
+		<Pais_Representante><![CDATA[724]]></Pais_Representante>
+		<Provincia_Representante><![CDATA[29]]></Provincia_Representante>
+		<Municipio_Representante><![CDATA[0252]]></Municipio_Representante>
+		<Direccion_Representante><![CDATA[direcc rep 2 2 2]]></Direccion_Representante>
+		<Correo_Electronico_Representante><![CDATA[emailRep@correo.es]]></Correo_Electronico_Representante>
+		<Telefono_Contacto_Representante><![CDATA[666222222]]></Telefono_Contacto_Representante>
+		<Direccion_Electronica_Habilitada_Representante><![CDATA[dehRep@correo.es]]></Direccion_Electronica_Habilitada_Representante>
+		<Canal_Preferente_Comunicacion_Representante><![CDATA[02]]></Canal_Preferente_Comunicacion_Representante>
+		<Observaciones><![CDATA[observaciones del interesado]]></Observaciones>
+	</De_Interesado>
+	<De_Asunto>
+		<Resumen><![CDATA[SIR IN PR 015]]></Resumen>
+		<Referencia_Externa><![CDATA[ref externa]]></Referencia_Externa>
+		<Numero_Expediente><![CDATA[num expediente]]></Numero_Expediente>
+	</De_Asunto>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[Dummy200K.pdf]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0001.pdf]]></Identificador_Fichero>
+		<Validez_Documento><![CDATA[03]]></Validez_Documento>
+		<Tipo_Documento><![CDATA[02]]></Tipo_Documento>
+		<Certificado><![CDATA[]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[MWE4YjNjOWZlNWUyMWYyYmY2ZGVjZTkwMmNkY2Y4ZTU=]]></Hash>
+		<Tipo_MIME><![CDATA[application/pdf]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Observaciones><![CDATA[1]]></Observaciones>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[firma.xsig]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0006.xsig]]></Identificador_Fichero>
+		<Tipo_Documento><![CDATA[03]]></Tipo_Documento>
+		<Certificado><![CDATA[MIIFnTCCBIWgAwIBAgICA+owDQYJKoZIhvcNAQEFBQAwgdoxCzAJBgNVBAYTAkVTMRIwEAYDVQQIEwlCYXJjZWxvbmExSDBGBgNVBAcMP0JhcmNlbG9uYSAoc2VlIGN1cnJlbnQgYWRkcmVzcyBhdCBodHRwczovL3d3dy5hbmYuZXMvYWRkcmVzcy8gKTEnMCUGA1UEChMeQU5GIEF1dG9yaWRhZCBkZSBDZXJ0aWZpY2FjaW9uMRcwFQYDVQQLEw5BTkYgQ2xhc2UgMSBDQTETMBEGA1UEBRMKRy02MzI4NzUxMDEWMBQGA1UEAxMNQU5GIFNlcnZlciBDQTAeFw0wNjEyMzEyMzAwMDBaFw0xNDEyMzEyMzAwMDBaMIGmMRswGQYDVQQDExJBTkYgVXN1YXJpbyBBY3Rpdm8xDDAKBgNVBCoTA0FORjEXMBUGA1UEBBMOVXN1YXJpbyBBY3Rpdm8xEjAQBgNVBAUTCTEyMzQ1Njc4WjEeMBwGCSqGSIb3DQEJARYPdGVzdEBwcnVlYmEuY29tMR8wHQYDVQQLExZDbGFzZSAyIHBlcnNvbmEgZmlzaWNhMQswCQYDVQQGEwJFUzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAj2qAceOf0pyATEM0BxBK7+eGA0HEZWDZpqdhCeVvsI1AqhLWQpWNg65TGXE8ijzxGU/yS94k/34gPgIkla+p/mrDaNsVY69RcLp1hWYcL61rM//In+hXlA3qUK6as942b55YyzNsbJSQPCNgkiGuIQTo1Xfsfk4XZDi+yNSRgUMCAwEAAaOCAiEwggIdMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgbAMBMGCisGAQQBgY8cFAMEBQwDQU5GMBcGCisGAQQBgY8cFAQECQwHVXN1YXJpbzAWBgorBgEEAYGPHBQFBAgMBkFjdGl2bzAZBgorBgEEAYGPHBQGBAsMCTEyMzQ1Njc4WjCBiAYDVR0gBIGAMH4wfAYKKwYBBAGBjxwDBDBuMD0GCCsGAQUFBwICMDEaL0NlcnRpZmljYWRvIGVtaXRpZG8gcGFyYSByZWFsaXphY2nzbiBkZSBwcnVlYmFzMC0GCCsGAQUFBwIBFiFodHRwczovL3d3dy5hbmYuZXMvQUMvZG9jdW1lbnRvcy8wOAYIKwYBBQUHAQEELDAqMCgGCCsGAQUFBzABhhxodHRwOi8vd3d3LmFuZi5lcy9BQy9SQy9vY3NwMDkGA1UdHwQyMDAwLqAsoCqGKGh0dHA6Ly93d3cuYW5mLmVzL0FDL1JDL0FORkFDQ0xBU0VBMS5jcmwwFwYKKwYBBAGBjxwTAQQJDAcxMjMtMzIxMDEGCisGAQQBgY8cKgYEIwwhaHR0cHM6Ly93d3cuYW5mLmVzL0FDL0FDVEFTLzU2Nzg5MBYGCSsGAQQBgY8cEwQJDAczMjEtMTIzMB0GA1UdDgQWBBSxTxAznF2uoOtMW+fJUoDN6B+rJDAfBgNVHSMEGDAWgBS+O/a0MbdzJEg5xVcTlHWqn4E/LDANBgkqhkiG9w0BAQUFAAOCAQEATQgYAOwxrMRTT2Nhx7pqiNsoGT5dJmeunAv+iU5zx/VoEXB/mx+VtyLfMea3VS9LC23404XS7pz5oPwiVPLsMPZtzOcmfacVnSdRn5J7+qOO8MB+OVlXq/QmARn+1XeBCHaTQ6AMc/pdveEoGktaXwEjTslWyRD9dGDzLp04+FndQAbVcI5xRkb4vToRnhQmloUVddhQAO8usOAIb00GJFNTq4lsyZ1qT1HplQl+ngsSD1HBxkhx10Pm3KuvCunAh4um0QnSeeiq9qWIV0UZrFlMwNRXvH9OVTqSGC4PXjw2zOi2GLUfags1decu7gcGjidlELR/WHU/6lrztfdViQ==]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[NTMxOTQyYjYxOGUyNTk2ZGMyNjk3N2RjMGY3MmZlOGQ=]]></Hash>
+		<Tipo_MIME><![CDATA[application/xml]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Identificador_Documento_Firmado><![CDATA[O00002741_13_00000012_01_0001.pdf]]></Identificador_Documento_Firmado>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[Dummy600K.pdf]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0002.pdf]]></Identificador_Fichero>
+		<Validez_Documento><![CDATA[03]]></Validez_Documento>
+		<Tipo_Documento><![CDATA[02]]></Tipo_Documento>
+		<Certificado><![CDATA[]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[MTFmZmI2MzEzZWI5MDhlM2NjZDM0Y2ZkNWFiMzY1NDQ=]]></Hash>
+		<Tipo_MIME><![CDATA[application/pdf]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Observaciones><![CDATA[2]]></Observaciones>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[firma.xsig]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0007.xsig]]></Identificador_Fichero>
+		<Tipo_Documento><![CDATA[03]]></Tipo_Documento>
+		<Certificado><![CDATA[MIIFnTCCBIWgAwIBAgICA+owDQYJKoZIhvcNAQEFBQAwgdoxCzAJBgNVBAYTAkVTMRIwEAYDVQQIEwlCYXJjZWxvbmExSDBGBgNVBAcMP0JhcmNlbG9uYSAoc2VlIGN1cnJlbnQgYWRkcmVzcyBhdCBodHRwczovL3d3dy5hbmYuZXMvYWRkcmVzcy8gKTEnMCUGA1UEChMeQU5GIEF1dG9yaWRhZCBkZSBDZXJ0aWZpY2FjaW9uMRcwFQYDVQQLEw5BTkYgQ2xhc2UgMSBDQTETMBEGA1UEBRMKRy02MzI4NzUxMDEWMBQGA1UEAxMNQU5GIFNlcnZlciBDQTAeFw0wNjEyMzEyMzAwMDBaFw0xNDEyMzEyMzAwMDBaMIGmMRswGQYDVQQDExJBTkYgVXN1YXJpbyBBY3Rpdm8xDDAKBgNVBCoTA0FORjEXMBUGA1UEBBMOVXN1YXJpbyBBY3Rpdm8xEjAQBgNVBAUTCTEyMzQ1Njc4WjEeMBwGCSqGSIb3DQEJARYPdGVzdEBwcnVlYmEuY29tMR8wHQYDVQQLExZDbGFzZSAyIHBlcnNvbmEgZmlzaWNhMQswCQYDVQQGEwJFUzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAj2qAceOf0pyATEM0BxBK7+eGA0HEZWDZpqdhCeVvsI1AqhLWQpWNg65TGXE8ijzxGU/yS94k/34gPgIkla+p/mrDaNsVY69RcLp1hWYcL61rM//In+hXlA3qUK6as942b55YyzNsbJSQPCNgkiGuIQTo1Xfsfk4XZDi+yNSRgUMCAwEAAaOCAiEwggIdMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgbAMBMGCisGAQQBgY8cFAMEBQwDQU5GMBcGCisGAQQBgY8cFAQECQwHVXN1YXJpbzAWBgorBgEEAYGPHBQFBAgMBkFjdGl2bzAZBgorBgEEAYGPHBQGBAsMCTEyMzQ1Njc4WjCBiAYDVR0gBIGAMH4wfAYKKwYBBAGBjxwDBDBuMD0GCCsGAQUFBwICMDEaL0NlcnRpZmljYWRvIGVtaXRpZG8gcGFyYSByZWFsaXphY2nzbiBkZSBwcnVlYmFzMC0GCCsGAQUFBwIBFiFodHRwczovL3d3dy5hbmYuZXMvQUMvZG9jdW1lbnRvcy8wOAYIKwYBBQUHAQEELDAqMCgGCCsGAQUFBzABhhxodHRwOi8vd3d3LmFuZi5lcy9BQy9SQy9vY3NwMDkGA1UdHwQyMDAwLqAsoCqGKGh0dHA6Ly93d3cuYW5mLmVzL0FDL1JDL0FORkFDQ0xBU0VBMS5jcmwwFwYKKwYBBAGBjxwTAQQJDAcxMjMtMzIxMDEGCisGAQQBgY8cKgYEIwwhaHR0cHM6Ly93d3cuYW5mLmVzL0FDL0FDVEFTLzU2Nzg5MBYGCSsGAQQBgY8cEwQJDAczMjEtMTIzMB0GA1UdDgQWBBSxTxAznF2uoOtMW+fJUoDN6B+rJDAfBgNVHSMEGDAWgBS+O/a0MbdzJEg5xVcTlHWqn4E/LDANBgkqhkiG9w0BAQUFAAOCAQEATQgYAOwxrMRTT2Nhx7pqiNsoGT5dJmeunAv+iU5zx/VoEXB/mx+VtyLfMea3VS9LC23404XS7pz5oPwiVPLsMPZtzOcmfacVnSdRn5J7+qOO8MB+OVlXq/QmARn+1XeBCHaTQ6AMc/pdveEoGktaXwEjTslWyRD9dGDzLp04+FndQAbVcI5xRkb4vToRnhQmloUVddhQAO8usOAIb00GJFNTq4lsyZ1qT1HplQl+ngsSD1HBxkhx10Pm3KuvCunAh4um0QnSeeiq9qWIV0UZrFlMwNRXvH9OVTqSGC4PXjw2zOi2GLUfags1decu7gcGjidlELR/WHU/6lrztfdViQ==]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[MjEzMGZhY2UzMmY4MmFiOWI4MjFkMjM5OWZhZjgwMjc=]]></Hash>
+		<Tipo_MIME><![CDATA[application/xml]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Identificador_Documento_Firmado><![CDATA[O00002741_13_00000012_01_0002.pdf]]></Identificador_Documento_Firmado>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[Dummy1200K.pdf]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0003.pdf]]></Identificador_Fichero>
+		<Validez_Documento><![CDATA[03]]></Validez_Documento>
+		<Tipo_Documento><![CDATA[02]]></Tipo_Documento>
+		<Certificado><![CDATA[]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[YjVjZTZmMTY5YmY4NjFiN2U4OGJlNjk4N2NiYmNiNWY=]]></Hash>
+		<Tipo_MIME><![CDATA[application/pdf]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Observaciones><![CDATA[3]]></Observaciones>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[firma.xsig]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0008.xsig]]></Identificador_Fichero>
+		<Tipo_Documento><![CDATA[03]]></Tipo_Documento>
+		<Certificado><![CDATA[MIIFnTCCBIWgAwIBAgICA+owDQYJKoZIhvcNAQEFBQAwgdoxCzAJBgNVBAYTAkVTMRIwEAYDVQQIEwlCYXJjZWxvbmExSDBGBgNVBAcMP0JhcmNlbG9uYSAoc2VlIGN1cnJlbnQgYWRkcmVzcyBhdCBodHRwczovL3d3dy5hbmYuZXMvYWRkcmVzcy8gKTEnMCUGA1UEChMeQU5GIEF1dG9yaWRhZCBkZSBDZXJ0aWZpY2FjaW9uMRcwFQYDVQQLEw5BTkYgQ2xhc2UgMSBDQTETMBEGA1UEBRMKRy02MzI4NzUxMDEWMBQGA1UEAxMNQU5GIFNlcnZlciBDQTAeFw0wNjEyMzEyMzAwMDBaFw0xNDEyMzEyMzAwMDBaMIGmMRswGQYDVQQDExJBTkYgVXN1YXJpbyBBY3Rpdm8xDDAKBgNVBCoTA0FORjEXMBUGA1UEBBMOVXN1YXJpbyBBY3Rpdm8xEjAQBgNVBAUTCTEyMzQ1Njc4WjEeMBwGCSqGSIb3DQEJARYPdGVzdEBwcnVlYmEuY29tMR8wHQYDVQQLExZDbGFzZSAyIHBlcnNvbmEgZmlzaWNhMQswCQYDVQQGEwJFUzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAj2qAceOf0pyATEM0BxBK7+eGA0HEZWDZpqdhCeVvsI1AqhLWQpWNg65TGXE8ijzxGU/yS94k/34gPgIkla+p/mrDaNsVY69RcLp1hWYcL61rM//In+hXlA3qUK6as942b55YyzNsbJSQPCNgkiGuIQTo1Xfsfk4XZDi+yNSRgUMCAwEAAaOCAiEwggIdMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgbAMBMGCisGAQQBgY8cFAMEBQwDQU5GMBcGCisGAQQBgY8cFAQECQwHVXN1YXJpbzAWBgorBgEEAYGPHBQFBAgMBkFjdGl2bzAZBgorBgEEAYGPHBQGBAsMCTEyMzQ1Njc4WjCBiAYDVR0gBIGAMH4wfAYKKwYBBAGBjxwDBDBuMD0GCCsGAQUFBwICMDEaL0NlcnRpZmljYWRvIGVtaXRpZG8gcGFyYSByZWFsaXphY2nzbiBkZSBwcnVlYmFzMC0GCCsGAQUFBwIBFiFodHRwczovL3d3dy5hbmYuZXMvQUMvZG9jdW1lbnRvcy8wOAYIKwYBBQUHAQEELDAqMCgGCCsGAQUFBzABhhxodHRwOi8vd3d3LmFuZi5lcy9BQy9SQy9vY3NwMDkGA1UdHwQyMDAwLqAsoCqGKGh0dHA6Ly93d3cuYW5mLmVzL0FDL1JDL0FORkFDQ0xBU0VBMS5jcmwwFwYKKwYBBAGBjxwTAQQJDAcxMjMtMzIxMDEGCisGAQQBgY8cKgYEIwwhaHR0cHM6Ly93d3cuYW5mLmVzL0FDL0FDVEFTLzU2Nzg5MBYGCSsGAQQBgY8cEwQJDAczMjEtMTIzMB0GA1UdDgQWBBSxTxAznF2uoOtMW+fJUoDN6B+rJDAfBgNVHSMEGDAWgBS+O/a0MbdzJEg5xVcTlHWqn4E/LDANBgkqhkiG9w0BAQUFAAOCAQEATQgYAOwxrMRTT2Nhx7pqiNsoGT5dJmeunAv+iU5zx/VoEXB/mx+VtyLfMea3VS9LC23404XS7pz5oPwiVPLsMPZtzOcmfacVnSdRn5J7+qOO8MB+OVlXq/QmARn+1XeBCHaTQ6AMc/pdveEoGktaXwEjTslWyRD9dGDzLp04+FndQAbVcI5xRkb4vToRnhQmloUVddhQAO8usOAIb00GJFNTq4lsyZ1qT1HplQl+ngsSD1HBxkhx10Pm3KuvCunAh4um0QnSeeiq9qWIV0UZrFlMwNRXvH9OVTqSGC4PXjw2zOi2GLUfags1decu7gcGjidlELR/WHU/6lrztfdViQ==]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[YjE5MDViM2FkYmMxOTVjNjUzZDk4MDcxMmI4OWQwZTM=]]></Hash>
+		<Tipo_MIME><![CDATA[application/xml]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Identificador_Documento_Firmado><![CDATA[O00002741_13_00000012_01_0003.pdf]]></Identificador_Documento_Firmado>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[Dummy200K.pdf]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0004.pdf]]></Identificador_Fichero>
+		<Validez_Documento><![CDATA[03]]></Validez_Documento>
+		<Tipo_Documento><![CDATA[02]]></Tipo_Documento>
+		<Certificado><![CDATA[]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[MWE4YjNjOWZlNWUyMWYyYmY2ZGVjZTkwMmNkY2Y4ZTU=]]></Hash>
+		<Tipo_MIME><![CDATA[application/pdf]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Observaciones><![CDATA[4]]></Observaciones>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[firma.xsig]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0009.xsig]]></Identificador_Fichero>
+		<Tipo_Documento><![CDATA[03]]></Tipo_Documento>
+		<Certificado><![CDATA[MIIFnTCCBIWgAwIBAgICA+owDQYJKoZIhvcNAQEFBQAwgdoxCzAJBgNVBAYTAkVTMRIwEAYDVQQIEwlCYXJjZWxvbmExSDBGBgNVBAcMP0JhcmNlbG9uYSAoc2VlIGN1cnJlbnQgYWRkcmVzcyBhdCBodHRwczovL3d3dy5hbmYuZXMvYWRkcmVzcy8gKTEnMCUGA1UEChMeQU5GIEF1dG9yaWRhZCBkZSBDZXJ0aWZpY2FjaW9uMRcwFQYDVQQLEw5BTkYgQ2xhc2UgMSBDQTETMBEGA1UEBRMKRy02MzI4NzUxMDEWMBQGA1UEAxMNQU5GIFNlcnZlciBDQTAeFw0wNjEyMzEyMzAwMDBaFw0xNDEyMzEyMzAwMDBaMIGmMRswGQYDVQQDExJBTkYgVXN1YXJpbyBBY3Rpdm8xDDAKBgNVBCoTA0FORjEXMBUGA1UEBBMOVXN1YXJpbyBBY3Rpdm8xEjAQBgNVBAUTCTEyMzQ1Njc4WjEeMBwGCSqGSIb3DQEJARYPdGVzdEBwcnVlYmEuY29tMR8wHQYDVQQLExZDbGFzZSAyIHBlcnNvbmEgZmlzaWNhMQswCQYDVQQGEwJFUzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAj2qAceOf0pyATEM0BxBK7+eGA0HEZWDZpqdhCeVvsI1AqhLWQpWNg65TGXE8ijzxGU/yS94k/34gPgIkla+p/mrDaNsVY69RcLp1hWYcL61rM//In+hXlA3qUK6as942b55YyzNsbJSQPCNgkiGuIQTo1Xfsfk4XZDi+yNSRgUMCAwEAAaOCAiEwggIdMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgbAMBMGCisGAQQBgY8cFAMEBQwDQU5GMBcGCisGAQQBgY8cFAQECQwHVXN1YXJpbzAWBgorBgEEAYGPHBQFBAgMBkFjdGl2bzAZBgorBgEEAYGPHBQGBAsMCTEyMzQ1Njc4WjCBiAYDVR0gBIGAMH4wfAYKKwYBBAGBjxwDBDBuMD0GCCsGAQUFBwICMDEaL0NlcnRpZmljYWRvIGVtaXRpZG8gcGFyYSByZWFsaXphY2nzbiBkZSBwcnVlYmFzMC0GCCsGAQUFBwIBFiFodHRwczovL3d3dy5hbmYuZXMvQUMvZG9jdW1lbnRvcy8wOAYIKwYBBQUHAQEELDAqMCgGCCsGAQUFBzABhhxodHRwOi8vd3d3LmFuZi5lcy9BQy9SQy9vY3NwMDkGA1UdHwQyMDAwLqAsoCqGKGh0dHA6Ly93d3cuYW5mLmVzL0FDL1JDL0FORkFDQ0xBU0VBMS5jcmwwFwYKKwYBBAGBjxwTAQQJDAcxMjMtMzIxMDEGCisGAQQBgY8cKgYEIwwhaHR0cHM6Ly93d3cuYW5mLmVzL0FDL0FDVEFTLzU2Nzg5MBYGCSsGAQQBgY8cEwQJDAczMjEtMTIzMB0GA1UdDgQWBBSxTxAznF2uoOtMW+fJUoDN6B+rJDAfBgNVHSMEGDAWgBS+O/a0MbdzJEg5xVcTlHWqn4E/LDANBgkqhkiG9w0BAQUFAAOCAQEATQgYAOwxrMRTT2Nhx7pqiNsoGT5dJmeunAv+iU5zx/VoEXB/mx+VtyLfMea3VS9LC23404XS7pz5oPwiVPLsMPZtzOcmfacVnSdRn5J7+qOO8MB+OVlXq/QmARn+1XeBCHaTQ6AMc/pdveEoGktaXwEjTslWyRD9dGDzLp04+FndQAbVcI5xRkb4vToRnhQmloUVddhQAO8usOAIb00GJFNTq4lsyZ1qT1HplQl+ngsSD1HBxkhx10Pm3KuvCunAh4um0QnSeeiq9qWIV0UZrFlMwNRXvH9OVTqSGC4PXjw2zOi2GLUfags1decu7gcGjidlELR/WHU/6lrztfdViQ==]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[ODg3ODFiZGJlYzJiMjg0NDQ0YTU5NzUwODAzNzYwMDg=]]></Hash>
+		<Tipo_MIME><![CDATA[application/xml]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Identificador_Documento_Firmado><![CDATA[O00002741_13_00000012_01_0004.pdf]]></Identificador_Documento_Firmado>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[a.txt]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0005.txt]]></Identificador_Fichero>
+		<Validez_Documento><![CDATA[03]]></Validez_Documento>
+		<Tipo_Documento><![CDATA[02]]></Tipo_Documento>
+		<Certificado><![CDATA[]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[MjFhZDBiZDgzNmI5MGQwOGY0Y2Y2NDBiNGMyOThlN2M=]]></Hash>
+		<Tipo_MIME><![CDATA[text/plain]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Observaciones><![CDATA[5]]></Observaciones>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[firma.xsig]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0010.xsig]]></Identificador_Fichero>
+		<Tipo_Documento><![CDATA[03]]></Tipo_Documento>
+		<Certificado><![CDATA[MIIFnTCCBIWgAwIBAgICA+owDQYJKoZIhvcNAQEFBQAwgdoxCzAJBgNVBAYTAkVTMRIwEAYDVQQIEwlCYXJjZWxvbmExSDBGBgNVBAcMP0JhcmNlbG9uYSAoc2VlIGN1cnJlbnQgYWRkcmVzcyBhdCBodHRwczovL3d3dy5hbmYuZXMvYWRkcmVzcy8gKTEnMCUGA1UEChMeQU5GIEF1dG9yaWRhZCBkZSBDZXJ0aWZpY2FjaW9uMRcwFQYDVQQLEw5BTkYgQ2xhc2UgMSBDQTETMBEGA1UEBRMKRy02MzI4NzUxMDEWMBQGA1UEAxMNQU5GIFNlcnZlciBDQTAeFw0wNjEyMzEyMzAwMDBaFw0xNDEyMzEyMzAwMDBaMIGmMRswGQYDVQQDExJBTkYgVXN1YXJpbyBBY3Rpdm8xDDAKBgNVBCoTA0FORjEXMBUGA1UEBBMOVXN1YXJpbyBBY3Rpdm8xEjAQBgNVBAUTCTEyMzQ1Njc4WjEeMBwGCSqGSIb3DQEJARYPdGVzdEBwcnVlYmEuY29tMR8wHQYDVQQLExZDbGFzZSAyIHBlcnNvbmEgZmlzaWNhMQswCQYDVQQGEwJFUzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAj2qAceOf0pyATEM0BxBK7+eGA0HEZWDZpqdhCeVvsI1AqhLWQpWNg65TGXE8ijzxGU/yS94k/34gPgIkla+p/mrDaNsVY69RcLp1hWYcL61rM//In+hXlA3qUK6as942b55YyzNsbJSQPCNgkiGuIQTo1Xfsfk4XZDi+yNSRgUMCAwEAAaOCAiEwggIdMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgbAMBMGCisGAQQBgY8cFAMEBQwDQU5GMBcGCisGAQQBgY8cFAQECQwHVXN1YXJpbzAWBgorBgEEAYGPHBQFBAgMBkFjdGl2bzAZBgorBgEEAYGPHBQGBAsMCTEyMzQ1Njc4WjCBiAYDVR0gBIGAMH4wfAYKKwYBBAGBjxwDBDBuMD0GCCsGAQUFBwICMDEaL0NlcnRpZmljYWRvIGVtaXRpZG8gcGFyYSByZWFsaXphY2nzbiBkZSBwcnVlYmFzMC0GCCsGAQUFBwIBFiFodHRwczovL3d3dy5hbmYuZXMvQUMvZG9jdW1lbnRvcy8wOAYIKwYBBQUHAQEELDAqMCgGCCsGAQUFBzABhhxodHRwOi8vd3d3LmFuZi5lcy9BQy9SQy9vY3NwMDkGA1UdHwQyMDAwLqAsoCqGKGh0dHA6Ly93d3cuYW5mLmVzL0FDL1JDL0FORkFDQ0xBU0VBMS5jcmwwFwYKKwYBBAGBjxwTAQQJDAcxMjMtMzIxMDEGCisGAQQBgY8cKgYEIwwhaHR0cHM6Ly93d3cuYW5mLmVzL0FDL0FDVEFTLzU2Nzg5MBYGCSsGAQQBgY8cEwQJDAczMjEtMTIzMB0GA1UdDgQWBBSxTxAznF2uoOtMW+fJUoDN6B+rJDAfBgNVHSMEGDAWgBS+O/a0MbdzJEg5xVcTlHWqn4E/LDANBgkqhkiG9w0BAQUFAAOCAQEATQgYAOwxrMRTT2Nhx7pqiNsoGT5dJmeunAv+iU5zx/VoEXB/mx+VtyLfMea3VS9LC23404XS7pz5oPwiVPLsMPZtzOcmfacVnSdRn5J7+qOO8MB+OVlXq/QmARn+1XeBCHaTQ6AMc/pdveEoGktaXwEjTslWyRD9dGDzLp04+FndQAbVcI5xRkb4vToRnhQmloUVddhQAO8usOAIb00GJFNTq4lsyZ1qT1HplQl+ngsSD1HBxkhx10Pm3KuvCunAh4um0QnSeeiq9qWIV0UZrFlMwNRXvH9OVTqSGC4PXjw2zOi2GLUfags1decu7gcGjidlELR/WHU/6lrztfdViQ==]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[MjkwYjkxOGRjNGY0NDdjYWU1NzY5ZmQzMzZkZDIyOGE=]]></Hash>
+		<Tipo_MIME><![CDATA[application/xml]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+		<Identificador_Documento_Firmado><![CDATA[O00002741_13_00000012_01_0005.txt]]></Identificador_Documento_Firmado>
+	</De_Anexo>
+	<De_Anexo>
+		<Nombre_Fichero_Anexado><![CDATA[justificante.pdf]]></Nombre_Fichero_Anexado>
+		<Identificador_Fichero><![CDATA[O00002741_13_00000012_01_0011.pdf]]></Identificador_Fichero>
+		<Validez_Documento><![CDATA[03]]></Validez_Documento>
+		<Tipo_Documento><![CDATA[03]]></Tipo_Documento>
+		<Certificado><![CDATA[]]></Certificado>
+		<Firma_Documento><![CDATA[]]></Firma_Documento>
+		<TimeStamp><![CDATA[]]></TimeStamp>
+		<Validacion_OCSP_Certificado><![CDATA[]]></Validacion_OCSP_Certificado>
+		<Hash><![CDATA[MDZlMjlkY2NmZDU4NGQwYTYyMDcyMzk1Y2E1YTc1MDc=]]></Hash>
+		<Tipo_MIME><![CDATA[application/pdf]]></Tipo_MIME>
+		<Anexo><![CDATA[]]></Anexo>
+	</De_Anexo>
+	<De_Internos_Control>
+		<Tipo_Transporte_Entrada><![CDATA[02]]></Tipo_Transporte_Entrada>
+		<Numero_Transporte_Entrada><![CDATA[num transporte]]></Numero_Transporte_Entrada>
+		<Nombre_Usuario><![CDATA[usuario]]></Nombre_Usuario>
+		<Contacto_Usuario><![CDATA[contacto]]></Contacto_Usuario>
+		<Identificador_Intercambio><![CDATA[O00002741_13_00000012]]></Identificador_Intercambio>
+		<Aplicacion_Version_Emisora><![CDATA[app1]]></Aplicacion_Version_Emisora>
+		<Tipo_Anotacion><![CDATA[04]]></Tipo_Anotacion>
+		<Descripcion_Tipo_Anotacion><![CDATA[Motivos del rechazo]]></Descripcion_Tipo_Anotacion>
+		<Tipo_Registro><![CDATA[0]]></Tipo_Registro>
+		<Documentacion_Fisica><![CDATA[2]]></Documentacion_Fisica>
+		<Observaciones_Apunte><![CDATA[observaciones del registro]]></Observaciones_Apunte>
+		<Indicador_Prueba><![CDATA[0]]></Indicador_Prueba>
+		<Codigo_Entidad_Registral_Inicio><![CDATA[O00002741]]></Codigo_Entidad_Registral_Inicio>
+		<Decodificacion_Entidad_Registral_Inicio><![CDATA[REGISTRO GENERAL DEL AYUNTAMIENTO DE JUN]]></Decodificacion_Entidad_Registral_Inicio>
+	</De_Internos_Control>
+	<De_Formulario_Generico>
+		<Expone />
+		<Solicita />
+	</De_Formulario_Generico>
+</Fichero_Intercambio_SICRES_3>

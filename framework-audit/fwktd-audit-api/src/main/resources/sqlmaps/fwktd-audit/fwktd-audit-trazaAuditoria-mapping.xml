@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="TrazaAuditoriaVO">
+
+	<resultMap class="es.ieci.tecdoc.fwktd.audit.core.vo.TrazaAuditoriaVO"
+		id="trazaAditorioResultMap">
+		<result property="id" column="ID" javaType="java.lang.String" jdbcType="BIGINT" />
+		<result property="appId" column="APP_ID" javaType="java.lang.Long" jdbcType="BIGINT" />
+		<result property="appDescription" column="APP_DESCRIPTION" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="eventType" column="EVENT_TYPE" javaType="java.lang.Long" jdbcType="BIGINT" />
+		<result property="eventDate" column="EVENT_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+		<result property="eventDescription" column="EVENT_DESCRIPTION" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="userId" column="USER_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="userName" column="USER_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/> 
+		<result property="userHostName" column="USER_HOST_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="userIp" column="USER_IP" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="objectType" column="OBJECT_TYPE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="objectTypeDescription" column="OBJECT_TYPE_DESCRIPTION" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="objectId" column="OBJECT_ID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="objectField" column="OBJECT_FIELD" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="oldValue" column="OLD_VALUE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="newValue" column="NEW_VALUE" javaType="java.lang.String" jdbcType="VARCHAR"/>		
+	</resultMap>
+	
+</sqlMap>

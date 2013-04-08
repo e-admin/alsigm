@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey=''
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width5percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_PASO'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.step'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width5percent'/>
+		
+	
+				 		 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE_FIRMANTE'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.signer'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width35percent'/>
+				 
+	<!--  
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 propertyValueKey='form.signProcess.button.delete.signer'
+				 fieldType='DELETE'
+				 fieldLink='ID'
+				 styleClass='aDelButton'
+		 		 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='deleteSigner.do'
+				 id='delSigner'
+				 columnClass='width10percent'/>
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 propertyValueKey='form.signProcess.button.replace.signer'
+				 fieldType='LINK_JS'
+				 fieldLink='ID'
+				 styleClass='aActionButton'
+		 		 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='viewUsersManager.do?captionkey=usrmgr.select.signer'
+				 id='replSigner'
+				 columnClass='width10percent'/>
+	-->
+	
+	<!-- Selección del tipo de notificacion -->
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TIPO_NOTIF'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.tipoNotif'
+				 fieldType='LISTBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width25percent'/>
+
+				 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DIR_NOTIF'
+				 readOnly='false'
+				 titleKey='form.signProcess.propertyLabel.dirNotif'
+				 fieldType='INPUT'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width35percent'/>
+
+</beanformatter>

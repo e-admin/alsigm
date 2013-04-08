@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.appfuse</groupId>
+        <artifactId>appfuse</artifactId>
+        <version>2.1.0</version>
+    </parent>
+
+    <groupId>org.appfuse.plugins</groupId>
+    <artifactId>appfuse-plugins</artifactId>
+    <packaging>pom</packaging>
+    <name>AppFuse Plugin Modules</name>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:svn:https://svn.java.net/svn/appfuse~svn/tags/APPFUSE_2.1.0/plugins</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/appfuse~svn/tags/APPFUSE_2.1.0/plugins</developerConnection>
+        <url>http://source.appfuse.org/browse/appfuse/tags/APPFUSE_2.1.0/plugins</url>
+    </scm>
+
+    <modules>
+        <module>maven-warpath-plugin</module>
+        <module>appfuse-maven-plugin</module>
+    </modules>
+
+    <distributionManagement>
+        <site>
+            <id>appfuse-plugins</id>
+            <name>AppFuse Plugins Site</name>
+            <url>scp://static.appfuse.org/var/www/appfuse-site/plugins</url>
+        </site>
+    </distributionManagement>
+</project>

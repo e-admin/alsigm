@@ -1,0 +1,327 @@
+<html>
+<head>
+<title>Administración de Usuarios</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="help.css"/>
+
+<script language="javascript">
+	window.name = 'help';
+</script>
+
+</head>
+
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#FFFFFF" vlink="#000099" alink="#FFFFFF" onLoad="">
+
+<div id="banda" style="position:absolute; left:4px; top:191px; width:51px; height:800px; z-index:2; background-color: #FFFFFF; layer-background-color: #FFFFFF; border: 1px none #000000"> 
+  <p>&nbsp;</p>
+</div>
+
+<div id="titulo" style="position:absolute; left:241px; top:7px; width:381px; height:24px; z-index:4">
+<span class="titulo"> 
+	Administración de Usuarios</span></div><br>
+
+       
+<blockquote> 
+  <p>&nbsp;</p><table width="700" border="0" cellspacing="0" cellpadding="0">
+    <tr align="left" valign="top"> 
+      <td> 
+        <blockquote> 
+			<p>
+			El objetivo de esta aplicación es la réplica paso a paso del organigrama de su empresa. </p>
+
+			<p>
+			Para poder utilizar la aplicación es imprescindible haber sido dado de alta previamente como usuario del sistema 
+			desde el módulo de Administrador de usuarios. </p>
+			
+			<div class="header">
+				Ventana de Administrador de usuarios			</div>
+			<p>
+				La pantalla principal está formada por los siguientes elementos básicos:			</p>
+			<ul>
+				<li>En la zona izquierda se muestra el árbol de departamentos y de grupos, debajo de estos
+				la barra de búsqueda, bien por departamentos o por usuarios</li>
+				<li> En la zona derecha, se muestra un listado de usuarios bien por departamentos o por grupos,
+					dependiendo del elemento elegido en la zona izquierda, y las opciones que permiten editar,
+					consultar propiedades, o añadir nuevos usuarios en cada departamento o grupo.</li>
+			</ul>
+			<p align="center">
+				<img src="imag/userBd/sigem_userTree.JPG" width="848" height="564" border="0" />			</p>
+			<p>
+				En este módulo, los usuarios con permiso para ello pueden realizar las siguientes operaciones:			</p>
+			<ul>
+				<li>Definir la estructura de división de los usuarios del sistema en grupos y departamentos. 
+					Podrá por lo tanto dar de alta departamentos y grupos y gestionar sus propiedades. </li>
+				<li>Dar de alta nuevos usuarios.</li>
+				<li>Modificar los derechos y propiedades de usuarios ya creados.</li>
+				<li>Consultar las características de un usuario determinado.</li>
+				<li>Definir aspectos de seguridad del sistema.</li>
+				<li>Definir el perfil del usuario para las distintas aplicaciones.</li>
+			</ul>
+
+			<p><img src="imag/userBd/sigem_perfilesUsuario.JPG" width="653" height="418"></p>
+			<div class="header">
+				Usuarios, departamentos y grupos			</div>
+			<p>
+				Ya hemos comentado que el módulo de Administración de usuarios está dedicado
+				a la gestión de usuarios del sistema. Es aquí, por tanto, donde se define el sistema de clasificación
+				y organización interna de usuarios del sistema.			</p>
+			<p>Los usuarios pueden clasificarse según el criterio que desee (sus perfiles, derechos asignados, 
+				puesto que ocupa en la empresa, etc.) pero siempre ajustándose a las formas 
+				de clasificación disponibles.</p>
+			<p>En la aplicación se recurre a dos formas de clasificación de los usuarios del sistema: por departamentos
+				y por grupos.</p>
+			<ul>
+				<li> <span class="bold">Departamentos:</span>
+					Ofrecen una forma jerárquica de clasificar a los usuarios. Pueden existir diferentes departamentos
+					dependientes de un elemento raíz. Todos los usuarios del sistema deben obligatoriamente estar incluidos 
+					en un departamento, y sólo en uno.
+
+					<p align="center"><img src="imag/userBd/deptos.gif" border="0" /></p>
+					<p>
+						Los departamentos se crean señalando en el arbol de departamentos el departamento padre, y eligiendo la opción Nuevo Departamento, que aparece debajo del nombre
+						del departamento señalado.					</p>
+				</li>
+				<li><span class="bold">Grupos: </span> Los grupos siguen una estructura lineal. Los grupos 
+					están formados por usuarios incluidos previamente en un departamento. 
+					
+					<p>La creación de grupos facilita la definición de derechos de usuarios y la organización 
+						interna de los usuarios del sistema.</p>
+					<p align="center">
+						<img src="imag/userBd/grupos.gif" border="0" />					</p>
+					<p>Los grupos se crean, seleccionando la opción Nuevo que aparece cuando se selecciona el 
+						elemento raíz del arbol de grupos.</p>
+				</li>
+			</ul>
+
+			<div class="atencion">
+				Los usuarios deben pertenecer obligatoriamente a un departamento, mientras que su inclusión en grupos 
+				es optativa.			</div><br>
+			
+			<span class="header2">
+			Perfiles de usuario			</span>
+			<p>
+			Los usuarios pueden tener diferentes perfiles para las distintas aplicaciones de SIGEM. Los perfiles son grupos de permisos aplicables a un usuario de manera individual sobre los objetos del sistema. Los perfiles que puede tener un usuario para una aplicación son:</p>
+
+			<ul>
+				<li>Sin permisos.</li>
+				<li>Usuario estandar.</li>
+				<li>Usuario administrador.</li>
+		    </ul>
+
+			<p><img src="imag/userBd/sigem_perfilesUsuario.JPG" width="653" height="418"></p>
+			<br>	
+
+			<div class="header">
+				Gestión de departamentos			</div>
+			<p>
+				Los departamentos  permiten clasificar a los usuarios de forma jerárquica. Todos los usuarios
+				del sistema deben obligatoriamente estar incluidos en un departamento, y sólo en uno. Pueden existir
+				diferentes departamentos dependientes de un elemento raíz.			</p>
+			<p>Cuando se selecciona un departamento a través del árbol de departamentos se pueden realizar las operaciones siguientes: </p>
+			<ul>
+			<li>Crear departamentos (opción Nuevo departamento).</li>
+			<li>Modificar sus características (opción Editar).</li>
+			<li>Consultar sus propiedades (opción Propiedades).</li>
+			</ul>
+			<p> También se pueden realizar otras operaciones como búsqueda por departamentos (en la barra de búsqueda seleccionando Departamentos como criterio de búsqueda ) o 
+				eliminar un departamento (Editarlo primero, y pulsar botón Eliminar ).			</p>
+
+			<div class="header2">
+				Crear departamentos			</div>
+			<p>
+				Sólo pueden crear departamentos los usuarios que tengan permiso para ello. En primer lugar debe seleccionar 
+				el nodo en donde va a crear el departamento. Puede ser el nodo raíz, Departamentos, o cualquier otro departamento, 
+				en cuyo caso dependerá jerárquicamente de él.			</p>
+
+			<div class="resaltado">
+				Secuencia de operaciones para crear departamentos			</div>
+			<ol>
+				<li>Seleccione Nuevo Departamento y se aparecera el panel Departamento - Nuevo que muestra la figura siguiente.
+					<p align="center"><img src="imag/userBd/sigem_DepartamentoNuevo.JPG" width="394" height="266"></p>
+				</li>
+				<li>Escriba el nombre que va a asignar al departamento. No debe coincidir con ninguno de los que ya 
+					existen.</li>
+				<li>Seleccione el usuario que va a ser el Administrador de ese departamento. Por defecto aparece el 
+					nombre del usuario que lo está creando. En la lista de usuarios que puede seleccionar sólo aparecen
+					los que por su perfil pueden ser administradores de departamento. </li>
+
+				<li>Escriba si lo desea una descripción complementaria.</li>
+				<li>Pulse "Aceptar" para guardar los datos.</li>	
+			</ol>
+
+			<div class="header2">
+				Modificar departamentos			</div>
+			<p>
+				Sólo pueden realizar esta operación los usuarios con permiso para ello. Se puede modificar tanto 
+				los datos como la posición en la estructura de departamentos. Lo primero de todo es seleccionar 
+				el departamento que se quiere modificar.			</p>
+			<div class="resaltado">
+				Continúe de esta manera para modificar sus datos:			</div>
+			<ol>
+				<li>Seleccione el departamento que desee modificar, y elija en el panel derecho la opción Editar.</li>
+				<li>Aparecerá una pantalla idéntica a la que se utiliza para crear departamentos. Modifique lo que desee</li>
+				<li>Pulse "Aceptar" para guardar cambios.</li>
+			</ol>
+
+			<div class="header2">
+				Borrar departamentos			</div>
+			<p>
+				Sólo se pueden borrar departamentos que no tengan asignados usuarios. La opción que ha de utilizar 
+				es Eliminar que aparece cuando se edita un departamento.			</p>
+			<p align="center"><img src="imag/userBd/sigem_departamentoBorrar.JPG"></p>
+
+			<div class="header2">
+			Consultar las propiedades del departamento			</div>
+
+			<p>Seleccionando la opción Propiedades, que aparece cuando se selecciona un departamento, se abre una
+				pantalla que muestra:  El nombre del departamento, su identificador interno en el sistema, 
+				el nombre del administrador, el usuario que lo ha creado y en su caso el que lo haya modificado, 
+				además de ambas fechas.			</p>
+
+			<p align="center"><img src="imag/userBd/sigem_departamentoProperties.JPG"></p>
+			<div class="atencion">
+				No se puede modificar ningún dato en esta pantalla.			</div><br>
+
+			<div class="header">
+			Gestión de grupos			</div>
+			<p>
+				La creación de grupos facilita la definición de derechos de usuarios y la organización interna de los usuarios del sistema.			</p>
+			<p>
+				Los usuarios con permiso para ello pueden realizar las siguientes operaciones de gestión:</p>
+			<ol>
+				<LI>Crear grupos (opción Nuevo grupo).</LI>
+				<LI>Modificar sus características (opción Editar).</LI>
+				<LI>Localizar un grupo en la estructura del sistema (opción Buscar).</LI>
+				<LI>Borrar grupos (opción Eliminar).</LI>
+				<li>Consultar sus propiedades (opción Propiedades).</li>
+			</ol>
+			<p>El procedimiento para realizar cualquiera de estas operaciones es idéntico al explicado para los departamentos, excepto
+				que sólo se pueden crear grupos desde el nodo raíz.			</p>
+
+			<div class="header">
+			Gestión de usuarios			</div>
+			<p>La gestión de usuarios comprende una serie de procesos que permiten controlar el acceso de 
+			cualquiera de ellos a las aplicaciones de SIGEM consiguiendo con ello un grado óptimo de seguridad 
+			del sistema.</p>
+			<p>
+				La gestión de usuarios comprende las siguientes tareas:			</p>
+			<ul>
+				<li>Definir usuarios (opción Nuevo Usuario).</li>
+				<li>Modificar sus datos y perfiles (opción Editar).</li>
+				<li>Borrar usuarios (opción Eliminar).</li>
+				<li>Consultar las propiedades (opción Propiedades).</li>
+				<li>Asociar y desasociar usuarios a grupos.</li>
+			</ul>
+
+			<div class="header2">
+				Definir usuarios			</div>
+
+			<p>
+				El procedimiento normal para dar de alta a un usuario consiste en crearlo y a continuación 
+				atribuirle sus propiedades, si bien ambas operaciones pueden realizarse en la misma fase.			</p>
+			<p>
+				Tenga en cuenta lo siguiente:			</p>
+			<ul>
+				<li>Para crear un usuario debe incluirlo en un departamento, esto es, debe tener seleccionado el 
+					departamento en el que va a crearlo.</li>
+				<li>Los usuarios dados de alta "Sin derechos" no se cuentan hasta que no se les asigna algún derecho.</li>
+			</ul>
+			<div class="resaltado">
+				Para definir un nuevo usuario proceda de la siguiente forma:			</div>
+			<ol>
+				<li>Seleccione el departamento en el que desee incluir el usuario y seleccione la opción Nuevo Usuario. 
+					<p>Aparece la siguiente pantalla.</p>
+					<p align="center"><img src="imag/userBd/sigem_userNew.JPG"></p>					
+			  </li>
+				<li>
+						En la pestaña  <span class="bold">General</span> introduzca los datos de identificación del nuevo usuario. Los campos
+						Contraseña y Confirmación de contraseña son obligatorios. Se distingue en este proceso las letras mayúsculas 
+						de las minúsculas por lo que, la próxima vez que el usuario quiera acceder al sistema, deberá 
+						introducir sus datos respetando la grafía exacta que se haya utilizado la primera vez 
+						que definió estos parámetros.				</li>
+				<li>En la pestaña <span class="bold">Perfiles</span> seleccione el perfil (marcando la casilla correspondiente) que desee 
+					que asuma el usuario en la aplicación.				</li>
+
+				<li>Una vez cumplimentados todos los campos, pulse "Aceptar". </li>
+			</ol>
+
+			<div class="header2">
+				Modificar usuarios			</div>
+			<p>
+				Sólo quien posea permiso de administrador o superusuario puede modificar las características de los usuarios.
+				Se pueden cambiar los datos (nombre y contraseña), el perfil y los permisos.			</p>
+			<div class="resaltado">
+				Proceda como sigue para modificar las características de un usuario:			</div>
+			<ol>	
+				<li>Seleccione el departamento donde se encuentre el usuario que va a modificar.</li>
+				<li>Elija la opción editar del usuario en cuestión</li>
+				<li>Aparecerá una pantalla idéntica a la que se utiliza para crear o definir usuarios. 
+					Puede modificar todos los datos, es decir, su nombre, contraseña, perfil y permisos genéricos 
+					si el usuario tiene un perfil Estándar. </li>
+				<li>Pulse "Aceptar" para guardar cambios.</li>
+			</ol>
+
+			<div class="header2">
+				Borrar usuarios			</div>
+			<p>Es posible que un usuario del sistema se dé de baja y tenga que borrarlo definitivamente de 
+				la base de datos. Deberá borrarlo del departamento al que pertenezca y desaparecerá
+				de todos los grupos en los que se le hubiera incluido, perdiendo obviamente todos sus derechos.</p>
+			<div class="resaltado">
+				Para eliminar un usuario de la base de datos:			</div>
+			<ol>
+				<li>Seleccione el departamento en el que se incluye el usuario que desee eliminar. Una vez dentro, edite el usuario en cuestión.</li>
+				<li>Pulse el botón Eliminar, para borrarlo del departamento.
+					<p align="center"><img src="imag/userBd/sigem_useredit.JPG"></p>									
+				</li>
+			</ol>
+
+			<div class="header2">
+				Asociar usuarios a grupos y desasociarlos			</div>
+			<p>
+				Una vez incluido un usuario en un departamento, puede proceder a incluirlo también en un grupo 
+				de usuarios previamente creado.			</p>
+
+			<p>
+				Para ello, edite el usuario en cuestión, y seleccione la pestaña grupos, y elija a los grupos que desee que pertenezca dicho usuario.			</p>
+			<p align="center"><img src="imag/userBd/sigem_usergroup.JPG" width="505" height="277"></p>
+			<br>
+			<div class="header2">
+				Consultar las propiedades de los usuarios			</div>
+			<p>
+				Seleccionando la opción Propiedades que aparece junto al nombre de usuario elegido 
+				aparece una pantalla donde se pueden consultar varios aspectos del mismo.			</p>
+			<ul>
+				<li>Nombre del usuario.</li>
+				<li>Fecha y autor de su creación y de su última modificación.</li>
+				<li>Departamento al que pertenece.</li>
+				<li>Estado en el que se encuentra: bloqueado o desbloqueado.</li>
+			</ul>
+			<div class="header2">
+				Buscar departamentos, grupos y usuarios			</div>
+			<p>
+				Es probable que el sistema cuente con un gran número de usuarios asociados a 
+				grupos y departamentos. A menudo es útil que el administrador del sistema 
+				pueda consultar los  perfiles de dichos usuarios sin necesidad de recordar 
+				el departamento o los grupos a los que éste está asociado. Lo mismo ocurre con los propios 
+				grupos y departamentos definidos.			</p>
+
+			<p>Para facilitar esta operación, se ha diseñado la opción Buscar disponible la barra de 
+				búsqueda. Seleccionando el criterio de búsqueda, Departamento, Grupo o  Usuario, y escribiendo el nombre 
+				completo del elemento que esté buscando, el sistema le situará directamente donde 
+				se encuentre dicho elemento.</p>
+			
+<!--
+			<ul>?	Departamentos:
+				<li> <span class="bold"></span>  </li>
+				<li><span class="bold"></span></li>
+			</ul>
+-->
+        </blockquote>      </td>
+    </tr>
+  </table>
+
+</blockquote>
+    
+</body>
+</html>

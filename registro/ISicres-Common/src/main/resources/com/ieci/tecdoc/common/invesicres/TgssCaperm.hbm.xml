@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.TgssCaperm" 
+    table="TGSS_CAPERMS"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="TGSS_CAPERMS"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="iduser" 
+            column="IDUSER" 
+            type="java.math.BigDecimal"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="IDUSER"
+                length="22"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="idca" 
+            column="IDCA" 
+            type="java.math.BigDecimal"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="IDCA"
+                length="22"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

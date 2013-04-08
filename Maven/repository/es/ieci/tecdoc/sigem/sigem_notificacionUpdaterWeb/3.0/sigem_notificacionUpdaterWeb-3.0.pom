@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main</artifactId>
+		<version>3.0</version>
+	</parent>
+	
+	<artifactId>sigem_notificacionUpdaterWeb</artifactId>
+	<packaging>war</packaging>
+	
+	
+	<dependencies>
+	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_core</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.thoughtworks.xstream</groupId>
+					<artifactId>xstream</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_clasesBase</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-net</groupId>
+					<artifactId>commons-net</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xercesImpl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_notificacion</artifactId>
+			<version>${pom.version}</version>
+
+			<exclusions>
+
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_rde</artifactId>
+				</exclusion>
+
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_notificacionWsClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_rde</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_utilidadesAdministracion</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativa</artifactId>
+				</exclusion>
+				
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativaCore</artifactId>
+				</exclusion>
+				
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_administracionSesionesBackOfficeWsClient</artifactId>
+				</exclusion>
+				
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_administracionSesionesAdmWsClient</artifactId>
+				</exclusion>
+				
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativa</artifactId>
+				</exclusion>
+				
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_entidades</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_MensajesCortos</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_entidadesWsClient</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.3</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>${xalan.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>${xerces.version}</version>
+		</dependency>
+		
+		<dependency>
+			 <groupId>xml-apis</groupId>
+  			<artifactId>xml-apis</artifactId>
+  			<version>1.3.01</version>
+		</dependency>
+		
+		<dependency>
+			 <groupId>axis</groupId>
+  			<artifactId>axis-ant</artifactId>
+  			<version>1.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis-schema</artifactId>
+			<version>1.3</version>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<finalName>SIGEM_NotificacionUpdaterWeb</finalName>
+		
+		<filters>
+			<filter>${filter.generic.system}</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<!-- 	
+		<resources>
+	    	- añadimos el directorio como directorio de recursos con ello lo empaquetará en el war -
+	    	<resource>
+					<directory>${unpackConfigurableResourcesPath}</directory>
+			</resource>
+	    </resources>
+	    
+	    <plugins>
+	    	 - extraemos los zip con classifier configurable (es decir los assemblys de configurables que hacemos) de todas las dependencias transitivas-
+	    	<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>unpack-dependencies</id>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>unpack-dependencies</goal>
+							</goals>
+							<configuration>
+								<classifier>configurableSigem</classifier>
+								<includeTypes>zip</includeTypes> 
+								<excludeTypes>jar</excludeTypes>
+								<type>zip</type>
+								
+								<outputDirectory>
+									${unpackConfigurableResourcesPath}
+								</outputDirectory>
+								<overWriteReleases>false</overWriteReleases>
+								<overWriteSnapshots>true</overWriteSnapshots>
+								
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+	    
+	    </plugins>
+   -->
+	</build>
+
+	<profiles>
+		<!-- Perfiles de construccion en funcion del S.O. -->
+		<profile>
+			<id>unix</id>
+			<activation>
+				<property>
+					<name>unix</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../../SIGEM_Config/src/main/filters/system/unix.properties</filter.generic.system>
+			</properties>
+		</profile>
+		<profile>
+			<id>win</id>
+			<activation>
+				<property>
+					<name>win</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../../SIGEM_Config/src/main/filters/system/windows.properties</filter.generic.system>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>websphere</id>
+			<activation>
+				<property>
+					<name>websphere</name>
+				</property>
+			</activation>
+			<build>
+				<finalName>SIGEM_NotUpdaterWeb</finalName>
+			</build>
+		</profile>
+	</profiles>		
+
+</project>

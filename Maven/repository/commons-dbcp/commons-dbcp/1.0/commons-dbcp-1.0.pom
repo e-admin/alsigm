@@ -1,0 +1,91 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>commons-dbcp</groupId>
+  <artifactId>commons-dbcp</artifactId>
+  <name>DBCP</name>
+  <version>1.0-dev</version>
+  <description>Commons Database Connection Pooling</description>
+  <inceptionYear>2002</inceptionYear>
+  <developers>
+    <developer>
+      <id></id>
+      <name>Morgan Delagrange</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id></id>
+      <name>Geir Magnusson</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id></id>
+      <name>Craig McClanahan</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id></id>
+      <name>John McNally</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>rwaldof</id>
+      <name>Rodney Waldoff</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id></id>
+      <name>David Weinrich</name>
+      <email></email>
+      <organization></organization>
+    </developer>
+  </developers>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>**/TestAll.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>1.0-b1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-pool</groupId>
+      <artifactId>commons-pool</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>jdbc</groupId>
+      <artifactId>jdbc</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.7</version>
+    </dependency>
+  </dependencies>
+</project>

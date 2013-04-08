@@ -1,0 +1,17 @@
+<assembly>
+	<id>configurable</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/src/main/resources/fwktd-csv-webapp</directory>
+			<outputDirectory>/fwktd-csv-webapp</outputDirectory>
+			<includes>
+				<include>fwktd-csv-webapp.properties</include>
+				<include>log4j.xml</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>

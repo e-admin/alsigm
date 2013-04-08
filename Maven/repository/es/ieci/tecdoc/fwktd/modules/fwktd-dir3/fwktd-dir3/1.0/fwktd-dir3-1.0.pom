@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.fwktd</groupId>
+		<artifactId>fwktd-parent</artifactId>
+		<version>0.7</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-dir3</groupId>
+	<artifactId>fwktd-dir3</artifactId>
+	<version>1.0</version>
+
+	<packaging>pom</packaging>
+
+	<name>fwktd-dir3</name>
+	<description>Modulo de consulta sobre el Directorio Comun (DIR3)</description>
+
+	<modules>
+		<module>fwktd-dir3-parent</module>
+		<module>fwktd-dir3-core</module>
+		<module>fwktd-dir3-api</module>
+		<module>fwktd-dir3-sql</module>
+		<module>fwktd-dir3-dco-wsclient</module>
+	</modules>
+
+	<profiles>
+
+		<profile>
+			<id>distri</id>
+			<modules>
+				<module>fwktd-dir3-doc</module>
+				<module>fwktd-dir3-dist</module>
+			</modules>
+		</profile>
+
+	</profiles>
+
+</project>

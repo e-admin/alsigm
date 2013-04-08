@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+        
+     <!-- archivo de definicion de beans de DAOS-->
+        
+     <!-- sqlmapclient -->
+     <!-- sqlmapclient no multientidad
+       
+    <bean id="fwktd_audit_sqlMapClientImpl" name="fwktd_audit_sqlMapClient"
+		class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation"
+			value="classpath:sqlmaps/fwktd-audit/fwktd-audit-sqlmap-config.xml" />
+		<property name="dataSource" ref="fwktd_audit_dataSource" />
+	</bean>
+	
+	-->
+	
+	<!-- sqlmapclient  multientidad -->
+	<bean id="fwktd_audit_sqlMapClientImpl" name="fwktd_audit_sqlMapClient"
+		class="es.ieci.tecdoc.fwktd.core.spring.orm.ibatis.SqlMapClientMultiEntity">
+		<property name="configLocation"
+			value="classpath:sqlmaps/fwktd-audit/fwktd-audit-sqlmap-config.xml" />
+		<property name="dataSource" ref="fwktd_audit_dataSource" />
+	</bean>
+	
+		
+	<!-- daos -->
+	<bean id="fwktd_audit_trazaDaoImpl" name="fwktd_audit_trazaDao"
+		class="es.ieci.tecdoc.fwktd.audit.api.business.dao.impl.TrazaAuditoriaDaoImpl">
+		<constructor-arg value="es.ieci.tecdoc.fwktd.audit.core.vo.TrazaAuditoriaVO" />
+		<property name="sqlMapClient" ref="fwktd_audit_sqlMapClient" />
+	</bean>
+
+	
+
+</beans>

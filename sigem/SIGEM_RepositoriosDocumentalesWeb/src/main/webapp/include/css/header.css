@@ -1,0 +1,52 @@
+@import url(common.css);
+
+/**
+Estilos de la cabecera
+*/
+table.header {
+	border-collapse: separate;
+	margin: 0;
+	padding: 0;
+}
+
+td.status {
+	color: #5888b8;
+	font-family: Verdana, Helvetica, Arial,sans-serif;
+	font-size: 7pt;
+	border-bottom: 1px #d1d1d1 solid;
+		padding: 2px 0.5em 1px 17px;
+}
+
+td.blue {
+	color: #fff;
+
+	border-top: 1px #000 solid;
+	border-bottom: 1px #000 solid;
+	background: #639ACE;
+	font: 7pt verdana, arial, helvetica, sans-serif;
+}
+
+td.user {
+	color: #5888b8;
+	padding: 1px 10px 1px 10px;
+	border-right: 1px #d1d1d1 solid;
+	background: #e6e6e6;
+}
+
+td.header {
+	padding: 1pt;
+	border: 1px #639ACE solid;
+	background: #639ACE;
+	border-spacing: 0;
+	empty-cells: show;
+}
+a.header, a.header:link, a.header:visited, a.header:active {
+	font-size: 7pt;
+	text-decoration: none;
+	color: #fff;
+	padding: 1px 1px 1px;
+}
+a.header:hover {
+	font-size: 7pt;
+	color: #fff;
+}

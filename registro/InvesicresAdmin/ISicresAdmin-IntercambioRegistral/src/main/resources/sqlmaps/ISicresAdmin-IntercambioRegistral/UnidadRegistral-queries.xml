@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="UnidadRegistralVO">
+
+	<insert  id="addUnidadRegistralVO" parameterClass="unidadRegistralVO" >
+		INSERT INTO SCR_TRAMUNIT (
+			ID,
+			NAME_TRAMUNIT,
+			CODE_TRAMUNIT,
+			ID_ORGS,
+			CODE_ENTITY,
+			NAME_ENTITY
+	    )
+		VALUES (
+			#id:NUMERIC#,
+		    #name_tramunit:VARCHAR#,
+			#code_tramunit:VARCHAR#,
+			#id_orgs:NUMERIC#,
+			#code_entity:VARCHAR#,
+			#name_entity:VARCHAR#
+		)
+	</insert>
+
+	<update id="updateUnidadRegistralVO"  parameterClass="unidadRegistralVO">
+		UPDATE SCR_TRAMUNIT
+		SET
+			NAME_TRAMUNIT=#name_tramunit#,
+			CODE_TRAMUNIT=#code_tramunit#,
+			NAME_ENTITY=#name_entity#,
+			CODE_ENTITY=#code_entity#
+		WHERE
+			ID=#id#
+	</update>
+
+	<delete id="deleteUnidadRegistralVO"
+			parameterClass="unidadRegistralVO">
+		DELETE
+		FROM SCR_TRAMUNIT where ID=#id:NUMERIC#
+	</delete>
+
+	<select id="getUnidadRegistralVO" parameterClass="java.lang.Integer" resultMap="unidadRegistral">
+	select * from scr_tramunit where id = #value#
+	</select>
+
+	<select id="getUnidadRegistralVOByIdOrgs" parameterClass="java.lang.Integer" resultMap="unidadRegistral">
+	select * from scr_tramunit where id_orgs = #value#
+	</select>
+
+	<select id="findUnidadesRegistrales" parameterClass="unidadRegistralVO" resultMap="unidadRegistral">
+	select * from scr_tramunit
+	<dynamic prepend="WHERE">
+	 	<isNotEqual compareValue="0" prepend="AND" property="id">
+        	id = #id:NUMERIC#
+      	</isNotEqual>
+      	<isNotEqual compareValue="0" prepend="AND" property="id_orgs">
+        	id_orgs = #id_orgs:NUMERIC#
+      	</isNotEqual>
+      	<isNotNull prepend="AND" property="name_tramunit">
+        	name_tramunit = #name_tramunit:VARCHAR#
+      	</isNotNull>
+      	<isNotNull prepend="AND" property="code_tramunit">
+        	code_tramunit = #code_tramunit:VARCHAR#
+      	</isNotNull>
+      	<isNotNull prepend="AND" property="name_entity">
+        	name_entity = #name_entity:VARCHAR#
+      	</isNotNull>
+      	<isNotNull prepend="AND" property="code_entity">
+        	code_entity = #code_entity:VARCHAR#
+      	</isNotNull>
+	</dynamic>
+	</select>
+</sqlMap>

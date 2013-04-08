@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main_web</artifactId>
+		<version>3.0</version>
+	</parent>
+
+	<artifactId>SIGEM_CatalogoProcedimientosWeb</artifactId>
+	<name>SIGEM_CatalogoProcedimientosWeb</name>
+	<packaging>war</packaging>
+
+	<dependencies>
+
+		<!-- SIGEM dependencies -->
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_core</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.thoughtworks.xstream</groupId>
+					<artifactId>xstream</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xpp3</groupId>
+					<artifactId>xpp3_min</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Tramitacion</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.lowagie</groupId>
+					<artifactId>itext</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_registroPresencial</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_registroPresencialAdmin</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_registroPresencialWsClient</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_firmaDigital</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_firmaDigitalWsClient</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.iflow</groupId>
+					<artifactId>ispac-services</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_TramitacionSecretaria</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_utilidadesAdministracion</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_administracionSesionesBackOfficeWsClient</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_entidades</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativa</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativaCore</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_gestionUsuariosBackOffice</artifactId>
+			<version>${pom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativa</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.sigem</groupId>
+					<artifactId>sigem_estructuraOrganizativaCore</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-catalog-java</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-invesdoc</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-invesicres</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-ldap</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-lib</artifactId>
+			<version>${ispac.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.iflow</groupId>
+					<artifactId>ispac-lib-cfg</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.iflow</groupId>
+					<artifactId>ispac-resources</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-web</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-designer</artifactId>
+			<version>${ispac.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.iflow</groupId>
+			<artifactId>ispac-archidoc</artifactId>
+			<version>${ispac.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>es.ieci.tecdoc.archidoc.archidoc_organization</groupId>
+					<artifactId>archidoc_organization_connector</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.archidoc.archidoc_organization</groupId>
+			<artifactId>archidoc_organization_connector</artifactId>
+			<version>${archidoc.version}</version>
+		</dependency>
+
+
+		<!-- Third party dependencies -->
+
+		<dependency>
+			<groupId>org.ajaxtags</groupId>
+			<artifactId>ajaxtags</artifactId>
+			<version>${ajaxtags.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-lang</groupId>
+					<artifactId>commons-lang</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>net.htmlparser</groupId>
+					<artifactId>jericho-html</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Provided dependencies -->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jspapi.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>SIGEM_CatalogoProcedimientosWeb</finalName>
+		<filters>
+			<filter>${filter.generic.system}</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>dependency-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-web-resources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<artifactItems>
+						<artifactItem>
+							<groupId>es.ieci.tecdoc.iflow</groupId>
+							<artifactId>ispac-catalog-webapp</artifactId>
+							<version>${ispac.version}</version>
+							<type>jar</type>
+						</artifactItem>
+					</artifactItems>
+					<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>concatenate-resources</id>
+						<phase>process-resources</phase>
+						<configuration>
+							<tasks>
+								<property name="resources.package" value="ieci/tdw/ispac/ispaccatalog/resources"/>
+								<property name="resources-concat.dir" value="./src/main/resources-concat/${resources.package}"/>
+								<property name="target.dir" value="./target/${project.build.finalName}/WEB-INF/classes/${resources.package}"/>
+
+								<taskdef resource="net/sf/antcontrib/antlib.xml"/>
+								<for param="filename">
+									<path>
+										<fileset dir="${resources-concat.dir}">
+											<include name="**/*.properties"/>
+										</fileset>
+  									</path>
+								  	<sequential>
+								    	<echo>Resource: @{filename}</echo>
+										<propertyregex casesensitive="false" input="@{filename}" override="true" property="file" regexp="(.*)ApplicationResources(.*)" select="ApplicationResources\2"/>
+										<move file="${target.dir}/${file}" tofile="${target.dir}/${file}_tmp"/>
+										<concat destfile="${target.dir}/${file}">
+											<fileset dir="${resources-concat.dir}" includes="${file}"/>
+											<fileset dir="${target.dir}" includes="${file}_tmp"/>
+										</concat>
+										<delete file="${target.dir}/${file}_tmp"/>
+								  	</sequential>
+								</for>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant</artifactId>
+						<version>1.7.0</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>ant</groupId>
+						<artifactId>ant-optional</artifactId>
+						<version>1.5.1</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>ant-contrib</groupId>
+						<artifactId>ant-contrib</artifactId>
+						<version>1.0b3</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- Perfiles de construccion en funcion del S.O. -->
+		<profile>
+			<id>unix</id>
+			<activation>
+				<property>
+					<name>unix</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../../SIGEM_Config/src/main/filters/system/unix.properties</filter.generic.system>
+			</properties>
+		</profile>
+		<profile>
+			<id>win</id>
+			<activation>
+				<property>
+					<name>win</name>
+				</property>
+			</activation>
+			<properties>
+				<filter.generic.system>${project.basedir}/../../SIGEM_Config/src/main/filters/system/windows.properties</filter.generic.system>
+			</properties>
+		</profile>
+		<profile>
+			<id>websphere</id>
+			<activation>
+				<property>
+					<name>websphere</name>
+				</property>
+			</activation>
+			<build>
+				<finalName>SIGEM_CatProcsWeb</finalName>
+			</build>
+		</profile>
+	</profiles>
+</project>

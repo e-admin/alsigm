@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesicres.ScrCact" 
+    table="SCR_CA_CT"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_CA_CT"
+    </meta>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="ID"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="code"
+        type="java.lang.String"
+        column="CODE"
+        not-null="true"
+        length="16"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CODE"
+            length="16"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="matter"
+        type="java.lang.String"
+        column="MATTER"
+        not-null="true"
+        length="250"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="MATTER"
+            length="250"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="forEreg"
+        type="java.lang.Integer"
+        column="FOR_EREG"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="FOR_EREG"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="forSreg"
+        type="java.lang.Integer"
+        column="FOR_SREG"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="FOR_SREG"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="allOfics"
+        type="java.lang.Integer"
+        column="ALL_OFICS"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ALL_OFICS"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="idArch"
+        type="int"
+        column="ID_ARCH"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_ARCH"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="creationDate"
+        type="java.sql.Timestamp"
+        column="CREATION_DATE"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="CREATION_DATE"
+            length="7"
+            not-null="true"
+        </meta>    
+    </property>
+    <property
+        name="disableDate"
+        type="java.sql.Timestamp"
+        column="DISABLE_DATE"
+        length="7"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="DISABLE_DATE"
+            length="7"
+        </meta>    
+    </property>
+    <property
+        name="enabled"
+        type="java.lang.Integer"
+        column="ENABLED"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ENABLED"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="idOrg"
+        type="int"
+        column="ID_ORG"
+        not-null="true"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="ID_ORG"
+            length="10"
+            not-null="true"
+        </meta>    
+    </property>
+
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to ScrCaadm -->
+    <set
+        name="scrCaadms"
+        lazy="true"
+        inverse="true"
+    >
+        <meta attribute="field-description">
+           @hibernate.set
+            lazy="true"
+            inverse="true"
+
+	       @hibernate.collection-key
+	        column="IDCA"
+
+           @hibernate.collection-one-to-many
+            class="com.ieci.tecdoc.common.invesicres.ScrCaadm"
+        </meta>
+        <key>
+            <column name="IDCA" />
+        </key>
+        <one-to-many 
+            class="com.ieci.tecdoc.common.invesicres.ScrCaadm"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

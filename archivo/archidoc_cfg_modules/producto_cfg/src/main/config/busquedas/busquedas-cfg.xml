@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ConfigBusquedas version="5.0" descripcion="Configuración de búsquedas">
+    <Campos_Descriptivos>
+    	<campo nombre="Fecha_Inicial" valor="3" tipo="3"/>
+    	<campo nombre="Fecha_Final" valor="4" tipo="3"/>
+	<campo nombre="Fechas" valor="0" tipo="3"/>
+    	<campo nombre="Id_Tercero_Interesado" valor="51" tipo="5"/>
+	<campo nombre="Interesado_Identidad" valor="9" tipo="5"/>
+	<campo nombre="Localizacion" valor="42" tipo="1"/>
+	<campo nombre="Emplazamiento_Pais" valor="2" tipo="5"/>
+	<campo nombre="Emplazamiento_Comunidad" valor="39" tipo="5"/>
+	<campo nombre="Emplazamiento_Concejo" valor="40" tipo="5"/>
+	<campo nombre="Emplazamiento_Poblacion" valor="41" tipo="5"/>
+	<campo nombre="Productor" valor="16,34" tipo="5"/><!--Admite valores múltiples separados por coma-->
+	<campo nombre="RangosInicial" valor="201" tipo="5"/>
+	<campo nombre="RangosFinal" valor="202" tipo="5"/>
+	<campo nombre="RangosInicialNorm" valor="210" tipo="5"/>
+	<campo nombre="RangosFinalNorm" valor="211" tipo="5"/>
+    </Campos_Descriptivos>
+    <Listas_Descriptoras>
+    	<lista nombre="ID_LIST_PAIS" valor="ID_LIST_PAIS" tipo="5"/>
+    	<lista nombre="ID_LIST_PROVINCIA" valor="ID_LIST_PROVINCIA" tipo="5"/>
+	<lista nombre="ID_LIST_COMUNIDAD" valor="ID_LIST_COMUNIDAD" tipo="5"/>
+	<lista nombre="ID_LIST_CONCEJO" valor="ID_LIST_CONCEJO" tipo="5"/>
+	<lista nombre="ID_LIST_POBLACION" valor="ID_LIST_POBLACION" tipo="5"/>
+	<lista nombre="ID_LIST_INTERESADO_IDENTIDAD" valor="ID_LIST_INTERESADO" tipo="5"/>
+	<lista nombre="ID_LIST_INSTITUCION" valor="ID_LIST_INSTITUCION" tipo="5"/>
+	<lista nombre="ID_LIST_PERSONA" valor="ID_LIST_PERSONA" tipo="5"/>
+	<lista nombre="ID_LIST_FAMILIA" valor="ID_LIST_FAMILIA" tipo="5"/>
+	<lista nombre="ID_LIST_BDORGANIZACION" valor="ID_LIST_BDORGANIZACION" tipo="5"/>
+	<lista nombre="ID_LIST_ORGANO" valor="ID_LIST_ORGANO" tipo="5"/>
+    </Listas_Descriptoras>
+</ConfigBusquedas>

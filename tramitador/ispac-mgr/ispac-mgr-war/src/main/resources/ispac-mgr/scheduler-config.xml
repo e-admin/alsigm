@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<scheduler>
+
+	<!--
+	<task class="" time="00:00:00" period="1s|m|h|d"/>
+	<task class="" delay="0s|m|h|d" period="1s|m|h|d"/>
+	-->
+	
+	<!-- Tarea para liberar las sesiones caducadas -->
+	<task class="ieci.tdw.ispac.ispacweb.session.SessionScheduler" delay="0" period="10m">
+	</task>
+
+	<!-- Tarea para lanzar el evento "Expirar plazo" en tramites, fases y procesos -->
+	<task class="ieci.tdw.ispac.ispacweb.session.ISPACScheduler" time="23:00:00" period="1d">
+	</task>
+	
+</scheduler>
+

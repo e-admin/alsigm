@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='ID'
+				readOnly='false'
+				titleKey='catalog.common.id'
+				fieldType='SUBMIT'
+				fieldLink='ID'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+				media='html'
+				decorator=''
+				url='/setObject.do'
+				id='selectcode'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NOMBRE'
+				readOnly='false'
+				titleKey='catalog.common.nombre'
+				fieldType='SUBMIT'
+				fieldLink='ID'
+				styleClass='displayLink'
+				headerClass='sortable'
+				sortable='true'
+				media='html'
+				decorator=''
+				url='/setObject.do'
+				id='selectcode'/>
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='DESCRIPCION'
+				 readOnly='false'
+				 titleKey='catalog.common.descripcion'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+<!--
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='CLASE'
+				 readOnly='false'
+				 titleKey='form.entity.validation.propertyLabel.jClass'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='PAGINA'
+				 readOnly='false'
+				 title='URL'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'/>
+-->
+</beanformatter>

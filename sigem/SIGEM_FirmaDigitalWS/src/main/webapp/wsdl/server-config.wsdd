@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="ServicioFirmaDigitalWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="firmar" qname="ns1:firmar" returnQName="ns1:firmarReturn" returnType="ns1:Firma" soapAction="" xmlns:ns1="http://server.ws.firma.cripto.sgm.tecdoc.ieci">
+   <parameter qname="ns1:poContenido" type="ns1:Contenido"/>
+  </operation>
+  <operation name="validarFirma" qname="ns2:validarFirma" returnQName="ns2:validarFirmaReturn" returnType="ns2:ResultadoValidacionFirma" soapAction="" xmlns:ns2="http://server.ws.firma.cripto.sgm.tecdoc.ieci">
+   <parameter qname="ns2:pabB64Sign" type="ns2:Contenido"/>
+    <parameter qname="ns2:pabB64Content" type="ns2:Contenido"/>
+  </operation>
+  
+    <operation name="registrarFirma" qname="ns20:registrarFirma" returnQName="ns20:registrarFirmaReturn" returnType="ns20:RegistroFirma" soapAction="" xmlns:ns2="http://server.ws.firma.cripto.sgm.tecdoc.ieci">
+   <parameter qname="ns20:signature" type="ns20:Contenido"/>
+   <parameter qname="ns20:certificate" type="ns20:Contenido"/>
+   <parameter qname="ns20:hash" type="ns20:Contenido"/>
+  </operation>
+  
+  <parameter name="allowedMethods" value="validarFirma firmar registrarFirma"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="ServicioFirmaDigitalWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.cripto.firma.ws.server.ServicioFirmaDigitalWebService"/>
+  <parameter name="wsdlServicePort" value="ServicioFirmaDigitalWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.firma.cripto.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="ServicioFirmaDigitalWebServiceService"/>
+  
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns3:Firma" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Firma" xmlns:ns3="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns4:Certificado" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Certificado" xmlns:ns4="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns5:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns5="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:Contenido" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Contenido" xmlns:ns6="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:ResultadoValidacionFirma" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.ResultadoValidacionFirma" xmlns:ns7="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:Firmante" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Firmante" xmlns:ns8="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+  
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:RegistroFirma" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.firma.ws.server.RegistroFirma" xmlns:ns21="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+  
+  <arrayMapping innerType="ns9:Firmante" languageSpecificType="java:ieci.tecdoc.sgm.cripto.firma.ws.server.Firmante[]" qname="ns9:ArrayOfFirmante" xmlns:ns9="http://server.ws.firma.cripto.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

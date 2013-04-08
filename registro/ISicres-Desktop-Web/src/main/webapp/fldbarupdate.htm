@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/folderbar.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/clfdoc.js"></script>
+		<script type="text/javascript" language="javascript" src="./scripts/jquery-1.6.2.min.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/jquery.hotkeys-0.8.js"></script>
+    	<script type="text/javascript" language="javascript" src="./scripts/custom_hotkeys.js"></script>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/jquery.blockUI.js"></script>
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<link rel="stylesheet" TYPE="text/css" HREF="./css/global.css">
+	</head>
+	<body class="SubMenu" onload="OnWindowLoad()" tabIndex="-1" scroll="no" onscroll="document.body.scrollTop=0;return false;">
+		<form id="formDist" action="distribution.jsp" method="post" target="frmUpdate">
+			<input type="hidden" id="distWhere" name="distWhere" value=""></input>
+			<input type="hidden" id="regWhere" name="regWhere" value=""></input>
+			<input type="hidden" id="Remarks" name="Remarks" value=""></input>
+		</form>
+		<table name="MenuFolderBar" id="MenuFolderBar" border="0" cellPadding="0" cellSpacing="0" width="100%">
+			<tr height="20" valign="center" align="middle" tabIndex="-1">
+				<td width="2"></td>
+				<script language="javascript">document.write(GetBarText("Query"));</script>
+				<td><div align="center">&nbsp;</div>
+				</td>
+				<td width="10"></td>
+			</tr>
+		</table>
+		<iframe id="frmUpdate" name="frmUpdate" SRC="blank.htm" frameborder="0" scrolling="no" style="DISPLAY:none" onload="ResponseUpdate();"></iframe>
+		<form name="frmStrUpdate" id="frmStrUpdate" enctype="multipart/form-data" method="post" target="frmUpdate" action="flushfdr.jsp">
+		</form>
+	</body>
+</html>

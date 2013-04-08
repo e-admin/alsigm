@@ -1,0 +1,101 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="./css/global.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/table.css">
+		<LINK REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/origdoc.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			top.Idioma = top.GetDlgParam(3);
+			document.title = top.GetIdsLan("IDS_LABEL_TYPEPROC");
+		</SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+
+			var idProc = -1;
+
+			function OnWndLoad()
+			{
+				document.getElementById("oTxtCodeProc").value = "";
+				document.getElementById("oTxtProc").value = "";
+				top.setFocus(document.getElementById("oTxtCodeProc"));
+			}
+
+			function OnPropertyChange(oField)
+			{
+				if(top.miTrim(oField.value) != "")
+				{
+			      		document.getElementById("BtnAceptar").disabled = false;
+				}
+			   	else
+			   	{
+			      		document.getElementById("BtnAceptar").disabled = true;
+			   	}	
+			}
+
+			function OnCancel()
+			{
+				top.returnValue = "";
+				top.close();
+			}
+
+			function OnOK()
+			{
+				top.returnValue = idProc + "#" + document.getElementById("oTxtCodeProc").value + "#" + document.getElementById("oTxtProc").value + "#";
+				top.close();
+			}	
+			
+			function ShowValidateList()
+			{
+				var sRet = "";
+				var args = new Array;
+
+				args[0] = top.GetDlgParam(0);
+				args[1] = top.GetDlgParam(1);
+				args[2] = top.GetDlgParam(2);
+				args[3] = 1000;
+				args[4] = 9;
+				args[5] = 1000;
+				args[6] = top.GetDlgParam(3);
+				args[7] = 1;
+				
+				sRet = ValidateList(args);
+
+				if (sRet && (sRet != ""))
+				{
+					var tokens = new Array;
+					var numTokens;
+
+					tokens = top.getTokens(sRet, "#", "#", 3);
+				
+					idProc = tokens[0];
+					document.getElementById("oTxtCodeProc").value = tokens[1];
+					document.getElementById("oTxtProc").value = tokens[2];
+
+					document.getElementById("BtnAceptar").disabled = false;
+				}
+			}
+	
+				</SCRIPT>
+	</HEAD>
+	<BODY onload="OnWndLoad();" onunload="top.EnableEvents(window.opener);">
+		<div id="oDivTypeProc" name="oDivTypeProc" class="div" style="position:absolute; top:2; left:2; width:315; height:200;">
+			<LABEL class="label" style="position:absolute; top:7; left:7;">
+				<SCRIPT language="javascript">
+					document.write( top.GetIdsLan( "IDS_LABEL_TYPEPROC" ) )
+				</SCRIPT>
+			</LABEL>
+			<INPUT class="input" id="oTxtCodeProc" type="text" name="oTxtCodeProc" tabindex="1" style="position:absolute; position:absolute; top:5; left:140; width:145; height:20;" onblur="this.value=this.value.toUpperCase();" onhelp="ShowValidateList();" onpropertychange="OnPropertyChange(this);">
+			</INPUT><IMG id="imgHelp" src="images/buscar2.gif" style="position:absolute; top:6; left:287; height:17; width:17; cursor:pointer;" onclick="ShowValidateList();" onkeydown="if (top.GetKeyCode(event)==13){ShowValidateList(document.getElementById('oTxtCodeProc'));}" WIDTH="11" HEIGHT="11" tabIndex="1">
+			<TEXTAREA class="textarea" id="oTxtProc" type="text" name="oTxtProc" tabindex="1" style="position:absolute; top:30; left:7; width:295; height:125; overflow-x:hidden; word-wrap:break-word;" readonly="true">
+			</TEXTAREA>
+			<SCRIPT LANGUAGE="javascript">
+				document.write('<INPUT class="button" type = "button" name="BtnAceptar" ID="BtnAceptar" style="position:absolute; top:160; left: 63;width:80;" value="' + top.GetIdsLan( "IDS_BTNACEPTAR" ) + '" disabled=true tabindex="1" onclick="OnOK();">');
+			    document.write('<INPUT class="button" ID="btnCancel" style="position:absolute; top:160; left: 147;width:80;" Name="btnCancel" Type="Button" value="' + top.GetIdsLan( "IDS_BTNCANCEL" ) + '" onclick="OnCancel();" tabindex="1">');
+			</SCRIPT>
+		</div>
+	</BODY>
+</HTML>

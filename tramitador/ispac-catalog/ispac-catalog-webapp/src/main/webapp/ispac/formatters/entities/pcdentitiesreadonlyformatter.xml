@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ETIQUETA'
+				 readOnly='false'
+				 titleKey='catalog.entity'
+				 fieldType='DATA'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width15percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE_APP'
+				 readOnly='false'
+				 titleKey='procedure.card.entities.propertyLabel.form'
+				 fieldType='FORM'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width20percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 titleKey='procedure.card.entities.propertyLabel.readonly'
+				 readOnly='false'
+				 fieldType='FRM_READONLY'
+				 fieldLink='PENTITIES:ID'
+				 styleClass='aActionButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='entities.do?method=readonly'
+				 id='keyId'
+				 columnClass='width5percent'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 propertyValueKey='procedure.button.entity.form.events'
+				 readOnly='false'
+				 fieldType='EVENTS'
+				 fieldLink='PENTITIES:ID'
+				 styleClass='aActionButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='entities.do?method=events'
+				 id='regId'
+				 columnClass='width10percent'
+				 />
+				 
+</beanformatter>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from NotificacionesWebServiceService WSDL service -->
+
+  <service name="NotificacionesWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.ws.nt.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServiceElement" value="NotificacionesWebServiceService"/>
+      <parameter name="schemaQualified" value="http://server.ws.nt.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+      <parameter name="wsdlServicePort" value="NotificacionesWebService"/>
+      <parameter name="className" value="ieci.tecdoc.sgm.nt.ws.server.NotificacionesWebService"/>
+      <parameter name="wsdlPortType" value="NotificacionesWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="actualizaEstados" qname="operNS:actualizaEstados" returnQName="retNS:actualizaEstadosReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:rtns="http://dto.services.core.sgm.tecdoc.ieci" name="actualizaEstado" qname="operNS:actualizaEstado" returnQName="retNS:actualizaEstadoReturn" returnType="rtns:RetornoServicio" soapAction="">
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numeroExpediente" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:estado" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fechaActualizacion" type="tns:dateTime"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nifDestino" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:notiId" type="tns:string"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.nt.sgm.tecdoc.ieci" name="recuperaDocumento" qname="operNS:recuperaDocumento" returnQName="retNS:recuperaDocumentoReturn" returnType="rtns:InfoDocumento" soapAction="">
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.nt.sgm.tecdoc.ieci" qname="pns:poCriterio" type="tns:CriterioBusquedaDocumentos"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.nt.sgm.tecdoc.ieci" name="detalleNotificacion" qname="operNS:detalleNotificacion" returnQName="retNS:detalleNotificacionReturn" returnType="rtns:Notificacion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.nt.sgm.tecdoc.ieci" qname="pns:poIdentificador" type="tns:IdentificadorNotificacion"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.nt.sgm.tecdoc.ieci" name="detalleNotificacionByNotiId" qname="operNS:detalleNotificacionByNotiId" returnQName="retNS:detalleNotificacionByNotiIdReturn" returnType="rtns:Notificacion" soapAction="" >
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:notiId" type="tns:string" />
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad" />
+      </operation>
+      <operation xmlns:operNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.nt.sgm.tecdoc.ieci" name="consultarNotificaciones" qname="operNS:consultarNotificaciones" returnQName="retNS:consultarNotificacionesReturn" returnType="rtns:Notificaciones" soapAction="">
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.nt.sgm.tecdoc.ieci" qname="pns:poCriterio" type="tns:CriterioBusquedaNotificaciones"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.nt.sgm.tecdoc.ieci" name="obtenerEstado" qname="operNS:obtenerEstado" returnQName="retNS:obtenerEstadoReturn" returnType="rtns:EstadoNotificacion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.nt.sgm.tecdoc.ieci" qname="pns:poIdNotificacion" type="tns:Notificacion"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.nt.sgm.tecdoc.ieci" name="obtenerEstadoBD" qname="operNS:obtenerEstadoBD" returnQName="retNS:obtenerEstadoBDReturn" returnType="rtns:EstadoNotificacionBD" soapAction="">
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idEstado" type="tns:int"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <operation xmlns:operNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:retNS="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:rtns="http://server.ws.nt.sgm.tecdoc.ieci" name="altaNotificacion" qname="operNS:altaNotificacion" returnQName="retNS:altaNotificacionReturn" returnType="rtns:IdentificadorNotificacion" soapAction="">
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://server.ws.nt.sgm.tecdoc.ieci" qname="pns:poNotificacion" type="tns:Notificacion"/>
+        <parameter xmlns:pns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:tns="http://dto.services.core.sgm.tecdoc.ieci" qname="pns:entidad" type="tns:Entidad"/>
+      </operation>
+      <parameter name="allowedMethods" value="recuperaDocumento actualizaEstados altaNotificacion actualizaEstado obtenerEstadoBD detalleNotificacion obtenerEstado consultarNotificaciones detalleNotificacionByNotiId"/>
+
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:RetornoServicio" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:cmp-ns="http://server.ws.nt.sgm.tecdoc.ieci" qname="ns:ArrayOfNotificacion" type="java:ieci.tecdoc.sgm.nt.ws.server.Notificacion[]" innerType="cmp-ns:Notificacion" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" qname="ns:Notificacion" type="java:ieci.tecdoc.sgm.nt.ws.server.Notificacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dto.services.core.sgm.tecdoc.ieci" qname="ns:Entidad" type="java:ieci.tecdoc.sgm.core.services.dto.Entidad" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" qname="ns:EstadoNotificacionBD" type="java:ieci.tecdoc.sgm.nt.ws.server.EstadoNotificacionBD" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" qname="ns:CriterioBusquedaDocumentos" type="java:ieci.tecdoc.sgm.nt.ws.server.CriterioBusquedaDocumentos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" qname="ns:Notificaciones" type="java:ieci.tecdoc.sgm.nt.ws.server.Notificaciones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" qname="ns:InfoDocumento" type="java:ieci.tecdoc.sgm.nt.ws.server.InfoDocumento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_string" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" qname="ns:EstadoNotificacion" type="java:ieci.tecdoc.sgm.nt.ws.server.EstadoNotificacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" qname="ns:IdentificadorNotificacion" type="java:ieci.tecdoc.sgm.nt.ws.server.IdentificadorNotificacion" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://server.ws.nt.sgm.tecdoc.ieci" qname="ns:CriterioBusquedaNotificaciones" type="java:ieci.tecdoc.sgm.nt.ws.server.CriterioBusquedaNotificaciones" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+  
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='empty'
+				 fieldType='CHECKBOX'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 />
+	
+	 <propertyfmt type="BeanPropertySimpleFmt"
+				 property='ORDEN'
+				 readOnly='false'
+				 titleKey='form.tblvld.orden'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='false'
+				 columnClass='width20percent'
+				 media="html"
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'
+				 />
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VALOR'
+				 readOnly='false'
+				 titleKey='form.tblvld.valor'
+				 fieldType='LINKPARAM'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='false'
+				 media='html'
+				 columnClass='width60percent'
+				 url='/ManageTblVld.do?method=show'
+				 >
+		 <linkParam paramId="entityId" property="ENTITY_ID"/>
+		 <linkParam paramId="regId"  property="ID"/>
+		 <linkParam paramId="type"  property="ENTITY_TYPE"/>
+		 
+	</propertyfmt>
+	
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VALOR'
+				 readOnly='false'
+				 titleKey='form.tblvld.valor'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='false'
+				 columnClass='width60percent'
+				 media='excel xml csv pdf'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VIGENTE'
+				 readOnly='false'
+				 titleKey='form.tblvld.vigente'
+				 fieldType='BOOLEAN_NUMERIC'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width20percent'
+				 media='html'
+				 />
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='VIGENTE'
+				 readOnly='false'
+				 titleKey='form.tblvld.vigente'
+				 fieldType='BOOLEAN_NUMERIC'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 columnClass='width20percent'
+				 media='excel xml csv pdf'
+				 />
+				 
+   
+				 
+
+</beanformatter>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Beans para implementacion con base de datos -->
+
+	<bean id="fwktd_dm_bd_serviceBuilderImpl" name="fwktd_dm_bd_serviceBuilder"
+		class="es.ieci.tecdoc.fwktd.dm.bd.service.impl.BaseDatosServiceBuilder">
+		<constructor-arg value="bd" />
+		<property name="baseDatosManagerFactory" ref="fwktd_dm_bd_DbManagerFactory" />
+	</bean>
+
+	<bean id="fwktd_dm_bd_DbManagerFactoryImpl" name="fwktd_dm_bd_DbManagerFactory"
+		class="es.ieci.tecdoc.fwktd.dm.bd.manager.impl.BaseDatosManagerFactoryImpl">
+		<property name="baseDatosManagerBean" value="fwktd_dm_bd_manager" />
+	</bean>
+
+	<bean id="fwktd_dm_bd_managerImpl" name="fwktd_dm_bd_manager"
+		class="es.ieci.tecdoc.fwktd.dm.bd.manager.impl.BaseDatosManagerImpl"
+		scope="prototype">
+		<property name="daoFactory" ref="fwktd_dm_bd_daoFactory" />
+	</bean>
+
+	<bean id="fwktd_dm_bd_daoFactoryImpl" name="fwktd_dm_bd_daoFactory"
+		class="es.ieci.tecdoc.fwktd.dm.bd.dao.impl.DaoFactoryImpl">
+		<property name="dataSourceFactory" ref="fwktd_dm_bd_dataSourceFactory" />
+		<property name="documentoDaoBean" value="fwktd_dm_bd_documentoDao" />
+	</bean>
+
+	<bean id="fwktd_dm_bd_dataSourceFactoryImpl" name="fwktd_dm_bd_dataSourceFactory"
+		class="es.ieci.tecdoc.fwktd.dm.bd.dao.impl.DataSourceFactoryImpl">
+	</bean>
+
+	<bean id="fwktd_dm_bd_documentoDaoImpl" name="fwktd_dm_bd_documentoDao"
+		class="es.ieci.tecdoc.fwktd.dm.bd.dao.impl.DocumentoDaoImpl" scope="prototype">
+		<constructor-arg value="es.ieci.tecdoc.fwktd.dm.bd.vo.DocumentoVO" />
+		<property name="sqlMapClient" ref="fwktd_dm_bd_sqlMapClient" />
+	</bean>
+
+	<bean id="fwktd_dm_bd_sqlMapClientImpl" name="fwktd_dm_bd_sqlMapClient"
+		class="org.springframework.orm.ibatis.SqlMapClientFactoryBean" scope="prototype">
+		<property name="configLocation"
+			value="classpath:sqlmaps/fwktd-dm-bd/fwktd-dm-bd-sqlmap-config.xml" />
+	</bean>
+
+</beans>

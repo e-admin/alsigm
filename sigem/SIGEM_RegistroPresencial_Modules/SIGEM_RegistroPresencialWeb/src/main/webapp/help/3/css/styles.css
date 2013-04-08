@@ -1,0 +1,155 @@
+/*Generales*/
+body{
+	padding:0; font:normal 70%/normal "Arial", Tahoma, Helvetica, sans-serif; background: #FFFFFF;
+	margin:0 auto;text-align:left;background-color:#fff;height:100%;width: 100%;
+}
+
+body.resalt {
+    width:100%;height:33px;background: url(../images/bg_mid_usuario.jpg) repeat-x;float: none;
+}
+
+.input {
+    height:16px; font-size:8pt; padding:0; border:1px solid #7f9db9; width:160px; margin-right:10px;
+}
+
+.inputRO {
+    height:16px; font-size:8pt; padding:0; border:1px solid #7f9db9; width:160px; margin-right:10px; color: #003366; background-color: #DDDDDD;
+}
+
+.textarea {
+    height:16px; font-size:100%; padding:0; border:1px solid #7f9db9; width:160px; margin-right:10px; color: #003366; background-color: #FFFFFF;
+}
+
+.textareaRO {
+    height:16px; font-size:100%; padding:0; border:1px solid #7f9db9; width:160px; margin-right:10px; color: #003366; background-color: #DDDDDD;
+}
+
+.button {
+    width:90px; height:20px; background: url(../images/fondo_boton.jpg) no-repeat; font-weight:bold; font-size:8pt; font-family:Arial; color:white;
+}
+
+.label, .field{
+    color: #006699; float:left; padding-top:2px;font-size:8pt
+}
+
+.combo {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; color: #003366;
+}
+
+.msg {
+    font-weight: bold;
+}
+
+.BookName {
+    font-weight: bold; font-size: 10pt; color: #006699; font-family: Verdana; margin: 6px 0px 0px 10px;        padding: 0px 0px 0px 10px;line-height:90%;
+}
+
+.BookNameEx {
+    font-weight: bold; font-size: 10pt; color: #006699; font-family: Verdana; margin: 6px 0px 0px 10px;        padding: 0px 0px 0px 10px;line-height:90%;
+    background: url(../images/bolo_activo.gif) no-repeat left; 
+}
+
+.labelWhite {
+    font-weight: normal; font-size: 8pt; font-family: Verdana; font-weight: bold; color: #006699;
+}
+
+h1.title {
+	font-weight:bold; color: #006699; font-size:8pt; background: url(../images/bolo_activo.gif) no-repeat left; 
+	margin: 6px 0px 0px 10px; padding: 0px 0px 0px 10px; line-height:90%;
+}
+
+/*Cabecera de aplicación*/
+#appHeader {
+	width:100%; height:61px; background: #99d6f5 url(../graficos/fondo_cab.jpg) no-repeat; border-collapse: collapse;
+}
+
+#appHeader div#logo_app {
+	width:140; height:40px; background: url(../graficos/logo.gif) no-repeat; float:left; 
+}
+
+#appHeader div#logo_cia {
+	width:111; height:61px; display:none
+}
+
+#appHeader div#userData {
+	height:61px; width:auto;
+}
+
+/* Pantalla de Login*/
+#login {
+	position:absolute; top:10%; left:15%; background: url(../images/foto_llave.jpg) no-repeat;
+	border: 1px solid #c6c9d5;
+}
+
+/*Opciones de menú*/
+.Options {
+	margin-top:10px; padding-left:15px; font-size:8pt; margin-right:20px; cursor:pointer; font-weight: bold;
+}
+
+.OptionsOver {
+	margin-top:10px; padding-left:15px; font-size:8pt; margin-right:20px; cursor:pointer; text-decoration:underline; 
+	font-weight: bold;
+}
+
+.SubOptionsDisabled {
+    	font-weight: bold; font-size: 8pt; color: #666666; margin-top:10px; padding-left:15px; font-size:8pt; 
+    	margin-right:20px; cursor:none; font-weight: bold;
+}
+
+/*Tablas */
+.title {
+    font-weight: bold; font-size: 10; font-family: Verdana; color: #006699; background-color: #bee8f9;
+}
+
+.title2 {
+    font-size: 10; font-family: Verdana; color: #006699;  background-color: #bee8f9;
+}
+
+.resalt {
+    background: url(../images/bg_mid_usuario.jpg) repeat-x;float: none;
+}
+
+.cuadro{ 
+	background: #FFFFFF; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-left: 1px solid 	#c6c9d5; padding:6px; margin:0px
+}
+
+TD.report {
+    font-size: 8pt; color: #003366; font-family: Verdana; background-color: #fafcff
+}
+
+TH.report {
+    font-size: 10; font-family: Verdana; color: #006699;  background-color: #bee8f9;
+}
+
+TABLE.report {
+    border: 1px solid #c6c9d5
+}
+
+TH.report2 {
+    font-weight: bold; font-size: 7pt; color: #00309c; font-family: Verdana; background-color: #bee8f9
+}
+/*Frame */
+
+frame.Style1 {
+    border-top: 1px solid #003366; 
+}
+
+frame.Style2 {
+    border-top: 1px solid #003366; 
+}
+
+frame.Style6 {
+    border-left: 1px solid #c6c9d5; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5;
+}
+
+iframe.Style6 {
+    border-left: 1px solid #c6c9d5; border-right: 1px solid #c6c9d5; border-bottom: 1px solid #c6c9d5; border-top: 1px solid #c6c9d5
+}
+
+.div {
+    border: 1px solid #c6c9d5; 
+}
+
+.divTitle {
+    border: 1px solid #c6c9d5; background-color: #0EAAE8;
+}

@@ -1,0 +1,5 @@
+db2cmd
+db2 connect to <nombre-bd> user <usuario> using <clave>
+db2 -tvf SIGEM-Parche-v1_7_0-v1_8_0-01-archivo.sql > SIGEM-Parche-v1_7_0-v1_8_0-01-archivo.txt 
+db2 -td@ -vf SIGEM-Parche-v1_7_0-v1_8_0-02-archivo.sql > SIGEM-Parche-v1_7_0-v1_8_0-02-archivo.txt
+db2 terminate

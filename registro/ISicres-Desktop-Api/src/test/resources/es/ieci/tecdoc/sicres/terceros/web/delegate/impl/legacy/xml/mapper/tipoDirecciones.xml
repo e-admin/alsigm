@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TipoDirecciones>
+ 	<TipoDireccion>
+ 		<IdTel>1</IdTel>
+ 		<Descripcion><![CDATA[Telꧯno (fijo)]]></Descripcion>
+ 		<Codigo>TF</Codigo>
+ 	</TipoDireccion>
+ 	<TipoDireccion>
+ 		<IdTel>2</IdTel>
+ 		<Descripcion><![CDATA[Correo electr󮩣o]]></Descripcion>
+ 		<Codigo>CE</Codigo>
+	</TipoDireccion>
+</TipoDirecciones>

@@ -1,0 +1,282 @@
+<html>
+	<head>
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/global.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/font.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/table.css" />
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/genmsg.js"></script>
+		<script type="text/javascript" language="javascript" src="afirma/constantes.js"></script>
+		<script type="text/javascript" language="javascript" src="afirma/common-js/deployJava.js"></script>
+		<script type="text/javascript" language="javascript" src="afirma/common-js/instalador.js"></script>
+
+		<script language="javascript">
+			var g_pdfFileName = "";
+			var g_fileName = "";
+
+
+			function getBase()
+			{
+				var baseHREF= document.location.href;
+				baseHREF= baseHREF.substring(0, baseHREF.lastIndexOf('/'));
+				return baseHREF;
+			}
+
+			var base= getBase() + '/afirma' ;
+
+
+
+			//Se ejecuta al cargar la pagina. Sube el fichero escaneado al servidor. Extensiones permitidas (TIF, BMP o PDF).
+			function OnLoad()
+			{
+				var arrQryParams = window.location.search.split("&");
+
+				top.Main.Folder.FolderData.FolderFormData.scrolling = "no";
+
+				document.getElementById("compulsar").value = top.GetIdsLan("IDS_BTNCOMPULSAR");
+				document.getElementById("cancelar").value = top.GetIdsLan("IDS_BTNCANCEL");
+
+				for (var i = 0; i < arrQryParams.length; i++){
+					var arrParams = arrQryParams[i].split("=");
+
+					if (arrParams[0] == "Page"){
+						g_fileName = unescape(arrParams[1]);
+						break;
+					}
+				}
+
+				var ext = g_fileName.substring(g_fileName.indexOf(".") + 1).toUpperCase();
+
+				try{
+					if ((ext == "TIF") || (ext == "TIFF")){
+						g_pdfFileName = document.applets.converter.Tiff2Pdf(g_fileName);
+					}
+					else if (ext == "BMP"){
+						g_pdfFileName = document.applets.converter.Bmp2Pdf(g_fileName);
+					}
+					else if (ext == "PDF"){
+						g_pdfFileName = g_fileName;
+					} else {
+						OnCancel();
+						alert(top.GetIdsLan("IDS_MSG_INCORRECT_FORMAT"));
+					}
+				}
+				catch(e){
+					alert(e.description);
+				}
+
+				//Subir fichero pdf
+				if (g_pdfFileName != ""){
+					document.getElementById("compulsar").disabled = true;
+
+					//Enviar fichero usando applet
+					top.sendfiles_open(SendPdfFileToserver);
+				}
+			}
+
+			//Envia el fichero PDF al servidor.
+			function SendPdfFileToserver(applet)
+			{
+				var result;
+
+				try {
+
+					//Configurar el applet de subir ficheros, indicamos servlet, un timeout de 30 segundos y que no borre los ficheros subidos.
+					applet.configure("FileUploadScan", "30000", false);
+					applet.addParam("FolderId", top.g_FolderId.toString());
+					applet.addParam("SessionPId", top.g_SessionPId.toString());
+
+					//Añadimos el fichero PDF
+					applet.addFile(g_pdfFileName);
+
+					//Subimos el fichero al servidor
+					result = applet.sendFiles();
+					if (result){
+						var item = document.createElement("input");
+
+						item.setAttribute("type", "text");
+						item.setAttribute("name", "FileScan");
+						item.value= "0|" + top.g_FolderPId.toString() + "C_" + g_pdfFileName;
+						item.style.visibility = "hidden";
+
+						document.getElementById("frmStrUpdateC").appendChild(item);
+
+						window.open(top.g_URL + "/FileScanCompulsa?SessionPId=" + top.g_SessionPId
+							+ "&FolderId=" + top.g_FolderId
+							+ "&IdFile=0"
+							+ "&Cancel=0"
+							+ "&blankPage=blank.htm"
+							+ "&fileName=" + g_pdfFileName, "frmPage", "location=no",true);
+					} else {
+						alert(top.GetIdsLan("IDS_ERR_SAVE_SCAN_FILES"));
+						document.getElementById("compulsar").disabled = false;
+						document.getElementById("cancelar").disabled = false;
+					}
+
+					document.getElementById("compulsar").disabled = false;
+				}
+				catch(e){
+					alert(e.description);
+					document.getElementById("compulsar").disabled = false;
+					document.getElementById("cancelar").disabled = false;
+				}
+
+
+			}
+
+
+			//Borra los ficheros locales
+			function deleteLocalFiles()
+			{
+				var applet = top.sendfiles_get();
+				if (applet != null) {
+					try {
+						applet.deleteFile(g_fileName);
+						applet.deleteFile(g_pdfFileName);
+					} catch (e) {}
+				}
+			}
+
+
+			function OnCancel()
+			{
+				deleteLocalFiles();
+
+				//Cargamos bank_compulsa.htm, que nos asegura que se ejecutan las funciones javascript que
+			    //cargan la pagina de datos una vez que ha terminado de cargarse la pagina "blank".
+				window.open(top.g_URL + "/FileScanCompulsa?SessionPId=" + top.g_SessionPId
+							+ "&FolderId=" + top.g_FolderId
+							+ "&IdFile=0"
+							+ "&Cancel=1"
+							+ "&blankPage=blank_compulsa.htm"
+							+ "&fileName=" + g_pdfFileName, "frmPage", "location=no",true);
+			}
+
+			function firma()
+			{
+				//Firma
+				var resultOk = false;
+				try{
+					var pathXades = g_pdfFileName.substring(0, g_pdfFileName.indexOf(".") + 1) + "xsig";
+					if(clienteFirma && (g_pdfFileName != "")){
+
+						// Inicializamos la configuración para asegurar que no hay preestablecido
+						// ningún valor de operaciones anteriores
+						clienteFirma.initialize();
+
+						// Configuramos todos los parámetros del cliente de firma.
+						clienteFirma.setFileuri(g_pdfFileName);
+						clienteFirma.setSignatureFormat('XADES');
+						clienteFirma.setSignatureMode('EXPLICIT');
+						clienteFirma.setOutFilePath(pathXades);
+
+						// Ejecutamos la operación de firma
+						clienteFirma.sign();
+
+						//Si no hay error guardamos los datos de la firma en el formulario "frmStrUpdateC"
+						if(!clienteFirma.isError()){
+							firma = clienteFirma.getSignatureText();
+							certificate = clienteFirma.getSignCertificate().toString();
+							funcName = clienteFirma.getSignCertificate().getSubjectDN().getName();
+							document.getElementById('XadesFormat').value = firma;
+							document.getElementById('Certificate').value = certificate;
+							document.getElementById('FuncName').value = funcName;
+
+							if(firma != null && firma != '' && firma != 'undefined' && firma != 'null'){
+								if(clienteFirma){
+									var item = document.createElement("input");
+
+									item.setAttribute("type", "text");
+									item.setAttribute("name", "FileXades");
+									item.value= "0|" + top.g_FolderPId.toString() + "XDS_" + pathXades;
+									item.style.visibility = "hidden";
+
+									document.getElementById("frmStrUpdateC").appendChild(item);
+								}
+								resultOk = true;
+							}
+						} else {
+							//Error en la firma
+							alert(top.GetIdsLan("IDS_ERROR_FIRMA") + "\n\n" + clienteFirma.getErrorMessage());
+						}
+					} else {
+						//alert('Error cargando el cliente de firma.');
+						alert(top.GetIdsLan("IDS_ERROR_CLIENTE_FIRMA"));
+					}
+				}catch (err) {
+					//alert('Error cargando el cliente de firma.');
+					alert(top.GetIdsLan("IDS_ERROR_CLIENTE_FIRMA"));
+				}
+
+				return resultOk;
+			}
+
+			function OnCompulsa()
+			{
+				document.getElementById("frmPage").src = top.g_URL + "/blank.htm";
+			}
+
+			function DoCompulsa()
+			{
+				if (document.getElementById("frmPage").src != top.g_URL + "/blank.htm"){return;}
+
+
+				document.getElementById("compulsar").disabled = true;
+				document.getElementById("cancelar").disabled = true;
+				var retFirma = firma();
+
+				if(retFirma) {
+
+					deleteLocalFiles();
+
+					var URL = top.g_URL + "/FileUploadScanCompulsa?SessionPId=" + top.g_SessionPId
+							+ "&BookId=" + top.g_ArchiveId
+							+ "&RegId=" + top.g_FolderId;
+
+					document.getElementById("frmStrUpdateC").action = URL;
+					document.getElementById("frmStrUpdateC").submit();
+
+				} else {
+					top.Main.Folder.FolderData.FolderFormTree.ReLoad();
+				}
+			}
+
+
+		</script>
+	</head>
+	<body tabIndex="-1" onload="OnLoad()">
+		<script type="text/javascript">cargarAppletFirma('COMPLETA');</script>
+		<br/>
+		<iframe id="frmUpdateC" name="frmUpdateC" SRC="blank.htm" frameborder="0" scrolling="no" style="DISPLAY:none" onload=""></iframe>
+		<form name="frmStrUpdateC" id="frmStrUpdateC" enctype="multipart/form-data" method="post" target="frmUpdateC" style="DISPLAY:none" action="FileUploadScanCompulsa">
+			<input type="hidden" id="Certificate" value="###CERTIFICADO###" NAME="Certificate">
+			<input type="hidden" id="Hash" value="###HASH (FIRMA)###" NAME="Hash">
+			<input type="hidden" id="FuncName" value="###NOMBRE FUNCIONARIO###" NAME="FuncName">
+			<textarea style="visibility:hidden" id="XadesFormat" NAME="XadesFormat"></textarea>
+		</form>
+		<table>
+			<TR class="Style5" width="100%">
+				<TD width="80%" align="right">
+					<INPUT class="button" id="compulsar" type="button" value="" onclick="OnCompulsa();" tabindex="1"
+						style="cursor:pointer; font-family:'sans-serif,'; font-size:8pt; width:80;" disabled="true"></INPUT>
+				</TD>
+				<TD width="50%" align="left">
+					<INPUT class="button" id="cancelar" type="button" value="" onclick="OnCancel();" tabindex="1" onclick="OnCancel();"
+						style="cursor:pointer; font-family:'sans-serif,'; font-size:8pt; width:80;"></INPUT>
+				</TD>
+			</TR>
+		</table>
+        <iframe id="frmPage" name="frmPage" style="position:absolute;top:8%;left:0px;width:100%;height:100%;" onload="DoCompulsa();">
+        </iframe>
+        <script>
+        	<%-- ¿Se usa actualmente este fichero en iSicres? Muy probablemente no. --%>
+        	document.write('<applet code="es.com.ieci.invesicres.conversion.JISDocConverter.class" codebase="plugins/"');
+        	document.write('height="1" width="1" alt="Conversión a PDF" name="converter" MAYSCRIPT VIEWASTEXT>');
+        	document.write('<param name="archive" value="ISPlugins.jar;jsessionid='+top.g_SessionPId+'">');
+        	document.write('</applet>');
+        </script>
+ 	</body>
+</html>
+
+

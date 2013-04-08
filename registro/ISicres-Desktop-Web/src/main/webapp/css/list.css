@@ -1,0 +1,65 @@
+LI
+{
+    font-size: 8pt;
+    color: #000000;
+    font-family: Verdana;
+    font-weight: normal;
+    list-style-type: none;
+}
+LI UL
+{
+    list-style-type: none;
+    margin-left: 25px;
+    padding-left: 0px;
+}
+LI DIV
+{
+    display: none;
+    margin-left: 25px;
+    padding-left: 0px;
+}
+DIR
+{
+    margin-left: 15px;
+    font-family: verdana
+}
+.Item
+{
+    font-weight: normal;
+    font-size: 8pt;
+    cursor: pointer;
+    font-family: Verdana
+}
+IMG
+{
+    margin-top: 2px;
+}
+UL
+{
+    list-style-type: none;
+}
+.Ref
+{
+    font-weight: bold;
+    font-size: 7pt;
+    color: #00309c;
+    font-family: Verdana;
+    position: relative;
+    top: -4px;
+}
+.Sep
+{
+    font-weight: normal;
+    font-size: 7pt;
+    color: #00309c;
+    font-family: Verdana;
+    position: relative;
+    top: -4px;
+}
+.Data
+{
+    font-size: 8pt;
+    font-family: sans-serif;
+    position: absolute;
+}
+

@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Configuracion_Sistema_Archivo Version="5.0">
+  <Sistemas_Gestores_Organismos>
+    <Sistemas_Externos>
+      <Sistema>
+	  <Id>SIGEM</Id>
+        <Nombre>Organización SIGEM</Nombre>
+	  	<Clase>${archivo.sistema.gestor.organismos.class}</Clase>
+       	<init-param>
+         		<param-name>DATASOURCE_NAME</param-name>
+         		<param-value>${jdbc.jndi.name.prefix}archivoDS_{0}</param-value>
+       	</init-param>
+      </Sistema>
+    </Sistemas_Externos>
+    <Sistema_Interno>
+      <Id>ARCHIVO</Id>
+      <Clase>se.instituciones.archivo.GestorOrganismoArchivo</Clase>
+    </Sistema_Interno>
+  </Sistemas_Gestores_Organismos>
+  <Sistemas_Gestores_Usuarios>
+	<Sistema>
+      <Id>INVESDOC</Id>
+      <Nombre>Usuarios de invesDoc</Nombre>
+   <Clase>se.autenticacion.idoc.InvesDocConnector</Clase>
+	</Sistema>
+    <Sistema>
+      <Id>LDAP</Id>
+      <Nombre>Usuarios de LDAP</Nombre>
+		<Clase>se.autenticacion.ldap.LdapConnector</Clase>
+		<init-param>
+			<param-name>ENGINE</param-name>
+      <!--
+        Indica quien implementa el protocolo LDAP. Los posibles valores son:
+
+        1 - Active Directory
+        2 - Sun Directory Manager
+        3 - Open Ldap
+      -->
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PROVIDER</param-name>
+      <!--
+        Indica el provedor de LDAP. Los posibles valores son:
+
+        1 (Si el proveedor es SUN)
+      -->
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>URL</param-name>
+      <!--
+        Indica la URL de conexión al servidor de LDAP. Ejemplos:
+
+        Active Directory - ldap://10.228.20.177:389/DC=SERVIDOR-GDOC3,DC=iecisa,DC=corp Sun
+        Directory Manager - ldap://10.228.20.177:3543/DC=iecisa,DC=corp Open
+        Ldap - ldap://10.228.20.178:389/DC=iecisa,DC=corp
+      -->
+			<param-value>
+        ldap://10.228.20.177:389/DC=SERVIDOR-GDOC3,DC=iecisa,DC=corp
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_DEFAULT</param-name>
+      <!--
+        Usuario por defecto de ldap. Para realizar autenticaciones y
+        búsquedas de usuarios, es necesario conectarse previamente a LDAP.
+        Para esto, usamos el usuario por defecto, para que, una vez
+        conectados, podamos hacer autenticaciones y búsquedas de usuarios. En
+        este campo se utilizará el DN (Distingued Name) del usuario
+      -->
+      <param-value>CN=nacho,CN=Users,DC=SERVIDOR-GDOC3,DC=iecisa,DC=corp
+      </param-value>
+		</init-param>
+		<init-param>
+			<param-name>PASSWORD_DEFAULT</param-name>
+         <!--
+             Contraseña del usuario por defecto
+         -->
+			<param-value>archivo_2007</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_START</param-name>
+      <!--
+        Nodo a partir del cual se realizan las búsquedas de usuarios.
+      -->
+			<param-value>CN=Users</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_SCOPE</param-name>
+      <!--
+        Indica el punto de comienzo de una búsqueda de ldap y la profundidad
+        desde la base DN a la que la búsqueda podrá acceder. Los posibles
+        valores son:
+
+        0. (BASE. Sólo se busca en el nodo inicial de la BASE DN).
+        1. (ONELEVEL. Sólo se busca en los nodos del nivel inferior al
+        nodo inicial de la BASE DN, pero no en este último).
+        2. (SUBTREE. Se realiza la búsqueda en todos los nodos a partir del nodo inicial de
+        la Base DN y también en este último)
+      -->
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USER_ATTRIBUTE</param-name>
+      <!--
+        En la autenticación y búsqueda de usuarios hay que indicar el nombre
+        del usuario a autenticar o a buscar. Ese nombre podrá
+        corresponder con diferentes atributos de Ldap. Aquí se indica el
+        atributo que se corresponde con el valor de ese nombre.
+      -->
+			<param-value>CN</param-value>
+		</init-param>
+		<init-param>
+			<param-name>POOLING</param-name>
+      <!--
+        Indica si se está usando un pool de conexiones. Los posibles valores
+        son:
+
+        N (No)
+        S (Si)
+      -->
+			<param-value>N</param-value>
+		</init-param>
+		<init-param>
+			<param-name>POOLING_TIMEOUT</param-name>
+      <!--
+        Indica el tamaño del pool de conexiones. Si no se utiliza se asigna
+        el valor 0.
+      -->
+			<param-value>0</param-value>
+		</init-param>
+    </Sistema>
+  </Sistemas_Gestores_Usuarios>
+	<Sistema_Gestor_Catalogo>
+    <Id_SistGestor_Org>SIGEM</Id_SistGestor_Org>
+    <Clase>se.procedimientos.GestorCatalogoSigem</Clase>
+	</Sistema_Gestor_Catalogo>
+  <Sistemas_Tramitadores>
+    <Sistema>
+      <Id>04</Id>
+      <Nombre>SIGEM</Nombre>
+      <Id_SistGestor_Org>SIGEM</Id_SistGestor_Org>
+      <Clase>se.tramites.SistemaTramitadorSigem</Clase>
+    </Sistema>
+  </Sistemas_Tramitadores>
+  <Sistema_Gestor_Geograficos>
+    <Id>GSIGEM</Id>
+    <Clase>se.geograficos.DefaultGestorGeograficosImpl</Clase>
+  </Sistema_Gestor_Geograficos>
+  <Sistema_Gestor_Terceros>
+    <Id>BDTERCEROS</Id>
+        <Clase>se.terceros.sicres.SicresGestorTerceros</Clase>
+    </Sistema_Gestor_Terceros>
+  <Sistema_Gestor_Repositorio_Electronico>
+    <Id>REP</Id>
+    <Clase>se.repositorios.GestorRepositorioSigem</Clase>
+  </Sistema_Gestor_Repositorio_Electronico>
+  <Configuracion_ControlAcceso>
+    <Usuarios>
+      <Usuario Tipo="1">
+        <Nombre_Tipo>Interno</Nombre_Tipo>
+        <Id_SistGestor_Usr>${archivo.id.sistgestor.usr}</Id_SistGestor_Usr>
+        <Id_SistGestor_Org>SIGEM</Id_SistGestor_Org>
+      </Usuario>
+      <Usuario Tipo="2">
+        <Nombre_Tipo>Asociado</Nombre_Tipo>
+        <Id_SistGestor_Usr>${archivo.id.sistgestor.usr}</Id_SistGestor_Usr>
+        <Id_SistGestor_Org>ARCHIVO</Id_SistGestor_Org>
+      </Usuario>
+    </Usuarios>
+    <Superusuarios_Sistema_Archivo>
+    	<Superusuario>
+			<Usuario>SYSSUPERUSER</Usuario>
+			<Clave>Uk1uZWxXL0RXemk0VExnPQ==</Clave>
+		</Superusuario>
+    </Superusuarios_Sistema_Archivo>
+    <Perfil_Usuarios_Externos>ID_ROL_USUARIOS_EXTERNOS</Perfil_Usuarios_Externos>
+  </Configuracion_ControlAcceso>
+  <Configuracion_Servicios>
+    <Prestamos>
+      <Plazo>30</Plazo>
+      <Plazo_tras_reclamacion>10</Plazo_tras_reclamacion>
+      <Plazo_Reserva>30</Plazo_Reserva>
+      <Plazo_Prorroga>30</Plazo_Prorroga>
+      <Expediente_Fraccion_Serie>
+        <Patron>([0-9]{7}[/][0-9]{4})?</Patron>
+      	<Etiqueta_Validacion>DDDDDDD/DDDD</Etiqueta_Validacion>
+		<Autocompletar_Izquierda>
+			<Caracter>0</Caracter>
+			<Limite>12</Limite>
+		</Autocompletar_Izquierda>
+      </Expediente_Fraccion_Serie>
+    </Prestamos>
+    <Tabla_Validacion_Tipo_Entrega>ID_TBLVLD_TIPOS_ENTREGA</Tabla_Validacion_Tipo_Entrega>
+  </Configuracion_Servicios>
+  <Configuracion_Descripcion>
+    <Campos_Descriptivos>
+      	<Fecha_Extrema_Inicial>3</Fecha_Extrema_Inicial>
+      	<Fecha_Extrema_Final>4</Fecha_Extrema_Final>
+      	<Id_Tercero_Interesado>51</Id_Tercero_Interesado>
+      	<Campos_no_reemplazables>
+			<Campo>-1</Campo> <!-- Codigo de referencia -->
+			<Campo>-4</Campo> <!-- Nivel de descripcion -->
+      	</Campos_no_reemplazables>
+	  	<Cantidad_Volumen_Soporte>7</Cantidad_Volumen_Soporte>
+	  	<Cantidad_Volumen_Soporte_Documental>214</Cantidad_Volumen_Soporte_Documental>
+	  	<Soporte_Documental>8</Soporte_Documental>
+	  	<Productor>16</Productor>
+	  	<Productor_Serie>34</Productor_Serie>
+	  	<Fecha_Inicio_Productor_Serie>36</Fecha_Inicio_Productor_Serie>
+	  	<Fecha_Fin_Productor_Serie>37</Fecha_Fin_Productor_Serie>
+	  	<RangoInicial>201</RangoInicial>
+	  	<RangoFinal>202</RangoFinal>
+	  	<RangoInicialNorm>210</RangoInicialNorm>
+	  	<RangoFinalNorm>211</RangoFinalNorm>
+	  	<Id_Interesado_Identidad>9</Id_Interesado_Identidad>
+		<Id_Interesado_Numero_Identidad>10</Id_Interesado_Numero_Identidad>
+		<Id_Interesado_Rol>11</Id_Interesado_Rol>
+		<Id_Interesado_Validado>12</Id_Interesado_Validado>
+		<Id_Interesado_Principal>213</Id_Interesado_Principal>
+		<Unidades_Relacionadas>31</Unidades_Relacionadas>
+		<Denominacion_Expediente>215</Denominacion_Expediente>
+		<Valor_Interesado_Principal>Si</Valor_Interesado_Principal>
+		<Id_Tabla_Interesados>2</Id_Tabla_Interesados>
+		<Id_Tabla_Rangos>102</Id_Tabla_Rangos>
+		<Condiciones_Acceso>22</Condiciones_Acceso>		
+    </Campos_Descriptivos>
+  </Configuracion_Descripcion>
+  <Configuracion_Fondos>
+    <Instituciones_Productoras>
+      <Id_SistGestor_Org>SIGEM</Id_SistGestor_Org>
+    </Instituciones_Productoras>
+    <Directorio_Logs_Eliminacion>${sigem.log.path}${sigem.path.separator}SIGEM_ArchivoWeb</Directorio_Logs_Eliminacion>
+    <Numero_Maximo_Resultados_Serie>1500</Numero_Maximo_Resultados_Serie>
+    <Num_Resultados_Pag_Seleccion_Udoc_Conservar>100</Num_Resultados_Pag_Seleccion_Udoc_Conservar>
+    <Delimitador_Codigo_Referencia>/</Delimitador_Codigo_Referencia>
+    <Tabla_Validacion_Boletines_Oficiales>ID_TBLVLD_BOLETINES_OFICIALES</Tabla_Validacion_Boletines_Oficiales>
+    <Tabla_Validacion_Tipo_Documentacion>ID_TBLVLD_TIPO_DOCUMENTACION</Tabla_Validacion_Tipo_Documentacion>
+  </Configuracion_Fondos>
+  <Configuracion_Transferencias>
+    <Tabla_Validacion_Rol_Interesado>ID_TBLVLD_ROLES_INTERESADO</Tabla_Validacion_Rol_Interesado>
+    <Tabla_Validacion_Forma_Documental>ID_TBLVLD_FORMAS_DOCUMENTALES</Tabla_Validacion_Forma_Documental>
+  </Configuracion_Transferencias>
+  <Configuracion_Documentos_Vitales>
+    <Id_Repositorio_ECM>1</Id_Repositorio_ECM>
+  </Configuracion_Documentos_Vitales>
+  <Configuracion_Almacenamiento>
+    <Data_Source_Almacenamiento>${jdbc.jndi.name.prefix}registroDS_{0}</Data_Source_Almacenamiento>
+  </Configuracion_Almacenamiento>
+  <Configuracion_Ws_Transferencias>
+    <Url>http://localhost:8080/archivoServicioAltas/services/ServicioTransferirExpedientes</Url>
+  </Configuracion_Ws_Transferencias>
+  <Configuracion_General>
+    <Data_Source>${jdbc.jndi.name.prefix}archivoDS_{0}</Data_Source>
+    <Data_Source_Auth>${jdbc.jndi.name.prefix}registroDS_{0}</Data_Source_Auth>
+    <Periodo_Maximo_Bloqueo>1440</Periodo_Maximo_Bloqueo>
+    <Periodo_Evento_Sesion>60</Periodo_Evento_Sesion>
+    <Keep_alive>60000</Keep_alive>
+    <Tabla_Validacion_Soporte>ID_TBLVLD_SOPORTE</Tabla_Validacion_Soporte>
+    <Tabla_Validacion_Formato>ID_TBLVLD_FORMATO</Tabla_Validacion_Formato>
+    <Numero_Maximo_Resultados>500</Numero_Maximo_Resultados>
+    <Numero_Resultados_Por_Pagina>15</Numero_Resultados_Por_Pagina>
+    <Numero_Maximo_Intentos>3</Numero_Maximo_Intentos>
+    <DB_Factory_Class>${archivo.db.factory.class}</DB_Factory_Class>
+<!-- <DB_Factory_Class>common.db.DBEntityFactorySqlServer2000</DB_Factory_Class> -->
+<!-- <DB_Factory_Class>common.db.DBEntityFactoryOracle9i</DB_Factory_Class> -->
+<!-- <DB_Factory_Class>common.db.DBEntityFactoryDB2</DB_Factory_Class> -->
+    <Listas_Descriptoras_Productores>
+      <lista productor="Institucion" tipoproductor="1">ID_LIST_INSTITUCION</lista>
+      <lista productor="Familia" tipoproductor="2">ID_LIST_FAMILIA</lista>
+      <lista productor="Persona" tipoproductor="3">ID_LIST_PERSONA</lista>
+      <lista productor="Organo" tipoproductor="4">ID_LIST_ORGANO</lista>
+      <lista productor="BDOrganizacion" tipoproductor="5">ID_LIST_BDORGANIZACION</lista>
+    </Listas_Descriptoras_Productores>
+    <Encriptacion>
+      <Algoritmo>AES</Algoritmo>
+      <Clave_Secreta>YWJjMTIzZGVmNDU2Z2g3OA==</Clave_Secreta>
+    </Encriptacion>
+  </Configuracion_General>
+  <Configuracion_Parametros>
+	<parametro>
+		<id>COLORES_CALENDARIO_PREVISIONES</id>
+		<valor>50ff50;b0acfa;fff721;ffa0a0</valor>
+	</parametro>
+	<parametro>
+		<id>INTERVAL_CALENDARIO_PREVISIONES</id>
+		<valor>20</valor>
+	</parametro>
+	<parametro>
+		<id>LAST_LEVEL_UBICACION_RESERVA</id>
+		<valor>00000000000000000000000000000004;00000000000000000000000000000006</valor>
+	</parametro>
+	<parametro>
+		<id>LOCALE_DEFAULT</id>
+		<valor>default</valor>
+	</parametro>
+	<parametro>
+		<id>SEPARADOR_CODIGO_TRANSFERENCIA</id>
+		<valor>/</valor>
+	</parametro>
+	<parametro>
+		<id>SEPARADOR_VALORES_MULTIPLES</id>
+		<valor>;</valor>
+	</parametro>
+	<parametro>
+		<id>CODIGO_UDOC_UNICO</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>DISTINGUIR_MAYUSCULAS_MINUSCULAS</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>ECM_EXTERNO</id>
+		<valor>${archivo.ecm.externo}</valor>
+	</parametro>
+	<parametro>
+		<id>ENTIDAD_REQUERIDA</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>FORMATEAR_SIGNATURA_NUMERICA</id>
+		<valor>S</valor>
+	</parametro>
+   	<parametro>
+    	<id>HEREDAR_CONDICIONES_ACCESO</id>
+	    <valor>N</valor>
+  	</parametro>
+	<parametro>
+		<id>MOSTRAR_ADMINISTRACION_ORGANIZACION</id>
+		<valor>${archivo.mostrar.administracion.organizacion}</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_AYUDA</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_BUSQUEDA_AVANZADA</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_CALENDARIO_PREVISIONES</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_CHECK_SUPERUSUARIO</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_DOC_VITALES</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>MOSTRAR_INFORMACION_IDENTIFICACION_EXTENDIDA</id>
+		<valor>N</valor>
+	</parametro>
+  	<parametro>
+    	<id>MOSTRAR_CAMPO_ORDENACION_CUADRO</id>
+	    <valor>N</valor>
+  	</parametro>
+	<parametro>
+		<id>MOSTRAR_TODAS_UBICACIONES</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>NIVELES_DEPOSITO_VISIBLES_CARTELAS</id>
+		<valor>D;M;B;P;C</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_ALTA_DIRECTA_UNIDADES_DOCUMENTALES</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_CODIGO_CLASIFICADOR_NULO</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_SELECCIONAR_ELEMENTO_UBICACION</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_FICHA_ALTA_RELACION</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_SIGNATURA_ALFANUMERICA</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_TRANSFERENCIAS_ENTRE_ARCHIVOS</id>
+		<valor>S</valor>
+	</parametro>
+	<parametro>
+		<id>SIGNATURACION_POR_ARCHIVO</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>UDOCS_SOLICITUDES_HOJAS_SEPARADAS</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>USAR_VISOR_IMG_OCX</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>DEBUG</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_CARGA_XML_RELACION_EXTRAORDINARIA_SIN_SIGNATURA</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_CARGA_XML_RELACION_EXTRAORDINARIA_CON_SIGNATURA</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>MANTENER_CAJA_COMPACTAR</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>MOTIVO_SOLICITUD_OPCIONAL</id>
+		<valor>N</valor>
+	</parametro>
+	<parametro>
+		<id>PERMITIR_REENCAJADO</id>
+		<valor>S</valor>
+	</parametro>
+  </Configuracion_Parametros>
+  <Configuracion_Parametros_Sistemas_Externos>
+	<parametro>
+		<id>Interesados.Identidad.Id</id>
+		<valor>9</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.NumIdentidad.Id</id>
+		<valor>10</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.Rol.Id</id>
+		<valor>11</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.Validado.Id</id>
+		<valor>12</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.Validado.No.Indice</id>
+		<valor>1</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.Validado.Si.Indice</id>
+		<valor>2</valor>
+	</parametro>
+	<parametro>
+		<id>Interesados.IdTercero.Id</id>
+		<valor>51</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Pais.Id</id>
+		<valor>2</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Provincia.Id</id>
+		<valor>39</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Municipio.Id</id>
+		<valor>40</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Poblacion.Id</id>
+		<valor>41</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Localizacion.Id</id>
+		<valor>42</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Validado.Id</id>
+		<valor>212</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Validado.No.Indice</id>
+		<valor>1</valor>
+	</parametro>
+	<parametro>
+		<id>Geograficos.Validado.Si.Indice</id>
+		<valor>2</valor>
+	</parametro>
+  </Configuracion_Parametros_Sistemas_Externos>
+</Configuracion_Sistema_Archivo>

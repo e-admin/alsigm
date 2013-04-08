@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	  
+	<bean id="datasourceDbUnit"
+		class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+		<constructor-arg ref="dataSourceTest"></constructor-arg>
+	</bean>
+	
+ 	<bean id="dataSourceTest"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver" />
+		<property name="url"
+			value="jdbc:db2://localhost:50000/SICRES"/>
+		<property name="username" value="db2admin" />
+		<property name="password" value="12345678" />
+	</bean>
+ 
+ <!-- 
+ 	<bean id="dataSourceTest"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" 
+			value="jdbc:oracle:thin:@localhost:1521:ORCL1" />
+		<property name="username" value="sicrespru" />
+		<property name="password" value="sicrespru" />
+	</bean>
+ -->
+ 
+ 	<!-- 
+ 	<bean id="dataSourceTest"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url"
+			value="jdbc:postgresql://localhost:5432/sicrespru" />
+		<property name="username" value="sicrespru" />
+		<property name="password" value="sicrespru" />
+	</bean> --> 
+	
+	<!-- 
+	<bean id="dataSourceTest"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:jtds:sqlserver://localhost:1433/sicrespru;charset=ISO-8859-15;sendStringParametersAsUnicode=false" />
+		<property name="username" value="sicrespru" />
+		<property name="password" value="sicrespru" />
+	</bean> -->
+	
+	
+	
+	<alias name="dataSourceTest" alias="dataSource" />
+	<alias name="dataSourceTest" alias="isicresDocumentoElectronicoDataSource" />
+	
+
+</beans>

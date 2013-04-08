@@ -1,0 +1,31 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>batik</groupId>
+  <artifactId>batik-script</artifactId>
+  <name>Batik Script</name>
+  <version>1.6-1</version>
+  <description>Batik Script</description>
+  <inceptionYear>2000</inceptionYear>
+  <dependencies>
+    <dependency>
+      <groupId>batik</groupId>
+      <artifactId>batik-bridge</artifactId>
+      <version>1.6-1</version>
+    </dependency>
+    <dependency>
+      <groupId>batik</groupId>
+      <artifactId>batik-svg-dom</artifactId>
+      <version>1.6-1</version>
+    </dependency>
+    <dependency>
+      <groupId>batik</groupId>
+      <artifactId>batik-gvt</artifactId>
+      <version>1.6-1</version>
+    </dependency>
+    <dependency>
+      <groupId>rhino</groupId> 
+      <artifactId>js</artifactId> 
+      <version>1.5R4.1</version> 
+    </dependency>
+  </dependencies>
+</project>

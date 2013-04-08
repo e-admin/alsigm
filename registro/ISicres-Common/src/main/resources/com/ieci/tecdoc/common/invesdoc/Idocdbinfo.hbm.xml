@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.ieci.tecdoc.common.invesdoc.Idocdbinfo" 
+    table="IDOCDBINFO"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="IDOCDBINFO"
+    </meta>
+
+    <composite-id>
+        <meta attribute="class-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="id" 
+            column="ID" 
+            type="int"
+            length="10"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ID"
+                length="10"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="name" 
+            column="NAME" 
+            type="java.lang.String"
+            length="32"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="NAME"
+                length="32"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="graldbname" 
+            column="GRALDBNAME" 
+            type="java.lang.String"
+            length="32"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="GRALDBNAME"
+                length="32"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="graldbuser" 
+            column="GRALDBUSER" 
+            type="java.lang.String"
+            length="32"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="GRALDBUSER"
+                length="32"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="graldbpassword" 
+            column="GRALDBPASSWORD" 
+            type="java.lang.String"
+            length="34"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="GRALDBPASSWORD"
+                length="34"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="misc" 
+            column="MISC" 
+            type="com.ieci.tecdoc.common.extension.StringClobType"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="MISC"
+                length="0"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

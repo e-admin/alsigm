@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Formateador para el listado de tramites: Inventario -> Tramites -->
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID'
+				 readOnly='false'
+				 titleKey='catalog.common.id'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width5percent'
+				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumberComparator'
+				 />
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='LINK'
+				 fieldLink='ID'
+				 styleClass='displayLink'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='html'
+				 columnClass='width75percent'
+				 url='showCTTask.do?entityId=6'
+				 id='regId'
+				 />
+
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='NOMBRE'
+				 readOnly='false'
+				 titleKey='catalog.common.nombre'
+				 fieldType='DATA'
+				 headerClass='sortable'
+				 sortable='true'
+				 media='csv excel xml pdf'
+				 />
+	
+	<propertyfmt type='BeanPropertySimpleFmt'
+				 property='SUBPROCESO_ASOCIADO'
+				 readOnly='false'
+				 titleKey='form.ptask.subprocedure'
+				 fieldType='BOOLEAN'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'
+				 />
+				 
+</beanformatter>

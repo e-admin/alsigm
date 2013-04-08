@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="disablePrettyXML" value="true"/>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="/home/sigem/SIGEM/attachments"/>
+  <parameter name="dotNetSoapEncFix" value="true"/>
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="CriptoValidacionWebService" provider="java:RPC" style="wrapped" use="literal">
+  <operation name="crearHash" qname="ns1:crearHash" returnQName="ns1:crearHashReturn" returnType="ns1:Hash" soapAction="" xmlns:ns1="http://server.ws.validacion.cripto.sgm.tecdoc.ieci">
+   <parameter qname="ns1:poBase64Document" type="ns1:Contenido"/>
+  </operation>
+  <operation name="validarHash" qname="ns2:validarHash" returnQName="ns2:validarHashReturn" returnType="ns2:ResultadoValidacionHash" soapAction="" xmlns:ns2="http://server.ws.validacion.cripto.sgm.tecdoc.ieci">
+   <parameter qname="ns2:poBase64Document" type="ns2:Contenido"/>
+   <parameter qname="ns2:poB64Hash" type="ns2:Contenido"/>
+  </operation>
+  <operation name="validarCertificado" qname="ns3:validarCertificado" returnQName="ns3:validarCertificadoReturn" returnType="ns3:ResultadoValidacionCertificado" soapAction="" xmlns:ns3="http://server.ws.validacion.cripto.sgm.tecdoc.ieci">
+   <parameter qname="ns3:poB64Certificate" type="ns3:Contenido"/>
+  </operation>
+  <operation name="crearHashByEntidad" qname="ns4:crearHashByEntidad" returnQName="ns4:crearHashByEntidadReturn" returnType="ns4:Hash" soapAction="" xmlns:ns4="http://server.ws.validacion.cripto.sgm.tecdoc.ieci">
+   <parameter qname="ns4:poBase64Document" type="ns4:Contenido"/>
+    <parameter qname="ns4:idEntidad" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="validaHashByEntidad" qname="ns5:validaHashByEntidad" returnQName="ns5:validaHashByEntidadReturn" returnType="ns5:ResultadoValidacionHash" soapAction="" xmlns:ns5="http://server.ws.validacion.cripto.sgm.tecdoc.ieci">
+   <parameter qname="ns5:poBase64Document" type="ns5:Contenido"/>
+   <parameter qname="ns5:poB64Hash" type="ns5:Contenido"/>
+ <parameter qname="ns5:idEntidad" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+  <operation name="validarCertificadoByEntidad" qname="ns6:validarCertificadoByEntidad" returnQName="ns6:validarCertificadoByEntidadReturn" returnType="ns6:ResultadoValidacionCertificado" soapAction="" xmlns:ns6="http://server.ws.validacion.cripto.sgm.tecdoc.ieci">
+   <parameter qname="ns6:poB64Certificate" type="ns6:Contenido"/>
+   <parameter qname="ns6:idEntidad" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </operation>
+
+  <parameter name="allowedMethods" value="validarHash crearHash validarCertificado validaHashByEntidad crearHashByEntidad validarCertificadoByEntidad"/>
+  <parameter name="typeMappingVersion" value="1.2"/>
+  <parameter name="wsdlPortType" value="CriptoValidacionWebService"/>
+  <parameter name="className" value="ieci.tecdoc.sgm.cripto.validacion.ws.server.CriptoValidacionWebService"/>
+  <parameter name="wsdlServicePort" value="CriptoValidacionWebService"/>
+  <parameter name="schemaQualified" value="http://server.ws.validacion.cripto.sgm.tecdoc.ieci,http://dto.services.core.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlTargetNamespace" value="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+  <parameter name="wsdlServiceElement" value="CriptoValidacionWebServiceService"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns4:RetornoServicio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.core.services.dto.RetornoServicio" xmlns:ns4="http://dto.services.core.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns5:Hash" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.Hash" xmlns:ns5="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:ResultadoValidacionCertificado" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.ResultadoValidacionCertificado" xmlns:ns6="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:ResultadoValidacionHash" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.ResultadoValidacionHash" xmlns:ns7="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:InfoCertificado" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.InfoCertificado" xmlns:ns8="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+  <typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:Contenido" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:ieci.tecdoc.sgm.cripto.validacion.ws.server.Contenido" xmlns:ns9="http://server.ws.validacion.cripto.sgm.tecdoc.ieci"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

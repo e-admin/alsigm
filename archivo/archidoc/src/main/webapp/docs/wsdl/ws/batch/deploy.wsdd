@@ -1,0 +1,37 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from WSProcesosBatchService WSDL service -->
+
+  <service name="WSProcesosBatch" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://batch.ws"/>
+      <parameter name="wsdlServiceElement" value="WSProcesosBatchService"/>
+      <parameter name="schemaQualified" value="http://batch.ws"/>
+      <parameter name="wsdlServicePort" value="WSProcesosBatch"/>
+      <parameter name="className" value="ws.batch.WSProcesosBatchImpl"/>
+      <parameter name="wsdlPortType" value="WSProcesosBatch"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="cerrarPrevisiones" qname="operNS:cerrarPrevisiones" xmlns:operNS="http://batch.ws" soapAction="" >
+      </operation>
+      <operation name="publicarUnidadesDocumentales" qname="operNS:publicarUnidadesDocumentales" xmlns:operNS="http://batch.ws" soapAction="" >
+      </operation>
+      <operation name="eliminarUnidadesDocumentalesPrestadasNoDevueltas" qname="operNS:eliminarUnidadesDocumentalesPrestadasNoDevueltas" xmlns:operNS="http://batch.ws" soapAction="" >
+      </operation>
+      <operation name="pasarAHistoricoDocumentosVitalesCaducados" qname="operNS:pasarAHistoricoDocumentosVitalesCaducados" xmlns:operNS="http://batch.ws" soapAction="" >
+      </operation>
+      <operation name="eliminarDocumentosVitalesObsoletos" qname="operNS:eliminarDocumentosVitalesObsoletos" xmlns:operNS="http://batch.ws" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="eliminarDocumentosVitalesObsoletos eliminarUnidadesDocumentalesPrestadasNoDevueltas pasarAHistoricoDocumentosVitalesCaducados publicarUnidadesDocumentales cerrarPrevisiones"/>
+      <parameter name="scope" value="Request"/>
+
+  </service>
+</deployment>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_PCD'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.procedure'
+				 fieldType='ID_PCD'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width25percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_PCD'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.version'
+				 fieldType='VERSION_PCD'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width5percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_FASE'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.stage'
+				 fieldType='ID_FASE'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width15percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='ID_TRAMITE'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.task'
+				 fieldType='ID_TRAMITE'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 property='TIPO_DOC'
+				 readOnly='false'
+				 titleKey='form.pubRule.propertyLabel.typeDoc'
+				 fieldType='TIPO_DOC'
+				 headerClass='sortable'
+				 sortable='true'
+				 columnClass='width20percent'/>
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+				 readOnly='false'
+				 propertyValueKey='form.pubRule.linkLabel.rules'
+				 fieldType='LINK'
+				 styleClass='aActionButton'
+				 headerClass='headerDisplay'
+				 sortable='false'
+				 media='html'
+				 url='showPubRulesList.do'
+				 columnClass='width15percent'/>
+
+</beanformatter>

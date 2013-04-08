@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+ "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+ "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+	<global>
+		<constant>
+			<constant-name>phone</constant-name>
+			<constant-value>^\(?(\d{3})\)?[-| ]?(\d{3})[-| ]?(\d{4})$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>zip</constant-name>
+			<constant-value>^\d{5}\d*$</constant-value>
+		</constant>
+		<!-- validacion numero documento 
+		<constant>
+			<constant-name>nif_cif</constant-name>
+			<constant-value>(^\d{7,9}[A-Z]$)|(^[A-Z]\d{7,9}$)|(^[A-Z]\d{7,9}[A-Z]$)</constant-value>   
+		</constant>
+		-->
+		<!-- validacion codigo postal -->
+		<constant>
+			<constant-name>cp</constant-name>
+			<constant-value>^\d{5}$</constant-value>
+		</constant>
+		<!-- validacion plazo (tramite) -->
+		<constant>
+			<constant-name>plazo</constant-name>
+			<constant-value>^[1-9][0-9]{0,2}$</constant-value>
+		</constant>
+		<!-- decimales (2 digitos)-->
+		<constant>
+			<constant-name>decimal</constant-name>
+			<constant-value>^(\d+|(\d*\.{1}\d{1,2}){1})$</constant-value>
+		</constant>      
+		<!-- validacion anio -->
+		<constant>
+			<constant-name>anio</constant-name>
+			<constant-value>^\d{4}$</constant-value>
+		</constant>
+
+	</global>   
+   
+	<formset>
+	
+		<!-- ************************** -->
+        <!--         LOGIN         		-->
+        <!-- ************************** -->
+        	
+		<form name="loginForm">
+			<field property="user" depends="required">
+				<arg key="error.login.user"/>
+			</field>
+		</form>
+		
+		<!-- ************************** -->
+        <!--         EXPEDIENTE         -->
+        <!-- ************************** -->
+    
+        <form name="Expedientes">
+			<!-- ASUNTO -->
+			<field property="property(SPAC_EXPEDIENTES:ASUNTO)" depends="required">
+				<arg key="forms.exp.title.subject" />
+			</field>
+			<!-- FECHA INICIO PLAZO -->
+			<field property="property(SPAC_EXPEDIENTES:FINICIOPLAZO)"
+				depends="date">
+				<arg key="forms.exp.title.finit"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<!-- NIF / CIF -->
+			<!-- 
+			<field property="property(SPAC_EXPEDIENTES:NIFCIFTITULAR)"
+				depends="mask">
+				<arg key="forms.exp.title.nif"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${nif_cif}</var-value>
+				</var>
+			</field>
+			 -->
+			<!-- CODIGO POSTAL -->
+			<field property="property(SPAC_EXPEDIENTES:CPOSTAL)"
+				depends="mask">
+				<arg key="forms.exp.title.cpostal"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${cp}</var-value>
+				</var>
+			</field>  
+		</form>
+
+        <!-- ************************** -->
+        <!--   TRAMITE                  -->
+        <!-- ************************** -->
+        
+		<form name="Tramite">
+			<!-- FECHA INICIO PLAZO -->
+			<!--
+			<field property="property(SPAC_DT_TRAMITES:FECHA_INICIO_PLAZO)"
+				depends="date">
+				<arg key="forms.task.term.initDate"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			-->
+			<!-- PLAZO -->
+			<field property="property(SPAC_DT_TRAMITES:PLAZO)"
+				depends="mask">
+				<arg key="forms.task.term"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${plazo}</var-value>
+				</var>
+			</field>          
+		</form>
+
+        <!-- ************************** -->
+        <!--   TRAMITE / DOCUMENTO      -->
+        <!-- ************************** -->
+
+		<form name="DocTramite">
+			<!-- FECHA INICIO PLAZO -->
+			<!--
+			<field property="property(SPAC_DT_TRAMITES:FECHA_INICIO_PLAZO)"
+				depends="date">
+				<arg key="forms.task.term.initDate"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			-->
+			<!-- PLAZO -->
+			<field property="property(SPAC_DT_TRAMITES:PLAZO)"
+				depends="mask">
+				<arg key="forms.task.term"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${plazo}</var-value>
+				</var>
+			</field>          
+			<!-- FECHA NOTIFICACION -->
+			<!--
+			<field property="property(SPAC_DT_DOCUMENTOS:FNOTIFICACION)"
+				depends="date">
+				<arg key="documento.etiqueta.fecha.notificacion"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			 -->
+			<!-- FECHA APROBACION -->
+			<!--
+			<field property="property(SPAC_DT_DOCUMENTOS:FAPROBACION)"
+				depends="date">
+				<arg key="documento.etiqueta.fecha.aprobacion"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			-->
+		</form>
+
+        <!-- ************************** -->
+        <!--        PARTICIPANTES       -->
+        <!-- ************************** -->
+        
+		<form name="Intervinientes">
+			<!-- NIF / CIF -->
+			<!-- 
+			<field property="property(SPAC_DT_INTERVINIENTES:NDOC)"
+				depends="mask">
+				<arg key="forms.participantes.nif_cif"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${nif_cif}</var-value>
+				</var>
+			</field>
+			-->
+			<field property="property(SPAC_DT_INTERVINIENTES:NOMBRE)" depends="required">
+				<arg key="forms.participantes.nombre" />
+			</field>
+			<!-- CORREO ELECTRONICO -->
+			<!--
+			<field property="property(SPAC_DT_INTERVINIENTES:EMAIL)"
+				depends="email">
+				<arg key="forms.participantes.email"/>
+			</field>  
+			-->
+			<!-- CODIGO POSTAL -->
+			<field property="property(SPAC_DT_INTERVINIENTES:C_POSTAL)"
+				depends="mask">
+				<arg key="forms.participantes.cp"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${cp}</var-value>
+				</var>
+			</field>  
+		</form>
+		
+        <!-- *************************************** -->
+        <!--               PLAZOS                    -->
+        <!-- *************************************** -->
+
+		<!--  Usado en:
+				- Consulta de plazos 
+				- Consulta de historicos de firmas  
+		-->
+		
+        <form name="IntervaloFechas">
+			<!-- FECHA INICIO -->
+			<field property="property(FECHAINICIO)"
+				depends="date">
+				<arg key="forms.terms.finicio"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<!-- FECHA FIN -->
+			<field property="property(FECHAFIN)"
+				depends="date">
+				<arg key="forms.terms.ffin"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+        </form>
+        
+        <!-- *************************************** -->
+        <!--          CLONACION DE EXPEDIENTES       -->
+        <!-- *************************************** -->
+        
+        <form name="Clonacion">
+       	   	<field property="unidades"
+       	   		depends="required, integer, intRange">
+       			<arg0 key="msg.clone.units"/>
+				<arg1 name="intRange" key="${var:min}" resource="false"/>
+		        <arg2 name="intRange" key="${var:max}" resource="false"/>
+		        <var><var-name>min</var-name><var-value>1</var-value></var>
+		        <var><var-name>max</var-name><var-value>500</var-value></var>
+    		</field>
+        </form>
+
+
+        <form name="ListaDocumentos">
+			<!-- FECHA APROBACION -->
+			<field property="property(SPAC_DT_DOCUMENTOS:FAPROBACION)"
+				depends="date">
+				<arg key="documento.etiqueta.fecha.aprobacion"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<!-- FECHA NOTIFICACION -->
+			<!--
+			<field property="property(SPAC_DT_DOCUMENTOS:FNOTIFICACION)"
+				depends="date">
+				<arg key="documento.etiqueta.fecha.notificacion"/>
+				<var>
+					<var-name>datePatternStrict</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			 -->
+        </form>
+
+
+        <!-- *************************************** -->
+        <!--          REGISTRO DE SALIDA             -->
+        <!-- *************************************** -->
+
+        <form name="RegistroSalida">
+			<!-- Identificador del libro de salida -->
+			<field property="property(BOOK_ID)" depends="required">
+				<arg key="registro.salida.form.field.book" />
+			</field>
+			<!-- Código de la oficina de registro -->
+			<field property="property(OFFICE_CODE)" depends="required">
+				<arg key="registro.salida.form.field.office" />
+			</field>
+			<!-- Código de la unidad administrativa de origen -->
+			<field property="property(ORG_UNIT_CODE)" depends="required">
+				<arg key="registro.salida.form.field.orgUnit" />
+			</field>
+        </form>
+        
+   </formset>
+   
+</form-validation>

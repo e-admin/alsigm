@@ -1,0 +1,40 @@
+<beans>
+
+	<bean id="jndi" class="org.apache.xbean.spring.jndi.DefaultContext">
+		<property name="entries">
+			<map>
+				<entry key="java:comp/env/jdbc/archivoDS_000">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+						<property name="url" value="jdbc:jtds:sqlserver://10.228.75.110:1433/ARCHIDOC50_TEST" />
+						<property name="username" value="sa" />
+						<property name="password" value="ieciovi" />
+					</bean>
+				</entry>
+
+				<entry key="java:comp/env/jdbc/archivoDS">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+						<property name="url" value="jdbc:jtds:sqlserver://10.228.75.110:1433/ARCHIDOC50_TEST" />
+						<property name="username" value="sa" />
+						<property name="password" value="ieciovi" />
+					</bean>
+				</entry>
+
+
+				<entry key="java:comp/env/jdbc/archivoDSPostgres">
+					<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+						destroy-method="close" singleton="false">
+						<property name="driverClassName" value="org.postgresql.Driver" />
+						<property name="url" value="jdbc:postgresql://localhost:5432/archidocTest5" />
+						<property name="username" value="postgres" />
+						<property name="password" value="postgres"/>
+					</bean>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+</beans>

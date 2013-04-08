@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<model name="isicres:isicresmodel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+   <description>Custom Model para ISicres</description>
+   <author>Ieci</author>
+   <version>1.0</version>
+   <imports>
+      <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+      <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+   </imports>
+   <namespaces>
+      <namespace uri="isicres.model" prefix="isicres"/>
+   </namespaces>
+	<types>
+		<type name="isicres:registro">
+			<title>Registro de Isicres</title>
+			<parent>cm:content</parent>
+			<mandatory-aspects>					
+			<aspect>isicres:aspectRegistro</aspect>			
+			</mandatory-aspects>
+		</type>
+	</types>
+
+	<aspects>
+	<!-- Aspect para el tipo folderEspecialidad-->					  
+		<aspect name="isicres:aspectRegistro">
+			<title>Registro Isicres</title>
+			<properties>
+				<property name="isicres:FileName">
+					<title>FileName</title>
+					<type>d:text</type>
+				</property>
+				<property name="isicres:BookID">
+					<title>BookID</title>
+					 <type>d:text</type>					
+				</property>
+				<property name="isicres:BookType">
+					<title>BookType</title>
+					<type>d:text</type>
+				</property>
+				<property name="isicres:BookName">
+					<title>BookName</title>
+					<type>d:text</type>
+				</property>
+				<property name="isicres:RegisterNumber">
+					<title>RegisterNumber</title>
+					<type>d:text</type>
+				</property>	
+				<property name="isicres:RegisterUser">
+					<title>RegisterUser</title>
+					<type>d:text</type>
+				</property>									
+				<property name="isicres:RegisterWorkDate">
+					<title>RegisterWorkDate</title>
+					<type>d:text</type>
+				</property>			
+				<property name="isicres:RegisterOficName">
+					<title>RegisterOficName</title>
+					<type>d:text</type>
+				</property>	
+			</properties>
+		</aspect>
+	</aspects>
+</model>

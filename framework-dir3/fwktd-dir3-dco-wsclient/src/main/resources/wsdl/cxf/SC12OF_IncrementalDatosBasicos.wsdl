@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://impl.manager.directorio.map.es" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://impl.manager.directorio.map.es" xmlns:intf="http://impl.manager.directorio.map.es" xmlns:tns1="http://impl.manager.directorio.map.es/wsExport" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://impl.manager.directorio.map.es/wsExport" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="RespuestaWS">
+    <sequence>
+     <element name="codigo" type="xsd:string"/>
+     <element name="descripcion" type="xsd:string"/>
+     <element name="fichero" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="exportarRequest">
+
+      <wsdl:part name="login" type="xsd:string"/>
+
+      <wsdl:part name="password" type="xsd:string"/>
+
+      <wsdl:part name="formatoFichero" type="xsd:string"/>
+
+      <wsdl:part name="tipoConsulta" type="xsd:string"/>
+
+      <wsdl:part name="fechaInicio" type="xsd:string"/>
+
+      <wsdl:part name="fechaFin" type="xsd:string"/>
+
+      <wsdl:part name="estado" type="xsd:string"/>
+
+      <wsdl:part name="nivelAdmin" type="xsd:string"/>
+
+      <wsdl:part name="oficinaRegistro" type="xsd:string"/>
+
+      <wsdl:part name="oficinaInformacion" type="xsd:string"/>
+
+      <wsdl:part name="oficinaTramitacion" type="xsd:string"/>
+
+      <wsdl:part name="oficinaSir" type="xsd:string"/>
+
+      <wsdl:part name="intLocAutGen" type="xsd:string"/>
+
+      <wsdl:part name="intLocAutRes" type="xsd:string"/>
+
+      <wsdl:part name="intLocEst" type="xsd:string"/>
+
+      <wsdl:part name="intLocLocGes" type="xsd:string"/>
+
+      <wsdl:part name="intLocLocRes" type="xsd:string"/>
+
+      <wsdl:part name="intAyAy" type="xsd:string"/>
+
+      <wsdl:part name="estadoRelacion" type="xsd:string"/>
+
+      <wsdl:part name="codigoOficina" type="xsd:string"/>
+
+      <wsdl:part name="tipoRelacionOfi" type="xsd:string"/>
+
+      <wsdl:part name="codigoUnidadOrganica" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="exportarResponse">
+
+      <wsdl:part name="exportarReturn" type="tns1:RespuestaWS"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SC12OF_IncrementalDatosBasicos">
+
+      <wsdl:operation name="exportar" parameterOrder="login password formatoFichero tipoConsulta fechaInicio fechaFin estado nivelAdmin oficinaRegistro oficinaInformacion oficinaTramitacion oficinaSir intLocAutGen intLocAutRes intLocEst intLocLocGes intLocLocRes intAyAy estadoRelacion codigoOficina tipoRelacionOfi codigoUnidadOrganica">
+
+         <wsdl:input message="impl:exportarRequest" name="exportarRequest"/>
+
+         <wsdl:output message="impl:exportarResponse" name="exportarResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SC12OF_IncrementalDatosBasicosSoapBinding" type="impl:SC12OF_IncrementalDatosBasicos">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="exportar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="exportarRequest">
+
+            <wsdlsoap:body namespace="http://impl.manager.directorio.map.es" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="exportarResponse">
+
+            <wsdlsoap:body namespace="http://impl.manager.directorio.map.es" use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SC12OF_IncrementalDatosBasicosService">
+
+      <wsdl:port binding="impl:SC12OF_IncrementalDatosBasicosSoapBinding" name="SC12OF_IncrementalDatosBasicos">
+
+         <wsdlsoap:address location="http://pre-wsdir3.inter060.es/directorio/services/SC12OF_IncrementalDatosBasicos"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

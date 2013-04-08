@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:soap="http://cxf.apache.org/bindings/soap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+	default-dependency-check="none" default-lazy-init="false">
+
+	<!-- Load the needed resources that are present in the cxf* jars -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+
+	<jaxws:endpoint id="fwktd_csv_ws_servicioAplicacionesEndpoint"
+		implementor="#fwktd_csv_ws_servicioAplicaciones" address="/ServicioAplicacionesWS">
+		<jaxws:inInterceptors>
+			<ref bean="fwktd_csv_ws_securityInterceptor" />
+		</jaxws:inInterceptors>
+	</jaxws:endpoint>
+
+	<jaxws:endpoint id="fwktd_csv_ws_servicioDocumentosEndpoint"
+		implementor="#fwktd_csv_ws_servicioDocumentos"
+		address="/ServicioDocumentosWS">
+		<jaxws:inInterceptors>
+			<ref bean="fwktd_csv_ws_securityInterceptor" />
+		</jaxws:inInterceptors>
+	</jaxws:endpoint>
+
+	<bean id="fwktd_csv_ws_servicioAplicacionesImpl" name="fwktd_csv_ws_servicioAplicaciones"
+		class="es.ieci.tecdoc.fwktd.csv.ws.service.impl.ServicioAplicacionesWSImpl">
+		<property name="aplicacionesDelegate" ref="fwktd_csv_ws_aplicacionesDelegate" />
+	</bean>
+
+	<bean id="fwktd_csv_ws_servicioDocumentosImpl" name="fwktd_csv_ws_servicioDocumentos"
+		class="es.ieci.tecdoc.fwktd.csv.ws.service.impl.ServicioDocumentosWSImpl">
+		<property name="documentosDelegate" ref="fwktd_csv_ws_documentosDelegate" />
+	</bean>
+
+	<bean id="fwktd_csv_ws_securityInterceptorImpl" name="fwktd_csv_ws_securityInterceptor"
+		class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+		<constructor-arg>
+			<map>
+				<entry key="action" value="${fwktd-csv.ws.security.action}" />
+				<entry key="passwordType" value="${fwktd-csv.ws.security.passwordType}" />
+				<entry key="passwordCallbackRef">
+					<ref bean="fwktd_csv_ws_passwordCallback" />
+				</entry>
+				<entry key="signaturePropRefId" value="cryptoProperties" />
+				<entry key="cryptoProperties">
+					<props>
+						<prop key="org.apache.ws.security.crypto.provider">${fwktd-csv.ws.security.signature.provider}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.file">${fwktd-csv.ws.security.signature.keystore.file}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.keystore.type">${fwktd-csv.ws.security.signature.keystore.type}</prop>
+						<prop key="org.apache.ws.security.crypto.merlin.keystore.password">${fwktd-csv.ws.security.signature.keystore.password}</prop>
+					</props>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="fwktd_csv_ws_passwordCallbackImpl" name="fwktd_csv_ws_passwordCallback"
+		class="es.ieci.tecdoc.fwktd.ws.security.callback.PropertiesPasswordCallback"
+		init-method="loadProperties">
+		<property name="configurationResourceLoader" ref="fwktd_csv_ws_configurationResourceLoader"/>
+		<property name="propertiesFile" value="${fwktd-csv.ws.security.usernameToken.users.file}"/>
+	</bean>
+
+</beans>

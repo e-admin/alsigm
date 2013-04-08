@@ -1,0 +1,1 @@
+CALL ..\comun\02_generateServerStubs.bat ..\transferencias\defs.bat

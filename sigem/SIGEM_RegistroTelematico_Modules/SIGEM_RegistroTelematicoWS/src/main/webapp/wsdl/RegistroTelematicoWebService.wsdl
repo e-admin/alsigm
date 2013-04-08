@@ -1,0 +1,1632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.ws.registro.sgm.tecdoc.ieci" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.ws.registro.sgm.tecdoc.ieci" xmlns:intf="http://server.ws.registro.sgm.tecdoc.ieci" xmlns:tns1="http://dto.services.core.sgm.tecdoc.ieci" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.ws.registro.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.services.core.sgm.tecdoc.ieci"/>
+   <element name="query">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="query" type="impl:RegistroConsulta"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RegistroConsulta">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="addressee" nillable="true" type="xsd:string"/>
+       <element name="firstEffectiveDate" nillable="true" type="xsd:string"/>
+       <element name="firstRegistryDate" nillable="true" type="xsd:string"/>
+       <element name="folderId" nillable="true" type="xsd:string"/>
+       <element name="lastEffectiveDate" nillable="true" type="xsd:string"/>
+       <element name="lastRegistryDate" nillable="true" type="xsd:string"/>
+       <element name="oprRegistryNumber" nillable="true" type="xsd:string"/>
+       <element name="registryNumber" nillable="true" type="xsd:string"/>
+       <element name="senderId" nillable="true" type="xsd:string"/>
+       <element name="status" nillable="true" type="xsd:string"/>
+       <element name="subject" nillable="true" type="xsd:string"/>
+       <element name="subtype" nillable="true" type="xsd:string"/>
+       <element name="topic" nillable="true" type="xsd:string"/>
+       <element name="type" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="queryResponse">
+    <complexType>
+     <sequence>
+      <element name="queryReturn" type="impl:Registros"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Registro">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="EMail" nillable="true" type="xsd:string"/>
+       <element name="additionalInfo" nillable="true" type="xsd:string"/>
+       <element name="addressee" nillable="true" type="xsd:string"/>
+       <element name="adittionalInfo" nillable="true" type="xsd:string"/>
+       <element name="effectiveDate" nillable="true" type="xsd:string"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="numeroExpediente" nillable="true" type="xsd:string"/>
+       <element name="oficina" nillable="true" type="xsd:string"/>
+       <element name="registryDate" nillable="true" type="xsd:string"/>
+       <element name="registryNumber" nillable="true" type="xsd:string"/>
+       <element name="representedId" nillable="true" type="xsd:string"/>
+       <element name="representedName" nillable="true" type="xsd:string"/>
+       <element name="senderId" nillable="true" type="xsd:string"/>
+       <element name="senderIdType" nillable="true" type="xsd:string"/>
+       <element name="status" nillable="true" type="xsd:string"/>
+       <element name="topic" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfRegistro">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Registro"/>
+    </sequence>
+   </complexType>
+   <complexType name="Registros">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="registros" nillable="true" type="impl:ArrayOfRegistro"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="crearPeticionRegistro">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="requestInfo" type="impl:RegistroPeticion"/>
+      <element name="idiom" type="xsd:string"/>
+      <element name="organismo" type="xsd:string"/>
+      <element name="numeroExpediente" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="StringB64">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="stringB64" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PeticionDocumento">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="code" nillable="true" type="xsd:string"/>
+       <element name="extension" nillable="true" type="xsd:string"/>
+       <element name="fileContent" nillable="true" type="impl:StringB64"/>
+       <element name="fileName" nillable="true" type="xsd:string"/>
+       <element name="location" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPeticionDocumento">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:PeticionDocumento"/>
+    </sequence>
+   </complexType>
+   <complexType name="PeticionDocumentos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="peticionDocumentos" nillable="true" type="impl:ArrayOfPeticionDocumento"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="RegistroPeticion">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="addressee" nillable="true" type="xsd:string"/>
+       <element name="documents" nillable="true" type="impl:PeticionDocumentos"/>
+       <element name="email" nillable="true" type="xsd:string"/>
+       <element name="folderId" nillable="true" type="xsd:string"/>
+       <element name="procedureId" nillable="true" type="xsd:string"/>
+       <element name="senderIdType" nillable="true" type="xsd:string"/>
+       <element name="specificData" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="crearPeticionRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="crearPeticionRegistroReturn" type="impl:StringB64"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="establecerDocumentosSubsanacion">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="procedureDocuments" type="impl:Documentos"/>
+      <element name="requestDocuments" type="impl:PeticionDocumentos"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DocumentoExtendido">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="code" nillable="true" type="xsd:string"/>
+       <element name="description" nillable="true" type="xsd:string"/>
+       <element name="extension" nillable="true" type="xsd:string"/>
+       <element name="id" nillable="true" type="xsd:string"/>
+       <element name="mandatory" nillable="true" type="xsd:string"/>
+       <element name="signatureHook" nillable="true" type="xsd:string"/>
+       <element name="validationHook" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfDocumentoExtendido">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:DocumentoExtendido"/>
+    </sequence>
+   </complexType>
+   <complexType name="Documentos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="documentos" nillable="true" type="impl:ArrayOfDocumentoExtendido"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="establecerDocumentosSubsanacionResponse">
+    <complexType>
+     <sequence>
+      <element name="establecerDocumentosSubsanacionReturn" type="impl:RetornoCadena"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoCadena">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="cadena" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="registrar">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryRequest" type="impl:StringB64"/>
+      <element name="additionalInfo" type="xsd:string"/>
+      <element name="idiom" type="xsd:string"/>
+      <element name="oficina" type="xsd:string"/>
+      <element name="plantilla" type="xsd:string"/>
+      <element name="certificado" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarReturn" type="impl:StringB64"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarConJustificante">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryRequest" type="impl:StringB64"/>
+      <element name="additionalInfo" type="xsd:string"/>
+      <element name="idiom" type="xsd:string"/>
+      <element name="oficina" type="xsd:string"/>
+      <element name="plantilla" type="impl:StringB64"/>
+      <element name="certificado" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarConJustificanteResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarConJustificanteReturn" type="impl:StringB64"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarTelematicoAndIniciarExpediente">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryRequest" type="impl:StringB64"/>
+      <element name="additionalInfo" type="xsd:string"/>
+      <element name="idiom" type="xsd:string"/>
+      <element name="oficina" type="xsd:string"/>
+      <element name="plantilla" type="xsd:string"/>
+      <element name="certificado" type="xsd:string"/>
+      <element name="tramiteId" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarTelematicoAndIniciarExpedienteResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarTelematicoAndIniciarExpedienteReturn" type="impl:StringB64"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarTelematicoConJustificanteAndIniciarExpediente">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryRequest" type="impl:StringB64"/>
+      <element name="additionalInfo" type="xsd:string"/>
+      <element name="idiom" type="xsd:string"/>
+      <element name="oficina" type="xsd:string"/>
+      <element name="plantilla" type="impl:StringB64"/>
+      <element name="certificado" type="xsd:string"/>
+      <element name="tramiteId" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarTelematicoConJustificanteAndIniciarExpedienteResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarTelematicoConJustificanteAndIniciarExpedienteReturn" type="impl:StringB64"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deshacerRegistro">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deshacerRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="deshacerRegistroReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerNumeroRegistro">
+    <complexType>
+     <sequence>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerNumeroRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerNumeroRegistroReturn" type="impl:RetornoCadena"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDocumentosTemporales">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDocumentosTemporalesResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarDocumentosTemporalesReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRegistrosParaMostrar">
+    <complexType>
+     <sequence>
+      <element name="query" type="impl:RegistroConsulta"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRegistrosParaMostrarResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerRegistrosParaMostrarReturn" type="impl:Registros"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRegistro">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerRegistroReturn" type="impl:Registro"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDatosDocumentosRegistro">
+    <complexType>
+     <sequence>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDatosDocumentosRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDatosDocumentosRegistroReturn" type="impl:ContenedorDocumentos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ContenedorDocumento">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="content" nillable="true" type="xsd:string"/>
+       <element name="contentSize" nillable="true" type="xsd:string"/>
+       <element name="extension" nillable="true" type="xsd:string"/>
+       <element name="guid" nillable="true" type="xsd:string"/>
+       <element name="hash" nillable="true" type="xsd:string"/>
+       <element name="timestamp" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfContenedorDocumento">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ContenedorDocumento"/>
+    </sequence>
+   </complexType>
+   <complexType name="ContenedorDocumentos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="contenedorDocumentos" nillable="true" type="impl:ArrayOfContenedorDocumento"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerJustificanteRegistro">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerJustificanteRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerJustificanteRegistroReturn" type="impl:StringB64"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPeticionRegistro">
+    <complexType>
+     <sequence>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPeticionRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerPeticionRegistroReturn" type="impl:StringB64"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRegistrosConsolidados">
+    <complexType>
+     <sequence>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRegistrosConsolidadosResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerRegistrosConsolidadosReturn" type="impl:Registros"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tieneDocumentos">
+    <complexType>
+     <sequence>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tieneDocumentosResponse">
+    <complexType>
+     <sequence>
+      <element name="tieneDocumentosReturn" type="impl:RetornoLogico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RetornoLogico">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="valor" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerContenidoDocumento">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="code" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerContenidoDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerContenidoDocumentoReturn" type="impl:ByteArrayB64"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ByteArrayB64">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="byteArrayB64" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerDocumento">
+    <complexType>
+     <sequence>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="code" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDocumentoReturn" type="impl:StringB64"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="establecerEstadoRegistro">
+    <complexType>
+     <sequence>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="status" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="establecerEstadoRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="establecerEstadoRegistroReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDocumentosRegistro">
+    <complexType>
+     <sequence>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDocumentosRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDocumentosRegistroReturn" type="impl:RegistroDocumentos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RegistroDocumento">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="code" nillable="true" type="xsd:string"/>
+       <element name="guid" nillable="true" type="xsd:string"/>
+       <element name="registryNumber" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfRegistroDocumento">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:RegistroDocumento"/>
+    </sequence>
+   </complexType>
+   <complexType name="RegistroDocumentos">
+    <complexContent>
+     <extension base="tns1:RetornoServicio">
+      <sequence>
+       <element name="registroDocumentos" nillable="true" type="impl:ArrayOfRegistroDocumento"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="obtenerDocumentoRegistro">
+    <complexType>
+     <sequence>
+      <element name="sessionId" type="xsd:string"/>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="code" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDocumentoRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDocumentoRegistroReturn" type="impl:RegistroDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertarDocumentoRegistro">
+    <complexType>
+     <sequence>
+      <element name="registryDocument" type="impl:RegistroDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertarDocumentoRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="insertarDocumentoRegistroReturn" type="impl:RegistroDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarDocumentoRegistro">
+    <complexType>
+     <sequence>
+      <element name="registryDocument" type="impl:RegistroDocumento"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="actualizarDocumentoRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="actualizarDocumentoRegistroReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDocumentoRegistro">
+    <complexType>
+     <sequence>
+      <element name="registryNumber" type="xsd:string"/>
+      <element name="entidad" type="tns1:Entidad"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="eliminarDocumentoRegistroResponse">
+    <complexType>
+     <sequence>
+      <element name="eliminarDocumentoRegistroReturn" type="tns1:RetornoServicio"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.services.core.sgm.tecdoc.ieci" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://server.ws.registro.sgm.tecdoc.ieci"/>
+   <complexType name="RetornoServicio">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Entidad">
+    <sequence>
+     <element name="identificador" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="establecerEstadoRegistroRequest">
+
+      <wsdl:part element="impl:establecerEstadoRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentosRegistroResponse">
+
+      <wsdl:part element="impl:obtenerDocumentosRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarTelematicoAndIniciarExpedienteRequest">
+
+      <wsdl:part element="impl:registrarTelematicoAndIniciarExpediente" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRegistrosConsolidadosRequest">
+
+      <wsdl:part element="impl:obtenerRegistrosConsolidados" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarResponse">
+
+      <wsdl:part element="impl:registrarResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarDocumentoRegistroRequest">
+
+      <wsdl:part element="impl:actualizarDocumentoRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRegistrosConsolidadosResponse">
+
+      <wsdl:part element="impl:obtenerRegistrosConsolidadosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRegistrosParaMostrarResponse">
+
+      <wsdl:part element="impl:obtenerRegistrosParaMostrarResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDatosDocumentosRegistroResponse">
+
+      <wsdl:part element="impl:obtenerDatosDocumentosRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarTelematicoConJustificanteAndIniciarExpedienteResponse">
+
+      <wsdl:part element="impl:registrarTelematicoConJustificanteAndIniciarExpedienteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDocumentoRegistroRequest">
+
+      <wsdl:part element="impl:eliminarDocumentoRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarTelematicoAndIniciarExpedienteResponse">
+
+      <wsdl:part element="impl:registrarTelematicoAndIniciarExpedienteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearPeticionRegistroResponse">
+
+      <wsdl:part element="impl:crearPeticionRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="establecerEstadoRegistroResponse">
+
+      <wsdl:part element="impl:establecerEstadoRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPeticionRegistroRequest">
+
+      <wsdl:part element="impl:obtenerPeticionRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerJustificanteRegistroResponse">
+
+      <wsdl:part element="impl:obtenerJustificanteRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="crearPeticionRegistroRequest">
+
+      <wsdl:part element="impl:crearPeticionRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertarDocumentoRegistroRequest">
+
+      <wsdl:part element="impl:insertarDocumentoRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRegistrosParaMostrarRequest">
+
+      <wsdl:part element="impl:obtenerRegistrosParaMostrar" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerNumeroRegistroResponse">
+
+      <wsdl:part element="impl:obtenerNumeroRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarConJustificanteRequest">
+
+      <wsdl:part element="impl:registrarConJustificante" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="establecerDocumentosSubsanacionRequest">
+
+      <wsdl:part element="impl:establecerDocumentosSubsanacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="establecerDocumentosSubsanacionResponse">
+
+      <wsdl:part element="impl:establecerDocumentosSubsanacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDocumentoRegistroResponse">
+
+      <wsdl:part element="impl:eliminarDocumentoRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertarDocumentoRegistroResponse">
+
+      <wsdl:part element="impl:insertarDocumentoRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDocumentosTemporalesResponse">
+
+      <wsdl:part element="impl:eliminarDocumentosTemporalesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarRequest">
+
+      <wsdl:part element="impl:registrar" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentosRegistroRequest">
+
+      <wsdl:part element="impl:obtenerDocumentosRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerContenidoDocumentoResponse">
+
+      <wsdl:part element="impl:obtenerContenidoDocumentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="eliminarDocumentosTemporalesRequest">
+
+      <wsdl:part element="impl:eliminarDocumentosTemporales" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentoResponse">
+
+      <wsdl:part element="impl:obtenerDocumentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentoRegistroRequest">
+
+      <wsdl:part element="impl:obtenerDocumentoRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarConJustificanteResponse">
+
+      <wsdl:part element="impl:registrarConJustificanteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRegistroRequest">
+
+      <wsdl:part element="impl:obtenerRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerJustificanteRegistroRequest">
+
+      <wsdl:part element="impl:obtenerJustificanteRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerNumeroRegistroRequest">
+
+      <wsdl:part element="impl:obtenerNumeroRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentoRegistroResponse">
+
+      <wsdl:part element="impl:obtenerDocumentoRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDocumentoRequest">
+
+      <wsdl:part element="impl:obtenerDocumento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDatosDocumentosRegistroRequest">
+
+      <wsdl:part element="impl:obtenerDatosDocumentosRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryResponse">
+
+      <wsdl:part element="impl:queryResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryRequest">
+
+      <wsdl:part element="impl:query" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPeticionRegistroResponse">
+
+      <wsdl:part element="impl:obtenerPeticionRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deshacerRegistroResponse">
+
+      <wsdl:part element="impl:deshacerRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="tieneDocumentosResponse">
+
+      <wsdl:part element="impl:tieneDocumentosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deshacerRegistroRequest">
+
+      <wsdl:part element="impl:deshacerRegistro" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarTelematicoConJustificanteAndIniciarExpedienteRequest">
+
+      <wsdl:part element="impl:registrarTelematicoConJustificanteAndIniciarExpediente" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="actualizarDocumentoRegistroResponse">
+
+      <wsdl:part element="impl:actualizarDocumentoRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerContenidoDocumentoRequest">
+
+      <wsdl:part element="impl:obtenerContenidoDocumento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="tieneDocumentosRequest">
+
+      <wsdl:part element="impl:tieneDocumentos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRegistroResponse">
+
+      <wsdl:part element="impl:obtenerRegistroResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="RegistroTelematicoWebService">
+
+      <wsdl:operation name="query">
+
+         <wsdl:input message="impl:queryRequest" name="queryRequest"/>
+
+         <wsdl:output message="impl:queryResponse" name="queryResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearPeticionRegistro">
+
+         <wsdl:input message="impl:crearPeticionRegistroRequest" name="crearPeticionRegistroRequest"/>
+
+         <wsdl:output message="impl:crearPeticionRegistroResponse" name="crearPeticionRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="establecerDocumentosSubsanacion">
+
+         <wsdl:input message="impl:establecerDocumentosSubsanacionRequest" name="establecerDocumentosSubsanacionRequest"/>
+
+         <wsdl:output message="impl:establecerDocumentosSubsanacionResponse" name="establecerDocumentosSubsanacionResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrar">
+
+         <wsdl:input message="impl:registrarRequest" name="registrarRequest"/>
+
+         <wsdl:output message="impl:registrarResponse" name="registrarResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarConJustificante">
+
+         <wsdl:input message="impl:registrarConJustificanteRequest" name="registrarConJustificanteRequest"/>
+
+         <wsdl:output message="impl:registrarConJustificanteResponse" name="registrarConJustificanteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarTelematicoAndIniciarExpediente">
+
+         <wsdl:input message="impl:registrarTelematicoAndIniciarExpedienteRequest" name="registrarTelematicoAndIniciarExpedienteRequest"/>
+
+         <wsdl:output message="impl:registrarTelematicoAndIniciarExpedienteResponse" name="registrarTelematicoAndIniciarExpedienteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarTelematicoConJustificanteAndIniciarExpediente">
+
+         <wsdl:input message="impl:registrarTelematicoConJustificanteAndIniciarExpedienteRequest" name="registrarTelematicoConJustificanteAndIniciarExpedienteRequest"/>
+
+         <wsdl:output message="impl:registrarTelematicoConJustificanteAndIniciarExpedienteResponse" name="registrarTelematicoConJustificanteAndIniciarExpedienteResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deshacerRegistro">
+
+         <wsdl:input message="impl:deshacerRegistroRequest" name="deshacerRegistroRequest"/>
+
+         <wsdl:output message="impl:deshacerRegistroResponse" name="deshacerRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerNumeroRegistro">
+
+         <wsdl:input message="impl:obtenerNumeroRegistroRequest" name="obtenerNumeroRegistroRequest"/>
+
+         <wsdl:output message="impl:obtenerNumeroRegistroResponse" name="obtenerNumeroRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumentosTemporales">
+
+         <wsdl:input message="impl:eliminarDocumentosTemporalesRequest" name="eliminarDocumentosTemporalesRequest"/>
+
+         <wsdl:output message="impl:eliminarDocumentosTemporalesResponse" name="eliminarDocumentosTemporalesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRegistrosParaMostrar">
+
+         <wsdl:input message="impl:obtenerRegistrosParaMostrarRequest" name="obtenerRegistrosParaMostrarRequest"/>
+
+         <wsdl:output message="impl:obtenerRegistrosParaMostrarResponse" name="obtenerRegistrosParaMostrarResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRegistro">
+
+         <wsdl:input message="impl:obtenerRegistroRequest" name="obtenerRegistroRequest"/>
+
+         <wsdl:output message="impl:obtenerRegistroResponse" name="obtenerRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDatosDocumentosRegistro">
+
+         <wsdl:input message="impl:obtenerDatosDocumentosRegistroRequest" name="obtenerDatosDocumentosRegistroRequest"/>
+
+         <wsdl:output message="impl:obtenerDatosDocumentosRegistroResponse" name="obtenerDatosDocumentosRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerJustificanteRegistro">
+
+         <wsdl:input message="impl:obtenerJustificanteRegistroRequest" name="obtenerJustificanteRegistroRequest"/>
+
+         <wsdl:output message="impl:obtenerJustificanteRegistroResponse" name="obtenerJustificanteRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPeticionRegistro">
+
+         <wsdl:input message="impl:obtenerPeticionRegistroRequest" name="obtenerPeticionRegistroRequest"/>
+
+         <wsdl:output message="impl:obtenerPeticionRegistroResponse" name="obtenerPeticionRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRegistrosConsolidados">
+
+         <wsdl:input message="impl:obtenerRegistrosConsolidadosRequest" name="obtenerRegistrosConsolidadosRequest"/>
+
+         <wsdl:output message="impl:obtenerRegistrosConsolidadosResponse" name="obtenerRegistrosConsolidadosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tieneDocumentos">
+
+         <wsdl:input message="impl:tieneDocumentosRequest" name="tieneDocumentosRequest"/>
+
+         <wsdl:output message="impl:tieneDocumentosResponse" name="tieneDocumentosResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerContenidoDocumento">
+
+         <wsdl:input message="impl:obtenerContenidoDocumentoRequest" name="obtenerContenidoDocumentoRequest"/>
+
+         <wsdl:output message="impl:obtenerContenidoDocumentoResponse" name="obtenerContenidoDocumentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumento">
+
+         <wsdl:input message="impl:obtenerDocumentoRequest" name="obtenerDocumentoRequest"/>
+
+         <wsdl:output message="impl:obtenerDocumentoResponse" name="obtenerDocumentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="establecerEstadoRegistro">
+
+         <wsdl:input message="impl:establecerEstadoRegistroRequest" name="establecerEstadoRegistroRequest"/>
+
+         <wsdl:output message="impl:establecerEstadoRegistroResponse" name="establecerEstadoRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentosRegistro">
+
+         <wsdl:input message="impl:obtenerDocumentosRegistroRequest" name="obtenerDocumentosRegistroRequest"/>
+
+         <wsdl:output message="impl:obtenerDocumentosRegistroResponse" name="obtenerDocumentosRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentoRegistro">
+
+         <wsdl:input message="impl:obtenerDocumentoRegistroRequest" name="obtenerDocumentoRegistroRequest"/>
+
+         <wsdl:output message="impl:obtenerDocumentoRegistroResponse" name="obtenerDocumentoRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertarDocumentoRegistro">
+
+         <wsdl:input message="impl:insertarDocumentoRegistroRequest" name="insertarDocumentoRegistroRequest"/>
+
+         <wsdl:output message="impl:insertarDocumentoRegistroResponse" name="insertarDocumentoRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarDocumentoRegistro">
+
+         <wsdl:input message="impl:actualizarDocumentoRegistroRequest" name="actualizarDocumentoRegistroRequest"/>
+
+         <wsdl:output message="impl:actualizarDocumentoRegistroResponse" name="actualizarDocumentoRegistroResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumentoRegistro">
+
+         <wsdl:input message="impl:eliminarDocumentoRegistroRequest" name="eliminarDocumentoRegistroRequest"/>
+
+         <wsdl:output message="impl:eliminarDocumentoRegistroResponse" name="eliminarDocumentoRegistroResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="RegistroTelematicoWebServiceSoapBinding" type="impl:RegistroTelematicoWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="query">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="queryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="queryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="crearPeticionRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="crearPeticionRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="crearPeticionRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="establecerDocumentosSubsanacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="establecerDocumentosSubsanacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="establecerDocumentosSubsanacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarConJustificante">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarConJustificanteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarConJustificanteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarTelematicoAndIniciarExpediente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarTelematicoAndIniciarExpedienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarTelematicoAndIniciarExpedienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarTelematicoConJustificanteAndIniciarExpediente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarTelematicoConJustificanteAndIniciarExpedienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarTelematicoConJustificanteAndIniciarExpedienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deshacerRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deshacerRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deshacerRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerNumeroRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerNumeroRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerNumeroRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumentosTemporales">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarDocumentosTemporalesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarDocumentosTemporalesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRegistrosParaMostrar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerRegistrosParaMostrarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerRegistrosParaMostrarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDatosDocumentosRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDatosDocumentosRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDatosDocumentosRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerJustificanteRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerJustificanteRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerJustificanteRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPeticionRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerPeticionRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerPeticionRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRegistrosConsolidados">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerRegistrosConsolidadosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerRegistrosConsolidadosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tieneDocumentos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="tieneDocumentosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="tieneDocumentosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerContenidoDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerContenidoDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerContenidoDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="establecerEstadoRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="establecerEstadoRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="establecerEstadoRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentosRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDocumentosRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDocumentosRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDocumentoRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDocumentoRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDocumentoRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertarDocumentoRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="insertarDocumentoRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="insertarDocumentoRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="actualizarDocumentoRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="actualizarDocumentoRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="actualizarDocumentoRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="eliminarDocumentoRegistro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="eliminarDocumentoRegistroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="eliminarDocumentoRegistroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="RegistroTelematicoWebServiceService">
+
+      <wsdl:port binding="impl:RegistroTelematicoWebServiceSoapBinding" name="RegistroTelematicoWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/SIGEM_RegistroTelematicoWS/services/RegistroTelematicoWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,24 @@
+HKCR
+{
+	IDocScanXP.Scanner.1 = s 'Scanner Class'
+	{
+		CLSID = s '{936846A9-D889-48FF-AD95-084662394143}'
+	}
+	IDocScanXP.Scanner = s 'Scanner Class'
+	{
+		CLSID = s '{936846A9-D889-48FF-AD95-084662394143}'
+		CurVer = s 'IDocScanXP.Scanner.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {936846A9-D889-48FF-AD95-084662394143} = s 'Scanner Class'
+		{
+			ProgID = s 'IDocScanXP.Scanner.1'
+			VersionIndependentProgID = s 'IDocScanXP.Scanner'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{A458EADC-EA3E-4EF9-9FBC-53EFED5342D1}'
+			'TypeLib' = s '{C78C8DB9-F105-470C-BC81-96A3E8453AC9}'
+		}
+	}
+}

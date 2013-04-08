@@ -1,0 +1,96 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+		<script language="javascript">														
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');									
+		</script>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/global.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/list.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/table.css" />
+		<LINK REL="stylesheet" TYPE="text/css" HREF="css/font.css" />
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			top.Idioma = top.GetDlgParam(3);
+			document.title = top.GetIdsLan( "IDS_BOOKS_SELECT" );
+		</SCRIPT>
+		<SCRIPT LANGUAGE="javascript">
+			
+			var rowSelected = -1;
+			
+			function onWindowLoad(HTMLCode)
+			{
+				document.body.innerHTML = HTMLCode;
+				
+				with (document.getElementById("tbBooks"))	{
+					with (tHead.rows[0]){
+						top.SetInnerText(cells[1], top.GetIdsLan("IDS_BOOK_TITLE"));
+					}
+				}
+				
+				document.getElementsByName("rowDatas")[0].style.backgroundColor = g_color4;
+				
+				document.getElementById("rowButtons").cells[1].firstChild.value = top.GetIdsLan("IDS_BTNACEPTAR");
+				document.getElementById("rowButtons").cells[2].firstChild.value = top.GetIdsLan("IDS_BTNCANCEL");
+				
+				rowSelected = document.getElementsByName("rowDatas")[0].rowIndex;
+				top.SetTableFocus(document.getElementsByName("rowDatas")[0]);
+										
+				return;
+			}
+			
+			function OnOK()
+			{
+				top.returnValue = document.getElementById("tbBooks").rows[rowSelected].BookId.toString();
+				top.close();
+			}
+						
+			function OnCancel()
+			{
+				top.returnValue = "";
+				top.close();
+			}
+			
+			function OnDataRowClick(row)
+			{
+				document.getElementById("tbBooks").rows[rowSelected].style.backgroundColor = "#fafcff";
+				row.style.backgroundColor= g_color4;
+				rowSelected = row.rowIndex;
+				top.SetTableFocus(row);
+			}
+			
+			function OnPressKey(aEvent)
+			{
+				var key = top.GetKeyCode(aEvent);
+				
+				switch(key)	{
+					case 40: {
+						if (rowSelected < document.getElementsByName("rowDatas").length)	{
+							OnDataRowClick(document.getElementsByName("rowDatas")[rowSelected]);
+						}
+						break;
+					}
+					case 38:{
+						if (rowSelected - 1 > 0){
+							OnDataRowClick(document.getElementsByName("rowDatas")[rowSelected-2]);
+						}
+						break;
+					}
+					case 13:{
+						OnOK();
+						break;
+					}
+					case 27: {
+						OnCancel();
+						break;
+					}
+				}
+			}
+		
+		</SCRIPT>
+	</HEAD>
+	<BODY onload="onWindowLoad(unescape(top.GetDlgParam(0)));" onunload="top.EnableEvents(window.opener);" TABINDEX="-1" onkeydown="OnPressKey(event);">
+	</BODY>
+</HTML>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="jdbc.drivers" class="org.springframework.beans.factory.config.MapFactoryBean">
+	    <property name="sourceMap">
+	    	<map>
+				<entry key="db2" value="com.ibm.db2.jcc.DB2Driver"/>
+	    		<entry key="oracle" value="oracle.jdbc.driver.OracleDriver"/>
+	    		<entry key="postgresql" value="org.postgresql.Driver"/>
+	    		<entry key="sqlserver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	    	</map>
+	    </property>
+	</bean>
+
+	<bean id="jdbc.url.patterns" class="org.springframework.beans.factory.config.MapFactoryBean">
+	    <property name="sourceMap">
+	    	<map>
+				<entry key="db2" value="jdbc:db2://${host}:${port}/${db}"/>
+	    		<entry key="oracle" value="jdbc:oracle:thin:@${host}:${port}:${sid}"/>
+	    		<entry key="postgresql" value="jdbc:postgresql://${host}:${port}/${db}"/>
+	    		<entry key="sqlserver" value="jdbc:sqlserver://${host}:${port};DatabaseName=${db}"/>
+	    	</map>
+	    </property>
+	</bean>
+
+	<bean id="archivoDbCleanManager" class="ieci.tecdoc.sgm.admsistema.proceso.managers.clean.ArchivoDbCleanManagerImpl">
+	    <property name="jdbcDrivers" ref="jdbc.drivers" />
+	    <property name="jdbcUrlPatterns" ref="jdbc.url.patterns" />
+	</bean>
+	<bean id="eTramitacionDbCleanManager" class="ieci.tecdoc.sgm.admsistema.proceso.managers.clean.EtramitacionDbCleanManagerImpl">
+		<property name="jdbcDrivers" ref="jdbc.drivers" />
+		<property name="jdbcUrlPatterns" ref="jdbc.url.patterns" />
+	</bean>
+	<bean id="registroDbCleanManager" class="ieci.tecdoc.sgm.admsistema.proceso.managers.clean.RegistroDbCleanManagerImpl">
+		<property name="jdbcDrivers" ref="jdbc.drivers" />
+		<property name="jdbcUrlPatterns" ref="jdbc.url.patterns" />
+	</bean>
+	<bean id="tramitadorDbCleanManager" class="ieci.tecdoc.sgm.admsistema.proceso.managers.clean.TramitadorDbCleanManagerImpl">
+		<property name="jdbcDrivers" ref="jdbc.drivers" />
+		<property name="jdbcUrlPatterns" ref="jdbc.url.patterns" />
+	</bean>
+	<bean id="fwktd-auditDbCleanManager" class="ieci.tecdoc.sgm.admsistema.proceso.managers.clean.FwktdAuditDbCleanManagerImpl">
+		<property name="jdbcDrivers" ref="jdbc.drivers" />
+		<property name="jdbcUrlPatterns" ref="jdbc.url.patterns" />
+	</bean>
+	<bean id="fwktd-sirDbCleanManager" class="ieci.tecdoc.sgm.admsistema.proceso.managers.clean.FwktdSirDbCleanManagerImpl">
+		<property name="jdbcDrivers" ref="jdbc.drivers" />
+		<property name="jdbcUrlPatterns" ref="jdbc.url.patterns" />
+	</bean>
+
+	<bean id="dbExportManagerDB2" class="ieci.tecdoc.sgm.admsistema.proceso.managers.DbExportManagerImpl">
+	</bean>
+
+	<bean id="dbExportManagerOracle" class="ieci.tecdoc.sgm.admsistema.proceso.managers.DbExportManagerImpl">
+		<property name="createCommand" value="sqlplus system/manager@orcl @/home/sigem/SIGEM/create_oracle_user.sql ${dbName}_${importEntityId} ${dbName}_${importEntityId}"/>
+		<property name="dropCommand" value="sqlplus system/manager@orcl @/home/sigem/SIGEM/drop_oracle_user.sql ${dbName}_${exportEntityId}"/>
+		<property name="importCommand" value="imp system/manager@orcl fromuser=${dbName}_${backupEntityId} touser=${dbName}_${importEntityId} ignore=y file='${file}'"/>
+		<property name="exportCommand" value="exp system/manager@orcl owner=${dbName}_${exportEntityId} file='${file}' STATISTICS=NONE"/>
+	</bean>
+
+	<bean id="dbExportManagerPostgreSQL" class="ieci.tecdoc.sgm.admsistema.proceso.managers.DbExportManagerImpl">
+		<property name="createCommand" value="createdb -U ${importDbUsername} -h ${importDbHost} -p ${importDbPort} -E LATIN9 -e ${dbName}_${importEntityId}"/>
+		<property name="dropCommand" value="dropdb -U ${exportDbUsername} -h ${exportDbHost} -p ${exportDbPort} -e ${dbName}_${exportEntityId}"/>
+		<property name="importCommand" value="pg_restore -v -U ${importDbUsername} -h ${importDbHost} -p ${importDbPort} -d ${dbName}_${importEntityId} ${file}"/>
+		<property name="exportCommand" value="pg_dump -i -F c -b -v -U ${exportDbUsername} -h ${exportDbHost} -p ${exportDbPort} -f ${file} ${dbName}_${exportEntityId}"/>
+	</bean>
+
+	<bean id="dbExportManagerSQLServer" class="ieci.tecdoc.sgm.admsistema.proceso.managers.DbExportManagerImpl">
+		<property name="createCommand" value="osql -S ${importDbHost} -U ${importDbUsername} -P ${importDbPassword} -Q &quot;CREATE DATABASE [${dbName}_${importEntityId}]&quot;"/>
+		<property name="dropCommand" value="osql -S ${exportDbHost} -U ${exportDbUsername} -P ${exportDbPassword} -Q &quot;DROP DATABASE [${dbName}_${exportEntityId}]&quot;"/>
+		<property name="importCommand" value="osql -S ${importDbHost} -U ${importDbUsername} -P ${importDbPassword} -Q &quot;RESTORE DATABASE [${dbName}_${importEntityId}] FROM DISK = N'C:\Archivos de programa\Microsoft SQL Server\MSSQL.2\MSSQL\Backup\${dbName}_${importId}.bak' WITH FILE=1, MOVE N'${dbName}_000' TO N'C:\Archivos de programa\Microsoft SQL Server\MSSQL.2\MSSQL\DATA\${dbName}_${importEntityId}', MOVE N'${dbName}_000_log' TO N'C:\Archivos de programa\Microsoft SQL Server\MSSQL.2\MSSQL\DATA\${dbName}_${importEntityId}.log', NOUNLOAD,REPLACE,STATS=10&quot;"/>
+	    <property name="customImportCommands">
+	    	<map>
+				<entry key="archivo" value="osql -S ${importDbHost} -U ${importDbUsername} -P ${importDbPassword} -Q &quot;RESTORE DATABASE [archivo_${importEntityId}] FROM DISK = N'C:\Archivos de programa\Microsoft SQL Server\MSSQL.2\MSSQL\Backup\archivo_${importId}.bak' WITH FILE=1, MOVE N'archivo_000' TO N'C:\Archivos de programa\Microsoft SQL Server\MSSQL.2\MSSQL\DATA\archivo_${importEntityId}.mdf', MOVE N'archivo_000_log' TO N'C:\Archivos de programa\Microsoft SQL Server\MSSQL.2\MSSQL\DATA\archivo_${importEntityId}_log.ldf', MOVE N'sysft_ARCHIVOCTLG' TO N'C:\Archivos de programa\Microsoft SQL Server\MSSQL.2\MSSQL\FTData\ARCHIVOCTLG__${importEntityId}_0000', NOUNLOAD,REPLACE,STATS=10&quot;"/>
+	    	</map>
+	    </property>
+		<property name="exportCommand" value="osql -S ${exportDbHost} -U ${exportDbUsername} -P ${exportDbPassword} -Q &quot;BACKUP DATABASE [${dbName}_${exportEntityId}] TO DISK = N'C:\Archivos de programa\Microsoft SQL Server\MSSQL.2\MSSQL\Backup\${dbName}_${importId}.bak' WITH NOFORMAT, NOINIT, NAME = N'${dbName}_${importId}', SKIP, NOREWIND, NOUNLOAD, STATS = 10&quot;"/>
+	</bean>
+
+	<bean id="dbExportManagers" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="db2"><ref bean="dbExportManagerDB2"/></entry>
+				<entry key="oracle"><ref bean="dbExportManagerOracle" /></entry>
+				<entry key="postgresql"><ref bean="dbExportManagerPostgreSQL" /></entry>
+				<entry key="sqlserver"><ref bean="dbExportManagerSQLServer" /></entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="repoExportManager" class="ieci.tecdoc.sgm.admsistema.proceso.managers.RepoExportManagerImpl">
+		<!--
+			En Windows se debe configurar el parámetro "directory" entrecomillado:
+				&quot;${directory}&quot;
+		 -->
+		<property name="importCommand" value="wput --proxy=off ${directory} ftp://${importFtpUsername}:${importFtpPassword}@${importFtpHost}"/>
+		<property name="exportCommand" value="wget -N -r -l inf -d --ftp-user=${exportFtpUsername} --ftp-password=${exportFtpPassword} -P ${directory} ftp://${exportFtpHost}/${path}"/>
+	</bean>
+
+	<bean id="exportProcess" class="ieci.tecdoc.sgm.admsistema.proceso.exportacion.ExportProcessImpl">
+		<property name="dbExportManagersMap" ref="dbExportManagers"/>
+		<property name="repoExportManager" ref="repoExportManager"/>
+		<property name="dbNames" value="archivo,eTramitacion,registro,tramitador,fwktd-audit,fwktd-sir"/>
+	</bean>
+
+	<bean id="importProcess" class="ieci.tecdoc.sgm.admsistema.proceso.importacion.ImportProcessImpl">
+		<property name="dbExportManagersMap" ref="dbExportManagers"/>
+		<property name="repoExportManager" ref="repoExportManager"/>
+		<property name="dbNames" value="archivo,eTramitacion,registro,tramitador,fwktd-audit,fwktd-sir"/>
+		<property name="repositoryDbName" value="registro"/>
+	</bean>
+
+	<bean id="cloneProcess" class="ieci.tecdoc.sgm.admsistema.proceso.clonar.CloneProcessImpl">
+		<property name="dbExportManagersMap" ref="dbExportManagers"/>
+		<property name="repoExportManager" ref="repoExportManager"/>
+		<property name="dbNames" value="archivo,eTramitacion,registro,tramitador,fwktd-audit,fwktd-sir"/>
+		<property name="repositoryDbName" value="registro"/>
+	</bean>
+
+	<bean id="deleteProcess" class="ieci.tecdoc.sgm.admsistema.proceso.borrar.DeleteProcessImpl">
+		<property name="dbExportManagersMap" ref="dbExportManagers"/>
+		<property name="repoExportManager" ref="repoExportManager"/>
+		<property name="dbNames" value="archivo,eTramitacion,registro,tramitador,fwktd-audit,fwktd-sir"/>
+	</bean>
+
+</beans>

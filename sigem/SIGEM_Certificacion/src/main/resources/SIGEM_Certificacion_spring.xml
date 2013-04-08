@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"
+[
+<!-- datos de cabecera soap -->
+<!ENTITY NOMBRE_CABECERA "cabecera-implementacion">
+<!ENTITY ARGS_CABECERA
+"<constructor-arg type='java.lang.String' index='0' value='namespace'/>
+<constructor-arg type='java.lang.String' index='1' value='&NOMBRE_CABECERA;'/>">
+
+<!ENTITY CLASS_HEADER "org.apache.axis.message.SOAPHeaderElement">
+
+<!-- APIs -->
+<!ENTITY API "API">
+
+<!-- implementaciones -->
+<!ENTITY DEFECTO "defecto">
+<!ENTITY IMPL1 "impl1">
+<!ENTITY IMPL2 "impl2">
+<!ENTITY IMPL3 "impl3">
+<!ENTITY IMPL4 "impl4">
+<!ENTITY SIGEM "SIGEM">
+
+<!-- servicios -->
+<!ENTITY GENERICO "generico">
+<!ENTITY CONSOLIDACION "consolidacion">
+
+<!-- SERVICIO DE AUTENTICACION DE USUARIOS -->
+<!ENTITY CERTIFICACION_PAGO_MANAGER "SIGEM_CertificacionPagoManager">
+]>
+
+<beans>
+
+<!-- ******************************************************************************************************* -->
+<!-- ********** CABECERAS DE INVOCACION REMOTA  ************************************************************ -->
+<!-- ******************************************************************************************************* -->
+<!-- Cabecera para la invocacion remota de la implementacion de SIGEM -->
+<bean id="&SIGEM;.&API;" class="&CLASS_HEADER;" lazy-init="true">
+&ARGS_CABECERA;
+<property name="value" value="&SIGEM;.&API;"/>
+</bean>
+
+<!-- ******************************************************************************************************* -->
+<!-- ********** CERTIFICACION DE PAGOS ********************************************************************* -->
+<!-- ******************************************************************************************************* -->
+<alias name="&CERTIFICACION_PAGO_MANAGER;.&SIGEM;.&API;" alias="CERTIFICACION_PAGO_MANAGER_DEFAULT_IMPL"/>
+
+<bean id="&CERTIFICACION_PAGO_MANAGER;.&SIGEM;.&API;" class="ieci.tecdoc.sgm.certificacion.manager.CertificacionPagoManager" lazy-init="true">
+</bean>
+
+<!-- ******************************************************************************************************* -->
+
+</beans>

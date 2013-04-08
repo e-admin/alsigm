@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AplicacionExternaConnectorWS"
+	targetNamespace="http://service.ws.aplicacionExternaConnector.csv.fwktd.tecdoc.ieci.es/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="http://service.ws.aplicacionExternaConnector.csv.fwktd.tecdoc.ieci.es/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<xsd:schema
+			xmlns:tns="http://service.ws.aplicacionExternaConnector.csv.fwktd.tecdoc.ieci.es/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified"
+			elementFormDefault="qualified"
+			targetNamespace="http://service.ws.aplicacionExternaConnector.csv.fwktd.tecdoc.ieci.es/">
+			<xsd:element name="existeDocumento" type="tns:existeDocumento" />
+			<xsd:complexType name="existeDocumento">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="csv" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="existeDocumentoResponse" type="tns:existeDocumentoResponse" />
+			<xsd:complexType name="existeDocumentoResponse">
+				<xsd:sequence>
+					<xsd:element name="return" type="xsd:boolean" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="getContenidoDocumento" type="tns:getContenidoDocumento" />
+			<xsd:complexType name="getContenidoDocumento">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="csv" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="getContenidoDocumentoResponse" type="tns:getContenidoDocumentoResponse" />
+			<xsd:complexType name="getContenidoDocumentoResponse">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="return" type="xsd:base64Binary" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="getContenidoDocumento">
+		<wsdl:part name="parameters" element="tns:getContenidoDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="existeDocumento">
+		<wsdl:part name="parameters" element="tns:existeDocumento">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getContenidoDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:getContenidoDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="existeDocumentoResponse">
+		<wsdl:part name="parameters" element="tns:existeDocumentoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="AplicacionExternaConnectorWS">
+		<wsdl:operation name="existeDocumento">
+			<wsdl:input name="existeDocumento" message="tns:existeDocumento">
+			</wsdl:input>
+			<wsdl:output name="existeDocumentoResponse" message="tns:existeDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getContenidoDocumento">
+			<wsdl:input name="getContenidoDocumento" message="tns:getContenidoDocumento">
+			</wsdl:input>
+			<wsdl:output name="getContenidoDocumentoResponse"
+				message="tns:getContenidoDocumentoResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="AplicacionExternaConnectorWSSoapBinding" type="tns:AplicacionExternaConnectorWS">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="existeDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="existeDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="existeDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getContenidoDocumento">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getContenidoDocumento">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getContenidoDocumentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="AplicacionExternaConnectorWSService">
+		<wsdl:port name="AplicacionExternaConnectorWS" binding="tns:AplicacionExternaConnectorWSSoapBinding">
+			<soap:address location="http://localhost:9090/fwktd-csv-aplicacionExternaConnector-ws" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

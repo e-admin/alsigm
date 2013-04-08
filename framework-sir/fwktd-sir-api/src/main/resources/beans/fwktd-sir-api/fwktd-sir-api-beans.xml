@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Servicio de intercambio registral -->
+	<bean id="fwktd_sir_servicioIntercambioRegistralImpl"
+		class="es.ieci.tecdoc.fwktd.sir.api.service.impl.ServicioIntercambioRegistralImpl">
+		<property name="asientoRegistralManager" ref="fwktd_sir_asientoRegistralManager" />
+		<property name="anexoManager" ref="fwktd_sir_anexoManager" />
+		<property name="interesadoManager" ref="fwktd_sir_interesadoManager" />
+		<property name="trazabilidadManager" ref="fwktd_sir_trazabilidadManager" />
+		<property name="recepcionManager" ref="fwktd_sir_recepcionManager" />
+		<!-- 
+		<property name="validacionAnexosManager" ref="fwktd_sir_validacionAnexosManager" />
+		-->
+	</bean>
+
+</beans>

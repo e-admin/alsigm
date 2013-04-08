@@ -1,0 +1,5 @@
+<Context docBase="ISicres" path="/ISicres" reloadable="true">
+
+		<ResourceLink global="jdbc/ISicres" name="ISicres" type="javax.sql.DataSource"/>
+		
+</Context>

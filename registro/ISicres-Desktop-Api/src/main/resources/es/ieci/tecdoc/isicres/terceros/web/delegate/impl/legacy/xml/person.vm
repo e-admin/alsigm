@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Persona sesionId="$!configuracionUsuario.sessionId" bloqueada="0">
+ 	<Id>$!entity.id</Id>
+#if(${entity.class.name}=="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoFisicoVO")
+ 	<Tipo>1</Tipo>
+ 	<Nombre>$!entity.nombre</Nombre>
+ 	<Apellido1>$!entity.apellido1</Apellido1>
+ 	<Apellido2>$!entity.apellido2</Apellido2>
+#end
+#if(${entity.class.name}=="es.ieci.tecdoc.isicres.terceros.business.vo.TerceroValidadoJuridicoVO")
+ 	<Tipo>2</Tipo>
+ 	<Nombre>$!entity.nombre</Nombre>
+#end
+#if($!entity.tipoDocumento.id)
+ 	<TipoDoc>$!entity.tipoDocumento.id</TipoDoc>
+ 	<NIF>$!entity.numeroDocumento</NIF>
+#end
+ 	<Domicilios>
+#foreach($domicilio in ${entity.getDireccionesFisicas()})
+ 		<Domicilio>
+ 			<Id>$!domicilio.id</Id>
+ 			<Direccion>$!domicilio.direccion</Direccion>
+ 			<Poblacion>$!domicilio.ciudad</Poblacion>
+ 			<CodPostal>$!domicilio.codigoPostal</CodPostal>
+ 			<Provincia>$!domicilio.provincia</Provincia>
+#if($domicilio.isPrincipal())
+ 			<Preferencia>1</Preferencia>
+#else
+ 			<Preferencia>0</Preferencia>
+#end
+ 		</Domicilio>
+#end
+ 	</Domicilios>
+ 	<Telematicas>
+#foreach($telematica in ${entity.getDireccionesTelematicas()})
+ 		<Telematica>
+ 			<IdTel>$!telematica.id</IdTel>
+ 			<DireccionTel>$!telematica.direccion</DireccionTel>
+ 			<TipoTel>$!telematica.tipoDireccionTelematica.id</TipoTel>
+#if($telematica.isPrincipal())
+ 			<PreferenciaTel>1</PreferenciaTel>
+#else
+ 			<PreferenciaTel>0</PreferenciaTel>
+#end
+ 		</Telematica>
+#end
+ 	</Telematicas>
+</Persona>
