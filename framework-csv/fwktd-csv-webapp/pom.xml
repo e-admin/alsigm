@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-csv</groupId>
-		<artifactId>fwktd-csv-parent</artifactId>
+		<artifactId>fwktd-csv</artifactId>
 		<version>1.1</version>
 	</parent>
 
@@ -14,7 +14,14 @@
 
 	<properties>
 		<unpack.config.directory>${project.build.directory}/generated-resources</unpack.config.directory>
-	</properties>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>uji</id>
+      <url>http://devel.uji.es/nexus/content/groups/public/</url>
+    </repository>
+  </repositories>
 
 	<dependencies>
 

@@ -3,7 +3,7 @@
 
 	<parent>
 		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-time</groupId>
-		<artifactId>fwktd-time-parent</artifactId>
+		<artifactId>fwktd-time</artifactId>
 		<version>0.5</version>
 	</parent>
 
@@ -54,8 +54,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>oracle</groupId>
-			<artifactId>ojdbc</artifactId>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
 			<version>${ojdbc.version}</version>
 			<scope>test</scope>
 		</dependency>
@@ -72,7 +72,7 @@
 			<scope>test</scope>
 	    </dependency>
 		<dependency>
-		  <groupId>com.ibm</groupId>
+		  <groupId>com.ibm.db2.jcc</groupId>
 		  <artifactId>db2jcc</artifactId>
 		  <version>${db2jcc.version}</version>
 			<scope>test</scope>

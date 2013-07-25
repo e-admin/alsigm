@@ -16,16 +16,17 @@
 		<maven>2.0.9</maven>
 	</prerequisites>
 
+
 	<distributionManagement>
 		<repository>
-			<id>inhouse_releases</id>
+			<id>releases</id>
 			<name>Repositorio tecdoc de releases</name>
-			<url>http://10.228.8.230:8081/nexus/content/repositories/releases/</url>
+			<url>http://devel.uji.es/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
-			<id>inhouse_snapshots</id>
+			<id>snapshots</id>
 			<name>Repositorio tecdoc de snapshots</name>
-			<url>http://10.228.8.230:8081/nexus/content/repositories/snapshots/</url>
+			<url>http://devel.uji.es/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 

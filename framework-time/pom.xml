@@ -3,8 +3,8 @@
 
 	<parent>
 		<groupId>es.ieci.tecdoc.fwktd</groupId>
-		<artifactId>fwktd-parent</artifactId>
-		<version>0.5</version>
+		<artifactId>fwktd</artifactId>
+		<version>0.7</version>
 	</parent>
 
 	<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-time</groupId>
@@ -16,6 +16,19 @@
 	<name>Lanzador de modulo de tiempo</name>
 	<description>Modulo lanzador del componente de Tiempo</description>
 
+	<properties>
+		<!-- Framework dependencies -->
+		<fwktd.version>0.7</fwktd.version>
+
+		<!-- Third party dependencies -->
+		<xbean.spring.version>3.6</xbean.spring.version>
+		<postgresql.version>8.3-603.jdbc3</postgresql.version>
+		<ojdbc.version>10.2.0.2.0</ojdbc.version>
+		<jtds.version>1.2.4</jtds.version>
+		<db2jcc.version>3.50.152</db2jcc.version>
+		<commons.net.version>2.0</commons.net.version>
+	</properties>
+
 	<profiles>
 		<profile>
 			<id>generate-jars</id>
@@ -26,7 +39,6 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
-				<module>fwktd-time-parent</module>
 				<module>fwktd-time-resources</module>
 				<module>fwktd-time-service</module>
 			</modules>
@@ -40,7 +52,6 @@
 				</property>
 			</activation>
 			<modules>
-				<module>fwktd-time-parent</module>
 				<module>fwktd-time-resources</module>
 				<module>fwktd-time-service</module>
 				<module>fwktd-time-config</module>
@@ -77,7 +88,5 @@
 				</plugins>
 			</build>
 		</profile>
-
 	</profiles>
-
 </project>

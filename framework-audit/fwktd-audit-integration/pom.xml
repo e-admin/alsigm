@@ -3,7 +3,7 @@
 
 	<parent>
 		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
-		<artifactId>fwktd-audit-parent</artifactId>
+		<artifactId>fwktd-audit</artifactId>
 		<version>0.7</version>
 	</parent>
 	<artifactId>fwktd-audit-integration</artifactId>
