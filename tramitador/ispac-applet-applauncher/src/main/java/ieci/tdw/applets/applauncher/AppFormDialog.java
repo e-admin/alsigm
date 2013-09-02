@@ -24,32 +24,35 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-public class AppFormDialog extends JDialog {
+final class AppFormDialog extends JDialog {
 
-	public static final int OK 		= 0;
-	public static final int CANCEL 	= 1;
-	
-	private JTextField docTypeField = new JTextField();
-	private JTextField appPathField = new JTextField();
-	private boolean exists = false; 
+	private static final long serialVersionUID = 7864450586642936806L;
+
+	static final int OK = 0;
+	private static final int CANCEL = 1;
+
+	private final JTextField docTypeField = new JTextField();
+	private final JTextField appPathField = new JTextField();
+	private boolean exists = false;
 	private int result = CANCEL;
-	
-	public AppFormDialog(String docType, String appPath) { 
+
+	private AppFormDialog(final String docType, final String appPath) {
 		super();
 
-		this.setTitle(AppLauncherMessages.getString("appLauncherApplet.form.title"));
+		this.setTitle(AppLauncherMessages.getString("appLauncherApplet.form.title")); //$NON-NLS-1$
 		this.setModal(true);
-		
-		if ( (docType != null) && (docType.trim().length() > 0)
-				&& (appPath != null) && (appPath.trim().length() > 0) ) {
-			exists = true;
+
+		if ( docType != null && docType.trim().length() > 0
+				&& appPath != null && appPath.trim().length() > 0 ) {
+			this.exists = true;
 			setDocType(docType);
 			setAppPath(appPath);
 		}
-		
-		Container contentPane = getContentPane();
+
+		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(getNorthPanel(), BorderLayout.NORTH);
 		contentPane.add(getCenterPanel(), BorderLayout.CENTER);
@@ -57,8 +60,7 @@ public class AppFormDialog extends JDialog {
 
 		this.setResizable(false);
 		if (JDialog.isDefaultLookAndFeelDecorated()) {
-			boolean supportsWindowDecorations = UIManager.getLookAndFeel()
-					.getSupportsWindowDecorations();
+			final boolean supportsWindowDecorations = UIManager.getLookAndFeel().getSupportsWindowDecorations();
 			if (supportsWindowDecorations) {
 				this.setUndecorated(true);
 				getRootPane().setWindowDecorationStyle(JRootPane.QUESTION_DIALOG);
@@ -66,199 +68,216 @@ public class AppFormDialog extends JDialog {
 		}
 		this.pack();
 		this.setLocationRelativeTo(null);
-		
+
 		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent we) {
+			@Override
+			public void windowClosing(final WindowEvent we) {
 				setResult(CANCEL);
 			}
 		});
 	}
-	
-	
-    public String getAppPath() {
-		return appPathField.getText();
+
+
+    String getAppPath() {
+		return this.appPathField.getText();
 	}
 
-	public void setAppPath(String appPath) {
-		appPathField.setText(appPath);
+	void setAppPath(final String appPath) {
+		this.appPathField.setText(appPath);
 	}
 
-	public String getDocType() {
-		return docTypeField.getText();
+	String getDocType() {
+		return this.docTypeField.getText();
 	}
 
-	public void setDocType(String docType) {
-		docTypeField.setText(docType);
+	void setDocType(final String docType) {
+		this.docTypeField.setText(docType);
 	}
 
-	public int getResult() {
-		return result;
+	int getResult() {
+		return this.result;
 	}
 
-	public void setResult(int result) {
+	void setResult(final int result) {
 		this.result = result;
 	}
 
-	protected JPanel getNorthPanel() {
-    	
-    	JPanel panel = new JPanel();
+	private static JPanel getNorthPanel() {
+
+	final JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        JLabel appPathLabel = new JLabel(
-        		AppLauncherMessages.getString("appLauncherApplet.form.message"));
-        
+        final JLabel appPathLabel = new JLabel(
+		AppLauncherMessages.getString("appLauncherApplet.form.message") //$NON-NLS-1$
+		);
+
         panel.add(appPathLabel);
-    	
+
         return panel;
     }
 
-    protected JPanel getCenterPanel() {
-    	
-    	final JPanel panel = new JPanel();
-    	panel.setLayout(new GridBagLayout());
-    	panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-    	
-    	GridBagConstraints c = new GridBagConstraints();
-    	c.fill = GridBagConstraints.HORIZONTAL;
-    	c.insets = new Insets(0, 5, 0, 5);
-    	
-    	if (exists) {
-	        JLabel docTypeLabel = new JLabel(
-	        		AppLauncherMessages.getString("appLauncherApplet.form.docTypeLabel"), 
-	        		JLabel.TRAILING);
-    		
+    private JPanel getCenterPanel() {
+
+	final JPanel panel = new JPanel();
+	panel.setLayout(new GridBagLayout());
+	panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+
+	final GridBagConstraints c = new GridBagConstraints();
+	c.fill = GridBagConstraints.HORIZONTAL;
+	c.insets = new Insets(0, 5, 0, 5);
+
+	if (this.exists) {
+	        final JLabel docTypeLabel = new JLabel(
+			AppLauncherMessages.getString("appLauncherApplet.form.docTypeLabel"), //$NON-NLS-1$
+			SwingConstants.TRAILING
+		);
+
 	        c.gridx = 0;
-	    	c.gridy = 0;
+		c.gridy = 0;
 	        panel.add(docTypeLabel, c);
 
-	        JLabel docTypeValueLabel = new JLabel(getDocType(), JLabel.LEFT);
+	        final JLabel docTypeValueLabel = new JLabel(getDocType(), SwingConstants.LEFT);
 	        c.gridx = 1;
-	    	c.gridy = 0;
+		c.gridy = 0;
 	        panel.add(docTypeValueLabel, c);
-	        
-    	} else {
-	    	docTypeField.setColumns(10);
-	
-	        JLabel docTypeLabel = new JLabel(
-	        		AppLauncherMessages.getString("appLauncherApplet.form.docTypeLabel"), 
-	        		JLabel.TRAILING);
-	        docTypeLabel.setLabelFor(docTypeField);
-	
+
+	}
+	else {
+		this.docTypeField.setColumns(10);
+
+	        final JLabel docTypeLabel = new JLabel(
+			AppLauncherMessages.getString("appLauncherApplet.form.docTypeLabel"), //$NON-NLS-1$
+			SwingConstants.TRAILING
+		);
+	        docTypeLabel.setLabelFor(this.docTypeField);
+
 	        c.gridx = 0;
-	    	c.gridy = 0;
+		c.gridy = 0;
 	        panel.add(docTypeLabel, c);
 
 	        c.gridx = 1;
-	    	c.gridy = 0;
-	        panel.add(docTypeField, c);
-    	}
+		c.gridy = 0;
+	        panel.add(this.docTypeField, c);
+	}
 
-    	appPathField.setColumns(25);
+	this.appPathField.setColumns(25);
 
-        JLabel appPathLabel = new JLabel(
-        		AppLauncherMessages.getString("appLauncherApplet.form.appLabel"), 
-        		JLabel.TRAILING);
-        appPathLabel.setLabelFor(appPathField);
+        final JLabel appPathLabel = new JLabel(
+		AppLauncherMessages.getString("appLauncherApplet.form.appLabel"), //$NON-NLS-1$
+		SwingConstants.TRAILING
+		);
+        appPathLabel.setLabelFor(this.appPathField);
 
         c.gridx = 0;
-    	c.gridy = 1;
+	c.gridy = 1;
         panel.add(appPathLabel, c);
 
         c.gridx = 1;
-    	c.gridy = 1;
-    	panel.add(appPathField, c);
+	c.gridy = 1;
+	panel.add(this.appPathField, c);
 
-        URL imgURL = AppFormDialog.class.getResource("images/Open16.gif");
-        JButton openButton = new JButton(new ImageIcon(imgURL));
+        final URL imgURL = AppFormDialog.class.getResource("images/Open16.gif"); //$NON-NLS-1$
+        final JButton openButton = new JButton(new ImageIcon(imgURL));
         openButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fc = new JFileChooser();
-	            int returnVal = fc.showOpenDialog(panel);
+			public void actionPerformed(final ActionEvent e) {
+				final JFileChooser fc = new JFileChooser();
+	            final int returnVal = fc.showOpenDialog(panel);
 	            if (returnVal == JFileChooser.APPROVE_OPTION) {
-	                File file = fc.getSelectedFile();
+	                final File file = fc.getSelectedFile();
 	                if (file != null) {
-	                	AppFormDialog.this.setAppPath(file.getAbsolutePath());
+				AppFormDialog.this.setAppPath(file.getAbsolutePath());
 	                }
 	            }
 			}
-    	});
+	});
 
         c.gridx = 2;
-    	c.gridy = 1;
+	c.gridy = 1;
         panel.add(openButton, c);
-    	
+
         return panel;
     }
 
-	protected JPanel getButtonsPanel() {
-		
-    	JPanel panel = new JPanel();
-    	panel.setLayout(new FlowLayout());
+	private JPanel getButtonsPanel() {
 
-        JButton okButton = new JButton(
-        		AppLauncherMessages.getString("appLauncherApplet.button.ok"));
+	final JPanel panel = new JPanel();
+	panel.setLayout(new FlowLayout());
+
+        final JButton okButton = new JButton(
+		AppLauncherMessages.getString("appLauncherApplet.button.ok") //$NON-NLS-1$
+		);
         okButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
+			public void actionPerformed(final ActionEvent e) {
+
+
 				if (getDocType().trim().length() == 0) {
 					JOptionPane.showMessageDialog(
-							AppFormDialog.this,  
-							AppLauncherMessages.getString(
-									"appLauncherApplet.form.error.docType.empty"), 
-							AppLauncherMessages.getString(
-									"appLauncherApplet.error.error.title"), 
-							JOptionPane.ERROR_MESSAGE);
-				} else if (getAppPath().trim().length() == 0) {
+						AppFormDialog.this,
+						AppLauncherMessages.getString(
+							"appLauncherApplet.form.error.docType.empty" //$NON-NLS-1$
+						),
+						AppLauncherMessages.getString(
+							"appLauncherApplet.error.error.title" //$NON-NLS-1$
+						),
+						JOptionPane.ERROR_MESSAGE
+					);
+				}
+				else if (getAppPath().trim().length() == 0) {
 					JOptionPane.showMessageDialog(
-							AppFormDialog.this,  
-							AppLauncherMessages.getString(
-									"appLauncherApplet.form.error.application.empty"), 
-							AppLauncherMessages.getString(
-									"appLauncherApplet.error.error.title"), 
-							JOptionPane.ERROR_MESSAGE);
-				} else if (!AppLauncherAppletProperties.checkAppPath(getAppPath())) {
+						AppFormDialog.this,
+						AppLauncherMessages.getString(
+							"appLauncherApplet.form.error.application.empty" //$NON-NLS-1$
+						),
+						AppLauncherMessages.getString(
+							"appLauncherApplet.error.error.title" //$NON-NLS-1$
+						),
+						JOptionPane.ERROR_MESSAGE
+					);
+				}
+				else if (!AppLauncherAppletProperties.checkAppPath(getAppPath())) {
 					JOptionPane.showMessageDialog(
-							AppFormDialog.this,  
-							AppLauncherMessages.getString(
-									"appLauncherApplet.error.invalidApp"), 
-							AppLauncherMessages.getString(
-									"appLauncherApplet.error.error.title"), 
-							JOptionPane.ERROR_MESSAGE);
-				} else {
+						AppFormDialog.this,
+						AppLauncherMessages.getString(
+							"appLauncherApplet.error.invalidApp" //$NON-NLS-1$
+						),
+						AppLauncherMessages.getString(
+							"appLauncherApplet.error.error.title" //$NON-NLS-1$
+						),
+						JOptionPane.ERROR_MESSAGE
+					);
+				}
+				else {
 					AppFormDialog.this.setResult(OK);
 					AppFormDialog.this.dispose();
 				}
 			}
-    	});
+	});
         panel.add(okButton);
 
-        JButton cancelButton = new JButton(
-        		AppLauncherMessages.getString("appLauncherApplet.button.cancel"));
+        final JButton cancelButton = new JButton(
+		AppLauncherMessages.getString("appLauncherApplet.button.cancel") //$NON-NLS-1$
+		);
         cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				AppFormDialog.this.setDocType(null);
 				AppFormDialog.this.setAppPath(null);
 				AppFormDialog.this.setResult(CANCEL);
 				AppFormDialog.this.dispose();
 			}
-    	});
+	});
         panel.add(cancelButton);
 
         return panel;
 	}
 
-	public static AppFormDialog showDialog() {
+	static AppFormDialog showDialog() {
 		return showDialog(null, null);
 	}
 
-	public static AppFormDialog showDialog(String docType, String appPath) {
-
-		AppFormDialog dialog = new AppFormDialog(docType, appPath);
-		dialog.show();
-
+	static AppFormDialog showDialog(final String docType, final String appPath) {
+		final AppFormDialog dialog = new AppFormDialog(docType, appPath);
+		dialog.setVisible(true);
 		return dialog;
 	}
-
 }
