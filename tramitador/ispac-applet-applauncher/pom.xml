@@ -35,6 +35,16 @@
 							<goal>single</goal>
 						</goals>
 						<phase>install</phase>
+						<configuration>
+							<archive>
+								<manifestEntries>
+									<Trusted-Library>true</Trusted-Library>
+									<Permissions>all-permissions</Permissions>
+									<Codebase>*</Codebase>
+									<Sealed>true</Sealed>
+								</manifestEntries>
+							</archive>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -58,6 +68,21 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Trusted-Library>true</Trusted-Library>
+							<Permissions>all-permissions</Permissions>
+							<Codebase>*</Codebase>
+							<Sealed>true</Sealed>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		
 		</plugins>
 	</build>
 

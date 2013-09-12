@@ -20,106 +20,118 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-public class AppChooserDialog extends JDialog {
+final class AppChooserDialog extends JDialog {
 
-	public static final int OK 		= 0;
-	public static final int CANCEL 	= 1;
-	
-	private JTextField appPathField = new JTextField();
+	private static final long serialVersionUID = 7159391470426550788L;
+
+	private static final int OK = 0;
+	static final int CANCEL = 1;
+
+	private final JTextField appPathField = new JTextField();
 	private int result = CANCEL;
-	
+
 	private String extension = null;
-	
-	public AppChooserDialog(String extension) { 
+
+	private AppChooserDialog(final String extension, final String defaultAppPath) {
 		super();
 
+		if (defaultAppPath != null) {
+			this.appPathField.setText(defaultAppPath);
+		}
+
 		this.extension = extension;
-		this.setTitle(AppLauncherMessages.getString("appLauncherApplet.select.title"));
-		this.setModal(true);
-		
-		Container contentPane = getContentPane();
+		setTitle(AppLauncherMessages.getString("appLauncherApplet.select.title")); //$NON-NLS-1$
+		setModal(true);
+
+		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(getNorthPanel(), BorderLayout.NORTH);
 		contentPane.add(getCenterPanel(), BorderLayout.CENTER);
 		contentPane.add(getButtonsPanel(), BorderLayout.SOUTH);
 
-		this.setResizable(false);
+		setResizable(false);
 		if (JDialog.isDefaultLookAndFeelDecorated()) {
-			boolean supportsWindowDecorations = UIManager.getLookAndFeel()
+			final boolean supportsWindowDecorations = UIManager.getLookAndFeel()
 					.getSupportsWindowDecorations();
 			if (supportsWindowDecorations) {
-				this.setUndecorated(true);
+				setUndecorated(true);
 				getRootPane().setWindowDecorationStyle(JRootPane.QUESTION_DIALOG);
 			}
 		}
-		this.pack();
-		this.setLocationRelativeTo(null);
-		
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent we) {
+		pack();
+		setLocationRelativeTo(null);
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(final WindowEvent we) {
 				setResult(CANCEL);
 			}
 		});
 	}
-	
-	
-    public String getAppPath() {
-		return appPathField.getText();
+
+
+    String getAppPath() {
+		return this.appPathField.getText();
 	}
 
 
-	public void setAppPath(String appPath) {
-		appPathField.setText(appPath);
+	void setAppPath(final String appPath) {
+		this.appPathField.setText(appPath);
 	}
 
-	public int getResult() {
-		return result;
+	int getResult() {
+		return this.result;
 	}
 
-	public void setResult(int result) {
+	void setResult(final int result) {
 		this.result = result;
 	}
 
-	protected JPanel getNorthPanel() {
-    	
-    	JPanel panel = new JPanel();
+	private JPanel getNorthPanel() {
+
+    	final JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        JLabel appPathLabel = new JLabel(
-        		AppLauncherMessages.getString("appLauncherApplet.select.message",
-        				new Object [] { extension }));
-        
+        final JLabel appPathLabel = new JLabel(
+    		AppLauncherMessages.getString(
+				"appLauncherApplet.select.message", //$NON-NLS-1$
+				new Object [] { this.extension }
+			)
+		);
+
         panel.add(appPathLabel);
-    	
+
         return panel;
     }
 
-    protected JPanel getCenterPanel() {
-    	
+    private JPanel getCenterPanel() {
+
     	final JPanel panel = new JPanel();
     	panel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        appPathField.setColumns(20);
+        this.appPathField.setColumns(20);
 
-        JLabel appPathLabel = new JLabel(
-        		AppLauncherMessages.getString("appLauncherApplet.select.appLabel"), 
-        		JLabel.TRAILING);
-        appPathLabel.setLabelFor(appPathField);
+        final JLabel appPathLabel = new JLabel(
+    		AppLauncherMessages.getString("appLauncherApplet.select.appLabel"), //$NON-NLS-1$
+    		SwingConstants.TRAILING
+		);
+        appPathLabel.setLabelFor(this.appPathField);
 
         panel.add(appPathLabel);
-        panel.add(appPathField);
+        panel.add(this.appPathField);
 
-        URL imgURL = AppChooserDialog.class.getResource("images/Open16.gif");
-        JButton openButton = new JButton(new ImageIcon(imgURL));
+        final URL imgURL = AppChooserDialog.class.getResource("images/Open16.gif"); //$NON-NLS-1$
+        final JButton openButton = new JButton(new ImageIcon(imgURL));
         openButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fc = new JFileChooser();
-	            int returnVal = fc.showOpenDialog(panel);
+			public void actionPerformed(final ActionEvent e) {
+				final JFileChooser fc = new JFileChooser();
+	            final int returnVal = fc.showOpenDialog(panel);
 	            if (returnVal == JFileChooser.APPROVE_OPTION) {
-	                File file = fc.getSelectedFile();
+	                final File file = fc.getSelectedFile();
 	                if (file != null) {
 	                	AppChooserDialog.this.setAppPath(file.getAbsolutePath());
 	                }
@@ -128,29 +140,31 @@ public class AppChooserDialog extends JDialog {
     	});
 
         panel.add(openButton);
-    	
+
         return panel;
     }
 
-	protected JPanel getButtonsPanel() {
-		
-    	JPanel panel = new JPanel();
+	private JPanel getButtonsPanel() {
+
+    	final JPanel panel = new JPanel();
     	panel.setLayout(new FlowLayout());
 
-        JButton okButton = new JButton(
-        		AppLauncherMessages.getString("appLauncherApplet.button.ok"));
+        final JButton okButton = new JButton(
+    		AppLauncherMessages.getString("appLauncherApplet.button.ok") //$NON-NLS-1$
+		);
         okButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				AppChooserDialog.this.setResult(OK);
 				AppChooserDialog.this.dispose();
 			}
     	});
         panel.add(okButton);
 
-        JButton cancelButton = new JButton(
-        		AppLauncherMessages.getString("appLauncherApplet.button.cancel"));
+        final JButton cancelButton = new JButton(
+    		AppLauncherMessages.getString("appLauncherApplet.button.cancel") //$NON-NLS-1$
+		);
         cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				AppChooserDialog.this.setAppPath(null);
 				AppChooserDialog.this.setResult(CANCEL);
 				AppChooserDialog.this.dispose();
@@ -161,11 +175,9 @@ public class AppChooserDialog extends JDialog {
         return panel;
 	}
 
-	public static AppChooserDialog showDialog(String extension) {
-
-		AppChooserDialog dialog = new AppChooserDialog(extension);
-		dialog.show();
-
+	static AppChooserDialog showDialog(final String extension, final String defaultAppPath) {
+		final AppChooserDialog dialog = new AppChooserDialog(extension, defaultAppPath);
+		dialog.setVisible(true);
 		return dialog;
 	}
 }

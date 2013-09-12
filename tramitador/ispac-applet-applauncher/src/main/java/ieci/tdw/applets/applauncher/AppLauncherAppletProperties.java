@@ -1,79 +1,98 @@
 package ieci.tdw.applets.applauncher;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 
-public class AppLauncherAppletProperties extends java.util.Properties {
+final class AppLauncherAppletProperties {
 
-	/** Nombre del fichero de configuración. */
-	protected static final String CFG_FILE_NAME = ".applauncherapplet";
-	
-	/** Fichero de propiedades. */
-	private File file = null;
-	
-	
+	private final Preferences prefs;
+
 	/**
-	 * Constructor.
-	 * @throws IOException si ocurre algún error.
+	 * Constructor que inicializa las preferencias.
 	 */
-	public AppLauncherAppletProperties() throws IOException {
-		super();
-
-		// Nombre del fichero de configuración
-		String fileName = getCfgFileName();
-		
-		if (fileName != null) {
-			
-			// Obtiene el fichero de propiedades
-			file = new File(fileName);
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-			
-			// Carga los datos del fichero de propiedades
-			load(new FileInputStream(file));
-		}
-	}
-
-	/** 
-	 * Obtiene el nombre completo del fichero de configuración.
-	 * @return Nombre completo del fichero de configuración.
-	 */
-	protected static String getCfgFileName() {
-		return new StringBuffer()
-			.append(System.getProperty("user.home"))
-			.append(File.separator)
-			.append(".applauncherapplet")
-			.toString();
+	AppLauncherAppletProperties() {
+		// Almacena las propiedades en el directorio Home
+		this.prefs = Preferences.userRoot().node(this.getClass().getName());
 	}
 
 	/**
-	 * Guarda las propiedades.
-	 * @throws IOException si ocurre algún error.
+	 * Obtiene el valor de una propiedad.
+	 * @param key	Clave de la propiedad
+	 * @return	Valor encontrado o null en caso contrario
 	 */
-	public void store() throws IOException {
-		OutputStream os = null;
-		
-		try {
-			os = new FileOutputStream(file);
-			store(os, null);
-		} finally {
-			if (os != null) {
-				os.close();
-			}
-		}
+	String getStringProperty(final String key) {
+		return this.prefs.get(key, null);
 	}
 
-	public static boolean checkAppPath(String appPath) {
-		
-		if ( (appPath == null) || (appPath.trim().length() == 0) ) {
+	/**
+	 * Almacena una propiedad.
+	 * @param key
+	 * @param value
+	 */
+	void putStringProperty(final String key, final String value) {
+		this.prefs.put(key, value);
+	}
+
+	/**
+	 * Verifica si una ruta almacenada en una propiedad es un fichero existente en disco.
+	 * En caso contrario suprime la propiedad
+	 * @param path
+	 * @return
+	 */
+	boolean checkPropertyPath(final String key) {
+		if (!checkAppPath(getStringProperty(key))) {
+			this.prefs.remove(key);
 			return false;
 		}
-		
-		File file = new File(appPath);
-		return file.isFile();
+
+		return true;
+	}
+
+	/**
+	 * Obtiene todas las claves del fichero de propiedades
+	 * @return Claves del fichero de propiedades
+	 * @throws BackingStoreException
+	 */
+	String[] getKeys() throws BackingStoreException {
+		return this.prefs.keys();
+	}
+
+	/**
+	 * Vac&iacute;a el fichero de propiedades.
+	 * @throws BackingStoreException
+	 */
+	void clear() throws BackingStoreException {
+		this.prefs.clear();
+	}
+
+	/**
+	 * Obtiene el listado de propiedades almacenadas en el fichero.
+	 * @return	Listado de claves y valores
+	 */
+	String listProperties() {
+		String properties = ""; //$NON-NLS-1$
+		try {
+			for (final String key : this.prefs.keys()) {
+				properties += this.prefs.get(key, null) + "\n"; //$NON-NLS-1$
+			}
+		}
+		catch (final BackingStoreException e) {
+			// Lo ignoramos ya que no deberia de darse
+		}
+
+		return properties;
+	}
+
+	/**
+	 * Verifica si una ruta existe en el disco.
+	 * @param appPath
+	 * @return
+	 */
+	static boolean checkAppPath(final String appPath) {
+		if (appPath == null) {
+			return false;
+		}
+		return new File(appPath).isFile();
 	}
 }
