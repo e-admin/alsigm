@@ -28,6 +28,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * @author juanin
  *
@@ -38,7 +40,28 @@ public class TableJoinFactoryDAO
     private LinkedHashMap mpropertymap;
     private LinkedHashMap mtablejoinedmap;
 
-    public TableJoinFactoryDAO()
+    /**
+     *  Indicador para deshabilitar la llamada a getCatalogEntityDAO en el createTableJoin para
+     *  las tablas añadidas al TableJoinFactoryDAO, y permitir así el uso de esta funcionalidad
+     *  contra una BD que no sea la de ISPAC, ya que dicha llamada provocaría el error SQL de
+     *  tabla SPAC_CT_ENTIDADES no existente.
+     *
+     *  Véase ispac-invesicres, clase ieci.tdw.ispac.ispaclib.invesicres.intray.SicresIntray,
+     *  que al obtener los registros distribuidos hace uso del TableJoinFactoryDAO y su consulta
+     *  asociada se ejecuta contra la BD de ISICRES.
+     */
+    protected boolean disabledGetCatalogEntitiesInCreateTableJoin = false;
+
+    public boolean isDisabledGetCatalogEntitiesInCreateTableJoin() {
+		return disabledGetCatalogEntitiesInCreateTableJoin;
+	}
+
+	public void setDisabledGetCatalogEntitiesInCreateTableJoin(
+			boolean disabledGetCatalogEntitiesInCreateTableJoin) {
+		this.disabledGetCatalogEntitiesInCreateTableJoin = disabledGetCatalogEntitiesInCreateTableJoin;
+	}
+
+	public TableJoinFactoryDAO()
     {
         mtablemap = new LinkedHashMap();
         mpropertymap = new LinkedHashMap();
@@ -141,8 +164,12 @@ public class TableJoinFactoryDAO
             // Tabla de entidad agregada a la principal
             else if (entry.getValue() instanceof WLTableJoinDef){
             	WLTableJoinDef tablejoinDef = (WLTableJoinDef)entry.getValue();
-            	// Entidad
-            	name = tablejoinDef.getTable().getTableName();
+            // Nombre asociado a la tabla de la Entidad en el LEFT OUTER JOIN
+            name = tablejoinDef.getTable().getName();
+            if (StringUtils.isBlank(name)) {
+					// Nombre de la tabla de la Entidad
+					name = tablejoinDef.getTable().getTableName();
+            }
 
                 joinList = (ArrayList)map.get(name);
                 if (joinList == null){
@@ -174,7 +201,7 @@ public class TableJoinFactoryDAO
 			for (Iterator itJoinings = listJoinings.iterator(); itJoinings.hasNext();) {
 
 				String leftTable = null;
-				String rightTable = null;
+				String rightTableAlias = null;
 
 				WLObjectDef objDef = (WLObjectDef)itJoinings.next();
 
@@ -208,18 +235,24 @@ public class TableJoinFactoryDAO
 					leftTable = tablejoinDef.getName();
 
 					// Si hay sustitutos de campos de esta tabla
-					// dicha tabla no tiene que aparece en el LEFT OUTER JOIN de las tablas de sustituto
-					// ya que ya está incluida en la consulta
-					rightTable = name;
+					// dicha tabla no debe de aparecer en el LEFT OUTER JOIN de las tablas de sustituto
+					// ya que ya está incluida en la consulta, de ahí el procesamiento anterior para
+                  // para agrupar las de sustituto de la entidad principal
+                  // o cada entidad agregada junto con sus respectivas de sustituto
+					// de forma que en este punto se procese antes la WLTableJoinDef que sus WLSubstituteDef relacionadas.
+
 					// Prefijo para las columnas de la entidad
-					prefix = rightTable;
+					prefix = name;
 
 					// Generar el LEFT OUTER JOIN
 					if (leftOuter.length()>0) leftOuter.append(" ");
 					if (tablasEnOuter.get(leftTable) == null) {
 						leftOuter.append(mtablemap.get(leftTable)).append(" ").append(leftTable);
 					}
-					leftOuter.append(" LEFT OUTER JOIN ").append(rightTable).append(" ").append(rightTable);
+					// Nombre de la tabla y alias asociado
+					name = tablejoinDef.getTable().getTableName();
+					rightTableAlias = prefix;
+					leftOuter.append(" LEFT OUTER JOIN ").append(name).append(" ").append(rightTableAlias);
 					leftOuter.append(" ON ").append(objDef.getJoinBind(cnt, null));
 				}
 
@@ -228,12 +261,14 @@ public class TableJoinFactoryDAO
 	            //DBTableDesc tabledesc = tblmgrfactory.getTableDesc(cnt,name.split(" ")[0], prefix, properties, null, true);
 				DBTableDesc tabledesc = null;
 				CTEntityDAO ctEntityDAO = null;
-				try{
-					//ctEntityDAO = EntityFactoryDAO.getInstance().getCatalogEntityDAO(cnt, name.split(" ")[0]);
-					ctEntityDAO = EntityFactoryDAO.getInstance().getCatalogEntityDAO(cnt, name);
-				}catch(ISPACException e){
-					if (! (e.getCause() instanceof SQLException) )
-						throw e;
+				if (!isDisabledGetCatalogEntitiesInCreateTableJoin()) {
+					try{
+						//ctEntityDAO = EntityFactoryDAO.getInstance().getCatalogEntityDAO(cnt, name.split(" ")[0]);
+						ctEntityDAO = EntityFactoryDAO.getInstance().getCatalogEntityDAO(cnt, name);
+					}catch(ISPACException e){
+						if (! (e.getCause() instanceof SQLException) )
+							throw e;
+					}
 				}
 				Date timestamp = null;
 				if (ctEntityDAO != null){
@@ -258,7 +293,10 @@ public class TableJoinFactoryDAO
 				*/
 
 				tablasEnOuter.put(leftTable, leftTable);
-				tablasEnOuter.put(rightTable, rightTable);
+				tablasEnOuter.put(name, name);
+				if (rightTableAlias != null) {
+					tablasEnOuter.put(rightTableAlias, rightTableAlias);
+				}
 			}
 
 			if (jointablename.length()>0) jointablename.append(" ");
@@ -286,11 +324,13 @@ public class TableJoinFactoryDAO
             DBTableDesc tabledesc = null;
 			//CTEntityDAO ctEntityDAO = EntityFactoryDAO.getInstance().getCatalogEntityDAO(cnt, tblname);
 			CTEntityDAO ctEntityDAO = null;
-			try{
-				ctEntityDAO = EntityFactoryDAO.getInstance().getCatalogEntityDAO(cnt, tblname);
-			}catch(ISPACException e){
-				if (! (e.getCause() instanceof SQLException) )
-					throw e;
+			if (!isDisabledGetCatalogEntitiesInCreateTableJoin()) {
+				try{
+					ctEntityDAO = EntityFactoryDAO.getInstance().getCatalogEntityDAO(cnt, tblname);
+				}catch(ISPACException e){
+					if (! (e.getCause() instanceof SQLException) )
+						throw e;
+				}
 			}
 			Date timestamp = null;
 			if (ctEntityDAO != null){

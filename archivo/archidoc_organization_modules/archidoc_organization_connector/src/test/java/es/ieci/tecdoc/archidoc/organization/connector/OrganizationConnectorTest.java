@@ -47,17 +47,17 @@ public class OrganizationConnectorTest extends TestCase {
 	/**
 	 * Url de la base de datos
 	 */
-	private static final String DB_URL = "jdbc:postgresql://10.228.20.178/pruebas";
+	private static final String DB_URL = "jdbc:postgresql://10.228.75.71/ARCHIDOC_5_0_TEST";
 
 	/**
 	 * Usuario de la base de datos
 	 */
-	private static final String DB_USER = "postgres";
+	private static final String DB_USER = "ARCHIDOC_5_0_TEST";
 
 	/**
 	 * Password de la base de datos
 	 */
-	private static final String DB_PASSWORD = "postgres";
+	private static final String DB_PASSWORD = "ARCHIDOC_5_0_TEST";
 
 	/**
 	 * Configuracion de conexion por defecto

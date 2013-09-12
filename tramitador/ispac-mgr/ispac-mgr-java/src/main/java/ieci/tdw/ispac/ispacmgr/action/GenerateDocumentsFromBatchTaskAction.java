@@ -2,6 +2,7 @@ package ieci.tdw.ispac.ispacmgr.action;
 
 import ieci.tdw.ispac.api.IGenDocAPI;
 import ieci.tdw.ispac.api.IInvesflowAPI;
+import ieci.tdw.ispac.api.ISPACEntities;
 import ieci.tdw.ispac.api.ISPACVariable;
 import ieci.tdw.ispac.api.errors.ISPACInfo;
 import ieci.tdw.ispac.api.impl.SessionAPI;
@@ -33,7 +34,7 @@ public class GenerateDocumentsFromBatchTaskAction extends BaseAction {
 	public ActionForward executeAction(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response,
 			SessionAPI session) throws Exception {
-		
+
 		// Contexto de tramitación
 		ClientContext cct = session.getClientContext();
 		IInvesflowAPI invesFlowAPI = session.getAPI();
@@ -48,7 +49,8 @@ public class GenerateDocumentsFromBatchTaskAction extends BaseAction {
 
 		ArrayList list = new ArrayList();
 		ArrayList messageList = new ArrayList();
-		
+
+		// Parámetros
 		String sParameter = documentsForm.getTpDocId();
 		if (sParameter == null) {
 			return null;
@@ -59,46 +61,37 @@ public class GenerateDocumentsFromBatchTaskAction extends BaseAction {
 		if (sParameter == null) {
 			return null;
 		}
-
 		int templateId = Integer.parseInt(sParameter);
 
 		String sFileTemplate = documentsForm.getFile();
 
 		sParameter = documentsForm.getPrint();
-
 		boolean printDocuments = false;
-
 		if (sParameter != null) {
 			printDocuments = true;
 		}
 
-		int[] tasksId = null;
+		// En el multibox de la tramitacion agrupada se han establecido los IDs
+		// como 'ID_Fase:ID_Tramite' siendo el ID_Tramite = ENTITY_NULLREGKEYID
+		// cuando el tramite seleccionado no existe en la fase
+		String[] stageTaskIds = ArrayUtils.getArray(documentsForm.getMultiboxString(), ",");
 
-		String[] stagesIds = ArrayUtils.getArray(documentsForm.getMultiboxString(),","); 
-		String[] tasksIds =  ArrayUtils.getArray(documentsForm.getTaskIdsString(),",");
+		// Obtener los IDs de los trámites
+		int[] taskIds = new int[stageTaskIds.length];
+		for (int i = 0; i < stageTaskIds.length; i++) {
 
-		int num=0;
-		tasksId = new int[stagesIds.length];
-		for (int i = 0; i < stagesIds.length; i++) {
-			for (int j = 0; j < tasksIds.length; j++) {
-				String[] pairStageIdTaskId = tasksIds[j].split(":");
-				String taskId = pairStageIdTaskId[1];
-				String stageId = pairStageIdTaskId[0];
-				if (stagesIds[i].equalsIgnoreCase(stageId)){
-					tasksId[num] = Integer.parseInt(taskId);
-					num++;
-				}
-				
+			String[] pairStageIdTaskId = stageTaskIds[i].split(":");
+			if (pairStageIdTaskId.length > 1) {
+				taskIds[i] = Integer.parseInt(pairStageIdTaskId[1]);
+			} else {
+				taskIds[i] = ISPACEntities.ENTITY_NULLREGKEYID;
 			}
-		}
 
-		// Añade la variable de sesión que indica que se están
-		// generando los documentos en BATCH
-		cct.setSsVariable(ISPACVariable.BATCH_DOCUMENT_GENERATION, "true");
-		//comprobar si algun taskId es cero y avisar
-		for (int i = 0; i < tasksId.length; i++) {
-			if (!(tasksId[i]>0))
-				throw new ISPACInfo(getResources(request).getMessage("forms.batchTask.task.error"), false);
+			// Comprobar que en el expediente existe el tramite
+			// para proceder a crear el documento
+			if (!(taskIds[i] > 0)) {
+				throw new ISPACInfo("exception.expedients.batchTask.noTask", false);
+			}
 		}
 
 		String docref;
@@ -107,58 +100,61 @@ public class GenerateDocumentsFromBatchTaskAction extends BaseAction {
 		Object connectorSession = null;
 		try {
 			connectorSession = genDocAPI.createConnectorSession();
+			int taskId;
 
-			for (int i = 0; i < tasksId.length; i++) {
-				
+			for (int i = 0; i < taskIds.length; i++) {
+
+				taskId = taskIds[i];
+
 				// Información del trámite
-				ITask task = invesFlowAPI.getTask(tasksId[i]);
-				
+				ITask task = invesFlowAPI.getTask(taskId);
+
 	    		// Comprobar si se tiene responsabilidad sobre el trámite
 	    		String idResp = task.getString("ID_RESP");
 	    		if (!invesFlowAPI.getWorkListAPI().isInResponsibleList(idResp , task)) {
 	    			throw new ISPACInfo(getResources(request).getMessage("forms.batchTask.task.error.noResp"), new String[] { task.getString("NUMEXP")}, false);
 	    		}
-				
+
 				String expedient = task.getString("NUMEXP");
-				
-				
+
+
 				// Ejecución en un contexto transaccional
 				boolean bCommit = false;
-				
+
 				try {
 					// Comprueba que la plantilla está asociada a la tarea
 					//templates = documentsAPI.getTemplatesInTask(documentId,
-					//tasksId[i]);
-					
+					//taskId);
+
 					// Abrir transacción
 					cct.beginTX();
-					
+
 					entity = genDocAPI.createBatchTaskDocument(Integer.parseInt(documentsForm.getBatchTaskId()),
-					tasksId[i], documentId, Integer.parseInt(documentsForm
+							taskId, documentId, Integer.parseInt(documentsForm
 					.getTaskPcdId()), templateId);
 
 					list.add(new ItemBean(entity));
 
-					templateEntity = genDocAPI.attachTaskTemplate(connectorSession, 
-							tasksId[i], entity.getKeyInt(), templateId, 
+					templateEntity = genDocAPI.attachTaskTemplate(connectorSession,
+							taskId, entity.getKeyInt(), templateId,
 							sFileTemplate);
 
 					// Actualizar la extensión del documento
 					docref = templateEntity.getString("INFOPAG");
 					if (StringUtils.isNotBlank(docref)) {
 						String sMimetype = genDocAPI.getMimeType(connectorSession, docref);
-						templateEntity.set("EXTENSION", 
+						templateEntity.set("EXTENSION",
 								MimetypeMapping.getExtension(sMimetype));
 						templateEntity.store(cct);
 					}
-					
+
 					// Si todo ha sido correcto se hace commit de la transacción
 					bCommit = true;
-	
+
 					messageList.add(expedient);
 				}
 				catch (Exception e) {
-					
+
 					throw new ISPACInfo(getResources(request).getMessage("error.documento"), e, false);
 				}
 				finally {
@@ -170,14 +166,14 @@ public class GenerateDocumentsFromBatchTaskAction extends BaseAction {
 			if (connectorSession != null) {
 				genDocAPI.closeConnectorSession(connectorSession);
 			}
-    	}				
-		
+		}
+
 		// Guardar el estado de tramitación
 		storeStateticket(newState,response);
-		
+
 		request.setAttribute("MessageList", messageList);
 		request.setAttribute("ErrorList", new ArrayList());
-		
+
 		// Elimina la variable de sesión que indica que se están
 		// generando los documentos en BATCH
 		cct.deleteSsVariable(ISPACVariable.BATCH_DOCUMENT_GENERATION);

@@ -84,7 +84,7 @@ import fondos.vos.FondoVO;
 
 /**
  * Implementacion del Bussiness Interface para el modulo de consultas.
- * 
+ *
  */
 public class GestionConsultasBIImpl extends ServiceBase implements
 		GestionConsultasBI {
@@ -119,7 +119,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * Constructor de entidades
-	 * 
+    *
 	 * @param tde
 	 *            Entidad para acceso a temas
 	 */
@@ -166,7 +166,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * Indica si un usuario tiene consultas en curso.
-	 * 
+    *
 	 * @param idUsuario
 	 *            Identificador de usuario
 	 * @return true si el usuario tiene pr�stamos en curso.
@@ -200,7 +200,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * common.bi.GestionConsultasBI#getCountConsultasXUsuarioConsultor(java.
 	 * lang.String)
@@ -228,7 +228,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * common.bi.GestionConsultasBI#getCountConsultasAbiertasXUsuarioConsultor
 	 * (java.lang.String)
@@ -242,7 +242,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * common.bi.GestionConsultasBI#getConsultasXUsuarioConsultor(java.lang.
 	 * String)
@@ -255,7 +255,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * common.bi.GestionConsultasBI#getConsultasXUsuarioConsultor(java.lang.
 	 * String)
@@ -473,7 +473,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * Obtiene un listado de consultas a partir de sus identificadores.
-	 * 
+    *
 	 * @param codigos
 	 *            Listado de los identificadores de las consultas que deseamo
 	 *            recuperar
@@ -516,7 +516,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	/**
 	 * Obtiene el n�mero de detalles que est�n asociados a una determinada
 	 * consulta.
-	 * 
+    *
 	 * @param idConsutla
 	 *            Identificador de la consulta del que deseamos conocer su
 	 *            numero de detalles asociados.
@@ -694,7 +694,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * Realiza la devolucion de las unidades documentales seleccionadas.
-	 * 
+    *
 	 * @param udocs
 	 *            Unidades documentales a devolver
 	 */
@@ -747,7 +747,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * Realiza la b�squeda de consultas.
-	 * 
+    *
 	 * @param busqueda
 	 *            Objeto con los filtros para aplicar en la busqueda
 	 * @return Listado de las consultas.
@@ -901,7 +901,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	/**
 	 * Realiza la comprobacion de seguridad para la accion indicada de este
 	 * m�dulo
-	 * 
+    *
 	 * @param action
 	 *            Action que se desea comprobar
 	 */
@@ -1268,7 +1268,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * Comprueba la disponibilidad de una unidad documental
-	 * 
+    *
 	 * @param detalleConsulta
 	 *            Udoc que deseamos comprobar
 	 * @param fechaInicial
@@ -1341,7 +1341,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * detalleConsulta, Date fechaInicial, Date fechaFinal, boolean isReserva) {
 	 * int disponible =
 	 * SolicitudesConstants.ESTADO_DISPONIBILIDAD_DETALLE_DISPONIBLE;
-	 * 
+    *
 	 * // Comprobar que no est� bloqueada por transferencia entre archivos
 	 * List udocs = uDocEnUiDepositoDbEntity.getUDocsVOXId(new
 	 * String[]{detalleConsulta.getIdudoc()}); if(!ListUtils.isEmpty(udocs)) {
@@ -1354,26 +1354,26 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * SolicitudesConstants
 	 * .ESTADO_DISPONIBILIDAD_DETALLE_NO_DISPONIBLE_X_BLOQUEADA; return
 	 * disponible; } } }
-	 * 
+    *
 	 * String [] estados = new String [] {new
 	 * Integer(ConsultasConstants.ESTADO_DETALLE_AUTORIZADA).toString() , new
 	 * Integer(ConsultasConstants.ESTADO_DETALLE_ENTREGADA).toString() , new
 	 * Integer(ConsultasConstants.ESTADO_DETALLE_RESERVADA).toString() };
-	 * 
+    *
 	 * Collection detallesRelevantes = detalleConsultaDBEntity.getDetalles(
 	 * detalleConsulta.getIdudoc(), detalleConsulta.getSignaturaudoc(),
 	 * DetalleDBEntity.TIPO_DETALLE_CONSULTA, estados);
-	 * 
+    *
 	 * Iterator it = detallesRelevantes.iterator(); while (it.hasNext()) {
 	 * DetalleConsultaVO d = (DetalleConsultaVO) it.next();
-	 * 
+    *
 	 * if ( !detalleConsulta.getIdsolicitud().equals(d.getIdsolicitud()) ) { if
 	 * (detalleConsulta.getSubtipo() ==
 	 * ElementoCuadroClasificacion.SUBTIPO_CAJA) { boolean disponibleXFechas =
 	 * true;
-	 * 
+    *
 	 * if (d.getFinicialuso() != null && d.getFfinaluso() != null) {
-	 * 
+    *
 	 * if ( (
 	 * DateUtils.getFechaSinHora(d.getFinicialuso()).compareTo(fechaFinal)<=0 &&
 	 * DateUtils.getFechaSinHora(d.getFinicialuso()).compareTo(fechaInicial)>=0)
@@ -1393,7 +1393,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * DateUtils.getFechaActualSinHora
 	 * ().compareTo(DateUtils.getFechaSinHora(fechaInicial))>=0)
 	 * disponibleXFechas = false; }
-	 * 
+    *
 	 * if (StringUtils.isNotEmpty(detalleConsulta.getExpedienteudoc())) { // Si
 	 * tiene relleno el n�mero de expediente concreto a prestar y coincide con
 	 * el de alg�n otro detalle // de su misma fracci�n de serie, estar�
@@ -1408,7 +1408,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * //disponible = 1; disponible = SolicitudesConstants.
 	 * ESTADO_DISPONIBILIDAD_DETALLE_NO_DISPONIBLE_X_AUTORIZADA_ENTREGADA;
 	 * break; } }
-	 * 
+    *
 	 * if (disponibleXFechas) disponible =
 	 * SolicitudesConstants.ESTADO_DISPONIBILIDAD_DETALLE_DISPONIBLE; else
 	 * disponible = SolicitudesConstants.
@@ -1431,7 +1431,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * //disponible = 1; disponible = SolicitudesConstants.
 	 * ESTADO_DISPONIBILIDAD_DETALLE_NO_DISPONIBLE_X_AUTORIZADA_ENTREGADA;
 	 * break; } }
-	 * 
+    *
 	 * // Si alguno de los detalles que existen ya para la unidad que queremos
 	 * tener en nuestro pr�stamo est� en alguno de los estados // siguientes
 	 * y no se ha cumplido la condici�n anterior (pr�stamo sin reserva
@@ -1449,7 +1449,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * nuestro pr�stamo 2. Las fechas de nuestro pr�stamo no contengan por
 	 * ambos lados a las fechas de uso de la unidad 3. Las fechas de uso de la
 	 * unidad no contengan por ambos lados a las fechas de nuestro pr�stamo
-	 * 
+    *
 	 * if ( (DateUtils.getFechaSinHora(d.getFinicialuso()).compareTo(DateUtils.
 	 * getFechaSinHora(fechaFinal))<=0 &&
 	 * DateUtils.getFechaSinHora(d.getFinicialuso
@@ -1475,17 +1475,17 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * (d.getEstado()==ConsultasConstants.ESTADO_DETALLE_ENTREGADA &&
 	 * DateUtils.getFechaActualSinHora
 	 * ().compareTo(DateUtils.getFechaSinHora(fechaInicial))>=0)
-	 * 
+    *
 	 * disponible =
 	 * SolicitudesConstants.ESTADO_DISPONIBILIDAD_DETALLE_NO_DISPONIBLE_X_RESERVADA
 	 * ; } } } }//detalle!=d }//while
-	 * 
+    *
 	 * return disponible; }
 	 */
 
 	/**
 	 * Comprueba la disponibilidad de una unidad documental
-	 * 
+    *
 	 * @param detalleConsulta
 	 *            Udoc que deseamos comprobar
 	 * @param fechaInicial
@@ -1505,7 +1505,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	/**
 	 * Compueba la disponibilidad de las unidades documentales seleccionadas de
 	 * una determinada consulta, estableciendo su estado de disponiblidad.
-	 * 
+    *
 	 * @param Consulta
 	 *            Consulta a la que pertenecen las unidades
 	 * @param detalles
@@ -1573,7 +1573,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	/**
 	 * Encapsula la l�gica de finalizaci�n del proceso de autorizaci�n de
 	 * una consulta.
-	 * 
+    *
 	 * @param idConsulta
 	 *            Identificador de la consulta que deseamos finalizar.
 	 */
@@ -1810,7 +1810,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * Realiza la entrega de una reserva de una consulta.
-	 * 
+    *
 	 * @param idConsulta
 	 *            Identificador de la reserva de consulta
 	 * @throws ConsultaActionNotAllowedException
@@ -1920,7 +1920,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see common.bi.GestionConsultasBI#getCountListadoEntregar()
 	 */
 	public int getCountListadoEntregar(String[] idsArchivo) {
@@ -1940,7 +1940,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see common.bi.GestionConsultasBI#obtenerListadoEntregar()
 	 */
 	public List obtenerListadoEntregar(String[] idsArchivo) {
@@ -1964,7 +1964,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	/**
 	 * Recupera los detalles de la consulta seleccionada para el usuario
 	 * conectado
-	 * 
+    *
 	 * @param userVO
 	 *            Usuario conectado
 	 * @param consulta_VO
@@ -2056,7 +2056,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	/**
 	 * Obtiene informacion adicional sobre la consulta indicada: - Nombre del
 	 * archivo. - Datos del usuario creador.
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta de la que deseamos obtener la informacion
 	 * @return ConsultaVO
@@ -2070,13 +2070,13 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * consulta.setArchivo ( sistemaBI.getArchivo( consulta.getIdarchivo() ) );
 	 * consulta.setUsuarioGestor( usuarioBI.getUsuario(
 	 * consulta.getIdusrsolicitante() ) );
-	 * 
+    *
 	 * return consulta; }
 	 */
 	/**
 	 * Obtiene un listado de usuarios "visibles" en funcion de los permisos del
 	 * usuario para filtrar en las busquedas por usuario
-	 * 
+    *
 	 * @return Listado de usuario
 	 */
 	public Collection getUsuariosBusqueda() {
@@ -2086,7 +2086,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	/**
 	 * Obtiene la lista de detalles de consultas que disponen de una unidad
 	 * documental.
-	 * 
+    *
 	 * @param consulta
 	 *            Informaci�n de la consulta.
 	 * @param detalleConsulta
@@ -2190,12 +2190,12 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	/*
 	 * public List getDetallesConsultasNoDisponibles(ConsultaVO consulta,
 	 * DetalleConsultaVO detalleConsulta) {
-	 * 
+    *
 	 * ServiceRepository services =
 	 * ServiceRepository.getInstance(getServiceSession()); GestionSolicitudesBI
 	 * solicitudesBI = services.lookupGestionSolicitudesBI(); List detalles =
 	 * new ArrayList();
-	 * 
+    *
 	 * // Obtener las fechas inicial y final del per�odo del pr�stamo Date
 	 * fechaInicial = null, fechaFinal = null; if ( consulta.tieneReserva() ) {
 	 * fechaInicial = consulta.getFinicialreserva(); fechaFinal =
@@ -2204,20 +2204,20 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * Integer.parseInt(PropertyHelper.getProperty( //
 	 * PropertyHelper.PLAZO_PRESTAMO)) PropertyHelper.PLAZO_CONSULTA))
 	 * ConsultasConstants.HORAS_DIA);
-	 * 
+    *
 	 * fechaInicial = DBUtils.getFechaActual(); fechaFinal =
 	 * fechafinal.getTime(); }
-	 * 
+    *
 	 * Collection todosDetalles = detalleConsultaDBEntity.getDetalles(
 	 * detalleConsulta.getIdudoc(), detalleConsulta.getSignaturaudoc(),
 	 * DetalleDBEntity.TIPO_DETALLE_CONSULTA); DetalleUdocNoDisponibleVO
 	 * detalle; DetalleConsultaVO d;
-	 * 
+    *
 	 * Iterator it = todosDetalles.iterator(); while (it.hasNext()) { boolean
 	 * esDetalleNoDisponible = false;
-	 * 
+    *
 	 * d = (DetalleConsultaVO) it.next();
-	 * 
+    *
 	 * if ( !detalleConsulta.getIdsolicitud().equals(d.getIdsolicitud()) &&
 	 * (d.getEstado()==ConsultasConstants.ESTADO_DETALLE_RESERVADA ||
 	 * d.getEstado()==ConsultasConstants.ESTADO_DETALLE_AUTORIZADA ||
@@ -2241,16 +2241,16 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * DateUtils
 	 * .getFechaActualSinHora().compareTo(DateUtils.getFechaSinHora(fechaInicial
 	 * ))>=0) esDetalleNoDisponible = true; }
-	 * 
+    *
 	 * if (esDetalleNoDisponible) {
-	 * 
+    *
 	 * detalle = new DetalleUdocNoDisponibleVO();
-	 * 
+    *
 	 * // Informaci�n de la unidad documental en el pr�stamo
 	 * detalle.setIdUdoc(d.getIdudoc()); detalle.setEstadoUdoc(d.getEstado());
 	 * detalle.setFechaInicialUsoUdoc(d.getFinicialuso());
 	 * detalle.setFechaFinalUsoUdoc(d.getFfinaluso());
-	 * 
+    *
 	 * switch (d.getTiposolicitud()) { case
 	 * ConsultasConstants.TIPO_SOLICITUD_CONSULTA: ConsultaVO c =
 	 * getConsulta(d.getIdsolicitud()); if (c != null) { // Obtener info extra
@@ -2266,14 +2266,14 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 	 * detalle.setSolicitud(p);
 	 * detalle.setSolicitanteSolicitud(p.getNusrsolicitante());
 	 * detalle.setObservaciones(d.getObservaciones()); } break; }
-	 * 
+    *
 	 * detalles.add(detalle); } } // while
-	 * 
+    *
 	 * return detalles; }
 	 */
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see common.bi.GestionConsultasBI#getNumDetalles(java.lang.String)
 	 */
 	public int getNumDetalles(String idSolicitud) {
@@ -2364,7 +2364,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionConsultasBI#getTemasCiudadano()
 	 */
 	public List getTemasCiudadano() {
@@ -2374,7 +2374,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionConsultasBI#getTemasOrgano()
 	 */
 	public List getTemasOrgano() {
@@ -2384,7 +2384,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionConsultasBI#getMotivosUsuarioConsultaEnSala()
 	 */
 	public List getMotivosUsuarioConsultaEnSala(AppUser appUser,
@@ -2431,7 +2431,7 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionConsultasBI#getMotivosUsuarioInvestigador(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -2472,4 +2472,41 @@ public class GestionConsultasBIImpl extends ServiceBase implements
 
 		return listaMotivos;
 	}
+
+	public void cambiarEstadoDeAutorizadaAEnviadaYDetallesAutorizadosAPendientes(
+			String idConsulta) {
+
+		ConsultaVO consulta = consultaDBEntity.getConsulta(idConsulta);
+
+		if (consulta != null && consulta.isFueraPlazoEntrega()) {
+
+			// Creamos el evento de Loggin de auditoria con sus datos asociados
+			LoggingEvent event = getLogginEvent(ArchivoActions.SERVICIOS_MODULE_CAMBIAR_ESTADO_A_SOLICITADA);
+			DataLoggingEvent data = event.getDataLoggingEvent(
+					ArchivoObjects.OBJECT_CONSULTA, idConsulta);
+
+			// Comprobamos los permisos
+			this.check(ServiciosSecurityManager.CAMBIAR_ESTADO_A_SOLICITADA);
+
+
+			iniciarTransaccion();
+			consulta.setEstado(ConsultasConstants.ESTADO_CONSULTA_SOLICITADA);
+			consulta.setFestado(DateUtils.getFechaActual());
+			consultaDBEntity.updateConsulta(consulta);
+
+			detalleConsultaDBEntity
+					.cambiarEstadosASolicitadoDetallesAutorizados(
+							idConsulta,
+							ConsultasConstants.TIPO_SOLICITUD_CONSULTA,
+							new int[] { ConsultasConstants.ESTADO_DETALLE_AUTORIZADA },
+							ConsultasConstants.ESTADO_DETALLE_PENDIENTE);
+
+			commit();
+
+			data.addDetalle(getServiceClient().getLocale(), ArchivoDetails.SOLICITUDES_CONSULTA_ID,
+				idConsulta);
+
+		}
+	}
+
 }

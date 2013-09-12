@@ -104,6 +104,7 @@ public class ArchivoActions {
 	public static final int SERVICIOS_MODULE_BAJA_PRESTAMO = 329;
 	public static final int SERVICIOS_MODULE_BAJA_CONSULTA = 330;
 	public static final int SERVICIOS_MODULE_CESION_PRESTAMO_REVISION_DOC = 331;
+	public static final int SERVICIOS_MODULE_CAMBIAR_ESTADO_A_SOLICITADA = 332;
 
 	/** DESCRIPCION_MODULE - Acciones 4XX */
 	public static final int DESCRIPCION_MODULE_BUSQUEDA_FONDOS = 400;
@@ -348,6 +349,8 @@ public class ArchivoActions {
 	public static final String SERVICIOS_MODULE_CESION_PRESTAMO_NAME = "nombreAccion.servicios.CESION_PRESTAMO";
 	public static final String SERVICIOS_MODULE_CONSULTA_CONSULTA_NAME = "nombreAccion.servicios.CONSULTA_CONSULTA";
 	public static final String SERVICIOS_MODULE_CESION_PRESTAMO_REVISION_DOC_NAME = "nombreAccion.servicios.CESION_PRESTAMO_REVISION_DOC";
+	public static final String  SERVICIOS_MODULE_CAMBIAR_ESTADO_A_SOLICITADA_NAME = "nombreAccion.servicios.CAMBIAR_ESTADO_A_SOLICITADA";
+
 	// public static final String SERVICIOS_MODULE_BUSQUEDA_UDOCS_CONSULTA_NAME
 	// = "nombreAccion.servicios.BUSQUEDA_UDOCS_CONSULTA";
 	public static final String SERVICIOS_MODULE_ALTA_CONSULTA_NAME = "nombreAccion.servicios.ALTA_CONSULTA";
@@ -677,6 +680,11 @@ public class ArchivoActions {
 				SERVICIOS_MODULE_CESION_PRESTAMO_REVISION_DOC_NAME);
 		actionNames.put(new Integer(SERVICIOS_MODULE_CONSULTA_CONSULTA),
 				SERVICIOS_MODULE_CONSULTA_CONSULTA_NAME);
+
+		actionNames.put(new Integer(SERVICIOS_MODULE_CAMBIAR_ESTADO_A_SOLICITADA),
+				SERVICIOS_MODULE_CAMBIAR_ESTADO_A_SOLICITADA_NAME);
+
+
 		// actionNames.put(new
 		// Integer(SERVICIOS_MODULE_BUSQUEDA_UDOCS_CONSULTA),SERVICIOS_MODULE_BUSQUEDA_UDOCS_CONSULTA_NAME);
 		actionNames.put(new Integer(SERVICIOS_MODULE_ALTA_CONSULTA),
@@ -1194,6 +1202,9 @@ public class ArchivoActions {
 		actionModules.put(new Integer(SERVICIOS_MODULE_BAJA_CONSULTA),
 				new Integer(ArchivoModules.SERVICIOS_MODULE));
 
+		actionModules.put(new Integer(SERVICIOS_MODULE_CAMBIAR_ESTADO_A_SOLICITADA),
+				new Integer(ArchivoModules.SERVICIOS_MODULE));
+
 		// DESCRIPCION
 		actionModules.put(new Integer(DESCRIPCION_MODULE_BUSQUEDA_FONDOS),
 				new Integer(ArchivoModules.DESCRIPCION_MODULE));
@@ -1510,7 +1521,7 @@ public class ArchivoActions {
 	/**
 	 * Devuelve el nombre asociado a la accion o null en caso de no existir la
 	 * accion.
-	 * 
+    *
 	 * @param action
 	 *            Accion de la que deseamos obtener el nombre
 	 * @return Nombre de la accion
@@ -1521,7 +1532,7 @@ public class ArchivoActions {
 
 	/**
 	 * Devuelve el tipo del modulo al que está asociado una acción
-	 * 
+    *
 	 * @param action
 	 *            Accion de la que deseamos conocer su módulo.
 	 * @return Identificador del módulo al que está asociado la acción o -1 en
@@ -1539,7 +1550,7 @@ public class ArchivoActions {
 
 	/**
 	 * Devuelve el nombre del módulo al que está asociado una acción.
-	 * 
+    *
 	 * @param action
 	 *            Acción de la que deseamos conocer el nombre del módulo.
 	 * @return Nombre del módulo al que está asociado la acción o null en caso
@@ -1551,7 +1562,7 @@ public class ArchivoActions {
 
 	/**
 	 * Obtiene un listado de las acciones existentes
-	 * 
+    *
 	 * @return Listado de las acciones {@link auditoria.vos.ArchivoAction}
 	 *         existentes
 	 */
@@ -1586,7 +1597,7 @@ public class ArchivoActions {
 
 	/**
 	 * Obtiene un listado de las acciones existentes para un determinado módulo
-	 * 
+    *
 	 * @return Listado de las acciones {@link auditoria.vos.ArchivoAction}
 	 *         existentes para un módulo
 	 */

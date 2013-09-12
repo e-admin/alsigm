@@ -1,0 +1,17 @@
+<assembly>
+	<id>SIGEM_BD_db2</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/sql/comun/db2/Completa</directory>
+			<outputDirectory>/Completa</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/sql/especifico/proyecto/SIGEM/db2</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>

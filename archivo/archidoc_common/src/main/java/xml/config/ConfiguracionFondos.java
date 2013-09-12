@@ -22,6 +22,9 @@ public class ConfiguracionFondos extends XMLObject
 	/** Sistema de organización del que es posible importar instituciones para asociarlas como entidades productoras*/
     private String idSistGestorOrg = null;
 
+	/** Sistema de organización del que es posible importar instituciones para asociarlas como productores históricos de la serie*/
+    private String idSistGestorOrgHistoricos = null;
+
     /** Directorio de logs de eliminacion. */
 	private String directorioLogsEliminacion = null;
 
@@ -181,6 +184,16 @@ public class ConfiguracionFondos extends XMLObject
     public void setIdSistGestorOrg(String idSistGestorOrg) {
         this.idSistGestorOrg = idSistGestorOrg;
     }
+
+	public String getIdSistGestorOrgHistoricos() {
+		return idSistGestorOrgHistoricos;
+	}
+
+	public void setIdSistGestorOrgHistoricos(String idSistGestorOrgHistoricos) {
+		this.idSistGestorOrgHistoricos = idSistGestorOrgHistoricos;
+	}
+
+
 	public String getTablaValidacionTipoDocumentacion() {
 		return tablaValidacionTipoDocumentacion;
 	}

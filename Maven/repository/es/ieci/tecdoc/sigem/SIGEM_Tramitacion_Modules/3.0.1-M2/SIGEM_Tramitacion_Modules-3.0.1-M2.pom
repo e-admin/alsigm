@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main</artifactId>
+		<version>3.0.1-M2</version>
+	</parent>
+
+	<artifactId>SIGEM_Tramitacion_Modules</artifactId>
+	<packaging>pom</packaging>
+	<name>SIGEM_Tramitacion_Modules</name>
+
+	<description>Componentes de Tramitación en SIGEM</description>
+
+	<profiles>
+		<profile>
+			<id>generate-config</id>
+			<activation>
+				<property>
+					<name>config</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_Tramitacion-resources-configurable</module>
+				<module>SIGEM_CatalogoProcedimientosWeb-resources-configurable</module>
+				<module>SIGEM_PublicadorWeb-resources-configurable</module>
+				<module>SIGEM_PublicadorWS-resources-configurable</module>
+				<module>SIGEM_TramitacionWeb-resources-configurable</module>
+				<module>SIGEM_TramitacionWS-resources-configurable</module>
+				<module>SIGEM_BuscadorDocsWeb-resources-configurable</module>
+				<module>SIGEM_ServicioIntermediacionClienteLigeroWS-resources-configurable</module>
+				<module>SIGEM_PortafirmasNotificacionWS-resources-configurable</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>generate-jars</id>
+			<activation>
+				<property>
+					<name>jars</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>SIGEM_Tramitacion</module>
+				<module>SIGEM_TramitacionWSClient</module>
+				<module>SIGEM_Publicador</module>
+				<module>SIGEM_PublicadorWSClient</module>
+				<module>SIGEM_Tramitacion-resources-configurable</module>
+				<module>SIGEM_CatalogoProcedimientosWeb-resources-configurable</module>
+				<module>SIGEM_PublicadorWeb-resources-configurable</module>
+				<module>SIGEM_PublicadorWS-resources-configurable</module>
+				<module>SIGEM_TramitacionWeb-resources-configurable</module>
+				<module>SIGEM_TramitacionWS-resources-configurable</module>
+				<module>SIGEM_BuscadorDocsWeb-resources-configurable</module>
+				<module>SIGEM_ServicioIntermediacionClienteLigeroWS-resources-configurable</module>
+				<module>SIGEM_PortafirmasNotificacionWS-resources-configurable</module>
+				<module>SIGEM_TramitacionSecretaria</module>
+				<module>SIGEM_PortafirmasWSClient</module>
+				<module>SIGEM_ServicioIntermediacionClienteLigeroWSClient</module>
+				<module>SIGEM_ServicioIntermediacionRecubrimientoWSClient</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>generate-wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_CatalogoProcedimientosWeb</module>
+				<module>SIGEM_PublicadorWeb</module>
+				<module>SIGEM_PublicadorWS</module>
+				<module>SIGEM_TramitacionWeb</module>
+				<module>SIGEM_TramitacionWS</module>
+				<module>SIGEM_BuscadorDocsWeb</module>
+				<module>SIGEM_ServicioIntermediacionClienteLigeroWS</module>
+				<module>SIGEM_PortafirmasNotificacionWS</module>
+			</modules>
+		</profile>
+	</profiles>
+
+</project>

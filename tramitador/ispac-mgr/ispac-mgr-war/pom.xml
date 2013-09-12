@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.iflow</groupId>
 		<artifactId>ispac-main-war</artifactId>
-		<version>6.4</version>
+		<version>6.4.1</version>
 	</parent>
 
 	<artifactId>ispac-mgr-war</artifactId>
@@ -16,9 +16,9 @@
 	<packaging>war</packaging>
 
 	<dependencies>
-	
+
 		<!-- IECI dependencies -->
-	
+
 		<dependency>
 			<groupId>es.ieci.tecdoc.iflow</groupId>
 			<artifactId>ispac-mgr-java</artifactId>
@@ -30,19 +30,19 @@
 	      <artifactId>ispac-lib</artifactId>
 	      <version>${pom.version}</version>
 	    </dependency>
-			
+
 	    <dependency>
 	      <groupId>es.ieci.tecdoc.iflow</groupId>
 	      <artifactId>ispac-documentum</artifactId>
 	      <version>${pom.version}</version>
 	    </dependency>
-			
+
 	    <dependency>
 	      <groupId>es.ieci.tecdoc.iflow</groupId>
 	      <artifactId>ispac-sharepoint</artifactId>
 	      <version>${pom.version}</version>
 	    </dependency>
-			
+
 	    <dependency>
 	      <groupId>es.ieci.tecdoc.iflow</groupId>
 	      <artifactId>ispac-invesdoc</artifactId>
@@ -54,25 +54,25 @@
 	      <artifactId>ispac-alfresco</artifactId>
 	      <version>${pom.version}</version>
 	    </dependency>
-		
+
 	    <dependency>
 	      <groupId>es.ieci.tecdoc.iflow</groupId>
 	      <artifactId>ispac-invesicres</artifactId>
 	      <version>${pom.version}</version>
 	    </dependency>
-			
+
 	    <dependency>
 	      <groupId>es.ieci.tecdoc.iflow</groupId>
 	      <artifactId>ispac-ldap</artifactId>
 	      <version>${pom.version}</version>
 	    </dependency>
-			
+
 	    <dependency>
 	      <groupId>es.ieci.tecdoc.iflow</groupId>
 	      <artifactId>ispac-web</artifactId>
 	      <version>${pom.version}</version>
 	    </dependency>
-	
+
 	    <dependency>
 	      <groupId>es.ieci.tecdoc.iflow</groupId>
 	      <artifactId>ispac-designer</artifactId>
@@ -86,7 +86,7 @@
 		</dependency>
 
 	</dependencies>
-	
+
 	<build>
 		<finalName>ispacmgr</finalName>
 		<plugins>

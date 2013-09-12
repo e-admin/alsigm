@@ -237,6 +237,10 @@
 
 </bean>
 
+<bean id="SIGEM_ServicioFirmaElectronica.AFIRMA6.API" class="ieci.tecdoc.sgm.cripto.firma.impl.afirma.SignManagerAFirma6Impl" parent="SIGEM_ServicioFirmaElectronica.AFIRMA.API" lazy-init="true">
+	<property name="conectorFirmaInterno" ref="SIGEM_ServicioFirmaElectronica.PKCS7.API"/>
+</bean>
+
 <bean id="SIGEM_ServicioFirmaElectronica.AFIRMA.API.Afirma501MessagesHandler" class="ieci.tecdoc.sgm.cripto.firma.impl.afirma.handlers.Afirma501MessagesHandler" lazy-init="true">
 </bean>
 

@@ -31,83 +31,81 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 public class DownloadBatchTaskDocumentsAction extends BaseAction {
-	
+
 	public ActionForward executeAction(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response,
 			SessionAPI session) throws Exception {
-		
+
 		BatchTaskForm frm = (BatchTaskForm) form;
 
-		String[] stagesIds = frm.getMultibox();
-		String[] tasksIds =  frm.getTaskIds();
+		// En el multibox de la tramitacion agrupada se han establecido los IDs
+		// como 'ID_Fase:ID_Tramite' siendo el ID_Tramite = ENTITY_NULLREGKEYID
+		// cuando el tramite seleccionado no existe en la fase
+		String[] stageTaskIds = frm.getMultibox();
 
-		// Lista de documentos
-		List documents = getDocuments(session, stagesIds, tasksIds);
+		// Lista de documentos para los expedientes seleccionados
+		List documents = getDocuments(session, stageTaskIds);
 		if (CollectionUtils.isEmpty(documents)) {
 			throw new ISPACInfo(getResources(request)
 					.getMessage("error.download.noDocuments"), true);
 		}
-		
+
 		// Nombre del zip
 		String zipFileName = getZipFileName(session, frm);
 
 		// Crear el zip con los documentos
 		File zipFile = DocumentsZipMgr.createDocumentsZipFile(session, documents);
-		
+
 		// Devolver el zip al navegador
         ServletOutputStream out = response.getOutputStream();
     	response.setHeader("Pragma", "public");
     	response.setHeader("Cache-Control", "max-age=0");
     	response.setContentType("application/zip");
         response.setHeader("Content-Transfer-Encoding", "binary");
-    	response.setHeader("Content-Disposition", 
+		response.setHeader("Content-Disposition",
     			"attachment; filename=\"" + zipFileName + "\"");
     	FileUtils.copy(zipFile, out);
         out.close();
-        
+
         // Eliminar el zip
         FileUtils.deleteFile(zipFile);
 
 		return null;
 	}
-	
-	private List getDocuments(SessionAPI session, String[] stagesIds, 
-			String[] tasksIds) throws ISPACException {
-		
+
+	protected List getDocuments(SessionAPI session, String[] stageTaskIds) throws ISPACException {
+
 		// Lista de documentos
 		List documents = new ArrayList();
 
 		// Obtener los documentos
 		IItem doc;
 		int taskId;
-		for (int i = 0; i < stagesIds.length; i++) {
-			
+
+		for (int i = 0; i < stageTaskIds.length; i++) {
+
+			String[] pairStageIdTaskId = stageTaskIds[i].split(":");
 			// Identificador del trámite
-			taskId = -1;
-			
-			for (int j = 0; (taskId < 0) && (j < tasksIds.length); j++) {
-				String[] pairStageIdTaskId = tasksIds[j].split(":");
-				String strStageId = pairStageIdTaskId[0];
-				String strTaskId = pairStageIdTaskId[1];
-				if (stagesIds[i].equalsIgnoreCase(strStageId)){
-					taskId = TypeConverter.parseInt(strTaskId);
-				}
+			if (pairStageIdTaskId.length > 1) {
+				taskId = TypeConverter.parseInt(pairStageIdTaskId[1], ISPACEntities.ENTITY_NULLREGKEYID);
+			} else {
+				taskId = ISPACEntities.ENTITY_NULLREGKEYID;
 			}
-			
+
 			if (taskId > 0) {
-				
+
 				// Información del trámite
 				ITask task = session.getAPI().getTask(taskId);
-				
+
 	    		// Comprobar si se tiene responsabilidad sobre el trámite
 	    		String idResp = task.getString("ID_RESP");
-	    		if (session.getAPI().getWorkListAPI().isInResponsibleList(idResp, ISecurityAPI.SUPERV_ANY , task)) {
+				if (session.getAPI().getWorkListAPI().isInResponsibleList(idResp, ISecurityAPI.SUPERV_ANY, task)) {
 
 		 			// Obtener la información del documento
-					doc = getDocumentInfo(session, 
-							TypeConverter.parseInt(stagesIds[i]), 
+					doc = getDocumentInfo(session,
+							TypeConverter.parseInt(pairStageIdTaskId[0]),
 							taskId);
-		
+
 					if (doc != null) {
 						documents.add(doc);
 					}
@@ -117,10 +115,10 @@ public class DownloadBatchTaskDocumentsAction extends BaseAction {
 
 		return documents;
 	}
-	
-	private IItem getDocumentInfo(SessionAPI session, int stageId, int taskId) 
+
+	private IItem getDocumentInfo(SessionAPI session, int stageId, int taskId)
 			throws ISPACException {
-		
+
 		IEntitiesAPI entitiesAPI = session.getAPI().getEntitiesAPI();
 		IItemCollection col = entitiesAPI.queryEntities(
 				ISPACEntities.DT_ID_DOCUMENTOS,
@@ -130,19 +128,19 @@ public class DownloadBatchTaskDocumentsAction extends BaseAction {
 					.append(taskId)
 					.append(")")
 					.toString());
-		
+
 		if (col.next()) {
 			return col.value();
 		}
-		
+
 		return null;
 	}
-	
-	private String getZipFileName(SessionAPI session, BatchTaskForm form) 
+
+	private String getZipFileName(SessionAPI session, BatchTaskForm form)
 			throws ISPACException {
-		
+
 		String zipFileName = null;
-		
+
 		// Obtener el nombre de la plantilla
 		int templateId = TypeConverter.parseInt(form.getTemplate(), -1);
 		if (templateId > 0) {
@@ -155,11 +153,11 @@ public class DownloadBatchTaskDocumentsAction extends BaseAction {
 				}
 			}
 		}
-		
+
 		if (StringUtils.isBlank(zipFileName)) {
 			zipFileName = "documentos.zip";
 		}
-		
+
 		return zipFileName;
 	}
 }

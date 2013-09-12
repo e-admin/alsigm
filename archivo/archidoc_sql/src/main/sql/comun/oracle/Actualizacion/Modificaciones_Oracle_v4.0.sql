@@ -1,0 +1,150 @@
+--/***************************/
+--/* Versión 4.0             */
+--/***************************/
+
+    -- Insertar la versión actual de bd
+    INSERT INTO AGINFOSISTEMA (AUTID,NOMBRE,VALOR,FECHAACTUALIZACION) VALUES (SEQ_INFO.NextVal,'VERSIONBD','4.0',SYSDATE);
+
+    -- Cambiar el tamaño de la columna AOUSRORGV.IDUSUARIO
+    ALTER TABLE AOUSRORGV MODIFY IDUSUARIO VARCHAR2(64);
+
+    -- Recrear el indice ASGTUDOCSDF2 por ID e IDRELRENTREGA
+    DROP INDEX ASGTUDOCSDF2;
+    CREATE UNIQUE INDEX ASGTUDOCSDF2 ON ASGTUDOCSDF (ID, IDRELENTREGA);
+
+    -- Actualizar el nombre de clasificador de serie de una ficha
+    UPDATE ADFICHA SET NOMBRE='ISAD(G) Nivel de Descripción Clasificador Serie' WHERE ID='3';
+
+
+-- /***************************/
+-- /* Versión 4.0             */
+-- /***************************/
+
+    -- Insertar la versión actual de bd
+    INSERT INTO AGINFOSISTEMA (AUTID,NOMBRE,VALOR,FECHAACTUALIZACION) VALUES (SEQ_INFO.NextVal,'VERSIONBD','4.0',SYSDATE);
+
+    -- Añadir fecha de creación a la unidad de instalación
+    ALTER TABLE ASGDUINSTALACION ADD FCREACION DATE DEFAULT SYSDATE NOT NULL;
+
+    -- Crear la tabla de unidades de instalación históricas
+    CREATE TABLE ASGDHISTUINSTALACION(
+        ID VARCHAR2(32) NOT NULL,
+        IDARCHIVO VARCHAR2(32) NOT NULL,
+        IDFORMATO VARCHAR2(32) NOT NULL,
+        SIGNATURAUI    VARCHAR2(16) NOT NULL,
+        IDENTIFICACION VARCHAR2(254)    NOT NULL,
+        FELIMINACION DATE NOT NULL,
+        MOTIVO    NUMBER(3) NOT NULL
+    );
+
+    CREATE UNIQUE INDEX ASGDHISTUINSTALACION1 ON ASGDHISTUINSTALACION(ID);
+    CREATE INDEX ASGDHISTUINSTALACION2 ON ASGDHISTUINSTALACION(SIGNATURAUI);
+    CREATE INDEX ASGDHISTUINSTALACION3 ON ASGDHISTUINSTALACION(ID,FELIMINACION);
+    CREATE INDEX ASGDHISTUINSTALACION4 ON ASGDHISTUINSTALACION(IDARCHIVO);
+
+    -- Añadir la columna visibilidad a los motivos de consulta
+    ALTER TABLE ASGPMTVCONSULTA ADD VISIBILIDAD NUMBER(3);
+
+    --Si el tipo de entidad es 1 (Investigador), tiene visibilidad 3 (Ambos)
+    UPDATE ASGPMTVCONSULTA SET VISIBILIDAD = 3 WHERE TIPOENTIDAD=1;
+
+    -- Crear identificador para los motivos de consulta
+    ALTER TABLE ASGPMTVCONSULTA ADD ID VARCHAR2(32);
+
+    -- Actualizar los registros antiguos con el nuevo ID de motivo de consulta
+    UPDATE ASGPMTVCONSULTA SET ID = SUBSTR('u' || CAST (TIPOENTIDAD AS VARCHAR2(10)) || CAST (TIPOCONSULTA AS VARCHAR2(10)) || SUBSTR(MOTIVO,1,1) || '000000000000000000000000000000000',1,32);
+    ALTER TABLE ASGPMTVCONSULTA MODIFY ID VARCHAR2(32) NOT NULL;
+
+    -- Crear un nuevo índice sobre el identificador del motivo de consulta
+    CREATE UNIQUE INDEX ASGPMTVCONSULTA2 ON ASGPMTVCONSULTA(ID);
+
+    -- Añadir a las consultas el identificador de motivo
+    ALTER TABLE ASGPCONSULTA ADD IDMOTIVO VARCHAR2(32);
+
+    -- Actualizar registros anteriores en consultas con el identificador del motivo que les corresponde
+    UPDATE ASGPCONSULTA SET IDMOTIVO = (
+        SELECT ASGPMTVCONSULTA.ID FROM ASGPMTVCONSULTA ASGPMTVCONSULTA
+        WHERE ASGPMTVCONSULTA.MOTIVO = ASGPCONSULTA.MOTIVO
+        AND ASGPMTVCONSULTA.TIPOENTIDAD = ASGPCONSULTA.TIPOENTCONSULTORA
+        AND ASGPMTVCONSULTA.TIPOCONSULTA = ASGPCONSULTA.TIPO
+    );
+
+    -- La pantalla de consultas tiene un error y no actualiza los motivos cuando se
+    -- cambia el usuario tramitador, debería hacerlo ya que los motivos dependen de
+    -- si la consulta es directa (tramitador = usuario conectado) o no
+    -- (tramitador != usuario conectado)
+    UPDATE ASGPCONSULTA SET IDMOTIVO = (
+        SELECT ASGPMTVCONSULTA.ID FROM ASGPMTVCONSULTA ASGPMTVCONSULTA
+        WHERE ASGPMTVCONSULTA.MOTIVO = ASGPCONSULTA.MOTIVO
+        AND ASGPMTVCONSULTA.TIPOENTIDAD = ASGPCONSULTA.TIPOENTCONSULTORA
+        AND ASGPMTVCONSULTA.TIPOCONSULTA = 1
+    ) WHERE IDMOTIVO IS NULL AND TIPO=2;
+
+    UPDATE ASGPCONSULTA SET IDMOTIVO = (
+        SELECT ASGPMTVCONSULTA.ID FROM ASGPMTVCONSULTA ASGPMTVCONSULTA
+        WHERE ASGPMTVCONSULTA.MOTIVO = ASGPCONSULTA.MOTIVO
+        AND ASGPMTVCONSULTA.TIPOENTIDAD = ASGPCONSULTA.TIPOENTCONSULTORA
+        AND ASGPMTVCONSULTA.TIPOCONSULTA = 2
+    ) WHERE IDMOTIVO IS NULL AND TIPO=1;
+
+    -- Establecer el id de motivo como no nulo
+    ALTER TABLE ASGPCONSULTA MODIFY IDMOTIVO VARCHAR2(32) NOT NULL;
+
+    -- Crear tabla de motivos de préstamo
+    CREATE TABLE ASGPMTVPRESTAMO (
+      ID            VARCHAR2(32) NOT NULL,
+      TIPOUSUARIO   NUMBER(3)    NOT NULL,
+      MOTIVO        VARCHAR2 (254)  NOT NULL,
+      VISIBILIDAD   NUMBER(3));
+
+    CREATE UNIQUE INDEX ASGPMTVPRESTAMO1 ON ASGPMTVPRESTAMO(ID);
+
+    -- Insertar motivos de prestamo para poder actualizar registros anteriores
+    INSERT INTO ASGPMTVPRESTAMO VALUES ('n0000000000000000000000000000001',1,'Motivo Interno',3);
+    INSERT INTO ASGPMTVPRESTAMO VALUES ('n0000000000000000000000000000002',2,'Motivo Externo',3);
+
+    -- Añadir a la tabla de préstamos el identificador del motivo
+    ALTER TABLE ASGPPRESTAMO ADD IDMOTIVO VARCHAR2(32);
+
+    -- Actualizar los préstamos con el identificador de motivo que corresponde en cada caso
+    UPDATE ASGPPRESTAMO SET IDMOTIVO = 'n0000000000000000000000000000001' where IDUSRSOLICITANTE IS NOT NULL;
+    UPDATE ASGPPRESTAMO SET IDMOTIVO = 'n0000000000000000000000000000002' where IDUSRSOLICITANTE IS NULL;
+
+    -- Establecer el identificador de motivo en préstamos como no nulo
+    ALTER TABLE ASGPPRESTAMO MODIFY IDMOTIVO VARCHAR2(32) NOT NULL;
+
+    -- Añadir identificador a los motivos de rechazo
+    ALTER TABLE ASGPMTVRECHAZO ADD ID VARCHAR2(32);
+
+    -- Crear un identificador para los motivos de rechazo
+    UPDATE ASGPMTVRECHAZO SET ID = SUBSTR('u' || CAST (TIPOSOLICITUD AS VARCHAR2(10)) || SUBSTR(MOTIVO,1,1) || SUBSTR(MOTIVO,LENGTH(MOTIVO),LENGTH(MOTIVO)) || '0000000000000000000000000000000000',1,32);
+
+    -- Establecer el identificador de los motivos de rechazo como no nulo
+    ALTER TABLE ASGPMTVRECHAZO MODIFY ID VARCHAR2(32) NOT NULL;
+
+    -- Crear índice único para los motivos de rechazo
+    CREATE UNIQUE INDEX ASGPMTVRECHAZO2 ON ASGPMTVRECHAZO(ID);
+
+    -- Crear en prorrogas un identificador de motivo
+    ALTER TABLE ASGPPRORROGA ADD IDMOTIVO VARCHAR2(32);
+
+    UPDATE ASGPPRORROGA SET IDMOTIVO = (
+        SELECT ASGPMTVRECHAZO.ID FROM ASGPMTVRECHAZO ASGPMTVRECHAZO
+        WHERE ASGPMTVRECHAZO.MOTIVO = ASGPPRORROGA.MOTIVORECHAZO
+        AND ASGPMTVRECHAZO.TIPOSOLICITUD = 3
+    );
+
+    -- Añadir identificador de motivo de rechazo a las solicitudes
+    ALTER TABLE ASGPSOLICITUDUDOC ADD IDMOTIVO VARCHAR2(32);
+
+    -- Actualizar los motivos de rechazo de prestamos y consultas
+    UPDATE ASGPSOLICITUDUDOC SET IDMOTIVO = (
+        SELECT ASGPMTVRECHAZO.ID FROM ASGPMTVRECHAZO ASGPMTVRECHAZO
+        WHERE ASGPMTVRECHAZO.MOTIVO = ASGPSOLICITUDUDOC.MOTIVORECHAZO
+        AND ASGPMTVRECHAZO.TIPOSOLICITUD = ASGPSOLICITUDUDOC.TIPOSOLICITUD
+    );
+
+    -- Actualizar la columna orden de ASGTUINSTALACIONRE
+    ALTER TABLE ASGTUINSTALACIONRE MODIFY ORDEN NUMBER;
+
+COMMIT;

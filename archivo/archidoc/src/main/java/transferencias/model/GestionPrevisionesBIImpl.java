@@ -2555,7 +2555,8 @@ public final class GestionPrevisionesBIImpl extends ServiceBase implements
 		detallePrevision.setNombreSistProductor(info.getNombreSistProductor());
 		detallePrevision.setIdProcedimiento(info.getCodigoProcedimiento());
 		detallePrevision.setIdSerieDestino(info.getSerieVO().getId());
-		DetallePrevisionVO detalleBD = _detallePrevisionDBEntity.getDetallePrestamoVO(detallePrevision);
+
+		DetallePrevisionVO detalleBD = _detallePrevisionDBEntity.getDetallePrevisionVO(detallePrevision);
 
 		if(detalleBD == null){
 

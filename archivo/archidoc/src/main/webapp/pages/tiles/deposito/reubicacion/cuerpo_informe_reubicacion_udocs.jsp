@@ -16,7 +16,12 @@
 <c:set var="vHuecoOrigen" value="${sessionScope[appConstants.deposito.HUECO_ORIGEN_COMPACTAR_KEY]}"/>
 <c:set var="vHuecoDestino" value="${sessionScope[appConstants.deposito.HUECO_DESTINO_SELECCIONADO_KEY]}"/>
 
+
+
+
+
 <script language="JavaScript1.2" type="text/JavaScript">
+
 	function goOn(){
 		var form = document.forms['<c:out value="${mapping.name}" />'];
 		form.method.value="aceptarMover";
@@ -29,6 +34,16 @@
 
 		form.submit();
 	}
+
+	function goTo(url){
+		window.location = url;
+	}
+
+	function verInforme(url){
+		document.getElementById('informeVisto').value="true";
+		window.location = url;
+	}
+
 </script>
 
 
@@ -39,6 +54,7 @@
 	<tiles:put name="blockContent" direct="true">
 <html:form action="/reubicacionUdocsAction">
 	<input type="hidden" name="method" value="seleccionarAsignableDestino"/>
+	<input type="hidden" name="informeVisto" id="informeVisto"/>
 		<div class="separador8">&nbsp;</div>
 		<display:table name="pageScope.vListaUdocs"
 			style="width:99%;margin-left:auto;margin-right:auto"
@@ -214,12 +230,14 @@
 					<td>
 						<c:url var="informeURL" value="/action/informeReubicacion"/>
 
-						<a class="etiquetaAzul12Bold" href="<c:out value="${informeURL}" escapeXml="false"/>">
+						<div onclick="verInforme('<c:out value="${informeURL}" escapeXml="false"/>');" class="etiquetaAzul12Bold" style="cursor:hand">
+
 						<html:img page="/pages/images/documentos/doc_pdf.gif"
 						        altKey="archigest.archivo.informe"
 						        titleKey="archigest.archivo.informe"
 						        styleClass="imgTextMiddle"/>
-						&nbsp;<bean:message key="archigest.archivo.informe"/></a>
+						&nbsp;<bean:message key="archigest.archivo.informe"/>
+					</div>
 					</td>
 					<td width="10">&nbsp;</td>
 					<TD>
@@ -227,7 +245,7 @@
 						<c:param name="method" value="listadoudocsDesdeReubicacion"/>
 						<c:param name="idHueco" value="${vHuecoOrigen.idElemAPadre}:${vHuecoOrigen.numorden}"/>
 					</c:url>
-					<a class="etiquetaAzul12Bold" href="<c:out value="${huecoOrigenURL}" escapeXml="false"/>">
+					<a class="etiquetaAzul12Bold" href="javascript:goTo('<c:out value="${huecoOrigenURL}" escapeXml="false"/>')">
 					<html:img page="/pages/images/huecoBlanco.gif"
 						altKey="archigest.archivo.deposito.ir.a.hueco.origen"
 						titleKey="archigest.archivo.deposito.ir.a.hueco.origen"
@@ -240,7 +258,7 @@
 						<c:param name="method" value="listadoudocsDesdeReubicacion"/>
 						<c:param name="idHueco" value="${vHuecoDestino.idElemAPadre}:${vHuecoDestino.numorden}"/>
 					</c:url>
-					<a class="etiquetaAzul12Bold" href="<c:out value="${huecoDestinoURL}" escapeXml="false"/>">
+					<a class="etiquetaAzul12Bold" href="javascript:goTo('<c:out value="${huecoDestinoURL}" escapeXml="false"/>');">
 					<html:img page="/pages/images/huecoAzul.gif"
 						altKey="archigest.archivo.deposito.ir.a.hueco.destino"
 						titleKey="archigest.archivo.deposito.ir.a.hueco.destino"
@@ -252,7 +270,7 @@
 					<c:url var="closeURL" value="/action/reubicacionUdocsAction">
 						<c:param name="method" value="goBack" />
 					</c:url>
-					<a class=etiquetaAzul12Bold href="<c:out value="${closeURL}" escapeXml="false"/>">
+					<a class=etiquetaAzul12Bold href="javascript:goTo('<c:out value="${closeURL}" escapeXml="false"/>');">
 					<html:img page="/pages/images/close.gif"
 						altKey="archigest.archivo.cerrar"
 						titleKey="archigest.archivo.cerrar"
@@ -305,3 +323,16 @@
 		<tiles:insert beanName="infoUInstalacionDestino"/>
 	</tiles:put>
 </tiles:insert>
+
+<c:if test="${reubicacionFinalizada == true}">
+<script type="text/javascript">
+window.onbeforeunload = confirmarSalida;
+
+function confirmarSalida(){
+	if(document.getElementById('informeVisto').value != "true"){
+		return '<bean:message key="archigest.archivo.serie.finalizar.reubicacion.msg"/>';
+	}
+}
+
+</script>
+</c:if>

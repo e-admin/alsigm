@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.archidoc</groupId>
 		<artifactId>archidoc_specific_resources</artifactId>
-		<version>5.0</version>
+		<version>5.0.9-M1</version>
 	</parent>
 
 

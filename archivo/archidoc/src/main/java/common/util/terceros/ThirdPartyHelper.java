@@ -22,7 +22,7 @@ public class ThirdPartyHelper {
 
 	/**
 	 * Realiza una búsqueda de terceros.
-	 * 
+    *
 	 * @param form
 	 *            Criterios de búsqueda.
 	 * @param entity
@@ -66,7 +66,7 @@ public class ThirdPartyHelper {
 						IThirdPartySearchForm.TIPOS_BUSQUEDA[IThirdPartySearchForm.BUSQUEDA_POR_IF])) {
 			if (IFValidator.isValidIF(form.getIfSearchToken())) {
 				terceros = bdTerceros.recuperarTerceros(
-						TipoAtributo.IDENTIFICACION, form.getIfSearchToken());
+						(short)form.getTipoNumeroIdentificacion(), form.getIfSearchToken());
 			} else
 				throw new IFNotValidException(form.getIfSearchToken());
 		}

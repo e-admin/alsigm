@@ -1,8 +1,14 @@
 package ieci.tecdoc.sgm.tram;
 
+import ieci.tdw.ispac.api.IEntitiesAPI;
 import ieci.tdw.ispac.api.errors.ISPACException;
+import ieci.tdw.ispac.api.item.IItem;
+import ieci.tdw.ispac.ispaclib.context.ClientContext;
 import ieci.tdw.ispac.ispaclib.session.OrganizationUser;
 import ieci.tdw.ispac.ispaclib.session.OrganizationUserInfo;
+import ieci.tdw.ispac.ispaclib.sign.ISignConnector;
+import ieci.tdw.ispac.ispaclib.sign.SignConnectorFactory;
+import ieci.tdw.ispac.ispaclib.sign.SignDocument;
 import ieci.tdw.ispac.ispaclib.utils.StringUtils;
 import ieci.tdw.ispac.services.mgr.CatalogoManager;
 import ieci.tdw.ispac.services.mgr.CustodiaManager;
@@ -26,6 +32,7 @@ import ieci.tecdoc.sgm.tram.vo.SGMInfoOcupacionVO;
 import ieci.tecdoc.sgm.tram.vo.SGMProcedimientoVO;
 
 import java.util.Date;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 
@@ -499,6 +506,34 @@ public class SigemTramitacionServiceAdapter implements ServicioTramitacion {
 			return TramitacionManager.getInstance().obtenerRegistrosEntidad(nombreEntidad, numExp);
 		} catch (Throwable e) {
 			logger.error("Error al obtener registros de la entidad '" + nombreEntidad + "'", e);
+			throw new TramitacionException(
+					TramitacionException.EXC_GENERIC_EXCEPCION, e);
+		}
+	}
+
+	/**
+    * {@inheritDoc}
+    * @see ieci.tecdoc.sgm.core.services.tramitacion.ServicioTramitacion#recibirDocumentoFirmado(java.lang.String, java.lang.String, java.lang.String)
+    */
+	public String recibirDocumentoFirmado(String idEntidad, String numExp,
+			String idDocumento) throws TramitacionException {
+		try {
+			setOrganizationUserInfo(idEntidad);
+			ClientContext ctx = TramitacionManager.getInstance().getContext();
+			ctx.setLocale(new Locale("es", "ES"));
+			IEntitiesAPI entitiesAPI = ctx.getAPI().getEntitiesAPI();
+			IItem itemDoc = entitiesAPI.getDocument(Integer.parseInt(idDocumento));
+			if ((itemDoc!=null)&&(StringUtils.isEmpty(itemDoc.getString("INFOPAG_RDE")))){
+				SignDocument signDocument = new SignDocument(itemDoc);
+				ISignConnector signConnector = SignConnectorFactory.getSignConnector();
+				signConnector.initializate(signDocument, ctx);
+				signConnector.sign(true);
+				return itemDoc.getString("ID");
+			}
+			return null;
+
+		} catch (Throwable e) {
+			logger.error("Error al recibir un documento firmado '" + idEntidad + "'", e);
 			throw new TramitacionException(
 					TramitacionException.EXC_GENERIC_EXCEPCION, e);
 		}

@@ -3,6 +3,7 @@ package common.exceptions;
 import org.w3c.dom.Element;
 
 import common.Constants;
+import common.db.DBUtils;
 
 import se.NotAvailableException;
 import se.instituciones.exceptions.GestorOrganismosException;
@@ -36,15 +37,53 @@ public class TransferenciaElectronicaException extends CheckedArchivoException{
 		this.setCodigo(codigo);
 		this.setObjDetalles(detalles);
 
-		StringBuilder str = new StringBuilder();
-		for(int i=0;i<detalles.length;i++){
-			str.append(detalles[0].toString())
-			.append(Constants.NEWLINE);
 
+
+		if (detalles != null) {
+
+			StringBuilder str = new StringBuilder();
+			for (int i = 0; i < detalles.length; i++) {
+				if(detalles[i] != null){
+					str.append(detalles[i].toString());
+
+					if(i==0){
+						str.append("=");
+					}
+					else{
+						str.append(Constants.NEWLINE);
+					}
+				}
+			}
+			this.setMensaje(str.toString());
+		}
+	}
+
+	public TransferenciaElectronicaException(String codigo, String[] parametros, String[] valores) {
+		this.setCodigo(codigo);
+
+		StringBuffer str = new StringBuffer();
+
+		if(parametros != null && valores != null && parametros.length == valores.length){
+
+			for (int i = 0; i < parametros.length; i++) {
+				String parametro = TransferenciasElectronicasConstants.getParametro(parametros[i]);
+				String valor = valores[i];
+
+				if (i!=0){
+					str.append(Constants.COMMA);
+				}
+
+				str.append(parametro)
+				.append(Constants.EQUAL)
+				.append(DBUtils.COMILLA_SIMPLE)
+				.append(valor)
+				.append(DBUtils.COMILLA_SIMPLE);
+			}
 		}
 
 		this.setMensaje(str.toString());
 	}
+
 
 	public TransferenciaElectronicaException(String codigo, String mensaje, Exception e) {
 		this.setCodigo(codigo);

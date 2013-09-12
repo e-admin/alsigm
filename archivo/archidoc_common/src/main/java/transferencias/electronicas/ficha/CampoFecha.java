@@ -12,6 +12,11 @@ import common.util.CustomDateFormat;
 import common.util.DateUtils;
 
 public class CampoFecha extends CampoFichaBase{
+	/**
+    *
+    */
+	private static final long serialVersionUID = 5686156216298477819L;
+
 	private String formato;
 	private String separador;
 	private String calificador;
@@ -30,6 +35,9 @@ public class CampoFecha extends CampoFichaBase{
 	 * @param formato el formato a fijar
 	 */
 	public void setFormato(String formato) {
+		if(formato != null){
+			formato = formato.replaceAll(" ", "");
+		}
 		this.formato = formato;
 	}
 	/**
@@ -88,6 +96,33 @@ public class CampoFecha extends CampoFichaBase{
 		}
 		return null;
 	}
+
+	public String getHoras() {
+		try {
+			return DateUtils.getHoras(getDate());
+		} catch (ParseException e) {
+			logger.error(e);
+		}
+		return null;
+	}
+	public String getMinutos() {
+		try {
+			return DateUtils.getMinutos(getDate());
+		} catch (ParseException e) {
+			logger.error(e);
+		}
+		return null;
+	}
+	public String getSegundos() {
+		try {
+			return DateUtils.getSegundos(getDate());
+		} catch (ParseException e) {
+			logger.error(e);
+		}
+		return null;
+	}
+
+
 	public String getSiglo() {
 		if(CustomDateFormat.DATE_FORMAT_S.equals(formato)){
 			return getValor();

@@ -1,0 +1,6 @@
+db2cmd
+db2 connect to <nombre-bd> user <usuario> using <clave>
+db2 -tvf 01.invesdoc-volumenes-almacenamiento-create-tables-db2.sql > 01.invesdoc-volumenes-almacenamiento-create-tables-db2.txt
+db2 -tvf 02.invesdoc-volumenes-almacenamiento-create-indexes-db2.sql > 02.invesdoc-volumenes-almacenamiento-create-indexes-db2.txt
+db2 -tvf 03.invesdoc-volumenes-almacenamiento-insert-data-db2.sql- > 03.invesdoc-volumenes-almacenamiento-insert-data-db2.sql
+db2 terminate

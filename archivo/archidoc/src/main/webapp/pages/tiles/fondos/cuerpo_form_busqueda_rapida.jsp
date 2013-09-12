@@ -22,17 +22,7 @@
 		document.forms['<c:out value="${actionMapping.name}" />'].submit();
 	}
 
-	function generarInformeResultadoBusqueda(){
-		if (window.top.showWorkingDiv) {
-			var title = '<bean:message key="archigest.archivo.buscando.realizandoBusqueda"/>';
-			var message = '<bean:message key="archigest.archivo.buscando.msgFondos"/>';
-			var message2 = '<bean:message key="archigest.archivo.msgOperacionLenta"/>';
-			window.top.showWorkingDiv(title, message, message2);
-		}
 
-		document.forms['<c:out value="${actionMapping.name}" />'].method.value="generarInformeBusqueda";
-		document.forms['<c:out value="${actionMapping.name}" />'].submit();
-	}
 </script>
 
 <tiles:insert template="/pages/tiles/PABoxLayout.jsp">
@@ -52,6 +42,14 @@
 				<c:set var="exportarBusqueda" value="${sessionScope[appConstants.common.SHOW_INFORME_BUSQUEDA_BUTTON]}"/>
 				<c:if test="${exportarBusqueda}">
 				<td>
+					<script language="javascript">
+					function generarInformeResultadoBusqueda(){
+						var title = '<bean:message key="archigest.archivo.msg.titulo"/>';
+						var message = '<bean:message key="archigest.archivo.msg.proceso.en.ejecucion"/>';
+						enviarFormulario("formulario", "generarInformeBusqueda", title, message);
+					}
+					</script>
+
 					<a class="etiquetaAzul12Bold" href="javascript:generarInformeResultadoBusqueda();">
 					<html:img page="/pages/images/documentos/doc_pdf.gif"
 					        altKey="archigest.archivo.informe"
@@ -101,10 +99,10 @@
 	</tiles:put>
 	<tiles:put name="boxContent" direct="true">
 		<div class="bloque">
-			<html:form action="/buscarElementos">
-				<input type="hidden" name="method" value="buscar"/>
-				<input type="hidden" name="tipoBusqueda" value="<c:out value="${appConstants.fondos.tiposBusquedas.TIPO_BUSQUEDA_FONDOS_RAPIDA}"/>"/>
-				<input type="hidden" name="postBack" value="S"/>
+			<html:form action="/buscarElementos" styleId="formulario">
+				<input type="hidden" name="method" id="method" value="buscar"/>
+				<input type="hidden" name="tipoBusqueda" id="tipoBusqueda" value="<c:out value="${appConstants.fondos.tiposBusquedas.TIPO_BUSQUEDA_FONDOS_RAPIDA}"/>"/>
+				<input type="hidden" name="postBack" id="postBack" value="S"/>
  				<table class="formulario">
 
 					<bean:define id="classTdTituloCampo" value="tdTituloFicha" toScope="request"/>

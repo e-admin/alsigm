@@ -245,6 +245,13 @@ public interface GestionControlUsuariosBI {
 	public List getCAOrgProductorVOXId(String[] idOrgano);
 
 	/**
+    * Obtiene la información de un órgano por su código.
+    * @param codigo
+    * @return
+    */
+	public CAOrganoVO getCAOrgProductorVOByCodigo(String codigo);
+
+	/**
 	 * Obtiene la información de un órgano.
 	 *
 	 * @param sistExtGestor
@@ -671,7 +678,7 @@ public interface GestionControlUsuariosBI {
 	 * @return Lista de órganos cuyo nombre contiene el patrón indicado
 	 *         {@link CAOrganoVO}
 	 */
-	public List findOrganosByName(String query);
+	public List findOrganosByName(String query,boolean mostrarNombreLargo);
 
 	public List findGruposByName(String query);
 

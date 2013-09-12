@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import util.StringOwnTokenizer;
 
+import common.Constants;
 import common.exceptions.CustomDateParseException;
 
 
@@ -19,6 +20,8 @@ public class CustomDate {
 
 	/** Logger de la clase. */
 	protected static final Logger logger = Logger.getLogger(CustomDate.class);
+
+	public static final String SEPARADOR_HORA = ":";
 
 	/** Valor de la fecha. */
 	private String value = null;
@@ -34,6 +37,21 @@ public class CustomDate {
 
 	/** Siglo. */
 	private String century = null;
+
+	/**
+    * Hora
+    */
+	private String hour = null;
+
+	/**
+    * Minutos
+    */
+	private String minutes = null;
+
+	/**
+    * Segundos
+    */
+	private String seconds = null;
 
 	/** Formato de la fecha. */
 	private String format = null;
@@ -59,7 +77,10 @@ public class CustomDate {
 		this();
 
 		setValue(value);
+
 		setFormat(format);
+		format = getFormat();
+
 		setSeparator(separator);
 		setQualifier(qualifier);
 
@@ -67,6 +88,25 @@ public class CustomDate {
 		{
 			if (StringUtils.isNotBlank(value))
 			{
+
+				if(isFormatoConHora()){
+					String[] partes = value.split(Constants.STRING_SPACE);
+
+					if(partes != null && partes.length==2){
+
+						value= partes[0];
+
+						String timestamp = partes[1];
+						String[] partesHora = timestamp.split(SEPARADOR_HORA);
+
+						if(partesHora != null && partesHora.length == 3){
+							setHour(getValorFormateado(partesHora[0]));
+							setMinutes(getValorFormateado(partesHora[1]));
+							setSeconds(getValorFormateado(partesHora[2]));
+						}
+					}
+				}
+
 				if (CustomDateFormat.DATE_FORMAT_AAAA.equals(format)){
 					//Date date = CustomDateFormat.SDF_YYYY.parse(value);
 					setYear(value);
@@ -88,7 +128,7 @@ public class CustomDate {
 							setYear(tok.nextToken());
 						if (tok.hasMoreTokens())
 							setMonth(tok.nextToken());
-				}else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format)){
+				}else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format) || CustomDateFormat.DATE_FORMAT_DDMMAAAA_HHMMSS.equals(format)){
 					//SimpleDateFormat sdf = new SimpleDateFormat("dd" + separator + "MM" + separator + "yyyy");
 					//Date date = sdf.parse(value);
 
@@ -99,7 +139,7 @@ public class CustomDate {
 						setMonth(tok.nextToken());
 					if (tok.hasMoreTokens())
 						setYear(tok.nextToken());
-				}else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format)){
+				}else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format) || CustomDateFormat.DATE_FORMAT_AAAAMMDD_HHMMSS.equals(format)){
 					//SimpleDateFormat sdf = new SimpleDateFormat("yyyy" + separator + "MM" + separator + "dd");
 					//Date date = sdf.parse(value);
 
@@ -117,6 +157,7 @@ public class CustomDate {
 					logger.error("Formato no v\u00E1lido: " + format);
 					throw new CustomDateParseException("Formato no v\u00E1lido: " + format);
 				}
+
 			}
 		}
 		catch (Exception e)
@@ -126,6 +167,17 @@ public class CustomDate {
 		}
 	}
 
+	private String getValorFormateado(String valor){
+		if(valor == null){
+			valor = "00";
+		}
+
+		if(valor.length() == 1){
+			valor = "0" + valor;
+		}
+
+		return valor;
+	}
 
 	/**
 	 * Constructor.
@@ -133,21 +185,46 @@ public class CustomDate {
 	 * @param year Años.
 	 * @param month Mes.
 	 * @param day Día del mes.
+    *
 	 * @param century Siglo.
 	 */
-	public CustomDate(String format, String year, String month, String day, String century)
+	public CustomDate(String format, String year, String month, String day,String century)
 	{
-		this(format, year, month, day, century, null, null);
+		this(format, year, month, day,null,null,null,century, null, null);
+	}
+
+	/**
+    * Constructor.
+    * @param format Formato.
+    * @param year Años.
+    * @param month Mes.
+    * @param day Día del mes.
+    * @param hour Hora
+    * @param minutes Minutos
+    * @param seconds Segundos
+    * @param century Siglo.
+    */
+	public CustomDate(String format, String year, String month, String day,String hour, String minutes, String seconds ,String century)
+	{
+		this(format, year, month, day, hour, minutes, seconds ,century, null, null);
 	}
 
 	public Date getDate(){
-		int dia, mes, anio;
+		int dia, mes, anio, hora, minutos, segundos;
 
 		dia = NumberUtils.toInt(this.day);
 		mes = NumberUtils.toInt(this.month);
 		anio = NumberUtils.toInt(this.year);
 
-		return DateUtils.getFechaSinHora(dia, mes, anio);
+		if(isFormatoConHora()){
+			hora = NumberUtils.toInt(this.hour);
+			minutos = NumberUtils.toInt(this.minutes);
+			segundos = NumberUtils.toInt(this.seconds);
+			return DateUtils.getFechaConHora(dia, mes, anio, hora, minutos, segundos);
+		}
+		else{
+			return DateUtils.getFechaSinHora(dia, mes, anio);
+		}
 	}
 
 	/**
@@ -159,7 +236,7 @@ public class CustomDate {
 	 * @param century Siglo.
 	 * @param qualifier Calificador.
 	 */
-	public CustomDate(String format, String year, String month, String day, String century, String separator, String qualifier)
+	public CustomDate(String format, String year, String month, String day, String hour, String minutes, String seconds ,String century, String separator, String qualifier)
 	{
 		this();
 
@@ -177,19 +254,32 @@ public class CustomDate {
 				setMonth(month);
 				setSeparator(separator != null ? separator : "/");
 			}
-			else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format))
+			else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format) || CustomDateFormat.DATE_FORMAT_DDMMAAAA_HHMMSS.equals(format))
 			{
 				setYear(year);
 				setMonth(month);
 				setDay(day);
 				setSeparator(separator != null ? separator : "/");
+
+				if(isFormatoConHora()){
+					setHour(hour);
+					setMinutes(minutes);
+					setSeconds(seconds);
+				}
+
 			}
-			else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format))
+			else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format) || CustomDateFormat.DATE_FORMAT_AAAAMMDD_HHMMSS.equals(format))
 			{
 				setYear(year);
 				setMonth(month);
 				setDay(day);
 				setSeparator(separator != null ? separator : "/");
+
+				if(isFormatoConHora()){
+					setHour(hour);
+					setMinutes(minutes);
+					setSeconds(seconds);
+				}
 			}
 			else if (CustomDateFormat.DATE_FORMAT_S.equals(format))
 			{
@@ -219,6 +309,16 @@ public class CustomDate {
 			message += " Mes [" + this.getMonth() + "]";
 		if(StringUtils.isNotEmpty(this.getYear()))
 			message += " Anio [" + this.getYear() + "]";
+
+		if(isFormatoConHora()){
+			if(StringUtils.isNotEmpty(this.getHour()))
+				message += " Hora [" + this.getHour() + "]";
+			if(StringUtils.isNotEmpty(this.getMinutes()))
+				message += " Minutos [" + this.getMinutes() + "]";
+			if(StringUtils.isNotEmpty(this.getSeconds()))
+				message += " Segundos [" + this.getSeconds() + "]";
+		}
+
 		if(StringUtils.isNotEmpty(this.getCentury()))
 			message += " Siglo [" + this.getCentury() + "]";
 		if(StringUtils.isNotEmpty(this.getSeparator()))
@@ -264,9 +364,8 @@ public class CustomDate {
 	 */
 	public void setDay(String day)
 	{
-		this.day = ((day != null) && (day.length() > 0) ? day : null);
+		this.day = ((day != null) && (day.length() > 0) ? getValorFormateado(day) : null);
 	}
-
 
 	/**
 	 * Obtiene el mes.
@@ -284,7 +383,7 @@ public class CustomDate {
 	 */
 	public void setMonth(String month)
 	{
-		this.month = ((month != null) && (month.length() > 0) ? month : null);
+		this.month = ((month != null) && (month.length() > 0) ? getValorFormateado(month) : null);
 	}
 
 
@@ -324,7 +423,12 @@ public class CustomDate {
 	 */
 	public void setFormat(String format)
 	{
-		this.format = ((format != null) && (format.length() > 0) ? format : null);
+		if(StringUtils.isNotEmpty(format)){
+			this.format = format.replaceAll(Constants.STRING_SPACE, Constants.STRING_EMPTY);
+		}
+		else{
+			this.format= null;
+		}
 	}
 
 
@@ -378,6 +482,42 @@ public class CustomDate {
 	}
 
 
+
+
+	public String getHour() {
+		if(hour == null && isFormatoConHora()){
+			hour = "00";
+		}
+		return hour;
+	}
+
+	public void setHour(String hour) {
+		this.hour = getValorFormateado(hour);
+	}
+
+	public String getMinutes() {
+		if(minutes == null && isFormatoConHora()){
+			minutes = "00";
+		}
+
+		return minutes;
+	}
+
+	public void setMinutes(String minutes) {
+		this.minutes = getValorFormateado(minutes);
+	}
+
+	public String getSeconds() {
+		if(seconds == null && isFormatoConHora()){
+			seconds = "00";
+		}
+		return seconds;
+	}
+
+	public void setSeconds(String seconds) {
+		this.seconds = getValorFormateado(seconds);
+	}
+
 	/**
 	 * Establece el valor de la fecha.
 	 * @param value Valor de la fecha.
@@ -418,7 +558,7 @@ public class CustomDate {
 					.toString();
 			}
 		}
-		else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format))
+		else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format) ||CustomDateFormat.DATE_FORMAT_DDMMAAAA_HHMMSS.equals(format) )
 		{
 			if (StringUtils.isNotEmpty(day)
 					&& StringUtils.isNotEmpty(month)
@@ -433,7 +573,7 @@ public class CustomDate {
 					.toString();
 			}
 		}
-		else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format))
+		else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format) || CustomDateFormat.DATE_FORMAT_AAAAMMDD_HHMMSS.equals(format))
 		{
 			if (StringUtils.isNotEmpty(day)
 					&& StringUtils.isNotEmpty(month)
@@ -446,6 +586,7 @@ public class CustomDate {
 					.append(separator)
 					.append(day)
 					.toString();
+
 			}
 		}
 		else if (CustomDateFormat.DATE_FORMAT_S.equals(format))
@@ -453,9 +594,22 @@ public class CustomDate {
 			dateValue = century;
 		}
 
+
+		if(isFormatoConHora()){
+			dateValue += Constants.STRING_SPACE + getTime();
+		}
+
 		setValue(dateValue);
 	}
 
+	public String getTime(){
+		return new StringBuffer(getHour())
+			.append(SEPARADOR_HORA)
+			.append(getMinutes())
+			.append(SEPARADOR_HORA)
+			.append(getSeconds())
+		.toString();
+	}
 
 	/**
 	 * Obtiene la fecha mínima con la información actual.
@@ -475,12 +629,12 @@ public class CustomDate {
 			if (StringUtils.isNotBlank(year) && StringUtils.isNotBlank(month))
 				date = DateQualifierHelper.getMinDate(qualifier, year, month);
 		}
-		else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format))
+		else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format) || CustomDateFormat.DATE_FORMAT_DDMMAAAA_HHMMSS.equals(format))
 		{
 			if (StringUtils.isNotBlank(year) && StringUtils.isNotBlank(month) && StringUtils.isNotBlank(day))
 				date = DateQualifierHelper.getMinDate(qualifier, year, month, day);
 		}
-		else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format))
+		else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format) || CustomDateFormat.DATE_FORMAT_AAAAMMDD_HHMMSS.equals(format))
 		{
 			if (StringUtils.isNotBlank(year) && StringUtils.isNotBlank(month) && StringUtils.isNotBlank(day))
 				date = DateQualifierHelper.getMinDate(qualifier, year, month, day);
@@ -513,12 +667,12 @@ public class CustomDate {
 			if (StringUtils.isNotBlank(year) && StringUtils.isNotBlank(month))
 				date = DateQualifierHelper.getMaxDate(qualifier, year, month);
 		}
-		else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format))
+		else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(format) || CustomDateFormat.DATE_FORMAT_DDMMAAAA_HHMMSS.equals(format))
 		{
 			if (StringUtils.isNotBlank(year) && StringUtils.isNotBlank(month) && StringUtils.isNotBlank(day))
 				date = DateQualifierHelper.getMaxDate(qualifier, year, month, day);
 		}
-		else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format))
+		else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(format) || CustomDateFormat.DATE_FORMAT_AAAAMMDD_HHMMSS.equals(format))
 		{
 			if (StringUtils.isNotBlank(year) && StringUtils.isNotBlank(month) && StringUtils.isNotBlank(day))
 				date = DateQualifierHelper.getMaxDate(qualifier, year, month, day);
@@ -544,10 +698,20 @@ public class CustomDate {
 		if(!common.util.StringUtils.isEmpty(year) && !NumberUtils.isNumber(year))
 			return false;
 
-		if(!common.util.StringUtils.isEmpty(month) && !NumberUtils.isNumber(month))
+		if(!common.util.StringUtils.isEmpty(month) && !NumberUtils.isNumber(month)){
 			return false;
+		}
 
 		if(!common.util.StringUtils.isEmpty(day) && !NumberUtils.isNumber(day))
+			return false;
+
+		if(!common.util.StringUtils.isEmpty(hour) && !NumberUtils.isNumber(hour))
+			return false;
+
+		if(!common.util.StringUtils.isEmpty(minutes) && !NumberUtils.isNumber(minutes))
+			return false;
+
+		if(!common.util.StringUtils.isEmpty(seconds) && !NumberUtils.isNumber(seconds))
 			return false;
 
 		try
@@ -606,6 +770,34 @@ public class CustomDate {
 				}
 				else if (StringUtils.isNotBlank(qualifier) && !DateQualifierHelper.CALIFICADOR_SIN_FECHA.equals(qualifier))
 					isValid = false;
+			}else if (CustomDateFormat.DATE_FORMAT_DDMMAAAA_HHMMSS.equals(format))	{
+				if (StringUtils.isNotBlank(year) || StringUtils.isNotBlank(month) || StringUtils.isNotBlank(day)
+					||	StringUtils.isNotBlank(hour) || StringUtils.isNotBlank(minutes) || StringUtils.isNotBlank(seconds)
+				)
+				{
+					if (DateQualifierHelper.CALIFICADOR_SIN_FECHA.equals(qualifier))
+						return false;
+
+					DateFormat df = (DateFormat) CustomDateFormat.SDF_YYYYMMDD_HHMMSS.clone();
+					df.setLenient(false);
+					df.parse(year + "-" + month + "-" + day + " " + hour + SEPARADOR_HORA + minutes + SEPARADOR_HORA + seconds);
+				}
+				else if (StringUtils.isNotBlank(qualifier) && !DateQualifierHelper.CALIFICADOR_SIN_FECHA.equals(qualifier))
+					isValid = false;
+			}
+			else if (CustomDateFormat.DATE_FORMAT_AAAAMMDD_HHMMSS.equals(format))
+			{
+				if (StringUtils.isNotBlank(year) || StringUtils.isNotBlank(month) || StringUtils.isNotBlank(day)
+						||	StringUtils.isNotBlank(hour) || StringUtils.isNotBlank(minutes) || StringUtils.isNotBlank(seconds)){
+					if (DateQualifierHelper.CALIFICADOR_SIN_FECHA.equals(qualifier))
+						return false;
+
+					DateFormat df = (DateFormat) CustomDateFormat.SDF_YYYYMMDD_HHMMSS.clone();
+					df.setLenient(false);
+					df.parse(year + "-" + month + "-" + day + " " + hour + SEPARADOR_HORA + minutes + SEPARADOR_HORA + seconds);
+				}
+				else if (StringUtils.isNotBlank(qualifier) && !DateQualifierHelper.CALIFICADOR_SIN_FECHA.equals(qualifier))
+					isValid = false;
 			}
 			else if (CustomDateFormat.DATE_FORMAT_S.equals(format))
 			{
@@ -632,6 +824,13 @@ public class CustomDate {
 		return isValid;
 	}
 
+	public boolean isFormatoConHora(){
+		if(CustomDateFormat.DATE_FORMAT_DDMMAAAA_HHMMSS.equals(getFormat()) || CustomDateFormat.DATE_FORMAT_AAAAMMDD_HHMMSS.equals(getFormat())){
+			return true;
+		}
+		return false;
+	}
+
 
 	/**
 	 * Obtiene una representación del objeto.
@@ -648,10 +847,14 @@ public class CustomDate {
 		xml.append("<year>").append(year != null ? year : "").append("</year>");
 		xml.append("<month>").append(month != null ? month : "").append("</month>");
 		xml.append("<day>").append(day != null ? day : "").append("</day>");
+		xml.append("<hour>").append(hour != null ? hour : "").append("</hour>");
+		xml.append("<minutes>").append(minutes != null ? minutes : "").append("</minutes>");
+		xml.append("<seconds>").append(seconds != null ? seconds : "").append("</seconds>");
 		xml.append("<century>").append(century != null ? century : "").append("</century>");
 		xml.append("<qualifier>").append(qualifier != null ? qualifier : "").append("</qualifier>");
 		xml.append("</CustomDateFormat>");
 
 		return xml.toString();
 	}
+
 }

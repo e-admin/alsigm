@@ -66,16 +66,16 @@ public class SicresIntray {
     private String msUserManager = null;
     private int  mArchive = 0;
     private ClientContext mctx = null;
-    
 
-    
+
+
     /**
      * Constructor.
      * @param ctx Contexto del cliente.
      * @throws ISPACException si ocurre algún error.
      */
     public SicresIntray(ClientContext ctx) throws ISPACException {
-    	
+
 		InveSicresConfiguration parameters = InveSicresConfiguration.getInstance();
 
 		OrganizationUserInfo info = OrganizationUser.getOrganizationUserInfo();
@@ -87,18 +87,18 @@ public class SicresIntray {
 		}
 
 		if (!disabled()) {
-			
+
 			msUserManager = parameters.get(InveSicresConfiguration.USER_MANAGER);
-			if ( !"INVESDOC".equalsIgnoreCase(msUserManager) 
+			if ( !"INVESDOC".equalsIgnoreCase(msUserManager)
 					&& !"LDAP".equalsIgnoreCase(msUserManager)) {
 				throw new ISPACException("SICRES: La gestión de usuarios tiene que ser INVESDOC o LDAP.");
 			}
-			
+
 			String sArchive = parameters.get(InveSicresConfiguration.ENT_ID_ARCH);
 			if (sArchive == null) {
 				throw new ISPACException("SICRES: No se ha indicado archivador.");
 			}
-			
+
 			mArchive = Integer.parseInt( sArchive);
 			mctx = ctx;
 		}
@@ -114,15 +114,15 @@ public class SicresIntray {
 	 * @throws ISPACException si ocurre algún error.
 	 */
  	public int countIntrais() throws ISPACException {
-		
+
 		if (disabled()) {
 			return 0;
 		}
 
 		DbCnt cnt = new DbCnt(msPoolName);
-		
+
 		try {
-			
+
 			cnt.getConnection();
 
 			// Filtro por responsable
@@ -132,10 +132,10 @@ public class SicresIntray {
 						  + Integer.toString( mArchive)
 					      + " AND (" + sQueryResponsible + ")"
 						  + " AND (STATE = 1 OR STATE = 2)";
-						  
+
 			CollectionDAO collection = new CollectionDAO(DistributionIntrayDAO.class);
 			return collection.count(cnt, sQuery);
-			
+
 		} finally {
 			cnt.closeConnection();
 		}
@@ -147,40 +147,40 @@ public class SicresIntray {
 	 * @throws ISPACException si ocurre algún error.
 	 */
  	public List getIntrays() throws ISPACException {
-		
+
  		List intrays = new ArrayList();
- 		
+
 		DbCnt cnt = new DbCnt(msPoolName);
-		
+
 		try {
-			
+
 			cnt.getConnection();
-			
+
 /*
-SELECT 
+SELECT
 	ISSUE_ARCHIVE.MATTER,OFFICE_ARCHIVE.NAME,
 	REGISTER.ID,REGISTER.STATE,REGISTER.STATE_DATE,REGISTER.DIST_DATE,REGISTER.MESSAGE,
-	ARCHIVE.FLD1,ARCHIVE.FLD9 
-FROM 
-	A1SF ARCHIVE 
-		LEFT OUTER JOIN SCR_CA ISSUE_ARCHIVE ON ( ARCHIVE.FLD16 = ISSUE_ARCHIVE.ID ) 
-		LEFT OUTER JOIN SCR_OFIC OFFICE_ARCHIVE ON ( ARCHIVE.FLD5 = OFFICE_ARCHIVE.ID ), 
-	SCR_DISTREG REGISTER  
-WHERE 
-	REGISTER.ID_ARCH = 1 
-	AND (REGISTER.STATE = 1 OR REGISTER.STATE = 2) 
-	AND (REGISTER.TYPE_DEST = 1 AND REGISTER.ID_DEST = 1 
-			OR REGISTER.TYPE_DEST = 2 AND REGISTER.ID_DEST = 1 
-			OR REGISTER.TYPE_DEST = 3 AND REGISTER.ID_DEST IN (2,3,4,6,7,5,12)) 
-	AND (REGISTER.ID_FDR = ARCHIVE.FDRID) 
-*/    		
+	ARCHIVE.FLD1,ARCHIVE.FLD9
+FROM
+	A1SF ARCHIVE
+		LEFT OUTER JOIN SCR_CA ISSUE_ARCHIVE ON ( ARCHIVE.FLD16 = ISSUE_ARCHIVE.ID )
+		LEFT OUTER JOIN SCR_OFIC OFFICE_ARCHIVE ON ( ARCHIVE.FLD5 = OFFICE_ARCHIVE.ID ),
+	SCR_DISTREG REGISTER
+WHERE
+	REGISTER.ID_ARCH = 1
+	AND (REGISTER.STATE = 1 OR REGISTER.STATE = 2)
+	AND (REGISTER.TYPE_DEST = 1 AND REGISTER.ID_DEST = 1
+			OR REGISTER.TYPE_DEST = 2 AND REGISTER.ID_DEST = 1
+			OR REGISTER.TYPE_DEST = 3 AND REGISTER.ID_DEST IN (2,3,4,6,7,5,12))
+	AND (REGISTER.ID_FDR = ARCHIVE.FDRID)
+*/
 
 			StringBuffer sql = new StringBuffer("WHERE")
 				.append(" REGISTER.ID_ARCH = ").append(mArchive)
 				.append(" AND (REGISTER.STATE = 1 OR REGISTER.STATE = 2)")
 				.append(" AND (").append(getQueryResponsible(cnt, "REGISTER")).append(")")
 				.append(" AND REGISTER.ID_FDR = ARCHIVE.FDRID");
-	    	
+
 			TableJoinFactoryDAO factory = getIntraysTableJoinFactoryDAO(cnt);
 	   		IItemCollection collection = factory.queryTableJoin(cnt, sql.toString()).disconnect();
 			while (collection.next()) {
@@ -189,11 +189,11 @@ WHERE
 					intrays.add(intray);
 				}
 			}
-			
+
 		} finally {
 			cnt.closeConnection();
 		}
-		
+
 		return intrays;
 	}
 
@@ -204,30 +204,30 @@ WHERE
 	 * @throws ISPACException si ocurre algún error.
 	 */
 	public Intray getIntray(int register) throws ISPACException {
-		
+
 		Intray intray = null;
-		
+
 		DbCnt cnt = new DbCnt(msPoolName);
-		
+
 		try {
 
 			cnt.getConnection();
 
 /*
-SELECT 
+SELECT
 	ISSUE_ARCHIVE.MATTER,OFFICE_ARCHIVE.NAME,
 	REGISTER.ID,REGISTER.STATE,REGISTER.STATE_DATE,REGISTER.DIST_DATE,REGISTER.MESSAGE,
-	ARCHIVE.FLD1,ARCHIVE.FLD9 
-FROM 
-	A1SF ARCHIVE 
-		LEFT OUTER JOIN SCR_CA ISSUE_ARCHIVE ON ( ARCHIVE.FLD16 = ISSUE_ARCHIVE.ID ) 
-		LEFT OUTER JOIN SCR_OFIC OFFICE_ARCHIVE ON ( ARCHIVE.FLD5 = OFFICE_ARCHIVE.ID ), 
-	SCR_DISTREG REGISTER  
-WHERE 
-	REGISTER.ID = 339 
-	AND (REGISTER.ID_FDR = ARCHIVE.FDRID)  
+	ARCHIVE.FLD1,ARCHIVE.FLD9
+FROM
+	A1SF ARCHIVE
+		LEFT OUTER JOIN SCR_CA ISSUE_ARCHIVE ON ( ARCHIVE.FLD16 = ISSUE_ARCHIVE.ID )
+		LEFT OUTER JOIN SCR_OFIC OFFICE_ARCHIVE ON ( ARCHIVE.FLD5 = OFFICE_ARCHIVE.ID ),
+	SCR_DISTREG REGISTER
+WHERE
+	REGISTER.ID = 339
+	AND (REGISTER.ID_FDR = ARCHIVE.FDRID)
 */
-			
+
 			StringBuffer sql = new StringBuffer("WHERE")
 				.append(" REGISTER.ID = ").append(register)
 				.append(" AND REGISTER.ID_FDR = ARCHIVE.FDRID");
@@ -237,19 +237,23 @@ WHERE
 			if (collection.next()) {
 				intray = createIntray(cnt, collection.value());
 			}
-			
+
 		} finally {
 			cnt.closeConnection();
 		}
-		
+
 		return intray;
 	}
 
 	protected TableJoinFactoryDAO getIntraysTableJoinFactoryDAO(DbCnt cnt) throws ISPACException {
-		
+
 		TableJoinFactoryDAO factory = new TableJoinFactoryDAO();
-		
-		// Añadir la tabla de registros distribuidos 
+
+		// Deshabilidar la llamada a getCatalogEntityDAO en el createTableJoin
+       // ya que la consulta se ejecuta contra la BD de ISICRES
+		factory.setDisabledGetCatalogEntitiesInCreateTableJoin(Boolean.TRUE);
+
+		// Añadir la tabla de registros distribuidos
 		factory.addTable("SCR_DISTREG", "REGISTER", new Property[] {
 				new Property(1, "ID"), // identificador del registro distribuido
 				new Property(2, "STATE"), // estado del registro distribuido
@@ -262,7 +266,7 @@ WHERE
 				new Property(9, "ID_DEST") // id de destino
 		});
 
-		// Añadir la tabla de registros distribuidos 
+		// Añadir la tabla de registros distribuidos
 		factory.addTable("A" + Integer.toString( mArchive) + "SF", "ARCHIVE", new Property[] {
 				new Property(1, "FLD1"), // número de registro
 				new Property(1, "FLD2"), // fecha de registro
@@ -270,30 +274,30 @@ WHERE
 				new Property(2, "FLD17") // resumen del registro
 		});
 
-    		
-		WLSubstituteDef sustituteDef = new WLSubstituteDef("ARCHIVE", "FLD16", 
+
+		WLSubstituteDef sustituteDef = new WLSubstituteDef("ARCHIVE", "FLD16",
 				new WLCodeTableDef("ISSUE", "ID", "SCR_CA", "MATTER"));
 		sustituteDef.addJoin(cnt, factory);
 
-		sustituteDef = new WLSubstituteDef("ARCHIVE", "FLD5", 
+		sustituteDef = new WLSubstituteDef("ARCHIVE", "FLD5",
 				new WLCodeTableDef("OFFICE", "ID", "SCR_OFIC", "NAME"));
 		sustituteDef.addJoin(cnt, factory);
 
-		sustituteDef = new WLSubstituteDef("ARCHIVE", "FLD7", 
+		sustituteDef = new WLSubstituteDef("ARCHIVE", "FLD7",
 				new WLCodeTableDef("SENDER", "ID", "SCR_ORGS", "NAME"));
 		sustituteDef.addJoin(cnt, factory);
 
-		sustituteDef = new WLSubstituteDef("ARCHIVE", "FLD8", 
+		sustituteDef = new WLSubstituteDef("ARCHIVE", "FLD8",
 				new WLCodeTableDef("DESTINATION", "ID", "SCR_ORGS", "NAME"));
 		sustituteDef.addJoin(cnt, factory);
 
 		return factory;
 	}
-	
+
 	protected Intray createIntray(DbCnt cnt, IItem item) throws ISPACException {
 
 		Intray intray = null;
-		
+
 		if (item != null) {
 			intray = new Intray();
 			intray.setId(item.getString("REGISTER:ID"));
@@ -316,12 +320,12 @@ WHERE
 
 		return intray;
 	}
-	
+
 	protected String getRespName(DbCnt cnt, int obtType, int objId) throws ISPACException {
 		String name = null;
-		
+
 		if (cnt != null) {
-			
+
 			String sql = "SELECT NAME FROM ";
 			switch (obtType) {
 				case 1:
@@ -335,9 +339,9 @@ WHERE
 					break;
 			}
 			sql += " WHERE ID=" + objId;
-			
+
 			DbQuery result = null;
-			
+
 			try {
 				result = cnt.executeDbQuery(sql);
 				if (result.next()) {
@@ -349,10 +353,10 @@ WHERE
 				}
 			}
 		}
-		
+
 		return name;
 	}
-	
+
 // 	/* (non-Javadoc)
 //	 * @see ieci.tdw.ispac.ispaclib.invesicres.intray.ISicresIntray#addToProccess(int, int, int)
 //	 */
@@ -360,9 +364,9 @@ WHERE
 //	throws ISPACException
 //	{
 //		DbCnt cnt = new DbCnt(msPoolName);
-//		
+//
 //		cnt.getConnection();
-//		
+//
 //		try
 //		{
 //			ProcessIntrayDAO object = new ProcessIntrayDAO( cnt);
@@ -386,35 +390,35 @@ WHERE
 //	{
 //		DbCnt cnt = new DbCnt(msPoolName);
 //		boolean commit = false;
-//		
+//
 //		cnt.getConnection();
 //		cnt.openTX();
 //		try
 //		{
 //			Date date = new Date(System.currentTimeMillis());
-//			
+//
 //			User user = (User) mctx.getUser();
-//			
+//
 //			DistributionIntrayDAO distribution = new DistributionIntrayDAO( cnt, register);
-//			
+//
 //	        if (distribution.getInt("STATE") == IInboxAPI.ARCHIVADO)
 //	        {
 //	        	throw new ISPACException("El registro ya está archivado");
 //	        }
-//	        
+//
 //	        if (archive)
 //	        {
 //				distribution.set( "STATE", IInboxAPI.ARCHIVADO);
 //				distribution.set( "STATE_DATE", date);
 //				distribution.store( cnt);
-//				
+//
 //				setState( cnt, register, IInboxAPI.ARCHIVADO);
 //	        }
-//			
+//
 //			int folder = distribution.getInt( "ID_FDR");
-//			
+//
 //	        distribution.createNew( cnt);
-//	        
+//
 //			distribution.set( "ID_ARCH", mArchive);
 //			distribution.set( "ID_FDR", folder);
 //			distribution.set( "DIST_DATE", date);
@@ -426,9 +430,9 @@ WHERE
 //			distribution.set( "STATE_DATE", date);
 //			distribution.set( "MESSAGE", message);
 //			distribution.store( cnt);
-//			
+//
 //			setState( cnt, distribution.getKeyInt(), IInboxAPI.PENDIENTE);
-//			
+//
 //			commit = true;
 //		}
 //		finally
@@ -441,7 +445,7 @@ WHERE
 	/**
 	 * Acepta un registro distribuido.
 	 * @param register Número de registro.
-	 * @throws ISPACException si ocurre algún error. 
+    * @throws ISPACException si ocurre algún error.
 	 */
 	public void acceptIntray(int register) throws ISPACException {
 		changeState(register, ACEPTADO, null);
@@ -451,7 +455,7 @@ WHERE
 	 * Rechaza un registro distribuido.
 	 * @param register Número de registro.
 	 * @param reason Motivo del rechazo.
-	 * @throws ISPACException si ocurre algún error. 
+    * @throws ISPACException si ocurre algún error.
 	 */
 	public void rejectIntray(int register, String reason) throws ISPACException {
 		changeState(register, DEVUELTO, reason);
@@ -460,7 +464,7 @@ WHERE
 	/**
 	 * Archiva un registro distribuido.
 	 * @param register Número de registro.
-	 * @throws ISPACException si ocurre algún error. 
+    * @throws ISPACException si ocurre algún error.
 	 */
 	public void archiveIntray(int register) throws ISPACException {
 		changeState(register, ARCHIVADO, null);
@@ -474,15 +478,15 @@ WHERE
 	{
 		DbCnt cnt = new DbCnt(msPoolName);
 		boolean commit = false;
-		
+
 		cnt.getConnection();
 		cnt.openTX();
 		try
 		{
 			Date date = new Date(System.currentTimeMillis());
-			
+
 			DistributionIntrayDAO distribution = new DistributionIntrayDAO( cnt, register);
-			
+
 	        if (distribution.getInt("STATE") == ARCHIVADO)
 	        {
 	        	throw new ISPACException("El registro ya está archivado");
@@ -492,16 +496,16 @@ WHERE
 	        {
 				distribution.set( "STATE", state);
 				distribution.set( "STATE_DATE", date);
-				
+
 				if ((remarks != null) && (remarks.trim().length() > 0)) {
 					distribution.set("MESSAGE", remarks);
 				}
-				
+
 				distribution.store( cnt);
-				
+
 				setState(cnt, register, state);
 	        }
-				
+
 			commit = true;
 		}
 		finally
@@ -518,33 +522,33 @@ WHERE
 	throws ISPACException
 	{
 		DbCnt cnt = new DbCnt(msPoolName);
-		
+
 		cnt.getConnection();
 		try
 		{
 			DistributionIntrayDAO distribution = new DistributionIntrayDAO( cnt, register);
-			
+
 			int archiveId = distribution.getInt( "ID_ARCH");
 			int folderId = distribution.getInt( "ID_FDR");
-			
+
 			DbConnectionConfig config = new DbConnectionConfig( msPoolName, null, null);
 			Archive archiveAPI = new Archive();
 			archiveAPI.setConnectionConfig(config);
 			Folder folderAPI = new Folder();
 			folderAPI.setConnectionConfig(config);
-			
+
 			ArchiveObject archive = archiveAPI.loadArchive(null, archiveId);
-			
+
 			User user = (User) mctx.getUser();
-			
+
 			int userId = getResponsibleId( cnt, user);
 
-			FolderObject folder = folderAPI.loadFolder(null, userId, archive, folderId);  
-			
+			FolderObject folder = folderAPI.loadFolder(null, userId, archive, folderId);
+
 			FolderDocumentObjects documents = folder.getAllDocuments();
-			
+
 			Annexe [] annexes = new Annexe[documents.count()];
-			
+
 			for (int i = 0; i < documents.count(); i++)
 			{
 				FolderDocumentObject document = documents.get(i);
@@ -570,33 +574,33 @@ WHERE
 	throws ISPACException
 	{
 		DbCnt cnt = new DbCnt(msPoolName);
-		
+
 		cnt.getConnection();
 		try
 		{
 			DistributionIntrayDAO distribution = new DistributionIntrayDAO( cnt, register);
-			
+
 			int archiveId = distribution.getInt( "ID_ARCH");
 			int folderId = distribution.getInt( "ID_FDR");
-			
+
 			DbConnectionConfig config = new DbConnectionConfig( msPoolName, null, null);
 			Archive archiveAPI = new Archive();
 			archiveAPI.setConnectionConfig(config);
 			Folder folderAPI = new Folder();
 			folderAPI.setConnectionConfig(config);
-			
+
 			ArchiveObject archive = archiveAPI.loadArchive(null, archiveId);
-			
+
 			User user = (User) mctx.getUser();
-			
+
 			int userId = getResponsibleId( cnt, user);
 
-			FolderObject folder = folderAPI.loadFolder(null, userId, archive, folderId);  
+			FolderObject folder = folderAPI.loadFolder(null, userId, archive, folderId);
 
 		    byte[] bytes = folderAPI.retrieveFolderDocumentFile(null, archive, folder, annexe);
-		    
+
 		    out.write( bytes);
-		    
+
 		    out.flush();
 		}
 		catch (Exception e)
@@ -613,9 +617,9 @@ WHERE
 	throws ISPACException
 	{
 		Date date = new Date(System.currentTimeMillis());
-		
+
 		StateIntrayDAO stateIntray = new StateIntrayDAO(cnt);
-		
+
 		stateIntray.createNew( cnt);
 		stateIntray.set( "ID_DIST", register);
 		stateIntray.set( "STATE", state);
@@ -627,106 +631,106 @@ WHERE
 	protected String getQueryResponsible(DbCnt cnt, String prefix) throws ISPACException {
 
 		StringBuffer responsible = new StringBuffer();
-		
+
 		// Filtro por usuario
 		responsible.append(getQueryUser(cnt, prefix));
-		
+
 		// Filtro por departamentos
 		String units = getQueryUnit(cnt, prefix);
 		if (units != null) {
 			responsible.append(" OR ").append(units);
 		}
-		
+
 		// Filtro por grupos
 		String groups = getQueryGroups(cnt, prefix);
 		if (groups != null) {
 			responsible.append(" OR ").append(groups);
 		}
-		
+
 		return responsible.toString();
 	}
-	
-	protected String getQueryUser( DbCnt cnt, String sPrefix) 
+
+	protected String getQueryUser( DbCnt cnt, String sPrefix)
 			throws ISPACException {
-		
+
 		String sQuery = null;
-		
+
 		User user = (User) mctx.getUser();
-		
+
 		if (sPrefix == null) {
 			sQuery = "TYPE_DEST = 1 AND ID_DEST = ";
 		} else {
 			sQuery = sPrefix + ".TYPE_DEST = 1 AND " + sPrefix + ".ID_DEST = ";
 		}
-			
+
 		sQuery += Integer.toString( getResponsibleId( cnt, user));
-		
+
 		return sQuery;
 	}
 
 	protected String getQueryUnit( DbCnt cnt, String sPrefix)
 			throws ISPACException {
-		
+
 		String sQuery = null;
-		
+
 		if (msUserManager.equalsIgnoreCase("INVESDOC")) {
-			
+
 			User user = (User) mctx.getUser();
-			
+
 			OrgUnit unit = (OrgUnit) user.getOrgUnit();
-			
+
 			if (sPrefix == null)
 				sQuery = "TYPE_DEST = 2 AND ID_DEST = ";
 			else
 				sQuery = sPrefix + ".TYPE_DEST = 2 AND " + sPrefix + ".ID_DEST = ";
-			
+
 			sQuery += Integer.toString( getResponsibleId( cnt, unit));
 		}
-		
+
 		return sQuery;
 	}
 
 	protected String getQueryGroups( DbCnt cnt, String sPrefix)
 			throws ISPACException {
-		
+
 		String sQuery = null;
-		
+
 		User user = (User) mctx.getUser();
-		
+
 		Collection collection = user.getUserGroups();
 
 		Iterator iterator = collection.iterator();
-		
+
 		if (iterator.hasNext()) {
-			
+
 			Group group = (Group) iterator.next();
-		
+
 			if (sPrefix == null)
 				sQuery = "TYPE_DEST = 3 AND ID_DEST IN (";
 			else
 				sQuery = sPrefix + ".TYPE_DEST = 3 AND " + sPrefix + ".ID_DEST IN (";
 
 			sQuery += Integer.toString( getResponsibleId( cnt, group));
-			
+
 			while (iterator.hasNext()) {
 				group = (Group) iterator.next();
 				sQuery += "," + Integer.toString( getResponsibleId( cnt, group));
 			}
 			sQuery += ")";
 		}
-		
+
 		return sQuery;
 	}
 
 	protected int getResponsibleType( Responsible responsible)
 	{
 		String sUID = responsible.getUID();
-		
+
 		if (msUserManager.equalsIgnoreCase("INVESDOC"))
 		{
 		    StringTokenizer tokens = new StringTokenizer( sUID, "-");
-		    
-		    if (tokens.hasMoreTokens()) 
+
+			if (tokens.hasMoreTokens())
 		    {
 		        return Integer.parseInt(tokens.nextToken());
 		    }
@@ -740,25 +744,25 @@ WHERE
 			else if (responsible instanceof  OrgUnit)
 				return IDirectoryEntry.ET_UNIT;
 		}
-	    
+
 	    return 0;
 	}
-	
+
 	protected int getResponsibleId( DbCnt cnt, Responsible responsible)
 	throws ISPACException
 	{
 		String sUID = responsible.getUID();
-		
+
 		if (msUserManager.equalsIgnoreCase("INVESDOC"))
 		{
 		    StringTokenizer tokens = new StringTokenizer( sUID, "-");
-		    
-		    if (tokens.hasMoreTokens()) 
+
+			if (tokens.hasMoreTokens())
 		    {
 			    if (tokens.hasMoreTokens())
 			    {
 			    	tokens.nextToken();
-			    	
+
 			    	if (tokens.hasMoreTokens())
 			    	{
 			    		return Integer.parseInt(tokens.nextToken());
@@ -766,8 +770,8 @@ WHERE
 			    }
 		    }
 		}
-		// Si el usuario es LDAP existe una tablas invesdoc 
-		// (IUSERLDAPUSERHDR) que mantiene la correspondencia 
+		// Si el usuario es LDAP existe una tablas invesdoc
+		// (IUSERLDAPUSERHDR) que mantiene la correspondencia
 		// entre el GUID de LDAP y el identificador del
 		// usuario, grupo de invesdoc
 		else if (msUserManager.equalsIgnoreCase("LDAP"))
@@ -775,19 +779,19 @@ WHERE
 			CollectionDAO collection;
 			IItemCollection list;
 			Iterator iterator;
-			
+
 			if (responsible instanceof  User)
 			{
 				String where = "WHERE LDAPGUID = '"
 					  		 + DBUtil.replaceQuotes(sUID)
 							 + "'";
-				
+
 				collection = new CollectionDAO(UserLDAPDAO.class);
 				collection.query(cnt,where);
 				list = collection.disconnect();
-				
+
 				iterator = list.iterator();
-				
+
 				if (!iterator.hasNext())
 				{
 					logger.info("No existe el usuario LDAP: " + responsible.getName());
@@ -799,23 +803,23 @@ WHERE
 				String where = "WHERE LDAPGUID = '"
 					  		 + DBUtil.replaceQuotes(sUID)
 							 + "'";
-				
+
 				collection = new CollectionDAO(GroupLDAPDAO.class);
 				collection.query(cnt,where);
 				list = collection.disconnect();
-				
+
 				iterator = list.iterator();
-				
+
 				if (!iterator.hasNext())
 				{
 					logger.info("No existe el usuario LDAP: " + responsible.getName());
 					return 0;
 				}
 			}
-			
+
 			return ((ObjectDAO) iterator.next()).getKeyInt();
 		}
-	    
+
 	    return 0;
 	}
 

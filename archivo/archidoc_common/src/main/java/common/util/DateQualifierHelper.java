@@ -33,7 +33,7 @@ public class DateQualifierHelper
 	public static final String CALIFICADOR_SIN_FECHA 				= "sf";
 	//=======================================================================
 
-	
+
 	/**
 	 * Obtiene la fecha mínima en función del calificador.
 	 * @param qualifier Calificador de la fecha.
@@ -59,7 +59,7 @@ public class DateQualifierHelper
 			if (CALIFICADOR_ANTERIOR_A.equals(qualifier) ||
 				CALIFICADOR_SIN_FECHA.equals(qualifier))
 				return null;
-			
+
 			if (CALIFICADOR_POSTERIOR_A.equals(qualifier))
 				year++;
 			else if (CALIFICADOR_ANTES_DE_CRISTO.equals(qualifier))
@@ -74,10 +74,10 @@ public class DateQualifierHelper
 				month = Calendar.SEPTEMBER;
 		}
 
-		return createDate(year, month, 1, 0, 0, 0);
+		return createDate(year, month, 1, 0, 0, 0,0);
 	}
 
-	
+
 	/**
 	 * Obtiene la fecha máxima en función del calificador.
 	 * @param qualifier Calificador de la fecha.
@@ -88,7 +88,7 @@ public class DateQualifierHelper
 	{
 		int year = TypeConverter.toInt(syear);
 		int month = Calendar.DECEMBER;
-		
+
 		/*
 		 * Faltan:
 			CALIFICADOR_APROXIMADA
@@ -103,7 +103,7 @@ public class DateQualifierHelper
 			if (CALIFICADOR_POSTERIOR_A.equals(qualifier) ||
 				CALIFICADOR_SIN_FECHA.equals(qualifier))
 				return null;
-			
+
 			if (CALIFICADOR_ANTERIOR_A.equals(qualifier))
 				year--;
 			else if (CALIFICADOR_ANTES_DE_CRISTO.equals(qualifier))
@@ -118,10 +118,10 @@ public class DateQualifierHelper
 				month = Calendar.AUGUST;
 		}
 
-		return createDate(year, month, getMaxDayOfMonth(year, month), 23, 59, 59);
+		return createDate(year, month, getMaxDayOfMonth(year, month), 23, 59, 59,999);
 	}
 
-		
+
 	/**
 	 * Obtiene la fecha mínima en función del calificador.
 	 * @param qualifier Calificador de la fecha.
@@ -131,7 +131,7 @@ public class DateQualifierHelper
 	 */
 	public static Date getMinDate(String qualifier, String syear, String smonth)
 	{
-		int year = TypeConverter.toInt(syear); 
+		int year = TypeConverter.toInt(syear);
 		int month = TypeConverter.toInt(smonth, 1) - 1;
 		int day = 1;
 
@@ -149,7 +149,7 @@ public class DateQualifierHelper
 			if (CALIFICADOR_ANTERIOR_A.equals(qualifier) ||
 				CALIFICADOR_SIN_FECHA.equals(qualifier))
 				return null;
-			
+
 			if (CALIFICADOR_POSTERIOR_A.equals(qualifier))
 				month++;
 			else if (CALIFICADOR_ANTES_DE_CRISTO.equals(qualifier))
@@ -164,7 +164,7 @@ public class DateQualifierHelper
 				day = 21;
 		}
 
-		return createDate(year, month, day, 0, 0, 0);
+		return createDate(year, month, day, 0, 0, 0,0);
 	}
 
 
@@ -180,7 +180,7 @@ public class DateQualifierHelper
 		int year = TypeConverter.toInt(syear);
 		int month = TypeConverter.toInt(smonth, 12) - 1;
 		int day = getMaxDayOfMonth(year, month);
-		
+
 		/*
 		 * Faltan:
 			CALIFICADOR_APROXIMADA
@@ -200,13 +200,13 @@ public class DateQualifierHelper
 		CALIFICADOR_MEDIDADOS
 		CALIFICADOR_FINALES
 		*/
-		
+
 		if (!StringUtils.isBlank(qualifier))
 		{
 			if (CALIFICADOR_POSTERIOR_A.equals(qualifier) ||
 				CALIFICADOR_SIN_FECHA.equals(qualifier))
 				return null;
-			
+
 			if (CALIFICADOR_ANTERIOR_A.equals(qualifier))
 			{
 				month--;
@@ -223,11 +223,11 @@ public class DateQualifierHelper
 					CALIFICADOR_MEDIDADOS.equals(qualifier))
 				day = 20;
 		}
-		
-		return createDate(year, month, day, 23, 59, 59);
+
+		return createDate(year, month, day, 23, 59, 59,999);
 	}
 
-	
+
 	/**
 	 * Obtiene la fecha mínima en función del calificador.
 	 * @param qualifier Calificador de la fecha.
@@ -238,7 +238,7 @@ public class DateQualifierHelper
 	 */
 	public static Date getMinDate(String qualifier, String syear, String smonth, String sday)
 	{
-		int year = TypeConverter.toInt(syear); 
+		int year = TypeConverter.toInt(syear);
 		int month = TypeConverter.toInt(smonth, 1) - 1;
 		int day = TypeConverter.toInt(sday, 1);
 
@@ -256,14 +256,14 @@ public class DateQualifierHelper
 			if (CALIFICADOR_ANTERIOR_A.equals(qualifier) ||
 				CALIFICADOR_SIN_FECHA.equals(qualifier))
 				return null;
-			
+
 			if (CALIFICADOR_POSTERIOR_A.equals(qualifier))
 				day++;
 			else if (CALIFICADOR_ANTES_DE_CRISTO.equals(qualifier))
 				year *= -1;
 		}
 
-		return createDate(year, month, day, 0, 0, 0);
+		return createDate(year, month, day, 0, 0, 0,0);
 	}
 
 
@@ -280,7 +280,7 @@ public class DateQualifierHelper
 		int year = TypeConverter.toInt(syear);
 		int month = TypeConverter.toInt(smonth, 12) - 1;
 		int day = TypeConverter.toInt(sday, getMaxDayOfMonth(year, month));
-		
+
 		/*
 		 * Faltan:
 			CALIFICADOR_APROXIMADA
@@ -295,14 +295,14 @@ public class DateQualifierHelper
 			if (CALIFICADOR_POSTERIOR_A.equals(qualifier) ||
 				CALIFICADOR_SIN_FECHA.equals(qualifier))
 				return null;
-			
+
 			if (CALIFICADOR_ANTERIOR_A.equals(qualifier))
 				day--;
 			else if (CALIFICADOR_ANTES_DE_CRISTO.equals(qualifier))
 				year *= -1;
 		}
 
-		return createDate(year, month, day, 23, 59, 59);
+		return createDate(year, month, day, 23, 59, 59,999);
 	}
 
 
@@ -335,8 +335,8 @@ public class DateQualifierHelper
 
 			if (CALIFICADOR_ANTES_DE_CRISTO.equals(qualifier))
 				year = -(century * 100);
-			else 
-				if (CALIFICADOR_SEGUNDA_MITAD.equals(qualifier) || 
+			else
+				if (CALIFICADOR_SEGUNDA_MITAD.equals(qualifier) ||
 					CALIFICADOR_FINALES.equals(qualifier))
 				year = (century - 1) * 100 + 51;
 			else
@@ -350,11 +350,11 @@ public class DateQualifierHelper
 				if (CALIFICADOR_POSTERIOR_A.equals(qualifier))
 				year = century * 100 + 1;
 		}
-		
-		return createDate(year, month, day, 0, 0, 0);
+
+		return createDate(year, month, day, 0, 0, 0,0);
 	}
 
-	
+
 	/**
 	 * Obtiene la fecha máxima en función del calificador.
 	 * @param qualifier Calificador de la fecha.
@@ -363,10 +363,10 @@ public class DateQualifierHelper
 	 */
 	public static Date getMaxDate(String qualifier, int century)
 	{
-		int year = century * 100; // Sin calificador, CALIFICADOR_SEGUNDA_MITAD, CALIFICADOR_FINALES, CALIFICADOR_ULTIMO_TERCIO 
+		int year = century * 100; // Sin calificador, CALIFICADOR_SEGUNDA_MITAD, CALIFICADOR_FINALES, CALIFICADOR_ULTIMO_TERCIO
 		int month = Calendar.DECEMBER;
 		int day = 31;
-		
+
 		/*
 		 * Faltan:
 			CALIFICADOR_APROXIMADA
@@ -375,7 +375,7 @@ public class DateQualifierHelper
 			CALIFICADOR_TAL_Y_COMO_SE_HA_ESCRITO
 			CALIFICADOR_CERCA
 		 */
-		
+
 		if (!StringUtils.isBlank(qualifier))
 		{
 			if (CALIFICADOR_POSTERIOR_A.equals(qualifier) ||
@@ -384,26 +384,26 @@ public class DateQualifierHelper
 
 			if (CALIFICADOR_ANTES_DE_CRISTO.equals(qualifier))
 				year = -(century * 100) + 99;
-			else 
+			else
 				if (CALIFICADOR_PRIMERA_MITAD.equals(qualifier) ||
 					CALIFICADOR_PRINCIPIOS.equals(qualifier))
 				year = (century - 1) * 100 + 50;
-			else 
+			else
 				if (CALIFICADOR_PRIMER_TERCIO.equals(qualifier))
 				year = (century - 1) * 100 + 33;
-			else 
+			else
 				if (CALIFICADOR_SEGUNDO_TERCIO.equals(qualifier) ||
 					CALIFICADOR_MEDIDADOS.equals(qualifier))
 				year = (century - 1) * 100 + 66;
-			else 
+			else
 				if (CALIFICADOR_ANTERIOR_A.equals(qualifier))
 				year = (century - 1) * 100;
 		}
-		
-		return createDate(year, month, day, 23, 59, 59);
+
+		return createDate(year, month, day, 23, 59, 59,999);
 	}
-	
-	
+
+
 	/**
 	 * Crea un objeto Date.
 	 * @param year Año.
@@ -414,18 +414,19 @@ public class DateQualifierHelper
      * @param second Segundo.
 	 * @return Objeto Date.
 	 */
-	protected static Date createDate(int year, int month, int day, int hour, 
-            int minute, int second)
+	protected static Date createDate(int year, int month, int day, int hour,
+            int minute, int second, int miliseconds)
 	{
 		Calendar cal = new GregorianCalendar();
 		cal.set(year, month, day, hour, minute, second);
-		
+		cal.set(Calendar.MILLISECOND, miliseconds);
+
 		return cal.getTime();
 	}
-	
-	
+
+
 	/**
-	 * Obtiene el número del máximo día del mes. 
+    * Obtiene el número del máximo día del mes.
 	 * @param year Año.
 	 * @param month Mes.
 	 * @return Número del máximo día del mes.

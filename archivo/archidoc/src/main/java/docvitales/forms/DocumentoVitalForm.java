@@ -9,6 +9,8 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 
+import se.terceros.TipoAtributo;
+
 import common.forms.CustomForm;
 import common.util.StringUtils;
 import common.util.terceros.IThirdPartySearchForm;
@@ -102,6 +104,9 @@ public class DocumentoVitalForm extends CustomForm implements
 	private String companySearchToken = null;
 	private String ifSearchToken = null;
 
+	int tipoNumeroIdentificacion = TipoAtributo.IDENTIFICACION_CIF;
+
+
 	/**
 	 * Constructor.
 	 */
@@ -111,7 +116,7 @@ public class DocumentoVitalForm extends CustomForm implements
 
 	/**
 	 * Inicia el formulario.
-	 * 
+    *
 	 * @param mapping
 	 * @param request
 	 */
@@ -526,7 +531,7 @@ public class DocumentoVitalForm extends CustomForm implements
 
 	/**
 	 * Establece los valores del formulario.
-	 * 
+    *
 	 * @param documentoVital
 	 *            Información del documento vital.
 	 */
@@ -566,7 +571,7 @@ public class DocumentoVitalForm extends CustomForm implements
 
 	/**
 	 * Establece los valores del formulario.
-	 * 
+    *
 	 * @param documentoVital
 	 *            Información del documento vital.
 	 */
@@ -610,7 +615,7 @@ public class DocumentoVitalForm extends CustomForm implements
 
 	/**
 	 * Valida el formulario.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param request
@@ -640,4 +645,11 @@ public class DocumentoVitalForm extends CustomForm implements
 		setObservaciones(null);
 	}
 
+	public int getTipoNumeroIdentificacion() {
+		return tipoNumeroIdentificacion;
+	}
+
+	public void setTipoNumeroIdentificacion(int tipoNumeroIdentificacion) {
+		this.tipoNumeroIdentificacion = tipoNumeroIdentificacion;
+	}
 }

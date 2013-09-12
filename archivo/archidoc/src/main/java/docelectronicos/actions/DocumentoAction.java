@@ -169,6 +169,9 @@ public class DocumentoAction extends BaseAction {
 
 		ServiceRepository services = ServiceRepository
 				.getInstance(getServiceClient(request));
+
+
+		DocDocumentoVO documento = null;
 		if (StringUtils.isNotBlank(idDocumento)) {
 
 			// Servicio de gestión de documentos
@@ -176,7 +179,7 @@ public class DocumentoAction extends BaseAction {
 					.lookupGestionDocumentosElectronicosBI();
 
 			// Leer la información del documento
-			DocDocumentoVO documento = null;
+
 			if (descripcion > 0)
 				documento = docsBI.getDocumentoByIdInterno(tipoObjeto,
 						idObjeto, idDocumento);
@@ -229,14 +232,15 @@ public class DocumentoAction extends BaseAction {
 		} else // if (tipoObjeto == TipoObjeto.ELEMENTO_CF)
 		{
 			ElementoCuadroClasificacionVO elemento = getGestionCuadroClasificacionBI(
-					request).getElementoCuadroClasificacion(idObjeto);
+					request).getElementoCuadroClasificacion(documento.getIdObjeto());
+
 			if (elemento != null) {
 				switch (elemento.getTipo()) {
 				case ElementoCuadroClasificacion.TIPO_UNIDAD_DOCUMENTAL:
 					UnidadDocumentalToPO udocTransformer = new UnidadDocumentalToPO(
 							services);
 					UnidadDocumentalVO udoc = getGestionUnidadDocumentalBI(
-							request).getUnidadDocumental(idObjeto);
+							request).getUnidadDocumental(documento.getIdObjeto());
 					request.setAttribute(
 							DocumentosConstants.UNIDAD_DOCUMENTAL_KEY,
 							udocTransformer
@@ -310,6 +314,7 @@ public class DocumentoAction extends BaseAction {
 		String idClfPadre = request.getParameter("idClfPadre");
 		if (logger.isInfoEnabled())
 			logger.info("Id Clasificador Padre: " + idClfPadre);
+
 
 		if (StringUtils.isNotBlank(id)) {
 			// // Guardar el enlace a la página
@@ -406,6 +411,7 @@ public class DocumentoAction extends BaseAction {
 		}
 	}
 
+
 	/**
 	 * Descarga el fichero del documento.
 	 *
@@ -441,17 +447,27 @@ public class DocumentoAction extends BaseAction {
 
 		DocDocumentoExtVO fichero = null;
 
-		if (StringUtils.isNotBlank(id))
-			fichero = getGestionDocumentosElectronicosBI(request)
-					.getDocumentoExt(tipo, idObjeto, id);
+		try{
+			if (StringUtils.isNotBlank(id))
+				fichero = getGestionDocumentosElectronicosBI(request)
+						.getDocumentoExt(tipo, idObjeto, id);
 
-		if (fichero != null)
-			download(response, fichero);
-		else {
-			obtenerErrores(request, true)
+			if (fichero != null)
+				download(response, fichero);
+			else {
+				obtenerErrores(request, true)
 					.add(ActionErrors.GLOBAL_MESSAGE,
-							new ActionError(
-									DocumentosConstants.ERROR_DOC_ELECTRONICOS_DOCUMENTO_NO_ENCONTRADO));
+								new ActionError(
+										DocumentosConstants.ERROR_DOC_ELECTRONICOS_DOCUMENTO_NO_ENCONTRADO));
+				goLastClientExecuteLogic(mappings, form, request, response);
+			}
+		} catch (Exception e) {
+			obtenerErrores(request, true)
+			.add(ActionErrors.GLOBAL_MESSAGE,
+						new ActionError(
+								DocumentosConstants.ERROR_DOC_ELECTRONICOS_DOCUMENTO_NO_ENCONTRADO));
+			goLastClientExecuteLogic(mappings, form, request, response);
+
 		}
 	}
 
@@ -502,6 +518,9 @@ public class DocumentoAction extends BaseAction {
 						.add(ActionErrors.GLOBAL_MESSAGE,
 								new ActionError(
 										DocumentosConstants.ERROR_DOC_ELECTRONICOS_DOCUMENTO_NO_ENCONTRADO));
+
+				setReturnActionFordward(request,
+						mappings.findForward("iframeError"));
 			}
 		} catch (Exception e) {
 			obtenerErrores(request, true)

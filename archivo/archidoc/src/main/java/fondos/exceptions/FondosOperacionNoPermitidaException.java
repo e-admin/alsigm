@@ -69,6 +69,9 @@ public class FondosOperacionNoPermitidaException extends
 
 	public static final int XNO_SE_PUEDE_MOVER_UDOCS_EN_ELIMINACION_NO_FINALIZADA = 44;
 
+	public static final int XNO_SE_PUEDE_ELIMINAR_SERIE_TIENE_RELACIONES = 45;
+	public static final int XNO_SE_PUEDE_ELIMINAR_SERIE_TIENE_DETALLES = 46;
+
 	public FondosOperacionNoPermitidaException(int motivo) {
 		super("", motivo, ArchivoModules.FONDOS_MODULE);
 	}

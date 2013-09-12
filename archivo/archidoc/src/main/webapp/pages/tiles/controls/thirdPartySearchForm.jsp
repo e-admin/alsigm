@@ -35,7 +35,7 @@
 <table class="formulario" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tdTitulo" colspan="2">
-			<html:radio property="thirdPartySearchType" value="NOMBRE" styleClass="radio"/> 
+			<html:radio property="thirdPartySearchType" value="NOMBRE" styleClass="radio"/>
 			<bean:message key="archigest.archivo.transferencias.nombreApellidos"/>
 		</td>
 	</tr>
@@ -44,28 +44,28 @@
 			<table class="formulario" cellpadding=0 cellspacing=0>
 				<tr>
 					<td class="tdTitulo" width="220px">
-						<bean:message key="archigest.archivo.nombre" />: 
+						<bean:message key="archigest.archivo.nombre" />:
 					</td>
 					<td class="tdDatos">
-						<html:text property="nameSearchToken" size="20" 
+						<html:text property="nameSearchToken" size="20"
 							onclick="javascript:selectByName(this.form)"  />
 					</td>
 				</tr>
 				<tr>
 					<td class="tdTitulo">
-						<bean:message key="archigest.archivo.PrimerApellido" />: 
+						<bean:message key="archigest.archivo.PrimerApellido" />:
 					</td>
 					<td class="tdDatos">
-						<html:text property="surname1SearchToken" size="40" 
+						<html:text property="surname1SearchToken" size="40"
 							onclick="javascript:selectByName(this.form)" />
 					</td>
 				</tr>
 				<tr>
 					<td class="tdTitulo">
-						<bean:message key="archigest.archivo.SegundoApellido" />: 
+						<bean:message key="archigest.archivo.SegundoApellido" />:
 					</td>
 					<td class="tdDatos">
-						<html:text property="surname2SearchToken" size="40" 
+						<html:text property="surname2SearchToken" size="40"
 							onclick="javascript:selectByName(this.form)" />
 					</td>
 				</tr>
@@ -76,7 +76,7 @@
 <table class="formulario" cellpadding=0 cellspacing=0>
 	<tr>
 		<td class="tdTitulo" width="250px">
-			<html:radio property="thirdPartySearchType" value="RSOCIAL" styleClass="radio"/> 
+			<html:radio property="thirdPartySearchType" value="RSOCIAL" styleClass="radio"/>
 			<bean:message key="archigest.archivo.razonSocial"/>:
 		</td>
 		<td class="tdDatos" align="left">
@@ -88,11 +88,18 @@
 <table class="formulario" cellpadding=0 cellspacing=0>
 	<tr>
 		<td class="tdTitulo" width="250px">
-			<html:radio property="thirdPartySearchType" value="IF" styleClass="radio"/> 
+			<html:radio property="thirdPartySearchType" value="IF" styleClass="radio"/>
 			<bean:message key="archigest.archivo.transferencias.numIdentidad"/>:
 		</td>
 		<td class="tdDatos" align="left">
-			<html:text property="ifSearchToken" size="15" 
+			<html:select property="tipoNumeroIdentificacion">
+				<html:option value="6"><bean:message key="archigest.archivo.transferencias.terceros.6"/></html:option>
+				<html:option value="7"><bean:message key="archigest.archivo.transferencias.terceros.7"/></html:option>
+				<html:option value="8"><bean:message key="archigest.archivo.transferencias.terceros.8"/></html:option>
+				<html:option value="9"><bean:message key="archigest.archivo.transferencias.terceros.9"/></html:option>
+			</html:select>
+
+			<html:text property="ifSearchToken" size="15"
 				onclick="javascript:selectByIF(this.form)"  />
 		</td>
 	</tr>

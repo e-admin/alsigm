@@ -4,10 +4,13 @@
  */
 package fondos.model;
 
+import common.vos.BaseVO;
+
 import fondos.vos.INivelCFVO;
 
-public class NivelCF implements INivelCFVO {
+public class NivelCF  extends BaseVO implements INivelCFVO {
 
+	private static final long serialVersionUID = 3075560712198721557L;
 	String idNivel = null;
 	String nombre = null;
 	int tipo;

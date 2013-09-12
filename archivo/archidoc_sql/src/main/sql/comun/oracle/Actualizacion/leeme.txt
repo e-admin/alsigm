@@ -1,0 +1,5 @@
+Insertar CLOBS en ORACLE
+
+Ejecutar actualiza_clobs.cmd <USUARIO> <PASSWORD> <ODBC>*
+
+(*) NOTA: La Conexión ODBC deberá estar creada en el sistema.

@@ -829,7 +829,7 @@ public class DetallePrevisionDBEntityImpl extends DBEntity implements
 
 	}
 
-	public DetallePrevisionVO getDetallePrestamoVO(DetallePrevisionVO detalle) {
+	public DetallePrevisionVO getDetallePrevisionVO(DetallePrevisionVO detalle) {
 		StringBuilder qual = new StringBuilder(DBUtils.WHERE)
 		.append(DBUtils.generateEQTokenField(ID_PREVISION_FIELD, detalle.getIdPrevision()))
 		.append(DBUtils.AND)
@@ -837,10 +837,21 @@ public class DetallePrevisionDBEntityImpl extends DBEntity implements
 		.append(DBUtils.AND)
 		.append(DBUtils.generateEQTokenField(NOMBRE_SISTEMA_PRODUCTOR_FIELD, detalle.getNombreSistProductor()))
 		.append(DBUtils.AND)
-		.append(DBUtils.generateEQTokenField(PROCEDIMIENTO_FIELD , detalle.getIdProcedimiento()));
+		.append(DBUtils.generateEQTokenField(PROCEDIMIENTO_FIELD , detalle.getIdProcedimiento()))
+		.append(DBUtils.AND)
+		.append(DBUtils.generateEQTokenField(ID_SERIEDESTINO_FIELD , detalle.getIdSerieDestino()));
 
 		return getDetallePrevision(qual.toString());
-
 	}
+
+	public int getCountDetallesBySerie(String idSerie) {
+		StringBuilder qual = new StringBuilder(DBUtils.WHERE)
+		.append(DBUtils.generateEQTokenField(ID_SERIEDORIGEN_FIELD, idSerie))
+		.append(DBUtils.OR)
+		.append(DBUtils.generateEQTokenField(ID_SERIEDESTINO_FIELD, idSerie));
+
+		return getVOCount(qual.toString(), TABLE_NAME);
+	}
+
 
 }

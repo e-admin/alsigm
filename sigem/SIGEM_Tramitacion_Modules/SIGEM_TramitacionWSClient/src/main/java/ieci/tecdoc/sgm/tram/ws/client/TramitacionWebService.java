@@ -4,9 +4,9 @@ import ieci.tecdoc.sgm.core.services.dto.RetornoServicio;
 import ieci.tecdoc.sgm.tram.ws.client.dto.Binario;
 import ieci.tecdoc.sgm.tram.ws.client.dto.Booleano;
 import ieci.tecdoc.sgm.tram.ws.client.dto.Cadena;
-import ieci.tecdoc.sgm.tram.ws.client.dto.Entero;
 import ieci.tecdoc.sgm.tram.ws.client.dto.DatosComunesExpediente;
 import ieci.tecdoc.sgm.tram.ws.client.dto.DocumentoExpediente;
+import ieci.tecdoc.sgm.tram.ws.client.dto.Entero;
 import ieci.tecdoc.sgm.tram.ws.client.dto.Expediente;
 import ieci.tecdoc.sgm.tram.ws.client.dto.InfoFichero;
 import ieci.tecdoc.sgm.tram.ws.client.dto.InfoOcupacion;
@@ -86,4 +86,7 @@ public interface TramitacionWebService extends Remote {
 
 	public Cadena obtenerRegistrosEntidad(String idEntidad,
 			String nombreEntidad, String numExp) throws RemoteException;
+
+	public Cadena recibirDocumentoFirmado(String idEntidad, String numExp,
+			String idDocumento) throws RemoteException;
 }

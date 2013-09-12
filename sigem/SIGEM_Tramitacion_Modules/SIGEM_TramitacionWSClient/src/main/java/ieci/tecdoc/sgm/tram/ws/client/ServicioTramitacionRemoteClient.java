@@ -488,13 +488,21 @@ public class ServicioTramitacionRemoteClient implements ServicioTramitacion {
 		}
 	}		
     
-    
-	
-	
-	
-	
-    
-    
+	public String recibirDocumentoFirmado(String idEntidad, String numExp,
+			String idDocumento) throws TramitacionException {
+		try {
+			ieci.tecdoc.sgm.tram.ws.client.dto.Cadena ret = service.recibirDocumentoFirmado(idEntidad, numExp, idDocumento);
+			if (ServiciosUtils.isReturnOK((IRetornoServicio)ret)) {
+				return ret.getValor();
+			} else {
+				throw getTramitacionException((IRetornoServicio)ret);
+			}
+		} catch (RemoteException e) {
+			throw new TramitacionException(
+					TramitacionException.EXC_GENERIC_EXCEPCION,
+					e.getMessage(), e);
+		}
+	}
     
 	public void setService(TramitacionWebService service) {
 		this.service = service;
@@ -939,7 +947,6 @@ public class ServicioTramitacionRemoteClient implements ServicioTramitacion {
 
 		return documento;
 	}
-
 
 
 }

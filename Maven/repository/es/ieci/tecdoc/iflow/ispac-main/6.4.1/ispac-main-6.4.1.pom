@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.ieci.tecdoc.iflow</groupId>
+	<artifactId>ispac-main</artifactId>
+	<version>6.4.1</version>
+	<name>ispac-main</name>
+	<packaging>pom</packaging>
+
+	<issueManagement>
+		<system>Trac</system>
+		<url>https://10.228.8.230/trac/invesFlow</url>
+	</issueManagement>
+
+	<prerequisites></prerequisites>
+
+	<modules>
+		<module>ispac-main-applet</module>
+		<module>ispac-main-war</module>
+		<module>ispac-main-ws-war</module>
+	</modules>
+
+	<repositories>
+		<!-- TODO definicion de repositorios -->
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>inhouse_releases</id>
+			<name>Repositorio tecdoc de releases</name>
+			<url>http://10.228.8.230:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>inhouse_snapshots</id>
+			<name>Repositorio tecdoc de snapshots</name>
+			<url>http://10.228.8.230:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<properties>
+
+		<!-- Environment properties -->
+		<jdk.version>1.5</jdk.version>
+
+		<!-- IECI dependencies -->
+		<fwktd.version>0.7</fwktd.version>
+		<invesdoc.version>9.2.3.1</invesdoc.version>
+		<invesicres.version>8.0</invesicres.version>
+		<archidoc_organization_connector.version>5.0</archidoc_organization_connector.version>
+
+		<!-- Third party dependencies -->
+		<ajaxtags.version>1.1.5</ajaxtags.version>
+		<ant.version>1.7.0</ant.version>
+		<axis.version>1.4</axis.version>
+		<bcmail.version>139</bcmail.version>
+		<bcprov.version>140</bcprov.version>
+		<castor.version>0.9.5.3</castor.version>
+		<commons.beanutils.version>1.7.0</commons.beanutils.version>
+		<commons.collections.version>3.1</commons.collections.version>
+		<commons.digester.version>1.6</commons.digester.version>
+		<commons.fileupload.version>1.0</commons.fileupload.version>
+		<commons.jxpath.version>1.2</commons.jxpath.version>
+		<commons.httpclient.version>3.1</commons.httpclient.version>
+		<commons.lang.version>2.4</commons.lang.version>
+		<commons.logging.version>1.0.4</commons.logging.version>
+		<commons.validator.version>1.1.3</commons.validator.version>
+		<displaytag.version>1.2</displaytag.version>
+		<documentum.version>5.3</documentum.version>
+		<dwr.version>2.0.3</dwr.version>
+		<itext.version>2.1.7</itext.version>
+		<jasperreports.version>3.7.6</jasperreports.version>
+		<mimeutil.version>2.1.3</mimeutil.version>
+		<jstl.version>1.0.6</jstl.version>
+		<htmlparser.version>1.6</htmlparser.version>
+		<juh.version>2.2.1</juh.version>
+		<log4j.version>1.2.13</log4j.version>
+		<oro.version>2.0.8</oro.version>
+		<slf4j.version>1.5.8</slf4j.version>
+		<standard.version>1.0.6</standard.version>
+		<struts.version>1.2.4</struts.version>
+		<struts.menu.version>2.2</struts.menu.version>
+		<unoil.version>2.2.1</unoil.version>
+		<velocity.version>1.7</velocity.version>
+		<xalan.version>2.7.1</xalan.version>
+		<xerces.version>2.9.0</xerces.version>
+		<jaxen.version>1.1.1</jaxen.version>
+
+		<!-- Provided dependencies -->
+		<jspapi.version>2.0</jspapi.version>
+		<servletapi.version>2.4</servletapi.version>
+		<postgresql.version>9.0-801.jdbc3</postgresql.version>
+
+		<!-- Test dependencies -->
+		<junit.version>4.8.1</junit.version>
+		<xbean.spring.version>3.6</xbean.spring.version>
+
+		<!-- Plugins -->
+		<eclipse.plugin.version>2.6</eclipse.plugin.version>
+		<unpackConfigurableResourcesPath>${basedir}/target/generated-resources/configurable</unpackConfigurableResourcesPath>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+
+	</properties>
+
+	<dependencies>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.0.2</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+						<encoding>ISO-8859-1</encoding>
+						<fork>true</fork>
+						<executable>${JAVA_1_5_HOME}/bin/javac</executable>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${eclipse.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.1</version>
+					<configuration>
+						<archive>
+							<addMavenDescriptor>true</addMavenDescriptor>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>tomcat-maven-plugin</artifactId>
+					<version>1.0-beta-1</version>
+					<configuration>
+						<path>/${project.build.finalName}</path>
+						<contextFile>${basedir}/src/main/tomcat-context/context.xml</contextFile>
+						<mode>both</mode>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<profiles>
+		<profile>
+			<id>wtpProfile</id>
+			<activation>
+				<property>
+					<name>wtp</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${eclipse.plugin.version}</version>
+					<configuration>
+						<downloadSources>false</downloadSources>
+						<downloadJavadocs>false</downloadJavadocs>
+						<wtpmanifest>true</wtpmanifest>
+						<wtpapplicationxml>true</wtpapplicationxml>
+						<wtpversion>2.0</wtpversion>
+						<wtpContextName>${project.build.finalName}</wtpContextName>
+					</configuration>
+				</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>attachSources</id>
+			<activation>
+				<property>
+					<name>attachSources</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>generate-wsClient</id>
+			<activation>
+				<property>
+					<name>generateWsClient</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>axistools-maven-plugin</artifactId>
+						<version>1.3</version>
+						<configuration>
+							<sourceDirectory>${basedir}/src/main/webapp/wsdl</sourceDirectory>
+							<packageSpace>es.ieci.tecdoc.iflow</packageSpace>
+							<testCases>true</testCases>
+							<serverSide>false</serverSide>
+							<verbose>true</verbose>
+							<debug>true</debug>
+							<runTestCasesAsUnitTests>true</runTestCasesAsUnitTests>
+							<testSourceDirectory>${basedir}/src/test/java/</testSourceDirectory>
+							<subPackageByFileName>true</subPackageByFileName>
+							<outputDirectory>${basedir}/src/test/java</outputDirectory>
+							<runTestCasesAsUnitTests>true</runTestCasesAsUnitTests>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>wsdl2java</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>axis</groupId>
+								<artifactId>axis</artifactId>
+								<version>${axis.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

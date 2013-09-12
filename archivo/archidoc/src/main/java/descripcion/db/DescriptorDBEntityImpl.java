@@ -119,7 +119,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Obtiene el nombre de la tabla
-	 * 
+    *
 	 * @return
 	 */
 	public String getTableName() {
@@ -128,7 +128,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Constructor.
-	 * 
+    *
 	 * @param dataSource
 	 *            Pool de conexiones de base de datos.
 	 */
@@ -142,7 +142,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Obtiene la información de un descriptor.
-	 * 
+    *
 	 * @param idDescriptor
 	 *            Identificador del descriptor.
 	 * @return Descriptor.
@@ -158,7 +158,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Obtiene la información de un descriptor con información extendida.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param idDescriptor
@@ -218,7 +218,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Obtiene la información de un descriptor.
-	 * 
+    *
 	 * @param idListaDescriptora
 	 *            Identificador de la lista descriptora.
 	 * @param nombre
@@ -239,8 +239,37 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 	}
 
 	/**
+    * Obtiene la información de un descriptor.
+    *
+    * @param idListaDescriptora
+    *            Identificador de la lista descriptora.
+    * @param nombre
+    *            Nombre del descriptor.
+    * @return Descriptor.
+    */
+	public DescriptorVO getDescriptor(String idListaDescriptora, String nombre, String idSistExt, String idDescrSistExt) {
+		String qual = new StringBuilder()
+				.append(DBUtils.WHERE)
+				.append(DBUtils.generateEQTokenField(CAMPO_IDLISTA,
+						idListaDescriptora))
+				.append(DBUtils.AND)
+				.append(DBUtils.generateEQTokenField(CAMPO_NOMBRE,
+						getValorCampo(nombre)))
+				.append(DBUtils.AND)
+				.append(DBUtils.generateEQTokenField(CAMPO_ID_SIST_EXT,
+						getValorCampo(idSistExt)))
+				.append(DBUtils.AND)
+				.append(DBUtils.generateEQTokenField(CAMPO_ID_DESCR_SIST_EXT,
+						getValorCampo(idDescrSistExt))).toString();
+
+
+		return (DescriptorVO) getVO(qual, TABLE_NAME, COLS_DEFS,
+				DescriptorVO.class);
+	}
+
+	/**
 	 * Reemplaza el valor de la comilla Simple por doble comilla simple
-	 * 
+    *
 	 * @param cadena
 	 *            Cadena a Reemplazar.
 	 * @return
@@ -259,7 +288,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Obtiene la lista de descriptores de una lista descriptora.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param idListaDescriptora
@@ -285,7 +314,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 	/**
 	 * Recupera los descriptores cuyo valor contiene el patrón de búsqueda
 	 * indicado
-	 * 
+    *
 	 * @param pattern
 	 *            Patrón que debe contener el valor de los descriptores
 	 * @param idListaDescriptora
@@ -313,7 +342,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 	/**
 	 * Obtiene la lista de descriptores de una lista descriptora con información
 	 * extendida.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param idListaDescriptora
@@ -373,7 +402,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Obtiene una lista de descriptores a partir de su nombre.
-	 * 
+    *
 	 * @param nombre
 	 *            Nombre del descriptor.
 	 * @return Lista de descriptores.
@@ -400,7 +429,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Busca los descriptores en función de unos criterios.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param criterios
@@ -503,7 +532,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Inserta un descriptor.
-	 * 
+    *
 	 * @param descriptor
 	 *            Descriptor.
 	 * @return Descriptor insertado.
@@ -527,7 +556,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Modifica un descriptor.
-	 * 
+    *
 	 * @param id
 	 *            Identificador del descriptor.
 	 * @param columnsToUpdate
@@ -542,7 +571,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Modifica un descriptor.
-	 * 
+    *
 	 * @param descriptor
 	 *            Descriptor.
 	 */
@@ -557,7 +586,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Establece si un descriptor tiene ficha de descripción.
-	 * 
+    *
 	 * @param idDescr
 	 *            Identificador del descriptor.
 	 * @param tieneDescr
@@ -578,7 +607,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 	/**
 	 * Establece si se han creado los clasificadores por defecto de un
 	 * descriptor.
-	 * 
+    *
 	 * @param idDescr
 	 *            Identificador del descriptor.
 	 * @param editClfDocs
@@ -598,7 +627,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Elimina un descriptor.
-	 * 
+    *
 	 * @param id
 	 *            Identificador del descriptor.
 	 */
@@ -614,7 +643,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Elimina los descriptores.
-	 * 
+    *
 	 * @param listaIds
 	 *            Lista de identificadores de descriptores.
 	 */
@@ -633,7 +662,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 	/**
 	 * Realiza la búsqueda de autoridades en función de los parámetros del
 	 * formulario de búsquedas.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param busqueda
@@ -675,7 +704,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 	/**
 	 * Obtiene la clásula WHERE para la búsqueda de elementos del cuadro de
 	 * clasificación.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param busquedaGeneralVO
@@ -909,7 +938,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 	 * Recupera el descriptor de una determinada lista de descriptores a partir
 	 * del identificador de ese descriptor en el sistema externo desde el que
 	 * fue importado
-	 * 
+    *
 	 * @param idEnSistemaExterno
 	 *            Identificador del descriptor en el sistema externo del que fue
 	 *            importado
@@ -973,7 +1002,7 @@ public class DescriptorDBEntityImpl extends DBEntity implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see descripcion.db.IDescriptorDBEntity#updateEstado(int,
 	 *      java.lang.String[])
 	 */

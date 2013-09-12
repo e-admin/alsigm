@@ -20,16 +20,16 @@ import fondos.vos.BusquedaElementosVO;
 
 /**
  * Entidad: <b>ASGPSOLICITUDUDOC</b>
- * 
+ *
  * @author IECISA
- * 
+ *
  */
 public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Elimina los detalles(udocumentals) identificado por su id de la unidad
 	 * documental y su signatura y que esta asociado a una solicitud(de préstamo
 	 * o consulta).
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud ala que va asociado el detalle
 	 * @param idudoc
@@ -43,7 +43,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Obtiene un listado de los detalles con el identificador de udoc y la
 	 * signatura pasados.
-	 * 
+    *
 	 * @param idudoc
 	 *            Identificador de la unidad documental
 	 * @param signatura
@@ -61,7 +61,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Obtiene un listado de todas las unidades documentales para un determinado
 	 * solicitud(préstamo o consulta) dada por su identificador.
-	 * 
+    *
 	 * @param codigo
 	 *            Identificador de la solicitud de la que deseamos obtener las
 	 *            unidades documentales.
@@ -75,7 +75,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Realiza la autorización de una unidad documental de un determinado
 	 * préstamo.
-	 * 
+    *
 	 * @param prestamo
 	 *            Prestamo al que pertenece la unidad documental.
 	 * @param idudoc
@@ -89,7 +89,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Realiza la autorización de una unidad documental de una determinada
 	 * consulta.
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta a la que pertenece la unidad documental.
 	 * @param idudoc
@@ -103,7 +103,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Permite bloquear un detalle de préstamo para comprobar su disponibilidad
 	 * (debe ser dentro de una transacción)
-	 * 
+    *
 	 * @param prestamo
 	 *            Prestamo al que pertenece la unidad documental.
 	 * @param idudoc
@@ -116,7 +116,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Actualiza un detalle dado por su id solicitud,id udoc, signatura y tipo
-	 * 
+    *
 	 * @param detalle
 	 *            Detalle a actualizad
 	 */
@@ -125,7 +125,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Elimina todos los detalles asociados a una solicitud de un determinado
 	 * tipo
-	 * 
+    *
 	 * @param id
 	 *            Identificadro de la solicitud de la que deseamos eliminar los
 	 *            detalles asociados
@@ -136,7 +136,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene el numero de detalles entregados para una solicitud
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud que deseamos comprobar
 	 * @return Numero de detalles entregados para la solicitud
@@ -146,7 +146,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Obtiene un listado de las unidades documentales devueltas de una
 	 * determinada solicitud(prestamo o consulta)
-	 * 
+    *
 	 * @param codigo
 	 *            Identificador de la solicitud de la que deseamos obtener los
 	 *            detalles devueltos
@@ -162,7 +162,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	 * asgfunidaddoc.idelementocf = asgfelementocf.id and asgfelementocf.codigo
 	 * = asgdudocenui.signaturaudoc --and asgdudocenui.signaturaudoc = 'xxx'
 	 * --and asgdudocenui.idudoc
-	 * 
+    *
 	 * @param idudoc
 	 *            Identificador de la unidad documental
 	 * @param signatura
@@ -173,7 +173,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene un detalle entrega del tipo indicado
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud en la que está incluida la
 	 *            unidad documental
@@ -191,7 +191,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene el detalle entregado a partir de su identificador de bd.
-	 * 
+    *
 	 * @param identificacion
 	 *            Identificador del detalle que deseamos recuperar.
 	 * @param type
@@ -203,7 +203,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene el numero de detalles devueltos para una solicitud
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud que deseamos comprobar
 	 * @return Numero de detalles devuelto para la solicitud
@@ -212,7 +212,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene el numero de detalles para un solicitud
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud que deseamos comprobar
 	 * @return Numero de detalles
@@ -222,7 +222,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Obtiene los detalles de una solicitud que se encuentran en un determinado
 	 * estado.
-	 * 
+    *
 	 * @param estados
 	 *            Estados en los que se debe encotrar el detalles
 	 * @param identificacion
@@ -237,7 +237,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Obtiene un listado de unidades documentales entregadas que pertenecen a
 	 * un determinado expediente.
-	 * 
+    *
 	 * @param num_exp
 	 *            Expediente del que deseamos obtener las unidades documentales.
 	 * @param Like
@@ -250,7 +250,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene un listado de unidades documentales entregadas con una signatura.
-	 * 
+    *
 	 * @param signatura
 	 *            Signatura de la u.documental
 	 * @param Like
@@ -262,7 +262,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene un detalle de una solicitud (prestamo o consulta) entregada.
-	 * 
+    *
 	 * @param id
 	 *            identificador de la solicitud.
 	 * @param idUdoc
@@ -278,7 +278,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Realiza la inserción de un detalle de un préstamo en la base de datos.
-	 * 
+    *
 	 * @param detalle
 	 *            Detalle de prestamos que deseamos insertar.
 	 */
@@ -286,7 +286,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Realiza la inserción de un detalle de una consulta en la base de datos.
-	 * 
+    *
 	 * @param detalle
 	 *            Detalle de la consulta que deseamos insertar.
 	 */
@@ -295,7 +295,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Realiza la denegación de una unidad documental de un determinado
 	 * préstamo.
-	 * 
+    *
 	 * @param prestamo
 	 *            Prestamo al que pertenece la unidad documental.
 	 * @param idudoc
@@ -312,7 +312,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Realiza la denegación de una unidad documental de una determinada
 	 * consulta.
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta al que pertenece la unidad documental.
 	 * @param idudoc
@@ -329,7 +329,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Obtiene un detalle de una solicitud(prestamo o consulta) identificado por
 	 * su id y por los ids de la unidad documental.
-	 * 
+    *
 	 * @param id
 	 *            identificador de la solicitud.
 	 * @param idUdoc
@@ -351,7 +351,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	 * Obtiene todos los DetallePrestamoVO que tengan como identificador de la
 	 * unidad documental alguno de la lista de idsUDocs pasada por parámetro y
 	 * cuyo estado sea alguno de los pasados por parámetro
-	 * 
+    *
 	 * @param idsUDocs
 	 *            , Lista de identificadores de unidades documentales
 	 * @param estados
@@ -363,7 +363,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	 * Obtiene las Unidades Documentales de una caja que están prestadas o en
 	 * alguna solicitud, y por ello no se puede añadir a una relación de
 	 * entrega.
-	 * 
+    *
 	 * @param idUinstalacion
 	 * @return Lista de DetalleVO
 	 * @author Lucas Alvarez
@@ -428,7 +428,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Obtiene un listado de los detalles con el identificador de udoc y la
 	 * signatura pasados y en los estados pasados
-	 * 
+    *
 	 * @param idudoc
 	 *            Identificador de la unidad documental
 	 * @param signatura
@@ -447,7 +447,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene el número de detalles por su estado
-	 * 
+    *
 	 * @param estados
 	 * @return
 	 */
@@ -455,7 +455,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Comprueba si existe el detalle para una determinada solicitud.
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud
 	 * @param idudoc
@@ -472,7 +472,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Obtiene la lista de expedientes entregados y devueltos de un usuario de
 	 * consulta en sala en un determinado rango de fechas
-	 * 
+    *
 	 * @param busquedaUsuarioSala
 	 * @return Lista de objetos {@link DetalleConsultaVO}
 	 */
@@ -481,7 +481,7 @@ public interface IDetalleDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene el numero de unidades consultadas
-	 * 
+    *
 	 * @param fechaIni
 	 *            Fecha inicial
 	 * @param fechaFin
@@ -493,10 +493,26 @@ public interface IDetalleDBEntity extends IDBEntity {
 	/**
 	 * Obtiene las unidades consultasdas más de N veces por usuarios de consulta
 	 * en sala
-	 * 
+    *
 	 * @param busquedaUsuarioSala
 	 * @return Lista de objetos de {@link DetalleConsultaVO}
 	 */
 	public List getUnidadesConsultadas(
 			BusquedaUsuarioSalaConsultaVO busquedaUsuarioSala);
+
+	/**
+    * Actualiza el estado de los detalles de una solicitud
+    *
+    * @param idSolicitud
+    *            Cadena que contiene el identificador de la solicitud
+    * @param tipoSolicitud
+    *            Entero que contiene el tipo de solicitud
+    * @param estadosOrigen
+    *            Array de enteros que contiene de los detalles a actualizar
+    * @param estadoDestino
+    *            Entero que contiene el nuevo estado.
+    */
+	public void cambiarEstadosASolicitadoDetallesAutorizados(
+			String idSolicitud, int tipoSolicitud, int[] estadosOrigen,
+			int estadoDestino);
 }

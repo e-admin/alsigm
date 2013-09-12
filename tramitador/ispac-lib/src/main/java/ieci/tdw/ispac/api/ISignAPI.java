@@ -50,6 +50,7 @@ public interface ISignAPI {
 	public static final String INTEGRIDAD_OK					="sign.detail.integrity.sign.ok";
 	public static final String INTEGRIDAD_ERROR					="sign.detail.integrity.sign.error";
 	public static final String INTEGRIDAD_STRANGER				="sign.detail.integrity.sign.stranger";
+	public static final String INTEGRIDAD_PORTAFIRMAS			="sign.detail.integrity.sign.portafirmas";
 	public static final String INTEGRIDAD_NO_APLICA				="sign.detail.integrity.sign.no.aplica";
 
 

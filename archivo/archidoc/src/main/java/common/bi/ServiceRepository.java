@@ -591,7 +591,13 @@ public class ServiceRepository {
 						.getElementoClasificacionVistaDBEntity(serviceSession
 								.getTransactionManager()),
 				dbEntityFactory.getUnidadDocumentalVistaDBEntity(serviceSession
-						.getTransactionManager()));
+						.getTransactionManager()),
+
+				dbEntityFactory.getDetallePrevisionDBEntity(serviceSession
+						.getTransactionManager()),
+				dbEntityFactory.getRelacionDBEntity(serviceSession
+						.getTransactionManager())
+		);
 
 		service.setSecurityManager(SecurityManagerLocator
 				.lookupFondosSecurityManager());

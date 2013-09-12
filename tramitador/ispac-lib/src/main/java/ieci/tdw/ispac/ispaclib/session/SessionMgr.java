@@ -65,10 +65,10 @@ public class SessionMgr
 	{
 		IDirectoryConnector directory = DirectoryConnectorFactory.getConnector();
 		IDirectoryEntry userEntry = directory.login(user, password);
-		
+
 		return login(remoteHost, user, userEntry, aplicacion);
 	}
-	
+
 	/**
 	 * Obtiene el ticket de sesión para un usuario validado.
 	 *
@@ -112,7 +112,7 @@ public class SessionMgr
 
 		return session;
 	}
-	
+
 	/**
 	 * Valida un usuario en el sistema.
 	 * @param user usuario
@@ -121,12 +121,12 @@ public class SessionMgr
 	 * @throws ISPACException
 	 */
 	public IDirectoryEntry validate(String user, String password) throws ISPACException {
-		
+
 		IDirectoryConnector directory = DirectoryConnectorFactory.getConnector();
-		
+
 		return directory.login(user, password);
 	}
-	
+
 	/**
 	 * Inicializa una sesión, y valida el ticket de conexión. Debe ser llamada
 	 * por un cliente ya conectado.
@@ -143,7 +143,7 @@ public class SessionMgr
 		try
 		{
 			cnt.getConnection();
-			
+
 			SessionDAO sessionDAO = new SessionDAO(cnt, ticket);
 			m_startTime = System.currentTimeMillis();
 			m_hits = sessionDAO.getInt("HITS") + 1;
@@ -173,14 +173,18 @@ public class SessionMgr
 	{
 		long opTime;
 		DbCnt cnt = new DbCnt();
-		
+
 		try
 		{
+			// Liberar todas las conexiones internas del contexto
+			session.getClientContext().releaseAllConnections();
+
 			cnt.getConnection();
 
-			session.getClientContext().releaseAllConnections();
-			// se carga la session xa poder obtener el TIEMPO_OP
+			// Se carga la session para actualizarla en BD
+			// tras de finalizar la ejecución de la petición al servidor
 			SessionDAO sessionDAO = new SessionDAO(cnt, session.getTicket());
+
 			sessionDAO.set("FECHA", new java.util.Date(System
 					.currentTimeMillis()));
 			opTime = sessionDAO.getLong("TIEMPO_OP")
@@ -190,7 +194,12 @@ public class SessionMgr
 			sessionDAO.set("DATOS", session.toXmlString());
 			sessionDAO.set("KEEP_ALIVE", new java.util.Date(System
 					.currentTimeMillis()));
+
 			sessionDAO.store(cnt);
+		}
+		catch (ISPACNullObject ino)
+		{
+			// No se encuentra el ticket
 		}
 		catch (ISPACException e)
 		{
@@ -220,11 +229,11 @@ public class SessionMgr
 	public void keepAlive(String ticket) throws ISPACException
 	{
 		DbCnt cnt = new DbCnt();
-		
+
 		try
 		{
 			cnt.getConnection();
-			
+
 		    SessionDAO sessionDAO = new SessionDAO(cnt,ticket);
 			sessionDAO.set("KEEP_ALIVE", new java.util.Date(
 					System.currentTimeMillis()));
@@ -244,33 +253,37 @@ public class SessionMgr
 			cnt.closeConnection();
 		}
 	}
-	
+
 	/**
 	 * Borra un sesion y todos sus recursos
-	 * 
+    *
 	 * @param ticket
 	 * @throws ISPACException
 	 */
 	public void deleteSession(String ticket)
 	throws ISPACException
 	{
-		boolean bTx = false;
 		DbCnt cnt = new DbCnt();
 
 		try
 		{
 			cnt.getConnection();
-			cnt.openTX();
-			
+
 			SessionDAO sessionDAO = new SessionDAO(cnt, ticket);
+
 			//CollectionDAO locks = sessionDAO.getBloqueos(cnt);
             CollectionDAO locks = new CollectionDAO(LockDAO.class);
 			locks.delete(cnt, "WHERE ID = '" + ticket + "'") ;
+
 			//CollectionDAO vars = sessionDAO.getVariables(cnt);
             CollectionDAO vars = new CollectionDAO(SsVariableDAO.class);
 			vars.delete(cnt, "WHERE ID_SES = '" + ticket + "'");
+
 			sessionDAO.delete(cnt);
-			bTx = true;
+		}
+		catch (ISPACNullObject ino)
+		{
+			// No se encuentra el ticket
 		}
 		catch (ISPACException e)
 		{
@@ -279,14 +292,13 @@ public class SessionMgr
 		}
 		finally
 		{
-			cnt.closeTX(bTx);
 			cnt.closeConnection();
 		}
 	}
-	
+
 	/**
 	 *  Borra un sesion y todos sus recursos
-	 *  
+    *
 	 * @param cnt
 	 * @param ticket
 	 * @throws ISPACException
@@ -294,37 +306,34 @@ public class SessionMgr
 	public void deleteSession(DbCnt cnt, String ticket)
 	throws ISPACException
 	{
-		boolean bTx = false;
-
 		try
 		{
-			cnt.getConnection();
-			cnt.openTX();
-			
 			SessionDAO sessionDAO = new SessionDAO(cnt, ticket);
+
 			//CollectionDAO locks = sessionDAO.getBloqueos(cnt);
             CollectionDAO locks = new CollectionDAO(LockDAO.class);
 			locks.delete(cnt, "WHERE ID = '" + ticket + "'") ;
+
 			//CollectionDAO vars = sessionDAO.getVariables(cnt);
-            CollectionDAO vars = new CollectionDAO(SsVariableDAO.class);
+			CollectionDAO vars = new CollectionDAO(SsVariableDAO.class);
 			vars.delete(cnt, "WHERE ID_SES = '" + ticket + "'");
+
 			sessionDAO.delete(cnt);
-			bTx = true;
+		}
+		catch (ISPACNullObject ino)
+		{
+			// No se encuentra el ticket
 		}
 		catch (ISPACException e)
 		{
 			throw new ISPACException(
 					"Error en SessionMgr:deleteSession ("+ ticket +"): ", e);
 		}
-		finally
-		{
-			cnt.closeTX(bTx);
-		}
 	}
 
 	/**
 	 * Borra un sesion y todos sus recursos
-	 * 
+    *
 	 * @param cnt
 	 * @param session
 	 * @throws ISPACException
@@ -345,14 +354,14 @@ public class SessionMgr
 	throws ISPACException
 	{
 		DbCnt cnt = new DbCnt();
-		
+
 		try
 		{
 			cnt.getConnection();
 
 			long timeout = System.currentTimeMillis() - m_timeoutSession;
-            Timestamp ts = new Timestamp( timeout);
-            
+            Timestamp ts = new Timestamp(timeout);
+
             // Borrar sessiones expiradas
             String sQuery = new StringBuffer()
             	.append("WHERE KEEP_ALIVE < ")
@@ -365,10 +374,14 @@ public class SessionMgr
 				IItem session = sessions.value();
 				deleteSession(cnt, (SessionDAO) session);
 			}
-			
+
 			// Borrar posibles bloqueos perdidos de sesiones ya expiradas
             CollectionDAO locks = new CollectionDAO(LockDAO.class);
-			locks.delete(cnt, "WHERE ID NOT IN (SELECT ID FROM SPAC_S_SESIONES)") ;
+			locks.delete(cnt, "WHERE ID NOT IN (SELECT ID FROM SPAC_S_SESIONES)");
+
+			// Borrar posibles variables de sesiones ya expiradas
+			CollectionDAO vars = new CollectionDAO(SsVariableDAO.class);
+			vars.delete(cnt, "WHERE ID_SES NOT IN (SELECT ID FROM SPAC_S_SESIONES)");
 		}
 		catch (ISPACException e)
 		{
@@ -391,12 +404,12 @@ public class SessionMgr
 			throws ISPACException
 	{
 		SessionStatistics ss = null;
-		DbCnt cnt = new DbCnt ();
-		
+		DbCnt cnt = new DbCnt();
+
 		try
 		{
 			cnt.getConnection();
-			
+
 			SessionDAO sessionDAO = new SessionDAO(cnt, session.getTicket());
 			ss = new SessionStatistics( sessionDAO.getLong("TIEMPO_OP"),
 					                    sessionDAO.getInt("HITS"),
@@ -415,16 +428,16 @@ public class SessionMgr
 
 		return ss;
 	}
-	
+
 	public IItemCollection getActiveSessions(String user, String aplicacion)
 		throws ISPACException
 	{
 		DbCnt cnt = new DbCnt ();
-		
+
 		try
 		{
 			cnt.getConnection();
-            
+
             String sQuery = new StringBuffer()
             	.append("WHERE USUARIO = '")
             	.append(DBUtil.replaceQuotes(user))
@@ -441,7 +454,5 @@ public class SessionMgr
 		{
 			cnt.closeConnection();
 		}
-		
 	}
-
 }

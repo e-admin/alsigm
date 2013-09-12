@@ -138,7 +138,7 @@
 				<c:out value="${procedimiento.codigo}"/>
 			</display:column>
 
-			<display:column titleKey="archigest.archivo.cf.codigo" >
+			<display:column titleKey="archigest.archivo.nombre" >
 				<c:out value="${procedimiento.nombre}"/>
 			</display:column>
 			</display:table>

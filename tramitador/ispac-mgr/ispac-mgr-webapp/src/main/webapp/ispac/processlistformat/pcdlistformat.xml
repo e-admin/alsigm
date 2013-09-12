@@ -1,19 +1,77 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <processlistformat>
 
+	<!-- Entidad principal (vista SPAC_WL_PROC)
+        mediante la que se obtienen las fases activas
+	-->
 	<worklist name="WORKLIST"/>
+
+	<!-- Si se necesitase, por ejemplo, algún campo de la
+        entidad de Expedientes (SPAC_EXPEDIENTES), se incluiría
+        la siguiente nueva entidad que se relaciona por defecto
+        mediante el campo NUMEXP
+	-->
+
 	<entity name="EXPED" entityid="1"/>
+
+	<!-- para luego en el beanformatter especificar las propiedades a mostrar
+			al igual que los propertyfmt para las property de EXPED.
+	-->
+
+	<!-- Si además del expediente, se necesitasen otras entidades (ejemplo mas adelante),
+			la entidad de Expedientes (SPAC_EXPEDIENTES) no se ha de especificar
+			con el formato anterior de <entity .../> sino como <table .../>
+
+	<table name="EXPED" tablename="SPAC_EXPEDIENTES" numexpfield="NUMEXP">
+		<join name="WORKLIST" property="NUMEXP"/>
+	</table>
+
+	-->
 
 	<codetable name="SUST" table="SPAC_TBL_004" code="VALOR" value="SUSTITUTO">
 		<substitute name="EXPED" property="ESTADOADM"/>
 	</codetable>
 
-<!--
+	<!--
 	<query> WORKLIST.NUMEXP = 'EXP/386'</query>
--->
+	-->
+
+	<!-- Si se necesitasen otras entidades, por ejemplo, cuando en un expediente
+			existe una entidad de Obras Menores (tabla SGL_OBRAS_MENORES)
+			para la cual se quiere mostrar un campo (TIPO_FINCA) que tiene
+			asociada una validación de sustituto (tabla SPAC_TBL_011)
+
+	<table name="OBRAS_MENORES" tablename="SGL_OBRAS_MENORES" numexpfield="NUMEXP">
+		<join name="EXPED" property="NUMEXP"/>
+	</table>
+
+	<codetable name="TP_FINCA" table="SPAC_TBL_011" code="VALOR" value="SUSTITUTO">
+		<substitute name="OBRAS_MENORES" property="TIPO_FINCA"/>
+	</codetable>
+
+	-->
+	<!-- para luego en el beanformatter especificar las propiedades a mostrar
+			al igual que los propertyfmt comentados para las property de OBRAS_MENORES,
+			siendo la property del <propertyfmt/> para presentar el sustituto de un campo validado AAA:BBB:CCC donde:
+			AAA es una cadena corta (name asignado al codetable), normalmente referida al nombre del campo validado
+			para diferenciar en una misma entidad varios campos validados contra la misma tabla de validación.
+			BBB es el name asignado a la tabla de la entidad principal o agregada.
+			CCC es el campo de la tabla validación que contiene el valor del sustituto.
+
+			Nota para Oracle: la longitud de AAA:BBB no debe de exceder el tamaño máximo de nombre de alias
+			ya que al generar la consulta a la tabla de validación se le asigna el alias de AAA_BBB.
+	-->
+
+	<!-- Y si hubiera otro campo asociado a la misma tabla de validación:
+
+	<codetable name="TP_FINCA_2" table="SPAC_TBL_011" code="VALOR" value="SUSTITUTO">
+		<substitute name="OBRAS_MENORES" property="..."/>
+	</codetable>
+
+	-->
 
 	<beanformatter defaultSort="3">
-	
+
 		<propertyfmt type="BeanPropertySimpleFmt"
 					 property='WORKLIST:ID_STAGE'
 					 readOnly='false'
@@ -89,7 +147,7 @@
 					 columnClass='width25percent'/>
 
 		<!-- Estado administrativo -->
-		<!-- 
+		<!--
 		<propertyfmt type="BeanPropertySimpleFmt"
 					 property='EXPED:ESTADOADM'
 					 readOnly='false'
@@ -122,7 +180,7 @@
 					 headerClass='sortable'
 					 sortable='true'
 					 columnClass='width20percent'/>
-					 
+
 		<!-- Forma de terminacion -->
 		<!--
 		<propertyfmt type="BeanPropertySimpleFmt"
@@ -136,7 +194,7 @@
 					 media='csv excel xml pdf html'
 					 columnClass='width10percent'/>
 		-->
-		
+
 		<!--
 		<propertyfmt type="BeanPropertySimpleFmt"
 					 property='WORKLIST:NAME_PROC'
@@ -210,7 +268,45 @@
 					 id=''
 					 columnClass='width14percent'/>
 		-->
-					 
+
+		<!-- Ejemplo de datos a mostrar para otra entidad con un campo validado -->
+		<!-- Tipo de Finca de la Obra Menor con property=AAA:BBB:CCC
+		<propertyfmt type="BeanPropertySimpleFmt"
+					property='TP_FINCA:OBRAS_MENORES:SUSTITUTO'
+					readOnly='false'
+					titleKey='...'
+					fieldType='LIST'
+					styleClass=''
+					headerClass='sortable'
+					sortable='true'
+					columnClass='width10percent'
+					/>
+		-->
+		<!--
+		<propertyfmt type="BeanPropertySimpleFmt"
+					property='OBRAS_MENORES:UBICACION_INMUEBLE'
+					readOnly='false'
+					titleKey='...'
+					fieldType='LIST'
+					styleClass=''
+					headerClass='sortable'
+					sortable='true'
+					columnClass='width10percent'
+					/>
+		-->
+		<!-- Otro campo de Tipo de Finca de la Obra Menor con property=AAA:BBB:CCC
+		<propertyfmt type="BeanPropertySimpleFmt"
+					property='TP_FINCA_2:OBRAS_MENORES:SUSTITUTO'
+					readOnly='false'
+					titleKey='...'
+					fieldType='LIST'
+					styleClass=''
+					headerClass='sortable'
+					sortable='true'
+					columnClass='width10percent'
+					/>
+		-->
+
 	</beanformatter>
 
 </processlistformat>

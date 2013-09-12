@@ -2,11 +2,11 @@
 <metadata>
   <groupId>es.ieci.tecdoc.sigem</groupId>
   <artifactId>sigem_gestionUsuariosBackOffice</artifactId>
-  <version>3.0</version>
+  <version>3.0.1-M2</version>
   <versioning>
     <versions>
-      <version>3.0</version>
+      <version>3.0.1-M2</version>
     </versions>
-    <lastUpdated>20130205181826</lastUpdated>
+    <lastUpdated>20130723093344</lastUpdated>
   </versioning>
 </metadata>

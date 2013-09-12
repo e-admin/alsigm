@@ -5,22 +5,19 @@
 <%@ taglib uri="/WEB-INF/ispac-util.tld" prefix="ispac" %>
 <%@ taglib uri="/WEB-INF/c.tld" prefix="c" %>
 
-
-
-
 <script>
 	function crearSolicitudSubsanacion(idTramite, _return)
 	{
-		var data = checkboxElement(document.forms['customBatchForm']);
+		var data = checkboxElement(document.forms['customBatchForm'].multibox);
 		if (data == "") {
-			
+
 			jAlert('<bean:message key="error.users.noSelected"/>', '<bean:message key="common.alert"/>', '<bean:message key="common.message.ok"/>' , '<bean:message key="common.message.cancel"/>');
 			return;
 		}
-		
+
 		document.customBatchForm.target = "ParentWindow";
 		document.customBatchForm.action = "crearSolicitudSubsanacion.do?taskId="+idTramite;
-		
+
 		if (_return != null)
 		   document.customBatchForm.action =  document.customBatchForm.action+"&return="+_return;
 		document.customBatchForm.submit();
@@ -30,7 +27,7 @@
 <html:form action="crearSolicitudSubsanacion.do">
 
     <!-- XML Con la lista de documentos. Se incluye para ser tratado en la accion de Crear la Solicitud de Subsanacion -->
-    <logic:present name="XMLDocumentos">	
+    <logic:present name="XMLDocumentos">
 	    <html:hidden property="xml" value='<%=""+request.getAttribute("XMLDocumentos")%>'/>
 	</logic:present>
 
@@ -112,38 +109,38 @@
 						</table>
 
 						<html:errors/>
-						
+
 						<!-- FORMULARIO -->
 						<logic:present name="listDocumentos">
 							<table cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
 								<tr>
-									<td align="center"> 	
+									<td align="center">
 										<display:table name="listDocumentos"
 													   id="object" export="true"
 													   class="tableDisplay"
 											  		   sort="list"
 											  		   requestURI='<%= request.getContextPath()+"/comprobarDocumentacion.do" %>'>
-											  		   
-											<display:column titleKey="comprobarDocumentacion.etiqueta.pendiente" 
+
+											<display:column titleKey="comprobarDocumentacion.etiqueta.pendiente"
 															headerClass="headerDisplayLeft"
 															class="width10percent">
 												<html:multibox property="multibox">
 													<bean:write name="object" property="string(ID)" />
 												</html:multibox>
 											</display:column>
-											
-											<display:column titleKey="comprobarDocumentacion.etiqueta.documento" 
+
+											<display:column titleKey="comprobarDocumentacion.etiqueta.documento"
 															headerClass="headerDisplayLeft"
 															class="width90percent">
 												<bean:write name="object" property="string(DOCUMENTO)" />
 											</display:column>
-											
+
 										</display:table>
 									</td>
 								</tr>
 							</table>
-						
-							
+
+
 						</logic:present>
 					</td>
 				</tr>

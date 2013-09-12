@@ -1,0 +1,4 @@
+- De los scripts 06.X sólo se debe ejecutar el que corresponda al sistema (WINDOWS o LINUX)
+- Se proporcionan los ficheros 06.1_REGENERATE_documentary_search_postgres.sql y
+06.2_REGENERATE_documentary_search_linux_postgres.sql por si fuese necesario regenerar las columnas
+de búsqueda documental en una base de datos que las tenga creadas de antes.

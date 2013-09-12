@@ -2,7 +2,7 @@
   <wsdl:types>
 <xsd:schema targetNamespace="urn:juntadeandalucia:cice:pfirma:modify:request:v2.0" xmlns:pfirma="urn:juntadeandalucia:cice:pfirma:modify:v2.0" xmlns:request="urn:juntadeandalucia:cice:pfirma:modify:request:v2.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:type="urn:juntadeandalucia:cice:pfirma:type:v2.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 			
-			<xsd:import namespace="urn:juntadeandalucia:cice:pfirma:type:v2.0" schemaLocation="WebServiceTypes.xsd"></xsd:import>		
+			<xsd:import namespace="urn:juntadeandalucia:cice:pfirma:type:v2.0" schemaLocation="http://10.228.75.80:8080/portafirma/servicesv2/ModifyService?xsd=WebServiceTypes.xsd"></xsd:import>
 			
 			<xsd:element name="createRequest">
 				<xsd:complexType>

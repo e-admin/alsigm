@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Class-Path: ajaxtags-1.1.5.jar aopalliance-1.0.jar bcmail-jdk14-139.ja
+ r bcprov-jdk14-140.jar castor-0.9.5.3.jar commons-beanutils-1.7.0.jar
+  commons-codec-1.5.jar commons-collections-3.1.jar commons-digester-1
+ .6.jar commons-httpclient-3.1.jar commons-io-1.4.jar commons-jxpath-1
+ .2.jar commons-lang-2.3.jar commons-logging-1.0.4.jar commons-validat
+ or-1.1.3.jar displaytag-1.2.jar dom4j-1.6.1.jar dwr-2.0.3.jar fwktd-a
+ udit-api-0.7.jar fwktd-audit-core-0.7.jar fwktd-audit-integration-0.7
+ .jar fwktd-core-0.7.jar fwktd-server-0.7.jar fwktd-web-0.7.jar ibatis
+ -sqlmap-2.3.4.726.jar icu4j-2.6.1.jar invesdoc-admin-9.2.3.1.jar inve
+ sdoc-core-9.2.3.1.jar invesdoc-stdbizobj-9.2.3.1.jar ispac-audit.jar
+ ispac-documentum-6.4.jar ispac-invesdoc-6.4.jar ispac-ldap-6.4.jar is
+ pac-lib.jar ispac-lib-cfg.jar ispac-publicador-java.jar ispac-resourc
+ es-6.4-configurable.zip ispac-web.jar itext-1.3.jar jaxen-1.1.1.jar j
+ cl104-over-slf4j-1.4.2.jar jstl-1.0.6.jar jug-2.0.0-lgpl.jar log4j-1.
+ 2.13.jar mime-util-2.1.3.jar serializer-2.7.1.jar slf4j-api-1.4.2.jar
+  slf4j-log4j12-1.4.2.jar spring-aop-3.0.2.RELEASE.jar spring-asm-3.0.
+ 2.RELEASE.jar spring-beans-3.0.2.RELEASE.jar spring-context-3.0.2.REL
+ EASE.jar spring-context-support-3.0.2.RELEASE.jar spring-core-3.0.2.R
+ ELEASE.jar spring-expression-3.0.2.RELEASE.jar spring-jdbc-3.0.2.RELE
+ ASE.jar spring-orm-3.0.2.RELEASE.jar spring-tx-3.0.2.RELEASE.jar spri
+ ng-web-3.0.2.RELEASE.jar spring-webmvc-3.0.2.RELEASE.jar standard-1.0
+ .6.jar trove-1.0.2.jar velocity-1.7.jar velocity-tools-2.0-beta4.jar
+ xalan-2.7.1.jar xercesImpl-2.9.0.jar xml-apis-1.3.02.jar xmlParserAPI
+ s-2.6.2.jar xom-1.0.jar xpp3_min-1.1.4c.jar xstream-1.3.1.jar

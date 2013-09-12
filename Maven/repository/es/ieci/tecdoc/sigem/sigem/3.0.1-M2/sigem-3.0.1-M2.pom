@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.ieci.tecdoc.sigem</groupId>
+	<artifactId>sigem</artifactId>
+	<packaging>pom</packaging>
+	<name>SIGEM</name>
+	<version>3.0.1-M2</version>
+	<inceptionYear>2009</inceptionYear>
+
+	<scm>
+		<connection>scm:svn:https://10.228.75.66/svn/SIGEM/</connection>
+		<developerConnection>scm:svn:https://10.228.75.66/svn/SIGEM/trunk/</developerConnection>
+	</scm>
+
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	<distributionManagement>
+		<repository>
+			<id>inhouse_releases</id>
+			<name>Repositorio tecdoc de releases</name>
+			<url>http://10.228.75.66:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>inhouse_snapshots</id>
+			<name>Repositorio tecdoc de snapshots</name>
+			<url>http://10.228.75.66:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<profiles>
+
+		<profile>
+			<id>generate-config</id>
+			<activation>
+				<property>
+					<name>config</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_Core</module>
+				<module>SIGEM_FirmaDigital</module>
+				<module>SIGEM_CriptoValidacion</module>
+				<module>SIGEM_Consolidacion</module>
+				<module>SIGEM_UtilidadesAdministracion</module>
+				<module>SIGEM_MensajesCortos_Modules</module>
+				<module>SIGEM_Notificacion_Modules</module>
+				<module>SIGEM_PagoElectronico_Modules</module>
+				<module>SIGEM_RegistroPresencial_Modules</module>
+				<module>SIGEM_RegistroTelematico_Modules</module>
+				<module>SIGEM_Tramitacion_Modules</module>
+				<module>SIGEM_Archivo_Modules</module>
+				<module>SIGEM_Scheduler_Modules</module>
+				<module>SIGEM_Terceros_Modules</module>
+				<module>SIGEM_GestionCSV_Modules</module>
+				<module>SIGEM_SignoWS_Modules</module>
+				<module>SIGEM_ConsultaRegistroTelematico-configurable-resources</module>
+				<module>SIGEM_ConsultaRegistroTelematicoBackOffice-configurable-resources</module>
+				<module>SIGEM_ConsultaExpedienteBackOffice-configurable-resources</module>
+				<module>SIGEM_Log-configurable-resources</module>
+				<module>SIGEM_Consulta-configurable-resources</module>
+				<module>SIGEM_Certificacion-configurable-resources</module>
+				<module>SIGEM_AutenticacionAdministracion-configurable-resources</module>
+				<module>SIGEM_AutenticacionBackOffice-configurable-resources</module>
+				<module>SIGEM_Autenticacion-configurable-resources</module>
+				<module>SIGEM_GeoLocalizacion-configurable-resources</module>
+				<module>SIGEM_Catastro-configurable-resources</module>
+				<module>SIGEM_Config_Fwktd</module>
+				<module>SIGEM_Config</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>generate-bd</id>
+			<activation>
+				<property>
+					<name>bd</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_BD</module>
+			</modules>
+		</profile>
+
+		<!-- Este es el perfil por defecto. En el que se generan los Jars -->
+		<!-- Los modulos que tengan como resultado un jar deben incluirse
+			en este perfil -->
+		<profile>
+			<id>generate-jars</id>
+			<activation>
+				<property>
+					<name>jars</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>sigem_main</module>
+				<module>SIGEM_TestResources</module>
+				<module>SIGEM_ConfigLocation</module>
+				<module>SIGEM_Core</module>
+				<module>SIGEM_Tiempos</module>
+				<module>SIGEM_Calendario</module>
+				<module>SIGEM_CalendarioWSClient</module>
+				<module>SIGEM_ClasesBase</module>
+				<module>SIGEM_MensajesCortos_Modules</module>
+				<module>SIGEM_Rde</module>
+				<module>SIGEM_RdeWSClient</module>
+				<module>SIGEM_AplicacionesAdministracion</module>
+				<module>SIGEM_CatalogoTramites</module>
+				<module>SIGEM_CatalogoTramitesWSClient</module>
+				<module>SIGEM_Entidades</module>
+				<module>SIGEM_AdministracionSesionesAdm</module>
+				<module>SIGEM_EntidadesWSClient</module>
+				<module>SIGEM_AdministracionSesiones</module>
+				<module>SIGEM_AdministracionSesionesAdmWSClient</module>
+				<module>SIGEM_AdministracionSesionesBackOfficeWSClient</module>
+				<module>SIGEM_Autenticacion</module>
+				<module>SIGEM_AutenticacionUsuarios</module>
+				<module>SIGEM_AutenticacionUsuariosWSClient</module>
+				<module>SIGEM_UtilidadesSesionUsuario</module>
+				<module>SIGEM_CriptoValidacion</module>
+				<module>SIGEM_CriptoValidacionWSClient</module>
+				<module>SIGEM_SesionUsuarioWSClient</module>
+				<module>SIGEM_EstructuraOrganizativaCore</module>
+				<module>SIGEM_EstructuraOrganizativa</module>
+				<module>SIGEM_UtilidadesAdministracion</module>
+				<module>SIGEM_EstructuraOrganizativaWSClient</module>
+				<module>SIGEM_CatalogoTramitesWSClient</module>
+				<module>SIGEM_FirmaDigital</module>
+				<module>SIGEM_FirmaDigitalWSClient</module>
+				<module>SIGEM_Certificacion</module>
+				<module>SIGEM_CertificacionWSClient</module>
+				<module>SIGEM_GestionUsuariosBackOffice</module>
+				<module>SIGEM_LocalGISWSClient</module>
+				<module>SIGEM_GeoLocalizacion</module>
+				<module>SIGEM_GeoLocalizacionWSClient</module>
+				<module>SIGEM_Consulta</module>
+				<module>SIGEM_ConsultaWSClient</module>
+				<module>SIGEM_Notificacion_Modules</module>
+				<module>SIGEM_Antivirus</module>
+				<module>SIGEM_AntivirusWSClient</module>
+				<module>SIGEM_Catastro</module>
+				<module>SIGEM_CatastroWSClient</module>
+				<module>SIGEM_PagoElectronico_Modules</module>
+				<module>SIGEM_RegistroPresencial_Modules</module>
+				<module>SIGEM_RegistroTelematico_Modules</module>
+				<module>SIGEM_Tramitacion_Modules</module>
+				<module>SIGEM_Terceros_Modules</module>
+				<module>SIGEM_Archivo_Modules</module>
+				<module>SIGEM_ConsolidacionConfigLoader</module>
+				<module>SIGEM_Consolidacion</module>
+				<module>SIGEM_Scheduler_Modules</module>
+				<module>SIGEM_ConsultaRegistroTelematico-configurable-resources</module>
+				<module>SIGEM_ConsultaRegistroTelematicoBackOffice-configurable-resources</module>
+				<module>SIGEM_ConsultaExpedienteBackOffice-configurable-resources</module>
+				<module>SIGEM_Log-configurable-resources</module>
+				<module>SIGEM_Consulta-configurable-resources</module>
+				<module>SIGEM_Certificacion-configurable-resources</module>
+				<module>SIGEM_AutenticacionAdministracion-configurable-resources</module>
+				<module>SIGEM_AutenticacionBackOffice-configurable-resources</module>
+				<module>SIGEM_Autenticacion-configurable-resources</module>
+				<module>SIGEM_GeoLocalizacion-configurable-resources</module>
+				<module>SIGEM_Catastro-configurable-resources</module>
+				<module>SIGEM_GestionCSV_Modules</module>
+				<module>SIGEM_SignoWS_Modules</module>
+
+			</modules>
+
+
+		</profile>
+
+
+		<!-- Los modulos activex -->
+		<profile>
+			<id>activex</id>
+			<activation>
+				<property>
+					<name>activex</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_Activex</module>
+			</modules>
+		</profile>
+
+		<!-- Los modulos que tengan como resultado un war deben incluirse
+			en este perfil -->
+		<profile>
+			<id>generate-wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>sigem_main</module>
+				<module>SIGEM_TestResources</module>
+				<module>SIGEM_AdministracionSesionesAdmWS</module>   <!--WAR-->
+				<module>SIGEM_AdministracionSesionesBackOfficeWS</module>   <!--WAR-->
+				<module>SIGEM_AdministracionUsuariosWeb</module>  <!--WAR-->
+				<module>SIGEM_AdministracionWeb</module>  <!--WAR-->
+				<module>SIGEM_AntivirusWS</module>  <!--WAR-->
+				<module>SIGEM_AutenticacionAdministracionWeb</module>  <!--WAR-->
+				<module>SIGEM_AutenticacionBackOfficeWeb</module>  <!--WAR-->
+				<module>SIGEM_AutenticacionUsuariosWS</module>   <!--WAR-->
+				<module>SIGEM_AutenticacionWeb</module> <!--WAR-->
+				<module>SIGEM_CalendarioWS</module> <!--WAR -->
+				<module>SIGEM_CatalogoTramitesWS</module>    <!--WAR -->
+				<module>SIGEM_CatalogoTramitesWeb</module>  <!--WAR-->
+				<module>SIGEM_CatastroWeb</module> <!--WAR-->
+				<module>SIGEM_CatastroWS</module>        <!--WAR-->
+				<module>SIGEM_CertificacionWeb</module>  <!--WAR-***** muchas dependencias transitivas nuevas -->
+				<module>SIGEM_CertificacionWS</module>  <!--WAR-->
+				<module>SIGEM_ConsultaWeb</module>    <!--WAR-->
+				<module>SIGEM_ConsultaWS</module>    <!--WAR-->
+				<module>SIGEM_CriptoValidacionWS</module>   <!--WAR-->
+				<module>SIGEM_EntidadesWS</module>   <!--WAR-->
+				<module>SIGEM_EstructuraOrganizativaWS</module>    <!--WAR-->
+				<module>SIGEM_EstructuraWeb</module>    <!--WAR-->
+				<module>SIGEM_FirmaDigitalWS</module>   <!-- WAR-->
+				<module>SIGEM_GeoLocalizacionWeb</module>  <!--WAR-->
+				<module>SIGEM_GeoLocalizacionWS</module>  <!--WAR-->
+				<module>SIGEM_MensajesCortos_Modules</module>  <!--WAR-->
+				<module>SIGEM_Notificacion_Modules</module>  <!--WAR-->
+				<module>SIGEM_PagoElectronico_Modules</module> <!--WAR-->
+				<module>SIGEM_portal</module>  <!--WAR-->
+				<module>SIGEM_RdeWS</module>  <!--WAR-->
+				<module>SIGEM_RegistroPresencial_Modules</module>  <!--WAR-->
+				<module>SIGEM_RepositoriosDocumentalesWeb</module>  <!--WAR-->
+				<module>SIGEM_SessionUsuarioWS</module>   <!--WAR-->
+				<module>SIGEM_RegistroTelematico_Modules</module>   <!--WAR-->
+				<module>SIGEM_Tramitacion_Modules</module>
+				<module>SIGEM_Terceros_Modules</module>
+				<module>SIGEM_Archivo_Modules</module>
+				<module>SIGEM_Scheduler_Modules</module>
+				<module>SIGEM_ConsultaRegistroTelematicoWeb</module>
+				<module>SIGEM_ConsultaRegistroTelematicoBackOfficeWeb</module>
+				<module>SIGEM_ConsultaExpedienteBackOfficeWeb</module>
+				<module>SIGEM_GestionCSV_Modules</module>
+				<module>SIGEM_SignoWS_Modules</module>
+
+				<module>SIGEM_Config_Fwktd</module>
+				<module>SIGEM_Config</module>
+
+				<module>SIGEM_BD_DIST</module>
+
+			</modules>
+
+
+		</profile>
+
+		<!-- profile que reune los wars basicos -->
+		<profile>
+			<id>generate-basicWars</id>
+			<activation>
+				<property>
+					<name>basicWars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_AdministracionSesionesAdmWS</module>   <!--WAR-->
+				<module>SIGEM_AdministracionSesionesBackOfficeWS</module>   <!--WAR-->
+				<module>SIGEM_AutenticacionAdministracionWeb</module>  <!--WAR-->
+				<module>SIGEM_AutenticacionBackOfficeWeb</module>  <!--WAR-->
+				<module>SIGEM_AutenticacionUsuariosWS</module>   <!--WAR-->
+				<module>SIGEM_AutenticacionWeb</module> <!--WAR-->
+				<module>SIGEM_Config_Fwktd</module> <!-- configuracion -->
+				<module>SIGEM_Config</module> <!-- configuracion -->
+			</modules>
+
+
+		</profile>
+
+		<profile>
+			<id>generate-registroPresencial-wars</id>
+			<activation>
+				<property>
+					<name>wars-rp</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_AdministracionSesionesAdmWS</module>
+				<module>SIGEM_AdministracionSesionesBackOfficeWS</module>
+				<module>SIGEM_AdministracionWeb</module>
+				<module>SIGEM_AutenticacionAdministracionWeb</module>
+				<module>SIGEM_AutenticacionBackOfficeWeb</module>
+				<module>SIGEM_AutenticacionUsuariosWS</module>
+				<module>SIGEM_AutenticacionWeb</module>
+				<module>SIGEM_EntidadesWS</module>
+				<module>SIGEM_EstructuraOrganizativaWS</module>
+				<module>SIGEM_EstructuraWeb</module>
+				<module>SIGEM_RegistroPresencial_Modules</module>
+				<module>SIGEM_SessionUsuarioWS</module>
+			</modules>
+		</profile>
+
+		<!-- Este profile debe ejecutarse junto con el profile anterior de generacion de wars -Dwars -Ddistri
+
+			Los modulos que tengan como resultado un war deben incluirse
+			en este perfil para que se copie su target y -->
+		<profile>
+			<id>generate-distri</id>
+			<activation>
+				<property>
+					<name>distri</name>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-wars</id>
+								<phase>package</phase>
+								<configuration>
+									<tasks>
+										<property name="dist.dir" value="${basedir}/SIGEM_DIST"/>
+
+										<delete dir="${dist.dir}"/>
+										<mkdir dir="${dist.dir}"/>
+
+										<copy overwrite="true" todir="${dist.dir}" verbose="true">
+											<fileset dir="${basedir}\SIGEM_AdministracionSesionesAdmWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AdministracionSesionesBackOfficeWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AdministracionUsuariosWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AdministracionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AntivirusWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AutenticacionAdministracionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AutenticacionBackOfficeWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AutenticacionUsuariosWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AutenticacionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_CalendarioWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_CatalogoTramitesWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_CatalogoTramitesWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_CatastroWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_CatastroWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_CertificacionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_CertificacionWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_ConsultaWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_ConsultaWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_CriptoValidacionWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_EntidadesWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_EstructuraOrganizativaWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_EstructuraWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_FirmaDigitalWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_GeoLocalizacionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_GeoLocalizacionWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Notificacion_Modules\SIGEM_NotificacionUpdaterWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Notificacion_Modules\SIGEM_NotificacionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Notificacion_Modules\SIGEM_NotificacionWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_MensajesCortos_Modules\SIGEM_MensajesCortosWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_PagoElectronico_Modules\SIGEM_PagoElectronicoWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_PagoElectronico_Modules\SIGEM_PagoElectronicoWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_portal\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RdeWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroPresencial_Modules\SIGEM_RegistroPresencialAdminWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroPresencial_Modules\SIGEM_RegistroPresencialWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroPresencial_Modules\SIGEM_RegistroPresencialWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroPresencial_Modules\SIGEM_fwktd-sir-ws\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RepositoriosDocumentalesWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_SessionUsuarioWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroTelematico_Modules\SIGEM_RegistroTelematicoWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroTelematico_Modules\SIGEM_RegistroTelematicoWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroTelematico_Modules\SIGEM_RegistroTelematicoDefaultTercerosConnectorWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Terceros_Modules\SIGEM_TercerosWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_CatalogoProcedimientosWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_PublicadorWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_PublicadorWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_TramitacionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_TramitacionWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_BuscadorDocsWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_ServicioIntermediacionClienteLigeroWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_PortafirmasNotificacionWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Archivo_Modules\SIGEM_Archivo_War\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Scheduler_Modules\SIGEM_SchedulerWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_ConsultaRegistroTelematicoWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_ConsultaRegistroTelematicoBackOfficeWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_ConsultaExpedienteBackOfficeWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_GestionCSV_Modules\SIGEM_GestionCSVWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_GestionCSV_Modules\SIGEM_GestionCSVWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_SignoWS_Modules\SIGEM_SignoWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Config\target" includes="*.zip"/>
+											<fileset dir="${basedir}\SIGEM_BD_DIST\target" includes="*.zip"/>
+										</copy>
+									</tasks>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>generate-registroPresencial-distri</id>
+			<activation>
+				<property>
+					<name>distri-rp</name>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-registroPresencial-wars</id>
+								<phase>package</phase>
+								<configuration>
+									<tasks>
+										<property name="dist.dir" value="${basedir}/SIGEM_DIST"/>
+
+										<delete dir="${dist.dir}"/>
+										<mkdir dir="${dist.dir}"/>
+
+										<copy overwrite="true" todir="${dist.dir}" verbose="true">
+											<fileset dir="${basedir}\SIGEM_AdministracionSesionesAdmWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AdministracionSesionesBackOfficeWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AdministracionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AutenticacionAdministracionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AutenticacionBackOfficeWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AutenticacionUsuariosWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_AutenticacionWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_EntidadesWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_EstructuraOrganizativaWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_EstructuraWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_portal\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroPresencial_Modules\SIGEM_RegistroPresencialAdminWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroPresencial_Modules\SIGEM_RegistroPresencialWeb\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_RegistroPresencial_Modules\SIGEM_RegistroPresencialWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_SessionUsuarioWS\target" includes="*.war"/>
+										</copy>
+									</tasks>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+
+	</profiles>
+
+	<properties>
+		<eclipse.plugin.version>2.5.1</eclipse.plugin.version>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+	</properties>
+	<build>
+
+	<pluginManagement>
+		<plugins>
+			<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.0-beta-4</version>
+					<configuration>
+						<revisionOnScmFailure>no_revision</revisionOnScmFailure>
+						<doCheck>true</doCheck>
+						<doUpdate>true</doUpdate>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+
+	<plugins>
+		<plugin>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${eclipse.plugin.version}</version>
+
+				</plugin>
+
+
+		</plugins>
+	</build>
+
+
+
+</project>

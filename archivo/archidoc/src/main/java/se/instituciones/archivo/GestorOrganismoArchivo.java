@@ -35,7 +35,7 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 
 	/**
 	 * Inicializa con los parámetros de configuración.
-	 * 
+    *
 	 * @param params
 	 *            Parámetros de configuración.
 	 * @throws SistemaExternoException
@@ -48,7 +48,7 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 	/**
 	 * Recupera la lista de órganos que son hijos del órgano cuyo identificador
 	 * es idOrgPadre. Para los órganos que no tienen padre se pasa null.
-	 * 
+    *
 	 * @param idOrgPadre
 	 *            Identificador del órgano padre.
 	 * @return Lista de órganos.
@@ -59,14 +59,14 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 	 */
 	public List recuperarHijosDeOrgano(String idOrgPadre)
 			throws GestorOrganismosException, NotAvailableException {
-		throw new NotAvailableException();
+		return null;
 	}
 
 	/**
 	 * Recupera la lista de órganos que dependen del órgano, hasta el nivel
 	 * jerárquico especificado en numNiveles; si numNiveles tiene el valor 0, se
 	 * recuperan todos los órganos dependientes hasta el último nivel.
-	 * 
+    *
 	 * @param idOrg
 	 *            Identificador del órgano.
 	 * @param numNiveles
@@ -79,14 +79,14 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 	 */
 	public List recuperarOrganosDependientes(String idOrg, int numNiveles)
 			throws GestorOrganismosException, NotAvailableException {
-		throw new NotAvailableException();
+		return null;
 	}
 
 	/**
 	 * Recupera la lista de órganos antecesores al órgano, hasta el nivel
 	 * jerárquico especificado en numNiveles; si numNiveles tiene el valor 0, se
 	 * recuperan todos los órganos antecesores hasta el primer nivel.
-	 * 
+    *
 	 * @param idOrg
 	 *            Identificador del órgano.
 	 * @param numNiveles
@@ -99,13 +99,13 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 	 */
 	public List recuperarOrganosAntecesores(String idOrg, int numNiveles)
 			throws GestorOrganismosException, NotAvailableException {
-		throw new NotAvailableException();
+		return null;
 	}
 
 	/**
 	 * Recupera la lista de órganos que tienen el valor de param como subtexto
 	 * dentro de su nombre.
-	 * 
+    *
 	 * @param param
 	 *            Texto en el nombre del órgano.
 	 * @return Lista de órganos.
@@ -116,13 +116,29 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 	 */
 	public List recuperarOrganos(String param)
 			throws GestorOrganismosException, NotAvailableException {
-		throw new NotAvailableException();
+		InfoOrganoImpl info = null;
+
+		String entity = null;
+
+		if (parametros != null)
+			entity = parametros.getProperty(MultiEntityConstants.ENTITY_PARAM);
+
+		ServiceClient serviceClient = ServiceClient.createWithEntity(entity);
+
+		ServiceRepository services = ServiceRepository
+				.getInstance(serviceClient);
+		GestionControlUsuariosBI gcu = services
+				.lookupGestionControlUsuariosBI();
+		// CAOrganoVO organo = gcu.getOrganoUsuarioValido(idUsr);
+		List organos = gcu.findOrganosByName(param,true);
+
+		return organos;
 	}
 
 	/**
 	 * Recupera la información básica de un órgano para el atributo cuyo tipo se
 	 * pasa en tipoAtrib.
-	 * 
+    *
 	 * @param tipoAtrib
 	 *            Tipo de atributo ({@link TipoAtributo}).
 	 * @param valorAtrib
@@ -135,13 +151,32 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 	 */
 	public InfoOrgano recuperarOrgano(short tipoAtrib, String valorAtrib)
 			throws GestorOrganismosException, NotAvailableException {
-		throw new NotAvailableException();
+		String entity = null;
+
+		if (parametros != null)
+			entity = parametros.getProperty(MultiEntityConstants.ENTITY_PARAM);
+
+		ServiceClient serviceClient = ServiceClient.createWithEntity(entity);
+
+		ServiceRepository services = ServiceRepository
+				.getInstance(serviceClient);
+		GestionControlUsuariosBI gcu = services
+				.lookupGestionControlUsuariosBI();
+		CAOrganoVO organo =  null;
+
+		if(tipoAtrib == TipoAtributo.IDENTIFICADOR_ORGANO){
+			organo = gcu.getCAOrgProductorVOXId(valorAtrib);
+		}
+		else if(tipoAtrib == TipoAtributo.CODIGO_ORGANO){
+			organo = gcu.getCAOrgProductorVOByCodigo(valorAtrib);
+		}
+		return organo;
 	}
 
 	/**
 	 * Recupera la información básica del órgano al que pertenece un usuario
 	 * cuyo identificador es idUsr.
-	 * 
+    *
 	 * @param idUsr
 	 *            Identificador de usuario.
 	 * @return Información básica de un órgano.
@@ -177,7 +212,7 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 	/**
 	 * Recupera una lista de identificadores de usuarios que pertenecen a los
 	 * órganos cuyos identificadores se pasan en el parámetro idOrgs.
-	 * 
+    *
 	 * @param idOrgs
 	 *            Lista de identificadores de órganos.
 	 * @return Lista de identificadores de usuarios.
@@ -204,7 +239,7 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 
 	/**
 	 * Recupera la lista de instituciones con su información básica.
-	 * 
+    *
 	 * @return Lista de instituciones.
 	 *         <p>
 	 *         Los objetos de la lista tienen que implementar el interface
@@ -217,7 +252,7 @@ public class GestorOrganismoArchivo implements GestorOrganismos {
 	 */
 	public List recuperarInstitucionesProductoras()
 			throws GestorOrganismosException, NotAvailableException {
-		throw new NotAvailableException();
+		return null;
 	}
 
 }

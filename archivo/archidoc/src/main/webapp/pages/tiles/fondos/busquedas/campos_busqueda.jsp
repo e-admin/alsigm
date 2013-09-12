@@ -80,7 +80,7 @@
 			<tiles:insert attribute="Descriptores" ignore="false"/>
 		</c:if>
 		<c:if test="${elemento.nombre == appConstants.fondos.camposBusquedas.CAMPO_ENTRADA_BUSQUEDA_CONTENIDO_FICHERO}">
-			<tiles:insert attribute="Contenido_Fichero" ignore="false"/>
+			<tiles:insert attribute="Contenido.Fichero" ignore="false"/>
 		</c:if>
 		<c:if test="${elemento.nombre == appConstants.fondos.camposBusquedas.CAMPO_ENTRADA_BUSQUEDA_PROCEDIMIENTO}">
 			<tiles:insert attribute="Procedimiento" ignore="false"/>

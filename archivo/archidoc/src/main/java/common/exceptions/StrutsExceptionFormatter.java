@@ -27,7 +27,7 @@ import gcontrol.model.ArchivosException;
  * Permite el formateo de los mensajes de error a motrar cuando se produce una
  * excepcion en el sistema mediante la asociacion de una clave en el
  * application.properties con los codigos de error
- * 
+ *
  */
 public class StrutsExceptionFormatter {
 
@@ -354,6 +354,15 @@ public class StrutsExceptionFormatter {
 		mappingErrorsMessages
 				.put(FondosOperacionNoPermitidaException.ERROR_SIN_PERMISOS_GESTION_UDOCS_CONSERVADAS,
 						Constants.ERROR_SIN_PERMISOS_GESTION_UDOCS_CONSERVADAS_KEY);
+
+		mappingErrorsMessages
+		.put(FondosOperacionNoPermitidaException.XNO_SE_PUEDE_ELIMINAR_SERIE_TIENE_RELACIONES,
+				Constants.ERROR_NO_SE_PUEDE_ELIMINAR_SERIE_TIENE_RELACIONES);
+
+		mappingErrorsMessages
+		.put(FondosOperacionNoPermitidaException.XNO_SE_PUEDE_ELIMINAR_SERIE_TIENE_DETALLES,
+				Constants.ERROR_NO_SE_PUEDE_ELIMINAR_SERIE_TIENE_DETALLES_PREVISON);
+
 
 		/** SERVICioS MODULE **/
 		mappingErrorsMessages.configModule(ArchivoModules.SERVICIOS_MODULE);
@@ -831,7 +840,7 @@ public class StrutsExceptionFormatter {
 
 	/**
 	 * Constructor
-	 * 
+    *
 	 * @param resources
 	 *            Mensajes internacionalizados
 	 */

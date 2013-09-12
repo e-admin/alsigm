@@ -1,0 +1,17 @@
+<assembly>
+	<id>SIGEM_BD_oracle</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/sql/comun/oracle/Completa</directory>
+			<outputDirectory>/Completa</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/sql/especifico/proyecto/SIGEM/oracle</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>

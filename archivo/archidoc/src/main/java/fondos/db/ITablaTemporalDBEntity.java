@@ -5,6 +5,8 @@ package fondos.db;
 
 import java.util.HashMap;
 
+import common.db.IDBEntity;
+
 import fondos.vos.TablaTemporalFondosVO;
 
 /**
@@ -14,7 +16,7 @@ import fondos.vos.TablaTemporalFondosVO;
  * @version $Revision$
  *
  */
-public interface ITablaTemporalDBEntity {
+public interface ITablaTemporalDBEntity extends IDBEntity{
 
 	public void insertAsSelect(TablaTemporalFondosVO tablaTemporal, String[] ids);
 

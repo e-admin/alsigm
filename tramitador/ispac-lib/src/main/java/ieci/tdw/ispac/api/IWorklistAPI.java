@@ -39,7 +39,7 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection findActiveStages(int nIdProcess) throws ISPACException;
-	
+
 	/**
 	 * @param nIdProcess
 	 * @param resp Responsabilidades del usuario conectado (supervisar y sustituir)
@@ -54,7 +54,7 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection findActiveTasks(int nIdProcess) throws ISPACException;
-	
+
 	/**
 	 * @param nIdProcess
 	 * @param resp Responsabilidades del usuario conectado (supervisar y sustituir)
@@ -80,7 +80,7 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection getProcedures() throws ISPACException;
-	
+
 	/**
 	 * Devuelve la lista de procedimientos en los cuales existen procesos
 	 * que son responsabilidad del usuario conectado.
@@ -92,7 +92,7 @@ public interface IWorklistAPI extends Serializable
 	public IItemCollection getProcedures(String resp) throws ISPACException;
 
 	/**
-	 * Devuelve la lista de procedimientos modelados como subprocesos 
+    * Devuelve la lista de procedimientos modelados como subprocesos
 	 * en los cuales existen procesos instanciados
 	 * que son responsabilidad del usuario conectado.
 	 *
@@ -101,7 +101,7 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection getSubProcedures(String resp) throws ISPACException;
-	
+
 	/**
 	 * Devuelve la lista de procedimientos que puede iniciar el usuario conectado.
 	 *
@@ -253,8 +253,7 @@ public interface IWorklistAPI extends Serializable
 	 */
 	public IItemCollection getProcesses(int idStagePCD,InputStream processlistxml)
 			throws ISPACException;
-	
-	
+
 	/**
 	 * Devuelve una lista de subprocesos de la actividad indicada los cuales son responsabilidad
 	 * del usuario conectado. Opcionalmente los relaciona con otras entidades seg&uacute;n el
@@ -266,12 +265,10 @@ public interface IWorklistAPI extends Serializable
 	 * @param processlistxml stream con la definici&oacute;n del formato para la lista de subprocesos.
 	 * @return lista de subprocesos
 	 * @throws ISPACException
-	 */	
-	public IItemCollection getSubProcesses(int idActivityPCD, InputStream istream)	
+    */
+	public IItemCollection getSubProcesses(int idActivityPCD, InputStream istream)
 	throws ISPACException;
 
-	
-	
 	/**
 	 * Devuelve una lista de subprocesos de la actividad indicada los cuales son responsabilidad
 	 * del usuario conectado. Opcionalmente los relaciona con otras entidades seg&uacute;n el
@@ -284,10 +281,10 @@ public interface IWorklistAPI extends Serializable
 	 * @param processlistxml stream con la definici&oacute;n del formato para la lista de subprocesos.
 	 * @return lista de subprocesos
 	 * @throws ISPACException
-	 */	
+    */
 	public IItemCollection getSubProcesses(int pcdId, int idActivityPCD,
 			InputStream istream) throws ISPACException;
-	
+
 	/**
 	 * Devuelve el expediente según su número de expediente.
 	 *
@@ -317,13 +314,13 @@ public interface IWorklistAPI extends Serializable
 	 */
 	public IItemCollection getStages(int idProcedure)
 			throws ISPACException;
-	
+
 	/**
 	 * Devuelve la lista de fases de un procedimiento responsabilidad
 	 * del usuario conectado.
 	 *
 	 * @param idProcedure identificador del procedimiento
-	 * @param resp Responsabilidades del usuario conectado (supervisar y sustituir) 
+    * @param resp Responsabilidades del usuario conectado (supervisar y sustituir)
 	 * @return lista de fases
 	 * @throws ISPACException
 	 */
@@ -333,7 +330,7 @@ public interface IWorklistAPI extends Serializable
 	/**
 	 * Devuelve la lista de actividades abiertas de un procedimiento bajo la
 	 * responsabilidad del usuario conectado.
-	 * 
+    *
 	 * @param subProcedureId
 	 *            Identificador del subprocedimiento.
 	 * @return Lista de actividades abiertas.
@@ -345,7 +342,7 @@ public interface IWorklistAPI extends Serializable
 	/**
 	 * Devuelve la lista de actividades abiertas de un procedimiento bajo la
 	 * responsabilidad indicada.
-	 * 
+    *
 	 * @param subProcedureId
 	 *            Identificador del subprocedimiento.
 	 * @param resp
@@ -383,8 +380,8 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection getProcedureTasks(String resp) throws ISPACException;
-	
-	
+
+
 	/**
 	 * Lista de trámites cerrados de todos los procedimientos que son responsabilidad del
 	 * usuario conectado.
@@ -393,8 +390,8 @@ public interface IWorklistAPI extends Serializable
 	 * @return lista de trámites
 	 * @throws ISPACException
 	 */
-	public IItemCollection getProcedureClosedTasks(String resp) throws ISPACException;	
-	
+	public IItemCollection getProcedureClosedTasks(String resp) throws ISPACException;
+
 	/**
 	 * Lista de trámites agrupados por procedimiento que son responsabilidad del
 	 * usuario conectado.
@@ -404,8 +401,8 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection getProcedureTasksGroupByPcd(String resp) throws ISPACException;
-	
-	
+
+
 	/**
 	 * Lista de trámites cerrados agrupados por procedimiento que son responsabilidad del
 	 * usuario conectado.
@@ -415,8 +412,8 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection getProcedureClosedTasksGroupByPcd(String resp) throws ISPACException;
-		
-	
+
+
 	/**
 	 * Devuelve una lista de los trámites iniciados desde una fase.
 	 *
@@ -426,7 +423,7 @@ public interface IWorklistAPI extends Serializable
 	 */
 	public IItemCollection getProcedureStageTasks(int idStagePCD)
 			throws ISPACException;
-	
+
 	/**
 	 * Devuelve una lista de los trámites de una fase de procedimiento que se pueden iniciar.
 	 *
@@ -436,12 +433,11 @@ public interface IWorklistAPI extends Serializable
 	 */
 	public IItemCollection getProcedureStageTasksToStart(int idStagePCD)
 			throws ISPACException;
-	
+
 	/**
-	 * Lista de trámites activos de un trámite
-	 * procedimiento y un responsable.
+    * Lista de trámites activos de un trámite del procedimiento.
 	 *
-	 * @param idTaskPCD identificador del trámite del procedimiento
+    * @param taskPcdId identificador del trámite del procedimiento
 	 * @return lista de trámites activos
 	 * @throws ISPACException
 	 */
@@ -449,8 +445,21 @@ public interface IWorklistAPI extends Serializable
 	throws ISPACException;
 
 	/**
-	 * Lista de trámites activos de un trámite
-	 * catálogo y un responsable.
+    * Lista de trámites activos de un trámite del procedimiento
+    * los cuales son responsabilidad del usuario conectado.
+    * Opcionalmente los relaciona con otras entidades seg&uacute;n el
+    * xml de definici&oacute;n de listas de trámites.
+    *
+    * @param taskPcdId identificador del trámite del procedimiento.
+    * @param tasklistxml stream con la definici&oacute;n del formato para la lista de trámites.
+    * @return lista de trámites activos.
+    * @throws ISPACException
+    */
+	public IItemCollection getTasksPCD(int taskPcdId, InputStream tasklistxml)
+	throws ISPACException;
+
+	/**
+    * Lista de trámites activos de un trámite del catálogo.
 	 *
 	 * @param idTaskPCD identificador del trámite del catálogo
 	 * @return lista de trámites activos
@@ -460,8 +469,8 @@ public interface IWorklistAPI extends Serializable
 	throws ISPACException;
 
 	/**
-	 * Lista de trámites activos de un trámite
-	 * catálogo y un responsable.
+    * Lista de trámites activos de un trámite del
+    * catálogo para un determinado procedimiento.
 	 *
 	 * @param taskCtlId identificador del trámite del catálogo
 	 * @param pcdId Identificador del procedimiento
@@ -471,8 +480,35 @@ public interface IWorklistAPI extends Serializable
 	public IItemCollection getTasksCTL(int taskCtlId, int pcdId)
 	throws ISPACException;
 
-	
-	
+	/**
+    * Devuelve una lista de trámites activos de un trámite del catálogo
+    * los cuales son responsabilidad del usuario conectado.
+    * Opcionalmente los relaciona con otras entidades seg&uacute;n el
+    * xml de definici&oacute;n de listas de trámites.
+    *
+    * @param taskCtlId identificador del trámite del catálogo.
+    * @param tasklistxml stream con la definici&oacute;n del formato para la lista de trámites.
+    * @return lista de tramites activos.
+    * @throws ISPACException
+    */
+	public IItemCollection getTasksCTL(int taskCtlId, InputStream tasklistxml)
+	throws ISPACException;
+
+	/**
+    * Devuelve una lista de trámites activos de un trámite del catálogo para un determinado
+    * procedimiento los cuales son responsabilidad del usuario conectado.
+    * Opcionalmente los relaciona con otras entidades seg&uacute;n el
+    * xml de definici&oacute;n de listas de trámites.
+    *
+    * @param taskCtlId identificador del trámite del catálogo.
+    * @param tasklistxml stream con la definici&oacute;n del formato para la lista de trámites.
+    * @param pcdId Identificador del procedimiento.
+    * @return lista de tramites activos.
+    * @throws ISPACException
+    */
+	public IItemCollection getTasksCTL(int taskCtlId, InputStream tasklistxml, int pcdId)
+	throws ISPACException;
+
 	/**
 	 * Lista de trámites cerrados de un trámite
 	 * procedimiento y un responsable.
@@ -485,11 +521,25 @@ public interface IWorklistAPI extends Serializable
 	throws ISPACException;
 
 	/**
+    * Lista de trámites cerrados de un trámite del procedimiento
+    * los cuales son responsabilidad del usuario conectado.
+    * Opcionalmente los relaciona con otras entidades seg&uacute;n el
+    * xml de definici&oacute;n de listas de trámites.
+    *
+    * @param taskPcdId identificador del trámite del procedimiento.
+    * @param tasklistxml stream con la definici&oacute;n del formato para la lista de trámites.
+    * @return lista de trámites cerrados.
+    * @throws ISPACException
+    */
+	public IItemCollection getClosedTasksPCD(int taskPcdId, InputStream tasklistxml)
+	throws ISPACException;
+
+	/**
 	 * Lista de trámites cerrados de un trámite
 	 * catálogo y un responsable.
 	 *
 	 * @param idTaskPCD identificador del trámite del catálogo
-	 * @return lista de trámites activos
+    * @return lista de trámites cerrados
 	 * @throws ISPACException
 	 */
 	public IItemCollection getClosedTasksCTL(int taskCtlId)
@@ -501,12 +551,41 @@ public interface IWorklistAPI extends Serializable
 	 *
 	 * @param taskCtlId identificador del trámite del catálogo
 	 * @param pcdId Identificador del procedimiento
-	 * @return lista de trámites activos
+    * @return lista de trámites cerrados
 	 * @throws ISPACException
 	 */
 	public IItemCollection getClosedTasksCTL(int taskCtlId, int pcdId)
 	throws ISPACException;
-	
+
+	/**
+    * Devuelve una lista de trámites cerrados de un trámite del catálogo
+    * los cuales son responsabilidad del usuario conectado.
+    * Opcionalmente los relaciona con otras entidades seg&uacute;n el
+    * xml de definici&oacute;n de listas de trámites.
+    *
+    * @param taskCtlId identificador del trámite del catálogo.
+    * @param tasklistxml stream con la definici&oacute;n del formato para la lista de trámites.
+    * @return lista de tramites cerrados.
+    * @throws ISPACException
+    */
+	public IItemCollection getClosedTasksCTL(int taskCtlId, InputStream tasklistxml)
+	throws ISPACException;
+
+	/**
+    * Devuelve una lista de trámites activos de un trámite del catálogo para un determinado
+    * procedimiento los cuales son responsabilidad del usuario conectado.
+    * Opcionalmente los relaciona con otras entidades seg&uacute;n el
+    * xml de definici&oacute;n de listas de trámites.
+    *
+    * @param taskCtlId identificador del trámite del catálogo.
+    * @param tasklistxml stream con la definici&oacute;n del formato para la lista de trámites.
+    * @param pcdId Identificador del procedimiento.
+    * @return lista de tramites cerrados.
+    * @throws ISPACException
+    */
+	public IItemCollection getClosedTasksCTL(int taskCtlId, InputStream tasklistxml, int pcdId)
+	throws ISPACException;
+
 	/**
 	 * Lista de tr&aacute;mites activos de un trámite
 	 * procedimiento filtrado por responsable.
@@ -550,25 +629,25 @@ public interface IWorklistAPI extends Serializable
 	throws ISPACException;
 	/**
 	 * Informa si el UID pertenece a la lista de responsables del
-	 * usuario conectado o tiene permisos sobre el item 
+    * usuario conectado o tiene permisos sobre el item
 	 *
 	 * @param sUID identificador de responsable
 	 * @param item IStage , ITask , IProcess
 	 * @return true si el UID pertenece a la lista.
 	 * @throws ISPACException
 	 */
-    public boolean isInResponsibleList (String sUID, IItem item) 
+    public boolean isInResponsibleList (String sUID, IItem item)
     throws ISPACException ;
 
 	/**
-	 * 
+    *
 	 * @param sUID
 	 * @param supervisionType
 	 * @return
 	 * @throws ISPACException
 	 */
 	public boolean isInResponsibleList( String sUID, int supervisionType)
-	throws ISPACException;	
+	throws ISPACException;
 
 	/**
 	 * Indica si el Uid pertenece a la lista de responbles del usuario conectado,
@@ -579,17 +658,17 @@ public interface IWorklistAPI extends Serializable
 	 * @return
 	 * @throws ISPACException
 	 */
-	public boolean isInResponsibleList (String sUID, int supervisionType, IItem item) 
+	public boolean isInResponsibleList (String sUID, int supervisionType, IItem item)
 	throws ISPACException ;
 	/**
 	 * @return Cadena con todos los UIDs separados por comas
 	 * @throws ISPACException
 	 */
-	public String getRespString() 
+	public String getRespString()
 	throws ISPACException;
-	
+
 	/**
-	 * 
+    *
 	 * @param activityId: Identificador de la actividad
 	 * @param idPcd: Identificador del procedimiento en el que se usa el subproceso
 	 * @return Cadena con todos los UIDs separados por comas, incluyendo los del procedimiento padre
@@ -605,35 +684,35 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection getBatchTasks() throws ISPACException;
-	
+
 	/**
 	 * Cuenta el numero de tareas agrupadas que son responsabilidad del
 	 * usuario conectado.
-	 * 
+    *
 	 * @return número de tareas
 	 * @throws ISPACException
 	 */
 	public int countBatchTasks() throws ISPACException;
-	
+
 	/**
 	 * Cuenta el numero de tareas agrupadas que son responsabilidad del
 	 * usuario conectado.
-	 * 
+    *
 	 * @param resp Responsabilidades del usuario conectado (supervisar y sustituir)
 	 * @return número de tareas
 	 * @throws ISPACException
 	 */
 	public int countBatchTasks(String resp) throws ISPACException;
-	
-	
+
+
 	/**
-	 * Retorna los expedientes de una tramitación agrupada 
+    * Retorna los expedientes de una tramitación agrupada
 	 * @param idBatchTask
 	 * @return
 	 * @throws ISPACException
 	 */
 	public IItemCollection getExpsBatchTask(int idBatchTask) throws ISPACException;
-	
+
 	/**
 	 * Devuelve los expedientes por numero de expediente
 	 * @param numexps
@@ -641,22 +720,22 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection getProcesses(String[] numexps) throws ISPACException;
-	
+
 	/**
 	 * Devuelve los tramites por numero de expediente e id tramite de procedimiento
 	 * que son responsabilidad del usuario conectado.
-	 * 
+    *
 	 * @param numexp
 	 * @param idPTask
 	 * @return
 	 * @throws ISPACException
 	 */
 	public IItemCollection getTasks(String numexp, int idPTask) throws ISPACException;
-	
+
 	/**
 	 * Devuelve los tramites por numero de expediente e id tramite de procedimiento
 	 * que son responsabilidad del usuario conectado.
-	 * 
+    *
 	 * @param numexp
 	 * @param idPTask
 	 * @param resp Responsabilidades del usuario conectado (supervisar y sustituir)
@@ -664,33 +743,33 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public IItemCollection getTasks(String numexp, int idPTask, String resp) throws ISPACException;
-	
+
 	/**
-	 * @param type tipo de plazo sobre el que se realiza la b&uacute;squeda  
+    * @param type tipo de plazo sobre el que se realiza la b&uacute;squeda
 	 * @return colecci&oacute;n  de plazos vencidos hasta la fecha actual.
 	 * @throws ISPACException
 	 */
 	public IItemCollection getExpiredTerms(int type) throws ISPACException;
-	
+
 	/**
 	 * @param type tipo de plazo sobre el que se realiza la b&uacute;squeda
-	 * @param initDate fecha de inicio del per&iacute;odo sobre el que se acota la b&uacute;squeda 
+    * @param initDate fecha de inicio del per&iacute;odo sobre el que se acota la b&uacute;squeda
 	 * @param endDate fecha de fin del per&iacute;odo sobre el que se acota la b&uacute;squeda
 	 * @return colecci&oacute;n de plazos vencidos.
 	 * @throws ISPACException
 	 */
 	public IItemCollection getExpiredTerms(int type, Date initDate, Date endDate) throws ISPACException;
-	
+
 	/**
 	 * Cuenta el numerode plazos vencidos hasta la fecha actual que son responsabilidad del
 	 * usuario conectado.
-	 * 
+    *
 	 * @param type
 	 * @return n&uacute;mero de plazos vencidos hasta la fecha actual
 	 * @throws ISPACException
 	 */
 	public int countExpiredTerms(int type) throws ISPACException;
-	
+
 	/**
 	 * Cuenta el numerode plazos vencidos hasta la fecha actual que son responsabilidad del
 	 * usuario conectado.
@@ -701,7 +780,7 @@ public interface IWorklistAPI extends Serializable
 	 * @throws ISPACException
 	 */
 	public int countExpiredTerms(int type, String resp) throws ISPACException;
-	
 
-	
+
+
 }

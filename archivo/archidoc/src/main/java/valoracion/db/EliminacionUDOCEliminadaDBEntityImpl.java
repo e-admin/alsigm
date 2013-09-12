@@ -93,7 +93,7 @@ public class EliminacionUDOCEliminadaDBEntityImpl extends DBEntity implements
 
 	/**
 	 * Obtiene el nombre de la tabla
-	 * 
+    *
 	 * @return
 	 */
 	public String getTableName() {
@@ -112,19 +112,20 @@ public class EliminacionUDOCEliminadaDBEntityImpl extends DBEntity implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see valoracion.db.IEliminacionUDOCEliminadaDBEntity#getUdocsAEliminarXId(java.lang.String)
 	 */
 	public List getUdocsAEliminarXId(String idEliminacion) {
 		StringBuffer qual = new StringBuffer(DBUtils.WHERE).append(DBUtils
-				.generateEQTokenField(IDELIMINACION_FIELD, idEliminacion));
+				.generateEQTokenField(IDELIMINACION_FIELD, idEliminacion))
+				.append(DBUtils.generateOrderBy(SIGNATURAUDOC_FIELD));
 		return getVOS(qual.toString(), TABLE_NAME, COLS_DEFS,
 				UnidadDocumentalEliminacionVO.class);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see valoracion.db.IEliminacionUDOCEliminadaDBEntity#insertUdocAEliminar(valoracion.vos.IUnidadDocumentalEliminacionVO)
 	 */
 	public void insertUdocAEliminar(

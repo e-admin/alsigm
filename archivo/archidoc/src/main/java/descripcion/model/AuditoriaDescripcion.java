@@ -60,7 +60,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Obtiene un evento de auditoría.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param action
@@ -81,7 +81,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la creación de una ficha de descripción.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tipoFicha
@@ -115,7 +115,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la creación de una ficha de descriptor.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tipoFicha
@@ -150,7 +150,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la modificación de una ficha de descripción.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tipoFicha
@@ -186,7 +186,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la modificación de reemplazo en campo de elemento.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param busqueda
@@ -364,7 +364,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la consulta de una ficha de descripción.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tipoFicha
@@ -391,7 +391,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la creación de una ficha de descripción.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tipoFicha
@@ -475,7 +475,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la creación de una ficha de descripción.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tipoFicha
@@ -500,7 +500,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la unificación de Descriptores
-	 * 
+    *
 	 * @param locale
 	 *            Locale del Usuario
 	 * @param service
@@ -571,7 +571,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la creación de un valor de un campo.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tipoFicha
@@ -661,7 +661,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la modificacion de un valor de un campo.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tipoFicha
@@ -828,7 +828,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la eliminación de un valor de un campo.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tipoFicha
@@ -862,7 +862,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la búsqueda de elementos en el cuadro de clasificación.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param busquedaGeneralVO
@@ -985,7 +985,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la búsqueda de elementos en el cuadro de clasificación.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param busquedaGeneralVO
@@ -1103,7 +1103,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la búsqueda de autoridades.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param busquedaGeneralAutVO
@@ -1179,7 +1179,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la inserción de una tabla de validación.
-	 * 
+    *
 	 * @param event
 	 *            Evento de auditoría.
 	 * @param tablaValidacion
@@ -1199,7 +1199,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la modificación de una tabla de validación.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param tablaValidacion
@@ -1223,7 +1223,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la eliminación de una tabla de validación.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param id
@@ -1246,7 +1246,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la inserción de un valor de una tabla de validación.
-	 * 
+    *
 	 * @param event
 	 *            Evento de auditoría.
 	 * @param valor
@@ -1268,7 +1268,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la modificación de un valor de una tabla de validación.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param valor
@@ -1294,7 +1294,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la eliminación de un valor de una tabla de validación.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param id
@@ -1322,7 +1322,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la inserción de una lista descriptora.
-	 * 
+    *
 	 * @param event
 	 *            Evento de auditoría.
 	 * @param listaDescriptora
@@ -1342,7 +1342,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la modificación de una lista descriptora.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param listaDescriptora
@@ -1367,7 +1367,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la eliminación de una lista descriptora.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param id
@@ -1390,7 +1390,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la inserción de un descriptor.
-	 * 
+    *
 	 * @param event
 	 *            Evento de auditoría.
 	 * @param descriptor
@@ -1412,7 +1412,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la modificación de un descriptor.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param descriptor
@@ -1438,7 +1438,7 @@ public class AuditoriaDescripcion {
 
 	/**
 	 * Audita la eliminación de un descriptor.
-	 * 
+    *
 	 * @param service
 	 *            Servicio a auditar.
 	 * @param id
@@ -1521,6 +1521,7 @@ public class AuditoriaDescripcion {
 			case ValorCampoGenericoVO.TIPO_FECHA:
 				CustomDate cd = new CustomDate(valor.getFormato(),
 						valor.getAnio(), valor.getMes(), valor.getDia(),
+						valor.getHoras(), valor.getMinutos(), valor.getSegundos(),
 						valor.getSiglo(), valor.getSeparador(),
 						valor.getCalificador());
 				fechaInicial = DateUtils.formatDate(cd.getMinDate());

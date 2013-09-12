@@ -29,7 +29,7 @@ public interface ICatalogAPI
 	public int ENTITY_CT_TASKTYPEDOC=11;
 	public int ENTITY_CT_PCDORG=12;
     public int ENTITY_CT_SEARCHFORM_ORG=13;
-    
+
 	public int ENTITY_P_ENTITY=20;
 	public int ENTITY_P_STAGE=21;
 	public int ENTITY_P_PROCEDURE=22;
@@ -37,29 +37,29 @@ public interface ICatalogAPI
 	public int ENTITY_P_FRMSTAGE=24;
 	public int ENTITY_P_FRMTASK=25;
 	public int ENTITY_P_FSTD=26;
-	
+
 	public int ENTITY_DT_DOCUMENTOS=27;
     //public int ENTITY_P_PLANTDOC=28;
     public int ENTITY_P_PLANTPROC=29;
     public int ENTITY_P_FLUJOS=30;
     public int ENTITY_P_SINCNODE=31;
     public int ENTITY_P_NODOS=32;
-    
+
     public int ENTITY_P_SUBPROCEDURE=33;
     public int ENTITY_P_ACTIVITIES=34;
-    
+
     public int ENTITY_PUB_ACTIONS=40;
     public int ENTITY_PUB_APPLICATIONS=41;
     public int ENTITY_PUB_CONDITIONS=42;
     public int ENTITY_PUB_ERRORS=43;
     public int ENTITY_PUB_MILESTONES=44;
     public int ENTITY_PUB_RULES=45;
-    
+
     public int ENTITY_SPAC_VLDTBL_SIST_PRODUCTORES=46;
     public int ENTITY_SPAC_VLDTBL_ACTS_FUNCS=47;
     public int ENTITY_SPAC_VLDTBL_MATS_COMP=48;
     public int ENTITY_SPAC_VLDTBL_SIT_TLM=49;
-    
+
 	public int ENTITY_SIGNPROCESS_HEADER=50;
 	public int ENTITY_SIGNPROCESS_DETAIL=51;
 
@@ -74,7 +74,7 @@ public interface ICatalogAPI
     public int ENTITY_CT_SYSTEM_VARS=62;
     public int ENTITY_CT_HELPS=63;
     public int ENTITY_CT_INFORMES_ORG = 14;
-    
+
 
     public int ENTITY_SIGNPROCESS=59;
     public int ENTITY_P_EVENTOS=60;
@@ -86,7 +86,7 @@ public interface ICatalogAPI
     public static String ESTADO_FIELD_NAME 		= "vigente";
     public static String ORDEN_FIELD_NAME		= "orden";
     public static String SUSTITUTO_FIELD_NAME 	= "sustituto";
-    
+
     public static String ID_FIELD_ENTIDAD_PADRE = "id_padre";
     public static String ID_FIELD_ENTIDAD_HIJA = "id_hija";
     public static String HIERARCHICAL_TABLE_NAME = "SPAC_CT_JERARQUIA_";
@@ -109,17 +109,17 @@ public interface ICatalogAPI
 	 */
 	public IItem createCTEntity(int ctentityId) throws ISPACException;
 	public IItem createCTEntity(DbCnt cnt, int ctentityId) throws ISPACException;
-	
-	
+
+
 
 	/**
 	 * Crea una nuevo registro para un campo de la entidad en SPAC_CT_ENTIDADES_RESOURCES.
 	 *
 	 * @return IItem
 	 * @throws ISPACException
-	 */	
+    */
     public IItem createCTEntityResource() throws ISPACException;
-	
+
 	/**
 	 * Obtiene el registro de una entidad
 	 *
@@ -141,7 +141,7 @@ public interface ICatalogAPI
 	 */
 	public IItemCollection getCTEntityByIds(int ctentityId, Map ctentityRegIds)
 			throws ISPACException;
-	
+
 	/**
 	 * Obtiene una colección de entidades resultado de una consulta.
 	 *
@@ -155,7 +155,7 @@ public interface ICatalogAPI
 
 	public IItemCollection queryCTEntitiesForUpdate(int ctentityId, String query)
 		throws ISPACException;
-	
+
 	public void setCTEntitiesForUpdate(int ctentityId, String query)
 		throws ISPACException;
 
@@ -263,7 +263,7 @@ public interface ICatalogAPI
 	/**
      * Obtiene la aplicación asociada a la entidad de catálogo en su definición.
      * La aplicación ya se devuelve cargada con los datos del registro especificado.
-     * 
+     *
      * @param int identificador de la entidad
      * @param int identificador del registro de la entidad
      * @param path ruta de la aplicación
@@ -276,7 +276,7 @@ public interface ICatalogAPI
  	/**
       * Obtiene la aplicación asociada a la entidad de catálogo en su definición.
       * La aplicación no se devuelve cargada pero si inicializada.
-      * 
+      *
       * @param int identificador de la entidad
       * @param path ruta de la aplicación
       * @return EntityApp inicializada para acceder a los datos de la entidad especificada
@@ -391,7 +391,7 @@ public interface ICatalogAPI
      */
 	public void addPConditionEvent(int pobjectType, int pobjectId, int peventCod, String condition)
 		throws ISPACException;
-	
+
 	/**
      * Incrementa el orden de una regla a el siguinete orden existente y decrementa al sustituido
      *
@@ -417,7 +417,7 @@ public interface ICatalogAPI
      */
 	public void decOrderPEvents(int pobjectType, int pobjectId, int peventCod, int pruleId, int orderRule)
 	throws ISPACException;
-	
+
 	/**
 	 * Establece la definicion del plazo de un objeto
 	 * @param Id
@@ -441,7 +441,7 @@ public interface ICatalogAPI
 	 */
 	public IItem getDeadLine(int objType, int idObj)
 	throws ISPACException;
-	
+
 	/**
 	 * Elimina la definicion del plazo de un objeto
 	 * @param objType: ICatalogAPI.ENTITY_P_PROCEDURE, ICatalogAPI.ENTITY_P_SUBPROCEDURE
@@ -451,10 +451,10 @@ public interface ICatalogAPI
 	 */
 	public void dropDeadLine(int objType, int idObj)
 	throws ISPACException;
-	
+
 	/**
 	 * Obtiene los informes del catálogo.
-	 * 
+    *
 	 * @return Lista de informes del catálogo.
 	 * @throws ISPACException
 	 *             si ocurre algún error.
@@ -463,7 +463,7 @@ public interface ICatalogAPI
 
 	/**
 	 * Obtiene los informes del catálogo a partir del nombre.
-	 * 
+    *
 	 * @param pattern
 	 *            Patrón del nombre del informe.
 	 * @return Lista de informes del catálogo.
@@ -475,7 +475,7 @@ public interface ICatalogAPI
 
 	/**
 	 * Obtiene la información del informe en el catálogo.
-	 * 
+    *
 	 * @param id
 	 *            Identificador del informe.
 	 * @return Información del informe.
@@ -483,7 +483,7 @@ public interface ICatalogAPI
 	 *             si ocurre algún error.
 	 */
 	public IItem getCTReport(int id) throws ISPACException;
-	 
+
 	/**
 	 * Obtiene la colección de circuitos de firma asociados a un determinado procedimiento
 	 * @param  pcdId
@@ -492,23 +492,23 @@ public interface ICatalogAPI
 	 */
 	public IItemCollection getCtosFirmasProcedure(int pcdId)
 	throws ISPACException;
-	
+
 	/**
 	 * Añade un circuito de firmas al procedimiento seleccionado
 	 * @param pcdId
 	 * @param ctofirmaId
 	 * @throws ISPACException
 	 */
-	public void addCtoFirmas(int pcdId, int ctofirmaId) 
+	public void addCtoFirmas(int pcdId, int ctofirmaId)
 	throws ISPACException;
-	
+
 	/**
 	 * Borra el circuito de firmas asociado al procedimiento que se le pasa como parametro
 	 * @param pcdId
 	 * @param ctofirmaId
 	 * @throws ISPACException
 	 */
-	public void dropCtoFirmas(int pcdId, int ctofirmaId) 
+	public void dropCtoFirmas(int pcdId, int ctofirmaId)
 	throws ISPACException;
 
 	/**
@@ -519,9 +519,9 @@ public interface ICatalogAPI
 	 */
 	public void incOrderPEntity(int procedureId, int pentityId)
 	throws ISPACException;
-	
+
 	/**
-	 * Suma una unidad al orden en el que se encuentra la entidad del procedimiento. Ejemplo pasa la entidad de orden 1 
+    * Suma una unidad al orden en el que se encuentra la entidad del procedimiento. Ejemplo pasa la entidad de orden 1
 	 * a la posicion 2 y la 2 a la 1
 	 * @param procedureId
 	 * @param pentityId
@@ -529,10 +529,10 @@ public interface ICatalogAPI
 	 */
 	public void decOrderPEntity(int procedureId, int pentityId)
 	throws ISPACException;
-	
+
 	/**
-	 * 
-	 * Creacion de una entidad: Creacion de la tabla que almacena las filas de la entidad 
+    *
+    * Creacion de una entidad: Creacion de la tabla que almacena las filas de la entidad
 	 * y registro de la tabla como entidad del tramitador
 	 * @param entityType
 	 * @param logicalName
@@ -544,8 +544,8 @@ public interface ICatalogAPI
 	 * @return
 	 * @throws ISPACException
 	 */
-	public int createEntity(EntityType entityType, String logicalName, String physicalName, String description, 
-							EntityDef entityDefinition, 
+	public int createEntity(EntityType entityType, String logicalName, String physicalName, String description,
+							EntityDef entityDefinition,
 							int valueColSize, int subsColSize, boolean tblExist) throws ISPACException;
 	/**
 	 * Modificacion una entidad del catalago
@@ -559,10 +559,10 @@ public interface ICatalogAPI
 	 */
 	public void modifyEntity(int entityId, String physicalName, String newLogicalName, String newDescription,
 				 EntityDef newEntityDefinition, String language) throws ISPACException;
-    
+
 	/**
 	 * Añadir un campo a la entidad.
-	 * 
+    *
 	 * @param entityId Identificador de la entidad.
 	 * @param newField Campo nuevo a añadir.
 	 * @param createResources Indicador para crear los recursos asociados al campo.
@@ -571,17 +571,17 @@ public interface ICatalogAPI
 	 */
 	public int addField(int entityId, EntityField newField, boolean createResources)
 	throws ISPACException;
-	
+
 	/**
 	 * Modificar un campo de la entidad.
-	 * 
+    *
 	 * @param entityId Identificador de la entidad.
 	 * @param field Campo a modificar.
 	 * @throws ISPACException
 	 */
 	public void saveField(int entityId, EntityField field)
 	throws ISPACException;
-	
+
 	/**
 	 * Elimina un campo a la entidad que se está creando
 	 * @param fieldToRemove
@@ -590,7 +590,7 @@ public interface ICatalogAPI
 	 * @throws ISPACException
 	 */
 	public EntityDef dropFieldTemporal(EntityField fieldToRemove, EntityDef entityDefinition)throws ISPACException;
-	
+
 	/**
 	 * Eliminar un campo a la entidad
 	 * @param entityId
@@ -599,21 +599,21 @@ public interface ICatalogAPI
 	 * @throws ISPACException
 	 */
 	public EntityDef dropField(int entityId, EntityField fieldToDrop) throws ISPACException;
-	
+
 	/**
 	 * Eliminacion de la entidad
 	 * @param entityId
 	 * @throws ISPACException
 	 */
 	public void deleteEntity(int entityId, boolean deleteTableInBD) throws ISPACException;
-	
+
 	/**
 	 * Eliminacion de todos los campos de la entidad con id "entityId", independientemente del lenguage, cuya clave sea "campo".
 	 * @param entityId
 	 * @throws ISPACException
 	 */
 	public void deleteResources(int entityId, String campo)throws ISPACException;
-	
+
 	/**
 	 * Añadir un indice
 	 * @param entityId
@@ -621,24 +621,24 @@ public interface ICatalogAPI
 	 * @throws ISPACException
 	 */
 	public void addIndex(int entityId, EntityIndex newIndex) throws ISPACException;
-	
+
 	/**
-	 * Eliminar un indice 
+    * Eliminar un indice
 	 * @param entityId
 	 * @param indexToDrop
 	 * @return
 	 * @throws ISPACException
 	 */
 	public EntityDef dropIndex(int entityId, EntityIndex indexToDrop) throws ISPACException;
-	
+
 	/**
-	 * Añadir una validacion 
+    * Añadir una validacion
 	 * @param entityId
 	 * @param newValidation
 	 * @throws ISPACException
 	 */
 	public void addValidation(int entityId, EntityValidation newValidation) throws ISPACException;
- 
+
 	/**
 	 * Eliminar una validacion
 	 * @param entityId
@@ -647,7 +647,7 @@ public interface ICatalogAPI
 	 * @throws ISPACException
 	 */
 	public EntityDef dropValidation(int entityId, EntityValidation indexToDrop) throws ISPACException;
-    
+
     /**
      * Actualiza la definicion de un indice
      * @param entityId
@@ -655,10 +655,10 @@ public interface ICatalogAPI
      * @throws ISPACException
      */
 	public void updateIndex(int entityId, EntityIndex indexToUpdate) throws ISPACException;
-    
+
 	/**
 	 * Regenera el formulario JSP de una entidad.
-	 * 
+    *
 	 * @param entityId Identificador de la entidad
 	 * @param definition Definición de la entidad
 	 * @return El formulario JSP
@@ -666,10 +666,10 @@ public interface ICatalogAPI
 	 */
     public String regenerateEntityForm(int entityId, EntityDef definition)
     throws ISPACException;
-    
+
 	/**
 	 * Regenera el JSP de formulario
-	 * 
+    *
 	 * @param keyId Identificador del formulario
 	 * @param entityDef Definición de la entidad a la que pertenece el formulario
 	 * @param entityFrmJsp Formulario JSP de la entidad a la que pertenece el formulario
@@ -678,7 +678,7 @@ public interface ICatalogAPI
 	public void remakeForm(int keyId, EntityDef entityDef, String entityFrmJsp) throws ISPACException;
 
 	/**
-     * Incrementa el orden de un productor al siguiente orden existente y 
+     * Incrementa el orden de un productor al siguiente orden existente y
      * decrementa el sustituido
      *
      * @param id Identificador del productor dentro del procedimiento.
@@ -687,69 +687,69 @@ public interface ICatalogAPI
 	public void incOrderPcdProducer(int id) throws ISPACException;
 
 	/**
-     * Decrementa el orden de un productor al anterior orden existente e 
+     * Decrementa el orden de un productor al anterior orden existente e
      * incrementa el sustituido
      *
      * @param id Identificador del productor dentro del procedimiento.
      * @throws ISPACException si ocurre algún error.
      */
 	public void decOrderPcdProducer(int id) throws ISPACException;
-	
+
 	/**
 	 * Obtiene las entidades asociadas a un procedimiento
-	 * 
+    *
 	 * @param pcdId
-	 * @return Devuelve las entidades de un procedimiento 
+    * @return Devuelve las entidades de un procedimiento
 	 * @throws ISPACException
 	 */
 	public IItemCollection getProcedureEntities(int pcdId) throws ISPACException;
 
 	/**
 	 * Obtiene las entidades asociadas a un procedimiento junto con sus formularios asociados
-	 * 
+    *
 	 * @param pcdId
 	 * @return Lista de itemBeans con las entidades y formularios asociados a nivel de procedimiento
 	 * @throws ISPACException
 	 */
 	public List getProcedureEntitiesForm(int pcdId) throws ISPACException;
-	
+
 	/**
 	 * Obtiene las entidades asociadas a un subproceso junto con sus formularios asociados
-	 * 
+    *
 	 * @param subPcdId
 	 * @return Lista de itemBeans con las entidades y formularios asociados a nivel de subproceso
 	 * @throws ISPACException
 	 */
 	public List getSubprocedureEntitiesForm(int subPcdId) throws ISPACException;
-	
+
 	/**
 	 * Obtiene las entidades asociadas a una fase en el procedimiento junto con sus formularios asociados
-	 * 
+    *
 	 * @param pcdId
 	 * @param stageId
 	 * @param keyDefine Clave para el mensaje de formulario definido en otro elemento
-	 * @return Lista de itemBeans con las entidades y formularios asociados a nivel de fase en el procedimiento 
+    * @return Lista de itemBeans con las entidades y formularios asociados a nivel de fase en el procedimiento
 	 * @throws ISPACException
 	 */
 	public List getStageEntities(int pcdId, int stageId, String keyDefine) throws ISPACException;
-	
+
 	/**
 	 * Obtiene las entidades asociadas a un trámite en el procedimiento junto con sus formularios asociados
-	 * 
+    *
 	 * @param pcdId
 	 * @param taskId
-	 * @return Lista de itemBeans con las entidades y formularios asociados a nivel de trámite en el procedimiento 
+    * @return Lista de itemBeans con las entidades y formularios asociados a nivel de trámite en el procedimiento
 	 * @throws ISPACException
 	 */
 	public List getTaskEntities(int pcdId, int taskId) throws ISPACException;
-	
+
 	/**
-	 * 
+    *
 	 * @param entityId
 	 * @return Obtiene una entidad de procedimiento
 	 * @throws ISPACException
 	 */
-	public IItem getProcedureEntity(int entityId) 
+	public IItem getProcedureEntity(int entityId)
 	throws ISPACException;
 
 	/**
@@ -759,7 +759,7 @@ public interface ICatalogAPI
 	 */
 	public IItemCollection getHierarchicalTables(String query)
     throws ISPACException;
-    
+
 	/**
 	 * @param hierarchicalId Identificador de la tabla jerárquica
 	 * @param query Consulta a aplicar
@@ -768,8 +768,8 @@ public interface ICatalogAPI
 	 */
 	public IItemCollection getHierarchicalTableValues(int hierarchicalId,String query)
 	throws ISPACException;
-	
-	
+
+
 	/**
 	 * @param tableName Nombre de la tabla jerárquica
 	 * @param values Identificadores de los conjuntos de valores a eliminar
@@ -778,7 +778,7 @@ public interface ICatalogAPI
 	 */
 	public boolean deleteHierarchicalTableValues(String tableName, String[] values)
 	throws ISPACException;
-	
+
 	/**
 	 * @param tableName Nombre de la tabla jerárquica
 	 * @param parentIds Valores de la tabla de validación que ejerce el rol de ascendiente
@@ -787,7 +787,7 @@ public interface ICatalogAPI
 	 */
 	public boolean deleteHierarchicalTableValues(String tableName, List parentIds,List descendantIds)
 	throws ISPACException;
-	
+
 	/**
 	 * @param tableName Nombre de la tabla jerárquica
 	 * @param parentValue Valor de la tabla de validación que ejerce el rol de ascendiente
@@ -797,7 +797,7 @@ public interface ICatalogAPI
 	 */
 	public boolean addHierarchicalTableValue(String tableName, int parentValue, int descendantValue)
 	throws ISPACException;
-	
+
 	/**
 	 * @param tableName Nombre de la tabla jerárquica
 	 * @param parentIds Valores de la tabla de validación que ejerce el rol de ascendiente
@@ -807,8 +807,8 @@ public interface ICatalogAPI
 	public boolean addHierarchicalTableValues(String tableName, List parentIds, List descendantIds)
 	throws ISPACException;
 
-	
-	
+
+
     /**
      * @param name Nombre de la tabla jerárquica
      * @param description Descripción
@@ -819,23 +819,23 @@ public interface ICatalogAPI
      */
     public void createHierarchicalTable(String name, String description, int entidadPadreId, int entidadHijaId, boolean createTable)
     throws ISPACException;
-    
+
     /**
      * Devuelve la lista de valores de la entidad hija relacionado con el código seleccionado en la entidad padre
-     * @param hierarchicalId Identificador de la jerarquía 
+     * @param hierarchicalId Identificador de la jerarquía
      * @param codeParent Código seleccionado de la entidad con rol 'padre'
      * @return
      */
     public IItemCollection getHierarchicalDescendantValues(int hierarchicalId, String codeParent) throws ISPACException;
 
     /**
-     * Elimina la estructura de una tabla jerárquica 
-     * @param id Identificador de la estructura de tabla jerárquica a borrar 
+     * Elimina la estructura de una tabla jerárquica
+     * @param id Identificador de la estructura de tabla jerárquica a borrar
      * @throws ISPACException
      */
     public void deleteHierarchicalTable(int id, boolean deleteTableBD)
     throws ISPACException;
-    
+
     /**
      * Obtiene la información de un procedimiento en el catálogo.
      * @param ctPcdId Identificador del procedimiento en el catálogo
@@ -843,11 +843,11 @@ public interface ICatalogAPI
      * @throws ISPACException si ocurre algún error.
      */
 	public IItem getCTProcedure(int ctPcdId) throws ISPACException;
-    
+
     /**
      * Obtiene la lista de fases del catálogo.
      * @return Lista de fases del catñalogo.
-     * @throws ISPACException si ocurre algún error. 
+     * @throws ISPACException si ocurre algún error.
      */
     public IItemCollection getCTStages() throws ISPACException;
 
@@ -855,7 +855,7 @@ public interface ICatalogAPI
      * Obtiene la lista de fases del catálogo a partir del nombre.
      * @param name Nombre de la fase.
      * @return Lista de fases del catálogo.
-     * @throws ISPACException si ocurre algún error. 
+     * @throws ISPACException si ocurre algún error.
      */
     public IItemCollection getCTStages(String name) throws ISPACException;
 
@@ -863,10 +863,10 @@ public interface ICatalogAPI
      * Obtiene la lista de trámites de una fase del catálogo.
      * @param ctStageId Identificador de la fase en el catálogo.
      * @return Lista de trámites del catálogo.
-     * @throws ISPACException si ocurre algún error. 
+     * @throws ISPACException si ocurre algún error.
      */
     public IItemCollection getCTStageTasks(int ctStageId) throws ISPACException;
-    
+
     /**
      * Obtiene la información de una fase en el catálogo.
      * @param ctStageId Identificador de la fase en el catálogo
@@ -884,9 +884,18 @@ public interface ICatalogAPI
 	public IItem getCTTask(int ctTaskId) throws ISPACException;
 
     /**
+     * Obtiene la información de un trámite en el catálogo
+     * a partir del trámite en el procedimiento.
+     * @param taskPcdId Identificador del trámite en el procedimiento.
+     * @return Información del trámite.
+     * @throws ISPACException si ocurre algún error.
+     */
+	public IItem getCTTaskPCD(int taskPcdId) throws ISPACException;
+
+    /**
      * Obtiene la lista de reglas del catálogo.
      * @return Lista de reglas del catálogo.
-     * @throws ISPACException si ocurre algún error. 
+     * @throws ISPACException si ocurre algún error.
      */
     public IItemCollection getCTRules() throws ISPACException;
 
@@ -894,17 +903,17 @@ public interface ICatalogAPI
      * Obtiene la lista de reglas del catálogo que contengan una cadena en el nombre.
      * @param pattern Cadena que debe estar contenida en el nombre.
      * @return Lista de reglas del catálogo.
-     * @throws ISPACException si ocurre algún error. 
+     * @throws ISPACException si ocurre algún error.
      */
     public IItemCollection getCTRules(String pattern) throws ISPACException;
-    
+
     /**
-     * Obtiene las tablas de validacion dadas de alta 
+     * Obtiene las tablas de validacion dadas de alta
      * @return Lista de tablas de validacion
      * @throws ISPACException
      */
     public IItemCollection getValidationTables()throws ISPACException;
-    
+
     /**
      * Obtiene las tablas de validacion dadas de alta y que cumple con el nombre por el que se filtra
      * @param nameFilter: Nombre de la tabla de validacion en bbdd
@@ -912,7 +921,7 @@ public interface ICatalogAPI
      * @throws ISPACException
      */
     public IItemCollection getValidationTablesByName(String nameFilter)throws ISPACException;
-    
+
     /**
      * Obtiene la lista de responsables para los que se ha asignado el formulario de búsqueda.
      * @param searchFormId Identificador del formulario de búsqueda.
@@ -920,7 +929,7 @@ public interface ICatalogAPI
      * @throws ISPACException si ocurre algún error.
      */
     public List getSearchFormOrganization(int searchFormId) throws ISPACException;
-    
+
     /**
      * Obtiene todos los formularios de búsqueda definidos
      * @return
@@ -929,7 +938,7 @@ public interface ICatalogAPI
     public IItemCollection getSearchForms()throws ISPACException;
     /**
 	 * Obtiene las variables de sistema a partir del nombre.
-	 * 
+    *
 	 * @param pattern
 	 *            Patrón del nombre de la variable de sistema
 	 * @return Lista de variables del sistema
@@ -937,20 +946,20 @@ public interface ICatalogAPI
 	 *             si ocurre algún error.
 	 */
 	public IItemCollection getCTSystemVars(String pattern) throws ISPACException ;
-	
+
 	/**
 	 * Obtiene las variables de sistema
-	 * 
+    *
 	 * @return Lista de variables de sistema
 	 * @throws ISPACException
 	 *             si ocurre algún error.
 	 */
 	public IItemCollection getCTSystemVars() throws ISPACException ;
-	
+
 
 	/**
 	 * Obtiene la información de una variable de sistema.
-	 * 
+    *
 	 * @param id
 	 *            Identificador de la variable del sistema
 	 * @return Información de la variable de sistema
@@ -958,27 +967,27 @@ public interface ICatalogAPI
 	 *             si ocurre algún error.
 	 */
 	public IItem getCTSystemVar(int id) throws ISPACException ;
-	
+
 	/**
-	 * 
+    *
 	 * @param nameVarSystemCod :Nombre de la variable de sistema que contiene el
 	 * código del tipo documental
 	 * @return id del tipo documental
 	 * @throws ISPACException
 	 */
-	
+
 	public String getIdTpDocByCode(String nameVarSystemCod)throws ISPACException;
-	
-	
+
+
 	/**
 	 * Obtiene el número de tipos de documentos que tiene asociados el tramite
 	 * @param idTask Tramite
 	 * @return
 	 * @throws ISPACException
 	 */
-	
+
 	public int countTaskTpDoc (String idTask) throws ISPACException ;
-	
+
 	/**
 	 * Activa la busqueda documental para el campo nameField de la entidad nameTable
 	 * @param cnt
@@ -995,14 +1004,14 @@ public interface ICatalogAPI
 	 * @return
 	 */
 	public void asociateReportToFrmBusqueda(int idFrm, int [] idReports)throws ISPACException;
-	
+
 	/**
 	 * Obtiene los informes de un tipo determinado
 	 * @param type Tipo del informe 1-Genérico 2-Específico 3-Global 4-Busqueda
 	 * @return
 	 */
 	public IItemCollection getReportByType(int type) throws ISPACException;
-	
+
 	/**
 	 * Actualiza las asociaciones entre el formulario de busqueda y los informes
 	 * @param idFrm Identificador del formulario
@@ -1010,7 +1019,7 @@ public interface ICatalogAPI
 	 * @throws ISPACException
 	 */
 	public void updateAsociateReportToFrmBusqueda(int idFrm, String [] idReports)throws ISPACException;
-	
+
 	/**
 	 * Obtiene los identificadores de los informes que estan asociados al formulario de búsqueda
 	 * @param idFrm Identificador del formulario de búsqueda
@@ -1021,7 +1030,7 @@ public interface ICatalogAPI
 
 	 /**
 	 * Obtiene las ayudas a partir del nombre.
-	 * 
+    *
 	 * @param pattern
 	 *            Patrón del nombre de la ayuda
 	 * @return Lista de ayudas
@@ -1029,20 +1038,20 @@ public interface ICatalogAPI
 	 *             si ocurre algún error.
 	 */
 	public IItemCollection getCTHelps(String pattern) throws ISPACException ;
-	
+
 	/**
 	 * Obtiene las ayudas
-	 * 
+    *
 	 * @return Lista de ayudas
 	 * @throws ISPACException
 	 *             si ocurre algún error.
 	 */
 	public IItemCollection getCTHelps() throws ISPACException ;
-	
+
 
 	/**
 	 * Obtiene la información de una ayuda.
-	 * 
+    *
 	 * @param id
 	 *            Identificador de la ayuda
 	 * @return Información de la ayuda
@@ -1050,10 +1059,10 @@ public interface ICatalogAPI
 	 *             si ocurre algún error.
 	 */
 	public IItem getCTHelp(int id) throws ISPACException ;
-	
+
 	/**
 	 * Obtiene la inforamción de una ayuda
-	 * 
+    *
 	 * @param tipoObj Tipo de objeto de la ayuda
 	 * @param idObj Identificador de la ayuda
 	 * @param idioma Idioma
@@ -1061,8 +1070,8 @@ public interface ICatalogAPI
 	 * @throws ISPACException
 	 */
 	public IItem getCTHelp (String tipoObj, String idObj, String idioma)throws ISPACException;
-	
-	
+
+
 
 
 

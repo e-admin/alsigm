@@ -4,7 +4,7 @@
 	<artifactId>sigem</artifactId>
 	<packaging>pom</packaging>
 	<name>SIGEM</name>
-	<version>3.0</version>
+	<version>3.0.1-M2</version>
 	<inceptionYear>2009</inceptionYear>
 
 	<scm>
@@ -194,6 +194,7 @@
 				</property>
 			</activation>
 			<modules>
+				<module>sigem_main</module>
 				<module>SIGEM_TestResources</module>
 				<module>SIGEM_AdministracionSesionesAdmWS</module>   <!--WAR-->
 				<module>SIGEM_AdministracionSesionesBackOfficeWS</module>   <!--WAR-->
@@ -372,6 +373,7 @@
 											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_TramitacionWS\target" includes="*.war"/>
 											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_BuscadorDocsWeb\target" includes="*.war"/>
 											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_ServicioIntermediacionClienteLigeroWS\target" includes="*.war"/>
+											<fileset dir="${basedir}\SIGEM_Tramitacion_Modules\SIGEM_PortafirmasNotificacionWS\target" includes="*.war"/>
 											<fileset dir="${basedir}\SIGEM_Archivo_Modules\SIGEM_Archivo_War\target" includes="*.war"/>
 											<fileset dir="${basedir}\SIGEM_Scheduler_Modules\SIGEM_SchedulerWeb\target" includes="*.war"/>
 											<fileset dir="${basedir}\SIGEM_ConsultaRegistroTelematicoWeb\target" includes="*.war"/>

@@ -147,6 +147,11 @@
    <parameter qname="ns56:numExp"/>
   </operation>
 
+  <operation name="recibirDocumentoFirmado" qname="ns57:recibirDocumentoFirmado" returnQName="ns57:recibirDocumentoFirmado" returnType="ns57:Cadena" soapAction="" xmlns:ns57="http://server.ws.services.ispac.tdw.ieci">
+   <parameter qname="ns57:idEntidad"/>
+   <parameter qname="ns57:numExp"/>
+   <parameter qname="ns57:idDocumento"/>
+  </operation>
 
   <parameter name="allowedMethods" value="*"/>
   <parameter name="typeMappingVersion" value="1.2"/>

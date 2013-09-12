@@ -19,6 +19,8 @@ import ieci.tdw.ispac.ispaclib.sign.portafirmas.vo.Signer;
 import ieci.tdw.ispac.ispaclib.util.ISPACConfiguration;
 import ieci.tdw.ispac.ispaclib.utils.MimetypeMapping;
 import ieci.tdw.ispac.ispaclib.utils.XmlFacade;
+import ieci.tecdoc.sgm.core.services.dto.Entidad;
+import ieci.tecdoc.sgm.tram.helpers.EntidadHelper;
 
 import java.io.ByteArrayOutputStream;
 import java.net.MalformedURLException;
@@ -55,6 +57,11 @@ import es.ieci.webservice.portafirma.PortafirmasMinhapWebServiceClient;
  *
  */
 public class PortafirmasMinhapProcessSignConnector implements ProcessSignConnector {
+
+	/**
+    * Valor a introducir en la entidad
+    */
+	public static final String REFERENCE_SEPARATOR = "_";
 
 	/**
 	 * Logger de la clase.
@@ -483,6 +490,12 @@ public class PortafirmasMinhapProcessSignConnector implements ProcessSignConnect
 			doc.setType(document.getExtension());
 			request.setDocumentList(docList);
 			
+			// Referencia
+			Entidad entidad = EntidadHelper.getEntidad();
+			request.setReference(ctx.getStateContext().getNumexp()
+					+ REFERENCE_SEPARATOR + document.getId()
+					+ REFERENCE_SEPARATOR + entidad.getIdentificador());
+
 			// Creacion de la peticion
 			String requestHash = portafirmasWsClient.createRequest(request);
 			StringHolder holder= new StringHolder (requestHash);

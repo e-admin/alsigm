@@ -21,11 +21,18 @@ public class UDocRelacionDBEntityImplTest extends ArchidocDBBaseTest {
 
 		UnidadDocumentalVO resultado = null;
 
+		filtroUdocVO.setCodSistProductor(codSistProductor);
+
+		//1 Nº Expediente No Nulo
+		resultado = getDAO().getUnidadDocumental(filtroUdocVO);
+		Assert.assertNotNull(resultado);
+		Assert.assertEquals(id1, resultado.getId());
+
+
 
 		//NUMEXP
 		filtroUdocVO.setNumeroExpediente(numeroExpediente);
 
-		filtroUdocVO.setCodSistProductor(codSistProductor);
 		resultado = getDAO().getUnidadDocumental(filtroUdocVO);
 		Assert.assertNotNull(resultado);
 		Assert.assertEquals(id1, resultado.getId());

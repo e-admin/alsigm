@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>es.ieci.tecdoc.archidoc</groupId>
+		<artifactId>archidoc_main</artifactId>
+		<version>5.0.9-M1</version>
+	</parent>
+
+	<groupId>es.ieci.tecdoc.archidoc.archidoc_connectors_se</groupId>
+	<artifactId>archidoc_connectors_se</artifactId>
+
+	<packaging>pom</packaging>
+
+	<modelVersion>4.0.0</modelVersion>
+	<description>Archidoc: Definicion de Conectores con Sistemas Externos</description>
+	<name>Archidoc: Conectores con Sistemas Externos</name>
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	<properties>
+
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>sigia</id>
+			<activation>
+				<property>
+					<name>sigia</name>
+				</property>
+
+			</activation>
+			<modules>
+				<module>connectors_se_princast</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>allresources</id>
+			<activation>
+				<property>
+					<name>allresources</name>
+				</property>
+
+			</activation>
+			<modules>
+				<module>connectors_se_princast</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>

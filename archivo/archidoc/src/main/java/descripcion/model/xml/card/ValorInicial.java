@@ -21,6 +21,9 @@ public class ValorInicial extends XmlElement {
 	private String anio = null;
 	private String mes = null;
 	private String dia = null;
+	private String horas = null;
+	private String minutos = null;
+	private String segundos = null;
 	private String siglo = null;
 	private String formato = null;
 	private String separador = null;
@@ -49,6 +52,9 @@ public class ValorInicial extends XmlElement {
 			setAnio(valorInicial.getAnio());
 			setMes(valorInicial.getMes());
 			setDia(valorInicial.getDia());
+			setHoras(valorInicial.getHoras());
+			setMinutos(valorInicial.getMinutos());
+			setSegundos(valorInicial.getSegundos());
 			setSiglo(valorInicial.getSiglo());
 			setFormato(valorInicial.getFormato());
 			setSeparador(valorInicial.getSeparador());
@@ -56,6 +62,16 @@ public class ValorInicial extends XmlElement {
 			setTipoMedida(valorInicial.getTipoMedida());
 			setUnidadMedida(valorInicial.getUnidadMedida());
 		}
+	}
+
+
+
+	public String getHoras() {
+		return horas;
+	}
+
+	public void setHoras(String horas) {
+		this.horas = horas;
 	}
 
 	/**
@@ -131,6 +147,22 @@ public class ValorInicial extends XmlElement {
 	 */
 	public void setMes(String mes) {
 		this.mes = mes;
+	}
+
+	public String getMinutos() {
+		return minutos;
+	}
+
+	public void setMinutos(String minutos) {
+		this.minutos = minutos;
+	}
+
+	public String getSegundos() {
+		return segundos;
+	}
+
+	public void setSegundos(String segundos) {
+		this.segundos = segundos;
 	}
 
 	/**
@@ -255,7 +287,7 @@ public class ValorInicial extends XmlElement {
 
 	/**
 	 * Obtiene una representación XML del objeto.
-	 * 
+    *
 	 * @param indent
 	 *            Número de espacios de tabulación.
 	 * @return Representación del objeto.
@@ -299,6 +331,26 @@ public class ValorInicial extends XmlElement {
 		if (getDia() != null) {
 			xml.append(" " + TagsFicha.ATTR_DAY_VALOR_DATO + "=\"");
 			xml.append(getDia());
+			xml.append("\"");
+		}
+
+		// Hora
+		if (getHoras() != null) {
+			xml.append(" " + TagsFicha.ATTR_HOURS_VALOR_DATO + "=\"");
+			xml.append(getHoras());
+			xml.append("\"");
+		}
+
+		// Minutos
+		if (getMinutos() != null) {
+			xml.append(" " + TagsFicha.ATTR_MINUTES_VALOR_DATO + "=\"");
+			xml.append(getMinutos());
+			xml.append("\"");
+		}
+		// Segundos
+		if (getSegundos() != null) {
+			xml.append(" " + TagsFicha.ATTR_SECONDS_VALOR_DATO + "=\"");
+			xml.append(getSegundos());
 			xml.append("\"");
 		}
 

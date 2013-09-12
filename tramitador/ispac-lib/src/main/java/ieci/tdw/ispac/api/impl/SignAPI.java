@@ -67,6 +67,8 @@ import com.lowagie.text.pdf.PdfReader;
 
 public class SignAPI implements ISignAPI {
 
+	private static final String SIGNER_DATE_SEPARATOR = ";;";
+
 	public static final Logger logger = Logger.getLogger(SignAPI.class);
 
 	ClientContext mcontext;
@@ -94,7 +96,7 @@ public class SignAPI implements ISignAPI {
 				throw new ISPACInfo("exception.signProcess.inUse.document", true);
 			}
 			// Referencia al objeto en el gestor documental que almacena el
-			// documento f�sico.
+			// documento fisico.
 			String infoPage = documento.getString("INFOPAG");
 			IGenDocAPI genDocAPI = this.mcontext.getAPI().getGenDocAPI();
 			Object connectorSession = null;
@@ -102,7 +104,7 @@ public class SignAPI implements ISignAPI {
 			connectorSession = genDocAPI.createConnectorSession();
 			if (!genDocAPI.existsDocument(connectorSession, infoPage)) {
 				logger
-						.error("No se ha encontrado el documento f�sico con identificador: '"
+						.error("No se ha encontrado el documento fisico con identificador: '"
 								+ infoPage
 								+ "' en el repositorio de documentos");
 				throw new ISPACInfo("exception.documents.notExists", false);
@@ -117,7 +119,7 @@ public class SignAPI implements ISignAPI {
 			document.setLength(genDocAPI.getDocumentSize(connectorSession,
 					infoPage));
 
-			// Ejecuci�n en un contexto transaccional
+			// Ejecucion en un contexto transaccional
 			boolean ongoingTX = mcontext.ongoingTX();
 			boolean bCommit = false;
 
@@ -160,7 +162,7 @@ public class SignAPI implements ISignAPI {
 	}
 	public int initCircuit(int id, int documentId) throws ISPACException {
 
-		// Ejecuci�n en un contexto transaccional
+		// Ejecucion en un contexto transaccional
 		boolean ongoingTX = mcontext.ongoingTX();
 		boolean bCommit = false;
 
@@ -282,7 +284,7 @@ public class SignAPI implements ISignAPI {
 
 	public boolean signStep(SignDocument signDocument, int instancedStepId) throws ISPACException {
 
-		// Ejecuci�n en un contexto transaccional
+		// Ejecucion en un contexto transaccional
 
 
 		boolean ongoingTX = mcontext.ongoingTX();
@@ -299,7 +301,7 @@ public class SignAPI implements ISignAPI {
 			SignCircuitMgr signCircuitMgr = new SignCircuitMgr(mcontext);
 			// Tratar evento Despues de firmar
 
-			// Obtenemos informaci�n de la instancia
+			// Obtenemos informacion de la instancia
 			SignCircuitInstanceDAO signCircuitInstanceDAO = new SignCircuitInstanceDAO(
 					cnt, instancedStepId);
 
@@ -313,7 +315,7 @@ public class SignAPI implements ISignAPI {
 						.getResponsible().getRespName());
 			}
 
-			// Habria que a�adir al contexto los datos del firmante (Nombre y
+			// Habria que aniadir al contexto los datos del firmante (Nombre y
 			// Apellidos)
 			List signsCertList = signDocument.getSignCertificate();
 			String x509CertString = (String) signsCertList.get(signsCertList
@@ -353,7 +355,7 @@ public class SignAPI implements ISignAPI {
 
 	public void sign(SignDocument signDocument, boolean changeState)throws ISPACException {
 
-		// Ejecuci�n en un contexto transaccional
+		// Ejecucion en un contexto transaccional
 		boolean ongoingTX = mcontext.ongoingTX();
 		boolean bCommit = false;
 
@@ -368,7 +370,7 @@ public class SignAPI implements ISignAPI {
 			signConnector.initializate(signDocument, mcontext);
 			signConnector.sign(changeState);
 
-			// Informaci�n del documento
+			// Informacion del documento
 			IItem doc = signDocument.getItemDoc();
 
 			// EVENTO: Firmar documento
@@ -437,7 +439,7 @@ public class SignAPI implements ISignAPI {
 	}
 
 	/**
-	 * Obtiene los pasos del circuito de firma en funci�n del
+    * Obtiene los pasos del circuito de firma en funcion del
 	 * identificador del documento a firmar o firmado en dicho circuito de firma.
 	 *
 	 * @param documentId Identificador del documento
@@ -457,7 +459,7 @@ public class SignAPI implements ISignAPI {
 	/**
 	 * Elimina los pasos del circuito de firma asociados al documento.
 	 * @param documentId Identificador del documento.
-	 * @throws ISPACException si ocurre alg�n error.
+    * @throws ISPACException si ocurre algun error.
 	 */
 	public void deleteStepsByDocument(int documentId) throws ISPACException {
 
@@ -471,7 +473,7 @@ public class SignAPI implements ISignAPI {
 	/**
 	 * Elimina los pasos del circuito de firma asociados a los documentos de una fase.
 	 * @param stageId Identificador de la fase activa.
-	 * @throws ISPACException si ocurre alg�n error.
+    * @throws ISPACException si ocurre algun error.
 	 */
 	public void deleteStepsByStage(int stageId) throws ISPACException {
 
@@ -499,7 +501,7 @@ public class SignAPI implements ISignAPI {
 
 		List signDocuments = new ArrayList();
 
-		// Ejecuci�n en un contexto transaccional
+		// Ejecucion en un contexto transaccional
 		boolean ongoingTX = mcontext.ongoingTX();
 		boolean bCommit = false;
 
@@ -538,7 +540,7 @@ public class SignAPI implements ISignAPI {
 				signDocuments.add(signDocument);
 			}
 
-			// Si todo ha sido correcto se hace commit de la transacci�n
+			// Si todo ha sido correcto se hace commit de la transaccion
 			bCommit = true;
 	    }
 	    finally {
@@ -555,9 +557,9 @@ public class SignAPI implements ISignAPI {
 
 	/**
 	 * Muestra los detalles de la firma de un documento asociado al expediente.
-	 * La informaci�n mostrada es fecha de firma, nombre del firmante, y si el
-	 * documento est� asociado a un circuito de firma, muestra el nombre de los
-	 * usuarios que est�n pendientes de firmar.
+    * La informacion mostrada es fecha de firma, nombre del firmante, y si el
+    * documento esta asociado a un circuito de firma, muestra el nombre de los
+    * usuarios que estan pendientes de firmar.
 	 *
 	 * @param documentId
 	 *            Identificador del documento dado por ispac
@@ -583,10 +585,10 @@ public class SignAPI implements ISignAPI {
 			return details;
 		}
 
-		// Referencia al objeto en el gestor documental que almacena el documento f�sico.
+		// Referencia al objeto en el gestor documental que almacena el documento fisico.
 		String infoPage = iitem.getString("INFOPAG");
 
-		//Referencia al documento firmado almacenado en el Repositorio de Documentos Electr�nicos
+		//Referencia al documento firmado almacenado en el Repositorio de Documentos Electronicos
 		String infoPageRDE = iitem.getString("INFOPAG_RDE");
 
 	    List list =new ArrayList();
@@ -598,79 +600,98 @@ public class SignAPI implements ISignAPI {
 			// String guid = "<guid><archive>4</archive><folder>29</folder><document>1</document></guid>";
 			connectorSession = genDocAPI.createConnectorSession();
 			if (!genDocAPI.existsDocument(connectorSession, infoPageRDE)){
-				logger.error("No se ha encontrado el documento f�sico con identificador: '"+infoPageRDE+"' en el repositorio de documentos");
+				logger.error("No se ha encontrado el documento fisico con identificador: '"+infoPageRDE+"' en el repositorio de documentos");
 				throw new ISPACInfo("exception.documents.notExists", false);
 			}
 
-			//Obtenemos el xml con las firmas adjuntadas antes de a�adir la nueva
+			//Obtenemos el xml con las firmas adjuntadas antes de aniadir la nueva
 		    signProperty = genDocAPI.getDocumentProperty(connectorSession, infoPageRDE, "Firma");
 
 	    	XmlFacade xmlFacade = new XmlFacade(signProperty);
 
 		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			if (StringUtils.isBlank(infoPage) || !genDocAPI.existsDocument(connectorSession, infoPage)){
-				logger.error("No se ha encontrado el documento f�sico con identificador: '"+infoPage+"' en el repositorio de documentos");
+				logger.error("No se ha encontrado el documento fisico con identificador: '"+infoPage+"' en el repositorio de documentos");
 				throw new ISPACInfo("exception.documents.notExists", false);
 			}
 		    genDocAPI.getDocument(connectorSession, infoPage, baos);
 
 
 		    list = xmlFacade.getList("/" + SignDocument.TAG_FIRMAS + "/" + SignDocument.TAG_FIRMA);
-		    certificates=xmlFacade.getList("/" + SignDocument.TAG_CERTIFICADOS + "/" + SignDocument.TAG_CERTIFICADO);
+			String tipo = xmlFacade.get("/" + SignDocument.TAG_FIRMAS + "/@" + SignDocument.ATTR_TYPE);
+			SignDetailEntry entry = null;
 
-		    ISignConnector signConnector= SignConnectorFactory.getSignConnector();
-
-			logger.debug("Firmas del documento: \n " + list.toString());
-
-		    for (int i=0; i<list.size(); i++) {
-				Map results = null;
-				SignDetailEntry entry = new SignDetailEntry();
-				//Verificamos la integridad de la firma
-
-		    	byte signedContent [] = Base64.encode (baos.toByteArray()) ;
-				results = signConnector.verify((String) list.get(i),new String(Base64.encode(signedContent)));
-				//Obtenemos la informacion del firmante
-				if(i<certificates.size()){
-
-					entry.setAuthor(signConnector.getInfoCert((String) certificates.get(i)));
+			if (SignDocument.TYPE_PORTAFIRMAS.equals(tipo)){
+				String signerInfo = null;
+				String [] signerDateInfo = null;
+				for (int i=0; i<list.size(); i++) {
+					signerInfo = new String(Base64.decode((String)list.get(i)));
+					signerDateInfo = signerInfo.split(SIGNER_DATE_SEPARATOR);
+					entry = new SignDetailEntry();
+					entry.setIntegrity(ISignAPI.INTEGRIDAD_PORTAFIRMAS);
+					entry.setSignDate(signerDateInfo[1]);
+					entry.setFirmado(true);
+					entry.setAuthor(signerDateInfo[0]);
+					details.add(entry);
 				}
-				else{
+			} else {
 
-					//Firmado por el servidor de @ firma
-				}
+              certificates=xmlFacade.getList("/" + SignDocument.TAG_CERTIFICADOS + "/" + SignDocument.TAG_CERTIFICADO);
 
-				entry.setIntegrity((String) results.get(INTEGRIDAD));
-				if (StringUtils.isNotEmpty( (String) results.get(ISignAPI.DN))){
-					entry.setAuthor((String) results.get(ISignAPI.DN));
+              ISignConnector signConnector= SignConnectorFactory.getSignConnector();
 
-				}else{
-					if(results.get(NOMBRE)!=null){
-						entry.setAuthor( results.get(NOMBRE) + " " + results.get(ISignAPI.APELLIDOS));
+				logger.debug("Firmas del documento: \n " + list.toString());
+
+              for (int i=0; i<list.size(); i++) {
+					Map results = null;
+					entry = new SignDetailEntry();
+					//Verificamos la integridad de la firma
+
+				byte signedContent [] = Base64.encode (baos.toByteArray()) ;
+					results = signConnector.verify((String) list.get(i),new String(Base64.encode(signedContent)));
+					//Obtenemos la informacion del firmante
+					if(i<certificates.size()){
+
+						entry.setAuthor(signConnector.getInfoCert((String) certificates.get(i)));
 					}
 					else{
-						entry.setAuthor("");
+
+						//Firmado por el servidor de @ firma
 					}
-				}
 
-				entry.setSignDate(iitem.getString("FFIRMA"));
-				entry.setFirmado(true);
-				details.add(entry);
-			}
-		    }
+					entry.setIntegrity((String) results.get(INTEGRIDAD));
+					if (StringUtils.isNotEmpty( (String) results.get(ISignAPI.DN))){
+						entry.setAuthor((String) results.get(ISignAPI.DN));
 
-		    IItemCollection rs = getStepsByDocument(documentId);
+					}else{
+						if(results.get(NOMBRE)!=null){
+							entry.setAuthor( results.get(NOMBRE) + " " + results.get(ISignAPI.APELLIDOS));
+						}
+						else{
+							entry.setAuthor("");
+						}
+					}
 
-		 // NOMBRE_FIRMANTE
-			int numberOfSigner = 0;
-			while (rs.next()){
-				numberOfSigner ++;
-				IItem row = rs.value();
-				if (numberOfSigner > list.size() ){
-					SignDetailEntry entry = new SignDetailEntry();
-					entry.setAuthor((String) row.get("NOMBRE_FIRMANTE"));
-					entry.setSignDate("");
-					entry.setFirmado(false);
+					entry.setSignDate(iitem.getString("FFIRMA"));
+					entry.setFirmado(true);
 					details.add(entry);
+				}
+              }
+
+              IItemCollection rs = getStepsByDocument(documentId);
+
+			// NOMBRE_FIRMANTE
+				int numberOfSigner = 0;
+				while (rs.next()){
+					numberOfSigner ++;
+					IItem row = rs.value();
+					if (numberOfSigner > list.size() ){
+						entry = new SignDetailEntry();
+						entry.setAuthor((String) row.get("NOMBRE_FIRMANTE"));
+						entry.setSignDate("");
+						entry.setFirmado(false);
+						details.add(entry);
+					}
 				}
 			}
 			for (int i=0; i< details.size(); i++) {
@@ -735,10 +756,10 @@ public class SignAPI implements ISignAPI {
 	}
 
 	/**
-	 * Obtiene el n�mero de pasos de un circuito de firmas.
+    * Obtiene el numero de pasos de un circuito de firmas.
 	 * @param circuitId Identificador del circuito de firmas.
-	 * @return N�mero de pasos del circuito.
-	 * @throws ISPACException si ocurre alg�n error.
+    * @return numero de pasos del circuito.
+    * @throws ISPACException si ocurre algun error.
 	 */
 	public int countCircuitSteps(int circuitId) throws ISPACException {
         DbCnt cnt = mcontext.getConnection();
@@ -750,38 +771,38 @@ public class SignAPI implements ISignAPI {
 	}
 
 	/**
-	 * A�ade un firmaten a un circuito de firma.
+    * Aniade un firmate a un circuito de firma.
 	 * @param circuitId Identificador del circuito de firmas.
 	 * @param signerUID UID del firmante.
-	 * @throws ISPACException si ocurre alg�n error.
-	 * @throws SignerAlreadyExistsException si el firmante ya est� asociado al circuito de firmas.
+    * @throws ISPACException si ocurre algun error.
+    * @throws SignerAlreadyExistsException si el firmante ya esta asociado al circuito de firmas.
 	 */
 	public void addSigner(int circuitId, String signerUID) throws ISPACException {
 		IInvesflowAPI invesFlowAPI = mcontext.getAPI();
         IRespManagerAPI respAPI = invesFlowAPI.getRespManagerAPI();
         ICatalogAPI catalogAPI = invesFlowAPI.getCatalogAPI();
 
-		// Ejecuci�n en un contexto transaccional
+		// Ejecucion en un contexto transaccional
 		boolean ongoingTX = mcontext.ongoingTX();
 		boolean bCommit = false;
 
 		try {
 
-	        // Abrir transacci�n
+           // Abrir transaccion
 	        if (!ongoingTX) {
 	        	mcontext.beginTX();
 	        }
 
-			// Informaci�n del nuevo responsable
+			// informacion del nuevo responsable
 			IResponsible responsible = respAPI.getResp(signerUID);
 
-	        // No se permite a�adir un firmante al circuito de firma si ya ha
-			// est� presente en el circuito
+           // No se permite aniadir un firmante al circuito de firma si ya ha
+			// esta presente en el circuito
 	        if (existsSigner(circuitId, signerUID)) {
 	        	throw new SignerAlreadyExistsException(responsible);
 	        }
 
-	        // N�mero de pasos del circuito
+           // numero de pasos del circuito
         	int numsteps = countCircuitSteps(circuitId) + 1;
 
         	// Generar el detalle
@@ -793,7 +814,7 @@ public class SignAPI implements ISignAPI {
 
         	detail.store(mcontext);
 
-        	// Actualizar el n�mero de pasos del proceso de firma
+			// Actualizar el numero de pasos del proceso de firma
         	IItem signprocess = catalogAPI.getCTEntity(ICatalogAPI.ENTITY_SIGNPROCESS_HEADER, circuitId);
         	signprocess.set("NUM_PASOS", numsteps);
         	signprocess.store(mcontext);
@@ -808,37 +829,37 @@ public class SignAPI implements ISignAPI {
 	}
 
 	/**
-	 * A�ade un firmaten a un circuito de firma.
+    * Aniade un firmaten a un circuito de firma.
 	 * @param circuitId Identificador del circuito de firmas.
 	 * @param signerUID UID del firmante.
 	 * @param signerName Nombre del firmante.
 	 * @param signerType Tipo del firmante.
-	 * @throws ISPACException si ocurre alg�n error.
-	 * @throws SignerAlreadyExistsException si el firmante ya est� asociado al circuito de firmas.
+    * @throws ISPACException si ocurre algun error.
+    * @throws SignerAlreadyExistsException si el firmante ya esta asociado al circuito de firmas.
 	 */
 	public void addSigner(int circuitId, String signerUID, String signerName, String signerType) throws ISPACException {
 
         IInvesflowAPI invesFlowAPI = mcontext.getAPI();
         ICatalogAPI catalogAPI = invesFlowAPI.getCatalogAPI();
 
-		// Ejecuci�n en un contexto transaccional
+		// Ejecucion en un contexto transaccional
 		boolean ongoingTX = mcontext.ongoingTX();
 		boolean bCommit = false;
 
 		try {
 
-	        // Abrir transacci�n
+           // Abrir transaccion
 	        if (!ongoingTX) {
 	        	mcontext.beginTX();
 	        }
 
-	        // No se permite a�adir un firmante al circuito de firma si ya ha
-			// est� presente en el circuito
+           // No se permite aniadir un firmante al circuito de firma si ya ha
+			// esta presente en el circuito
 	        if (existsSigner(circuitId, signerUID, signerType)) {
 	        	throw new SignerMinhapAlreadyExistsException(signerName);
 	        }
 
-	        // N�mero de pasos del circuito
+           // numero de pasos del circuito
         	int numsteps = countCircuitSteps(circuitId) + 1;
 
         	// Generar el detalle
@@ -851,7 +872,7 @@ public class SignAPI implements ISignAPI {
 
         	detail.store(mcontext);
 
-        	// Actualizar el n�mero de pasos del proceso de firma
+			// Actualizar el numero de pasos del proceso de firma
         	IItem signprocess = catalogAPI.getCTEntity(ICatalogAPI.ENTITY_SIGNPROCESS_HEADER, circuitId);
         	signprocess.set("NUM_PASOS", numsteps);
         	signprocess.store(mcontext);
@@ -870,8 +891,8 @@ public class SignAPI implements ISignAPI {
 	 * @param circuitId Identificador del circuito de firmas.
 	 * @param signerId Identificador del paso del circuito de firmas.
 	 * @param newSignerUID UID del nuevo firmante.
-	 * @throws ISPACException si ocurre alg�n error.
-	 * @throws SignerAlreadyExistsException si el nuevo firmante ya est� asociado al circuito de firmas.
+    * @throws ISPACException si ocurre algun error.
+    * @throws SignerAlreadyExistsException si el nuevo firmante ya esta asociado al circuito de firmas.
 	 * @throws SameSignerException si el nuevo firmante es el mismo que el antiguo.
 	 */
 	public void substituteSigner(int circuitId, int signerId, String newSignerUID) throws ISPACException {
@@ -880,21 +901,21 @@ public class SignAPI implements ISignAPI {
         IRespManagerAPI respAPI = invesFlowAPI.getRespManagerAPI();
         ICatalogAPI catalogAPI = invesFlowAPI.getCatalogAPI();
 
-		// Ejecuci�n en un contexto transaccional
+		// Ejecucion en un contexto transaccional
 		boolean ongoingTX = mcontext.ongoingTX();
 		boolean bCommit = false;
 
 		try {
 
-	        // Abrir transacci�n
+           // Abrir transaccion
 	        if (!ongoingTX) {
 	        	mcontext.beginTX();
 	        }
 
-			// Informaci�n del detalle del firmate
+			// informacion del detalle del firmate
 	    	IItem detail = catalogAPI.getCTEntity(ICatalogAPI.ENTITY_SIGNPROCESS_DETAIL, signerId);
 
-			// Informaci�n del nuevo responsable
+			// informacion del nuevo responsable
 			IResponsible responsible = respAPI.getResp(newSignerUID);
 
 			// Comprobar si el firmante seleccionado es el mismo que el seleccionado para sustituir.
@@ -902,8 +923,8 @@ public class SignAPI implements ISignAPI {
 				throw new SameSignerException(responsible);
 			}
 
-	        // No se permite a�adir un firmante al circuito de firma si ya ha
-			// est� presente en el circuito
+           // No se permite aniadir un firmante al circuito de firma si ya ha
+			// esta presente en el circuito
 	        if (existsSigner(circuitId, newSignerUID)) {
 	        	throw new SignerAlreadyExistsException(responsible);
 	        }
@@ -929,8 +950,8 @@ public class SignAPI implements ISignAPI {
 	 * @param newSignerUID UID del nuevo firmante.
 	 * @param signerName Nombre del firmante.
 	 * @param signerType Tipo del firmante.
-	 * @throws ISPACException si ocurre alg�n error.
-	 * @throws SignerAlreadyExistsException si el nuevo firmante ya est� asociado al circuito de firmas.
+    * @throws ISPACException si ocurre algun error.
+    * @throws SignerAlreadyExistsException si el nuevo firmante ya esta asociado al circuito de firmas.
 	 * @throws SameSignerException si el nuevo firmante es el mismo que el antiguo.
 	 */
 	public void substituteSigner(int circuitId, int signerId, String newSignerUID, String signerName, String signerType) throws ISPACException {
@@ -938,18 +959,18 @@ public class SignAPI implements ISignAPI {
         IInvesflowAPI invesFlowAPI = mcontext.getAPI();
         ICatalogAPI catalogAPI = invesFlowAPI.getCatalogAPI();
 
-		// Ejecuci�n en un contexto transaccional
+		// Ejecucion en un contexto transaccional
 		boolean ongoingTX = mcontext.ongoingTX();
 		boolean bCommit = false;
 
 		try {
 
-	        // Abrir transacci�n
+           // Abrir transaccion
 	        if (!ongoingTX) {
 	        	mcontext.beginTX();
 	        }
 
-			// Informaci�n del detalle del firmate
+			// informacion del detalle del firmate
 	    	IItem detail = catalogAPI.getCTEntity(ICatalogAPI.ENTITY_SIGNPROCESS_DETAIL, signerId);
 
 			// Comprobar si el firmante seleccionado es el mismo que el seleccionado para sustituir.
@@ -957,8 +978,8 @@ public class SignAPI implements ISignAPI {
 				throw new SameMinhapSignerException(signerName);
 			}
 
-	        // No se permite a�adir un firmante al circuito de firma si ya ha
-			// est� presente en el circuito
+           // No se permite aniadir un firmante al circuito de firma si ya ha
+			// esta presente en el circuito
 	        if (existsSigner(circuitId, newSignerUID, signerType)) {
 	        	throw new SignerMinhapAlreadyExistsException(signerName);
 	        }
@@ -979,11 +1000,11 @@ public class SignAPI implements ISignAPI {
 	}
 
 	/**
-	 * Indica si el firmante ya est� asociado al circuito de firmas.
+    * Indica si el firmante ya esta asociado al circuito de firmas.
 	 * @param circuitId Identificador del circuito de firmas.
 	 * @param signerUID UID del firmante.
-	 * @return true si el firmante ya est� asociado al circuito de firmas, false en caso contrario.
-	 * @throws ISPACException si ocurre alg�n error.
+    * @return true si el firmante ya esta asociado al circuito de firmas, false en caso contrario.
+    * @throws ISPACException si ocurre algun error.
 	 */
 	public boolean existsSigner(int circuitId, String signerUID) throws ISPACException {
 
@@ -996,11 +1017,11 @@ public class SignAPI implements ISignAPI {
 	}
 
 	/**
-	 * Indica si el firmante ya est� asociado al circuito de firmas.
+    * Indica si el firmante ya esta asociado al circuito de firmas.
 	 * @param circuitId Identificador del circuito de firmas.
 	 * @param signerUID UID del firmante.
-	 * @return true si el firmante ya est� asociado al circuito de firmas, false en caso contrario.
-	 * @throws ISPACException si ocurre alg�n error.
+    * @return true si el firmante ya esta asociado al circuito de firmas, false en caso contrario.
+    * @throws ISPACException si ocurre algun error.
 	 */
 	public boolean existsSigner(int circuitId, String signerUID, String signerType) throws ISPACException {
 
@@ -1015,7 +1036,7 @@ public class SignAPI implements ISignAPI {
 
 
 	/**
-	 * Devuelve el n�mero de hojas del documento firmado (pdf)
+    * Devuelve el numero de hojas del documento firmado (pdf)
 	 * @param infopagRDE
 	 * @return
 	 * @throws ISPACException
@@ -1046,7 +1067,7 @@ public class SignAPI implements ISignAPI {
 			num_hojas = reader.getNumberOfPages();
 			if (logger.isDebugEnabled()) {
 				logger
-						.debug("SignAPI:getNumHojasDocumentSignedt  n�mero de p�ginas"
+						.debug("SignAPI:getNumHojasDocumentSignedt  numero de paginas"
 								+ num_hojas);
 			}
 			return num_hojas;
@@ -1071,9 +1092,9 @@ public class SignAPI implements ISignAPI {
 
 	/**
 	 * Muestra los detalles de la firma de un documento enviado al portafirmas
-	 * La informaci�n mostrada es fecha de firma, nombre del firmante, y si el
-	 * documento est� asociado a un circuito de firma, muestra el nombre de los
-	 * usuarios que est�n pendientes de firmar.
+    * La informacion mostrada es fecha de firma, nombre del firmante, y si el
+    * documento esta asociado a un circuito de firma, muestra el nombre de los
+    * usuarios que estan pendientes de firmar.
 	 *
 	 * @param documentId
 	 *            Identificador del documento dado por ispac
@@ -1085,7 +1106,7 @@ public class SignAPI implements ISignAPI {
 	public List <SignDetailEntry> getSignDetailDocumentInPortafirmas(int documentId) throws ISPACException {
 
 		if(logger.isDebugEnabled()){
-			logger.debug("SignAPI:getSignDetailDocumentInPortafirmas Inicio ejecuci�n ...");
+			logger.debug("SignAPI:getSignDetailDocumentInPortafirmas Inicio Ejecucion ...");
 		}
 		IEntitiesAPI entitiesAPI = this.mcontext.getAPI().getEntitiesAPI();
 		List <SignDetailEntry>  details = new ArrayList();
@@ -1101,7 +1122,7 @@ public class SignAPI implements ISignAPI {
 		}
 
 		if(logger.isDebugEnabled()){
-			logger.debug("SignAPI:getSignDetailDocumentInPortafirmas; Fin ejecuci�n , el documento ha sido firmado "+details.size()+" veces");
+			logger.debug("SignAPI:getSignDetailDocumentInPortafirmas; Fin Ejecucion , el documento ha sido firmado "+details.size()+" veces");
 		}
 		return details;
 	}
@@ -1110,7 +1131,7 @@ public class SignAPI implements ISignAPI {
 			throws ISPACException {
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("SignAPI:getStateDocument: Inicio ejecuci�n ..");
+			logger.debug("SignAPI:getStateDocument: Inicio Ejecucion ..");
 		}
 		String estado = "";
 		// Se obtiene el id_proceso_firma para enviarlo al conector del
@@ -1129,7 +1150,7 @@ public class SignAPI implements ISignAPI {
 
 		if (logger.isDebugEnabled()) {
 			logger
-					.debug("SignAPI:getStateDocument: Fin ejecuci�n, el estado obtenido es: "
+					.debug("SignAPI:getStateDocument: Fin Ejecucion, el estado obtenido es: "
 							+ estado);
 		}
 		return estado;

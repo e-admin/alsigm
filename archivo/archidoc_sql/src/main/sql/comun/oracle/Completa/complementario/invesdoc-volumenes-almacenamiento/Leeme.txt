@@ -1,0 +1,24 @@
+Ejemplo de creación de tablas de almacenamiento de Invesdoc en base de datos
+
+1) Abrir una consola de sistema mediante el comando cmd
+
+2) Entrar en el directorio donde estén los scripts de inserción de las tablas de invesdoc de almacenamiento:
+
+	cd "Y:\Archivo - Producto y Proyectos\Producto\Base de Datos - Última Versión\Oracle\Base de Datos\Limpia\volumenes_almacenamiento_invesdoc_bd"
+
+3) Ejecutar sqlplus
+
+	Usuario: PRODUCTOARCHIVO
+	Password: PRODUCTOARCHIVO@GDOC179
+
+4) Eliminar las tablas anteriores mediante el comando
+
+	@volumenes_almacenamiento_invesdoc_oracle_COMPLETO.sql
+
+5) Salir del sqlplus mediante el comando:
+
+	quit
+
+6) Insertar los XML en los campos CLOB mediante el comando 04_insert_clobs_data.cmd pasándole como parámetros el usuario, la contraseña y el sid:
+
+	04_insert_clobs_data.cmd PRODUCTOARCHIVO PRODUCTOARCHIVO GDOC179

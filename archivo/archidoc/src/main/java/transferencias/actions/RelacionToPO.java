@@ -3,6 +3,7 @@ package transferencias.actions;
 import java.util.Properties;
 
 import org.apache.commons.collections.Transformer;
+import org.apache.log4j.Logger;
 
 import se.procedimientos.GestorCatalogo;
 import se.procedimientos.GestorCatalogoFactory;
@@ -27,6 +28,8 @@ import common.view.POUtils;
 import deposito.model.GestorEstructuraDepositoBI;
 
 public class RelacionToPO implements Transformer {
+
+	private final static Logger logger = Logger.getLogger(RelacionToPO.class);
 
 	GestionControlUsuariosBI controlAccesoBI = null;
 	GestorCatalogo catalogoProcedimientos = null;
@@ -73,7 +76,7 @@ public class RelacionToPO implements Transformer {
 	}
 
 	public static RelacionToPO getInstance(ServiceRepository services) {
-		try {
+
 
 			// Obtener información de la entidad
 			ServiceClient serviceClient = services.getServiceClient();
@@ -87,8 +90,14 @@ public class RelacionToPO implements Transformer {
 				params.put(MultiEntityConstants.ENTITY_PARAM,
 						serviceClient.getEntity());
 			}
-			GestorCatalogo catalogoService = GestorCatalogoFactory
-					.getConnector(params);
+
+			GestorCatalogo catalogoService = null;
+			try {
+				catalogoService = GestorCatalogoFactory
+				.getConnector(params);
+			} catch (GestorCatalogoException e) {
+				logger.error("Error al obtener el gestor de catálogo");
+			}
 
 			return new RelacionToPO(services.lookupGestionRelacionesBI(),
 					services.lookupGestionControlUsuariosBI(), catalogoService,
@@ -100,9 +109,7 @@ public class RelacionToPO implements Transformer {
 					services.lookupGestionSistemaBI(),
 					services.lookupGestionDescripcionBI(), services,
 					services.lookupGestionRelacionesEACRBI());
-		} catch (GestorCatalogoException gce) {
-			throw new UncheckedArchivoException(gce);
-		}
+
 	}
 
 }

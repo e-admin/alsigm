@@ -6,6 +6,7 @@ import es.archigest.framework.core.exceptions.ArchigestModelException;
  * Excepción lanzada cuando ocurre algún error el sistema gestor de ficheros
  */
 public class GestorFicherosException extends ArchigestModelException {
+
 	/**
 	 *
 	 */

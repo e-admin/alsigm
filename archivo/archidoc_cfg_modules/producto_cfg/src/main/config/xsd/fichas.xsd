@@ -149,9 +149,11 @@
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="AAAA"/>
 						<xs:enumeration value="DDMMAAAA"/>
+						<xs:enumeration value="DDMMAAAAHHMMSS"/>
 						<xs:enumeration value="MMAAAA"/>
 						<xs:enumeration value="AAAAMM"/>
 						<xs:enumeration value="AAAAMMDD"/>
+						<xs:enumeration value="AAAAMMDDHHMMSS"/>
 						<xs:enumeration value="S"/>
 					</xs:restriction>
 				</xs:simpleType>
@@ -260,7 +262,7 @@
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="N"/>
-						<xs:enumeration value="S"/>				
+						<xs:enumeration value="S"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>

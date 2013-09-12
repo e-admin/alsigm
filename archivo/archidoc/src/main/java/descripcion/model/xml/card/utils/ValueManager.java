@@ -59,7 +59,7 @@ public class ValueManager {
 
 	/**
 	 * Constructor.
-	 * 
+    *
 	 * @param titulo
 	 *            Título del elemento.
 	 * @param edicion
@@ -85,7 +85,7 @@ public class ValueManager {
 	/**
 	 * Obtiene la lista de valores ordenados del formulario para un elemento de
 	 * tipo etiqueta-dato concreto.
-	 * 
+    *
 	 * @param parameters
 	 *            Parámetros del formulario.
 	 * @return Lista ordenada de valores del formulario.
@@ -145,6 +145,15 @@ public class ValueManager {
 					+ edicion.getId() + "_fechaM");
 			String[] campo_fechaA = (String[]) parameters.get("campo_"
 					+ edicion.getId() + "_fechaA");
+
+			String[] campo_fechaHH = (String[]) parameters.get("campo_"
+					+ edicion.getId() + "_fechaHH");
+			String[] campo_fechaMM = (String[]) parameters.get("campo_"
+					+ edicion.getId() + "_fechaMM");
+			String[] campo_fechaSS = (String[]) parameters.get("campo_"
+					+ edicion.getId() + "_fechaSS");
+
+
 			String[] campo_fechaS = (String[]) parameters.get("campo_"
 					+ edicion.getId() + "_fechaS");
 			String[] campo_calificador = (String[]) parameters.get("campo_"
@@ -159,11 +168,13 @@ public class ValueManager {
 						if (DateQualifierHelper.CALIFICADOR_SIN_FECHA
 								.equals(campo_calificador[i])) {
 							customDate = new CustomDate(null, null, null, null,
+									null, null, null,
 									null, null, campo_calificador[i]);
 						} else {
 							customDate = new CustomDate(campo_formato[i],
-									campo_fechaA[i], campo_fechaM[i],
-									campo_fechaD[i], campo_fechaS[i], null,
+									campo_fechaA[i], campo_fechaM[i],campo_fechaD[i],
+									campo_fechaHH[i], campo_fechaMM[i],campo_fechaSS[i],
+									campo_fechaS[i], null,
 									campo_calificador[i]);
 						}
 
@@ -272,35 +283,6 @@ public class ValueManager {
 															+ " ("
 															+ valoresFormulario[i]
 															+ ")"));
-								/*
-								 * EdicionDatoReferencia
-								 * edicionDatoReferencia=(EdicionDatoReferencia
-								 * )edicion;
-								 * if(edicionDatoReferencia.getIdentificadores
-								 * ()!=null &&
-								 * edicionDatoReferencia.getIdentificadores
-								 * ().length>0) { ListaDescrVO
-								 * listaDescrVO=descripcionBI
-								 * .getListaDescriptora
-								 * (edicionDatoReferencia.getIdentificador(0));
-								 * if(listaDescrVO!=null){ DescriptorVO
-								 * descriptorVO =
-								 * descripcionBI.getDescriptorByNombreYIdLista
-								 * (valoresFormulario[i], listaDescrVO.getId());
-								 * if (descriptorVO!=null) idRef =
-								 * descriptorVO.getId(); else
-								 * errors.add(ActionErrors.GLOBAL_MESSAGE, new
-								 * ActionError(Constants.ERROR_REFERENCE, titulo
-								 * + " (" + valoresFormulario[i] + ")")); }
-								 * else{ errors.add(ActionErrors.GLOBAL_MESSAGE,
-								 * new ActionError(Constants.ERROR_REFERENCE,
-								 * titulo + " (" + valoresFormulario[i] + ")"));
-								 * } } else{
-								 * errors.add(ActionErrors.GLOBAL_MESSAGE, new
-								 * ActionError(Constants.ERROR_REFERENCE, titulo
-								 * + " (" + valoresFormulario[i] + ")")); }
-								 */
-
 							}
 							break;
 						}
@@ -338,7 +320,7 @@ public class ValueManager {
 
 	/**
 	 * Valida el campo numérico.
-	 * 
+    *
 	 * @param number
 	 *            Cadena numérica.
 	 */

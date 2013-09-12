@@ -84,10 +84,10 @@ public class CustomDateFormat {
 	public static final String DATE_FORMAT_AAAAMMDD = "AAAAMMDD";
 
 	/** Día, mes y año. fecha y hora */
-	public static final String DATE_FORMAT_DDMMAAAA_HHMMSS = "DDMMAAAA HHMMSS";
+	public static final String DATE_FORMAT_DDMMAAAA_HHMMSS = "DDMMAAAAHHMMSS";
 
 	/** Año, mes y día. fecha y hora */
-	public static final String DATE_FORMAT_AAAAMMDD_HHMMSS = "AAAAMMDD HHMMSS";
+	public static final String DATE_FORMAT_AAAAMMDD_HHMMSS = "AAAAMMDDHHMMSS";
 
 	/** Siglo. */
 	public static final String DATE_FORMAT_S = "S";
@@ -248,6 +248,8 @@ public class CustomDateFormat {
 	}
 
 	public static  String getPattern(String formato, String separador){
+
+		formato = formato.replaceAll(Constants.STRING_SPACE, Constants.STRING_EMPTY);
 
     	if(DATE_FORMAT_AAAAMMDD.equals(formato)){
     		return new StringBuilder(FORMATO_ANIO)

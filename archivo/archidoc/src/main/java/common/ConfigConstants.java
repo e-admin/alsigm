@@ -617,6 +617,10 @@ public class ConfigConstants extends ConfiguracionParametrosConstants {
 		return getBooleanParameter(INVESDOC_V8);
 	}
 
+	public boolean isPermitidoCompactarUdocsNoConsecutivas(){
+		return getBooleanParameter(PERMITIR_COMPACTAR_UDOCS_NO_CONSECUTIVAS);
+	}
+
 	public String toString() {
 		StringBuffer str = new StringBuffer()
 				.append(Constants.NEWLINE)
@@ -756,6 +760,11 @@ public class ConfigConstants extends ConfiguracionParametrosConstants {
 				.append("  - ECM_EXTERNO: ")
 				.append(isEcmExterno())
 				.append(Constants.NEWLINE)
+				.append("  - PERMITIR_COMPACTAR_UDOCS_NO_CONSECUTIVAS: ")
+				.append(isPermitidoCompactarUdocsNoConsecutivas())
+				.append(Constants.NEWLINE)
+
+
 				.append("***********************************************************************************");
 		return str.toString();
 	}

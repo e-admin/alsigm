@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AdviceService" targetNamespace="urn:juntadeandalucia:cice:pfirma:advice:v2.0" xmlns:pfirma="urn:juntadeandalucia:cice:pfirma:advice:v2.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:request="urn:juntadeandalucia:cice:pfirma:advice:request:v2.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:type="urn:juntadeandalucia:cice:pfirma:type:v2.0">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:juntadeandalucia:cice:pfirma:advice:request:v2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+			<xsd:import namespace="urn:juntadeandalucia:cice:pfirma:type:v2.0" schemaLocation="WebServiceTypes.xsd"/>
+
+			<xsd:element name="updateRequestStatus">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="authentication" type="type:authentication"/>
+						<xsd:element name="request" type="type:request"/>
+						<xsd:element maxOccurs="unbounded" minOccurs="0" name="signature" type="type:signature"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="updateRequestStatusResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="0" name="result" type="xsd:boolean"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="updateRequestStatusResponse">
+    <wsdl:part name="updateRequestStatusResponse" element="request:updateRequestStatusResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pfirmaException">
+    <wsdl:part name="pfirmaException" element="type:exceptionInfo">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateRequestStatus">
+    <wsdl:part name="updateRequestStatus" element="request:updateRequestStatus">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AdviceService">
+    <wsdl:operation name="updateRequestStatus">
+      <wsdl:input name="updateRequestStatus" message="pfirma:updateRequestStatus">
+    </wsdl:input>
+      <wsdl:output name="updateRequestStatusResponse" message="pfirma:updateRequestStatusResponse">
+    </wsdl:output>
+      <wsdl:fault name="pfirmaException" message="pfirma:pfirmaException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdviceServiceSoapBinding" type="pfirma:AdviceService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="updateRequestStatus">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateRequestStatus">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="pfirmaException">
+        <soap:fault name="pfirmaException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdviceService">
+    <wsdl:port name="AdviceServicePort" binding="pfirma:AdviceServiceSoapBinding">
+      <soap:address location="http://10.1.103.191:8080/TestRecepcionWebservicePortafirma/services/AdviceService/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

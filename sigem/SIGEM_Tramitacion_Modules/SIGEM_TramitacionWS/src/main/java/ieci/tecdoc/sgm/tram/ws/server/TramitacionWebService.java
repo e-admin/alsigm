@@ -702,7 +702,26 @@ public class TramitacionWebService {
 		return (Cadena) ServiciosUtils.completeReturnOK(ret);		
 	}    
     
-    
+    /**
+     * Permite recibir un documento firmado externamente
+     * @param idEntidad Identificador de la entidad.
+     * @param numExp Número de expediente
+     * @param idDocumento Identificador del documento
+     * @return Información del registro obtenido
+     * @throws ISPACException
+     */
+	public Cadena recibirDocumentoFirmado(String idEntidad, String numExp,
+			String idDocumento){
+		Cadena ret = new Cadena();
+		try {
+			ServicioTramitacion service = getServicioTramitacion();
+			ret.setValor(service.recibirDocumentoFirmado(idEntidad, numExp, idDocumento));
+		} catch (Throwable e){
+			logger.error("Error al recibir el documento firmado '" + idDocumento + "'", e);
+			return (Cadena) ServiciosUtils.completeReturnError(ret);
+		}
+		return (Cadena) ServiciosUtils.completeReturnOK(ret);
+	}
         
     
     private InfoBProcedimiento[] getInfoBProcedimientos(

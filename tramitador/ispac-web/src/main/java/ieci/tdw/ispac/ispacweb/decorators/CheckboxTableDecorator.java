@@ -18,29 +18,29 @@ import org.displaytag.model.TableModel;
  * listado. Se ha copiado esta clase de la librería de displaytag porque
  * contenía un bug en el método "getCheckbox", donde no usaba el atributo
  * "fieldName", si no que ponía de nombre "_chk".
- * 
+ *
  * @author Iecisa
  * @version $Revision$
- * 
+ *
  */
 public class CheckboxTableDecorator extends TableDecorator {
 
 	private static final Logger logger = Logger.getLogger(CheckboxTableDecorator.class);
-	
+
 	/**
 	 * Nombre del campo identificador.
 	 */
-	private String id = "id";
-	
+	protected String id = "id";
+
 	/**
 	 * Nombre del checkbox.
 	 */
-	private String fieldName = "multibox";
-	
+	protected String fieldName = "multibox";
+
 	/**
 	 * Lista de identificadores seleccionados.
 	 */
-	private List checkedIds;
+	protected List checkedIds;
 
 	/**
 	 * Constructor.
@@ -74,7 +74,7 @@ public class CheckboxTableDecorator extends TableDecorator {
 				logger.error("Error al mostrar los identificadores seleccionados ocultos", e);
 			}
 		}
-		
+
 		super.finish();
 	}
 

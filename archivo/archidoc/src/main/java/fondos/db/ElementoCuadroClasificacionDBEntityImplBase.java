@@ -1170,6 +1170,11 @@ public abstract class ElementoCuadroClasificacionDBEntityImplBase extends
 				 * condiciones.add(condicionesAuxCompuestas);
 				 */
 			}
+
+
+
+
+
 		} else if (nombreCampo
 				.equals(CamposBusquedas.CAMPO_ENTRADA_BUSQUEDA_RANGOS)) {
 			String idCampoInicialKey = nombreCampo + "InicialNorm";
@@ -2833,8 +2838,7 @@ public abstract class ElementoCuadroClasificacionDBEntityImplBase extends
 	public IElementoCuadroClasificacion insertElementoCF(
 			final ElementoCuadroClasificacionVO elementoVO) {
 
-		// if (StringUtils.isNotBlank(elementoVO.getTitulo()))
-		// elementoVO.setTitulo(elementoVO.getTitulo().toUpperCase());
+		elementoVO.setOrdPos(getOrdPos(elementoVO.getOrdPos(), elementoVO.getCodigo()));
 
 		DBCommand command = new DBCommand(this) {
 			public void codeLogic(DbConnection conn) throws Exception {
@@ -2866,8 +2870,10 @@ public abstract class ElementoCuadroClasificacionDBEntityImplBase extends
 		if (StringUtils.isNotEmpty(denominacion))
 			// colsToUpdate.put(TITULO_FIELD, denominacion.toUpperCase());
 			colsToUpdate.put(TITULO_FIELD, denominacion);
-		if (StringUtils.isNotEmpty(codOrdenacion))
-			colsToUpdate.put(ORDEN_POSICION_FIELD, codOrdenacion);
+
+		codOrdenacion = getOrdPos(codOrdenacion, codigo);
+		colsToUpdate.put(ORDEN_POSICION_FIELD, codOrdenacion);
+
 
 		updateFields(qual.toString(), colsToUpdate, TABLE_NAME_ELEMENTO);
 	}
@@ -9249,5 +9255,23 @@ public abstract class ElementoCuadroClasificacionDBEntityImplBase extends
 		return getPairsIdValue(qual.toString(), from.toString(), idElemento,
 				codRefPadre);
 	}
+
+	private String getOrdPos(String ordPos,String codigo){
+		if(ConfigConstants.getInstance().getMostrarCampoOrdenacionCuadro()){
+			if(StringUtils.isBlank(ordPos)){
+				if (StringUtils.isNotEmpty(codigo)){
+					ordPos = codigo;
+
+					if(ordPos.length() > 32){
+						ordPos = ordPos.substring(0,32);
+					}
+
+				}
+			}
+		}
+
+		return ordPos;
+	}
+
 
 }

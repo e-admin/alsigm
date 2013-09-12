@@ -35,7 +35,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 public class StorageServlet extends BaseServlet {
-  
+
 	/** serialVersionUID */
 	private static final long serialVersionUID = 8065720387410213915L;
 
@@ -51,7 +51,7 @@ public class StorageServlet extends BaseServlet {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return;
 		}
-		
+
 		ResourceInfo resourceInfo = new ResourceInfo(request, session);
 		if (!resourceInfo.authorized) {
 			logger.error("No se tiene autorización para editar el documento: " + resourceInfo.path);
@@ -79,7 +79,7 @@ public class StorageServlet extends BaseServlet {
 
 			Document document = documentBuilder.parse(new InputSource(
 				request.getInputStream()));
-			
+
 			// Get the root element of the document
 			Element rootElement = document.getDocumentElement();
 			NodeList childList = rootElement.getChildNodes();
@@ -352,7 +352,7 @@ public class StorageServlet extends BaseServlet {
 					return;
 				}
 				/*
-				 if (resourceLocks.containsKey(lock.path)) 
+				if (resourceLocks.containsKey(lock.path))
 				 {
 				 LockInfo lck = (LockInfo) resourceLocks.get(lock.path);
 				 if ( lck.expiresAt > System.currentTimeMillis())
@@ -361,7 +361,7 @@ public class StorageServlet extends BaseServlet {
 				 return;
 				 }
 				 }
-				 
+
 				 resourceLocks.put(lock.path, lock);
 				 */
 			}
@@ -448,10 +448,10 @@ public class StorageServlet extends BaseServlet {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return;
 		}
-		
+
 		//Auditoría: Añadir en el ThreadLocal el objeto AuditContext.
 		auditContext(request,session);
-				
+
 		ResourceInfo resourceInfo = new ResourceInfo(request, session);
 		if (!resourceInfo.authorized) {
 			logger.error("No se tiene autorización para editar el documento: " + resourceInfo.path);
@@ -465,16 +465,16 @@ public class StorageServlet extends BaseServlet {
 		}
 		// ETag header
 		response.setHeader("ETag", getETag(resourceInfo));
-		
+
 		// Last-Modified header
-		response.setHeader("Last-Modified", 
+		response.setHeader("Last-Modified",
 				getUpdateDate(resourceInfo.updateDate));
-		
+
 		// Set the appropriate content type
 		if (resourceInfo.contentType != null) {
 			response.setContentType(resourceInfo.contentType);
 		}
-		
+
 		// Obtiene el documento
 		if (resourceInfo.length >= 0) {
 			try {
@@ -493,8 +493,8 @@ public class StorageServlet extends BaseServlet {
 					if (connectorSession != null) {
 						genDocAPI.closeConnectorSession(connectorSession);
 					}
-		    	}		
-				
+				}
+
 				response.setStatus(HttpServletResponse.SC_OK);
 			} catch (ISPACException e) {
 				logger.error(e.getMessage());
@@ -537,22 +537,22 @@ public class StorageServlet extends BaseServlet {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND, resourceInfo.path);
 			return;
 		}
-		
+
 		// ETag header
 		response.setHeader("ETag", getETag(resourceInfo));
-		
+
 		// Last-Modified header
-		response.setHeader("Last-Modified", 
+		response.setHeader("Last-Modified",
 				getUpdateDate(resourceInfo.updateDate));
-		
+
 		// Set the appropriate content type
 		if (resourceInfo.contentType != null) {
 			response.setContentType(resourceInfo.contentType);
 		}
-		
+
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
-	
+
 	/**
 	 * Process a PUT request for the specified resource.
 	 *
@@ -598,14 +598,14 @@ public class StorageServlet extends BaseServlet {
 						mime);
 				// Auditoría: Añadir en el ThreadLocal el objeto AuditContext.
 				auditContext(request, session);
-				
+
 				//      int count = request.getContentLength();
 			}finally {
 				if (connectorSession != null) {
 					document.closeConnectorSession(connectorSession);
 				}
-	    	}		
-			
+			}
+
 
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 		} catch (ISPACException e) {
@@ -655,7 +655,7 @@ public class StorageServlet extends BaseServlet {
 		public String documentReference;
 
 		public boolean exists;
-		
+
 		public boolean authorized;
 
 		public void recycle() {
@@ -678,26 +678,26 @@ public class StorageServlet extends BaseServlet {
 				this.path = getRelativePath(request);
 				this.session = session;
 				String substring = path.substring(1);
-				
+
 				if (StringUtils.isNotBlank(substring) && (substring.indexOf(".") > 0)) {
-					
+
 					StringTokenizer tokens = new StringTokenizer(substring, "/.");
 					if (tokens.hasMoreTokens()) {
 						IEntitiesAPI entityAPI = session.getAPI().getEntitiesAPI();
-	
-						int documentId = Integer.parseInt(tokens.nextToken()); 
+
+						int documentId = Integer.parseInt(tokens.nextToken());
 						IItem entity = entityAPI.getDocument(documentId);
-	
+
 						if (entity == null) {
 							logger.warn("No se ha encontrado el documento con id [" + documentId + "]");
 							return;
 						}
 
 						checkAuthorization(session, entity);
-						
+
 						document = entity.getKeyInt();
 						documentReference = entity.getString("INFOPAG");
-	
+
 						IGenDocAPI document = session.getAPI().getGenDocAPI();
 						Object connectorSession = null;
 						try {
@@ -715,8 +715,8 @@ public class StorageServlet extends BaseServlet {
 							if (connectorSession != null) {
 								document.closeConnectorSession(connectorSession);
 							}
-				    	}		
-	
+						}
+
 					}
 				} else {
 					// Directorio raíz
@@ -727,7 +727,7 @@ public class StorageServlet extends BaseServlet {
 				logger.error(e.getMessage());
 			}
 		}
-		
+
 		public void checkAuthorization(SessionAPI session, IItem document)
 				throws ISPACException {
 
@@ -736,26 +736,26 @@ public class StorageServlet extends BaseServlet {
 
 			int stageId = document.getInt("ID_FASE");
 			IStage stage = invesFlowAPI.getStage(stageId);
-			
+
 			if (stage.isActivity()) {
 
 				// Comprobar los permisos de la actividad
 				authorized = workListAPI.isInResponsibleList(
 						stage.getString("ID_RESP"), stage);
-				
+
 			} else if (stage.isStage()) {
 
 				int taskId = document.getInt("ID_TRAMITE");
 				if (taskId > 0) {
 
 					ITask task = invesFlowAPI.getTask(taskId);
-					
+
 					// Comprobar los permisos del trámite
 					authorized = workListAPI.isInResponsibleList(
-							stage.getString("ID_RESP"), task);
+							task.getString("ID_RESP"), task);
 
 				} else {
-					
+
 					// Comprobar los permisos de la fase
 					authorized = workListAPI.isInResponsibleList(
 							stage.getString("ID_RESP"), stage);
@@ -763,11 +763,11 @@ public class StorageServlet extends BaseServlet {
 			}
 		}
 	}
-	
+
 	/**
 	 * Establece en el AuditContextHolder el contexto de la sesión actual (ip,
 	 * host, usuario, etc...) para la auditoría.
-	 * 
+    *
 	 * @param request
 	 * @param session
 	 */

@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Class-Path: alfresco-repository-4.0.d.jar alfresco-web-service-client-
+ 4.0.d.jar ant-1.7.0.jar antlr-2.7.2.jar aopalliance-1.0.jar avalon-fr
+ amework-4.1.3.jar axis-1.4.jar axis-jaxrpc-1.4.jar axis-saaj-1.4.jar
+ axis-wsdl4j-1.5.1.jar bcmail-jdk14-139.jar bcprov-jdk14-140.jar bctsp
+ -jdk14-138.jar castor-0.9.5.3.jar commons-beanutils-1.7.0.jar commons
+ -codec-1.3.jar commons-collections-3.1.jar commons-digester-1.6.jar c
+ ommons-discovery-0.2.jar commons-fileupload-1.0.jar commons-httpclien
+ t-3.1.jar commons-io-1.4.jar commons-jxpath-1.2.jar commons-lang-2.4.
+ jar commons-logging-1.1.jar commons-validator-1.1.3.jar displaytag-1.
+ 2.jar dom4j-1.6.1.jar dwr-2.0.3.jar fwktd-audit-api-0.7.jar fwktd-aud
+ it-core-0.7.jar fwktd-audit-integration-0.7.jar fwktd-core-0.7.jar fw
+ ktd-server-0.7.jar fwktd-web-0.7.jar htmlparser-1.6.jar ibatis-sqlmap
+ -2.3.4.726.jar icu4j-2.6.1.jar invesdoc-admin-9.2.3.1.jar invesdoc-co
+ re-9.2.3.1.jar invesdoc-stdbizobj-9.2.3.1.jar ISicres-Document-Connec
+ tor-8.0.jar ISicres-Document-Connector-Alfresco-8.0.jar ispac-alfresc
+ o-6.4.jar ispac-audit.jar ispac-documentum-6.4.jar ispac-invesdoc-6.4
+ .jar ispac-ldap-6.4.jar ispac-lib.jar ispac-lib-cfg.jar ispac-resourc
+ es-6.4-configurable.zip ispac-services-6.4.jar ispac-sharepoint-6.4.j
+ ar ispac-web.jar itext-2.1.7.jar jasperreports-3.7.6.jar jaxen-1.1.1.
+ jar jcl104-over-slf4j-1.4.2.jar jcommon-1.0.15.jar jdom-1.0.jar jdtco
+ re-3.1.0.jar jfreechart-1.0.12.jar jstl-1.0.6.jar jug-2.0.0-lgpl.jar
+ juh-2.2.1.jar jurt-2.2.1.jar log4j-1.2.13.jar logkit-1.0.1.jar mime-u
+ til-2.1.3.jar oro-2.0.7.jar ridl-2.2.1.jar serializer-2.7.1.jar slf4j
+ -api-1.5.8.jar slf4j-log4j12-1.4.2.jar spring-aop-3.0.2.RELEASE.jar s
+ pring-asm-3.0.2.RELEASE.jar spring-beans-3.0.2.RELEASE.jar spring-con
+ text-3.0.2.RELEASE.jar spring-context-support-3.0.2.RELEASE.jar sprin
+ g-core-3.0.2.RELEASE.jar spring-expression-3.0.2.RELEASE.jar spring-j
+ dbc-3.0.2.RELEASE.jar spring-orm-3.0.2.RELEASE.jar spring-tx-3.0.2.RE
+ LEASE.jar spring-web-3.0.2.RELEASE.jar spring-webmvc-3.0.2.RELEASE.ja
+ r standard-1.0.6.jar struts-1.2.4.jar struts-menu-2.2.jar trove-1.0.2
+ .jar unoil-2.2.1.jar velocity-1.7.jar velocity-tools-2.0-beta4.jar ws
+ s4j-1.5.5.jar wss4j-1.5.1.jar xalan-2.7.1.jar xercesImpl-2.8.1.jar xm
+ l-apis-1.3.03.jar xmlParserAPIs-2.6.2.jar xmlsec-1.4.2.jar xmlsec-1.3
+ .0.jar xom-1.0.jar xpp3_min-1.1.4c.jar xstream-1.3.1.jar

@@ -142,6 +142,10 @@ public class ServiciosSecurityManager extends SecurityManagerBase {
 			.getInstance(getKey("EDITAR_CONSULTA_ACTION"),
 					ArchivoModules.SERVICIOS_MODULE);
 
+	public final static ActionObject CAMBIAR_ESTADO_A_SOLICITADA = ActionObject
+					.getInstance(getKey("CAMBIAR_ESTADO_A_SOLICITADA"),
+							ArchivoModules.SERVICIOS_MODULE);
+
 	static ServiciosSecurityManager getInstance() {
 		if (prestamosSecurityManager == null)
 			prestamosSecurityManager = new ServiciosSecurityManager();
@@ -240,6 +244,9 @@ public class ServiciosSecurityManager extends SecurityManagerBase {
 		String[][] permisosEntregaConsultas = new String[][] { { AppPermissions.ENTREGA_UNIDADES_DOCUMENTALES } };
 		addAction(CONSULTAS_ENTREGAR_ACTION, permisosEntregaConsultas);
 		addAction(ENTREGAR_CONSULTA_ACTION, permisosEntregaConsultas);
+
+		addAction(CAMBIAR_ESTADO_A_SOLICITADA, permisosGestionConsultas);
+
 		addAction(OBTENER_UDOCS_DEVUELTAS_CONSULTA_ACTION,
 				permisosEntregaConsultas);
 

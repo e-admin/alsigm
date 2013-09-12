@@ -10,4 +10,6 @@ db2 -tvf 04-datos_iniciales.sql
 db2 -tvf 05-plantillas.sql
 db2 -tvf 06-datos_prototipos.sql
 db2 -tvf 07-create_tables_conector_sharepoint.sql
+db2 -tvf 08-fwktd-audit-create.sql
+db2 -tvf 09-fwktd-audit-insert.sql
 db2 terminate

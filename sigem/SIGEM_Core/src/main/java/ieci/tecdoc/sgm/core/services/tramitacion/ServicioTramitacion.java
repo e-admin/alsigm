@@ -232,4 +232,14 @@ public interface ServicioTramitacion {
      */
     public String obtenerRegistrosEntidad(String idEntidad, String nombreEntidad, String numExp)throws TramitacionException;
 
+    /**
+     * Permite recibir un documento firmado
+     * @param idEntidad identificador de la entidad
+     * @param numExp numero de expediente
+     * @param idDocumento identificador del documento
+      * @return identificador del nuevo documento generado
+     * @throws TramitacionException
+     */
+    public String recibirDocumentoFirmado(String idEntidad, String numExp, String idDocumento)throws TramitacionException;
+
 }

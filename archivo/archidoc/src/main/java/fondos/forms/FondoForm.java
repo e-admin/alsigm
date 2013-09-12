@@ -203,17 +203,6 @@ public class FondoForm extends ArchigestActionForm {
 						Constants.ERROR_REQUIRED, Messages.getString(ApplicationResourcesConstants.LABEL_ENTIDAD_PRODUCTORA, locale)));
 		}
 
-		if (ConfigConstants.getInstance().getMostrarCampoOrdenacionCuadro()) {
-			if (StringUtils.isEmpty(getCodOrdenacion())) {
-				errors.add(
-						ActionErrors.GLOBAL_ERROR,
-						new ActionError(Constants.ERROR_REQUIRED, Messages
-								.getString(
-										Constants.ETIQUETA_CODIGO_ORDENACION,
-										getSessionLocale())));
-			}
-		}
-
 		return errors.size() > 0 ? errors : null;
 	}
 

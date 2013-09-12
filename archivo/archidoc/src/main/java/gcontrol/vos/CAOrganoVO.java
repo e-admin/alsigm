@@ -4,14 +4,15 @@
  */
 package gcontrol.vos;
 
+import se.instituciones.InfoOrgano;
 import common.Constants;
 import common.vos.BaseVO;
 
 /**
  * @author ABELRL
- * 
+ *
  */
-public class CAOrganoVO extends BaseVO implements ICAOrganoVO {
+public class CAOrganoVO extends BaseVO implements ICAOrganoVO, InfoOrgano {
 	/**
 	 *
 	 */
@@ -109,5 +110,17 @@ public class CAOrganoVO extends BaseVO implements ICAOrganoVO {
 			return true;
 		}
 		return false;
+	}
+
+	public String getId() {
+		return idOrg;
+	}
+
+	public int getNivel() {
+		return 0;
+	}
+
+	public String getIdPadre() {
+		return null;
 	}
 }

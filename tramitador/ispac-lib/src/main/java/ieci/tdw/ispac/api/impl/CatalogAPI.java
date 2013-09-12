@@ -3727,6 +3727,42 @@ public class CatalogAPI implements ICatalogAPI
 	}
 
     /**
+     * Obtiene la información de un trámite en el catálogo
+     * a partir del trámite en el procedimiento.
+     * @param taskPcdId Identificador del trámite en el procedimiento.
+     * @return Información del trámite.
+     * @throws ISPACException si ocurre algún error.
+     */
+	public IItem getCTTaskPCD(int taskPcdId) throws ISPACException {
+
+		IItem item = null;
+		DbCnt cnt = mcontext.getConnection();
+
+		try {
+			TableJoinFactoryDAO factory = new TableJoinFactoryDAO();
+
+			factory.addTable("SPAC_CT_TRAMITES", "SPAC_CT_TRAMITES");
+			factory.addTable("SPAC_P_TRAMITES", "SPAC_P_TRAMITES");
+
+			String sql = " WHERE SPAC_CT_TRAMITES.ID = SPAC_P_TRAMITES.ID_CTTRAMITE AND SPAC_P_TRAMITES.ID = " + taskPcdId;
+
+			IItemCollection collection = factory.queryTableJoin(cnt, sql).disconnect();
+			if (collection.next()) {
+				item = collection.value();
+			}
+
+			return item;
+		}
+		catch (ISPACException ie) {
+			throw new ISPACException("Error en CustomAPI:getCTTaskPCD(" + taskPcdId + ")", ie);
+		}
+		finally {
+			mcontext.releaseConnection(cnt);
+		}
+
+	}
+
+    /**
      * Obtiene la lista de reglas del catálogo.
      * @return Lista de reglas del catálogo.
      * @throws ISPACException si ocurre algún error.
@@ -3841,15 +3877,15 @@ public class CatalogAPI implements ICatalogAPI
 		return getCTEntity(ENTITY_CT_SYSTEM_VARS, id);
 	}
 
-	
+
 	/**
-	 * 
+    *
 	 * @param nameVarSystemCod :Nombre de la variable de sistema que contiene el
 	 * código del tipo documental
 	 * @return id del tipo documental
 	 * @throws ISPACException
 	 */
-	
+
 	public String getIdTpDocByCode(String nameVarSystemCod)
 			throws ISPACException {
 		try {

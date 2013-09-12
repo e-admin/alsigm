@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionMessages;
 
@@ -145,11 +146,13 @@ import gcontrol.vos.ArchivoVO;
 
 public class GestorEstructuraDeposito extends ServiceBase implements
 		GestorEstructuraDepositoBI {
+
+
 	/**
 	 * Logger for this class
 	 */
-	// private static final Logger logger =
-	// Logger.getLogger(GestorEstructuraDeposito.class);
+    private static final Logger logger =
+    Logger.getLogger(GestorEstructuraDeposito.class);
 
 	private static final Map tiposElemento = new HashMap();
 
@@ -527,7 +530,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Devuelve la lista de huecos libres u ocupados pero no bloqueados del
 	 * elementoAsignable
-	 * 
+    *
 	 * @param String
 	 *            idElementoAsignable, id del elemento asignable al que
 	 *            pertenecen los huecos devueltos
@@ -590,7 +593,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see deposito.model.GestorEstructuraDepositoBI#actualizarSignaturaHueco(gcontrol.vos.ArchivoVO,
 	 *      deposito.vos.HuecoVO, java.lang.String)
 	 */
@@ -639,7 +642,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Resignaturar la unidad de instalaci�n y unidades documentales de la
 	 * caja
-	 * 
+    *
 	 * @param archivoVO
 	 * @param unHueco
 	 * @param destinoUI
@@ -901,7 +904,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Obtiene el Dep�sito de al que pertenece un elemento asignable.
-	 * 
+    *
 	 * @param idElemento
 	 *            IdElemento
 	 * @param idTipoElemento
@@ -1128,7 +1131,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * M�todo com�n para ubicar una Relaci�n, el m�todo que lo llama
 	 * deber�a estar dentro de una transacci�n
-	 * 
+    *
 	 * @param relacionBI
 	 *            Servicio de relaciones
 	 * @param gestionFondos
@@ -1387,7 +1390,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Modifica la signatura de las unidades documentales de una unidad de
 	 * instalaci�n
-	 * 
+    *
 	 * @param idUI
 	 *            Identificador de la unidad de instalaci�n.
 	 * @param signaturaUI
@@ -1429,7 +1432,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#ubicarRelacionConTransact(java
 	 * .lang.String, java.util.List, java.util.List, java.util.List,
@@ -1463,7 +1466,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#ubicarRelacion(java.lang.String
 	 * , java.util.List, java.util.List, java.util.List, java.lang.String,
@@ -1519,7 +1522,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see deposito.model.GestorEstructuraDepositoBI#getElementosNoAsignables(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -1530,7 +1533,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Rechaza una solicitud de reserva para una relaci�n de entrega
-	 * 
+    *
 	 * @param relacionVO
 	 *            relaci�n para la que se solicita la reserva
 	 */
@@ -1584,7 +1587,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Realiza el borrado de una unidad de instalacion por su identificador.
-	 * 
+    *
 	 * @param idUInstaEnDeposito
 	 *            Identificador de la unidad.
 	 * @throws Exception
@@ -1605,7 +1608,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Realiza la liberacion de una unidad de instalacion poniendo su estado a
 	 * libre 'L' y a nulo el campo IDUINSTALACION
-	 * 
+    *
 	 * @param conn
 	 *            Conexion a la base de datos
 	 * @param idUnidadInstalacion
@@ -1636,7 +1639,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene los datos de ocupaci�n de una de las ubicaciones del fondo
 	 * f�sico
-	 * 
+    *
 	 * @param idUbicacion
 	 *            Identificador de ubicaci�n
 	 * @return Datos de ocupaci�n de la ubicaci�n
@@ -1648,7 +1651,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene los datos de ocupaci�n de una de los elementos no asignables
 	 * del fondo f�sico
-	 * 
+    *
 	 * @param idUbicacion
 	 *            Identificador de elemento no asignable
 	 * @return Datos de ocupaci�n de la ubicaci�n
@@ -1662,7 +1665,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Libera los huecos que han sido reservados para ubicar una relaci�n de
 	 * entrega
-	 * 
+    *
 	 * @param idRelacion
 	 *            Identificador de relaci�n de entrega
 	 */
@@ -1675,7 +1678,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene los datos de ocupaci�n en el formato indicado de un elemento
 	 * del fondo f�sico
-	 * 
+    *
 	 * @param idElemento
 	 *            Identificador de elemento del fondo f�sico
 	 * @param tipoElemento
@@ -1709,7 +1712,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene los datos de ocupaci�n en el formato indicado de un elemento
 	 * del fondo f�sico entre archivos
-	 * 
+    *
 	 * @param idElemento
 	 *            Identificador de elemento del fondo f�sico
 	 * @param tipoElemento
@@ -1744,7 +1747,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene el n�mero de huecos de un determinado formato disponibles en
 	 * una ubicaci�n del fondo f�sico manejado por el sistema
-	 * 
+    *
 	 * @param idDeposito
 	 *            Identificador de ubicaci�n
 	 * @param idFormato
@@ -1794,7 +1797,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene una unidad documental instalada en una determinada posici�n
 	 * dentro de una unidad de instalacion
-	 * 
+    *
 	 * @param idUInstalacion
 	 *            Identificador de unidad de instalaci�n instalada en un hueco
 	 *            del dep�sito f�sico
@@ -1874,7 +1877,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene los datos de uno de los formatos de hueco admitidos por el
 	 * sistema
-	 * 
+    *
 	 * @param idFormatoHueco
 	 *            Identificador del formato
 	 * @return Datos de formato de hueco
@@ -1886,7 +1889,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Crea o actualiza un elemento asignable del dep�sito f�sico gestionado
 	 * por el sistema
-	 * 
+    *
 	 * @param infoAsignable
 	 *            Datos del elemento asignable a almacenar
 	 * @throws ActionNotAllowedException
@@ -1954,7 +1957,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Crea o actualiza un elemento no asignable del dep�sito f�sico
 	 * gestionado por el sistema
-	 * 
+    *
 	 * @param infoNoAsignable
 	 *            Datos del elemento no asignable a almacenar
 	 * @throws ActionNotAllowedException
@@ -2182,7 +2185,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene un resumen de la ocupaci�n de un elemento del dep�sito
 	 * f�sico gestionado por el sistema
-	 * 
+    *
 	 * @param elementoDeposito
 	 *            Elemento del deposito para el que se calcula la ocupaci�n.
 	 *            Caso de ser nulo se calcula la ocupaci�n del conjunto del
@@ -2204,7 +2207,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#getResumenOcupacionByUbicaciones
 	 * (java.util.List)
@@ -2260,7 +2263,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Obtiene los huecos cuyos identificadores se suministran
-	 * 
+    *
 	 * @param idHuecosAMover
 	 *            Lista de identificadores de hueco {@link HuecoID}
 	 * @return Lista de huecos {@link HuecoVO}
@@ -2275,7 +2278,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Obtiene la lista de dep�sitos electr�nicos.
-	 * 
+    *
 	 * @return Lista de dep�sitos electr�nicos (
 	 *         {@link DepositoElectronicoVO}).
 	 */
@@ -2285,7 +2288,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Obtiene la informaci�n de un dep�sito electr�nico.
-	 * 
+    *
 	 * @param id
 	 *            Identificador del dep�sito electr�nico.
 	 * @return Dep�sito electr�nico.
@@ -2296,7 +2299,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Obtiene la informaci�n de un dep�sito electr�nico.
-	 * 
+    *
 	 * @param idExt
 	 *            Identificador externo del dep�sito electr�nico.
 	 * @return Dep�sito electr�nico.
@@ -2308,7 +2311,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Crea un dep�sito electr�nico.
-	 * 
+    *
 	 * @param deposito
 	 *            Informaci�n del dep�sito electr�nico.
 	 * @return Dep�sito electr�nico creado.
@@ -2338,7 +2341,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Modifica la informaci�n de un dep�sito electr�nico.
-	 * 
+    *
 	 * @param deposito
 	 *            Informaci�n del dep�sito electr�nico.
 	 * @throws DepositoElectronicoAlreadyExistsException
@@ -2364,7 +2367,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Elimina un dep�sito electr�nico.
-	 * 
+    *
 	 * @param deposito
 	 *            Dep�sito electr�nico.
 	 * @throws DepositoElectronicoEnUsoException
@@ -2392,7 +2395,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Elimina un dep�sito electr�nico.
-	 * 
+    *
 	 * @param id
 	 *            Identificador del dep�sito electr�nico.
 	 * @throws DepositoElectronicoEnUsoException
@@ -2408,7 +2411,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Elimina una lista de dep�sitos electr�nicos.
-	 * 
+    *
 	 * @param ids
 	 *            Lista de identificadores de dep�sitos electr�nicos.
 	 * @return Informaci�n de la eliminaci�n.
@@ -2447,7 +2450,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see deposito.model.GestorEstructuraDepositoBI#getFormatosRegulares()
 	 */
 	public List getFormatosRegulares() {
@@ -2456,7 +2459,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see deposito.model.GestorEstructuraDepositoBI#getFormatosIrregulares()
 	 */
 	public List getFormatosIrregulares() {
@@ -2505,19 +2508,19 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	 * M�todo para actualizar la informaci�n de volumen de las series a las
 	 * que pertenecen las unidades documentales reubicadas y la informaci�n de
 	 * los huecos afectados por la misma
-	 * 
+    *
 	 * Condiciones de actualizaci�n de volumen de serie: 1. Si la caja destino
 	 * existe Si (la caja origen se queda vac�a O la caja origen no contiene
 	 * m�s udocs de la misma serie que la reubicada) volumen serie = volumen
 	 * serie - volumen caja origen
-	 * 
+    *
 	 * Si la caja destino no contiene ninguna udoc de la misma serie volumen
 	 * serie = volumen serie + volumen caja destino
-	 * 
+    *
 	 * 2. Si la caja destino es nueva Si (la caja origen se queda vac�a O la
 	 * caja origen no contiene m�s udocs de la misma serie que la reubicada)
 	 * volumen serie = volumen caja destino - volumen caja origen
-	 * 
+    *
 	 * Sino (Si la caja origen no se queda vac�a) volumen serie = volumen
 	 * serie + volumen caja destino
 	 */
@@ -2643,9 +2646,14 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 				UnidadDocumentalVO unidadDocumentalVO = _unidadDocumentalDBEntity
 						.getUnidadDocumental(uDocEnUi.getIdunidaddoc());
 
-				String idSerie = unidadDocumentalVO.getIdSerie();
-				if (!contains(idSerie, idsSeriesCajaOrigen)) {
-					idsSeriesCajaOrigen.add(idSerie);
+				if(unidadDocumentalVO != null){
+					String idSerie = unidadDocumentalVO.getIdSerie();
+					if (!contains(idSerie, idsSeriesCajaOrigen)) {
+						idsSeriesCajaOrigen.add(idSerie);
+					}
+				}
+				else{
+					logger.info("No existe la unidad documental con id:" + uDocEnUi.getIdunidaddoc());
 				}
 			}
 
@@ -2690,7 +2698,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 						 * => Si la origen deja de contener udocs de esa serie,
 						 * hay que decrementar el n�mero de cajas siempre, sin
 						 * condiciones
-						 * 
+						*
 						 * if(contains(idSerie,idsSeriesCajaDestino)){
 						 * //getGestionSeriesBI().updateVolumenSerie(idSerie, 0,
 						 * -1, 0); incrementoUIs = -1; }
@@ -2752,7 +2760,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#reubicarUnidadesDocumentales
 	 * (java.util.List, java.lang.String)
@@ -3027,7 +3035,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Comprueba si existe el valor de cadena en el array de cadenas.
-	 * 
+    *
 	 * @param String
 	 *            cadena Cadena a buscar
 	 * @param String
@@ -3056,7 +3064,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#getUDocsValidadasEnUInstalacion
 	 * (java.lang.String)
@@ -3068,7 +3076,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#getUDocsById(java.lang.String
 	 * [])
@@ -3079,7 +3087,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#getUDocsById(java.lang.String
 	 * [], java.lang.String[])
@@ -3099,7 +3107,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#insertarFormato(deposito.vos
 	 * .FormatoHuecoVO)
@@ -3113,7 +3121,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#modificarFormato(deposito.vos
 	 * .FormatoHuecoVO)
@@ -3136,7 +3144,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#isFormatoHuecoEliminable(java
 	 * .lang.String)
@@ -3155,7 +3163,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#isFormatoHuecoModificable(java
 	 * .lang.String)
@@ -3183,7 +3191,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#deleteFormatos(java.lang.String
 	 * [])
@@ -3199,7 +3207,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#deleteFormato(java.lang.String)
 	 */
@@ -3435,7 +3443,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	}
 
 	/**
-	 * 
+    *
 	 * @param elementoVO
 	 * @param numHuecosABuscar
 	 * @param idFormato
@@ -3552,7 +3560,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	}
 
 	/**
-	 * 
+    *
 	 * @param huecoOrigenVO
 	 * @param huecoDestinoVO
 	 * @param tipoOrdenacion
@@ -3568,7 +3576,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	}
 
 	/**
-	 * 
+    *
 	 * @param codOrden
 	 * @param idDeposito
 	 * @return un elementoVO que contenga como codigo de orden codOrden y
@@ -3587,7 +3595,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#getUbicacionesXIdsArchivo(java
 	 * .lang.String[])
@@ -3598,7 +3606,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#getUDocsEnPrestamoByEstado(
 	 * java.util.List, int[])
@@ -3613,7 +3621,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#getNumHuecosNoLibres(java.lang
 	 * .String)
@@ -3624,7 +3632,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#organizarUDocsEnUInst(java.
 	 * util.List)
@@ -3762,7 +3770,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	 * String idFormato,int numMaxResults) throws TooManyResultsException{
 	 * HashSet setTotalAsignables=new HashSet(); List listaTotalAsignables=new
 	 * ArrayList(); boolean formatoVacio=StringUtils.isEmpty(idFormato);
-	 * 
+    *
 	 * for(int i=0;i<idsAmbito.length;i++){ ElementoVO
 	 * elementoVO=getNoAsignable(idsAmbito[i]); if(elementoVO==null){
 	 * elementoVO=getAsignable(idsAmbito[i]); if(elementoVO!=null){ //comprobar
@@ -3772,12 +3780,12 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	 * continue;
 	 * checkAndInsertsIfNotPresent(setTotalAsignables,listaTotalAsignables,
 	 * elementoVO.getId(),numMaxResults); continue; } }
-	 * 
+    *
 	 * //recorrido en profundidad List
 	 * listaHijosDirectos=getHijosElemento(elementoVO);
-	 * 
+    *
 	 * if(listaHijosDirectos==null) continue; ElementoVO elem=null;
-	 * 
+    *
 	 * while(listaHijosDirectos.size()>0){
 	 * elem=(ElementoVO)listaHijosDirectos.remove(0); if(elem.isAsignable()){
 	 * if(!formatoVacio &&
@@ -3787,13 +3795,13 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	 * listaHijos=getHijosElemento(elem); if(listaHijos!=null ||
 	 * listaHijos.size()>0) listaHijosDirectos.addAll(0,getHijosElemento(elem));
 	 * } } } return new ArrayList(listaTotalAsignables); }
-	 * 
+    *
 	 * /*private void checkAndInsertsIfNotPresent(HashSet set,List lista, String
 	 * id,int numMaxResults) throws TooManyResultsException{
 	 * if(!set.contains(id)){ set.add(id); lista.add(id);
 	 * if(lista.size()>numMaxResults){ throw new
 	 * TooManyResultsException(lista.size(),numMaxResults); } } }
-	 * 
+    *
 	 * private List getHijosElemento(ElementoVO elementoVO) {
 	 * if(elementoVO.isAsignable()) return new ArrayList(); List
 	 * lista=_noAsignableDBEntity.getByIdPadre(elementoVO.getIdElemento(),
@@ -3931,7 +3939,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	 * Actualiza el formato del elemento asignable del dep�sito f�sico
 	 * gestionado por el sistema, el de los huecos en que se divida y el de las
 	 * cajas que contengan esos huecos
-	 * 
+    *
 	 * @param infoAsignable
 	 *            Datos del elemento asignable a almacenar
 	 * @throws ActionNotAllowedException
@@ -3985,7 +3993,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Permite obtener los padres de un hueco
-	 * 
+    *
 	 * @param hueco
 	 *            Hueco del que se desea obtener los padres
 	 * @return Lista de padres de un hueco comenzando desde el primer nivel y
@@ -4017,7 +4025,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Devuelve el hueco en el que se encuentra la unidad de instalaci�n
 	 * pasada como par�metro dentro de las ubicaciones del archivo indicado
-	 * 
+    *
 	 * @param idUInstalacion
 	 * @param idArchivo
 	 * @return HuecoVO
@@ -4032,7 +4040,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	 * Comprueba si existe alg�n hueco para alguno de los dep�sitos
 	 * pertenecientes al archivo pasado como parametro en cuyo caso no ser�a
 	 * posible editar el campoo tipo signaturaci�n.
-	 * 
+    *
 	 * @param idArchivo
 	 * @return
 	 */
@@ -4046,7 +4054,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	 * Obtiene el HuecoVO perteneciente a un deposito del archivo cuya
 	 * numeracion coincide con la pasada como parametro. En caso de no ser as�
 	 * se devolvera NULL.
-	 * 
+    *
 	 * @param idArchivo
 	 * @param numeracion
 	 * @return
@@ -4084,7 +4092,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see
 	 * deposito.model.GestorEstructuraDepositoBI#hasChildsAsignables(java.lang
 	 * .String)
@@ -4145,7 +4153,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	 * Comprueba si el deposito en el nos encontramos permite editar la
 	 * numeracion de sus huecos. Esto ocurre siempre que pertenecezca a un
 	 * archivo cuyo tipo de signaturacion sea asociada a hueco.
-	 * 
+    *
 	 * @param idDeposito
 	 * @return
 	 */
@@ -4159,7 +4167,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene la menor numeraci�n existente para el elemento padre pasado
 	 * como parametro
-	 * 
+    *
 	 * @param idElemAPadre
 	 * @return
 	 */
@@ -4170,7 +4178,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene la mayor numeraci�n existente para el elemento padre pasado
 	 * como parametro
-	 * 
+    *
 	 * @param idElemAPadre
 	 * @return
 	 */
@@ -4181,7 +4189,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene la menor numeraci�n existente para el elemento padre pasado
 	 * como parametro
-	 * 
+    *
 	 * @param idElemAPadre
 	 * @return
 	 */
@@ -4193,7 +4201,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene la mayor numeraci�n existente para el elemento padre pasado
 	 * como parametro
-	 * 
+    *
 	 * @param idElemAPadre
 	 * @return
 	 */
@@ -4204,7 +4212,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Se encarga de llevar a cabo la renumeraci�n de los huecos.
-	 * 
+    *
 	 * @param huecoID
 	 * @param nuevaNumeracion
 	 * @param renumerar
@@ -4256,7 +4264,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 	/**
 	 * Obtiene el numero total de huecos numericos que tiene un determinado
 	 * elemento.
-	 * 
+    *
 	 * @param idElementoPadre
 	 * @return
 	 */
@@ -4266,7 +4274,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Comprueba si es posible editar el archivo al que pertenece una ubicacion.
-	 * 
+    *
 	 * @param idArchivo
 	 * @return
 	 */
@@ -4296,7 +4304,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * Realiza el hist�rico de la unidad de instalaci�n
-	 * 
+    *
 	 * @param uInstDepositoVO
 	 *            Unidad de Instalaci�n
 	 * @param motivo
@@ -4344,7 +4352,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @throws IeciTdException
 	 * @see deposito.model.GestorEstructuraDepositoBI#getHuecosPorSignaturas(java.lang.String,
 	 *      java.lang.String, java.lang.String, common.util.IntervalOptions)
@@ -4360,7 +4368,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @throws IeciTdException
 	 * @see deposito.model.GestorEstructuraDepositoBI#getUnidadesInstalacionPorAnioYSerie(deposito.vos.BusquedaUIAnioSerieVO)
 	 */
@@ -4488,7 +4496,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see deposito.model.GestorEstructuraDepositoBI#getPathPadre(java.lang.String)
 	 */
 	public String getPathPadre(String idElemNoAsig) {
@@ -4506,7 +4514,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see deposito.model.GestorEstructuraDepositoBI#guardarElementoNoAsignable(deposito.vos.ElementoNoAsignableVO)
 	 */
 	public void guardarElementoNoAsignable(
@@ -4581,7 +4589,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see deposito.model.GestorEstructuraDepositoBI#tipoElementoReferenciado(java.lang.String,
 	 *      boolean)
 	 */
@@ -4603,7 +4611,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see deposito.model.GestorEstructuraDepositoBI#hasChilds(java.lang.String)
 	 */
 	public boolean hasChilds(String idTipoElemento) {
@@ -4673,7 +4681,7 @@ public class GestorEstructuraDeposito extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see deposito.model.GestorEstructuraDepositoBI#eliminarTipoElemento(java.lang.String)
 	 */
 	public void eliminarTipoElemento(String idTipoElemento)

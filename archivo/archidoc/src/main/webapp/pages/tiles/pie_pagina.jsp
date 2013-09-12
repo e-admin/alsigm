@@ -17,7 +17,6 @@
 	</div>
 	<hr />
 	<div id="optimizado" class="pie">
-		<%--Optimizado para IE5+ o NN 4.x - Resoluci&oacute;n M&iacute;nima: 800x600--%>
 		<bean:message key="pie_pagina.linea2" />
 	</div>
 

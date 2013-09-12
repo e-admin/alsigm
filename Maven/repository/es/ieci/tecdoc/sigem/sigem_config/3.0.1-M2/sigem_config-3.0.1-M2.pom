@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main</artifactId>
+		<version>3.0.1-M2</version>
+	</parent>
+
+	<artifactId>sigem_config</artifactId>
+	<packaging>pom</packaging>
+	<description>Ficheros de configuración para las distintas aplicaciones de SIGEM</description>
+
+	<!--
+		Estas dependencias son los .zip que contienen los configurables
+		de las distintas aplicaciones web.
+	-->
+	<properties>
+	</properties>
+	<dependencies>
+
+		<!-- sigem core -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>
+				sigem_core
+			</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+
+		<!-- firma digital -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>
+				sigem_firmaDigital
+			</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- cripto validacion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>
+				sigem_criptoValidacion
+			</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- registro presencial -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>
+				sigem_registroPresencial-configurable-resources
+			</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>
+				SIGEM_RegistroPresencialAdminWeb-configurable-resources
+			</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>
+				sigem_registroPresencialWeb-configurable-resources
+			</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>
+				sigem_registroPresencialWS-configurable-resources
+			</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- archivo -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_archivoResources_configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- notificacion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_notificacion-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- Pago eletronico -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_PagoElectronico-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- Registro telematico -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_registroTelematico-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_CatalogoProcedimientosWeb -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_CatalogoProcedimientosWeb-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_PublicadorWeb -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_PublicadorWeb-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_MensajesCortosWS -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_MensajesCortosWS-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_PublicadorWS -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_PublicadorWS-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_SchedulerWeb -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_SchedulerWeb-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_TercerosWS -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_TercerosWS-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_Tramitacion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Tramitacion-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_TramitacionWeb -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_TramitacionWeb-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_TramitacionWS -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_TramitacionWS-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_BuscadorDocsWeb -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_BuscadorDocsWeb-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_ConsultaRegistroTelematicoWeb -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_ConsultaRegistroTelematico-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_ConsultaRegistroTelematicoBackOfficeWeb -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_ConsultaRegistroTelematicoBackOffice-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_ConsultaExpedienteBackOfficeWeb -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_ConsultaExpedienteBackOffice-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_Consulta -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Consulta-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_Certificacion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Certificacion-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_AutenticacionAdministracion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_AutenticacionAdministracion-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_AutenticacionBackOffice -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_AutenticacionBackOffice-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_Autenticacion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Autenticacion-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- Gestion de CSV -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_gestionCSV-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_Catastro -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Catastro-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_GeoLocalizacion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_GeoLocalizacion-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_Consolidacion -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Consolidacion</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- ECO Logo -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>
+				sigem_utilidadesAdministracion
+			</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!--  sigem_log-configurable-resource de los proyectos que no tienen configurables-->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>sigem_log-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!--  Módulos Framework -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_Config_Fwktd</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+
+		<!-- SIGEM_ServicioIntermediacionClienteLigeroWS -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_ServicioIntermediacionClienteLigeroWS-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<!-- SIGEM_PortafirmasNotificacionWS -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_PortafirmasNotificacionWS-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_SignoWS-configurable-resources</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!--
+				Este Plugin descomprime las dependecias (ficheros configurables)
+				y hace un .zip con todo lo descomprimido + el fichero
+				SIGEM_spring.properties que hay en src/main/conf
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>assembly-common-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>
+									src/main/assembly/dep-configurable.xml
+								</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

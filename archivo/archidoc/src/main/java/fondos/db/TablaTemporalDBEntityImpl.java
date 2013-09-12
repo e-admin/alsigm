@@ -3,7 +3,7 @@
  */
 package fondos.db;
 
-import fondos.db.ibmdb2.ElementoCuadroClasificacionDBEntityImpl;
+
 import fondos.vos.TablaTemporalFondosVO;
 import ieci.core.db.DbColumnDef;
 import ieci.core.db.DbConnection;
@@ -14,6 +14,7 @@ import ieci.core.db.DbUtil;
 
 import java.util.HashMap;
 
+import common.Constants;
 import common.db.DBCommand;
 import common.db.DBEntity;
 import common.db.DBUtils;
@@ -98,45 +99,53 @@ public class TablaTemporalDBEntityImpl extends DBEntity implements
 			public void codeLogic(DbConnection conn) throws Exception {
 
 				/*
-				 * SELECT 'IDUSUARIO' AS IDUSUARIO, 'ID' AS IDENTIFICADOR,
+				* SELECT ´IDUSUARIO´ AS IDUSUARIO, ´ID´ AS IDENTIFICADOR,
 				 * DI.IDUNIDADDOC , F.CODIGO ,DI.IDUINSTALACION FROM
 				 * ASGDUDOCENUI DI LEFT OUTER JOIN ASGFELEMENTOCF F ON F.ID =
 				 * DI.IDUNIDADDOC WHERE DI.IDUNIDADDOC IN( SELECT IDELEMENTOCF
 				 * FROM ASGFTMP3 ) ;
 				 */
 
+				/*
+				* SELECT '1', '0eecf4091add000000000000000009e4', asgfelementocf.id,
+       asgfelementocf.codigo, asgdudocenui.iduinstalacion
+FROM asgfelementocf asgfelementocf
+LEFT OUTER JOIN asgdudocenui asgdudocenui
+    ON asgdudocenui.idunidaddoc = asgfelementocf.ID
+				*
+				*
+				*/
+
 				JoinDefinition[] joins = new JoinDefinition[] {
 
 				new JoinDefinition(
-						UDocEnUiDepositoDbEntityImpl.IDUNIDADDOC_FIELD,
-						ElementoCuadroClasificacionDBEntityImpl.ID_ELEMENTO_FIELD) };
+						ElementoCuadroClasificacionDBEntityImplBase.ID_ELEMENTO_FIELD,
+						UDocEnUiDepositoDbEntityImpl.IDUNIDADDOC_FIELD
+				) };
 
 				StringBuffer selectClause =
 
 				new StringBuffer(DBUtils.SELECT)
-						.append("'")
-						.append(tablaTemporal.getIdUsuario())
-						.append("',")
-						.append("'")
-						.append(tablaTemporal.getIdentificador())
-						.append("',")
-						.append(UDocEnUiDepositoDbEntityImpl.IDUNIDADDOC_FIELD
-								.getQualifiedName())
-						.append(",")
-						.append(ElementoCuadroClasificacionDBEntityImplBase.CODIGO_FIELD
-								.getQualifiedName())
-						.append(",")
-						.append(UDocEnUiDepositoDbEntityImpl.IDUINSTALACION_FIELD
-								.getQualifiedName())
+						.append(DBUtils.getValorCadenaSql(tablaTemporal.getIdUsuario()))
+						.append(Constants.COMMA)
+						.append(DBUtils.getValorCadenaSql(tablaTemporal.getIdentificador()))
+						.append(Constants.COMMA)
+						.append(ElementoCuadroClasificacionDBEntityImplBase.ID_ELEMENTO_FIELD.getQualifiedName())
+						.append(Constants.COMMA)
+						.append(ElementoCuadroClasificacionDBEntityImplBase.CODIGO_FIELD.getQualifiedName())
+						.append(Constants.COMMA)
+						.append(DBUtils.getNativeIfNullSintax(getConnection() ,UDocEnUiDepositoDbEntityImpl.IDUINSTALACION_FIELD
+								.getQualifiedName() , DBUtils.getValorCadena(Constants.GUION))
+								)
 						.append(DBUtils.FROM)
 						.append(DBUtils
 								.generateLeftOuterJoinCondition(
 										new TableDef(
-												UDocEnUiDepositoDbEntityImpl.TABLE_NAME),
+												ElementoCuadroClasificacionDBEntityImplBase.TABLE_NAME_ELEMENTO),
 										joins))
 						.append(DBUtils.WHERE)
 						.append(DBUtils.generateInTokenField(
-								UDocEnUiDepositoDbEntityImpl.IDUNIDADDOC_FIELD,
+								ElementoCuadroClasificacionDBEntityImplBase.ID_ELEMENTO_FIELD,
 								ids));
 
 				DbInsertFns.insertAsSelect(conn,
@@ -184,7 +193,7 @@ public class TablaTemporalDBEntityImpl extends DBEntity implements
 	 * @see fondos.db.ITablaTemporalDBEntity#truncateTable(java.lang.String)
 	 */
 	public void truncateTable(String nombreTabla) throws Exception {
-		DbTableFns.truncateTable(getConnection(), nombreTabla);
+		deleteVO("", nombreTabla);
 	}
 
 	public static String getSelectCodigoFromTemporal(
@@ -214,11 +223,11 @@ public class TablaTemporalDBEntityImpl extends DBEntity implements
 
 	private static String getWhere(TablaTemporalFondosVO tablaTemporalFondosVO) {
 		StringBuffer where = new StringBuffer(DBUtils.WHERE)
-				.append(IDUSUARIO_COLUMN_NAME).append("='")
-				.append(tablaTemporalFondosVO.getIdUsuario()).append("'")
+				.append(IDUSUARIO_COLUMN_NAME).append("=")
+				.append(DBUtils.getValorCadenaSql(tablaTemporalFondosVO.getIdUsuario()))
 				.append(DBUtils.AND).append(IDENTIFICADOR_COLUMN_NAME)
-				.append("='").append(tablaTemporalFondosVO.getIdentificador())
-				.append("'");
+				.append("=").append(DBUtils.getValorCadenaSql(tablaTemporalFondosVO.getIdentificador()))
+				;
 
 		return where.toString();
 

@@ -53,7 +53,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Introduce en la request la lista de fichas
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -81,7 +81,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Inicializa la creación de una ficha
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -105,7 +105,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Valida el formulario
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -236,7 +236,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Comprueba que los campos de tipo dato existen en la base de datos
-	 * 
+    *
 	 * @param descripcionService
 	 * @param campos
 	 */
@@ -278,7 +278,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Crea una nueva ficha, y un formato
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -314,7 +314,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Actualiza una ficha
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -355,7 +355,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Recupera una ficha desde la lista de fichas
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -380,7 +380,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Recupera una ficha
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -405,7 +405,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Elimina una ficha
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -428,7 +428,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Accede a la página que permite importar una definición de ficha
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -444,7 +444,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Copia a la definición de una ficha, el contenido de un fichero de texto.
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -476,7 +476,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Sale de la página que permite importar una definición de ficha
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -493,7 +493,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 	/**
 	 * Accede a la página que permite exportar la definición de una ficha a un
 	 * fichero
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -501,29 +501,12 @@ public class GestionFormatoFichaAction extends BaseAction {
 	 */
 	public void exportExecuteLogic(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-
-		/*
-		 * FmtFichaVO fmtFichaVO = (FmtFichaVO)getFromTemporalSession(request,
-		 * FMT_FICHA_VO);
-		 * 
-		 * if ((fmtFichaVO != null) && (fmtFichaVO.getDefinicion()!=null)) { try
-		 * { String definicion = fmtFichaVO.getDefinicion();
-		 * 
-		 * download(response, fmtFichaVO.getNombre() +
-		 * ".xml",definicion.getBytes()); } catch (Exception e) {
-		 * obtenerErrores(request, true) .add(ActionErrors.GLOBAL_MESSAGE, new
-		 * ActionError(Constants.GLOBAL_ARCHIGEST_EXCEPTION, e.toString())); } }
-		 * else { obtenerErrores(request, true)
-		 * .add(ActionErrors.GLOBAL_MESSAGE, new
-		 * ActionError(ErrorKeys.ERROR_DESCRIPCION_EXPORTAR_DEF_NO_ENCONTRADA));
-		 * }
-		 */
 		try {
 			FormatoFichasForm formulario = (FormatoFichasForm) form;
 
 			String definicion = formulario.getDefinicion();
 
-			download(response, formulario.getNombre(), definicion.getBytes());
+			download(response, formulario.getNombreFicheroExportXml(null, formulario.getNombre()), definicion.getBytes());
 
 		} catch (Exception e) {
 			obtenerErrores(request, true).add(
@@ -537,7 +520,7 @@ public class GestionFormatoFichaAction extends BaseAction {
 
 	/**
 	 * Carga en sesión las listas de normas y de niveles
-	 * 
+    *
 	 * @param HttpServletRequest
 	 *            request
 	 * @param FormatoFichasForm
@@ -560,14 +543,11 @@ public class GestionFormatoFichaAction extends BaseAction {
 		setInTemporalSession(request, ControlAccesoConstants.LISTA_FICHAS,
 				descripcionService.getFichas());
 
-		// setInTemporalSession(request,DescripcionConstants.LISTA_TIPO_NORMAS_KEY,
-		// descripcionService.makeListTipoNorma());
-		// loadNiveles(formatoFichasForm,request);
 	}
 
 	/**
 	 * Comprueba si hay alguna ficha seleccionada a borrar
-	 * 
+    *
 	 * @param FormatoFichasForm
 	 *            frm
 	 * @return

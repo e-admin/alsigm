@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main</artifactId>
+		<version>3.0.1-M2</version>
+	</parent>
+
+	<artifactId>sigem_archivoModules</artifactId>
+	<name>SIGEM_Archivo_Modules</name>
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<description>Módulos de SIGEM Archivo</description>
+
+	<profiles>
+		<profile>
+			<id>generate-config</id>
+			<activation>
+				<property>
+					<name>config</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_Archivo_Resources_Configurable</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jars</id>
+			<activation>
+				<property>
+					<name>jars</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>SIGEM_Archivo_Main</module>
+				<module>SIGEM_Archivo_Jar</module>
+				<module>SIGEM_Archivo_Resources</module>
+				<module>SIGEM_Archivo_Resources_Configurable</module>
+				<module>SIGEM_Archivo_Webapp</module>
+				<module>SIGEM_Archivo_WSClient</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_Archivo_War</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>archivoWeb</id>
+			<activation>
+				<property>
+					<name>archivoWeb</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_Archivo_Web</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>

@@ -3,10 +3,12 @@ package ieci.tdw.ispac.api.impl;
 import ieci.tdw.ispac.api.ICatalogAPI;
 import ieci.tdw.ispac.api.IEntitiesAPI;
 import ieci.tdw.ispac.api.IInvesflowAPI;
+import ieci.tdw.ispac.api.ISPACEntities;
 import ieci.tdw.ispac.api.ISecurityAPI;
 import ieci.tdw.ispac.api.IWorklistAPI;
 import ieci.tdw.ispac.api.entities.SpacEntities;
 import ieci.tdw.ispac.api.errors.ISPACException;
+import ieci.tdw.ispac.api.errors.ISPACNullObject;
 import ieci.tdw.ispac.api.item.IItem;
 import ieci.tdw.ispac.api.item.IItemCollection;
 import ieci.tdw.ispac.api.item.IProcedure;
@@ -16,7 +18,6 @@ import ieci.tdw.ispac.api.item.ITask;
 import ieci.tdw.ispac.ispaclib.catalog.procedure.IPcdElement;
 import ieci.tdw.ispac.ispaclib.context.ClientContext;
 import ieci.tdw.ispac.ispaclib.dao.CollectionDAO;
-import ieci.tdw.ispac.ispaclib.dao.procedure.DTTramiteDAO;
 import ieci.tdw.ispac.ispaclib.dao.procedure.PFaseDAO;
 import ieci.tdw.ispac.ispaclib.dao.procedure.PProcedimientoDAO;
 import ieci.tdw.ispac.ispaclib.dao.wl.DeadLineDAO;
@@ -39,6 +40,8 @@ import ieci.tdw.ispac.ispaclib.security.SecurityMgr;
 import ieci.tdw.ispac.ispaclib.utils.DBUtil;
 import ieci.tdw.ispac.ispaclib.utils.StringUtils;
 import ieci.tdw.ispac.ispaclib.worklist.WLProcessListBuilder;
+import ieci.tdw.ispac.ispaclib.worklist.WLTaskListBuilder;
+import ieci.tdw.ispac.ispaclib.worklist.WLTaskListFactory;
 import ieci.tdw.ispac.ispaclib.worklist.WLWorklistFactory;
 
 import java.io.InputStream;
@@ -55,10 +58,10 @@ import org.apache.log4j.Logger;
  * @author juanin
  *
  */
-public class WorklistAPI implements IWorklistAPI 
+public class WorklistAPI implements IWorklistAPI
 {
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final Logger logger = Logger.getLogger(WorklistAPI.class);
 	private final ClientContext context;
 	private int mWorkMode;
@@ -71,7 +74,7 @@ public class WorklistAPI implements IWorklistAPI
 		mWorkMode = IWorklistAPI.SUPERVISOR;
 	}
 
-	
+
 	/* (non-Javadoc)
 	 * @see ieci.tdw.ispac.api.IWorklistAPI#getRespString()
 	 */
@@ -82,7 +85,7 @@ public class WorklistAPI implements IWorklistAPI
 
 			TreeSet respList = new TreeSet();
 			DbCnt cnt = context.getConnection();
-	
+
 			try
 			{
 				Responsible user = context.getUser();
@@ -91,27 +94,27 @@ public class WorklistAPI implements IWorklistAPI
 				if (mWorkMode == IWorklistAPI.SUPERVISOR)
 				{
 					SecurityMgr securityMgr = new SecurityMgr(cnt);
-					
+
 					// Comprobar si el usuario tiene asignada la función de Supervisor
 					if (securityMgr.isSupervisor(user.getUID()))
-					{	
+					{
 						return Responsible.SUPERVISOR;
 					}
-					
+
 					// Supervisar (supervisados del usuario, del departamento y de los grupos a los que pertenece el usuario)
 					IItemCollection collection = securityMgr.getAllSuperviseds(user);
 					addRespListFromEntryUID(respList, collection, "UID_SUPERVISADO");
 					// Sustituir (sustituidos por el usuario, por el departamento y por los grupos a los que pertenece el usuario)
 					collection = securityMgr.getAllSubstitutes(user);
 					addRespListFromEntryUID(respList, collection, "UID_SUSTITUIDO");
-			
+
 				}
 			}
 			finally
 			{
 				context.releaseConnection( cnt);
 			}
-	
+
 			resp="'"+StringUtils.join(respList, "','")+"'";
 		}
 		if(logger.isDebugEnabled()){
@@ -121,25 +124,25 @@ public class WorklistAPI implements IWorklistAPI
 	}
 
 	private List getRespListFromEntryUID(String entryUID) throws ISPACException {
-		
+
 		IDirectoryConnector directory = DirectoryConnectorFactory.getConnector();
-		
+
 		IDirectoryEntry entry = directory.getEntryFromUID(entryUID);
 		Responsible resp = RespFactory.createResponsible(entry);
-		
+
 		return resp.getRespList();
 	}
-	
+
 //	private String getRespStringFromEntryUID(String entryUID) throws ISPACException {
-//		
+//
 //		IDirectoryConnector directory = DirectoryConnectorFactory.getConnector();
-//		
+//
 //		IDirectoryEntry entry = directory.getEntryFromUID(entryUID);
 //		Responsible resp= RespFactory.createResponsible(entry);
-//		
+//
 //		return resp.getRespString();
 //	}
-	
+
 	private String getSubstitutesRespString() throws ISPACException
 	{
 		if (StringUtils.isEmpty(resp)) {
@@ -174,7 +177,7 @@ public class WorklistAPI implements IWorklistAPI
 		}
 		return resp;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see ieci.tdw.ispac.api.IWorklistAPI#setMode(int)
 	 */
@@ -199,8 +202,8 @@ public class WorklistAPI implements IWorklistAPI
 		{
 			context.releaseConnection(cnt);
 		}
-	
-		
+
+
 	}
 	/* (non-Javadoc)
 	 * @see ieci.tdw.ispac.api.IWorklistAPI#findActiveStages(int)
@@ -210,19 +213,19 @@ public class WorklistAPI implements IWorklistAPI
 		IInvesflowAPI invesFlowAPI = context.getAPI();
 		IProcess iprocess = invesFlowAPI.getProcess(nIdProcess);
 		String resp ="";
-		
+
 		if(iprocess.getInt("TIPO")==IPcdElement.TYPE_SUBPROCEDURE){
 			resp=getRespStringSubProceso(0, context.getStateContext().getPcdId());
 		}
 		else{
 			resp= getRespString();
 		}
-	
+
 		return findActiveStages(nIdProcess, resp);
 	}
-	
+
 	public IItemCollection findActiveStages(int nIdProcess, String resp) throws ISPACException {
-		
+
 		DbCnt cnt = context.getConnection();
 		try
 		{
@@ -246,7 +249,7 @@ public class WorklistAPI implements IWorklistAPI
 		String resp = getRespString();
 		return findActiveTasks(nIdProcess, resp);
 	}
-	
+
 	public IItemCollection findActiveTasks(int nIdProcess, String resp) throws ISPACException
 	{
 		DbCnt cnt = context.getConnection();
@@ -294,7 +297,7 @@ public class WorklistAPI implements IWorklistAPI
 		String resp = getRespString();
 		return getProcedures(resp);
 	}
-	
+
 	public IItemCollection getProcedures(String resp) throws ISPACException
 	{
 		DbCnt cnt = context.getConnection();
@@ -337,29 +340,29 @@ public class WorklistAPI implements IWorklistAPI
 	{
 		//Si es supervisor podra crear todos, sino le corresponderan los suyos y y los que pueden crear los que sustituye
 		String resp = null;
-		
+
 		DbCnt cnt = context.getConnection();
 		try
 		{
 			Responsible user = context.getUser();
 			SecurityMgr securityMgr = new SecurityMgr(cnt);
 			// Comprobar si el usuario tiene asignada la función de Supervisor Total
-			if (securityMgr.isSupervisorTotal(user.getUID())){	
+			if (securityMgr.isSupervisorTotal(user.getUID())){
 				resp = Responsible.SUPERVISOR;
 			}else{
 				// los que sustituye
 				resp = getSubstitutesRespString();
 			}
-			
+
 			CollectionDAO pcdset=new CollectionDAO(PProcedimientoDAO.class);
-			
+
 			/* Procedimientos en vigor */
 			String sqlquery = "WHERE ESTADO=" + IProcedure.PCD_STATE_CURRENT
 				+ " AND TIPO=" + IProcedure.PROCEDURE_TYPE
-				+ " AND ID IN" 
+				+ " AND ID IN"
 				+ " (SELECT ID_PCD FROM SPAC_SS_PERMISOS WHERE  PERMISO="
 				+ ISecurityAPI.ISPAC_RIGHTS_CREATEEXP + DBUtil.addAndInResponsibleCondition("UID_USR", resp) + ") ORDER BY NOMBRE";
-			
+
 			pcdset.query(cnt,sqlquery);
 
 			return pcdset.disconnect();
@@ -427,18 +430,19 @@ public class WorklistAPI implements IWorklistAPI
 			context.releaseConnection(cnt);
 		}
 	}
+
 	/* (non-Javadoc)
-	 * @see ieci.tdw.ispac.api.IWorklistAPI#getProcesses(int)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getProcesses(int, InputStream)
 	 */
-	public IItemCollection getProcesses(int idStagePCD,InputStream processlistxml) throws ISPACException
+	public IItemCollection getProcesses(int idStagePCD, InputStream processlistxml) throws ISPACException
 	{
 		String resp = getRespString();
 		return getProcesses(idStagePCD, processlistxml, resp);
-		
+
 	}
-	
-	private IItemCollection getProcesses(int idStagePCD,InputStream processlistxml , String resp ) throws ISPACException{
-		
+
+	private IItemCollection getProcesses(int idStagePCD, InputStream processlistxml, String resp) throws ISPACException {
+
 		DbCnt cnt=null;
 		try
 		{	cnt = context.getConnection();
@@ -470,21 +474,21 @@ public class WorklistAPI implements IWorklistAPI
 			int idPcd=id_pcd;
 			ISecurityAPI securityAPI = invesFlowApi.getSecurityAPI();
 			responsibles = getRespString();
-			
-			// Comprobar si el usuario es SUPERVISOR 
+
+			// Comprobar si el usuario es SUPERVISOR
 			if (!Responsible.SUPERVISOR.equalsIgnoreCase(responsibles)) {
-				
+
 				if(idStagePCD!=0){
 					IItem stage = invesFlowApi.getProcedureStage(idStagePCD);
 					idPcd=stage.getInt("ID_PCD");
 				}
-				
+
 				IItemCollection itemcol=securityAPI.getPermission(ISecurityAPI.PERMISSION_TPOBJ_PROCEDURE, idPcd, null);
 				while(itemcol.next()){
 					responsibles+=" , '"+itemcol.value().getString("ID_RESP")+"'";
 				}
 			}
-			
+
 		} catch (ISPACException ie) {
 			logger.error("Error en WLWorklist:getRespStringSubProceso("
 					+ idStagePCD + ")", ie);
@@ -493,17 +497,17 @@ public class WorklistAPI implements IWorklistAPI
 		}
 		return responsibles;
 	}
-	
+
 	public IItemCollection getSubProcesses(int idActivityPCD, InputStream istream) throws ISPACException {
 		return getProcesses(idActivityPCD, istream, getRespStringSubProceso(idActivityPCD, 0));
 	}
-	
+
 	public IItemCollection getSubProcesses(int pcdId, int idActivityPCD, InputStream istream) throws ISPACException {
-		
+
 		DbCnt cnt = null;
-		
+
 		try {
-			
+
 			cnt = context.getConnection();
 			WLWorklistFactory wlfactory = new WLWorklistFactory();
 			WLProcessListBuilder wlbuilder = wlfactory.getProcessListBuilder(istream);
@@ -513,7 +517,7 @@ public class WorklistAPI implements IWorklistAPI
 
 			CollectionDAO coldao = wlbuilder.getWorklist(cnt, pcdId, idActivityPCD, getRespStringSubProceso(idActivityPCD, 0));
 			return coldao.disconnect();
-			
+
 		} catch (ISPACException ie) {
 			logger.error("Error al obtener los subprocesos", ie);
 			throw new ISPACException("Error en WorklistAPI:getSubProcesses(" + idActivityPCD + ")", ie);
@@ -521,9 +525,7 @@ public class WorklistAPI implements IWorklistAPI
 			context.releaseConnection(cnt);
 		}
 	}
-	
-	
-	
+
 	/* (non-Javadoc)
 	 * @see ieci.tdw.ispac.api.IWorklistAPI#getProcess(java.lang.String)
 	 */
@@ -534,9 +536,12 @@ public class WorklistAPI implements IWorklistAPI
 		{
 			return new WLProcessDAO(cnt, numexp);
 		}
+		catch (ISPACNullObject inoe) {
+			throw inoe;
+		}
 		catch (ISPACException ie)
 		{
-			throw new ISPACException("Error en WLWorklist:getProcessByNumexp("
+			throw new ISPACException("Error en WLWorklist:getProcess("
 					+ numexp + ")", ie);
 		}
 		finally
@@ -546,14 +551,13 @@ public class WorklistAPI implements IWorklistAPI
 	}
 
 	public IItemCollection getProcesses(String[] numexps) throws ISPACException {
-		
+
 		DbCnt cnt = context.getConnection();
 		try
 		{
 			WLProcessDAO process = new WLProcessDAO(cnt);
 			CollectionDAO colDao = process.loadProcessByNumExps(cnt, numexps);
 			return colDao.disconnect();
-			
 		}
 		catch (ISPACException ie)
 		{
@@ -564,8 +568,8 @@ public class WorklistAPI implements IWorklistAPI
 		{
 			context.releaseConnection(cnt);
 		}
-
 	}
+
 	/* (non-Javadoc)
 	 * @see ieci.tdw.ispac.api.IWorklistAPI#getProcess(int)
 	 */
@@ -575,6 +579,9 @@ public class WorklistAPI implements IWorklistAPI
 		try
 		{
 			return new WLProcessDAO(cnt, id);
+		}
+		catch (ISPACNullObject inoe) {
+			throw inoe;
 		}
 		catch (ISPACException ie)
 		{
@@ -597,24 +604,24 @@ public class WorklistAPI implements IWorklistAPI
 		String resp = getRespString();
 		return getStages(idProcedure, resp);
 	}
-	
+
 	public IItemCollection getStages(int idProcedure, String resp) throws ISPACException
 	{
 		//Comprobamos si es un subprocesos
-		
+
 		DbCnt cnt = context.getConnection();
 		List id_pcd_padres=null;
 		try
 		{
 			IInvesflowAPI invesFlowAPI = context.getAPI();
 			IProcedure iProcedure = invesFlowAPI.getProcedure(idProcedure);
-			
+
 			if(iProcedure.getInt("TIPO")==IPcdElement.TYPE_SUBPROCEDURE){
 				IItemCollection itemcol=invesFlowAPI.getCatalogAPI().queryCTEntities(ICatalogAPI.ENTITY_P_TASK, "where id_cttramite in (select id from spac_ct_tramites where id_subproceso="+idProcedure+")");
 		    	//Obtenemos la lista de padres
 		    	id_pcd_padres= new ArrayList();
 		    	while(itemcol.next()){
-		    	
+
 		    		id_pcd_padres.add(((IItem)itemcol.value()).get("ID_PCD"));
 		    	}
 			}
@@ -634,20 +641,20 @@ public class WorklistAPI implements IWorklistAPI
 	public IItemCollection getActivities(int idSubproceso) throws ISPACException {
 		return getActivities(idSubproceso, getRespString());
 	}
-	
+
 	public IItemCollection getActivities(int subProcedureId, String resp) throws ISPACException {
-		
+
 		DbCnt cnt = context.getConnection();
 		List<Integer> id_pcd_padres = new ArrayList<Integer>();
 		IItemCollection activities = null;
-		
+
 		try {
-			
+
 			IInvesflowAPI invesFlowAPI = context.getAPI();
 			IProcedure iProcedure = invesFlowAPI.getProcedure(subProcedureId);
 
 			if (iProcedure.getInt("TIPO") == IPcdElement.TYPE_SUBPROCEDURE) {
-				
+
 				// Obtenemos la lista de padres
 				IItemCollection itemcol = invesFlowAPI.getCatalogAPI().queryCTEntities(
 						ICatalogAPI.ENTITY_P_TASK,
@@ -658,9 +665,9 @@ public class WorklistAPI implements IWorklistAPI
 
 				activities = WLActivityDAO.getActivities(cnt, resp, subProcedureId, id_pcd_padres).disconnect();
 			}
-			
+
 			return activities;
-			
+
 		} catch (ISPACException ie) {
 			logger.error("Error al obtener las actividades del subprocedimiento ["
 					+ subProcedureId + "] y resp [" + resp + "]", ie);
@@ -677,7 +684,7 @@ public class WorklistAPI implements IWorklistAPI
 	{
 		DbCnt cnt = context.getConnection();
 		try
-		{	
+		{
 			return WLStageDAO.getStages(cnt, resp, idProcedure, id_pcd_padres).disconnect();
 		}
 		catch (ISPACException ie)
@@ -690,6 +697,7 @@ public class WorklistAPI implements IWorklistAPI
 			context.releaseConnection(cnt);
 		}
 	}*/
+
 	// TRÁMITES DE PROCEDIMIENTOS//
 
 	/* (non-Javadoc)
@@ -700,7 +708,7 @@ public class WorklistAPI implements IWorklistAPI
 		String resp = getRespString();
 		return getProcedureTasks(resp);
 	}
-	
+
 	public IItemCollection getProcedureTasks(String resp) throws ISPACException
 	{
 		DbCnt cnt = context.getConnection();
@@ -710,7 +718,7 @@ public class WorklistAPI implements IWorklistAPI
 		}
 		catch (ISPACException ie)
 		{
-			throw new ISPACException("Error en WLWorklist:getTasksPcd()", ie);
+			throw new ISPACException("Error en WLWorklist:getProcedureTasks()", ie);
 		}
 		finally
 		{
@@ -718,7 +726,7 @@ public class WorklistAPI implements IWorklistAPI
 		}
 	}
 
-	
+
 	public IItemCollection getProcedureClosedTasks(String resp) throws ISPACException
 	{
 		DbCnt cnt = context.getConnection();
@@ -735,7 +743,7 @@ public class WorklistAPI implements IWorklistAPI
 			context.releaseConnection(cnt);
 		}
 	}
-	
+
 	public IItemCollection getProcedureTasksGroupByPcd(String resp) throws ISPACException
 	{
 		DbCnt cnt = context.getConnection();
@@ -753,7 +761,6 @@ public class WorklistAPI implements IWorklistAPI
 		}
 	}
 
-	
 	public IItemCollection getProcedureClosedTasksGroupByPcd(String resp) throws ISPACException
 	{
 		DbCnt cnt = context.getConnection();
@@ -769,9 +776,8 @@ public class WorklistAPI implements IWorklistAPI
 		{
 			context.releaseConnection(cnt);
 		}
-	}	
-	
-	
+	}
+
 	/* (non-Javadoc)
 	 * @see ieci.tdw.ispac.api.IWorklistAPI#getProcedureStageTasks(int)
 	 */
@@ -798,7 +804,7 @@ public class WorklistAPI implements IWorklistAPI
 			throws ISPACException {
 
 		DbCnt cnt = context.getConnection();
-		
+
 		try {
 			return PFaseDAO.getTasksToCreate(cnt, idStagePCD).disconnect();
 		} catch (ISPACException ie) {
@@ -811,7 +817,7 @@ public class WorklistAPI implements IWorklistAPI
 	}
 
 	/* (non-Javadoc)
-	 * @see ieci.tdw.ispac.api.IWorklistAPI#getTasks(int)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getTasksPCD(int)
 	 */
 	public IItemCollection getTasksPCD(int taskPcdId) throws ISPACException
 	{
@@ -832,6 +838,38 @@ public class WorklistAPI implements IWorklistAPI
 		}
 	}
 
+	/* (non-Javadoc)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getTasksPCD(int, InputStream)
+    */
+	public IItemCollection getTasksPCD(int taskPcdId, InputStream tasklistxml) throws ISPACException {
+
+		String resp = getRespString();
+		DbCnt cnt = context.getConnection();
+		try
+		{
+			WLTaskListFactory wlfactory = new WLTaskListFactory();
+			WLTaskListBuilder wlbuilder = null;
+
+			wlbuilder = wlfactory.getTaskListBuilder(tasklistxml);
+			if (wlbuilder == null)
+				throw new ISPACException("No se ha podido construir WLTaskListBuilder");
+
+			CollectionDAO coldao = wlbuilder.getTaskList(cnt, ISPACEntities.ENTITY_NULLREGKEYID, resp, ISPACEntities.ENTITY_NULLREGKEYID, taskPcdId);
+			return coldao.disconnect();
+		}
+		catch (ISPACException ie)
+		{
+			throw new ISPACException("Error en WLWorklist:getTasksPCD(" + taskPcdId + ", tasklistxml)", ie);
+		}
+		finally
+		{
+			context.releaseConnection(cnt);
+		}
+	}
+
+	/* (non-Javadoc)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getTasksCTL(int)
+    */
 	public IItemCollection getTasksCTL(int taskCtlId) throws ISPACException
 	{
 		String resp = getRespString();
@@ -851,8 +889,11 @@ public class WorklistAPI implements IWorklistAPI
 		}
 	}
 
+	/* (non-Javadoc)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getTasksCTL(int, int)
+    */
 	public IItemCollection getTasksCTL(int taskCtlId, int pcdId) throws ISPACException {
-		
+
 		String resp = getRespString();
 		DbCnt cnt = context.getConnection();
 		try
@@ -863,6 +904,48 @@ public class WorklistAPI implements IWorklistAPI
 		{
 			throw new ISPACException("Error en WLWorklist:getTasksCTL(" + taskCtlId
 					+ ")", ie);
+		}
+		finally
+		{
+			context.releaseConnection(cnt);
+		}
+	}
+
+	/* (non-Javadoc)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getTasksCTL(int, InputStream)
+    */
+	public IItemCollection getTasksCTL(int taskCtlId, InputStream tasklistxml) throws ISPACException {
+
+		return getTasksCTL(taskCtlId, tasklistxml, ISPACEntities.ENTITY_NULLREGKEYID);
+	}
+
+	/* (non-Javadoc)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getTasksCTL(int, InputStream, int)
+    */
+	public IItemCollection getTasksCTL(int taskCtlId, InputStream tasklistxml, int pcdId) throws ISPACException {
+
+		String resp = getRespString();
+		return getTasksCTL(taskCtlId, tasklistxml, resp, pcdId);
+	}
+
+	private IItemCollection getTasksCTL(int taskCtlId, InputStream tasklistxml, String resp, int pcdId) throws ISPACException {
+
+		DbCnt cnt = context.getConnection();
+		try
+		{
+			WLTaskListFactory wlfactory = new WLTaskListFactory();
+			WLTaskListBuilder wlbuilder = null;
+
+			wlbuilder = wlfactory.getTaskListBuilder(tasklistxml);
+			if (wlbuilder == null)
+				throw new ISPACException("No se ha podido construir WLTaskListBuilder");
+
+			CollectionDAO coldao = wlbuilder.getTaskList(cnt, taskCtlId, resp, pcdId);
+			return coldao.disconnect();
+		}
+		catch (ISPACException ie)
+		{
+			throw new ISPACException("Error en WLWorklist:getTasksCTL(" + taskCtlId + ", tasklistxml, pcdId[" + pcdId + "])", ie);
 		}
 		finally
 		{
@@ -882,6 +965,35 @@ public class WorklistAPI implements IWorklistAPI
 		{
 			throw new ISPACException("Error en WLWorklist:getClosedTasksPCD(" + taskPcdId
 					+ ")", ie);
+		}
+		finally
+		{
+			context.releaseConnection(cnt);
+		}
+	}
+
+	/* (non-Javadoc)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getTasksPCD(int, InputStream)
+    */
+	public IItemCollection getClosedTasksPCD(int taskPcdId, InputStream tasklistxml) throws ISPACException {
+
+		String resp = getRespString();
+		DbCnt cnt = context.getConnection();
+		try
+		{
+			WLTaskListFactory wlfactory = new WLTaskListFactory();
+			WLTaskListBuilder wlbuilder = null;
+
+			wlbuilder = wlfactory.getClosedTaskListBuilder(tasklistxml);
+			if (wlbuilder == null)
+				throw new ISPACException("No se ha podido construir WLTaskListBuilder para tramites cerrados");
+
+			CollectionDAO coldao = wlbuilder.getTaskList(cnt, ISPACEntities.ENTITY_NULLREGKEYID, resp, ISPACEntities.ENTITY_NULLREGKEYID, taskPcdId);
+			return coldao.disconnect();
+		}
+		catch (ISPACException ie)
+		{
+			throw new ISPACException("Error en WLWorklist:getClosedTasksPCD(" + taskPcdId + ", tasklistxml)", ie);
 		}
 		finally
 		{
@@ -909,7 +1021,7 @@ public class WorklistAPI implements IWorklistAPI
 	}
 
 	public IItemCollection getClosedTasksCTL(int taskCtlId, int pcdId) throws ISPACException {
-		
+
 		String resp = getRespString();
 		DbCnt cnt = context.getConnection();
 		try
@@ -925,9 +1037,50 @@ public class WorklistAPI implements IWorklistAPI
 		{
 			context.releaseConnection(cnt);
 		}
-	}	
-	
-	
+	}
+
+	/* (non-Javadoc)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getClosedTasksCTL(int, InputStream)
+    */
+	public IItemCollection getClosedTasksCTL(int taskCtlId, InputStream tasklistxml) throws ISPACException {
+
+		return getClosedTasksCTL(taskCtlId, tasklistxml, ISPACEntities.ENTITY_NULLREGKEYID);
+	}
+
+	/* (non-Javadoc)
+    * @see ieci.tdw.ispac.api.IWorklistAPI#getClosedTasksCTL(int, InputStream, int)
+    */
+	public IItemCollection getClosedTasksCTL(int taskCtlId, InputStream tasklistxml, int pcdId) throws ISPACException {
+
+		String resp = getRespString();
+		return getClosedTasksCTL(taskCtlId, tasklistxml, resp, pcdId);
+	}
+
+	private IItemCollection getClosedTasksCTL(int taskCtlId, InputStream tasklistxml, String resp, int pcdId) throws ISPACException {
+
+		DbCnt cnt = context.getConnection();
+		try
+		{
+			WLTaskListFactory wlfactory = new WLTaskListFactory();
+			WLTaskListBuilder wlbuilder = null;
+
+			wlbuilder = wlfactory.getClosedTaskListBuilder(tasklistxml);
+			if (wlbuilder == null)
+				throw new ISPACException("No se ha podido construir WLTaskListBuilder para tramites cerrados");
+
+			CollectionDAO coldao = wlbuilder.getTaskList(cnt, taskCtlId, resp, pcdId);
+			return coldao.disconnect();
+		}
+		catch (ISPACException ie)
+		{
+			throw new ISPACException("Error en WLWorklist:getClosedTasksCTL(" + taskCtlId + ", tasklistxml, pcdId[" + pcdId + "])", ie);
+		}
+		finally
+		{
+			context.releaseConnection(cnt);
+		}
+	}
+
 	/* (non-Javadoc)
 	 * @see ieci.tdw.ispac.api.IWorklistAPI#getTasks(int, java.lang.String)
 	public IItemCollection getTasks(int idTaskPCD,String taskname) throws ISPACException
@@ -970,13 +1123,13 @@ public class WorklistAPI implements IWorklistAPI
 			context.releaseConnection(cnt);
 		}
 	}
-	
+
 	public IItemCollection getTasks(String numexp, int idPTask) throws ISPACException{
-		
+
 		String resp = getRespString();
 		return getTasks(numexp, idPTask, resp);
 	}
-	
+
 	public IItemCollection getTasks(String numexp, int idPTask, String resp) throws ISPACException{
 
         DbCnt cnt = context.getConnection();
@@ -1019,21 +1172,19 @@ public class WorklistAPI implements IWorklistAPI
     public boolean isInResponsibleList (String sUID, int supervisionType) throws ISPACException {
     	return isInResponsibleList(sUID,supervisionType,null);
     }
-    
+
     public boolean isInResponsibleList (String sUID, IItem item) throws ISPACException {
     	return isInResponsibleList(sUID,ISecurityAPI.SUPERV_TOTALMODE, item);
     }
-    
+
     public boolean isInResponsibleList (String sUID, int supervisionType, IItem item) throws ISPACException {
-    	
+
 		DbCnt cnt = context.getConnection();
 		List listSupervisados=new ArrayList();
 		List listSustituidos=new ArrayList();
 		int i=0;
-		
-		
+
 		try {
-			
 			// Comprobar el UID en la cadena de responsabilidad directa del usuario
 			Responsible user = context.getUser();
 			if (user.isInResponsibleList(sUID)) {
@@ -1041,20 +1192,20 @@ public class WorklistAPI implements IWorklistAPI
 			}
 
 			if (mWorkMode == IWorklistAPI.SUPERVISOR) {
-				
+
 				SecurityMgr securityMgr = new SecurityMgr(cnt);
-				
+
 				// Comprobar si el usuario es Supervisor en Modo Modificación
 				if (securityMgr.isFunction(user.getUID(), ISecurityAPI.FUNC_TOTALSUPERVISOR)) {
 					return true;
 				}
-				
+
 				// Comprobar si el usuario es Supervisor en Modo Consulta, si aplica
-				if ((supervisionType != ISecurityAPI.SUPERV_TOTALMODE) 
+				if ((supervisionType != ISecurityAPI.SUPERV_TOTALMODE)
 						&& securityMgr.isFunction(user.getUID(), ISecurityAPI.FUNC_MONITORINGSUPERVISOR)) {
 					return true;
 				}
-				
+
 				// Comprobar las responsabilidades referentes a las supervisiones
 				IItemCollection collection = null;
 				if (supervisionType == ISecurityAPI.SUPERV_TOTALMODE) {
@@ -1062,7 +1213,7 @@ public class WorklistAPI implements IWorklistAPI
 				} else {
 					collection = securityMgr.getAllSuperviseds(user);
 				}
-				
+
 				while (collection.next()) {
 					IItem supervisor = (IItem) collection.value();
 					listSupervisados = getRespListFromEntryUID(supervisor.getString("UID_SUPERVISADO"));
@@ -1074,13 +1225,13 @@ public class WorklistAPI implements IWorklistAPI
 				// Comprobar las responsabilidades referentes a las sustituciones
 				collection = securityMgr.getAllSubstitutes(user);
 				while (collection.next()) {
-					
+
 					IItem substitute = (IItem) collection.value();
 					listSustituidos = getRespListFromEntryUID(substitute.getString("UID_SUSTITUIDO"));
 					if (listSustituidos.contains(sUID))
 						return true;
 				}
-				
+
 				//Comprobar si tenemos permisos a nivel de catálogo
 				if(item!=null){
 					if(logger.isDebugEnabled()){
@@ -1091,7 +1242,7 @@ public class WorklistAPI implements IWorklistAPI
 					ISecurityAPI securityAPI = context.getAPI().getSecurityAPI();
 					int []permisos= new int[1];
 					permisos[0]=ISecurityAPI.PERMISSION_TYPE_EDIT;
-					
+
 					//Componemos la cadena de responsabilidad separada por comas
 					List resp= user.getRespList();
 					String cadenaResp="";
@@ -1100,7 +1251,7 @@ public class WorklistAPI implements IWorklistAPI
 					for(i=1;i<resp.size();i++){
 						cadenaResp+=" , '"+DBUtil.replaceQuotes(resp.get(i).toString())+"'";
 					}
-					
+
 					for(i=0;i<listSupervisados.size();i++){
 						cadenaResp+=" , '"+DBUtil.replaceQuotes(listSupervisados.get(i).toString())+"'";
 					}
@@ -1110,10 +1261,10 @@ public class WorklistAPI implements IWorklistAPI
 					//Item puede ser IProcess ,  IStage , ITask
 					if(item instanceof ITask){
 						return securityAPI.existPermissions((ITask)item, cadenaResp, permisos);
-						
+
 					}
 					else if(item instanceof IStage){
-						
+
 						if(IPcdElement.TYPE_SUBPROCEDURE==item.getInt("TIPO")){
 							IInvesflowAPI api = context.getAPI();
 							IEntitiesAPI entitiesAPI = api.getEntitiesAPI();
@@ -1125,33 +1276,30 @@ public class WorklistAPI implements IWorklistAPI
 								int id = fasePadre.getKeyInt();
 								IStage stage = api.getStage(id);
 								return securityAPI.existPermissions(stage, cadenaResp, permisos);
-							}	
+							}
 						}
 						return securityAPI.existPermissions((IStage)item, cadenaResp, permisos);
 					}
 					else if(item instanceof IProcess){
 						return securityAPI.existPermissions((IProcess)item, cadenaResp, permisos);
-						
+
 					}
 				}
-				
-				
 			}
-			
 		} finally {
 			context.releaseConnection(cnt);
 		}
 
 		return false;
     }
-    
+
 	public boolean isInResponsibleList(String sUID) throws ISPACException {
 		return isInResponsibleList(sUID, ISecurityAPI.SUPERV_TOTALMODE);
-	}    
+	}
 
 	public IItemCollection getBatchTasks()
 	throws ISPACException {
-		
+
 		String resp = getRespString();
 		DbCnt cnt = context.getConnection();
 		try
@@ -1166,14 +1314,13 @@ public class WorklistAPI implements IWorklistAPI
 		{
 			context.releaseConnection(cnt);
 		}
-		
 	}
 
 	public int countBatchTasks() throws ISPACException {
 		String resp = getRespString();
 		return countBatchTasks(resp);
 	}
-	
+
 	public int countBatchTasks(String resp) throws ISPACException {
 
 		DbCnt cnt = context.getConnection();
@@ -1192,7 +1339,7 @@ public class WorklistAPI implements IWorklistAPI
 	}
 
 //	public IItem getBatchTask(int idBatchTask) throws ISPACException {
-	
+
 //		DbCnt cnt = context.getConnection();
 //		try {
 //			IItem ret = WLBatchTaskDAO.getBatchTask(cnt, idBatchTask);
@@ -1208,7 +1355,7 @@ public class WorklistAPI implements IWorklistAPI
 //	}
 
 	public IItemCollection getExpsBatchTask(int idBatchTask) throws ISPACException {
-		
+
 		DbCnt cnt = context.getConnection();
 		try
 		{
@@ -1227,7 +1374,7 @@ public class WorklistAPI implements IWorklistAPI
 	}
 
 	public IItem getStage(String numExp) throws ISPACException {
-		
+
 		String resp = getRespString();
 		DbCnt cnt = context.getConnection();
 		try
@@ -1250,9 +1397,8 @@ public class WorklistAPI implements IWorklistAPI
 		}
 	}
 
-
 	public IItemCollection getExpiredTerms(int type) throws ISPACException {
-		
+
 		String resp = getRespString();
 		DbCnt cnt = context.getConnection();
 		try {
@@ -1263,9 +1409,9 @@ public class WorklistAPI implements IWorklistAPI
 		}
 		finally {
 			context.releaseConnection(cnt);
-		}	
+		}
 	}
-	
+
 	/**
 	 * Cuenta el numerode plazos vencidos hasta la fecha actual que son responsabilidad del
 	 * usuario conectado.
@@ -1275,11 +1421,11 @@ public class WorklistAPI implements IWorklistAPI
 	 * @throws ISPACException
 	 */
 	public int countExpiredTerms(int type) throws ISPACException {
-		
+
 		String resp = getRespString();
 		return countExpiredTerms(type, resp);
 	}
-	
+
 	/**
 	 * Cuenta el numerode plazos vencidos hasta la fecha actual que son responsabilidad del
 	 * usuario conectado.
@@ -1290,7 +1436,7 @@ public class WorklistAPI implements IWorklistAPI
 	 * @throws ISPACException
 	 */
 	public int countExpiredTerms(int type, String resp) throws ISPACException {
-		
+
 		DbCnt cnt = context.getConnection();
 		try {
 			return DeadLineDAO.countTerms(cnt, type, resp);
@@ -1302,10 +1448,9 @@ public class WorklistAPI implements IWorklistAPI
 			context.releaseConnection(cnt);
 		}
 	}
-	
 
 	public IItemCollection getExpiredTerms(int type, Date initDate, Date endDate) throws ISPACException {
-		
+
 		String resp = getRespString();
 		DbCnt cnt = context.getConnection();
 		try {
@@ -1316,10 +1461,11 @@ public class WorklistAPI implements IWorklistAPI
 		}
 		finally {
 			context.releaseConnection(cnt);
-		}	
+		}
 	}
 
-	private void addRespListFromEntryUID(Collection respList, IItemCollection collection, String campo ) throws ISPACException{
+	private void addRespListFromEntryUID(Collection respList, IItemCollection collection, String campo ) throws ISPACException {
+
 		Iterator iterator = collection.iterator();
 		while (iterator.hasNext())
 		{
@@ -1330,13 +1476,8 @@ public class WorklistAPI implements IWorklistAPI
 				if(!respList.contains(respListUser.get(i))){
 					respList.add(respListUser.get(i));
 				}
-			}						
+			}
 		}
-		
 	}
 
-
-
-	
-	
 }

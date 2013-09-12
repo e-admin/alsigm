@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>es.ieci.tecdoc.sigem</groupId>
   <artifactId>sigem_main</artifactId>
-  <version>3.0</version>
+  <version>3.0.1-M2</version>
   <packaging>pom</packaging>
 
 
@@ -53,11 +53,11 @@
 		<jdk.version>1.5</jdk.version>
 
 		<!-- SIGEM dependencies properties -->
-		<ispac.version>6.4</ispac.version>
+		<ispac.version>6.4.1</ispac.version>
 		<isicres.version>8.0.1</isicres.version>
 		<fwktd.version>0.7</fwktd.version>
 		<invesdoc.version>9.2.3.1</invesdoc.version>
-		<archidoc.version>5.0</archidoc.version>
+		<archidoc.version>5.0.9-M1</archidoc.version>
 
 		<!-- fwktd dependencies -->
 		<fwktd.audit.version>0.7</fwktd.audit.version>

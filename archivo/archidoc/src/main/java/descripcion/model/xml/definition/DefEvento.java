@@ -31,7 +31,7 @@ public class DefEvento extends XmlElement {
 
 	/**
 	 * Constructor.
-	 * 
+    *
 	 * @param tipo
 	 *            Tipo de evento.
 	 * @param clase
@@ -45,7 +45,7 @@ public class DefEvento extends XmlElement {
 
 	/**
 	 * Obtiene el nombre cualificado de la clase que implementa el evento.
-	 * 
+    *
 	 * @return Nombre cualificado de la clase.
 	 */
 	public String getClase() {
@@ -54,17 +54,17 @@ public class DefEvento extends XmlElement {
 
 	/**
 	 * Establece el nombre cualificado de la clase que implementa el evento.
-	 * 
+    *
 	 * @param clase
 	 *            Nombre cualificado de la clase.
 	 */
 	public void setClase(String clase) {
-		this.clase = clase;
+		this.clase = StringUtils.trimToEmpty(clase);
 	}
 
 	/**
 	 * Obtiene el tipo de evento.
-	 * 
+    *
 	 * @return Tipo de evento.
 	 */
 	public String getTipo() {
@@ -73,7 +73,7 @@ public class DefEvento extends XmlElement {
 
 	/**
 	 * Establece el tipo de evento.
-	 * 
+    *
 	 * @param tipo
 	 *            Tipo de evento.
 	 */
@@ -83,7 +83,7 @@ public class DefEvento extends XmlElement {
 
 	/**
 	 * Obtiene una representación XML del objeto.
-	 * 
+    *
 	 * @param indent
 	 *            Número de espacios de tabulación.
 	 * @return Representación del objeto.

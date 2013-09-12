@@ -8,11 +8,13 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import se.usuarios.ServiceClient;
+import solicitudes.SolicitudesConstants;
 import solicitudes.consultas.ConsultasConstants;
 import solicitudes.utils.PropertyHelper;
 import solicitudes.vos.SolicitudVO;
 
 import common.Constants;
+import common.util.DateUtils;
 import common.util.TypeConverter;
 import common.util.XmlFacade;
 
@@ -87,7 +89,7 @@ public class ConsultaVO extends SolicitudVO implements Comparable {
 	 * Comprueba si una consulta es editable:<br/>
 	 * - Su estado es ABIERTO. - El usuario que lo va a editar es su usuario
 	 * creador.
-	 * 
+    *
 	 * @param userVO
 	 *            Usuario que lo va a editar.
 	 */
@@ -102,7 +104,7 @@ public class ConsultaVO extends SolicitudVO implements Comparable {
 
 	/**
 	 * Indica si la consulta tiene reserva.
-	 * 
+    *
 	 * @return Verdero si tiene reserva o false en caso contrario.
 	 */
 	public boolean tieneReserva() {
@@ -229,7 +231,7 @@ public class ConsultaVO extends SolicitudVO implements Comparable {
 	/**
 	 * Metodo para comparar dos objetos de tipo consulta, en función del tipo de
 	 * comparación establecido para el objeto.
-	 * 
+    *
 	 * @param o
 	 *            Objeto de tipo consulta con el que deseamos comparar.
 	 * @return un entero negativo, cero o un entero positivo segun el objeto sea
@@ -599,4 +601,19 @@ public class ConsultaVO extends SolicitudVO implements Comparable {
 	public void setIdMotivo(String idMotivo) {
 		this.idMotivo = idMotivo;
 	}
+
+	public boolean isFueraPlazoEntrega(){
+		if(getEstado() == ConsultasConstants.ESTADO_CONSULTA_AUTORIZADA)
+		{
+			if (getFmaxfinconsulta() != null) {
+				if (DateUtils.getFechaActualSinHora().compareTo(
+						DateUtils.getFechaSinHora(getFmaxfinconsulta())) > 0){
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 }

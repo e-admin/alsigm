@@ -17,7 +17,7 @@ public interface IInboxAPI {
 
 	public static final int DIST_ESTADO_PENDIENTE 	= 1;
 	public static final int DIST_ESTADO_ACEPTADA	= 2;
-	
+
 	public static final int CREADO = 1;
 	public static final int ANEXADO = 2;
 
@@ -25,18 +25,18 @@ public interface IInboxAPI {
 	 * Obtiene todas las posibles bandejas y el n&uacute;mero
 	 * de items en cada una de ellas que son responsabilidad del
 	 * usuario conectado.
-	 * 
+    *
 	 * @return
 	 * @throws ISPACException
 	 */
 	public IItemCollection getInbox()
 	throws ISPACException;
-	
+
 	/**
 	 * Obtiene todas las posibles bandejas y el n&uacute;mero
 	 * de items en cada una de ellas que son responsabilidad del
 	 * usuario conectado.
-	 * 
+    *
 	 * @param resp Responsabilidades del usuario conectado (supervisar y sustituir)
 	 * @return
 	 * @throws ISPACException
@@ -103,7 +103,6 @@ public interface IInboxAPI {
 	 */
 	public void annexToProcess(String register, String numExp) throws ISPACException;
 
-	
 	/**
 	 * Anexa el registro distribuido al expediente.
 	 * @param register Número de registro distribuido.
@@ -112,8 +111,17 @@ public interface IInboxAPI {
 	 * @throws ISPACException si ocurre algún error.
 	 */
 	public void annexToProcess(String register, String numExp, int taskId) throws ISPACException;
-	
-	
+
+	/**
+    * Anexa el registro distribuido al expediente.
+    * @param register Número de registro distribuido.
+    * @param numExp Número de expediente.
+    * @param taskid Identificador del trámite instanciando en el expediente al que se anexarán los documentos del apunte de registro
+    * @param typeDocId Identificador del tipo de documento que se asignará a los documentos del apunte de registro
+    * @throws ISPACException si ocurre algún error.
+    */
+	public void annexToProcess(String register, String numExp, int taskId, int typeDocId) throws ISPACException;
+
 //	/**
 //	 * Distribuye un registro de entrada.
 //	 */
@@ -123,7 +131,7 @@ public interface IInboxAPI {
 	/**
 	 * Acepta un registro distribuido.
 	 * @param register Número de registro.
-	 * @throws ISPACException si ocurre algún error. 
+    * @throws ISPACException si ocurre algún error.
 	 */
 	public void acceptIntray(String register) throws ISPACException;
 
@@ -131,17 +139,17 @@ public interface IInboxAPI {
 	 * Rechaza un registro distribuido.
 	 * @param register Número de registro.
 	 * @param reason Motivo del rechazo.
-	 * @throws ISPACException si ocurre algún error. 
+    * @throws ISPACException si ocurre algún error.
 	 */
 	public void rejectIntray(String register, String reason) throws ISPACException;
 
 	/**
 	 * Archiva un registro distribuido.
 	 * @param register Número de registro.
-	 * @throws ISPACException si ocurre algún error. 
+    * @throws ISPACException si ocurre algún error.
 	 */
 	public void archiveIntray(String register) throws ISPACException;
-	
+
 //	/**
 //	 * Cambia el estado de un registro de entrada
 //	 */

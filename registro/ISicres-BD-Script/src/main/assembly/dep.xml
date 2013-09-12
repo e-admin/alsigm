@@ -86,12 +86,12 @@
 		    		<file>
 		        		<source>${dir3.unpackdirectory}/postgresql/fwktd-dir3-create.sql</source>
 		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-00.sql</destName>           
+					<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
 		    		<file>
 		        		<source>${dir3.unpackdirectory}/postgresql/fwktd-dir3-insert.sql</source>
 		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-01.sql</destName>           
+					<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-01.sql</destName>
     				</file>
     		
     	
@@ -112,12 +112,12 @@
 			    		<file>
 			        		<source>${dir3.unpackdirectory}/sqlserver/fwktd-dir3-create.sql</source>
 			        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
-			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-00.sql</destName>           
+						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-00.sql</destName>
 			    		</file>
 			    		<file>
 			        		<source>${dir3.unpackdirectory}/sqlserver/fwktd-dir3-insert.sql</source>
 			        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
-			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-01.sql</destName>           
+						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-01.sql</destName>
 	    				</file>
 	    				
 	    	<!-- db2 -->
@@ -137,12 +137,12 @@
 			    		<file>
 			        		<source>${dir3.unpackdirectory}/db2/fwktd-dir3-create.sql</source>
 			        		<outputDirectory>db2/actualizaciones</outputDirectory>
-			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-00.sql</destName>           
+						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-00.sql</destName>
 			    		</file>
 			    		<file>
 			        		<source>${dir3.unpackdirectory}/db2/fwktd-dir3-insert.sql</source>
 			        		<outputDirectory>db2/actualizaciones</outputDirectory>
-			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-01.sql</destName>           
+						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-01.sql</destName>
 	    				</file>
 	    				
 	    <!-- oracle -->
@@ -162,12 +162,12 @@
 			    		<file>
 			        		<source>${dir3.unpackdirectory}/oracle/fwktd-dir3-create.sql</source>
 			        		<outputDirectory>oracle/actualizaciones</outputDirectory>
-			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-00.sql</destName>           
+						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-00.sql</destName>
 			    		</file>
 			    		<file>
 			        		<source>${dir3.unpackdirectory}/oracle/fwktd-dir3-insert.sql</source>
 			        		<outputDirectory>oracle/actualizaciones</outputDirectory>
-			        		<destName>ISicres-Parche-dir3-v7_2_7-v8_0_0-01.sql</destName>           
+						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-01.sql</destName>
 	    				</file>
 	    				
 	   
@@ -185,7 +185,7 @@
 		    		<file>
 		        		<source>${audit.unpackdirectory}/postgresql/fwktd-audit-create.sql</source>
 		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-audit-v7_2_7-v8_0_0-00.sql</destName>           
+					<destName>ISicres-Parche-audit-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
 		    		
 		    <!-- sqlserver -->
@@ -200,7 +200,7 @@
 		    		<file>
 		        		<source>${audit.unpackdirectory}/sqlserver/fwktd-audit-create.sql</source>
 		        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-audit-v7_2_7-v8_0_0-00.sql</destName>           
+					<destName>ISicres-Parche-audit-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
 		    		
 		    <!-- db2 -->
@@ -215,7 +215,7 @@
 		    		<file>
 		        		<source>${audit.unpackdirectory}/db2/fwktd-audit-create.sql</source>
 		        		<outputDirectory>db2/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-audit-v7_2_7-v8_0_0-00.sql</destName>           
+					<destName>ISicres-Parche-audit-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
 		    		
 		    <!-- oracle -->
@@ -230,7 +230,7 @@
 		    		<file>
 		        		<source>${audit.unpackdirectory}/oracle/fwktd-audit-create.sql</source>
 		        		<outputDirectory>oracle/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-audit-v7_2_7-v8_0_0-00.sql</destName>           
+					<destName>ISicres-Parche-audit-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
 		    		
 		    		
@@ -263,19 +263,19 @@
 		    		<file>
 		        		<source>${sir.unpackdirectory}/postgresql/fwktd-sir-create.sql</source>
 		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-00.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
 		    		
 		    		<file>
 		        		<source>${sir.unpackdirectory}/postgresql/fwktd-sir-insert.sql</source>
 		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-01.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-01.sql</destName>
 		    		</file>
 		    		
 		    		<file>
 		        		<source>${sir.unpackdirectory}/postgresql/fwktd-dm-bd-create.sql</source>
 		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-02.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-02.sql</destName>
 		    		</file>
 		    		
 		   <!-- sqlserver -->
@@ -304,19 +304,19 @@
 		    		<file>
 		        		<source>${sir.unpackdirectory}/sqlserver/fwktd-sir-create.sql</source>
 		        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-00.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
 		    		
 		    		<file>
 		        		<source>${sir.unpackdirectory}/sqlserver/fwktd-sir-insert.sql</source>
 		        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-01.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-01.sql</destName>
 		    		</file>
 		    		
 		    		<file>
 		        		<source>${sir.unpackdirectory}/sqlserver/fwktd-dm-bd-create.sql</source>
 		        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-02.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-02.sql</destName>
 		    		</file>
 		    		
 		    		
@@ -346,19 +346,19 @@
 		    		<file>
 		        		<source>${sir.unpackdirectory}/db2/fwktd-sir-create.sql</source>
 		        		<outputDirectory>db2/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-00.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
 		    		
 		    		<file>
 		        		<source>${sir.unpackdirectory}/db2/fwktd-sir-insert.sql</source>
 		        		<outputDirectory>db2/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-01.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-01.sql</destName>
 		    		</file>
 		    		
 		    		<file>
 		        		<source>${sir.unpackdirectory}/db2/fwktd-dm-bd-create.sql</source>
 		        		<outputDirectory>db2/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-02.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-02.sql</destName>
 		    		</file>
 		    		
 		   <!-- oracle -->
@@ -387,19 +387,19 @@
 		    		<file>
 		        		<source>${sir.unpackdirectory}/oracle/fwktd-sir-create.sql</source>
 		        		<outputDirectory>oracle/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-00.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
 		    		
 		    		<file>
 		        		<source>${sir.unpackdirectory}/oracle/fwktd-sir-insert.sql</source>
 		        		<outputDirectory>db2/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-01.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-01.sql</destName>
 		    		</file>
 		    		
 		    		<file>
 		        		<source>${sir.unpackdirectory}/oracle/fwktd-dm-bd-create.sql</source>
 		        		<outputDirectory>oracle/actualizaciones</outputDirectory>
-		        		<destName>ISicres-Parche-sir-v7_2_7-v8_0_0-02.sql</destName>           
+					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-02.sql</destName>
 		    		</file>
     		
     		

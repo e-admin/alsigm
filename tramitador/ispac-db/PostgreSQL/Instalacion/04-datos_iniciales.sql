@@ -1636,7 +1636,7 @@ UPDATE spac_ct_entidades SET definicion = '<entity version=''1.00''>
 	<field id=''16''>
 		<physicalName>origen</physicalName>
 		<type>0</type>
-		<size>128</size>
+		<size>250</size>
 		<nullable>S</nullable>
 		<documentarySearch>N</documentarySearch>
 		<multivalue>N</multivalue>
@@ -2612,6 +2612,7 @@ UPDATE spac_ct_aplicaciones SET frm_jsp = '<%@ taglib uri="/WEB-INF/struts-tiles
 
 <html:hidden property="property(SPAC_REGISTROS_ES:ID_INTERESADO)"/>
 <html:hidden property="property(SPAC_REGISTROS_ES:ID_TRAMITE)"/>
+<html:hidden property="property(ID_TIPO_DOC)"/>
 
 <div id="label_SPAC_REGISTROS_ES:TP_REG" style="position: absolute; top: 10px; left: 10px; width: 150px;" class="formsTitleB">
 <bean:write name="defaultForm" property="entityApp.label(SPAC_REGISTROS_ES:TP_REG)" />:</div>
@@ -2642,7 +2643,7 @@ UPDATE spac_ct_aplicaciones SET frm_jsp = '<%@ taglib uri="/WEB-INF/struts-tiles
 <div id="data_SPAC_REGISTROS_ES:NREG" style="position: absolute; top: 10px; left: 430px; width:100% ;" >
 		<c:choose>
 			<c:when test="${!empty sicresConnectorClass && _key == ''''}">
-				<script>	
+				<script>
 					function accept_SEARCH_SPAC_REGISTROS_ES_NREG(){
 					  var element;
 					  var elements;
@@ -2653,20 +2654,20 @@ UPDATE spac_ct_aplicaciones SET frm_jsp = '<%@ taglib uri="/WEB-INF/struts-tiles
 					  {
 						// Deshabilitar el scroll
 						document.body.style.overflow = "hidden";
-					  
+
 						element.style.position = "absolute";
-						
+
 						element.style.height = document.body.scrollHeight + 1200;
 						element.style.width = document.body.clientWidth + 1200;
 						element.style.left = -600;
 						element.style.top = -1000;
 
 						element.style.display = "block";
-						
+
 						if (isIE())
 						{
 						  elements = document.getElementsByTagName("SELECT");
-							
+
 						  for (i = 0; i < elements.length; i++)
 						  {
 							elements[i].style.visibility = "hidden";
@@ -2704,6 +2705,7 @@ UPDATE spac_ct_aplicaciones SET frm_jsp = '<%@ taglib uri="/WEB-INF/struts-tiles
 					<ispac:parameter name="SEARCH_SPAC_REGISTROS_ES_NREG" id="property(SPAC_REGISTROS_ES:INTERESADO)" property="IDENTIDADTITULAR" />
 					<ispac:parameter name="SEARCH_SPAC_REGISTROS_ES_NREG" id="property(SPAC_REGISTROS_ES:ID_TRAMITE)" property="ID_TRAMITE" />
 					<ispac:parameter name="SEARCH_SPAC_REGISTROS_ES_NREG" id="property(SPAC_REGISTROS_ES:ORIGINO_EXPEDIENTE)" property="ORIGINO_EXPEDIENTE" />
+					<ispac:parameter name="SEARCH_SPAC_REGISTROS_ES_NREG" id="property(ID_TIPO_DOC)" property="ID_TIPO_DOC" />
 					<ispac:parameter name="SEARCH_SPAC_REGISTROS_ES_NREG" id="JAVASCRIPT" property="accept_SEARCH_SPAC_REGISTROS_ES_NREG" />
 				</ispac:htmlTextImageFrame>
 			</c:when>

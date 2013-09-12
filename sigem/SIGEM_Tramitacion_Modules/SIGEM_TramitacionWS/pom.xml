@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_main_ws</artifactId>
-		<version>3.0</version>
+		<version>3.0.1-M2</version>
 	</parent>
 
 	<artifactId>SIGEM_TramitacionWS</artifactId>
@@ -18,6 +18,12 @@
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 			<version>${commons.beanutils.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>${commons.collections.version}</version>
 		</dependency>
 
 		<!-- SIGEM dependencies -->
@@ -37,14 +43,6 @@
 				<exclusion>
 					<groupId>net.sf.jasperreports</groupId>
 					<artifactId>jasperreports</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.openoffice</groupId>
-					<artifactId>juh</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.openoffice</groupId>
-					<artifactId>unoil</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>struts</groupId>

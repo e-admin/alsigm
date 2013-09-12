@@ -160,6 +160,9 @@ public final class ConsultasConstants {
 	/** Cte para ver la columna de disponibilidad */
 	public final static String VER_COLUMNA_DISPONIBILIDAD = "VER_COLUMNA_DISPONIBILIDAD";
 
+	/** Cte para ver la columna volver a solicitadad */
+	public final static String VER_BOTON_VOLVER_A_SOLICITADA ="VER_BOTON_VOLVER_A_SOLICITADA";
+
 	/** Cte para ver la columna de modificación de expediente de fracción de serie en préstamo/consulta */
 	public final static String VER_BOTON_MODIFICAR_COLUMNA_EXPEDIENTEFS = "VER_BOTON_MODIFICAR_COLUMNA_EXPEDIENTEFS";
 

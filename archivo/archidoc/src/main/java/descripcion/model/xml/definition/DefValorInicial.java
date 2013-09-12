@@ -23,6 +23,9 @@ public class DefValorInicial extends XmlElement {
 	private String anio = null;
 	private String mes = null;
 	private String dia = null;
+	private String horas = null;
+	private String minutos = null;
+	private String segundos = null;
 	private String siglo = null;
 	private String formato = null;
 	private String separador = null;
@@ -36,6 +39,30 @@ public class DefValorInicial extends XmlElement {
 	 */
 	public DefValorInicial() {
 		super();
+	}
+
+	public String getHoras() {
+		return horas;
+	}
+
+	public void setHoras(String horas) {
+		this.horas = horas;
+	}
+
+	public String getMinutos() {
+		return minutos;
+	}
+
+	public void setMinutos(String minutos) {
+		this.minutos = minutos;
+	}
+
+	public String getSegundos() {
+		return segundos;
+	}
+
+	public void setSegundos(String segundos) {
+		this.segundos = segundos;
 	}
 
 	/**
@@ -220,7 +247,7 @@ public class DefValorInicial extends XmlElement {
 
 	/**
 	 * Obtiene una representación XML del objeto.
-	 * 
+    *
 	 * @param indent
 	 *            Número de espacios de tabulación.
 	 * @return Representación del objeto.

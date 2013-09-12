@@ -46,9 +46,16 @@ public class EventoActualizarFechaFinalExp implements IEventoFicha {
 
 		if (elemFechaFinal != null) {
 			customDateFechaDoc = new CustomDate(elemFechaFinal.getValor(0)
-					.getFormato(), elemFechaFinal.getValor(0).getAnio(),
-					elemFechaFinal.getValor(0).getMes(), elemFechaFinal
-							.getValor(0).getDia(), elemFechaFinal.getValor(0)
+					.getFormato(),
+					elemFechaFinal.getValor(0).getAnio(),
+					elemFechaFinal.getValor(0).getMes(),
+					elemFechaFinal.getValor(0).getDia(),
+
+					elemFechaFinal.getValor(0).getHoras(),
+					elemFechaFinal.getValor(0).getMinutos(),
+					elemFechaFinal.getValor(0).getSegundos(),
+
+					elemFechaFinal.getValor(0)
 							.getSiglo(), elemFechaFinal.getValor(0)
 							.getSeparador(), elemFechaFinal.getValor(0)
 							.getCalificador());
@@ -76,6 +83,11 @@ public class EventoActualizarFechaFinalExp implements IEventoFicha {
 						CustomDate customDateFecha = new CustomDate(
 								valor.getFormato(), valor.getAnio(),
 								valor.getMes(), valor.getDia(),
+
+								valor.getHoras(),
+								valor.getMinutos(),
+								valor.getSegundos(),
+
 								valor.getSiglo(), valor.getSeparador(),
 								valor.getCalificador());
 

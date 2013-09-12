@@ -3,7 +3,6 @@ package ieci.tdw.ispac.ispaclib.gendoc.parser;
 import ieci.tdw.ispac.api.errors.ISPACException;
 import ieci.tdw.ispac.ispaclib.gendoc.openoffice.OpenOfficeHelper;
 import ieci.tdw.ispac.ispaclib.tageval.ITagTranslator;
-import ieci.tdw.ispac.ispaclib.tageval.TagTranslator;
 import ieci.tdw.ispac.ispaclib.templates.TemplateDocumentInfo;
 import ieci.tdw.ispac.ispaclib.templates.TemplateGraphicInfo;
 import ieci.tdw.ispac.ispaclib.templates.TemplateTableInfo;
@@ -45,36 +44,36 @@ public class DocumentParser
 	 * Logger de la clase.
 	 */
 	private static final Logger logger = Logger.getLogger(DocumentParser.class);
-	
+
 	private OpenOfficeHelper ooHelper = null;
 
 	//ESTE PATRON RECOGE TEXTO FUERA DE UN TAG
 	//private static final String ISPACTAG="<[ \\t\\n\\x0B\\f\\r]*ispactag[ \\t\\n\\x0B\\f\\r]+.*/>";
-	
-	//ESTE PATRON NO ACEPTA PARENTESIS DENTRO DE LOS TAG, NECESARIO PARA CONSULTAS DEL ESTILO WHERE ... IN (...) 
+
+	//ESTE PATRON NO ACEPTA PARENTESIS DENTRO DE LOS TAG, NECESARIO PARA CONSULTAS DEL ESTILO WHERE ... IN (...)
 	//private static final String ISPACTAG="<[ \\t\\n\\x0B\\f\\r]*ispactag[ \\t\\n\\x0B\\f\\r]+[^(/>)]*/>";
-	
+
 	//ESTE PATRON NO ACEPTA EL CARACTER / DENTRO DE UN TAG, p ej: para el patron de una fecha: dateFormat="dd/MM/yyyy".
 	//private static final String ISPACTAG="<[ \\t\\n\\x0B\\f\\r]*ispactag[ \\t\\n\\x0B\\f\\r]+[^/>]*/>";
 
 	private static final String ISPACTAG=  "<[ \\t\\n\\x0B\\f\\r]*ispactag[ \\t\\n\\x0B\\f\\r]+[^>]*/>";
 
 	//private static final String TEMPLATE_ATTRIBUTE = "template";
-	
+
 	//private static final String ISPACTAG_TEMPLATE="<[ \\t\\n\\x0B\\f\\r]*ispactag[ \\t\\n\\x0B\\f\\r]+"+TEMPLATE_ATTRIBUTE+"[^(/>)]*/>";
-			
-	private final int DEFAULT_TAGS_NESTING_LEVEL = 2; 
-	
+
+	private final int DEFAULT_TAGS_NESTING_LEVEL = 2;
+
 	/**
 	 * Documento de salida en formato <code>OpenOffice</code>
 	 */
 	public static final int OpenOffice = 1;
-	
+
 	/**
 	 * Documento de salida en formato <code>RTF</code>
 	 */
 	public static final int RichTextFormat = 2;
-	
+
 	/**
 	 * Documento de salida en formato <code>Microsoft Word</code>
 	 */
@@ -88,7 +87,7 @@ public class DocumentParser
 	/**
 	 * Documento de salida en formato <code>Microsoft Excel</code>
 	 */
-	public static final int MicrosoftExcel = 5;	
+	public static final int MicrosoftExcel = 5;
 
 
 	/**
@@ -156,12 +155,12 @@ public class DocumentParser
 		String strFilter;
 
 		if (logger.isInfoEnabled()) {
-			logger.info("mergeDocument: strTemplateURL=[" + strTemplateURL 
-					+ "], strTargetURL=[" + strTargetURL 
+			logger.info("mergeDocument: strTemplateURL=[" + strTemplateURL
+					+ "], strTargetURL=[" + strTargetURL
 					+ "], tagtranslator=[" + tagtranslator
 					+ "], targetfilter=[" + targetfilter + "]");
 		}
-		
+
 		switch (targetfilter)
 		{
 		case DocumentParser.OpenOffice:
@@ -187,21 +186,21 @@ public class DocumentParser
 
 		merge(strTemplateURL, strTargetURL, tagtranslator, strFilter);
 	}
-	
+
 
 	protected void merge(String strTemplateURL, String strTargetURL,
 			ITagTranslator tagtranslator, String strFilter)
 			throws ISPACException	{
-		
+
 		XComponent xComponent = null;
 
 		if (logger.isInfoEnabled()) {
-			logger.info("mergeDocument: strTemplateURL=[" + strTemplateURL 
-					+ "], strTargetURL=[" + strTargetURL 
+			logger.info("mergeDocument: strTemplateURL=[" + strTemplateURL
+					+ "], strTargetURL=[" + strTargetURL
 					+ "], tagtranslator=[" + tagtranslator
 					+ "], targetfilterName=[" + strFilter + "]");
 		}
-		
+
         try{
 			if (logger.isDebugEnabled()) {
 				logger.debug("Cargando documento: " + strTemplateURL);
@@ -212,21 +211,21 @@ public class DocumentParser
 			}
 
 			//generateDocument(xComponent,tagtranslator);
-			
+
 			if (logger.isDebugEnabled()) {
 				logger.debug("Generando documento...");
 			}
-			
+
 			if ("MS Excel 97".equalsIgnoreCase(strFilter)) {
 				generateDocumentExcel(xComponent,tagtranslator);
 			} else {
 				generateDocument(xComponent,tagtranslator);
 			}
-			
+
 			if (logger.isDebugEnabled()) {
 				logger.debug("Guardando documento: " + strTargetURL);
 			}
-			
+
 			OpenOfficeHelper.saveDocument(xComponent, strTargetURL, strFilter);
 
 			if (logger.isDebugEnabled()) {
@@ -273,7 +272,7 @@ public class DocumentParser
 
 		return OpenOffice;
 	}
-	
+
 	private void generateDocumentExcel(XComponent xComponent,ITagTranslator tagtranslator)
 	throws ISPACException
 	{
@@ -281,48 +280,48 @@ public class DocumentParser
     	XReplaceDescriptor xReplaceDescriptor = null;
 		XIndexAccess xIndexAccess_ = null;
 		XSpreadsheetDocument xDocument = (XSpreadsheetDocument)UnoRuntime.queryInterface(XSpreadsheetDocument.class, xComponent);
-		//CARGAMOS LA COLECCION DE HOJAS DEL LIBRO	
+		//CARGAMOS LA COLECCION DE HOJAS DEL LIBRO
 		com.sun.star.sheet.XSpreadsheets xSheets = xDocument.getSheets();
-		com.sun.star.sheet.XSpreadsheet xSheet= null; 
+		com.sun.star.sheet.XSpreadsheet xSheet= null;
 		//String[] names = xSheets.getElementNames();
         xIndexAccess_ = (XIndexAccess)UnoRuntime.queryInterface(XIndexAccess.class, xSheets );
-        
-        
+
+
         //ACCEDEMOS A CADA UNA DE LAS HOJAS PARA BUSCAR LOS TAGS DECLARADOS Y SUSTITUIRLOS POR SU VALOR
         for (int x = 0; x < xIndexAccess_.getCount(); x++){
-        	
+
         	try {
         		xSheet = (XSpreadsheet) UnoRuntime.queryInterface(XSpreadsheet.class, xIndexAccess_.getByIndex(x));
         	} catch (Exception e) {
 				logger.warn("Error al obtener el interfaz", e);
-        	} 
-        		
-    		//TODO Cargar el limite del rango de alguna constante que debe existe, aunque no la encontre, 
-    		//ya que el rango maximo dependera de la version, p.e. para OOffice 1.1.3 es: 'A1:IV32000', para OOffice 2.0 es 'A1:IV32000'   
-    		//cargamos todas la celdas de la hoja 
+			}
+
+			//TODO Cargar el limite del rango de alguna constante que debe existe, aunque no la encontre,
+			//ya que el rango maximo dependera de la version, p.e. para OOffice 1.1.3 es: 'A1:IV32000', para OOffice 2.0 es 'A1:IV32000'
+			//cargamos todas la celdas de la hoja
  			com.sun.star.table.XCellRange xCellRange = xSheet.getCellRangeByName( "A1:IV32000");
  			xReplaceable = (XReplaceable) UnoRuntime.queryInterface( XReplaceable.class,xCellRange);
  			// Cescriptor para establecer las propiedades del reemplazo
  			xReplaceDescriptor = (XReplaceDescriptor) xReplaceable.createReplaceDescriptor();
  			xReplaceDescriptor.setSearchString(ISPACTAG);
  			Object object = new Boolean(true);
- 			
+
  			try
 			{
 				xReplaceDescriptor.setPropertyValue("SearchRegularExpression", object);
-				
+
 			}catch(Exception e)
 			{
 				logger.error("Error al establecer la propiedad [SearchRegularExpression]: " + object, e);
 				throw new ISPACException(e);
 			}
-				
+
 				//variables de acceso a datos
 				XIndexAccess xIndexAccess = null;
-				
+
 				String cellText = null;
 				Object tag;
-			
+
 				// Busca todos los tags declarados en el documento
 				xIndexAccess = xReplaceable.findAll(xReplaceDescriptor);
 			    ArrayList tagslist = new ArrayList();
@@ -333,7 +332,7 @@ public class DocumentParser
 						{
 							try
 							{
-							
+
 							tag = xIndexAccess.getByIndex(i);
 							}catch(Exception e)
 							{
@@ -343,8 +342,8 @@ public class DocumentParser
 							//Accedemos al rango de la hoja indexdo por el objeto tag
                             XCellRange rango= (XCellRange) UnoRuntime.queryInterface(XCellRange.class,tag);
                             XCellRangeData datos = (XCellRangeData) UnoRuntime.queryInterface(XCellRangeData.class,rango);
-                           
-						    //Accedemos al contenido de las celdas del rango 
+
+							//Accedemos al contenido de las celdas del rango
                             Object [][] contenido =datos.getDataArray();
                             for (int j = 0; j < contenido.length; j++) {
 								for (int k = 0; k < contenido[j].length; k++) {
@@ -387,17 +386,17 @@ public class DocumentParser
 						}
 				}//fin de if que comprobueba que hay tags declarados
        } //final del recorrido de todas las hojas del libro (primer for abierto en la funcion)
-     
-}	
-	
-	
+
+}
+
+
 	/**
 	 * @param cellText Contenido de una celda que contiene algún tag
 	 * @return listado de tags contenidos en la celda <code>cellText</code>
 	 */
 	private List getAllTgas(String cellText) {
 		List list = new ArrayList();
-		
+
 		Pattern pattern = Pattern.compile(ISPACTAG);
 		Matcher matcher = pattern.matcher(cellText);
 		while (matcher.find()) {
@@ -411,34 +410,34 @@ public class DocumentParser
 		try{
 
 			//Para permitir que al incluir dentro de una plantilla un documento este documento pueda contener a su vez
-			//tags, se realiza un bucle. Se incluye un nivel de anidamiento para que no se puedan producir bucles infinitos 
+			//tags, se realiza un bucle. Se incluye un nivel de anidamiento para que no se puedan producir bucles infinitos
 			int nivelAnidamiento = ISPACConfiguration.getInstance().getInt(
 					ISPACConfiguration.PARSER_CONNECTOR_TAGS_NESTING_LEVEL,
 					DEFAULT_TAGS_NESTING_LEVEL);
-			
+
 			int contador = 0;
 			for(;;contador++){
-				
+
 				if (contador > nivelAnidamiento){
 					logger.warn("Se ha superado el nivel de anidamiento de marcadores en plantillas. Comprobar la definición de la plantilla");
 					break;
 				}
-				
+
 				XReplaceable xReplaceable = null;
 				XReplaceDescriptor xReplaceDescriptor = null;
 				xReplaceable = (XReplaceable) UnoRuntime.queryInterface(XReplaceable.class, xComponent);
 				// Descriptor to set properies for replace
 				xReplaceDescriptor = xReplaceable.createReplaceDescriptor();
 				xReplaceDescriptor.setSearchString(ISPACTAG);
-				
+
 				Object object = new Boolean(true);
 				xReplaceDescriptor.setPropertyValue("SearchRegularExpression", object);
-		
+
 				XIndexAccess xIndexAccess = null;
 				String strTag = null;
 				// Busca todos los tags declarados en el documento
 				xIndexAccess = xReplaceable.findAll(xReplaceDescriptor);
-		
+
 				ArrayList tagslist = new ArrayList();
 				ArrayList xTextRangeList = new ArrayList();
 				for (int i = 0; i < xIndexAccess.getCount(); i++){
@@ -451,16 +450,16 @@ public class DocumentParser
 				if (tagslist.size() == 0){
 					break;
 				}
-				
+
 				List translatedtags = tagtranslator.translateTags(tagslist);
 				object = new Boolean(false);
 				xReplaceDescriptor.setPropertyValue("SearchRegularExpression", object);
-		
+
 				// Los dos conjuntos estan ordenados.
 				Iterator it = tagslist.iterator();
 				Iterator ittranslated = translatedtags.iterator();
 				Iterator itXTextRange = xTextRangeList.iterator();
-	
+
 				while (ittranslated.hasNext()&&it.hasNext() && itXTextRange.hasNext()){
 					Object stagvalue = ittranslated.next();
 					XTextRange xTextRangeReplace = (XTextRange)itXTextRange.next();
@@ -482,7 +481,7 @@ public class DocumentParser
 				        	xReplaceDescriptor.setReplaceString(xtextdocument.getText().getString());
 				        	xReplaceable.replaceAll(xReplaceDescriptor);
 			        	}else{
-				        	//Insertar el documento 
+						//Insertar el documento
 			        		ooHelper.insertDocument(documentInfo.getUrl(), xTextRangeReplace.getEnd(), tag, xReplaceDescriptor,xReplaceable);
 							//Se borra el salto de pagina que se inserta con el documento
 			        		ooHelper.deletePageBreak(xComponent, xTextRangeReplace.getStart());
@@ -491,7 +490,7 @@ public class DocumentParser
 						TemplateGraphicInfo graphicInfo = ((TemplateGraphicInfo)stagvalue);
 						//Inserccion de una imagen => la inserta pero la situa centrada
 						ooHelper.insertGraphic(xComponent, xTextRangeReplace, graphicInfo.getUrl());
-	
+
 						//Inserccion de una imagen => no funciona si se inserta mas de una imagen
 						//insertImage(xFactory,xComponent, xTextRangeReplace,graphicInfo.getUrl(),graphicInfo.isAsLink() );
 					}else if (stagvalue instanceof TemplateTableInfo){
@@ -504,8 +503,8 @@ public class DocumentParser
 					}
 				}
 			}
-			
-			
+
+
         } catch (ISPACException e) {
         	logger.error("Error al generar el documento", e);
 			throw e;

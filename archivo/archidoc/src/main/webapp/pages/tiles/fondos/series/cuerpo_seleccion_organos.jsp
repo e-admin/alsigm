@@ -93,12 +93,13 @@
 		<c:choose>
 			<c:when test="${ADD_PRODUCTOR_HISTORICO}">
 				<input type="hidden" name="method" value="incorporarProductorHistorico">
+				<input type="hidden" name="busquedaHistoricos" value="S">
 			</c:when>
 			<c:otherwise>
 				<input type="hidden" name="method" value="incorporarProductores">
+				<input type="hidden" name="busquedaHistoricos" value="">
 			</c:otherwise>
 		</c:choose>
-
 
 
 		<div class="cabecero_bloque" style="text-align:left;padding-left:4px">

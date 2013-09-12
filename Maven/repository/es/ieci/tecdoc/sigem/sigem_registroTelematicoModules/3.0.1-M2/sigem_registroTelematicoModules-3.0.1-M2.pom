@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>es.ieci.tecdoc.sigem</groupId>
+		<artifactId>sigem_main</artifactId>
+		<version>3.0.1-M2</version>
+	</parent>
+
+	<artifactId>sigem_registroTelematicoModules</artifactId>
+	<name>SIGEM_RegistroTelematico_Modules</name>
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<description>Módulos de SIGEM Registro Telematico</description>
+
+	<profiles>
+		<profile>
+			<id>generate-config</id>
+			<activation>
+				<property>
+					<name>config</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_RegistroTelematico-configurable-resources</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>generate-jars</id>
+			<activation>
+				<property>
+					<name>jars</name>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>SIGEM_RegistroTelematico-configurable-resources</module>
+				<module>SIGEM_RegistroTelematico</module>
+				<module>SIGEM_RegistroTelematicoWSClient</module>
+				<module>SIGEM_RegistroTelematicoTercerosConnector</module>
+				<module>SIGEM_RegistroTelematicoTercerosConnectorWSClient</module>
+
+			</modules>
+		</profile>
+		<profile>
+			<id>generate-wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>SIGEM_RegistroTelematicoWeb</module>
+				<module>SIGEM_RegistroTelematicoWS</module>
+				<module>SIGEM_RegistroTelematicoDefaultTercerosConnectorWS</module>
+				<module>SIGEM_RegistroTelematicoWS</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>

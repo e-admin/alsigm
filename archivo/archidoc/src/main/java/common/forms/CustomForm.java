@@ -253,7 +253,9 @@ public abstract class CustomForm extends ArchigestActionForm {
 
 	private boolean isFormatoConDia(String formato) {
 		if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(formato)
-				|| CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(formato)) {
+				|| CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(formato)
+				|| isFormatoConHora(formato)
+		) {
 			return true;
 		}
 
@@ -264,7 +266,9 @@ public abstract class CustomForm extends ArchigestActionForm {
 		if (CustomDateFormat.DATE_FORMAT_AAAAMMDD.equals(formato)
 				|| CustomDateFormat.DATE_FORMAT_AAAAMM.equals(formato)
 				|| CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(formato)
-				|| CustomDateFormat.DATE_FORMAT_MMAAAA.equals(formato)) {
+				|| CustomDateFormat.DATE_FORMAT_MMAAAA.equals(formato)
+				|| isFormatoConHora(formato)
+		) {
 			return true;
 		}
 
@@ -276,10 +280,20 @@ public abstract class CustomForm extends ArchigestActionForm {
 				|| CustomDateFormat.DATE_FORMAT_AAAAMM.equals(formato)
 				|| CustomDateFormat.DATE_FORMAT_DDMMAAAA.equals(formato)
 				|| CustomDateFormat.DATE_FORMAT_MMAAAA.equals(formato)
-				|| CustomDateFormat.DATE_FORMAT_AAAA.equals(formato)) {
+				|| CustomDateFormat.DATE_FORMAT_AAAA.equals(formato)
+				|| isFormatoConHora(formato)
+		) {
 			return true;
 		}
 
+		return false;
+	}
+
+	private boolean isFormatoConHora(String formato){
+		if (CustomDateFormat.DATE_FORMAT_AAAAMMDD_HHMMSS.equals(formato)
+				|| CustomDateFormat.DATE_FORMAT_DDMMAAAA_HHMMSS.equals(formato)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -287,6 +301,25 @@ public abstract class CustomForm extends ArchigestActionForm {
 		return nombreCampo + Constants.STRING_SPACE
 				+ Constants.ABRIR_PARENTESIS + nombreFecha
 				+ Constants.CERRAR_PARENTESIS;
+	}
+
+	/**
+    * Obtiene el nombre final del fichero a exportar
+    * @param prefijo
+    * @param nombreFichero
+    * @return
+    */
+	public String getNombreFicheroExportXml(String prefijo, String nombreFichero) {
+		StringBuilder str = new StringBuilder();
+		if (StringUtils.isNotEmpty(prefijo)) {
+			str.append(prefijo);
+		}
+
+		str.append(nombreFichero).append(Constants.SEPARADOR_EXTENSION_FICHERO)
+				.append("xml");
+
+		return str.toString();
+
 	}
 
 }

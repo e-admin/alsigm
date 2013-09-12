@@ -250,7 +250,7 @@ function dynamicTextChange(elementId, newText)
 			element.innerText=newText;
 		}
 
-		if (document.getElementById &&!document.all)
+		if (document.getElementById && !document.all && element.firstChild)
 		{
 			// Mozilla
 			element.firstChild.nodeValue=newText;
@@ -1011,6 +1011,19 @@ function enviarFormulario(idFormulario){
  */
 function enviarFormulario(idFormulario, accion){
 	document.getElementById("method").value = accion;
+	document.getElementById(idFormulario).submit();
+}
+
+/**
+ * Envía el formulario especificado
+ * @param String idFormulario Identificador del formulario
+ */
+function enviarFormulario(idFormulario, accion, title, message){
+	document.getElementById("method").value = accion;
+
+	if (window.top.showWorkingDiv) {
+		window.top.showWorkingDiv(title, message);
+	}
 	document.getElementById(idFormulario).submit();
 }
 

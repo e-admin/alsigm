@@ -270,7 +270,7 @@ public class GestionUnidadesDocumentales extends BaseAction {
 
 	/**
 	 * Valida la url del ws de transferencias
-	 * 
+    *
 	 * @param request
 	 *            {@link HttpServletRequest}
 	 */
@@ -291,7 +291,7 @@ public class GestionUnidadesDocumentales extends BaseAction {
 	/**
 	 * Genera un error por la importacion de unidades documentales a partir de
 	 * un xml
-	 * 
+    *
 	 * @param error
 	 *            Error a generar
 	 * @param mappings
@@ -341,10 +341,11 @@ public class GestionUnidadesDocumentales extends BaseAction {
 					// conectarse al servicio web
 					Service  service = new Service();
 					Call     call    = (Call) service.createCall();
-					
+
 					call.setTargetEndpointAddress( new java.net.URL(wsUrl) );
 					call.setOperationName(new QName("http://servicioWeb.transferirExpedientes", "transferirExpedientes"));
-					
+					call.setTimeout(new Integer(-1));
+
 					FormFile fichero = unidadDocumentalForm.getFichero();
 
 					// crear array de bytes
@@ -713,7 +714,7 @@ public class GestionUnidadesDocumentales extends BaseAction {
 	 * Crea una unidad documental a partir de la informaci�n introducida de
 	 * forma manual por un usuario durante la elaboracion de una relacion de
 	 * entrega sobre una transferencia extraordinaria
-	 * 
+    *
 	 */
 	public void crearUnidadDocumentalExecuteLogic(ActionMapping mappings,
 			ActionForm form, HttpServletRequest request,
@@ -953,7 +954,7 @@ public class GestionUnidadesDocumentales extends BaseAction {
 	/**
 	 * Comprobacion de que el usuario ha proporcionado la informacion de unidad
 	 * documental de manera adecuada
-	 * 
+    *
 	 */
 	protected ActionErrors validarUdocForm(UnidadDocumentalForm form,
 			String endAfterYear, String endBeforeYear,
@@ -1974,7 +1975,7 @@ public class GestionUnidadesDocumentales extends BaseAction {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+			*
 		 * @see
 		 * org.apache.commons.collections.Predicate#evaluate(java.lang.Object)
 		 */

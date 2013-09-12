@@ -41,7 +41,7 @@ public class EdicionDatoReferencia extends EdicionDato {
 
 	/**
 	 * Obtiene el tipo de referencia.
-	 * 
+    *
 	 * @return Tipo de referencia.
 	 */
 	public short getTipoReferencia() {
@@ -50,7 +50,7 @@ public class EdicionDatoReferencia extends EdicionDato {
 
 	/**
 	 * Establece el tipo de referencia.
-	 * 
+    *
 	 * @param tipoReferencia
 	 *            Tipo de referencia.
 	 */
@@ -60,18 +60,18 @@ public class EdicionDatoReferencia extends EdicionDato {
 
 	/**
 	 * Añade el identificador de una lista de descriptores.
-	 * 
+    *
 	 * @param id
 	 *            Identificador de una lista de descriptores.
 	 */
 	public void addIdentificador(String id) {
-		identificadores.add(id);
+		identificadores.add(StringUtils.trimToEmpty(id));
 	}
 
 	/**
 	 * Obtiene el identificador de una lista de descriptores en función de su
 	 * posición.
-	 * 
+    *
 	 * @param index
 	 *            Posición del identificador dentro de la lista.
 	 * @return Identificador.
@@ -82,7 +82,7 @@ public class EdicionDatoReferencia extends EdicionDato {
 
 	/**
 	 * Obtiene la lista de identificadores de listas de descriptores.
-	 * 
+    *
 	 * @return Lista de identificadores.
 	 */
 	public String[] getIdentificadores() {
@@ -92,7 +92,7 @@ public class EdicionDatoReferencia extends EdicionDato {
 
 	/**
 	 * Obtiene el número de identificadores de listas de descriptores.
-	 * 
+    *
 	 * @return Número de identificadores.
 	 */
 	public int getTotalIdentificadores() {
@@ -102,7 +102,7 @@ public class EdicionDatoReferencia extends EdicionDato {
 	/**
 	 * Elimina el identificador de la lista de descriptores de la posición
 	 * determinada.
-	 * 
+    *
 	 * @param index
 	 *            Posición del identificador a eliminar.
 	 */
@@ -112,7 +112,7 @@ public class EdicionDatoReferencia extends EdicionDato {
 
 	/**
 	 * Elimina el identificador de la lista de descriptores de la lista.
-	 * 
+    *
 	 * @param id
 	 *            Identificador a eliminar.
 	 */
@@ -129,7 +129,7 @@ public class EdicionDatoReferencia extends EdicionDato {
 
 	/**
 	 * Obtiene una representación XML del objeto.
-	 * 
+    *
 	 * @param indent
 	 *            Número de espacios de tabulación.
 	 * @return Representación del objeto.

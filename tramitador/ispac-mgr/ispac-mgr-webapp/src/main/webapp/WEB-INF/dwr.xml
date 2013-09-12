@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dwr PUBLIC 
-	"-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" 
+<!DOCTYPE dwr PUBLIC
+	"-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
 	"http://getahead.org/dwr/dwr20.dtd">
 
 <dwr>
@@ -15,7 +15,7 @@
 		<create creator="new" javascript="WorkListAPI">
 			<param name="class" value="ieci.tdw.ispac.ispacweb.dwr.WorkListAPI" />
 		</create>
-		
+
 		<!-- API de Frm Búsqueda -->
 		<create creator="new" javascript="SearchFormAPI">
 			<param name="class" value="ieci.tdw.ispac.ispacweb.dwr.SearchFormAPI" />
@@ -29,10 +29,11 @@
 		<convert converter="bean" match="ieci.tdw.ispac.ispacweb.dwr.vo.SimpleBean"/>
 		<convert converter="bean" match="ieci.tdw.ispac.ispacweb.dwr.vo.WebComponent"/>
 		<convert converter="bean" match="ieci.tdw.ispac.ispacweb.dwr.vo.Register"/>
-	
 
 		<!-- Excepciones -->
-		<convert converter="exception" match="java.lang.Exception"/>
-					
+		<convert converter="exception" match="java.lang.Exception">
+			<param name='include' value='localizedMessage'/>
+		</convert>
+
 	</allow>
 </dwr>

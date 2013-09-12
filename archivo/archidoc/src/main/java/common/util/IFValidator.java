@@ -25,7 +25,7 @@ public class IFValidator {
 	 * Admon.:S9999999x/P9999999x/Q9999999x</li>
 	 * </li>CIF extranjeros: x9999999x</li>
 	 * </ul>
-	 * 
+    *
 	 * @param document
 	 *            El identificador de documento que se desea validar.
 	 * @param document
@@ -60,7 +60,7 @@ public class IFValidator {
 	 * Admon.:S9999999x/P9999999x/Q9999999x</li>
 	 * </li>CIF extranjeros: x9999999x</li>
 	 * </ul>
-	 * 
+    *
 	 * @param document
 	 *            El identificador de documento que se desea validar.
 	 * @param tipo
@@ -133,7 +133,7 @@ public class IFValidator {
 			}
 		} else {
 			if (tipo.equalsIgnoreCase("C")) {
-				if ("ABCDEFGHNPQS".indexOf(documento.charAt(0)) < 0)
+				if ("ABCDEFGHIJNPQRSUVW".indexOf(documento.charAt(0)) < 0)
 					return result;
 
 				try {
@@ -246,7 +246,7 @@ public class IFValidator {
 
 	/**
 	 * Completa una cadena con caracteres por la izquierda.
-	 * 
+    *
 	 * @param numero
 	 *            Cadena que contiene el número.
 	 * @param numCifras

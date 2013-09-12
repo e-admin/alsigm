@@ -8,14 +8,14 @@ import common.db.IDBEntity;
 
 /**
  * Entidad: <b>ASCAORGANO</b>
- * 
+ *
  * @author IECISA
- * 
+ *
  */
 public interface ICAOrganoDbEntity extends IDBEntity {
 	/**
 	 * Obtiene la lista de órganos productores.
-	 * 
+    *
 	 * @param vigente
 	 *            Indica si los órganos deben ser vigentes o no vigentes. Si es
 	 *            nulo, se devolverán todos los órganos productores.
@@ -25,7 +25,7 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 
 	/**
 	 * Obtiene la información de un órgano.
-	 * 
+    *
 	 * @param idOrgano
 	 *            Identificador del órgano.
 	 * @return Información de un órgano.
@@ -35,7 +35,7 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 	/**
 	 * Recupera de la base de datos la informacion correspondiente a un conjunto
 	 * de organos
-	 * 
+    *
 	 * @param idOrgano
 	 *            Lista de identificadores de organo. Puede ser null
 	 * @return Lista de organos {@link CAOrganoVO}
@@ -44,7 +44,7 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 
 	/**
 	 * Obtiene la información de un órgano.
-	 * 
+    *
 	 * @param sistExtGestor
 	 *            Sistema Gestor de Organismos externo.
 	 * @param idEnSistExt
@@ -65,7 +65,7 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 	/**
 	 * Obtiene la lista de órganos a partir del Sistema Gestor Externo y una
 	 * lista de identificadores en ese sistema.
-	 * 
+    *
 	 * @param sistExtGestor
 	 *            Sistema Gestor de Organismos Externo.
 	 * @param idsEnSistExt
@@ -79,7 +79,7 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 	/**
 	 * Inserta en la base de datos la informacion correspondiente a un nuevo
 	 * organo
-	 * 
+    *
 	 * @param caOrganoVO
 	 *            datos del organo a insertar
 	 * @return Organo insertado
@@ -88,7 +88,7 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 
 	/**
 	 * Actualiza la informacion de un organo
-	 * 
+    *
 	 * @param organo
 	 *            Datos del organo a modificar
 	 */
@@ -96,7 +96,7 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 
 	/**
 	 * Eliminar un organo de la tabla de organos
-	 * 
+    *
 	 * @param idOrgano
 	 *            Identificador del organo a eliminar
 	 */
@@ -104,7 +104,7 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 
 	/**
 	 * Recupera los órganos por código y/o nombre.
-	 * 
+    *
 	 * @param code
 	 *            Código del órgano.
 	 * @param name
@@ -117,7 +117,7 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 
 	/**
 	 * Recupera los órganos cuyo nombre contiene la cadena suministrada
-	 * 
+    *
 	 * @param query
 	 *            Patrón de búsqueda a localizar en el nombre del órgano
 	 * @param externalSystem
@@ -126,14 +126,19 @@ public interface ICAOrganoDbEntity extends IDBEntity {
 	 * @return Lista de órganos cuyo nombre contiene el patrón indicado
 	 *         {@link CAOrganoVO}
 	 */
-	public List findByName(String query, String externalSystem);
+	public List findByName(String query, String externalSystem, boolean mostrarNombreLargo);
 
 	/**
 	 * Obtiene la información de un órgano por su nombre largo
-	 * 
+    *
 	 * @param nombreLargo
 	 *            Cadena que contiene el nombre largo del órgano
 	 * @return Información de un órgano.
 	 */
 	public CAOrganoVO getCAOrgProductorVOByNombreLargo(String nombreLargo);
+
+	/**
+    * Obtiene la información de un órgano por su código
+    */
+	public CAOrganoVO getCAOrgProductorVOByCodigo(String codigo);
 }

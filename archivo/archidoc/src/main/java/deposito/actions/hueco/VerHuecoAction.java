@@ -58,13 +58,17 @@ public class VerHuecoAction extends BaseAction {
 		HuecoID huecoID = HuecoForm.getHuecoID(idHueco);
 		HuecoVO huecoVO = depositoService.getInfoHueco(huecoID);
 
+
 		TreeView treeView = (TreeView) getFromTemporalSession(request,
 				DepositoConstants.DEPOSITO_VIEW_NAME);
 		ElementoAsignableVO asig = depositoService.getElementoAsignable(huecoVO
 				.getIdElemAPadre());
 		ElementoVO elementoVO = depositoService.getInfoElemento(
 				huecoVO.getIdElemAPadre(), asig.getIdTipoElemento());
-		treeView.selectTreeNode(elementoVO);
+
+		if(treeView != null){
+			treeView.selectTreeNode(elementoVO);
+		}
 
 		removeInTemporalSession(request, DepositoConstants.LISTA_UDOCS_KEY);
 
@@ -196,7 +200,7 @@ public class VerHuecoAction extends BaseAction {
 
 			/*
 			 * TODO: Volver a descomentar si se detecta fallo
-			 * 
+			*
 			 * getInvocationStack(request).getLastClientInvocation().setPath(
 			 * "/action/manageVistaDeposito?actionToPerform=goHome"); String
 			 * tipoPadre

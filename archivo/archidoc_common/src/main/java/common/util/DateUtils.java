@@ -83,7 +83,7 @@ public class DateUtils {
     	if(fecha != null){
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(fecha);
-		    return String.valueOf(cal.get(Calendar.MONTH));
+			return String.valueOf(cal.get(Calendar.MONTH)+1);
     	}
 
     	return null;
@@ -99,6 +99,36 @@ public class DateUtils {
     	return null;
     }
 
+
+    public static final String getHoras(Date fecha){
+		if(fecha != null){
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(fecha);
+			return String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
+		}
+
+		return null;
+    }
+
+    public static final String getMinutos(Date fecha){
+		if(fecha != null){
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(fecha);
+			return String.valueOf(cal.get(Calendar.MINUTE));
+		}
+
+		return null;
+    }
+
+    public static final String getSegundos(Date fecha){
+		if(fecha != null){
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(fecha);
+			return String.valueOf(cal.get(Calendar.SECOND));
+		}
+
+		return null;
+    }
 
     public final static int getDiaActual() {
         return Calendar.getInstance().get(Calendar.DATE);
@@ -466,7 +496,7 @@ public class DateUtils {
      * @return Date Fecha del Primer día del año
      */
     public static Date getLastDayOfYear(int anio) {
-    	return getFechaSinHora(1, 12, anio);
+		return getFechaSinHora(31, 12, anio);
     }
 
 
@@ -478,6 +508,18 @@ public class DateUtils {
 
 		Calendar newCal = GregorianCalendar.getInstance();
 		newCal.set(anio, mes-1, dia, 0, 0, 0);
+		newCal.set(GregorianCalendar.MILLISECOND,0);
+		return newCal.getTime();
+    }
+
+    /**
+     * Devuelve la fecha con hora
+     * @return
+     */
+    public static Date getFechaConHora(int dia, int mes, int anio, int hora, int minutos, int segundos) {
+
+		Calendar newCal = GregorianCalendar.getInstance();
+		newCal.set(anio, mes-1, dia, hora, minutos, segundos);
 		newCal.set(GregorianCalendar.MILLISECOND,0);
 		return newCal.getTime();
     }

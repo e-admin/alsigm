@@ -45,7 +45,7 @@ public class InformeUbicacionPDFReportAction extends BasePDFReportAction {
 	/**
 	 * Establece el nombre del report a generar en función del tipo de report
 	 * solicitado en la request
-	 * 
+    *
 	 * @param javax
 	 *            .servlet.http.HttpServletRequest
 	 * @param javax
@@ -62,7 +62,7 @@ public class InformeUbicacionPDFReportAction extends BasePDFReportAction {
 
 	/**
 	 * Establece los parametros necesarios para la generación del report.
-	 * 
+    *
 	 * @param javax
 	 *            .servlet.http.HttpServletRequest
 	 * @param javax
@@ -126,7 +126,7 @@ public class InformeUbicacionPDFReportAction extends BasePDFReportAction {
 
 	/**
 	 * Carga los datos necesarios para generar el informe.
-	 * 
+    *
 	 * @param javax
 	 *            .servlet.http.HttpServletRequest
 	 * @param javax
@@ -156,7 +156,7 @@ public class InformeUbicacionPDFReportAction extends BasePDFReportAction {
 		List ubicaciones = null;
 
 		if (!relacion.isRelacionConReencajado()) {
-			relacionesBI.getUbicacionesRelacion(idRelacion);
+			ubicaciones = relacionesBI.getUbicacionesRelacion(idRelacion);
 		}
 
 		// Si las ubicaciones no están guardadas en base de datos intentar

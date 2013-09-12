@@ -708,6 +708,27 @@ public class ServicioTramitacionRemoteClientTest extends TestCase {
 		
 	}
 	
+	public void testRecibirDocumentoFirmado(){
+		log("\n\n--- Entrada en testRecibirDocumentoFirmando ---");
+
+		try {
+			ServicioTramitacion servicio = getServicioTramitacion();
+			String numExp = "EXP2013/000031";
+			String idDocumento = "45";
+
+
+			String datosRegistro = servicio.recibirDocumentoFirmado(ID_ENTIDAD,numExp, idDocumento);
+			log("Datos registros : " + datosRegistro);
+
+		} catch (Exception e) {
+			fail("Error: " + e.toString());
+			log("Error en testRecibirDocumentoFirmando", e);
+		}
+
+		log("--- Salida de testRecibirDocumentoFirmando ---");
+
+	}
+
 	
 	private void log(String message) {
 		System.out.println(message);

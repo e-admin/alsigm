@@ -9,8 +9,8 @@
 	<artifactId>archidoc_organization_connector</artifactId>
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>jar</packaging>
-	<name>Archidoc: Modulo con el conector de Organizacion para aplicaciones externas</name>
-	<description>Archidoc: Modulo con el conector de Organizacion para aplicaciones externas</description>
+	<name>Modulo con el conector de Organizacion para aplicaciones externas</name>
+	<description>Modulo con el conector de Organizacion para aplicaciones externas</description>
 
 	<prerequisites>
 		<maven>2.0.9</maven>

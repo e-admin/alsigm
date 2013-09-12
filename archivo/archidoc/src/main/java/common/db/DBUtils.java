@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 import se.usuarios.AppPermissions;
@@ -2156,4 +2157,19 @@ public class DBUtils {
 
 		return sql.toString();
 	}
+
+	public static String getValorCadenaSql(String str){
+		return new StringBuffer(COMILLA_SIMPLE)
+			.append(StringEscapeUtils.escapeSql(str))
+			.append(COMILLA_SIMPLE)
+			.toString();
+	}
+
+	public static String getValorCadena(String str){
+		return new StringBuffer(COMILLA_SIMPLE)
+			.append(str)
+			.append(COMILLA_SIMPLE)
+			.toString();
+	}
+
 }

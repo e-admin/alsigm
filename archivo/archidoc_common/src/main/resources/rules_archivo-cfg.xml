@@ -170,6 +170,7 @@
 		<call-method-rule pattern="Tabla_Validacion_Boletines_Oficiales" methodname="setTablaValidacionBoletinesOficiales" paramcount="0"/>
 		<call-method-rule pattern="Tabla_Validacion_Tipo_Documentacion" methodname="setTablaValidacionTipoDocumentacion" paramcount="0"/>
       	<call-method-rule pattern="Instituciones_Productoras/Id_SistGestor_Org" methodname="setIdSistGestorOrg" paramcount="0"/>
+			<call-method-rule pattern="Instituciones_Productoras/Id_SistGestor_Org_Historicos" methodname="setIdSistGestorOrgHistoricos" paramcount="0"/>
       <set-next-rule methodname="setConfiguracionFondos" />
     </pattern>
 	<pattern value="Configuracion_Sistema_Archivo/Configuracion_Transferencias">
