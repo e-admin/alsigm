@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dir3.api.dao.impl;
+/*package es.ieci.tecdoc.fwktd.dir3.api.dao.impl;
 
 import java.util.List;
 
@@ -283,3 +283,4 @@ public class DatosBasicosOficinaDaoImplTest extends AbstractJUnit4SpringContextT
             .addOrderBy(CriterioOficinaEnum.OFICINA_NOMBRE);
 	}
 }
+*/

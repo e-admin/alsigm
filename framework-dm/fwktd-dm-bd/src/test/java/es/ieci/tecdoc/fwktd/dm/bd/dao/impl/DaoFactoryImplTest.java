@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.bd.dao.impl;
+/*package es.ieci.tecdoc.fwktd.dm.bd.dao.impl;
 
 import junit.framework.Assert;
 
@@ -24,3 +24,4 @@ public class DaoFactoryImplTest extends BaseDocumentoTest {
 	}
 
 }
+*/

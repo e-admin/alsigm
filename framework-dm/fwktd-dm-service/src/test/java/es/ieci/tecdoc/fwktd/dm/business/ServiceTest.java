@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.business;
+/*package es.ieci.tecdoc.fwktd.dm.business;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -34,4 +34,4 @@ public class ServiceTest extends AbstractJUnit4SpringContextTests {
 		}
 	}
 
-}
+}*/

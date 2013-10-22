@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.alfresco.service.impl;
+/*package es.ieci.tecdoc.fwktd.dm.alfresco.service.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -266,4 +266,4 @@ public class AlfrescoServiceImplTest extends AbstractJUnit4SpringContextTests {
 		metadato.setValor(valor);
 		return metadato;
 	}
-}
+}*/

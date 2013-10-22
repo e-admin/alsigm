@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.business.config;
+/*package es.ieci.tecdoc.fwktd.dm.business.config;
 
 import java.util.List;
 import java.util.Properties;
@@ -179,4 +179,4 @@ public class ConfigurationFactoryTest extends BaseDocumentoTest {
 		Assert.assertEquals(15, contentType.getMappings().size());
 	}
 
-}
+}*/

@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.business.service;
+/*package es.ieci.tecdoc.fwktd.dm.business.service;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -82,4 +82,4 @@ public class GestionDocumentalServiceFactoryTest extends BaseDocumentoTest {
 			};
 		}
 	}
-}
+}*/

@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dir3.api.dao.impl;
+/*package es.ieci.tecdoc.fwktd.dir3.api.dao.impl;
 
 import java.util.List;
 
@@ -397,4 +397,4 @@ public class DatosBasicosUnidadOrganizaDaoImplTest extends AbstractJUnit4SpringC
             .addOrderBy(CriterioUnidadOrganicaEnum.UO_NOMBRE);
 	}
 
-}
+}*/

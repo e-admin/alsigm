@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.bd;
+/*package es.ieci.tecdoc.fwktd.dm.bd;
 
 import javax.sql.DataSource;
 
@@ -84,4 +84,4 @@ public abstract class BaseDocumentoTest extends AbstractJUnit4SpringContextTests
 		return idDocumento.get();
 	}
 
-}
+}*/

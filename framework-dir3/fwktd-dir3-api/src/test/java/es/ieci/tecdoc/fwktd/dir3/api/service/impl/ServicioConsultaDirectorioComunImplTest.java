@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dir3.api.service.impl;
+/*package es.ieci.tecdoc.fwktd.dir3.api.service.impl;
 
 import java.util.List;
 
@@ -24,6 +24,7 @@ import es.ieci.tecdoc.fwktd.dir3.core.vo.DatosBasicosUnidadOrganica;
  * @version $Revision$
  *
  */
+/*
 @ContextConfiguration({"/beans/cxf.xml", "/beans/fwktd-dir3-test-beans.xml",
 		"/beans/fwktd-dir3-api-applicationContext.xml" })
 public class ServicioConsultaDirectorioComunImplTest extends
@@ -402,3 +403,4 @@ public class ServicioConsultaDirectorioComunImplTest extends
 	}
 
 }
+*/
