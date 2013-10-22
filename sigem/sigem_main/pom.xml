@@ -152,7 +152,7 @@
 						<target>${jdk.version}</target>
 						<encoding>ISO-8859-1</encoding>
 						<fork>true</fork>
-						<executable>${JAVA_1_5_HOME}/bin/javac</executable>
+            <!--						<executable>${JAVA_1_5_HOME}/bin/javac</executable>-->
 					</configuration>
 				</plugin>
 

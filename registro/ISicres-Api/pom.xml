@@ -175,7 +175,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -265,7 +265,7 @@
 					<target>1.5</target>
 					<encoding>iso-8859-1</encoding>
 					<fork>true</fork>
-					<executable>${JAVA_1_5_HOME}/bin/javac</executable>
+          <!--					<executable>${JAVA_1_5_HOME}/bin/javac</executable>-->
 				</configuration>
 			</plugin>
 			<plugin>

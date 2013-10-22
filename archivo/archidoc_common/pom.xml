@@ -32,6 +32,12 @@
 			<scope>provided</scope>
 		</dependency>
 
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.9</version>
+    </dependency>
+
 		<dependency>
 			<groupId>es.ieci.tecdoc</groupId>
 			<artifactId>archigest</artifactId>
@@ -57,8 +63,8 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>jmxtools</groupId>
-					<artifactId>jmxtools</artifactId>
+          <groupId>jmxtools</groupId>
+          <artifactId>jmxtools</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>oracle</groupId>
