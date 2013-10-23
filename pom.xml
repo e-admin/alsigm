@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>es.ieci.tecdoc.sigem</groupId>
+  <artifactId>sigem-all</artifactId>
+  <packaging>pom</packaging>
+  <name>SIGEM</name>
+  <version>3.0</version>
+
+  <prerequisites>
+    <maven>2.0.9</maven>
+  </prerequisites>
+
+  <modules>
+    <module>framework</module>
+    <module>framework-audit</module>
+    <module>framework-time</module>
+    <module>framework-csv</module>
+    <module>framework-dir3</module>
+    <module>framework-dm</module>
+    <module>framework-filesystem-applet</module>
+    <module>framework-scan-applet</module>
+    <module>framework-sendFiles-applet</module>
+    <module>framework-sir</module>
+    <module>registro</module>
+    <module>tramitador</module>
+    <module>archivo</module>
+    <module>sigem</module>
+  </modules>
+</project>
