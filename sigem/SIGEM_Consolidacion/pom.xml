@@ -8,7 +8,7 @@
 		<version>3.0</version>
 	</parent>
 
-	<artifactId>SIGEM_Consolidacion</artifactId>
+	<artifactId>sigem_consolidacion</artifactId>
 	<name>SIGEM_Consolidacion</name>
 
 	<dependencies>
@@ -110,7 +110,7 @@
 
 		<dependency>
 			<groupId>com.sun.media</groupId>
-			<artifactId>jai_codec</artifactId>
+			<artifactId>jai-codec</artifactId>
 			<version>1.1.3</version>
 		</dependency>
 
