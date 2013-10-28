@@ -108,7 +108,6 @@
 				<module>SIGEM_EstructuraOrganizativa</module>
 				<module>SIGEM_UtilidadesAdministracion</module>
 				<module>SIGEM_EstructuraOrganizativaWSClient</module>
-				<module>SIGEM_CatalogoTramitesWSClient</module>
 				<module>SIGEM_FirmaDigital</module>
 				<module>SIGEM_FirmaDigitalWSClient</module>
 				<module>SIGEM_Certificacion</module>
