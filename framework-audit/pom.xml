@@ -67,7 +67,6 @@
 	
 
 	<modules>
-		<module>fwktd-audit-parent</module>
 		<module>fwktd-audit-core</module>
 		<module>fwktd-audit-api</module>
 		<module>fwktd-audit-integration</module>
@@ -79,7 +78,6 @@
 		<profile>
 			<id>distri</id>
 			<modules>
-				<module>fwktd-audit-parent</module>
 				<module>fwktd-audit-core</module>
 				<module>fwktd-audit-api</module>
 				<module>fwktd-audit-integration</module>

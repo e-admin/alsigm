@@ -5,7 +5,7 @@
 		<version>3.0.1-M2</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>SIGEM_Notificacion-configurable-resources</artifactId>
+	<artifactId>sigem_notificacion-configurable-resources</artifactId>
 	<name>SIGEM_Notificacion-configurable-resources</name>
 	<packaging>pom</packaging>
 	<description>Recursos Configurables Modulo Notificacion SIGEM</description>
