@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+
+	<pattern value="processlistformat">
+		<object-create-rule classname="ieci.tdw.ispac.ispaclib.worklist.WLTaskListBuilder"/>
+		<call-method-rule pattern="query" methodname="setQuery" paramcount="0" />
+
+		<pattern value="tasklist">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.worklist.WLClosedTaskListDef"/>
+			<set-properties-rule>
+				<alias attr-name='name' prop-name='name' />
+			</set-properties-rule>
+			<set-next-rule methodname="addTaskList"/>
+		</pattern>
+
+		<pattern value="entity">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.worklist.WLEntityDef"/>
+			<set-properties-rule>
+				<alias attr-name='name' prop-name='name' />
+				<alias attr-name='entityid' prop-name='entityId' />
+			</set-properties-rule>
+			<set-next-rule methodname="add"/>
+		</pattern>
+
+		<pattern value="table">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.worklist.WLTableDef"/>
+			<set-properties-rule>
+				<alias attr-name='name' prop-name='name' />
+				<alias attr-name='tablename' prop-name='tableName' />
+				<alias attr-name='numexpfield' prop-name='numExpField' />
+			</set-properties-rule>
+
+			<!-- Tabla agregada a la consulta con LEFT OUTER JOIN -->
+			<pattern value="join">
+				<object-create-rule classname="ieci.tdw.ispac.ispaclib.worklist.WLTableJoinDef"/>
+				<set-properties-rule>
+					<alias attr-name='name' prop-name='name' />
+					<alias attr-name='property' prop-name='property' />
+				</set-properties-rule>
+				<set-next-rule methodname="add"/>
+			</pattern>
+
+			<set-next-rule methodname="add"/>
+		</pattern>
+
+
+		<pattern value="codetable">
+			<object-create-rule classname="ieci.tdw.ispac.ispaclib.worklist.WLCodeTableDef"/>
+			<set-properties-rule>
+				<alias attr-name='name' prop-name='name' />
+				<alias attr-name='table' prop-name='table'/>
+				<alias attr-name='code' prop-name='code'/>
+				<alias attr-name='value' prop-name='value'/>
+			</set-properties-rule>
+
+			<pattern value="substitute">
+				<object-create-rule classname="ieci.tdw.ispac.ispaclib.worklist.WLSubstituteDef"/>
+				<set-properties-rule>
+					<alias attr-name='name' prop-name='name' />
+					<alias attr-name='property' prop-name='property' />
+				</set-properties-rule>
+				<set-next-rule methodname="add"/>
+			</pattern>
+
+			<set-next-rule methodname="add"/>
+		</pattern>
+	</pattern>
+</digester-rules>

@@ -104,12 +104,12 @@ final class AppFormDialog extends JDialog {
 
 	private static JPanel getNorthPanel() {
 
-	final JPanel panel = new JPanel();
+    	final JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         final JLabel appPathLabel = new JLabel(
-		AppLauncherMessages.getString("appLauncherApplet.form.message") //$NON-NLS-1$
+    		AppLauncherMessages.getString("appLauncherApplet.form.message") //$NON-NLS-1$
 		);
 
         panel.add(appPathLabel);
@@ -119,63 +119,63 @@ final class AppFormDialog extends JDialog {
 
     private JPanel getCenterPanel() {
 
-	final JPanel panel = new JPanel();
-	panel.setLayout(new GridBagLayout());
-	panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+    	final JPanel panel = new JPanel();
+    	panel.setLayout(new GridBagLayout());
+    	panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-	final GridBagConstraints c = new GridBagConstraints();
-	c.fill = GridBagConstraints.HORIZONTAL;
-	c.insets = new Insets(0, 5, 0, 5);
+    	final GridBagConstraints c = new GridBagConstraints();
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(0, 5, 0, 5);
 
-	if (this.exists) {
+    	if (this.exists) {
 	        final JLabel docTypeLabel = new JLabel(
-			AppLauncherMessages.getString("appLauncherApplet.form.docTypeLabel"), //$NON-NLS-1$
-			SwingConstants.TRAILING
-		);
+        		AppLauncherMessages.getString("appLauncherApplet.form.docTypeLabel"), //$NON-NLS-1$
+        		SwingConstants.TRAILING
+    		);
 
 	        c.gridx = 0;
-		c.gridy = 0;
+	    	c.gridy = 0;
 	        panel.add(docTypeLabel, c);
 
 	        final JLabel docTypeValueLabel = new JLabel(getDocType(), SwingConstants.LEFT);
 	        c.gridx = 1;
-		c.gridy = 0;
+	    	c.gridy = 0;
 	        panel.add(docTypeValueLabel, c);
 
-	}
-	else {
-		this.docTypeField.setColumns(10);
+    	}
+    	else {
+	    	this.docTypeField.setColumns(10);
 
 	        final JLabel docTypeLabel = new JLabel(
-			AppLauncherMessages.getString("appLauncherApplet.form.docTypeLabel"), //$NON-NLS-1$
-			SwingConstants.TRAILING
-		);
+        		AppLauncherMessages.getString("appLauncherApplet.form.docTypeLabel"), //$NON-NLS-1$
+        		SwingConstants.TRAILING
+    		);
 	        docTypeLabel.setLabelFor(this.docTypeField);
 
 	        c.gridx = 0;
-		c.gridy = 0;
+	    	c.gridy = 0;
 	        panel.add(docTypeLabel, c);
 
 	        c.gridx = 1;
-		c.gridy = 0;
+	    	c.gridy = 0;
 	        panel.add(this.docTypeField, c);
-	}
+    	}
 
-	this.appPathField.setColumns(25);
+    	this.appPathField.setColumns(25);
 
         final JLabel appPathLabel = new JLabel(
-		AppLauncherMessages.getString("appLauncherApplet.form.appLabel"), //$NON-NLS-1$
-		SwingConstants.TRAILING
+    		AppLauncherMessages.getString("appLauncherApplet.form.appLabel"), //$NON-NLS-1$
+    		SwingConstants.TRAILING
 		);
         appPathLabel.setLabelFor(this.appPathField);
 
         c.gridx = 0;
-	c.gridy = 1;
+    	c.gridy = 1;
         panel.add(appPathLabel, c);
 
         c.gridx = 1;
-	c.gridy = 1;
-	panel.add(this.appPathField, c);
+    	c.gridy = 1;
+    	panel.add(this.appPathField, c);
 
         final URL imgURL = AppFormDialog.class.getResource("images/Open16.gif"); //$NON-NLS-1$
         final JButton openButton = new JButton(new ImageIcon(imgURL));
@@ -186,14 +186,14 @@ final class AppFormDialog extends JDialog {
 	            if (returnVal == JFileChooser.APPROVE_OPTION) {
 	                final File file = fc.getSelectedFile();
 	                if (file != null) {
-				AppFormDialog.this.setAppPath(file.getAbsolutePath());
+	                	AppFormDialog.this.setAppPath(file.getAbsolutePath());
 	                }
 	            }
 			}
-	});
+    	});
 
         c.gridx = 2;
-	c.gridy = 1;
+    	c.gridy = 1;
         panel.add(openButton, c);
 
         return panel;
@@ -201,11 +201,11 @@ final class AppFormDialog extends JDialog {
 
 	private JPanel getButtonsPanel() {
 
-	final JPanel panel = new JPanel();
-	panel.setLayout(new FlowLayout());
+    	final JPanel panel = new JPanel();
+    	panel.setLayout(new FlowLayout());
 
         final JButton okButton = new JButton(
-		AppLauncherMessages.getString("appLauncherApplet.button.ok") //$NON-NLS-1$
+    		AppLauncherMessages.getString("appLauncherApplet.button.ok") //$NON-NLS-1$
 		);
         okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
@@ -252,11 +252,11 @@ final class AppFormDialog extends JDialog {
 					AppFormDialog.this.dispose();
 				}
 			}
-	});
+    	});
         panel.add(okButton);
 
         final JButton cancelButton = new JButton(
-		AppLauncherMessages.getString("appLauncherApplet.button.cancel") //$NON-NLS-1$
+    		AppLauncherMessages.getString("appLauncherApplet.button.cancel") //$NON-NLS-1$
 		);
         cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
@@ -265,7 +265,7 @@ final class AppFormDialog extends JDialog {
 				AppFormDialog.this.setResult(CANCEL);
 				AppFormDialog.this.dispose();
 			}
-	});
+    	});
         panel.add(cancelButton);
 
         return panel;

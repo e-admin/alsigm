@@ -115,7 +115,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * Muestra el listado de las consultas en función del rol del usuario
 	 * conectado para que pueda realizar las gestiones oportunas.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -164,7 +164,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * Muestra el listado de las consultas con reserva en función del rol del
 	 * usuario conectado para que pueda realizar las gestiones oportunas.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -213,7 +213,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * Muestra el listado de los prestamos según el rol del usuario que esta
 	 * accediendo a la aplicación para su entrega.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -252,7 +252,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Muestra el listado de las consultas actuales del usuario.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -297,7 +297,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Muestra el listado de las consultas actuales del usuario.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -344,7 +344,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * Redirige a la pagina de información de las unidades documentales no
 	 * disponibles para una consulta.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -364,7 +364,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Muestra una consulta que ha sido creada.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -415,7 +415,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Crea una nueva consulta.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -524,7 +524,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Acción para añadir a una consulta las unidades seleccionadas.
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -595,7 +595,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * Acción que añade al préstamo las unidades seleccionadas desde los
 	 * resultados de la búsqueda.
-	 * 
+    *
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -642,7 +642,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * Lleva al formulario de edición de consultas tras las comprobaciones
 	 * necesarias.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -715,7 +715,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Finaliza el proceso de autorización de una consulta.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -750,7 +750,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Redirige a la pagina de consultas no dipsonibles y autorizadas.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -772,7 +772,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * REaliza la entrega de una consulta(marcando la consulta y sus unidades
 	 * como entregadas).
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -796,7 +796,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Guarda los cambios realizados en una consulta.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -871,7 +871,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Elimina las consultas seleccionadas por el usuario.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -892,7 +892,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Realiza la solicitud de la entrega de la reserva de una consulta.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -935,7 +935,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * Da de alta solitudes para las unidades documentales seleccionadas de una
 	 * determinada consulta.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -963,7 +963,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * Prepara la página para la impresión de la papeleta de la devolución de
 	 * una consulta.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -1005,17 +1005,17 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 		 * ServiceRepository.getInstance(ServiceClient.create(userVO));
 		 * GestionConsultasBI consultasService =
 		 * services.lookupGestionConsultasBI();
-		 * 
+			*
 		 * //Obtenemos el identificador de la consulta y la almancenamos para
 		 * mostrarla en sesion String codigo =
 		 * request.getParameter("idconsulta"); ConsultaVO consulta_VO =
 		 * consultasService.getConsulta(codigo); setInTemporalSession(request ,
 		 * ConsultasConstants.CONSULTA_KEY, consulta_VO);
-		 * 
+			*
 		 * request.getSession().setAttribute(ConsultasConstants.DETALLE_CONSULTA_KEY
 		 * ,
 		 * consultasService.getDetallesConsultaDevueltas(consulta_VO.getId()));
-		 * 
+			*
 		 * setReturnActionFordward(request,
 		 * mapping.findForward("imprimir_entrada_consulta"));
 		 */
@@ -1024,7 +1024,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 	/**
 	 * Realiza la comprobacion de la disponibilidad de las unidades documentales
 	 * para la consulta indicada.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -1070,7 +1070,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Elimina la consulta actual.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -1179,7 +1179,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Actualiza el número de expediente de fracción de serie a solicitar
-	 * 
+    *
 	 * @param mappings
 	 * @param form
 	 * @param request
@@ -1218,7 +1218,7 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 
 	/**
 	 * Actualiza las observaciones del préstamo
-	 * 
+    *
 	 * @param mappings
 	 * @param form
 	 * @param request
@@ -1427,5 +1427,22 @@ public class GestionConsultasAction extends BaseGestionConsultasAction {
 		goForwardConsulta(mappings, consultaForm, request);
 
 	}
+
+
+	public void volverASolicitadaExecuteLogic(ActionMapping mappings,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		String idConsulta = request.getParameter("idconsulta");
+
+		AppUser appUser = getAppUser(request);
+		if (appUser.hasPermissionGestionSolicitudesConsultas()) {
+			getGestionConsultasBI(request).cambiarEstadoDeAutorizadaAEnviadaYDetallesAutorizadosAPendientes(idConsulta);
+		}
+		// Redirigimos a la pagina adecuada
+		setReturnActionFordward(request, verConsultaBeforeCreate(idConsulta));
+
+	}
+
 
 }

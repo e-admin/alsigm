@@ -1,13 +1,13 @@
 package gcontrol.db;
 
 import gcontrol.vos.CAOrganoVO;
+import gcontrol.vos.CAOrganoVOInterno;
 import ieci.core.db.DbColumnDef;
 import ieci.core.db.DbConnection;
 import ieci.core.db.DbDataType;
 import ieci.core.db.DbDeleteFns;
 import ieci.core.db.DbInsertFns;
 import ieci.core.db.DbUtil;
-import ieci.core.guid.GuidManager;
 
 import java.util.List;
 
@@ -92,7 +92,7 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 
 	/**
 	 * Obtiene el nombre de la tabla
-	 * 
+    *
 	 * @return
 	 */
 	public String getTableName() {
@@ -101,7 +101,7 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 
 	/**
 	 * Obtiene la lista de órganos productores.
-	 * 
+    *
 	 * @param vigente
 	 *            Indica si los órganos deben ser vigentes o no vigentes. Si es
 	 *            nulo, se devolverán todos los órganos productores.
@@ -126,7 +126,7 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 
 	/**
 	 * Obtiene la información de un órgano.
-	 * 
+    *
 	 * @param idOrgano
 	 *            Identificador del órgano.
 	 * @return Información de un órgano.
@@ -146,6 +146,14 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 		return getCAOrgProductorVO(qual);
 	}
 
+	public CAOrganoVO getCAOrgProductorVOByCodigo(String codigo) {
+		String qual = new StringBuffer(" WHERE ").append(
+				DBUtils.generateEQTokenField(CAMPO_CODIGO, codigo))
+				.toString();
+
+		return getCAOrgProductorVO(qual);
+	}
+
 	public List getCAOrgProductorVOXId(String[] idOrgano) {
 		StringBuffer qual = new StringBuffer(" WHERE 1=1 ");
 		if (idOrgano != null)
@@ -157,7 +165,7 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 
 	/**
 	 * Obtiene la información de un órgano.
-	 * 
+    *
 	 * @param sistExtGestor
 	 *            Sistema Gestor de Organismos externo.
 	 * @param idEnSistExt
@@ -213,7 +221,7 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 	/**
 	 * Obtiene la lista de órganos a partir del Sistema Gestor Externo y una
 	 * lista de identificadores en ese sistema.
-	 * 
+    *
 	 * @param sistExtGestor
 	 *            Sistema Gestor de Organismos Externo.
 	 * @param idsEnSistExt
@@ -244,6 +252,12 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 
 		return getVOS(qual, TABLE_NAME_ORG, COLS_DEF_ASCAORG, CAOrganoVO.class);
 	}
+
+	private List getCAOrgProductoresInternosVO(final String qual) {
+
+		return getVOS(qual, TABLE_NAME_ORG, COLS_DEF_ASCAORG, CAOrganoVOInterno.class);
+	}
+
 
 	public CAOrganoVO insertCAOrgVO(final CAOrganoVO caOrganoVO) {
 		DBCommand command = new DBCommand(this) {
@@ -283,7 +297,7 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 
 	/**
 	 * Constructor.
-	 * 
+    *
 	 * @param dataSource
 	 *            Pool de conexiones de base de datos.
 	 */
@@ -297,7 +311,7 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 
 	/**
 	 * Recupera los órganos por código y/o nombre.
-	 * 
+    *
 	 * @param code
 	 *            Código del órgano.
 	 * @param name
@@ -330,7 +344,7 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 
 	/**
 	 * Recupera los órganos cuyo nombre contiene la cadena suministrada
-	 * 
+    *
 	 * @param query
 	 *            Patrón de búsqueda a localizar en el nombre del órgano
 	 * @param externalSystem
@@ -339,7 +353,7 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 	 * @return Lista de órganos cuyo nombre contiene el patrón indicado
 	 *         {@link CAOrganoVO}
 	 */
-	public List findByName(String query, String externalSystem) {
+	public List findByName(String query, String externalSystem, boolean mostrarNombreLargo) {
 		StringBuffer qual = new StringBuffer("WHERE ").append(DBUtils
 				.generateLikeTokenField(CAMPO_NOMBRE, query, true));
 		if (externalSystem != null)
@@ -348,7 +362,13 @@ public class CAOrganoDbEntityImpl extends DBEntity implements ICAOrganoDbEntity 
 							externalSystem));
 		qual.append(" ORDER BY ").append(CODIGO_COLUMN_NAME);
 
-		return getCAOrgProductoresVO(qual.toString());
+		if(mostrarNombreLargo){
+			return getCAOrgProductoresInternosVO(qual.toString());
+		}
+		else{
+			return getCAOrgProductoresVO(qual.toString());
+		}
+
 
 	}
 }

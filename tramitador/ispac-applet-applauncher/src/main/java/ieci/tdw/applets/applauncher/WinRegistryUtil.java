@@ -21,18 +21,18 @@ final class WinRegistryUtil {
 
     private static String readRegistry(final String keyPath) {
         try {
-		ProcessBuilder pb = new ProcessBuilder("reg", "QUERY", keyPath, "/ve"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        	ProcessBuilder pb = new ProcessBuilder("reg", "QUERY", keyPath, "/ve"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             try {
-		final Class<?> redirectClass = Class.forName("java.lang.ProcessBuilder$Redirect"); //$NON-NLS-1$
-		final Object pipeRedirectValue = redirectClass.getField("PIPE").get(null); //$NON-NLS-1$
-		ProcessBuilder.class.getMethod("redirectOutput", redirectClass).invoke(pb, pipeRedirectValue); //$NON-NLS-1$
-		ProcessBuilder.class.getMethod("redirectInput", redirectClass).invoke(pb, pipeRedirectValue); //$NON-NLS-1$
+            	final Class<?> redirectClass = Class.forName("java.lang.ProcessBuilder$Redirect"); //$NON-NLS-1$
+            	final Object pipeRedirectValue = redirectClass.getField("PIPE").get(null); //$NON-NLS-1$
+            	ProcessBuilder.class.getMethod("redirectOutput", redirectClass).invoke(pb, pipeRedirectValue); //$NON-NLS-1$
+            	ProcessBuilder.class.getMethod("redirectInput", redirectClass).invoke(pb, pipeRedirectValue); //$NON-NLS-1$
             }
             catch (final Exception e) {
-		// Se ignora
+            	// Se ignora
             }
 
-		Process process = pb.start();
+        	Process process = pb.start();
 
             StreamReader reader = new StreamReader(process.getInputStream());
             reader.start();
@@ -41,13 +41,13 @@ final class WinRegistryUtil {
             String output = reader.getResult().trim();
 
             if (output.contains(REG_EXPAND_SZ)) {
-		output = output.replace("%SystemRoot%", System.getenv("SystemRoot")) //$NON-NLS-1$ //$NON-NLS-2$
-				.replace("%ProgramFiles%", "ProgramFiles") //$NON-NLS-1$ //$NON-NLS-2$
-				.replace(REG_EXPAND_SZ, REG_SZ);
+            	output = output.replace("%SystemRoot%", System.getenv("SystemRoot")) //$NON-NLS-1$ //$NON-NLS-2$
+        			.replace("%ProgramFiles%", "ProgramFiles") //$NON-NLS-1$ //$NON-NLS-2$
+        			.replace(REG_EXPAND_SZ, REG_SZ);
             }
 
             if (!output.contains(REG_SZ)) {
-		return null;
+            	return null;
             }
 
             output = output.substring(output.indexOf(REG_SZ) + REG_SZ.length(), output.length()).trim();
@@ -56,7 +56,7 @@ final class WinRegistryUtil {
 
         }
         catch (Exception e) {
-		LOGGER.severe("Ha ocurrido un error al obtener la asociacion del registro: " + e); //$NON-NLS-1$
+        	LOGGER.severe("Ha ocurrido un error al obtener la asociacion del registro: " + e); //$NON-NLS-1$
             return null;
         }
 
@@ -79,7 +79,7 @@ final class WinRegistryUtil {
 				}
             }
             catch (final IOException e) {
-		// Se ignora
+            	// Se ignora
             }
         }
 
@@ -89,17 +89,17 @@ final class WinRegistryUtil {
     }
 
     static String getAssociatedProgram(final String extensionIncludingDot) {
-	if (!System.getProperty("os.name").contains("indows")) {  //$NON-NLS-1$//$NON-NLS-2$
-		return null;
-	}
-	if (extensionIncludingDot == null) {
-		return null;
-	}
-	String proc = WinRegistryUtil.readRegistry(HKEY_CLASSES_ROOT_PATH + extensionIncludingDot);
-	if (proc == null) {
-		return null;
-	}
-	String comm = WinRegistryUtil.readRegistry(HKEY_CLASSES_ROOT_PATH + extensionIncludingDot + "\\shell\\open\\command"); //$NON-NLS-1$
+    	if (!System.getProperty("os.name").contains("indows")) {  //$NON-NLS-1$//$NON-NLS-2$
+    		return null;
+    	}
+    	if (extensionIncludingDot == null) {
+    		return null;
+    	}
+    	String proc = WinRegistryUtil.readRegistry(HKEY_CLASSES_ROOT_PATH + extensionIncludingDot);
+    	if (proc == null) {
+    		return null;
+    	}
+    	String comm = WinRegistryUtil.readRegistry(HKEY_CLASSES_ROOT_PATH + extensionIncludingDot + "\\shell\\open\\command"); //$NON-NLS-1$
 		if (comm == null) {
 			return getAssociatedProgram(proc);
 		}

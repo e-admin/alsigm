@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TRANSFERENCIA
+	version="5.0">
+	<SERIE
+		idFichaUdocs="10"
+		idPadre="00000000000000000000000000000001"
+		idRepEcmSerie="1"
+		idRepEcmUdoc="1"
+		>
+		<!-- Obligatorios -->
+		<PROCEDIMIENTO>
+			<ID>ID</ID>
+			<NOMBRE>Serie WS Transferencias</NOMBRE>
+			<TITULO_CORTO>Serie WS Transferencias</TITULO_CORTO>
+			<NORMATIVA>NORMATIVA</NORMATIVA>
+			<OBJETO>OBJETO</OBJETO>
+			<DOCUMENTOS>DOCUMENTOS</DOCUMENTOS>
+			<TRAMITES>
+				<TRAMITE>TRAMITE1</TRAMITE>
+				<TRAMITE>TRAMITE2</TRAMITE>
+			</TRAMITES>
+		</PROCEDIMIENTO>
+		<FICHA>
+			<!-- Area de Mención de la Identididad -->
+			<CAMPO_TEXTO
+				etiqueta="Identificacion">Identificación</CAMPO_TEXTO>
+
+			<CAMPO_TABLA
+				etiqueta="Emplazamientos">
+				<CAMPO_FILA
+					etiqueta="Emplazamiento">
+					<CAMPO_DESCRIPTOR
+						etiqueta="Pais"
+						idLista="ID_LIST_PAIS"
+						valor="España" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Comunidad"
+						idLista="ID_LIST_COMUNIDAD"
+						valor="Asturias" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Concejo"
+						idLista="ID_LIST_CONCEJO"
+						valor="Lena" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Poblacion"
+						idLista="ID_LIST_POBLACION"
+						valor="Pola de Lena" />
+					<CAMPO_TEXTO
+						etiqueta="Localizacion">Localización Emplazamiento (SERIE)</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Emplazamiento_Validado">Si</CAMPO_TEXTO>
+				</CAMPO_FILA>
+
+				<CAMPO_FILA
+					etiqueta="Emplazamiento">
+					<CAMPO_DESCRIPTOR
+						etiqueta="Pais"
+						idLista="ID_LIST_PAIS"
+						valor="España" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Comunidad"
+						idLista="ID_LIST_COMUNIDAD"
+						valor="Asturias" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Concejo"
+						idLista="ID_LIST_CONCEJO"
+						valor="San Martín del Rey Aurelio" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Poblacion"
+						idLista="ID_LIST_POBLACION"
+						valor="Blimea" />
+					<CAMPO_TEXTO
+						etiqueta="Localizacion">Oficina de Turismo (SERIE)</CAMPO_TEXTO>
+
+					<!-- Emplazamiento_Validado: "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Emplazamiento_Validado">No</CAMPO_TEXTO>
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<CAMPO_TABLA
+				etiqueta="Volumenes_Soportes">
+
+				<CAMPO_FILA
+					etiqueta="Volumen_Soporte">
+
+					<!-- Formato: ======== "Caja(s)" "Carta(s)" "Documento(s)" "Fotografía(s)"
+						"Expediente(s)" -->
+					<CAMPO_TEXTO
+						etiqueta="Formato">Documento(s)</CAMPO_TEXTO>
+
+
+					<!-- Soporte ======== "Disquete" "Papel" "Electrónico" "Planos" "Transparencias"
+						"Discos de polivinilo" "Pergamino" "CD_Rom" "DVD" "CD" "Videocasete" "Casete"
+						"Diapositivas" "Microficha" "Microfilm" "Negativos fotográficos" "Películas" -->
+					<CAMPO_TEXTO
+						etiqueta="Soporte">Electrónico</CAMPO_TEXTO>
+
+					<CAMPO_NUMERICO
+						etiqueta="Num_Docs"
+						valor="2" />
+				</CAMPO_FILA>
+
+
+				<CAMPO_FILA
+					etiqueta="Volumen_Soporte">
+
+					<!-- Formato: ======== "Caja(s)" "Carta(s)" "Documento(s)" "Fotografía(s)"
+						"Expediente(s)" -->
+					<CAMPO_TEXTO
+						etiqueta="Formato">Documento(s)</CAMPO_TEXTO>
+
+
+					<!-- Soporte ======== "Disquete" "Papel" "Electrónico" "Planos" "Transparencias"
+						"Discos de polivinilo" "Pergamino" "CD_Rom" "DVD" "CD" "Videocasete" "Casete"
+						"Diapositivas" "Microficha" "Microfilm" "Negativos fotográficos" "Películas" -->
+					<CAMPO_TEXTO
+						etiqueta="Soporte">Diapositivas</CAMPO_TEXTO>
+
+					<CAMPO_NUMERICO
+						etiqueta="Num_Docs"
+						valor="3" />
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<CAMPO_TABLA
+				etiqueta="Interesados">
+				<CAMPO_FILA
+					etiqueta="Interesado">
+					<!-- Interesado: Principal: ====================== "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Principal">Si</CAMPO_TEXTO>
+					<CAMPO_DESCRIPTOR
+						etiqueta="Identidad"
+						idLista="ID_LIST_INTERESADO"
+						valor="identidad" />
+					<CAMPO_TEXTO
+						etiqueta="NumIdentidad">123456789A</CAMPO_TEXTO>
+
+					<!-- Roles: ====== "CAMBIO TITULAR" "INTERLOCUTOR" "PROMOTOR" "ASESOR
+						ESPECIALISTA SUPLENTE" "ASESOR ESPECIALISTA TITULAR" "INTERESADO" "REPRESENTANTE"
+						"LICITADOR" "DENUNCIANTE" "DENUNCIADO" "PROPIETARIO" "BENEFICIARIO" "PROPONENTE"
+						"COMPETENTE" "ARRENDATARIO" "PRESIDENTE TITULAR" "EXPROPIADOR" "PRESIDENTE
+						SUPLENTE" "SECRETARIO TITULAR" "SECRETARIO SUPLENTE" "VOCAL TITULAR" "VOCAL
+						SUPLENTE" "REPRESENTANTE SINDICAL TITULAR" "REPRESENTANTE SINDICAL SUPLENTE" -->
+					<CAMPO_TEXTO
+						etiqueta="Rol">INTERESADO</CAMPO_TEXTO>
+
+					<!-- Interesado_Validado: ====================== "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Interesado_Validado">Si</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="IdTercero">230</CAMPO_TEXTO>
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<!-- Publ_SAC ========= "Si" "No" -->
+			<CAMPO_TEXTO
+				etiqueta="Publ_SAC">Si</CAMPO_TEXTO>
+
+			<!-- Fin Area de Mención de la Identidad -->
+
+			<!-- Area de Contexto -->
+			<CAMPO_TEXTO
+				etiqueta="Historia_Institucional">Historia Institucional</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Historia_Archivistica">Historia Archivística</CAMPO_TEXTO>
+
+			<!-- Forma_Ingreso ============== "Depósito" "Transferencia" "Donación" -->
+			<CAMPO_TEXTO
+				etiqueta="Forma_Ingreso">Transferencia</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Cod_Transf">Codigo Transferencia</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Ref_Ingreso">Referencias de Ingreso</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Hoja_de_Entrega">Hoja de Entrega</CAMPO_TEXTO>
+			<!-- -->
+		</FICHA>
+	</SERIE>
+	<UNIDAD_DOCUMENTAL_ELECTRONICA>
+		<IDENTIFICACION>
+			<ID>Id</ID>
+			<NUMEXP>Numero Expediente</NUMEXP>
+			<TITULO>Título del expediente 2</TITULO>
+			<FECHA_INICIO
+				valor="01/01/2013"
+				FMT="DDMMAAAA"
+				SEP="/" />
+			<FECHA_FIN
+				valor="31/12/2013"
+				FMT="DDMMAAAA"
+				SEP="/" />
+			<PRODUCTOR
+				tipoSistema="ORGANIZACION"
+				tipoAtributo="CODIGO"
+				valor="3" />
+		</IDENTIFICACION>
+		<FICHA>
+			<!-- Area de Mención de la Identididad -->
+			<CAMPO_TEXTO
+				etiqueta="Identificacion">Identificación</CAMPO_TEXTO>
+
+			<CAMPO_TABLA
+				etiqueta="Emplazamientos">
+				<CAMPO_FILA
+					etiqueta="Emplazamiento">
+					<CAMPO_DESCRIPTOR
+						etiqueta="Pais"
+						idLista="ID_LIST_PAIS"
+						valor="España" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Comunidad"
+						idLista="ID_LIST_COMUNIDAD"
+						valor="Asturias" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Concejo"
+						idLista="ID_LIST_CONCEJO"
+						valor="Lena" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Poblacion"
+						idLista="ID_LIST_POBLACION"
+						valor="Pola de Lena" />
+					<CAMPO_TEXTO
+						etiqueta="Localizacion">Ayuntamiento</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="Emplazamiento_Validado">Si</CAMPO_TEXTO>
+				</CAMPO_FILA>
+
+				<CAMPO_FILA
+					etiqueta="Emplazamiento">
+					<CAMPO_DESCRIPTOR
+						etiqueta="Pais"
+						idLista="ID_LIST_PAIS"
+						valor="España" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Comunidad"
+						idLista="ID_LIST_COMUNIDAD"
+						valor="Asturias" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Concejo"
+						idLista="ID_LIST_CONCEJO"
+						valor="San Martín del Rey Aurelio" />
+					<CAMPO_DESCRIPTOR
+						etiqueta="Poblacion"
+						idLista="ID_LIST_POBLACION"
+						valor="Blimea" />
+					<CAMPO_TEXTO
+						etiqueta="Localizacion">Oficina de Turismo</CAMPO_TEXTO>
+
+					<!-- Emplazamiento_Validado: "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Emplazamiento_Validado">No</CAMPO_TEXTO>
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<CAMPO_TABLA
+				etiqueta="Volumenes_Soportes">
+
+
+
+				<CAMPO_FILA
+					etiqueta="Volumen_Soporte">
+
+					<!-- Formato: ======== "Caja(s)" "Carta(s)" "Documento(s)" "Fotografía(s)"
+						"Expediente(s)" -->
+					<CAMPO_TEXTO
+						etiqueta="Formato">Documento(s)</CAMPO_TEXTO>
+
+
+					<!-- Soporte ======== "Disquete" "Papel" "Electrónico" "Planos" "Transparencias"
+						"Discos de polivinilo" "Pergamino" "CD_Rom" "DVD" "CD" "Videocasete" "Casete"
+						"Diapositivas" "Microficha" "Microfilm" "Negativos fotográficos" "Películas" -->
+					<CAMPO_TEXTO
+						etiqueta="Soporte">Electrónico</CAMPO_TEXTO>
+
+					<CAMPO_NUMERICO
+						etiqueta="Num_Docs"
+						valor="2" />
+				</CAMPO_FILA>
+
+
+				<CAMPO_FILA
+					etiqueta="Volumen_Soporte">
+
+					<!-- Formato: ======== "Caja(s)" "Carta(s)" "Documento(s)" "Fotografía(s)"
+						"Expediente(s)" -->
+					<CAMPO_TEXTO
+						etiqueta="Formato">Documento(s)</CAMPO_TEXTO>
+
+
+					<!-- Soporte ======== "Disquete" "Papel" "Electrónico" "Planos" "Transparencias"
+						"Discos de polivinilo" "Pergamino" "CD_Rom" "DVD" "CD" "Videocasete" "Casete"
+						"Diapositivas" "Microficha" "Microfilm" "Negativos fotográficos" "Películas" -->
+					<CAMPO_TEXTO
+						etiqueta="Soporte">Diapositivas</CAMPO_TEXTO>
+
+					<CAMPO_NUMERICO
+						etiqueta="Num_Docs"
+						valor="3" />
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<CAMPO_TABLA
+				etiqueta="Interesados">
+				<CAMPO_FILA
+					etiqueta="Interesado">
+					<!-- Interesado: Principal: ====================== "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Principal">Si</CAMPO_TEXTO>
+					<CAMPO_DESCRIPTOR
+						etiqueta="Identidad"
+						idLista="ID_LIST_INTERESADO"
+						valor="identidad"
+						></CAMPO_DESCRIPTOR>
+					<CAMPO_TEXTO
+						etiqueta="NumIdentidad">123456789A</CAMPO_TEXTO>
+
+					<!-- Roles: ====== "CAMBIO TITULAR" "INTERLOCUTOR" "PROMOTOR" "ASESOR
+						ESPECIALISTA SUPLENTE" "ASESOR ESPECIALISTA TITULAR" "INTERESADO" "REPRESENTANTE"
+						"LICITADOR" "DENUNCIANTE" "DENUNCIADO" "PROPIETARIO" "BENEFICIARIO" "PROPONENTE"
+						"COMPETENTE" "ARRENDATARIO" "PRESIDENTE TITULAR" "EXPROPIADOR" "PRESIDENTE
+						SUPLENTE" "SECRETARIO TITULAR" "SECRETARIO SUPLENTE" "VOCAL TITULAR" "VOCAL
+						SUPLENTE" "REPRESENTANTE SINDICAL TITULAR" "REPRESENTANTE SINDICAL SUPLENTE" -->
+					<CAMPO_TEXTO
+						etiqueta="Rol">INTERESADO</CAMPO_TEXTO>
+
+					<!-- Interesado_Validado: ====================== "Si" "No" -->
+					<CAMPO_TEXTO
+						etiqueta="Interesado_Validado">Si</CAMPO_TEXTO>
+					<CAMPO_TEXTO
+						etiqueta="IdTercero">230</CAMPO_TEXTO>
+				</CAMPO_FILA>
+			</CAMPO_TABLA>
+
+			<!-- Fin Area de Mención de la Identidad -->
+
+			<!-- Area de Contexto -->
+			<CAMPO_TEXTO
+				etiqueta="Historia_Institucional">Historia Institucional</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Historia_Archivistica">Historia Archivística1</CAMPO_TEXTO>
+
+			<CAMPO_TEXTO
+				etiqueta="Historia_Archivistica">Historia Archivística2</CAMPO_TEXTO>
+
+
+			<!-- Area de Contexto -->
+			<CAMPO_TEXTO
+				etiqueta="Lenguas">Español</CAMPO_TEXTO>
+
+			<CAMPO_TEXTO
+				etiqueta="Lenguas">Inglés</CAMPO_TEXTO>
+
+
+				<!-- Forma_Ingreso ============== "Depósito" "Transferencia" "Donación" -->
+			<CAMPO_TEXTO
+				etiqueta="Forma_Ingreso">Transferencia</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Cod_Transf">Codigo Transferencia</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Ref_Ingreso">Referencias de Ingreso</CAMPO_TEXTO>
+			<CAMPO_TEXTO
+				etiqueta="Hoja_de_Entrega">Hoja de Entrega</CAMPO_TEXTO>
+
+			<!-- Fin Area de Contexto -->
+			<CAMPO_TABLA
+				etiqueta="Documentos_Electronicos">
+
+
+						<xs:enumeration value="AAAA"/>
+						<xs:enumeration value="S"/>
+
+
+
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Día/Mes/Año Horas:Minutos:Segundos</CAMPO_TEXTO>
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Descripcion">Fecha de Captura: 14/05/2013 9:52:24 (DDMMAAAAHHMMSS)</CAMPO_TEXTO>
+
+
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura" valor="14/05/2013 9:52:24"
+						FMT="DDMMAAAAHHMMSS"
+						SEP="/" />
+				</CAMPO_FILA>
+
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Año/Mes/Dia Horas:Minutos:Segundos</CAMPO_TEXTO>
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Descripcion">Fecha de Captura: 2013/05/14 9:52:24 (AAAAMMDDHHMMSS)</CAMPO_TEXTO>
+
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura" valor="2013/05/14 9:52:24"
+						FMT="AAAAMMDDHHMMSS"
+						SEP="/" />
+				</CAMPO_FILA>
+
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Día/Mes/Año</CAMPO_TEXTO>
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Descripcion">Fecha de Captura: 14/05/2013 (DDMMAAAA)</CAMPO_TEXTO>
+
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura" valor="14/05/2013"
+						FMT="DDMMAAAA"
+						SEP="/" />
+				</CAMPO_FILA>
+
+
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Año/Mes/Dia</CAMPO_TEXTO>
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Descripcion">Fecha de Captura: 2013/05/14 (AAAAMMDD)</CAMPO_TEXTO>
+
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura" valor="2013/05/14"
+						FMT="AAAAMMDD"
+						SEP="/" />
+				</CAMPO_FILA>
+
+
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Mes/Año</CAMPO_TEXTO>
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Descripcion">Fecha de Captura: 05/2013 (MMAAAA)</CAMPO_TEXTO>
+
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura" valor="05/2013"
+						FMT="MMAAAA"
+						SEP="/" />
+				</CAMPO_FILA>
+
+
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Año/Mes</CAMPO_TEXTO>
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Descripcion">Fecha de Captura: 2013/05 (AAAAMM)</CAMPO_TEXTO>
+
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura" valor="2013/05"
+						FMT="AAAAMM"
+						SEP="/" />
+				</CAMPO_FILA>
+
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Año</CAMPO_TEXTO>
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Descripcion">Fecha de Captura: 14/05/2013 (AAAA)</CAMPO_TEXTO>
+
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura" valor="2013"
+						FMT="AAAA"
+						SEP="/" />
+				</CAMPO_FILA>
+
+				<CAMPO_FILA
+					etiqueta="Documento_Electronico">
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Nombre">Siglo</CAMPO_TEXTO>
+
+					<CAMPO_TEXTO
+						etiqueta="Documento_Electronico_Descripcion">Fecha de Captura: s. XX (S)</CAMPO_TEXTO>
+
+					<CAMPO_FECHA
+						etiqueta="Documento_Electronico_Fecha_Captura" valor="XX"
+						FMT="S"
+						SEP="/" />
+				</CAMPO_FILA>
+
+			</CAMPO_TABLA>
+		</FICHA>
+	</UNIDAD_DOCUMENTAL_ELECTRONICA>
+</TRANSFERENCIA>

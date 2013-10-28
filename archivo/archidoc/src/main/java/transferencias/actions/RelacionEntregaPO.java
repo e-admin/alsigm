@@ -16,6 +16,7 @@ import java.util.Locale;
 import se.NotAvailableException;
 import se.procedimientos.GestorCatalogo;
 import se.procedimientos.InfoBProcedimiento;
+import se.procedimientos.InfoBProcedimientoImpl;
 import se.procedimientos.exceptions.GestorCatalogoException;
 import se.usuarios.ServiceClient;
 import transferencias.TransferenciasConstants;
@@ -26,6 +27,7 @@ import transferencias.vos.PrevisionVO;
 import transferencias.vos.RelacionEntregaVO;
 import xml.config.ConfiguracionSistemaArchivoFactory;
 
+import common.ApplicationResourcesConstants;
 import common.CodigoTransferenciaUtils;
 import common.Constants;
 import common.Messages;
@@ -56,7 +58,7 @@ import descripcion.vos.FichaVO;
 /**
  * Clase que proporciona la informacion de presentacion requerida para una
  * relacion de entrega
- * 
+ *
  */
 public class RelacionEntregaPO extends RelacionEntregaVO {
 
@@ -130,15 +132,28 @@ public class RelacionEntregaPO extends RelacionEntregaVO {
 		// catalogoProcedimientos.recuperarProcedimiento(getIdprocedimiento());
 		// return procedimiento.getInformacionBasica();
 
+		if(catalogoProcedimientos == null){
+			procedimiento = new InfoBProcedimientoImpl("","",Messages.getString(ApplicationResourcesConstants.ERROR_CATALOGO_TRAMITES));
+		}
+
 		if (getIdprocedimiento() != null) {
 			if (procedimiento == null) {
-				List procedimientos = catalogoProcedimientos
+				List procedimientos = getCatalogoProcedimientos()
 						.recuperarInfoBProcedimientos(new String[] { getIdprocedimiento() });
 				if (procedimientos != null && procedimientos.size() > 0)
 					procedimiento = (InfoBProcedimiento) procedimientos.get(0);
 			}
 		}
 		return procedimiento;
+	}
+
+	public GestorCatalogo getCatalogoProcedimientos() throws NotAvailableException{
+		if(catalogoProcedimientos != null){
+			return catalogoProcedimientos;
+		}
+		else{
+			throw new NotAvailableException("El error al obtener el catálogo de procedimientos");
+		}
 	}
 
 	public SerieVO getSerieOrigen() {
@@ -391,12 +406,12 @@ public class RelacionEntregaPO extends RelacionEntregaVO {
 		/*
 		 * boolean ret = false; if (this.nivelDocumental != null &&
 		 * this.nivelDocumental.getId()!=null)
-		 * 
+			*
 		 * ret =
 		 * this.nivelDocumental.getId().equals(ConfiguracionSistemaArchivoFactory
 		 * .getConfiguracionSistemaArchivo()
 		 * .getConfiguracionGeneral().getIdNivelFraccionSerie());
-		 * 
+			*
 		 * return ret;
 		 */
 

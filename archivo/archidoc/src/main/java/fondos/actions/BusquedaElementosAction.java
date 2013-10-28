@@ -1062,12 +1062,11 @@ public class BusquedaElementosAction extends BusquedaBaseAction {
 													new Integer(e.getCount()),
 													new Integer(e
 															.getMaxNumResults()) }));
-					ClientInvocation ci = getInvocationStack(request)
-							.getClientInvocation(
-									getInvocationStack(request).getSize() - 2);
-					//ci.addParameter(Constants.SHOW_INFORME_BUSQUEDA_BUTTON, "1");
+					getInvocationStack(request)
+					.getClientInvocation(
+							getInvocationStack(request).getSize() - 2);
 
-					setInTemporalSession(request, Constants.SHOW_INFORME_BUSQUEDA_BUTTON,Boolean.TRUE);
+					setInTemporalSession(request, Constants.SHOW_INFORME_BUSQUEDA_BUTTON, Boolean.TRUE);
 
 					// Redireccionamos a la pagina adecuada
 					if ((precondiciones != null)

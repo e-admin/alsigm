@@ -11,11 +11,11 @@
 		<html:img page="/pages/images/info.gif" styleClass="imgTextMiddle"/>
 		<html:img page="/pages/images/pixel.gif" styleClass="imgTextMiddle" width="1px"/>
 		<c:set var="blockTitle"><tiles:insert attribute="title" ignore="true" /></c:set>
-		<span id="wipTitle">wipTitle</span>
+		<span id="wipTitle"></span>
 	</div>
 
 	<div class="block_content" id="block_content_wip"> <%-- bloque de datos --%>
-		<span id="wipContent">wipContent</span><br><br>
-		<span id="wipContent2">wipContent2</span><br><br>
+		<span id="wipContent"></span><br><br>
+		<span id="wipContent2"></span><br><br>
 	</div>
 </div>

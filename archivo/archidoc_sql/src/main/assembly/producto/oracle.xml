@@ -1,0 +1,18 @@
+<assembly>
+	<id>oracle</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/sql/comun/oracle</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+
+		<fileSet>
+			<directory>src/main/sql/especifico/producto/oracle</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>

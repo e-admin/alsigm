@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <beanformatter defaultSort="2">
 
-	<propertyfmt type="BeanPropertySimpleFmt" 
-        	     property='ID' 
+	<propertyfmt type="BeanPropertySimpleFmt"
+					property='ID'
         	     readOnly='false'
         		 fieldType='CHECKBOX'
         		 headerClass='headerDisplay'
         		 columnClass='width5percent'
         		 media='html'/>
-	
-	<!-- 
-	<propertyfmt type="BeanPropertySimpleFmt" 
-				 property='NAME' 
+
+	<!--
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NAME'
 				 readOnly='false'
 				 titleKey='formattaer.taskProcess.nombre'
 				 fieldType='LINK'
@@ -21,21 +21,21 @@
 				 sortable='true'
 				 media='html '
 				 decorator=''
-				 url='showExpedient'
+				url='showTask'
 				 id='taskId'
-				 width='17%'/>	
+				width='17%'/>
 
-	<propertyfmt type="BeanPropertySimpleFmt" 
-	             property='NAME' 
+	<propertyfmt type="BeanPropertySimpleFmt"
+                property='NAME'
 	             readOnly='false'
-		         titleKey='formattaer.taskProcess.nombre' 
-		         fieldType='LIST' 
+               titleKey='formattaer.taskProcess.nombre'
+               fieldType='LIST'
 		         width='17%'
         		 media='excel csv xml pdf'/>
 	-->
 
-	<propertyfmt type="BeanPropertySimpleFmt" 
-				 property='NUMEXP' 
+	<propertyfmt type="BeanPropertySimpleFmt"
+				property='NUMEXP'
 				 readOnly='false'
 				 titleKey='formattaer.taskProcess.numExp'
 				 fieldType='LINK'
@@ -45,53 +45,53 @@
 				 sortable='true'
 				 media='html '
 				 decorator=''
-				 url='showExpedient'
+				url='showTask'
 				 id='taskId'
 				 columnClass='width15percent'
 				 comparator='ieci.tdw.ispac.ispacweb.comparators.NumexpComparator'/>
-				 
-	<propertyfmt type="BeanPropertySimpleFmt" 
-	             property='NUMEXP' 
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+                property='NUMEXP'
 	             readOnly='false'
-		         titleKey='formattaer.taskProcess.numExp' 
-		         fieldType='LIST' 
+               titleKey='formattaer.taskProcess.numExp'
+               fieldType='LIST'
 		         columnClass='width15percent'
 		         media='excel csv xml pdf'/>
-		         
-	<propertyfmt type="BeanPropertySimpleFmt" 
-	             property='NAME_PROC' 
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+                property='NAME_PROC'
 	             readOnly='false'
-		         titleKey='formattaer.taskProcess.procedimiento' 
-		         fieldType='LIST' 
+               titleKey='formattaer.taskProcess.procedimiento'
+               fieldType='LIST'
 		         columnClass='width25percent'
 		         sortable='true'/>
-		         
-	<propertyfmt type="BeanPropertySimpleFmt" 
-	             property='NAME_STAGE' 
+
+	<propertyfmt type="BeanPropertySimpleFmt"
+                property='NAME_STAGE'
 	             readOnly='false'
-		         titleKey='formattaer.taskProcess.fase' 
-		         fieldType='LIST' 
+               titleKey='formattaer.taskProcess.fase'
+               fieldType='LIST'
 		         columnClass='width25percent'
 		         sortable='true'/>
-		         
-	<propertyfmt type="BeanPropertyDateFmt" 
-	             property='INITDATE' 
+
+	<propertyfmt type="BeanPropertyDateFmt"
+                property='INITDATE'
 	             readOnly='false'
-		         format='dd/MM/yyyy' 
-		         titleKey='formattaer.taskProcess.fechaInicio' 
-		         fieldType='LIST' 
+               format='dd/MM/yyyy'
+               titleKey='formattaer.taskProcess.fechaInicio'
+               fieldType='LIST'
 		         columnClass='width15percent'
 		         sortable='true'
 				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
-		         
-	<propertyfmt type="BeanPropertyDateFmt" 
-	             property='LIMITDATE' 
+
+	<propertyfmt type="BeanPropertyDateFmt"
+                property='LIMITDATE'
 	             readOnly='false'
-		         format='dd/MM/yyyy' 
+               format='dd/MM/yyyy'
 		         titleKey='formattaer.taskProcess.fechaLimite'
-		         fieldType='LIST' 
+               fieldType='LIST'
 		         columnClass='width15percent'
 		         sortable='true'
 				 comparator='ieci.tdw.ispac.ispacweb.comparators.DateComparator'/>
-		         
+
 </beanformatter>

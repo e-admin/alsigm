@@ -74,7 +74,7 @@ import descripcion.vos.ElementoCFVO;
 /**
  * @author Iecisa
  * @version $Revision$
- * 
+ *
  */
 public class BaseGestionConsultasAction extends BaseAction {
 	protected final static String PATH_ACTION_LISTADO_CONSULTAS = "/action/gestionConsultas?method=listadoconsultaver";
@@ -154,7 +154,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Inicializa una consulta para su creación a partir del usuario conectado.
-	 * 
+    *
 	 * @param user
 	 *            Usuario conectado que va a crear la consulta.
 	 * @param request
@@ -210,7 +210,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 	/**
 	 * Encapsula la lógica de finalización del proceso de autorización de una
 	 * consulta.
-	 * 
+    *
 	 * @param idConsulta
 	 *            Identificador de la consulta que deseamos finalizar
 	 * @param mapping
@@ -259,7 +259,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 	/**
 	 * Encapsula la logica que rEaliza la entrega de una consulta(marcando la
 	 * consulta y sus unidades como entregadas).
-	 * 
+    *
 	 * @param idConsulta
 	 *            Identificador de la consulta que deseamos finalizar
 	 * @param mapping
@@ -330,7 +330,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 	/**
 	 * Da de alta solitudes para las unidades documentales seleccionadas de una
 	 * determinada consulta.
-	 * 
+    *
 	 * @param idConsulta
 	 *            Identificador de la consulta para la que se van a dar de alta
 	 *            los solicitudes de unidades documentales
@@ -393,7 +393,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 	/**
 	 * Encapsula la lógica que elimina las consultas seleccionadas por el
 	 * usuario.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -431,7 +431,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Genera una redirección para ver el listado de las consultas.
-	 * 
+    *
 	 * @return {@link ActionForward} a la página de ver el listado de las
 	 *         consultas.
 	 */
@@ -446,7 +446,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 	/**
 	 * Genera una redirección para ver los detalles de una consulta identificada
 	 * por su id.
-	 * 
+    *
 	 * @param codigoPrestamo
 	 *            Identificador de la consulta en la bd
 	 * @return {@link ActionForward} a la página de ver consulta
@@ -461,7 +461,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Obtiene el identificador del Motivo .
-	 * 
+    *
 	 * @param motivos
 	 *            Lista de motivos
 	 * @return Identificador del Motivo Por Defecto
@@ -479,7 +479,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Carga los datos del usuario seleccionado.
-	 * 
+    *
 	 * @param request
 	 * @param consultaForm
 	 */
@@ -571,7 +571,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Encapsula la lógica que muestra una consulta que ha sido creada.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -634,6 +634,21 @@ public class BaseGestionConsultasAction extends BaseAction {
 		// Establecemos los elemenos a mostrar en la vista
 		this.establecerVista(request, userVO, consulta_VO, detallesConsultas);
 
+		if(consulta_VO.isFueraPlazoEntrega()){
+
+			ActionErrors errors = new ActionErrors();
+
+			errors.add(
+					common.Constants.ERROR_GENERAL_MESSAGE,
+					new ActionError(
+							common.Constants.ERROR_GENERAL_MESSAGE,
+							Messages.getString(
+									ConsultasConstants.CONSULTA_NO_PUEDE_SER_ENTREGADA_X_FMAXFIN_SUPERADA,
+									request.getLocale())));
+			ErrorsTag.saveErrors(request, errors);
+		}
+
+
 		// Redirigimos a la pagina adecuada
 		setReturnActionFordward(request, mapping.findForward("ver_consulta"));
 
@@ -644,7 +659,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 	/**
 	 * Establece los elementos que se deben mostrar en la vista en función del
 	 * usuario conectado
-	 * 
+    *
 	 * @param request
 	 *            {@link HttpServletRequest}
 	 * @param userVO
@@ -758,7 +773,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Establece los botones a mostrar en la vista
-	 * 
+    *
 	 * @param request
 	 * @param userVO
 	 * @param consulta_VO
@@ -821,7 +836,8 @@ public class BaseGestionConsultasAction extends BaseAction {
 		// BOTON ENTREGAR
 		// if ( ( userVO.hasRole(UserVO.ROL_OPERARIO_DEPOSITO_CONSULTAS) ||
 		// userVO.hasRole(UserVO.ROL_ADMINISTRADOR_CONSULTAS)) &&
-		if ((userVO.hasPermission(AppPermissions.ENTREGA_UNIDADES_DOCUMENTALES) || userVO
+		if (! consulta_VO.isFueraPlazoEntrega() &&
+				(userVO.hasPermission(AppPermissions.ENTREGA_UNIDADES_DOCUMENTALES) || userVO
 				.hasPermission(AppPermissions.ADMINISTRACION_TOTAL_SISTEMA))
 				&& consulta_VO.getEstado() == ConsultasConstants.ESTADO_CONSULTA_AUTORIZADA) {
 			request.setAttribute(ConsultasConstants.VER_BOTON_ENTREGAR,
@@ -829,6 +845,17 @@ public class BaseGestionConsultasAction extends BaseAction {
 		} else
 			request.setAttribute(ConsultasConstants.VER_BOTON_ENTREGAR,
 					new Boolean(false));
+
+		// BOTON VER_BOTON_VOLVER_A_SOLICITADA
+		if(consulta_VO.isFueraPlazoEntrega()){
+			request.setAttribute(ConsultasConstants.VER_BOTON_VOLVER_A_SOLICITADA,
+					new Boolean(true));
+		}
+		else{
+			request.setAttribute(ConsultasConstants.VER_BOTON_VOLVER_A_SOLICITADA,
+					new Boolean(false));
+		}
+
 
 		// BOTON EDITAR
 		if ((consulta_VO.getEstado() == ConsultasConstants.ESTADO_CONSULTA_ABIERTA || (consulta_VO
@@ -976,7 +1003,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Obtiene el forward para la pagina de ver prestamos no disponibles
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -1030,7 +1057,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Obtiene el forward al action para ver las consultas no autorizadas
-	 * 
+    *
 	 * @return {@link ActionForward} a la accion
 	 */
 	protected ActionForward verNoDisponiblesAutorizadas() {
@@ -1044,7 +1071,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 	/**
 	 * Genera el forward para ir a la pagina de consultas no dipsonibles y
 	 * autorizadas.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param form
@@ -1145,7 +1172,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Prepara la página con el formulario para el alta de una nueva consulta.
-	 * 
+    *
 	 * @param mapping
 	 *            {@link ActionMapping} con los mapeos asociado.
 	 * @param consultaForm
@@ -1212,7 +1239,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Carga en Sessión la Lista de Temas
-	 * 
+    *
 	 * @param request
 	 * @param consultaForm
 	 */
@@ -1259,7 +1286,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Obtiene la lista de Usuarios Solicitantes
-	 * 
+    *
 	 * @param request
 	 * @param consultaForm
 	 * @return
@@ -1303,7 +1330,7 @@ public class BaseGestionConsultasAction extends BaseAction {
 
 	/**
 	 * Carga la lista de Archivos
-	 * 
+    *
 	 * @param request
 	 * @return true si hay archivos, false en caso contrario.
 	 */

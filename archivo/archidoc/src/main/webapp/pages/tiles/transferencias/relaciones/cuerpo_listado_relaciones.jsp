@@ -120,46 +120,46 @@
 	</c:url>
 	<jsp:useBean id="listaRelacionesPaginationURI" type="java.lang.String" />
 
-	<display:table name="pageScope.listaRelaciones"
-		id="relacion"
+         <display:table name="pageScope.listaRelaciones"
+          id="relacion"
 		pagesize="10"
-		decorator="transferencias.decorators.ViewRelacionEntregaDecorator"
-		requestURI="<%=listaRelacionesPaginationURI%>"
-		sort="list"
-		export="true"
-		style="width:99%;margin-left:auto;margin-right:auto">
+                   decorator="transferencias.decorators.ViewRelacionEntregaDecorator"
+                   requestURI="<%=listaRelacionesPaginationURI%>"
+                   sort="list"
+                   export="true"
+                   style="width:99%;margin-left:auto;margin-right:auto">
 
-		<display:setProperty name="basic.msg.empty_list">
-			<bean:message key="archigest.archivo.transferencias.noRel"/>
-		</display:setProperty>
+                   <display:setProperty name="basic.msg.empty_list">
+                           <bean:message key="archigest.archivo.transferencias.noRel"/>
+                   </display:setProperty>
 
-		<display:column media="html">
-			<c:if test="${relacion.puedeSerEliminada || relacion.puedeSerEnviada}">
-				<input type="checkbox" name="relacionesseleccionadas" value='<c:out value="${relacion.id}"/>' >
-			</c:if>
-		</display:column>
+                   <display:column media="html">
+                           <c:if test="${relacion.puedeSerEliminada || relacion.puedeSerEnviada}">
+                                   <input type="checkbox" name="relacionesseleccionadas" value='<c:out value="${relacion.id}"/>' >
+                           </c:if>
+                   </display:column>
 
-		<display:column titleKey="archigest.archivo.relacion" sortProperty="codigoTransferencia" sortable="true" headerClass="sortable" style="white-space: nowrap;" media="html">
-			<c:url var="verRelacionURL" value="/action/gestionRelaciones">
-				<c:param name="method" value="verrelacion" />
-				<c:param name="idrelacionseleccionada" value="${relacion.id}" />
-			</c:url>
+                   <display:column titleKey="archigest.archivo.relacion" sortProperty="codigoTransferencia" sortable="true" headerClass="sortable" style="white-space: nowrap;" media="html">
+                           <c:url var="verRelacionURL" value="/action/gestionRelaciones">
+                                   <c:param name="method" value="verrelacion" />
+                                   <c:param name="idrelacionseleccionada" value="${relacion.id}" />
+                           </c:url>
 
-			<a class="tdlink" href="<c:out value="${verRelacionURL}" escapeXml="false"/>" >
-				<c:out value="${relacion.codigoTransferencia}"/>
-			</a>
-		</display:column>
+                           <a class="tdlink" href="<c:out value="${verRelacionURL}" escapeXml="false"/>" >
+                                   <c:out value="${relacion.codigoTransferencia}"/>
+                           </a>
+                   </display:column>
 
-		<display:column titleKey="archigest.archivo.relacion" style="white-space: nowrap;" media="csv excel xml pdf">
-			<c:out value="${relacion.codigoTransferencia}"/>
-		</display:column>
+                   <display:column titleKey="archigest.archivo.relacion" style="white-space: nowrap;" media="csv excel xml pdf">
+                           <c:out value="${relacion.codigoTransferencia}"/>
+                   </display:column>
 
-		<display:column titleKey="archigest.archivo.transferencias.tipoTransf" sortable="true" headerClass="sortable" >
-			<c:set var="keyTitulo">
-				archigest.archivo.transferencias.tipooperacion<c:out value="${relacion.tipooperacion}"/>
-			</c:set>
-			<fmt:message key="${keyTitulo}" />
-		</display:column>
+                   <display:column titleKey="archigest.archivo.transferencias.tipoTransf" sortable="true" headerClass="sortable" >
+                           <c:set var="keyTitulo">
+                                   archigest.archivo.transferencias.tipooperacion<c:out value="${relacion.tipooperacion}"/>
+                           </c:set>
+                           <fmt:message key="${keyTitulo}" />
+                   </display:column>
 
 		<display:column titleKey="archigest.archivo.transferencias.estado" sortable="true" headerClass="sortable">
 			<fmt:message key="archigest.archivo.transferencias.estadoRelacion.${relacion.estado}" />

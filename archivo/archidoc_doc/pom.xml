@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.archidoc</groupId>
 		<artifactId>archidoc_main</artifactId>
-		<version>5.0</version>
+		<version>5.0.9-M1</version>
 	</parent>
 
 	<groupId>es.ieci.tecdoc.archidoc.archidoc_doc</groupId>

@@ -34,8 +34,8 @@ public class ProgressBarRefresherAction extends BaseAction {
 			HttpServletResponse response) {
 		setInTemporalSession(request, Constants.PROGRESSBAR_PERCENT_KEY,
 				new Integer(0));
-		setInTemporalSession(request, Constants.CANCEL_PROGRESSBAR_KEY,
-				Boolean.TRUE);
+		//setInTemporalSession(request, Constants.CANCEL_PROGRESSBAR_KEY,
+		//		Boolean.TRUE);
 		setReturnActionFordward(request, mapping.findForward("progressBar"));
 	}
 }

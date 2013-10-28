@@ -16,6 +16,10 @@
 <script language="JavaScript1.2" type="text/JavaScript">
 	function save()
 	{
+		var title = '<bean:message key="archigest.archivo.msg.titulo"/>';
+		var message = '<bean:message key="archigest.archivo.msg.proceso.en.ejecucion"/>';
+		window.top.showWorkingDiv(title, message);
+
 		document.forms["<c:out value="${actionMapping.name}" />"].submit();
 	}
 </script>

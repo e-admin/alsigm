@@ -2113,7 +2113,6 @@ public class GestionDocumentosElectronicosBIImpl extends ServiceBase implements
 			objeto = getGestionCuadroClasificacionBI()
 					.getElementoCuadroClasificacion(idObjeto);
 		else
-			// if (tipoObjeto == TipoObjeto.DESCRIPTOR)
 			objeto = getGestionDescripcionBI().getDescriptor(idObjeto);
 
 		if (objeto != null) {
@@ -3524,37 +3523,41 @@ public class GestionDocumentosElectronicosBIImpl extends ServiceBase implements
 			String idCampo, String value, int orden) {
 		if (StringUtils.isNotEmpty(idCampo)) {
 			CampoDatoVO campo = campoDatoDbEntity.getCampoDato(idCampo);
-			switch (campo.getTipo()) {
-			case TipoCampo.TEXTO_CORTO_VALUE:
-				CampoTextoVO texto = new CampoTextoVO();
-				texto.setIdObjeto(idElementoCF);
-				texto.setIdCampo(idCampo);
-				texto.setOrden(orden);
-				texto.setTipo(TipoCampo.TEXTO_CORTO_VALUE);
-				texto.setValue(value);
-				texto.setTimestamp(DateUtils.getFechaActual());
-				campoTextoCortoDBEntity.insertValue(texto);
-				break;
-			case TipoCampo.TEXTO_LARGO_VALUE:
-				CampoTextoVO textol = new CampoTextoVO();
-				textol.setIdObjeto(idElementoCF);
-				textol.setIdCampo(idCampo);
-				textol.setOrden(orden);
-				textol.setTipo(TipoCampo.TEXTO_LARGO_VALUE);
-				textol.setValue(value);
-				textol.setTimestamp(DateUtils.getFechaActual());
-				campoTextoLargoDBEntity.insertValue(textol);
-				break;
-			case TipoCampo.NUMERICO_VALUE:
-				CampoNumericoVO num = new CampoNumericoVO();
-				num.setIdObjeto(idElementoCF);
-				num.setIdCampo(idCampo);
-				num.setOrden(orden);
-				num.setTipo(TipoCampo.NUMERICO_VALUE);
-				num.setValue(value);
-				num.setTimestamp(DateUtils.getFechaActual());
-				campoNumeroDBEntity.insertValue(num);
-				break;
+			if (campo != null) {
+				switch (campo.getTipo()) {
+				case TipoCampo.TEXTO_CORTO_VALUE:
+					CampoTextoVO texto = new CampoTextoVO();
+					texto.setIdObjeto(idElementoCF);
+					texto.setIdCampo(idCampo);
+					texto.setOrden(orden);
+					texto.setTipo(TipoCampo.TEXTO_CORTO_VALUE);
+					texto.setValue(value);
+					texto.setTimestamp(DateUtils.getFechaActual());
+					campoTextoCortoDBEntity.insertValue(texto);
+					break;
+				case TipoCampo.TEXTO_LARGO_VALUE:
+					CampoTextoVO textol = new CampoTextoVO();
+					textol.setIdObjeto(idElementoCF);
+					textol.setIdCampo(idCampo);
+					textol.setOrden(orden);
+					textol.setTipo(TipoCampo.TEXTO_LARGO_VALUE);
+					textol.setValue(value);
+					textol.setTimestamp(DateUtils.getFechaActual());
+					campoTextoLargoDBEntity.insertValue(textol);
+					break;
+				case TipoCampo.NUMERICO_VALUE:
+					CampoNumericoVO num = new CampoNumericoVO();
+					num.setIdObjeto(idElementoCF);
+					num.setIdCampo(idCampo);
+					num.setOrden(orden);
+					num.setTipo(TipoCampo.NUMERICO_VALUE);
+					num.setValue(value);
+					num.setTimestamp(DateUtils.getFechaActual());
+					campoNumeroDBEntity.insertValue(num);
+					break;
+				}
+			}else{
+				logger.error("No se ha encontrado el campo con ID:" + idCampo);
 			}
 		}
 	}
@@ -3624,12 +3627,12 @@ public class GestionDocumentosElectronicosBIImpl extends ServiceBase implements
 				TipoAcceso.CONSULTA,
 				DocumentosElectronicosSecurityManager.CONSULTA_DOCUMENTOS_CUADRO_CLASIFICACION_ACTION);
 
-		if (tipoObjeto == TipoObjeto.ELEMENTO_CF){
-			DocDocumentoVO documento = docDocumentoCFDBEntity.getDocumentoByIdInterno(idInterno);
+		if (tipoObjeto == TipoObjeto.ELEMENTO_CF) {
+			DocDocumentoVO documento = docDocumentoCFDBEntity
+					.getDocumentoByIdInterno(idInterno);
 
-			if(documento == null){
-				documento = getDocumento(tipoObjeto, idObjeto,
-						idInterno);
+			if (documento == null) {
+				documento = getDocumento(tipoObjeto, idObjeto, idInterno);
 				documento = docDocumentoCFDBEntity.getDocumento(idInterno);
 			}
 
@@ -3731,12 +3734,12 @@ public class GestionDocumentosElectronicosBIImpl extends ServiceBase implements
 			String idElementocfAntiguo, String idElementoCfNuevo,
 			String[] idsClasificadores, String[] idsInternosDocumentos) {
 
-		if(ArrayUtils.isNotEmptyOrBlank(idsClasificadores)){
+		if (ArrayUtils.isNotEmptyOrBlank(idsClasificadores)) {
 			docClasifCFDBEntity.updateIdElementocf(idElementocfAntiguo,
-				idElementoCfNuevo, idsClasificadores);
+					idElementoCfNuevo, idsClasificadores);
 		}
 
-		if(ArrayUtils.isNotEmptyOrBlank(idsInternosDocumentos)){
+		if (ArrayUtils.isNotEmptyOrBlank(idsInternosDocumentos)) {
 			docDocumentoCFDBEntity.updateIdElementocf(idElementocfAntiguo,
 					idElementoCfNuevo, idsInternosDocumentos);
 		}

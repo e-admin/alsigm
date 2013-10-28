@@ -161,10 +161,10 @@ function showHideDiv(NDiv)
 function restaurarFormatoFechaAAAAMMDD(id){
 
 	var campoFechaTraspuesta = document.getElementById('idFechaTras_'+id);
-
 	// Si existe el campo de fecha traspuesta restaurar año y día a su posición original
 	if (campoFechaTraspuesta!=null){
 		campoFechaTraspuesta.parentNode.removeChild(campoFechaTraspuesta);
+
 
 		var campoAnio = document.getElementById('idFechaAValor_'+id);
 		var campoDia = document.getElementById('idFechaDValor_'+id);
@@ -238,6 +238,7 @@ function checkFechaFormato(element)
   	{
   		restaurarFormatoFechaAAAAMMDD(id);
 
+
   		document.getElementById("idFechaAValor_" + id).style.display = 'block';
   		document.getElementById("idFechaMValor_" + id).style.display = 'none';
   		document.getElementById("idFechaDValor_" + id).style.display = 'none';
@@ -278,7 +279,7 @@ function checkFechaFormato(element)
 			document.getElementById("idFechaAValor_" + id).style.display = 'table-cell';
 			document.getElementById("idFechaMValor_" + id).style.display = 'table-cell';
   		}
-  	}else if (element.value == 'DDMMAAAA') {
+	}else if (element.value == 'DDMMAAAA' || element.value == 'DDMMAAAAHHMMSS') {
 		restaurarFormatoFechaAAAAMMDD(id);
 
   		document.getElementById("idFechaAValor_" + id).style.display = 'block';
@@ -294,7 +295,7 @@ function checkFechaFormato(element)
   			document.getElementById("idFechaG1_" + id).style.display = 'table-cell';
   			document.getElementById("idFechaG2_" + id).style.display = 'table-cell';
   		}
-  	}else if (element.value == 'AAAAMMDD'){
+	}else if (element.value == 'AAAAMMDD' || element.value == 'AAAAMMDDHHMMSS'){
 		establecerFormatoFechaAAAAMMDD(id);
 
   		document.getElementById("idFechaAValor_" + id).style.display = 'block';
@@ -325,6 +326,27 @@ function checkFechaFormato(element)
   			document.getElementById("idFechaSValor_" + id).style.display = 'table-cell';
   		}
   	}
+
+
+	var estilo = 'none';
+
+	if(element.value == 'AAAAMMDDHHMMSS' || element.value == 'DDMMAAAAHHMMSS'){
+
+		if(!document.all){
+			estilo = 'table-cell';
+		}
+		else{
+			estilo = 'block';
+		}
+	}
+
+	document.getElementById("idFechaHHValor_" + id).style.display = estilo;
+	document.getElementById("idFechaMMValor_" + id).style.display = estilo;
+	document.getElementById("idFechaSSValor_" + id).style.display = estilo;
+
+	document.getElementById("idHoraEspacio_" + id).style.display = estilo;
+	document.getElementById("idHoraSeparador1_" + id).style.display = estilo;
+	document.getElementById("idHoraSeparador2_" + id).style.display = estilo;
   }
 }
 
@@ -704,6 +726,106 @@ function createDateElement(elementInfo, rownum, idTable)
       innerTableTr.appendChild(td);
   else
       tr.appendChild(td);
+
+  // TD Separador Fecha Hora
+  td = document.createElement("td");
+  td.id = "idHoraEspacio_" + elementInfo.id + "_" + rownum;
+  td.style.border = 0;
+  td.style.display = ( (defaultFormat.indexOf("HHMMSS") != -1) ? (document.all?"block":"table-cell") : "none");
+  td._nowrap = true;
+  td.style.whiteSpace="nowrap";	//el estandar w3c
+  //td.appendChild(document.createTextNode(" "));
+  td.innerHTML = "&nbsp;&nbsp;&nbsp;";
+
+  if (!isEmpty(idTable))
+      innerTableTr.appendChild(td);
+  else
+      tr.appendChild(td);
+
+  //TD Horas
+  td = document.createElement("td");
+  td.id = "idFechaHHValor_" + elementInfo.id + "_" + rownum;
+  td.width = 2;
+  td.style.border = 0;
+  td.style.display = ( (defaultFormat.indexOf("HHMMSS") != -1) ? (document.all?"block":"table-cell") : "none");
+  td.nowrap = true;
+  td.style.paddingLeft=0; td.style.paddingRight=0;
+
+  input = creaElemento("<input type='text' value='00' size='2' maxlength='2' id='campo_" + elementInfo.id + "_fechaHH' name='campo_" + elementInfo.id + "_fechaHH'/>");
+
+  td.appendChild(input);
+
+  if (!isEmpty(idTable))
+      innerTableTr.appendChild(td);
+  else
+      tr.appendChild(td);
+
+  // TD Separador Fecha Hora
+  td = document.createElement("td");
+  td.id = "idHoraSeparador1_" + elementInfo.id + "_" + rownum;
+  td.style.border = 0;
+  td.style.display = ( (defaultFormat.indexOf("HHMMSS") != -1) ? (document.all?"block":"table-cell") : "none");
+  td._nowrap = true;
+  td.style.whiteSpace="nowrap";	//el estandar w3c
+  td.appendChild(document.createTextNode(":"));
+
+  if (!isEmpty(idTable))
+      innerTableTr.appendChild(td);
+  else
+      tr.appendChild(td);
+
+  //TD Minutos
+  td = document.createElement("td");
+  td.id = "idFechaMMValor_" + elementInfo.id + "_" + rownum;
+  td.width = 2;
+  td.style.border = 0;
+  td.style.display = ( (defaultFormat.indexOf("HHMMSS") != -1) ? (document.all?"block":"table-cell") : "none");
+  td.nowrap = true;
+  td.style.paddingLeft=0; td.style.paddingRight=0;
+
+  input = creaElemento("<input type='text' value='00'  size='2' maxlength='2' id='campo_" + elementInfo.id + "_fechaMM' name='campo_" + elementInfo.id + "_fechaMM'/>");
+
+  td.appendChild(input);
+
+  if (!isEmpty(idTable))
+      innerTableTr.appendChild(td);
+  else
+      tr.appendChild(td);
+
+
+  // TD Separador Fecha Hora
+  td = document.createElement("td");
+  td.id = "idHoraSeparador2_" + elementInfo.id + "_" + rownum;
+  td.style.border = 0;
+  td.style.display = ( (defaultFormat.indexOf("HHMMSS") != -1) ? (document.all?"block":"table-cell") : "none");
+  td._nowrap = true;
+  td.style.whiteSpace="nowrap";	//el estandar w3c
+  td.appendChild(document.createTextNode(":"));
+
+  if (!isEmpty(idTable))
+      innerTableTr.appendChild(td);
+  else
+      tr.appendChild(td);
+
+  //TD Segundos
+  td = document.createElement("td");
+  td.id = "idFechaSSValor_" + elementInfo.id + "_" + rownum;
+  td.width = 2;
+  td.style.border = 0;
+  td.style.display = ( (defaultFormat.indexOf("HHMMSS") != -1) ? (document.all?"block":"table-cell") : "none");
+  td.nowrap = true;
+  td.style.paddingLeft=0; td.style.paddingRight=0;
+
+  input = creaElemento("<input type='text' value='00' size='2' maxlength='2' id='campo_" + elementInfo.id + "_fechaSS' name='campo_" + elementInfo.id + "_fechaSS'  />");
+
+  td.appendChild(input);
+
+  if (!isEmpty(idTable))
+      innerTableTr.appendChild(td);
+  else
+      tr.appendChild(td);
+
+
 
   // TD Siglo
   td = document.createElement("td");

@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_main</artifactId>
-		<version>3.0</version>
+		<version>3.0.1-M2</version>
 	</parent>
 
 	<groupId>es.ieci.tecdoc.sigem</groupId>
@@ -341,7 +340,7 @@
 										<!-- Organizacion -->
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/01.archivo-organizacion-bd-create-tables-postgres.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/02.archivo-organizacion-bd-create-indexes-postgres.sql</srcFile>
-										
+
 										<!-- Búsqueda Documental -->
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-busqueda-documental/posterior_igual_8.3/01.archivo-create-documentary-search-postgres.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-busqueda-documental/posterior_igual_8.3/02.archivo-insert-documentary-search-postgres.sql</srcFile>
@@ -387,11 +386,11 @@
 										<srcFile>${baseDirSql}/archivo/00.1.archivo-drop-functions-postgres.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/00.2.archivo-drop-indexes-postgres.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/00.3.archivo-drop-tables-postgres.sql</srcFile>
-										
+
 										<!-- Organizacion -->
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/00.archivo-organizacion-bd-drop-indexes-postgres.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/00.archivo-organizacion-bd-drop-tables-postgres.sql</srcFile>
-										
+
 									</srcFiles>
 								</configuration>
 							</execution>
@@ -1429,11 +1428,11 @@
 										<srcFile>${baseDirSql}/archivo/02.archivo-create-indexes-sqlserver.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/03.archivo-insert-data-sqlserver.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/04.archivo-insert-clob-sqlserver.sql</srcFile>
-										
+
 										<!-- Organizacion -->
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/01.archivo-organizacion-bd-create-tables-sqlserver.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/02.archivo-organizacion-bd-create-indexes-sqlserver.sql</srcFile>
-										
+
 									</srcFiles>
 								</configuration>
 							</execution>
@@ -1587,7 +1586,7 @@
 									<srcFiles>
 										<srcFile>${baseDirSql}/archivo/00.3.archivo-drop-indexes-sqlserver.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/00.4.archivo-drop-tables-sqlserver.sql</srcFile>
-										
+
 										<!-- Organizacion -->
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/00.archivo-organizacion-bd-drop-indexes-sqlserver.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/00.archivo-organizacion-bd-drop-tables-sqlserver.sql</srcFile>
@@ -2529,7 +2528,7 @@
 										<requireProperty>
 											<property>indexTablespace</property>
 											<message>La propiedad indexTablespace es obligatoria.</message>
-										</requireProperty>									
+										</requireProperty>
 									</rules>
 									<fail>true</fail>
 								</configuration>
@@ -2558,7 +2557,7 @@
 										</replacement>
 									</replacements>
 								</configuration>
-							</execution>						
+							</execution>
 							<execution>
 								<id>replace-indexes-org</id>
 								<phase>validate</phase>
@@ -2577,8 +2576,8 @@
 										</replacement>
 									</replacements>
 								</configuration>
-							</execution>	
-							
+							</execution>
+
 							<!-- execution>
 								<id>replace-indexes-org</id>
 								<phase>validate</phase>
@@ -2630,11 +2629,11 @@
 										<srcFile>${basedir}/target/scripts/archivo/02.archivo-create-indexes-oracle.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/03.archivo-insert-data-oracle.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/07.archivo-personalization-oracle.sql</srcFile>
-										
+
 										<!-- Organizacion -->
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/01.archivo-organizacion-bd-create-tables-oracle.sql</srcFile>
 										<srcFile>${basedir}/target/scripts/archivo/complementario/archivo-organizacion-bd/02.archivo-organizacion-bd-create-indexes-oracle.sql</srcFile>
-										
+
 									</srcFiles>
 								</configuration>
 							</execution>
@@ -2750,11 +2749,11 @@
 										<srcFile>${baseDirSql}/archivo/00.2.archivo-drop-procedures-oracle.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/00.3.archivo-drop-indexes-oracle.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/00.4.archivo-drop-tables-oracle.sql</srcFile>
-										
+
 										<!-- Organizacion -->
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/00.archivo-organizacion-bd-drop-indexes-oracle.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/00.archivo-organizacion-bd-drop-tables-oracle.sql</srcFile>
-										
+
 									</srcFiles>
 								</configuration>
 							</execution>
@@ -3695,11 +3694,11 @@
 										<srcFile>${baseDirSql}/archivo/03.archivo-insert-data-db2.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/04.archivo-insert-clobs-db2.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/07.archivo-personalization-db2.sql</srcFile>
-										
+
 										<!-- Organizacion -->
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/01.archivo-organizacion-bd-create-tables-db2.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/02.archivo-organizacion-bd-create-indexes-db2.sql</srcFile>
-										
+
 									</srcFiles>
 								</configuration>
 							</execution>
@@ -3764,10 +3763,10 @@
 										<srcFile>${baseDirSql}/archivo/00.2.archivo-delete-procedures-db2.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/00.3.archivo-drop-indexes-db2.sql</srcFile>
 										<srcFile>${baseDirSql}/archivo/00.4.archivo-drop-tables-db2.sql</srcFile>
-										
+
 										<!-- Organizacion -->
 										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/00.archivo-organizacion-bd-drop-indexes-db2.sql</srcFile>
-										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/00.archivo-organizacion-bd-drop-tables-db2.sql</srcFile>										
+										<srcFile>${baseDirSql}/archivo/complementario/archivo-organizacion-bd/00.archivo-organizacion-bd-drop-tables-db2.sql</srcFile>
 									</srcFiles>
 								</configuration>
 							</execution>

@@ -9,20 +9,20 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class InveSicresSecuence {
-	
+
 	public static int getNexSecuence(DbCnt cnt) throws ISPACException {
 		return getIdSequence(cnt, "SCR_SEQCNT");
 	}
-	
+
 	protected static int getIdSequence(DbCnt cntorig, String sequence)
 			throws ISPACException {
-		
+
 	    if (!cntorig.ongoingTX()) {
 	        return nextVal(cntorig,sequence);
 	    }
 
 	    DbCnt cnt = new DbCnt(cntorig.getPoolName());
-	    
+
 		try  {
 		    cnt.getConnection();
 			return nextVal(cnt,sequence);
@@ -33,26 +33,33 @@ public class InveSicresSecuence {
 		}
 	}
 
-	protected static int nextVal(DbCnt cnt, String sequence) 
+	protected static int nextVal(DbCnt cnt, String sequence)
 			throws ISPACException {
-		
+
 		String sql = null;
-		
+		DbResultSet rs = null;
+
 		if (cnt.isPostgreSQLDbEngine()) {
 			sql = "SELECT NEXTVAL('" + sequence + "')";
 		} else if (cnt.isOracleDbEngine()) {
 			sql = "SELECT " + sequence + ".NEXTVAL FROM DUAL";
 		} else if (cnt.isDB2DbEngine()) {
 			sql = "VALUES NEXTVAL FOR " + sequence;
+		} else if (cnt.isSqlServerDbEngine()) {
+			// Aumentar la secuencia
+			// insertando un nuevo registro en la tabla (ID de tipo IDENTITY)
+			cnt.directExec("INSERT INTO " + sequence + "(USERID) VALUES (0)");
+			// SQL para obtener el valor de la secuencia
+			sql = "SELECT MAX(ID) FROM " + sequence + " WHERE USERID=0";
 		}
 
 		if (sql != null) {
-			DbResultSet rs = cnt.executeQuery(sql.toString());
 			try {
+				rs = cnt.executeQuery(sql);
 				if (rs.getResultSet().next()){
 					return rs.getResultSet().getBigDecimal(1).intValue();
 				}else{
-					throw new ISPACException("Nombre de secuencia no existente");
+					throw new ISPACException("Nombre de secuencia '" + sequence + "' no existente");
 				}
 			} catch (SQLException e) {
 				throw new ISPACException(e);

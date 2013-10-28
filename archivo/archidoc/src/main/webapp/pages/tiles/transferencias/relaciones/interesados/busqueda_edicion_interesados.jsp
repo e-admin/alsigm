@@ -7,15 +7,15 @@
 
 <script language="JavaScript1.2" src="<%=request.getContextPath()%>/js/ficha.js" type="text/JavaScript"></script>
 <script language="JavaScript1.2" src="<%=request.getContextPath()%>/js/utils.js" type="text/JavaScript"></script>
-		
+
 <c:choose>
-	<c:when test="${isPopup}">		
+	<c:when test="${isPopup}">
 		<c:set var="listadoTerceros" value="${sessionScope[appConstants.transferencias.RESULTADOS_BUSQUEDA_INTERESADOS]}" />
 	</c:when>
 	<c:otherwise>
 		<c:set var="listadoTerceros" value="${sessionScope[appConstants.transferencias.RESULTADOS_BUSQUEDA_INTERESADOS]}" />
 	</c:otherwise>
-</c:choose>	
+</c:choose>
 
 <bean:struts id="mappingGestionInteresados" mapping="/gestionInteresados" />
 <c:set var="listadoTercerosSize" value="${requestScope[appConstants.transferencias.LISTADO_TERCEROS_SIZE]}"/>
@@ -37,7 +37,7 @@ function cambioTipoIdentificacion(valor){
 	var valor = document.getElementById("tipoIdentificacion").value;
 	if(valor == 2){
 		document.getElementById("numeroIdentificacion").maxLength=32;
-		
+
 	}
 	else{
 		document.getElementById("numeroIdentificacion").maxLength=9;
@@ -45,7 +45,7 @@ function cambioTipoIdentificacion(valor){
 }
 
 window.onunload=function cerrarVentana(){
-		
+
 		var linkPressed=document.getElementById("linkPressed");
 		if(linkPressed.value!="buscarInteresados" &&
 		   linkPressed.value!="incorporarInteresadoNoValidado" &&
@@ -57,9 +57,9 @@ window.onunload=function cerrarVentana(){
 		}
 	}
 </script>
-		
+
 <html:form action="/gestionInteresados">
-		
+
 	<input type="hidden" name="method" styleId="method"/>
 	<html:hidden property="validacionCorrecta" styleId="validacionCorrecta"/>
 	<input type="hidden" id="contextPath" name="contextPath" value="<c:out value="${interesadoForm.contextPath}"/>"/>
@@ -71,22 +71,22 @@ window.onunload=function cerrarVentana(){
 	<html:hidden property="descripcionRol" styleId="descripcionRol"/>
 	<html:hidden property="refDescripcionRol" styleId="refDescripcionRol"/>
 	<html:hidden property="descripcionValidado" styleId="descripcionValidado"/>
-	<html:hidden property="refDescripcionValidado" styleId="refDescripcionValidado"/>	
+	<html:hidden property="refDescripcionValidado" styleId="refDescripcionValidado"/>
 	<html:hidden property="descripcionIdTercero" styleId="descripcionIdTercero"/>
-	<html:hidden property="refDescripcionIdTercero" styleId="refDescripcionIdTercero"/>	
+	<html:hidden property="refDescripcionIdTercero" styleId="refDescripcionIdTercero"/>
 	<html:hidden property="listasDescripcionIdentidad" styleId="listasDescripcionIdentidad"/>
 	<html:hidden property="refTypeDescripcionIdentidad" styleId="refTypeDescripcionIdentidad"/>
 	<html:hidden property="idRow" styleId="idRow"/>
 	<html:hidden property="linkPressed" styleId="linkPressed"/>
 	<div class="etiquetaAzul12Bold">
-	
+
 		<script>
-		
+
 			function showIntValForm()
 			{
 				//document.getElementById('nombre').value = '';
 				//document.getElementById('numeroIdentificacion').value = '';
-				document.getElementById('InteresadoNoValidado').style.display = 'none'; 
+				document.getElementById('InteresadoNoValidado').style.display = 'none';
 				document.getElementById('InteresadoValidado').style.display = 'block';
 				<c:choose>
 				<c:when test="${!empty listadoTerceros}">
@@ -99,44 +99,44 @@ window.onunload=function cerrarVentana(){
 
 				var selectionForm = document.forms['<c:out value="${mappingGestionInteresados.name}" />'];
 			}
-			
+
 			function showIntNotValForm(copiarDatos)
 			{
 				var separadorApellidos = '<bean:message key="archigest.archivo.transferencias.caracterseparador.interesados"/>'
-				
+
 				if(copiarDatos){
 					document.getElementById('numeroIdentificacion').value = document.getElementById('niSearchToken').value;
 					var nombreCompleto = "";
 					var nomb =  document.getElementById('nameSearchToken').value;
 					var apel1 = document.getElementById('surname1SearchToken').value;
 					var apel2 = document.getElementById('surname2SearchToken').value;
-					
+
 					if(apel1 != ""){
 						nombreCompleto += apel1;
 					}
-					
-					
-					
+
+
+
 					if(apel2 != ""){
 						if(nombreCompleto != ""){
 							nombreCompleto += " ";
 						}
 						nombreCompleto += apel2;
 					}
-					
+
 					if(nomb != ""){
 						nombreCompleto += separadorApellidos;
 						if(nombreCompleto != ""){
 							nombreCompleto += " ";
-						}					
+						}
 						nombreCompleto += nomb;
 					}
-					
+
 					document.getElementById('nombre').value = nombreCompleto;
 					document.getElementById('tipoIdentificacion').value = "0";
 				}
-				
-				
+
+
 				document.getElementById('InteresadoNoValidado').style.display = 'block';
 				document.getElementById('InteresadoValidado').style.display = 'none';
 				document.getElementById('tdIncorporarInteresado').style.display = 'none';
@@ -145,25 +145,25 @@ window.onunload=function cerrarVentana(){
 			}
 		</script>
 		<div class="separador8">&nbsp;</div>
-		&nbsp;&nbsp; 
+		&nbsp;&nbsp;
 		<html:radio property="tipoInteresado" styleId="tipoInteresado" value="1" onclick="javascript:showIntValForm()"></html:radio>
 		<bean:message key="archigest.archivo.transferencias.interesadoValidado" />
 		<html:radio property="tipoInteresado" styleId="tipoInteresado" value="0" onclick="javascript:showIntNotValForm(true)"></html:radio>
 		<bean:message key="archigest.archivo.transferencias.interesadoNoValidado" />
-		
+
 
 	</div>
 	<div class="separador8">&nbsp;</div>
 
-	<div id="InteresadoValidado" 
+	<div id="InteresadoValidado"
 		<c:choose>
-			<c:when test="${noValidado}">							
+			<c:when test="${noValidado}">
 				style="display:none;"
 			</c:when>
 			<c:otherwise>
 				style="display:block;"
 			</c:otherwise>
-		</c:choose>			
+		</c:choose>
 	>
 
 	<tiles:insert page="/pages/tiles/PABlockLayout.jsp">
@@ -199,7 +199,7 @@ window.onunload=function cerrarVentana(){
 				<a class="etiquetaAzul12Normal" href="javascript:buscarInteresados()">
 					<html:img titleKey="archigest.archivo.buscar" altKey="archigest.archivo.buscar" page="/pages/images/buscar.gif" styleClass="imgTextMiddle" />
 					<bean:message key="archigest.archivo.buscar"/>
-				</a>		
+				</a>
 				</TD>
 		     </TR>
 			</TABLE>
@@ -211,7 +211,7 @@ window.onunload=function cerrarVentana(){
 			<table class="formulario" cellpadding=0 cellspacing=0>
 				<tr>
 					<td class="tdTitulo" colspan="2">
-						<html:radio property="buscarPor" value="NOMBRE" styleClass="radio"/> 
+						<html:radio property="buscarPor" value="NOMBRE" styleClass="radio"/>
 						<bean:message key="archigest.archivo.transferencias.nombreApellidos"/>
 					</td>
 				</tr>
@@ -220,7 +220,7 @@ window.onunload=function cerrarVentana(){
 					<table class="formulario" cellpadding=0 cellspacing=0>
 						<tr>
 						<td class="tdTitulo" width="220px">
-							<bean:message key="archigest.archivo.nombre" />: 
+							<bean:message key="archigest.archivo.nombre" />:
 						</td>
 						<td class="tdDatos">
 							<html:text property="nameSearchToken" size="20" styleId="nameSearchToken" onclick="this.form.buscarPor[0].checked = true"  />
@@ -228,7 +228,7 @@ window.onunload=function cerrarVentana(){
 						</tr>
 						<tr>
 						<td class="tdTitulo">
-							<bean:message key="archigest.archivo.PrimerApellido" />: 
+							<bean:message key="archigest.archivo.PrimerApellido" />:
 						</td>
 						<td class="tdDatos">
 							<html:text property="surname1SearchToken"  styleId="surname1SearchToken" size="40" onclick="this.form.buscarPor[0].checked = true" />
@@ -236,7 +236,7 @@ window.onunload=function cerrarVentana(){
 						</tr>
 						<tr>
 						<td class="tdTitulo">
-							<bean:message key="archigest.archivo.SegundoApellido" />: 
+							<bean:message key="archigest.archivo.SegundoApellido" />:
 						</td>
 						<td class="tdDatos">
 							<html:text property="surname2SearchToken" styleId="surname2SearchToken" size="40" onclick="this.form.buscarPor[0].checked = true" />
@@ -249,26 +249,32 @@ window.onunload=function cerrarVentana(){
 			<table class="formulario" cellpadding=0 cellspacing=0>
 				<tr>
 					<td class="tdTitulo" width="250px">
-						<html:radio property="buscarPor" value="RAZON_SOCIAL" styleClass="radio"/> 
-						<bean:message key="archigest.archivo.razonSocial" />: 
+						<html:radio property="buscarPor" value="RAZON_SOCIAL" styleClass="radio"/>
+						<bean:message key="archigest.archivo.razonSocial" />:
 					</td>
 					<td class="tdDatos" align="left"><html:text property="companySearchToken" styleClass="input99" onclick="this.form.buscarPor[1].checked = true"/></td>
 				</tr>
 				<tr>
 					<td class="tdTitulo" width="250px">
-						<html:radio property="buscarPor" value="IF" styleClass="radio"/> 
+						<html:radio property="buscarPor" value="IF" styleClass="radio"/>
 						<bean:message key="archigest.archivo.transferencias.numIdentidad"/>:
 					</td>
 					<td class="tdDatos" align="left">
+						<html:select property="tipoNumeroIdentificacion">
+							<html:option value="6"><bean:message key="archigest.archivo.transferencias.terceros.6"/></html:option>
+							<html:option value="7"><bean:message key="archigest.archivo.transferencias.terceros.7"/></html:option>
+							<html:option value="8"><bean:message key="archigest.archivo.transferencias.terceros.8"/></html:option>
+							<html:option value="9"><bean:message key="archigest.archivo.transferencias.terceros.9"/></html:option>
+						</html:select>
 						<html:text property="niSearchToken" styleId="niSearchToken" size="15" onclick="this.form.buscarPor[2].checked = true"  />
 					</td>
 				</tr>
 			</table>
-			<c:if test="${listadoTerceros != null}">		
+			<c:if test="${listadoTerceros != null}">
 				<div class="titulo_left_bloque">
 					<bean:message key="archigest.archivo.resultadosBusqueda" />:&nbsp;&nbsp;
 				</div>
-	
+
 				<c:choose>
 				<c:when test="${!empty listadoTerceros}">
 				<c:url var="listaTercerosPaginationURL" value="/action/gestionInteresados">
@@ -282,20 +288,20 @@ window.onunload=function cerrarVentana(){
 				</c:url>
 				<jsp:useBean id="listaTercerosPaginationURL" type="java.lang.String" />
 				<div id="idListadoTercerosScroll" class="bloqueConScroll175">
-				
+
 				<div style="height:5px">&nbsp;</div>
-				<display:table 
-					name="pageScope.listadoTerceros" id="interesado" 
+				<display:table
+					name="pageScope.listadoTerceros" id="interesado"
 					style="width:99%;margin-left:auto;margin-right:auto;margin-bottom:auto;margin-top:auto"
 					pagesize="0"
 					requestURI='<%=listaTercerosPaginationURL%>'>
-					
+
 					<display:setProperty name="basic.msg.empty_list">
 						<bean:message key="archigest.archivo.transferencias.noInteresadoBD"/>
 					</display:setProperty>
-					
+
 					<display:column title="&nbsp;" style="width:20px">
-						<input type="checkbox" name="seleccionTerceros" 
+						<input type="checkbox" name="seleccionTerceros"
 							value="<%=interesado_rowNum.intValue()-1%>" />
 					</display:column>
 					<display:column titleKey="archigest.archivo.transferencias.identificacion" property="identificacion" />
@@ -312,26 +318,26 @@ window.onunload=function cerrarVentana(){
 					<bean:message key="archigest.archivo.transferencias.msgNoTerceroBusqueda"/>
 				</div>
 				</c:otherwise>
-				</c:choose>	
+				</c:choose>
 				<c:if test="${listadoTercerosSize<10}">
 					<script>
 						document.getElementById("idListadoTercerosScroll").className="";
 					</script>
-				</c:if>	
+				</c:if>
 			</c:if>
 		</tiles:put>
 	</tiles:insert>
 	</div>
 
-	<div id="InteresadoNoValidado" 
+	<div id="InteresadoNoValidado"
 		<c:choose>
-			<c:when test="${!noValidado}">							
+			<c:when test="${!noValidado}">
 				style="display:none;"
 			</c:when>
 			<c:otherwise>
 				style="display:block;"
 			</c:otherwise>
-		</c:choose>	
+		</c:choose>
 	>
 	<tiles:insert page="/pages/tiles/PABlockLayout.jsp">
 		<tiles:put name="buttonBar" direct="true">
@@ -359,7 +365,7 @@ window.onunload=function cerrarVentana(){
 							<html:hidden property="nombre_idref" styleId="nombre_idref"/>
 							<html:hidden property="nombre_tiporef" styleId="nombre_tiporef"/>
 							<a href="javascript:popupReferencePage('nombre','<c:out value="${interesadoForm.refTypeDescripcionIdentidad}"/>','<c:out value="${interesadoForm.listasDescripcionIdentidad}"/>');">
-								<html:img page="/pages/images/buscar.gif" altKey="archigest.archivo.buscar" titleKey="archigest.archivo.buscar" styleClass="imgTextTop" />													
+								<html:img page="/pages/images/buscar.gif" altKey="archigest.archivo.buscar" titleKey="archigest.archivo.buscar" styleClass="imgTextTop" />
 					        </a>
 						</c:when>
 						<c:otherwise>
@@ -404,12 +410,12 @@ window.onunload=function cerrarVentana(){
 	</tiles:insert>
 	<script language="javascript">
 		cambioTipoIdentificacion();
-		
+
 		var validacionCorrecta = document.getElementById('validacionCorrecta');
 		if ((validacionCorrecta.value != null) && (validacionCorrecta.value == "true")) {
-		
+
 			var identidad = document.getElementById('descripcionIdentidad');
-			var refIdentidad = document.getElementById('refDescripcionIdentidad');			
+			var refIdentidad = document.getElementById('refDescripcionIdentidad');
 			if ((identidad!=null) && (identidad.value!="") && (identidad.value!="undefined")&&
 				(refIdentidad!=null) && (refIdentidad.value!="") && (refIdentidad.value!="undefined")){
 
@@ -418,53 +424,53 @@ window.onunload=function cerrarVentana(){
 					window.opener.document.getElementById(refIdentidad.value).value = identidad.value;
 				}
 			}
-			
+
 			var numidentidad = document.getElementById('descripcionNumIdentidad');
-			var refNumIdentidad = document.getElementById('refDescripcionNumIdentidad');			
+			var refNumIdentidad = document.getElementById('refDescripcionNumIdentidad');
 			if ((numidentidad!=null) && (numidentidad.value!="") && (numidentidad.value!="undefined")&&
-				(refNumIdentidad!=null) && (refNumIdentidad.value!="") && (refNumIdentidad.value!="undefined")){						
+				(refNumIdentidad!=null) && (refNumIdentidad.value!="") && (refNumIdentidad.value!="undefined")){
 
 				if (opener.document.getElementById(refNumIdentidad.value))
 				{
 					window.opener.document.getElementById(refNumIdentidad.value).value = numidentidad.value;
 				}
 			}
-			
+
 			var idTercero = document.getElementById('descripcionIdTercero');
-			var refIdTercero = document.getElementById('refDescripcionIdTercero');	
+			var refIdTercero = document.getElementById('refDescripcionIdTercero');
 			if ((idTercero!=null) && (idTercero.value!="") && (idTercero.value!="undefined")&&
-				(refIdTercero!=null) && (refIdTercero.value!="") && (refIdTercero.value!="undefined")){						
+				(refIdTercero!=null) && (refIdTercero.value!="") && (refIdTercero.value!="undefined")){
 				if (opener.document.getElementById(refIdTercero.value))
 				{
 					window.opener.document.getElementById(refIdTercero.value).value = idTercero.value;
 				}
 			}
-			
+
 			var validado = document.getElementById('descripcionValidado');
-			var refValidado = document.getElementById('refDescripcionValidado');			
+			var refValidado = document.getElementById('refDescripcionValidado');
 			if ((validado!=null) && (validado.value!="") && (validado.value!="undefined")&&
-				(refValidado!=null) && (refValidado.value!="") && (refValidado.value!="undefined")){						
+				(refValidado!=null) && (refValidado.value!="") && (refValidado.value!="undefined")){
 
 				if (opener.document.getElementById(refValidado.value))
 				{
 					window.opener.document.getElementById(refValidado.value).selectedIndex = validado.value;
 				}
 			}
-			
+
 			var rol = document.getElementById('descripcionRol');
-			var refRol = document.getElementById('refDescripcionRol');			
+			var refRol = document.getElementById('refDescripcionRol');
 			if ((rol!=null) && (rol.value!="") && (rol.value!="undefined")&&
-				(refRol!=null) && (refRol.value!="") && (refRol.value!="undefined")){						
+				(refRol!=null) && (refRol.value!="") && (refRol.value!="undefined")){
 
 				if (opener.document.getElementById(refRol.value))
 				{
 					window.opener.document.getElementById(refRol.value).selectedIndex = rol.value;
 				}
 			}
-			
+
 			window.close();
 		}
-	</script>	
+	</script>
 	</div>
 </html:form>
 

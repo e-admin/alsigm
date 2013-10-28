@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Class-Path: ajaxtags-1.1.5.jar ant-1.7.0.jar antlr-2.7.2.jar aopallian
+ ce-1.0.jar archidoc_organization_connector-5.0.jar bcmail-jdk14-139.j
+ ar bcprov-jdk14-140.jar castor-0.9.5.3.jar commons-beanutils-1.7.0.ja
+ r commons-codec-1.5.jar commons-collections-3.1.jar commons-digester-
+ 1.6.jar commons-fileupload-1.0.jar commons-httpclient-3.1.jar commons
+ -io-1.4.jar commons-jxpath-1.2.jar commons-lang-2.3.jar commons-loggi
+ ng-1.0.4.jar commons-validator-1.1.3.jar displaytag-1.2.jar dom4j-1.6
+ .1.jar dwr-2.0.3.jar fwktd-audit-api-0.7.jar fwktd-audit-core-0.7.jar
+  fwktd-audit-integration-0.7.jar fwktd-core-0.7.jar fwktd-server-0.7.
+ jar fwktd-web-0.7.jar gwt-servlet-1.5.3.jar htmlparser-1.6.jar ibatis
+ -sqlmap-2.3.4.726.jar icu4j-2.6.1.jar invesdoc-admin-9.2.3.1.jar inve
+ sdoc-core-9.2.3.1.jar invesdoc-stdbizobj-9.2.3.1.jar ispac-archidoc-6
+ .4.jar ispac-audit.jar ispac-catalog-java.jar ispac-designer-6.4.jar
+ ispac-documentum-6.4.jar ispac-invesdoc-6.4.jar ispac-ldap-6.4.jar is
+ pac-lib.jar ispac-lib-cfg.jar ispac-resources-6.4-configurable.zip is
+ pac-web.jar itext-1.3.jar jasperreports-3.7.6.jar jaxen-1.1.1.jar jcl
+ 104-over-slf4j-1.4.2.jar jcommon-1.0.15.jar jdom-1.0.jar jdtcore-3.1.
+ 0.jar jfreechart-1.0.12.jar jstl-1.0.6.jar jug-2.0.0-lgpl.jar juh-2.2
+ .1.jar jurt-2.2.1.jar log4j-1.2.13.jar mime-util-2.1.3.jar oro-2.0.8.
+ jar ridl-2.2.1.jar serializer-2.7.1.jar slf4j-api-1.4.2.jar slf4j-log
+ 4j12-1.4.2.jar spring-aop-3.0.2.RELEASE.jar spring-asm-3.0.2.RELEASE.
+ jar spring-beans-3.0.2.RELEASE.jar spring-context-3.0.2.RELEASE.jar s
+ pring-context-support-3.0.2.RELEASE.jar spring-core-3.0.2.RELEASE.jar
+  spring-expression-3.0.2.RELEASE.jar spring-jdbc-3.0.2.RELEASE.jar sp
+ ring-orm-3.0.2.RELEASE.jar spring-tx-3.0.2.RELEASE.jar spring-web-3.0
+ .2.RELEASE.jar spring-webmvc-3.0.2.RELEASE.jar standard-1.0.6.jar str
+ uts-1.2.4.jar struts-menu-2.2.jar trove-1.0.2.jar unoil-2.2.1.jar vel
+ ocity-1.7.jar velocity-tools-2.0-beta4.jar xalan-2.7.1.jar xercesImpl
+ -2.9.0.jar xml-apis-1.3.02.jar xmlParserAPIs-2.6.2.jar xom-1.0.jar xp
+ p3_min-1.1.4c.jar xstream-1.3.1.jar

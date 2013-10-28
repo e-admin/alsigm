@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.iflow</groupId>
 		<artifactId>ispac-main-applet</artifactId>
-		<version>6.4</version>
+		<version>6.4.1</version>
 	</parent>
 
 	<artifactId>ispac-applet-applauncher</artifactId>
@@ -82,7 +82,7 @@
 					</archive>
 				</configuration>
 			</plugin>
-
+		
 		</plugins>
 	</build>
 

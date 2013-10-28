@@ -83,6 +83,15 @@ public class TagsFicha {
 	/** Nombre atributo Dia del tag valor de un dato. */
 	public static final String ATTR_DAY_VALOR_DATO = "Dia";
 
+	/** Nombre atributo Dia del tag valor de un dato. */
+	public static final String ATTR_HOURS_VALOR_DATO = "Horas";
+
+	/** Nombre atributo Dia del tag valor de un dato. */
+	public static final String ATTR_MINUTES_VALOR_DATO = "Minutos";
+
+	/** Nombre atributo Segundos del tag valor de un dato. */
+	public static final String ATTR_SECONDS_VALOR_DATO = "Segundos";
+
 	/** Nombre atributo Siglo del tag valor de un dato. */
 	public static final String ATTR_CENTURY_VALOR_DATO = "Siglo";
 

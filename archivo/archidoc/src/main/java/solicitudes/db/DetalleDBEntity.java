@@ -227,7 +227,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Obtiene el nombre de la tabla
-	 * 
+    *
 	 * @return
 	 */
 	public String getTableName() {
@@ -236,7 +236,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Constructor por defecto de la clase
-	 * 
+    *
 	 * @param dataSource
 	 */
 	public DetalleDBEntity(DbDataSource dataSource) {
@@ -286,7 +286,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	 * Elimina los detalles(udocumentals) identificado por su id de la unidad
 	 * documental y su signatura y que esta asociado a una solicitud(de préstamo
 	 * o consulta).
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud ala que va asociado el detalle
 	 * @param idudoc
@@ -320,7 +320,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * solicitudes.db.IDetalleDBEntity#getUDocsEnPrestamoByEstado(java.util.
 	 * List, int[])
@@ -347,7 +347,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Obtiene un listado de los detalles con el identificador de udoc y la
 	 * signatura pasados.
-	 * 
+    *
 	 * @param idudoc
 	 *            Identificador de la unidad documental
 	 * @param signatura
@@ -379,7 +379,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Realiza la autorización de una unidad documental de un determinado
 	 * préstamo.
-	 * 
+    *
 	 * @param prestamo
 	 *            Prestamo al que pertenece la unidad documental.
 	 * @param idudoc
@@ -423,7 +423,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Permite bloquear un detalle de préstamo para comprobar su disponibilidad
 	 * (debe ser dentro de una transacción)
-	 * 
+    *
 	 * @param prestamo
 	 *            Prestamo al que pertenece la unidad documental.
 	 * @param idudoc
@@ -451,7 +451,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Realiza la autorización de una unidad documental de una determinada
 	 * consulta.
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta a la que pertenece la unidad documental.
 	 * @param idudoc
@@ -490,7 +490,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Realiza la denegación de una unidad documental de un determinado
 	 * préstamo.
-	 * 
+    *
 	 * @param prestamo
 	 *            Prestamo al que pertenece la unidad documental.
 	 * @param idudoc
@@ -527,7 +527,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Realiza la denegación de una unidad documental de una determinada
 	 * consulta.
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta al que pertenece la unidad documental.
 	 * @param idudoc
@@ -564,7 +564,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Obtiene un listado de todas las unidades documentales para un determinado
 	 * solicitud(préstamo o consulta) dada por su identificador.
-	 * 
+    *
 	 * @param codigo
 	 *            Identificador de la solicitud de la que deseamos obtener las
 	 *            unidades documentales.
@@ -597,7 +597,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Actualiza un detalle dado por su id solicitud,id udoc, signatura y tipo
-	 * 
+    *
 	 * @param detalle
 	 *            Detalle a actualizar
 	 */
@@ -621,7 +621,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Realiza el borrado del detalle identificado por su id y signatura de un
 	 * préstamo por su id. O todos en caso de no venir los ids de los detalles.
-	 * 
+    *
 	 * @param id
 	 *            Identificador de la solicitud de la que se desean eliminar sus
 	 *            detalles
@@ -648,7 +648,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Obtiene un listado de las unidades documentales devueltas de una
 	 * determinada solicitud(prestamo o consulta)
-	 * 
+    *
 	 * @param codigo
 	 *            Identificador de la solicitud de la que deseamos obtener los
 	 *            detalles devueltos
@@ -688,7 +688,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	 * asgfunidaddoc.idelementocf = asgfelementocf.id and asgfelementocf.codigo
 	 * = asgdudocenui.signaturaudoc --and asgdudocenui.signaturaudoc = 'xxx'
 	 * --and asgdudocenui.idudoc
-	 * 
+    *
 	 * @param idudoc
 	 *            Identificador de la unidad documental
 	 * @param signatura
@@ -746,7 +746,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Obtiene un detalle entrega del tipo indicado
-	 * 
+    *
 	 * @param idUdoc
 	 *            Identifcador de la unidad documental
 	 * @param signatura
@@ -786,7 +786,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Obtiene el detalle entregado a partir de su identificador de bd.
-	 * 
+    *
 	 * @param identificacion
 	 *            Identificador del detalle que deseamos recuperar.
 	 * @param type
@@ -828,7 +828,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Obtiene el numero de detalles entregados para una solicitud
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud que deseamos comprobar
 	 * @return Numero de detalles entregados para la solicitud
@@ -859,7 +859,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Obtiene el numero de detalles devueltos para una solicitud
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud que deseamos comprobar
 	 * @return Numero de detalles devuelto para la solicitud
@@ -890,7 +890,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Obtiene el numero de detalles para un solicitud
-	 * 
+    *
 	 * @param idSolicitud
 	 *            Identificador de la solicitud que deseamos comprobar
 	 * @return Numero de detalles
@@ -918,7 +918,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Obtiene los detalles de una solicitud que se encuentran en un determinado
 	 * estado.
-	 * 
+    *
 	 * @param estados
 	 *            Estados en los que se debe encotrar el detalles
 	 * @param identificacion
@@ -954,7 +954,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Obtiene un listado de unidades documentales entregadas que pertenecen a
 	 * un determinado expediente.
-	 * 
+    *
 	 * @param num_exp
 	 *            Expediente del que deseamos obtener las unidades documentales.
 	 * @param like
@@ -1078,7 +1078,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Obtiene un listado de unidades documentales entregadas con una signatura.
-	 * 
+    *
 	 * @param signatura
 	 *            Signatura de la u.documental
 	 * @return Unidades documentales.
@@ -1201,7 +1201,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * Obtiene un detalle de una solicitud (prestamo o consulta) entregada.
-	 * 
+    *
 	 * @param id
 	 *            identificador de la solicitud.
 	 * @param idUdoc
@@ -1340,7 +1340,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Obtiene un detalle de una solicitud(prestamo o consulta) identificado por
 	 * su id y por los ids de la unidad documental.
-	 * 
+    *
 	 * @param id
 	 *            identificador de la solicitud.
 	 * @param idUdoc
@@ -1454,7 +1454,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * solicitudes.db.IDetalleDBEntity#getUDocsNoDispoblesParaRelacion(java.
 	 * lang.String)
@@ -1496,7 +1496,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Añade a la condición de una consulta, la subconsulta referida a los
 	 * estados.
-	 * 
+    *
 	 * @param campoEstado
 	 *            . El campo de la tabla de la base de datos que contiene los
 	 *            estados
@@ -1529,7 +1529,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Añade a la condición de una consulta, la subconsulta referida a los
 	 * codigos de referencia.
-	 * 
+    *
 	 * @param campoEstado
 	 *            . El campo de la tabla de la base de datos que contiene los
 	 *            estados
@@ -1604,7 +1604,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * solicitudes.db.IDetalleDBEntity#getIdsElementosEnPrestamosOrConsultas
 	 * (fondos.vos.BusquedaElementosVO, java.lang.String)
@@ -1762,7 +1762,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * solicitudes.db.IDetalleDBEntity#getIdsElementosEnPrestamosYConsultas(
 	 * fondos.vos.BusquedaElementosVO)
@@ -1885,7 +1885,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * solicitudes.db.IDetalleDBEntity#getElementosEnPrestamosOrConsultas(java
 	 * .util.List, fondos.vos.BusquedaElementosVO, java.lang.String)
@@ -1980,7 +1980,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see
 	 * solicitudes.db.IDetalleDBEntity#getElementosEnPrestamosYConsultas(java
 	 * .util.List, fondos.vos.BusquedaElementosVO)
@@ -2133,7 +2133,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	}
 
 	/**
-	 * 
+    *
 	 * @param busquedaElementosVO
 	 *            . Contiene los criterios de búsqueda
 	 * @param codReferenciaCF
@@ -2194,7 +2194,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 	/**
 	 * Obtiene un listado de los detalles con el identificador de udoc y la
 	 * signatura pasados y en los estados pasados
-	 * 
+    *
 	 * @param idudoc
 	 *            Identificador de la unidad documental
 	 * @param signatura
@@ -2309,7 +2309,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see solicitudes.db.IDetalleDBEntity#getExpedientesUsuarioConsulta(salas.vos.BusquedaUsuarioSalaConsultaVO)
 	 */
 	public List getExpedientesUsuarioConsulta(
@@ -2353,7 +2353,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see solicitudes.db.IDetalleDBEntity#getCountUnidadesConsultadas(java.util.Date,
 	 *      java.util.Date)
 	 */
@@ -2389,7 +2389,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see solicitudes.db.IDetalleDBEntity#getUnidadesConsultadas(salas.vos.BusquedaUsuarioSalaConsultaVO)
 	 */
 	public List getUnidadesConsultadas(
@@ -2444,7 +2444,7 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+    *
 	 * @see solicitudes.db.IDetalleDBEntity#getCountDetallesByEstado(int[])
 	 */
 	public int getCountDetallesByEstado(String idUdoc, int[] estados) {
@@ -2456,5 +2456,30 @@ public abstract class DetalleDBEntity extends DBEntity implements
 
 		return getVOCount(qual.toString(), TABLE_NAME);
 	}
+
+	public void cambiarEstadosASolicitadoDetallesAutorizados(String idSolicitud, int tipoSolicitud, int[] estadosOrigen, int estadoDestino){
+
+		String qual = new StringBuffer(DBUtils.WHERE)
+				.append(DBUtils.generateEQTokenField(IDSOLICITUD_FIELD,idSolicitud))
+				.append(DBUtils.AND)
+				.append(DBUtils.generateEQTokenField(TIPOSOLICITUD_FIELD, tipoSolicitud))
+				.append(DBUtils.AND)
+				.append(DBUtils.generateInTokenField(ESTADO_FIELD, estadosOrigen))
+				.toString();
+
+		DetalleConsultaVO detalle = new DetalleConsultaVO();
+		// Establecemos el estado
+		detalle.setEstado(estadoDestino);
+		detalle.setFestado(DateUtils.getFechaActual());
+
+		// Establecemos la fecha del estado
+		detalle.setFestado(DBUtils.getFechaActual());
+
+		DbColumnDef[] columnas = { ESTADO_FIELD, FESTADO_FIELD };
+
+		updateVO(qual, TABLE_NAME, columnas, detalle);
+	}
+
+
 
 }

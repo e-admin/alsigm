@@ -35,10 +35,8 @@
 
 		<div style="padding-top:10px;text-align:center;width:100%">
 			<a name="cancelReportButton" id="cancelReportButton" class="etiquetaAzul12Bold" href="javascript:detenerInforme('<c:out value="${cancelProgressBarURL}"/>')" >
-				<html:img page="/pages/images/Ok_No.gif" altKey="archigest.archivo.buscar" titleKey="archigest.archivo.buscar" styleClass="imgTextMiddle" />
+				<html:img page="/pages/images/Ok_No.gif" altKey="archigest.archivo.cancelar" titleKey="archigest.archivo.cancelar" styleClass="imgTextMiddle" />
 				<bean:message key="archigest.archivo.cancelar"/>
 			</a></div>
-	</div>	
+	</div>
 </div>
-		
-		

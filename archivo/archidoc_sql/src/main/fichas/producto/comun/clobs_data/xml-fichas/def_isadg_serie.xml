@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Definicion_Ficha Version="5.0">
+  <Informacion_Campos>
+    <Area> <!--Area de Identidad -->
+      <Id_Area_Asociada>1</Id_Area_Asociada>
+      <Campos>
+        <Campo Tipo="Especial"><!--Codigo Referencia -->
+          <Id>-1</Id>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Especial"><!--Titulo -->
+          <Id>-3</Id>
+          <Descripcion></Descripcion>
+          <Editable>S</Editable>
+          <Obligatorio>S</Obligatorio>
+          <Tipo>1</Tipo>
+        </Campo>
+        <Campo Tipo="Dato"><!--Fecha inicial -->
+          <Id>3</Id>
+          <Tipo>3</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica>
+                <Validacion>
+                  <Formatos>
+                    <Formato Tipo="AAAA" Sep="" />
+                    <Formato Tipo="MMAAAA" Sep="/" />
+                    <Formato Tipo="DDMMAAAA" Sep="/" />
+                    <Formato Tipo="AAAAMM" Sep="/" />
+                    <Formato Tipo="AAAAMMDD" Sep="/" />
+                    <Formato Tipo="S" Sep="" />
+                  </Formatos>
+                </Validacion>
+              </Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Fecha Final -->
+          <Id>4</Id>
+          <Tipo>3</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica>
+                <Validacion>
+                  <Formatos>
+                    <Formato Tipo="AAAA" Sep="" />
+                    <Formato Tipo="MMAAAA" Sep="/" />
+                    <Formato Tipo="DDMMAAAA" Sep="/" />
+                    <Formato Tipo="AAAAMM" Sep="/" />
+                    <Formato Tipo="AAAAMMDD" Sep="/" />
+                    <Formato Tipo="S" Sep="" />
+                  </Formatos>
+                </Validacion>
+              </Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Especial"><!--Nivel de descripcion -->
+            <Id>-4</Id>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Tabla"><!--Volumen y soporte -->
+          <Id>7</Id>
+          <Editable>N</Editable>
+          <Columnas>
+            <Campo Tipo="Dato"><!--Cantidad -->
+              <Id>214</Id>
+              <Tipo>4</Tipo>
+              <Multivalor>S</Multivalor>
+              <Editable>N</Editable>
+              <Obligatorio>N</Obligatorio>
+              <Informacion_Especifica>
+                <Tipo_Numerico>1</Tipo_Numerico>
+                <Validacion>
+                    <Rango Minimo="1" Maximo="10000000"></Rango>
+                </Validacion>
+              </Informacion_Especifica>
+              <Descripcion></Descripcion>
+            </Campo>
+            <Campo Tipo="Dato"><!--Soporte Documental -->
+              <Id>8</Id>
+              <Tipo>1</Tipo>
+              <Multivalor>S</Multivalor>
+              <Editable>N</Editable>
+              <Obligatorio>N</Obligatorio>
+              <Informacion_Especifica>
+                <Validacion>
+                  <Id_TblVld>ID_TBLVLD_FORMAS_DOCUMENTALES</Id_TblVld>
+                </Validacion>
+              </Informacion_Especifica>
+              <Descripcion></Descripcion>
+            </Campo>
+          </Columnas>
+        </Campo>
+        <Campo Tipo="Dato"><!--Nombre sistema productor -->
+          <Id>14</Id>
+          <Tipo>1</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Publicacion SAC -->
+          <Id>15</Id>
+          <Tipo>1</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Valor_Inicial>No</Valor_Inicial>
+          <Informacion_Especifica>
+            <Validacion>
+              <Id_TblVld>ID_TBLVLD_SINO</Id_TblVld>
+            </Validacion>
+          </Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+      </Campos>
+    </Area>
+    <Area> <!--Area de Contexto -->
+      <Id_Area_Asociada>2</Id_Area_Asociada>
+      <Campos>
+        <Campo Tipo="Tabla"><!--Productores -->
+          <Id>5</Id>
+          <Editable>S</Editable>
+          <Columnas>
+            <Campo Tipo="Dato"><!--Nombre productor -->
+              <Id>34</Id>
+              <Tipo>5</Tipo>
+              <Multivalor>S</Multivalor>
+              <Editable>S</Editable>
+              <Obligatorio>N</Obligatorio>
+              <Informacion_Especifica>
+                <Tipo_Referencia>1</Tipo_Referencia>
+                <Validacion>
+                      <Ids_Listas_Descriptoras>ID_LIST_BDORGANIZACION,ID_LIST_ORGANO,ID_LIST_INSTITUCION</Ids_Listas_Descriptoras>
+                </Validacion>
+              </Informacion_Especifica>
+              <Descripcion></Descripcion>
+            </Campo>
+            <Campo Tipo="Dato"><!--Fecha inicio -->
+              <Id>36</Id>
+              <Tipo>3</Tipo>
+              <Multivalor>S</Multivalor>
+              <Editable>S</Editable>
+              <Obligatorio>N</Obligatorio>
+              <Informacion_Especifica>
+                <Validacion>
+                  <Formatos>
+                    <Formato Tipo="AAAA" Sep="" />
+                    <Formato Tipo="MMAAAA" Sep="/" />
+                    <Formato Tipo="DDMMAAAA" Sep="/" />
+                    <Formato Tipo="AAAAMM" Sep="/" />
+                    <Formato Tipo="AAAAMMDD" Sep="/" />
+                    <Formato Tipo="S" Sep="" />
+                  </Formatos>
+                </Validacion>
+              </Informacion_Especifica>
+              <Descripcion></Descripcion>
+            </Campo>
+            <Campo Tipo="Dato"><!--Fecha fin -->
+              <Id>37</Id>
+              <Tipo>3</Tipo>
+              <Multivalor>S</Multivalor>
+              <Editable>S</Editable>
+              <Obligatorio>N</Obligatorio>
+              <Informacion_Especifica>
+                <Validacion>
+                  <Formatos>
+                    <Formato Tipo="AAAA" Sep="" />
+                    <Formato Tipo="MMAAAA" Sep="/" />
+                    <Formato Tipo="DDMMAAAA" Sep="/" />
+                    <Formato Tipo="AAAAMM" Sep="/" />
+                    <Formato Tipo="AAAAMMDD" Sep="/" />
+                    <Formato Tipo="S" Sep="" />
+                  </Formatos>
+                </Validacion>
+              </Informacion_Especifica>
+              <Descripcion></Descripcion>
+            </Campo>
+          </Columnas>
+        </Campo>
+        <Campo Tipo="Dato"><!--Historia institucional -->
+          <Id>17</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Historia archivistica -->
+          <Id>18</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+      </Campos>
+    </Area>
+    <Area> <!--Area de Alcance y Contenido -->
+      <Id_Area_Asociada>3</Id_Area_Asociada>
+      <Campos>
+        <Campo Tipo="Dato"><!--Alcance y contenido -->
+          <Id>38</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Valoración Serie -->
+          <Id>46</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Admite nuevos ingresos -->
+          <Id>47</Id>
+          <Tipo>1</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica>
+            <Validacion>
+              <Id_TblVld>ID_TBLVLD_SINO</Id_TblVld>
+            </Validacion>
+          </Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+      </Campos>
+    </Area>
+    <Area><!--Area de Condiciones de Acceso y Seguridad -->
+      <Id_Area_Asociada>4</Id_Area_Asociada>
+      <Campos>
+        <Campo Tipo="Dato"><!--Condiciones de acceso -->
+          <Id>22</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Condiciones de reproduccion -->
+          <Id>23</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Lenguas -->
+          <Id>24</Id>
+          <Tipo>1</Tipo>
+          <Multivalor>S</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica>
+            <Validacion>
+              <Id_TblVld>ID_TBLVLD_LENGUA</Id_TblVld>
+            </Validacion>
+          </Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Caracteristicas fisicas -->
+          <Id>25</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Instrumentos descripcion -->
+          <Id>26</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+      </Campos>
+    </Area>
+    <Area><!--Area de Documentacion Asociada -->
+      <Id_Area_Asociada>5</Id_Area_Asociada>
+      <Campos>
+        <Campo Tipo="Dato"><!--Existencia de originales -->
+          <Id>27</Id>
+          <Tipo>1</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica>
+            <Validacion>
+              <Id_TblVld>ID_TBLVLD_SINO</Id_TblVld>
+            </Validacion>
+          </Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Originales, descripcion y ubicacion -->
+          <Id>28</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Existencia de copias -->
+          <Id>29</Id>
+          <Tipo>1</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica>
+            <Validacion>
+              <Id_TblVld>ID_TBLVLD_SINO</Id_TblVld>
+            </Validacion>
+          </Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Copias, descripcion y ubicacion -->
+          <Id>30</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+        <Campo Tipo="Dato"><!--Nota publicacion -->
+          <Id>32</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+      </Campos>
+    </Area>
+    <Area> <!--Area de Notas -->
+      <Id_Area_Asociada>6</Id_Area_Asociada>
+      <Campos>
+        <Campo Tipo="Dato"><!--Notas -->
+          <Id>35</Id>
+          <Tipo>2</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+      </Campos>
+    </Area>
+    <Area><!--Area de control de la descripcion -->
+      <Id_Area_Asociada>7</Id_Area_Asociada>
+      <Campos>
+        <Campo Tipo="Dato"><!--Normas utilizadas -->
+          <Id>33</Id>
+          <Tipo>1</Tipo>
+          <Multivalor>N</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Valor_Inicial>ISAD(G)</Valor_Inicial>
+          <Informacion_Especifica></Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+      </Campos>
+    </Area>
+    <Area> <!--Area de descriptores -->
+      <Id_Area_Asociada>8</Id_Area_Asociada>
+      <Campos>
+        <Campo Tipo="Dato"><!--Descriptor -->
+          <Id>44</Id>
+          <Tipo>5</Tipo>
+          <Multivalor>S</Multivalor>
+          <Editable>S</Editable>
+          <Obligatorio>N</Obligatorio>
+          <Informacion_Especifica>
+            <Tipo_Referencia>1</Tipo_Referencia>
+            <Validacion>
+              <Ids_Listas_Descriptoras></Ids_Listas_Descriptoras>
+            </Validacion>
+          </Informacion_Especifica>
+          <Descripcion></Descripcion>
+        </Campo>
+      </Campos>
+    </Area>
+  </Informacion_Campos>
+  <Clase_Generar_Automaticos>descripcion.model.automaticos.ADReglaGenDatosSerieImpl</Clase_Generar_Automaticos>
+  <Eventos>
+    <Evento>
+        <Tipo>2</Tipo>
+        <Clase>descripcion.model.eventos.fechas.EventoValidarFechasExtremas</Clase>
+    </Evento>
+  </Eventos>
+</Definicion_Ficha>

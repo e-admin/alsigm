@@ -33,8 +33,10 @@ public class ShowProcessListAction extends BaseAction  {
                                      HttpServletRequest request,
                                      HttpServletResponse response,
                                      SessionAPI session) throws Exception {
-	  
+
   	ClientContext cct = session.getClientContext();
+
+	ICatalogAPI catalogAPI = cct.getAPI().getCatalogAPI();
 
 	///////////////////////////////////////////////
 	// Cambio del estado de tramitación
@@ -45,35 +47,36 @@ public class ShowProcessListAction extends BaseAction  {
 
     /////////////////////////////////////////////////
 	// Lista de expedientes
-
-	ICatalogAPI catalogAPI = cct.getAPI().getCatalogAPI();
-	
 	IItem ctPcd = catalogAPI.getCTProcedure(state.getPcdId());
 	IItem pcdStage = cct.getAPI().getProcedureStage(state.getStagePcdId());
 	IItem ctStage = catalogAPI.getCTStage(pcdStage.getInt("ID_CTFASE"));
-	
-	//Obtención del formato de la lista de procesos.
+
+	// Obtención del formato de la lista de procesos
+	// teniendo en cuenta los códigos y los identificadores del procedimiento y la fase
 	ProcessListFormatFactory proclistfactory=new ProcessListFormatFactory(getISPACPath());
-	InputStream istream=proclistfactory.getProcessListFormat(state.getPcdId(), ctPcd.getString("COD_PCD"), 
+	InputStream istream=proclistfactory.getProcessListFormat(state.getPcdId(), ctPcd.getString("COD_PCD"),
 			state.getStagePcdId(), ctStage.getString("COD_FASE"));
 
 	IWorklist managerwl=managerAPI.getWorklistAPI();
     IItemCollection itc = managerwl.getProcesses(state,istream);
+
+    // Lista de expedientes en la peticion
     List expStageList = CollectionBean.getBeanList(itc);
     request.setAttribute("ExpStageList", expStageList);
 
     // Cargar el contexto de la cabecera (miga de pan)
     SchemeMgr.loadContextHeader(state, request, getResources(request), session);
-    
+
     // Establecer el menu
-	request.setAttribute("menus", MenuFactory.getWorkListMenu(cct, state, getResources(request)));    
-	
+	request.setAttribute("menus", MenuFactory.getWorkListMenu(cct, state, getResources(request)));
+
     ///////////////////////////////////////////////
     // Formateador
 	istream.reset();
+	// Propiedades del formateador para la vista
 	request.setAttribute("Formatter", proclistfactory.getBeanFormatter(istream));
-	
+
     return mapping.findForward("success");
   }
-  
+
 }

@@ -246,19 +246,6 @@ public class GestionSerieAction extends BaseAction {
 			errors.add(Constants.DENOMINACION_ES_NECESARIO, new ActionError(
 					Constants.DENOMINACION_ES_NECESARIO));
 
-		if (ConfigConstants.getInstance().getMostrarCampoOrdenacionCuadro()) {
-			if (GenericValidator.isBlankOrNull(solicitudAltaForm
-					.getCodOrdenacion())) {
-				errors = new ActionErrors();
-				errors.add(
-						Constants.ERROR_REQUIRED,
-						new ActionError(Constants.ERROR_REQUIRED, Messages
-								.getString(
-										Constants.ETIQUETA_CODIGO_ORDENACION,
-										request.getLocale())));
-			}
-		}
-
 		return errors.size() > 0 ? errors : null;
 	}
 
@@ -585,18 +572,18 @@ public class GestionSerieAction extends BaseAction {
 
 		ActionErrors errors = validateFormInfoNiveles(request);
 
-		if (ConfigConstants.getInstance().getMostrarCampoOrdenacionCuadro()) {
-			if (StringUtils.isEmpty(dataForm.getCodOrdenacion())) {
-				if (errors == null)
-					errors = new ActionErrors();
-				errors.add(
-						ActionErrors.GLOBAL_ERROR,
-						new ActionError(Constants.ERROR_REQUIRED, Messages
-								.getString(
-										Constants.ETIQUETA_CODIGO_ORDENACION,
-										request.getLocale())));
-			}
-		}
+//		if (ConfigConstants.getInstance().getMostrarCampoOrdenacionCuadro()) {
+//			if (StringUtils.isEmpty(dataForm.getCodOrdenacion()) && StringUtils.isEmpty(dataForm.getCodigo())) {
+//				if (errors == null)
+//					errors = new ActionErrors();
+//				errors.add(
+//						ActionErrors.GLOBAL_ERROR,
+//						new ActionError(Constants.ERROR_REQUIRED, Messages
+//								.getString(
+//										Constants.ETIQUETA_CODIGO_ORDENACION,
+//										request.getLocale())));
+//			}
+//		}
 
 		if (errors == null) {
 

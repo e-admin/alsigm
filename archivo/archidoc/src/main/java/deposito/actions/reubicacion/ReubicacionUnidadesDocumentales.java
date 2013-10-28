@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.validator.GenericValidator;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -17,8 +18,10 @@ import org.apache.struts.action.ActionMapping;
 
 import se.usuarios.ServiceClient;
 import solicitudes.prestamos.vos.DetallePrestamoVO;
+import transferencias.TransferenciasConstants;
 import util.ErrorsTag;
 
+import common.ConfigConstants;
 import common.Constants;
 import common.MotivoEliminacionUnidadInstalacion;
 import common.actions.BaseAction;
@@ -36,6 +39,7 @@ import deposito.MarcaUtilUI;
 import deposito.actions.ErrorKeys;
 import deposito.actions.asignable.ElementoAsignablePO;
 import deposito.actions.hueco.HuecoPO;
+import deposito.actions.hueco.UInsDepositoPO;
 import deposito.actions.hueco.UdocEnUIPO;
 import deposito.actions.hueco.UdocEnUIToPO;
 import deposito.forms.ReubicacionUnidadesDocumentalesForm;
@@ -58,6 +62,8 @@ public class ReubicacionUnidadesDocumentales extends BaseAction {
 		ClientInvocation cli = getInvocationStack(request)
 				.getLastClientInvocation();
 		cli.setAsReturnPoint(true);
+
+		removeInTemporalSession(request, DepositoConstants.COMPACTACION_DESDE_EA);
 
 		// borrado del form
 		ReubicacionUnidadesDocumentalesForm moverUdocsForm = (ReubicacionUnidadesDocumentalesForm) form;
@@ -90,7 +96,7 @@ public class ReubicacionUnidadesDocumentales extends BaseAction {
 
 	/**
 	 * Método Inicial para reubicar desde las Relaciones entre Archivos.
-	 * 
+    *
 	 * @param mappings
 	 * @param form
 	 * @param request
@@ -103,6 +109,12 @@ public class ReubicacionUnidadesDocumentales extends BaseAction {
 		removeInTemporalSession(request,
 				DepositoConstants.REUBICACION_FINALIZADA);
 
+
+		setInTemporalSession(request, DepositoConstants.COMPACTACION_DESDE_EA, Boolean.TRUE);
+
+		String[] udocsSeleccionadas = request.getParameterValues("udocsSeleccionadas");
+
+
 		ClientInvocation cli = getInvocationStack(request)
 				.getLastClientInvocation();
 		cli.setAsReturnPoint(true);
@@ -111,6 +123,9 @@ public class ReubicacionUnidadesDocumentales extends BaseAction {
 		ReubicacionUnidadesDocumentalesForm moverUdocsForm = (ReubicacionUnidadesDocumentalesForm) form;
 		String idUnidadInstalacionOrigen = moverUdocsForm
 				.getIdUinstalacionOrigen();
+
+
+		moverUdocsForm.setUdocsSeleccionadas(udocsSeleccionadas);
 
 		GestorEstructuraDepositoBI serviceEstructura = getGestorEstructuraDepositoBI(request);
 		UInsDepositoVO uinsDepositoVO = serviceEstructura
@@ -136,6 +151,9 @@ public class ReubicacionUnidadesDocumentales extends BaseAction {
 		setInTemporalSession(request, DepositoConstants.LISTA_HUECOS_KEY,
 				listaHuecos);
 
+		setInTemporalSession(request, DepositoConstants.UDOCS_SELECCIONADAS_REUBICACION_DESDE_EA, udocsSeleccionadas);
+
+
 		if (MarcaUtilUI.isUnidadInstalacionBloqueada(uinsDepositoVO
 				.getMarcasBloqueo())) {
 			ActionErrors errors = new ActionErrors();
@@ -149,7 +167,9 @@ public class ReubicacionUnidadesDocumentales extends BaseAction {
 			return;
 		}
 
-		moverUdocsForm.resetInInit();
+		moverUdocsForm.setNumHuecoDestino(-1);
+
+
 
 		setReturnActionFordward(request,
 				ActionForwardUtils.getActionForward(request, "seleccionUDocs"));
@@ -166,7 +186,12 @@ public class ReubicacionUnidadesDocumentales extends BaseAction {
 		GestorEstructuraDepositoBI depositoService = getGestionDespositoBI(request);
 		ServiceRepository services = getServiceRepository(request);
 
+
 		ReubicacionUnidadesDocumentalesForm frm = (ReubicacionUnidadesDocumentalesForm) form;
+
+		String[] udocsSeleccionadas = (String[]) getFromTemporalSession(request, DepositoConstants.UDOCS_SELECCIONADAS_REUBICACION_DESDE_EA);
+
+
 		String idHueco = frm.getIdHuecoOrigen();
 
 		HuecoID huecoID = ReubicacionUnidadesDocumentalesForm
@@ -191,14 +216,41 @@ public class ReubicacionUnidadesDocumentales extends BaseAction {
 				KeysClientsInvocations.DEPOSITO_SELECCION_UDOCS_A_REUBICAR,
 				request);
 
-		setReturnActionFordward(request,
-				mappings.findForward("seleccion_udocs"));
+
+		frm.setUdocsSeleccionadas(udocsSeleccionadas);
+
+		Boolean isCompactacionEA = (Boolean) getFromTemporalSession(request, DepositoConstants.COMPACTACION_DESDE_EA);
+
+		if(BooleanUtils.isTrue(isCompactacionEA)){
+
+			List listaCajas = (List) getFromTemporalSession(request, TransferenciasConstants.LISTA_UINST_PARA_RELACION_ENTRE_ARCHIVOS);
+
+
+			if(ListUtils.isNotEmpty(listaCajas)){
+				for (Iterator iterator = listaCajas.iterator(); iterator
+						.hasNext();) {
+					UInsDepositoPO uinst = (UInsDepositoPO) iterator.next();
+
+					if(uinst != null && frm.getIdUinstalacionOrigen().equals(uinst.getId())){
+						setInTemporalSession(request, DepositoConstants.CAJA_COMPACTAR_EA, uinst);
+					}
+				}
+			}
+
+
+			setReturnActionFordward(request,
+					mappings.findForward("seleccion_udocs_ea"));
+		}
+		else{
+			setReturnActionFordward(request,
+					mappings.findForward("seleccion_udocs"));
+		}
 	}
 
 	/**
 	 * Obtiene el mensaje informativo de que determinadas unidades documentales
 	 * no se pueden compactar
-	 * 
+    *
 	 * @param udocs
 	 *            Lista de {@link UdocEnUIPO}
 	 * @param idsUdocsNoDisponibles
@@ -258,19 +310,24 @@ public class ReubicacionUnidadesDocumentales extends BaseAction {
 				index++;
 			}
 
-			// comrpobar consecutivas
-			int indexTotalPosUdocs = totalPosUdocsHueco.length;
-			int posicionCorrecta;
-			for (int i = posUdocsSeleccionadas.length - 1; i >= 0; i--) {
-				posicionCorrecta = totalPosUdocsHueco[--indexTotalPosUdocs];
-				if (posUdocsSeleccionadas[i] != posicionCorrecta) {
-					errors.add(
-							ErrorKeys.ERROR_SOLO_ES_POSIBLE_SELECCIONAR_ULTIMAS_UDOCS,
-							new ActionError(
-									ErrorKeys.ERROR_SOLO_ES_POSIBLE_SELECCIONAR_ULTIMAS_UDOCS));
-					break;
+			// comprobar consecutivas
+			if (!ConfigConstants.getInstance()
+					.isPermitidoCompactarUdocsNoConsecutivas()) {
+				int indexTotalPosUdocs = totalPosUdocsHueco.length;
+				int posicionCorrecta;
+				for (int i = posUdocsSeleccionadas.length - 1; i >= 0; i--) {
+					posicionCorrecta = totalPosUdocsHueco[--indexTotalPosUdocs];
+					if (posUdocsSeleccionadas[i] != posicionCorrecta) {
+						errors.add(
+								ErrorKeys.ERROR_SOLO_ES_POSIBLE_SELECCIONAR_ULTIMAS_UDOCS,
+								new ActionError(
+										ErrorKeys.ERROR_SOLO_ES_POSIBLE_SELECCIONAR_ULTIMAS_UDOCS));
+						break;
+					}
 				}
+
 			}
+
 			if (errors.size() == 0) {
 				List listaIdsUdocsSeleccionadas = Arrays.asList(frm
 						.getIdsUdocsSeleccionadas());

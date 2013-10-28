@@ -38,12 +38,12 @@ import org.apache.log4j.Logger;
 
 /**
  * Bandeja de avisos para el tramitador
- * 
+ *
  */
 public class Notices {
 
 	/**
-	 * 
+    *
 	 */
 	private static final String ESTADO_AVISO = "ESTADO_AVISO";
 	public static final int TIPO_AVISO_SIGEM = 1;
@@ -63,9 +63,10 @@ public class Notices {
 	public static final int STATE_RECIBIDO = 1;
 	public static final int STATE_FINALIZADO = 2;
 
-	private static final String NOTICES_TBL = "SPAC_AVISOS_ELECTRONICOS";
-	private static final String IDKEY = "ID_AVISO";
-	private static final String IDSEQUENCE = "SPAC_SQ_ID_AVISOS_ELECTRONICOS";
+	public static final String NOTICES_TBL = "SPAC_AVISOS_ELECTRONICOS";
+	public static final String NOTICES_VIEW = "SPAC_V_AVISOS_ELECTRONICOS";
+	public static final String IDKEY = "ID_AVISO";
+	public static final String IDSEQUENCE = "SPAC_SQ_ID_AVISOS_ELECTRONICOS";
 
 	/**
 	 * Logger de la clase.
@@ -95,38 +96,50 @@ public class Notices {
 		}
 	}
 
-	public IItemCollection getNotices() throws ISPACException {
+	protected String getSqlWhereToGetNotices() throws ISPACException {
+
 		Responsible user = mctx.getUser();
-		String querynotices = "WHERE "
-				+ DBUtil.addInResponsibleCondition("UID_DESTINATARIO", user.getRespString())
-				+ " AND ESTADO_AVISO IN (0,1) AND SPAC_PROCESOS.ESTADO!="
-				+ TXConstants.STATUS_DELETED + " AND ID_EXPEDIENTE=SPAC_PROCESOS.NUMEXP"
-				+ " AND SPAC_PROCESOS.TIPO = " + IProcess.PROCESS_TYPE;
+
+		StringBuffer sqlWhere = new StringBuffer();
+
+		sqlWhere.append(" WHERE  ")
+				.append(DBUtil.addInResponsibleCondition("UID_DESTINATARIO", user.getRespString()))
+				.append(" AND ")
+				.append(ESTADO_AVISO)
+				.append(" IN (")
+				.append(Notices.STATE_PENDIENTE)
+				.append(",")
+				.append(Notices.STATE_RECIBIDO)
+				.append(") AND SPAC_PROCESOS.ESTADO != ")
+				.append(TXConstants.STATUS_DELETED)
+				.append(" AND ID_EXPEDIENTE = SPAC_PROCESOS.NUMEXP AND SPAC_PROCESOS.TIPO = ")
+				.append(IProcess.PROCESS_TYPE);
+
+		return sqlWhere.toString();
+	}
+
+	public IItemCollection getNotices() throws ISPACException {
 
 		TableJoinFactoryDAO factory = new TableJoinFactoryDAO();
-		factory.addTable("SPAC_V_AVISOS_ELECTRONICOS", "SPAC_AVISOS_ELECTRONICOS");
+		// Vista sobre la tabla de SPAC_AVISOS_ELECTRONICOS que incluye LEFT OUTER JOIN
+		// con SPAC_P_FASES y SPAC_P_TRAMITES para obtener el nombre de la fase y el trámite
+		// cuando el aviso incluya esta información
+		factory.addTable(NOTICES_VIEW, NOTICES_TBL);
 		factory.addTable("SPAC_PROCESOS", "SPAC_PROCESOS");
 
-		IItemCollection collection = factory.queryDistinctTableJoin(mctx.getConnection(),
-				querynotices).disconnect();
+		IItemCollection collection = factory.queryTableJoin(mctx.getConnection(),
+				getSqlWhereToGetNotices()).disconnect();
 
 		return collection;
 	}
 
 	public int countNotices() throws ISPACException {
-		Responsible user = mctx.getUser();
-		String querynotices = "WHERE "
-				+ DBUtil.addInResponsibleCondition("UID_DESTINATARIO", user.getRespString())
-				+ " AND ESTADO_AVISO IN (0,1) AND SPAC_PROCESOS.ESTADO!="
-				+ TXConstants.STATUS_DELETED + " AND ID_EXPEDIENTE=SPAC_PROCESOS.NUMEXP"
-				+ " AND SPAC_PROCESOS.TIPO = " + IProcess.PROCESS_TYPE;
 
 		TableJoinFactoryDAO factory = new TableJoinFactoryDAO();
 		factory.addTable(NOTICES_TBL, NOTICES_TBL);
 		factory.addTable("SPAC_PROCESOS", "SPAC_PROCESOS");
 
-		return factory.countTableJoin(mctx.getConnection(), querynotices);
-
+		return factory.countTableJoin(mctx.getConnection(), getSqlWhereToGetNotices());
 	}
 
 	public void modifyNotice(int noticeId, int newstate) throws ISPACException {
@@ -194,15 +207,15 @@ public class Notices {
 
 	/**
 	 * Elimina el aviso del expedediente que recibe por parámetro
-	 * 
+    *
 	 * @param cnt
 	 * @param numExp
 	 * @throws ISPACException
 	 */
 	public static void deleteExpOfAllNotices(DbCnt cnt, String numExp) throws ISPACException {
 
-		
-		
+
+
 		String sql = "DELETE FROM " + NOTICES_TBL + " WHERE ID_EXPEDIENTE = '" + numExp + "' ";
 		cnt.directExec(sql);
 
@@ -237,7 +250,7 @@ public class Notices {
 		if (auditContext != null) {
 			evento.setUserHostName(auditContext.getUserHost());
 			evento.setUserIp(auditContext.getUserIP());
-			evento.setUser(auditContext.getUser());			
+			evento.setUser(auditContext.getUser());
 			evento.setIdUser(auditContext.getUserId());
 		} else {
 			logger.error("ERROR EN LA AUDITORÍA. No está disponible el contexto de auditoría en el thread local. Faltan los siguientes valores por auditar: userId, user, userHost y userIp");

@@ -246,7 +246,7 @@
 			<div class="content_container">
 
 				<div id="buttonsBar" style="position:absolute;z-index:10;top:32px">
-					<a href="javascript:changeMenuVisibility()">
+					<a href="javascript:changeMenuVisibility()" class="etiquetaAzul12Bold">
 						<html:img page="/pages/images/menu_off.gif" border="0" styleId="menuControlImg" />
 					</a><br>
 

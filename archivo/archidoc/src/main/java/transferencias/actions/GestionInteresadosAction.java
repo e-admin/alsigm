@@ -43,6 +43,7 @@ import common.bi.GestionRelacionesEntregaBI;
 import common.bi.ServiceRepository;
 import common.navigation.ClientInvocation;
 import common.navigation.KeysClientsInvocations;
+import common.util.IFValidator;
 import common.util.ListUtils;
 import common.util.NombresUtils;
 
@@ -370,7 +371,7 @@ public class GestionInteresadosAction extends BaseAction {
 			case InteresadoForm.BUSQUEDA_POR_IF:
 				if (logger.isDebugEnabled())
 					logger.debug("Solicitada busqueda por identificador fiscal");
-				tipoBusqueda = TipoAtributo.IDENTIFICACION;
+				tipoBusqueda = (short)dataForm.getTipoNumeroIdentificacion();
 				queryString = dataForm.getNiSearchToken();
 				break;
 			}
@@ -391,17 +392,28 @@ public class GestionInteresadosAction extends BaseAction {
 		// Obtener el formulario
 		InteresadoForm dataForm = (InteresadoForm) form;
 
+		removeInTemporalSession(request,
+				TransferenciasConstants.RESULTADOS_BUSQUEDA_INTERESADOS);
+
+
 		try {
 
-			List resultadosBusqueda = buscarTercerosComunLogic(request,
-					dataForm);
+			ActionErrors errors = validarBusquedaInteresadoForm(request, dataForm);
 
-			setInTemporalSession(request,
-					TransferenciasConstants.RESULTADOS_BUSQUEDA_INTERESADOS,
-					resultadosBusqueda);
+			if(errors.isEmpty()){
+				List resultadosBusqueda = buscarTercerosComunLogic(request,
+						dataForm);
+
+				setInTemporalSession(request,
+						TransferenciasConstants.RESULTADOS_BUSQUEDA_INTERESADOS,
+						resultadosBusqueda);
+			}
+			else{
+				ErrorsTag.saveErrors(request, errors);
+			}
 		} catch (GestorTercerosException gte) {
 			obtenerErrores(request, true).add(ActionErrors.GLOBAL_ERROR,
-					new ActionError(Constants.ERROR_GESTOR_TERCEROS));
+					new ActionError(Constants.ERROR_GESTOR_TERCEROS, gte.getCause()));
 		} catch (NotAvailableException nae) {
 			logger.error("Funcionalidad no presente en la implementacion del gestor de terceros");
 			obtenerErrores(request, true).add(
@@ -424,18 +436,27 @@ public class GestionInteresadosAction extends BaseAction {
 		InteresadoForm interesadoForm = (InteresadoForm) form;
 		interesadoForm.setContextPath(request.getContextPath());
 
+		removeInTemporalSession(request,
+						TransferenciasConstants.RESULTADOS_BUSQUEDA_INTERESADOS);
+
 		try {
+			ActionErrors errors = validarBusquedaInteresadoForm(request, interesadoForm);
 
-			List resultadosBusqueda = buscarTercerosComunLogic(request,
-					dataForm);
+			if(errors.isEmpty()){
+				List resultadosBusqueda = buscarTercerosComunLogic(request,
+						dataForm);
 
-			setInTemporalSession(request,
-					TransferenciasConstants.RESULTADOS_BUSQUEDA_INTERESADOS,
-					resultadosBusqueda);
+				setInTemporalSession(request,
+						TransferenciasConstants.RESULTADOS_BUSQUEDA_INTERESADOS,
+						resultadosBusqueda);
+			}
+			else{
+				ErrorsTag.saveErrors(request, errors);
+			}
 
 		} catch (GestorTercerosException gte) {
 			obtenerErrores(request, true).add(ActionErrors.GLOBAL_ERROR,
-					new ActionError(Constants.ERROR_GESTOR_TERCEROS));
+					new ActionError(Constants.ERROR_GESTOR_TERCEROS, gte.getCause()));
 		} catch (NotAvailableException nae) {
 			logger.error("Funcionalidad no presente en la implementacion del gestor de terceros");
 			obtenerErrores(request, true).add(
@@ -758,6 +779,105 @@ public class GestionInteresadosAction extends BaseAction {
 		}
 		return errors;
 	}
+
+	protected ActionErrors validarBusquedaInteresadoForm(HttpServletRequest request,
+			InteresadoForm interesadoForm) {
+		ActionErrors errors = new ActionErrors();
+
+
+		if(StringUtils.isNotBlank(interesadoForm.getBuscarPor())){
+			switch (Arrays.binarySearch(InteresadoForm.TIPOS_BUSQUEDA,
+					interesadoForm.getBuscarPor())) {
+
+			case InteresadoForm.BUSQUEDA_POR_NOMBRE:
+
+				if(StringUtils.isBlank(interesadoForm.getNameSearchToken())
+					&& StringUtils.isBlank(interesadoForm.getSurname1SearchToken())
+					&& StringUtils.isBlank(interesadoForm.getSurname2SearchToken())
+					){
+					errors.add(
+							Constants.ERROR_GENERAL_MESSAGE,
+							new ActionError("errors.noSearchToken"));
+				}
+				break;
+			case InteresadoForm.BUSQUEDA_POR_RAZON_SOCIAL:
+				if(StringUtils.isBlank(interesadoForm.getCompanySearchToken())){
+					errors.add(
+							Constants.ERROR_GENERAL_MESSAGE,
+							new ActionError("errors.noSearchToken"));
+				}
+				break;
+			case InteresadoForm.BUSQUEDA_POR_IF:
+				if(StringUtils.isBlank(interesadoForm.getNiSearchToken())){
+					errors.add(
+							Constants.ERROR_GENERAL_MESSAGE,
+							new ActionError("errors.noSearchToken"));
+				}
+				else{
+					String valorAtrib = interesadoForm.getNiSearchToken();
+
+					switch(interesadoForm.getTipoNumeroIdentificacion()){
+					case TipoAtributo.IDENTIFICACION_CIF:
+
+						if (!IFValidator
+								.isValidIF(valorAtrib, IFValidator.DOCUMENTO_CIF)) {
+							errors.add(
+									ActionErrors.GLOBAL_MESSAGE,
+									new ActionError(Constants.ERROR_INVALID, Messages
+											.getString("archigest.archivo.transferencias.terceros." + TipoAtributo.IDENTIFICACION_CIF,
+													request.getLocale())));
+						}
+
+						break;
+
+					case TipoAtributo.IDENTIFICACION_NIF:
+						if (!IFValidator
+								.isValidIF(valorAtrib, IFValidator.DOCUMENTO_NIF)) {
+
+							errors.add(
+									ActionErrors.GLOBAL_MESSAGE,
+									new ActionError(Constants.ERROR_INVALID, Messages
+											.getString("archigest.archivo.transferencias.terceros." + TipoAtributo.IDENTIFICACION_NIF,
+													request.getLocale())));
+						}
+
+						break;
+
+
+					case TipoAtributo.IDENTIFICACION_NIE:
+						if (!IFValidator
+								.isValidIF(valorAtrib, IFValidator.DOCUMENTO_NIE)) {
+
+
+							errors.add(
+									ActionErrors.GLOBAL_MESSAGE,
+									new ActionError(Constants.ERROR_INVALID, Messages
+											.getString("archigest.archivo.transferencias.terceros." + TipoAtributo.IDENTIFICACION_NIE,
+													request.getLocale())));
+						}
+
+						break;
+
+					case TipoAtributo.IDENTIFICACION_PASAPORTE:
+						break;
+					}
+				}
+
+				break;
+			}
+		}
+		else{
+			errors.add(
+					Constants.ERROR_GENERAL_MESSAGE,
+					new ActionError("errors.noSearchToken"));
+		}
+
+
+		return errors;
+	}
+
+
+
 
 	/**
 	 * Comprueba si el documento introducido tiene el siguiente formato

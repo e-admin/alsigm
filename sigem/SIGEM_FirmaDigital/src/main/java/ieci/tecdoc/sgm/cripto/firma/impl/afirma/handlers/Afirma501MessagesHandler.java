@@ -230,6 +230,10 @@ public class Afirma501MessagesHandler implements IAfirmaMessagesHandler {
 	}
 
 	public String createRequestVerificar(SignManagerAFirmaImpl af, String firma) throws FirmaDigitalException{
+		return createRequestVerificar(af,firma,null);
+	}
+
+	public String createRequestVerificar(SignManagerAFirmaImpl af, String firma,String b64Datos) throws FirmaDigitalException{
 	
 		AFirmaConfiguration config = af.loadConfig();
 		Document document = DocumentHelper.createDocument();
@@ -253,7 +257,7 @@ public class Afirma501MessagesHandler implements IAfirmaMessagesHandler {
 											// 64, puede estar vacio
 		elem.addElement(ALGORITMO_HASH).addText(""); // si se envia el hash,
 														// formato del mismo
-		elem.addElement(DATOS).addCDATA(""); // el texto original, puede
+		elem.addElement(DATOS).addCDATA(b64Datos); // el texto original, puede
 												// estar vacio
 
 		return document.asXML();

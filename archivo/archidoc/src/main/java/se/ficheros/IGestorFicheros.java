@@ -13,7 +13,7 @@ public interface IGestorFicheros {
 
 	/**
 	 * Inicializa con los parámetros de configuración.
-	 * 
+    *
 	 * @param params
 	 *            Parámetros de configuración.
 	 * @throws GestorFicherosException
@@ -23,7 +23,7 @@ public interface IGestorFicheros {
 
 	/**
 	 * Permite obtener un fichero
-	 * 
+    *
 	 * @param id
 	 *            Id del fichero
 	 * @return array de bytes con el contenido
@@ -34,7 +34,7 @@ public interface IGestorFicheros {
 
 	/**
 	 * Permite almacenar un fichero
-	 * 
+    *
 	 * @param idLista
 	 *            Id de la lista en la que se quiere almacenar el fichero
 	 * @param ext
@@ -49,7 +49,7 @@ public interface IGestorFicheros {
 
 	/**
 	 * Permite eliminar un fichero
-	 * 
+    *
 	 * @param idFichero
 	 *            Id del fichero
 	 * @throws Exception
@@ -61,7 +61,7 @@ public interface IGestorFicheros {
 	 * Obtiene la lista de identificadores de fichero en el sistema de
 	 * almacenamiento que contienen la cadena pasada como parámetro y cuyo id
 	 * está en la lista de identificadores de documentos pasados como parámetro
-	 * 
+    *
 	 * @return Lista de Ids de fichero
 	 * @throws Exception
 	 */

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_registroPresencial_modules</artifactId>
-		<version>3.0</version>
+		<version>3.0.1-M2</version>
 	</parent>
 
 	<artifactId>sigem_registroPresencialAdminWeb</artifactId>
@@ -220,7 +220,7 @@
 			<resource>
 				<filtering>true</filtering>
 				<directory>${unpack.config.directory}/SIGEM_RegistroPresencial/Isicres</directory>
-				<targetPath>SIGEM_RegistroPresencial</targetPath>
+				<targetPath>/SIGEM_RegistroPresencial</targetPath>
 				<excludes>
 					<exclude>**/log4j.xml</exclude>
 				</excludes>

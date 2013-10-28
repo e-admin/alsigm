@@ -545,9 +545,18 @@ public abstract class BaseAction extends ArchigestDispatchAction {
 	public void goBackExecuteLogic(ActionMapping mappings, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
+
+		Boolean showInformeBusqueda = (Boolean) getFromTemporalSession(request, Constants.SHOW_INFORME_BUSQUEDA_BUTTON);
+
 		InvocationStack invocationStack = getInvocationStack(request);
 		ClientInvocation lastClientReturnPoint = invocationStack
 				.goBackClientInvocation(request);
+
+		if(Boolean.TRUE.equals(showInformeBusqueda)){
+			setInTemporalSession(request, Constants.SHOW_INFORME_BUSQUEDA_BUTTON, Boolean.TRUE);
+		}
+
+
 
 		if ((lastClientReturnPoint != null)
 				&& (lastClientReturnPoint == invocationStack.getHome())) {

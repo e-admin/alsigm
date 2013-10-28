@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.archidoc</groupId>
 		<artifactId>archidoc_main</artifactId>
-		<version>5.0</version>
+		<version>5.0.9-M1</version>
 	</parent>
 
 	<artifactId>archidoc_common</artifactId>
@@ -135,5 +135,37 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 		</dependency>
+
+<dependency>
+			<groupId>org.apache.xbean</groupId>
+			<artifactId>xbean-spring</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>es.ieci.tecdoc.fwktd</groupId>
+			<artifactId>fwktd-test</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>junit</artifactId>
+					<groupId>junit</groupId>
+				</exclusion>
+			</exclusions>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<artifactId>junit</artifactId>
+			<groupId>junit</groupId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 </project>

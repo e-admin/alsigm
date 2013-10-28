@@ -42,15 +42,19 @@ import transferencias.electronicas.udoc.ContenidoUDocXML;
 import transferencias.electronicas.udoc.IdentificacionUnidadDocumental;
 import transferencias.electronicas.udoc.InformacionUnidadDocumentalElectronica;
 import transferencias.vos.TransferenciaElectronicaInfo;
+import xml.config.ConfiguracionSistemaArchivoFactory;
 
 import common.ConfigConstants;
+import common.Constants;
 import common.MultiEntityConstants;
 import common.bi.GestionTransferenciasElectronicasBI;
 import common.bi.ServiceBase;
 import common.exceptions.ActionNotAllowedException;
 import common.exceptions.CheckedArchivoException;
 import common.exceptions.TransferenciaElectronicaException;
+import common.util.ArrayUtils;
 import common.util.CustomDate;
+import common.util.DateUtils;
 import common.util.ListUtils;
 
 import deposito.vos.DepositoElectronicoVO;
@@ -68,6 +72,7 @@ import descripcion.vos.CampoTablaVO;
 import descripcion.vos.CampoTextoVO;
 import descripcion.vos.DescriptorVO;
 import descripcion.vos.ICampoVO;
+import descripcion.vos.ListaDescrVO;
 import descripcion.vos.ValorCampoGenericoVO;
 import descripcion.vos.ValorCampoGenericoVOBase;
 import docelectronicos.TipoObjeto;
@@ -111,7 +116,7 @@ public class GestionTransferenciasElectronicasBIImpl extends ServiceBase
 
 	) {
 		this._textoCortoUDocREDbEntity = textoCortoUDocREDBEntity;
-		this._textoLargoUDocREDbEntity = textoCortoUDocREDBEntity;
+		this._textoLargoUDocREDbEntity = textoLargoUDocREDBEntity;
 		this._numeroUdocREDbEntity = numeroUDocREDBEntity;
 		this._fechaUDocREDbEntity = fechaUDocREDBEntity;
 		this._referenciaUDocREDbEntity = referenciaUDocREDBEntity;
@@ -338,6 +343,24 @@ public class GestionTransferenciasElectronicasBIImpl extends ServiceBase
 		if (logger.isDebugEnabled()) {
 			logger.debug("Inicio Validar Parámetros de Entrada");
 		}
+
+
+		//Validar el código de procedimiento
+		String delimitadorCodigoReferencia = ConfiguracionSistemaArchivoFactory
+		.getConfiguracionSistemaArchivo().getConfiguracionFondos()
+		.getDelimitadorCodigoReferencia();
+
+		if (Constants.hasForbidenChars(info.getCodigoProcedimiento(),
+				delimitadorCodigoReferencia)) {
+
+			throw new TransferenciaElectronicaException(
+					TransferenciasElectronicasConstants.ERROR_VALOR_INCORRECTO,
+					new Object[] {
+							TransferenciasElectronicasConstants
+									.getParametro(TransferenciasElectronicasConstants.PARAMETRO_CODIGO_PROCEDIMIENTO),
+							info.getCodigoProcedimiento()});
+		}
+
 
 		// Validar año
 		String anio = info.getAnio();
@@ -626,8 +649,17 @@ public class GestionTransferenciasElectronicasBIImpl extends ServiceBase
 				CampoDescriptor campoDescriptor = (CampoDescriptor) campoFicha;
 
 				// Comprobar que existe la lista descriptora
-				getGestionDescripcionBI().getListaDescriptora(
+				ListaDescrVO lista = getGestionDescripcionBI().getListaDescriptora(
 						campoDescriptor.getIdLista());
+
+				if(lista == null){
+					throw new TransferenciaElectronicaException(
+							TransferenciasElectronicasConstants.ERROR_VALOR_INCORRECTO,
+							new Object[] {
+									TransferenciasElectronicasConstants
+											.getParametro(TransferenciasElectronicasConstants.PARAMETRO_ID_LISTA),
+									campoDescriptor.getIdLista()});
+				}
 			}
 
 			procesarCampo(idElemento, campoFicha, tipoElemento, posicion);
@@ -777,9 +809,18 @@ public class GestionTransferenciasElectronicasBIImpl extends ServiceBase
 				}
 
 				CustomDate cd = new CustomDate(campoFecha.getFormato(),
-						campoFecha.getAnio(), campoFecha.getMes(),
-						campoFecha.getDia(), campoFecha.getSiglo(),
+						campoFecha.getAnio(), campoFecha.getMes(),campoFecha.getDia(),
+						campoFecha.getHoras(),campoFecha.getMinutos(), campoFecha.getSegundos(),
+						campoFecha.getSiglo(),
 						campoFecha.getSeparador(), campoFecha.getCalificador());
+
+				if(!cd.validate()){
+					throw new TransferenciaElectronicaException(
+							TransferenciasElectronicasConstants.ERROR_FECHA_INCORRECTA,
+							campoFecha.toString()
+					);
+				}
+
 
 				CampoFechaVO campoFechaVO = new CampoFechaVO(idElemento,
 						idCampo, orden, valor, cd.getMinDate(),
@@ -1500,37 +1541,69 @@ public class GestionTransferenciasElectronicasBIImpl extends ServiceBase
 							.getFechaExtremaInicial(), info
 							.getConfiguracionSistemaArchivo()
 							.getConfiguracionDescripcion()
-							.getFechaExtremaInicial(), ConfigConstants
+							.getFechaExtremaFinal(), ConfigConstants
 							.getInstance().getSeparadorDefectoFechasRelacion());
 
 			udocFiltro.setCodSistProductor(info.getCodSistemaProductor());
 
+			if(tipoVerificacion > 10){
+				udocFiltro.setIdRelEntrega(info.getRelacionEntregaVO().getId());
+				tipoVerificacion = tipoVerificacion - 10;
+			}
+
+
+
+			String[] parametros = null;
+			String[] valores = null;
+
 			switch (tipoVerificacion) {
 			case 1:
-				udocFiltro.setIdRelEntrega(info.getRelacionEntregaVO().getId());
+				udocFiltro.setNumeroExpediente(numeroExpediente);
+
+				parametros = new String[] { TransferenciasElectronicasConstants.PARAMETRO_NUMERO_EXPEDIENTE };
+				valores = new String[] { numeroExpediente };
+
 				break;
 			case 2:
 				udocFiltro.setNumeroExpediente(numeroExpediente);
-				udocFiltro.setIdRelEntrega(info.getRelacionEntregaVO().getId());
 				udocFiltro.setAsunto(titulo);
+
+				parametros = new String[] {
+						TransferenciasElectronicasConstants.PARAMETRO_NUMERO_EXPEDIENTE,
+						TransferenciasElectronicasConstants.PARAMETRO_TITULO };
+				valores = new String[] { numeroExpediente, titulo };
+
 				break;
 			case 3:
 				udocFiltro.setNumeroExpediente(numeroExpediente);
-				udocFiltro.setIdRelEntrega(info.getRelacionEntregaVO().getId());
 				udocFiltro.setAsunto(titulo);
 				udocFiltro.setFechaInicio(fechaInicio);
+
+				parametros = new String[] {
+						TransferenciasElectronicasConstants.PARAMETRO_NUMERO_EXPEDIENTE,
+						TransferenciasElectronicasConstants.PARAMETRO_TITULO,
+						TransferenciasElectronicasConstants.PARAMETRO_FECHA_INICIAL };
+				valores = new String[] { numeroExpediente, titulo,
+						DateUtils.formatDate(fechaInicio) };
+
 				break;
 			case 4:
 				udocFiltro.setNumeroExpediente(numeroExpediente);
-				udocFiltro.setIdRelEntrega(info.getRelacionEntregaVO().getId());
 				udocFiltro.setAsunto(titulo);
 				udocFiltro.setFechaInicio(fechaInicio);
 				udocFiltro.setFechaFin(fechaFin);
 
+				parametros = new String[] {
+						TransferenciasElectronicasConstants.PARAMETRO_NUMERO_EXPEDIENTE,
+						TransferenciasElectronicasConstants.PARAMETRO_TITULO,
+						TransferenciasElectronicasConstants.PARAMETRO_FECHA_INICIAL,
+						TransferenciasElectronicasConstants.PARAMETRO_FECHA_FINAL };
+				valores = new String[] { numeroExpediente, titulo,
+						DateUtils.formatDate(fechaInicio),
+						DateUtils.formatDate(fechaFin) };
+
 				break;
-			case 5:
-				udocFiltro.setNumeroExpediente(numeroExpediente);
-				break;
+
 			default:
 				logger.error("La opcion de nivel de comprobación la unicidad de la unidad no es correcta");
 				break;
@@ -1539,9 +1612,15 @@ public class GestionTransferenciasElectronicasBIImpl extends ServiceBase
 			transferencias.vos.UnidadDocumentalVO udocBD = _udocRelacionDBEntity
 					.getUnidadDocumental(udocFiltro);
 
-			if (udoc != null) {
+			if (udocBD != null) {
+
+				if(StringUtils.isNotEmpty(udocFiltro.getIdRelEntrega())) {
+					parametros = (String[]) ArrayUtils.add(parametros, TransferenciasElectronicasConstants.PARAMETRO_RELACION_ENTREGA);
+					valores = (String[]) ArrayUtils.add(valores, info.getRelacionEntregaVO().getCodigoRelacion());
+				}
+
 				throw new TransferenciaElectronicaException(
-						TransferenciasElectronicasConstants.ERROR_UNIDAD_DOCUMENTAL_ESTA_DUPLICADA);
+						TransferenciasElectronicasConstants.ERROR_UNIDAD_DOCUMENTAL_ESTA_DUPLICADA, parametros,valores);
 			}
 		}
 

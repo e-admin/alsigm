@@ -221,6 +221,12 @@ public class DepositoConstants {
     public static final String LISTA_NIVELES_DEPOSITO_HIJO = "LISTA_NIVELES_DEPOSITO_HIJO";
     public static final String LISTA_ELEMENTOS_DEFECTO = "LISTA_ELEMENTOS_DEFECTO";
 
+	public static final String UDOCS_SELECCIONADAS_REUBICACION_DESDE_EA = "UDOCS_SELECCIONADAS_REUBICACION_DESDE_EA";
+
+
+	public static final String CAJA_COMPACTAR_EA = "CAJA_COMPACTAR_EA";
+	public static final String COMPACTACION_DESDE_EA = "COMPACTACION_DESDE_EA";
+
 	//NIVELES DEPOSITO
 	public static final String ERROR_ELIMINAR_NIVEL_HIJO = "archigest.archivo.depositos.niveles.eliminar.hijos";
 	public static final String ERROR_ELIMINAR_NIVEL_REFERENCIADO = "archigest.archivo.depositos.niveles.eliminar.referenciado";
@@ -239,5 +245,7 @@ public class DepositoConstants {
 	public static final String LABEL_TIPO_ELEMENTO_CARACTER_ORDENACION = "archigest.archivo.depositos.niveles.caracter.ordenacion";
 	public static final String LABEL_TIPO_ELEMENTO_ASIGNABLE = "archigest.archivo.depositos.niveles.asignable";
 	public static final String LABEL_TIPO_ELEMENTO_TIPO_ORDENACION = "archigest.archivo.depositos.niveles.tipo.ordenacion";
+
+
 }
 

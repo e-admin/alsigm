@@ -666,4 +666,15 @@ public interface IRelacionEntregaDBEntity extends IDBEntity {
 	 * @return
 	 */
 	public RelacionEntregaVO getRelacionVO(RelacionEntregaVO relacionEntregaVO);
+
+
+	/**
+    * Obtiene el número de relaciones que tiene la serie
+    *
+    * @param idSerie
+    *            Identificador del usuario
+    * @return Número de relaciones
+    */
+	public int getCountRelacionesBySerie(String idSerie);
+
 }

@@ -143,7 +143,7 @@ public class SignManagerAFirmaImpl implements ServicioFirmaDigital {
 		    // Manejador para securizar los mensajes SOAP a partir de la configuración de seguridad de la entidad
 		    ((ValidarFirmaSoapBindingStub)f).setHandler(new HandlerAFirma(props));
 
-		    String param = afirmaMessagesHandler.createRequestVerificar(this, new String(pabB64SourceSigned));
+			String param = afirmaMessagesHandler.createRequestVerificar(this, new String(pabB64SourceSigned), new String(signedContentB64));
 
 	    	// Configuración de proxy si existe
     		setProxyConfigurationProperties(props);

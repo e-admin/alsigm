@@ -8,15 +8,15 @@
 <%@ page import="common.Constants" %>
 
 
-<TABLE class="w98m1" cellpadding=0 cellspacing=2">
+<TABLE class="w98m1" cellpadding="3" cellspacing=2">
 		<TR>
-			<TD width="25%" class="etiquetaAzul11Bold">
+			<TD width="20%" class="etiquetaAzul11Bold">
 				<bean:message key="archigest.archivo.consultas.consulta"/>:&nbsp;
 				<span class="etiquetaNegra11Normal">
 					<c:out value="${sessionScope[appConstants.consultas.CONSULTA_KEY].codigoTransferencia}"/>
 				</span>
 			</TD>
-			<TD width="20%" class="etiquetaAzul11Bold">
+			<TD width="15%" class="etiquetaAzul11Bold">
 				<bean:message key="archigest.archivo.consultas.estado"/>:&nbsp;
 				<span class="etiquetaNegra11Normal">
 					<c:set var="keyEstado">
@@ -25,13 +25,25 @@
 					<fmt:message key="${keyEstado}" />
 				</span>
 			</TD>
-			<TD width="20%" class="etiquetaAzul11Bold">
+			<TD width="15%" class="etiquetaAzul11Bold">
 				<bean:message key="archigest.archivo.consultas.festado"/>:&nbsp;
 				<span class="etiquetaNegra11Normal">
-					<fmt:formatDate value="${sessionScope[appConstants.consultas.CONSULTA_KEY].festado}" pattern="${appConstants.common.FORMATO_FECHA}" />	
+					<fmt:formatDate value="${sessionScope[appConstants.consultas.CONSULTA_KEY].festado}" pattern="${appConstants.common.FORMATO_FECHA}" />
 				</span>
 			</TD>
-			<TD width="35%" class="etiquetaAzul11Bold">
+
+
+			<TD width="20%" class="etiquetaAzul11Bold" nowrap="nowrap">
+			<c:if test="${not empty sessionScope[appConstants.consultas.CONSULTA_KEY].fmaxfinconsulta}">
+				<bean:message key="archidoc.archivo.fecha.maxima.consulta"/>:&nbsp;
+				<span class="etiquetaNegra11Normal">
+					<fmt:formatDate value="${sessionScope[appConstants.consultas.CONSULTA_KEY].fmaxfinconsulta}" pattern="${appConstants.common.FORMATO_FECHA}" />
+				</span>
+			</c:if>&nbsp;
+			</TD>
+
+
+			<TD class="etiquetaAzul11Bold">
 				<bean:message key="archigest.archivo.consulta.gestorConsulta"/>:&nbsp;
 				<span class="etiquetaNegra11Normal">
 					<c:out value="${sessionScope[appConstants.consultas.CONSULTA_KEY].usuarioGestor.nombreCompleto}"/>
@@ -39,4 +51,3 @@
 			</TD>
 		</TR>
 </TABLE>
-	

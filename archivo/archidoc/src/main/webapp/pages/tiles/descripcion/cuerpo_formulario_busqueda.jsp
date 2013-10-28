@@ -38,17 +38,6 @@
 		document.forms['<c:out value="${actionMapping.name}" />'].submit();
 	}
 
-	function generarInformeResultadoBusqueda(){
-		if (window.top.showWorkingDiv) {
-			var title = '<bean:message key="archigest.archivo.buscando.realizandoBusqueda"/>';
-			var message = '<bean:message key="archigest.archivo.buscando.msgDescripcionesArchivisticas"/>';
-			var message2 = '<bean:message key="archigest.archivo.msgOperacionLenta"/>';
-			window.top.showWorkingDiv(title, message, message2);
-		}
-
-		document.forms['<c:out value="${actionMapping.name}" />'].method.value="generarInformeBusqueda";
-		document.forms['<c:out value="${actionMapping.name}" />'].submit();
-	}
 </script>
 
 <tiles:insert template="/pages/tiles/PABoxLayout.jsp">
@@ -61,6 +50,15 @@
 				<c:set var="exportarBusqueda" value="${sessionScope[appConstants.common.SHOW_INFORME_BUSQUEDA_BUTTON]}"/>
 				<c:if test="${exportarBusqueda}">
 				<td>
+					<script language="javascript">
+					function generarInformeResultadoBusqueda(){
+						var title = '<bean:message key="archigest.archivo.msg.titulo"/>';
+						var message = '<bean:message key="archigest.archivo.msg.proceso.en.ejecucion"/>';
+						enviarFormulario("formulario", "generarInformeBusqueda", title, message);
+					}
+					</script>
+
+
 					<a class="etiquetaAzul12Bold" href="javascript:generarInformeResultadoBusqueda();">
 					<html:img page="/pages/images/documentos/doc_pdf.gif"
 					        altKey="archigest.archivo.informe"
@@ -97,9 +95,9 @@
 	</tiles:put>
 	<tiles:put name="boxContent" direct="true">
 		<div class="bloque">
-			<html:form action="/descripcion">
+			<html:form action="/descripcion" styleId="formulario">
 				<input type="hidden" name="tipoBusqueda" value="<c:out value="${appConstants.fondos.tiposBusquedas.TIPO_BUSQUEDA_BANDEJA_AMPLIADA}"/>"/>
-				<html:hidden property="method" value="busq"/>
+				<html:hidden property="method" styleId="method" value="busq"/>
 
 				<table class="formulario">
 					<bean:define id="classTdTituloCampo" value="tdTituloFicha" toScope="request"/>

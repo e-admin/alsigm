@@ -133,7 +133,9 @@ public class GestionClasificadorFondosAction extends BaseAction {
 		}
 
 		if (ConfigConstants.getInstance().getMostrarCampoOrdenacionCuadro()) {
-			if (StringUtils.isEmpty(clfFondosForm.getCodOrdenacion())) {
+			if (StringUtils.isEmpty(clfFondosForm.getCodOrdenacion())
+				&&	GenericValidator.isBlankOrNull(clfFondosForm.getCodigo())
+			) {
 				validationErrors.add(
 						ActionErrors.GLOBAL_ERROR,
 						new ActionError(Constants.ERROR_REQUIRED, Messages

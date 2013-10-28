@@ -23,6 +23,16 @@
 		}
 		document.getElementById("formulario").submit();
 	}
+
+	function compactar(url){
+		if (window.top.showWorkingDiv) {
+			var title = '<bean:message key="archigest.archivo.msg.titulo"/>';
+			var message = '<bean:message key="archigest.archivo.msg.proceso.en.ejecucion"/>';
+			window.top.showWorkingDiv(title, message);
+		}
+
+		window.location = url;
+	}
 </script>
 
 <c:set var="listaUInst" value="${sessionScope[appConstants.transferencias.LISTA_UINST_PARA_RELACION_ENTRE_ARCHIVOS]}"/>
@@ -269,30 +279,35 @@
 								<b><bean:message key="archigest.archivo.transferencias.signaturaUI" />:</b>
 								&nbsp;<c:out value="${unidadInstalacion.signaturaui}" />
 							</td>
-							<td width="25%" class="etiquetaAzul11Normal" nowrap="nowrap">
+							<td width="20%" class="etiquetaAzul11Normal" nowrap="nowrap">
 								<b><bean:message key="archigest.archivo.transferencias.formato" />:</b>
 								&nbsp;<c:out value="${unidadInstalacion.nombreFormato}" />
 							</td>
 
-							<td width="15%" class="etiquetaAzul11Normal">
+							<td width="15%" class="etiquetaAzul11Normal" nowrap="nowrap">
 								<b><bean:message key="archigest.archivo.transferencias.unidades.totales" />:</b>
 								&nbsp;<c:out value="${unidadInstalacion.unidadestotales}" />
 							</td>
-							<td width="15%" class="etiquetaAzul11Normal">
+							<td width="15%" class="etiquetaAzul11Normal" nowrap="nowrap">
 								<b><bean:message key="archigest.archivo.transferencias.unidades.validas" />:</b>
 								&nbsp;<c:out value="${unidadInstalacion.unidadesvalidas}" />
 							</td>
 
-							<td>
+							<td width="15%" nowrap="nowrap">
 								<c:choose>
 									<c:when test="${unidadInstalacion.unidadesvalidas != unidadInstalacion.unidadestotales}">
+
+
+
 
 									<c:url var="moverUdocsURL" value="/action/reubicacionUdocsAction">
 										<c:param name="method" value="initReubicarUDocsEA" />
 										<c:param name="idUinstalacionOrigen" value="${unidadInstalacion.id}"/>
 										<c:param name="idHuecoOrigen" value="${unidadInstalacion.huecoID}"/>
 									</c:url>
-									<a class="etiquetaAzul12Bold" href="<c:out value="${moverUdocsURL}" escapeXml="false"/>" >
+
+
+									<a class="etiquetaAzul12Bold" href="javascript:compactar('<c:out value="${moverUdocsURL}" escapeXml="false"/>');" >
 										<html:img page="/pages/images/compactar.gif" altKey="archigest.archivo.cf.mover"
 										titleKey="archigest.archivo.cf.mover" styleClass="imgTextBottom" />
 										<bean:message key="archigest.archivo.deposito.compactar"/>&nbsp;
@@ -334,8 +349,12 @@
 							</display:column>
 
 							<c:if test="${vRelacion.formato.multidoc}">
+								<display:column title="" style="width:30px;">
+									<fmt:formatNumber value="${unidadDocumental_rowNum}" pattern="000"/>
+								</display:column>
+
 								<display:column title="" style="width:30px;text-align:right;">
-									<c:out value="${unidadDocumental_rowNum}" />:
+									<c:out value="${unidadDocumental.signaturaudoc}" />
 								</display:column>
 							</c:if>
 
@@ -371,17 +390,6 @@
 			</tiles:put>
 		</tiles:insert>
 	</c:if>
-
-
-
 	</tiles:put>
 </tiles:insert>
 </html:form>
-
-
-
-
-
-
-
-

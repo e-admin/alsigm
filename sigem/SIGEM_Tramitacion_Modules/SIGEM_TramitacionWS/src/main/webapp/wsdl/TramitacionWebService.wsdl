@@ -626,6 +626,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="recibirDocumentoFirmado">
+    <complexType>
+     <sequence>
+      <element name="idEntidad" type="xsd:string"/>
+      <element name="numExp" type="xsd:string"/>
+      <element name="idDocumento" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="recibirDocumentoFirmadoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerRegistrosEntidad" type="tns2:Cadena"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
 
@@ -839,6 +855,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="recibirDocumentoFirmadoRequest">
+
+      <wsdl:part element="tns2:recibirDocumentoFirmado" name="parameters"/>
+
+   </wsdl:message>
+
    <wsdl:message name="getInfoFicheroRequest">
 
       <wsdl:part element="impl:getInfoFichero" name="parameters"/>
@@ -866,6 +888,12 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="obtenerRegistrosEntidadResponse">
 
       <wsdl:part element="tns2:obtenerRegistrosEntidadResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="recibirDocumentoFirmadoResponse">
+
+      <wsdl:part element="tns2:recibirDocumentoFirmadoResponse" name="parameters"/>
 
    </wsdl:message>
 
@@ -1028,6 +1056,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          <wsdl:input message="impl:obtenerRegistrosEntidadRequest" name="obtenerRegistrosEntidadRequest"/>
 
          <wsdl:output message="impl:obtenerRegistrosEntidadResponse" name="obtenerRegistrosEntidadResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="recibirDocumentoFirmado">
+
+         <wsdl:input message="impl:recibirDocumentoFirmadoRequest" name="recibirDocumentoFirmadoRequest"/>
+
+         <wsdl:output message="impl:recibirDocumentoFirmadoResponse" name="recibirDocumentoFirmadoResponse"/>
 
       </wsdl:operation>
 
@@ -1390,6 +1426,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="obtenerRegistrosEntidadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="recibirDocumentoFirmado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="recibirDocumentoFirmadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="recibirDocumentoFirmadoResponse">
 
             <wsdlsoap:body use="literal"/>
 

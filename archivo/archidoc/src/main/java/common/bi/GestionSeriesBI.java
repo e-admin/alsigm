@@ -575,10 +575,11 @@ public interface GestionSeriesBI {
 	 *            productores
 	 * @param serie
 	 *            Serie para la que se solicitan los productores
+    * @param productoresHistoricos Indica si los productores que se van a obtener pertenecen a productores históricos
 	 * @return Lista de productores
 	 */
 	public List findPosiblesProductores(String queryString,
-			IdentificacionSerie serie) throws GestorOrganismosException,
+			IdentificacionSerie serie, boolean productoresHistoricos) throws GestorOrganismosException,
 			NotAvailableException;
 
 	/**

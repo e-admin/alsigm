@@ -213,7 +213,7 @@ public class GestionListasAccesoAction extends BaseAction {
 						KeysClientsInvocations.USUARIOS_SELECCION_GRUPOS,
 						request);
 			} else if (listaAccesoForm.isTipoElementoOrgano()) {
-				elementos = userBI.findOrganosByName(query);
+				elementos = userBI.findOrganosByName(query,false);
 				elementosAQuitar = userBI
 						.getOrganosEnListaAcceso(listaAccesoForm
 								.getIdListaAcceso());

@@ -334,24 +334,7 @@ public class FichasForm extends CustomForm {
 				.equals(tipoNivel));
 	}
 
-	/**
-	 * Obtiene el nombre final del fichero a exportar
-	 * @param prefijo
-	 * @param nombreFichero
-	 * @return
-	 */
-	public String getNombreFicheroExportXml(String prefijo, String nombreFichero) {
-		StringBuilder str = new StringBuilder();
-		if (StringUtils.isNotEmpty(prefijo)) {
-			str.append(prefijo);
-		}
 
-		str.append(nombreFichero).append(Constants.SEPARADOR_EXTENSION_FICHERO)
-				.append("xml");
-
-		return str.toString();
-
-	}
 
 	public void setIdFichaOrigen(String idFichaOrigen) {
 		this.idFichaOrigen = idFichaOrigen;

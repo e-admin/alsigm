@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_registroPresencial_modules</artifactId>
-		<version>3.0</version>
+		<version>3.0.1-M2</version>
 	</parent>
 
 	<artifactId>SIGEM_fwktd-sir-ws</artifactId>
@@ -48,7 +48,7 @@
  		<dependency>
  			<groupId>es.ieci.tecdoc.sigem</groupId>
 			<artifactId>sigem_administracionSesionesBackOfficeWsClient</artifactId>
-			<version>3.0</version>
+			<version>${pom.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>wsdl4j</groupId>

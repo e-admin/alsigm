@@ -79,12 +79,12 @@ final class AppConfigurationDialog extends JDialog {
 
 	private static JPanel getNorthPanel() {
 
-	final JPanel panel = new JPanel();
+    	final JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         final JLabel appPathLabel = new JLabel(
-			AppLauncherMessages.getString("appLauncherApplet.config.message")); //$NON-NLS-1$
+        		AppLauncherMessages.getString("appLauncherApplet.config.message")); //$NON-NLS-1$
 
         panel.add(appPathLabel);
 
@@ -93,49 +93,49 @@ final class AppConfigurationDialog extends JDialog {
 
     private JPanel getCenterPanel() {
 
-	final JPanel panel = new JPanel();
-	panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
+    	final JPanel panel = new JPanel();
+    	panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 
-	panel.add(getTablePanel());
-	panel.add(getTableButtonsPanel());
+    	panel.add(getTablePanel());
+    	panel.add(getTableButtonsPanel());
 
         return panel;
     }
 
     private JPanel getTablePanel() {
 
-	final JPanel panel = new JPanel();
-	panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+    	final JPanel panel = new JPanel();
+    	panel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-	this.tableModel = new DefaultTableModel() {
+    	this.tableModel = new DefaultTableModel() {
 
-		private static final long serialVersionUID = 5429700966409027953L;
+    		private static final long serialVersionUID = 5429700966409027953L;
 
 			@Override
 			public boolean isCellEditable(final int row, final int col) {
-		return false;
-	    }
-	};
-	this.tableModel.addColumn(
+    	    	return false;
+    	    }
+    	};
+    	this.tableModel.addColumn(
 			AppLauncherMessages.getString(
-			"appLauncherApplet.config.col.docType" //$NON-NLS-1$
+    			"appLauncherApplet.config.col.docType" //$NON-NLS-1$
 			)
 		);
-	this.tableModel.addColumn(
+    	this.tableModel.addColumn(
 			AppLauncherMessages.getString(
-			"appLauncherApplet.config.col.application" //$NON-NLS-1$
+    			"appLauncherApplet.config.col.application" //$NON-NLS-1$
 			)
 		);
 
-	this.table = new JTable(this.tableModel);
-	this.table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    	this.table = new JTable(this.tableModel);
+    	this.table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-	final ListSelectionModel rowSM = this.table.getSelectionModel();
+    	final ListSelectionModel rowSM = this.table.getSelectionModel();
         rowSM.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(final ListSelectionEvent e) {
 
                 if (e.getValueIsAdjusting()) {
-			return;
+                	return;
                 }
 
                 final ListSelectionModel lsm = (ListSelectionModel)e.getSource();
@@ -149,16 +149,16 @@ final class AppConfigurationDialog extends JDialog {
                     int cont = 0;
                     final int maxSelIx = lsm.getMaxSelectionIndex();
                     for (int i = lsm.getMinSelectionIndex(); i <= maxSelIx; i++) {
-			if (lsm.isSelectedIndex(i)) {
-				cont++;
-			}
+                    	if (lsm.isSelectedIndex(i)) {
+                    		cont++;
+                    	}
                     }
 
                     if (cont == 1) {
-			AppConfigurationDialog.this.getEditButton().setEnabled(true);
+                    	AppConfigurationDialog.this.getEditButton().setEnabled(true);
                     }
                     else {
-			AppConfigurationDialog.this.getEditButton().setEnabled(false);
+                    	AppConfigurationDialog.this.getEditButton().setEnabled(false);
                     }
                 }
             }
@@ -166,10 +166,10 @@ final class AppConfigurationDialog extends JDialog {
 
         this.table.addKeyListener(new KeyAdapter() {
 
-		@Override
+        	@Override
 			public void keyReleased(final KeyEvent e) {
 
-			final int c = e.getKeyCode();
+        		final int c = e.getKeyCode();
 
                 if (c == KeyEvent.VK_DELETE) {
                     e.consume();
@@ -193,11 +193,11 @@ final class AppConfigurationDialog extends JDialog {
 			}
         });
 
-	final JScrollPane scrollPanel = new JScrollPane(this.table);
+    	final JScrollPane scrollPanel = new JScrollPane(this.table);
 
-	panel.add(scrollPanel);
+    	panel.add(scrollPanel);
 
-	try {
+    	try {
 			this.config = new AppLauncherAppletProperties();
 
 			if (this.config.getKeys().length > 0) {
@@ -210,19 +210,19 @@ final class AppConfigurationDialog extends JDialog {
 			}
 
 		}
-	catch (final BackingStoreException e) {
-		LOGGER.severe("Error al cargar la configuracion de las aplicaciones: " + e); //$NON-NLS-1$
+    	catch (final BackingStoreException e) {
+    		LOGGER.severe("Error al cargar la configuracion de las aplicaciones: " + e); //$NON-NLS-1$
 		}
 
         return panel;
     }
 
     private JPanel getTableButtonsPanel() {
-	final JPanel panel = new JPanel();
-	panel.setLayout(new GridLayout(3, 1, 5, 5));
+    	final JPanel panel = new JPanel();
+    	panel.setLayout(new GridLayout(3, 1, 5, 5));
 
-	final JButton addButton = new JButton(
-		AppLauncherMessages.getString(
+    	final JButton addButton = new JButton(
+    		AppLauncherMessages.getString(
 				"appLauncherApplet.button.add" //$NON-NLS-1$
 			)
 		);
@@ -230,29 +230,29 @@ final class AppConfigurationDialog extends JDialog {
 			public void actionPerformed(final ActionEvent e) {
 				showInsertDialog();
 			}
-	});
+    	});
         panel.add(addButton);
 
         this.editButton = new JButton(
-		AppLauncherMessages.getString("appLauncherApplet.button.edit") //$NON-NLS-1$
+    		AppLauncherMessages.getString("appLauncherApplet.button.edit") //$NON-NLS-1$
 		);
         this.editButton.setEnabled(false);
         this.editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				showUpdateDialog();
 			}
-	});
+    	});
         panel.add(this.editButton);
 
         this.removeButton = new JButton(
-		AppLauncherMessages.getString("appLauncherApplet.button.remove") //$NON-NLS-1$
+    		AppLauncherMessages.getString("appLauncherApplet.button.remove") //$NON-NLS-1$
 		);
         this.removeButton.setEnabled(false);
         this.removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				deleteSelectedRows();
 			}
-	});
+    	});
         panel.add(this.removeButton);
 
         final JPanel container = new JPanel();
@@ -263,28 +263,28 @@ final class AppConfigurationDialog extends JDialog {
 
 	private JPanel getButtonsPanel() {
 
-	final JPanel panel = new JPanel();
-	panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+    	final JPanel panel = new JPanel();
+    	panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         final JButton okButton = new JButton(
-		AppLauncherMessages.getString("appLauncherApplet.button.ok") //$NON-NLS-1$
+    		AppLauncherMessages.getString("appLauncherApplet.button.ok") //$NON-NLS-1$
 		);
         okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				updateProperties();
 				AppConfigurationDialog.this.dispose();
 			}
-	});
+    	});
         panel.add(okButton);
 
         final JButton cancelButton = new JButton(
-		AppLauncherMessages.getString("appLauncherApplet.button.cancel") //$NON-NLS-1$
+    		AppLauncherMessages.getString("appLauncherApplet.button.cancel") //$NON-NLS-1$
 		);
         cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				AppConfigurationDialog.this.dispose();
 			}
-	});
+    	});
         panel.add(cancelButton);
 
         return panel;

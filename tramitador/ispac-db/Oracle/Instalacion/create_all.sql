@@ -8,5 +8,7 @@ set define off;
 @@04-datos_iniciales.sql
 @@06-datos_prototipos.sql
 @@07-create_tables_conector_sharepoint.sql
+@@08-fwktd-audit-create.sql
+@@09-fwktd-audit-insert.sql
 
 spool off

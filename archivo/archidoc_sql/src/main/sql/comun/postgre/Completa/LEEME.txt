@@ -1,0 +1,2 @@
+- En la carpeta complementario/archivo-busqueda-documental existen scripts para activar búsqueda documental en varias columnas. Hay scripts para
+versiones de Postgres < 8.3 y para versiones >= 8.3. En cada caso se deberán lanzar los scripts que correspondan.

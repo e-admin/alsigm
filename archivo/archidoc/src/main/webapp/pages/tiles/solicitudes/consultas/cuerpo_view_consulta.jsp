@@ -72,6 +72,15 @@
 			window.location = '<c:out value="${envioURL}" escapeXml="false"/>'+idconsulta;
 	}
 
+	function volverASolicitada(idconsulta,identificadorConsulta) {
+		<c:url var="envioURL" value="/action/gestionConsultas">
+				<c:param name="method" value="volverASolicitada" />
+				<c:param name="idconsulta" value=""/>
+		</c:url>
+		window.location = '<c:out value="${envioURL}" escapeXml="false"/>'+idconsulta;
+}
+
+
 	//function imprimirEntrada(idconsulta,identificadorConsulta) {
 	function imprimirEntrada(idconsulta) {
 			<c:url var="envioURL" value="/action/gestionConsultas">
@@ -373,6 +382,22 @@
 			   		</a>
 				   	</TD>
 			       	<TD width="10">&nbsp;</TD>
+
+				</c:if>
+
+				<c:if test="${requestScope[appConstants.consultas.VER_BOTON_VOLVER_A_SOLICITADA]}">
+					<c:set var="llamadaEnviar">javascript:volverASolicitada('<c:out value="${consulta.id}" />','<c:out value="${consulta.codigoTransferencia}"/>')</c:set>
+					<TD>
+					<a class=etiquetaAzul12Bold href="<c:out value="${llamadaEnviar}" escapeXml="false"/>">
+						<html:img
+							page="/pages/images/enviar.gif" border="0"
+							altKey="archidoc.archivo.volver.a.solicitar"
+							titleKey="archidoc.archivo.volver.a.solicitar"
+							styleClass="imgTextMiddle" />
+						&nbsp;<bean:message key="archidoc.archivo.volver.a.solicitar"/>
+					</a>
+					</TD>
+					<TD width="10">&nbsp;</TD>
 
 				</c:if>
 

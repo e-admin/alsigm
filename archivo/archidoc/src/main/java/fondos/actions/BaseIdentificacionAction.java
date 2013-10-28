@@ -186,7 +186,7 @@ public class BaseIdentificacionAction extends BaseAction {
 									infoOrganoProductorSerie
 											.getSistemaExterno(),
 									infoOrganoProductorSerie
-											.getIdEnSistemaExterno());
+											.getIdEnSistemaExterno(), Boolean.TRUE);
 					if (caOrganoVO == null) {
 						listaProductoresADarDeAlta
 								.add(infoOrganoProductorSerie);
@@ -380,7 +380,7 @@ public class BaseIdentificacionAction extends BaseAction {
 
 	/**
 	 * Obtiene la lista de Productores Vigente Originales A Elegir
-	 * 
+    *
 	 * @param request
 	 * @param crear
 	 * @return Lista de {@link InfoProductorSerie}
@@ -424,7 +424,7 @@ public class BaseIdentificacionAction extends BaseAction {
 	}
 
 	/**
-	 * 
+    *
 	 * @param request
 	 * @param crear
 	 * @return Lista de ProductorSerieVO
@@ -488,7 +488,7 @@ public class BaseIdentificacionAction extends BaseAction {
 
 	/**
 	 * Elimina un productor o lo marca para eliminar
-	 * 
+    *
 	 * @param request
 	 * @param infoProductorSerie
 	 */
@@ -649,7 +649,7 @@ public class BaseIdentificacionAction extends BaseAction {
 
 	/**
 	 * Valida las fechas de vigencia
-	 * 
+    *
 	 * @param request
 	 * @param fechaInicioVigencia
 	 *            Fecha del Inicio de la Vigencia
@@ -709,7 +709,7 @@ public class BaseIdentificacionAction extends BaseAction {
 	/**
 	 * Reliza el proceso de pasar a vigente un productor histórico - Si el
 	 * productor estaba susituido, quitar la referencia en el sustiuidor
-	 * 
+    *
 	 * @param request
 	 *            Request
 	 * @param guid
@@ -815,7 +815,7 @@ public class BaseIdentificacionAction extends BaseAction {
 
 	/**
 	 * Obtiene la Lista de Productores Históricos de la Serie
-	 * 
+    *
 	 * @return Lista de {@link ProductorSerieVO}
 	 */
 	protected List getListaProductoresHistoricosFromSession(

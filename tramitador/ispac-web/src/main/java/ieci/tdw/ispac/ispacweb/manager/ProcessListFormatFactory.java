@@ -15,7 +15,7 @@ import java.io.InputStream;
 import org.apache.log4j.Logger;
 
 public class ProcessListFormatFactory extends BeanFormatterFactory {
-	
+
 	private static final String SEPARATOR = System.getProperty("file.separator");
 	protected Logger logger = Logger.getLogger(ProcessListFormatFactory.class);
     static final String DIR_PCD="PCD";
@@ -25,16 +25,15 @@ public class ProcessListFormatFactory extends BeanFormatterFactory {
 
     String fileFmtName =null;
     String dirFmtformat=null;
-    
+
     String mbasepath;
     String multiEntityDir;
 
-    
     public ProcessListFormatFactory(String basepath, String fileFmt, String dirFmt) throws ISPACException {
-    	
+
         fileFmtName = fileFmt;
         dirFmtformat = dirFmt;
-    	
+
         // Comprobar si el entorno es de multientidad
 		OrganizationUserInfo info = OrganizationUser.getOrganizationUserInfo();
 		if (info != null){
@@ -42,25 +41,25 @@ public class ProcessListFormatFactory extends BeanFormatterFactory {
 			if (StringUtils.isNotBlank(organizationId)) {
 				multiEntityDir = organizationId + SEPARATOR;
 			}
-		}        
-        
+		}
+
         if (!basepath.endsWith(SEPARATOR)) {
 			mbasepath = basepath + SEPARATOR + dirFmtformat + SEPARATOR;
 		} else {
 			mbasepath = basepath + dirFmtformat + SEPARATOR;
 		}
 	}
-    
+
     public ProcessListFormatFactory(String basepath) throws ISPACException {
 		this(basepath, FILE_FMTNAME, DIR_FMTPROCESSLIST);
 	}
-    
+
 	public InputStream getProcessListFormat(int procedureId, int stagePCDId) throws ISPACException {
 		return getProcessListFormat(procedureId, null, stagePCDId, null);
     }
 
 	public InputStream getProcessListFormat(int procedureId, String procedureCode, int stagePCDId, String stageCode) throws ISPACException {
-		
+
         String procedureDir = DIR_PCD + procedureId;
 		String stageDir = DIR_STAGE + stagePCDId;
 
@@ -68,7 +67,7 @@ public class ProcessListFormatFactory extends BeanFormatterFactory {
         if (StringUtils.isNotBlank(procedureCode)) {
         	procedureCodeDir = DIR_PCD + "_" + StringUtils.escapeFile(procedureCode);
         }
-        
+
 		String stageCodeDir = null;
 		if (StringUtils.isNotBlank(stageCode)) {
 			stageCodeDir = DIR_STAGE + "_" + StringUtils.escapeFile(stageCode);
@@ -86,114 +85,46 @@ public class ProcessListFormatFactory extends BeanFormatterFactory {
 		return getBeanFormatter(istream);
 	}
 
-    protected InputStream findFormatResource(String proceduredir, String stagedir, String procedureCodeDir, String stageCodeDir) 
-    		throws ISPACException {
-    	
-        	String formatterPath = null;
-        	
-        	File formatfile = null;
-        	if (StringUtils.isNotEmpty(multiEntityDir)){
-                // Existe el formato específico para la fase teniendo en cuenta la multientidad
-        		formatterPath = mbasepath + multiEntityDir + proceduredir + SEPARATOR + stagedir + SEPARATOR + fileFmtName;
-        		if(logger.isDebugEnabled()){
-        			logger.debug("Localizando formateador en '" + formatterPath +"'");
-        		}
-        		formatfile = new File(formatterPath);
-				if (formatfile.exists()) {
-	        		if(logger.isDebugEnabled()){
-						logger.debug("Formateador localizado en '" + formatterPath+"'");
-	        		}
-					//return new FileInputStream(formatfile);
-					return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
-				}			
-        		
-				// Existe el formato específico para el procedimiento teniendo en cuenta la multientidad
-				formatterPath = mbasepath + multiEntityDir + proceduredir + SEPARATOR + fileFmtName;
-        		if(logger.isDebugEnabled()){
-        			logger.debug("Localizando formateador en '" + formatterPath +"'");
-        		}
-				formatfile = new File(formatterPath);
-				if (formatfile.exists()) {
-	        		if(logger.isDebugEnabled()){
-						logger.debug("Formateador localizado en '" + formatterPath+"'");
-	        		}
-					//return new FileInputStream(formatfile);
-	        		return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
-				}
+    /**
+     * Obtener el recurso del formateador para el listado de expedientes.
+     *
+     * Prioridades, primero teniendo en cuenta la multientidad:
+     *
+     * /PCD<id_procedimiento>/STG<id_fase_pcd>/<formateador>
+     * /PCD<id_procedimiento>/<formateador>
+     * /PCD_<código_procedimiento_transformado>/STG_<código_fase_transformado>/<formateador>
+     * /PCD_<código_procedimiento_transformado>/<formateador>
+     * /<formateador>
+     *
+     * @param proceduredir Nombre del directorio para el procedimiento a partir de su identificador.
+     * @param stagedir Nombre del directorio para la fase del procedimiento a partir de su identificador.
+     * @param procedureCodeDir Nombre del directorio para el procedimiento a partir de su código.
+     * @param stageCodeDir Nombre del directorio para la fase del procedimiento a partir de su código.
+     * @return Recurso del formateador para el listado de expedientes.
+     * @throws ISPACException Si se produce algún error.
+     */
+    protected InputStream findFormatResource(String proceduredir, String stagedir, String procedureCodeDir, String stageCodeDir) throws ISPACException {
 
-				// Formato por códigos de procedimiento y fase.
-				if (StringUtils.isNotBlank(procedureCodeDir)) {
-		            // Existe el formato específico para la fase.
-					if (StringUtils.isNotBlank(stageCodeDir)) {
-						// Existe el formato específico para la fase teniendo en cuenta la multientidad
-						formatterPath = mbasepath + multiEntityDir + procedureCodeDir + SEPARATOR + stageCodeDir + SEPARATOR + fileFmtName;
-		        		if(logger.isDebugEnabled()){
-		        			logger.debug("Localizando formateador en '" + formatterPath +"'");
-		        		}
-			            formatfile = new File(formatterPath);
-						if (formatfile.exists()) {
-			        		if(logger.isDebugEnabled()){
-								logger.debug("Formateador localizado en '" + formatterPath+"'");
-			        		}
-							//return new FileInputStream(formatfile);
-			        		return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
-						}
-						
-						// Existe el formato específico para el procedimiento teniendo en cuenta la multientidad
-						formatterPath = mbasepath + multiEntityDir + procedureCodeDir + SEPARATOR + fileFmtName;
-		        		if(logger.isDebugEnabled()){
-		        			logger.debug("Localizando formateador en '" + formatterPath +"'");
-		        		}
-						formatfile = new File(formatterPath);
-						if (formatfile.exists()) {
-			        		if(logger.isDebugEnabled()){
-								logger.debug("Formateador localizado en '" + formatterPath+"'");
-			        		}
-							//return new FileInputStream(formatfile);
-			        		return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
-						}
-					}
-				}
+		String formatterPath = null;
+		File formatfile = null;
 
-				
-				// Existe el formato específico para la entidad 
-				formatterPath = mbasepath + multiEntityDir + fileFmtName;
-        		if(logger.isDebugEnabled()){
-        			logger.debug("Localizando formateador en '" + formatterPath +"'");
-        		}
-				formatfile = new File(formatterPath);
-				if (formatfile.exists()) {
-	        		if(logger.isDebugEnabled()){
-						logger.debug("Formateador localizado en '" + formatterPath+"'");
-	        		}
-					//return new FileInputStream(formatfile);
-	        		return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
-				}
-				
-				
-				
-				
-				
-				
-        	}
-        	
-        	
-        	// Existe el formato específico para la fase.
-        	formatterPath = mbasepath + proceduredir + SEPARATOR + stagedir + SEPARATOR + fileFmtName;
+		if (StringUtils.isNotEmpty(multiEntityDir)){
+            // Existe el formato específico para la fase teniendo en cuenta la multientidad
+			formatterPath = mbasepath + multiEntityDir + proceduredir + SEPARATOR + stagedir + SEPARATOR + fileFmtName;
     		if(logger.isDebugEnabled()){
     			logger.debug("Localizando formateador en '" + formatterPath +"'");
     		}
-            formatfile = new File(formatterPath);
+			formatfile = new File(formatterPath);
 			if (formatfile.exists()) {
         		if(logger.isDebugEnabled()){
 					logger.debug("Formateador localizado en '" + formatterPath+"'");
         		}
 				//return new FileInputStream(formatfile);
-        		return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
+				return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
 			}
 
-			// Existe el formato específico para el procedimiento.
-			formatterPath = mbasepath + proceduredir + SEPARATOR + fileFmtName;
+			// Existe el formato específico para el procedimiento teniendo en cuenta la multientidad
+			formatterPath = mbasepath + multiEntityDir + proceduredir + SEPARATOR + fileFmtName;
     		if(logger.isDebugEnabled()){
     			logger.debug("Localizando formateador en '" + formatterPath +"'");
     		}
@@ -206,13 +137,12 @@ public class ProcessListFormatFactory extends BeanFormatterFactory {
         		return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
 			}
 
-
 			// Formato por códigos de procedimiento y fase.
 			if (StringUtils.isNotBlank(procedureCodeDir)) {
-				
 	            // Existe el formato específico para la fase.
 				if (StringUtils.isNotBlank(stageCodeDir)) {
-					formatterPath = mbasepath + procedureCodeDir + SEPARATOR + stageCodeDir + SEPARATOR + fileFmtName;
+					// Existe el formato específico para la fase teniendo en cuenta la multientidad
+					formatterPath = mbasepath + multiEntityDir + procedureCodeDir + SEPARATOR + stageCodeDir + SEPARATOR + fileFmtName;
 	        		if(logger.isDebugEnabled()){
 	        			logger.debug("Localizando formateador en '" + formatterPath +"'");
 	        		}
@@ -224,14 +154,76 @@ public class ProcessListFormatFactory extends BeanFormatterFactory {
 						//return new FileInputStream(formatfile);
 		        		return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
 					}
+
+					// Existe el formato específico para el procedimiento teniendo en cuenta la multientidad
+					formatterPath = mbasepath + multiEntityDir + procedureCodeDir + SEPARATOR + fileFmtName;
+					if(logger.isDebugEnabled()){
+						logger.debug("Localizando formateador en '" + formatterPath +"'");
+					}
+					formatfile = new File(formatterPath);
+					if (formatfile.exists()) {
+					if(logger.isDebugEnabled()){
+							logger.debug("Formateador localizado en '" + formatterPath+"'");
+					}
+						//return new FileInputStream(formatfile);
+					return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
+					}
 				}
-	
-				// Existe el formato específico para el procedimiento.
-				formatterPath = mbasepath + procedureCodeDir + SEPARATOR + fileFmtName;
+			}
+
+			// Existe el formato específico para la entidad
+			formatterPath = mbasepath + multiEntityDir + fileFmtName;
+			if(logger.isDebugEnabled()){
+				logger.debug("Localizando formateador en '" + formatterPath +"'");
+			}
+			formatfile = new File(formatterPath);
+			if (formatfile.exists()) {
+				if(logger.isDebugEnabled()){
+					logger.debug("Formateador localizado en '" + formatterPath+"'");
+				}
+				//return new FileInputStream(formatfile);
+				return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
+			}
+		}
+
+		// Existe el formato específico para la fase.
+		formatterPath = mbasepath + proceduredir + SEPARATOR + stagedir + SEPARATOR + fileFmtName;
+		if(logger.isDebugEnabled()){
+			logger.debug("Localizando formateador en '" + formatterPath +"'");
+		}
+        formatfile = new File(formatterPath);
+		if (formatfile.exists()) {
+			if(logger.isDebugEnabled()){
+				logger.debug("Formateador localizado en '" + formatterPath+"'");
+			}
+			//return new FileInputStream(formatfile);
+			return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
+		}
+
+		// Existe el formato específico para el procedimiento.
+		formatterPath = mbasepath + proceduredir + SEPARATOR + fileFmtName;
+		if(logger.isDebugEnabled()){
+			logger.debug("Localizando formateador en '" + formatterPath +"'");
+		}
+		formatfile = new File(formatterPath);
+		if (formatfile.exists()) {
+			if(logger.isDebugEnabled()){
+				logger.debug("Formateador localizado en '" + formatterPath+"'");
+			}
+			//return new FileInputStream(formatfile);
+			return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
+		}
+
+		// Formato por códigos de procedimiento y fase.
+		if (StringUtils.isNotBlank(procedureCodeDir)) {
+
+            // Existe el formato específico para la fase.
+			if (StringUtils.isNotBlank(stageCodeDir)) {
+				formatterPath = mbasepath + procedureCodeDir + SEPARATOR + stageCodeDir + SEPARATOR + fileFmtName;
         		if(logger.isDebugEnabled()){
         			logger.debug("Localizando formateador en '" + formatterPath +"'");
         		}
-				formatfile = new File(formatterPath);
+               formatfile = new File(formatterPath);
 				if (formatfile.exists()) {
 	        		if(logger.isDebugEnabled()){
 						logger.debug("Formateador localizado en '" + formatterPath+"'");
@@ -239,24 +231,37 @@ public class ProcessListFormatFactory extends BeanFormatterFactory {
 					//return new FileInputStream(formatfile);
 	        		return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
 				}
-				
 			}
-			
-			// El formato por defecto para las listas de procesos.
-			formatterPath = mbasepath + fileFmtName;
+
+			// Existe el formato específico para el procedimiento.
+			formatterPath = mbasepath + procedureCodeDir + SEPARATOR + fileFmtName;
     		if(logger.isDebugEnabled()){
     			logger.debug("Localizando formateador en '" + formatterPath +"'");
     		}
 			formatfile = new File(formatterPath);
-			if (!formatfile.exists()) {
-				throw new ISPACException("No existe formato por defecto [" + mbasepath + fileFmtName + "] para mostrar la lista de proceso");
+			if (formatfile.exists()) {
+				if(logger.isDebugEnabled()){
+					logger.debug("Formateador localizado en '" + formatterPath+"'");
+				}
+				//return new FileInputStream(formatfile);
+				return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
 			}
+		}
 
-			//return new FileInputStream(formatfile);
-    		if(logger.isDebugEnabled()){
-				logger.debug("Formateador localizado en '" + formatterPath+"'");
-    		}
-			return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
-			
+		// El formato por defecto para las listas de procesos.
+		formatterPath = mbasepath + fileFmtName;
+		if(logger.isDebugEnabled()){
+			logger.debug("Localizando formateador en '" + formatterPath +"'");
+		}
+		formatfile = new File(formatterPath);
+		if (!formatfile.exists()) {
+			throw new ISPACException("No existe formato por defecto [" + mbasepath + fileFmtName + "] para mostrar la lista de procesos");
+		}
+
+		//return new FileInputStream(formatfile);
+		if(logger.isDebugEnabled()){
+			logger.debug("Formateador localizado en '" + formatterPath+"'");
+		}
+		return new ByteArrayInputStream(FileUtils.retrieveFile(formatfile));
     }
 }

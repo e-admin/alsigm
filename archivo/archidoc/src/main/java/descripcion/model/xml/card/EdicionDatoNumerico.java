@@ -56,7 +56,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Obtiene el rango máximo.
-	 * 
+    *
 	 * @return Rango máximo.
 	 */
 	public Double getRangoMaximo() {
@@ -65,7 +65,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Establece el rango máximo.
-	 * 
+    *
 	 * @param rangoMaximo
 	 *            Rango máximo.
 	 */
@@ -75,7 +75,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Obtiene el rango mínimo.
-	 * 
+    *
 	 * @return Rango mínimo.
 	 */
 	public Double getRangoMinimo() {
@@ -84,7 +84,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Establece el rango mínimo.
-	 * 
+    *
 	 * @param rangoMinimo
 	 *            Rango mínimo.
 	 */
@@ -94,7 +94,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Obtiene el tipo de medida.
-	 * 
+    *
 	 * @return Tipo de medida.
 	 */
 	public short getTipoMedida() {
@@ -103,7 +103,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Establece el tipo de medida.
-	 * 
+    *
 	 * @param tipoMedida
 	 *            Tipo de medida.
 	 */
@@ -113,7 +113,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Obtiene el tipo numérico.
-	 * 
+    *
 	 * @return Tipo numérico.
 	 */
 	public short getTipoNumerico() {
@@ -122,7 +122,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Establece el tipo numérico.
-	 * 
+    *
 	 * @param tipoNumerico
 	 *            Tipo numérico.
 	 */
@@ -132,7 +132,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Obtiene la unidad de medida.
-	 * 
+    *
 	 * @return Unidad de medida.
 	 */
 	public String getUnidadMedida() {
@@ -141,7 +141,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Establece la unidad de medida.
-	 * 
+    *
 	 * @param unidadMedida
 	 *            Unidad de medida.
 	 */
@@ -151,7 +151,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Indica si hay que mostrar la unidad del número.
-	 * 
+    *
 	 * @return Si hay que mostrar la unidad del número.
 	 */
 	public boolean isMostrarTipoNumero() {
@@ -160,7 +160,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Establece si hay que mostrar la unidad del número.
-	 * 
+    *
 	 * @param mostrarTipoNumero
 	 *            Si hay que mostrar la unidad del número.
 	 */
@@ -170,7 +170,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Indica si hay que mostrar el tipo de número.
-	 * 
+    *
 	 * @return Si hay que mostrar el tipo de número.
 	 */
 	public boolean isMostrarUnidadNumero() {
@@ -179,7 +179,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Establece si hay que mostrar el tipo de número.
-	 * 
+    *
 	 * @param mostrarUnidadNumero
 	 *            Si hay que mostrar el tipo de número.
 	 */
@@ -192,12 +192,12 @@ public class EdicionDatoNumerico extends EdicionDato {
 	}
 
 	public void setIdTblVld(String idTblVld) {
-		this.idTblVld = idTblVld;
+		this.idTblVld = StringUtils.trimToEmpty(idTblVld);
 	}
 
 	/**
 	 * Añade una opción a la lista.
-	 * 
+    *
 	 * @param opcion
 	 *            Opción.
 	 */
@@ -207,7 +207,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Obtiene una opción de la lista en función de su posición.
-	 * 
+    *
 	 * @param index
 	 *            Posición de la opción dentro de la lista.
 	 * @return Opción.
@@ -218,7 +218,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Obtiene la lista de opciones.
-	 * 
+    *
 	 * @return Lista de opciones.
 	 */
 	public Opcion[] getOpciones() {
@@ -227,7 +227,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Obtiene el número de opciones de la lista.
-	 * 
+    *
 	 * @return Número de opciones.
 	 */
 	public int getTotalOpciones() {
@@ -236,7 +236,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Elimina la opción de la posición determinada.
-	 * 
+    *
 	 * @param index
 	 *            Posición de la opción a eliminar.
 	 */
@@ -246,7 +246,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Elimina la opción de la lista.
-	 * 
+    *
 	 * @param opcion
 	 *            Opción a eliminar.
 	 */
@@ -263,7 +263,7 @@ public class EdicionDatoNumerico extends EdicionDato {
 
 	/**
 	 * Obtiene una representación XML del objeto.
-	 * 
+    *
 	 * @param indent
 	 *            Número de espacios de tabulación.
 	 * @return Representación del objeto.

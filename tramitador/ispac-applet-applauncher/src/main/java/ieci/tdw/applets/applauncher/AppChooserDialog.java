@@ -92,12 +92,12 @@ final class AppChooserDialog extends JDialog {
 
 	private JPanel getNorthPanel() {
 
-	final JPanel panel = new JPanel();
+    	final JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         final JLabel appPathLabel = new JLabel(
-		AppLauncherMessages.getString(
+    		AppLauncherMessages.getString(
 				"appLauncherApplet.select.message", //$NON-NLS-1$
 				new Object [] { this.extension }
 			)
@@ -110,14 +110,14 @@ final class AppChooserDialog extends JDialog {
 
     private JPanel getCenterPanel() {
 
-	final JPanel panel = new JPanel();
-	panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+    	final JPanel panel = new JPanel();
+    	panel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         this.appPathField.setColumns(20);
 
         final JLabel appPathLabel = new JLabel(
-		AppLauncherMessages.getString("appLauncherApplet.select.appLabel"), //$NON-NLS-1$
-		SwingConstants.TRAILING
+    		AppLauncherMessages.getString("appLauncherApplet.select.appLabel"), //$NON-NLS-1$
+    		SwingConstants.TRAILING
 		);
         appPathLabel.setLabelFor(this.appPathField);
 
@@ -133,11 +133,11 @@ final class AppChooserDialog extends JDialog {
 	            if (returnVal == JFileChooser.APPROVE_OPTION) {
 	                final File file = fc.getSelectedFile();
 	                if (file != null) {
-				AppChooserDialog.this.setAppPath(file.getAbsolutePath());
+	                	AppChooserDialog.this.setAppPath(file.getAbsolutePath());
 	                }
 	            }
 			}
-	});
+    	});
 
         panel.add(openButton);
 
@@ -146,22 +146,22 @@ final class AppChooserDialog extends JDialog {
 
 	private JPanel getButtonsPanel() {
 
-	final JPanel panel = new JPanel();
-	panel.setLayout(new FlowLayout());
+    	final JPanel panel = new JPanel();
+    	panel.setLayout(new FlowLayout());
 
         final JButton okButton = new JButton(
-		AppLauncherMessages.getString("appLauncherApplet.button.ok") //$NON-NLS-1$
+    		AppLauncherMessages.getString("appLauncherApplet.button.ok") //$NON-NLS-1$
 		);
         okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				AppChooserDialog.this.setResult(OK);
 				AppChooserDialog.this.dispose();
 			}
-	});
+    	});
         panel.add(okButton);
 
         final JButton cancelButton = new JButton(
-		AppLauncherMessages.getString("appLauncherApplet.button.cancel") //$NON-NLS-1$
+    		AppLauncherMessages.getString("appLauncherApplet.button.cancel") //$NON-NLS-1$
 		);
         cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
@@ -169,7 +169,7 @@ final class AppChooserDialog extends JDialog {
 				AppChooserDialog.this.setResult(CANCEL);
 				AppChooserDialog.this.dispose();
 			}
-	});
+    	});
         panel.add(cancelButton);
 
         return panel;

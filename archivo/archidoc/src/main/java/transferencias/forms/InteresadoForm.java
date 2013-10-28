@@ -1,15 +1,16 @@
 package transferencias.forms;
 
-import common.Constants;
+import se.terceros.TipoAtributo;
 
-import es.archigest.framework.web.action.ArchigestActionForm;
+import common.Constants;
+import common.forms.CustomForm;
 
 /**
  * ActionForm empleado en la recogida de los datos introducidos por el usuario
  * en la creacion y edicion de un interesado asociado a una unidad documental
- * 
+ *
  */
-public class InteresadoForm extends ArchigestActionForm {
+public class InteresadoForm extends CustomForm {
 
 	/**
 	 *
@@ -24,6 +25,7 @@ public class InteresadoForm extends ArchigestActionForm {
 
 	public static final String[] TIPOS_BUSQUEDA = { "IF", "NOMBRE",
 			"RAZON_SOCIAL" };
+
 
 	String nombre = null;
 
@@ -44,6 +46,7 @@ public class InteresadoForm extends ArchigestActionForm {
 																// Validado (0)
 																// o No Validado
 																// (1)
+	int tipoNumeroIdentificacion = TipoAtributo.IDENTIFICACION_CIF;
 
 	String rol = null;
 
@@ -379,4 +382,13 @@ public class InteresadoForm extends ArchigestActionForm {
 	public void setLinkPressed(String linkPressed) {
 		this.linkPressed = linkPressed;
 	}
+
+	public int getTipoNumeroIdentificacion() {
+		return tipoNumeroIdentificacion;
+	}
+
+	public void setTipoNumeroIdentificacion(int tipoNumeroIdentificacion) {
+		this.tipoNumeroIdentificacion = tipoNumeroIdentificacion;
+	}
+
 }

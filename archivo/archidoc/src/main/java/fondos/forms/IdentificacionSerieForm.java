@@ -91,6 +91,8 @@ public class IdentificacionSerieForm extends ArchigestActionForm {
 
 	String fechaInicioVigenciaProductor = "";
 
+	String busquedaHistoricos = "";
+
 	private final Map values = new HashMap();
 
 	public void setValue(String key, Object value) {
@@ -470,6 +472,14 @@ public class IdentificacionSerieForm extends ArchigestActionForm {
 
 	public String getGuidProductorHistorico() {
 		return guidProductorHistorico;
+	}
+
+	public String getBusquedaHistoricos() {
+		return busquedaHistoricos;
+	}
+
+	public void setBusquedaHistoricos(String busquedaHistoricos) {
+		this.busquedaHistoricos = busquedaHistoricos;
 	}
 
 }

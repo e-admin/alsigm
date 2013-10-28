@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beanformatter>
+	<propertyfmt
+				type="BeanPropertySimpleFmt"
+				property='NOMBRE'
+				readOnly='false'
+				titleKey='forms.typeDocRegESList.name'
+				fieldType='LINK'
+				styleClass='displayBullet'
+				headerClass='sortable'
+				sortable='true'
+				media='html '
+				decorator=''
+				width='50%'
+	/>
+	<propertyfmt
+               type="BeanPropertySimpleFmt"
+               property='NOMBRE'
+               readOnly='false'
+				titleKey='forms.typeDocRegESList.name'
+              fieldType='LIST'
+              columnClass='width50percent'
+				media='excel csv xml pdf'
+    />
+</beanformatter>

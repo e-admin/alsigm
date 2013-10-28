@@ -13,7 +13,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
@@ -75,12 +74,6 @@ import transferencias.db.IUdocEnUIDBEntity;
 import transferencias.db.IUnidadInstalacionDBEntity;
 import transferencias.db.IUnidadInstalacionReeaDBEntity;
 import transferencias.db.RelacionEntregaDBEntityBaseImpl;
-import transferencias.electronicas.ficha.CampoDescriptor;
-import transferencias.electronicas.ficha.CampoFecha;
-import transferencias.electronicas.ficha.CampoNumerico;
-import transferencias.electronicas.ficha.CampoTexto;
-import transferencias.electronicas.ficha.CamposFicha;
-import transferencias.electronicas.ficha.ICampoFicha;
 import transferencias.electronicas.udoc.IdentificacionUnidadDocumental;
 import transferencias.exceptions.PrevisionOperacionNoPermitidaException;
 import transferencias.exceptions.RelacionEntregaConUDocsSinAsingarAUIException;
@@ -142,12 +135,10 @@ import common.definitions.ArchivoActions;
 import common.definitions.ArchivoModules;
 import common.exceptions.ActionNotAllowedException;
 import common.exceptions.ArchivoModelException;
-import common.exceptions.CheckedArchivoException;
 import common.exceptions.SecurityException;
 import common.exceptions.TooManyResultsException;
 import common.exceptions.TransferenciaElectronicaException;
 import common.exceptions.UncheckedArchivoException;
-import common.lang.MutableInt;
 import common.pagination.PageInfo;
 import common.security.TransferenciasSecurityManager;
 import common.util.ArrayUtils;
@@ -186,7 +177,6 @@ import descripcion.db.INumeroDBEntity;
 import descripcion.db.IReferenciaDBEntity;
 import descripcion.db.ITextoDBEntity;
 import descripcion.db.IValidacionDBEntity;
-import descripcion.exceptions.DescriptorDuplicadoException;
 import descripcion.model.EstadoDescriptor;
 import descripcion.model.TipoDescriptor;
 import descripcion.model.ValoresFicha;
@@ -199,11 +189,9 @@ import descripcion.model.xml.definition.DefFichaFactory;
 import descripcion.model.xml.format.DefFmtFicha;
 import descripcion.model.xml.format.DefFmtFichaFactory;
 import descripcion.vos.CampoFechaVO;
-import descripcion.vos.CampoNumericoVO;
 import descripcion.vos.CampoReferenciaVO;
 import descripcion.vos.CampoTextoVO;
 import descripcion.vos.DescriptorVO;
-import descripcion.vos.ICampoVO;
 import descripcion.vos.TextoTablaValidacionVO;
 import descripcion.vos.ValorCampoGenericoVO;
 import descripcion.vos.ValorCampoGenericoVOBase;
@@ -9848,8 +9836,8 @@ public class GestionRelacionesEntregaBIImpl extends ServiceBase implements
 						public int compare(Object o1, Object o2) {
 							UDocEnUiDepositoVO udoc1 = (UDocEnUiDepositoVO) o1;
 							UDocEnUiDepositoVO udoc2 = (UDocEnUiDepositoVO) o2;
-							return udoc1.getSignaturaudoc().compareTo(
-									udoc2.getSignaturaudoc());
+							return new Integer(udoc1.getPosudocenui()).compareTo(
+									new Integer(udoc2.getPosudocenui()));
 						}
 					});
 
@@ -11192,6 +11180,8 @@ public class GestionRelacionesEntregaBIImpl extends ServiceBase implements
 		relacion.setIdprocedimiento(info.getCodigoProcedimiento());
 		relacion.setIdarchivoreceptor(info.getIdArchivoReceptor());
 		relacion.setAno(info.getAnio());
+		relacion.setIdseriedestino(info.getIdSerie());
+		relacion.setIddetprevision(info.getDetallePrevisionVO().getId());
 
 		RelacionEntregaVO relacionBD = _relacionEntregaDBEntity
 				.getRelacionVO(relacion);

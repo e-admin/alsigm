@@ -134,7 +134,7 @@ public class TransferenciasElectronicasConstants {
 	private static final String ERROR_REPOSITORIO_DESTINO_NO_ES_ECM_MSG = "El repositorio de almacenamiento del documento no es un ECM válido";
 
 	public static final String ERROR_SIN_REPOSITORIO_ALMACENAMIENTO_DEFECTO = "0028";
-	private static final String ERROR_SIN_REPOSITORIO_ALMACENAMIENTO_DEFECTO_MSG ="No se ha definido el identificador del repositorio donde se almacenarán el documento";
+	private static final String ERROR_SIN_REPOSITORIO_ALMACENAMIENTO_DEFECTO_MSG ="No se ha definido el identificador del repositorio donde se almacenará el documento";
 
 	public static final String ERROR_VALIDANDO_RELACION_ENTREGA = "0029";
 	private static final String ERROR_VALIDANDO_RELACION_ENTREGA_MSG = "Error al validar la unidad documental en el cuadro";
@@ -149,12 +149,14 @@ public class TransferenciasElectronicasConstants {
 	private static final String ERROR_NO_EXISTE_ORGANO_EN_SISTEMA_EXTERNO_CON_ID_MSG = "No existe ningún órgano externo con ese identificador";
 
 	public static final String ERROR_UNIDAD_DOCUMENTAL_ESTA_DUPLICADA = "0033";
-	private static final String ERROR_UNIDAD_DOCUMENTAL_ESTA_DUPLICADA_MSG = "Ya existe una unidad documental en la relación de entrega";
+	private static final String ERROR_UNIDAD_DOCUMENTAL_ESTA_DUPLICADA_MSG = "Unidad Documental Duplicada en el Sistema";
 
 
 	public static final String ERROR_AL_OBTENER_EL_DOCUMENTO_ORIGEN = "0034";
 	private static final String ERROR_AL_OBTENER_EL_DOCUMENTO_ORIGEN_MSG = "Error al obtener el documento origen";
 
+	public static final String ERROR_VALOR_INCORRECTO = "0035";
+	private static final String ERROR_VALOR_INCORRECTO_MSG = "Valor Incorrecto";
 
 
 	//ERRORES
@@ -233,6 +235,8 @@ public class TransferenciasElectronicasConstants {
 		errores.put(ERROR_UNIDAD_DOCUMENTAL_ESTA_DUPLICADA, ERROR_UNIDAD_DOCUMENTAL_ESTA_DUPLICADA_MSG);
 
 		errores.put(ERROR_AL_OBTENER_EL_DOCUMENTO_ORIGEN, ERROR_AL_OBTENER_EL_DOCUMENTO_ORIGEN_MSG);
+
+		errores.put(ERROR_VALOR_INCORRECTO, ERROR_VALOR_INCORRECTO_MSG);
 
 	}
 
@@ -315,6 +319,16 @@ public class TransferenciasElectronicasConstants {
 	public static final String PARAMETRO_TIPO_ATRIBUTO = "P-25";
 	private static final String PARAMETRO_TIPO_ATRIBUTO_MSG = "tipoAtributo";
 
+	public static final String PARAMETRO_TITULO= "P-26";
+	private static final String PARAMETRO_TITULO_MSG = "Titulo";
+
+	public static final String PARAMETRO_RELACION_ENTREGA = "P-27";
+	private static final String PARAMETRO_RELACION_ENTREGA_MSG = "Relacion de Entrega";
+
+	public static final String PARAMETRO_NUMERO_EXPEDIENTE = "P-28";
+	private static final String PARAMETRO_NUMERO_EXPEDIENTE_MSG = "Numero de Expediente";
+
+
 
 	static{
 		parametros.put(PARAMETRO_OBJETO_INFO_TRANSFERENCIA, PARAMETRO_OBJETO_INFO_TRANSFERENCIA_MSG);
@@ -342,6 +356,9 @@ public class TransferenciasElectronicasConstants {
 		parametros.put(PARAMETRO_FORMATO_FECHA, PARAMETRO_FORMATO_FECHA_MSG);
 		parametros.put(PARAMETRO_ID_LISTA,PARAMETRO_ID_LISTA_MSG);
 		parametros.put(PARAMETRO_TIPO_ATRIBUTO, PARAMETRO_TIPO_ATRIBUTO_MSG);
+		parametros.put(PARAMETRO_RELACION_ENTREGA, PARAMETRO_RELACION_ENTREGA_MSG);
+		parametros.put(PARAMETRO_TITULO, PARAMETRO_TITULO_MSG);
+		parametros.put(PARAMETRO_NUMERO_EXPEDIENTE, PARAMETRO_NUMERO_EXPEDIENTE_MSG);
 	}
 
 

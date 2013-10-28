@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_main</artifactId>
-		<version>3.0</version>
+		<version>3.0.1-M2</version>
 	</parent>
 
 	<artifactId>SIGEM_Tramitacion_Modules</artifactId>
@@ -31,6 +31,7 @@
 				<module>SIGEM_TramitacionWS-resources-configurable</module>
 				<module>SIGEM_BuscadorDocsWeb-resources-configurable</module>
 				<module>SIGEM_ServicioIntermediacionClienteLigeroWS-resources-configurable</module>
+				<module>SIGEM_PortafirmasNotificacionWS-resources-configurable</module>
 			</modules>
 		</profile>	
 		<profile>
@@ -54,6 +55,7 @@
 				<module>SIGEM_TramitacionWS-resources-configurable</module>
 				<module>SIGEM_BuscadorDocsWeb-resources-configurable</module>
 				<module>SIGEM_ServicioIntermediacionClienteLigeroWS-resources-configurable</module>
+				<module>SIGEM_PortafirmasNotificacionWS-resources-configurable</module>
 				<module>SIGEM_TramitacionSecretaria</module>
 				<module>SIGEM_PortafirmasWSClient</module>
 				<module>SIGEM_ServicioIntermediacionClienteLigeroWSClient</module>
@@ -75,6 +77,7 @@
 				<module>SIGEM_TramitacionWS</module>
 				<module>SIGEM_BuscadorDocsWeb</module>
 				<module>SIGEM_ServicioIntermediacionClienteLigeroWS</module>
+				<module>SIGEM_PortafirmasNotificacionWS</module>
 			</modules>
 		</profile>
 	</profiles>

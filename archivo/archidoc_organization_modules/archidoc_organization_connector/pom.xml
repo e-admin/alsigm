@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.archidoc.archidoc_organization</groupId>
 		<artifactId>archidoc_organization_modules</artifactId>
-		<version>5.0</version>
+		<version>5.0.9-M1</version>
 	</parent>
 
 	<artifactId>archidoc_organization_connector</artifactId>

@@ -31,43 +31,51 @@ import org.springframework.util.CollectionUtils;
 
 public class CreateTaskAction extends BaseAction
 {
-	public ActionForward executeAction(ActionMapping mapping, 
-									   ActionForm form, 
-									   HttpServletRequest request, 
-									   HttpServletResponse response, 
+	public ActionForward executeAction(ActionMapping mapping,
+										ActionForm form,
+										HttpServletRequest request,
+										HttpServletResponse response,
 									   SessionAPI session) throws Exception {
-		
+
 		ClientContext cct = session.getClientContext();
-		
+
 		IInvesflowAPI invesflowAPI = session.getAPI();
-		
+
 		// Estado del contexto de tramitación
 		IManagerAPI managerAPI=ManagerAPIFactory.getInstance().getManagerAPI(cct);
 		IState currentstate = managerAPI.currentState(getStateticket(request));
-		IEntitiesAPI entitiesAPI = invesflowAPI.getEntitiesAPI(); 
-		
+		IEntitiesAPI entitiesAPI = invesflowAPI.getEntitiesAPI();
+
 		// formulario asociado
 		BatchForm batchForm = (BatchForm)form;
 		String taskPcdId = request.getParameter("taskPcdId");
 		String batchTaskPcdId = request.getParameter("batchTaskId");
 		String stageid = null;
-		
+
 		//La llamada no es desde tramitacion agrupada
 		if (batchTaskPcdId == null) {
 			stageid = request.getParameter("stageId");
 		}
-		
+
 		//Actualizo stagePcdId con el valor actual
-	
+
 		request.getSession().setAttribute("stagePcdIdActual", cct.getStateContext().getStagePcdId()+"");
 
     	// recogemos los identificadores seleccionados (solo los hay en tramitacion agrupada)
 		String[] stageids = batchForm.getMultibox();
-		if (stageids == null)
+		if (stageids == null) {
 			stageids = new String[0];
+		} else {
+			// Posibilidad de recibir desde la tramitación agrupada los IDs
+			// como 'ID_Fase:ID_Tramite' luego habra que dejar sólo el ID_Fase
+			for (int i = 0; i < stageids.length; i++) {
+				String[] pairStageIdTaskId = stageids[i].split(":");
+				stageids[i] = pairStageIdTaskId[0];
+			}
+		}
 
 		//String[] newTasks = new String[stageids.length];
-		
+
     	int nIdTaskPCD = Integer.parseInt(taskPcdId);
     	int nIdStage = 0;
     	int nIdProcess = 0;
@@ -84,34 +92,34 @@ public class CreateTaskAction extends BaseAction
 
     	// Dependencias del trámite en la fase del procedimiento
     	List taskPcdDependencies = invesflowAPI.getProcedureAPI().getTaskDependencies(nIdTaskPCD).toList();
-    	
+
     	IItem batchTask = null;
     	if (batchTaskPcdId!=null){
         	//que todos los expedientes se encuetran en la fase de la tramitacion agrupada
     		batchTask = invesflowAPI.getBatchTask(new Integer(batchTaskPcdId).intValue());
     		String idFaseTramAgrupada = batchTask.getString("ID_FASE");
-    		
-    		List expErrors = new ArrayList(); 
+
+			List expErrors = new ArrayList();
     		List respErrors = new ArrayList();
     		List depErrors = new ArrayList();
-    		
+
 	    	for (int i = 0; i < stageids.length; i++) {
 	    		IItem stageExpediente = invesflowAPI.getStage(Integer.parseInt(stageids[i]));
-	    		
+
 	    		// Comprobar si se tiene responsabilidad sobre la fase del expediente
 	    		String idResp = stageExpediente.getString("ID_RESP");
 	    		if (!invesflowAPI.getWorkListAPI().isInResponsibleList(idResp, stageExpediente)) {
 	    			respErrors.add(stageExpediente.getString("NUMEXP"));
 	    		}
-	    		
+
 	    		String idFase = stageExpediente.getString("ID_FASE");
 	    		if (!idFaseTramAgrupada.equals(idFase)){
 	    			expErrors.add(stageExpediente.getString("NUMEXP"));
 	    		}
-	    		
+
 				// Comprobar las dependencias del trámite
 				if (!CollectionUtils.isEmpty(taskPcdDependencies)) {
-					
+
 			        // Trámites cerrados en la misma fase
 					Map closedTaskMap = entitiesAPI.queryEntities(
 							SpacEntities.SPAC_DT_TRAMITES,
@@ -132,10 +140,10 @@ public class CreateTaskAction extends BaseAction
 					}
 				}
 	    	}
-	    	
+
 	    	// Expedientes con fase activa diferente a la de la tramitación agrupada
 	    	if (expErrors.size() > 0 ) {
-	    		
+
 	    		StringBuffer str = new StringBuffer();
 	    		for (Iterator iter = expErrors.iterator(); iter.hasNext();) {
 	    			if (str.length()>0) str.append(", ");
@@ -147,7 +155,7 @@ public class CreateTaskAction extends BaseAction
 
 	    	// Expedientes sobre los que no se tiene responsabilidad
 	    	if (respErrors.size() > 0 ) {
-	    		
+
 	    		StringBuffer str = new StringBuffer();
 	    		for (Iterator iter = respErrors.iterator(); iter.hasNext();) {
 	    			if (str.length()>0) str.append(", ");
@@ -159,7 +167,7 @@ public class CreateTaskAction extends BaseAction
 
 	    	// Expedientes que no cumplen las dependencias del trámite
 	    	if (depErrors.size() > 0 ) {
-	    		
+
 	    		StringBuffer str = new StringBuffer();
 	    		for (Iterator iter = depErrors.iterator(); iter.hasNext();) {
 	    			if (str.length()>0) str.append(", ");
@@ -172,10 +180,13 @@ public class CreateTaskAction extends BaseAction
 
     	// Información del trámite
 		IItem taskPcd = invesflowAPI.getProcedureTaskPCD(nIdTaskPCD);
-		
+
+		StringBuffer message = new StringBuffer();
+		String[] args = new String[stageids.length];
+
     	boolean creandoUnSoloTramite = (stageids.length == 1);
     	for (int i = 0; i < stageids.length; i++) {
-    		
+
     		nIdStage = Integer.parseInt(stageids[i]);
 
     		//caso creacion desde el expediente (NO TRAMITACION AGRUPADA)
@@ -186,21 +197,44 @@ public class CreateTaskAction extends BaseAction
 				//nIdStage = Integer.parseInt(stageids[0]);
 				nIdProcess = stage.getInt("ID_EXP");
 			}
-			
-			//Comprobamos si el tramite a crear es simple o complejo
-			String idSubProcess = taskPcd.getString("ID_PCD_SUB");
-			if (StringUtils.isNotEmpty(idSubProcess) && !StringUtils.equals(idSubProcess, "0") ){
-				//creacion en el subproceso
-				nNewActivity = tx.createTask(nIdPcd, nIdStage, nIdTaskPCD, numExp);
-				
+
+			try {
+
+				//Comprobamos si el tramite a crear es simple o complejo
+				String idSubProcess = taskPcd.getString("ID_PCD_SUB");
+				if (StringUtils.isNotEmpty(idSubProcess) && !StringUtils.equals(idSubProcess, "0") ){
+					//creacion en el subproceso
+					nNewActivity = tx.createTask(nIdPcd, nIdStage, nIdTaskPCD, numExp);
+
+				}
+				else {
+					//creacion de tramite normal
+					nNewTask = tx.createTask(nIdStage, nIdTaskPCD);
+				}
 			}
-			else {
-				//creacion de tramite normal
-				nNewTask = tx.createTask(nIdStage, nIdTaskPCD);	
+			catch (ISPACInfo e) {
+
+				if (creandoUnSoloTramite) {
+					throw e;
+				}
+
+				String msg = e.getExtendedMessage(request.getLocale());
+				if (msg != null) {
+
+					msg = StringUtils.replace(msg, "{0}", "{" + i + "}");
+					args[i] = numExp;
+				}
+
+				message.append(msg)
+					.append("<br/><br/>");
 			}
-			
+
 //			if (newTasks.length != 0)
 //			    newTasks[i] = ""+nNewTask;
+		}
+
+		if (message.length() > 0) {
+			throw new ISPACInfo(message.toString(), args, false);
 		}
 
     	//actualizar la tramitacion agrupada (si viene de una tramitacion agrupada)

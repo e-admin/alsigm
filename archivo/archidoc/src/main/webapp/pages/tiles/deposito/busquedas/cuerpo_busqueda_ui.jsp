@@ -20,7 +20,7 @@
 		cleanFormField(form,'signatura');
 		cleanFormField(form,'fondo');
 		cleanFormField(form,'formato');
-		cleanFormField(form,'fecha');
+		cleanFecha(form);
 		removeAmbitos();
 	}
 

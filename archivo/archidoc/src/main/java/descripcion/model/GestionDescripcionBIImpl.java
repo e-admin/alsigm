@@ -690,6 +690,7 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 								((CampoTextoVO) campo).getIdObjeto(),
 								campo.getTipoElemento());
 					} catch (Exception ex) {
+						logger.warn("Error al eliminar elemento texto corto: " + campo, ex);
 					}
 				else
 					campoTextoCortoDBEntity.updateValue((CampoTextoVO) campo);
@@ -707,6 +708,7 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 								((CampoTextoVO) campo).getIdObjeto(),
 								campo.getTipoElemento());
 					} catch (Exception ex) {
+						logger.warn("Error al eliminar elemento texto corto: " + campo, ex);
 					}
 				else
 					campoTextoCortoUDocREDBEntity
@@ -730,6 +732,7 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 								((CampoTextoVO) campo).getIdObjeto(),
 								campo.getTipoElemento());
 					} catch (Exception ex) {
+						logger.warn("Error al eliminar elemento texto largo: " + campo, ex);
 					}
 				else
 					campoTextoLargoDBEntity.updateValue((CampoTextoVO) campo);
@@ -747,6 +750,7 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 								((CampoTextoVO) campo).getIdObjeto(),
 								campo.getTipoElemento());
 					} catch (Exception ex) {
+						logger.warn("Error al eliminar elemento texto largo: " + campo, ex);
 					}
 				else
 					campoTextoLargoUDocREDBEntity
@@ -775,6 +779,7 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 							((CampoReferenciaVO) campo).getIdObjeto(),
 							campo.getTipoElemento());
 				} catch (Exception ex) {
+					logger.warn("Error al borrar elemento referencia: " + campo, ex);
 				}
 			} else {
 				campoReferenciaDBEntity.updateValue((CampoReferenciaVO) campo);
@@ -787,14 +792,16 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 							((CampoReferenciaVO) campo).getIdObjeto(),
 							campo.getTipoElemento());
 				} catch (Exception ex) {
+					logger.warn("Error al borrar elemento referencia: " + campo, ex);
 				}
 			} else {
 				campoReferenciaUDocREDBEntity
 						.updateValue((CampoReferenciaVO) campo);
 			}
 			// campoReferenciaUDocREDBEntity.updateValue((CampoReferenciaVO)campo);
-		} else
+		} else{
 			campoReferenciaDescrDBEntity.updateValue((CampoReferenciaVO) campo);
+		}
 	}
 
 	/**
@@ -2276,7 +2283,9 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 
 		case ValorCampoGenericoVO.TIPO_FECHA:
 			CustomDate cd = new CustomDate(valor.getFormato(), valor.getAnio(),
-					valor.getMes(), valor.getDia(), valor.getSiglo(),
+					valor.getMes(), valor.getDia(),
+					valor.getHoras(), valor.getMinutos(), valor.getSegundos(),
+					valor.getSiglo(),
 					valor.getSeparador(), valor.getCalificador());
 			campo = new CampoFechaVO(id, elem.getEdicion().getId(),
 					valor.getOrden(), valor.getValor(), cd.getMinDate(),
@@ -6170,6 +6179,11 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 		DescriptorVO descriptorVO = getGestionDescripcionBI()
 				.getDescriptorByNombreYIdLista(nombre, idLista);
 
+		// Comprobar que la lista estïa abierta
+		ListaDescrVO listaDescriptora = getGestionDescripcionBI()
+				.getListaDescriptora(idLista);
+
+
 		if (descriptorVO == null) {
 			DescriptorVO descriptor = new DescriptorVO(idLista, nombre);
 			descriptor.setEstado(EstadoDescriptor.VALIDADO);
@@ -6178,12 +6192,7 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 				checkPermission(DescripcionSecurityManager.ADMINISTRAR_DESCRIPTORES_ACTION);
 
 			} catch (Exception e) {
-
-				// Comprobar que la lista estï¿½ abierta
-				ListaDescrVO listaDescr = getGestionDescripcionBI()
-						.getListaDescriptora(idLista);
-
-				if (listaDescr == null || listaDescr.isCerrada()) {
+				if (listaDescriptora == null || listaDescriptora.isCerrada()) {
 					throw new ListaDescriptoraCerradaException();
 				}
 
@@ -6193,18 +6202,31 @@ public class GestionDescripcionBIImpl extends ServiceBase implements
 
 			Locale locale = getServiceClient().getLocale();
 
+
 			// Inicializar valores
 			descriptor.setTieneDescr(Constants.FALSE_STRING);
 			descriptor.setTimestamp(new Date());
 
-			// Auditorï¿½a
+
+			if(listaDescriptora != null){
+				if(StringUtils.isNotEmpty(listaDescriptora.getIdFichaDescrPref())){
+					descriptor.setIdFichaDescr(listaDescriptora.getIdFichaDescrPref());
+					descriptor.setTieneDescr(Constants.TRUE_STRING);
+				}
+
+				descriptor.setTipo(listaDescriptora.getTipoDescriptor());
+
+				descriptor.setIdRepEcm(listaDescriptora.getIdRepEcmPref());
+			}
+
+			// Auditoria
 			LoggingEvent event = AuditoriaDescripcion.getLogginEvent(this,
 					ArchivoActions.DESCRIPCION_MODULE_ALTA_DESCRIPTOR);
 
 			// Crear el descriptor
 			descriptor = descriptorDBEntity.insertDescriptorVO(descriptor);
 
-			// Detalle de la auditorï¿½a
+			// Detalle de la auditoria
 			AuditoriaDescripcion.auditaInsercionDescriptor(locale, event,
 					descriptor);
 

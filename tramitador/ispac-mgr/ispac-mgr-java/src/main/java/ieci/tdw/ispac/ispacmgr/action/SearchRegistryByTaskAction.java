@@ -14,20 +14,21 @@ import org.apache.struts.action.ActionMapping;
 
 public class SearchRegistryByTaskAction extends SearchRegistryAction {
 
-	
-	public ActionForward defaultExecute(ActionMapping mapping, 
+
+	public ActionForward defaultExecute(ActionMapping mapping,
 			   ActionForm form,
-			   HttpServletRequest request, 
+             HttpServletRequest request,
 			   HttpServletResponse response,
-			   SessionAPI session) throws Exception {	
-	
+             SessionAPI session) throws Exception {
+
 		ActionForward forward = super.defaultExecute(mapping, form, request, response, session);
 		if (!StringUtils.equals((String)request.getAttribute("REG_FOUND"), "false")){
 			ItemBean item = (ItemBean)request.getAttribute("Value");
 			item.setProperty("ORIGINO_EXPEDIENTE", "NO");
 			item.setProperty("ID_TRAMITE",request.getParameter("taskId"));
+			item.setProperty("ID_TIPO_DOC",request.getParameter("typeDocId"));
 		}
 		return forward;
 	}
-	
+
 }

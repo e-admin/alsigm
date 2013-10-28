@@ -27,8 +27,32 @@
 	</mapping-groups>
 
 	<content-types>
+		<content-type id="1" name="ListaBD (1)" type="interno">
+			<properties>
+				<property name="JDBC_DATASOURCE">java:comp/env/jdbc/archivoDS</property>
+				<property name="ID_LISTA_VOLUMENES">1</property>
+			</properties>
+		</content-type>
+
+		<content-type id="6" name="ListaBD (6)" type="interno">
+			<properties>
+				<property name="JDBC_DATASOURCE">java:comp/env/jdbc/archivoDS</property>
+				<property name="ID_LISTA_VOLUMENES">6</property>
+			</properties>
+		</content-type>
+
+
+		<content-type id="archivo" name="Archivo" type="interno">
+			<properties>
+				<property name="JDBC_DATASOURCE">java:comp/env/jdbc/archivoDS</property>
+				<property name="ID_LISTA_VOLUMENES">6</property>
+			</properties>
+		</content-type>
+
+
+
 		<!-- Conector Alfresco -->
-		<!-- content-type id="1" name="Alfresco" type="alfresco">
+		<!-- content-type id="Alfresco" name="Alfresco" type="alfresco">
 			<properties>
 				<property name="ALFRESCO_ENDPOINT_ADDRESS">http://<ip>:<>puerto/alfresco/api
 				</property>
@@ -57,8 +81,8 @@
 					</destination>
 				</mapping>
 			</mappings>
-		</content-type>
-	</content-types-->
+		</content-type-->
+	</content-types>
 
 </config>
 

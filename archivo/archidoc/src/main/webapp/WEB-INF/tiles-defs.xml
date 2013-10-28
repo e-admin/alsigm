@@ -29,7 +29,6 @@
 			<add type="string">/js/x_event.js</add>
 			<add type="string">/js/utils.js</add>
 			<add type="string">/js/ficha.js</add>
-			<add type="string">/js/jquery-min.js</add>
 		</putList>
    </definition>
 
@@ -181,6 +180,11 @@
 	<definition name="deposito.reubicacion.selecionUDocs" extends="deposito.defaultArbolLayout">
 		<put name="cuerpo" value="deposito/reubicacion/cuerpo_seleccion_udocs_a_reubicar.jsp" />
 	</definition>
+
+	<definition name="deposito.reubicacion.entre.archivos.selecionUDocs" extends="deposito.defaultArbolLayout">
+		<put name="cuerpo" value="deposito/reubicacion/cuerpo_seleccion_udocs_a_reubicar_EA.jsp" />
+	</definition>
+
 
 	<definition name="deposito.reubicacion.selecionHuecoDestino" extends="deposito.defaultArbolLayout">
 		<put name="cuerpo" value="deposito/reubicacion/cuerpo_seleccion_hueco_destino.jsp" />
@@ -927,7 +931,10 @@
 	</definition>
 
 	<definition name="fondos.series.formularioBusquedaUdocs" extends="fondos.defaultArbolLayout">
-			<put name="cuerpo" value="/pages/tiles/fondos/unidadDocumental/cuerpo_buscar_udocs.jsp" />
+		<put name="cuerpo" value="/pages/tiles/fondos/unidadDocumental/cuerpo_buscar_udocs.jsp" />
+		<putList name="jsFilesPage">
+			<add type="string">/js/jquery-min.js</add>
+		</putList>
 	</definition>
 
 	<definition name="fondos.series.formularioBusquedaSerieDestino" extends="fondos.defaultArbolLayout">
@@ -1696,6 +1703,9 @@
 
 	<definition name="descripcion.gestionFicha.duplicarFicha" extends="descripcion.defaultLayout">
 		<put name="cuerpo" value="descripcion/cuerpo_duplicar_ficha.jsp" />
+		<putList name="jsFilesPage">
+			<add type="string">/js/gestion_ficha.js</add>
+		</putList>
 	</definition>
 
 

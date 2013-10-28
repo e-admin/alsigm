@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_main</artifactId>
-		<version>3.0</version>
+		<version>3.0.1-M2</version>
 	</parent>
 
 	<artifactId>sigem_config</artifactId>
@@ -363,6 +363,16 @@
 			<type>zip</type>
 			<classifier>configurableSigem</classifier>
 		</dependency>
+
+		<!-- SIGEM_PortafirmasNotificacionWS -->
+		<dependency>
+			<groupId>es.ieci.tecdoc.sigem</groupId>
+			<artifactId>SIGEM_PortafirmasNotificacionWS-resources-configurable</artifactId>
+			<version>${pom.version}</version>
+			<type>zip</type>
+			<classifier>configurableSigem</classifier>
+		</dependency>
+
 		<dependency>
 			<groupId>es.ieci.tecdoc.sigem</groupId>
 			<artifactId>SIGEM_SignoWS-configurable-resources</artifactId>

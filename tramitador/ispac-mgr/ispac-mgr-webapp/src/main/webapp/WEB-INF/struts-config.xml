@@ -229,10 +229,7 @@
       <forward name="success" path="exp.tab" />
       <forward name="singleSuccess" path="exp.single" redirect="true"/>
     </action>
-    <action path="/expTrans"
-      type="ieci.tdw.ispac.ispacmgr.action.ExpTransAction"
-      name="batchForm" scope="request" validate="false">
-    </action>
+
     <action path="/showSearch"
       type="ieci.tdw.ispac.ispacmgr.action.ShowSearchAction"
       name="searchForm" scope="request" validate="false">
@@ -650,6 +647,7 @@
       type="ieci.tdw.ispac.ispacmgr.action.AnnexIntrayProcessAction" parameter="method">
       <forward name="success" path="/showIntrayList.do"/>
       <forward name="selectTask" path="/apps/taskRegESDistribuidosList.jsp"/>
+      <forward name="selectTypeDocTask" path="/apps/typeDocTaskRegESDistribuidosList.jsp"/>
       <forward name="redirect" path="/apps/hideFrame.jsp?refresh=true"/>
     </action>
     <action path="/expedientIntray"
@@ -825,13 +823,20 @@
 		<forward name="success" path="/apps/showNotifyDocumentsResult.jsp" />
 	</action>
 
-    <action path="/selectTaskRegisterES" type="ieci.tdw.ispac.ispacmgr.action.SelectTaskRegisterESAction" name="defaultForm" scope="request" validate="false">
+	<action path="/selectTaskRegisterES"
+		type="ieci.tdw.ispac.ispacmgr.action.SelectTaskRegisterESAction" name="defaultForm" scope="request" validate="false">
         <forward name="success" path="/apps/taskRegESList.jsp"/>
-      </action>
+	</action>
 
-    <action path="/searchRegistryByTask" type="ieci.tdw.ispac.ispacmgr.action.SearchRegistryByTaskAction" name="defaultForm" scope="request" validate="false"  parameter="method">
+	<action path="/selectTypeDocTaskRegisterES"
+		type="ieci.tdw.ispac.ispacmgr.action.SelectTypeDocTaskRegisterESAction" name="defaultForm" scope="request" validate="false">
+		<forward name="success" path="/apps/typeDocTaskRegESList.jsp" />
+	</action>
+
+	<action path="/searchRegistryByTask"
+		type="ieci.tdw.ispac.ispacmgr.action.SearchRegistryByTaskAction" name="defaultForm" scope="request" validate="false"  parameter="method">
         <forward name="success" path="/apps/showRegisterByTask.jsp"/>
-      </action>
+	</action>
 
     <action path="/selectOrg"
       type="ieci.tdw.ispac.ispacmgr.action.SelectOrgAction">

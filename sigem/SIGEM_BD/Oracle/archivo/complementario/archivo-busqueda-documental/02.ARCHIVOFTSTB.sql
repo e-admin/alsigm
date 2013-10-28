@@ -8,20 +8,20 @@ begin
    Error := -1;
    begin
       ctx_ddl.create_preference( 'ARCHIVO_LEXER', 'BASIC_LEXER');
-      -- Normalización de  caracteres acentuados 
+      -- Normalización de  caracteres acentuados
       ctx_ddl.set_attribute( 'ARCHIVO_LEXER', 'BASE_LETTER', 'YES');
-      -- Caracteres que unen palabras 
+      -- Caracteres que unen palabras
       ctx_ddl.set_attribute( 'ARCHIVO_LEXER', 'PRINTJOINS', '-/');
-      -- Caracteres finalizadores de una frase 
+      -- Caracteres finalizadores de una frase
       ctx_ddl.set_attribute( 'ARCHIVO_LEXER', 'PUNCTUATIONS', '.?!:');
-      -- Carácter continuador de una palabra al final de una línea 
-      ctx_ddl.set_attribute( 'ARCHIVO_LEXER', 'CONTINUATION', '-'); 
-      ctx_ddl.set_attribute( 'ARCHIVO_LEXER', 'INDEX_THEMES', 'NO'); 
+      -- Carácter continuador de una palabra al final de una línea
+      ctx_ddl.set_attribute( 'ARCHIVO_LEXER', 'CONTINUATION', '-');
+      ctx_ddl.set_attribute( 'ARCHIVO_LEXER', 'INDEX_THEMES', 'NO');
    exception
       when others then Error := 1;
    end;
    begin
-      -- Lematización de palabras del castellano 
+      -- Lematización de palabras del castellano
       ctx_ddl.create_preference( 'ARCHIVO_WORD', 'BASIC_WORDLIST');
       ctx_ddl.set_attribute( 'ARCHIVO_WORD', 'STEMMER', 'SPANISH');
    exception
@@ -33,8 +33,8 @@ begin
       ctx_ddl.set_attribute( 'ARCHIVO_FILTER', 'COMMAND', 'filter.bat');
    exception
       when others then Error := 3;
-   end;   
-   -- Se ha creado esta propiedad porque no hace caso de las palabras vacías por defecto. 
+   end;
+   -- Se ha creado esta propiedad porque no hace caso de las palabras vacías por defecto.
    begin
      ctx_ddl.create_stoplist( 'ARCHIVO_STOP');
      ctx_ddl.add_stopword( 'ARCHIVO_STOP', 'a');
@@ -222,14 +222,14 @@ begin
    end;
 end;
 
-procedure CreatePolicy( Tabla in char, 
-                        Columna in char, 
+procedure CreatePolicy( Tabla in char,
+                        Columna in char,
                         TextKey in char,
                         Vacias in char,
                         Especiales in char,
                         Lematiza in integer) is
 
-   Policy      varchar2(64);      -- Nombre de la política 
+   Policy      varchar2(64);      -- Nombre de la política
    Lexer       varchar2(64);
    WordList    varchar2(64);
    StopList    varchar2(64);
@@ -239,11 +239,11 @@ procedure CreatePolicy( Tabla in char,
    Void        integer;
    n           integer;
    Error       integer;
-begin  
-    
+begin
+
    Error := -1;
    Policy := 'CTX_' || Tabla || '_' || Columna;
-   -- Elimina el índice si ya existe 
+   -- Elimina el índice si ya existe
    begin
      execute immediate 'drop index ' || Policy;
    exception
@@ -252,10 +252,10 @@ begin
    Lexer := 'ARCHIVO_LEXER';
    StopList := 'CTXSYS.EMPTY_STOPLIST';
    WordList := 'ARCHIVO_WORD';
-   -- Crea la categoría GENERIC STOP LIST 
+   -- Crea la categoría GENERIC STOP LIST
    if Vacias is not null then
      StopList :=  Tabla || '_' || Columna || '_STOP';
-	 -- Elimina la preferencia si ya existe 
+    -- Elimina la preferencia si ya existe
      begin
 	   ctx_ddl.drop_stoplist( StopList);
 	 exception
@@ -270,7 +270,7 @@ begin
      n := 1;
      while DBMS_SQL.FETCH_ROWS( Puntero) > 0 loop
        DBMS_SQL.COLUMN_VALUE( Puntero, 1, Palabra);
-       if Palabra is not null then 
+       if Palabra is not null then
          ctx_ddl.add_stopword( StopList, Palabra);
        end if;
      end loop;
@@ -282,23 +282,23 @@ begin
    exception
      when others then Error := 3;
    end;
-   -- Por defecto 
+   -- Por defecto
    Lexer := 'ARCHIVO_LEXER';
-   -- Crea la categoría Lexer 
+   -- Crea la categoría Lexer
    if Especiales is not null then
      Lexer :=  Tabla || '_' || Columna || '_LEXER';
      ctx_ddl.create_preference( Lexer, 'BASIC_LEXER');
-     -- Normalización de  caracteres acentuados 
+     -- Normalización de  caracteres acentuados
      ctx_ddl.set_attribute( Lexer, 'BASE_LETTER', 'YES');
-     -- Caracteres que unen palabras 
+     -- Caracteres que unen palabras
      ctx_ddl.set_attribute( Lexer, 'PRINTJOINS', Especiales);
-     -- Caracteres finalizadores de una frase 
+     -- Caracteres finalizadores de una frase
      ctx_ddl.set_attribute( Lexer, 'PUNCTUATIONS', '.¿?¡!:');
-     -- Carácter continuador de una palabra al final de una línea 
-     ctx_ddl.set_attribute( Lexer, 'CONTINUATION', '-');  
-     ctx_ddl.set_attribute( Lexer, 'INDEX_THEMES', 'NO'); 
+     -- Carácter continuador de una palabra al final de una línea
+     ctx_ddl.set_attribute( Lexer, 'CONTINUATION', '-');
+     ctx_ddl.set_attribute( Lexer, 'INDEX_THEMES', 'NO');
    end if;
-   -- Lematización 
+   -- Lematización
    if Lematiza = 1 then
      begin
 	   execute immediate 'create index ' || Policy ||
@@ -325,34 +325,34 @@ begin
    end if;
 end CreatePolicy;
 
-procedure DropPolicy( Tabla in char, 
-                      Columna in char, 
+procedure DropPolicy( Tabla in char,
+                      Columna in char,
                       Vacias in char,
                       Especiales in char) is
 
-   Policy   varchar2(64);    -- Nombre de la directiva 
-   Lexer    varchar2(64);    -- Lexer asociado a la directica 
-   WordList varchar2(64);    -- Word list asociado a la directiva 
-   StopList varchar2(64);    -- Stop list asociado a la directiva 
+   Policy   varchar2(64);    -- Nombre de la directiva
+   Lexer    varchar2(64);    -- Lexer asociado a la directica
+   WordList varchar2(64);    -- Word list asociado a la directiva
+   StopList varchar2(64);    -- Stop list asociado a la directiva
    Error    integer;
-begin  
-    
+begin
+
    Error := -1;
    Policy := 'CTX_' || Tabla || '_' || Columna;
-   -- Elimina el índice si ya existe 
+   -- Elimina el índice si ya existe
    begin
      execute immediate 'drop index ' || Policy;
    exception
      when others then Error := 1;
    end;
-   -- Elimina la categoría STOP LIST si existe 
+   -- Elimina la categoría STOP LIST si existe
    StopList :=  Tabla || '_' || Columna || '_STOP';
    begin
      ctx_ddl.drop_stopList( StopList);
    exception
      when others then Error := 2;
    end;
-   -- Elimina la categoría Lexer si existe 
+   -- Elimina la categoría Lexer si existe
    Lexer :=  Tabla || '_' || Columna || '_LEXER';
    begin
      ctx_ddl.drop_preference( Lexer);
@@ -361,13 +361,13 @@ begin
    end;
 end DropPolicy;
 
-procedure OptimizePolicy( Tabla in char, 
+procedure OptimizePolicy( Tabla in char,
                           Columna in char) is
 
-   Policy varchar2(64);    -- Nombre de la directiva 
+   Policy varchar2(64);    -- Nombre de la directiva
    Error  integer;
-begin  
-    
+begin
+
    Error := -1;
    Policy := 'CTX_' || Tabla || '_' || Columna;
 
@@ -381,7 +381,7 @@ end OptimizePolicy;
 procedure CreateKey( Tabla in char, Key in char) is
 
    Error  integer;
-begin  
+begin
 
    begin
      execute immediate 'alter table ' || Tabla ||

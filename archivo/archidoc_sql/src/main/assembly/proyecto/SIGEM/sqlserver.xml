@@ -1,0 +1,17 @@
+<assembly>
+	<id>SIGEM_BD_sqlserver</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/sql/comun/sqlserver/Completa</directory>
+			<outputDirectory>/Completa</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/sql/especifico/proyecto/SIGEM/sqlserver</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>

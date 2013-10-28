@@ -280,7 +280,7 @@ public class GestionClasificadorSeriesAction extends BaseAction {
 		}
 
 		if (ConfigConstants.getInstance().getMostrarCampoOrdenacionCuadro()) {
-			if (StringUtils.isEmpty(clfSeriesForm.getCodOrdenacion())) {
+			if (StringUtils.isEmpty(clfSeriesForm.getCodOrdenacion()) && GenericValidator.isBlankOrNull(clfSeriesForm.getCodigo())) {
 				validationErrors.add(
 						ActionErrors.GLOBAL_ERROR,
 						new ActionError(Constants.ERROR_REQUIRED, Messages
@@ -292,68 +292,6 @@ public class GestionClasificadorSeriesAction extends BaseAction {
 
 		return validationErrors.size() > 0 ? validationErrors : null;
 	}
-
-	// public void crearClasificadorSeriesExecuteLogic(ActionMapping mappings,
-	// ActionForm form,
-	// HttpServletRequest request, HttpServletResponse response) {
-	//
-	// ClasificadorSeriesForm clfSeriesForm = (ClasificadorSeriesForm) form;
-	// ActionErrors errors = validateForm(request, clfSeriesForm);
-	// if (errors == null) {
-	// try {
-	//
-	// GestionCuadroClasificacionBI gestionCuadroClasificacionBI =
-	// getGestionCuadroClasificacionBI(request);
-	// String idPadre = clfSeriesForm.getIdPadre();
-	// String nivelPadre = clfSeriesForm.getNivelPadre();
-	//
-	// CuadroClasificacionTreeView treeView = (CuadroClasificacionTreeView)
-	// getFromTemporalSession(
-	// request, FondosConstants.CUADRO_CLF_VIEW_NAME);
-	//
-	// //String parentNodePath = request.getParameter("parentNode");
-	// //TreeNode parentNode = treeView.getNode(parentNodePath);
-	// TreeNode parentNode = treeView.getSelectedNode();
-	// ElementoCuadroClasificacionVO clfSeries = gestionCuadroClasificacionBI
-	// .crearClasificadorSeries(
-	// (ElementoCuadroClasificacionVO) parentNode.getModelItem(),
-	// clfSeriesForm.getTipoClasificador(),
-	// clfSeriesForm.getCodigo(),
-	// clfSeriesForm.getDenominacion());
-	//
-	// TreeNode addedNode = treeView.itemAdded((TreeModelItem) clfSeries);
-	// treeView.setSelectedNode(addedNode);
-	//
-	// /*
-	// * CuadroClasificacionTreeView treeView =
-	// *
-	// (CuadroClasificacionTreeView)request.getSession().getAttribute(FondosConstants.CUADRO_CLF_VIEW_NAME);
-	// * treeView.itemAdded((TreeModelItem)clfSeries);
-	// */
-	//
-	// ActionRedirect result = new ActionRedirect(mappings
-	// .findForward("refreshView"));
-	// //result.addParameter("idelementocf", clfSeries.getId());
-	// result.addParameter("node", addedNode.getNodePath());
-	// result.addParameter("refreshView", "true");
-	// result.setRedirect(true);
-	//
-	// //request.setAttribute(FondosConstants.ELEMENTO_CF_KEY, clfSeries);
-	// setReturnActionFordward(request, result);
-	//
-	// } catch (FondosOperacionNoPermitidaException nuce) {
-	// errors = guardarError(request, nuce);
-	// //errors = manageFondosOperacionNoPermitida(request, nuce);
-	// }
-	// }
-	//
-	// if (errors!=null){
-	// ErrorsTag.saveErrors(request, errors);
-	// altaClasificadorSeriesExecuteLogic(mappings, form, request,
-	// response);
-	// return;
-	// }
-	// }
 
 	protected ActionErrors manageFondosOperacionNoPermitida(
 			HttpServletRequest request, FondosOperacionNoPermitidaException e) {
@@ -616,7 +554,7 @@ public class GestionClasificadorSeriesAction extends BaseAction {
 
 	/**
 	 * Accion para mover el elemento desde la pantalla de Clasificadores.
-	 * 
+    *
 	 * @param mappings
 	 * @param form
 	 * @param request
@@ -632,7 +570,7 @@ public class GestionClasificadorSeriesAction extends BaseAction {
 
 	/**
 	 * Accion para mover el elemento desde el resultado de una búsqueda.
-	 * 
+    *
 	 * @param mappings
 	 * @param form
 	 * @param request

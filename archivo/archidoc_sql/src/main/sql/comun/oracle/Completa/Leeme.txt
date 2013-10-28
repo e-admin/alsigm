@@ -1,0 +1,20 @@
+Ejemplo de importación en la base de datos PRODUCTOARCHIVO con password PRODUCTOARCHIVO y sid GDOC179
+
+1) Abrir una consola de sistema mediante el comando cmd
+
+2) Entrar en el directorio donde estén los scripts de creación de la base de datos limpia:
+
+	cd ~\Completa"
+
+3) Ejecutar sqlplus
+
+	Usuario: NOMBRE_USUARIO
+	Password: PASSWORD@NOMBREINSTANCIA
+
+4) Eliminar las tablas anteriores mediante el comando
+
+	@dropAll.sql
+
+5) Crear las nuevas tablas mediante el comando
+
+	@All.sql <NOMBRE_TABLESPACE>

@@ -27,7 +27,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene una consulta dada por su identificador para su
 	 * visualizacion(Realiza auditoria)
-	 * 
+    *
 	 * @param codconsulta
 	 *            Identificador de la consulta que deseamos recuperar
 	 * @return consulta asociada al id
@@ -36,7 +36,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene una consulta dada por su identificador
-	 * 
+    *
 	 * @param codconsulta
 	 *            Identificador de la consulta que deseamos recuperar
 	 * @return consulta asociada al id
@@ -51,7 +51,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Realiza la inserción de una consulta en la base de datos por un
 	 * determinado usuario.
-	 * 
+    *
 	 * @param vo
 	 *            Consulta con los datos que deseamos insertar en la bd.
 	 * @param user
@@ -62,7 +62,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Realiza la actualizacion de una consulta.
-	 * 
+    *
 	 * @param consultaVO
 	 *            Consulta que deseamos actualizar
 	 */
@@ -73,7 +73,7 @@ public interface GestionConsultasBI {
 	 * Realiza el borrado de las consultas seleccionadas comprobando si es
 	 * posible borrarlas, ya que solo se puede elimnar consultas en estado
 	 * abierta o rechazada
-	 * 
+    *
 	 * @param consultasAEliminar
 	 *            Listado de los identificadores de las consultas a eliminar.
 	 * @throws ConsultaActionNotAllowedException
@@ -84,7 +84,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Realiza el envío de la solicitud de los detalles de una consulta.
-	 * 
+    *
 	 * @param idConsulta
 	 *            Identificador de la consulta que deseamos enviar su solicitud.
 	 * @throws ConsultaActionNotAllowedException. Si
@@ -122,7 +122,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Pasa la consulta a estado autorizado teniendo en cuenta el estado de las
 	 * unidades documentales asociadas a el.
-	 * 
+    *
 	 * @param idConsulta
 	 *            Identificador de la consulta que deseamos autorizar.
 	 * @param detalles
@@ -145,7 +145,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Realiza la entrega de una consulta(pasandola a entregada a ella y a sus
 	 * u.docs autorizadas asociadas
-	 * 
+    *
 	 * @param idConsulta
 	 *            Identificador de la consulta que deseamos entregar
 	 */
@@ -154,7 +154,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Indica si un usuario tiene consultas en curso.
-	 * 
+    *
 	 * @param idUsuario
 	 *            Identificador de usuario
 	 * @return true si el usuario tiene consultas en curso.
@@ -164,7 +164,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de consultas que se encuentran en alguno de los
 	 * estados indicados.
-	 * 
+    *
 	 * @param estados
 	 *            Listado de los posibles estados en que deseamos que se
 	 *            encuentre las consultas buscadas
@@ -176,7 +176,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de consultas que se encuentran en alguno de los
 	 * estados indicados.
-	 * 
+    *
 	 * @param estados
 	 *            Listado de los posibles estados en que deseamos que se
 	 *            encuentre las consultas buscadas
@@ -196,7 +196,7 @@ public interface GestionConsultasBI {
 	 * solicitante) y se encuentra en unos de los estado pasados. En caso de que
 	 * se pase el filtro de busqueda estos criterios deberan ser tambien
 	 * cumplidos: fecha entrega,fescha estado.
-	 * 
+    *
 	 * @param idUsuario
 	 *            Identificador del usuario del que deseamos obtener las
 	 *            consultas
@@ -215,7 +215,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene el número de consultas en las que el usuario figura como
 	 * solicitante.
-	 * 
+    *
 	 * @param nUsuarioSolicitante
 	 *            Identificador del usuario solicitante
 	 * @return Número de consultas para el usuario solicitante
@@ -225,7 +225,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene el número de consultas en las que el usuario figura como
 	 * solicitante.
-	 * 
+    *
 	 * @param nUsuarioSolicitante
 	 *            Identificador del usuario solicitante
 	 * @param idsArchvo
@@ -238,7 +238,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene el número de consultas abiertas en las que el usuario figura como
 	 * solicitante.
-	 * 
+    *
 	 * @param nUsuarioSolicitante
 	 *            Identificador del usuario solicitante
 	 * @return Número de consultas abiertas para el usuario solicitante
@@ -249,7 +249,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de las consultas en las que el usuario figura como
 	 * solicitante.
-	 * 
+    *
 	 * @param nUsuarioSolicitante
 	 *            Identificador del usuario solicitante
 	 * @return Listado de las consultas para el usuario solicitante
@@ -259,7 +259,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de las consultas abiertas en las que el usuario figura
 	 * como solicitante.
-	 * 
+    *
 	 * @param nUsuarioSolicitante
 	 *            Identificador del usuario solicitante
 	 * @return Listado de las consultas abiertas para el usuario solicitante
@@ -269,7 +269,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de las consultas en las que el usuario figura usuario
 	 * consultor y tiene el estado abierto.
-	 * 
+    *
 	 * @param nUsuario
 	 *            Nombre del usuario consultor
 	 * @return Listado de las consultas para el usuario
@@ -279,7 +279,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de las consultas que tiene abiertas un usuario como
 	 * usuario solicitante.
-	 * 
+    *
 	 * @param idUsuario
 	 *            Identificador del usuario del que deseamos obtener las
 	 *            consultas
@@ -288,7 +288,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Realiza la búsqueda de consultas.
-	 * 
+    *
 	 * @param busqueda
 	 *            Objeto con los filtros para aplicar en la busqueda
 	 * @return Listado de las consultas.
@@ -300,7 +300,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene todos los temas existentes para un determinado tipo de entidad
-	 * 
+    *
 	 * @param tipo
 	 *            Tipo de la entidad de la que deseamos obtener los temas: -1
 	 *            Investigador -2 Ciudadano -3 Organo Externo
@@ -311,7 +311,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de temas para un determinado usuario dado por su
 	 * identificador
-	 * 
+    *
 	 * @param id
 	 *            Identificador del usuario
 	 * @return Listado de los temas del usuario
@@ -322,7 +322,7 @@ public interface GestionConsultasBI {
 	 * Obtiene un listado de temas para un determinado usuario investigador por
 	 * su identificador además de los temas comunes para los usuarios
 	 * investigadores.
-	 * 
+    *
 	 * @param idUsuarioInvestigador
 	 * @return Lista de {@link TemaVO}
 	 */
@@ -331,7 +331,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene el lista de temas para un determinado usuario de consulta en
 	 * sala.
-	 * 
+    *
 	 * @param idUsrCSala
 	 *            Identificador del usuario de consulta en Sala.
 	 * @return Lista de {@link TemaVO}
@@ -340,21 +340,21 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene el lista de temas para los usuarios de tipo ciudadanos
-	 * 
+    *
 	 * @return Lista de {@link TemaVO}
 	 */
 	public List getTemasCiudadano();
 
 	/**
 	 * Obtiene la lista de temas para los usuarios de tipo Órgano
-	 * 
+    *
 	 * @return Lista de {@link TemaVO}
 	 */
 	public List getTemasOrgano();
 
 	/**
 	 * Obtiene los detalles(u.docs) de una consulta dada por su identificador.
-	 * 
+    *
 	 * @param codigoConsulta
 	 *            Identificador de la consulta de la que deseamos obtener los
 	 *            detalles.
@@ -365,7 +365,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene todas las unidadesd documentales que han sido devueltas para una
 	 * consulta dada por su identificador.
-	 * 
+    *
 	 * @param codigoConsulta
 	 *            Identificador de la consulta que deseamos obtener sus detalles
 	 * @return Listado de las unidaddes documentales devueltas para la consulta
@@ -375,7 +375,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene la ubicacion de una unidad documental identificada por su
 	 * signatura y su identificador.
-	 * 
+    *
 	 * @param idUdoc
 	 *            Identificador de la unidad documental.
 	 * @param Signatura
@@ -387,7 +387,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene el detalle de identificador por su id y signatura de una consulta
 	 * dada por su identificador
-	 * 
+    *
 	 * @param codigoConsulta
 	 *            Identificador de la consulta al que pertenece el detalle.
 	 * @param idudoc
@@ -402,7 +402,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Elimina los detalles(udocumentals) identificados por su id de la unidad
 	 * documental y su signatura y que esta asociado a una consulta.
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta al que va asociado el detalle
 	 * @param idudoc
@@ -417,7 +417,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Realiza la inserción de un nuevo detalle para una consulta
-	 * 
+    *
 	 * @param detalleConsulta
 	 *            Detalle de la consulta a insertar en la bd.
 	 */
@@ -426,7 +426,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Realiza la autorización de una unidad documental de una determinada
 	 * consulta.
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta a la que pertenece la unidad documental.
 	 * @param idudoc
@@ -442,7 +442,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Realiza la denegación de una unidad documental de una determinada
 	 * consulta.
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta a la que pertenece la unidad documental.
 	 * @param idudoc
@@ -460,7 +460,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene un listado de los motivos de rechazo existente para las consultas
-	 * 
+    *
 	 * @return Listado de los motivos de rechazo {@link MotivoRechazoVO}
 	 *         existentes para una consulta
 	 */
@@ -468,7 +468,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Realiza la devolución de un detalle(u.doc) para una consulta.
-	 * 
+    *
 	 * @param detalle
 	 *            a devolver
 	 */
@@ -480,7 +480,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene todos los posibles estados en los que se puede encontrar una
 	 * consulta
-	 * 
+    *
 	 * @return listado de los posibles estados de una consulta
 	 **/
 	public Collection getEstadosConsulta();
@@ -519,7 +519,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de los motivos existentes para el tipo de entidad
 	 * indicado.
-	 * 
+    *
 	 * @param tipo
 	 *            TIpo de entidad del que deseamos obtener los motivos.
 	 * @return Listado de los motivos existentes para el tipo de entidad
@@ -529,7 +529,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene los Motivos para el usuario investigador
-	 * 
+    *
 	 * @param idUsuarioConectado
 	 *            Identificador del Usuario Conectado
 	 * @param idUsuario
@@ -541,7 +541,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene los Motivos para los Usuarios de Consulta en Sala
-	 * 
+    *
 	 * @return Lista de {@link MotivoConsultaVO}
 	 */
 	public abstract List getMotivosUsuarioConsultaEnSala(AppUser appUser,
@@ -549,7 +549,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene un listado de los motivos existentes para el tipo de consulta.
-	 * 
+    *
 	 * @param tipo
 	 *            TIpo de consulta de la que deseamos obtener los motivos.
 	 * @return Listado de los motivos existentes para el tipo de consulta
@@ -559,7 +559,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene el número de consultas gestionables por el usuario.
-	 * 
+    *
 	 * @param userVO
 	 *            Usuario del que deseamos obtener las consultas
 	 * @return Número de consultas gestionables por el usuario
@@ -568,7 +568,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene el número de consultas con reserva gestionables por el usuario.
-	 * 
+    *
 	 * @param userVO
 	 *            Usuario del que deseamos obtener las consultas
 	 * @return Número de consultas gestionables por el usuario
@@ -577,7 +577,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene un listado de consultas gestionables por el usuario.
-	 * 
+    *
 	 * @param userVO
 	 *            Usuario del que deseamos obtener las consultas
 	 * @return Listado de consultas gestionables por el usuario
@@ -586,7 +586,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene un listado de consultas con reserva gestionables por el usuario.
-	 * 
+    *
 	 * @param userVO
 	 *            Usuario del que deseamos obtener las consultas
 	 * @return Listado de consultas gestionables por el usuario
@@ -596,7 +596,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Realiza la insercion de un nuevo tema en la base de datos para un usuario
 	 * investigador
-	 * 
+    *
 	 * @param id
 	 *            Identificador del usuario creador del nuevo tema
 	 * @param tema
@@ -608,7 +608,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene un listado de consultas a partir de sus identificadores.
-	 * 
+    *
 	 * @param codigos
 	 *            Listado de los identificadores de las consultas que deseamo
 	 *            recuperar
@@ -619,7 +619,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene la informacion adicional de un detalle(Descripcion del Fondo,
 	 * Descripcion del Sistema Productor y Exepdiente correcto)
-	 * 
+    *
 	 * @param detalle
 	 *            Detalle del que deseamos obtener la informacion adicional
 	 * @return Detalle con los datos adicionales
@@ -629,7 +629,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene el número de detalles que están asociados a una determinada
 	 * consulta.
-	 * 
+    *
 	 * @param idConsutla
 	 *            Identificador de la consulta del que deseamos conocer su
 	 *            numero de detalles asociados.
@@ -640,7 +640,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Compueba la disponibilidad de las unidades documentales seleccionadas de
 	 * una determninada consulta, estableciendo su estado de disponiblidad.
-	 * 
+    *
 	 * @param Consulta
 	 *            Consulta a la que pertenecen las unidades
 	 * @param detalles
@@ -651,7 +651,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Realiza la entrega de una reserva de una consulta.
-	 * 
+    *
 	 * @param idConsulta
 	 *            Identificador de la reserva de consulta
 	 * @throws ConsultaActionNotAllowedException
@@ -662,7 +662,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene el número de las preguntas que pueden ser entregadas
-	 * 
+    *
 	 * @param idsArchivo
 	 * @return Número de las preguntas que pueden ser entregadas
 	 */
@@ -670,7 +670,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Obtiene un listado de las preguntas que pueden ser entregadas
-	 * 
+    *
 	 * @return Listado de las preguntas que pueden ser entregadas
 	 */
 	public List obtenerListadoEntregar(String[] idsArchivo);
@@ -678,7 +678,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Recupera los detalles de la consulta seleccionada para el usuario
 	 * conectado
-	 * 
+    *
 	 * @param userVO
 	 *            Usuario conectado
 	 * @param consulta_VO
@@ -691,7 +691,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de los detalles de una consulta para imprimir sus
 	 * papeletas de salida
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta de la que se desean obtener los detalles
 	 * @return Listado de los detalles de consulta
@@ -700,7 +700,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Realiza la devolucion de las unidades documentales seleccionadas.
-	 * 
+    *
 	 * @param udocs
 	 *            Unidades documentales a devolver
 	 */
@@ -710,7 +710,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene informacion adicional sobre la consulta indicada: - Nombre del
 	 * archivo. - Datos del usuario creador.
-	 * 
+    *
 	 * @param consulta
 	 *            Consulta de la que deseamos obtener la informacion
 	 * @return ConsultaVO
@@ -720,7 +720,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene un listado de usuarios "visibles" en funcion de los permisos del
 	 * usuario para filtrar en las busquedas por usuario
-	 * 
+    *
 	 * @return Listado de usuario
 	 */
 	public Collection getUsuariosBusqueda();
@@ -752,7 +752,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene la lista de detalles de consultas que disponen de una unidad
 	 * documental.
-	 * 
+    *
 	 * @param consulta
 	 *            Información de la consulta.
 	 * @param detalleConsulta
@@ -764,7 +764,7 @@ public interface GestionConsultasBI {
 
 	/*
 	 * (sin Javadoc)
-	 * 
+    *
 	 * @see common.bi.GestionConsultasBI#getNumDetalles(java.lang.String)
 	 */
 	public int getNumDetalles(String idSolicitud);
@@ -773,7 +773,7 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Actualiza las observaciones
-	 * 
+    *
 	 * @param idSolicitud
 	 */
 	public void actualizarObservaciones(String idSolicitud, String observaciones);
@@ -799,7 +799,7 @@ public interface GestionConsultasBI {
 	/**
 	 * Obtiene las consultas a los que se pueden añadir unidades documentales
 	 * desde la búsqueda.
-	 * 
+    *
 	 * @param idArchivo
 	 *            Identificador del Archivo
 	 * @param idUsuario
@@ -811,11 +811,21 @@ public interface GestionConsultasBI {
 
 	/**
 	 * Inserta los detalles a la consulta.
-	 * 
+    *
 	 * @param vo
 	 * @param user
 	 * @throws ConsultaActionNotAllowedException
 	 */
 	public void insertarDetallesAConsulta(ConsultaVO vo, ServiceClient user)
 			throws ConsultaActionNotAllowedException;
+
+
+	/**
+    * Permite realizar el cambio de estado de una consulta, cuyo plazo de entrega ha caducado.
+    * Se cambia el estado a Enviada, y todos los los detalles que tengan estado autorizados, se cambian
+    * a pendientes, para que el usuario vuelva a realzar el proceso de autorización, donde se comprueba otra
+    * vez la fecha de disponibilidad.
+    * @param idConsulta
+    */
+	public void cambiarEstadoDeAutorizadaAEnviadaYDetallesAutorizadosAPendientes(String idConsulta);
 }

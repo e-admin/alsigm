@@ -145,6 +145,13 @@ public interface IDetallePrevisionDBEntity extends IDBEntity {
 	 * @param detalle
 	 * @return
 	 */
-	public DetallePrevisionVO getDetallePrestamoVO(DetallePrevisionVO detalle);
+	public DetallePrevisionVO getDetallePrevisionVO(DetallePrevisionVO detalle);
+
+	/**
+    * Obtiene el número de series asociadas al detalle de la previsión
+    * @param idSerie Cadena que contiene el número d ela
+    * @return
+    */
+	public int getCountDetallesBySerie(String idSerie);
 
 }

@@ -109,18 +109,18 @@ public class BusquedasGeneratorHelper {
 			CamposBusquedas.CAMPO_ENTRADA_BUSQUEDA_GENERICO_CAMPO_FECHA };
 
 	/**
-	 * 
+    *
 	 * <pre>
 	 * Separa tokens del texto por comillas dobles o espacios. Ejemplo:
-	 * 
+    *
 	 * esto es "una prueba"
-	 * 
+    *
 	 * se separaría en los siguientes tokens:
 	 * esto
 	 * es
 	 * una prueba
 	 * </pre>
-	 * 
+    *
 	 * @param texto
 	 *            Texto a separar en tokens
 	 * @return Lista de {@link String} con los distintos tokens
@@ -206,7 +206,7 @@ public class BusquedasGeneratorHelper {
 
 	/**
 	 * Permite obtener la definición de una columna a partir de su nombre
-	 * 
+    *
 	 * @param nameColumn
 	 *            Nombre de la columna
 	 * @return Definición de la columna
@@ -746,6 +746,27 @@ public class BusquedasGeneratorHelper {
 		return query.toString();
 	}
 
+	private static ArrayList getCondicionesBusquedaDocumental(DbConnection conn, DbColumnDef colDef, DbColumnDef idxColDef,String texto){
+		if (StringUtils.isNotBlank(texto)) {
+			ArrayList listaTexto = obtenerListaCondicionesTexto(texto);
+			ArrayList condiciones = new ArrayList();
+			if (listaTexto != null && listaTexto.size() > 0) {
+				Iterator it = listaTexto.iterator();
+				String textoBusqueda = null;
+				while (it.hasNext()) {
+					textoBusqueda = (String) it.next();
+					condiciones.add(DBUtils.generateContainsTokenField(conn,
+							colDef,
+							idxColDef,
+							textoBusqueda));
+				}
+			}
+			return condiciones;
+		}
+		return null;
+	}
+
+
 	private static String componerQueryGenericoTextoCorto(DbConnection conn,
 			String texto, String idCampo, String operador,
 			String aliasTablaPrincipal) {
@@ -866,7 +887,7 @@ public class BusquedasGeneratorHelper {
 	}
 
 	private static String componerQueryNoElementoCfTextoTextos(
-			DbConnection conn, String texto, String aliasTablaPrincipal) {
+			DbConnection conn, String texto, String aliasTablaPrincipal, boolean incluirTitulo) {
 		StringBuffer query = new StringBuffer();
 		query.append(
 				componerQueryNoElementoCfTextoCorto(conn, texto,
@@ -874,7 +895,31 @@ public class BusquedasGeneratorHelper {
 				.append(DBUtils.UNION)
 				.append(componerQueryNoElementoCfTextoLargo(conn, texto,
 						aliasTablaPrincipal, null));
+
+
+				if(incluirTitulo){
+					query.append(DBUtils.UNION)
+					.append(componerQueryTitulo(conn, texto));
+				}
+
 		return query.toString();
+	}
+
+	private static String componerQueryTitulo(DbConnection conn, String texto) {
+
+		StringBuffer query = new StringBuffer()
+		.append(DBUtils.SELECT)
+		.append(ElementoCuadroClasificacionDBEntityImplBase.ID_ELEMENTO_FIELD.getQualifiedName())
+		.append(DBUtils.FROM)
+		.append(new TableDef(ElementoCuadroClasificacionDBEntityImplBase.TABLE_NAME_ELEMENTO)
+				.getDeclaration()).append(DBUtils.WHERE)
+		.append(joinConditions(getCondicionesBusquedaDocumental(conn,
+				ElementoCuadroClasificacionDBEntityImplBase.TITULO_FIELD,
+				ElementoCuadroClasificacionDBEntityImplBase.IDXTITULO_FIELD
+				, texto), DBUtils.AND));
+
+		return query.toString();
+
 	}
 
 	private static String componerQueryNoElementoCfTextoDescriptores(
@@ -916,11 +961,23 @@ public class BusquedasGeneratorHelper {
 	}
 
 	private static String componerQueryNoElementoCfTexto(DbConnection conn,
-			String texto, String aliasTablaPrincipal, String tipo) {
+			String texto, String aliasTablaPrincipal, String tipo, Map restricciones) {
+
+		boolean incluirTextos = false;
+
+		if(restricciones != null && StringUtils.isNotBlank(texto)){
+			Object restriccionTexto = restricciones.get(RestriccionesCamposBusquedas.RESTRICCION_CAMPO_BUSQUEDA_TITULO);
+
+			if(restriccionTexto != null){
+				incluirTextos = true;
+			}
+		}
+
+
 		StringBuffer query = new StringBuffer();
 		if (CamposBusquedas.CAMPO_TIPO_TODOS_TEXTOS.equals(tipo)) {
 			query.append(componerQueryNoElementoCfTextoTextos(conn, texto,
-					aliasTablaPrincipal));
+					aliasTablaPrincipal, incluirTextos));
 		} else if (CamposBusquedas.CAMPO_TIPO_TODOS_DESCRIPTORES.equals(tipo)) {
 			query.append(componerQueryNoElementoCfTextoDescriptores(conn,
 					texto, aliasTablaPrincipal));
@@ -928,7 +985,7 @@ public class BusquedasGeneratorHelper {
 				.equals(tipo)) {
 			query.append(
 					componerQueryNoElementoCfTextoTextos(conn, texto,
-							aliasTablaPrincipal))
+							aliasTablaPrincipal, incluirTextos))
 					.append(DBUtils.UNION)
 					.append(componerQueryNoElementoCfTextoDescriptores(conn,
 							texto, aliasTablaPrincipal));
@@ -1229,9 +1286,13 @@ public class BusquedasGeneratorHelper {
 					aliasTablaPrincipal, true);
 		} else if (campoBusqueda.getNombre().equals(
 				CamposBusquedas.CAMPO_ENTRADA_BUSQUEDA_TEXTO)) {
-			condicion = componerQueryNoElementoCfTexto(conn,
+			StringBuffer sql = new StringBuffer()
+			.append(componerQueryNoElementoCfTexto(conn,
 					busquedaElementosVO.getTexto(), aliasTablaPrincipal,
-					campoBusqueda.getTipo());
+					campoBusqueda.getTipo(), campoBusqueda.getRestricciones()));
+
+			condicion = sql.toString();
+
 		} else if (campoBusqueda.getNombre().equals(
 				CamposBusquedas.CAMPO_ENTRADA_BUSQUEDA_FECHA_INICIAL)) {
 			condicion = componerQueryNoElementoCfFecha(conn, campoBusqueda,

@@ -43,6 +43,9 @@ public class Valor extends ValorInicial {
 			setAnio(valorInicial.getAnio());
 			setMes(valorInicial.getMes());
 			setDia(valorInicial.getDia());
+			setHoras(valorInicial.getHoras());
+			setMinutos(valorInicial.getMinutos());
+			setSegundos(valorInicial.getSegundos());
 			setSiglo(valorInicial.getSiglo());
 			setFormato(valorInicial.getFormato());
 			setSeparador(valorInicial.getSeparador());
@@ -55,7 +58,7 @@ public class Valor extends ValorInicial {
 
 	/**
 	 * Constructor.
-	 * 
+    *
 	 * @param orden
 	 *            Orden.
 	 */
@@ -66,7 +69,7 @@ public class Valor extends ValorInicial {
 
 	/**
 	 * Constructor.
-	 * 
+    *
 	 * @param orden
 	 *            Orden.
 	 * @param valor
@@ -88,6 +91,9 @@ public class Valor extends ValorInicial {
 		setAnio(customDate.getYear());
 		setMes(customDate.getMonth());
 		setDia(customDate.getDay());
+		setHoras(customDate.getHour());
+		setMinutos(customDate.getMinutes());
+		setSegundos(customDate.getSeconds());
 		setSiglo(customDate.getCentury());
 		setFormato(customDate.getFormat());
 		setSeparador(customDate.getSeparator());
@@ -96,7 +102,7 @@ public class Valor extends ValorInicial {
 
 	/**
 	 * Constructor.
-	 * 
+    *
 	 * @param valor
 	 *            Valor.
 	 * @param idRef
@@ -112,7 +118,7 @@ public class Valor extends ValorInicial {
 
 	/**
 	 * Constructor.
-	 * 
+    *
 	 * @param valor
 	 *            Valor.
 	 * @param idRef
@@ -175,7 +181,7 @@ public class Valor extends ValorInicial {
 
 	/**
 	 * Indica si el objeto pasado por parámetro es igual a éste.
-	 * 
+    *
 	 * @param valor
 	 *            Valor.
 	 * @return si son iguales.
@@ -203,7 +209,7 @@ public class Valor extends ValorInicial {
 
 	/**
 	 * Obtiene una representación XML del objeto.
-	 * 
+    *
 	 * @param indent
 	 *            Número de espacios de tabulación.
 	 * @return Representación del objeto.
@@ -252,6 +258,26 @@ public class Valor extends ValorInicial {
 		if (getDia() != null) {
 			xml.append(" " + TagsFicha.ATTR_DAY_VALOR_DATO + "=\"");
 			xml.append(getDia());
+			xml.append("\"");
+		}
+
+		// Hora
+		if (getHoras() != null) {
+			xml.append(" " + TagsFicha.ATTR_HOURS_VALOR_DATO + "=\"");
+			xml.append(getHoras());
+			xml.append("\"");
+		}
+
+		// Minutos
+		if (getMinutos() != null) {
+			xml.append(" " + TagsFicha.ATTR_MINUTES_VALOR_DATO + "=\"");
+			xml.append(getMinutos());
+			xml.append("\"");
+		}
+		// Segundos
+		if (getSegundos() != null) {
+			xml.append(" " + TagsFicha.ATTR_SECONDS_VALOR_DATO + "=\"");
+			xml.append(getSegundos());
 			xml.append("\"");
 		}
 

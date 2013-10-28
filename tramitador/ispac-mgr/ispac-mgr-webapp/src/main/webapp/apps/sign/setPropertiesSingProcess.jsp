@@ -154,7 +154,7 @@ function  validar(){
 			jAlert('<bean:message key="aviso.portafirmas.content.obligatorio"/>' , '<bean:message key="common.alert"/>', '<bean:message key="common.message.ok"/>', '<bean:message key="common.message.cancel"/>');
 		}
 		else{
-			submit();
+			document.forms[0].submit();
 		}
 	}
 

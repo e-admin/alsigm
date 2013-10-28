@@ -57,7 +57,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Obtiene el identificador de la tabla de validación.
-	 * 
+    *
 	 * @return Identificador de la tabla de validación.
 	 */
 	public String getIdTblVld() {
@@ -66,7 +66,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Establece el identificador de la tabla de validación.
-	 * 
+    *
 	 * @param idTblVld
 	 *            Identificador de la tabla de validación.
 	 */
@@ -76,7 +76,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Añade un formato a la lista.
-	 * 
+    *
 	 * @param formato
 	 *            Formato de fecha.
 	 */
@@ -86,7 +86,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Obtiene un formato de la lista en función de su posición.
-	 * 
+    *
 	 * @param index
 	 *            Posición del formato dentro de la lista.
 	 * @return Formato de fecha.
@@ -97,7 +97,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Obtiene el separador del tipo especificado
-	 * 
+    *
 	 * @param tipo
 	 *            Cadena que define el tipo de formato
 	 * @return Cadena que define el caracter separador
@@ -121,7 +121,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Obtiene la lista de formatos de fechas.
-	 * 
+    *
 	 * @return Lista de formatos de fechas.
 	 */
 	public DefFormatoFecha[] getFormatos() {
@@ -131,7 +131,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Obtiene el número de formatos de fechas de la lista.
-	 * 
+    *
 	 * @return Número de formatos de fechas.
 	 */
 	public int getTotalFormatos() {
@@ -140,7 +140,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Elimina el formato de fecha de la posición determinada.
-	 * 
+    *
 	 * @param index
 	 *            Posición del formato de fecha a eliminar.
 	 */
@@ -150,7 +150,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Elimina el formato de la lista.
-	 * 
+    *
 	 * @param formato
 	 *            Formato a eliminar.
 	 */
@@ -167,7 +167,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Obtiene los identificadores de las listas descriptoras.
-	 * 
+    *
 	 * @return Identificadores de las listas descriptoras.
 	 */
 	public String getIdsListasDescriptoras() {
@@ -176,17 +176,17 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Establece los identificadores de las listas descriptoras.
-	 * 
+    *
 	 * @param idsListasDescriptoras
 	 *            Identificadores de las listas descriptoras.
 	 */
 	public void setIdsListasDescriptoras(String idsListasDescriptoras) {
-		this.idsListasDescriptoras = idsListasDescriptoras;
+		this.idsListasDescriptoras = StringUtils.trimToEmpty(idsListasDescriptoras);
 	}
 
 	/**
 	 * Obtiene el tipo de referencia.
-	 * 
+    *
 	 * @return Tipo de referencia.
 	 */
 	public short getTipoReferencia() {
@@ -195,7 +195,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Establece el tipo de referencia.
-	 * 
+    *
 	 * @param tipoReferencia
 	 *            Tipo de referencia.
 	 */
@@ -299,7 +299,7 @@ public class DefInformacionEspecifica extends XmlElement {
 
 	/**
 	 * Obtiene una representación XML del objeto.
-	 * 
+    *
 	 * @param indent
 	 *            Número de espacios de tabulación.
 	 * @return Representación del objeto.

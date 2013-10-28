@@ -14,4 +14,5 @@ public class RestriccionesCamposBusquedas {
 	public static final String RESTRICCION_CAMPO_BUSQUEDA_PRODUCTOR = "Productor";
 	public static final String RESTRICCION_CAMPO_BUSQUEDA_DESCRIPTORES = "Descriptores";
 	public static final String RESTRICCION_CAMPO_BUSQUEDA_FICHA = "Ficha";
+	public static final String RESTRICCION_CAMPO_BUSQUEDA_TITULO = "Titulo";
 }

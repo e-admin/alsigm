@@ -1072,15 +1072,22 @@
 					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
 				</Context>
 				
-			
+				<!-- Portafirmas Minhap Notificacion WEB SERVICE -->
+				<Context docBase="SIGEM_PortafirmasNotificacionWS" path="/SIGEM_PortafirmasNotificacionWS" reloadable="true">
+
+					<ResourceLink global="jdbc/registroDS_000" name="jdbc/registroDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/tramitadorDS_000" name="jdbc/tramitadorDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/eTramitacionDS_000" name="jdbc/eTramitacionDS_000" type="javax.sql.DataSource"/>
+
+					<ResourceLink global="jdbc/fwktd-auditDS_000" name="jdbc/fwktd-auditDS_000" type="javax.sql.DataSource"/>
+
+				</Context>
 
 		</Host>
 
-
-
     </Engine>
-
-
 
   </Service>
 

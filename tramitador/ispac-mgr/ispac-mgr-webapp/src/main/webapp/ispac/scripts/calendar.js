@@ -193,7 +193,7 @@
 			document.write ('<tr bgcolor="#f0f0f0"><td style="padding:5px" align="center"><span id="lblToday"></span></td></tr>');
 		}
 
-		document.write ('</table></div><div id="selectMonth" style="z-index:+999;position:absolute;visibility:hidden;"></div><div id="selectYear" style="z-index:+999;position:absolute;visibility:hidden;"></div>');
+		document.write ('</table></div><div id="selectMonth" style="z-index:+99999999;position:absolute;visibility:hidden;"></div><div id="selectYear" style="z-index:+99999999;position:absolute;visibility:hidden;"></div>');
 	}
 
 	var	styleAnchor = 'text-decoration:none;color:black;';

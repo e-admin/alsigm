@@ -40,6 +40,9 @@ import se.procedimientos.exceptions.GestorCatalogoException;
 import se.usuarios.AppPermissions;
 import se.usuarios.ServiceClient;
 import transferencias.TransferenciasElectronicasConstants;
+import transferencias.db.IDetallePrevisionDBEntity;
+import transferencias.db.IPrevisionDBEntity;
+import transferencias.db.IRelacionEntregaDBEntity;
 import transferencias.electronicas.serie.InformacionSerie;
 import transferencias.electronicas.serie.Procedimiento;
 import transferencias.electronicas.serie.Productor;
@@ -180,6 +183,8 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 	IUDocEnUiDepositoDbEntity _udocEnUiDepositoDbEntity = null;
 	IElementoCuadroClasificacionVistaDBEntity _elementClasificacionVistaDBEntity = null;
 	IUnidadDocumentalVistaDBEntity _unidadDocumentalVistaDBEntity = null;
+	IDetallePrevisionDBEntity _detallePrevisionDBEntity = null;
+	IRelacionEntregaDBEntity _relacionEntregaDBEntity = null;
 
 	public GestionSeriesBIImpl(
 			IElementoCuadroClasificacionDbEntity elementoCuadroClasificacionDBEntity,
@@ -203,7 +208,11 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 			IUnidadDocumentalDbEntity unidadDocumentalDbEntity,
 			IUDocEnUiDepositoDbEntity udocEnUiDepositoDbEntity,
 			IElementoCuadroClasificacionVistaDBEntity elementoCuadroClasificacionVistaDBEntity,
-			IUnidadDocumentalVistaDBEntity unidadDocumentalVistaDBEntity) {
+			IUnidadDocumentalVistaDBEntity unidadDocumentalVistaDBEntity,
+			IDetallePrevisionDBEntity detallePrevisionDBEntity,
+			IRelacionEntregaDBEntity relacionEntregaDBEntity
+
+	) {
 
 		super();
 
@@ -229,6 +238,8 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 		this._udocEnUiDepositoDbEntity = udocEnUiDepositoDbEntity;
 		this._elementClasificacionVistaDBEntity = elementoCuadroClasificacionVistaDBEntity;
 		this._unidadDocumentalVistaDBEntity = unidadDocumentalVistaDBEntity;
+		this._detallePrevisionDBEntity = detallePrevisionDBEntity;
+		this._relacionEntregaDBEntity = relacionEntregaDBEntity;
 	}
 
 	/**
@@ -2478,7 +2489,7 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 	DescriptorVO obtenerDescriptorOrgano(CAOrganoVO organo,
 			String idListaDescriptor) {
 		DescriptorVO descriptor = _descriptorDBEntity.getDescriptor(
-				idListaDescriptor, organo.getNombreLargo());
+				idListaDescriptor, organo.getNombreLargo(),organo.getSistExtGestor(), organo.getIdOrgSExtGestor());
 		if (descriptor == null) {
 			descriptor = new DescriptorVO();
 			descriptor.setIdDescrSistExt(organo.getIdOrgSExtGestor());
@@ -2835,6 +2846,12 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 												.getSistemaExterno(),
 										organoProductorSerie
 												.getIdEnSistemaExterno(), true);
+
+						if(organo == null){
+							organo = _caOrganoDbEntity.getCAOrgProductorVOXId(organoProductorSerie.getIdEnSistemaExterno());
+						}
+
+
 
 						String idListaDescriptor = null;
 						if (organoProductorSerie.getTipoProductor() == ProductorSerieVO.TIPO_ENTIDAD)
@@ -3333,7 +3350,7 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 	 *             funcionalidad necesaria
 	 */
 	public List findPosiblesProductores(String queryString,
-			IdentificacionSerie serie) throws GestorOrganismosException,
+			IdentificacionSerie serie, boolean productorHistorico) throws GestorOrganismosException,
 			NotAvailableException {
 		final EntidadProductoraVO entidadProductora = serie
 				.getEntidadProductoraFondo();
@@ -3345,7 +3362,22 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 		ConfiguracionGeneral config = ConfiguracionSistemaArchivoFactory
 				.getConfiguracionSistemaArchivo().getConfiguracionGeneral();
 		List posiblesProductores = null;
+
+
 		if (StringUtils.isNotBlank(entidadProductora.getIdSistExt())) {
+
+			String idSistExt = entidadProductora.getIdSistExt();
+			String idSistExtDestino = entidadProductora.getIdSistExt();
+
+			if(productorHistorico){
+
+				String idSistExtHistoricos = ConfiguracionSistemaArchivoFactory
+				.getConfiguracionSistemaArchivo().getConfiguracionFondos().getIdSistGestorOrgHistoricos();
+
+				if(StringUtils.isNotBlank(idSistExtHistoricos)){
+					idSistExt = idSistExtHistoricos;
+				}
+			}
 
 			// Obtener información de la entidad
 			ServiceClient serviceClient = getServiceClient();
@@ -3361,7 +3393,7 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 			}
 
 			final GestorOrganismos gestorOrganismos = GestorOrganismosFactory
-					.getConnectorById(entidadProductora.getIdSistExt(), params);
+					.getConnectorById(idSistExt, params);
 			posiblesProductores = gestorOrganismos
 					.recuperarOrganos(queryString);
 			if (ListUtils.isNotEmpty(posiblesProductores)) {
@@ -3373,7 +3405,7 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 							.get(count);
 					InfoOrganoProductorSerie infoProductorSerie = new InfoOrganoProductorSerie(
 							ProductorSerieVO.TIPO_ORG_DEP,
-							entidadProductora.getIdSistExt(), organo.getId(),
+							idSistExt, organo.getId(),
 							NombreOrganoFormat.formatearNombreLargo(organo,
 									gestorOrganismos
 											.recuperarOrganosAntecesores(
@@ -3442,9 +3474,19 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 		SerieVO serie = getSerie(idSerie);
 		// LoggingEvent logEvent = AuditFondos.getLogginEventRemove(this,
 		// serie);
-		// if (serie.getEstadoserie() != EstadoSerie.NO_VIGENTE)
-		// throw new FondosOperacionNoPermitidaException(
-		// FondosOperacionNoPermitidaException.ESTADO_SERIE_NO_ES_NO_VIGENTE);
+
+
+		//Comprobar que no exista ninguna prevision, relación o detalle vincluado a la serie
+		if(_relacionEntregaDBEntity.getCountRelacionesBySerie(idSerie) > 0){
+			throw new FondosOperacionNoPermitidaException(
+			FondosOperacionNoPermitidaException.XNO_SE_PUEDE_ELIMINAR_SERIE_TIENE_RELACIONES);
+		}
+
+		if(_detallePrevisionDBEntity.getCountDetallesBySerie(idSerie) > 0){
+			throw new FondosOperacionNoPermitidaException(
+					FondosOperacionNoPermitidaException.XNO_SE_PUEDE_ELIMINAR_SERIE_TIENE_DETALLES);
+		}
+
 		checkPermission(FondosSecurityManager.ELIMINACION_ELEMENTO_ACTION);
 		iniciarTransaccion();
 		_productorSerieDBEntity.deleteProductoresSerie(idSerie);
@@ -4767,7 +4809,7 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 	}
 
 	private Serie getSerieVOFromInfoSerie(String idUsuario,
-			InformacionSerie infoSerie, String idPadre) {
+			InformacionSerie infoSerie, String idPadre) throws TransferenciaElectronicaException {
 		Serie infoAltaSerie = new Serie();
 
 		Procedimiento procedimiento = infoSerie.getProcedimiento();
@@ -4793,6 +4835,20 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 		infoAltaSerie.setIdFichaDescr(getConfiguracionWsTransferencias()
 				.getIdFichaSeries());
 
+
+		//Comprobar que el repositorio Ecm Existe
+
+		if(StringUtils.isNotEmpty(infoSerie.getIdRepEcmSerie())){
+			IRepositorioEcmVO repositorioEcmVO = getGestionDocumentosElectronicosBI()
+			.getRepositorioEcm(infoSerie.getIdRepEcmSerie());
+
+			if(repositorioEcmVO == null){
+				throw new TransferenciaElectronicaException(
+						TransferenciasElectronicasConstants.ERROR_REPOSITORIO_NO_CONFIGURADO,
+						new Object[] { "idRepEcmSerie", infoSerie.getIdRepEcmSerie()});
+			}
+		}
+
 		infoAltaSerie.setIdRepEcm(infoSerie.getIdRepEcmSerie());
 
 		NivelFichaUDocRepEcmVO nivelFichaUDocRepEcmVO = new NivelFichaUDocRepEcmVO();
@@ -4802,6 +4858,20 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 		nivelFichaUDocRepEcmVO.setIdNivel(getConfiguracionWsTransferencias()
 				.getIdNivelUdoc());
 
+
+
+		if(StringUtils.isNotEmpty(infoSerie.getIdRepEcmSerie())){
+			IRepositorioEcmVO repositorioEcmVO = getGestionDocumentosElectronicosBI()
+			.getRepositorioEcm(infoSerie.getIdRepEcmSerie());
+
+			if(repositorioEcmVO == null){
+				throw new TransferenciaElectronicaException(
+						TransferenciasElectronicasConstants.ERROR_REPOSITORIO_NO_CONFIGURADO,
+						new Object[] { "idRepEcmUdoc", infoSerie.getIdRepEcmUdoc()});
+			}
+		}
+
+
 		nivelFichaUDocRepEcmVO.setIdRepEcmPrefUdoc(infoSerie.getIdRepEcmUdoc());
 
 		infoAltaSerie.addNivelFichaUDocRepEcm(nivelFichaUDocRepEcmVO);
@@ -4809,8 +4879,8 @@ public class GestionSeriesBIImpl extends ServiceBase implements GestionSeriesBI 
 		return infoAltaSerie;
 	}
 
+
 	private ConfiguracionWsTransferencias getConfiguracionWsTransferencias() {
-		// WS-TODO Parámetros de Configuración
 		return ConfiguracionSistemaArchivoFactory
 				.getConfiguracionSistemaArchivo()
 				.getConfiguracionWsTransferencias();

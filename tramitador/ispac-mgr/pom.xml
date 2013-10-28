@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.iflow</groupId>
 		<artifactId>ispac-main</artifactId>
-		<version>6.4</version>
+		<version>6.4.1</version>
 	</parent>
 
 	<artifactId>ispac-mgr</artifactId>
@@ -23,7 +23,7 @@
 					<name>jars</name>
 				</property>
 				<activeByDefault>true</activeByDefault>
-			</activation>			
+			</activation>
 			<modules>
 				<module>ispac-mgr-java</module>
 				<module>ispac-mgr-webapp</module>
@@ -43,5 +43,5 @@
 			</modules>
 		</profile>
 	</profiles>
-	
+
 </project>

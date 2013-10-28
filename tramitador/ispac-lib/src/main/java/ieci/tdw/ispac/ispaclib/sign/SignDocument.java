@@ -33,7 +33,11 @@ public class SignDocument {
 	public static final String TAG_CERTIFICADO = "certificado";
 	public static final String ATTR_ID = "id";
 	public static final String TAG_FIRMAS = "firmas";
+	public static final String ATTR_TYPE = "tipo";
 	public static final String TAG_CERTIFICADOS="certificados";
+
+	public static final String TYPE_PORTAFIRMAS = "Portafirmas";
+
 	DateFormat mDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	
 	private String numExp;

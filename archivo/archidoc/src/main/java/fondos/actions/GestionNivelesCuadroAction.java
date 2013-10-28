@@ -105,7 +105,7 @@ public class GestionNivelesCuadroAction extends BaseAction {
                     mappings.findForward("alta_nivel_cuadro"));
         } else {
             JerarquiaNivelCF jerarquiaNivel = null;
-            NivelCF nivelCFVO = new NivelCF();
+            INivelCFVO nivelCFVO = new NivelCF();
             nivelCuadroForm.populate(nivelCFVO);
 
             if (StringUtils.isEmpty(nivelCFVO.getId())) {

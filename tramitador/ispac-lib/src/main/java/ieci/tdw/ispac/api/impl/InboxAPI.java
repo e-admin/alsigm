@@ -82,7 +82,7 @@ public class InboxAPI implements IInboxAPI {
 	private IRegisterAPI registerAPI;
 
 	private final IspacAuditoriaManager auditoriaManager;
-	
+
 	/**
 	 * Constructor.
 	 * @param context Contexto de cliente.
@@ -99,97 +99,11 @@ public class InboxAPI implements IInboxAPI {
 	 */
 	public IItemCollection getInbox() throws ISPACException {
 
-		List inboxItems = new ArrayList();
-
 	    IInvesflowAPI invesflowAPI = m_ctx.getAPI();
 	    IWorklistAPI worklistAPI = invesflowAPI.getWorkListAPI();
 
-		Properties propSet = new Properties();
-		propSet.add(new Property(0,"NOMBRE",Types.VARCHAR));
-		propSet.add(new Property(1,"URL",Types.VARCHAR));
-		propSet.add(new Property(2,"COUNT",Types.INTEGER));
-		GenericItem inboxItem;
-
-		// Avisos
-		Notices notices = new Notices(m_ctx);
-		int numNotices = notices.countNotices();
-		if (numNotices > 0){
-			inboxItem = new GenericItem(propSet, "NOMBRE");
-			inboxItem.set("NOMBRE", "sucesos.avisosElectronicos");
-			inboxItem.set("URL", "showNoticeList.do");
-			inboxItem.set("COUNT", numNotices);
-			inboxItems.add(inboxItem);
-		}
-
-		// Registros distribuidos
-		//ISicresConnector sicres = SicresConnectorFactory.getInstance().getSicresConnector(m_ctx);
-		//if (sicres != null) {
-		if (registerAPI.existConnector()){
-			int nIntrays = registerAPI.countIntrais();
-			if (nIntrays > 0){
-				inboxItem = new GenericItem(propSet, "NOMBRE");
-				inboxItem.set("NOMBRE", "sucesos.registro");
-				inboxItem.set("URL", "showIntrayList.do");
-				inboxItem.set("COUNT", nIntrays);
-				inboxItems.add(inboxItem);
-			}
-		}
-
-//		Terms terms = new Terms(m_ctx);
-//		int nTerms = terms.countTerms();
-		int nTerms = worklistAPI.countExpiredTerms(DeadLineDAO.TYPE_ALL);
-
-		// Plazos
-		inboxItem = new GenericItem(propSet, "NOMBRE");
-		inboxItem.set("NOMBRE", "sucesos.plazos");
-		//Introducimos en la URL un parametro para que al hacer la consulta de
-		//plazos expirados la realice con fecha final el día actual
-		SimpleDateFormat fechaEs = new SimpleDateFormat("dd/MM/yyyy");
-		inboxItem.set("URL", "showExpiredTerms.do?fechaFin="
-				+ fechaEs.format(new Date()));
-		inboxItem.set("COUNT", nTerms);
-		inboxItems.add(inboxItem);
-
-		// Informacion de tramitaciones agrupadas
-	    int numeroTareasAgrupadas = worklistAPI.countBatchTasks();
-	    if (numeroTareasAgrupadas>0){
-			inboxItem = new GenericItem(propSet, "NOMBRE");
-			inboxItem.set("NOMBRE", "sucesos.tramitacionesAgrupadas");
-			//Introducimos en la URL un parametro para que al hacer la consulta de
-			//plazos expirados la realice con fecha final el día actual
-
-			inboxItem.set("URL", "showBatchTaskList.do");
-			inboxItem.set("COUNT", numeroTareasAgrupadas);
-			inboxItems.add(inboxItem);
-	    }
-
-	    // Portafirmas
-	    if (ProcessSignConnectorFactory.getInstance().isDefaultConnector() && StringUtils.isNotBlank(ISPACConfiguration.getInstance().getProperty(
-	    		ISPACConfiguration.DIGITAL_SIGN_CONNECTOR_CLASS))) {
-	        ISignAPI signAPI = invesflowAPI.getSignAPI();
-			inboxItem = new GenericItem(propSet, "NOMBRE");
-			inboxItem.set("NOMBRE", "sucesos.portafirmas");
-			inboxItem.set("URL", "showBatchSignList.do");
-			inboxItem.set("COUNT", signAPI.countCircuitsStepts(m_ctx.getRespId()));
-			inboxItems.add(inboxItem);
-	    }
-
-	    String responsible=m_ctx.getRespId();
-	    if(StringUtils.equalsIgnoreCase(responsible, IResponsible.SUPERVISOR_TOTAL) ||StringUtils.equalsIgnoreCase(responsible, IResponsible.SUPERVISOR_MONITORING)){
-	    	int nProcessSentTrash = invesflowAPI.countExpedientsSentToTrash();
-	    	if(nProcessSentTrash>0){
-	    		inboxItem = new GenericItem(propSet, "NOMBRE");
-				inboxItem.set("NOMBRE", "sucesos.expedientesPapelera");
-				//Introducimos en la URL un parametro para que al hacer la consulta de
-				//plazos expirados la realice con fecha final el día actual
-				inboxItem.set("URL", "showExpedientsSentToTrash.do?method=list&numreg="+nProcessSentTrash);
-				inboxItem.set("COUNT", nProcessSentTrash);
-				inboxItems.add(inboxItem);
-	    	}
-	    }
-
-
-		return new ListCollection(inboxItems);
+		String resp = worklistAPI.getRespString();
+		return getInbox(resp);
 	}
 
 	public IItemCollection getInbox(String resp) throws ISPACException {
@@ -311,7 +225,7 @@ public class InboxAPI implements IInboxAPI {
 			IItem item = (IItem) iterResults.next();
 			avisos.put(item.getString("SPAC_AVISOS_ELECTRONICOS:ID_AVISO"), item.getXmlValues());
 		}
-		
+
 		evento.setAvisos(avisos);
 		evento.setUser("");
 		evento.setIdUser("");
@@ -332,7 +246,7 @@ public class InboxAPI implements IInboxAPI {
 		auditoriaManager.audit(evento);
 	}
 
-	
+
 	public void modifyNotice(int noticeId, int newstate) throws ISPACException {
 		Notices notices = new Notices(m_ctx);
 		notices.modifyNotice(noticeId, newstate);
@@ -349,8 +263,8 @@ public class InboxAPI implements IInboxAPI {
 			throw new ISPACException("exception.sicres.notConfigured");
 		}
 		// TODO: Auditar la consulta de registros distribuidos
-		
-		Intray intray = registerAPI.getIntray(register); 
+
+		Intray intray = registerAPI.getIntray(register);
 		List intrays = new ArrayList();
 		intrays.add(intray);
 		auditarConsultaRegistrosDistribuidos(intrays);
@@ -366,7 +280,7 @@ public class InboxAPI implements IInboxAPI {
 		if (!registerAPI.existConnector()) {
 			throw new ISPACException("exception.sicres.notConfigured");
 		}
-		
+
 		// TODO: Auditar la consulta de registros distribuidos
 
 		List intrays = registerAPI.getIntrays();
@@ -374,7 +288,7 @@ public class InboxAPI implements IInboxAPI {
 
 		return intrays;
 	}
-	
+
 	/**
 	 * @param registrosDistribuidosMap
 	 * @param intrays
@@ -556,11 +470,11 @@ public class InboxAPI implements IInboxAPI {
 	    			}
 
 	    			//Se da de alta los interesados como participantes en el expediente menos el primero que se asocia como interesado principal
-		    		RegisterHelper.insertParticipants(m_ctx, registerNumber,RegisterType.ENTRADA, numExp, false);	
-	    		}	    		
-	    		
-	    		
-	    		
+					RegisterHelper.insertParticipants(m_ctx, registerNumber,RegisterType.ENTRADA, numExp, false);
+				}
+
+
+
 
 
 
@@ -629,7 +543,7 @@ public class InboxAPI implements IInboxAPI {
 		                		//Interesado principal no validado
 		                		expedient.set("IDENTIDADTITULAR", thirdPerson.getName());
 		                		expedient.set("DOMICILIO", thirdPerson.getAddress());
-		                		
+
 			                	if (itemRegisterES != null){
 				    				itemRegisterES.set("INTERESADO", thirdPerson.getName());
 			                	}
@@ -690,14 +604,36 @@ public class InboxAPI implements IInboxAPI {
 	 * @throws ISPACException si ocurre algún error.
 	 */
 	public void annexToProcess(String register, String numExp) throws ISPACException {
-		annexToProcess(register, numExp, 0);
+		annexToProcess(register, numExp, 0, 0);
 	}
 
-	public void annexToProcess(String register, String numExp, int taskId)
+	/**
+    * Anexa el registro distribuido al expediente.
+    * @param register Número de registro distribuido.
+    * @param numExp Número de expediente.
+    * @param taskid Identificador del trámite instanciando en el expediente al que se anexarán los documentos del apunte de registro
+    * @throws ISPACException si ocurre algún error.
+    */
+	public void annexToProcess(String register, String numExp, int taskId) throws ISPACException {
+		annexToProcess(register, numExp, taskId, 0);
+	}
+
+	/**
+    * Anexa el registro distribuido al expediente.
+    * @param register Número de registro distribuido.
+    * @param numExp Número de expediente.
+    * @param taskid Identificador del trámite instanciando en el expediente al que se anexarán los documentos del apunte de registro
+    * @param typeDocId Identificador del tipo de documento que se asignará a los documentos del apunte de registro
+    * @throws ISPACException si ocurre algún error.
+    */
+	public void annexToProcess(String register, String numExp, int taskId, int typeDocId)
 			throws ISPACException {
+
 		if (logger.isInfoEnabled()) {
 			logger.info("Anexar los documentos del registro distribuido ["
-					+ register + "] al expediente [" + numExp + "]");
+					+ register + "] al expediente [" + numExp
+					+ "] en el tramite [ID=" + taskId
+					+ "] con tipo de documento [ID=" + typeDocId + "]");
 		}
 
 		IInvesflowAPI invesflowAPI = m_ctx.getAPI();
@@ -730,11 +666,7 @@ public class InboxAPI implements IInboxAPI {
 
 			// Adjuntar los documentos del registro distribuido al expediente
 			Expedients expedientsAPI = new Expedients(m_ctx);
-			if (taskId == 0){
-				expedientsAPI.addDocuments(numExp, intray);
-			}else{
-				expedientsAPI.addDocuments(numExp, intray, taskId);
-			}
+			expedientsAPI.addDocuments(numExp, intray, taskId, typeDocId);
 
 			// Si todo ha sido correcto se hace commit de la transacción
 			bCommit = true;
@@ -747,9 +679,7 @@ public class InboxAPI implements IInboxAPI {
 
 		// Archivar el registro distribuido
 		checkAutoArchiving(register);
-
 	}
-
 
 //	public void distribute(String register, Responsible responsible,
 //			String message, boolean archive) throws ISPACException {

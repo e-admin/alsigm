@@ -10,28 +10,28 @@
     </appender>
 
 	<appender name="PROFILE_FILE_APPENDER" class="org.apache.log4j.FileAppender">
-	    <param name="File" value="C:/Aplicaciones Web/archidoc/logs/profileInfo.log"/>
+		<param name="File" value="/Aplicaciones Web/archidoc/logs/profileInfo.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%t %-12p %m%n"/>
         </layout>
 	</appender>
 
     <appender name="HTML" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="C:/Aplicaciones Web/archidoc/logs/archivo-log.html"/>
+        <param name="File" value="/Aplicaciones Web/archidoc/logs/archivo-log.html"/>
         <layout class="org.apache.log4j.HTMLLayout">
             <param name="title" value="Archivo"/>
         </layout>
     </appender>
 
     <appender name="AUDIT" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="C:/Aplicaciones Web/archidoc/logs/archivo-audit.html"/>
+        <param name="File" value="/Aplicaciones Web/archidoc/logs/archivo-audit.html"/>
         <layout class="org.apache.log4j.HTMLLayout">
             <param name="title" value="Archivo"/>
         </layout>
     </appender>
 
     <appender name="PERFORMANCE" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="C:/Aplicaciones Web/archidoc/logs/archivo-performance.html" />
+        <param name="File" value="/Aplicaciones Web/archidoc/logs/archivo-performance.html" />
         <layout class="org.apache.log4j.HTMLLayout">
             <param name="title" value="Archivo"/>
         </layout>
@@ -50,7 +50,7 @@
     <category name="org.apache.commons">
         <priority value ="INFO" />
     </category>
-        
+
     <category name="org.apache.struts">
         <priority value ="INFO" />
     </category>
@@ -86,9 +86,9 @@
     </logger>
 
     <root>
-        <priority value ="WARN" />
+        <priority value ="DEBUG" />
         <appender-ref ref="HTML" />
-  <!--      <appender-ref ref="STDOUT" /> -->
+		<appender-ref ref="STDOUT" />
     </root>
 
 </log4j:configuration>

@@ -21,7 +21,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene la información de un descriptor.
-	 * 
+    *
 	 * @param idDescriptor
 	 *            Identificador del descriptor.
 	 * @return Descriptor.
@@ -30,7 +30,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene descriptores por lista acceso
-	 * 
+    *
 	 * @param idListaAcceso
 	 * @return
 	 */
@@ -38,7 +38,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene la información de un descriptor con información extendida.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param idDescriptor
@@ -50,7 +50,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene la información de un descriptor.
-	 * 
+    *
 	 * @param idListaDescriptora
 	 *            Identificador de la lista descriptora.
 	 * @param nombre
@@ -61,7 +61,19 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene la información de un descriptor.
-	 * 
+    *
+    * @param idListaDescriptora
+    *            Identificador de la lista descriptora.
+    * @param nombre
+    *            Nombre del descriptor.
+    * @return Descriptor.
+    */
+	public DescriptorVO getDescriptor(String idListaDescriptora, String nombre, String idSistExt, String idDescrSistExt);
+
+
+	/**
+    * Obtiene la información de un descriptor.
+    *
 	 * @param idListaDescriptora
 	 *            Identificador de la lista descriptora.
 	 * @param idDescrSistExt
@@ -73,7 +85,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene la lista de descriptores de una lista descriptora.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param idListaDescriptora
@@ -86,7 +98,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 	/**
 	 * Recupera los descriptores cuyo valor contiene el patrón de búsqueda
 	 * indicado
-	 * 
+    *
 	 * @param pattern
 	 *            Patrón que debe contener el valor de los descriptores
 	 * @param idListaDescriptora
@@ -100,7 +112,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 	/**
 	 * Obtiene la lista de descriptores de una lista descriptora con información
 	 * extendida.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param idListaDescriptora
@@ -117,7 +129,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene una lista de descriptores a partir de su nombre.
-	 * 
+    *
 	 * @param nombre
 	 *            Nombre del descriptor.
 	 * @return Lista de descriptores.
@@ -126,7 +138,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene una lista de descriptores a partir de su nombre y id de lista.
-	 * 
+    *
 	 * @param nombre
 	 *            Nombre del descriptor, id de la lista.
 	 * @return {@link DescriptorVO}
@@ -136,7 +148,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Busca los descriptores en función de unos criterios.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param criterios
@@ -150,7 +162,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Inserta un descriptor.
-	 * 
+    *
 	 * @param descriptor
 	 *            Descriptor.
 	 * @return Descriptor insertado.
@@ -159,7 +171,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Modifica un descriptor.
-	 * 
+    *
 	 * @param id
 	 *            Identificador del descriptor.
 	 * @param columnsToUpdate
@@ -169,7 +181,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Modifica un descriptor.
-	 * 
+    *
 	 * @param descriptor
 	 *            Descriptor.
 	 */
@@ -177,7 +189,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Establece si un descriptor tiene ficha de descripción.
-	 * 
+    *
 	 * @param idDescr
 	 *            Identificador del descriptor.
 	 * @param tieneDescr
@@ -188,7 +200,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 	/**
 	 * Establece si se han creado los clasificadores por defecto de un
 	 * descriptor.
-	 * 
+    *
 	 * @param idDescr
 	 *            Identificador del descriptor.
 	 * @param editClfDocs
@@ -198,7 +210,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Elimina un descriptor.
-	 * 
+    *
 	 * @param id
 	 *            Identificador del descriptor.
 	 */
@@ -206,7 +218,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Elimina los descriptores.
-	 * 
+    *
 	 * @param listaIds
 	 *            Lista de identificadores de descriptores.
 	 */
@@ -215,7 +227,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 	/**
 	 * Realiza la búsqueda de autoridades en función de los parámetros del
 	 * formulario de búsquedas.
-	 * 
+    *
 	 * @param serviceClient
 	 *            Cliente del servicio.
 	 * @param busqueda
@@ -231,7 +243,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 	 * Recupera el descriptor de una determinada lista de descriptores a partir
 	 * del identificador de ese descriptor en el sistema externo desde el que
 	 * fue importado
-	 * 
+    *
 	 * @param idEnSistemaExterno
 	 *            Identificador del descriptor en el sistema externo del que fue
 	 *            importado
@@ -246,7 +258,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 	/**
 	 * Obtiene los Descriptores de Productores de Relaciones de Entrega /Altas
 	 * de Unidades Documentales
-	 * 
+    *
 	 * @param tiposRelacion
 	 *            Tipos de Relacion
 	 * @return Lista de
@@ -257,14 +269,14 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Actualiza el estado los descriptores seleccionados
-	 * 
+    *
 	 * @param ids
 	 */
 	public void updateEstado(int estado, String[] ids);
 
 	/**
 	 * Obtiene los datos del descriptor que es productor de una serie
-	 * 
+    *
 	 * @param idSerie
 	 *            Cadena que contiene el identificador de la serie.
 	 * @param idLista
@@ -279,7 +291,7 @@ public interface IDescriptorDBEntity extends IDBEntity {
 
 	/**
 	 * Obtiene los datos del descriptor que es productor de una serie
-	 * 
+    *
 	 * @param idSerie
 	 *            Cadena que contiene el identificador de la serie.
 	 * @param idLista

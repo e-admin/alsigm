@@ -64,9 +64,10 @@ public class TramitacionWebServiceSoapBindingStub extends Stub implements
 	static OperationDesc[] _operations;
 
 	static {
-		_operations = new OperationDesc[20];
+		_operations = new OperationDesc[21];
 		_initOperationDesc1();
 		_initOperationDesc2();
+		_initOperationDesc3();
 	}
 
 	private static void _initOperationDesc1() {
@@ -737,6 +738,50 @@ public class TramitacionWebServiceSoapBindingStub extends Stub implements
 
 		
 		
+	}
+
+	private static void _initOperationDesc3() {
+		OperationDesc oper;
+		ParameterDesc param;
+		oper = new org.apache.axis.description.OperationDesc();
+		oper.setName("recibirDocumentoFirmado");
+		param = new org.apache.axis.description.ParameterDesc(
+				new javax.xml.namespace.QName(
+						"http://server.ws.services.ispac.tdw.ieci", "idEntidad"),
+				org.apache.axis.description.ParameterDesc.IN,
+				new javax.xml.namespace.QName(
+						"http://www.w3.org/2001/XMLSchema", "string"),
+				java.lang.String.class, false, false);
+		oper.addParameter(param);
+		param = new org.apache.axis.description.ParameterDesc(
+				new javax.xml.namespace.QName(
+						"http://server.ws.services.ispac.tdw.ieci",
+						"numExp"),
+				org.apache.axis.description.ParameterDesc.IN,
+				new javax.xml.namespace.QName(
+						"http://www.w3.org/2001/XMLSchema", "string"),
+				java.lang.String.class, false, false);
+		oper.addParameter(param);
+		param = new org.apache.axis.description.ParameterDesc(
+				new javax.xml.namespace.QName(
+						"http://server.ws.services.ispac.tdw.ieci", "idDocumento"),
+				org.apache.axis.description.ParameterDesc.IN,
+				new javax.xml.namespace.QName(
+						"http://www.w3.org/2001/XMLSchema", "string"),
+				java.lang.String.class, false, false);
+		oper.addParameter(param);
+		oper.setReturnType(new javax.xml.namespace.QName(
+				"http://server.ws.services.ispac.tdw.ieci", "Cadena"));
+		oper.setReturnClass(Cadena.class);
+		oper.setReturnQName(new javax.xml.namespace.QName(
+				"http://server.ws.services.ispac.tdw.ieci",
+				"recibirDocumentoFirmado"));
+		oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+		oper.setUse(org.apache.axis.constants.Use.LITERAL);
+		_operations[20] = oper;
+
+
+
 	}
 
 	public TramitacionWebServiceSoapBindingStub() throws AxisFault {
@@ -1848,6 +1893,49 @@ public class TramitacionWebServiceSoapBindingStub extends Stub implements
 		try {
 			java.lang.Object _resp = _call.invoke(new java.lang.Object[] {
 					idEntidad, nombreEntidad, numExp });
+
+			if (_resp instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException) _resp;
+			} else {
+				extractAttachments(_call);
+				try {
+					return (Cadena) _resp;
+				} catch (java.lang.Exception _exception) {
+					return (Cadena) org.apache.axis.utils.JavaUtils.convert(
+							_resp, Cadena.class);
+				}
+			}
+		} catch (org.apache.axis.AxisFault axisFaultException) {
+			throw axisFaultException;
+		}
+	}
+
+	public Cadena recibirDocumentoFirmado(java.lang.String idEntidad,
+			java.lang.String numExp, java.lang.String idDocumento)
+			throws java.rmi.RemoteException {
+		if (super.cachedEndpoint == null) {
+			throw new org.apache.axis.NoEndPointException();
+		}
+		org.apache.axis.client.Call _call = createCall();
+		_call.setOperation(_operations[20]);
+		_call.setUseSOAPAction(true);
+		_call.setSOAPActionURI("");
+		_call.setEncodingStyle(null);
+		_call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR,
+				Boolean.FALSE);
+		_call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS,
+				Boolean.FALSE);
+		_call
+				.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+		_call.setOperationName(new javax.xml.namespace.QName(
+				"http://server.ws.services.ispac.tdw.ieci",
+				"recibirDocumentoFirmado"));
+
+		setRequestHeaders(_call);
+		setAttachments(_call);
+		try {
+			java.lang.Object _resp = _call.invoke(new java.lang.Object[] {
+					idEntidad, numExp, idDocumento });
 
 			if (_resp instanceof java.rmi.RemoteException) {
 				throw (java.rmi.RemoteException) _resp;

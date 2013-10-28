@@ -6,7 +6,7 @@ package deposito.global;
 
 /**
  * @author ABELRL
- * 
+ *
  */
 public class Constants {
 	public final static String TIPO_ELEMENTO_KEY = "tipoelemento";
@@ -64,5 +64,8 @@ public class Constants {
 	public static final String ERROR_AL_MOSTRAR_ELEMENTO_ORGANIZACION_KEY = "organizacion.organo.error.mostrar.elemento";
 	public static final String ERROR_ELEMENTO_NO_ENCONTRADO_KEY = "organizacion.organo.error.elemento.no.encontrado";
 	public static final String ERROR_SIN_PERMISOS_GESTION_UDOCS_CONSERVADAS_KEY = "error.sin.permisos.gestion.udocs.conservadas";
+
+	public static final String ERROR_NO_SE_PUEDE_ELIMINAR_SERIE_TIENE_RELACIONES = "error.series.no.se.puede.eliminar.tiene.relaciones.asociadas";
+	public static final String ERROR_NO_SE_PUEDE_ELIMINAR_SERIE_TIENE_DETALLES_PREVISON = "error.series.no.se.puede.eliminar.tiene.detalles.prevision.asociados";;
 
 }

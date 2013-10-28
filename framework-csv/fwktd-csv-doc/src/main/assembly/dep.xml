@@ -33,5 +33,9 @@
 			<source>${basedir}/target/docbkx/pdf/fwktd-csv-webapp-Manual_de_usuario-book.pdf</source>
 			<destName>${product.name}_${product.version}_Manual_de_usuario_Aplicacion_Consulta_Documentos.pdf</destName>
 		</file>
+		<file>
+			<source>${basedir}/target/docbkx/pdf/fwktd-csv-Notas_de_version-book.pdf</source>
+			<destName>${product.name}_${product.version}_Notas_de_version.pdf</destName>
+		</file>
 	</files>
 </assembly>

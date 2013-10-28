@@ -689,6 +689,15 @@ public class GestionControlUsuariosBIImpl extends ServiceBase implements
 	}
 
 	/**
+    * Obtiene el órgano por su código
+    * @param codigo
+    * @return
+    */
+	public CAOrganoVO getCAOrgProductorVOByCodigo(String codigo){
+		return caOrganoDbEntity.getCAOrgProductorVOByCodigo(codigo);
+	}
+
+	/**
 	 * Obtiene la información de un órgano.
 	 *
 	 * @param sistExtGestor
@@ -1695,8 +1704,8 @@ public class GestionControlUsuariosBIImpl extends ServiceBase implements
 	 * @return Lista de órganos cuyo nombre contiene el patrón indicado
 	 *         {@link CAOrganoVO}
 	 */
-	public List findOrganosByName(String query) {
-		return caOrganoDbEntity.findByName(query, null);
+	public List findOrganosByName(String query, boolean mostrarNombreLargo) {
+		return caOrganoDbEntity.findByName(query, null,mostrarNombreLargo);
 	}
 
 	/**

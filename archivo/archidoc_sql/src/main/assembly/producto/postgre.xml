@@ -1,0 +1,17 @@
+<assembly>
+	<id>postgre</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/sql/comun/postgre</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/sql/especifico/producto/postgre</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>

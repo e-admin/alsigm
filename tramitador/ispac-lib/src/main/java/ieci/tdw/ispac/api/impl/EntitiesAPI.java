@@ -68,7 +68,7 @@ public class EntitiesAPI implements IEntitiesAPI
     private ClientContext mcontext;
 
     private IspacAuditoriaManager auditoriaManager;
-    
+
     protected Logger logger = Logger.getLogger(EntitiesAPI.class);
 
     public EntitiesAPI(ClientContext context)
@@ -85,7 +85,10 @@ public class EntitiesAPI implements IEntitiesAPI
         DbCnt cnt = mcontext.getConnection();
         try {
             return getEntity(cnt, entityId);
-        }
+		}
+		catch (ISPACNullObject inoe) {
+			throw inoe;
+		}
         catch (ISPACException ie) {
             throw new ISPACException("Error en EntitiesAPI:getEntity("+ entityId + ")", ie);
         }
@@ -102,7 +105,10 @@ public class EntitiesAPI implements IEntitiesAPI
         DbCnt cnt = mcontext.getConnection();
         try {
             return getEntity(cnt, entitydef);
-        }
+		}
+		catch (ISPACNullObject inoe) {
+			throw inoe;
+		}
         catch (ISPACException ie) {
             throw new ISPACException("Error en EntitiesAPI:getEntity(IEntityDef[" + entitydef.getId() + "])", ie);
         }
@@ -119,6 +125,9 @@ public class EntitiesAPI implements IEntitiesAPI
         DbCnt cnt = mcontext.getConnection();
 		try {
 			return getEntity(cnt, entityName);
+		}
+		catch (ISPACNullObject inoe) {
+			throw inoe;
 		}
 		catch (ISPACException ie) {
 			throw new ISPACException("Error en EntitiesAPI:getEntity("
@@ -142,9 +151,13 @@ public class EntitiesAPI implements IEntitiesAPI
 		try {
 			IItem entity = getEntity(cnt, entityName);
 			return entity.getProperty(fieldName);
-		} catch (ISPACException ie) {
+		}
+		catch (ISPACNullObject inoe) {
+			throw inoe;
+		}
+		catch (ISPACException ie) {
 			throw new ISPACException("Error en EntitiesAPI:getEntityFieldProperty("
-					+ entityName + ")", ie);
+					+ entityName + ", " + fieldName + ")", ie);
 		} finally {
 			mcontext.releaseConnection(cnt);
 		}
@@ -185,7 +198,7 @@ public class EntitiesAPI implements IEntitiesAPI
 
             	// Establecer el número de expediente
             	CTEntityDAO ctEntityDAO = EntityFactoryDAO.getInstance().getCatalogEntityDAO(cnt, entityname);
-            	entityDAO.set(ctEntityDAO.getKeyNumExp(), numexp);
+				entityDAO.set(ctEntityDAO.getKeyNumExp(), numexp);
             }
 
             return entityDAO;
@@ -206,7 +219,10 @@ public class EntitiesAPI implements IEntitiesAPI
         DbCnt cnt = mcontext.getConnection();
         try {
             return getEntity(cnt, entityId, key);
-        }
+		}
+		catch (ISPACNullObject inoe) {
+			throw inoe;
+		}
         catch (ISPACException ie) {
             throw new ISPACException("Error en EntitiesAPI:getEntity(" + entityId + ", " + key + ")", ie);
         }
@@ -223,7 +239,10 @@ public class EntitiesAPI implements IEntitiesAPI
         DbCnt cnt = mcontext.getConnection();
         try {
             return getEntity(cnt, entityName, key);
-        }
+		}
+		catch (ISPACNullObject inoe) {
+			throw inoe;
+		}
         catch (ISPACException ie) {
             throw new ISPACException("Error en EntitiesAPI:getEntity(" + entityName + ", " + key + ")", ie);
         }
@@ -241,7 +260,10 @@ public class EntitiesAPI implements IEntitiesAPI
         DbCnt cnt = mcontext.getConnection();
         try {
             return getEntity(cnt, entitydef, key);
-        }
+		}
+		catch (ISPACNullObject inoe) {
+			throw inoe;
+		}
         catch (ISPACException ie) {
             throw new ISPACException("Error en EntitiesAPI:getEntity(IEntityDef[" + entitydef.getId() + "], " + key + ")", ie);
         }
@@ -730,8 +752,6 @@ public class EntitiesAPI implements IEntitiesAPI
         }
 	}
 
-
-
     /* (non-Javadoc)
      * @see ieci.tdw.ispac.api.IEntitiesAPI#queryEntities(IEntityDef, java.lang.String)
      */
@@ -820,6 +840,7 @@ public class EntitiesAPI implements IEntitiesAPI
     public IItemCollection getSchemeEntities(IEntityDef entitydef, String numexp, String query, Property[] extraprop) throws ISPACException {
     	return getSchemeEntities(entitydef, numexp, query, extraprop, null, false);
     }
+
     /* (non-Javadoc)
      * @see ieci.tdw.ispac.api.IEntitiesAPI#getSchemeEntities(ieci.tdw.ispac.ispaclib.dao.entity.IEntityDef, java.lang.String, java.lang.String, ieci.tdw.ispac.api.item.Property[], java.lant.String , boolean)
      */
@@ -1197,11 +1218,11 @@ public class EntitiesAPI implements IEntitiesAPI
     public IItem getDocument(int id) throws ISPACException {
 
         IItem document = getEntity(ISPACEntities.DT_ID_DOCUMENTOS, id);
-        
+
         //Auditar consulta del documento
-        
+
         auditConsultaDocumento(id, document);
-        
+
     	return document;
     }
 
@@ -1215,7 +1236,7 @@ public class EntitiesAPI implements IEntitiesAPI
 
 		IspacAuditEventDocumentoConsultaVO evento = new IspacAuditEventDocumentoConsultaVO();
 		evento.setAppDescription(IspacAuditConstants.APP_DESCRIPTION);
-		evento.setAppId(IspacAuditConstants.getAppId());	
+		evento.setAppId(IspacAuditConstants.getAppId());
 
 		evento.setUserHostName("");
 		evento.setUserIp("");
@@ -1224,7 +1245,7 @@ public class EntitiesAPI implements IEntitiesAPI
 		evento.setIdDocumento(String.valueOf(id));
 		String numExpediente = document.getString("NUMEXP");
 		evento.setNumExpediente(numExpediente);
-				
+
 		evento.setFecha(new Date());
 
 		if (auditContext != null) {
@@ -2523,7 +2544,6 @@ public class EntitiesAPI implements IEntitiesAPI
         }
     }
 
-
     /* (non-Javadoc)
      * @see ieci.tdw.ispac.api.IEntitiesAPI#queryEntities(java.util.Map, java.lang.String)
      */
@@ -3186,9 +3206,9 @@ public class EntitiesAPI implements IEntitiesAPI
     	// Eliminar el documento
     	deleteDocument(document);
 	}
-	
+
 	public void deleteAllDocumentsOfNumExp(String numExp)throws ISPACException{
-		
+
 		IItemCollection itemcol=getEntities(SpacEntities.SPAC_DT_DOCUMENTOS, numExp);
 		while(itemcol.next()){
 			IItem document=itemcol.value();
@@ -3223,7 +3243,6 @@ public class EntitiesAPI implements IEntitiesAPI
 	    finally {
 		}
 	}
-
 
 	/**
 	 * Elimina el documento.
@@ -3304,7 +3323,7 @@ public class EntitiesAPI implements IEntitiesAPI
 		}
 	}
 
-	
+
 	/**
 	 * @param sDocRef
 	 */
@@ -3313,7 +3332,7 @@ public class EntitiesAPI implements IEntitiesAPI
 
 		IspacAuditEventDocumentoBajaVO evento = new IspacAuditEventDocumentoBajaVO();
 		evento.setAppDescription(IspacAuditConstants.APP_DESCRIPTION);
-		evento.setAppId(IspacAuditConstants.getAppId());			
+		evento.setAppId(IspacAuditConstants.getAppId());
 		evento.setUser("");
 		evento.setIdUser("");
 		evento.setUserHostName("");
@@ -3334,7 +3353,7 @@ public class EntitiesAPI implements IEntitiesAPI
 		logger.info("Auditando la creación del documento");
 		auditoriaManager.audit(evento);
 	}
-	
+
 	/**
 	 * Elimina un trámite a partir del identificador del trámite.
 	 * Esto conlleva eliminar toda la información del trámite en el procedimiento,
@@ -3381,8 +3400,7 @@ public class EntitiesAPI implements IEntitiesAPI
 		}
 	}
 
-
-	 /**
+	/**
     * Modifica la ordenacion de los valores de la tabla de validacion atendiendo al tipo de ordenacion que se realiza
     * @param entityId: Identificador de la tabla de validación sobre la que se realizará la ordenación
     * @param tipoOrdenacion: Por valor o por sustituto
@@ -3441,8 +3459,6 @@ public class EntitiesAPI implements IEntitiesAPI
         }
 	}
 
-
-
 	public SearchResultVO getLimitedQueryEntities(String entityName, String query, String order) throws ISPACException{
 
     	DbCnt cnt = mcontext.getConnection();
@@ -3479,6 +3495,5 @@ public class EntitiesAPI implements IEntitiesAPI
         	mcontext.releaseConnection(cnt);
         }
 	}
-
 
 }

@@ -33,12 +33,8 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 
-/**
- * @author RAULHC
- *
- */
 public class CrearSolicitudSubsanacionAction extends BaseAction {
-        
+
     public ActionForward executeAction(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response,
             SessionAPI session) throws Exception {
@@ -49,51 +45,53 @@ public class CrearSolicitudSubsanacionAction extends BaseAction {
 		IEntitiesAPI entitiesAPI = invesFlowAPI.getEntitiesAPI();
 		IManagerAPI managerAPI=ManagerAPIFactory.getInstance().getManagerAPI(cct);
 
-		
+
 		// Estado de tramitación
-    	IState state = managerAPI.currentState(getStateticket(request));        
+		IState state = managerAPI.currentState(getStateticket(request));
         //-----------------------------------------------------------------------
-        
+
         //Documentos Seleccionados
         String[] docSeleccionados = ((CustomBatchForm)form).getMultibox();
-        
+
         //Comprobar que se han seleccionado Documentos
-        if (StringUtils.isEmpty(request.getParameter("return")) && docSeleccionados.length == 0) {
-	    	ActionMessages actionMessages = new ActionMessages();
-	    	actionMessages.add(ActionMessages.GLOBAL_MESSAGE, 
-	    	        new ActionMessage("custom.message","Debe marcar los documentos que desea subsanar."));
-	    	saveErrors(request,actionMessages);
-            return mapping.findForward("error");
+        if (StringUtils.isEmpty(request.getParameter("return"))) {
+			if ((docSeleccionados == null) || (docSeleccionados.length == 0)) {
+				ActionMessages actionMessages = new ActionMessages();
+				actionMessages.add(ActionMessages.GLOBAL_MESSAGE,
+					 new ActionMessage("custom.message","Debe marcar los documentos que desea subsanar."));
+				saveErrors(request,actionMessages);
+               return mapping.findForward("error");
+			}
         }
-        
+
         //Documento XML con la lista completa de documentos
         String tmpXML = ((CustomBatchForm)form).getXml();
         //Obtener el XML con la lista completa y marcados los incompletos.
         String documentos = getDocumentosXML(docSeleccionados, tmpXML);
-        
+
         //Crear Trámite de Solicitud de Subsanación
-        String idTaskCTVar = ConfigurationMgr.getVarGlobal(cct, 
+        String idTaskCTVar = ConfigurationMgr.getVarGlobal(cct,
                 ConfigurationMgr.ID_TASK_SOLICITUD_SUBSANACION);
         int idTaskCT = Integer.parseInt(idTaskCTVar);
         int idTaskPcd = getIdTaskPcd(idTaskCT, invesFlowAPI, state);
-        
-        int taskId = Integer.parseInt(request.getParameter("taskId")); 
-        
+
+        int taskId = Integer.parseInt(request.getParameter("taskId"));
+
         if (taskId == 0)
             taskId = createTaskSolicitudSubsanacion(idTaskPcd, invesFlowAPI, state);
-            
-        
+
+
         //Cambiar el Estado Administrativo del Expediente a DOCUMENTACION INCOMPLETA
         setEstadoExpediente(ConfigurationMgr.ESTADOADM_DOC_INCOMPLETA, cct, entitiesAPI, state);
-            
+
         //Guardar la información adicional para el trámite (La lista de Documentos)
         saveInfoTramite(taskId, idTaskCT, documentos, invesFlowAPI, entitiesAPI, cct, state);
-            
+
         if (StringUtils.isNotEmpty(request.getParameter("return"))){
             ActionForward forwardAux = mapping.findForward("comprobarDocumentacion");
-    		return new ActionForward(forwardAux.getName(),forwardAux.getPath()+"?idsStage="+state.getStageId(),true);    	
+			return new ActionForward(forwardAux.getName(),forwardAux.getPath()+"?idsStage="+state.getStageId(),true);
         }
-        
+
         //Movermos a la vista del Tramite
         int nProcess = state.getProcessId();
         if (nProcess > 0)
@@ -110,13 +108,13 @@ public class CrearSolicitudSubsanacionAction extends BaseAction {
      * @param state
      * @throws ISPACException
      */
-    private void setEstadoExpediente(String estado, ClientContext cct, 
+    private void setEstadoExpediente(String estado, ClientContext cct,
     		IEntitiesAPI entitiesAPI, IState state) throws ISPACException {
         IItem expediente = entitiesAPI.getExpedient(state.getNumexp());
         expediente.set("ESTADOADM", ConfigurationMgr.getVarGlobal(cct,estado));
         expediente.store(cct);
     }
-    
+
     /**
      * Modifica el XML de documentos estableciendo los seleccionados para crear la solicitud de subsanación.
      * @param seleccionados Identificadores de los Documentos Seleccionados
@@ -126,28 +124,29 @@ public class CrearSolicitudSubsanacionAction extends BaseAction {
      * @throws TransformerFactoryConfigurationError
      * @throws TransformerException
      */
-    private String getDocumentosXML(String[] seleccionados, String xml) 
+    private String getDocumentosXML(String[] seleccionados, String xml)
     		throws TransformerFactoryConfigurationError {
-        
+
         XmlFacade xmlFacade = new XmlFacade(xml);
-        
+
         List pendientes = xmlFacade.getList("/documentos/documento/pendiente");
-        
+
         //Establecer el estado de Pendiente a NO
         for (int i = 0; i < pendientes.size(); i++) {
             pendientes.set(i, "NO");
         }
         xmlFacade.setList("/documentos/documento/pendiente", pendientes);
-        
-        //Marcar los Pendientes   
-        for (int i = 0; i < seleccionados.length; i++) {
-            xmlFacade.set("/documentos/documento[@id='" + seleccionados[i] + "']/pendiente", "SI");
+
+        //Marcar los Pendientes
+        if (seleccionados != null ) {
+           for (int i = 0; i < seleccionados.length; i++) {
+               xmlFacade.set("/documentos/documento[@id='" + seleccionados[i] + "']/pendiente", "SI");
+           }
         }
-                        
+
         return xmlFacade.toString();
-    
     }
-        
+
     /**
      * Guarda la información adicional del trámite con la lista de documentos seleccionados para la subsanación.
      * @param idTask Identificador del nuevo trámite de Solicitud Subsanación
@@ -159,9 +158,9 @@ public class CrearSolicitudSubsanacionAction extends BaseAction {
      * @param state
      * @throws ISPACException
      */
-    private void saveInfoTramite(int idTask, int idTaskCT, String infoXML, 
+    private void saveInfoTramite(int idTask, int idTaskCT, String infoXML,
     		IInvesflowAPI invesFlowAPI, IEntitiesAPI entitiesAPI, ClientContext cct, IState state) throws ISPACException {
-        
+
         IItem infoTramite = entitiesAPI.createEntity(SpacEntities.SPAC_INFOTRAMITE);
         infoTramite.set("NUMEXP", state.getNumexp());
         infoTramite.set("ID_TRAMITE", idTask);
@@ -169,9 +168,9 @@ public class CrearSolicitudSubsanacionAction extends BaseAction {
         infoTramite.set("ID_PCD", state.getPcdId());
         infoTramite.set("ID_P_FASE", state.getStagePcdId());
         infoTramite.set("INFO", infoXML);
-        infoTramite.store(cct); 
+        infoTramite.store(cct);
     }
-    
+
     /**
      * Obtiene el Identificador de un Tramite para el Procedimiento/Fase dado el Identificador del Tramite del Catálogo
      * @param idTaskCT Identificador del Trámite en el Catálogo
@@ -185,7 +184,7 @@ public class CrearSolicitudSubsanacionAction extends BaseAction {
         IItemCollection stagetasks = procedure.getTasks(state.getStagePcdId());
         Iterator it = stagetasks.iterator();
         int idTaskPcd = 0;
-        
+
         //Obtener el Identificador del Tramite para el Procedimiento
         while (it.hasNext()) {
             IItem task = (IItem)it.next();
@@ -198,10 +197,10 @@ public class CrearSolicitudSubsanacionAction extends BaseAction {
         if (idTaskPcd == 0) {
             throw new Exception("No se ha encontrado el Trámite para Solicitud de Subsanación en el procedimiento actual.");
         }
-        
+
         return idTaskPcd;
     }
-    
+
     /**
      * Crea un Trámite de solictud de Subsanación para el Expediente Actual
      * @param managerAPI
@@ -212,12 +211,11 @@ public class CrearSolicitudSubsanacionAction extends BaseAction {
      */
     private int createTaskSolicitudSubsanacion(int idTaskPcd, IInvesflowAPI invesFlowAPI,
             IState state) throws Exception {
-                        
+
         //Crear el tramite de solicitud de subsanación
         ITXTransaction tx = invesFlowAPI.getTransactionAPI();
         int nNewTask = tx.createTask(state.getStageId(), idTaskPcd);
-        
-        
+
         return nNewTask;
     }
 }

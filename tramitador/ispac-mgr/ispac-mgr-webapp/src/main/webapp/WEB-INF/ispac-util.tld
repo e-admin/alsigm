@@ -274,7 +274,7 @@
        <name>showCloseLink</name>
        <required>false</required>
        <rtexprvalue>true</rtexprvalue>
-      </attribute>      
+      </attribute>
    </tag>
    <tag>
       <name>hideframe</name>
@@ -401,7 +401,7 @@
 		<rtexprvalue>true</rtexprvalue>
 	  </attribute>
    </tag>
-   
+
     <tag>
       <name>tab</name>
       <tagclass>ieci.tdw.ispac.ispacweb.tag.ISPACTabTag</tagclass>
@@ -433,7 +433,7 @@
        <rtexprvalue>true</rtexprvalue>
       </attribute>
    </tag>
-   
+
    <tag>
       <name>imageframe</name>
       <tagclass>ieci.tdw.ispac.ispacweb.tag.ImageFrameTag</tagclass>
@@ -534,8 +534,8 @@
 		<rtexprvalue>true</rtexprvalue>
 	  </attribute>
    </tag>
-   
-   
+
+
     <tag>
 		<name>menuTask</name>
 		<tagclass>ieci.tdw.ispac.ispacmgr.tag.MenuTaskTag</tagclass>
@@ -546,7 +546,7 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-	
+
 	<tag>
 		<name>menuExpRelated</name>
 		<tagclass>ieci.tdw.ispac.ispacmgr.tag.MenuExpRelatedTag</tagclass>
@@ -562,7 +562,7 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-	
+
 	</tag>
    <tag>
 		<name>menuBar</name>
@@ -695,12 +695,12 @@
        <name>multivalueId</name>
        <required>false</required>
        <rtexprvalue>true</rtexprvalue>
-      </attribute>  
+      </attribute>
        <attribute>
        <name>frame</name>
        <required>false</required>
        <rtexprvalue>true</rtexprvalue>
-      </attribute>    
+      </attribute>
    </tag>
    <tag>
      <name>updatefield</name>
@@ -874,7 +874,7 @@
 	       <rtexprvalue>true</rtexprvalue>
 		</attribute>
    </tag>
-   
+
    <tag>
    		<name>skin</name>
    		<tagclass>ieci.tdw.ispac.ispacweb.tag.ISPACSkinTag</tagclass>
@@ -887,7 +887,7 @@
 		</attribute>
 		-->
    </tag>
-   
+
    <tag>
    		<name>definebase</name>
    		<tagclass>ieci.tdw.ispac.ispacweb.tag.DefineBaseTag</tagclass>
@@ -1150,22 +1150,22 @@
 				<name>suggestAction</name>
 				<required>true</required>
 				<rtexprvalue>true</rtexprvalue>
-			</attribute>			
+			</attribute>
 			<attribute>
 				<name>paramName</name>
 				<required>true</required>
 				<rtexprvalue>true</rtexprvalue>
-			</attribute>		
+			</attribute>
 			<attribute>
 				<name>numRows</name>
 				<required>false</required>
 				<rtexprvalue>true</rtexprvalue>
-			</attribute>					
+			</attribute>
 			<attribute>
 				<name>showButton</name>
 				<required>false</required>
 				<rtexprvalue>true</rtexprvalue>
-			</attribute>								
+			</attribute>
 			<attribute>
 				<name>imageButton</name>
 				<required>false</required>
@@ -1174,18 +1174,18 @@
 			<attribute>
 				<name>suggestListStyleClass</name>
 				<required>false</required>
-				<rtexprvalue>true</rtexprvalue>				
-			</attribute>		
+				<rtexprvalue>true</rtexprvalue>
+			</attribute>
 			<attribute>
 				<name>minChars</name>
 				<required>false</required>
-				<rtexprvalue>true</rtexprvalue>				
-			</attribute>										
+				<rtexprvalue>true</rtexprvalue>
+			</attribute>
 			<attribute>
 				<name>extraParam</name>
 				<required>false</required>
-				<rtexprvalue>true</rtexprvalue>				
-			</attribute>													
+				<rtexprvalue>true</rtexprvalue>
+			</attribute>
    </tag>
    <tag>
       <name>extraTabs</name>
@@ -2115,7 +2115,7 @@
 		<name>divHeight</name>
 		<required>false</required>
 		<rtexprvalue>true</rtexprvalue>
-	  </attribute>	  
+		</attribute>
    </tag>
 
 
@@ -2748,7 +2748,7 @@
 	  </attribute>
 
    </tag>
-   
+
    <tag>
 	  <name>htmlTextMultivalueImageFrame</name>
 	  <tagclass>ieci.tdw.ispac.ispacweb.tag.HtmlTextMultivalueImageFrameTag</tagclass>
@@ -3053,8 +3053,8 @@
 		<required>false</required>
 		<rtexprvalue>true</rtexprvalue>
       </attribute>
-   </tag>   
-   
+   </tag>
+
    <tag>
       <name>onlinehelp</name>
       <tagclass>ieci.tdw.ispac.ispacweb.tag.OnLineHelpTag</tagclass>
@@ -3095,7 +3095,7 @@
        <rtexprvalue>true</rtexprvalue>
       </attribute>
    </tag>
-   
+
    	<tag>
    		<name>onlinehelpHref</name>
    		<tagclass>ieci.tdw.ispac.ispacweb.tag.OnLineHelpHrefTag</tagclass>
@@ -3126,7 +3126,7 @@
 	       <rtexprvalue>true</rtexprvalue>
 	      </attribute>
    </tag>
-   
+
    <tag>
 	  <name>lookUp</name>
 	  <tagclass>ieci.tdw.ispac.ispacweb.tag.LookUpTag</tagclass>
@@ -3688,7 +3688,7 @@
 		<rtexprvalue>true</rtexprvalue>
       </attribute>
    </tag>
-   
+
 	<tag>
 		<name>tooltipLabel</name>
 		<tagclass>ieci.tdw.ispac.ispacweb.tag.TooltipLabelTag</tagclass>
@@ -3730,7 +3730,7 @@
        <rtexprvalue>true</rtexprvalue>
       </attribute>
    </tag>
-   
+
 	<tag>
 	   	<name>javascriptLanguage</name>
 	   	<tagclass>ieci.tdw.ispac.ispacweb.tag.JavascriptLanguageTag</tagclass>
@@ -3745,7 +3745,7 @@
    <tag>
 		<name>hasFunction</name>
 		<tagclass>ieci.tdw.ispac.ispacweb.tag.HasFunctionTag</tagclass>
-	    <body-content>JSP</body-content>
+		<bodycontent>JSP</bodycontent>
 	    <attribute>
 	        <name>functions</name>
 	        <required>true</required>

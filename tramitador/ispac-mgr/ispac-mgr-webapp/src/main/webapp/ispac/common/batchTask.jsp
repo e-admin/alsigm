@@ -247,7 +247,7 @@
 						<c:set var="Formatter" value="${appConstants.formatters.BatchTaskFormatter}"/>
 						<bean:define name="Formatter" id="formatter" type="ieci.tdw.ispac.ispaclib.bean.BeanFormatter"/>
 
-						<jsp:useBean id="checkboxDecorator" scope="page" class="ieci.tdw.ispac.ispacweb.decorators.CheckboxTableDecorator" />
+						<jsp:useBean id="checkboxDecorator" scope="page" class="ieci.tdw.ispac.ispacweb.decorators.BatchTaskCheckboxTableDecorator" />
 						<jsp:setProperty name="checkboxDecorator" property="fieldName" value="multibox" />
 
 						<c:set var="listaExpedientes" value="${requestScope[appConstants.actions.BATCH_TASK_EXPS]}"/>
@@ -269,6 +269,7 @@
 								<logic:equal name="format" property="fieldType" value="CHECKBOX">
 
 									<jsp:setProperty name="checkboxDecorator" property="id" value='<%=format.getPropertyName()%>' />
+									<jsp:setProperty name="checkboxDecorator" property="idTask" value='<%=format.getPropertyLink()%>' />
 
 									<display:column title='<%="<input type=\'checkbox\' onclick=\'javascript:_checkAll(document.batchTaskForm.multibox, this);\'/>"%>'
 													media='<%=format.getMedia()%>'
@@ -278,7 +279,7 @@
 													headerClass='<%=format.getHeaderClass()%>'
 													class='<%=format.getColumnClass()%>'
 													property="checkbox">
-						  				<c:set var="taskId"><%=format.formatProperty(object)%></c:set>
+										<c:set var="stageId"><%=format.formatProperty(object)%></c:set>
 									</display:column>
 
 								</logic:equal>
@@ -370,8 +371,8 @@
 										</c:otherwise>
 										</c:choose>
 
-										<jsp:useBean id="taskId" type="java.lang.String"/>
-										<input name="taskIds" type="hidden" value='<%=taskId%>:<%=VALUE%>' />
+										<jsp:useBean id="stageId" type="java.lang.String"/>
+										<input name="taskIds" type="hidden" value='<%=stageId%>:<%=VALUE%>' />
 
 									</display:column>
 

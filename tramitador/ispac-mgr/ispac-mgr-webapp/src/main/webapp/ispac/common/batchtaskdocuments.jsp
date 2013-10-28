@@ -13,22 +13,22 @@
     <script type="text/javascript" src='<ispac:rewrite href="../scripts/sorttable.js"/>'> </script>
     <script type="text/javascript" src='<ispac:rewrite href="../scripts/utilities.js"/>'> </script>
     <ispac:javascriptLanguage/>
-    
+
     <!--[if lte IE 5]>
  		<link rel="stylesheet" type="text/css" href='<ispac:rewrite href="css/estilos_ie5.css"/>'/>
 
-	<![endif]-->	
+	<![endif]-->
 
 	<!--[if IE 6]>
 		<link rel="stylesheet" type="text/css" href='<ispac:rewrite href="css/estilos_ie6.css"/>'>
 
-	<![endif]-->	
+	<![endif]-->
 
 	<!--[if gte IE 7]>
 		<link rel="stylesheet" type="text/css" href='<ispac:rewrite href="css/estilos_ie7.css"/>'>
-	
+
 	<![endif]-->
-	
+
 	 <script type="text/javascript" src='<ispac:rewrite href="../scripts/jquery-1.3.2.min.js"/>'></script>
  	<script type="text/javascript" src='<ispac:rewrite href="../scripts/jquery-ui-1.7.2.custom.min.js"/>'></script>
  	<script type="text/javascript" src='<ispac:rewrite href="../scripts/jquery.alerts.js"/>'></script>
@@ -73,13 +73,13 @@ function showMsgInProgress(){
 	document.getElementById('inProgress').style.display='block';
 	document.getElementById('btnOk').disabled=true;
 	document.getElementById('btnCancel').disabled=true;
-	document.getElementById('editTemplate').disabled=true;
+	document.getElementById('btnEditTemplate').disabled=true;
 	obj = document.getElementById('print')
 	if (obj != null){
 		obj.disabled=true;
 	}
 
-}	
+}
 
 </SCRIPT>
 <%-- Arranca Word con la plantilla --%>
@@ -109,7 +109,7 @@ function showMsgInProgress(){
 					<html:button styleId="btnOk" property="generarDocumento" styleClass="btnOk" onclick="javascript:generateDocument();">
 							<bean:message key="common.message.ok"/>
 					</html:button>
-					<input id="btnCancel" type="button" value='<bean:message key="common.message.cancel"/>' class="btnCancel" onclick='<ispac:hideframe refresh="true"/>'/>			
+					<input id="btnCancel" type="button" value='<bean:message key="common.message.cancel"/>' class="btnCancel" onclick='<ispac:hideframe refresh="true"/>'/>
 				</div><%--fin acciones ficha --%>
 			</div><%--fin titulo ficha --%>
 		</div><%--fin encabezado ficha --%>
@@ -117,10 +117,10 @@ function showMsgInProgress(){
 		<div class="cuerpo_ficha">
 			<div class="seccion_ficha">
 			<p class="center" >
-			<html:button styleId="editTemplate" property="editarPlantilla" styleClass="form_button_white" onclick="javascript:editTemplate();">
+			<html:button styleId="btnEditTemplate" property="editarPlantilla" styleClass="form_button_white" onclick="javascript:editTemplate();">
 						<bean:message key="forms.batchTaskForm.editarPlantilla"/>
 			</html:button>
-				</p>						
+				</p>
 			<script language="javascript">
 											//<!--
 												if (isIEWord()) {
@@ -130,13 +130,13 @@ function showMsgInProgress(){
 												}
 											//-->
 			</script>
-			
+
 					<!--  Capa para presentar el mensaje de Operacion en progreso al realizar la firma -->
 					<div id="inProgress" style="display:none; text-align: center">
 						<b><bean:message key="msg.layer.operationInProgress" /></b>
 					</div>
-			
-			
+
+
 			</div>
 		</div>
 	</div>
@@ -152,5 +152,5 @@ positionMiddleScreen('contenido');
 	$(document).ready(function(){
 		$("#contenido").draggable();
 	});
-	
+
 </script>

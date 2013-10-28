@@ -51,7 +51,7 @@ import fondos.vos.INivelCFVO;
 /**
  * @author Iecisa
  * @version $Revision$
- * 
+ *
  */
 public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 		GestionRelacionesEACRBI {
@@ -92,7 +92,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#activarReencajado(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -132,7 +132,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEntregaBI#cancelarReencajado(java.lang.String)
 	 */
 	public void cancelarReencajadoTransaccional(String idRelEntrega) {
@@ -154,7 +154,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#addUIReencajado(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -172,7 +172,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEntregaBI#renumerarUnidadesDocumentalesCR(java.lang.String)
 	 */
 	private void renumerarUnidadesDocumentalesCRNoTransaccional(
@@ -201,7 +201,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEntregaBI#crearNuevaUICR(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -225,7 +225,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEntregaBI#eliminarUICRVacia(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -255,9 +255,9 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 	}
 
 	/**
-	 * 
+    *
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#subirUdocsEnUIReeaCR(java.lang.String,
 	 *      java.lang.String, java.lang.String[])
 	 */
@@ -283,9 +283,9 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 	}
 
 	/**
-	 * 
+    *
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#bajarUdocsEnUI(java.lang.String,
 	 *      java.lang.String, java.lang.String[])
 	 */
@@ -311,9 +311,9 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 	}
 
 	/**
-	 * 
+    *
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#eliminarPartesUDocReeaCR(java.lang.String,
 	 *      java.lang.String[])
 	 */
@@ -356,7 +356,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEntregaBI#extraerUDocDeUIReeaCR(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -378,7 +378,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEntregaBI#getUDocsSinUIReeaCR(java.lang.String)
 	 */
 	public List getUDocsSinUIReeaCR(String idRelEntrega) {
@@ -387,7 +387,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEntregaBI#incorporarUdocAUIReeaCR(java.lang.String,
 	 *      java.lang.String[])
 	 */
@@ -407,9 +407,9 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @throws UnidadDocumentalNoPermitidaDivisionException
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEntregaBI#dividirUDocReeaCR(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -424,6 +424,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 			if (uiReaCRVO != null) {
 				udoc.setIdUIReeaCR(uiReaCRVO.getId());
 				udoc.setNumParte(udoc.getTotalPartes() + 1);
+				udoc.setId(null);
 				_udocEnUiReeaCRDBEntity.insert(udoc);
 				Map mapUdocs = new HashMap();
 				mapUdocs.put(udoc.getIdUnidadDoc(), udoc.getIdUnidadDoc());
@@ -435,7 +436,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @throws RelacionEntregaConUDocsSinAsingarAUIException
 	 * @see common.bi.GestionRelacionesEACRBI#permitirEnviarRelacionEACR(java.lang.String)
 	 */
@@ -480,7 +481,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#crearUIsReeaConReencajadoNoTransaccional(java.lang.String,
 	 *      java.util.List, java.lang.String)
 	 */
@@ -572,7 +573,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getUIsReencajado(java.lang.String)
 	 */
 	public List getUIsReencajado(String idRelEntrega) {
@@ -581,7 +582,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getUDocsByUIReencajado(java.lang.String)
 	 */
 	public List getUDocsByUIReencajado(String idUI) {
@@ -590,7 +591,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getUDocsReencajadoByIdRelacion(java.lang.String)
 	 */
 	public List getUDocsSinAsignarByIdRelacion(String idRelEntrega) {
@@ -600,7 +601,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getUIReencajadoById(java.lang.String)
 	 */
 	public UIReeaCRVO getUIReencajadoById(String idUIReeacr) {
@@ -609,7 +610,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getCountUIs(java.lang.String)
 	 */
 	public int getCountUIs(String idRelEntrega) {
@@ -618,7 +619,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getCountUIsEstadoPendiente(java.lang.String)
 	 */
 	public int getCountUIsEstadoPendiente(String idRelacion) {
@@ -631,7 +632,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getUdocEnUIById(java.lang.String)
 	 */
 	public UDocEnUIReeaCRVO getUdocEnUIById(String idUdocEnUI) {
@@ -640,7 +641,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getNumUIsReeaCr(java.lang.String)
 	 */
 	public int getNumUIsReeaCr(String idRelEntrega) {
@@ -649,7 +650,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @param idRelEntrega
 	 * @see common.bi.GestionRelacionesEACRBI#updateDescripcionUdoc(java.lang.String,
 	 *      java.lang.String)
@@ -660,7 +661,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#updateDescripcionUI(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -720,7 +721,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#updateSignaturaUI(java.lang.String,
 	 *      java.lang.String)
 	 */
@@ -730,7 +731,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#updateSignaturaUdocsByIdUinstalacion(java.lang.String)
 	 */
 	public void updateSignaturaUdocsByIdUinstalacion(String idUI) {
@@ -754,7 +755,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#updateEstadoCotejo(java.lang.String,
 	 *      int)
 	 */
@@ -764,7 +765,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#marcarUIsRevisadas(java.lang.String[])
 	 */
 	public void marcarUIsRevisadas(String[] ids) {
@@ -774,7 +775,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getUnidadesInstalacion(java.lang.String,
 	 *      common.util.IntervalOptions)
 	 */
@@ -785,7 +786,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#eliminarUIsReencajadoNoTransaccional(java.lang.String,
 	 *      java.lang.String[])
 	 */
@@ -833,7 +834,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#crearDatosEnDeposito(java.lang.String)
 	 */
 	public void crearDatosEnDepositoNoTransaccional(String idRelEntrega) {
@@ -912,7 +913,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getUIsReencajado(java.lang.String,
 	 *      common.util.IntervalOptions)
 	 */
@@ -922,7 +923,7 @@ public class GestionRelacionesEACRBIImpl extends ServiceBase implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+    *
 	 * @see common.bi.GestionRelacionesEACRBI#getUDocsByIdRelacion(java.lang.String)
 	 */
 	public List getUDocsByIdRelacion(String idRelEntrega) {

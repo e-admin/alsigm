@@ -1600,6 +1600,16 @@ public abstract class RelacionEntregaDBEntityBaseImpl extends DBEntity
 
 		}
 
+		if(StringUtils.isNotBlank(vo.getIdGestor())){
+			qual.append(DBUtils.getAnd(qual.toString()));
+			qual.append(DBUtils.generateEQTokenField(CAMPO_IDUSRGESTORREM, vo.getIdGestor()));
+		}
+
+		if(StringUtils.isNotBlank(vo.getIdGestorArchivo())){
+			qual.append(DBUtils.getAnd(qual.toString()));
+			qual.append(DBUtils.generateEQTokenField(CAMPO_IDUSRGESTORARCHIVOREC, vo.getIdGestorArchivo()));
+		}
+
 		// Código de la serie
 		if (StringUtils.isNotBlank(vo.getCodigoSerie())) {
 			qual.append(DBUtils.getAnd(qual.toString()));
@@ -2206,7 +2216,9 @@ public abstract class RelacionEntregaDBEntityBaseImpl extends DBEntity
 				UDocEnUiDepositoDbEntityImpl.IDUNIDADDOC_FIELD,
 				UDocEnUiDepositoDbEntityImpl.SIGNATURAUDOC_FIELD,
 				ElementoCuadroClasificacionDBEntityImplBase.TITULO_FIELD,
-				enRelacionS };
+				enRelacionS,
+				UDocEnUiDepositoDbEntityImpl.POSUDOCENUI_FIELD
+			};
 
 		String tables1 = UDocEnUiDepositoDbEntityImpl.TABLE_NAME
 				+ ","
@@ -2234,7 +2246,10 @@ public abstract class RelacionEntregaDBEntityBaseImpl extends DBEntity
 				UDocEnUiDepositoDbEntityImpl.IDUNIDADDOC_FIELD,
 				UDocEnUiDepositoDbEntityImpl.SIGNATURAUDOC_FIELD,
 				ElementoCuadroClasificacionDBEntityImplBase.TITULO_FIELD,
-				enRelacionN };
+				enRelacionN,
+				UDocEnUiDepositoDbEntityImpl.POSUDOCENUI_FIELD
+
+		};
 
 		String tables2 = UDocEnUiDepositoDbEntityImpl.TABLE_NAME
 				+ ","
@@ -2610,8 +2625,25 @@ public abstract class RelacionEntregaDBEntityBaseImpl extends DBEntity
 		.append(DBUtils.AND)
 		.append(DBUtils.generateEQTokenField(CAMPO_ANO, relacion.getAno()))
 		.append(DBUtils.AND)
-		.append(DBUtils.generateEQTokenField(CAMPO_IDPROC, relacion.getIdprocedimiento()));
+		.append(DBUtils.generateEQTokenField(CAMPO_IDPROC, relacion.getIdprocedimiento()))
+		.append(DBUtils.AND)
+		.append(DBUtils.generateEQTokenField(CAMPO_IDSERIEDESTINO, relacion.getIdseriedestino()))
+		.append(DBUtils.AND)
+		.append(DBUtils.generateEQTokenField(CAMPO_DETALLEPREVISION, relacion.getIddetprevision()))
+		;
 
 		return getRelacion(qual.toString());
 	}
+
+	public int getCountRelacionesBySerie(String idSerie) {
+		StringBuilder qual = new StringBuilder(DBUtils.WHERE)
+			.append(DBUtils.generateEQTokenField(CAMPO_IDSERIEORIGEN, idSerie))
+			.append(DBUtils.OR)
+			.append(DBUtils.generateEQTokenField(CAMPO_IDSERIEDESTINO, idSerie));
+
+		return getVOCount(qual.toString(), TABLE_NAME);
+	}
+
+
+
 }

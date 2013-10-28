@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.collections.Predicate;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 import se.instituciones.GestorOrganismos;
 import se.instituciones.InfoOrgano;
 import se.instituciones.TipoAtributo;
+import se.instituciones.archigest.stub.OrganoVO;
 import se.instituciones.archigest.stub.WSOrganismos;
 import se.instituciones.archigest.stub.WSOrganismosServiceLocator;
 import se.instituciones.exceptions.GestorOrganismosException;
@@ -200,7 +202,21 @@ public class GestorOrganismoArchigest implements GestorOrganismos {
 			if (StringUtils.isBlank(valorAtrib))
 				return null;
 
-			return wsOrganismos.recuperarOrgano(tipoAtrib, valorAtrib);
+			OrganoVO organo = wsOrganismos.recuperarOrgano(tipoAtrib, valorAtrib);
+
+			if(organo != null){
+				if(tipoAtrib == TipoAtributo.IDENTIFICADOR_ORGANO){
+					organo.setId(valorAtrib);
+				}
+
+				if(tipoAtrib == TipoAtributo.CODIGO_ORGANO){
+					organo.setCodigo(valorAtrib);
+				}
+
+				organo.setNombre(organo.getNombre().replaceAll("'", ""));
+			}
+
+			return organo;
 		} catch (Exception e) {
 			logger.error("Error en la llamada al servicio web de organismos", e);
 			throw new GestorOrganismosException(e);

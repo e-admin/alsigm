@@ -59,10 +59,18 @@
 	<logic:notEmpty name="ValueList">
 		<bean:define name="Formatter" id="formatter"
 			type="ieci.tdw.ispac.ispaclib.bean.BeanFormatter" />
+
 		<!-- displayTag con formateador -->
-		<display:table name="ValueList" id="value" export="true"
-			pagesize='<%=formatter.getPageSize()%>' class="tableDisplay"
-			requestURI='' defaultsort="1" >
+		<display:table name="ValueList"
+			id="value"
+			requestURI=''
+			export='<%=formatter.getExport()%>'
+			class='<%=formatter.getStyleClass()%>'
+			sort='<%=formatter.getSort()%>'
+			pagesize='<%=formatter.getPageSize()%>'
+			defaultorder='<%=formatter.getDefaultOrder()%>'
+			defaultsort='<%=formatter.getDefaultSort()%>'>
+
 			<logic:iterate name="Formatter" id="format"
 				type="ieci.tdw.ispac.ispaclib.bean.BeanPropertyFmt">
 
@@ -73,6 +81,7 @@
 						sortable='<%=format.getSortable()%>'
 						sortProperty='<%=format.getPropertyName()%>'
 						decorator='<%=format.getDecorator()%>'
+						comparator='<%=format.getComparator()%>'
 						headerClass='<%=format.getHeaderClass()%>'
 						class='<%=format.getColumnClass()%>'>
 
@@ -91,6 +100,7 @@
 						sortable='<%=format.getSortable()%>'
 						sortProperty='<%=format.getPropertyName()%>'
 						decorator='<%=format.getDecorator()%>'
+						comparator='<%=format.getComparator()%>'
 						headerClass='<%=format.getHeaderClass()%>'
 						class='<%=format.getColumnClass()%>'>
 
@@ -108,6 +118,7 @@
 							sortable='<%=format.getSortable()%>'
 							sortProperty='<%=format.getPropertyName()%>'
 							decorator='<%=format.getDecorator()%>'
+							comparator='<%=format.getComparator()%>'
 							headerClass='<%=format.getHeaderClass()%>'
 							class='<%=format.getColumnClass()%>' style="text-align:center;">
 

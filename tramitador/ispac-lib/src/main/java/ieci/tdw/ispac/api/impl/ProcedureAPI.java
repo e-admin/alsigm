@@ -1701,21 +1701,21 @@ public class ProcedureAPI implements IProcedureAPI {
 	public IItemCollection getTaskDependencies(int ptaskId) throws ISPACException {
 
 		DbCnt cnt = mcontext.getConnection();
-		
+
 		try {
-			
+
 			String sql = new StringBuffer("WHERE SPAC_P_DEP_TRAMITES.ID_TRAMITE_HIJO=")
 				.append(ptaskId)
 				.append(" AND SPAC_P_DEP_TRAMITES.ID_TRAMITE_PADRE=SPAC_P_TRAMITES.ID ORDER BY SPAC_P_TRAMITES.NOMBRE")
 				.toString();
-			
+
 			TableJoinFactoryDAO factory = new TableJoinFactoryDAO();
 			factory.addTable("SPAC_P_DEP_TRAMITES", "SPAC_P_DEP_TRAMITES");
 			factory.addTable("SPAC_P_TRAMITES", "SPAC_P_TRAMITES");
 
 			CollectionDAO collection = factory.queryTableJoin(cnt, sql);
 			return collection.disconnect();
-			
+
 		} catch (ISPACException ie) {
 			logger.error( "Error en ProcedureAPI:getTaskDependencies(" + ptaskId + ")", ie);
 			throw new ISPACException("Error en ProcedureAPI:getTaskDependencies(" + ptaskId + ")", ie);
@@ -1724,7 +1724,7 @@ public class ProcedureAPI implements IProcedureAPI {
 		}
 
 	}
-	
+
 	public void addTaskDependency(int ptaskId, int parentPtaskId)
 			throws ISPACException {
 
@@ -1747,7 +1747,7 @@ public class ProcedureAPI implements IProcedureAPI {
 			mcontext.releaseConnection(cnt);
 		}
 	}
-	
+
 	public void deleteTaskDependency(int dependencyId) throws ISPACException {
 
 		DbCnt cnt = mcontext.getConnection();
@@ -2115,7 +2115,7 @@ public class ProcedureAPI implements IProcedureAPI {
     	DbCnt cnt = mcontext.getConnection();
 		try
 		{
-			String sql = "WHERE ID_TPDOC  = " + tpDoc + " ORDER BY ID";
+			String sql = "WHERE ID_TPDOC  = " + tpDoc + " ORDER BY NOMBRE";
 
 			CollectionDAO collection = new CollectionDAO(TemplateDAO.class);
 			collection.query(cnt,sql);
@@ -2143,7 +2143,7 @@ public class ProcedureAPI implements IProcedureAPI {
 			StringBuffer sql = new StringBuffer("WHERE ID_TPDOC  = ").append(tpDoc).append(" AND ID NOT IN (");
 			sql.append(" SELECT ID_P_PLANTDOC FROM SPAC_P_PLANTILLAS WHERE ID_PCD!=").append(procId);
 			sql.append(" AND ID_P_PLANTDOC NOT IN (SELECT ID_P_PLANTDOC FROM SPAC_P_PLANTILLAS WHERE ID_PCD=").append(procId).append(" )");
-			sql.append(" )ORDER BY ID");
+			sql.append(" ) ORDER BY NOMBRE");
 
 			CollectionDAO collection = new CollectionDAO(TemplateDAO.class);
 			collection.query(cnt,sql.toString());
@@ -3128,7 +3128,7 @@ public class ProcedureAPI implements IProcedureAPI {
 			TableJoinFactoryDAO factory = new TableJoinFactoryDAO();
 			factory.addTable( "SPAC_CTOS_FIRMA", "CTOSFIRMA");
 			factory.addTable( "SPAC_DT_DOCUMENTOS", "DOCUMENTOS");
-	   		CollectionDAO collection = factory.queryDistinctTableJoin( cnt, where);
+			CollectionDAO collection = factory.queryTableJoin( cnt, where);
 			return collection.disconnect();
 		}
 		catch (ISPACException ie)
@@ -3167,13 +3167,13 @@ public class ProcedureAPI implements IProcedureAPI {
     }
 
 	public int countExpedientesByPcd(int idPcd) throws ISPACException {
-		
+
 		DbCnt cnt = mcontext.getConnection();
 
 		try
 		{
 			return TXProcesoDAO.countProcess(cnt, "", " TIPO= "+TXProcesoDAO.PROCESS_TYPE+" AND ID_PCD="+idPcd);
-		
+
 		}
 		catch (ISPACException ie)
 		{

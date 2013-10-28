@@ -87,7 +87,7 @@ public class DetallePrevisionDBEntityImplTest extends ArchidocDBBaseTest {
 	public void getDetallePrestamoVO() {
 		DetallePrevisionVO detalleMock = getMockDetallePrevisionVO();
 
-		DetallePrevisionVO detalleBD = getDAO().getDetallePrestamoVO(detalleMock);
+		DetallePrevisionVO detalleBD = getDAO().getDetallePrevisionVO(detalleMock);
 
 		Assert.assertNotNull(detalleBD);
 		Assert.assertEquals(detalleMock.getId(), detalleBD.getId());

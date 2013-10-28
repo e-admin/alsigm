@@ -693,6 +693,31 @@ encoding="iso-8859-1" indent="yes"/>
                   <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
                 </input>
               </td>
+            <td><xsl:attribute name="id">idHoraEspacio_<xsl:value-of select="$id" />_1</xsl:attribute> </td>
+              <td style="display:none;border:0;">
+                <xsl:attribute name="id">idFechaHHValor_<xsl:value-of select="$id" />_1</xsl:attribute>
+                <input type="text" size="2" maxlength="2">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaHH</xsl:attribute>
+                  <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
+                </input>
+              </td>
+            <td><xsl:attribute name="id">idHoraSeparador1_<xsl:value-of select="$id" />_1</xsl:attribute>p:</td>
+              <td style="display:none;border:0;">
+                <xsl:attribute name="id">idFechaMMValor_<xsl:value-of select="$id" />_1</xsl:attribute>
+                <input type="text" size="2" maxlength="2">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaMM</xsl:attribute>
+                  <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
+                </input>
+              </td>
+            <td><xsl:attribute name="id">idHoraSeparador2_<xsl:value-of select="$id" />_1</xsl:attribute>:</td>
+              <td style="display:none;border:0;">
+                <xsl:attribute name="id">idFechaSSValor_<xsl:value-of select="$id" />_1</xsl:attribute>
+                <input type="text" size="2" maxlength="2">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaSS</xsl:attribute>
+                  <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
+                </input>
+              </td>
+
               <td style="display:none;border:0;">
                 <xsl:attribute name="id">idFechaSValor_<xsl:value-of select="$id" />_1</xsl:attribute>
                 <input type="text" size="5" maxlength="5">
@@ -761,6 +786,23 @@ encoding="iso-8859-1" indent="yes"/>
                   <xsl:attribute name="value"><xsl:value-of select="@Anio"/></xsl:attribute>
                 </input>
 
+
+                <input type="hidden">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaHH</xsl:attribute>
+                  <xsl:attribute name="value"><xsl:value-of select="@Horas"/></xsl:attribute>
+                </input>
+
+                <input type="hidden">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaMM</xsl:attribute>
+                  <xsl:attribute name="value"><xsl:value-of select="@Minutos"/></xsl:attribute>
+                </input>
+
+                <input type="hidden">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaSS</xsl:attribute>
+                  <xsl:attribute name="value"><xsl:value-of select="@Segundos"/></xsl:attribute>
+                </input>
+
+
                 <input type="hidden">
                   <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaS</xsl:attribute>
                   <xsl:attribute name="value"><xsl:value-of select="@Siglo"/></xsl:attribute>
@@ -819,6 +861,39 @@ encoding="iso-8859-1" indent="yes"/>
                   <xsl:attribute name="value"><xsl:value-of select="@Anio"/></xsl:attribute>
                 </input>
               </td>
+
+            <td><xsl:attribute name="id">idHoraEspacio_<xsl:value-of select="$id" />_<xsl:value-of select="position()" /></xsl:attribute>:</td>
+
+              <!-- Horas -->
+              <td style="display:none;border:0;">
+                <xsl:attribute name="id">idFechaHHValor_<xsl:value-of select="$id" />_<xsl:value-of select="position()" /></xsl:attribute>
+                &nbsp;<input type="text" size="2" maxlength="2">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaHH</xsl:attribute>
+                  <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
+                  <xsl:attribute name="value"><xsl:value-of select="@Horas"/></xsl:attribute>
+                </input>
+              </td>
+              <td><xsl:attribute name="id">idHoraSeparador1_<xsl:value-of select="$id" />_<xsl:value-of select="position()" /></xsl:attribute>:</td>
+              <!-- Minutos -->
+              <td style="display:none;border:0;">
+                <xsl:attribute name="id">idFechaMMValor_<xsl:value-of select="$id" />_<xsl:value-of select="position()" /></xsl:attribute>
+                &nbsp;<input type="text" size="2" maxlength="2">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaMM</xsl:attribute>
+                  <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
+                  <xsl:attribute name="value"><xsl:value-of select="@Minutos"/></xsl:attribute>
+                </input>
+              </td>
+            <td><xsl:attribute name="id">idHoraSeparador2_<xsl:value-of select="$id" />_<xsl:value-of select="position()" /></xsl:attribute>:</td>
+              <!-- Segundos -->
+              <td style="display:none;border:0;">
+                <xsl:attribute name="id">idFechaSSValor_<xsl:value-of select="$id" />_<xsl:value-of select="position()" /></xsl:attribute>
+                &nbsp;<input type="text" size="2" maxlength="2">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaSS</xsl:attribute>
+                  <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
+                  <xsl:attribute name="value"><xsl:value-of select="@Segundos"/></xsl:attribute>
+                </input>
+              </td>
+
               <td style="display:none;border:0;">
                 <xsl:attribute name="id">idFechaSValor_<xsl:value-of select="$id" />_<xsl:value-of select="position()" /></xsl:attribute>
                 <input type="text" size="5" maxlength="5" >
@@ -905,6 +980,41 @@ encoding="iso-8859-1" indent="yes"/>
                   <xsl:attribute name="value"><xsl:value-of select="Dato/Valores/Valor[$rownum]/@Anio"/></xsl:attribute>
                 </input>
               </td>
+
+            <td style="border:0;"><xsl:attribute name="id">idHoraEspacio_<xsl:value-of select="$id" />_<xsl:value-of select="$rownum" /></xsl:attribute> </td>
+              <!-- Horas -->
+               <td style="display:none;border:0;">
+                <xsl:attribute name="id">idFechaHHValor_<xsl:value-of select="$id" />_<xsl:value-of select="$rownum" /></xsl:attribute>
+                <input type="text" size="2" maxlength="2">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaHH</xsl:attribute>
+                  <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
+                  <xsl:attribute name="value"><xsl:value-of select="Dato/Valores/Valor[$rownum]/@Horas"/></xsl:attribute>
+                </input>
+              </td>
+
+				<td style="border:0;"><xsl:attribute name="id">idHoraSeparador1_<xsl:value-of select="$id" />_<xsl:value-of select="$rownum" /></xsl:attribute>:</td>
+              <!-- Minutos -->
+                <td style="display:none;border:0;">
+                <xsl:attribute name="id">idFechaMMValor_<xsl:value-of select="$id" />_<xsl:value-of select="$rownum" /></xsl:attribute>
+                <input type="text" size="2" maxlength="2">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaMM</xsl:attribute>
+                  <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
+                  <xsl:attribute name="value"><xsl:value-of select="Dato/Valores/Valor[$rownum]/@Minutos"/></xsl:attribute>
+                </input>
+              </td>
+				<td style="border:0;"><xsl:attribute name="id">idHoraSeparador2_<xsl:value-of select="$id" />_<xsl:value-of select="$rownum" /></xsl:attribute>:</td>
+
+              <!-- Segundos -->
+                <td style="display:none;border:0;">
+                <xsl:attribute name="id">idFechaSSValor_<xsl:value-of select="$id" />_<xsl:value-of select="$rownum" /></xsl:attribute>
+                <input type="text" size="2" maxlength="2">
+                  <xsl:attribute name="name">campo_<xsl:value-of select="$id" />_fechaSS</xsl:attribute>
+                  <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
+                  <xsl:attribute name="value"><xsl:value-of select="Dato/Valores/Valor[$rownum]/@Segundos"/></xsl:attribute>
+                </input>
+              </td>
+
+
               <td style="display:none;border:0;">
                 <xsl:attribute name="id">idFechaSValor_<xsl:value-of select="$id" />_<xsl:value-of select="$rownum" /></xsl:attribute>
                 <input type="text" size="5" maxlength="5" >

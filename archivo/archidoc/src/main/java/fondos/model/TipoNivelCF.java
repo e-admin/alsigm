@@ -17,7 +17,7 @@ import common.util.ListUtils;
 
 /**
  * @author luisanve
- * 
+ *
  */
 public class TipoNivelCF {
 
@@ -56,7 +56,7 @@ public class TipoNivelCF {
 	public static final TipoNivelCF FONDO = new TipoNivelCF(2, "Fondo",
 			new int[] { 3, 4 }, true, false, "book-2.0.gif");
 	public static final TipoNivelCF CLASIFICADOR_SERIE = new TipoNivelCF(3,
-			"Clasificador de series", new int[] { 4 }, false, false,
+			"Clasificador de series", new int[] {3, 4 }, false, false,
 			"book-4.0.gif");
 	public static final TipoNivelCF SERIE = new TipoNivelCF(4, "Serie",
 			new int[] { 6 }, false, false, "book-5.0.gif");

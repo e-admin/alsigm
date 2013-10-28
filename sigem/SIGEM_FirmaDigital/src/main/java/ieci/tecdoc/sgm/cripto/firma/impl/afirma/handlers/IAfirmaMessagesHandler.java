@@ -106,6 +106,7 @@ public interface IAfirmaMessagesHandler {
 	 *             si ocurre algún error.
 	 */
 	public String createRequestVerificar(SignManagerAFirmaImpl af, String firma) throws Exception;
+	public String createRequestVerificar(SignManagerAFirmaImpl af, String firma,String b64Datos) throws Exception;
 
 	/**
 	 * Comprueba el mensaje de respuesta para verificar la firma de un documento en AFirma.

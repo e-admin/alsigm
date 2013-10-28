@@ -356,6 +356,7 @@ public class GestionIdentificacionAction extends BaseIdentificacionAction {
 		GestionSeriesBI serieBI = services.lookupGestionSeriesBI();
 		String idSerie = null;
 		IdentificacionSerieForm identificacionSerieForm = (IdentificacionSerieForm) form;
+
 		try {
 			idSerie = request.getParameter("idSerie");
 			if (StringUtils.isBlank(idSerie))
@@ -391,6 +392,9 @@ public class GestionIdentificacionAction extends BaseIdentificacionAction {
 
 			goLastClientExecuteLogic(mappings, form, request, response);
 		} catch (ProductorProcedimientoNoIncorporadoException e) {
+
+			saveCurrentInvocation(KeysClientsInvocations.CUADRO_ACTULIZAR_IDENTIFICACION, request);
+
 			obtenerErrores(request, true).add(ActionErrors.GLOBAL_ERROR,
 					new ActionError(Constants.NO_EXISTEN_ORGANOS));
 			List listaProductoresADarDeAlta = (List) getFromTemporalSession(
@@ -1215,10 +1219,17 @@ public class GestionIdentificacionAction extends BaseIdentificacionAction {
 		ServiceRepository services = getServiceRepository(request);
 		String queryString = request.getParameter("tokenNombreProductor");
 		GestionSeriesBI serieBI = services.lookupGestionSeriesBI();
+		IdentificacionSerieForm frm = (IdentificacionSerieForm) form;
+
+		boolean productoresHistoricos = false;
+
+		if(Constants.TRUE_STRING.equals(frm.getBusquedaHistoricos())){
+			productoresHistoricos = true;
+		}
 
 		try {
 			List posiblesProductores = serieBI.findPosiblesProductores(
-					queryString, serie);
+					queryString, serie, productoresHistoricos);
 			// eliminar los q ya estan añadidos
 			List productoresActuales = serie.getInfoProductoresNoEliminados();
 
@@ -1238,15 +1249,20 @@ public class GestionIdentificacionAction extends BaseIdentificacionAction {
 							CAOrganoVO caOrganoVO = serieBI
 									.getCAOrgProductorVOXId(organoProductorVO
 											.getIdOrgano());
-							if (posiblesProductores != null) {
+							if (caOrganoVO != null && posiblesProductores != null) {
 								for (int j = 0; j < posiblesProductores.size(); j++) {
 									InfoOrganoProductorSerie infoOrganoProductorSerie = (InfoOrganoProductorSerie) posiblesProductores
 											.get(j);
-									if (infoOrganoProductorSerie
-											.getIdEnSistemaExterno()
-											.equalsIgnoreCase(
+
+									String idOrgSExtGestor = infoOrganoProductorSerie.getIdEnSistemaExterno();
+
+									if (idOrgSExtGestor != null
+										&&
+										idOrgSExtGestor.equalsIgnoreCase(
 													caOrganoVO
-															.getIdOrgSExtGestor())) {
+															.getIdOrgSExtGestor())
+										&& caOrganoVO.isOrganoVigente()
+									) {
 										posiblesProductores.remove(j);
 										break;
 									}
@@ -1257,9 +1273,12 @@ public class GestionIdentificacionAction extends BaseIdentificacionAction {
 							for (int j = 0; j < posiblesProductores.size(); j++) {
 								IInfoProductorSerie infoOrganoProductorSerie = (IInfoProductorSerie) posiblesProductores
 										.get(j);
-								if (infoOrganoProductorSerie
-										.getIdDescriptor()
-										.equalsIgnoreCase(obj.getIdDescriptor())) {
+
+								String idDescriptor = infoOrganoProductorSerie
+								.getIdDescriptor();
+
+								if (idDescriptor != null &&
+										idDescriptor.equalsIgnoreCase(obj.getIdDescriptor())) {
 									posiblesProductores.remove(j);
 									break;
 								}
@@ -1284,6 +1303,7 @@ public class GestionIdentificacionAction extends BaseIdentificacionAction {
 		setReturnActionFordward(request,
 				mappings.findForward("listado_organos"));
 	}
+
 
 	public void cancelarSusticionExecuteLogic(ActionMapping mappings,
 			ActionForm form, HttpServletRequest request,
@@ -1452,6 +1472,19 @@ public class GestionIdentificacionAction extends BaseIdentificacionAction {
 					request, FondosConstants.IDENTIFICACION_SERIE_KEY);
 
 			IdentificacionSerieForm frm = (IdentificacionSerieForm) form;
+
+			boolean isOrganoExterno = true;
+
+			if(Constants.TRUE_STRING.equals(frm.getBusquedaHistoricos())
+			){
+				String idSistExtHistoricos = ConfiguracionSistemaArchivoFactory
+				.getConfiguracionSistemaArchivo().getConfiguracionFondos().getIdSistGestorOrgHistoricos();
+
+				if(StringUtils.isNotBlank(idSistExtHistoricos)){
+					isOrganoExterno = false;
+				}
+			}
+
 			List listaPosiblesProductores = (List) getFromTemporalSession(
 					request, FondosConstants.LISTA_POSIBLES_PRODUCTORES_KEY);
 
@@ -1527,31 +1560,24 @@ public class GestionIdentificacionAction extends BaseIdentificacionAction {
 
 			addInfoProductorSerie(request, infoOrganoProductorSerie);
 
-			// List
-			// listaProductoresHistoricos=(List)getFromTemporalSession(request,
-			// FondosConstants.PRODUCTORES_HISTORICOS_KEY);
-			// if(listaProductoresHistoricos == null){
-			// listaProductoresHistoricos = new ArrayList();
-			// setInTemporalSession(request,
-			// FondosConstants.PRODUCTORES_HISTORICOS_KEY,
-			// listaProductoresHistoricos);
-			// }
-
-			// ProductorSerieVO productorSerieVO =
-			// getProductorSerieVO(serie.getId(), infoOrganoProductorSerie);
-			// addObjectInLista(productorSerieVO, listaProductoresHistoricos);
-
-			List listaProductoresADarDeAlta = (List) getFromTemporalSession(
-					request, FondosConstants.PRODUCTORES_A_DAR_DE_ALTA_KEY);
-
-			listaProductoresADarDeAlta.removeAll(listaProductoresADarDeAlta);
-
 			frm.setNombreProductor(null);
 			frm.setDescripcionProductor(null);
 			frm.setArchivoPorProductor(null);
-			listProductoresADarDeAlta(request,
-					identificacionSerie.getListaInfoProductoresSerie(),
-					listaProductoresADarDeAlta, frm);
+
+			if (isOrganoExterno) {
+				List listaProductoresADarDeAlta = (List) getFromTemporalSession(
+						request, FondosConstants.PRODUCTORES_A_DAR_DE_ALTA_KEY);
+
+				listaProductoresADarDeAlta
+						.removeAll(listaProductoresADarDeAlta);
+
+				listProductoresADarDeAlta(request,
+						identificacionSerie.getListaInfoProductoresSerie(),
+						listaProductoresADarDeAlta, frm);
+			}
+
+
+
 
 			frm.setChanged(true);
 

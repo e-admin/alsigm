@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 /** Clase para obtener los recursos del Applet. */
 final class AppLauncherMessages {
-
+	
 	private AppLauncherMessages() {
 		// No permitimos la instanciacion
 	}

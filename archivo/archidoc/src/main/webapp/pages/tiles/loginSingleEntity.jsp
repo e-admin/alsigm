@@ -26,17 +26,19 @@ function toggleUserType(selected)
 	{
 		if (superuserCheck.checked)
 			userTypeSelect.disabled = true;
-		else 
+		else
 			userTypeSelect.disabled = false;
 	}
 }
 
 
-if(window.opener && !window.opener.closed){
+/*if(window.opener && !window.opener.closed){
 	window.opener.focus();
 	window.opener.location = window.location;
 }
-else if(window.top &&  window.top.basefrm){
+else
+*/
+if(window.top &&  window.top.basefrm){
 	window.top.location = window.location;
 }
 
@@ -47,7 +49,7 @@ else if(window.top &&  window.top.basefrm){
 <c:set var="actor" value="${cookie['actor']}"/>
 
 <tiles:insert template="/pages/tiles/SimpleLayout.jsp">
-  <tiles:put name="head" value="head.jsp" />	
+  <tiles:put name="head" value="head.jsp" />
   <tiles:put name="cabecera" value="cabecera.jsp" />
   <tiles:put name="pie_pagina" value="pie_pagina.jsp" />
 
@@ -65,7 +67,7 @@ else if(window.top &&  window.top.basefrm){
 						  		<html:img page="/pages/images/pixel.gif" width="1" />
 								<archivo:errors/>
 						    </div>
-        
+
 							<logic:present scope="session" name="LOGIN EXCEPTION">
 							<bean:define id="exception" scope="session" name="LOGIN EXCEPTION"/>
 							<div style="text-align:left; width:70%;">
@@ -128,7 +130,7 @@ else if(window.top &&  window.top.basefrm){
 					                  </td>
 					                  <td width="10px">&nbsp;</td>
 					                  <td>
-					                  	<input type="text" size="12" name="login" class="input" 
+										<input type="text" size="12" name="login" class="input"
 					                  		value="<c:out value="${param['login']}"/>"/>
 					                  	<input type="hidden" name="userType" value="3" />
 					                  </td>
@@ -154,7 +156,7 @@ else if(window.top &&  window.top.basefrm){
 					                  	<bean:message key="archigest.archivo.login.usuario"/>:
 					                  </td>
 					                  <td width="10px">&nbsp;</td>
-					                  <td><input type="text" size="12" name="login" class="input" 
+										<td><input type="text" size="12" name="login" class="input"
 					                  		value="<c:out value="${param['login']}"/>" /></td>
 					                </tr>
 				                  </c:otherwise>
@@ -164,7 +166,7 @@ else if(window.top &&  window.top.basefrm){
 				                  	<bean:message key="archigest.archivo.login.password"/>:
 				                  </td>
 				                  <td width="10px">&nbsp;</td>
-				                  <td><input type="password" size="12" name="password" class="input" 
+									<td><input type="password" size="12" name="password" class="input"
 				                  		value="<c:out value="${param['password']}"/>"/></td>
 				                </tr>
 				                <%-- Superusuario, visible o no vía configuración --%>
@@ -206,7 +208,7 @@ else if(window.top &&  window.top.basefrm){
 								</tr>
 				              </table>
 					          </form>
-				              
+
 				              <script type="text/javascript">
 				              	document.forms["formLogin"].login.focus();
 				              </script>
