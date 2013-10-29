@@ -2,7 +2,7 @@
 
 	<groupId>es.ieci.tecdoc.archidoc</groupId>
 	<artifactId>archidoc_modules</artifactId>
-	<version>5.0</version>
+	<version>5.0.9-M1</version>
 
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>

@@ -45,7 +45,7 @@
 		<fwktd.version>0.7</fwktd.version>
 		<invesdoc.version>9.2.3.1</invesdoc.version>
 		<invesicres.version>8.0.1</invesicres.version>
-		<archidoc_organization_connector.version>5.0</archidoc_organization_connector.version>
+		<archidoc_organization_connector.version>5.0.9-M1</archidoc_organization_connector.version>
 
 		<!-- Third party dependencies -->
 		<ajaxtags.version>1.1.5</ajaxtags.version>

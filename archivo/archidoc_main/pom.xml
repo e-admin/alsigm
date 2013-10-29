@@ -19,7 +19,7 @@
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 
 		<archidoc.version>${project.version}</archidoc.version>
-		<ispac.version>6.4</ispac.version>
+		<ispac.version>6.4.1</ispac.version>
 		<fwktd.version>0.7</fwktd.version>
 		<fwktd-dm.version>0.7</fwktd-dm.version>
 		<slf4j.version>1.4.2</slf4j.version>
