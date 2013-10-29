@@ -3,7 +3,7 @@
 
 	<parent>
 		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-time</groupId>
-		<artifactId>fwktd-time-parent</artifactId>
+		<artifactId>fwktd-time</artifactId>
 		<version>0.5</version>
 	</parent>
 

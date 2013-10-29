@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.bd.dao.impl;
+/*package es.ieci.tecdoc.fwktd.dm.bd.dao.impl;
 
 import java.util.Date;
 
@@ -97,4 +97,4 @@ public class DocumentoDaoImplTest extends BaseDocumentoTest {
 		Assert.assertEquals(count -1 , getDocumentoDao().count());
 	}
 
-}
+}*/

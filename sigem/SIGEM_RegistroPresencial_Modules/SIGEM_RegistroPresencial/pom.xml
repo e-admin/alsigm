@@ -57,7 +57,7 @@
 			<exclusions>
 				<exclusion>
 					<groupId>com.sun.media</groupId>
-					<artifactId>jai_codec</artifactId>
+					<artifactId>jai-codec</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>javax.management</groupId>

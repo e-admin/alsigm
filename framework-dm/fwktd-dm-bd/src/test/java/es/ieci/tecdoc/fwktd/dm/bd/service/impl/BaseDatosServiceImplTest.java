@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.bd.service.impl;
+/*package es.ieci.tecdoc.fwktd.dm.bd.service.impl;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -180,4 +180,4 @@ public class BaseDatosServiceImplTest extends BaseDocumentoTest {
 		metadato.setValor(valor);
 		return metadato;
 	}
-}
+}*/

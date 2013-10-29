@@ -33,7 +33,15 @@
 			<artifactId>dctm</artifactId>
 			<version>${documentum.version}</version>
 			<scope>provided</scope>
+    </dependency>
+
+		<dependency>
+			<groupId>documentum</groupId>
+			<artifactId>dfc</artifactId>
+			<version>${documentum.version}</version>
+			<scope>provided</scope>
 		</dependency>
+
 
 	</dependencies>
 

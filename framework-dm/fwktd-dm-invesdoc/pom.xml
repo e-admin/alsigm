@@ -3,7 +3,7 @@
 
 	<parent>
 		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-dm</groupId>
-		<artifactId>fwktd-dm-parent-jar</artifactId>
+		<artifactId>fwktd-dm</artifactId>
 		<version>0.7</version>
 	</parent>
 

@@ -48,7 +48,7 @@
 					<target>${jdk.version}</target>
 					<encoding>iso-8859-1</encoding>
 					<fork>true</fork>
-					<executable>${JAVA_1_5_HOME}/bin/javac</executable>
+          <!--					<executable>${JAVA_1_5_HOME}/bin/javac</executable>-->
 				</configuration>
 			</plugin>
 			<plugin>
@@ -142,18 +142,16 @@
 
 		</profile>
 	</profiles>
-
-	<distributionManagement>
-		<repository>
-			<id>inhouse_releases</id>
-			<name>Repositorio tecdoc de releases</name>
-			<url>http://10.228.75.66:8081/nexus/content/repositories/releases/</url>
-
-		</repository>
-		<snapshotRepository>
-			<id>inhouse_snapshots</id>
-			<name>Repositorio tecdoc de snapshots</name>
-			<url>http://10.228.75.66:8081/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <name>Repositorio de releases</name>
+      <url>http://devel.uji.es/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>Repositorio de snapshots</name>
+      <url>http://devel.uji.es/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>

@@ -7,27 +7,9 @@
 	<version>3.0.1-M2</version>
 	<inceptionYear>2009</inceptionYear>
 
-	<scm>
-    	<connection>scm:svn:https://10.228.75.66/svn/SIGEM/</connection>
-    	<developerConnection>scm:svn:https://10.228.75.66/svn/SIGEM/trunk/</developerConnection>
-  	</scm>
-
 	<prerequisites>
 		<maven>2.0.9</maven>
 	</prerequisites>
-
-	<distributionManagement>
-		<repository>
-			<id>inhouse_releases</id>
-			<name>Repositorio tecdoc de releases</name>
-			<url>http://10.228.75.66:8081/nexus/content/repositories/releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>inhouse_snapshots</id>
-			<name>Repositorio tecdoc de snapshots</name>
-			<url>http://10.228.75.66:8081/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<profiles>
 
@@ -126,7 +108,6 @@
 				<module>SIGEM_EstructuraOrganizativa</module>
 				<module>SIGEM_UtilidadesAdministracion</module>
 				<module>SIGEM_EstructuraOrganizativaWSClient</module>
-				<module>SIGEM_CatalogoTramitesWSClient</module>
 				<module>SIGEM_FirmaDigital</module>
 				<module>SIGEM_FirmaDigitalWSClient</module>
 				<module>SIGEM_Certificacion</module>

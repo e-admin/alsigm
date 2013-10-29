@@ -44,7 +44,7 @@
 		
 		<dependency>
 			<groupId>es.ieci.tecdoc.sigem</groupId>
-			<artifactId>SIGEM_ConsolidacionConfigLoader</artifactId>
+			<artifactId>sigem_consolidacionConfigLoader</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 		

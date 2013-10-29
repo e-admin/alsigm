@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.invesdoc.service.impl;
+/*package es.ieci.tecdoc.fwktd.dm.invesdoc.service.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -289,4 +289,4 @@ public class InvesdocServiceImplTest extends AbstractJUnit4SpringContextTests {
 		metadato.setValor(valor);
 		return metadato;
 	}
-}
+}*/

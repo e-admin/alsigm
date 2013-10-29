@@ -23,20 +23,16 @@
 		<module>ispac-main-ws-war</module>
 	</modules>
 
-	<repositories>
-		<!-- TODO definicion de repositorios -->
-	</repositories>
-
 	<distributionManagement>
 		<repository>
-			<id>inhouse_releases</id>
-			<name>Repositorio tecdoc de releases</name>
-			<url>http://10.228.8.230:8081/nexus/content/repositories/releases/</url>
+			<id>releases</id>
+			<name>Repositorio de releases</name>
+			<url>http://devel.uji.es/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
-			<id>inhouse_snapshots</id>
-			<name>Repositorio tecdoc de snapshots</name>
-			<url>http://10.228.8.230:8081/nexus/content/repositories/snapshots/</url>
+			<id>snapshots</id>
+			<name>Repositorio de snapshots</name>
+			<url>http://devel.uji.es/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -48,7 +44,7 @@
 		<!-- IECI dependencies -->
 		<fwktd.version>0.7</fwktd.version>
 		<invesdoc.version>9.2.3.1</invesdoc.version>
-		<invesicres.version>8.0</invesicres.version>
+		<invesicres.version>8.0.1</invesicres.version>
 		<archidoc_organization_connector.version>5.0</archidoc_organization_connector.version>
 
 		<!-- Third party dependencies -->
@@ -81,7 +77,7 @@
 		<slf4j.version>1.5.8</slf4j.version>
 		<standard.version>1.0.6</standard.version>
 		<struts.version>1.2.4</struts.version>
-		<struts.menu.version>2.2</struts.menu.version>
+		<struts.menu.version>2.4.3</struts.menu.version>
 		<unoil.version>2.2.1</unoil.version>
 		<velocity.version>1.7</velocity.version>
 		<xalan.version>2.7.1</xalan.version>
@@ -128,7 +124,6 @@
 						<target>${jdk.version}</target>
 						<encoding>ISO-8859-1</encoding>
 						<fork>true</fork>
-						<executable>${JAVA_1_5_HOME}/bin/javac</executable>
 					</configuration>
 				</plugin>
 				<plugin>

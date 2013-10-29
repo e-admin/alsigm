@@ -3,7 +3,7 @@
 
 	<parent>
 		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
-		<artifactId>fwktd-sir-parent</artifactId>
+		<artifactId>fwktd-sir</artifactId>
 		<version>1.0.1</version>
 	</parent>
 

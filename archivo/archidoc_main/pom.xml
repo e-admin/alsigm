@@ -50,12 +50,12 @@
 		<httpclient.version>0.3-3</httpclient.version>
 		<invesdoc.version>9.2.3.1</invesdoc.version>
 		<invesdoc.version.8>8.6.1.1</invesdoc.version.8>
-		<itext.version>1.4.2</itext.version>
+		<itext.version>1.4.8</itext.version>
 		<jakarta-oro.version>2.0.8</jakarta-oro.version>
 		<jakarta-regexp.version>1.4</jakarta-regexp.version>
 		<jamonapi.version>1.0</jamonapi.version>
 		<javax-mail.version>1.3.1</javax-mail.version>
-		<jmx.version>1.2.8</jmx.version>
+		<jmx.version>1.2.1</jmx.version>
 		<jstl.version>1.0.2</jstl.version>
 		<log4j.version>1.2.13</log4j.version>
 		<mimeutils.version>2.1.3</mimeutils.version>
@@ -67,7 +67,7 @@
 		<spring.version>3.0.2.RELEASE</spring.version>
 		<standard.version>1.0.4</standard.version>
 		<struts.version>1.1</struts.version>
-		<struts-menu.version>2.2</struts-menu.version>
+		<struts-menu.version>2.4.3</struts-menu.version>
 		<taglibs-string.version>1.1.0</taglibs-string.version>
 		<wss4j.version>1.5.7</wss4j.version>
 		<xalan.version>2.7.1</xalan.version>
@@ -228,7 +228,7 @@
 			<dependency>
 				<groupId>axis</groupId>
 				<artifactId>axis-schema</artifactId>
-				<version>${axis.version}</version>
+				<version>1.3</version>
 			</dependency>
 			<dependency>
 				<groupId>axis</groupId>
@@ -283,7 +283,7 @@
 			<dependency>
 				<groupId>jmxtools</groupId>
 				<artifactId>jmxtools</artifactId>
-				<version>${jmx.version}</version>
+				<version>1.2.8</version>
 			</dependency>
 			<dependency>
 				<groupId>taglibs</groupId>
@@ -646,7 +646,7 @@
 					<target>${jdk.version}</target>
 					<encoding>iso-8859-1</encoding>
 					<fork>true</fork>
-					<executable>${JAVA_1_5_HOME}/bin/javac</executable>
+          <!--					<executable>${JAVA_1_5_HOME}/bin/javac</executable>-->
 					<compilerVersion>${jdk.version}</compilerVersion>
 					<meminitial>256m</meminitial>
 					<maxmem>512m</maxmem>
@@ -675,14 +675,14 @@
 	</build>
 	<distributionManagement>
 		<repository>
-			<id>inhouse_releases</id>
-			<name>Repositorio tecdoc de releases</name>
-			<url>http://10.228.75.66:8081/nexus/content/repositories/releases/</url>
+			<id>releases</id>
+			<name>Repositorio de releases</name>
+			<url>http://devel.uji.es/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
-			<id>inhouse_snapshots</id>
-			<name>Repositorio tecdoc de snapshots</name>
-			<url>http://10.228.75.66:8081/nexus/content/repositories/snapshots/</url>
+			<id>snapshots</id>
+			<name>Repositorio de snapshots</name>
+			<url>http://devel.uji.es/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 </project>

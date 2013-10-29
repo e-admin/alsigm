@@ -1,4 +1,4 @@
-package es.ieci.tecdoc.fwktd.dm.business;
+/*package es.ieci.tecdoc.fwktd.dm.business;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -25,3 +25,4 @@ public abstract class BaseDocumentoTest extends AbstractJUnit4SpringContextTests
 	}
 
 }
+*/

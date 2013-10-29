@@ -8,7 +8,7 @@
 		<version>3.0.1-M2</version>
 	</parent>
 	
-	<artifactId>SIGEM_ConsolidacionConfigLoader</artifactId>
+	<artifactId>sigem_consolidacionConfigLoader</artifactId>
 	<name>SIGEM_ConsolidacionConfigLoader</name>
 	
 	<dependencies>
