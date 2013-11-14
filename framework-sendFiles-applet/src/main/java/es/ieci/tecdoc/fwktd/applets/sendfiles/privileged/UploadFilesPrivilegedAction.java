@@ -79,8 +79,9 @@ public class UploadFilesPrivilegedAction implements PrivilegedAction{
 	            System.out.println("path:"+path);
 
 	            if ("https".equalsIgnoreCase (appletURL.getProtocol ())) {
-	               Protocol easyhttps = new Protocol ("https", new EasySSLProtocolSocketFactory (), appletURL.getPort ());
-	               client.getHostConfiguration ().setHost (appletURL.getHost(), appletURL.getPort (), easyhttps);
+	               int port = (appletURL.getPort()!=-1)?(appletURL.getPort()):(443);
+	               Protocol easyhttps = new Protocol ("https", new EasySSLProtocolSocketFactory (), port);
+	               client.getHostConfiguration ().setHost (appletURL.getHost(), port, easyhttps);
 
 	               uri   =  new URI(null, null, path + uploadActionPath, null, null);
 	            } else {
