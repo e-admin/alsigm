@@ -1,5 +1,6 @@
 package es.ieci.tecdoc.fwktd.dir3.api.manager.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -9,9 +10,11 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 
 import es.ieci.tecdoc.fwktd.dir3.api.dao.DatosBasicosUnidadOrganicaDao;
 import es.ieci.tecdoc.fwktd.dir3.api.manager.DatosBasicosUnidadOrganicaManager;
+import es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosRelacionUnidOrgOficinaVO;
 import es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosUnidadOrganicaVO;
 import es.ieci.tecdoc.fwktd.dir3.api.vo.unidad.OrganismoVO;
 import es.ieci.tecdoc.fwktd.dir3.api.vo.unidad.OrganismosVO;
+import es.ieci.tecdoc.fwktd.dir3.core.type.CriterioRelacionUnidOrgOficinaEnum;
 import es.ieci.tecdoc.fwktd.dir3.core.type.CriterioUnidadOrganicaEnum;
 import es.ieci.tecdoc.fwktd.dir3.core.vo.Criterios;
 import es.ieci.tecdoc.fwktd.server.dao.BaseDao;
@@ -172,11 +175,15 @@ public class DatosBasicosUnidadOrganicaManagerImpl extends
 	 *
 	 */
 	private void guardarUnidadOrganica(OrganismoVO organismo) {
-		DatosBasicosUnidadOrganicaVO datosBasicosUnidadOrganica = new DatosBasicosUnidadOrganicaVO();
-		//parseamos el organismoVO a un tipo DatosBasicosUnidadOrganicaVO
-		setDatosBasicosOrganismo(datosBasicosUnidadOrganica,organismo);
-		//almacenamos los datos basicos de la unidad
-		((DatosBasicosUnidadOrganicaDao) getDao()).save(datosBasicosUnidadOrganica);
+		//comprobamos que la unid. org. este vigente antes de crearla en nuestro entorno
+		if (VIGENTE.equals(organismo.getDatosVigencia().getEstado())) {
+			DatosBasicosUnidadOrganicaVO datosBasicosUnidadOrganica = new DatosBasicosUnidadOrganicaVO();
+			// parseamos el organismoVO a un tipo DatosBasicosUnidadOrganicaVO
+			setDatosBasicosOrganismo(datosBasicosUnidadOrganica, organismo);
+			// almacenamos los datos basicos de la unidad
+			((DatosBasicosUnidadOrganicaDao) getDao())
+					.save(datosBasicosUnidadOrganica);
+		}
 	}
 
 	/**
@@ -197,6 +204,18 @@ public class DatosBasicosUnidadOrganicaManagerImpl extends
 		datosBasicosUnidadOrganica.setIdExternoFuente(organismo.getDatosIdentificativos().getCodigoExterno());
 		datosBasicosUnidadOrganica.setIdUnidadOrganicaSuperior(organismo.getDatosDependencia().getCodigoUnidadSuperiorJerarquica());
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see es.ieci.tecdoc.fwktd.dir3.api.manager.DatosBasicosUnidadOrganicaManager#getDatosBasicosUnidadOrganicaByCode(es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosRelacionUnidOrgOficinaVO)
+	 */
+	public List<DatosBasicosUnidadOrganicaVO> findUnidadesOrganicasByEntidad(
+			DatosBasicosRelacionUnidOrgOficinaVO relacion) {
+
+		// Realiza la búsqueda de unidades orgánicas en base a los criterios
+		return ((DatosBasicosUnidadOrganicaDao)getDao()).findUnidadesOrganicasByEntidad(relacion);
 	}
 
 }

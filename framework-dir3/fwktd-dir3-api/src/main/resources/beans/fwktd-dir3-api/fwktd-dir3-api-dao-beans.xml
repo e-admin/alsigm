@@ -19,6 +19,13 @@
 		<property name="sqlMapClient" ref="fwktd_dir3_sqlMapClient" />
 	</bean>
 
+	<bean id="fwktd_dir3_datosBasicosRelacionUnidOrgOficinaDaoImpl" name="fwktd_dir3_datosBasicosRelacionUnidOrgOficinaDao"
+		class="es.ieci.tecdoc.fwktd.dir3.api.dao.impl.DatosBasicosRelacionUnidOrgOficinaDaoImpl">
+		<constructor-arg
+			value="es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosRelacionUnidOrgOficinaVO" />
+		<property name="sqlMapClient" ref="fwktd_dir3_sqlMapClient" />
+	</bean>
+
 	<bean id="fwktd_dir3_datosEstadoActualizacionDcoDaoImpl" name="fwktd_dir3_datosEstadoActualizacionDcoDao"
 		class="es.ieci.tecdoc.fwktd.dir3.api.dao.impl.EstadoActualizacionDcoDaoImpl">
 		<constructor-arg

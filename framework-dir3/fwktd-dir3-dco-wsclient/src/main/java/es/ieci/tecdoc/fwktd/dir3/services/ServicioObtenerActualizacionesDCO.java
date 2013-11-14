@@ -18,7 +18,14 @@ public interface ServicioObtenerActualizacionesDCO {
 
 	/**
 	 * Obtiene del DCO el fichero XML para actualizar las unidades
-	 * @return Fichero XMLO
+	 * @return Fichero XML
 	 */
 	public String getFicheroActualizarUnidadesDCO(Date fechaUltimaActualizacion);
+
+	/**
+	 * Obtiene del DCO el fichero XML para actualizar las relaciones entre las oficinas y las unid. orgánicas
+	 * @param fechaUltimaActualizacion
+	 * @return Fichero XML con las relaciones
+	 */
+	public String getFicheroActualizarRelacionOficinasUnidadesDCO(Date fechaUltimaActualizacion);
 }

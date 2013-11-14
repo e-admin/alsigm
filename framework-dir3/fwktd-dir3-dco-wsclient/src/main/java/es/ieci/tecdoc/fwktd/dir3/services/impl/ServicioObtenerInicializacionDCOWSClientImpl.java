@@ -6,10 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.zip.ZipException;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import es.ieci.tecdoc.fwktd.dir3.exception.ObtencionFicheroInicializacionDCOException;
+import es.ieci.tecdoc.fwktd.dir3.exception.ObtencionFicheroActualizacionDCOException;
 import es.ieci.tecdoc.fwktd.dir3.services.ServicioObtenerInicializacionDCO;
 import es.ieci.tecdoc.fwktd.dir3.util.Base64Utils;
 import es.ieci.tecdoc.fwktd.dir3.util.ZipUtils;
@@ -53,31 +54,48 @@ public class ServicioObtenerInicializacionDCOWSClientImpl implements ServicioObt
 	 * Tipo de consulta para las unidades organicas
 	 */
 	protected String unidadesQueryType;
+	/**
+	 * Tipo de consulta para las unidades organicas
+	 */
+	protected String relacionOficinasUnidOrgQueryType;
+
+	/**
+	 * Indica si la información que se ha recuperar de oficinas/unid. solo son las activar para el SIR
+	 */
+	protected String indicadorSIR;
 
 
 	private final String VOLCADO_OFICINAS_FILE_NAME = "datosBasicosOficina.xml";
 	private final String VOLCADO_UORGANICAS_FILE_NAME = "datosBasicosUOrganica.xml";
+	private final String VOLCADO_RELACIONES_UORGANICAS_OFICINAS_FILE_NAME = "relacionesUO-OFI.xml";
+
 	private static final Logger logger = LoggerFactory.getLogger(ServicioObtenerInicializacionDCOWSClientImpl.class);
 
 
 	public String getFicheroInicializarOficinasDCO() {
 
 		String finalFileName = null;
+		RespuestaWS respuesta = null;
 
 		try{
 
 			File tempZipFile = File.createTempFile("dec", "zip", new File(getTempFilesDir()));
-			RespuestaWS respuesta = getServicioVolcadoOficinas().exportar(getLogin(), getPass(), getFileFormat(), getOficinasQueryType(), "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-			Base64Utils.getInstance().decodeToFile(respuesta.getFichero(), tempZipFile.getAbsolutePath());
-			List<String> filesUnzipped = ZipUtils.getInstance().unzipFile(tempZipFile.getAbsolutePath(), getTempFilesDir());
+			respuesta = getServicioVolcadoOficinas().exportar(getLogin(), getPass(), getFileFormat(), getOficinasQueryType(), "", "", "", "", "", getIndicadorSIR(), "", "", "", "", "", "", "", "", "", "");
 
-			Iterator<String> itr = filesUnzipped.listIterator();
-			String fileName;
-			while(itr.hasNext())
-			{
-				fileName = itr.next();
-				if(fileName.endsWith(VOLCADO_OFICINAS_FILE_NAME)){
-					finalFileName = fileName;
+			//comprobamos si la respuesta del WS del DCO es correcta
+			if ((respuesta != null)
+					&& (StringUtils.equalsIgnoreCase(respuesta.getCodigo(), "01"))) {
+				Base64Utils.getInstance().decodeToFile(respuesta.getFichero(), tempZipFile.getAbsolutePath());
+				List<String> filesUnzipped = ZipUtils.getInstance().unzipFile(tempZipFile.getAbsolutePath(), getTempFilesDir());
+
+				Iterator<String> itr = filesUnzipped.listIterator();
+				String fileName;
+				while(itr.hasNext())
+				{
+					fileName = itr.next();
+					if(fileName.endsWith(VOLCADO_OFICINAS_FILE_NAME)){
+						finalFileName = fileName;
+					}
 				}
 			}
 		}catch (ZipException zipEx) {
@@ -91,28 +109,116 @@ public class ServicioObtenerInicializacionDCOWSClientImpl implements ServicioObt
 			logger.error("Error inesperado", e);
 		}
 
-		if(finalFileName==null)
-		{
-			throw new ObtencionFicheroInicializacionDCOException("El proceso ha finalizado sin errores pero no se encuentra el fichero esperado con nombre: "+VOLCADO_OFICINAS_FILE_NAME);
+		if (finalFileName == null) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("No se encuentra el fichero esperado con nombre: ").append(VOLCADO_OFICINAS_FILE_NAME);
+			//Generamos warning con el nombre del fichero donde se ha producido el error
+			logger.warn(sb.toString());
+
+			StringBuffer sbMsgError = new StringBuffer();
+			if (respuesta != null
+					&& !(StringUtils.equalsIgnoreCase(respuesta.getCodigo(), "01"))) {
+				//si la respuesta del WS nos indica un error
+				sbMsgError.append("El proceso ha finalizado con errores, cod. error: ")
+						.append(respuesta.getCodigo()).append(" - ")
+						.append(respuesta.getDescripcion());
+			} else {
+				//si no se encuentra el fichero necesario
+				sbMsgError.append(
+						"El proceso ha finalizado sin errores pero no se encuentra el fichero esperado con nombre: ")
+						.append(VOLCADO_OFICINAS_FILE_NAME);
+			}
+
+			throw new ObtencionFicheroActualizacionDCOException(sbMsgError.toString());
 		}
+
 		return finalFileName;
 	}
+
+	public String getFicheroInicializarRelacionesRelacionesOficinaUnidOrgDCO() {
+		String finalFileName = null;
+		RespuestaWS respuesta = null;
+
+		try{
+
+			File tempZipFile = File.createTempFile("dec", "zip", new File(getTempFilesDir()));
+			respuesta = getServicioVolcadoOficinas().exportar(getLogin(), getPass(), getFileFormat(), getRelacionOficinasUnidOrgQueryType(), "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+			//comprobamos si la respuesta del WS del DCO es correcta
+			if ((respuesta != null)
+					&& (StringUtils.equalsIgnoreCase(respuesta.getCodigo(), "01"))) {
+				Base64Utils.getInstance().decodeToFile(respuesta.getFichero(), tempZipFile.getAbsolutePath());
+				List<String> filesUnzipped = ZipUtils.getInstance().unzipFile(tempZipFile.getAbsolutePath(), getTempFilesDir());
+
+				Iterator<String> itr = filesUnzipped.listIterator();
+				String fileName;
+				while(itr.hasNext())
+				{
+					fileName = itr.next();
+					if(fileName.endsWith(VOLCADO_RELACIONES_UORGANICAS_OFICINAS_FILE_NAME)){
+						finalFileName = fileName;
+					}
+				}
+			}
+		}catch (ZipException zipEx) {
+			logger.error("ServicioInicializacionDCOWSClientImpl::getFicheroInicializarRelacionesRelacionesOficinaUnidOrgDCO - Error al descomprimir el fichero retornado por el DCO.", zipEx);
+
+
+		}catch (IOException ioEx) {
+			logger.error("ServicioInicializacionDCOWSClientImpl::getFicheroInicializarRelacionesRelacionesOficinaUnidOrgDCO - Error al crear los ficheros temporales.", ioEx);
+
+		}catch (Exception e) {
+			logger.error("Error inesperado", e);
+		}
+
+		if (finalFileName == null) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("No se encuentra el fichero esperado con nombre: ").append(VOLCADO_RELACIONES_UORGANICAS_OFICINAS_FILE_NAME);
+			//Generamos warning con el nombre del fichero donde se ha producido el error
+			logger.warn(sb.toString());
+
+			StringBuffer sbMsgError = new StringBuffer();
+			if (respuesta != null
+					&& !(StringUtils.equalsIgnoreCase(respuesta.getCodigo(), "01"))) {
+				//si la respuesta del WS nos indica un error
+				sbMsgError.append("El proceso ha finalizado con errores, cod. error: ")
+						.append(respuesta.getCodigo()).append(" - ")
+						.append(respuesta.getDescripcion());
+			} else {
+				//si no se encuentra el fichero necesario
+				sbMsgError.append(
+						"El proceso ha finalizado sin errores pero no se encuentra el fichero esperado con nombre: ")
+						.append(VOLCADO_RELACIONES_UORGANICAS_OFICINAS_FILE_NAME);
+			}
+
+			throw new ObtencionFicheroActualizacionDCOException(sbMsgError.toString());
+		}
+
+		return finalFileName;
+	}
+
 
 	public String getFicheroInicializarUnidadesDCO() {
 		String finalFileName = null;
+		RespuestaWS respuesta = null;
 		try{
 			File tempZipFile = File.createTempFile("dec", "zip", new File(getTempFilesDir()));
-			RespuestaWS respuesta = getServicioVolcadoUnidades().exportar(getLogin(), getPass(), getFileFormat(), getUnidadesQueryType(), "", "", "", "", "", "", "", "", "");
-			Base64Utils.getInstance().decodeToFile(respuesta.getFichero(), tempZipFile.getAbsolutePath());
-			List<String> filesUnzipped = ZipUtils.getInstance().unzipFile(tempZipFile.getAbsolutePath(), getTempFilesDir());
+			respuesta = getServicioVolcadoUnidades().exportar(getLogin(), getPass(), getFileFormat(), getUnidadesQueryType(), "", "", "", "", "", "", "", "", "");
 
-			Iterator<String> itr = filesUnzipped.listIterator();
-			String fileName;
-			while(itr.hasNext())
-			{
-				fileName = itr.next();
-				if(fileName.endsWith(VOLCADO_UORGANICAS_FILE_NAME)){
-					finalFileName = fileName;
+			//comprobamos si la respuesta del WS del DCO es correcta
+			if ((respuesta != null)
+					&& (StringUtils.equalsIgnoreCase(respuesta.getCodigo(), "01"))) {
+				Base64Utils.getInstance().decodeToFile(respuesta.getFichero(), tempZipFile.getAbsolutePath());
+				List<String> filesUnzipped = ZipUtils.getInstance().unzipFile(tempZipFile.getAbsolutePath(), getTempFilesDir());
+
+				Iterator<String> itr = filesUnzipped.listIterator();
+				String fileName;
+				while(itr.hasNext())
+				{
+					fileName = itr.next();
+					if(fileName.endsWith(VOLCADO_UORGANICAS_FILE_NAME)){
+						finalFileName = fileName;
+					}
 				}
 			}
 		}catch (ZipException zipEx) {
@@ -124,15 +230,33 @@ public class ServicioObtenerInicializacionDCOWSClientImpl implements ServicioObt
 		}catch (Exception e) {
 			logger.error("Error inesperado", e);
 		}
-		if(finalFileName==null)
-		{
-			throw new ObtencionFicheroInicializacionDCOException("El proceso ha finalizado sin errores pero no se encuentra el fichero esperado con nombre: "+VOLCADO_UORGANICAS_FILE_NAME);
+
+		if (finalFileName == null) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("No se encuentra el fichero esperado con nombre: ").append(VOLCADO_UORGANICAS_FILE_NAME);
+			//Generamos warning con el nombre del fichero donde se ha producido el error
+			logger.warn(sb.toString());
+
+			StringBuffer sbMsgError = new StringBuffer();
+			if (respuesta != null
+					&& !(StringUtils.equalsIgnoreCase(respuesta.getCodigo(),
+							"01"))) {
+				//si la respuesta del WS se produce algún error
+				sbMsgError.append("El proceso ha finalizado con errores, cod. error: ")
+						.append(respuesta.getCodigo()).append(" - ")
+						.append(respuesta.getDescripcion());
+			} else {
+				//sino se ha encontrado el fichero necesario
+				sbMsgError.append(
+						"El proceso ha finalizado sin errores pero no se encuentra el fichero esperado con nombre: ")
+						.append(VOLCADO_UORGANICAS_FILE_NAME);
+			}
+
+			throw new ObtencionFicheroActualizacionDCOException(sbMsgError.toString());
 		}
+
 		return finalFileName;
 	}
-
-
-
 
 	public SC01UNVolcadoDatosBasicos getServicioVolcadoUnidades() {
 		return servicioVolcadoUnidades;
@@ -200,6 +324,22 @@ public class ServicioObtenerInicializacionDCOWSClientImpl implements ServicioObt
 		this.unidadesQueryType = unidadesQueryType;
 	}
 
+	public String getIndicadorSIR() {
+		return indicadorSIR;
+	}
+
+	public void setIndicadorSIR(String indicadorSIR) {
+		this.indicadorSIR = indicadorSIR;
+	}
+
+	public String getRelacionOficinasUnidOrgQueryType() {
+		return relacionOficinasUnidOrgQueryType;
+	}
+
+	public void setRelacionOficinasUnidOrgQueryType(
+			String relacionOficinasUnidOrgQueryType) {
+		this.relacionOficinasUnidOrgQueryType = relacionOficinasUnidOrgQueryType;
+	}
 
 
 }

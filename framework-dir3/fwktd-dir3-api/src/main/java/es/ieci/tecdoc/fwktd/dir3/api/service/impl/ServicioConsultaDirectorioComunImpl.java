@@ -7,14 +7,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
 import es.ieci.tecdoc.fwktd.dir3.api.helper.OficinaHelper;
+import es.ieci.tecdoc.fwktd.dir3.api.helper.RelacionesUnidOrgOficinaHelper;
 import es.ieci.tecdoc.fwktd.dir3.api.helper.UnidadOrganicaHelper;
 import es.ieci.tecdoc.fwktd.dir3.api.manager.DatosBasicosOficinaManager;
+import es.ieci.tecdoc.fwktd.dir3.api.manager.DatosBasicosRelacionUnidOrgOficinaManager;
 import es.ieci.tecdoc.fwktd.dir3.api.manager.DatosBasicosUnidadOrganicaManager;
+import es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosRelacionUnidOrgOficinaVO;
 import es.ieci.tecdoc.fwktd.dir3.core.service.ServicioConsultaDirectorioComun;
 import es.ieci.tecdoc.fwktd.dir3.core.type.CriterioOficinaEnum;
 import es.ieci.tecdoc.fwktd.dir3.core.type.CriterioUnidadOrganicaEnum;
 import es.ieci.tecdoc.fwktd.dir3.core.vo.Criterios;
 import es.ieci.tecdoc.fwktd.dir3.core.vo.DatosBasicosOficina;
+import es.ieci.tecdoc.fwktd.dir3.core.vo.DatosBasicosRelacionUnidOrgOficina;
 import es.ieci.tecdoc.fwktd.dir3.core.vo.DatosBasicosUnidadOrganica;
 
 /**
@@ -44,6 +48,11 @@ public class ServicioConsultaDirectorioComunImpl implements
 	private DatosBasicosUnidadOrganicaManager datosBasicosUnidadOrganicaManager;
 
 	/**
+	 * Gestor de las relaciones entre oficina y unid. organicas
+	 */
+	private DatosBasicosRelacionUnidOrgOficinaManager datosBasicosRelacionUnidOrgOficinaManager;
+
+	/**
 	 * Constructor.
 	 */
 	public ServicioConsultaDirectorioComunImpl() {
@@ -66,6 +75,17 @@ public class ServicioConsultaDirectorioComunImpl implements
 	public void setDatosBasicosUnidadOrganicaManager(
 			DatosBasicosUnidadOrganicaManager datosBasicosUnidadOrganicaManager) {
 		this.datosBasicosUnidadOrganicaManager = datosBasicosUnidadOrganicaManager;
+	}
+
+
+
+	public DatosBasicosRelacionUnidOrgOficinaManager getDatosBasicosRelacionUnidOrgOficinaManager() {
+		return datosBasicosRelacionUnidOrgOficinaManager;
+	}
+
+	public void setDatosBasicosRelacionUnidOrgOficinaManager(
+			DatosBasicosRelacionUnidOrgOficinaManager datosBasicosRelacionUnidOrgOficinaManager) {
+		this.datosBasicosRelacionUnidOrgOficinaManager = datosBasicosRelacionUnidOrgOficinaManager;
 	}
 
 	/**
@@ -149,6 +169,25 @@ public class ServicioConsultaDirectorioComunImpl implements
 	/**
 	 * {@inheritDoc}
 	 *
+	 * @see es.ieci.tecdoc.fwktd.dir3.core.service.ServicioConsultaDirectorioComun#findUnidadesOrganicasByEntidad(String, String, String)
+	 */
+	public List<DatosBasicosUnidadOrganica> findUnidadesOrganicasByEntidad(
+			String codeEntity, String codeUnid, String nameUnid) {
+
+		DatosBasicosRelacionUnidOrgOficinaVO relacion = new DatosBasicosRelacionUnidOrgOficinaVO();
+		relacion.setCodigoOficina(codeEntity);
+		relacion.setCodigoUnidadOrganica(codeUnid);
+		relacion.setDenominacionUnidadOrganica(nameUnid);
+
+		// Búsqueda de unidades orgánicas según los criterios
+		return UnidadOrganicaHelper
+				.getDatosBasicosUnidadesOrganicas(getDatosBasicosUnidadOrganicaManager()
+						.findUnidadesOrganicasByEntidad(relacion));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
 	 * @see es.ieci.tecdoc.fwktd.dir3.core.service.ServicioConsultaDirectorioComun#getDatosBasicosUnidadOrganica(java.lang.String)
 	 */
 	public DatosBasicosUnidadOrganica getDatosBasicosUnidadOrganica(String id) {
@@ -161,6 +200,27 @@ public class ServicioConsultaDirectorioComunImpl implements
 		return UnidadOrganicaHelper
 				.getDatosBasicosUnidadOrganica(getDatosBasicosUnidadOrganicaManager()
 						.get(id));
+	}
+
+	/**
+	 * @see es.ieci.tecdoc.fwktd.dir3.core.service.ServicioConsultaDirectorioComun#getDatosBasicosRelacionUnidOrgOficinaByCodes()
+	 */
+	public DatosBasicosRelacionUnidOrgOficina getDatosBasicosRelacionUnidOrgOficinaByCodes(
+			String codOficina, String codUnidOrg) {
+
+		StringBuffer sb = new StringBuffer();
+		sb.append(
+				"Llamada a getDatosBasicosRelacionUnidOrgOficinaByCodes: codOficina=[{")
+				.append(codOficina).append("}] y codUnidOrg=[{")
+				.append(codUnidOrg).append("}]");
+
+		logger.info(sb.toString());
+
+		// Obtener los datos básicos de la unidad orgánica
+		return RelacionesUnidOrgOficinaHelper
+				.getDatosBasicosRelacionUnidOrgOficina(getDatosBasicosRelacionUnidOrgOficinaManager()
+						.getRelacionesByOficinaAndUnidad(codOficina, codUnidOrg));
+
 	}
 
 }

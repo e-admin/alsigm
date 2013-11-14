@@ -13,7 +13,7 @@
 		<result property="idExternoFuente" column="EXTERNO_FUENTE" />
 
 		<result property="idUnidadResponsable" column="CODIGO_UNIDAD_RESPONSABLE" />
-		<result property="nombreUnidadResponsable" column="DENOMINACION_UNIDAD_RESPONSABLE" />
+		<result property="nombreUnidadResponsable" column="DENOM_UNIDAD_RESPONSABLE" />
 
 		<result property="provincia" column="PROVINCIA" />
 		<result property="localidad" column="LOCALIDAD" />
@@ -31,7 +31,7 @@
 		OFI.PROVINCIA,
 		OFI.LOCALIDAD,
 		OFI.DIRECCION,
-		UO.NOMBRE_UNIDAD_ORGANICA AS DENOMINACION_UNIDAD_RESPONSABLE
+		UO.NOMBRE_UNIDAD_ORGANICA AS DENOM_UNIDAD_RESPONSABLE
 	</sql>
 
 	<sql id="from">
@@ -59,6 +59,15 @@
 		#direccion#
 	</sql>
 
+
+	<sql id="update">
+		DENOMINACION_OFICINA=#nombre#,
+		CODIGO_UNIDAD_RESPONSABLE=#idUnidadResponsable#,
+		EXTERNO_FUENTE=#idExternoFuente#,
+		PROVINCIA=#provincia#,
+		LOCALIDAD=#localidad#,
+		DIRECCION=#direccion#
+	</sql>
 
 
 	<sql id="findOficinas_fragment">
@@ -127,7 +136,15 @@
 	<delete id="deleteDatosBasicosOficinaVO" parameterClass="java.lang.String">
 		DELETE FROM
 			<include refid="table" />
-		WHERE id=#value:INTEGER#
+		WHERE CODIGO_OFICINA=#value#
 	</delete>
+
+	<update id="updateDatosBasicosOficinaVO" parameterClass="datosBasicosOficina">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE CODIGO_OFICINA=#id#
+	</update>
 
 </sqlMap>
