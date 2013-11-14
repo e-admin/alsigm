@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Fichero_Intercambio_SICRES_3 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <De_Origen_o_Remitente>
-    <Codigo_Entidad_Registral_Origen>O00001223</Codigo_Entidad_Registral_Origen>
+    <Codigo_Entidad_Registral_Origen>O00001228</Codigo_Entidad_Registral_Origen>
     <Decodificacion_Entidad_Registral_Origen />
-    <Numero_Registro_Entrada>110110067</Numero_Registro_Entrada>
+    <Numero_Registro_Entrada>110110135</Numero_Registro_Entrada>
     <Fecha_Hora_Entrada>20111003142545</Fecha_Hora_Entrada>
     <Timestamp_Entrada />
-    <Codigo_Unidad_Tramitacion_Origen>E00106103</Codigo_Unidad_Tramitacion_Origen>
+    <Codigo_Unidad_Tramitacion_Origen />
     <Decodificacion_Unidad_Tramitacion_Origen />
   </De_Origen_o_Remitente>
   <De_Destino>
@@ -16,9 +16,9 @@
     <Decodificacion_Unidad_Tramitacion_Destino/>
   </De_Destino>
   <De_Interesado>
-    <Tipo_Documento_Identificacion_Interesado />
-    <Documento_Identificacion_Interesado />
-    <Razon_Social_Interesado />
+    <Tipo_Documento_Identificacion_Interesado>O</Tipo_Documento_Identificacion_Interesado>
+    <Documento_Identificacion_Interesado>E00106104</Documento_Identificacion_Interesado>
+    <Razon_Social_Interesado></Razon_Social_Interesado>
     <Nombre_Interesado />
     <Primer_Apellido_Interesado />
     <Segundo_Apellido_Interesado />
@@ -49,25 +49,25 @@
     <Observaciones />
   </De_Interesado>
   <De_Asunto>
-    <Resumen>Asunto de Caso de Prueba SIR-RC-PR-067</Resumen>
+    <Resumen>Asunto de Caso de Prueba SIR-RC-PR-135</Resumen>
     <Codigo_Asunto_Segun_Destino />
-    <Referencia_Externa/>
-    <Numero_Expediente/>
+    <Referencia_Externa />
+    <Numero_Expediente />
   </De_Asunto>
   <De_Internos_Control>
-    <Tipo_Transporte_Entrada />
-    <Numero_Transporte_Entrada />
-    <Nombre_Usuario />
-    <Contacto_Usuario />
-    <Identificador_Intercambio>O00001223_11_00010067</Identificador_Intercambio>
+    <Tipo_Transporte_Entrada/>
+    <Numero_Transporte_Entrada></Numero_Transporte_Entrada>
+    <Nombre_Usuario/>
+    <Contacto_Usuario/>
+    <Identificador_Intercambio>O00001228_11_00010136</Identificador_Intercambio>
     <Aplicacion_Version_Emisora />
-    <Tipo_Anotacion></Tipo_Anotacion>
+    <Tipo_Anotacion>02</Tipo_Anotacion>
     <Descripcion_Tipo_Anotacion />
-    <Tipo_Registro>0</Tipo_Registro>
-    <Documentacion_Fisica>1</Documentacion_Fisica>
+    <Tipo_Registro>1</Tipo_Registro>
+    <Documentacion_Fisica>2</Documentacion_Fisica>
     <Observaciones_Apunte />
     <Indicador_Prueba>0</Indicador_Prueba>
-    <Codigo_Entidad_Registral_Inicio>O00001223</Codigo_Entidad_Registral_Inicio>
+    <Codigo_Entidad_Registral_Inicio>O00001228</Codigo_Entidad_Registral_Inicio>
     <Decodificacion_Entidad_Registral_Inicio />
   </De_Internos_Control>
   <De_Formulario_Generico>

@@ -149,6 +149,7 @@
 					<xs:element minOccurs="0" name="timestampRegistroInicial" type="xs:base64Binary" />
 					<xs:element minOccurs="0" name="tipoRegistro" type="xs:string" />
 					<xs:element minOccurs="0" name="tipoTransporte" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionTipoAnotacion" type="xs:string" />
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="anexos" nillable="true" type="tns:anexoFormDTO" />
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="interesados" nillable="true" type="tns:interesadoFormDTO" />
 				</xs:sequence>
@@ -206,6 +207,8 @@
 					<xs:element minOccurs="0" name="timestampRegistroInicial" type="xs:base64Binary" />
 					<xs:element minOccurs="0" name="tipoRegistro" type="xs:string" />
 					<xs:element minOccurs="0" name="tipoTransporte" type="xs:string" />
+					<xs:element minOccurs="0" name="descripcionTipoAnotacion" type="xs:string" />
+
 				</xs:sequence>
 			</xs:complexType>
 			<xs:complexType name="anexoFormDTO">

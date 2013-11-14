@@ -4,7 +4,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<appender name="fichero" class="org.apache.log4j.RollingFileAppender">
-		<param name="File" value="./fwktdsirWS.log"/>
+		<param name="File" value="/tmp/fwktdsirWS.log"/>
 		<param name="MaxFileSize" value="5000KB"/>
 		<param name="MaxBackupIndex" value="10"/>
 		<layout class="org.apache.log4j.PatternLayout">
@@ -12,6 +12,48 @@
 		</layout>
 	</appender>
 
+		<!-- Fichero para Intercambios -->
+    <appender name="xmlIntercambioEnvio" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="/tmp/fwktdsirWS_XML_Intercambios_Enviados.log"/>
+        <param name="MaxFileSize" value="3072KB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} [%p] %C %M %m %n"/>
+        </layout>
+    </appender>
+
+		<!-- Fichero para mensajes-->
+    <appender name="xmlMensajes" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="/tmp/fwktdsirWS_XML_Mensajes.log"/>
+        <param name="MaxFileSize" value="3072KB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} [%p] %C %M %m %n"/>
+        </layout>
+    </appender>
+
+		<!-- Fichero para intercambios recibidos -->
+    <appender name="xmlRecepcion" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="/tmp/wktdsirWS_XML_Intercambios_Recibidos.log"/>
+        <param name="MaxFileSize" value="3072KB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} [%p] %C %M %m %n"/>
+        </layout>
+    </appender>
+			<!-- Fichero para errores -->
+    <appender name="xmlError" class="org.apache.log4j.RollingFileAppender">
+        <!-- Configurar ruta -->
+        <param name="File" value="/tmp/fwktdsirWS_XML_Error.log"/>
+        <param name="MaxFileSize" value="3072KB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} [%p] %C %M %m %n"/>
+        </layout>
+    </appender>
 	<appender name="consola" class="org.apache.log4j.ConsoleAppender">
       <param name="Target" value="System.out"/>
       <layout class="org.apache.log4j.PatternLayout">
@@ -19,9 +61,29 @@
       </layout>
 	</appender>
 
+
 	<root>
-		<priority value="WARN"/>
-		<appender-ref ref="consola"/>
+		<priority value="ERROR"/>
+		<appender-ref ref="fichero"/>
 	</root>
 
+	<logger name="es.ieci.tecdoc.fwktd.sir.api.manager.impl.ws.FicheroIntercambioManagerWSSIR6AImpl" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="xmlIntercambioEnvio"/>
+    </logger>
+
+	<logger name="es.ieci.tecdoc.fwktd.sir.api.manager.impl.ws.MensajeManagerWSSIR7Impl" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="xmlMensajes"/>
+    </logger>
+
+	<logger name="es.ieci.tecdoc.fwktd.sir.ws.manager.impl.EnvioManagerImpl" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="xmlRecepcion"/>
+    </logger>
+
+	<logger name="es.ieci.tecdoc.fwktd.sir.api.manager.impl.RecepcionManagerImpl" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="xmlError"/>
+    </logger>
 </log4j:configuration>

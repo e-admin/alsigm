@@ -176,10 +176,10 @@ public class ServicioIntercambioRegistralImpl implements ServicioIntercambioRegi
         logger.info("Llamada a getEstadoAsientoRegistral: id=[{}]", id);
 
         Assert.hasText(id, "'id' must not be empty");
-        
+
         // Obtener el estado del asiento registral
         result = getAsientoRegistralManager().getEstado(id);
-        
+
         return result;
     }
 
@@ -389,7 +389,7 @@ public class ServicioIntercambioRegistralImpl implements ServicioIntercambioRegi
 
         // Obtener el código de intercambio del asiento registral
         AsientoRegistralVO asiento = getAsientoRegistralManager().get(id);
-        logger.debug("Asiento registral: id=[{}], codigoEntidadRegistral=[{}], codigoIntercambio=[{}]", 
+        logger.debug("Asiento registral: id=[{}], codigoEntidadRegistral=[{}], codigoIntercambio=[{}]",
         		new Object[] { asiento.getId(), asiento.getCodigoEntidadRegistral(), asiento.getIdentificadorIntercambio()});
 
         if (StringUtils.isNotBlank(asiento.getIdentificadorIntercambio())) {
@@ -402,7 +402,7 @@ public class ServicioIntercambioRegistralImpl implements ServicioIntercambioRegi
 
         return trazas;
     }
-    
+
     /* (non-Javadoc)
      * @see es.ieci.tecdoc.fwktd.sir.core.service.ServicioIntercambioRegistral#getHistoricoCompletoAsientoRegistral(java.lang.String)
      */
@@ -419,9 +419,9 @@ public class ServicioIntercambioRegistralImpl implements ServicioIntercambioRegi
 
         return trazas;
 
-    	
+
     }
-    
+
     /* (non-Javadoc)
      * @see es.ieci.tecdoc.fwktd.sir.core.service.ServicioIntercambioRegistral#getHistoricoMensajeIntercambioRegistral(java.lang.String)
      */
@@ -435,7 +435,7 @@ public class ServicioIntercambioRegistralImpl implements ServicioIntercambioRegi
 
         // Obtener el código de intercambio del asiento registral
         AsientoRegistralVO asiento = getAsientoRegistralManager().get(id);
-        logger.debug("Asiento registral: id=[{}], codigoEntidadRegistral=[{}], codigoIntercambio=[{}]", 
+        logger.debug("Asiento registral: id=[{}], codigoEntidadRegistral=[{}], codigoIntercambio=[{}]",
         		new Object[] { asiento.getId(), asiento.getCodigoEntidadRegistral(), asiento.getIdentificadorIntercambio()});
 
         if (StringUtils.isNotBlank(asiento.getIdentificadorIntercambio())) {
@@ -448,8 +448,8 @@ public class ServicioIntercambioRegistralImpl implements ServicioIntercambioRegi
 
         return trazas;
     }
-    
-    
+
+
     /**
      * {@inheritDoc}
      * @see es.ieci.tecdoc.fwktd.sir.core.service.ServicioIntercambioRegistral#enviarAsientoRegistral(es.ieci.tecdoc.fwktd.sir.core.vo.AsientoRegistralFormVO)
@@ -510,13 +510,22 @@ public class ServicioIntercambioRegistralImpl implements ServicioIntercambioRegi
         // Reenviar el asiento registral
         getAsientoRegistralManager().reenviarAsientoRegistral(id);
     }
-    
+
+    /**
+	 * {@inheritDoc}
+	 * @see es.ieci.tecdoc.fwktd.sir.core.service.ServicioIntercambioRegistral#reintentarValidarAsientosRegistrales()
+	 */
+	public void reintentarValidarAsientosRegistrales() {
+		logger.info("Llamada a reintentarValidarAsientosRegistrales()");
+		getAsientoRegistralManager().reintentarValidarAsientosRegistrales();
+	}
+
     /**
      * {@inheritDoc}
      * @see es.ieci.tecdoc.fwktd.sir.core.service.ServicioIntercambioRegistral#reenviarAsientoRegistral(java.lang.String, es.ieci.tecdoc.fwktd.sir.core.vo.InfoReenvioVO)
      */
     public void reenviarAsientoRegistral(String id, InfoReenvioVO infoReenvio) {
-    	
+
 		logger.info(
 				"Llamada a reenviarAsientoRegistral: id=[{}], infoReenvio=[{}]",
 				id, infoReenvio);
@@ -628,4 +637,6 @@ public class ServicioIntercambioRegistralImpl implements ServicioIntercambioRegi
 		// Comprobar el time-out de los ficheros de intercambio enviados
 		getAsientoRegistralManager().comprobarTimeOutEnvios();
 	}
+
+
 }

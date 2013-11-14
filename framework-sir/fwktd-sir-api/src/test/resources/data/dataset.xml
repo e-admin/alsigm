@@ -2,7 +2,7 @@
 <dataset>
 
 	<!-- Asientos registrales -->
-	<asientos_registrales
+	<sir_asientos_registrales
 		id="10000001"
 		cd_ent_reg="ER0000000000000000001"
 		cd_intercambio="ER0000000000000000001_10_10000001"
@@ -42,7 +42,7 @@
   		ds_expone="Exposición de los hechos y antecedentes relacionados con la solicitud"
   		ds_solicita="Descripción del objeto de la solicitud"
 	/>
-	<asientos_registrales
+	<sir_asientos_registrales
 		id="10000002"
 		cd_ent_reg="ER0000000000000000001"
 		cd_intercambio="ER0000000000000000001_10_10000002"
@@ -80,7 +80,7 @@
   		ds_expone="Exposición de los hechos y antecedentes relacionados con la solicitud"
   		ds_solicita="Descripción del objeto de la solicitud"
 	/>
-	<asientos_registrales
+	<sir_asientos_registrales
 		id="10000003"
 		cd_ent_reg="ER0000000000000000001"
 		cd_intercambio="ER0000000000000000001_10_10000003"
@@ -118,7 +118,7 @@
   		ds_expone="Exposición de los hechos y antecedentes relacionados con la solicitud"
   		ds_solicita="Descripción del objeto de la solicitud"
 	/>
-	<asientos_registrales
+	<sir_asientos_registrales
 		id="10000004"
 		cd_ent_reg="ER0000000000000000001"
 		cd_intercambio="ER0000000000000000001_10_10000004"
@@ -157,7 +157,7 @@
   		ds_solicita="Descripción del objeto de la solicitud"
 	/>
 
-	<asientos_registrales
+	<sir_asientos_registrales
 		id="10000005"
 		cd_ent_reg="ER0000000000000000002"
 		cd_intercambio="ER0000000000000000001_10_10000005"
@@ -196,7 +196,7 @@
   		ds_solicita="Descripción del objeto de la solicitud"
 	/>
 
-	<asientos_registrales
+	<sir_asientos_registrales
 		id="10000006"
 		cd_ent_reg="ER0000000000000000001"
 		cd_intercambio="ER0000000000000000001_10_10000006"
@@ -236,7 +236,7 @@
 	/>
 
 	<!-- Interesados de los asientos registrales -->
-	<interesados
+	<sir_interesados
 		id="10000001"
 		id_asiento_registral="10000001"
 		cd_tipo_identificador="C"
@@ -271,7 +271,7 @@
 		cd_canal_pref_rep="02"
 		ds_observaciones="Observaciones sobre Homer"
 	/>
-	<interesados
+	<sir_interesados
 		id="10000002"
 		id_asiento_registral="10000001"
 		cd_tipo_identificador="N"
@@ -308,7 +308,7 @@
 	/>
 
 	<!-- Anexos de los asientos registrales -->
-	<anexos
+	<sir_anexos
 		id="10000001"
 		id_asiento_registral="10000001"
 		ds_nombre_fichero="documento.gif"
@@ -323,7 +323,7 @@
 		uid_dm=""
 		ds_observaciones="Observaciones al anexo"
 	/>
-	<anexos
+	<sir_anexos
 		id="10000002"
 		id_asiento_registral="10000001"
 		ds_nombre_fichero="documento2.gif"
@@ -340,44 +340,44 @@
 	/>
 
 	<!-- Contadores -->
-	<contadores
+	<sir_contadores
 		cd_ent_reg="ER0000000000000000001"
 		tipo="1"
 		contador="50"
 	/>
 
 	<!-- Configuracion -->
-	<configuracion
+	<sir_configuracion
 		id="10000001"
 		nombre="parametro-pruebas"
 		descripcion="Descripción del parámetro de pruebas"
 		valor="Valor del parámetro de pruebas"
 	/>
-	<configuracion
+	<sir_configuracion
 		id="10000002"
 		nombre="WS_SIR1.url"
 		descripcion=""
 		valor="http://pre-cct.redsara.es/services/WS_SIR1"
 	/>
-	<configuracion
+	<sir_configuracion
 		id="10000003"
 		nombre="WS_SIR6_A.url"
 		descripcion=""
 		valor="http://localhost/CIR_P2P/services/WS_SIR6_A"
 	/>
-	<configuracion
+	<sir_configuracion
 		id="10000004"
 		nombre="WS_SIR6_B.url"
 		descripcion=""
 		valor="http://localhost/CIR_P2P/services/WS_SIR6_B"
 	/>
-	<configuracion
+	<sir_configuracion
 		id="10000005"
 		nombre="WS_SIR7.url"
 		descripcion=""
 		valor="http://localhost/CIR_P2P/services/WS_SIR7"
 	/>
-	<configuracion
+	<sir_configuracion
 		id="10000006"
 		nombre="algoritmo.hash"
 		descripcion=""

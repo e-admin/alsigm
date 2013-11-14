@@ -380,85 +380,237 @@ public class RecepcionManagerImpl implements RecepcionManager {
     	getAuditoriaFicheroIntercambioManager().audita(ficheroIntercambio, xmlFicheroIntercambio, BandejaEnum.RECIBIDOS);
 
         // Comprobar el tipo de anotacion
+
+	// tipo anotacion rechazo
         if (TipoAnotacionEnum.RECHAZO.equals(ficheroIntercambio.getTipoAnotacion())) {
 
-            AsientoRegistralVO asientoExistente = getAsientoRegistralManager().getAsientoRegistral(
-            		ficheroIntercambio.getCodigoEntidadRegistralDestino(), ficheroIntercambio.getIdentificadorIntercambio());
-            if (asientoExistente != null) {
-
-            	if (EstadoAsientoRegistralEnum.ENVIADO.equals(asientoExistente.getEstado())
-            			|| EstadoAsientoRegistralEnum.ENVIADO_Y_ACK.equals(asientoExistente.getEstado())
-            			|| EstadoAsientoRegistralEnum.ENVIADO_Y_ERROR.equals(asientoExistente.getEstado())
-            			|| EstadoAsientoRegistralEnum.REENVIADO.equals(asientoExistente.getEstado())
-            			|| EstadoAsientoRegistralEnum.REENVIADO_Y_ACK.equals(asientoExistente.getEstado())
-            			|| EstadoAsientoRegistralEnum.REENVIADO_Y_ERROR.equals(asientoExistente.getEstado())) {
-
-	                Date fechaActual = getFechaManager().getFechaActual();
-
-	                asientoExistente.setEstado(EstadoAsientoRegistralEnum.DEVUELTO);
-	                asientoExistente.setFechaEstado(fechaActual);
-	                asientoExistente.setFechaRecepcion(fechaActual);
-	                asientoExistente.setAplicacion(ficheroIntercambio.getAplicacionEmisora());
-	                asientoExistente.setObservacionesApunte(ficheroIntercambio.getObservacionesApunte());
-	                asientoExistente.setTipoAnotacion(ficheroIntercambio.getTipoAnotacion());
-	                asientoExistente.setDescripcionTipoAnotacion(ficheroIntercambio.getDescripcionTipoAnotacion());
-
-	                asiento = getAsientoRegistralManager().update(asientoExistente);
-
-            	} else if (EstadoAsientoRegistralEnum.DEVUELTO.equals(asientoExistente.getEstado())) {
-            		
-                	logger.error("El asiento ya está en estado DEVUELTO: {}", ficheroIntercambio.getIdentificadorIntercambio());
-                	insertarTrazabilidad(ficheroIntercambio, EstadoTrazabilidadEnum.ERROR, ErroresEnum.ERROR_0205);
-                	throw new ValidacionException(ErroresEnum.ERROR_0205);
-                	
-            	} else {
-                	logger.error("Se ha intentado devolver un asiento con estado incompatible [{}]: {}", ficheroIntercambio.getIdentificadorIntercambio(), asientoExistente.getEstado());
-                	throw new ValidacionException(ErroresEnum.ERROR_0063);
-            	}
-
-            } else {
-            	logger.error("Se ha intentado devolver un fichero de intercambio cuyo identificador de intercambio no existe: {}", ficheroIntercambio.getIdentificadorIntercambio());
-            	throw new ValidacionException(ErroresEnum.ERROR_0063);
-            }
-
-        } else { // TipoAnotacionEnum.ENVIO, TipoAnotacionEnum.REENVIO
-
-            // Comprobar si existe el asiento
-            AsientoRegistralVO asientoExistente = getAsientoRegistralManager().getAsientoRegistral(
-            		ficheroIntercambio.getCodigoEntidadRegistralDestino(), ficheroIntercambio.getIdentificadorIntercambio());
-            if (asientoExistente != null) {
-            	if (EstadoAsientoRegistralEnum.RECHAZADO.equals(asientoExistente.getEstado())
-            			|| EstadoAsientoRegistralEnum.RECHAZADO_Y_ACK.equals(asientoExistente.getEstado())
-            			|| EstadoAsientoRegistralEnum.RECHAZADO_Y_ERROR.equals(asientoExistente.getEstado())
-            			//|| EstadoAsientoRegistralEnum.REENVIADO.equals(asientoExistente.getEstado())
-            			|| EstadoAsientoRegistralEnum.REENVIADO_Y_ACK.equals(asientoExistente.getEstado())
-            			//|| EstadoAsientoRegistralEnum.REENVIADO_Y_ERROR.equals(asientoExistente.getEstado())
-            			) {
-
-					// El asiento ya existe en local pero estaba rechazado
-					// => Eliminarlo y crear uno nuevo con la información recibida
-            		getAsientoRegistralManager().deleteAsientoRegistral(asientoExistente.getId());
-
-            	} else if (EstadoAsientoRegistralEnum.RECIBIDO.equals(asientoExistente.getEstado())||EstadoAsientoRegistralEnum.VALIDADO.equals(asientoExistente.getEstado())) {
-            		
-                	logger.error("El asiento ya está en estado RECIBIDO: {}", ficheroIntercambio.getIdentificadorIntercambio());
-                	insertarTrazabilidad(ficheroIntercambio, EstadoTrazabilidadEnum.ERROR, ErroresEnum.ERROR_0205);
-                	throw new ValidacionException(ErroresEnum.ERROR_0205);
-                	
-            	} else {
-            		logger.error("Se ha intentado enviar/reenviar un asiento con estado incompatible [{}]: {}", ficheroIntercambio.getIdentificadorIntercambio(), asientoExistente.getEstado());
-                	throw new ValidacionException(ErroresEnum.ERROR_0063);
-                }
-            }
-
-            // Salvar el asiento registral
-            asiento = getAsientoRegistralManager().saveAsientoRegistral(ficheroIntercambio);
+		recibirFicheroIntercambioRechazo(ficheroIntercambio,asiento);
         }
+
+        // tipo anotacion envio
+        if (TipoAnotacionEnum.ENVIO.equals(ficheroIntercambio.getTipoAnotacion())) {
+
+		recibirFicheroIntercambioEnvio(ficheroIntercambio,asiento);
+        }
+
+
+        // tipo anotacion reenvio
+        if (TipoAnotacionEnum.REENVIO.equals(ficheroIntercambio.getTipoAnotacion())) {
+
+		recibirFicheroIntercambioReenvio(ficheroIntercambio,asiento);
+        }
+
+
 
         logger.info("Fichero de intercambio recibido con éxito [{}]", ficheroIntercambio.getIdentificadorIntercambio());
 
         return asiento;
-    }
+
+
+	}
+
+
+
+	/**
+	 * Retorna los estados compatibles de un intercambio existente cuando llega un rechazo
+	 * @return
+	 */
+	protected List <EstadoAsientoRegistralEnum>  getEstadosPermitidosRechazo(){
+
+		// para que sea devuelto ha tenido que pasar por este nodo
+	// los estados permitidos para recibir un rechazo es que previamente han pasado por el nodo, es decir
+	// los estados relacionados con enviado, reenviado.
+
+		List <EstadoAsientoRegistralEnum> result = new ArrayList();
+		result.add(EstadoAsientoRegistralEnum.ENVIADO);
+		result.add(EstadoAsientoRegistralEnum.ENVIADO_Y_ACK);
+		result.add(EstadoAsientoRegistralEnum.ENVIADO_Y_ERROR);
+		result.add(EstadoAsientoRegistralEnum.REENVIADO);
+		result.add(EstadoAsientoRegistralEnum.REENVIADO_Y_ACK);
+		result.add(EstadoAsientoRegistralEnum.REENVIADO_Y_ERROR);
+
+
+		return result;
+	}
+
+	/**
+	 * Retorna los estados compatibles de un intercambio existente cuando llega un envío o reenvío
+	 * @return
+	 */
+	protected List <EstadoAsientoRegistralEnum>  getEstadosPermitidosEnvioReenvio(){
+
+		// si recibimos un intercambio que es un envío o reenvio y ya había pasado por nuestro sistema (si pasó por nuestro sistema es que nosotros mismo
+	// lo enviamos o lo habíamos reenviado a otro o lo habíamos rechazado a otro)
+
+		List <EstadoAsientoRegistralEnum> result = new ArrayList();
+		result.add(EstadoAsientoRegistralEnum.RECHAZADO);
+		result.add(EstadoAsientoRegistralEnum.RECHAZADO_Y_ACK);
+		result.add(EstadoAsientoRegistralEnum.RECHAZADO_Y_ERROR);
+		//estadosPermitidos.add(EstadoAsientoRegistralEnum.REENVIADO);
+		result.add(EstadoAsientoRegistralEnum.REENVIADO_Y_ACK);
+		result.add(EstadoAsientoRegistralEnum.REENVIADO_Y_ERROR);
+		result.add(EstadoAsientoRegistralEnum.ENVIADO_Y_ACK);
+		result.add(EstadoAsientoRegistralEnum.ENVIADO_Y_ERROR);
+		return result;
+	}
+
+
+
+	/**
+	 * Metodo que trata la recepción de un intercambio registral de tipo de anotación envio
+	 * @param ficheroIntercambio
+	 * @param asiento
+	 * @return
+	 */
+	protected AsientoRegistralVO recibirFicheroIntercambioEnvio(FicheroIntercambioVO ficheroIntercambio, AsientoRegistralVO asiento ){
+
+
+		// Comprobar si existe el asiento
+        AsientoRegistralVO asientoExistente = getAsientoRegistralManager().getAsientoRegistral(
+			ficheroIntercambio.getCodigoEntidadRegistralDestino(), ficheroIntercambio.getIdentificadorIntercambio());
+        if (asientoExistente != null) {
+
+		if (getEstadosPermitidosEnvioReenvio().contains(asientoExistente.getEstado())) {
+			// El asiento ya existe en local pero estaba rechazado, enviado o reenviado, lo regeneramos
+			//borramos el anterior pero guardamos con el nuevo con el identificador
+			// su estado será recibido
+			asiento = getAsientoRegistralManager().regenerateAsientoRegistral(ficheroIntercambio,asientoExistente.getId()) ;
+
+
+
+		} else{
+			// resto de estados incompatibles
+
+			// tratamiento especial de inserción de trazabilidad en caso de duplicados
+			if (EstadoAsientoRegistralEnum.RECIBIDO.equals(asientoExistente.getEstado())||EstadoAsientoRegistralEnum.VALIDADO.equals(asientoExistente.getEstado())) {
+
+			logger.error("El asiento ya está en estado RECIBIDO: {}", ficheroIntercambio.getIdentificadorIntercambio());
+			insertarTrazabilidad(ficheroIntercambio, EstadoTrazabilidadEnum.ERROR, ErroresEnum.ERROR_0205);
+			throw new ValidacionException(ErroresEnum.ERROR_0205);
+
+			} else {
+				logger.error("Se ha intentado enviar/reenviar un asiento con estado incompatible [{}]: {}", ficheroIntercambio.getIdentificadorIntercambio(), asientoExistente.getEstado());
+			throw new ValidacionException(ErroresEnum.ERROR_0063);
+	            }
+        }
+        }else{
+
+		// Salvar el asiento registral
+		asiento = getAsientoRegistralManager().saveAsientoRegistral(ficheroIntercambio);
+        }
+
+        return asiento;
+
+
+	}
+
+
+	/**
+	 * Metodo que trata la recepción de un intercambio registral de tipo de anotación reenvio
+	 * @param ficheroIntercambio
+	 * @param asiento
+	 * @return
+	 */
+	protected AsientoRegistralVO recibirFicheroIntercambioReenvio(FicheroIntercambioVO ficheroIntercambio, AsientoRegistralVO asiento ){
+
+		// Comprobar si existe el asiento
+        AsientoRegistralVO asientoExistente = getAsientoRegistralManager().getAsientoRegistral(
+			ficheroIntercambio.getCodigoEntidadRegistralDestino(), ficheroIntercambio.getIdentificadorIntercambio());
+        if (asientoExistente != null) {
+
+		// si recibimos un intercambio que es un envío y ya había pasado por nuestro sistema (si pasó por nuestro sistema es que nosotros mismo
+		// lo enviamos o lo habíamos reenviado a otro o lo habíamos rechazado a otro)
+		// si recibimos reenvio de  un intercambio  y ya había pasado por nuestro sistema (si pasó por nuestro sistema es que nosotros mismo
+		// lo enviamos o lo habíamos reenviado a otro o lo habíamos rechazado a otro)
+
+		if (getEstadosPermitidosEnvioReenvio().contains(asientoExistente.getEstado())) {
+
+				// El asiento ya existe en local pero estaba rechazado, enviado o reenviado, lo regeneramos
+			//borramos el anterior pero guardamos con el nuevo con el identificador
+			// su estado será recibido
+			asiento = getAsientoRegistralManager().regenerateAsientoRegistral(ficheroIntercambio,asientoExistente.getId()) ;
+
+
+		} else{
+			//estados incompatibles con tratamiento especial de inserción de trazabilidad en la plataforma SIR
+			if (EstadoAsientoRegistralEnum.RECIBIDO.equals(asientoExistente.getEstado())||EstadoAsientoRegistralEnum.VALIDADO.equals(asientoExistente.getEstado())) {
+
+			logger.error("El asiento ya está en estado RECIBIDO: {}", ficheroIntercambio.getIdentificadorIntercambio());
+			insertarTrazabilidad(ficheroIntercambio, EstadoTrazabilidadEnum.ERROR, ErroresEnum.ERROR_0205);
+			throw new ValidacionException(ErroresEnum.ERROR_0205);
+
+			} else {
+				logger.error("Se ha intentado enviar/reenviar un asiento con estado incompatible [{}]: {}", ficheroIntercambio.getIdentificadorIntercambio(), asientoExistente.getEstado());
+			throw new ValidacionException(ErroresEnum.ERROR_0063);
+	            }
+		}
+        }else{
+		// es un nuevo intercambio que llega al nodo
+		// Salvar el asiento registral
+		asiento = getAsientoRegistralManager().saveAsientoRegistral(ficheroIntercambio);
+        }
+
+        return asiento;
+
+	}
+
+
+	/**
+	 * Metodo que trata la recepción de un intercambio registral de tipo de anotación rechazo
+	 * @param ficheroIntercambio
+	 * @param asiento
+	 * @return
+	 */
+	protected AsientoRegistralVO recibirFicheroIntercambioRechazo(FicheroIntercambioVO ficheroIntercambio, AsientoRegistralVO asiento ){
+
+		AsientoRegistralVO asientoExistente = getAsientoRegistralManager().getAsientoRegistral(
+			ficheroIntercambio.getCodigoEntidadRegistralDestino(), ficheroIntercambio.getIdentificadorIntercambio());
+        if (asientoExistente != null) {
+		// para que sea devuelto ha tenido que pasar por este nodo
+		// los estados permitidos para recibir un rechazo es que previamente han pasado por el nodo, es decir
+		// los estados relacionados con enviado, reenviado.
+		if (getEstadosPermitidosRechazo().contains(asientoExistente.getEstado())) {
+
+
+			//regeneramos el asiento ya existente en nuestro sistema
+			asiento = getAsientoRegistralManager().regenerateAsientoRegistral(ficheroIntercambio,asientoExistente.getId());
+
+			//actualizamos datos del asiento a estado devuelto
+                Date fechaActual = getFechaManager().getFechaActual();
+
+                asiento.setEstado(EstadoAsientoRegistralEnum.DEVUELTO);
+                asiento.setFechaEstado(fechaActual);
+                asiento.setFechaRecepcion(fechaActual);
+                asiento.setAplicacion(ficheroIntercambio.getAplicacionEmisora());
+                asiento.setObservacionesApunte(ficheroIntercambio.getObservacionesApunte());
+                asiento.setTipoAnotacion(ficheroIntercambio.getTipoAnotacion());
+                asiento.setDescripcionTipoAnotacion(ficheroIntercambio.getDescripcionTipoAnotacion());
+
+                asiento = getAsientoRegistralManager().update(asiento);
+
+		} else{
+			// Estados no permitidos el resto pero si está en estado ya devuelto gestión de duplicados
+			// un rechazo no puede llegar dos veces, se anota duplicado
+			if (EstadoAsientoRegistralEnum.DEVUELTO.equals(asientoExistente.getEstado())) {
+
+			logger.error("El asiento ya está en estado DEVUELTO: {}", ficheroIntercambio.getIdentificadorIntercambio());
+			insertarTrazabilidad(ficheroIntercambio, EstadoTrazabilidadEnum.ERROR, ErroresEnum.ERROR_0205);
+			throw new ValidacionException(ErroresEnum.ERROR_0205);
+
+			} else {
+			logger.error("Se ha intentado devolver un asiento con estado incompatible [{}]: {}", ficheroIntercambio.getIdentificadorIntercambio(), asientoExistente.getEstado());
+			throw new ValidacionException(ErroresEnum.ERROR_0063);
+			}
+		}
+
+        } else {
+		logger.error("Se ha intentado devolver un fichero de intercambio cuyo identificador de intercambio no existe: {}", ficheroIntercambio.getIdentificadorIntercambio());
+		throw new ValidacionException(ErroresEnum.ERROR_0063);
+        }
+
+
+		return asiento;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -549,7 +701,8 @@ public class RecepcionManagerImpl implements RecepcionManager {
             			|| EstadoAsientoRegistralEnum.ENVIADO_Y_ERROR.equals(asiento.getEstado())
             			|| EstadoAsientoRegistralEnum.REENVIADO.equals(asiento.getEstado())
             			|| EstadoAsientoRegistralEnum.REENVIADO_Y_ACK.equals(asiento.getEstado())
-            			|| EstadoAsientoRegistralEnum.REENVIADO_Y_ERROR.equals(asiento.getEstado())) {
+				|| EstadoAsientoRegistralEnum.REENVIADO_Y_ERROR.equals(asiento.getEstado())
+				|| EstadoAsientoRegistralEnum.VALIDADO.equals(asiento.getEstado())) {
 
 	                // Actualizar la información del asiento registral
 	                asiento.setEstado(EstadoAsientoRegistralEnum.ACEPTADO);
@@ -591,7 +744,7 @@ public class RecepcionManagerImpl implements RecepcionManager {
                     // Actualizar la información del asiento
                     asiento.setEstado(EstadoAsientoRegistralEnum.ENVIADO_Y_ERROR);
                     asiento.setFechaEstado(getFechaManager().getFechaActual());
-                    asiento.setNumeroReintentos(0);
+                   // asiento.setNumeroReintentos(0);
                     asiento.setCodigoError(mensaje.getCodigoError());
                     asiento.setDescripcionError(mensaje.getDescripcionMensaje());
 
@@ -602,7 +755,7 @@ public class RecepcionManagerImpl implements RecepcionManager {
                     // Actualizar la información del asiento
                     asiento.setEstado(EstadoAsientoRegistralEnum.REENVIADO_Y_ERROR);
                     asiento.setFechaEstado(getFechaManager().getFechaActual());
-                    asiento.setNumeroReintentos(0);
+                    //asiento.setNumeroReintentos(0);
                     asiento.setCodigoError(mensaje.getCodigoError());
                     asiento.setDescripcionError(mensaje.getDescripcionMensaje());
 
@@ -613,7 +766,7 @@ public class RecepcionManagerImpl implements RecepcionManager {
                     // Actualizar la información del asiento
                     asiento.setEstado(EstadoAsientoRegistralEnum.RECHAZADO_Y_ERROR);
                     asiento.setFechaEstado(getFechaManager().getFechaActual());
-                    asiento.setNumeroReintentos(0);
+                    //asiento.setNumeroReintentos(0);
                     asiento.setCodigoError(mensaje.getCodigoError());
                     asiento.setDescripcionError(mensaje.getDescripcionMensaje());
 

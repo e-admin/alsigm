@@ -58,6 +58,7 @@
 						RECHAZADO_Y_ACK 	= 12;
 						RECHAZADO_Y_ERROR 	= 13;
 						VALIDADO 			= 14;
+						REINTENTAR_VALIDACION = 15;
 				 -->
 				<entry key="codigosEstado">
 					<list>
@@ -71,4 +72,16 @@
 		</property>
 	</bean>
 
+	<!-- Job para Job para reintentar validar los asientos registrales que están en el estado REINTENTAR_VALIDACION -->
+	<bean id="reintentoValidacionAsientosJobDetailImpl" name="reintentoValidacionAsientosJobDetail"
+	      class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="es.ieci.tecdoc.fwktd.sir.api.job.ReintentoValidacionAsientosJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="asientoRegistralManager">
+					<ref bean="fwktd_sir_asientoRegistralManager" />
+				</entry>
+			</map>
+		</property>
+	</bean>
 </beans>

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
 		<artifactId>fwktd-sir</artifactId>
-		<version>1.0.1</version>
+		<version>1.0.2-M3</version>
 	</parent>
 
 	<description>Generacion archivos de configuracion fwktd-sir</description>

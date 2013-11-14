@@ -468,6 +468,7 @@ public class IntercambioRegistralManagerImpl implements
 			asientoRegistralDTO.setSolicita(asientoRegistralVO.getSolicita());
 			asientoRegistralDTO.setCodigoError(asientoRegistralVO.getCodigoError());
 			asientoRegistralDTO.setDescripcionError(asientoRegistralVO.getDescripcionError());
+			asientoRegistralDTO.setDescripcionTipoAnotacion(asientoRegistralVO.getDescripcionTipoAnotacion());
 
 			// Anexos
 			asientoRegistralDTO.getAnexos().addAll(getListaAnexoDTO(asientoRegistralVO.getAnexos()));
@@ -517,6 +518,8 @@ public class IntercambioRegistralManagerImpl implements
 			asientoRegistralFormVO.setIndicadorPrueba(IndicadorPruebaEnum.getIndicadorPrueba(asientoRegistralFormDTO.getIndicadorPrueba()));
 			asientoRegistralFormVO.setExpone(asientoRegistralFormDTO.getExpone());
 			asientoRegistralFormVO.setSolicita(asientoRegistralFormDTO.getSolicita());
+
+			asientoRegistralFormVO.setDescripcionTipoAnotacion(asientoRegistralFormDTO.getDescripcionTipoAnotacion());
 
 			// Anexos
 			asientoRegistralFormVO.getAnexos().addAll(getListaAnexoFormVO(asientoRegistralFormDTO.getAnexos()));

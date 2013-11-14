@@ -11,7 +11,8 @@
 		<property name="triggers">
 			<list>
 				<ref bean="comprobarTimeOutEnviosJobTrigger" />
-				<!-- 
+				<ref bean="reintentoValidacionAsientosJobTrigger"/>
+				<!--
 				<ref bean="recepcionFicherosJobTrigger" />
 				<ref bean="eliminarAsientosPorEstadosJobTrigger" />
 				-->
@@ -40,9 +41,18 @@
 		<property name="cronExpression" value="0 0 0 1 * ?" />
 	</bean>
 
+	<bean id="reintentoValidacionAsientosJobTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerBean"
+		  lazy-init="true">
+		<property name="jobDetail" ref="reintentoValidacionAsientosJobDetail" />
+		<property name="cronExpression" value="0 0/15 * * * ?" />
+	</bean>
+
+
+
 
 	<!-- Examples -->
-	<!-- 
+	<!--
 	<bean id="simpleTrigger"
 		  class="org.springframework.scheduling.quartz.SimpleTriggerBean">
 		<property name="jobDetail" ref="testJob" />

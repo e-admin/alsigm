@@ -37,7 +37,9 @@ import es.ieci.tecdoc.fwktd.test.db.AbstractDbUnitTransactionalJUnit4SpringConte
 import es.ieci.tecdoc.fwktd.test.db.annotation.DatasetLocation;
 
 @DatasetLocation("data/dataset.xml")
-@ContextConfiguration({ "/beans/fwktd-sir-ws-applicationContext.xml",
+@ContextConfiguration({
+	"/beans/fwktd-sir-api-test-initial-beans.xml",
+	"/beans/fwktd-sir-ws-applicationContext.xml",
 	"classpath*:/beans/fwktd-sir-applicationContext.xml",
 	"classpath*:/beans/fwktd-sir-api-applicationContext.xml",
 	"/beans/fwktd-sir-api-test-beans.xml" })

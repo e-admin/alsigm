@@ -186,6 +186,11 @@ public class AsientoRegistralFormVO extends BaseValueObject {
 	private String solicita;
 
 	/**
+	 * Descripción de la anotación realizada, se usa para motivos de reenvio, rechazo ..
+	 */
+	private String descripcionTipoAnotacion;
+
+	/**
 	 * Lista de anexos del asiento registral.
 	 */
 	private List<AnexoFormVO> anexos = null;
@@ -480,5 +485,13 @@ public class AsientoRegistralFormVO extends BaseValueObject {
 
 	public void setCodigoEntidadRegistral(String codigoEntidadRegistral) {
 		this.codigoEntidadRegistral = codigoEntidadRegistral;
+	}
+
+	public String getDescripcionTipoAnotacion() {
+		return descripcionTipoAnotacion;
+	}
+
+	public void setDescripcionTipoAnotacion(String descripcionTipoAnotacion) {
+		this.descripcionTipoAnotacion = descripcionTipoAnotacion;
 	}
 }

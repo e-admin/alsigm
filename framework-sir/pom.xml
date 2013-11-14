@@ -9,7 +9,7 @@
 
 	<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
 	<artifactId>fwktd-sir</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-M3</version>
 
 	<packaging>pom</packaging>
 
@@ -22,7 +22,7 @@
           <fwktd-dm.version>0.7</fwktd-dm.version>
           <!-- fwktd-signature.version>0.7</fwktd-signature.version-->
   <fwktd-time.version>0.5</fwktd-time.version>
-  <fwktd-dir3.version>1.0</fwktd-dir3.version>
+  <fwktd-dir3.version>1.0.3</fwktd-dir3.version>
 
   <!-- Third party dependencies -->
   <axis.version>1.4</axis.version>
@@ -89,6 +89,7 @@
 				<module>fwktd-sir-dist</module>
 			</modules>
 		</profile>
+
 
 	</profiles>
 
