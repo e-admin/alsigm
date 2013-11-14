@@ -478,3 +478,6 @@ ALTER TABLE scr_prov ADD CONSTRAINT pk_prov PRIMARY KEY (id);
 
 -- TABLA scr_cities
 ALTER TABLE scr_cities ADD CONSTRAINT pk_cities PRIMARY KEY (id);
+
+-- TABLA scr_distribucion_actual
+ALTER TABLE scr_distribucion_actual ADD CONSTRAINT pk_scr_distribucion_actual PRIMARY KEY (id_dist);

@@ -596,7 +596,7 @@ function ocultaDiv(capa) {
 }
 
 
-var checkBox = new Array(19);
+var checkBox = new Array(20);
 checkBox[0] = 'altaPersonasCheck';
 checkBox[1] = 'adaptacionRegistrosCheck';
 checkBox[2] = 'modificaPersonasCheck';
@@ -611,12 +611,14 @@ checkBox[10] = 'cambioDestinoRechazadosCheck';
 checkBox[11] = 'accesoOperacionesCheck';
 checkBox[12] = 'distribucionManualCheck';
 checkBox[13] = 'verDocumentosCheck';
-checkBox[14] = 'gestionUnidadesAdministrativasCheck';
-checkBox[15] = 'gestionUsuariosCheck';
-checkBox[16] = 'gestionInformesCheck';
-checkBox[17] = 'gestionTiposAsuntoCheck';
-checkBox[18] = 'gestionTiposTransporteCheck';
-var permSelected = new Array(14);
+checkBox[14] = 'deleteDocumentosCheck';
+checkBox[15] = 'gestionUnidadesAdministrativasCheck';
+checkBox[16] = 'gestionUsuariosCheck';
+checkBox[17] = 'gestionInformesCheck';
+checkBox[18] = 'gestionTiposAsuntoCheck';
+checkBox[19] = 'gestionTiposTransporteCheck';
+
+var permSelected = new Array(20);
 
 function checkSuperUser( itemPerfil, operacion, init ) {
 	if( itemPerfil == 3) {

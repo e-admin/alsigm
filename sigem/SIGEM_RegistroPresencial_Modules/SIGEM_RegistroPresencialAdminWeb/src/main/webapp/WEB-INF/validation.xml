@@ -144,7 +144,7 @@
 				<arg0 key="ieci.tecdoc.sgm.rpadmin.libros.nombre"/>
 				<var>
                 	<var-name>mask</var-name>
-                	<var-value>^[^\']*$</var-value>
+			<var-value>^[a-zA-Z0-9 áàäéèëíìïóòöúùüñÑ=\\*."-]*$</var-value>
             	</var>
 			</field>
 			<field property="numeracion" depends="required">
@@ -159,7 +159,7 @@
 				<arg0 key="ieci.tecdoc.sgm.rpadmin.libros.nombre"/>
 				<var>
                 	<var-name>mask</var-name>
-                	<var-value>^[^\']*$</var-value>
+			<var-value>^[a-zA-Z0-9 áàäéèëíìïóòöúùüñÑ=\\*."-]*$</var-value>
             	</var>
 			</field>
 			<field property="numeracion" depends="required">

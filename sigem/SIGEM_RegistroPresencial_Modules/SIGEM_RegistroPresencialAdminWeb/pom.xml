@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_registroPresencial_modules</artifactId>
-		<version>3.0.1-M2</version>
+		<version>3.0.1-M3</version>
 	</parent>
 
 	<artifactId>sigem_registroPresencialAdminWeb</artifactId>
@@ -195,6 +195,12 @@
 			<groupId>es.ieci.tecdoc.fwktd</groupId>
 			<artifactId>fwktd-core</artifactId>
 			<version>${fwktd.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.thoughtworks.xstream</groupId>
+					<artifactId>xstream</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 	</dependencies>
@@ -220,7 +226,7 @@
 			<resource>
 				<filtering>true</filtering>
 				<directory>${unpack.config.directory}/SIGEM_RegistroPresencial/Isicres</directory>
-				<targetPath>/SIGEM_RegistroPresencial</targetPath>
+				<targetPath>SIGEM_RegistroPresencial</targetPath>
 				<excludes>
 					<exclude>**/log4j.xml</exclude>
 				</excludes>

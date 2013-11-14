@@ -78,6 +78,7 @@
     Integer copyFdr = RequestUtils.parseRequestParameterAsInteger(request, "CopyFdr", new Integer(0));
     Integer openFolderDtr = RequestUtils.parseRequestParameterAsInteger(request, "OpenFolderDtr", new Integer(0));
     Integer openFolderPenDtr = RequestUtils.parseRequestParameterAsInteger(request, "OpenFolderPenDtr", new Integer(0));
+    Integer openEditDistr = RequestUtils.parseRequestParameterAsInteger(request, "OpenEditDistr", new Integer(0));
     Integer firstReg = RequestUtils.parseRequestParameterAsInteger(request, "FirstReg", new Integer(0));
     Integer lastReg = RequestUtils.parseRequestParameterAsInteger(request, "LastReg", new Integer(0));
 
@@ -138,6 +139,17 @@
 			//_logger.error("Error al obtener el permiso de intermcabio registral. Se deshabilita.",e);
 	}
 
+	boolean deleteFilePerms = false;
+	try{
+		CacheBag cacheBag = CacheFactory.getCacheInterface().getCacheEntry(
+				sessionPId);
+		ISicresGenPerms permisos = (ISicresGenPerms)cacheBag.get(ServerKeys.GENPERMS_USER);
+		deleteFilePerms = permisos.isCanDeleteDocuments();
+	}catch (TecDocException e) {
+		if(_logger.isDebugEnabled()){
+			_logger.debug("Se ha producido un error al obtener los permisos del usuario", e);
+		}
+	}
 	//Comprobamos si el libro es de intercambio registral
 	try{
 		ContextoAplicacionVO contextoAplicacion = ContextoAplicacionUtil
@@ -262,21 +274,25 @@
 		top.g_OpenFolderDtr = "<%=openFolderDtr.toString()%>" == "1";
 		// para saber si se abre la carpeta desde url
 		top.g_OpenFolderPenDtr = "<%=openFolderPenDtr.toString()%>" == "1";
+		// para saber si se abre la carpeta desde distribución en modo edición
+		top.g_OpenEditDistr = "<%=openEditDistr.toString()%>" == "1";
 
 		// para navegación en vista de formulario
 		top.g_FirstReg = parseInt("<%=firstReg.toString()%>");
 		top.g_LastReg = parseInt("<%=lastReg.toString()%>");
 
-
-		//Intercambio REgistral
+		//Intercambio Registral
 		top.g_canSendIntercambioRegistral= "<%=canSendToIntercambioRegistral%>";
 		top.g_EnabledIntercambioRegistral= "<%=enabledIntercambioRegistral%>";
-		top.g_isBookIntercambioRegistral  = "<%=Boolean.toString(bookEnabledIntercambioRegistral)%>";
+		top.g_isBookIntercambioRegistral  = "<%=bookEnabledIntercambioRegistral%>";
 		if ( (top.g_UseLDAP) && (top.g_UseOSAuth) )	{
 			top.g_UserDN = GetUserDn();
 		}
 		// para abrir el registro en vista formulario
 		top.g_Form = "<%=Form%>";
+
+		// para saber si debe mostrar la etiqueta de borrar ficheros adjuntados al registro
+		top.g_deleteFilePerms = "<%=deleteFilePerms%>";
 
 		// Empieza el documento HTML
 		if (top.g_FolderView)	{

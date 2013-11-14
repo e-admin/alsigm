@@ -5039,7 +5039,6 @@ insert into scr_cities (id, tmstamp, code, name, id_prov) values (5011,getdate()
 insert into scr_cities (id, tmstamp, code, name, id_prov) values (5012,getdate(),'L33076','Villaviciosa',33);
 insert into scr_cities (id, tmstamp, code, name, id_prov) values (5013,getdate(),'L33077','Villayon',33);
 insert into scr_cities (id, tmstamp, code, name, id_prov) values (5014,getdate(),'L33078','Yernes y Tameza',33);
-insert into scr_cities (id, tmstamp, code, name, id_prov) values (5015,getdate(),'L33241','Gijon',33);
 insert into scr_cities (id, tmstamp, code, name, id_prov) values (5016,getdate(),'L34001','Abarca',34);
 insert into scr_cities (id, tmstamp, code, name, id_prov) values (5017,getdate(),'L34003','Abia de Las Torres',34);
 insert into scr_cities (id, tmstamp, code, name, id_prov) values (5018,getdate(),'L34004','Aguilar de Campoo',34);

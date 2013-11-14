@@ -83,12 +83,17 @@
 	</servlet-mapping>
 
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout>90</session-timeout>
 	</session-config>
 
 	<welcome-file-list>
 		<welcome-file>/jsp/index.jsp</welcome-file>
 	</welcome-file-list>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/jsp/errorServer_500.jsp</location>
+	</error-page>
 
 	<taglib>
 		<taglib-uri>/tags/struts-bean</taglib-uri>

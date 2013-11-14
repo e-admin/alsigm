@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_main</artifactId>
-		<version>3.0.1-M2</version>
+		<version>3.0.1-M3</version>
 	</parent>
 
 	<artifactId>SIGEM_PortafirmasNotificacionWS</artifactId>
@@ -20,12 +20,12 @@
 
 	<dependencies>
 
-		<dependency>
-              <groupId>javax.servlet</groupId>
-              <artifactId>servlet-api</artifactId>
-              <version>${servlet-api.version}</version>
-              <scope>provided</scope>
-		</dependency>
+	    <dependency>
+	      <groupId>javax.servlet</groupId>
+	      <artifactId>servlet-api</artifactId>
+	      <version>${servlet-api.version}</version>
+	      <scope>provided</scope>
+	    </dependency>
 
 
 		<dependency>
@@ -84,20 +84,20 @@
 			<version>${cxf.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.xml.ws</groupId>
-			<artifactId>jaxws-api</artifactId>
-			<version>${jaxws-api.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.jws</groupId>
-					<artifactId>jsr181</artifactId>
-				</exclusion>
-			</exclusions>
+		    <groupId>javax.xml.ws</groupId>
+		    <artifactId>jaxws-api</artifactId>
+		    <version>${jaxws-api.version}</version>
+		    <exclusions>
+			<exclusion>
+				    <groupId>javax.jws</groupId>
+				    <artifactId>jsr181</artifactId>
+			</exclusion>
+		    </exclusions>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-ws-metadata_2.0_spec</artifactId>
-			<version>${geronimo-ws-metadata_2.0_spec.version}</version>
+		    <groupId>org.apache.geronimo.specs</groupId>
+		    <artifactId>geronimo-ws-metadata_2.0_spec</artifactId>
+		    <version>${geronimo-ws-metadata_2.0_spec.version}</version>
 		</dependency>
 
 	</dependencies>

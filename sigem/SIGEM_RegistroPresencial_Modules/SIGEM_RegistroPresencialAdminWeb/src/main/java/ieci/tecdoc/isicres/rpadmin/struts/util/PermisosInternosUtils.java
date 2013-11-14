@@ -100,6 +100,9 @@ public class PermisosInternosUtils {
 			genPerms
 			.setCanModifyUsers((scrUsrperm.getPerms() & ISicresGenPerms.ISUSER_PERM_CAN_MODIFY_USERS) == ISicresGenPerms.ISUSER_PERM_CAN_MODIFY_USERS);
 
+			genPerms
+			.setCanDeleteDocuments((scrUsrperm.getPerms() & ISicresGenPerms.ISUSER_PERM_CAN_DELETE_DOCUMENTS) == ISicresGenPerms.ISUSER_PERM_CAN_DELETE_DOCUMENTS);
+
 		}
 
 		return genPerms;
@@ -148,6 +151,7 @@ public class PermisosInternosUtils {
 		genPerms.setCanModifyReports(false);
 		genPerms.setCanModifyTransportTypes(false);
 		genPerms.setCanModifyUsers(false);
+		genPerms.setCanDeleteDocuments(false);
 		return genPerms;
 	}
 	public static ISicresGenPerms setAdminPermisions(ISicresGenPerms genPerms) {
@@ -169,6 +173,7 @@ public class PermisosInternosUtils {
 		genPerms.setCanModifyReports(true);
 		genPerms.setCanModifyTransportTypes(true);
 		genPerms.setCanModifyUsers(true);
+		genPerms.setCanDeleteDocuments(true);
 		return genPerms;
 	}
 

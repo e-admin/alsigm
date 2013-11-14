@@ -1,0 +1,2 @@
+INSERT INTO sir_config_seq default values;
+INSERT INTO sir_configuracion (id, nombre, valor, descripcion) SELECT (SELECT max(id) FROM sir_config_seq), 'O00000000.entidad.configurada', 'O00000000', 'Código de las entidades O00000000 configurada para recepción';

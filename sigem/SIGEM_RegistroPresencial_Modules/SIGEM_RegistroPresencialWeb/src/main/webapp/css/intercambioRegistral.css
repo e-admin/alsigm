@@ -11,7 +11,7 @@
 }
 
 .barraAcciones{
-	padding:5px;
+	padding-top:5px;
 	text-align: right;
 	background-color: #D7EDFA;
 }
@@ -21,11 +21,16 @@
 }
 .linkBarraAcciones{
 	margin-right: 20px;
+	text-decoration: none;
 }
 
-.linkBarraAcciones,.linkBarraBandeja
-{
+.linkBarraAcciones,.linkBarraBandeja{
 cursor: pointer;
+	font-weight: bold;
+}
+
+.linkBarraAcciones{
+	font-size:10px;
 }
 
 #librosEntrada{
@@ -34,32 +39,37 @@ cursor: pointer;
     border: 1px solid black;
     color: black;
     display: block;
-    margin-left: 30%;
     padding: 30px;
     position: absolute;
-
+    width:50%;
+	left: 25%;
+    z-index:1000;
 }
+
 #buscarNuevoDestino{
 
 	background: none repeat scroll 0 0 white;
     border: 1px solid black;
     color: black;
     display: block;
-    margin-left: 15%;
     padding: 30px;
     position: absolute;
-
+	width:70%;
+	left: 15%;
+    z-index:1000;
 
 }
+
 #llegoDocumentacionFisica, #divMotivoRechazo{
 	background: none repeat scroll 0 0 white;
     border: 1px solid black;
     color: black;
-    margin-left: 25%;
     padding: 30px;
     position: absolute;
-    width: 400px;
+    width:50%;
+	left: 25%;
     text-align:center;
+    z-index:1000;
 }
 
 #llegoDocumentacionFisica p, #buscarNuevoDestino p{
@@ -89,4 +99,57 @@ cursor: pointer;
 
 .label{
 	padding:0;
+}
+
+div#tblUtil{
+	font-weight: bold;
+	font-size: 8pt;
+	margin: 3px;
+}
+
+table#bandejaEntrada, table#bandejaEntradaAceptados, table#bandejaSalida{
+	margin-top:3px !important;
+	vertical-align: middle;
+}
+
+table#bandejaEntrada thead tr, table#bandejaEntradaAceptados thead tr, table#bandejaSalida thead tr{
+	position:relative;
+	top:-2px;
+}
+
+table#bandejaEntrada th, table#bandejaEntradaAceptados th, table#bandejaSalida th{
+	font-size: 7pt;
+	height: 25px;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+table#bandejaEntrada tr, table#bandejaEntradaAceptados tr, table#bandejaSalida tr {
+	height:25px;
+}
+
+table#bandejaEntrada tr td, table#bandejaEntradaAceptados tr td, table#bandejaSalida tr td{
+	font-size: 8pt;
+	vertical-align: middle;
+}
+
+table.tablaBusqueda {
+	margin: 10px 0 !important;
+	background-color:  rgb(240, 240, 246);
+}
+
+table.tablaBusqueda tr td{
+	text-align:left;
+	height:20px;
+	vertical-align: bottom;
+}
+
+table.tablaBusqueda input.inputText{
+	width:250px;
+}
+
+table.tablaBusqueda select{
+	width:120px;
+}
+
 }

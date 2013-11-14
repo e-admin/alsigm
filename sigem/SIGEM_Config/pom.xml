@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_main</artifactId>
-		<version>3.0.1-M2</version>
+		<version>3.0.1-M3</version>
 	</parent>
 
 	<artifactId>sigem_config</artifactId>
@@ -112,7 +112,7 @@
 		<!-- Pago eletronico -->
 		<dependency>
 			<groupId>es.ieci.tecdoc.sigem</groupId>
-			<artifactId>sigem_pagoElectronico-configurable-resources</artifactId>
+			<artifactId>sigem_PagoElectronico-configurable-resources</artifactId>
 			<version>${pom.version}</version>
 			<type>zip</type>
 			<classifier>configurableSigem</classifier>

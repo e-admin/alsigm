@@ -56,7 +56,9 @@ ALTER TABLE scr_pagetype ADD CONSTRAINT pk_pagetype
 	PRIMARY KEY (id)
 ;
 
-
+ALTER TABLE scr_distribucion_actual ADD CONSTRAINT pk_scr_distribucion_actual
+   PRIMARY KEY (id_dist)
+;
 ----------------------------------------
 --       END PRIMARY KEYS             --
 ----------------------------------------

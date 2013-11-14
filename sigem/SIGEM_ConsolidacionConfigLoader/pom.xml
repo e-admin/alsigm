@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>sigem_main</artifactId>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
-		<version>3.0.1-M2</version>
+		<version>3.0.1-M3</version>
 	</parent>
 	
 	<artifactId>sigem_consolidacionConfigLoader</artifactId>

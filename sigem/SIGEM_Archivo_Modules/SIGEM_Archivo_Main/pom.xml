@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_archivoModules</artifactId>
-		<version>3.0.1-M2</version>
+		<version>3.0.1-M3</version>
 	</parent>
 	
 	<artifactId>sigem_archivoMain</artifactId>
