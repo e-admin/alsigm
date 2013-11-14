@@ -170,8 +170,8 @@
 			//Cuando carga la pagina validamos si el pais es distinto a España, se habilitan los campos input en vez de combos
 			if ($("#content\\.pais\\.codigo").val() != 'ES'){
 				// Una valor de pais diferente a España hace que los controles provincia y ciudad sean texto libre
-				$("#content\\.provincia\\.nombre").replaceWith('<input type="text" name="content.provincia.nombre" id="content.provincia.nombre" class="medium ${sessionScope.texttransform}" tabindex="33" />');
-				$("#content\\.ciudad\\.nombre").replaceWith('<input type="text" name="content.ciudad.nombre" id="content.ciudad.nombre" class="medium ${sessionScope.texttransform}" tabindex="34" />');
+				$("#content\\.provincia\\.nombre").replaceWith('<input type="text" name="content.provincia.nombre" id="content.provincia.nombre" class="medium ${sessionScope.texttransform}" value="${direccionFisica.content.provincia.nombre}" tabindex="33" />');
+				$("#content\\.ciudad\\.nombre").replaceWith('<input type="text" name="content.ciudad.nombre" id="content.ciudad.nombre" class="medium ${sessionScope.texttransform}" value="${direccionFisica.content.ciudad.nombre}"  tabindex="34" />');
 			}else{
 				//comprobamos si la provincia esta rellena sino inicializamos el campo Ciudades
 				var provincia = $("#content\\.provincia\\.nombre").val();

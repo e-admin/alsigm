@@ -1,11 +1,14 @@
 package es.ieci.tecdoc.isicres.terceros.util;
 
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 
@@ -30,6 +33,7 @@ import es.ieci.tecdoc.isicres.terceros.business.vo.enums.DireccionType;
  */
 public class InteresadosDecorator {
 
+	private static final Logger logger = Logger.getLogger(InteresadosDecorator.class);
 	/**
 	 *
 	 * @param idLibro
@@ -56,6 +60,10 @@ public class InteresadosDecorator {
 				.getTemplate("es/ieci/tecdoc/isicres/terceros/util/interesados.vm");
 		while (iterator.hasNext()) {
 			InteresadoVO interesado = (InteresadoVO) iterator.next();
+			// invocamos a la función que verifica si se debe adecuar el
+			// encoding con los datos del interesado
+			adapterEncodingInteresados(interesado);
+
 			VelocityContext ctx = new VelocityContext();
 			ctx.put("interesado", interesado);
 			StringWriter sw = new StringWriter();
@@ -67,6 +75,25 @@ public class InteresadosDecorator {
 			}
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * Método que comprueba si los datos del interesado se han de enviar
+	 * codificados para evitar conflictos con los caracteres especiales
+	 *
+	 * @param interesado - {@link InteresadoVO} Datos del interesado
+	 */
+	private void adapterEncodingInteresados(InteresadoVO interesado) {
+		try {
+			//si el interesado es no validado
+			if (StringUtils.equals("0", interesado.getTercero().getId())) {
+				//codificamos los datos al enviarlos y evitar conflictos con caracteres especiales
+				interesado.setNombre(URLEncoder.encode(
+						interesado.getNombre(), "UTF-8"));
+			}
+		} catch (UnsupportedEncodingException e) {
+			logger.warn("No se ha podido aplicar el encoding a la información del interesado", e);
+		}
 	}
 
 	/**
@@ -134,18 +161,18 @@ public class InteresadosDecorator {
 					break;
 				case 5:
 					if (!StringUtils.isBlank(tokens[i])) {
-						BaseTerceroVO terceroRepresentante = new BaseTerceroVO();
-						terceroRepresentante.setId(tokens[i]);
+						String terceroRepresentanteId = tokens[i];
+
+						TerceroValidadoVO representanteVO = getTerceroManager()
+								.get(terceroRepresentanteId);
+
 						representante = new RepresentanteInteresadoVO();
-						representante.setRepresentante(terceroRepresentante);
+						representante.setRepresentante(representanteVO);
 						interesado.setRepresentante(representante);
 					}
 					break;
 				case 6:
-					if (null != representante) {
-						interesado.getRepresentante().getRepresentante()
-								.setNombre(tokens[i]);
-					} else {
+					if (null == representante) {
 						interesado
 								.setRepresentante(new RepresentanteInteresadoVO());
 					}

@@ -177,7 +177,9 @@ function NoCambiado( Field )
 					// con lo que la variable que almacena si hay datos del
 					// registro pendientes de guardar se activa a true
 					top.g_changeDataRegistro = true;
+
 				}
+
 				FolderBarWnd.FldDataArr[ii].Value  = Field.value;
 	            FolderBarWnd.FldDataArr[ii].valueSust = Field.getAttribute("valueSust");
 
@@ -193,7 +195,7 @@ function NoCambiado( Field )
 	// registro pendientes de guardar se activa a true
 	top.g_changeDataRegistro = true;
 
- 	return true;
+	return true;
 }
 
 // Funcion que comprueba si un campo ha cambiado de valor, si ha cambiado el
@@ -202,17 +204,25 @@ function cambioValor( Field )
 {
 	var strValue = "";
 
+
 	if (NoCambiado(Field)){
+
 		var cantidad = FolderBarWnd.FldDataArr.length;
 
 		strValue = Field.value;
 
-		FolderBarWnd.FldDataArr[cantidad] =
-			 new FolderBarWnd.FldData( Field.getAttribute("FldId"), strValue, Field.name, Field.getAttribute("valueSust"));
-
-		if (top.g_CopyFdr != 0)	{
-			FolderBarWnd.FldDataArr[cantidad].valueSust = top.getSustValue(Field.getAttribute("FldId"), document.getElementById("FrmData"));
-			Field.setAttribute("valueSust", FolderBarWnd.FldDataArr[cantidad].valueSust);
+		if (top.g_CopyFdr == 0){
+			FolderBarWnd.FldDataArr[cantidad] =
+				 new FolderBarWnd.FldData( Field.getAttribute("FldId"), strValue, Field.name, Field.getAttribute("valueSust"));
+		}
+		/*Si estamos copiando un registro entonces no hay que meter en el array los campos vacios, solo los que tengan valor*/
+		else{
+			if (Field.value!=null && Field.value!="" && Field.getAttribute("FldId")!=null && Field.getAttribute("FldId")!=""){
+				FolderBarWnd.FldDataArr[cantidad] =
+					 new FolderBarWnd.FldData( Field.getAttribute("FldId"), strValue, Field.name, Field.getAttribute("valueSust"));
+				FolderBarWnd.FldDataArr[cantidad].valueSust = top.getSustValue(Field.getAttribute("FldId"), document.getElementById("FrmData"));
+				Field.setAttribute("valueSust", FolderBarWnd.FldDataArr[cantidad].valueSust);
+			}
 		}
    }
 
@@ -602,7 +612,7 @@ function VldHelp(aEvent, oField, caseSensitive)
 				Params = "SessionPId=" + top.g_SessionPId.toString()
 					+ "&ArchivePId=" + top.g_ArchivePId.toString()
 					+ "&VldInter=1"
-           			+ "&Idioma=" + top.Idioma.toString()
+				+ "&Idioma=" + top.Idioma.toString()
 	                + "&FldId=" + top.g_Field.getAttribute("FldId")
 	                + "&IsDtrList=0"
 	                + "&caseSensitive=" + caseSensitive
@@ -1260,7 +1270,7 @@ function ResponseSearch()
 		 && (XMLDoc.documentElement != null)){
 
 			if ((XMLDoc.documentElement.getElementsByTagName("Error") != null)
-		  	 && (XMLDoc.documentElement.getElementsByTagName("Error").length != 0)){
+			 && (XMLDoc.documentElement.getElementsByTagName("Error").length != 0)){
 				alert(XMLDoc.documentElement.getElementsByTagName("Error")[0].firstChild.data);
 				return;
 			}

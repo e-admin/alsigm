@@ -17,6 +17,8 @@ import org.dom4j.Element;
 import com.ieci.tecdoc.common.conf.FieldConf;
 import com.ieci.tecdoc.common.conf.UserConf;
 import com.ieci.tecdoc.common.exception.SecurityException;
+import com.ieci.tecdoc.common.exception.SessionException;
+import com.ieci.tecdoc.common.exception.TecDocException;
 import com.ieci.tecdoc.common.exception.ValidationException;
 import com.ieci.tecdoc.common.invesdoc.Idocarchdet;
 import com.ieci.tecdoc.common.invesicres.ScrOfic;
@@ -26,6 +28,9 @@ import com.ieci.tecdoc.common.isicres.AxPageh;
 import com.ieci.tecdoc.common.isicres.AxSf;
 import com.ieci.tecdoc.common.isicres.AxSfIn;
 import com.ieci.tecdoc.common.isicres.SessionInformation;
+import com.ieci.tecdoc.common.keys.ISicresKeys;
+import com.ieci.tecdoc.common.keys.ServerKeys;
+import com.ieci.tecdoc.common.utils.ISicresGenPerms;
 import com.ieci.tecdoc.idoc.decoder.form.FPageDef;
 import com.ieci.tecdoc.idoc.decoder.form.FormFormat;
 import com.ieci.tecdoc.idoc.decoder.validation.idocarchdet.MiscFormat;
@@ -33,6 +38,8 @@ import com.ieci.tecdoc.isicres.desktopweb.Keys;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
 import com.ieci.tecdoc.isicres.usecase.UseCaseConf;
 import com.ieci.tecdoc.isicres.usecase.security.SecurityUseCase;
+import com.ieci.tecdoc.utils.cache.CacheBag;
+import com.ieci.tecdoc.utils.cache.CacheFactory;
 
 /**
  * @author LMVICENTE
@@ -56,8 +63,10 @@ public class XMLBookTree implements Keys {
     private static final String LLAVE_DER = "}";
 
     private static final String PAR_IZQ = ")";
-    
+
     protected static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+    private static ISicresGenPerms permisos = null;
     /***************************************************************************
      * Constructors
      **************************************************************************/
@@ -66,10 +75,10 @@ public class XMLBookTree implements Keys {
      * Public methods
      **************************************************************************/
 
-    public static Document createXMLBookTree(UseCaseConf useCaseConf, Integer bookID, ScrRegstate scrregstate, 
+    public static Document createXMLBookTree(UseCaseConf useCaseConf, Integer bookID, ScrRegstate scrregstate,
     		AxSf axsf, Idocarchdet idocarchdet, boolean readOnly, long folderPId, int folderId, int row, List docs,
             String url, int bookType, boolean isBookAdmin, Locale locale, int vldSave,
-            SessionInformation sessionInformation, UserConf usrConf, String archiveName) 
+            SessionInformation sessionInformation, UserConf usrConf, String archiveName)
     	throws ValidationException, SecurityException {
 
     	FormFormat formFormat = new FormFormat(axsf.getFormat().getData());
@@ -82,6 +91,11 @@ public class XMLBookTree implements Keys {
         if (!readOnly) {
             readOnlyS = XML_FALSE_VALUE;
         }
+
+		// obtenemos los permisos del usuario almacenados en la cache y
+		// verificamos si el libro esta abierto para obtenerlos
+	getPermisosUsuarioCache(useCaseConf, scrregstate);
+
         addSessionInfo(sessionInformation, sessionInfo);
         addParams(folderName, url, folderPId, readOnlyS, folderId, vldSave, row, bookType, isBookAdmin, root);
         addProperties(useCaseConf, bookType, scrregstate.getImageAuth(), axsf, root);
@@ -90,28 +104,54 @@ public class XMLBookTree implements Keys {
         if (formFormat.getDlgDef().getPagedefs() != null && !formFormat.getDlgDef().getPagedefs().isEmpty()) {
             FPageDef page = null;
             Integer key = null;
-        
+
             for (Iterator it = formFormat.getDlgDef().getPagedefs().keySet().iterator(); it.hasNext();) {
                 key = (Integer) it.next();
                 page = (FPageDef) formFormat.getDlgDef().getPagedefs().get(key);
-            
+
                 if (!page.getCtrldefs().isEmpty()) {
                     String title = "";
-                
+
                     try {
                         title = axsf.getLocaleAttributePage(locale, page.getTitle());
                     } catch (Exception e) {
                     }
-                    
+
                     addNodeDat(key.intValue(), title, root);
                 }
             }
         }
 
         addNodeDocs(docs, root);
-        
+
         return document;
     }
+
+    /**
+     * Función que obtiene los permisos del usuario almacenados en la cache
+     * @param useCaseConf
+     */
+	private static void getPermisosUsuarioCache(UseCaseConf useCaseConf, ScrRegstate scrregstate) {
+		CacheBag cacheBag = null;
+		try {
+			if(scrregstate.getState() == ISicresKeys.BOOK_STATE_OPEN){
+				// Obtenemos la cache
+				cacheBag = CacheFactory.getCacheInterface().getCacheEntry(
+						useCaseConf.getSessionID());
+
+			//Obtenemos de la cache los permisos del usuario
+			permisos = (ISicresGenPerms) cacheBag.get(ServerKeys.GENPERMS_USER);
+			}else{
+				permisos = null;
+			}
+		} catch (SessionException sE) {
+			_logger.warn("No se ha podido obtener la información de los permisos del usuario", sE);
+			permisos = null;
+		} catch (TecDocException tE) {
+			_logger.warn("No se ha podido obtener la información de los permisos del usuario", tE);
+			permisos = null;
+		}
+	}
 
     public static Document createEmptyXMLBookTree(Integer bookID, ScrRegstate scrregstate, AxSf axsf,
             Idocarchdet idocarchdet, boolean readOnly, long folderPId, int folderId, int row, List docs,
@@ -152,10 +192,10 @@ public class XMLBookTree implements Keys {
         }
 
         addNodeDocs(docs, root);
- 
+
         return document;
     }
-    
+
     public static Document createXMLUserConfig(UseCaseConf useCaseConf,
 			Integer bookID, UserConf usrConf, Locale locale) throws Exception {
 		Document document = null;
@@ -261,9 +301,9 @@ public class XMLBookTree implements Keys {
         }
         return folderName;
     }
-    
+
     private static void addSessionInfo(SessionInformation sessionInformation, Element parent) {
-    	
+
         parent.addElement(XML_USER_TEXT).addText(sessionInformation.getUser());
         parent.addElement(XML_USERNAME_TEXT).add(DocumentHelper.createCDATA(sessionInformation.getUserName()));
         parent.addElement(XML_OFFICECODE_TEXT).addText(sessionInformation.getOfficeCode());
@@ -292,9 +332,16 @@ public class XMLBookTree implements Keys {
         } else {
             node.addElement(XML_ISBOOKADMIN_TEXT).addText(Integer.toString(0));
         }
+        //Indica si se puede realizar distribuciones manuales
+        if(permisos!=null){
+            node.addElement(XML_CAN_DIST_TEXT).addText(Integer.toString((permisos.isCanDistRegisters()? 1 : 0)));
+        }else{
+		//no se puede distribuir
+		node.addElement(XML_CAN_DIST_TEXT).addText(Integer.toString(0));
+        }
     }
-    
-    private static void addProperties(UseCaseConf useCaseConf, int bookType, int authentication, AxSf axsf, Element parent) 
+
+    private static void addProperties(UseCaseConf useCaseConf, int bookType, int authentication, AxSf axsf, Element parent)
     	throws ValidationException, SecurityException {
 
     	Element node = parent.addElement(XML_PROPERTIES_TEXT);
@@ -306,7 +353,7 @@ public class XMLBookTree implements Keys {
         String strStampOficCode = "";
         String strStampOficDesc = "";
         ScrOfic ofic = securityUseCase.getCurrentUserOfic(useCaseConf);
-        
+
         if (regDate != null){
         	regDateString = FORMATTER.format(regDate);
         }
@@ -314,19 +361,19 @@ public class XMLBookTree implements Keys {
         if (axsf.getAttributeValue("fld1") != null){
         	regNumberString = (String) axsf.getAttributeValue("fld1");
         }
-        
+
         if (axsf.getAttributeValue("fld5") != null){
         	strStampOficCode = axsf.getFld5().getCode();
-        	
+
         	if (!StringUtils.isBlank(axsf.getFld5().getStamp())) {
 				strStampOficDesc = axsf.getFld5().getStamp();
 			} else {
 				strStampOficDesc = axsf.getFld5Name();
 			}
-        	
+
         	strStampOficDesc = strStampOficDesc.replaceAll("\r\n","\r");
         }
-        
+
         if (axsf instanceof AxSfIn) {
 		    if (axsf.getFld8() != null){
 				strUnitCode = axsf.getFld8().getCode();
@@ -340,7 +387,7 @@ public class XMLBookTree implements Keys {
 			 	strUnitCode = "";
 			}
 		}
-        
+
         node.addElement(XML_BOOKTYPE_TEXT).addText(Integer.toString(bookType));
         node.addElement(XML_AUTHENTICATION_TEXT).addText(Integer.toString(authentication));
         node.addElement(XML_REGNUMBER_TEXT).addText(regNumberString);
@@ -392,7 +439,7 @@ public class XMLBookTree implements Keys {
             }
         }
     }
-    
+
     private static void addUserConfig(Element parent, UserConf usrConf, Locale locale) {
     	Element usrCf = null;
     	if (usrConf != null) {
@@ -417,7 +464,7 @@ public class XMLBookTree implements Keys {
 			}
 			Element parameters = usrCf.addElement(XML_PARAMETERS_TEXT);
 			addParameters(parameters, usrConf, locale, 0);
-		} 
+		}
     }
 
 	private static void addParameters(Element parent, UserConf usrConf,
@@ -439,8 +486,8 @@ public class XMLBookTree implements Keys {
 				parameter.addAttribute(XML_CHECKED_TEXT, new Integer(usrConf
 						.getRememberLastSelectedUnit()).toString());
 			}
-			
-			if (i != 4 && type == 1){ 
+
+			if (i != 4 && type == 1){
 				parameter.addAttribute(XML_IND_TEXT, "1");
 				parameter.addElement(XML_LABEL_TEXT).add(
 						DocumentHelper.createCDATA(RBUtil.getInstance(locale)

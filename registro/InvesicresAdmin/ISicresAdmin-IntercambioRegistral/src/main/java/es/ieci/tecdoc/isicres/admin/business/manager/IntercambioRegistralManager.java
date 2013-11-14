@@ -119,5 +119,9 @@ public interface IntercambioRegistralManager {
 	 */
 	public List<DatosBasicosUnidadOrganicaDCVO> findUnidadesOrganicasDirectorioComun(Criterios<CriterioUnidadOrganicaEnum> criteriosBusqueda);
 
+
+	public List<DatosBasicosUnidadOrganicaDCVO> findUnidadesOrganicasDirectorioComunByCodEntidad(
+			String codEntidad, String codUnidad, String nombreUnidad);
+
 	public List<UnidadRegistralVO> findUnidadesRegistrales(UnidadRegistralVO unidad);
 }

@@ -1,7 +1,7 @@
 /**
- * 
+ *
  * @author jcebrien
- * 
+ *
  */
 package com.ieci.tecdoc.isicres.servlets;
 
@@ -42,6 +42,7 @@ import com.ieci.tecdoc.isicres.desktopweb.Keys;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RequestUtils;
 import com.ieci.tecdoc.isicres.desktopweb.utils.ResponseUtils;
+import com.ieci.tecdoc.isicres.desktopweb.utils.SQLValidator;
 import com.ieci.tecdoc.isicres.usecase.UseCaseConf;
 import com.ieci.tecdoc.isicres.usecase.book.BookUseCase;
 
@@ -51,9 +52,9 @@ import es.ieci.tecdoc.fwktd.core.config.web.ContextUtil;
  * Lleva a cabo la consulta del libro seleccionado. Este servlet se invoca tanto
  * si se pulsa el botón Aceptar del formulario de consulta, como el botón Buscar
  * Ultimo. Tras pulsar uno de ellos se realiza la consulta y se presenta.
- * 
+ *
  * @author jcebrien
- * 
+ *
  */
 public class TblText extends HttpServlet implements Keys {
 
@@ -108,10 +109,14 @@ public class TblText extends HttpServlet implements Keys {
 		// Número del idioma. Ej: 10
 		Long numIdioma = (Long) session.getAttribute(Keys.J_NUM_IDIOMA);
 		PrintWriter writer = response.getWriter();
-		if (listOrder.equals("")) {
-			listOrder = XML_FLD_UPPER_TEXT + 1;
-		}
+
 		try {
+			// Validamos si la ordenación que recibimos es correcta
+			SQLValidator.getInstance().validateOrderQueryRegister(listOrder);
+			if (listOrder.equals("")) {
+				listOrder = XML_FLD_UPPER_TEXT + 1;
+			}
+
 			Document xmlDocument = null;
 			List badCtrls = null;
 			if (typeSearch.equals(Keys.SEARCH_WITH_FILTER)) {

@@ -3,8 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-	<display-name>ISicres 8.0.1</display-name>
-	<description>IECISA InveSicres 8.0.1 Java</description>
+	<display-name>ISicres 8.0.5</display-name>
+	<description>IECISA InveSicres 8.0.5 Java</description>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -80,6 +80,11 @@
 		<display-name>FileScanCompulsa</display-name>
 		<servlet-name>FileScanCompulsa</servlet-name>
 		<servlet-class>com.ieci.tecdoc.isicres.servlets.core.FileScanCompulsa</servlet-class>
+	</servlet>
+	<servlet>
+		<display-name>FileDelete</display-name>
+		<servlet-name>FileDelete</servlet-name>
+		<servlet-class>com.ieci.tecdoc.isicres.servlets.core.FileDelete</servlet-class>
 	</servlet>
 	<servlet>
 		<display-name>GetSearchDist</display-name>
@@ -453,6 +458,7 @@
 		<servlet-name>BandejaEntradaIntercambioRegistral</servlet-name>
 		<servlet-class>com.ieci.tecdoc.isicres.servlets.intercambio.registral.BandejaEntradaIntercambioRegistral</servlet-class>
 	</servlet>
+
 	<servlet>
 		<display-name>AceptarIntercambiosRegistrales</display-name>
 		<servlet-name>AceptarIntercambiosRegistrales</servlet-name>
@@ -498,11 +504,32 @@
 		<servlet-class>com.ieci.tecdoc.isicres.servlets.intercambio.registral.MostrarIntercambioRegistral</servlet-class>
 	</servlet>
 
+
+	<servlet>
+		<display-name>MostrarTrazasHistorialIntercambioRegistral</display-name>
+		<servlet-name>MostrarTrazasHistorialIntercambioRegistral</servlet-name>
+		<servlet-class>com.ieci.tecdoc.isicres.servlets.intercambio.registral.MostrarTrazasHistorialIntercambioRegistral</servlet-class>
+	</servlet>
+
+
 	<servlet>
 		<display-name>DescargaDocumentoIntercambioRegistral</display-name>
 		<servlet-name>DescargaDocumentoIntercambioRegistral</servlet-name>
 		<servlet-class>com.ieci.tecdoc.isicres.servlets.intercambio.registral.DescargaDocumentoIntercambioRegistral</servlet-class>
 	</servlet>
+
+	<servlet>
+		<display-name>BusquedaBandejaEntradaIntercambioRegistral</display-name>
+		<servlet-name>BusquedaBandejaEntradaIntercambioRegistral</servlet-name>
+		<servlet-class>com.ieci.tecdoc.isicres.servlets.intercambio.registral.BusquedaBandejaEntradaIntercambioRegistral</servlet-class>
+	</servlet>
+
+	<servlet>
+		<display-name>BusquedaBandejaSalidaIntercambioRegistral</display-name>
+		<servlet-name>BusquedaBandejaSalidaIntercambioRegistral</servlet-name>
+		<servlet-class>com.ieci.tecdoc.isicres.servlets.intercambio.registral.BusquedaBandejaSalidaIntercambioRegistral</servlet-class>
+	</servlet>
+
 
 	<servlet>
 		<display-name>springDispatcher</display-name>
@@ -559,6 +586,10 @@
 	<servlet-mapping>
 		<servlet-name>FileScanCompulsa</servlet-name>
 		<url-pattern>/FileScanCompulsa</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FileDelete</servlet-name>
+		<url-pattern>/FileDelete</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>QryGetWhere</servlet-name>
@@ -910,10 +941,29 @@
 		<url-pattern>/MostrarIntercambioRegistral.do</url-pattern>
 	</servlet-mapping>
 
+
+	<servlet-mapping>
+		<servlet-name>MostrarTrazasHistorialIntercambioRegistral</servlet-name>
+		<url-pattern>/MostrarTrazasHistorialIntercambioRegistral.do</url-pattern>
+	</servlet-mapping>
+
+
 	<servlet-mapping>
 		<servlet-name>DescargaDocumentoIntercambioRegistral</servlet-name>
 		<url-pattern>/DescargaDocumentoIntercambioRegistral.do</url-pattern>
 	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>BusquedaBandejaEntradaIntercambioRegistral</servlet-name>
+		<url-pattern>/BusquedaBandejaEntradaIntercambioRegistral.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>BusquedaBandejaSalidaIntercambioRegistral</servlet-name>
+		<url-pattern>/BusquedaBandejaSalidaIntercambioRegistral.do</url-pattern>
+	</servlet-mapping>
+
+
 
 	<servlet-mapping>
 		<servlet-name>springDispatcher</servlet-name>
@@ -933,13 +983,21 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
+
+	<!-- Filtro para evitar XSS. Debe de ir despues del filtro UTF-8 -->
+	<filter>
+		<display-name>xssFilter</display-name>
+        <filter-name>xssFilter</filter-name>
+        <filter-class>com.ieci.tecdoc.isicres.filters.XSSFilter</filter-class>
+    </filter>
+
 	<filter>
 		<display-name>login</display-name>
 		<filter-name>login</filter-name>
 		<filter-class>com.ieci.tecdoc.isicres.filters.LoginCheckFilter</filter-class>
 		<init-param>
 			<param-name>excludePaths</param-name>
-			<param-value>/afirma;/applets</param-value>
+			<param-value>/plugins;/afirma;/applets</param-value>
 		</init-param>
 	</filter>
 	<filter>
@@ -956,6 +1014,11 @@
 	<filter-mapping>
 		<filter-name>UTF8Filter</filter-name>
 		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Filtro para evitar XSS. Debe de ir despues del filtro UTF-8 -->
+	<filter-mapping>
+	    <filter-name>xssFilter</filter-name>
+        <url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>login</filter-name>

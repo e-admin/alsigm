@@ -54,5 +54,11 @@
 	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/unidadAdministrativa-mapping.xml" />
 	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/unidadAdministrativa-queries.xml" />
 
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/tipoTransporteIntercambioRegistral-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/tipoTransporteIntercambioRegistral-queries.xml" />
+
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/direccionesExReg-mapping.xml" />
+	<sqlMap resource="sqlmaps/ISicres-Api/intercambioRegistral/direccionesExReg-queries.xml" />
+
 
 </sqlMapConfig>

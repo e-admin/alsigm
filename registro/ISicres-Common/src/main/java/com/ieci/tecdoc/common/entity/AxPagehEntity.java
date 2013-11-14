@@ -62,7 +62,7 @@ public class AxPagehEntity implements ServerKeys {
  private int accrId;
  private Date accDate;
  private int acccount = 0;
- 
+
  public AxPagehEntity(){
  }
 
@@ -362,18 +362,18 @@ public class AxPagehEntity implements ServerKeys {
 
      return result;
  }
- 
+
  public int getOrderID(Integer bookID, int fdrid, int docID, String entidad) throws Exception {
      Connection con = null;
      PreparedStatement ps = null;
      ResultSet rs = null;
      int result = 1;
-     
+
      String select = "SELECT count(*) FROM A"+bookID.toString()+"PAGEH WHERE FDRID=? AND DOCID=?";
-     
+
      try {
          con = BBDDUtils.getConnection(entidad);
-         
+
          ps = con.prepareStatement(select);
          ps.setInt(1, fdrid);
          ps.setInt(2, docID);
@@ -382,7 +382,7 @@ public class AxPagehEntity implements ServerKeys {
          while (rs.next()) {
              result += rs.getInt(1);
          }
-         
+
      } catch (SQLException ex) {
          log.fatal("getOrderID. Sentence [" + select + "] fdrid " + fdrid + " docid " + docID, ex);
          throw new Exception(ex);
@@ -565,6 +565,15 @@ public class AxPagehEntity implements ServerKeys {
  public void setAcccount(int acccount) {
      this.acccount = acccount;
  }
+
+
+public String getType() {
+	return type;
+}
+
+public void setType(String type) {
+	this.type = type;
+}
 
  public AxPageh getAxPageh() {
      AxPageh axPageh = new AxPageh();

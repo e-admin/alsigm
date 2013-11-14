@@ -26,20 +26,23 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.io.DocumentSource;
 
 import com.ieci.tecdoc.common.exception.BookException;
+import com.ieci.tecdoc.common.exception.DistributionException;
+import com.ieci.tecdoc.common.exception.SecurityException;
 import com.ieci.tecdoc.common.exception.SessionException;
 import com.ieci.tecdoc.common.exception.ValidationException;
+import com.ieci.tecdoc.common.invesicres.ScrRegstate;
 import com.ieci.tecdoc.common.isicres.AxSf;
 import com.ieci.tecdoc.common.keys.ISicresKeys;
 import com.ieci.tecdoc.isicres.desktopweb.Keys;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RequestUtils;
 import com.ieci.tecdoc.isicres.desktopweb.utils.ResponseUtils;
+import com.ieci.tecdoc.isicres.session.book.BookSession;
 import com.ieci.tecdoc.isicres.session.folder.FolderSession;
 import com.ieci.tecdoc.isicres.usecase.UseCaseConf;
 import com.ieci.tecdoc.isicres.usecase.book.BookUseCase;
@@ -109,6 +112,11 @@ public class OpenFolder extends HttpServlet implements Keys {
         Boolean openFolderDtr = RequestUtils.parseRequestParameterAsBoolean(request,
                 "OpenFolderDtr",
                 new Boolean(false));
+
+        // para saber si se abre la carpeta desde distribución en modo edición
+		Boolean openEditDistr = RequestUtils.parseRequestParameterAsBoolean(
+				request, "OpenEditDistr", new Boolean(false));
+
         // Obtenemos la sesión asociada al usuario.
         HttpSession session = request.getSession();
         // Texto del idioma. Ej: EU_
@@ -122,6 +130,10 @@ public class OpenFolder extends HttpServlet implements Keys {
         PrintWriter writer = response.getWriter();
 
         try {
+		//comprobamos la visualización del registro
+		openFolderDtr = valiteOpenEditDistri(archiveId, folderId, openFolderDtr, openEditDistr,
+					useCaseConf);
+
             if (form.booleanValue() || openFolderDtr.booleanValue()) {
                 // desde boton formulario
                 Document xmlDocument = bookUseCase.getBookTree(useCaseConf,
@@ -164,13 +176,9 @@ public class OpenFolder extends HttpServlet implements Keys {
         				archiveId, folderId.intValue(), useCaseConf.getLocale(), useCaseConf
         						.getEntidadId());
         		String estado = axsf.getAttributeValueAsString(AxSf.FLD6_FIELD);
-    			boolean folderClose = false;
-        		if (StringUtils.isNotEmpty(estado)) {
-    				folderClose = (new Integer(estado).intValue()) == ISicresKeys.SCR_ESTADO_REGISTRO_CERRADO;
-    			}
+			boolean folderCloseOrCanceled = bookUseCase.validateStateFolderIfClosedOrCancel(estado);
 
-
-                if (!readOnly && !folderClose) {
+                if (!readOnly && !folderCloseOrCanceled) {
                     StringBuffer buffer = new StringBuffer();
                     buffer.append(archiveId.toString());
                     buffer.append(BARRA);
@@ -241,6 +249,56 @@ public class OpenFolder extends HttpServlet implements Keys {
                     .getProperty(Keys.I18N_ISICRESSRV_ERR_CREATING_FDRQRY_OBJ));
         }
     }
+
+	/**
+	 * Método que verifica si se esta abriendo el registro desde la bandeja de
+	 * distribución de distribuciones aceptadas, si el usuario posee los
+	 * permisos el registro se visualiza en modo edición
+	 *
+	 * @param archiveId - Id del libro
+	 * @param folderId - Id del registro
+	 * @param openFolderDtr - Variable que indica si se abre desde la bandeja de distribución
+	 * @param openEditDistr - Variable que indica si se visualiza desde la bandeja de distribución aceptada
+	 * @param useCaseConf - Conf. del usuario
+	 *
+	 * @return boolean - True - Se abre el registro bloqueado / false - El registro se visualiza en modo edición
+	 *
+	 * @throws ValidationException
+	 * @throws SecurityException
+	 * @throws BookException
+	 * @throws SessionException
+	 * @throws DistributionException
+	 */
+	private Boolean valiteOpenEditDistri(Integer archiveId, Integer folderId, Boolean openFolderDtr,
+			Boolean openEditDistr, UseCaseConf useCaseConf)
+			throws ValidationException, SecurityException, BookException,
+			SessionException, DistributionException {
+
+		if (openEditDistr) {
+			//obtenemos los permisos del usuario en el libro
+			int perms = new BookUseCase().getPermisosLibro(useCaseConf, archiveId);
+
+			// comprobamos si el libro de registro esta abierto antes de seguir
+			// con el proceso
+			ScrRegstate scrregstate = BookSession.getBook(
+					useCaseConf.getSessionID(), archiveId);
+
+			//buscamos el registro por id de registro e id de libro
+			int size = FolderSession.getCountRegisterByIdReg(
+					useCaseConf.getSessionID(), useCaseConf.getEntidadId(),
+					archiveId, folderId);
+
+			//validamos que tenga permisos necesarios para abrirlo en modo edición
+			if ((perms >> 2 % 2 != 0)
+					&& (scrregstate.getState() != ISicresKeys.BOOK_STATE_CLOSED)
+					&& (size != 0)) {
+				// se abre en modo lectura no tiene los permisos necesarios
+				openFolderDtr = false;
+			}
+		}
+
+		return openFolderDtr;
+	}
 
     // Este método mete en la cadena archiveId y folderId
     private boolean getIsOpened(HttpSession session, Integer archiveId, Integer folderId, String archFolder) {

@@ -36,3 +36,4 @@ drop table scr_attachment_document_type;
 
 drop table scr_repre;
 
+drop table scr_ttexreg;

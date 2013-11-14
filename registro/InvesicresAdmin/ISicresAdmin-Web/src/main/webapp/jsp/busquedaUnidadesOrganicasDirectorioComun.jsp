@@ -44,11 +44,15 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 
 		function trim (myString)
 		{
-			return myString.replace(/^\s+/g,'').replace(/\s+$/g,'')
+			return myString.replace(/^\s+/g,'').replace(/\s+$/g,'');
+		}
+
+		function cargar(){
+			document.getElementById("codEntity").value = window.parent.opener.document.forms[0].codEntidadReg.value;
 		}
 	</script>
 </head>
-<body>
+<body onLoad="cargar()">
 
 
 <html:form action="/busquedaUnidadesOrganicasDirectorioComun.do" method="post">
@@ -69,6 +73,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
 				</tr>
 			</table>
 		</p>
+		<html:hidden styleId="codEntity" property="codEntity" title="codEntity"/>
 	</div>
 </html:form>
 <div id="results" style="overflow:auto; height:230px; width:100% ">

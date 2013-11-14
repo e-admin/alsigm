@@ -1,10 +1,10 @@
 /*
- * Este fichero forma parte del Cliente @firma. 
+ * Este fichero forma parte del Cliente @firma.
  * El Cliente @firma es un aplicativo de libre distribucion cuyo codigo fuente puede ser consultado
  * y descargado desde www.ctt.map.es.
  * Copyright 2009,2010,2011 Gobierno de Espana
  * Este fichero se distribuye bajo licencia GPL version 3 segun las
- * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este 
+ * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este
  * fichero individualmente, deben incluirse aqui las condiciones expresadas alli.
  */
 
@@ -55,7 +55,7 @@ function cargarAppletFirma(build)
 	var confBuild = configureBuild(build);
 
 	/* Cargamos el instalador e instalamos en cualquier caso menos con Google Chrome, que no deja tener dos
-           Applets en la misma pagina cuando Java esta desactualizado. Revisaremos esta parte cuando salga 
+           Applets en la misma pagina cuando Java esta desactualizado. Revisaremos esta parte cuando salga
            Chrome 64 bits para Windows, entorno que requerira instalacion. */
         /* Por ahora tampoco cargamos el BootLoader en Internet Explorer 10. */
 	if (deployJava.browserName2 != 'Chrome' && parseFloat(navigator.appVersion.split("MSIE")[1]) < 10) {
@@ -78,7 +78,7 @@ function cargarAppletFirma(build)
 
 	var attributes = {
 		id: 'firmaApplet',
-	 	width: 1,
+		width: 1,
 		height: 1
 	};
 	var parameters = {
@@ -94,7 +94,7 @@ function cargarAppletFirma(build)
 		separate_jvm: true
 	};
 
- 	deployJava.runApplet(attributes, parameters, '1.5');
+	deployJava.runApplet(attributes, parameters, '1.5');
 
 	clienteFirma = document.getElementById("firmaApplet");
 
@@ -120,7 +120,7 @@ function cargarAppletInstalador()
 		/* Definicion de las constantes necesarias */
 		var codeBaseVar = '.';
 		if(base != undefined) {
-			if(base.toLowerCase().substring(0, 7) != "file://" && 
+			if(base.toLowerCase().substring(0, 7) != "file://" &&
 					base.toLowerCase().substring(0, 7) != "http://" &&
 					base.toLowerCase().substring(0, 8) != "https://") {
 				codeBaseVar = './' + base;
@@ -131,7 +131,7 @@ function cargarAppletInstalador()
 		}
 
 		var attributes = {id:'instaladorApplet',
-					code:'es.gob.afirma.install.AfirmaBootLoader.class',	
+					code:'es.gob.afirma.install.AfirmaBootLoader.class',
 					archive:codeBaseVar+'/afirmaBootLoader.jar',
 					width:1, height:1};
 		var version = '1.5';
@@ -141,7 +141,7 @@ function cargarAppletInstalador()
 		} catch(e) {}
 
 		instalador = document.getElementById("instaladorApplet");
-		
+
 		for(var i=0; i<100; i++) {
 			try {
 				setTimeout("instalador != undefined && (instalador.getVersion() != null)", 100);
@@ -157,7 +157,7 @@ function cargarAppletInstalador()
 
 		// Si hay definida una URL desde la que descargar los instalables, la establecemos
 		if(baseDownloadURL != undefined) {
-			if(baseDownloadURL.toLowerCase().substring(0, 7) != "file://" && 
+			if(baseDownloadURL.toLowerCase().substring(0, 7) != "file://" &&
 					baseDownloadURL.toLowerCase().substring(0, 7) != "http://" &&
 					baseDownloadURL.toLowerCase().substring(0, 8) != "https://") {
 
@@ -182,7 +182,7 @@ function instalar(build, jsMethodName, jsMethodParams)
 	{
 		cargarAppletInstalador();
 	}
-	
+
 	// Si se ha indicado una construccion de alguna manera (por defecto o por parametro), se instala esa
 	var allOK;
 	if(jsMethodName == undefined || jsMethodName == null)
@@ -216,7 +216,7 @@ function getVersion()
 	{
 		cargarAppletInstalador();
 	}
-	
+
 	return instalador.getVersion();
 }
 

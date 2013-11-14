@@ -26,6 +26,7 @@ import net.sf.hibernate.Session;
 import net.sf.hibernate.Transaction;
 import net.sf.hibernate.expression.Expression;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.ieci.tecdoc.common.AuthenticationUser;
@@ -94,7 +95,7 @@ import com.ieci.tecdoc.utils.cache.CacheFactory;
 
 /**
  * @author 66575267
- * 
+ *
  */
 public class DistributionSessionUtil extends UtilsSession {
 
@@ -115,7 +116,7 @@ public class DistributionSessionUtil extends UtilsSession {
 
 	/**
 	 * Bloquea el registro que se pasa como parametro
-	 * 
+	 *
 	 * @param session
 	 * @param user
 	 * @param bookID
@@ -210,7 +211,7 @@ public class DistributionSessionUtil extends UtilsSession {
 			Integer senderId, Integer userId, Integer userType,
 			String messageForUser, List listIdsRegister,
 			AuthenticationUser user, ScrOfic scrOfic, Locale locale,
-			String entidad) throws ValidationException, SessionException,
+			String entidad, Integer idDistFather) throws ValidationException, SessionException,
 			DistributionException, HibernateException, BookException,
 			SQLException, Exception {
 
@@ -239,7 +240,7 @@ public class DistributionSessionUtil extends UtilsSession {
 					String[] resultArray = createDistribute(session, user,
 							sessionID, bookId, folderID, senderType, senderId,
 							userId, userType, scrOfic, stateReg,
-							messageForUser, axsf, entidad);
+							messageForUser, axsf, entidad, idDistFather);
 
 					field = resultArray[0];
 					notDistributedRegisters.append(resultArray[1]);
@@ -274,6 +275,12 @@ public class DistributionSessionUtil extends UtilsSession {
 		return groupIds;
 	}
 
+	/**
+	 * Nombre de la tabla temporal para obtener la información de la distribución
+	 * @param user - {@link AuthenticationUser}
+	 * @param idArchs - Listado de libros
+	 * @return Nombre de la tabla temporal
+	 */
 	protected static String getTableName(AuthenticationUser user, List idArchs) {
 		String tableName = null;
 
@@ -336,11 +343,26 @@ public class DistributionSessionUtil extends UtilsSession {
 		return querySize;
 	}
 
+	/**
+	 * Método que crea la tabla temporal de distribución a partir de los libros
+	 * y la consulta realizada
+	 *
+	 * @param idArchs - Listado de libros
+	 * @param regWhere - Consulta a realizar
+	 * @param querySize - Parte de la consulta a realizar
+	 * @param tableName - Nombre de la tabla temporal
+	 * @param entidad - Entidad
+	 * @return
+	 * @throws HibernateException
+	 * @throws SQLException
+	 * @throws Exception
+	 */
 	protected static String getDistributionFinalWhere(List idArchs,
 			String regWhere, String querySize, String tableName, String entidad)
 			throws HibernateException, SQLException, Exception {
 		StringBuffer finalWhere = new StringBuffer();
 
+		//Si el listado de libros es distinto de vacio
 		if (idArchs != null && !idArchs.isEmpty()) {
 			StringBuffer createSentence = new StringBuffer();
 			Integer auxBookId = null;
@@ -349,7 +371,9 @@ public class DistributionSessionUtil extends UtilsSession {
 				auxBookId = (Integer) it.next();
 				boolean isInBook = Repository.getInstance(entidad)
 						.isInBook(auxBookId).booleanValue();
+
 				String processRegWhere = getRegWhere(regWhere, isInBook);
+
 				createSentence.append(DBEntityDAOFactory
 						.getCurrentDBEntityDAO()
 						.getTemporalTableDistributionQuerySentence(tableName,
@@ -357,6 +381,8 @@ public class DistributionSessionUtil extends UtilsSession {
 				index++;
 			}
 
+			// Se crea la tabla temporal a partir de los datos de los registros
+			// en los diferentes libros que han sio distribuidos
 			DBEntityDAOFactory.getCurrentDBEntityDAO().createTableOrView(
 					createSentence.toString(), entidad);
 
@@ -365,6 +391,7 @@ public class DistributionSessionUtil extends UtilsSession {
 			finalWhere.append(tableName);
 			finalWhere.append(" where bookid = id_arch)");
 		} else {
+			//No hay libros, por tanto la consulta se realiza sobre la tabla SCR_DISTREG
 			finalWhere.append(querySize.toString());
 		}
 		finalWhere.append(" order by id");
@@ -376,10 +403,20 @@ public class DistributionSessionUtil extends UtilsSession {
 			throws SQLException, Exception {
 		StringBuffer selectCount = new StringBuffer();
 		selectCount.append("select count(*) from scr_distreg where ");
-		selectCount
-				.append(finalWhere.substring(0, finalWhere.indexOf("order")));
+		if (finalWhere.indexOf("order") != -1) {
+			selectCount.append(finalWhere.substring(0,
+					finalWhere.indexOf("order")));
+		} else {
+			selectCount.append(finalWhere);
+		}
 		int distributionCount = DBEntityDAOFactory.getCurrentDBEntityDAO()
 				.getDistributionSize(selectCount.toString(), entidad);
+
+		if (log.isDebugEnabled()) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("getDistributionCount distributionCount: ").append(distributionCount);
+			log.debug(sb.toString());
+		}
 
 		return distributionCount;
 	}
@@ -445,10 +482,91 @@ public class DistributionSessionUtil extends UtilsSession {
 	}
 
 	/**
+	 * Método que adapta los datos del listado de objetos {@link ScrDistreg} al
+	 * objeto {@link DistributionResults} en caso de indicar la ordenación en la
+	 * distribución
+	 *
+	 * @param session
+	 * @param list
+	 * @param distributionCount
+	 * @param currentDate
+	 * @param typeDist
+	 * @param locale
+	 * @param entidad
+	 * @param isLdap
+	 * @return {@link DistributionResults}
+	 *
+	 * @throws HibernateException
+	 */
+	protected static DistributionResults getDistributionResultsOrderBy(
+			Session session, List list, int distributionCount,
+			Date currentDate, int typeDist, Locale locale, String entidad,
+			boolean isLdap) throws HibernateException {
+		DistributionResults distributionResults = new DistributionResults();
+
+		distributionResults.setTotalSize(distributionCount);
+		distributionResults.setActualDate(currentDate);
+
+		Map result = new HashMap();
+		Map distType = new HashMap();
+		int positionElement = 0;
+		if (distributionResults.getTotalSize() > 0) {
+			for (Iterator it = list.iterator(); it.hasNext();) {
+
+				ScrDistreg distReg = (ScrDistreg) it.next();
+
+				Map aux = new HashMap();
+				result.put(positionElement, aux);
+
+				distType.put(
+						distReg.getId(),
+						getDistributionResultDistType(session, distReg, entidad));
+				String id = getDistributionResultId(distReg, typeDist, entidad,
+						isLdap);
+
+				positionElement++;
+				if (!id.equals("")) {
+					aux.put(id, distReg);
+
+					distributionResults.getBooks().add(
+							distReg.getIdArch() + "_" + distReg.getIdFdr());
+
+					Integer auxID = new Integer(distReg.getIdArch());
+					if (!distributionResults.getIdocarchhdr()
+							.containsKey(auxID)) {
+						// distributionResults.getIdocarchhdr().put(auxID,
+						// session.load(Idocarchhdr.class, auxID));
+						distributionResults.getIdocarchhdr().put(
+								auxID,
+								session.load(EntityByLanguage
+										.getIdocarchhdrLanguage(locale
+												.getLanguage()), auxID));
+					}
+				} else {
+					result.remove(positionElement);
+					distType.remove(distReg.getId());
+					distributionResults.setTotalSize(distributionResults
+							.getTotalSize() - 1);
+					positionElement--;
+				}
+			}
+		}
+		distributionResults.setResults(result);
+		distributionResults.setDistType(distType);
+
+		if (log.isDebugEnabled()) {
+			log.debug("Recuperada una lista de distribucion [" + result.size()
+					+ "/" + distributionResults.getTotalSize() + "].");
+		}
+
+		return distributionResults;
+	}
+
+	/**
 	 * Metodo que lanza la consulta para obtener el numero de registros
 	 * distribuidos segun su estado, el usuario, los grupos a los que pertenece
 	 * el usuario y su departamento
-	 * 
+	 *
 	 * @param sessionID
 	 * @param entidad
 	 * @param state
@@ -688,7 +806,7 @@ public class DistributionSessionUtil extends UtilsSession {
 
 		ISDistribution iSDist = new ISDistribution();
 		iSDist.setDistState(session, ids.intValue(), distState, currentDate,
-				user.getName(), user.getId(), entidad, isDBCaseSensitive);
+				user.getName(), user.getId(), entidad, remarks, isDBCaseSensitive);
 
 		return scrDistReg;
 	}
@@ -758,7 +876,7 @@ public class DistributionSessionUtil extends UtilsSession {
 
 	/**
 	 * Metodo que actualiza una distribucion
-	 * 
+	 *
 	 * @param sessionID
 	 * @param scrs
 	 *            - Lista de ScrDistReg
@@ -796,9 +914,11 @@ public class DistributionSessionUtil extends UtilsSession {
 					.getCurrentDBEntityDAO().getDBServerDate(entidad).getTime());
 			for (Iterator it = scrs.iterator(); it.hasNext();) {
 				ScrDistreg scrDistReg = (ScrDistreg) it.next();
+
+
 				scrDistReg = updateDistRegByTypeFromChangeDistribution(session,
 						user, sessionID, scrDistReg, typeDist, distList,
-						canDestWithoutList, id, entidad);
+						canDestWithoutList, id, entidad, null);
 
 				int state = -1;
 				if ((distList == null || distList.isEmpty())
@@ -851,7 +971,7 @@ public class DistributionSessionUtil extends UtilsSession {
 				FolderSession.updateFolderEx(sessionID,
 						new Integer(scrDistReg.getIdArch()),
 						scrDistReg.getIdFdr(), axsf, null, null, false,
-						launchDistOutRegister, locale, entidad);
+						launchDistOutRegister, locale, entidad, scrDistReg.getId());
 
 				if (log.isDebugEnabled()) {
 					log.debug("changeDistribution =========> + " + axsf);
@@ -886,17 +1006,17 @@ public class DistributionSessionUtil extends UtilsSession {
 	/**
 	 * Para cada distribución indica en un mapa si el registro asociado es de
 	 * entrada o de salida.
-	 * 
+	 *
 	 * Si el destino de la distribución es un departamento hay que comprobar que
 	 * la oficina de destino no sea la misma que la de origen. Si fuera la misma
 	 * se elimina del mapa para que no se cree un nuevo registro.
-	 * 
+	 *
 	 * Si el destino de la distribución es un usuario o un grupo hay que
 	 * comprobar que la oficina del usuario actualmente selecionada no sea la
 	 * misma que la de origen. Si fuera la misma se elimina del mapa para que no
 	 * se cree un nuevo registro.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param session
 	 * @param entidad
 	 * @param ids
@@ -947,12 +1067,13 @@ public class DistributionSessionUtil extends UtilsSession {
 					// que la oficina del origen de la distribución
 				} else if (distReg.getTypeDest() == 1
 						|| distReg.getTypeDest() == 3) {
+
 					ScrOfic scrOficIdOrig = ISicresQueries.getScrOficByDeptId(
 							session, new Integer(distReg.getIdOrig()));
 					Integer userDeptId = user.getDeptid();
-					Integer userDeptOriginalId = user.getDeptIdOriginal();
 					ScrOfic scrOficIdDest = ISicresQueries.getScrOficByDeptId(
-							session, userDeptOriginalId);
+							session, userDeptId);
+
 					if ((scrOficIdDest == null)
 							|| (scrOficIdOrig.getScrOrg().getId().intValue() != scrOficIdDest
 									.getScrOrg().getId().intValue())) {
@@ -1155,7 +1276,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	/**
 	 * Inserta una distribucion en Base de Datos. Asume que el tipo de origen es
 	 * una oficina.
-	 * 
+	 *
 	 * @param session
 	 * @param bookID
 	 * @param fdrid
@@ -1181,6 +1302,7 @@ public class DistributionSessionUtil extends UtilsSession {
 			SQLException, BookException, Exception {
 
 		boolean distribute = true;
+		String message = null;
 		int distributionID = 0;
 
 		List distReg = ISicresQueries.getScrDistreg(session, bookID, fdrid,
@@ -1191,6 +1313,7 @@ public class DistributionSessionUtil extends UtilsSession {
 					&& scr.getState() != ISDistribution.STATE_REDISTRIBUIDO) {
 				distribute = false;
 			}
+			message = scr.getMessage();
 		}
 
 		if (distribute) {
@@ -1201,12 +1324,12 @@ public class DistributionSessionUtil extends UtilsSession {
 
 			ISicresSaveQueries.saveScrDistreg(session, distributionID, bookID,
 					fdrid, dateState, 2, deptId, typeDest, idDest, 1,
-					dateState, messageForUser);
+					dateState, messageForUser,0);
 
 			ISDistribution isDist = new ISDistribution();
 			isDist.setDistState(session, distributionID,
 					ISDistribution.STATE_PENDIENTE, dateState, userName,
-					userId, entidad, isDataBaseCaseSensitive(entidad));
+					userId, entidad, messageForUser, isDataBaseCaseSensitive(entidad));
 			isDist.changeStateAcceptRedis(session, bookID, fdrid, deptId,
 					userName, userId, distributionType, currentDate, entidad,
 					isDataBaseCaseSensitive(entidad));
@@ -1216,7 +1339,7 @@ public class DistributionSessionUtil extends UtilsSession {
 
 	/**
 	 * Inserta una distribucion en BD
-	 * 
+	 *
 	 * @param session
 	 * @param bookID
 	 * @param fdrid
@@ -1239,7 +1362,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	protected static Integer insertDistribute(Session session, Integer bookID,
 			int fdrid, int typeDest, int idDest, Timestamp currentDate,
 			int typeOrig, int idOrig, String userName, Integer userId,
-			int distributionType, String messageForUser, String entidad)
+			int distributionType, String messageForUser, String entidad, Integer idDistFather)
 			throws HibernateException, SQLException, BookException, Exception {
 
 		boolean distribute = true;
@@ -1262,14 +1385,26 @@ public class DistributionSessionUtil extends UtilsSession {
 
 			Date dateState = BBDDUtils.getDateFromTimestamp(currentDate);
 
+			boolean isDBCaseSensitive = isDataBaseCaseSensitive(entidad);
+			if (isDBCaseSensitive){
+				if (messageForUser!=null){
+					messageForUser= messageForUser.toUpperCase();
+				}
+			}
+
+			int idDistribucionRelacionada = 0;
+			if(idDistFather != null){
+				idDistribucionRelacionada = idDistFather.intValue();
+			}
+
 			ISicresSaveQueries.saveScrDistreg(session, distributionID, bookID,
 					fdrid, dateState, typeOrig, idOrig, typeDest, idDest, 1,
-					dateState, messageForUser);
+					dateState, messageForUser, idDistribucionRelacionada);
 
 			ISDistribution isDist = new ISDistribution();
 			isDist.setDistState(session, distributionID,
 					ISDistribution.STATE_PENDIENTE, dateState, userName,
-					userId, entidad, isDataBaseCaseSensitive(entidad));
+					userId, entidad, messageForUser, isDataBaseCaseSensitive(entidad));
 			isDist.changeStateAcceptRedis(session, bookID, fdrid, idOrig,
 					userName, userId, distributionType, currentDate, entidad,
 					isDataBaseCaseSensitive(entidad));
@@ -1279,7 +1414,7 @@ public class DistributionSessionUtil extends UtilsSession {
 
 	/**
 	 * Metodo que redistribuye una distribucion
-	 * 
+	 *
 	 * @param session
 	 *            - Sesion hibernate
 	 * @param sessionID
@@ -1305,7 +1440,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	 * @param messageForUser
 	 *            - Mensaje de la distribucion
 	 * @param entidad
-	 * 
+	 *
 	 * @throws ValidationException
 	 * @throws SessionException
 	 * @throws DistributionException
@@ -1318,14 +1453,14 @@ public class DistributionSessionUtil extends UtilsSession {
 			String sessionID, Locale locale, ScrDistreg scrDistReg,
 			AuthenticationUser user, Integer canDestWithoutList, int typeDist,
 			ScrOfic scrOfic, Date currentDate, Integer userType, List distList,
-			String messageForUser, String entidad)
+			String messageForUser, String entidad, boolean isLdap)
 			throws DistributionException, SessionException,
 			ValidationException, HibernateException, Exception {
 
 		// actualizamos el estado de la distribucion
 		scrDistReg = updateDistRegByTypeFromChangeDistribution(session, user,
 				sessionID, scrDistReg, typeDist, distList, canDestWithoutList,
-				scrDistReg.getId(), entidad);
+				scrDistReg.getId(), entidad, messageForUser);
 
 		int state = -1;
 		if ((distList == null || distList.isEmpty())
@@ -1350,8 +1485,12 @@ public class DistributionSessionUtil extends UtilsSession {
 			// generamos la nueva distribucion
 			createDistribution(session, sessionID, scrDistReg.getIdArch(), 2,
 					scrOfic.getDeptid(), userId, userType, messageForUser,
-					disIdFolder, user, scrOfic, locale, entidad);
+					disIdFolder, user, scrOfic, locale, entidad, scrDistReg.getId());
 		}
+
+		//una vez generada las nuevas distribuciones, insertamos los datos de los destinos
+		insertDestActualRedistribution(entidad, isLdap,
+				scrDistReg.getId(), session);
 
 	}
 
@@ -1391,7 +1530,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	/**
 	 * Metodo que obtiene el string de consulta de registros distribuido segun
 	 * un estado y el deptId del usuario
-	 * 
+	 *
 	 * @param user
 	 * @param iUserGroupUser
 	 * @param dateUserLastConnection
@@ -1431,7 +1570,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param user
 	 * @param iUserGroupUser
 	 * @param dateUserLastConnection
@@ -1507,7 +1646,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	 * Metodo que genera el string de consulta para obtener los registros
 	 * pendientes mediante el usuario y el id del departamento actual del
 	 * usuario
-	 * 
+	 *
 	 * @param user
 	 * @param iUserGroupUser
 	 * @return
@@ -1572,7 +1711,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	/**
 	 * Metodo que obtiene el string de consulta de registros rechazados de un
 	 * usuario y el departamento actual
-	 * 
+	 *
 	 * @param user
 	 * @param iUserGroupUser
 	 * @return
@@ -1602,7 +1741,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param session
 	 * @param querySize
 	 * @param autoArchiv
@@ -1639,7 +1778,7 @@ public class DistributionSessionUtil extends UtilsSession {
 					isDist.setDistState(session, scrDistReg.getId().intValue(),
 							ISDistribution.STATE_ARCHIVADO, currentDate,
 							user.getName(), user.getId(), entidad,
-							isDataBaseCaseSensitive(entidad));
+							null, isDataBaseCaseSensitive(entidad));
 
 				}
 			}
@@ -1647,7 +1786,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param user
 	 * @param iUserGroupUser
 	 * @return
@@ -1710,7 +1849,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param user
 	 * @param iUserGroupUser
 	 * @return
@@ -1859,7 +1998,7 @@ public class DistributionSessionUtil extends UtilsSession {
 		return result;
 	}
 
-	private static String getRegWhere(String regWhere, boolean typeBook)
+	protected static String getRegWhere(String regWhere, boolean typeBook)
 			throws HibernateException {
 		String result = "";
 		String aux = regWhere;
@@ -2002,46 +2141,122 @@ public class DistributionSessionUtil extends UtilsSession {
 		return result;
 	}
 
+	/**
+	 * Método que indica si se puede actualizar o no la distribucion
+	 *
+	 * @param state
+	 *            - Estado de la distribución
+	 * @param distList
+	 *            - Lista de distribución asociada
+	 * @param canDestWithoutList
+	 *            - Indica si se puede indicar un destino sin lista de
+	 *            distribución asociada
+	 *
+	 * @return boolean - TRUE: Se puede actualizar distribución / FALSE: No se
+	 *         puede actualizar distribución
+	 */
+	private static boolean validateUpdateDistribution(int state, List distList,
+			Integer canDestWithoutList) {
+		boolean result = false;
+
+		// Se valida (si el estado es PENDIENTE o ACEPTADO y la lista de
+		// validacion tiene destino asociado) O (si el estado es PENDIENTE o
+		// ACEPTADO y se indica una lista de distribución vacia pero por
+		// configuración se permite dicha opción (CanChangeDestWithoutList de la
+		// tabla SCR_CONFIGURATION, ISSysConfig.exe)
+		if ((state == ISDistribution.STATE_PENDIENTE && !distList.isEmpty())
+				|| (state == ISDistribution.STATE_PENDIENTE
+						&& distList.isEmpty() && canDestWithoutList.intValue() != 0)
+				|| (state == ISDistribution.STATE_ACEPTADO && !distList
+						.isEmpty())
+				|| (state == ISDistribution.STATE_ACEPTADO
+						&& distList.isEmpty() && canDestWithoutList.intValue() != 0)) {
+			//se puede actualizar la distribucon
+			result = true;
+		}
+
+		return result;
+	}
+
+	/**
+	 * Método que actualiza la distribución cuando se realiza un cambio de
+	 * destino (desde la bandeja de distribucion)
+	 *
+	 * @param session
+	 *            - Sesion de hibernate
+	 * @param user
+	 *            - Usuario
+	 * @param sessionID
+	 *            - ID de sesion
+	 * @param scrDistReg
+	 *            - Distribución
+	 * @param typeDist
+	 *            - Tipo de distribucón
+	 * @param distList
+	 *            - Lista de distribución asociada
+	 * @param canDestWithoutList
+	 *            - Indica si se puede indicar un destino sin lista de
+	 *            distribución asociada
+	 * @param id
+	 *
+	 * @param entidad
+	 *
+	 * @param mensaje
+	 *
+	 * @return {@link ScrDistreg}
+	 *
+	 * @throws DistributionException
+	 * @throws SessionException
+	 * @throws ValidationException
+	 * @throws HibernateException
+	 * @throws SQLException
+	 * @throws Exception
+	 */
 	private static ScrDistreg updateDistRegByTypeFromChangeDistribution(
 			Session session, AuthenticationUser user, String sessionID,
 			ScrDistreg scrDistReg, int typeDist, List distList,
-			Integer canDestWithoutList, Integer id, String entidad)
+            Integer canDestWithoutList, Integer id, String entidad, String mensaje)
 			throws DistributionException, SessionException,
 			ValidationException, HibernateException, SQLException, Exception {
+	//Si tipo de distribucion es de entrada
 		if (typeDist == 1) {
-			if ((scrDistReg.getState() == ISDistribution.STATE_PENDIENTE && !distList
-					.isEmpty())
-					|| (scrDistReg.getState() == ISDistribution.STATE_ACEPTADO && !distList
-							.isEmpty())
-					|| (scrDistReg.getState() == ISDistribution.STATE_ACEPTADO
-							&& distList.isEmpty() && canDestWithoutList
-							.intValue() != 0)) {
-
+		//validamos si se puede actualizar
+			if (validateUpdateDistribution(scrDistReg.getState(), distList,
+					canDestWithoutList)) {
+				//se puede actualizar la distribucion y se procede a ello
 				scrDistReg = updateDistReg(session, user, sessionID,
 						DISTRIBUTION_REDISTRIBUTE_EVENT, scrDistReg,
-						ISDistribution.STATE_REDISTRIBUIDO, id, null, entidad);
+						ISDistribution.STATE_REDISTRIBUIDO, id, mensaje, entidad);
 
 			} else if (scrDistReg.getState() != ISDistribution.STATE_PENDIENTE
 					&& scrDistReg.getState() != ISDistribution.STATE_ACEPTADO) {
+				// Cuando se intenta actualizar una distribucion en un estado
+				// diferente a pendiente o aceptado, elevamos excepcion
 				throw new DistributionException(
 						DistributionException.ERROR_DISTRIBUTION_REGISTER_NOT_IN_STATE);
 			} else {
+				// Si la distribucion no cumple con los criterios del validateUpdateDistribution
 				throw new DistributionException(
 						DistributionException.ERROR_DISTRIBUTION_REGISTER_NOT_DIST_LIST);
 			}
 		} else {
+		//Si la distribución es de salida se realizan las siguientes validaciones
 			if ((scrDistReg.getState() == ISDistribution.STATE_RECHAZADO && !distList
 					.isEmpty())
 					|| (scrDistReg.getState() == ISDistribution.STATE_RECHAZADO
 							&& distList.isEmpty() && canDestWithoutList
 							.intValue() != 0)) {
+		//se puede actualizar la distribucion y se procede a ello
 				scrDistReg = updateDistReg(session, user, sessionID, null,
 						scrDistReg, ISDistribution.STATE_REDISTRIBUIDO, id,
-						null, entidad);
+						mensaje, entidad);
 			} else if (scrDistReg.getState() != ISDistribution.STATE_RECHAZADO) {
+				// Cuando la distribucion que se intenta actualizar tiene un
+				// estado diferente a rechazado se eleva la excepcion correspondiente
 				throw new DistributionException(
 						DistributionException.ERROR_DISTRIBUTION_REGISTER_NOT_IN_STATE);
 			} else {
+		//Si no se cumple ninguna de las anteriores validaciones se eleva la excepción
 				throw new DistributionException(
 						DistributionException.ERROR_DISTRIBUTION_REGISTER_NOT_DIST_LIST);
 			}
@@ -2220,7 +2435,7 @@ public class DistributionSessionUtil extends UtilsSession {
 			AuthenticationUser user, String sessionID, Integer bookId,
 			Integer folderID, Integer senderType, Integer senderId,
 			Integer userId, Integer userType, ScrOfic scrOfic, int stateReg,
-			String messageForUser, AxSf axsf, String entidad)
+			String messageForUser, AxSf axsf, String entidad, Integer idDistFather)
 			throws ValidationException, SessionException,
 			DistributionException, HibernateException, BookException,
 			SQLException, Exception {
@@ -2241,7 +2456,7 @@ public class DistributionSessionUtil extends UtilsSession {
 			Integer distId = insertDistribute(session, bookId,
 					folderID.intValue(), userType.intValue(),
 					userId.intValue(), currentDate, senderType, senderId,
-					user.getName(), user.getId(), 1, messageForUser, entidad);
+					user.getName(), user.getId(), 1, messageForUser, entidad, idDistFather);
 			if (distId.intValue() != 0) {
 				String eventsManagerClassName = ConfiguratorEvents.getInstance(
 						DISTRIBUTION_MANUAL_EVENT).getProperty(
@@ -2447,7 +2662,7 @@ public class DistributionSessionUtil extends UtilsSession {
 	/**
 	 * Método que obtiene los interesados del registro que se ha aceptado para
 	 * añadirlos al registro que se genera
-	 * 
+	 *
 	 * @param bookId
 	 * @param fdrid
 	 * @param entidad
@@ -2625,5 +2840,75 @@ public class DistributionSessionUtil extends UtilsSession {
 		}
 
 		return result;
+	}
+
+	protected static void insertDestinoActualChangeDistribution(
+			String sessionID, String entidad, boolean isLdap, List scrs)
+			throws ValidationException, DistributionException {
+
+		Validator.validate_String_NotNull_LengthMayorZero(sessionID,
+				ValidationException.ATTRIBUTE_SESSION);
+
+		Transaction tran = null;
+
+		try {
+			Session session = HibernateUtil.currentSession(entidad);
+			tran = session.beginTransaction();
+
+			// Insertamos el destino actual de la distribución en BBDD
+			for (Iterator it = scrs.iterator(); it.hasNext();) {
+				// Recorremos las distribuciones
+				ScrDistreg scrDistReg = (ScrDistreg) it.next();
+
+				// Por cada distribución, comprobamos si hay alguna
+				// redistribución para obtener la información sobre el
+				// destino actual
+				List targetActualDist = null;
+				if (scrDistReg.getState() == ISDistribution.STATE_REDISTRIBUIDO) {
+					insertDestActualRedistribution(entidad, isLdap, scrDistReg.getId(),
+							session);
+				}
+			}
+
+			HibernateUtil.commitTransaction(tran);
+
+		} catch (Exception e) {
+			log.error(e);
+			HibernateUtil.rollbackTransaction(tran);
+			throw new DistributionException(
+					DistributionException.ERROR_CANNOT_SAVE_DISTRIBUTION);
+		} finally {
+			HibernateUtil.closeSession(entidad);
+		}
+	}
+
+	private static void insertDestActualRedistribution(String entidad,
+			boolean isLdap, Integer idDistribucion, Session session)
+			throws HibernateException, SQLException, Exception {
+
+		StringBuffer listadoDestinos = new StringBuffer();
+
+		List list = ISicresQueries.getScrDistregByIdDistFather(session, idDistribucion);
+		// Si existe alguna distribución hija, tratamos cada una de ella
+		// para obtener el destino que se tratará como destino actual de la
+		// distribución padre
+		if ((list != null) && !(list.isEmpty())) {
+			ScrDistreg distReg = null;
+			for (Iterator it = list.iterator(); it.hasNext();) {
+				distReg = (ScrDistreg) it.next();
+				// obtenemos el destino de la distribución indicada y lo
+				// añadimos al listado de destinos actuales
+				if(StringUtils.isNotEmpty(listadoDestinos.toString())){
+					listadoDestinos.append("\n");
+				}
+
+				listadoDestinos.append(getDistributionTargetDescription(session,
+						distReg, isLdap));
+			}
+		}
+
+		// Insertar los datos en la nueva tabla
+		ISicresSaveQueries.saveScrDistribucionActual(session, idDistribucion,
+				listadoDestinos.toString());
 	}
 }

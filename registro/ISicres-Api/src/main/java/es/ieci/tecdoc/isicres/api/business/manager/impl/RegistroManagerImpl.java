@@ -701,9 +701,7 @@ public class RegistroManagerImpl extends RegistroManager {
 						.getLimit().intValue(), Integer.valueOf(libro.getId()),
 				TipoLibroEnum.ENTRADA, criterioBusqueda.getSql());
 
-		int total = queryForAxSfQueryResultsTotalCount(usuario, 0,
-				Integer.MAX_VALUE, Integer.valueOf(libro.getId()),
-				TipoLibroEnum.ENTRADA, StringUtils.EMPTY);
+		int total = queryForAxSfQueryResultsTotalCount(axSfQueryResults);
 
 		List registers = new ArrayList();
 		for (Iterator iterator = axSfQueryResults.iterator(); iterator
@@ -737,9 +735,7 @@ public class RegistroManagerImpl extends RegistroManager {
 						.getLimit().intValue(), null, TipoLibroEnum.ENTRADA,
 				criterioBusqueda.getSql(), true);
 
-		int total = queryForAxSfQueryResultsTotalCount(usuario, 0,
-				Integer.MAX_VALUE, null, TipoLibroEnum.ENTRADA,
-				StringUtils.EMPTY, true);
+		int total = queryForAxSfQueryResultsTotalCount(axSfQueryResults);
 
 		List registers = new ArrayList();
 		for (Iterator iterator = axSfQueryResults.iterator(); iterator
@@ -870,9 +866,7 @@ public class RegistroManagerImpl extends RegistroManager {
 						.getLimit().intValue(), Integer.valueOf(libro.getId()),
 				TipoLibroEnum.SALIDA, criterioBusqueda.getSql());
 
-		int total = queryForAxSfQueryResultsTotalCount(usuario, 0,
-				Integer.MAX_VALUE, Integer.valueOf(libro.getId()),
-				TipoLibroEnum.SALIDA, StringUtils.EMPTY);
+		int total = queryForAxSfQueryResultsTotalCount(axSfQueryResults);
 
 		List registers = new ArrayList();
 		for (Iterator iterator = axSfQueryResults.iterator(); iterator
@@ -906,9 +900,7 @@ public class RegistroManagerImpl extends RegistroManager {
 						.getLimit().intValue(), null, TipoLibroEnum.SALIDA,
 				criterioBusqueda.getSql(), true);
 
-		int total = queryForAxSfQueryResultsTotalCount(usuario, 0,
-				Integer.MAX_VALUE, null, TipoLibroEnum.SALIDA,
-				StringUtils.EMPTY, true);
+		int total = queryForAxSfQueryResultsTotalCount(axSfQueryResults);
 
 		List registers = new ArrayList();
 		for (Iterator iterator = axSfQueryResults.iterator(); iterator
@@ -1426,9 +1418,7 @@ public class RegistroManagerImpl extends RegistroManager {
 						.getLimit().intValue(), null, TipoLibroEnum.ENTRADA,
 				criterioBusqueda.getSql());
 
-		int total = queryForAxSfQueryResultsTotalCount(usuario, 0,
-				Integer.MAX_VALUE, null, TipoLibroEnum.ENTRADA,
-				StringUtils.EMPTY);
+		int total = queryForAxSfQueryResultsTotalCount(axSfQueryResults);
 
 		List registers = new ArrayList();
 		for (Iterator iterator = axSfQueryResults.iterator(); iterator
@@ -1457,9 +1447,7 @@ public class RegistroManagerImpl extends RegistroManager {
 						.getLimit().intValue(), null, TipoLibroEnum.SALIDA,
 				criterioBusqueda.getSql());
 
-		int total = queryForAxSfQueryResultsTotalCount(usuario, 0,
-				Integer.MAX_VALUE, null, TipoLibroEnum.SALIDA,
-				StringUtils.EMPTY);
+		int total = queryForAxSfQueryResultsTotalCount(axSfQueryResults);
 
 		List registers = new ArrayList();
 		for (Iterator iterator = axSfQueryResults.iterator(); iterator
@@ -1682,15 +1670,15 @@ public class RegistroManagerImpl extends RegistroManager {
 	/**
 	 * Actualiza un registro. En cuanto a los interesados, el funcionamiento es
 	 * el siguiente:
-	 * 
+	 *
 	 * Si no llega ningún campo con fld9 se dejan los interesados tal y como
 	 * estaban.
-	 * 
+	 *
 	 * Si llega un campo con el valor de fld9 vacío entonces se borran todos los interesados
-	 * 
+	 *
 	 * Si llegan campos con fld9 no vacíos entonces se sustityen los interesados
 	 * que había por estos nuevos
-	 * 
+	 *
 	 * @param usuario
 	 * @param id
 	 * @param camposGenericos
@@ -1745,7 +1733,7 @@ public class RegistroManagerImpl extends RegistroManager {
 
 			List<FlushFdrInter> listaInteresados =  TercerosHelper.getListaInteresadosISicres(atts);
 
-			
+
 			// Comprobamos que los campos que se quieren actualizar existen en
 			// la definición del registro
 			checkExistAllFlushFdrFields(register, atts);
@@ -1829,7 +1817,7 @@ public class RegistroManagerImpl extends RegistroManager {
 	public List queryForAxSfQueryResults(UsuarioVO usuario, int offset,
 			int limit, Integer bookID, TipoLibroEnum bookType, String filter) {
 		return queryForAxSfQueryResults(usuario, offset, limit, bookID,
-				bookType, filter, false);
+				bookType, filter, true/*indicamos que la consulta realizada se concatene a los filtros del libro*/);
 	}
 
 	/**
@@ -1839,8 +1827,12 @@ public class RegistroManagerImpl extends RegistroManager {
 			int limit, Integer bookID, TipoLibroEnum bookType, String filter,
 			boolean appendFilter) {
 
-		// Multi-libro
-		Integer reportOption = new Integer(1);
+		// La opcion reportOption se tratará como si solamente se busca en un
+		// libro (new Integer(0)), ya que por cada libro se ejecuta la consulta
+		// de forma independiente, y se añade a la
+		// coleccion que se retorna, de esta forma se evita que se sobreescriba
+		// la consulta y sus filtros
+		Integer reportOption = new Integer(0);
 
 		List bookIds = new ArrayList();
 		if (null == bookID) {
@@ -1874,6 +1866,8 @@ public class RegistroManagerImpl extends RegistroManager {
 
 					THashMap bookInformation = (THashMap) cacheBag.get(aBookId);
 
+					//variable que por defecto contiene la consulta a realizar
+					String filterAux = filter;
 					// Añadimos el filtro
 					if (!StringUtils.isEmpty(filter)) {
 						if (appendFilter) {
@@ -1882,10 +1876,11 @@ public class RegistroManagerImpl extends RegistroManager {
 							String queryFilter = (String) bookInformation
 									.get(ServerKeys.QUERY_FILTER);
 							if (!StringUtils.isEmpty(queryFilter)) {
-								filter = queryFilter + " AND " + filter;
+								//a la consulta se le añade los filtros del libro
+								filterAux = queryFilter + " AND " + filter;
 							}
 						}
-						bookInformation.put(BookSession.QUERY_FILTER, filter);
+						bookInformation.put(BookSession.QUERY_FILTER, filterAux);
 					}
 
 					AxSfQuery axsfQuery = new AxSfQuery(aBookId);
@@ -1953,53 +1948,23 @@ public class RegistroManagerImpl extends RegistroManager {
 		return results;
 	}
 
-	/**
-	 * Devuelve el número total de registros encontrados para los parámetros que
-	 * se reciben.
-	 *
-	 * @param usuario
-	 * @param offset
-	 * @param limit
-	 * @param bookID
-	 * @param bookType
-	 * @param filter
-	 *
-	 * @return
-	 */
-	private int queryForAxSfQueryResultsTotalCount(UsuarioVO usuario,
-			int offset, int limit, Integer bookID, TipoLibroEnum bookType,
-			String filter) {
-		return queryForAxSfQueryResultsTotalCount(usuario, offset, limit,
-				bookID, bookType, filter, false);
-
-	}
 
 	/**
 	 * Devuelve el número total de registros encontrados para los parámetros que
 	 * se reciben.
 	 *
-	 * @param usuario
-	 * @param offset
-	 * @param limit
-	 * @param bookID
-	 * @param bookType
-	 * @param filter
 	 * @param appendQuery
 	 *            Indica si se se añade el filtro SQL al filtro implícito de la
 	 *            oficina del usuario
 	 * @return
 	 */
-	private int queryForAxSfQueryResultsTotalCount(UsuarioVO usuario,
-			int offset, int limit, Integer bookID, TipoLibroEnum bookType,
-			String filter, boolean appendQuery) {
-		List queryForAxSfQueryResults = queryForAxSfQueryResults(usuario,
-				offset, limit, bookID, bookType, filter);
+	private int queryForAxSfQueryResultsTotalCount(List axSfQueryResults) {
 
 		int total = 0;
-		Iterator iterator = queryForAxSfQueryResults.iterator();
+		Iterator iterator = axSfQueryResults.iterator();
 		while (iterator.hasNext()) {
 			AxSfQueryResults results = (AxSfQueryResults) iterator.next();
-			total += results.getResults().size();
+			total += results.getTotalQuerySize();
 		}
 
 		return total;

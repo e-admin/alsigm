@@ -61,7 +61,7 @@ function OnWindowLoad()
 
 	if (((top.g_BookPerms >> (top.POS_PERM_CREAR)) % 2 == 0) || top.g_bIsLockBook){
 		document.getElementById("opCopy").className = "SubOptionsDisabled";
-    	document.getElementById("NewFolderBtn").className = "SubOptionsDisabled";
+	document.getElementById("NewFolderBtn").className = "SubOptionsDisabled";
 	}
 
 	if (top.g_bIsLockBook || top.g_OfficeEnabled == "false"){
@@ -183,7 +183,7 @@ function SetRowSel(Row, FolderId)
 		if (document.getElementById("FolderNum")){
 			document.getElementById("FolderNum").value = top.g_FolderSel.toString();
 		}
-   	}
+	}
 }
 
 
@@ -264,13 +264,13 @@ function ShowTable()
 	top.g_ShowTable = true;
 
 	if (top.g_FolderSel != (top.Main.Table.TableData.g_FirstRow + top.Main.Table.TableData.g_RowSel - 1)) {
-	      	window.open(top.g_URL + "/tbltext2.jsp?SessionPId=" + top.g_SessionPId + "&Row=" + top.g_FolderSel
-              		+ "&FdrQryPId=" + top.g_FdrQryPId.toString(), "TableData","location=no",true);
-   	}
-   	else {
-      	      	top.ShowTableFr();
+		window.open(top.g_URL + "/tbltext2.jsp?SessionPId=" + top.g_SessionPId + "&Row=" + top.g_FolderSel
+			+ "&FdrQryPId=" + top.g_FdrQryPId.toString(), "TableData","location=no",true);
+	}
+	else {
+		top.ShowTableFr();
 		habilitar();
-   	}
+	}
 }
 
 
@@ -382,7 +382,7 @@ function GetBarText()
 		HTMLText += "<div align=\"center\" style=\"vertical-align:middle\"><IMG src=\"images/folder.gif\" align=\"middle\"/> " + top.GetIdsLan( "IDS_BTNOPENREG" ) + "</IMG></div>";
 		HTMLText += "</td>";
 
-   	}
+	}
 
 	return(HTMLText);
 }
@@ -432,16 +432,16 @@ function GetBarText2()
 		HTMLText +="<TH class=\"report3\" align=\"right\"><input class=\"checkbox\" type=\"checkbox\" name=\"checkSel\" value=\"6\" IdArch=\"2\" IdFdr=\"1\" onclick=\"CheckAllSel()\" tabIndex=\"1\" ID=\"checkSel\" /><LABEL id=\"SelAll\">"+ top.GetIdsLan( "IDS_OPCSELECT" ) + "</SCRIPT></LABEL></TH>";
 		HTMLText +="<TH class=\"report3\" align=\"right\"><input class=\"checkbox\" type=\"checkbox\" name=\"checkDesSel\" value=\"6\" IdArch=\"2\" IdFdr=\"1\" onclick=\"CheckDesAllSel()\" tabIndex=\"1\" ID=\"checkDesSel\"/><LABEL id=\"DesSelAll\">" + top.GetIdsLan( "IDS_QUITARSELECT" ) + "</SCRIPT></LABEL></TH>";
 		HTMLText +="<TH class=\"report3\" width=\"2\"></TH>";
-   	}
+	}
 
-   	return(HTMLText);
+	return(HTMLText);
 }
 
 function OverTbltext(obj)
 {
    if (obj.className != "SubOptionsDisabled")
    {
-   	obj.className="SubOptionsOver2";
+	obj.className="SubOptionsOver2";
    }
 }
 
@@ -450,7 +450,7 @@ function OutTbltext(obj)
 {
    if (obj.className != "SubOptionsDisabled")
    {
-   	obj.className="SubOptions2";
+	obj.className="SubOptions2";
    }
 }
 
@@ -529,8 +529,8 @@ function CheckAll(Obj)
 
 	if (checks.length){
 		for (var i = 0; i < checks.length; i++){
-	   		checks[i].checked = Obj.checked;
-	   	}
+			checks[i].checked = Obj.checked;
+		}
 	}
 	else
 	{
@@ -721,4 +721,3 @@ function resetearStyleSeleccion(row){
 	row.style.color= g_color3;
     row.style.cursor="";
 }
-

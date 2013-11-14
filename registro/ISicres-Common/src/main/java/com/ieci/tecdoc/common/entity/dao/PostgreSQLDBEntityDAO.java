@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.ieci.tecdoc.common.utils.BBDDUtils;
@@ -42,7 +43,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#getLikeCharacter()
 	 */
 	public String getLikeCharacter() {
@@ -51,7 +52,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#updateFromTable(String,
 	 *      String[], String[], String[], String[], String)
 	 */
@@ -92,7 +93,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#alterTableAddColumnString(String,
 	 *      String[], String)
 	 */
@@ -127,7 +128,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#dropTableOrView(String,
 	 *      String)
 	 */
@@ -154,7 +155,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getSelectAditionFields(int)
 	 */
 	public String getSelectAditionFields(int bookType) {
@@ -185,7 +186,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getReportCreateSelectMultiple(String,
 	 *      Integer, String, String, int)
 	 */
@@ -206,7 +207,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getReportCreateSelectMultiple1(String,
 	 *      Integer, String, String, int, String, int, Integer)
 	 */
@@ -230,7 +231,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getFinalQuery(Integer)
 	 */
 	public String getFinalQuery(Integer maxReportRegister) {
@@ -239,7 +240,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getReportCreateSelect(String,
 	 *      Integer, String, String)
 	 */
@@ -252,7 +253,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getReportCreateSelect1(String,
 	 *      Integer, String, String, String, int, Integer)
 	 */
@@ -268,7 +269,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getReportCreateSelectLastRegister(String,
 	 *      Integer, String, String, String, int)
 	 */
@@ -284,7 +285,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getReportCreateSelectLastRegister1(String,
 	 *      Integer, int, String, String, int)
 	 */
@@ -299,7 +300,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getReportCreate(String,
 	 *      String)
 	 */
@@ -309,7 +310,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getReportCreate(String,
 	 *      String, Integer)
 	 */
@@ -322,7 +323,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#getDateField(java.lang.String,
 	 *      java.lang.String, int, java.lang.String)
 	 */
@@ -406,7 +407,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#getTimeStampFormat(java.lang.String)
 	 */
 	protected String getTimeStampFormat(String date) {
@@ -415,7 +416,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#getDateQuery()
 	 */
 	protected String getDateQuery() {
@@ -424,7 +425,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getNextIdForScrModifreg(java.lang.Integer,
 	 *      java.lang.String)
 	 */
@@ -435,7 +436,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getNextIdForScrDistReg(java.lang.Integer,
 	 *      java.lang.String)
 	 */
@@ -446,7 +447,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getNextIdForScrDistRegState(java.lang.Integer,
 	 *      java.lang.String)
 	 */
@@ -457,7 +458,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getNextIdForScrRegAsoc(java.lang.Integer,
 	 *      java.lang.String)
 	 */
@@ -468,7 +469,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getContador4SCRREGORIGDOC(java.lang.Integer,
 	 *      java.lang.String)
 	 */
@@ -511,7 +512,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#getNextIdForInter(java.lang.Integer,
 	 *      java.lang.String)
 	 */
@@ -522,7 +523,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#getContador4PERSONS(java.lang.Integer,
 	 *      java.lang.String)
 	 */
@@ -533,7 +534,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#getContador4SCRADDRESS(java.lang.Integer,
 	 *      java.lang.String)
 	 */
@@ -544,7 +545,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#getDataBaseType()
 	 */
 	public String getDataBaseType() {
@@ -553,7 +554,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/**
 	 * Método para obtener el siguiente identificador de una secuencia
-	 * 
+	 *
 	 * @param tableName
 	 *            identificador de la tabla
 	 * @param entidad
@@ -613,7 +614,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getTemporalTableDistributionQuerySentence(String,
 	 *      Integer, String, int)
 	 */
@@ -634,7 +635,44 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
+	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getTemporalTableDistributionQuerySentence(String,
+	 *      Integer, String, int)
+	 */
+	public String getTemporalTableDistributionQuerySentenceOrderBy(String tableName,
+			Integer bookId, String where, String regWhere, boolean isCreateTable,  boolean isInBook, String language) {
+		StringBuffer result = new StringBuffer();
+
+		//verificamos si el proceso es para crear la tabla o para añadirle más datos
+		if (isCreateTable) {
+			result.append("CREATE TABLE ").append(tableName).append(" ");
+			result.append(getFieldsTableTemporalDistributionOrderBy());
+			result.append(" AS ");
+		} else {
+			result.append(" UNION ");
+		}
+		//obtenemos la consulta a realizar según el tipo de libro y el id del libro
+		result.append(createQueryForTableTemporalDistributionOrderBy(bookId, isInBook, language));
+
+		if(StringUtils.isNotBlank(where)){
+			result.append(" AND ").append(where);
+		}
+
+		// Se concatena al criterio de búsqueda, el criterio de búsqueda por
+		// campos por del registro
+		if(StringUtils.isNotBlank(regWhere)){
+			if(StringUtils.isNotBlank(where)){
+				result.append(" AND ");
+			}
+			result.append(regWhere);
+		}
+
+		return result.toString();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#getVersion(java.lang.String)
 	 */
 	public String getVersion(String entidad) {
@@ -643,7 +681,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#recicleBin(String)
 	 */
 	public void recicleBin(String entidad) {
@@ -651,7 +689,7 @@ public class PostgreSQLDBEntityDAO extends AbstractDBEntityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.ieci.tecdoc.common.entity.dao.AbstractDBEntityDAO#deleteIdsGenerationTable(java.lang.Integer,
 	 *      java.lang.String)
 	 */

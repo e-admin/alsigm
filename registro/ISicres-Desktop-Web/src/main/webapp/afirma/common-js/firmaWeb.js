@@ -1,10 +1,10 @@
 /*
- * Este fichero forma parte del Cliente @firma. 
+ * Este fichero forma parte del Cliente @firma.
  * El Cliente @firma es un aplicativo de libre distribucion cuyo codigo fuente puede ser consultado
  * y descargado desde www.ctt.map.es.
  * Copyright 2009,2010,2011 Gobierno de Espana
  * Este fichero se distribuye bajo licencia GPL version 3 segun las
- * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este 
+ * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este
  * fichero individualmente, deben incluirse aqui las condiciones expresadas alli.
  */
 
@@ -31,17 +31,17 @@ var neverClose   = new Array("input", "br");
 var specialAtts	  = new Array("value", "selected", "checked");
 var forbiddenAtts = new Array(
 	"contenteditable", "start", "loop", "maxLength", "disabled",
-	"onreset", "onsubmit", "onclick", "onmousedown", "onmouseup", "onblur", "onchange", 
-	"onfocus", "onkeydown", "onkeyup", "onkeypress", "onselect", "onafterupdate", "onbeforeupdate", 
-	"onerrorupdate", "onabort", "onerror", "onscroll", "onbounce", "onfinish", "onstart", 
-	"oncellchange", "ondataavailable", "ondatasetchanged", "ondatasetcomplete", "onrowenter", 
-	"onrowexit", "onrowsdelete", "onrowsinserted", "onafterprint", "onbeforeprint", "onbeforeunload", 
-	"onclose", "ondragdrop", "onhelp", "onmousemove", "onmouseout", "onmouseover", "onmove", 
-	"onmovestart", "onmoveend", "ondblclick", "onactivate", "onbeforecopy", "onbeforecut", "onbeforedeactivate", 
+	"onreset", "onsubmit", "onclick", "onmousedown", "onmouseup", "onblur", "onchange",
+	"onfocus", "onkeydown", "onkeyup", "onkeypress", "onselect", "onafterupdate", "onbeforeupdate",
+	"onerrorupdate", "onabort", "onerror", "onscroll", "onbounce", "onfinish", "onstart",
+	"oncellchange", "ondataavailable", "ondatasetchanged", "ondatasetcomplete", "onrowenter",
+	"onrowexit", "onrowsdelete", "onrowsinserted", "onafterprint", "onbeforeprint", "onbeforeunload",
+	"onclose", "ondragdrop", "onhelp", "onmousemove", "onmouseout", "onmouseover", "onmove",
+	"onmovestart", "onmoveend", "ondblclick", "onactivate", "onbeforecopy", "onbeforecut", "onbeforedeactivate",
 	"onbeforeeditfocus", "onbeforepaste", "oncontextmenu", "oncontrolselect", "oncopy", "oncut",
-	"ondrag", "ondrop", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", 
+	"ondrag", "ondrop", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart",
 	"onfilterchange", "onfocusin", "onfocusout", "onlosecapture", "onmouseenter", "onmouseleave",
-	"onmousewheel", "onpaste", "onpropertychange", "onreadystatechange", "onresize", "onresizestart", 
+	"onmousewheel", "onpaste", "onpropertychange", "onreadystatechange", "onresize", "onresizestart",
 	"onresizeend", "onselectstart", "onstop"
 	);
 var inputs = new Array("input", "textarea", "select");
@@ -62,7 +62,7 @@ function toXMLPart(element, doc)
 	fileNo = 0;
 	var xml= "<html>\n";
 
-	var styles= getStyles(doc);	
+	var styles= getStyles(doc);
 
 	xml+="<head>\n<style type=\"text/css\">\n"+styles+"\n</style>\n</head>\n<body disabled='disabled'"
 	if(element.height)
@@ -74,9 +74,9 @@ function toXMLPart(element, doc)
 		xml += " width='"+element.width+"'";
 	}
 	xml +=">\n";
-	
+
 	xml+= toXML(element);
-	
+
 	xml+="\n</body>\n</html>";
 
 	return xml;
@@ -85,7 +85,7 @@ function toXMLPart(element, doc)
 function toXML(element)
 {
 	var xml="";
-	
+
 	switch(element.nodeType)
 	{
 		case ELEMENT:
@@ -94,26 +94,26 @@ function toXML(element)
 				xml = toXMLElement(element);
 			}
 			break;
-			
+
 		case TEXT:
 			xml = htmlEscape(element.nodeValue);
 			break;
-			
+
 		case CDATA:
 			xml = "<![CDATA["+element.nodeValue+"]]>";
 			break;
-			
+
 		/* Eliminamos c?digo y comentarios */
 		case PROCESSING_INSTRUCTION:
 		case COMMENT:
 			xml = "";
 			break;
-			
+
 		default:
 			xml = toXMLChildNodes(element);
 			break;
 	}
-	
+
 	return xml;
 }
 
@@ -123,7 +123,7 @@ function toXMLElement(element)
 	{
 		return "";
 	}
-	
+
 	var xml= "";
 	if(element.nodeName.toLowerCase()=="input" && element.type.toLowerCase()=="file")
 	{
@@ -139,9 +139,9 @@ function toXMLElement(element)
 		xml+="<a href='afirma:saveFile("+n+")'>"+element.value+"</a>";
 		return xml;
 	}
-	
+
 	xml= "<"+element.nodeName;
-	
+
 	if(!isBlank(element.height))
 	{
 		xml += " height='"+element.height+"'";
@@ -162,7 +162,7 @@ function toXMLElement(element)
 	{
 		xml += " cols='"+element.cols+"'";
 	}
-	
+
 	/* Si es textual (contiene texto) metemos el texto y cerramos el tag */
 	if(isTextualTags(element.nodeName))
 	{
@@ -172,7 +172,7 @@ function toXMLElement(element)
 			text = htmlEscape(element.value);
 		}
 		xml+=">\n" + text + "</"+element.nodeName+">\n" ;
-		
+
 	}
 	else
 	{   /* Si tiene algun atributo especial, lo anadimos */
@@ -185,12 +185,12 @@ function toXMLElement(element)
 				xml += " "+specialAtts[i]+'="'+ htmlEscape(att) +'"';
 			}
 		}
-		
+
 		for(i=0; i<element.attributes.length; i++)
 		{
 			xml += toXMLAttribute(element.attributes[i]);
 		}
-		
+
 		if(element.childNodes.length>0 && !isNeverClose(element.nodeName))
 		{
 			xml+=">\n";
@@ -216,8 +216,8 @@ function toXMLElement(element)
 		}
 	}
 
-	
-	
+
+
 	return xml;
 }
 
@@ -227,7 +227,7 @@ function toXMLAttribute(attribute)
 	{
 		return " " + attribute.nodeName + '="' + htmlEscape(attribute.nodeValue) + '"';
 	}
-	
+
 	return "";
 }
 
@@ -240,7 +240,7 @@ function toXMLChildNodes(element)
 	{
 		xml+= toXML(element.childNodes[i]);
 	}
-	
+
 	return xml;
 }
 
@@ -268,4 +268,3 @@ function isSpecial(attName)
 {
 	return containsElement(specialAtts, attName.toLowerCase());
 }
-

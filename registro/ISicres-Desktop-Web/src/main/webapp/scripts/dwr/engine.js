@@ -1587,8 +1587,8 @@ if (typeof this['dwr'] == 'undefined') {
         exceptionArgs:callData.exceptionArgs || callData.args || null,
         exceptionScope:callData.exceptionScope || callData.scope || window,
         callback:callData.callbackHandler || callData.callback,
-        callbackArgs:callData.callbackArgs || callData.args || null,      
-        callbackScope:callData.callbackScope || callData.scope || window          
+        callbackArgs:callData.callbackArgs || callData.args || null,
+        callbackScope:callData.callbackScope || callData.scope || window
       };
 
       // Copy to the map the things that need serializing
@@ -1905,4 +1905,3 @@ if (typeof this['dwr'] == 'undefined') {
     _subscriptions:{}
   };
 })();
-

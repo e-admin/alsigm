@@ -109,9 +109,13 @@ import es.ieci.tecdoc.isicres.terceros.util.InteresadosDecorator;
  * @since
  */
 public class BookUseCase implements Keys {
+
+
+
 	/***************************************************************************
 	 * Attributes
 	 **************************************************************************/
+
 
 	private static Logger _logger = Logger.getLogger(BookUseCase.class);
 
@@ -124,6 +128,8 @@ public class BookUseCase implements Keys {
 	private static final String AND = " && ";
 
 	private static final String SPACES = " ";
+
+	private static final String PORCIENTO = "%";
 
 	private static final int MASK_PERM_QUERY = 1;
 
@@ -365,9 +371,9 @@ public class BookUseCase implements Keys {
 			// Si el estado del registro es CERRADO no se puede modificar, debe
 			// aparecer como de sï¿½lo lectura
 			String estado = axsf.getAttributeValueAsString(AxSf.FLD6_FIELD);
-			if (StringUtils.isNotEmpty(estado)) {
-				readOnly = (new Integer(estado).intValue()) == ISicresKeys.SCR_ESTADO_REGISTRO_CERRADO;
-			}
+			// validamos si el estado es CERRADO o ANULADO si es asi el registro
+			// no se puede modificar
+			readOnly = validateStateFolderIfClosedOrCancel(estado);
 		}
 
 		Document doc = XMLBookTree.createXMLBookTree(useCaseConf, bookId,
@@ -380,6 +386,32 @@ public class BookUseCase implements Keys {
 				bookId, folderId, axsf, archiveName, bookType);
 
 		return doc;
+	}
+
+	/**
+	 * Método que comprueba si el estado del registro es CERRADO o ANULADO
+	 *
+	 * @param estado
+	 *            - ESTADO del registro
+	 * @return boolean - TRUE: el registro esta anulado o cerrado / FALSE: el
+	 *         registro se encuentra en otro estado diferente a CERRADO o
+	 *         ANULADO
+	 */
+	public boolean validateStateFolderIfClosedOrCancel(String estado) {
+		boolean result = false;
+
+		//validamos que el estado no este vacio
+		if (StringUtils.isNotEmpty(estado)) {
+			//obtenemos el valor numerico del estado
+			int numEstado = (new Integer(estado)).intValue();
+
+			//validamos si el estado es CERRADO o ANULADO
+			if ((numEstado == ISicresKeys.SCR_ESTADO_REGISTRO_CERRADO)
+					|| (numEstado == ISicresKeys.SCR_ESTADO_REGISTRO_ANULADO)) {
+				result = true;
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -1357,12 +1389,10 @@ public class BookUseCase implements Keys {
 		Map fieldsNotEqual = BookSession
 				.compareBooks(useCaseConf.getSessionID(), bookIds, archiveId,
 				useCaseConf.getEntidadId());
-		boolean CanQuery = SecuritySession.canQuery(useCaseConf.getSessionID(),
-				archiveId);
-		boolean CanCreate = SecuritySession.canCreate(useCaseConf
-				.getSessionID(), archiveId);
-		boolean canModify = SecuritySession.canModify(useCaseConf
-				.getSessionID(), archiveId);
+
+		//obtenemos los permisos del usuario sobre el libro
+		perms = getPermisosLibro(useCaseConf, archiveId);
+
 		boolean isBookAdmin = SecuritySession.isBookAdmin(useCaseConf
 				.getSessionID(), archiveId);
 		List validationFields = AttributesSession
@@ -1372,9 +1402,6 @@ public class BookUseCase implements Keys {
 				.getSessionInformation(useCaseConf.getSessionID(), useCaseConf
 						.getLocale(), useCaseConf.getEntidadId());
 
-		perms += ((CanQuery) ? MASK_PERM_QUERY : 0);
-		perms += ((CanCreate) ? MASK_PERM_CREATE : 0);
-		perms += ((canModify) ? MASK_PERM_MODIFY : 0);
 
 		doc = XMLQueryBook.createXMLQueryFormat(axsf, fieldFormat, archiveId,
 				archivePId, fdrqrypid, archiveName, useCaseConf.getLocale(),
@@ -1383,6 +1410,35 @@ public class BookUseCase implements Keys {
 
 		return doc;
 	}
+
+	/**
+	 * Funcion que obtiene los permisos del usuario sobre un libro
+	 *
+	 * @param useCaseConf - Datos del usuario
+	 * @param archiveId - ID del libro
+	 * @return int - Permisos
+	 *
+	 * @throws ValidationException
+	 * @throws SecurityException
+	 */
+	public int getPermisosLibro(UseCaseConf useCaseConf, Integer archiveId) throws ValidationException, SecurityException {
+		int perms = 0;
+
+		boolean CanQuery = SecuritySession.canQuery(useCaseConf.getSessionID(),
+				archiveId);
+		boolean CanCreate = SecuritySession.canCreate(useCaseConf
+				.getSessionID(), archiveId);
+		boolean canModify = SecuritySession.canModify(useCaseConf
+				.getSessionID(), archiveId);
+
+		perms += ((CanQuery) ? MASK_PERM_QUERY : 0);
+		perms += ((CanCreate) ? MASK_PERM_CREATE : 0);
+		perms += ((canModify) ? MASK_PERM_MODIFY : 0);
+
+		return perms;
+	}
+
+
 
 	public Document getQueryFormat(UseCaseConf useCaseConf, Integer archiveId,
 			long archivePId, long fdrqrypid) throws ValidationException,
@@ -3028,8 +3084,15 @@ public class BookUseCase implements Keys {
 				return list;
 			} else if (operator.equals(RBUtil.getInstance(locale).getProperty(
 					Keys.I18N_QUERY_LIKE_TEXT_VALUE))) {
-				String aux = param.replaceAll("%", "");
-				aux = "%" + aux + "%";
+				String aux = param;
+				if (StringUtils.startsWith(param, PORCIENTO)||StringUtils.endsWith(param, PORCIENTO)){
+					_logger.debug("Realizando la busqueda simple 'empieza con o termina con' utilizando el parametro: " + aux);
+				}else{
+					aux = param.replaceAll(PORCIENTO, "");
+					aux = PORCIENTO + aux + PORCIENTO;
+					_logger.debug("Realizando la busqueda simple 'contiene con', utilizando el parametro: " + aux);
+				}
+
 				return getValue(axsfQ, field, aux, ctrlDef, locale);
 			} else {
 				return getValue(axsfQ, field, param, ctrlDef, locale);
@@ -4206,8 +4269,14 @@ public class BookUseCase implements Keys {
 				}
 				return list;
 			} else if (operator == com.ieci.tecdoc.common.isicres.Keys.QUERY_LIKE_VALUE) {
-				String aux = valueWhere.replaceAll("%", "");
-				aux = "%" + aux + "%";
+				String aux = valueWhere;
+				if (StringUtils.startsWith(valueWhere, PORCIENTO)||StringUtils.endsWith(valueWhere, PORCIENTO)){
+					_logger.debug("Realizando la busqueda avanzada 'empieza con o termina con' utilizando el parametro: " + aux);
+				}else{
+					aux = valueWhere.replaceAll(PORCIENTO, "");
+					aux = PORCIENTO + aux + PORCIENTO;
+					_logger.debug("Realizando la busqueda avanzada 'contiene con', utilizando el parametro: " + aux);
+				}
 				return getValue(axsfQ, field, aux, ctrlDef, locale);
 			} else {
 				return getValue(axsfQ, field, valueWhere, ctrlDef, locale);

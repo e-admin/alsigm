@@ -36,7 +36,7 @@ public class EditarInformeAction extends RPAdminWebAction{
 		entidad.setIdentificador(MultiEntityContextHolder.getEntity());
 
 		OptionsBean tiposInformes = oServicio.obtenerTiposInformesCombo(entidad);
-		OptionsBean perfiles = oServicio.obtenerPerfilesCombo(entidad);
+		OptionsBean perfiles = oServicio.obtenerPerfilesReportCombo(entidad);
 
 		String idInforme = (String)request.getParameter(InformesKeys.ID_INFORME);
 		if(idInforme == null || idInforme.equals("")) {

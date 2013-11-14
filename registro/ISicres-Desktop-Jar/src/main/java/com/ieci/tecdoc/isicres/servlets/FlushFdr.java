@@ -11,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.rmi.RemoteException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -261,21 +263,20 @@ public class FlushFdr extends HttpServlet implements Keys {
 					if (!aux.equals("")) {
 						String fileNameFis = null;
 						String extension = getExtension(fi.getName());
-						String order = fi.getFieldName();
-						order = order.substring(order.length() - 1,
-								order.length());
+						//String order = fi.getFieldName();
+						int order = getOrderFileScan(fi.getFieldName());
 						if (folderIDFromRequest == null) {
 							Integer folderIdCurrent = (Integer) session
 									.getAttribute(Keys.J_REGISTER);
 							fileNameFis = getFileNameFis(
 									useCaseConf.getSessionID(),
-									folderIdCurrent.toString(), new Integer(
-											order).intValue(), fi.getName());
+									folderIdCurrent.toString(),
+											order, fi.getName());
 						} else {
 							fileNameFis = getFileNameFis(
 									useCaseConf.getSessionID(),
 									folderIDFromRequest.toString(),
-									new Integer(order).intValue(), fi.getName());
+									order, fi.getName());
 						}
 
 						File newDir = null;
@@ -423,7 +424,7 @@ public class FlushFdr extends HttpServlet implements Keys {
 								fi.getString("UTF-8"), BARRA);
 						String idFile = null;
 						String fileScanName = null;
-						String orderFScan = null;
+						int orderFScan;
 
 						while (tokens.hasMoreTokens()) {
 							idFile = tokens.nextToken();
@@ -437,12 +438,11 @@ public class FlushFdr extends HttpServlet implements Keys {
 										+ fileScanName);
 							}
 						}
+						//Obtenemos el orden del fichero
+						orderFScan = getOrderFileScan(idFile);
 
-						orderFScan = idFile.substring(idFile.length() - 1,
-								idFile.length());
 						FlushFdrFile flushFdrFile = new FlushFdrFile();
-						flushFdrFile.setOrder(new Integer(orderFScan)
-								.intValue());
+						flushFdrFile.setOrder(orderFScan);
 						flushFdrFile.setExtension(getExtension(fileScanName));
 						String fileName = null;
 
@@ -452,14 +452,14 @@ public class FlushFdr extends HttpServlet implements Keys {
 
 							fileName = getFileNameFis(
 									useCaseConf.getSessionID(),
-									folderIdCurrent.toString(), new Integer(
-											orderFScan).intValue(),
+									folderIdCurrent.toString(),
+											orderFScan,
 									fileScanName);
 						} else {
 							fileName = getFileNameFis(
 									useCaseConf.getSessionID(),
 									folderIDFromRequest.toString(),
-									new Integer(orderFScan).intValue(),
+									orderFScan,
 									fileScanName);
 						}
 
@@ -515,14 +515,14 @@ public class FlushFdr extends HttpServlet implements Keys {
 			if (!strFilesScan.equals("")) {
 				fileData.insert(0, strFilesScan);
 			}
-
+			//se parsean los fieldItems
 			for (Iterator it = fieldItems.iterator(); it.hasNext();) {
 				FlushFdrField flushFdrField = (FlushFdrField) it.next();
 
 				if (_logger.isDebugEnabled()) {
 					_logger.debug(flushFdrField);
 				}
-
+				//se parsea el interesado
 				if (flushFdrField.getFldid() == 9) {
 					inter = parseInter(flushFdrField.getValue());
 					flushFdrField.setValue(((FlushFdrInter) inter.get(0))
@@ -827,6 +827,36 @@ public class FlushFdr extends HttpServlet implements Keys {
 	}
 
 	/**
+	 * Método que obtiene el orden del fichero
+	 * @param idFile - Codigo del fichero LI[X]
+	 * @return orden del fichero
+	 */
+	private int getOrderFileScan(String idFile) {
+		int result;
+		try {
+			//Obtenemos el identificador del fichero a partir del nombre
+			String codigoFichero = idFile.substring("LI".length(),
+					idFile.length());
+			// lo pasamos a un valor integer
+			result = Integer.parseInt(codigoFichero);
+		} catch (Exception e) {
+			// Si se produce alguna excepción durante el proceso anterior, asignamos como
+			// codigo del fichero la posición de este, dentro del array de
+			// ficheros
+			_logger.warn("No se ha podido obtener el orden del documento: " + idFile);
+
+			result = Integer.parseInt(idFile.substring(idFile.length() - 1, idFile.length()));
+		}
+		return result;
+
+//		int orderFScan;
+//
+//		orderFScan = Integer.parseInt(idFile.substring(idFile.length() - 1,
+//				idFile.length()));
+//		return orderFScan;
+	}
+
+	/**
 	 * Metodo que realiza diferentes validaciones de seguridad para que el usuario pueda editar un registro:
 	 *  	<br/> - Comprueba que el libro esta abierto
 	 *  	<br/> - Comprueba que el usuario o su oficina tengan acceso al registro
@@ -941,7 +971,8 @@ public class FlushFdr extends HttpServlet implements Keys {
 			token = doblesBarras.nextToken();
 			token = doblesBarras.nextToken();
 			if (!(token.equals("|"))) {
-				dataField.setValue(token);
+				// el valor viene codificado para permitir caracteres especiales
+				dataField.setValue(decodeValue(token));
 				token = doblesBarras.nextToken();
 			} else {
 				dataField.setValue(null);
@@ -951,6 +982,25 @@ public class FlushFdr extends HttpServlet implements Keys {
 			token = doblesBarras.nextToken();
 			token = doblesBarras.nextToken();
 			result.add(dataField);
+		}
+
+		return result;
+	}
+
+	/**
+	 * metodo para decodificar los parametros que nos llegan desde el navegador.
+	 * Vienen codificados para permitir caracteres especiales
+	 * @param value
+	 * @return
+	 */
+	private String decodeValue(String value){
+		String result=null;
+
+		try {
+			result=URLDecoder.decode(value,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			_logger.error("Excepción decodificando valor:"+value + "en decodeValue");
+			throw new RuntimeException(e);
 		}
 
 		return result;
@@ -978,6 +1028,7 @@ public class FlushFdr extends HttpServlet implements Keys {
 		String[] tokens = StringUtils.splitByWholeSeparatorPreserveAllTokens(
 				interesado, ALMOHADILLA);
 		for (int i = 0; i < tokens.length; i++) {
+			String valorIt= tokens[i];
 			switch (i) {
 			case 0:
 				dataInter = new FlushFdrInter();
@@ -985,7 +1036,7 @@ public class FlushFdr extends HttpServlet implements Keys {
 				dataInter.setInterId(dataInterId.intValue());
 				break;
 			case 1:
-				dataInter.setInterName(tokens[i]);
+				dataInter.setInterName(decodeValue(valorIt));
 				break;
 			case 2:
 				if (!StringUtils.isEmpty(tokens[i])) {

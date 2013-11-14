@@ -10,8 +10,8 @@ import org.apache.commons.lang.StringUtils;
 import com.ieci.tecdoc.common.isicres.Keys;
 
 import es.ieci.tecdoc.fwktd.sir.core.types.CanalNotificacionEnum;
-import es.ieci.tecdoc.fwktd.sir.core.types.TipoDocumentoIdentificacionEnum;
 import es.ieci.tecdoc.fwktd.sir.core.vo.InteresadoVO;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InteresadoExReg;
 /**
  * Clase de utilidades para el uso de los interesados en el intercambio registral
  * @author IECISA
@@ -30,7 +30,7 @@ public class InteresadoUtils {
 	 *         descompuestos en cadenas: Nombre y Apellidos, Identificación y
 	 *         Dirección
 	 */
-	public static List<String> getDatosInteresadoArray(InteresadoVO interesado) {
+	public static List<String> getDatosInteresadoArray(InteresadoExReg interesado) {
 		// Inicializamos el array
 		List<String> resultDataInteresado = new ArrayList<String>();
 
@@ -39,8 +39,13 @@ public class InteresadoUtils {
 
 		// si la cadena esta rellenada, se añade al array con los datos del
 		// interesado.
-		if (StringUtils.isNotEmpty(nombreInteresado.toString())) {
+		if (StringUtils.isNotBlank(nombreInteresado.toString())) {
 			resultDataInteresado.add(nombreInteresado.toString());
+		}else{
+			//sino posee datos de nombre se intenta asignar la razon social
+			if (StringUtils.isNotEmpty(interesado.getRazonSocialInteresado())) {
+				resultDataInteresado.add(interesado.getRazonSocialInteresado());
+			}
 		}
 
 		// Obtenemos la información de la identificación del interesado
@@ -52,7 +57,8 @@ public class InteresadoUtils {
 		}
 
 		// Obtenemos la cadena con la dirección del interesado
-		StringBuffer direccionInteresado = getDireccionInteresado(interesado);
+		StringBuffer direccionInteresado = new StringBuffer();
+		direccionInteresado.append(getDireccionInteresado(interesado));
 
 		// Validamos si la cadena con la dirección esta rellenada
 		if (StringUtils.isNotEmpty(direccionInteresado.toString())) {
@@ -64,6 +70,56 @@ public class InteresadoUtils {
 
 		// retornamos listado con los datos del interesado
 		return resultDataInteresado;
+	}
+
+	/**
+	 * Método que obtiene la información del interesado en un array
+	 *
+	 * @param interesado
+	 *            - {@link InteresadoVO} Datos del interesado
+	 * @return {@link ArrayList} de {@link String} Con los datos del interesado
+	 *         descompuestos en cadenas: Nombre y Apellidos, Identificación y
+	 *         Dirección
+	 */
+	public static List<String> getDatosRepresentanteArray(InteresadoExReg interesado) {
+		// Inicializamos el array
+		List<String> listaCamposRepresentante = new ArrayList<String>();
+
+		// Obtenemos la cadena con el nombre y los apellidos del interesado
+		StringBuffer nombre = getNombreApellidosRepresentante(interesado);
+
+		// si la cadena esta rellenada, se añade al array con los datos del
+		// interesado.
+		if (StringUtils.isNotBlank(nombre.toString())) {
+			listaCamposRepresentante.add(nombre.toString());
+		}else{
+			//sino posee datos de nombre se intenta asignar la razon social
+			if(StringUtils.isNotEmpty(interesado.getRazonSocialRepresentante())){
+				listaCamposRepresentante.add(interesado.getRazonSocialRepresentante());
+			}
+		}
+
+		// Obtenemos la información de la identificación del interesado
+		StringBuffer identificacion = getIdentificacionRepresentante(interesado);
+		// si la cadena esta rellenada, se añade al array con los datos del
+		// interesado.
+		if (StringUtils.isNotEmpty(identificacion.toString())) {
+			listaCamposRepresentante.add(identificacion.toString());
+		}
+
+		// Obtenemos la cadena con la dirección del interesado
+		StringBuffer direccion = new StringBuffer().append(getDireccionRepresentante(interesado));
+
+		// Validamos si la cadena con la dirección esta rellenada
+		if (StringUtils.isNotEmpty(direccion.toString())) {
+			// añadimos los datos de la dirección al array que compone los datos
+			// del interesado
+			addDireccionInteresado(listaCamposRepresentante,
+					direccion.toString());
+		}
+
+		// retornamos listado con los datos del interesado
+		return listaCamposRepresentante;
 	}
 
 	/**
@@ -97,31 +153,78 @@ public class InteresadoUtils {
 	}
 
 	/**
+	 * Método que obtiene la cadena con la información referente a la identificación del interesado
+	 * @param interesado {@link InteresadoVO} Datos del interesado
+	 * @return StringBuffer - cadena con la información referente a la identificación del interesado
+	 */
+	private static StringBuffer getIdentificacionRepresentante(InteresadoVO interesado) {
+		StringBuffer identificacion = new StringBuffer("");
+		//Comprobamos si recibimos el tipo de identificación
+		if (interesado.getTipoDocumentoIdentificacionRepresentante() != null) {
+			//si es asi, añadimos el tipo de identificacion a la cadena resultante
+			identificacion.append(
+					interesado.getTipoDocumentoIdentificacionRepresentante()
+							.getValue());
+		}
+
+		//validamos si esta rellenado el documento identificativo del interesado
+		if (!StringUtils.isEmpty(interesado
+				.getDocumentoIdentificacionRepresentante())) {
+			//comprobamos si la cadena de identificacion contiene datos para añadir el separador
+			if(StringUtils.isNotEmpty(identificacion.toString())){
+				identificacion.append(": ");
+
+			}
+			//añadimos el documento identificativo del interesado a la cadena resultante
+			identificacion.append(
+					interesado.getDocumentoIdentificacionRepresentante());
+		}
+		return identificacion;
+	}
+
+	/**
 	 * Método que obtiene la cadena con el nombre y los apellidos (o en su caso la razón social) del interesado pasado como parámetro
 	 * @param interesado - {@link InteresadoVO} Datos del interesado
 	 * @return StringBuffer - cadena con el nombre y los apellidos (o en su caso la razón social) del interesado
 	 */
 	private static StringBuffer getNombreApellidosInteresado(InteresadoVO interesado) {
-		StringBuffer nombreInteresado = new StringBuffer("");
+		StringBuffer nombreInteresado = new StringBuffer();
 
-		if (interesado.getTipoDocumentoIdentificacionInteresado() != TipoDocumentoIdentificacionEnum.CIF) {
-			if (!StringUtils.isEmpty(interesado.getNombreInteresado())) {
-				nombreInteresado.append(interesado.getNombreInteresado()).append(BLANK);
-			}
-
-			if (!StringUtils.isEmpty(interesado.getPrimerApellidoInteresado())) {
-				nombreInteresado.append(interesado.getPrimerApellidoInteresado()).append(BLANK);
-			}
-
-			if (!StringUtils.isEmpty(interesado.getSegundoApellidoInteresado())) {
-				nombreInteresado.append(interesado.getSegundoApellidoInteresado());
-			}
-
-		} else {
-			if (!StringUtils.isEmpty(interesado.getRazonSocialInteresado())) {
-				nombreInteresado.append(interesado.getRazonSocialInteresado());
-			}
+		if (!StringUtils.isEmpty(interesado.getNombreInteresado())) {
+			nombreInteresado.append(interesado.getNombreInteresado()).append(BLANK);
 		}
+
+		if (!StringUtils.isEmpty(interesado.getPrimerApellidoInteresado())) {
+			nombreInteresado.append(interesado.getPrimerApellidoInteresado()).append(BLANK);
+		}
+
+		if (!StringUtils.isEmpty(interesado.getSegundoApellidoInteresado())) {
+			nombreInteresado.append(interesado.getSegundoApellidoInteresado());
+		}
+
+		return nombreInteresado;
+	}
+
+	/**
+	 * Método que obtiene la cadena con el nombre y los apellidos (o en su caso la razón social) del interesado pasado como parámetro
+	 * @param interesado - {@link InteresadoVO} Datos del interesado
+	 * @return StringBuffer - cadena con el nombre y los apellidos (o en su caso la razón social) del interesado
+	 */
+	private static StringBuffer getNombreApellidosRepresentante(InteresadoVO interesado) {
+		StringBuffer nombreInteresado = new StringBuffer();
+
+		if (!StringUtils.isEmpty(interesado.getNombreRepresentante())) {
+			nombreInteresado.append(interesado.getNombreRepresentante()).append(BLANK);
+		}
+
+		if (!StringUtils.isEmpty(interesado.getPrimerApellidoRepresentante())) {
+			nombreInteresado.append(interesado.getPrimerApellidoRepresentante()).append(BLANK);
+		}
+
+		if (!StringUtils.isEmpty(interesado.getSegundoApellidoRepresentante())) {
+			nombreInteresado.append(interesado.getSegundoApellidoRepresentante());
+		}
+
 		return nombreInteresado;
 	}
 
@@ -220,12 +323,14 @@ public class InteresadoUtils {
 						result, partesDeDireccionSinEspacio,
 						cadenaCompuestaDePartesDireccion);
 			}
-		}
 
+		}
 		//añadimos al listado el ultimo elemento tratado
 		if(StringUtils.isNotEmpty(cadenaCompuestaDePartesDireccion)){
 			result.add(cadenaCompuestaDePartesDireccion);
 		}
+
+
 
 		return result;
 	}
@@ -370,23 +475,106 @@ public class InteresadoUtils {
 	 * @param interesado - {@link InteresadoVO} Datos del interesado
 	 * @return StringBuffer - Dirección del interesado
 	 */
-	private static StringBuffer getDireccionInteresado(InteresadoVO interesado) {
+	public static String getDireccionInteresado(InteresadoExReg interesado) {
 		StringBuffer direccionInteresado = new StringBuffer("");
 		//valida el tipo de direccion, si es postal obtiene la dirección
 		if (interesado.getCanalPreferenteComunicacionInteresado() == CanalNotificacionEnum.DIRECCION_POSTAL) {
-			if (!StringUtils.isEmpty(interesado.getDireccionInteresado())) {
+			if (StringUtils.isNotBlank(interesado.getNombrePaisInteresado())) {
 				direccionInteresado.append(
+						interesado.getNombrePaisInteresado());
+			}
+			if (StringUtils.isNotBlank(interesado.getCodigoProvinciaInteresado())) {
+				direccionInteresado.append(" - ").append(
+						interesado.getNombreProvinciaInteresado());
+			}
+
+			if (StringUtils.isNotBlank(interesado.getNombreMunicipioInteresado())) {
+				direccionInteresado.append(" - ").append(
+						interesado.getNombreMunicipioInteresado());
+			}
+
+			if (StringUtils.isNotBlank(interesado.getCodigoPostalInteresado())) {
+				direccionInteresado.append(" - ").append(
+						interesado.getCodigoPostalInteresado());
+			}
+			if (StringUtils.isNotBlank(interesado.getDireccionInteresado())) {
+				direccionInteresado.append(" - ").append(
 						interesado.getDireccionInteresado());
 			}
-		} else if (interesado.getDireccionElectronicaHabilitadaInteresado() != null) {
+		} else {
 			//sino obtiene el valor de la direccion electrónica habilitada
-			if (!StringUtils.isEmpty(interesado
+			if (StringUtils.isNotBlank(interesado
 					.getDireccionElectronicaHabilitadaInteresado())) {
-				direccionInteresado.append(
+				direccionInteresado.append(" ").append(
 						interesado
 								.getDireccionElectronicaHabilitadaInteresado());
 			}
+			if (StringUtils.isNotBlank(interesado
+					.getCorreoElectronicoInteresado())){
+				direccionInteresado.append(" ").append(
+						interesado
+								.getCorreoElectronicoInteresado());
+			}
+			if (StringUtils.isNotBlank(interesado.getTelefonoInteresado())){
+				direccionInteresado.append(" ").append(
+						interesado
+								.getTelefonoInteresado());
+			}
 		}
-		return direccionInteresado;
+		return direccionInteresado.toString();
+	}
+
+	/**
+	 * Método que obtiene la dirección del representante
+	 * @param interesado - {@link InteresadoVO} Datos del interesado
+	 * @return StringBuffer - Dirección del interesado
+	 */
+	public static String getDireccionRepresentante(InteresadoExReg interesado) {
+		StringBuffer direccionRepresentante = new StringBuffer("");
+		//valida el tipo de direccion, si es postal obtiene la dirección
+		if (interesado.getCanalPreferenteComunicacionRepresentante() == CanalNotificacionEnum.DIRECCION_POSTAL) {
+			if (StringUtils.isNotBlank(interesado.getNombrePaisRepresentante())) {
+				direccionRepresentante.append(
+						interesado.getNombrePaisRepresentante());
+			}
+			if (StringUtils.isNotBlank(interesado.getNombreProvinciaRepresentante())) {
+				direccionRepresentante.append(" - ").append(
+						interesado.getNombreProvinciaRepresentante());
+			}
+
+			if (StringUtils.isNotBlank(interesado.getNombreMunicipioRepresentante())) {
+				direccionRepresentante.append(" - ").append(
+						interesado.getNombreMunicipioRepresentante());
+			}
+
+			if (StringUtils.isNotBlank(interesado.getCodigoPostalRepresentante())) {
+				direccionRepresentante.append(" - ").append(
+						interesado.getCodigoPostalRepresentante());
+			}
+			if (StringUtils.isNotBlank(interesado.getDireccionRepresentante())) {
+				direccionRepresentante.append(" - ").append(
+						interesado.getDireccionRepresentante());
+			}
+		} else {
+			//sino obtiene el valor de la direccion electrónica habilitada
+			if (StringUtils.isNotBlank(interesado
+					.getDireccionElectronicaHabilitadaRepresentante())) {
+				direccionRepresentante.append(" ").append(
+						interesado
+								.getDireccionElectronicaHabilitadaRepresentante());
+			}
+			if (StringUtils.isNotBlank(interesado
+					.getCorreoElectronicoRepresentante())){
+				direccionRepresentante.append(" ").append(
+						interesado
+								.getCorreoElectronicoRepresentante());
+			}
+			if (StringUtils.isNotBlank(interesado.getTelefonoRepresentante())){
+				direccionRepresentante.append(" ").append(
+						interesado
+								.getTelefonoRepresentante());
+			}
+		}
+		return direccionRepresentante.toString();
 	}
 }

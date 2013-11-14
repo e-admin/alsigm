@@ -275,9 +275,9 @@ public class SicresPerfilInformesDatos  extends SicresPerfilInformeImpl implemen
 				logger.debug("Datos de scr_reportperf obtenidos");
 			}
 		} catch (Exception e) {
-			logger.error("Error obteniendo datos de scr_reportperf");
+			logger.error("Error obteniendo datos de scr_reportperf", e);
 			throw new ISicresAdminDAOException(
-					ISicresAdminDAOException.EXC_GENERIC_EXCEPCION, e);
+					ISicresAdminDAOException.SCR_REPORT_PERF_LOAD);
 		}
 
 		return lista;

@@ -16,6 +16,11 @@
 		ORDER BY name ASC
 	</select>
 
+	<select id="getProvinciasCount" resultClass="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM SCR_PROV
+	</select>
+
 	<select id="getProvinciaVO" parameterClass="java.lang.String"
 		resultMap="provincia">
 		SELECT id, name, code

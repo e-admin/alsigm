@@ -28,7 +28,7 @@ public class SicresUserPermisosDatos extends SicresUserPermisosImpl {
 	public SicresUserPermisosDatos(SicresUserPermisosImpl bean) throws Exception {
 		BeanUtils.copyProperties(this, bean);
 	}
-	
+
 	public Integer loadAllValues(DbOutputStatement statement, Integer idx)
 			throws Exception {
 
@@ -90,13 +90,15 @@ public class SicresUserPermisosDatos extends SicresUserPermisosImpl {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Datos de scr_usrperms obtenidos.");
 			}
+		} catch (ISicresRPAdminDAOException iRPADAOException){
+			if(logger.isDebugEnabled()){
+				logger.debug("No se ha encontrado fila en scr_usrperms", iRPADAOException);
+			}
+			throw iRPADAOException;
 		} catch (Exception e) {
-			if(e instanceof ISicresRPAdminDAOException)
-				logger.warn("No se ha encontrado fila en scr_usrperms");
-			else
-				logger.error("Error obteniendo datos de scr_usrperms");
+			logger.error("Error obteniendo datos de scr_usrperms");
 			throw new ISicresRPAdminDAOException(ISicresRPAdminDAOException.EXC_GENERIC_EXCEPCION, e);
-		} 
+		}
 	}
 
 	public void add(DbConnection db) throws ISicresRPAdminDAOException {
@@ -104,12 +106,12 @@ public class SicresUserPermisosDatos extends SicresUserPermisosImpl {
 		DynamicRows rowsInfo = new DynamicRows();
 		DynamicRow rowInfo = new DynamicRow();
 		SicresUserPermisosTabla table = new SicresUserPermisosTabla();
-		
+
 		try {
 			if(logger.isDebugEnabled()) {
 				logger.debug("Añadiendo scr_usrperms...");
 			}
-			
+
 			tableInfo.setTableObject(table);
 			tableInfo.setClassName(table.getClass().getName());
 			tableInfo.setTablesMethod("getTableName");
@@ -156,8 +158,8 @@ public class SicresUserPermisosDatos extends SicresUserPermisosImpl {
 		try {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Actualizando scr_usrperms.");
-			}	
-			
+			}
+
 			tableInfo.setTableObject(table);
 			tableInfo.setClassName(table.getClass().getName());
 			tableInfo.setTablesMethod("getTableName");
@@ -172,7 +174,7 @@ public class SicresUserPermisosDatos extends SicresUserPermisosImpl {
 					tableInfo, rowsInfo);
 			if (logger.isDebugEnabled()) {
 				logger.debug("Actualizado scr_usrperms.");
-			}			
+			}
 		} catch (Exception e) {
 			logger.error("Error actualizando scr_usrperms", e);
 			throw new ISicresRPAdminDAOException(ISicresRPAdminDAOException.SCR_USRPERMS_UPDATE);

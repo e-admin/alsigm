@@ -71,6 +71,8 @@ public class IntercambioRegistralSIRManagerImpl implements
 		InfoReenvioVO infoReenvio = new InfoReenvioVO();
 		infoReenvio.setCodigoEntidadRegistralDestino(nuevoDestino.getCodeEntity());
 		infoReenvio.setDescripcionEntidadRegistralDestino(nuevoDestino.getNameEntity());
+		infoReenvio.setCodigoUnidadTramitacionDestino(nuevoDestino.getCodeTramunit());
+		infoReenvio.setDescripcionUnidadTramitacionDestino(nuevoDestino.getNameTramunit());
 
 		//TODO ¿Código de aplicación? es opcional no se envia
 		//infoReenvio.setAplicacion("app1");

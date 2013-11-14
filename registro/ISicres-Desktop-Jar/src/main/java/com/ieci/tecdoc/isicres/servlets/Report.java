@@ -1,8 +1,3 @@
-/**
- * 
- * @author jcebrien
- * 
- */
 package com.ieci.tecdoc.isicres.servlets;
 
 import java.io.BufferedInputStream;
@@ -45,8 +40,10 @@ import com.ieci.tecdoc.isicres.usecase.reports.ReportsUseCase;
 import es.ieci.tecdoc.fwktd.core.config.web.ContextUtil;
 
 /**
+ * Servlet encargado de obtener el listado de informes
+ *
  * @author jcebrien
- *  
+ *
  */
 public class Report extends HttpServlet implements Keys {
 
@@ -84,7 +81,7 @@ public class Report extends HttpServlet implements Keys {
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Pragma", "no-cache");
         response.setContentType("text/html; charset=UTF-8");
-        
+
         // identificador de archivo de usuario.
         Integer archivePId = RequestUtils.parseRequestParameterAsInteger(request, "ArchivePId ");
         // opción seleccionada.
@@ -101,7 +98,7 @@ public class Report extends HttpServlet implements Keys {
         Integer bookID = (Integer) session.getAttribute(Keys.J_BOOK);
         int enabled = 1;
         PrintWriter writer = response.getWriter();
-        
+
         try {
             // Transformamos el xml mediante la xsl en html.
             // Los errores pueden ser de comunicación, de validación, de transformación, etc...

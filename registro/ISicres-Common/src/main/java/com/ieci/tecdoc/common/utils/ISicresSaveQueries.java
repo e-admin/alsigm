@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.ieci.tecdoc.common.utils;
 
@@ -11,6 +11,7 @@ import net.sf.hibernate.Session;
 import com.ieci.tecdoc.common.AuthenticationUser;
 import com.ieci.tecdoc.common.invesdoc.Idocfdrstat;
 import com.ieci.tecdoc.common.invesicres.ScrAddress;
+import com.ieci.tecdoc.common.invesicres.ScrDistribucionActual;
 import com.ieci.tecdoc.common.invesicres.ScrDistreg;
 import com.ieci.tecdoc.common.invesicres.ScrModifreg;
 import com.ieci.tecdoc.common.invesicres.ScrPageInfo;
@@ -20,7 +21,7 @@ import com.ieci.tecdoc.common.invesicres.ScrUserconfig;
 
 /**
  * @author 66575267
- * 
+ *
  */
 public class ISicresSaveQueries {
 
@@ -60,7 +61,7 @@ public class ISicresSaveQueries {
 
 	public static void saveScrDistreg(Session session, int distributionID,
 			Integer bookID, int fdrid, Date distDate, int typeOrig, int idOrig,
-			int typeDest, int idDest, int state, Date stateDate, String message)
+			int typeDest, int idDest, int state, Date stateDate, String message, int idDistFather)
 			throws HibernateException {
 		ScrDistreg scrDistReg = new ScrDistreg();
 
@@ -75,7 +76,33 @@ public class ISicresSaveQueries {
 		scrDistReg.setState(state);
 		scrDistReg.setStateDate(stateDate);
 		scrDistReg.setMessage(message);
+		//Si esta distribución esta asociada a otra
+		if(idDistFather != 0){
+			scrDistReg.setIddistfather(idDistFather);
+		}
+
 		session.save(scrDistReg);
+	}
+
+	/**
+	 * Método que almacena en BBDD la distribución actual
+	 *
+	 * @param session
+	 *            - Sesión de hibernate
+	 * @param iddist
+	 *            - ID de la distribución
+	 * @param dist_actual
+	 *            - Literal de los nuevos destinos de la distribución
+	 * @throws HibernateException
+	 */
+	public static void saveScrDistribucionActual(Session session, Integer iddist,
+			String dist_actual) throws HibernateException {
+
+		ScrDistribucionActual scrDistribucionActual = new ScrDistribucionActual();
+		scrDistribucionActual.setIddist(iddist);
+		scrDistribucionActual.setDist_actual(dist_actual);
+
+		session.save(scrDistribucionActual);
 	}
 
 	public static void saveScrPageInfo(Session session, Integer bookID,

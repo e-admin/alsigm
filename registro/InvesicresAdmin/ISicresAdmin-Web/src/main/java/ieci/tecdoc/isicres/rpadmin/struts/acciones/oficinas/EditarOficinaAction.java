@@ -45,7 +45,7 @@ public class EditarOficinaAction extends RPAdminWebAction {
 
 			request.setAttribute("tipoOficina", oServicio.obtenerTipoOficinasCombo(entidad));
 			request.setAttribute("entidadRegistral", oServicio.obtenerEntidadesRegistralesCombo(entidad));
-			request.setAttribute("departamento", oServicio.obtenerDepartamentosCombo(true, entidad));
+			request.setAttribute("departamento", oServicio.obtenerDepartamentosCombo(entidad));
 			request.setAttribute("id", id);
 			request.getSession(false).setAttribute("id", id);
 			OficinaForm oficinaForm = (OficinaForm)form;

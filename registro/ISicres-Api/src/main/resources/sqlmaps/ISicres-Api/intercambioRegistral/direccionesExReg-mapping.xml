@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="DireccionesExReg">
+
+	<typeAlias alias="provinciaExReg"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.ProvinciaExReg" />
+
+	<typeAlias alias="ciudadExReg"
+		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.CiudadExReg" />
+
+	<resultMap class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.ProvinciaExReg"
+		id="provinciaExRegResultMap">
+		<result property="id" column="id" />
+		<result property="codigo" column="code" />
+		<result property="nombre" column="name" />
+		<result property="idProvinciaSicres" column="id_prov" />
+	</resultMap>
+
+	<resultMap class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.CiudadExReg"
+		id="ciudadExRegResultMap">
+		<result property="id" column="id" />
+		<result property="codigo" column="code" />
+		<result property="nombre" column="name" />
+		<result property="idCiudadSicres" column="id_city" />
+	</resultMap>
+
+	<resultMap class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.PaisExReg"
+		id="paisExRegResultMap">
+		<result property="id" column="id" />
+		<result property="codigo" column="code" />
+		<result property="nombre" column="name" />
+		<result property="idPaisSicres" column="id_country" />
+	</resultMap>
+
+</sqlMap>

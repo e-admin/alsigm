@@ -3,9 +3,13 @@ package es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo;
 import java.util.Date;
 import java.util.List;
 
+import es.ieci.tecdoc.fwktd.sir.core.types.TipoRegistroEnum;
+
 public class InfoRegistroVO {
 
 	 protected Long idLibro;
+	 protected TipoRegistroEnum tipoRegistro;
+
 	 protected Long idRegistro;
 	 protected String codigoAsunto;
 	 protected String descripcionAsunto;
@@ -22,6 +26,7 @@ public class InfoRegistroVO {
 	 protected String observacionesApunte;
 	 protected String resumen;
 	 protected String tipoTransporte;
+	 protected String codigoTransporteSIR;
 	 protected Integer docFisicaRequerida;
 	 protected Integer docFisicaComplementaria;
 	 protected Integer sinDocFisica;
@@ -203,6 +208,19 @@ public class InfoRegistroVO {
 			UnidadTramitacionIntercambioRegistralVO unidadTramitacionOrigen) {
 		this.unidadTramitacionOrigen = unidadTramitacionOrigen;
 	}
+	public String getCodigoTransporteSIR() {
+		return codigoTransporteSIR;
+	}
+	public void setCodigoTransporteSIR(String codigoTransporteSIR) {
+		this.codigoTransporteSIR = codigoTransporteSIR;
+	}
+	public TipoRegistroEnum getTipoRegistro() {
+		return tipoRegistro;
+	}
+	public void setTipoRegistro(TipoRegistroEnum tipoRegistro) {
+		this.tipoRegistro = tipoRegistro;
+	}
+
 
 
 

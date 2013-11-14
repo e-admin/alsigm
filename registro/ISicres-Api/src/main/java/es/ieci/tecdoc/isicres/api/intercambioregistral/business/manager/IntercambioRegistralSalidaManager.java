@@ -2,7 +2,11 @@ package es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager;
 
 import java.util.List;
 
+import es.ieci.tecdoc.fwktd.server.pagination.PageInfo;
+import es.ieci.tecdoc.fwktd.server.pagination.PaginatedArrayList;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.BandejaSalidaItemVO;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.CriteriosBusquedaIRSalidaVO;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaEnumVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.IntercambioRegistralSalidaVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.UnidadTramitacionIntercambioRegistralVO;
@@ -47,7 +51,7 @@ public interface IntercambioRegistralSalidaManager {
 	public void toIntercambioRegistralManual(List<String> idRegistros, String idLibro, String idOfic,String tipoOrigen, String user);
 
 
-	
+
 	/**
 	 * Envía el registro <code>idRegistro</code> del libro <code>idLibro</code> al destino <code>unidadDestino</code>
 	 * @param idLibro
@@ -148,4 +152,24 @@ public interface IntercambioRegistralSalidaManager {
 	 * @param idOficina
 	 */
 	public List<IntercambioRegistralSalidaVO> getHistorialIntercambioRegistralSalida(String idLibro, String idRegistro, String idOficina);
+
+	/**
+	 * Busca un listado de asientos registrales a partir del estado y unos criterios de búsqueda
+	 *
+	 * @param estado
+	 * @param criterios
+	 * @return {{@link List} - Listado de objetos BandejaSalidaItemVO
+	 */
+	public List<BandejaSalidaItemVO> findBandejaSalidaByCriterios(EstadoIntercambioRegistralSalidaEnumVO estado, CriteriosBusquedaIRSalidaVO criterios, Integer idLibro);
+
+	/**
+	 * Busca un listado paginado de asientos registrales a partir del estado y unos criterios de búsqueda
+	 *
+	 * @param estado
+	 * @param criterios
+	 * @param pageInfo
+	 * @return {{@link PaginatedArrayList} - Listado de objetos BandejaSalidaItemVO
+	 */
+	public PaginatedArrayList<BandejaSalidaItemVO> findBandejaSalidaByCriterios(EstadoIntercambioRegistralSalidaEnumVO estado, CriteriosBusquedaIRSalidaVO criterios, Integer idLibro, PageInfo pageInfo);
+
 }

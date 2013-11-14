@@ -112,7 +112,7 @@ function OverArchive(obj)
    {
       if (item != null){
          if (lastSelected != ""){
-         	UnChangeBookImg(document.getElementById(lastSelected));
+		UnChangeBookImg(document.getElementById(lastSelected));
 			document.getElementById(lastSelected).style.color = top.g_color2;
 			document.getElementById(lastSelected).style.fontWeight = "normal";
          }
@@ -125,9 +125,9 @@ function OverArchive(obj)
 
    function ChangeBookImg(obj)
    {
-   		var fila = obj.parentNode;
+		var fila = obj.parentNode;
 
-   		for (i = 0; i < fila.childNodes.length; i++) {
+		for (i = 0; i < fila.childNodes.length; i++) {
 			var nodo = fila.childNodes[i];
 			if (nodo == obj){
 				if ( fila.childNodes[i-1].src.indexOf(getNameImgBookOpen(fila.childNodes[i-1].bookType)) != -1 ){
@@ -143,9 +143,9 @@ function OverArchive(obj)
 
    function UnChangeBookImg(obj)
    {
-   		var fila = obj.parentNode;
+		var fila = obj.parentNode;
 
-   		for (i = 0; i < fila.childNodes.length; i++) {
+		for (i = 0; i < fila.childNodes.length; i++) {
 			var nodo = fila.childNodes[i];
 			if (nodo == obj){
 				if ( fila.childNodes[i-1].src.indexOf(getNameImgBookSelected(fila.childNodes[i-1].bookType)) != -1 ){

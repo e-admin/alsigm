@@ -20,7 +20,14 @@
 	<bean id="reportsDAO"
 		class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.ReportsDAOImpl"></bean>
 
+	<bean id="departamentoDAO"
+		class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.DepartamentoLegacyDAOImpl"></bean>
 
+	<bean id="grupoUsuarioDAO"
+		class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.GrupoUsuarioLegacyDAOImpl"></bean>
+
+	<bean id="usuarioDAO"
+		class="es.ieci.tecdoc.isicres.api.business.dao.legacy.impl.UsuarioLegacyDAOImpl"></bean>
 
 
 

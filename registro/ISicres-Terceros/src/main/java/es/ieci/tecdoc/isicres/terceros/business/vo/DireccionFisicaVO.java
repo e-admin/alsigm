@@ -1,5 +1,6 @@
 package es.ieci.tecdoc.isicres.terceros.business.vo;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import org.apache.commons.lang.StringUtils;
@@ -18,11 +19,13 @@ public class DireccionFisicaVO extends BaseDireccionVO {
 	/**
 	 * Nombre de la ciudad asociada a la dirección.
 	 */
+	@Valid
 	protected CiudadVO ciudad;
 
 	/**
 	 * Nombre de la provincia asociada a la dirección.
 	 */
+	@Valid
 	protected ProvinciaVO provincia;
 
 	/**

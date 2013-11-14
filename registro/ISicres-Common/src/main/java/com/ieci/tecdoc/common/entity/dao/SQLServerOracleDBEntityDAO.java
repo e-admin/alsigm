@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.ieci.tecdoc.common.utils.BBDDUtils;
@@ -581,6 +582,44 @@ public class SQLServerOracleDBEntityDAO extends AbstractDBEntityDAO {
 					+ "SF WHERE " + where;
 		}
 		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getTemporalTableDistributionQuerySentenceOrderBy(String,
+	 *      Integer, String, int)
+	 */
+	public String getTemporalTableDistributionQuerySentenceOrderBy(String tableName,
+			Integer bookId, String where, String regWhere, boolean isCreateTable,  boolean isInBook, String language) {
+
+		StringBuffer result = new StringBuffer();
+
+		//verificamos si el proceso es para crear la tabla o para añadirle más datos
+		if (isCreateTable) {
+			result.append("CREATE VIEW ").append(tableName).append(" ");
+			result.append(getFieldsTableTemporalDistributionOrderBy());
+			result.append(" AS ");
+		} else {
+			result.append(" UNION ");
+		}
+		//obtenemos la consulta a realizar según el tipo de libro y el id del libro
+		result.append(createQueryForTableTemporalDistributionOrderBy(bookId, isInBook, language));
+
+		if(StringUtils.isNotBlank(where)){
+			result.append(" AND ").append(where);
+		}
+
+		// Se concatena al criterio de búsqueda, el criterio de búsqueda por
+		// campos por del registro
+		if(StringUtils.isNotBlank(regWhere)){
+			if(StringUtils.isNotBlank(where)){
+				result.append(" AND ");
+			}
+			result.append(regWhere);
+		}
+
+		return result.toString();
 	}
 
 	/*

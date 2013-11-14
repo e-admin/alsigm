@@ -5,6 +5,7 @@
 
 <sqlMap namespace="IntercambioRegistralEntradaVO">
 
+
 	<insert  id="addIntercambioRegistralEntradaVO"  parameterClass="intercambioRegistralEntradaVO" >
 		INSERT INTO SCR_EXREG_IN (
 			ID,
@@ -26,13 +27,13 @@
 			COMMENTS
 	    )
 		VALUES (
-			#id:INT#,
-		    #idLibro:INT#,
-			#idRegistro:INT#,
-			#idOfic:INT#,
-			#idIntercambioInterno:INT#,
+			#id:NUMERIC#,
+		    #idLibro:NUMERIC#,
+			#idRegistro:NUMERIC#,
+			#idOfic:NUMERIC#,
+			#idIntercambioInterno:NUMERIC#,
 			#idIntercambioRegistral:VARCHAR#,
-			#idEstado:INT#,
+			#idEstado:NUMERIC#,
 			#fechaEstado:TIMESTAMP#,
 			#fechaIntercambio:TIMESTAMP#,
 			#username:VARCHAR#,
@@ -49,7 +50,7 @@
 	<update id="updateIntercambioRegistralEntradaVO"  parameterClass="intercambioRegistralEntradaVO">
 		UPDATE SCR_EXREG_IN
 		SET
-			STATE=#idEstado:INT#,
+			STATE=#idEstado:NUMERIC#,
 			STATE_DATE=#fechaEstado:DATE#
 		WHERE
 			ID=#id#
@@ -58,40 +59,91 @@
 	<delete id="deleteIntercambioRegistralEntradaVO"
 			parameterClass="intercambioRegistralEntradaVO">
 		DELETE
-		FROM SCR_EXREG_IN where ID=#id:INT#
+		FROM SCR_EXREG_IN where ID=#id:NUMERIC#
 	</delete>
 
 	<delete id="deleteIntercambioRegistralEntradaByIdArchIdFolderVO"
 			parameterClass="java.util.HashMap">
 		DELETE
-		FROM SCR_EXREG_IN where ID_ARCH=#idArch:INT# and ID_FDR=#idFdr:INT#
+		FROM SCR_EXREG_IN where ID_ARCH=#idArch:NUMERIC# and ID_FDR=#idFdr:NUMERIC#
 	</delete>
 
 	<select id="getBandejaEntradaByEstado" parameterClass="java.util.HashMap"  resultMap="bandejaEntradaItemResultmap">
 	select * from SCR_EXREG_IN
-	where STATE=#estado:INT# and ID_OFIC=#idOfic:INT#
+	where STATE=#estado:NUMERIC# and ID_OFIC=#idOfic:NUMERIC#
 	</select>
 
 	<select id="getIntercambioRegistralEntradaById" parameterClass="java.lang.Long"  resultMap="intercambioRegistralEntradaResultMap">
 	select * from SCR_EXREG_IN where id=#value#
 	</select>
 
+
+	<!-- Consulta para obtener el intercambio por id_exchange_sir, id_ofic-->
+	<select id="getIntercambioRegistralEntradaByIdIntercambioRegistralSirOfi" parameterClass="java.util.HashMap"  resultMap="intercambioRegistralEntradaResultMap">
+		select * from SCR_EXREG_IN
+		where ID_EXCHANGE_SIR=#idIntercambioRegistralSir:VARCHAR#
+		   and ID_OFIC=#idOficina:NUMERIC#
+	</select>
+
+	<!-- Consulta para obtener el intercambio por id_arch, id_fdr, id_ofic y state aceptado -->
+	<select id="getIntercambioRegistralEntradaByRegistro" parameterClass="java.util.HashMap"  resultMap="intercambioRegistralEntradaResultMap">
+		select * from SCR_EXREG_IN
+		where ID_FDR=#idRegistro:NUMERIC#
+		   and ID_ARCH=#idLibro:NUMERIC#
+		   and STATE=#estado:NUMERIC#
+	</select>
+
 	<select id="getBandejaEntradaByRegistro" parameterClass="intercambioRegistralEntradaVO"  resultMap="intercambioRegistralEntradaResultMap">
 		select *
-		  from SCR_EXREG_IN
-		 where ID_FDR=#idRegistro:INT#
-		   and ID_ARCH=#idLibro:INT#
-		   and ID_OFIC=#idOfic:INT#
+			from SCR_EXREG_IN
+			where ID_FDR=#idRegistro:NUMERIC#
+			and ID_ARCH=#idLibro:NUMERIC#
+			<isNotNull prepend="and" property="idOfic">
+				ID_OFIC=#idOfic:NUMERIC#
+			</isNotNull>
 	</select>
 
 
 	<select id="getBandejaEntradaItemRegistro" parameterClass="bandejaEntradaItemVO"  resultMap="bandejaEntradaItemRegistroResultmap">
 	select libro.fld1 as fld1, libro.fld2 as fld2, libro.fld7 as fld7
 	 from a$idLibro$sf libro
-	where libro.fdrid=#idRegistro:INT#
+	where libro.fdrid=#idRegistro:NUMERIC#
 	</select>
 
+	<sql id="findIntercambiosRegistrales_fragment">
+		<dynamic>
+			<iterate prepend="AND" property="criterios" conjunction="AND">
+				<isEqual property="criterios[].operador.value" compareValue="like">
+					$criterios[].nombre.value$ LIKE '%$criterios[].valor$%'
+				</isEqual>
+				<isNotEqual property="criterios[].operador.value" compareValue="like">
+					<isEqual property="criterios[].operador.value" compareValue="in">
+						$criterios[].nombre.value$
+						<iterate prepend="IN" property="criterios[].valor" open="(" close=")" conjunction=",">
+							#criterios[].valor[]#
+						</iterate>
+					</isEqual>
+					<isNotEqual property="criterios[].operador.value" compareValue="in">
+						$criterios[].nombre.value$ $criterios[].operador.value$ #criterios[].valor#
+					</isNotEqual>
+				</isNotEqual>
+			</iterate>
+		</dynamic>
+	</sql>
 
+	<select id="findIntercambiosRegistrales" parameterClass="java.util.HashMap" resultMap="bandejaEntradaItemResultmap">
+		SELECT * FROM SCR_EXREG_IN
+		WHERE state = #estado:NUMERIC#
+		<include refid="findIntercambiosRegistrales_fragment"/>
+		<iterate prepend="ORDER BY" property="orden" conjunction=",">
+			$orden[].value$
+		</iterate>
+	</select>
 
+	<select id="countFindIntercambiosRegistrales" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT COUNT(*) FROM SCR_EXREG_IN
+		WHERE state = #estado:NUMERIC#
+		<include refid="findIntercambiosRegistrales_fragment"/>
+	</select>
 
 </sqlMap>

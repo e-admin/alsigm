@@ -42,6 +42,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.ieci.tecdoc.common.entity.dao.DBEntityDAOFactory;
+import com.ieci.tecdoc.common.exception.ValidationException;
 import com.ieci.tecdoc.common.invesicres.ScrRegstate;
 import com.ieci.tecdoc.common.invesicres.ScrReport;
 import com.ieci.tecdoc.common.isicres.AxSf;
@@ -70,9 +71,9 @@ import es.ieci.tecdoc.isicres.api.business.vo.enums.TipoLibroEnum;
 import es.ieci.tecdoc.isicres.api.business.vo.enums.TipoPlantillaInformeEnum;
 
 /**
- * 
+ *
  * @author IECISA
- * 
+ *
  */
 public class ReportManagerImpl implements ReportManager {
 
@@ -155,13 +156,13 @@ public class ReportManagerImpl implements ReportManager {
 	 * <ul>
 	 * <li></li>
 	 * </ul>
-	 * 
+	 *
 	 * @param usuario
 	 *            usuario autenticado
 	 * @param identificadorRegistro
 	 * @param bookType
 	 * @param reportId
-	 * 
+	 *
 	 */
 	private void checkPrerrequisites(UsuarioVO usuario,
 			IdentificadorRegistroVO identificadorRegistro,
@@ -230,7 +231,7 @@ public class ReportManagerImpl implements ReportManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param usuario
 	 *            usuario autenticado
 	 * @param identificadorRegistro
@@ -295,10 +296,10 @@ public class ReportManagerImpl implements ReportManager {
 	 * datos <code>reportData</code> y los devuelve como
 	 * <code>InputStream</code> envueltos en una instancia de
 	 * <code>ReportObjects</code>.
-	 * 
+	 *
 	 * @see ReportObjects
 	 * @see ZipInputStream
-	 * 
+	 *
 	 * @param reportData
 	 * @return
 	 * @throws IOException
@@ -344,7 +345,7 @@ public class ReportManagerImpl implements ReportManager {
 	 * la propiedad del sistema <i>java.io.tmpdir</i>. Será usado para la
 	 * creación de ficheros temporales necesarios para la generación del
 	 * informe.
-	 * 
+	 *
 	 * @return
 	 */
 	private File createTemporaryDirectory() {
@@ -360,7 +361,7 @@ public class ReportManagerImpl implements ReportManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param usuario
 	 *            usuario autenticado
 	 * @param reportObjects
@@ -380,9 +381,11 @@ public class ReportManagerImpl implements ReportManager {
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+		UseCaseConf useCaseConf = null;
+		ReportResult reportResult = null;
 		try {
 
-			UseCaseConf useCaseConf = new UseCaseConf();
+			useCaseConf = new UseCaseConf();
 			useCaseConf.setSessionID(usuario.getConfiguracionUsuario()
 					.getSessionID());
 			useCaseConf.setEntidadId(ISicresKeys.IS_INVESICRES);
@@ -400,11 +403,11 @@ public class ReportManagerImpl implements ReportManager {
 			// certificados, ya sea de libros de entrada o de salida.
 			// Determinados parámetros toman valores constantes para replicar el
 			// escenario de uso.
-			ReportResult reportResult = ReportsSession
+			reportResult = ReportsSession
 					.getOptionAQuery(
 							usuario.getConfiguracionUsuario().getSessionID(),
 							Integer.valueOf(identificadorRegistro.getIdLibro()),
-							Arrays.asList(new Integer[] {}),
+							Arrays.asList(new Integer[] {Integer.valueOf(identificadorRegistro.getIdRegistro())}),
 							opcion,
 							Integer
 									.valueOf(Configurator
@@ -447,7 +450,25 @@ public class ReportManagerImpl implements ReportManager {
 			try {
 				baos.flush();
 				baos.close();
+				if (reportResult != null) {
+					ReportsSession.dropTable(usuario.getConfiguracionUsuario()
+							.getSessionID(), reportResult,
+							ISicresKeys.IS_INVESICRES);
+				}
 			} catch (IOException e) {
+				if(logger.isDebugEnabled()){
+					logger.debug(e);
+				}
+				logger.warn("No se ha podido el stream de generacion del PDF");
+			} catch (com.ieci.tecdoc.common.exception.ReportException e) {
+				if(logger.isDebugEnabled()){
+					logger.debug(e);
+				}
+				logger.warn("No se ha podido el stream de generacion del PDF");
+			} catch (ValidationException e) {
+				if(logger.isDebugEnabled()){
+					logger.debug(e);
+				}
 				logger.warn("No se ha podido el stream de generacion del PDF");
 			}
 
@@ -456,7 +477,7 @@ public class ReportManagerImpl implements ReportManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param reportObjects
 	 * @param tempDir
 	 * @param processReportTemplate
@@ -503,7 +524,7 @@ public class ReportManagerImpl implements ReportManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param reportResult
 	 * @param typeUnit
 	 * @param sourceXmlReport

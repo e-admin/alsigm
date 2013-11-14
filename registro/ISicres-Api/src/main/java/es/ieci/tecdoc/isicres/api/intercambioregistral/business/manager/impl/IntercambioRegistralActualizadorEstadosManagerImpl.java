@@ -1,6 +1,7 @@
 package es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.impl;
 
 import java.util.Date;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import es.ieci.tecdoc.fwktd.sir.core.vo.EstadoAsientoRegistraVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.IntercambioRegistralActualizadorEstadosManager;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.IntercambioRegistralSIRManager;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.IntercambioRegistralSalidaManager;
+
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaEnumVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.IntercambioRegistralSalidaVO;
@@ -39,6 +41,7 @@ public class IntercambioRegistralActualizadorEstadosManagerImpl implements
 				.getIntercambiosRegistralesSalida(
 						EstadoIntercambioRegistralSalidaEnumVO.ENVIADO
 								.getValue());
+
 		if (intercambiosPendientes != null) {
 			for (IntercambioRegistralSalidaVO intercambioRegistralSalidaVO : intercambiosPendientes) {
 				
@@ -60,10 +63,13 @@ public class IntercambioRegistralActualizadorEstadosManagerImpl implements
 						
 						
 						
-						//actuamos en caso de que el estado sea distinto de enviado a enviado y ack
+						//actuamos en caso de que el estado sea distinto de enviado a enviado y ack y enviado error
+						// para sicres estos estados equivalen a nuestro estado Enviado en global
 						if (estadoEnum != null
 								&& estadoEnum != EstadoAsientoRegistralEnum.ENVIADO
-								&& estadoEnum != EstadoAsientoRegistralEnum.ENVIADO_Y_ACK) {
+								&& estadoEnum != EstadoAsientoRegistralEnum.ENVIADO_Y_ACK
+								&& estadoEnum != EstadoAsientoRegistralEnum.ENVIADO_Y_ERROR
+								&& estadoEnum != EstadoAsientoRegistralEnum.DEVUELTO) {
 
 							EstadoIntercambioRegistralSalidaVO nuevoEstadoSalida = null ; 
 							if (estado != null) {
@@ -84,17 +90,19 @@ public class IntercambioRegistralActualizadorEstadosManagerImpl implements
 								
 							}
 							
+							if (nuevoEstadoSalida.getEstado()!=null){
+								getIntercambioRegistralSalidaManager()
+										.updateEstado(intercambioRegistralSalidaVO,
+												nuevoEstadoSalida);
 
-							getIntercambioRegistralSalidaManager()
-									.updateEstado(intercambioRegistralSalidaVO,
-											nuevoEstadoSalida);
-							if (logger.isDebugEnabled()) {
-								logger
-										.debug("Actualizado el estado del intercambio registral "
-												+ intercambioRegistralSalidaVO
-														.getIdIntercambioInterno()
-												+ " al estado "
-												+ estado.getEstado().getName());
+								if (logger.isDebugEnabled()) {
+									logger
+											.debug("Actualizado el estado del intercambio registral "
+													+ intercambioRegistralSalidaVO
+															.getIdIntercambioInterno()
+													+ " al estado "
+													+ estado.getEstado().getName());
+								}
 							}
 						}
 					} catch (Exception e) {

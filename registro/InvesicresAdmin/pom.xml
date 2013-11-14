@@ -4,7 +4,7 @@
 	<artifactId>InvesSicresAdmin</artifactId>
 	<packaging>pom</packaging>
 	<name>InvesSicresAdmin</name>
-	<version>8.0.1</version>
+	<version>8.0.5-M1</version>
 	<inceptionYear>2009</inceptionYear>
 	<description>Producto InvesSicres</description>
 	<issueManagement>
@@ -19,7 +19,7 @@
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<jdk.version>1.5</jdk.version>
 		<fwktd.version>0.7</fwktd.version>
-		<fwktd.dir3.version>1.0</fwktd.dir3.version>
+		<fwktd.dir3.version>1.0.3</fwktd.dir3.version>
 		<spring.version>3.0.2.RELEASE</spring.version>
 		<struts.version>1.2.9</struts.version>
 		<log4j.version>1.2.12</log4j.version>
@@ -57,6 +57,7 @@
 				<configuration>
 					<downloadSources>false</downloadSources>
 					<downloadJavadocs>false</downloadJavadocs>
+					<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -134,24 +135,22 @@
 				<module>ISicresAdmin-ConfigLocation</module>
 				<module>ISicresAdmin-Web</module>
 
-				<!-- documentacion -->
-				<module>ISicresAdmin-documentation</module>
-
 			</modules>
 
 
 		</profile>
 	</profiles>
-  <distributionManagement>
-    <repository>
+
+	<distributionManagement>
+		<repository>
       <id>releases</id>
       <name>Repositorio de releases</name>
       <url>http://devel.uji.es/nexus/content/repositories/releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshots</id>
-      <name>Repositorio de snapshots</name>
+		</repository>
+		<snapshotRepository>
+		<id>snapshots</id>
+	<name>Repositorio de snapshots</name>
       <url>http://devel.uji.es/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
+		</snapshotRepository>
+	</distributionManagement>
 </project>

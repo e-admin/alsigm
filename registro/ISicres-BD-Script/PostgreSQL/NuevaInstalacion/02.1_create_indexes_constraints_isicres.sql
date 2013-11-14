@@ -498,9 +498,12 @@ ALTER TABLE ONLY scr_cities
 
 --TABLA SCR_PAGETYPE
 ALTER TABLE ONLY scr_pagetype
-    ADD CONSTRAINT pk_scr_pagetype PRIMARY KEY (id);    
-    
+    ADD CONSTRAINT pk_scr_pagetype PRIMARY KEY (id);
+
 --TABLA SCR_PAGEREPOSITORY
 ALTER TABLE ONLY scr_pagerepository
     ADD CONSTRAINT fk_pagerepository0 FOREIGN KEY (id_pagetype) REFERENCES scr_pagetype(id);
-    
+
+-- TABLA SCR_DISTRIBUCION_ACTAL
+ALTER TABLE scr_distribucion_actual
+  ADD CONSTRAINT pk_scr_distribucion_actual PRIMARY KEY (id_dist);

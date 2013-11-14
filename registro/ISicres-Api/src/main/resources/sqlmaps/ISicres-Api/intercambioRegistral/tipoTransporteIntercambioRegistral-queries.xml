@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TipoTransporteIntercambioRegistralVO">
+
+	<select id="getTipoTransporteByDesc" resultMap="tipoTransporteIntercambioRegistralVOResultMap" parameterClass="java.lang.String">
+		select * from scr_ttexreg where name=#value:VARCHAR#
+	</select>
+
+	<select id="getTipoTransporteByDescLanguages" resultMap="tipoTransporteIntercambioRegistralVOResultMap" parameterClass="java.lang.String">
+		select * from scr_ttexreg where scr_ttexreg.id_scr_tt IN (select scr_ttlang.id from scr_ttlang where scr_ttlang.name=#value:VARCHAR#)
+	</select>
+
+	<select id="getTipoTransporteByCodigo" resultMap="tipoTransporteIntercambioRegistralVOResultMap" parameterClass="java.lang.String">
+		select * from scr_ttexreg where code=#value:VARCHAR#
+	</select>
+
+	<select id="getCountTipoTransporteByCodigo" resultClass="java.lang.Integer" parameterClass="java.lang.String">
+		select count(*)
+		  from scr_ttexreg
+		 where code=#value:VARCHAR#
+	</select>
+
+
+	<select id="getTipoTransporteByCodigoAndIDScrTT" resultMap="tipoTransporteIntercambioRegistralVOResultMap" parameterClass="java.util.HashMap">
+		select *
+		  from scr_ttexreg
+		 where code=#codigo:VARCHAR#
+		   and id_scr_tt=#idScrTT:NUMERIC#
+	</select>
+
+
+	<select id="getTipoTransporteByIdTipoTransporteSicres" resultMap="tipoTransporteIntercambioRegistralVOResultMap" parameterClass="java.lang.Integer">
+		select * from scr_ttexreg where id_scr_tt=#value:NUMERIC#
+	</select>
+
+	<insert id="save" parameterClass="TipoTransporteIntercambioRegistralVO">
+		INSERT INTO scr_ttexreg (id, code, name, id_scr_tt) VALUES (#id:NUMERIC#,#codigoSIR:VARCHAR#,#descripcion:VARCHAR#,#idTipoTransporte:NUMERIC#)
+	</insert>
+
+	<update id="updateByIdTipoTransporte" parameterClass="TipoTransporteIntercambioRegistralVO">
+		UPDATE scr_ttexreg SET code=#codigoSIR:VARCHAR#, name=#descripcion:VARCHAR# where id_scr_tt=#idTipoTransporte:NUMERIC#
+	</update>
+
+	<delete id="deleteByDesc" parameterClass="java.lang.String">
+		DELETE FROM scr_ttexreg WHERE name=#value:VARCHAR#
+	</delete>
+
+	<delete id="delete" parameterClass="java.lang.Long">
+		DELETE FROM scr_ttexreg WHERE id=#value:NUMERIC#
+	</delete>
+
+</sqlMap>

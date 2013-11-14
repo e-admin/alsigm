@@ -53,6 +53,20 @@
 			<td><html:text property="transport" styleClass="textInput"
 				maxlength="31" /></td>
 		</tr>
+		<logic:equal value="true" scope="session" name="enabledIntercambioRegistral">
+			<tr class="col">
+				<td class="txt">
+					<bean:message key="ieci.tecdoc.sgm.rpadmin.transportes.codigo.sir" />
+				</td>
+				<td>
+					<html:select property="codigoIntercambioRegistral">
+						<html:option value=""></html:option>
+						<html:optionsCollection property="listaTiposTransportesIR" label="name" value="value"/>
+					</html:select>
+				</td>
+
+			</tr>
+		</logic:equal>
 		<tr>
 			<td height="100%" colspan="4"></td>
 		</tr>

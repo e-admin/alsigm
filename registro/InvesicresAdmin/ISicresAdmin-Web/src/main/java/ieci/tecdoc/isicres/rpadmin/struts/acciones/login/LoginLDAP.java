@@ -76,8 +76,8 @@ public class LoginLDAP{
 		CacheBag cacheBag = CacheFactory.getCacheInterface().getCacheEntry(useCaseConf.getSessionID());
 		ISicresGenPerms genPerms = (ISicresGenPerms) cacheBag.get(ServerKeys.GENPERMS_USER);
 
-		//comprobamos si es superusuario
-		if(superUser){
+		//comprobamos si es superusuario o tiene algun permiso de administración
+		if((superUser) || (valiteAnyPermsAccessAdmin(genPerms))){
 			// Una vez validado el usuario se introduce en la sesiÃ³n diversos parametros.
 			LoginAction.saveSessionData(request, useCaseConf, superUser,genPerms);
 		}else{
@@ -92,7 +92,7 @@ public class LoginLDAP{
 			String dnCompUserLdapAdmin = LITERAL_CN_EQUAL + userLdapAdmin + COMA + dnUserLdapAdmin;
 
 			if (StringUtils.equals(name, userLdapAdmin)
-					&& (StringUtils.equals(attributesUser.getDn(),
+					&& (StringUtils.equalsIgnoreCase(attributesUser.getDn(),
 							dnCompUserLdapAdmin))) {
 				// Modificamos el perfil del usuario, ya que por configuracion se indica que es administrador de registro
 				setProfileAdminToUser(useCaseConf, attributesUser);
@@ -112,6 +112,24 @@ public class LoginLDAP{
 				throw new SecurityException(SecurityException.ERROR_USER_APLICATION);
 			}
 		}
+	}
+
+	/**
+	 * Función que valida si el usuario tiene alguno de los permisos para acceder a administración
+	 *
+	 * @param genPerms - Permisos del usuario
+	 * @return boolean - true: tiene algún permiso para acceder / false: no tiene ningún permiso de acceso
+	 */
+	private boolean valiteAnyPermsAccessAdmin(ISicresGenPerms genPerms){
+		boolean result = false;
+		if (genPerms.getCanModifyAdminUnits()
+				|| genPerms.getCanModifyIssueTypes()
+				|| genPerms.getCanModifyReports()
+				|| genPerms.getCanModifyTransportTypes()
+				|| genPerms.getCanModifyUsers()){
+			result = true;
+		}
+		return result;
 	}
 
 	/**

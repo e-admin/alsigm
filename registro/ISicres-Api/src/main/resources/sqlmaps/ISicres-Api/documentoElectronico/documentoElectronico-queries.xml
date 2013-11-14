@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	"http://www.ibatis.com/dtd/sql-map-2.dtd">
-	
+
 <sqlMap namespace="DocumentoElectronicoAnexoVO">
-		
+
 		<!-- consulta que inserta datos en la tabla SCR_ATTACHMENT -->
-	<insert  id="addAttachment"  parameterClass="documentoElectronicoAnexoVO" >	
+	<insert  id="addAttachment"  parameterClass="documentoElectronicoAnexoVO" >
 		INSERT INTO SCR_ATTACHMENT (
 			ID,
 			BOOKID,
@@ -18,19 +18,19 @@
 			CODE_NAME,
 			VALIDITY_TYPE,
 			DOCUMENT_TYPE
-	    ) 
+	    )
 		VALUES (
-			#id.id:INT#,
-		    #id.idLibro:INT#,
-			#id.idRegistro:INT#,
-			#id.idPagina:INT#,
+			#id.id:NUMERIC#,
+		    #id.idLibro:NUMERIC#,
+			#id.idRegistro:NUMERIC#,
+			#id.idPagina:NUMERIC#,
 			#comentario:VARCHAR#,
 			#mimeType:VARCHAR#,
 			#name:VARCHAR#,
 			#codeName:VARCHAR#,
 			#tipoValidez#,
 			#tipoDocumentoAnexo#
-			
+
 		)
 	</insert>
 	 <!-- obtiene los datos del documentoElectronicoAnexo de las tablas  SCR_ATTACHMENT y SCR_ATTACHMENT_SIGN_INFO-->
@@ -46,12 +46,12 @@
 			SIGNINFO.ocsp_validation,
 			SIGNINFO.hash,
 			SIGNINFO.hash_alg,
-			SIGNINFO.id_attachment_signed 
+			SIGNINFO.id_attachment_signed
 		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
-		WHERE ATTACH.ID =#id:INT# AND 
+		WHERE ATTACH.ID =#id:NUMERIC# AND
 			  ATTACH.ID=SIGNINFO.ID_ATTACHMENT
 	</select>
-	
+
 	<!-- obtiene los datos del documentoElectronicoAnexo de las tablas  SCR_ATTACHMENT y SCR_ATTACHMENT_SIGN_INFO a partir de idLibro, idRegistro y idPagina -->
 	<select id="getAttachmentByIdIdDocumentoElectronicoAnexo" parameterClass="es.ieci.tecdoc.isicres.api.documento.electronico.business.vo.IdentificadorDocumentoElectronicoAnexoVO"  resultMap="documentoElectronicoAnexo">
 		SELECT ATTACH.*,
@@ -72,9 +72,9 @@
 			  ATTACH.FOLDERID=#idRegistro# AND
 			  ATTACH.PAGEID=#idPagina#
 	</select>
-	
-	
-	
+
+
+
 	<select id="getAttachmentByIdLibroIdRegistro" parameterClass="java.util.Map"  resultMap="documentoElectronicoAnexo">
 		SELECT ATTACH.*,
 			SIGNINFO.id as idDatosFirma,
@@ -87,29 +87,29 @@
 			SIGNINFO.ocsp_validation,
 			SIGNINFO.hash,
 			SIGNINFO.hash_alg,
-			SIGNINFO.id_attachment_signed 
+			SIGNINFO.id_attachment_signed
 		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
 		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
 			  ATTACH.BOOKID=#idLibro# AND
 			  ATTACH.FOLDERID=#idRegistro#
 	</select>
-	
+
 	<select id="getIdDocumentoElectronicoAnexoByIdLibroIdRegistro" parameterClass="java.util.Map"  resultMap="identificadorDocumentoElectronicoAnexoVO">
 		SELECT ATTACH.ID,
 			   ATTACH.BOOKID,
 			   ATTACH.FOLDERID,
-			   ATTACH.PAGEID 
+			   ATTACH.PAGEID
 		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
 		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
 			  ATTACH.BOOKID=#idLibro# AND
 			  ATTACH.FOLDERID=#idRegistro#
 	</select>
-	
-	
-	
-	
+
+
+
+
 	<!-- consulta que inserta datos en la tabla SCR_ATTACHMENT_SIGN_INFO -->
-	<insert  id="addAttachmentSignInfo"  parameterClass="documentoElectronicoAnexoDatosFirmaVO" >	
+	<insert  id="addAttachmentSignInfo"  parameterClass="documentoElectronicoAnexoDatosFirmaVO" >
 		INSERT INTO SCR_ATTACHMENT_SIGN_INFO (
 			ID,
 			ID_ATTACHMENT,
@@ -122,13 +122,13 @@
 			OCSP_VALIDATION,
 			HASH_ALG,
 			HASH
-			 
-			
-	    ) 
+
+
+	    )
 		VALUES (
-			#id:INT#,
-		    #idAttachment:INT#,
-			#idAttachmentFirmado:INT#,
+			#id:NUMERIC#,
+		    #idAttachment:NUMERIC#,
+			#idAttachmentFirmado:NUMERIC#,
 			#certificado:BINARY#,
 			#firma:BINARY#,
 			#algFirma:VARCHAR#,
@@ -137,14 +137,14 @@
 			#ocspValidation:BINARY#,
 			#hashAlg:VARCHAR#,
 			#hash:BINARY#
-			
+
 		)
 	</insert>
-	
-	
-	
+
+
+
 	<select id="getAttachmentSignInfoByIdAttachment" parameterClass="java.lang.Long"  resultMap="documentoElectronicoAnexoDatosFirma">
-		SELECT 
+		SELECT
 			SIGNINFO.id as idDatosFirma,
 			SIGNINFO.id_attachment,
 			SIGNINFO.cert,
@@ -155,13 +155,13 @@
 			SIGNINFO.ocsp_validation,
 			SIGNINFO.hash,
 			SIGNINFO.hash_alg,
-			SIGNINFO.id_attachment_signed 
+			SIGNINFO.id_attachment_signed
 		FROM SCR_ATTACHMENT_SIGN_INFO SIGNINFO
-		WHERE SIGNINFO.ID_ATTACHMENT =#id:INT#
+		WHERE SIGNINFO.ID_ATTACHMENT =#id:NUMERIC#
 	</select>
-	
+
 	<select id="getAttachmentSignInfoById" parameterClass="java.lang.Long"  resultMap="documentoElectronicoAnexoDatosFirma">
-		SELECT 
+		SELECT
 			SIGNINFO.id as idDatosFirma,
 			SIGNINFO.id_attachment,
 			SIGNINFO.cert,
@@ -172,15 +172,15 @@
 			SIGNINFO.ocsp_validation,
 			SIGNINFO.hash,
 			SIGNINFO.hash_alg,
-			SIGNINFO.id_attachment_signed 
+			SIGNINFO.id_attachment_signed
 		FROM SCR_ATTACHMENT_SIGN_INFO SIGNINFO
-		WHERE SIGNINFO.ID=#id:INT#
+		WHERE SIGNINFO.ID=#id:NUMERIC#
 	</select>
-	
-	
+
+
 	<select id="getAttachmentFirmadoByIdFirma" parameterClass="java.lang.Long"  resultMap="documentoElectronicoAnexo">
-			
-			
+
+
 			SELECT ATTACH.*,
 				SIGNINFO.id as idDatosFirma,
 				SIGNINFO.id_attachment,
@@ -192,26 +192,26 @@
 				SIGNINFO.ocsp_validation,
 				SIGNINFO.hash,
 				SIGNINFO.hash_alg,
-				SIGNINFO.id_attachment_signed 
+				SIGNINFO.id_attachment_signed
 		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
 		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
 			ATTACH.ID IN
 			<!-- selecionamos el id del documento al que firma que no es el mismo-->
 			(
 			SELECT id_attachment_signed
-			FROM  SCR_ATTACHMENT_SIGN_INFO    
-			WHERE id_attachment=#id:INT# AND
+			FROM  SCR_ATTACHMENT_SIGN_INFO
+			WHERE id_attachment=#id:NUMERIC# AND
 				  id_attachment_signed!=id_attachment
 			)
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 	<select id="getFirmasById" parameterClass="java.lang.Long"  resultMap="documentoElectronicoAnexo">
 		SELECT ATTACH.*,SIGNINFO.id as idDatosFirma,
 			SIGNINFO.id_attachment,
@@ -223,14 +223,14 @@
 			SIGNINFO.ocsp_validation,
 			SIGNINFO.hash,
 			SIGNINFO.hash_alg,
-			SIGNINFO.id_attachment_signed 
+			SIGNINFO.id_attachment_signed
 		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
 		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
-			  SIGNINFO.ID_ATTACHMENT_SIGNED=#id:INT# AND
+			  SIGNINFO.ID_ATTACHMENT_SIGNED=#id:NUMERIC# AND
 			  SIGNINFO.ID_ATTACHMENT_SIGNED!=SIGNINFO.ID_ATTACHMENT
-		
+
 	</select>
-	
+
 	<select id="getIdDocumentoElectronicoFirmasById" parameterClass="java.lang.Long"  resultMap="identificadorDocumentoElectronicoAnexoVO">
 		SELECT ATTACH.ID,
 			   ATTACH.BOOKID,
@@ -238,13 +238,13 @@
 			   ATTACH.PAGEID
 		FROM SCR_ATTACHMENT ATTACH, SCR_ATTACHMENT_SIGN_INFO SIGNINFO
 		WHERE ATTACH.ID=SIGNINFO.ID_ATTACHMENT AND
-			  SIGNINFO.ID_ATTACHMENT_SIGNED=#id:INT# AND
+			  SIGNINFO.ID_ATTACHMENT_SIGNED=#id:NUMERIC# AND
 			  SIGNINFO.ID_ATTACHMENT_SIGNED!=SIGNINFO.ID_ATTACHMENT
-		
+
 	</select>
-	
-	
-	
-	
-	
-</sqlMap>	
+
+
+
+
+
+</sqlMap>

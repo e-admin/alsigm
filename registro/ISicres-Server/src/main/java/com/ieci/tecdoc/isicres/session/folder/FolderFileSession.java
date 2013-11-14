@@ -78,7 +78,7 @@ import com.ieci.tecdoc.utils.cache.CacheFactory;
 
 /**
  * @author 66575267
- * 
+ *
  */
 public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 		Keys, HibernateKeys {
@@ -329,7 +329,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 	/**
 	 * Metodo que obtiene la extension del fichero pasado como parametro bien
 	 * del propio String con el nombre del fichero o accediendo a la BBDD
-	 * 
+	 *
 	 * @param fileName
 	 *            - Nombre del fichero
 	 * @param bookId
@@ -339,7 +339,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 	 * @param pageId
 	 *            - ID de la pagina
 	 * @param entidad
-	 * 
+	 *
 	 * @return extension del fichero (Ejemplo: pdf, doc, txt...)
 	 */
 	public static String getExtensionFile(String fileName, String bookId,
@@ -554,10 +554,78 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 	}
 
 	/**
+	 * Método que borra un fichero adjuntado a un registro, solamente de BBDD no el fichero físico del gestor documental
+	 *
+	 * @param entidad - Entidad
+	 * @param folderId - ID del registro
+	 * @param docId - ID del documento
+	 * @param pageId - ID de la pagina a borrar
+	 * @param bookId - ID del libro
+	 *
+	 * @throws BookException
+	 */
+	public static void deleteFileOfRegister(String entidad, Integer folderId, Integer docId, Integer pageId, Integer bookId) throws BookException{
+		try {
+			if(log.isDebugEnabled()){
+				StringBuffer sb = new StringBuffer();
+				sb.append("Entra a borrar los datos del fichero con ID[").append(pageId)
+						.append("] del registro [").append(folderId)
+						.append("] que pertenece al documento ID[")
+						.append(docId).append("]");
+
+				log.debug(sb.toString());
+			}
+
+			// TODO desde aqui se podría invocar al borrado del fichero físico del
+			// gestor documental correspondiente
+
+
+			//borramos los datos en la tabla SCR_PAGEINFO
+			DBEntityDAOFactory.getCurrentDBEntityDAO().deleteHashDocument(
+					bookId.intValue(), folderId.intValue(), pageId.intValue(),
+					entidad);
+			if(log.isDebugEnabled()){
+				log.debug("Borrados los datos de la tabla SCR_PAGEINFO");
+			}
+
+			//borramos los datos en la tabla SCR_PAGEREPOSITORY
+			DBEntityDAOFactory.getCurrentDBEntityDAO().deleteScrPageRepository(
+					bookId.intValue(), folderId.intValue(), pageId.intValue(),
+					entidad);
+			if(log.isDebugEnabled()){
+				log.debug("Borrados los datos de la tabla SCR_PAGEREPOSITORY");
+			}
+
+			//y por último borramos los datos en la tabla SCR_AXPAGEH
+			AxPagehEntity axPagehEntity = new AxPagehEntity();
+			axPagehEntity.setFdrId(folderId);
+			axPagehEntity.setType(bookId.toString());
+		axPagehEntity.setDocId(docId);
+		axPagehEntity.setId(pageId);
+			axPagehEntity.remove(entidad);
+
+			if(log.isDebugEnabled()){
+				log.debug("Borrados los datos de la tabla SCR_AXPAGEH");
+			}
+
+		} catch (Exception e) {
+
+			StringBuffer sb = new StringBuffer();
+			sb.append("Imposible borrar el fichero ID[").append(pageId)
+					.append("] del documento ID[").append(docId)
+					.append("] para el registro ID[").append(folderId)
+					.append("] en el libro ID[").append(bookId).append("]");
+
+			log.error(sb.toString(), e);
+			throw new BookException(BookException.ERROR_UPDATE_FOLDER);
+		}
+	}
+
+	/**
 	 * Este método sustituye al que se usaba anteriormente
-	 * 
+	 *
 	 * <code>com.ieci.tecdoc.isicres.session.folder.FolderFileSession.saveDocuments(Integer, int, Map, BookTypeConf, Idocarchdet, Integer, String)</code>
-	 * 
+	 *
 	 * @param sessionID
 	 * @param bookID
 	 * @param folderId
@@ -692,7 +760,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 
 	/**
 	 * Comprobamos si el nombre del fichero ya existe dentro del documento
-	 * 
+	 *
 	 * @param docsRegister
 	 *            - Listado de los documentos con sus paginas/ficheros donde
 	 *            buscaremos el nombre del fichero
@@ -700,7 +768,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 	 *            - Id del documento donde queremos buscar
 	 * @param name
 	 *            - Nombre del fichero a buscar
-	 * 
+	 *
 	 * @return TRUE - si el nombre del fichero ya existe dentro del documento
 	 *         FALSE - si el nombre del fichero no existe aun dentro del
 	 *         documento
@@ -816,7 +884,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 	/**
 	 * Método que almacena en las tablas de paginas (Scr_PageRepository y
 	 * Scr_PageInfo) los datos del documento
-	 * 
+	 *
 	 * @param session
 	 * @param file
 	 * @param bookId
@@ -862,7 +930,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 		/*
 		 * No hace falta comprobar que sea de tipo 1,2 o 3 porque ya lo
 		 * comprueba la clase SignTiff.java.
-		 * 
+		 *
 		 * Se firma si es un TIFF y si el libro está configurado para firmar
 		 * las imágenes.
 		 */
@@ -883,7 +951,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 
 		return file;
 	}
-	
+
 	private static boolean isTiffExtension(String extension){
 		boolean isTiff = false;
 		if (extension.equalsIgnoreCase("TIF") || extension.equalsIgnoreCase("TIFF")){
@@ -895,10 +963,10 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 	/**
 	 * Método que almacena un documento y nos devuelve su DocumentUID en el
 	 * gestor documental.
-	 * 
+	 *
 	 * En la caso de que el documento a adjuntar sea por referencia de su
 	 * docuid, comprobamos que ese documento existe en el gestor documental
-	 * 
+	 *
 	 * @param bookID
 	 * @param folderId
 	 * @param axsf
@@ -933,7 +1001,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 	/**
 	 * Método que almacena en la base de datos los "metadatos" del documento que
 	 * se almacenado
-	 * 
+	 *
 	 * @param session
 	 * @param bookID
 	 * @param folderId
@@ -965,7 +1033,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 	/**
 	 * Método que almacena un documento en un repositorio documental y nos
 	 * devuelve su uid
-	 * 
+	 *
 	 * @param bookID
 	 * @param folderId
 	 * @param axsf
@@ -1023,7 +1091,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 	/**
 	 * Método que almacena en base de datos un documento ya existente en el
 	 * gestor documental
-	 * 
+	 *
 	 * @param file
 	 * @param bookID
 	 * @param entidad
@@ -1058,7 +1126,7 @@ public class FolderFileSession extends FolderSessionUtil implements ServerKeys,
 
 	/**
 	 * Método que obtiene el codigo hash de un documento
-	 * 
+	 *
 	 * @param file
 	 * @param bookId
 	 * @param folderId

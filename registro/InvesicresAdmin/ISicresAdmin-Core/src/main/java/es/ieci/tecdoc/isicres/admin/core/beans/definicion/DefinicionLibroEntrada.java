@@ -10,21 +10,27 @@ import org.apache.log4j.Logger;
 import com.ieci.tecdoc.common.keys.IDocKeys;
 
 import es.ieci.tecdoc.isicres.admin.base.dbex.DbConnection;
+import es.ieci.tecdoc.isicres.admin.base.dbex.DbEngine;
 import es.ieci.tecdoc.isicres.admin.core.database.IDocFmtDatos;
 import es.ieci.tecdoc.isicres.admin.core.database.IdsGeneratorIDoc;
+import es.ieci.tecdoc.isicres.admin.core.db.DBSessionManager;
 import es.ieci.tecdoc.isicres.admin.estructura.beans.Archive;
 import es.ieci.tecdoc.isicres.admin.estructura.beans.ArchiveFlds;
 import es.ieci.tecdoc.isicres.admin.estructura.beans.ArchiveIdxs;
 import es.ieci.tecdoc.isicres.admin.exception.ISicresAdminEstructuraException;
+import es.ieci.tecdoc.isicres.admin.exception.ISicresRPAdminDAOException;
 
 /*$Id*/
 
 public class DefinicionLibroEntrada implements DefinicionLibroRegistro {
 
-
-
 	private static final Logger logger = Logger
-	.getLogger(DefinicionLibroEntrada.class);
+			.getLogger(DefinicionLibroEntrada.class);
+
+	private static final int LENGTH_REFERENCIA_EXPEDIENTE = 80;
+
+	public static int REFERENCIA_EXPEDIENTE = 19;
+	public static int FECHA_DOCUMENTO = 20;
 
 
 	protected ArchiveIdxs getArchiveIdxs(){
@@ -62,7 +68,7 @@ public class DefinicionLibroEntrada implements DefinicionLibroRegistro {
 
 		return indices;
 	}
-	protected ArchiveFlds getArchiveFlds(){
+	public ArchiveFlds getArchiveFlds(){
 		ArchiveFlds fields = new ArchiveFlds();
 		try{
 			fields.add(1, "Número de registro", 1, 20, true, false, false, "");
@@ -95,9 +101,9 @@ public class DefinicionLibroEntrada implements DefinicionLibroRegistro {
 			fields.add(16, "Tipo de asunto", 4, 0, true, false, false, "");
 			fields.add(17, "Resumen", 1, 240, true, false, false, "");
 			fields.add(18, "Comentario", 2, 65535, true, false, false, "");
-			fields.add(19, "Referencia de Expediente", 1, 50, true, false,
-					false, "");
-			fields.add(20, "Fecha del documento", 7, 0, true, false, false, "");
+			//Añadimos los campos Ref. Expediente y Fecha de Documento
+			getFieldRefExpediente(fields);
+			getFieldFechaDocumento(fields);
 
 			//se añaden campos reservados adicionales que estaran en el rango 500-1000
 			DefinicionLibroSicres3Utils.addAditionalReservedAndSicres3Fields(fields);
@@ -107,9 +113,89 @@ public class DefinicionLibroEntrada implements DefinicionLibroRegistro {
 			logger.error("ERROR creando campos para libro de entrada",e);
 		}
 
+		return fields;
+	}
 
+	/**
+	 * Método que actualiza la longitud del campo Ref. Expediente del archivador
+	 *
+	 * @param archiveId
+	 *            - Id del archivador
+	 *
+	 * @throws Exception
+	 */
+	public void updateFieldRefExpediente(int archiveId)
+			throws ISicresRPAdminDAOException {
 
-			return fields;
+		DbConnection db = new DbConnection();
+
+		try {
+			db.open(DBSessionManager.getSession());
+			db.beginTransaction();
+
+			Connection conn = db.getJdbcConnection();
+
+			StringBuffer sb = new StringBuffer();
+			sb.append("ALTER TABLE A").append(archiveId).append("SF ");
+
+			if (db.getEngine() == DbEngine.DB2) {
+				sb.append("ALTER COLUMN FLD").append(REFERENCIA_EXPEDIENTE)
+						.append(" SET DATA TYPE VARCHAR(")
+						.append(LENGTH_REFERENCIA_EXPEDIENTE).append(")");
+			} else if (db.getEngine() == DbEngine.POSTGRESQL) {
+				sb.append("ALTER COLUMN FLD").append(REFERENCIA_EXPEDIENTE)
+						.append(" TYPE CHARACTER VARYING(")
+						.append(LENGTH_REFERENCIA_EXPEDIENTE).append(")");
+			} else if (db.getEngine() == DbEngine.ORACLE) {
+				sb.append("MODIFY (FLD").append(REFERENCIA_EXPEDIENTE)
+						.append(" VARCHAR2 (")
+						.append(LENGTH_REFERENCIA_EXPEDIENTE).append("CHAR))");
+			} else {
+				sb.append("ALTER COLUMN FLD").append(REFERENCIA_EXPEDIENTE)
+						.append(" VARCHAR(")
+						.append(LENGTH_REFERENCIA_EXPEDIENTE).append(")");
+			}
+
+			if(logger.isDebugEnabled()){
+				logger.debug(sb.toString());
+			}
+
+			PreparedStatement stmt = conn.prepareStatement(sb.toString());
+			stmt.execute();
+			db.endTransaction(true);
+
+		} catch (Exception e) {
+			// Deshacer transaccion
+			if (db != null && db.inTransaction()) {
+				try {
+					db.endTransaction(false);
+				} catch (Exception e1) {
+					logger.error("Problemas con rollback");
+				}
+			}
+			logger.error("Error actualizando campo Referencia Expediente");
+			throw new ISicresRPAdminDAOException(
+					ISicresRPAdminDAOException.ERROR_UPDATE_BOOK_SICRES3, e);
+		} finally {
+			try {
+				if (db != null && db.existConnection()) {
+					db.close();
+				}
+			} catch (Exception e) {
+				logger.error("No se ha podido cerrar la conexión a la BBDD");
+			}
+		}
+	}
+
+	public void getFieldRefExpediente(ArchiveFlds fields)
+			throws ISicresAdminEstructuraException {
+		fields.add(REFERENCIA_EXPEDIENTE, "Referencia de Expediente", 1, LENGTH_REFERENCIA_EXPEDIENTE, true, false, false,
+				"");
+	}
+
+	public void getFieldFechaDocumento(ArchiveFlds fields)
+			throws ISicresAdminEstructuraException {
+		fields.add(FECHA_DOCUMENTO, "Fecha del documento", 7, 0, true, false, false, "");
 	}
 
 

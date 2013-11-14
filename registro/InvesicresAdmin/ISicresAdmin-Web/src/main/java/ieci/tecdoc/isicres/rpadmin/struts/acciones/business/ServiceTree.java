@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 import es.ieci.tecdoc.isicres.admin.beans.Entidad;
@@ -149,7 +148,7 @@ public abstract class ServiceTree {
     public void creaNodoRaiz(StringBuffer sbuff, String titulo, String id, String icon, String codigo, List functionValues){
 
 		String sentencia = "\n var nombreNodo=''; var nodoTonto=\""
-				+ StringEscapeUtils.escapeJavaScript(titulo)
+				+ titulo
 				+ "\"; var tree = new WebFXTree(nodoTonto,\"javascript:nodoRaizEvent('"
 				+ id + "',nodoTonto,'" + codigo + "'"
 				+ getFunctionValuesString(functionValues) + ");\",'','" + icon
@@ -161,7 +160,7 @@ public abstract class ServiceTree {
     	String idNodo = id.replaceAll("-", "_");
 
 		String sentencia = "\n var nombreNodo_" + idNodo + "=\""
-				+ StringEscapeUtils.escapeJavaScript(titulo) + "\" ; var nodo"
+				+ titulo + "\" ; var nodo"
 				+ idNodo + " = new WebFXTreeItem(nombreNodo_" + idNodo
 				+ ",\"javascript:carga('" + id + "', nombreNodo_" + idNodo
 				+ ", '" + codigo + "', " + tipo

@@ -31,4 +31,3 @@ dwrService.getTercerosJuridicos = function(p0, p1, callback) {
   dwr.engine._execute(dwrService._path, 'dwrService', 'getTercerosJuridicos', p0, p1, callback);
 };
 
-

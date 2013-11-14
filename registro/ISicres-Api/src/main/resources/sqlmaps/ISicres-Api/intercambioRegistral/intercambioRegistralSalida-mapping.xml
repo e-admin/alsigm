@@ -34,7 +34,7 @@
 		<result property="nameEntity" column="name_entity" />
 		<result property="codeTramunit" column="code_tramunit" />
 		<result property="nameTramunit" column="name_tramunit" />
-		
+
 		<result property="comentarios" column="comments" />
 
 
@@ -70,15 +70,38 @@
 		<result property="nameTramunit" column="name_tramunit" />
 		<result property="numeroRegistro" column="fld1"/>
 		<result property="fechaRegistro" column="fld2" />
-		
+
 		<result property="codeEntity" column="code_entity" />
 		<result property="nameEntity" column="name_entity" />
 		<result property="codeTramunit" column="code_tramunit" />
 		<result property="nameTramunit" column="name_tramunit" />
 		<result property="comentarios" column="comments" />
-		
+
 	</resultMap>
 
+	<resultMap
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.BandejaSalidaItemVO"
+		id="bandejaSalidaSimpleItemResultmap">
+		<result property="id" column="id"/>
+		<result property="idLibro" column="id_arch" />
+		<result property="idRegistro" column="id_fdr" />
+		<result property="tipoLibro" column="type_orig" />
+		<result property="estado" column="state" />
+		<result property="idOfic" column="id_ofic" />
+		<result property="fechaEstado" column="state_date" />
+		<result property="idIntercambioRegistral" column="id_exchange_sir" />
+		<result property="idIntercambioInterno" column="id_exchange" jdbcType="INT" javaType="java.lang.Long" />
+		<result property="codeEntity" column="code_entity" />
+		<result property="nameEntity" column="name_entity" />
+		<result property="codeTramunit" column="code_tramunit" />
+		<result property="nameTramunit" column="name_tramunit" />
+		<result property="codeEntity" column="code_entity" />
+		<result property="nameEntity" column="name_entity" />
+		<result property="codeTramunit" column="code_tramunit" />
+		<result property="nameTramunit" column="name_tramunit" />
+		<result property="comentarios" column="comments" />
+
+	</resultMap>
 	<resultMap
 		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.BandejaSalidaItemVO"
 		id="bandejaSalidaItemRegistroResultmap">

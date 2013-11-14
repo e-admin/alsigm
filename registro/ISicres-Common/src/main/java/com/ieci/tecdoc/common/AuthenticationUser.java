@@ -23,8 +23,11 @@ public class AuthenticationUser {
 
 	private Integer id = null;
 	private String name = null;
+	//Departamento con el que esta autenticado el usuario
 	private Integer deptid = null;
+	//Departamento al que pertenece originalmente el usuario
 	private Integer deptIdOriginal = null;
+	//Listado de departamentos del usuario
 	private List deptList = null;
 	private List groupList = null;
 

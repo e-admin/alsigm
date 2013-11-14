@@ -2,23 +2,27 @@ package com.ieci.tecdoc.common.utils;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import net.sf.hibernate.Hibernate;
 import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
 import net.sf.hibernate.type.Type;
 
+import org.apache.log4j.Logger;
+
+import com.ieci.tecdoc.common.invesdoc.Idocarchdet;
 import com.ieci.tecdoc.common.invesdoc.Idocfmt;
 import com.ieci.tecdoc.common.invesdoc.Iuserdepthdr;
+import com.ieci.tecdoc.common.invesdoc.Iusergrouphdr;
 import com.ieci.tecdoc.common.invesdoc.Iusergroupuser;
 import com.ieci.tecdoc.common.invesdoc.Iuserldapgrphdr;
 import com.ieci.tecdoc.common.invesdoc.Iuserldapuserhdr;
 import com.ieci.tecdoc.common.invesdoc.Iuserobjperm;
+import com.ieci.tecdoc.common.invesdoc.Iuseruserhdr;
 import com.ieci.tecdoc.common.invesdoc.Iuserusersys;
 import com.ieci.tecdoc.common.invesicres.ScrBookadmin;
 import com.ieci.tecdoc.common.invesicres.ScrBookasoc;
 import com.ieci.tecdoc.common.invesicres.ScrCaaux;
+import com.ieci.tecdoc.common.invesicres.ScrDistribucionActual;
 import com.ieci.tecdoc.common.invesicres.ScrDistreg;
 import com.ieci.tecdoc.common.invesicres.ScrOfic;
 import com.ieci.tecdoc.common.invesicres.ScrRegstate;
@@ -438,6 +442,42 @@ public class ISicresQueries implements HibernateKeys {
 				new Type[] { Hibernate.INTEGER });
 	}
 
+	/**
+	 * Método que obtiene la información de la definición del formato según el libro y el tipo de detalle
+	 * @param session
+	 * @param bookId - Id del libro
+	 * @param dettype - Tipo de detalle
+	 *
+	 * @return {@link Idocarchdet}
+	 *
+	 * @throws HibernateException
+	 */
+	public static Idocarchdet getIdocarchdet(Session session, Integer bookId, Integer dettype)
+			throws HibernateException {
+		Idocarchdet result = null;
+
+		StringBuffer query = new StringBuffer();
+		query.append("FROM ");
+		query.append(HIBERNATE_Idocarchdet);
+		query.append(" idoc WHERE idoc.archid=? and idoc.dettype=?");
+
+		List list = session.find(query.toString(), new Object[] { bookId, dettype },
+				new Type[] { Hibernate.INTEGER,   Hibernate.INTEGER});
+
+		if (list != null && !list.isEmpty()) {
+			result = (Idocarchdet) list.get(0);
+		} else {
+			StringBuffer sb = new StringBuffer();
+			sb.append("No existe información en la tabla Idocarchdet para el libro con ID [")
+					.append(bookId)
+					.append("] y dettype [").append(dettype).append("]");
+			_logger.error(sb.toString());
+		}
+
+		return result;
+
+	}
+
 	public static List getIdocprefwfmt(Session session, Integer bookId,
 			Integer userId, Integer fmttype) throws HibernateException {
 		StringBuffer query = new StringBuffer();
@@ -647,6 +687,23 @@ public class ISicresQueries implements HibernateKeys {
 		}
 	}
 
+	/**
+	 * Consulta para obtener todas las distribuciones cuyo padre coincida con el parámetro
+	 * @param session - Sesión hibernate
+	 * @param idDist - ID distribución padre por la que buscaremos
+	 * @return Listado de objetos scrDistReg
+	 * @throws HibernateException
+	 */
+	public static List getScrDistregByIdDistFather(Session session, int idDist) throws HibernateException {
+		StringBuffer query = new StringBuffer();
+		query.append("FROM ");
+		query.append(HIBERNATE_ScrDistreg);
+		query.append(" scr WHERE scr.iddistfather=?");
+		return session.find(query.toString(),
+				new Object[] { new Integer(idDist) },
+				new Type[] { Hibernate.INTEGER});
+	}
+
 	public static List getAsocRegsFdrPrim(Session session, Integer bookID,
 			int fdrid) throws HibernateException {
 		StringBuffer query = new StringBuffer();
@@ -853,6 +910,21 @@ public class ISicresQueries implements HibernateKeys {
 		return list;
 	}
 
+	public static List getIUserGroupUserByGroupId(Session session, Integer groupId)
+			throws HibernateException {
+
+		StringBuffer query = new StringBuffer();
+
+		query.append("FROM ");
+		query.append(HIBERNATE_Iusergroupuser);
+		query.append(" scr WHERE scr.groupid=?");
+
+		List list = session.find(query.toString(), new Object[] { groupId },
+				new Type[] { Hibernate.INTEGER });
+
+		return list;
+	}
+
 	public static List getUserLdapUser(Session session, String guid)
 			throws HibernateException {
 		StringBuffer query = new StringBuffer();
@@ -860,6 +932,16 @@ public class ISicresQueries implements HibernateKeys {
 		query.append(HIBERNATE_Iuserldapuserhdr);
 		query.append(" iuser WHERE iuser.ldapguid=?");
 		return session.find(query.toString(), new Object[] { guid },
+				new Type[] { Hibernate.STRING });
+	}
+
+	public static List<Iuserldapuserhdr> getUserLdapUserByFullName(Session session, String fullName)
+			throws HibernateException {
+		StringBuffer query = new StringBuffer();
+		query.append("FROM  ");
+		query.append(HIBERNATE_Iuserldapuserhdr);
+		query.append(" iuser WHERE iuser.ldapfullname=?");
+		return session.find(query.toString(), new Object[] { fullName },
 				new Type[] { Hibernate.STRING });
 	}
 
@@ -876,6 +958,12 @@ public class ISicresQueries implements HibernateKeys {
 		if (users != null && users.size() > 0)
 			user = (Iuserldapuserhdr)users.get(0);
 
+		return user;
+	}
+
+	public static Iuseruserhdr getUserUserHdr(Session session, Integer id) throws HibernateException{
+		Iuseruserhdr user = (Iuseruserhdr) session.load(
+				Iuseruserhdr.class, id);
 		return user;
 	}
 
@@ -898,6 +986,17 @@ public class ISicresQueries implements HibernateKeys {
 		query.append(" iuser WHERE iuser.userid=? and iuser.prodid=?");
 		return session.find(query.toString(), new Object[] {
 				new Integer(userId), new Integer(prodid) }, new Type[] {
+				Hibernate.INTEGER, Hibernate.INTEGER });
+	}
+
+	public static List getUserGenPerms(Session session, int type ,int userId)
+			throws HibernateException {
+		StringBuffer query = new StringBuffer();
+		query.append("FROM  ");
+		query.append(HIBERNATE_Iusergenperm);
+		query.append(" iuser WHERE iuser.dsttype=? and iuser.dstid=?");
+		return session.find(query.toString(), new Object[] {
+				new Integer(type), new Integer(userId) }, new Type[] {
 				Hibernate.INTEGER, Hibernate.INTEGER });
 	}
 
@@ -929,6 +1028,21 @@ public class ISicresQueries implements HibernateKeys {
 
 		return dept;
 	}
+
+	public static List<Iuserdepthdr> getUserDeptHdrByCrtrId(Session session, Integer crtrId)
+			throws HibernateException {
+
+
+			StringBuffer query = new StringBuffer();
+			query.append("FROM  ");
+			query.append(HIBERNATE_Iuserdepthdr);
+			query.append(" iuser WHERE iuser.crtrid=?");
+			List <Iuserdepthdr>  list = session.find(query.toString(),
+					new Object[] { crtrId },
+					new Type[] { Hibernate.INTEGER });
+
+			return list;
+		}
 
 	public static List getUserLdapPgrp(Session session, String guid)
 			throws HibernateException {
@@ -983,6 +1097,16 @@ public class ISicresQueries implements HibernateKeys {
 				new Type[] { Hibernate.INTEGER });
 	}
 
+	/**
+	 * Devuelve los departamentos cuyo identificador sea distinto al especificado como parametro
+	 *
+	 * Si no se especifica el identificador, se devuelven todos.
+	 *
+	 * @param session
+	 * @param deptId
+	 * @return
+	 * @throws HibernateException
+	 */
 	public static List getDepts(Session session, Integer deptId)
 			throws HibernateException {
 
@@ -1002,6 +1126,25 @@ public class ISicresQueries implements HibernateKeys {
 		}
 
 		return list;
+	}
+
+	/**
+	 * Devuelve los departamentos cuyo identificador sea distinto al especificado como parametro
+	 *
+	 * Si no se especifica el identificador, se devuelven todos.
+	 *
+	 * @param session
+	 * @param deptId
+	 * @return
+	 * @throws HibernateException
+	 */
+	public static Iuserdepthdr getDept(Session session, Integer deptId)
+			throws HibernateException {
+
+		Iuserdepthdr iuserdepthdr = (Iuserdepthdr) session.load(
+				Iuserdepthdr.class, deptId);
+
+		return iuserdepthdr;
 	}
 
 	/**
@@ -1069,6 +1212,24 @@ public class ISicresQueries implements HibernateKeys {
 				new Type[] { Hibernate.INTEGER });
 	}
 
+	public static List getUsers(Session session)
+			throws HibernateException {
+		StringBuffer query = new StringBuffer();
+		query.append("FROM  ");
+		query.append(HIBERNATE_Iuseruserhdr);
+		query.append(" scr ORDER BY scr.name");
+
+		return session.find(query.toString());
+	}
+
+	/**
+	 * Devuelve todos los usuarios ldap menos el pasado como parametro
+	 *
+	 * @param session
+	 * @param userId
+	 * @return
+	 * @throws HibernateException
+	 */
 	public static List getLdapUsers(Session session, Integer userId)
 		throws HibernateException {
 		StringBuffer query = new StringBuffer();
@@ -1077,6 +1238,22 @@ public class ISicresQueries implements HibernateKeys {
 		query.append(" scr WHERE scr.id!=? ORDER By scr.ldapfullname");
 		return session.find(query.toString(), new Object[] { userId }, new Type[] { Hibernate.INTEGER });
 	}
+
+	/**
+	 * Devuelve todos los usuarios ldap
+	 * @param session
+	 * @param userId
+	 * @return
+	 * @throws HibernateException
+	 */
+	public static List<Iuserldapuserhdr> getLdapUsers(Session session)
+			throws HibernateException {
+			StringBuffer query = new StringBuffer();
+			query.append("FROM  ");
+			query.append(HIBERNATE_Iuserldapuserhdr);
+			query.append(" ORDER By scr.ldapfullname");
+			return session.find(query.toString());
+		}
 
 	public static List getTypeDocs(Session session) throws HibernateException {
 
@@ -1128,6 +1305,36 @@ public class ISicresQueries implements HibernateKeys {
 			result = (Iuserusersys) datosSistema.get(0);
 
 		return result;
+	}
+
+	/**
+	 * Consulta para obtener la distribución actual (literales de los destinos
+	 * actuales) de una distribución
+	 *
+	 * @param session
+	 *            - Sesión de hibernate
+	 * @param id
+	 *            - ID de la distribución a buscar
+	 * @return ScrDistribucionActual
+	 * @throws HibernateException
+	 */
+	public static ScrDistribucionActual getScrDistribucionActual(Session session,
+			Integer id) throws HibernateException {
+		StringBuffer query = new StringBuffer();
+		query.append("FROM ");
+		query.append(HIBERNATE_ScrDistribucionActual);
+		query.append(" scr WHERE scr.iddist=?");
+
+		List list = session.find(query.toString(), new Object[] { id },
+				new Type[] { Hibernate.INTEGER });
+
+		ScrDistribucionActual scr = null;
+
+		if (list != null && !list.isEmpty()) {
+			scr = (ScrDistribucionActual) list.get(0);
+		}
+
+		return scr;
 	}
 
 	/***************************************************************************

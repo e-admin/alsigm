@@ -85,11 +85,11 @@ public class ISicresRPAdminInformeManager {
 	 * @param id
 	 * @param entidad
 	 * @return
-	 * @throws ISicresRPAdminDAOException
+	 * @throws ISicresAdminDAOException
 	 * @throws Exception
 	 */
 	public static InformeBean obtenerInforme(int id, String entidad,
-			OptionsBean listaPerfiles) throws ISicresRPAdminDAOException, Exception {
+			OptionsBean listaPerfiles) throws Exception {
 		DbConnection db = new DbConnection();
 
 		InformeBean informeBean = new InformeBean();
@@ -110,7 +110,7 @@ public class ISicresRPAdminInformeManager {
 				informeBean.setOficinas(oficinas);
 			} catch (ISicresAdminDAOException e) {
 				logger.debug("Error al obtener oficinas:" + e);
-				throw e;
+				throw new ISicresRPAdminDAOException(e.getErrorCode());
 			}
 
 			try{
@@ -120,7 +120,7 @@ public class ISicresRPAdminInformeManager {
 				informeBean.setPerfiles(perfiles);
 			} catch (ISicresAdminDAOException e) {
 				logger.debug("Error al obtener perfiles:" + e);
-				throw e;
+				throw new ISicresRPAdminDAOException(e.getErrorCode());
 			}
 
 			try{
@@ -130,9 +130,8 @@ public class ISicresRPAdminInformeManager {
 				informeBean.setLibros(librosInformeBean);
 			} catch (ISicresAdminDAOException e) {
 				logger.debug("Error al obtener libros:" + e);
-				throw e;
+				throw new ISicresRPAdminDAOException(e.getErrorCode());
 			}
-
 		} finally {
 			try {
 				if (db != null && db.existConnection()){

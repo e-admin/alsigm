@@ -9,4 +9,7 @@
 	<import resource="classpath:beans/ISicres-Desktop-Api/controller-beans.xml" />
 	<import resource="classpath:beans/ISicres-Desktop-Api/delegate-beans.xml" />
 	<import resource="classpath:beans/ISicres-Desktop-Api/dwr-beans.xml" />
+
+	<!-- Sobrecarga y personalizacion de beans -->
+	<import resource="classpath*:beans/ISicres-Desktop-Api/*custom-beans.xml" />
 </beans>

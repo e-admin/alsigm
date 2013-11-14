@@ -81,6 +81,11 @@ public class CompulsaJustificanteKeys {
 	public static String TAG_OFICINA_REGISTRO = "oficina_registro";
 
 	/**
+	 * Etiqueta que se reemplazara por el codigo de oficina de registro
+	 */
+	public static String TAG_COD_OFICINA_REGISTRO = "codigo_oficina_registro";
+
+	/**
 	 * Etiqueta que se reemplazara por el asunto de registro.
 	 */
 	public static String TAG_ASUNTO = "asunto";
@@ -109,6 +114,11 @@ public class CompulsaJustificanteKeys {
 	 * Etiqueta que se reemplazara por el CN del certificado.
 	 */
 	public static String TAG_CERTIFICADO = "certificado";
+
+	/**
+	 * Etiqueta que se reemplazara por el nombre del firmante recibido mediante el CN del certificado.
+	 */
+	public static String TAG_CERTIFICADO_SOLO_NOMBRE = "firmante";
 
 	/**
 	 * Etiqueta que se reemplazara por la Fecha de Compulsa

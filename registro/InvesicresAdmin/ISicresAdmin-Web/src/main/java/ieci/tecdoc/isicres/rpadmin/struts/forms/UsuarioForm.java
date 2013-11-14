@@ -28,6 +28,7 @@ public class UsuarioForm extends RPAdminBaseForm {
 	protected String cambioDestinoRechazados;
 	protected String distribucionManual;
 	protected String verDocumentos;
+	protected String deleteDocumentos;
 	protected String gestionUnidadesAdministrativas;
 	protected String gestionInformes;
 	protected String gestionTiposAsunto;
@@ -252,6 +253,24 @@ public class UsuarioForm extends RPAdminBaseForm {
 	public void setVerDocumentos(String verDocumentos) {
 		this.verDocumentos = verDocumentos;
 	}
+
+
+	/**
+	 * @return the deleteDocumentos
+	 */
+	public String getDeleteDocumentos() {
+		return deleteDocumentos;
+	}
+
+	/**
+	 * @param deleteDocumentos
+	 *            the verDocumentos to set
+	 */
+	public void setDeleteDocumentos(String deleteDocumentos) {
+		this.deleteDocumentos = deleteDocumentos;
+	}
+
+
 	public String getGestionUnidadesAdministrativas() {
 		return gestionUnidadesAdministrativas;
 	}

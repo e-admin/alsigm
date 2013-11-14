@@ -41,41 +41,48 @@ public class ISDistribution {
     public static final int DISTRIBUCION_OUT_DIST = 2;
 
 	public ISDistribution(){
-		
+
 	}
-	
+
 	public void setDistState(Session session, int distId, int State,
-			Date currentDate, String userName, Integer userId, String entidad,
+			Date currentDate, String userName, Integer userId, String entidad, String remarks,
 			boolean caseSensitive) throws HibernateException, SQLException,
 			Exception {
-	
+
 		int distStateId = DBEntityDAOFactory.getCurrentDBEntityDAO().getNextIdForScrDistRegState(userId, entidad);
-		
+
 //		String tableName = "SCR_DISTREGSTATE";
 //		Integer size = BBDDUtils.getTableColumnSize(tableName, "USERNAME", entidad);
-		
+
 		Integer size = new Integer(BBDDUtils.SCR_DISTREGSTATE_USERNAME_FIELD_LENGTH);
-		
+
 		String aux = userName;
 		if (aux.length() > size.intValue()){
 			aux = aux.substring(0, size.intValue());
 			userName = aux;
 		}
-		
+
 		if (caseSensitive){
 			userName = userName.toUpperCase();
 		}
 
 		ScrDistregstate scrDistRegState = new ScrDistregstate();
-    
+
     	scrDistRegState.setId(new Integer(distStateId));
     	scrDistRegState.setIdDist(distId);
     	scrDistRegState.setState(State);
     	scrDistRegState.setStateDate(currentDate);
     	scrDistRegState.setUsername(userName);
+	if (remarks != null) {
+			if (caseSensitive) {
+				scrDistRegState.setMessage(remarks.toUpperCase());
+			} else {
+				scrDistRegState.setMessage(remarks);
+			}
+		}
     	session.save(scrDistRegState);
 	}
-	
+
 	public void changeStateAcceptRedis(Session session, Integer bookID,
 			int fdrid, int oficID, String userName, Integer userId,
 			int distributionType, Timestamp currentDate, String entidad,
@@ -144,9 +151,10 @@ public class ISDistribution {
 				distReg.setStateDate(currentDate);
 				session.update(distReg);
 
+				//TODO: ¿Mensaje al distribuir?
 				ISDist.setDistState(session, distReg.getId().intValue(),
 						ISDistribution.STATE_REDISTRIBUIDO, currentDate,
-						userName, userId, entidad, caseSensitive);
+						userName, userId, entidad, null, caseSensitive);
 			}
 
 		}

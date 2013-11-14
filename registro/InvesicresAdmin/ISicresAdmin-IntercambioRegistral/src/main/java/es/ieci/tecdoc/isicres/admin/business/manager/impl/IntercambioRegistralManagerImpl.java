@@ -173,6 +173,14 @@ public class IntercambioRegistralManagerImpl implements IntercambioRegistralMana
 		return DatosBasicosUnidadOrganicaDCHelper.getDatosBasicosOficinasDCVO(unidadesOrganicas);
 	}
 
+	public List<DatosBasicosUnidadOrganicaDCVO> findUnidadesOrganicasDirectorioComunByCodEntidad(
+			String codEntidad, String codUnidad, String nombreUnidad) {
+		List<DatosBasicosUnidadOrganica> unidadesOrganicas = getServicioConsultaDirectorioComun()
+				.findUnidadesOrganicasByEntidad(codEntidad, codUnidad, nombreUnidad);
+		return DatosBasicosUnidadOrganicaDCHelper
+				.getDatosBasicosOficinasDCVO(unidadesOrganicas);
+	}
+
 
 	public IntercambioRegistralDAO getIntercambioRegistralDAO() {
 		return intercambioRegistralDAO;

@@ -98,6 +98,7 @@ public class ISicresAdminDAOException extends ISicresAdminBeansException {
 	public static final long SCR_TT_INSERT 	 	= EXC_GENERIC_EXCEPCION+88;
 	public static final long SCR_TT_DELETE 		= EXC_GENERIC_EXCEPCION+89;
 	public static final long SCR_TT_UPDATE 		= EXC_GENERIC_EXCEPCION+90;
+	public static final long SCR_TT_UNIQUE_KEY_ERROR = EXC_GENERIC_EXCEPCION+116;
 
 	//scr_ca
 	public static final long SCR_CA_NOT_FOUND 	= EXC_GENERIC_EXCEPCION+91;
@@ -125,6 +126,8 @@ public class ISicresAdminDAOException extends ISicresAdminBeansException {
 
 	public static final long SCR_CA_DELETE_FOREIGN_KEY_ERROR = EXC_GENERIC_EXCEPCION+107;
 	public static final long SCR_CA_UNIQUE_KEY_ERROR = EXC_GENERIC_EXCEPCION+108;
+
+
 
 
 	//scr_reports
@@ -159,6 +162,8 @@ public class ISicresAdminDAOException extends ISicresAdminBeansException {
 
 	public static final long IUSERLDAPUSERHDR_INSERT = EXC_GENERIC_EXCEPCION+110;
 	public static final long IUSERLDAPUSERHDR_NOT_FOUND = EXC_GENERIC_EXCEPCION+111;
+
+	public static final long SCR_REPORT_PERF_LOAD = EXC_GENERIC_EXCEPCION+137;
 
 	private static String RESOURCE_FILE = "es.ieci.tecdoc.isicres.admin.core.exception.RPAdminDAOExceptionMessages";
 

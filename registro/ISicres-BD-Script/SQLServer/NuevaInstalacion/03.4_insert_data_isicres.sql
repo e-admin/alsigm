@@ -113,7 +113,7 @@ INSERT INTO scr_typeaddress (id, description, code) VALUES (2, 'Correo electrï¿½
 INSERT INTO scr_typeaddress (id, description, code) VALUES (3, 'Fax', 'FX');
 INSERT INTO scr_typeaddress (id, description, code) VALUES (4, 'Direcciï¿½n electrï¿½nica ï¿½nica', 'DU');
 INSERT INTO scr_typeaddress (id, description, code) VALUES (5, 'Telï¿½fono (mï¿½vil)', 'TM');
-
+INSERT INTO scr_typeaddress (id, description, code) VALUES (6, 'Comparecencia Electrónica', 'TE');
 
 -- TABLA scr_typedoc
 INSERT INTO scr_typedoc (id, description, type_person, code) VALUES (1, 'CIF', 2, 'C');

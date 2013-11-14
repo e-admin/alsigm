@@ -165,6 +165,10 @@ public class ISicresRPAdminDAOException extends ISicresRPAdminException {
 	public static final long ERROR_UPDATE_UNID_ADMIN = EXC_GENERIC_EXCEPCION+113;
 	public static final long ERROR_CREATE_UNID_ADMIN = EXC_GENERIC_EXCEPCION+114;
 
+	public static final long ERROR_UPDATE_BOOK_SICRES3 = EXC_GENERIC_EXCEPCION+115;
+
+	public static final long SCR_REPORTPERF_LOAD 		= EXC_GENERIC_EXCEPCION+137;
+
 	private static String RESOURCE_FILE = "es.ieci.tecdoc.isicres.admin.core.exception.RPAdminDAOExceptionMessages";
 
 

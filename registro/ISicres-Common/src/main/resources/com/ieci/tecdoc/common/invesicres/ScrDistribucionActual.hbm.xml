@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ieci.tecdoc.common.invesicres.ScrDistribucionActual"
+    table="SCR_DISTRIBUCION_ACTUAL"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SCR_DISTRIBUCION_ACTUAL"
+    </meta>
+
+    <id
+        name="iddist"
+        type="java.lang.Integer"
+        column="ID_DIST"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.Integer"
+            column="ID_DIST"
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="dist_actual"
+        type="com.ieci.tecdoc.common.extension.StringClobType"
+        column="DIST_ACTUAL"
+    >
+        <meta attribute="field-description">
+		@hibernate.property
+            column="DIST_ACTUAL"
+            length="0"
+        </meta>
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

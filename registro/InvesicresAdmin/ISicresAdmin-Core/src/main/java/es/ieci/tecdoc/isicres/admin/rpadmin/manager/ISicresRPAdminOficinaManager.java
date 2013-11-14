@@ -11,6 +11,7 @@ import es.ieci.tecdoc.isicres.admin.base.dbex.DbConnection;
 import es.ieci.tecdoc.isicres.admin.business.exception.ISicresAdminIntercambioRegistralException;
 import es.ieci.tecdoc.isicres.admin.business.manager.IntercambioRegistralManager;
 import es.ieci.tecdoc.isicres.admin.business.spring.AppContext;
+import es.ieci.tecdoc.isicres.admin.business.spring.AdminIRManagerProvider;
 import es.ieci.tecdoc.isicres.admin.business.vo.EntidadRegistralVO;
 import es.ieci.tecdoc.isicres.admin.core.beans.IUserDeptHdrImpl;
 import es.ieci.tecdoc.isicres.admin.core.beans.IUserObjPermImpl;
@@ -211,7 +212,6 @@ public class ISicresRPAdminOficinaManager {
 				// Cambiar el tipo del existente
 				IUserDeptHdrImpl iUserDeptHdrImpl = new IUserDeptHdrImpl();
 				iUserDeptHdrImpl.setId(oficina.getDeptId());
-				iUserDeptHdrImpl.setType(Departamento.SICRES_DEPT_TYPE);
 				new IUserDeptHdrDatos(iUserDeptHdrImpl).update(db);
 			}
 
@@ -230,9 +230,7 @@ public class ISicresRPAdminOficinaManager {
 				// añadimos el codigo de la oficina a la entidad
 				entidadRegistral.setIdOfic(oficina.getId());
 				// creamos la Entidad Registral asociada a la oficina
-				IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-						.getApplicationContext().getBean(
-								"intercambioRegistralManager");
+				IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 				entidadRegistral = intercambioRegistralManager
 						.addEntidadRegistral(entidadRegistral);
@@ -351,9 +349,7 @@ public class ISicresRPAdminOficinaManager {
 			SicresOficinaImpl oficina, EntidadRegistralVO entidadRegistral)
 			throws ISicresAdminIntercambioRegistralException {
 		//Intercambio Registral
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean(
-						"intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		if(entidadRegistral.getId() != 0){
 			//obtenemos los datos almacenados de la Entidad Registral
@@ -399,9 +395,7 @@ public class ISicresRPAdminOficinaManager {
 			localizacion.delete(db);
 
 			//Intercambio Registral
-			IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-					.getApplicationContext().getBean(
-							"intercambioRegistralManager");
+			IntercambioRegistralManager intercambioRegistralManager =AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 			//buscamos la Entidad Registral asociada a la oficina
 			EntidadRegistralVO entidadRegistral = intercambioRegistralManager
 					.getEntidadRegistralByIdOficina(oficina.getId());
@@ -466,9 +460,7 @@ public class ISicresRPAdminOficinaManager {
 			localizacion.delete(db);
 
 			//Intercambio Registral
-			IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-					.getApplicationContext().getBean(
-							"intercambioRegistralManager");
+			IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 			//buscamos la Entidad Registral asociada a la oficina
 			EntidadRegistralVO entidadRegistral = intercambioRegistralManager
 					.getEntidadRegistralByIdOficina(oficina.getId());
@@ -550,6 +542,7 @@ public class ISicresRPAdminOficinaManager {
 		return oficinas;
 	}
 
+	@Deprecated
 	public static Departamentos obtenerDepartamentos(boolean oficinas,
 			String entidad) throws ISicresRPAdminDAOException {
 		Departamentos departamentos = null;
@@ -574,6 +567,30 @@ public class ISicresRPAdminOficinaManager {
 		}
 		return departamentos;
 	}
+
+	/**
+	 * Obtiene el listado de departamentos
+	 *
+	 * @param entidad
+	 * @return Listado de departamentos {@link Departamentos}
+	 * @throws ISicresRPAdminDAOException
+	 */
+	public static Departamentos obtenerDepartamentos(
+			String entidad) throws ISicresRPAdminDAOException {
+		Departamentos departamentos = null;
+		try {
+			ISicresAdminEstructuraService oServicio = new ISicresAdminEstructuraAdapter();
+			departamentos = oServicio.getDepartamentos(entidad);
+
+		} catch (Exception e) {
+			logger.error("Error obteniendo departamentos");
+			throw new ISicresRPAdminDAOException(
+					ISicresRPAdminDAOException.EXC_GENERIC_EXCEPCION, e);
+		}
+		return departamentos;
+	}
+
+
 
 	public static Departamentos obtenerDepartamentosHijos(int parentId,
 			String entidad) throws ISicresRPAdminDAOException {

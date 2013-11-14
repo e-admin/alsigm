@@ -2,6 +2,8 @@ package es.ieci.tecdoc.isicres.admin.estructura.beans;
 
 import java.util.ArrayList;
 
+import es.ieci.tecdoc.isicres.admin.estructura.keys.ISicresAdminArchiveKeys;
+import es.ieci.tecdoc.isicres.admin.exception.ISicresAdminBasicException;
 import es.ieci.tecdoc.isicres.admin.exception.ISicresAdminEstructuraException;
 
 public class ArchiveFlds {
@@ -28,8 +30,8 @@ public class ArchiveFlds {
 	}
 
 	/**
-	 * Añade una definición de campo. 
-	 * 
+	 * Añade una definición de campo.
+	 *
 	 * @param fld Definición del campo.
 	 */
 	public void addFld(ArchiveFld fld) throws ISicresAdminEstructuraException {
@@ -60,7 +62,7 @@ public class ArchiveFlds {
 	 * Añade una definición de campo
 	 * (el cálculo del identificador es interno, nunca tiene que se
 	 * establecido).
-	 * 
+	 *
 	 * @param name Nombre del campo
 	 * @param type Tipo del campo
 	 * @param len  Longitud del campo en caso de texto y texto largo en
@@ -76,14 +78,14 @@ public class ArchiveFlds {
 			throws ISicresAdminEstructuraException {
 
 		add(-1, name, type, len, isNullable, isDoc, isMult, remarks);
-		
+
 	}
 
 	/**
 	 * Añade una definición de campo
 	 * (si se proporciona un identificador no valido, menor o igual que 0, se
 	 * proporciona uno internamente).
-	 * 
+	 *
 	 * @param id identificador del campo
 	 * @param name Nombre del campo
 	 * @param type Tipo del campo
@@ -137,7 +139,7 @@ public class ArchiveFlds {
 
 	/**
 	 * Obtiene si todos las descripciones de los campos son válidas.
-	 * 
+	 *
 	 * @return true /false
 	 */
 	public boolean areValidRemarks() {
@@ -159,7 +161,7 @@ public class ArchiveFlds {
 
 	/**
 	 * Obtiene el identificador del campo a partir del nombre del campo.
-	 * 
+	 *
 	 * @param name Nombre del campo
 	 * @return Identificador del campo
 	 * @throws Exception  Errores (si no existe el campo)
@@ -189,7 +191,7 @@ public class ArchiveFlds {
 
 	/**
 	 * Obtiene el próximo identificador de campo
-	 * 
+	 *
 	 * @return - identificador del campo
 	 */
 	private int getNextFldId() {
@@ -212,7 +214,7 @@ public class ArchiveFlds {
 
 	/**
 	 * Obtiene si el nombre del campo es válido ó no
-	 * 
+	 *
 	 * @param name - nombre del campo
 	 * @return true / false
 	 */
@@ -229,4 +231,34 @@ public class ArchiveFlds {
 		return valid;
 	}
 
+	   /**
+	    * Obtiene la definición de un campo a partir del identificador del campo.
+	    *
+	    * @param fldId Identificador del campo
+	    * @return  Definición del campo
+	    * @throws Exception Errores (si el campo no exite)
+	    */
+	   public ArchiveFld getFldDefById(int fldId) throws Exception
+	   {
+		   ArchiveFld fldDef = null;
+	      boolean find = false;
+
+	      for (int i = 0; i < archiveFldsList.size(); i++)
+	      {
+	         fldDef = (ArchiveFld)archiveFldsList.get(i);
+	         if (fldDef.getId() == fldId)
+	         {
+	            find = true;
+	            break;
+	         }
+	      }
+
+	      if (!find)
+	      {
+	         ISicresAdminBasicException.throwException(ISicresAdminArchiveKeys.EC_FLD_NO_EXISTS);
+	      }
+
+	      return fldDef;
+
+	   }
 }

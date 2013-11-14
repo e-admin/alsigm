@@ -2,7 +2,7 @@
 	<parent>
 		<artifactId>InvesSicresAdmin</artifactId>
 		<groupId>es.ieci.tecdoc.isicres.admin</groupId>
-		<version>8.0.1</version>
+		<version>8.0.5-M1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>ISicresAdmin-Web</artifactId>
@@ -70,10 +70,6 @@
 					<artifactId>ISicres-EventsManager</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>net.sf.jasperreports</groupId>
-					<artifactId>jasperreports</artifactId>
-				</exclusion>
-				<exclusion>
 					<groupId>com.lowagie</groupId>
 					<artifactId>itext</artifactId>
 				</exclusion>
@@ -84,6 +80,12 @@
 			</exclusions>
 		</dependency>
 
+
+		<dependency>
+			<groupId>es.ieci.tecdoc.isicres</groupId>
+			<artifactId>ISicres-Api</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
 
 
 		<!-- -->
@@ -171,7 +173,10 @@
 			<artifactId>fwktd-core</artifactId>
 			<version>${fwktd.version}</version>
 			<exclusions>
-
+				<exclusion>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+		        </exclusion>
 			</exclusions>
 		</dependency>
 
@@ -236,7 +241,7 @@
 										**/*ISicres-DesktopWeb_ca_ES.properties,
 										**/*ISicres-DesktopWeb_eu_ES.properties,
 										**/*ISicres-DesktopWeb_gl_ES.properties
-									</excludes>									
+									</excludes>
 								</artifactItem>
 								<artifactItem>
 									<groupId>es.ieci.tecdoc.isicres</groupId>

@@ -33,7 +33,7 @@
 								<div id="resultadoSearchIntFormReg" style="width: 100%; height: 90%; overflow: auto; position: relative;">
 									<div id="contenidoResultInteresados" onmouseover="this.style.cursor='cursor';">
 										<div id="resultSearchInt" style="width: 95%; margin-left:10px;">
-											<display:table name="list" id="interesados" defaultsort="2" requestURI="interesado/seachTerceros.action" decorator="es.ieci.tecdoc.sicres.terceros.web.view.decorator.TercerosTableDecorator" pagesize="10">
+											<display:table name="list" id="interesados" defaultsort="3" requestURI="interesado/seachTerceros.action" decorator="es.ieci.tecdoc.sicres.terceros.web.view.decorator.TercerosTableDecorator" pagesize="10">
 												<!-- icono con el tipo de interesado (Fisico/Juridico) -->
 												<display:column>
 													<c:choose>

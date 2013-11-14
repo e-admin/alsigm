@@ -23,4 +23,7 @@
 		</property>
 	</bean>
 
+	<!-- Sobrecarga y personalizacion de beans -->
+	<import resource="classpath*:beans/ISicres-Terceros/*-custom-beans.xml" />
+
 </beans>

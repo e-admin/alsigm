@@ -39,8 +39,8 @@ import es.ieci.tecdoc.fwktd.core.config.web.ContextUtil;
 /**
  * @author LMVICENTE Genera La lista de libros. La lista se construye mediante
  *         una transformación de un xml y una xsl en html.
- * 
- * 
+ *
+ *
  * @creationDate 04-may-2004 12:54:25
  * @version
  * @since
@@ -94,7 +94,7 @@ public class ChangeOffice extends HttpServlet implements Keys {
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Pragma", "no-cache");
         response.setContentType("text/html; charset=UTF-8");
-        
+
         // identificador de archivo de usuario.
         String code = RequestUtils.parseRequestParameterAsString(request, "OfficeCode");
 
@@ -107,9 +107,18 @@ public class ChangeOffice extends HttpServlet implements Keys {
         PrintWriter writer = response.getWriter();
         try {
         	bookUseCase.validateOfficeCode(useCaseConf, code);
-            // Transformamos el xml mediante la xsl en html.
+
+		// Borrar identificador del libro sobre el que se esta trabajando
+		session.removeAttribute(Keys.J_BOOK);
+
+		//Borrar identificador del registro sobre el que se esta trabajando
+		session.removeAttribute(Keys.J_REGISTER);
+
+
+		// Transformamos el xml mediante la xsl en html.
             // Los errores pueden ser de comunicación, de validación de
             // transformación, etc...
+
             Document xmlDocument = bookUseCase.getBooks(useCaseConf);
             String xslPath = ContextUtil.getRealPath(session.getServletContext(),XSL_LEST_RELATIVE_PATH);
 

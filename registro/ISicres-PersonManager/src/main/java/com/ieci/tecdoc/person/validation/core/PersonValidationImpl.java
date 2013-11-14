@@ -15,6 +15,7 @@ import net.sf.hibernate.Transaction;
 import net.sf.hibernate.expression.Expression;
 import net.sf.hibernate.expression.Order;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 import com.ieci.tecdoc.common.AuthenticationUser;
@@ -1368,13 +1369,13 @@ public class PersonValidationImpl implements PersonValidation {
 		if (operator.equals(ServerKeys.EQUAL)) {
 			buffer.append("=");
 			buffer.append("'");
-			buffer.append(valor);
+			buffer.append(StringEscapeUtils.escapeSql(valor));
 			buffer.append("'");
 		}
 		if (operator.equals(ServerKeys.BEGIN_BY)) {
 			buffer.append(" like ");
 			buffer.append("'");
-			buffer.append(valor);
+			buffer.append(StringEscapeUtils.escapeSql(valor));
 			buffer.append(DBEntityDAOFactory.getCurrentDBEntityDAO()
 					.getLikeCharacter());
 			buffer.append("'");
@@ -1384,7 +1385,7 @@ public class PersonValidationImpl implements PersonValidation {
 			buffer.append("'");
 			buffer.append(DBEntityDAOFactory.getCurrentDBEntityDAO()
 					.getLikeCharacter());
-			buffer.append(valor);
+			buffer.append(StringEscapeUtils.escapeSql(valor));
 			buffer.append(DBEntityDAOFactory.getCurrentDBEntityDAO()
 					.getLikeCharacter());
 			buffer.append("'");

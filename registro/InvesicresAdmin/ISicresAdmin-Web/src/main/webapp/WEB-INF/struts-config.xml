@@ -447,7 +447,7 @@
 	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.EditarLibroAction"
 	       scope="request" input="/editarLibro.do" name="libroForm" validate="true">
 	    	<forward name="success" path="/jsp/editarLibro.jsp"/>
-	    	<forward name="error" path="/editarLibro.do"/>
+		<forward name="error" path="/listadoLibros.do"/>
 	    </action>
 
 	    <action path="/guardarEdicionLibro"

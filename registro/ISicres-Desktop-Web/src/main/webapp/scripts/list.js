@@ -341,15 +341,15 @@ function UpValues(TypeId,IdCrl)
    if (TypeId==-1)
    {
       if (parent.VldTypeId!=0){
-      	parent.VldTypeBusc  = parent.VldTypeBuscOld;
-      	parent.VldTypeId    = parent.VldTypeIdOld;
-      	parent.VldIdCrl     = parent.VldIdCrlOld;
+	parent.VldTypeBusc  = parent.VldTypeBuscOld;
+	parent.VldTypeId    = parent.VldTypeIdOld;
+	parent.VldIdCrl     = parent.VldIdCrlOld;
       }
       else
       {
-      	parent.VldTypeBusc  = 2;
-      	parent.VldTypeId    = parent.VldTypeIdOld;
-      	parent.VldIdCrl     = parent.VldIdCrlOld;
+	parent.VldTypeBusc  = 2;
+	parent.VldTypeId    = parent.VldTypeIdOld;
+	parent.VldIdCrl     = parent.VldIdCrlOld;
       }
       FirtValues();
    }

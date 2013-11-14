@@ -7,7 +7,9 @@
     	http://www.directwebremoting.org/schema/spring-dwr
     	http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
 
-	<dwr:controller id="dwrController" debug="true" />
+	<dwr:controller id="dwrController" debug="true">
+		<dwr:config-param name="crossDomainSessionSecurity" value="false"/>
+	</dwr:controller>
 
 	<dwr:configuration>
 		<dwr:convert type="bean"

@@ -2,8 +2,11 @@ package es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao;
 
 import java.util.List;
 
+import es.ieci.tecdoc.fwktd.server.pagination.PageInfo;
+import es.ieci.tecdoc.fwktd.server.pagination.PaginatedArrayList;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.BandejaSalidaItemVO;
-import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.CriterioBusquedaBandejaSalidaVO;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.CriteriosBusquedaIRSalidaVO;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaEnumVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.IntercambioRegistralSalidaVO;
 
@@ -23,19 +26,75 @@ public interface BandejaSalidaIntercambioRegistralDAO {
 	public IntercambioRegistralSalidaVO get(Long id);
 
 	/**
+	 * Metodo que obtiene  un intercambio registral  mediante el estado y el id de oficina
+	 * @param estado
+	 * @param idOficina
+	 * @return Listado de objetos {@link IntercambioRegistralSalidaVO}
+	 */
+	public List<IntercambioRegistralSalidaVO> findByIdIntercambioRegistralSirYOficina(String idIntercambioRegistralSir, Integer idOficina);
+
+
+
+	/**
 	 * Metodo que actualiza un estado del intercambio registral
 	 * @param intecambioRegistralSalida
 	 * @param estado
 	 */
 	public void updateEstado(IntercambioRegistralSalidaVO intecambioRegistralSalida,EstadoIntercambioRegistralSalidaVO estado);
 
+
 	/**
-	 * Metodo que obtiene un listado  con los intercambios registrales de salida que cumplen el criterio pasado como parametro
-	 * @param criterios
+	 * Busca un listado de asientos registrales a partir del estado y unos criterios de búsqueda
 	 *
-	 * @return Listado de objetos {@link BandejaSalidaItemVO}
+	 * @param estado
+	 * @param criterios
+	 * @return {{@link List} - Listado de objetos IntercambioRegistralEntradaVO
 	 */
-	public List<BandejaSalidaItemVO> findByCriterios(List<CriterioBusquedaBandejaSalidaVO> criterios);
+	public List<BandejaSalidaItemVO> findByCriterios(EstadoIntercambioRegistralSalidaEnumVO estado, CriteriosBusquedaIRSalidaVO criterios);
+
+	/**
+	 * Busca un listado de asientos registrales a partir del estado, el
+	 * identificador del libro y unos criterios de búsqueda.
+	 *
+	 * Si se conoce el libro sobre el que queremos buscar es más rápido este
+	 * método que añadir un criterio con el libro porque no es necesario
+	 * completar el resultado con los atributos del registro.
+	 *
+	 * @param estado
+	 * @param criterios
+	 * @return {{@link List} - Listado de objetos IntercambioRegistralEntradaVO
+	 */
+	public List<BandejaSalidaItemVO> findByCriterios(
+			EstadoIntercambioRegistralSalidaEnumVO estado,
+			CriteriosBusquedaIRSalidaVO criterios, Integer idLibro);
+
+	/**
+	 * Busca un listado paginado de asientos registrales a partir del estado y unos criterios de búsqueda
+	 *
+	 * @param estado
+	 * @param criterios
+	 * @param pageInfo
+	 * @return {{@link PaginatedArrayList} - Listado de objetos BandejaSalidaItemVO
+	 */
+	public PaginatedArrayList<BandejaSalidaItemVO> findByCriterios(EstadoIntercambioRegistralSalidaEnumVO estado, CriteriosBusquedaIRSalidaVO criterios, PageInfo pageInfo);
+
+	/**
+	 *
+	 * Busca un listado paginado de asientos registrales a partir del estado, el
+	 * identificador del libro y unos criterios de búsqueda.
+	 *
+	 * Si se conoce el libro sobre el que queremos buscar es más rápido este
+	 * método que añadir un criterio con el libro porque no es necesario
+	 * completar el resultado con los atributos del registro.
+	 *
+	 * @param estado
+	 * @param criterios
+	 * @param idLibro
+	 * @param pageInfo
+	 * @return @return {{@link PaginatedArrayList} - Listado de objetos BandejaSalidaItemVO
+	 */
+	public PaginatedArrayList<BandejaSalidaItemVO> findByCriterios(EstadoIntercambioRegistralSalidaEnumVO estado, CriteriosBusquedaIRSalidaVO criterios, Integer idLibro, PageInfo pageInfo);
+
 
 	/**
 	 * Metodo que completa la información del registro
@@ -52,6 +111,15 @@ public interface BandejaSalidaIntercambioRegistralDAO {
 	 * @return Listado de objetos {@link BandejaSalidaItemVO}
 	 */
 	public List<BandejaSalidaItemVO> getBandejaSalidaByEstadoYOficina(Integer estado, Integer idOficina);
+
+	/**
+	 * Metodo que obtiene la Bandeja de Salida mediante el estado y el id de oficina
+	 * @param estado
+	 * @param idOficina
+	 * @return Listado de objetos {@link BandejaSalidaItemVO}
+	 */
+	public List<BandejaSalidaItemVO> getBandejaSalidaByIdIntercambioRegistralSirYOficina(String idIntercambioRegistralSir, Integer idOficina);
+
 
 	/**
 	 * Metodo que obtiene la Bandeja de Salida mediante el estado, el id de oficina y el id del libro

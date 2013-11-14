@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
@@ -29,7 +30,7 @@ public class XMLDistReg implements Keys {
 
 	private static Logger _logger = Logger.getLogger(XMLDistReg.class);
 
-    private static SimpleDateFormat shortFormatter = null;
+	private static SimpleDateFormat dateFormat = null;
 
     /*******************************************************************************************************************
      * Constructors
@@ -71,7 +72,9 @@ public class XMLDistReg implements Keys {
 	 *
      */
     public static Document createXMLDistReg(List list, Integer bookID, int fdrid, Locale locale) {
-        shortFormatter = new SimpleDateFormat(RBUtil.getInstance(locale).getProperty(I18N_DATE_SHORTFORMAT));
+
+	//obtenemos el formato de fecha con el que se trabajará
+	dateFormat = XMLUtils.getDateFormatView(locale);
 
         Document document = DocumentHelper.createDocument();
 
@@ -128,7 +131,9 @@ public class XMLDistReg implements Keys {
 	 *	[...]
      */
     public static Document createXMLDistRegWithRemarkDistribution(List list, Integer bookID, int fdrid, Locale locale, String nameBook, String numReg) {
-        shortFormatter = new SimpleDateFormat(RBUtil.getInstance(locale).getProperty(I18N_DATE_SHORTFORMAT));
+
+	//obtenemos el formato de fecha con el que se trabajará
+	dateFormat = XMLUtils.getDateFormatView(locale);
 
         Document document = DocumentHelper.createDocument();
 
@@ -230,7 +235,8 @@ public class XMLDistReg implements Keys {
     }
 
     /**
-     * Metodo que añade al XML el bodyMinuta compuesto de Estado, F. de Estado y Usuario
+     * Metodo que añade al XML el bodyMinuta compuesto de Estado, F. de Estado, Usuario y Comentarios
+     *
      * @param locale
      * @param parent
      */
@@ -242,6 +248,8 @@ public class XMLDistReg implements Keys {
                 .getProperty(I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_BODYMINUTA_COL9)));
         bodyMinuta.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(RBUtil.getInstance(locale)
                 .getProperty(I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_BODYMINUTA_COL11)));
+        bodyMinuta.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(RBUtil.getInstance(locale)
+                .getProperty(I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_BODYMINUTA_COL12)));
     }
 
     /**
@@ -262,7 +270,7 @@ public class XMLDistReg implements Keys {
         Element minuta = parent.addElement(XML_MINUTA_TEXT).addAttribute(XML_ID_TEXT, Integer.toString(index));
 
         Element head = minuta.addElement(XML_HEAD_TEXT);
-        head.addElement(XML_COL_TEXT).addText(shortFormatter.format(result.getScrDistReg().getDistDate()));
+        head.addElement(XML_COL_TEXT).addText(dateFormat.format(result.getScrDistReg().getDistDate()));
         head.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(result.getSourceDescription()));
         head.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(result.getTargetDescription()));
         head.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(RBUtil.getInstance(locale)
@@ -273,7 +281,7 @@ public class XMLDistReg implements Keys {
         } else {
             head.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(""));
         }
-        head.addElement(XML_COL_TEXT).addText(shortFormatter.format(result.getScrDistReg().getStateDate()));
+        head.addElement(XML_COL_TEXT).addText(dateFormat.format(result.getScrDistReg().getStateDate()));
 
         Element body = minuta.addElement(XML_BODY_TEXT);
         ScrDistregstate scr = null;
@@ -286,8 +294,13 @@ public class XMLDistReg implements Keys {
                     .addAttribute(XML_IDFDR_TEXT, Integer.toString(fdrid));
             row.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(RBUtil.getInstance(locale)
                     .getProperty(I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_MINUTA_DIST_STATE + scr.getState())));
-            row.addElement(XML_COL_TEXT).addText(shortFormatter.format(scr.getStateDate()));
+            row.addElement(XML_COL_TEXT).addText(dateFormat.format(scr.getStateDate()));
             row.addElement(XML_COL_TEXT).addText(scr.getUsername());
+            String scrMessage = scr.getMessage();
+            if (StringUtils.isEmpty(scrMessage)){
+		scrMessage = "";
+            }
+            row.addElement(XML_COL_TEXT).addText(scrMessage);
         }
     }
 
@@ -309,13 +322,13 @@ public class XMLDistReg implements Keys {
         Element minuta = parent.addElement(XML_MINUTA_TEXT).addAttribute(XML_ID_TEXT, Integer.toString(index));
 
         Element head = minuta.addElement(XML_HEAD_TEXT);
-        head.addElement(XML_COL_TEXT).addText(shortFormatter.format(result.getScrDistReg().getDistDate()));
+        head.addElement(XML_COL_TEXT).addText(dateFormat.format(result.getScrDistReg().getDistDate()));
         head.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(result.getSourceDescription()));
         head.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(result.getTargetDescription()));
         head.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(RBUtil.getInstance(locale)
                 .getProperty(I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_MINUTA_DIST_STATE + result.getScrDistReg().getState())));
 
-        head.addElement(XML_COL_TEXT).addText(shortFormatter.format(result.getScrDistReg().getStateDate()));
+        head.addElement(XML_COL_TEXT).addText(dateFormat.format(result.getScrDistReg().getStateDate()));
         Element comentarioDistr = head.addElement(XML_COL_TEXT).addAttribute("TextLong", "1");
         		comentarioDistr.add(DocumentHelper.createCDATA(result.getScrDistReg().getMessage()));
 
@@ -330,8 +343,13 @@ public class XMLDistReg implements Keys {
                     .addAttribute(XML_IDFDR_TEXT, Integer.toString(fdrid));
             row.addElement(XML_COL_TEXT).add(DocumentHelper.createCDATA(RBUtil.getInstance(locale)
                     .getProperty(I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_MINUTA_DIST_STATE + scr.getState())));
-            row.addElement(XML_COL_TEXT).addText(shortFormatter.format(scr.getStateDate()));
+            row.addElement(XML_COL_TEXT).addText(dateFormat.format(scr.getStateDate()));
             row.addElement(XML_COL_TEXT).addText(scr.getUsername());
+            String scrMessage = scr.getMessage();
+            if (StringUtils.isEmpty(scrMessage)){
+		scrMessage = "";
+            }
+            row.addElement(XML_COL_TEXT).addText(scrMessage);
         }
     }
 

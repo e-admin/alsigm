@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -28,20 +29,36 @@ public class BusquedaUnidadesOrganicasDirectorioComunAction extends RPAdminWebAc
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ISicresServicioRPAdmin oServicio = new ISicresServicioRPAdminAdapter();
-		Criterios<CriterioUnidadOrganicaEnum> criterios= new Criterios<CriterioUnidadOrganicaEnum>();
+
 
 		BusquedaDirectorioComunForm busquedaForm = (BusquedaDirectorioComunForm)form;
+
+		List<DatosBasicosUnidadOrganicaDCVO> listaUnidadesOrganicas = null;
 		if(busquedaForm!=null)
 		{
-			criterios = busquedaForm.setForUnidadOrganica(criterios);
+			if (StringUtils.isNotEmpty(busquedaForm.getCodEntity())) {
+				listaUnidadesOrganicas = oServicio
+						.findUnidadesOrganicasDirectorioComunByCodEntidad(
+								busquedaForm.getCodEntity(), busquedaForm.getCodigo(),  busquedaForm.getNombre());
+			} else {
+				Criterios<CriterioUnidadOrganicaEnum> criterios= new Criterios<CriterioUnidadOrganicaEnum>();
+				criterios = busquedaForm.setForUnidadOrganica(criterios);
+				if (criterios.getCriterios() != null
+						&& criterios.getCriterios().size() > 0) {
+					listaUnidadesOrganicas = oServicio
+							.findUnidadesOrganicasDirectorioComun(criterios);
+				}
+			}
+
+			 request.setAttribute("listaUnidadesOrganicas", listaUnidadesOrganicas);
 		}
 
 		//Solo buscamos si hay algún criterio, para no permitir la lista de TODOS
-		if(criterios.getCriterios()!=null && criterios.getCriterios().size()>0)
-		{
-			List<DatosBasicosUnidadOrganicaDCVO> listaUnidadesOrganicas = oServicio.findUnidadesOrganicasDirectorioComun(criterios);
-	        request.setAttribute("listaUnidadesOrganicas", listaUnidadesOrganicas);
-		}
+//		if(criterios.getCriterios()!=null && criterios.getCriterios().size()>0)
+//		{
+//			List<DatosBasicosUnidadOrganicaDCVO> listaUnidadesOrganicas = oServicio.findUnidadesOrganicasDirectorioComun(criterios);
+//	        request.setAttribute("listaUnidadesOrganicas", listaUnidadesOrganicas);
+//		}
         return mapping.findForward("success");
 
 	}

@@ -26,7 +26,7 @@
 					<form:label path="tipoDireccionTelematica">
 						<spring:message code="label.form.direccion.telematica.tipo" />
 					</form:label>
-					<form:select path="tipoDireccionTelematica.id" cssClass="medium" tabindex="40">
+					<form:select path="tipoDireccionTelematica.id" cssClass="medium" tabindex="40" onchange="javascript:changeValue(this)">
 						<option value="">
 							<spring:message code="label.form.direccion.telematica.tipo.choose" />
 						</option>
@@ -40,7 +40,7 @@
 						<label for="${status.expression}">
 							<spring:message code="label.form.direccion.telematica.direccion" />
 						</label>
-						<textarea cols="30" rows="3" name="${status.expression}" class="medium ${sessionScope.texttransform}" tabindex="41">${status.value}</textarea>
+						<textarea cols="30" rows="3" id="${status.expression}" name="${status.expression}" class="medium ${sessionScope.texttransform}" tabindex="41">${status.value}</textarea>
 					</spring:bind>
 				</p>
 				<spring:bind path="id">
@@ -62,7 +62,31 @@
 
 	<script type="text/javascript">
 	<!--
+
+		function ocultarTextArea(combo){
+			var textArea = document.getElementById("content.direccion");
+			//si es comparecencia electrónica se bloquea el textArea y se añade el literal del combo
+			if(combo.value==6){
+				//ocultamos el textarea y le asignamos el valor del combo
+				textArea.value=combo.options[combo.selectedIndex].text;
+				textArea.style.visibility = "hidden";
+			}else{
+				//activamos el textarea
+				textArea.style.visibility = "visible";
+				textArea.value="";
+			}
+		}
+
+		function changeValue(combo){
+			//comprobamos si hay que ocultar el textarea
+			ocultarTextArea(combo);
+		}
+
 		jQuery(document).ready(function($) {
+
+			//validamos si se ha de mostrar/ocultar el textarea de la dirección
+			var combo = document.getElementById("content.tipoDireccionTelematica.id");
+			ocultarTextArea(combo);
 
 			// El formulario no se envia por submit. Se hace por Ajax
 			$("#direccion-telematica-form").submit(function(){

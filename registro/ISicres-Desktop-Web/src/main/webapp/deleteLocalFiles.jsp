@@ -39,7 +39,7 @@
 		<!-- applet de escaneo-->
 		<APPLET MAYSCRIPT="true" id="appletSendDeleteFiles" width="0" height="0" CODE="es.ieci.tecdoc.fwktd.applets.sendfiles.applet.SendFilesApplet"
 			ALT="If you could run this applet, you d see some animation"
-			ARCHIVE="applets/fwktd-sendFiles-applet-0.7.jar;jsessionid=<%=session.getId()%>">
+			ARCHIVE="applets/fwktd-sendFiles-applet-0.8.jar;jsessionid=<%=session.getId()%>">
 	        <PARAM name="codebase_lookup" value="false"/>
 	    </APPLET>
 

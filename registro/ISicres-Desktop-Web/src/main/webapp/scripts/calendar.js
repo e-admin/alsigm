@@ -1,18 +1,18 @@
 	var language = 'ES';
-	var enablePast = 0; 
-	var fixedX = -1; 
-	var fixedY = -1; 
-	var startAt = 1; 
-	var showWeekNumber = 0; 
+	var enablePast = 0;
+	var fixedX = -1;
+	var fixedY = -1;
+	var startAt = 1;
+	var showWeekNumber = 0;
 	var showToday = 1;
 	var imgDir = 'images/';
 	var dayName = '';
-	
+
 	var gotoString = {
 		ES : 'Ir al mes actual',
 		CT_ : 'Ves al mes Actual',
 		EU_ : 'Gaur egungo hilarengan joatea',
-		GL_ : 'Ir ao mes actual'		
+		GL_ : 'Ir ao mes actual'
 	};
 	var todayString = {
 		ES : 'Hoy es',
@@ -24,7 +24,7 @@
 		ES : 'Sem',
 		CT_ : 'Sem',
 		EU_ : 'Ast',
-		GL_ : 'Sem'		
+		GL_ : 'Sem'
 	};
 	var scrollLeftMessage = {
 		ES : 'Presione para pasar al mes anterior. Deje presionado para pasar varios meses.',
@@ -42,7 +42,7 @@
 		ES : 'Presione para seleccionar un mes',
 		CT_ : 'Pressioni per a seleccionar un mes.',
 		EU_ : 'Hil batengan aukeratzeko presioa egin dezan',
-		GL_ : 'Presione para seleccionar un mes'		
+		GL_ : 'Presione para seleccionar un mes'
 	};
 	var selectYearMessage = {
 		ES : 'Presione para seleccionar un año',
@@ -54,11 +54,11 @@
 		ES : 'Seleccione [date] como fecha',
 		CT_ : 'Seleccioni [date] com data.',
 		EU_ : '[date] aukera dezan egunean.',
-		GL_ : 'Seleccione [date] como data'		
+		GL_ : 'Seleccione [date] como data'
 	};
 	var	monthName = {
 		ES : new Array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'),
-		CT_ : new Array('Gener','Febrer','Març','Abril','Maig','Juny','Julio','Agost','Setembre','Octubre','Novembre','Desembre'), 
+		CT_ : new Array('Gener','Febrer','Març','Abril','Maig','Juny','Julio','Agost','Setembre','Octubre','Novembre','Desembre'),
 		EU_ : new Array('Urtarrilean','Otsailean','Martxoan','Apirilean','Maiatz','Ekainean','Uztailan','Abuztuan','Irailean','Urrian','Azaroan','Abenduan'),
 		GL_ : new Array('Xaneiro','Febreiro','Marzo','Abril','Maio','Xuño','Xullo','Agosto','Setembro','Outubro','Novembro','Decembro')
 	};
@@ -66,7 +66,7 @@
 		ES : new Array('ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'),
 		CT_ : new Array('GEN','FEB','MAR','ABR','MAI','JUN','JUL','AGO','SET','OCT','NOV','DES'),
 		EU_ : new Array('URT','OTS','MAR','API','MAI','EKA','UZT','ABU','IRA','URR','AZA','ABE'),
-		GL_ : new Array('XAN','FEB','MAR','ABR','MAI','XUÑ','XUL','AGO','SET','OUT','NOV','DIC')		
+		GL_ : new Array('XAN','FEB','MAR','ABR','MAI','XUÑ','XUL','AGO','SET','OUT','NOV','DIC')
 	};
 
 	if (startAt==0) {
@@ -81,7 +81,7 @@
 			ES : new Array('Lun','Mar','Mie','Jue','Vie','Sab','Dom'),
 			CT_ : new Array('Dl','Dm','Dc','Dj','Dv','Ds','Dg'),
 			EU_ : new Array('Leh','Art','Azk','Gun','Ira','Lar','Iga'),
-			GL_ : new Array('Lun','Mar','Mér','Xov','Ven','Sab','Dom')			
+			GL_ : new Array('Lun','Mar','Mér','Xov','Ven','Sab','Dom')
 		};
 	}
 
@@ -101,7 +101,7 @@
 	var img      = new Array();
 	var bShow    = false;
 
-	
+
 	function hideCombosNexo (overDiv) {
 		var contadorreg = document.getElementById("contadorreg").value;
 		for (i = 0; i < contadorreg; i++) {
@@ -110,55 +110,55 @@
 			objLeft   = nexo.offsetLeft;
 			objTop    = nexo.offsetTop;
 			objParent = nexo.offsetParent;
-	
+
 			while(objParent.tagName.toUpperCase() != 'TABLE') {
 				objLeft  += objParent.offsetLeft;
 				objTop   += objParent.offsetTop;
 				objParent = objParent.offsetParent;
 			}
-			
+
 			objHeight = nexo.offsetHeight;
 			objWidth  = nexo.offsetWidth;
-			
+
 			if ((objLeft < (overDiv.offsetLeft + overDiv.offsetWidth))
 				&&
 				((objLeft + objWidth) > overDiv.offsetLeft)
 				&&
 				(overDiv.offsetTop < (objTop + objHeight)))
 				//&&
-				//((overDiv.offsetTop + overDiv.offsetHeight) > objTop)) 
+				//((overDiv.offsetTop + overDiv.offsetHeight) > objTop))
 				{
 					nexo.style.visibility = 'hidden';
 				}
 		}
 	}
-	
+
 	/* hides <select> and <applet> objects (for IE only) */
 	function hideElement( elmID, overDiv ) {
-		
+
 		if (navigator.appVersion.indexOf("MSIE 6")>0 && top.g_typeSearchAdvanced) {
 			hideCombosNexo(overDiv);
 		}
-		else {		
+		else {
 			if (ie && top.g_typeSearchAdvanced!=true) {
 				for(i = 0; i < document.all.tags( elmID ).length; i++) {
 					obj = document.all.tags( elmID )[i];
 					if(!obj || !obj.offsetParent) continue;
-	
+
 					// Find the element's offsetTop and offsetLeft relative to the BODY tag.
 					objLeft   = obj.offsetLeft;
 					objTop    = obj.offsetTop;
 					objParent = obj.offsetParent;
-	
+
 					while(objParent.tagName.toUpperCase() != 'BODY') {
 						objLeft  += objParent.offsetLeft;
 						objTop   += objParent.offsetTop;
 						objParent = objParent.offsetParent;
 					}
-	
+
 					objHeight = obj.offsetHeight;
 					objWidth  = obj.offsetWidth;
-	
+
 					if((overDiv.offsetLeft + overDiv.offsetWidth) <= objLeft);
 					else if((overDiv.offsetTop + overDiv.offsetHeight) <= objTop);
 					else if(overDiv.offsetTop >= (objTop + objHeight + obj.height));
@@ -208,32 +208,32 @@
 				img[i] = new Image;
 				img[i].src = imgDir + imgsrc[i];
 			}
-			
+
 			var divCal = document.createElement("DIV");
 			var HTMLtext = "";
-			
+
 			divCal.setAttribute("id", "calendar");
 			divCal.style.visibility = "hidden";
 			divCal.style.position = "absolute";
 			divCal.style.zIndex = "+999";
 			divCal["onclick"] = "bShow=true";
-			
+
 			document.body.appendChild(divCal);
-			
+
 			HTMLtext = '<table width="'+((showWeekNumber==1)?250:220)+'" style="font-family:Arial;font-size:11px;border: 1px solid #A0A0A0;" bgcolor="#ffffff"><tr class="td_encabezado_azul"><td><table width="'+((showWeekNumber==1)?248:218)+'"><tr><td style="padding:2px;font-family:Arial;font-size:11px;"><font color="#000000' + '' /*C9D3E9*/ +'"><b><span id="caption"></span></b></font></td><td align="right"><a href="javascript:hideCalendar()"><img src="'+imgDir+'pcalclose.gif" width="15" height="13" border="0" /></a></td></tr></table></td></tr><tr><td style="padding:5px" bgcolor="#ffffff"><span id="content"></span></td></tr>';
 
 			if (showToday == 1) {
 				HTMLtext += '<tr bgcolor="#f0f0f0"><td style="padding:5px" align="center"><span id="lblToday"></span></td></tr>';
 			}
-			
+
 			HTMLtext += '</table></div><div id="selectMonth" style="z-index:+999;position:absolute;visibility:hidden;"></div><div id="selectYear" style="z-index:+999;position:absolute;visibility:hidden;">';
-			
+
 			divCal.innerHTML = HTMLtext;
-			
+
 			document.onkeypress = function hidecal1 () {
 				if (top.GetKeyCode(event) == 27) hideCalendar();
 			}
-	
+
 			document.onclick = function hidecal2 () {
 				if (!bShow) {hideCalendar();}
 				bShow = false;
@@ -295,7 +295,7 @@
 		sTmp = sTmp.replace ('yyyy',y);
 		sTmp = sTmp.replace ('yy',padZero(y%100));
 		return sTmp.replace ('tt',t);
-		
+
 	}
 
 	function closeCalendar() {
@@ -362,9 +362,9 @@
 		var leftOffset;
 		var heightOffset;
 		var topOffset;
-		
+
 		top.StopPropagation(aEvent);
-		
+
 		if (visMonth == 1) {
 			popDownMonth();
 			visMonth--;
@@ -465,7 +465,7 @@
 		var leftOffset;
 		var heightOffset;
 		var topOffset;
-		
+
 		top.StopPropagation(aEvent);
 
 		if (visYear==1) {
@@ -538,7 +538,7 @@
 
 		datePointer = 0;
 		dayPointer = startDate.getDay() - startAt;
-		
+
 		if (dayPointer<0) dayPointer = 6;
 
 		sHTML = '<table border="0" style="font-family:verdana;font-size:10px;"><tr>';
@@ -552,7 +552,7 @@
 		}
 
 		sHTML += '</tr><tr>';
-		
+
 		if (showWeekNumber == 1) {
 			sHTML += '<td align="right">' + WeekNbr(startDate) + '&nbsp;</td>';
 		}
@@ -560,7 +560,7 @@
 		for	( var i=1; i<=dayPointer;i++ ) {
 			sHTML += '<td>&nbsp;</td>';
 		}
-	
+
 		for	( datePointer=1; datePointer <= numDaysInMonth; datePointer++ ) {
 			dayPointer++;
 			sHTML += '<td align="right">';
@@ -624,26 +624,26 @@
 		document.getElementById('spanYear').innerHTML  = '&nbsp;' + yearSelected	+ '&nbsp;<img id="changeYear" src="'+imgDir+'pcaldrop1.gif" width="12" height="10" border="0">';
 	}
 
-	function showCalendarEx(ctl, ctl2, lang) 
+	function showCalendarEx(ctl, ctl2, lang)
 	{
 		initCalendar();
 		showCalendar(ctl, ctl2, "dd-mm-yyyy", lang, -1, -1, -1);
 	}
-	
-	function showCalendarExDateLong(ctl, ctl2, lang) 
+
+	function showCalendarExDateLong(ctl, ctl2, lang)
 	{
 		initCalendar();
 		//hora actual
 		var oT=lZ(tS().getHours())+':'+lZ(tS().getMinutes())+':'+lZ(tS().getSeconds());
 		showCalendar(ctl, ctl2, "dd-mm-yyyy "+ oT, lang, -1, -1, -1);
 	}
-	
+
 	//funciones para obtener la hora
-	function tS(){ x=new Date(); x.setTime(x.getTime()); return x; } 
-	function lZ(x){ return (x>9)?x:'0'+x; } 
+	function tS(){ x=new Date(); x.setTime(x.getTime()); return x; }
+	function lZ(x){ return (x>9)?x:'0'+x; }
 	//
-	
-	
+
+
 	function showCalendar(ctl, ctl2, format, lang, past, fx, fy) {
 		if (lang != null && lang != '') language = lang;
 		if (past != null) enablePast = past;
@@ -746,19 +746,19 @@
 				if (ctl.offsetTop + document.getElementById('calendar').offsetHeight > document.body.clientHeight) {
 					toppos = - document.getElementById('calendar').offsetHeight;
 				}
-				
+
 				if(toppos<0){
 					toppos = ctl.offsetHeight - 13;
 				}
-				
+
 				crossobj.left = ((fixedX == -1) ? ctl.offsetLeft + leftpos : fixedX)+"px";
 				crossobj.top = ((fixedY == -1) ? ctl.offsetTop + toppos + ctl.offsetHeight + 2 : fixedY)+"px";
-				
+
 				crossobj.visibility = (dom||ie) ? "visible" : "show";
 
-	
+
 				hideElement('SELECT', document.getElementById('calendar'));
-				hideElement('APPLET', document.getElementById('calendar'));			
+				hideElement('APPLET', document.getElementById('calendar'));
 
 				bShow = true;
 			} else {
@@ -768,11 +768,11 @@
 			ctlNow = ctl;
 		}
 	}
-	
+
 	function showCalendarQueryAdvan(ctl, inputId, lang){
 
-		var ctl2 = document.getElementById(inputId); 
-		
+		var ctl2 = document.getElementById(inputId);
+
 		showCalendarEx(ctl, ctl2, lang);
 
 	}

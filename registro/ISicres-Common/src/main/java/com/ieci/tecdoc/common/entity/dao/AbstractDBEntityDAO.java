@@ -27,12 +27,15 @@ import org.apache.log4j.Logger;
 import com.ieci.tecdoc.common.extension.StringClobType;
 import com.ieci.tecdoc.common.invesdoc.Idocvtblctlg;
 import com.ieci.tecdoc.common.invesicres.ScrAddrtel;
+import com.ieci.tecdoc.common.invesicres.ScrDistreg;
 import com.ieci.tecdoc.common.invesicres.ScrReport;
 import com.ieci.tecdoc.common.isicres.AxSf;
 import com.ieci.tecdoc.common.isicres.AxSfQuery;
 import com.ieci.tecdoc.common.isicres.AxSfQueryField;
 import com.ieci.tecdoc.common.isicres.Keys;
+import com.ieci.tecdoc.common.keys.ConfigurationKeys;
 import com.ieci.tecdoc.common.utils.BBDDUtils;
+import com.ieci.tecdoc.common.utils.Configurator;
 import com.ieci.tecdoc.common.utils.ScrRegisterInter;
 
 /**
@@ -2307,39 +2310,24 @@ public abstract class AbstractDBEntityDAO extends DBEntityDAOKeys implements
 					buffer.append(axsfQuery.getWhereOprDependOfConnect());
 					buffer.append(")");
 					buffer.append(PAR_DER);
+				} else if ((Keys.QUERY_NOT_EQUAL_TEXT_VALUE).equals(field
+						.getOperator())) {
+					// Cuando realizamos una búsqueda con un valor distinto
+					// de [...] debemos tener en cuenta que los valores nulos
+					// del campo también entran dentro del criterio de búsqueda
+					buffer.append(PAR_IZQ);
+					buffer.append(field.getFldId());
+					buffer.append(ESPACIO);
+					buffer.append(IS_NULL);
+					buffer.append(ESPACIO);
+					buffer.append(OR);
+					buffer.append(ESPACIO);
+					//generamos la consulta para el campo indicado
+					generateQueryByFieldReport(axsf, axsfQuery, buffer, field);
+					buffer.append(PAR_DER);
 				} else {
-					String aux = null;
-					if (axsf != null
-							&& axsf.getAttributeClass(field.getFldId()).equals(
-									Date.class)) {
-						aux = getDateField(field.getFldId(), field
-								.getOperator(), 2, FORMATTER
-								.format((Date) field.getValue()));
-						// aux = aux.substring(0,aux.indexOf("?")) + "'" +
-						// FORMATTER.format((Date) field.getValue()) + "'";
-						buffer.append(aux);
-					} else {
-						aux = field.getFldId() + field.getOperator()
-								+ field.getValue();
-						if (!field.getFldId().equals("fld9")) {
-							buffer.append(field.getFldId());
-							buffer.append(field.getOperator());
-							if (field.getValue().getClass().equals(
-									Integer.class)) {
-								buffer.append(field.getValue());
-							} else {
-								buffer.append("'" + field.getValue() + "'");
-							}
-						} else {
-							buffer.append(axsfQuery.getWhereField9());
-							buffer.append(field.getOperator());
-							axsfQuery.setSentenceField9((String) field
-									.getValue());
-							buffer.append(axsfQuery.getSentenceField9());
-							buffer.append(axsfQuery.getBookId().toString());
-							buffer.append(")");
-						}
-					}
+					//generamos la consulta
+					generateQueryByFieldReport(axsf, axsfQuery, buffer, field);
 				}
 				if (i < axsfQuery.getFields().size() - 1) {
 					buffer.append(ESPACIO);
@@ -2357,6 +2345,50 @@ public abstract class AbstractDBEntityDAO extends DBEntityDAOKeys implements
 		}
 
 		return buffer.toString();
+	}
+
+	/**
+	 * Método que genera la query o parte de la query que se ejecuta al generar informes
+	 *
+	 * @param axsf - Información del registro
+	 * @param axsfQuery - Objeto para la consulta
+	 * @param buffer - Cadena con la consulta a ejecutar
+	 * @param field - Campos que se esta tratando
+	 */
+	private void generateQueryByFieldReport(AxSf axsf, AxSfQuery axsfQuery,
+			StringBuffer buffer, AxSfQueryField field) {
+		String aux = null;
+		if (axsf != null
+				&& axsf.getAttributeClass(field.getFldId()).equals(
+						Date.class)) {
+			aux = getDateField(field.getFldId(), field
+					.getOperator(), 2, FORMATTER
+					.format((Date) field.getValue()));
+			// aux = aux.substring(0,aux.indexOf("?")) + "'" +
+			// FORMATTER.format((Date) field.getValue()) + "'";
+			buffer.append(aux);
+		} else {
+			aux = field.getFldId() + field.getOperator()
+					+ field.getValue();
+			if (!field.getFldId().equals("fld9")) {
+				buffer.append(field.getFldId());
+				buffer.append(field.getOperator());
+				if (field.getValue().getClass().equals(
+						Integer.class)) {
+					buffer.append(field.getValue());
+				} else {
+					buffer.append("'" + field.getValue() + "'");
+				}
+			} else {
+				buffer.append(axsfQuery.getWhereField9());
+				buffer.append(field.getOperator());
+				axsfQuery.setSentenceField9((String) field
+						.getValue());
+				buffer.append(axsfQuery.getSentenceField9());
+				buffer.append(axsfQuery.getBookId().toString());
+				buffer.append(")");
+			}
+		}
 	}
 
 	/*
@@ -2995,6 +3027,46 @@ public abstract class AbstractDBEntityDAO extends DBEntityDAOKeys implements
 			BBDDUtils.close(connection);
 		}
 		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * com.ieci.tecdoc.common.entity.dao.DBEntityDAO#deleteHashDocument(Integer, int, int, String)
+	 */
+	public void deleteHashDocument(Integer bookId, int fdrid, int pageId,
+			String entidad) throws SQLException {
+		PreparedStatement statement = null;
+		Connection connection = null;
+		ResultSet resultSet = null;
+		String result = null;
+
+		try {
+			connection = BBDDUtils.getConnection(entidad);
+
+			statement = connection.prepareStatement(DELETE_HASH_PAGE);
+			statement.setInt(1, bookId.intValue());
+			statement.setInt(2, fdrid);
+			statement.setInt(3, pageId);
+			statement.executeUpdate();
+
+		} catch (SQLException e) {
+			//TODO corregir mensajes de error
+			log.warn("Resulta imposible eliminar la información de la página ["
+					+ DELETE_HASH_PAGE + "]", e);
+			throw e;
+		} catch (Throwable e) {
+			//TODO corregir mensaje de error
+			log.warn("Resulta imposible eliminar la información de la pagina ["
+					+ DELETE_HASH_PAGE + "]", e);
+
+			throw new SQLException(e.getMessage());
+		} finally {
+			BBDDUtils.close(resultSet);
+			BBDDUtils.close(statement);
+			BBDDUtils.close(connection);
+		}
 	}
 
 	/*
@@ -3667,6 +3739,41 @@ public abstract class AbstractDBEntityDAO extends DBEntityDAOKeys implements
 		return 1;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#deleteScrRegInt(int,
+	 * int, String)
+	 */
+	public void deleteScrPageRepository(int bookId, int fdrId,int pageID, String entidad)
+			throws SQLException {
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Connection connection = null;
+
+		try {
+			connection = BBDDUtils.getConnection(entidad);
+			statement = connection.prepareStatement(DELETE_SCR_PAGEREPOSITORY);
+			statement.setInt(1, bookId);
+			statement.setInt(2, fdrId);
+			statement.setInt(3, pageID);
+			statement.executeUpdate();
+
+		} catch (SQLException e) {
+			log.warn("Resulta imposible eliminar la información de scrpagerepository["
+					+ DELETE_SCR_PAGEREPOSITORY + "]", e);
+			throw e;
+		} catch (Throwable e) {
+			log.warn("Resulta imposible eliminar la información de scrpagerepository["
+					+ DELETE_SCR_PAGEREPOSITORY + "]", e);
+			throw new SQLException(e.getMessage());
+		} finally {
+			BBDDUtils.close(resultSet);
+			BBDDUtils.close(statement);
+			BBDDUtils.close(connection);
+		}
+	}
+
 	public String getDocumentRepositoryUID(String isicresDocUID, String entidad)
 			throws SQLException {
 		PreparedStatement statement = null;
@@ -3914,6 +4021,308 @@ public abstract class AbstractDBEntityDAO extends DBEntityDAOKeys implements
 			throw new SQLException("Error ejecutando [SELECT MAX(FLD2) FROM A"
 					+ bookId.intValue() + "SF WHERE FLD6=5 and FLD5=" + oficId
 					+ " ]");
+		} finally {
+			BBDDUtils.close(statement);
+			BBDDUtils.close(resultSet);
+			BBDDUtils.close(connection);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Método que devuelve la cadena con los campos que contiene la tabla
+	 * temporal con la información de la distribución según la ordenación
+	 * indicada
+	 *
+	 * @return String
+	 */
+	public String getFieldsTableTemporalDistributionOrderBy() {
+
+		return "(BOOKID, FDRID, FLD1, FLD2, FLD8, ASUNTO, RESUMEN, BOOKNAME, FLD8_TEXT, ASUNTO_TEXT, DIST_ID, DIST_DATE, DIST_TYPE_ORIG, DIST_ID_ORIG, DIST_TYPE_DEST, DIST_ID_DEST, DIST_STATE, DIST_STATE_DATE, DIST_MESSAGE)";
+
+	}
+
+	/**
+	 * Método que genera el select correspondiente para añadir la información a
+	 * la tabla temporal de distribución mediante una ordenación
+	 *
+	 * @param bookId - Id del libro
+	 * @param isInBook - Tipo de libro
+	 * @param language
+	 *            <ul>
+	 *            <li>Vacio o nulo: Castellano</li>
+	 *            <li>es: Castellano</li>
+	 *            <li>eu: Euskera</li>
+	 *            <li>ct: Catalán</li>
+	 *            <li>gl: Gallego</li>
+	 *            </ul>
+	 *
+	 * @return String con el select generado
+	 *
+	 */
+	public String createQueryForTableTemporalDistributionOrderBy(
+			Integer bookId, boolean isInBook, String language) {
+		StringBuffer result = new StringBuffer();
+
+		//Obtenemos los campos a recuperar para las tablas AxSF según el tipo de libro
+		String camposAxSF;
+		if(isInBook){
+			camposAxSF = "AXSF.FDRID, AXSF.FLD1, AXSF.FLD2, AXSF.FLD8, AXSF.FLD16, AXSF.FLD17";
+		}else{
+			camposAxSF = "AXSF.FDRID, AXSF.FLD1, AXSF.FLD2, AXSF.FLD8, AXSF.FLD12, AXSF.FLD13";
+		}
+
+		//Componemos el SELECT de la consulta a realizar
+		result.append("SELECT ").append(bookId)
+				.append(" , ")
+				.append(camposAxSF)
+				.append(" , ")
+				.append(getSelectAditionFieldsDistribution(isInBook, bookId, language))
+				.append(", DISTREG.ID, DISTREG.DIST_DATE, DISTREG.TYPE_ORIG, DISTREG.ID_ORIG, DISTREG.TYPE_DEST, DISTREG.ID_DEST, DISTREG.STATE, DISTREG.STATE_DATE, DISTREG.MESSAGE");
+
+		//Se genera el aparado del FROM de la consulta
+		result.append(" FROM A" + bookId + "SF AXSF, SCR_DISTREG DISTREG ");
+
+		//Creamos este where para relacionar las tablas de la consulta (AxSf y SCR_DISTREG)
+		result.append("WHERE AXSF.FDRID = DISTREG.ID_FDR AND ").append(bookId)
+				.append(" = DISTREG.ID_ARCH");
+
+		return result.toString();
+	}
+
+	/**
+	 * Método que genera las consultas necesarias para obtener los datos para la
+	 * ordenación de la distribución por los campos del registro
+	 *
+	 * @param isInBook - indica si es libro de entrada
+	 * @param bookID - Id del libro
+	 * @param language
+	 *            <ul>
+	 *            <li>Vacio o nulo: Castellano</li>
+	 *            <li>es: Castellano</li>
+	 *            <li>eu: Euskera</li>
+	 *            <li>ct: Catalán</li>
+	 *            <li>gl: Gallego</li>
+	 *            </ul>
+	 *
+	 * @return String sentencia SQL
+	 */
+	public String getSelectAditionFieldsDistribution(boolean isInBook,
+			Integer bookID, String language) {
+		StringBuffer result = new StringBuffer();
+
+		//Obtenemos el nombre del libro
+		result.append(getQueryNameBook(bookID, language));
+
+		result.append(", ");
+
+		//Obtenemos los datos del destino del registro, según lo que se muestre en pantalla
+		result.append(getQueryDescriptDestino(language));
+
+		result.append(", ");
+
+		//Obtenemos la información del asunto
+		result.append(getQueryDescriptTipoAsunto(isInBook, language));
+
+		return result.toString();
+	}
+
+	/**
+	 * Obtiene la cadena para obtener los datos del tipo de asunto para la ordenación de la distribución
+	 *
+	 * @param isInBook - Tipo de libro
+	 * @param language
+	 *            <ul>
+	 *            <li>Vacio o nulo: Castellano</li>
+	 *            <li>es: Castellano</li>
+	 *            <li>eu: Euskera</li>
+	 *            <li>ct: Catalán</li>
+	 *            <li>gl: Gallego</li>
+	 *            </ul>
+	 *
+	 * @return Consulta por la que se obtiene la información
+	 */
+	private String getQueryDescriptTipoAsunto(boolean isInBook, String language) {
+		StringBuffer result = new StringBuffer();
+
+		String getCampoConsulta;
+		// Obtenemos los datos del asunto según lo que se vaya a mostrar en
+		// pantalla
+		if (Configurator
+				.getInstance()
+				.getPropertyBoolean(
+						ConfigurationKeys.KEY_DESKTOP_QUERYRESULTSTABLEREPRESENTATION_SUBJTYPE_NAME)) {
+			getCampoConsulta = "MATTER";
+		} else {
+			getCampoConsulta = "CODE";
+		}
+
+		//generamos la consulta
+		result.append("(SELECT ").append(getCampoConsulta)
+				.append(" FROM ");
+
+		if (!StringUtils.equalsIgnoreCase(language, "es")) {
+			result.append("SCR_CA_").append(language.toUpperCase());
+		} else {
+			result.append("SCR_CA");
+		}
+
+		result.append(" B WHERE B.ID=AXSF.")
+				.append((isInBook) ? "FLD16" : "FLD12")// Se comprueba que
+															// campo es el tipo
+															// de asunto, según
+															// el tipo de libro
+				.append(") AS ASUNTO_TEXT");
+
+		return result.toString();
+	}
+
+	/**
+	 * Método que obtiene la información del campo destino para la ordenación de la distribución
+	 * @param language
+	 *            <ul>
+	 *            <li>Vacio o nulo: Castellano</li>
+	 *            <li>es: Castellano</li>
+	 *            <li>eu: Euskera</li>
+	 *            <li>ct: Catalán</li>
+	 *            <li>gl: Gallego</li>
+	 *            </ul>
+	 * @return Consulta
+	 */
+	private String getQueryDescriptDestino(String language) {
+		StringBuffer result = new StringBuffer();
+
+		if (Configurator
+				.getInstance()
+				.getPropertyBoolean(
+						ConfigurationKeys.KEY_DESKTOP_QUERYRESULTSTABLEREPRESENTATION_ADMINUNITS_ABBV)) {
+			result.append("(SELECT acron FROM ");
+		} else if (Configurator
+				.getInstance()
+				.getPropertyBoolean(
+						ConfigurationKeys.KEY_DESKTOP_QUERYRESULTSTABLEREPRESENTATION_ADMINUNITS_NAME)) {
+			result.append("(SELECT name FROM ");
+		} else {
+			result.append("(SELECT code FROM ");
+		}
+
+		if (!StringUtils.equalsIgnoreCase(language, "es")) {
+			result.append("SCR_ORGS_").append(language.toUpperCase());
+		} else {
+			result.append("SCR_ORGS");
+		}
+		result.append(" B WHERE B.ID=AXSF.FLD8) AS FLD8_TEXT");
+
+		return result.toString();
+	}
+
+	/**
+	 * Método que obtiene la información referente al libro, para la ordenación de la distribución
+	 * @param bookID - Id del libro
+	 * @param language
+	 *            <ul>
+	 *            <li>Vacio o nulo: Castellano</li>
+	 *            <li>es: Castellano</li>
+	 *            <li>eu: Euskera</li>
+	 *            <li>ct: Catalán</li>
+	 *            <li>gl: Gallego</li>
+	 *            </ul>
+	 * @return Consulta
+	 */
+	private String getQueryNameBook(Integer bookID, String language) {
+		StringBuffer result = new StringBuffer();
+
+		result.append("(SELECT name FROM ");
+		if (!StringUtils.equalsIgnoreCase(language, "es")) {
+			result.append("IDOCARCHHDR_").append(language.toUpperCase());
+		} else {
+			result.append("IDOCARCHHDR");
+		}
+		result.append(" IDOC WHERE IDOC.ID=")
+				.append(bookID).append(") AS BOOKNAME");
+
+		return result.toString();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.ieci.tecdoc.common.entity.dao.DBEntityDAO#getListDistributionOrderBy(int, int, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public List getListDistributionOrderBy(int firstRow,
+			int maxResults, String entidad, String orderBy, String tableName)
+			throws SQLException {
+
+		List result = new ArrayList();
+
+		// Consultamos sobre la tabla temporal para obtener la
+		// información según la ordenación indicada
+		int numRow = 0;
+		ScrDistreg scrDistReg = null;
+
+
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Connection connection = null;
+
+		try {
+			connection = BBDDUtils.getConnection(entidad);
+
+			StringBuffer query = new StringBuffer();
+			//Generamos la consulta sobre la tabla temporal según el orden
+			query.append("SELECT * FROM ").append(tableName)
+					.append(" ORDER BY ").append(orderBy);
+
+			//Definimos la conexión
+			statement = connection.prepareStatement(query.toString(),
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+
+			//Ejecutamos la consulta
+			resultSet = statement.executeQuery();
+			// Indicamos la posición inicial a mostrar (firstRow es el elemento
+			// mostrado por tanto sumamos uno)
+			resultSet.absolute(firstRow+1);
+			resultSet.previous();
+
+			// Recorremos la consulta para obtener los elementos necesarios
+			while (resultSet.next() && numRow < maxResults) {
+				// se crea el objeto de distribución a partir de los datos de la
+				// tabla temporal
+				scrDistReg = new ScrDistreg();
+
+				scrDistReg.setId(resultSet.getInt("DIST_ID"));
+				scrDistReg.setIdArch(resultSet.getInt("BOOKID"));
+				scrDistReg.setIdFdr(resultSet.getInt("FDRID"));
+				scrDistReg.setDistDate(resultSet.getTimestamp("DIST_DATE"));
+				scrDistReg.setTypeOrig(resultSet.getInt("DIST_TYPE_ORIG"));
+				scrDistReg.setIdOrig(resultSet.getInt("DIST_ID_ORIG"));
+				scrDistReg.setTypeDest(resultSet.getInt("DIST_TYPE_DEST"));
+				scrDistReg.setIdDest(resultSet.getInt("DIST_ID_DEST"));
+				scrDistReg.setState(resultSet.getInt("DIST_STATE"));
+				scrDistReg.setStateDate(resultSet.getTimestamp("DIST_STATE_DATE"));
+				scrDistReg.setMessage(resultSet.getString("DIST_MESSAGE"));
+
+				// añadimos el elemento al listado
+				result.add(scrDistReg);
+
+				//añadimos al contador
+				numRow++;
+			}
+		} catch (SQLException e) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("Error obteniendo la distribución a partir de la tabla: ")
+					.append(tableName).append(" y con el orden ")
+					.append(orderBy);
+			log.warn(sb.toString());
+			throw e;
+		} catch (Throwable e) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("Error obteniendo la distribución a partir de la tabla: ")
+					.append(tableName).append(" y con el orden ")
+					.append(orderBy);
+			log.warn(sb.toString());
+			throw new SQLException(sb.toString());
 		} finally {
 			BBDDUtils.close(statement);
 			BBDDUtils.close(resultSet);

@@ -28,6 +28,8 @@ public class ISicresRPAdminException extends ISicresAdminException {
 	public static final long ERROR_CREATE_ORGANIZACION = EXC_GENERIC_EXCEPCION + 13;
 	public static final long ERROR_UPDATE_ORGANIZACION = EXC_GENERIC_EXCEPCION + 14;
 
+	public static final long ERROR_UPDATE_LIBROS = EXC_GENERIC_EXCEPCION + 15;
+
 	private static String RESOURCE_FILE = "es.ieci.tecdoc.isicres.admin.exception.ISicresAdminBeansExceptionMessages";
 
 	/**

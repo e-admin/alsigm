@@ -6,6 +6,8 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
 <%@ page import="ieci.tecdoc.isicres.rpadmin.struts.util.AutenticacionAdministracion" %>
 <%@ page import="es.ieci.tecdoc.isicres.admin.core.services.ConstantesGestionUsuariosAdministracion" %>
+<%@page pageEncoding="ISO-8859-1" contentType="text/html; charset=ISO-8859-1"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
@@ -22,7 +24,7 @@
 </head>
 <body
 	onload="init(<bean:write name="informeForm" property="activeTab"/>)">
-<html:form action="/nuevoInforme.do" enctype="multipart/form-data">
+<html:form action="/nuevoInforme.do" enctype="multipart/form-data" >
 	<html:hidden property="id" styleId="id" />
 	<html:hidden property="activeTab" styleId="activeTab" />
 	<html:hidden property="cambios" />

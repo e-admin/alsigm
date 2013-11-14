@@ -21,6 +21,8 @@ public class DefinicionLibroSalida implements DefinicionLibroRegistro {
 	private static final Logger logger = Logger
 	.getLogger(DefinicionLibroSalida.class);
 
+	public static int FECHA_DOCUMENTO = 15;
+
 
 	public Archive getBookDefinition(String nombre) {
 		Archive archivador = new Archive();
@@ -65,7 +67,7 @@ public class DefinicionLibroSalida implements DefinicionLibroRegistro {
 
 		return indices;
 	}
-	protected ArchiveFlds getArchiveFlds(){
+	public ArchiveFlds getArchiveFlds(){
 		ArchiveFlds fields = new ArchiveFlds();
 		try{
 
@@ -84,7 +86,8 @@ public class DefinicionLibroSalida implements DefinicionLibroRegistro {
 			fields.add(12, "Tipo de asunto", 4, 0, true, false, false, "");
 			fields.add(13, "Resumen", 1, 240, true, false, false, "");
 			fields.add(14, "Comentario", 2, 65535, true, false, false, "");
-			fields.add(15, "Fecha del documento", 7, 0, true, false, false, "");
+			//Fecha de documento
+			getFieldFechaDocumento(fields);
 
 			//se añaden campos reservados adicionales que estaran en el rango 500-1000
 			DefinicionLibroSicres3Utils.addAditionalReservedAndSicres3Fields(fields);
@@ -98,7 +101,10 @@ public class DefinicionLibroSalida implements DefinicionLibroRegistro {
 
 	}
 
-
+	public void getFieldFechaDocumento(ArchiveFlds fields)
+			throws ISicresAdminEstructuraException {
+		fields.add(FECHA_DOCUMENTO, "Fecha del documento", 7, 0, true, false, false, "");
+	}
 
 	public void makeConstraints(int archiveId, DbConnection db)
 			throws Exception {

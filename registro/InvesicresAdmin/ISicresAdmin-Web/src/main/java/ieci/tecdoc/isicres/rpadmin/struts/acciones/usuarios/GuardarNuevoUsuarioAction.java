@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -81,7 +82,7 @@ public class GuardarNuevoUsuarioAction extends RPAdminWebAction {
 							String userGuid=LdapUasFns.findUserGuidByDn(ldapConn, Dn);
 							nuevoUsuario.setLdapGuid(userGuid);
 
-							String fullName = LdapBasicFns.getEntryRdn(Dn);
+							String fullName = LdapBasicFns.getEntryRdn(StringEscapeUtils.unescapeJavaScript(Dn));
 							int index = fullName.indexOf("=");
 							fullName = fullName.substring(index+1, fullName.length());
 

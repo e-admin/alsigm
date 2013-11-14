@@ -7,14 +7,13 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 import es.ieci.tecdoc.fwktd.sir.core.types.CanalNotificacionEnum;
 import es.ieci.tecdoc.fwktd.sir.core.types.TipoDocumentoIdentificacionEnum;
-import es.ieci.tecdoc.fwktd.sir.core.vo.InteresadoVO;
-import es.ieci.tecdoc.isicres.api.intercambioregistral.business.util.InteresadoUtils;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InteresadoExReg;
 
 public class InteresadoUtilsTest extends TestCase{
 
 	public void testPruebasCadena(){
 
-		InteresadoVO interesado = new InteresadoVO();
+		InteresadoExReg interesado = new InteresadoExReg();
 
 		interesado.setNombreInteresado("NombreInteresado12345678901234");
 		interesado.setPrimerApellidoInteresado("PrimerApellidoInteresado123456");

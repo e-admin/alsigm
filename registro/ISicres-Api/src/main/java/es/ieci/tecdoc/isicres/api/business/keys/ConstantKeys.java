@@ -40,6 +40,8 @@ public class ConstantKeys {
 	public static final String FLD_KEY_EREG_TIPO_TRANSPORTE = FLD_KEY + "14";
 	public static final String FLD_KEY_EREG_NUMERO_TRANSPORTE = FLD_KEY + "15";
 	public static final String FLD_KEY_EREG_RESUMEN = FLD_KEY + "17";
+	public static final String FLD_KEY_EREG_REF_EXPEDIENTE = FLD_KEY + "19";
+
 
 	public static final String FLD_KEY_SREG_TIPO_TRANSPORTE = FLD_KEY + "10";
 	public static final String FLD_KEY_SREG_NUMERO_TRANSPORTE = FLD_KEY + "11";

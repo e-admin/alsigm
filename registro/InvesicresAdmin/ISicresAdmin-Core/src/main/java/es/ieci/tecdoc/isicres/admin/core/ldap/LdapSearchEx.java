@@ -131,10 +131,8 @@ public final class LdapSearchEx {
 	}
 
 	public String getEntryDn() throws Exception {
-		if ((m_start != null) && (!"".equals(m_start)))
-			return m_sr.getName() + "," + m_start + "," + m_conn.getBaseDn();
-		else
-			return m_sr.getName() + "," + m_conn.getBaseDn();
+		// Obtenemos el DN del nodo ldap
+		return m_sr.getNameInNamespace();
 	}
 
 	// **************************************************************************

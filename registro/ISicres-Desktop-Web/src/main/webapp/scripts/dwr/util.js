@@ -1492,4 +1492,3 @@ dwr.util._debug = function(message, stacktrace) {
     }
   }
 };
-

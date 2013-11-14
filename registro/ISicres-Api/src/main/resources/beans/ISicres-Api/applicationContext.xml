@@ -9,20 +9,24 @@
 		class="es.ieci.tecdoc.isicres.api.IsicresSpringApplicationContextProvider"></bean>
 
 	<import resource="classpath:beans/ISicres-Api/manager-beans.xml" />
+
 	<import resource="classpath:beans/ISicres-Api/dao-beans.xml" />
+
 	<import resource="classpath:beans/ISicres-Api/datasource-beans.xml" />
+
 	<import resource="classpath:beans/ISicres-Api/transaction-beans.xml" />
-	
+
 	<import resource="classpath:beans/ISicres-Api/compulsa/manager-compulsa-beans.xml" />
 
 	<import	resource="classpath:beans/ISicres-Api/documentoElectronico/applicationContext.xml" />
-		
+
 	<import	resource="classpath:beans/ISicres-Api/intercambioRegistral/applicationContext.xml" />
+
 	<import	resource="classpath:beans/ISicres-Api/registro/applicationContext.xml" />
-	
+
 	<import resource="classpath:beans/ISicres-Api/alias-beans.xml" />
 
-
-
+	<!-- Sobrecarga y extension de beans -->
+	<import resource="classpath*:beans/ISicres-Api/*-custom-beans.xml" />
 
 </beans>

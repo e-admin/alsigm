@@ -46,6 +46,7 @@ import com.ieci.tecdoc.isicres.desktopweb.Keys;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RequestUtils;
 import com.ieci.tecdoc.isicres.desktopweb.utils.ResponseUtils;
+import com.ieci.tecdoc.isicres.desktopweb.utils.SQLValidator;
 import com.ieci.tecdoc.isicres.usecase.UseCaseConf;
 import com.ieci.tecdoc.isicres.usecase.book.BookUseCase;
 
@@ -292,6 +293,9 @@ public class VldSearchOperator extends HttpServlet implements Keys{
 								String order)
 
 		throws ValidationException, SessionException, BookException, AttributesException, SecurityException, ParseException	{
+
+		// Validamos si la ordenación que recibimos es correcta, para evitar SQL malintencionado
+		SQLValidator.getInstance().validateOrderQueryRegister(order);
 
 		Document xmlDocument = null;
 

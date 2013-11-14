@@ -1,5 +1,0 @@
-<Context docBase="ISicresWSLegacy" path="/ISicresWSLegacy" reloadable="true">
-				
- <ResourceLink global="jdbc/ISicres" name="ISicres" type="javax.sql.DataSource"/>
-								
-</Context>

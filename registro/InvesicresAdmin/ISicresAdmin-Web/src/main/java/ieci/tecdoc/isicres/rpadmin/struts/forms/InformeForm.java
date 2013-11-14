@@ -3,6 +3,7 @@ package ieci.tecdoc.isicres.rpadmin.struts.forms;
 import ieci.tecdoc.isicres.rpadmin.struts.util.Utils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,15 +21,15 @@ import es.ieci.tecdoc.isicres.admin.beans.PerfilesInformeBean;
 public class InformeForm extends RPAdminActionForm{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
 
 	private String[] attrsToUpper = new String[] { "description",
 			"infoAuxiliar", "estadoOficina", "codigoOficina", "nombreOficina" };
-	
-	
+
+
 	// Campos del VO
 	private String id;
 	private String description;
@@ -43,7 +44,7 @@ public class InformeForm extends RPAdminActionForm{
 	private Boolean usarParaTodasOficinas;
 	private Boolean usarParaTodosPerfiles;
 	private Boolean usarParaTodosLibros;
-	
+
 	// Oficinas
 	private String estadoOficina;
 	private String posOficina;
@@ -51,19 +52,19 @@ public class InformeForm extends RPAdminActionForm{
 	private String idOficina;
 	private String codigoOficina;
 	private String nombreOficina;
-	
+
 	// Perfiles
 	private String idPerfil;
 	private String nombrePerfil;
 	private String posPerfil;
 	private String estadoPerfil;
-	
+
 	// Libros
 	private String idLibro;
 	private String nombreLibro;
 	private String posLibro;
 	private String estadoLibro;
-	
+
 	// Indicador del Tab Activo
 	private Integer activeTab=new Integer(1);
 
@@ -72,8 +73,8 @@ public class InformeForm extends RPAdminActionForm{
 		super.toUpperCase(this, request);
 	}
 
-	public String[] getAttrsToUpper() {		
-		return attrsToUpper;	
+	public String[] getAttrsToUpper() {
+		return attrsToUpper;
 	}
 
 	/**
@@ -292,9 +293,9 @@ public class InformeForm extends RPAdminActionForm{
 	public void setAttrsToUpper(String[] attrsToUpper) {
 		this.attrsToUpper = attrsToUpper;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * @return the usarParaTodasOficinas
 	 */
@@ -308,14 +309,14 @@ public class InformeForm extends RPAdminActionForm{
 	public void setUsarParaTodasOficinas(Boolean usarParaTodasOficinas) {
 		this.usarParaTodasOficinas = usarParaTodasOficinas;
 	}
-	
+
 	/**
 	 * @return the usarPAraTodosPerfiles
 	 */
 	public Boolean getUsarParaTodosPerfiles() {
 		return usarParaTodosPerfiles;
 	}
-	
+
 	/**
 	 * @return the usarParaTodosLibros
 	 */
@@ -351,9 +352,9 @@ public class InformeForm extends RPAdminActionForm{
 		this.typeReport = typeReport;
 	}
 
-	
-	
-	
+
+
+
 	/**
 	 * @return the idPerfil
 	 */
@@ -417,9 +418,9 @@ public class InformeForm extends RPAdminActionForm{
 		return serialVersionUID;
 	}
 
-	
-	
-	
+
+
+
 	/**
 	 * @return the idLibro
 	 */
@@ -468,15 +469,15 @@ public class InformeForm extends RPAdminActionForm{
 	public String getEstadoLibro() {
 		return estadoLibro;
 	}
-	
+
 	/**
 	 * @param estadoLibro the estadoLibro to set
 	 */
 	public void setEstadoLibro(String estadoLibro) {
 		this.estadoLibro = estadoLibro;
 	}
-	
-	
+
+
 
 	/**
 	 * @return the informeFile
@@ -493,31 +494,31 @@ public class InformeForm extends RPAdminActionForm{
 	}
 
 	public void set(InformeBean informeBean){
-		
+
 		setAllArch(new Integer(informeBean.getAllArch()).toString());
 		setAllOfics(new Integer(informeBean.getAllOfics()).toString());
 		setAllPerfs(new Integer(informeBean.getAllPerfs()).toString());
 		setDescription(informeBean.getDescription());
-		setId((new Integer(informeBean.getId()).toString()));		
+		setId((new Integer(informeBean.getId()).toString()));
 		setReport(informeBean.getReport());
 		setTypeArch(new Integer(informeBean.getTypeArch()).toString());
 		setTypeReport(new Integer(informeBean.getTypeReport()).toString());
 		setNameTypeReport(informeBean.getNameTypeReport());
 		setUsarParaTodasOficinas(new Boolean(Utils.getBooleanValue(informeBean.getAllOfics())));
-		setUsarParaTodosPerfiles(new Boolean(Utils.getBooleanValue(informeBean.getAllPerfs())));	
+		setUsarParaTodosPerfiles(new Boolean(Utils.getBooleanValue(informeBean.getAllPerfs())));
 		setUsarParaTodosLibros(new Boolean(Utils.getBooleanValue(informeBean.getAllArch())));
 	}
-	
 
-	
-	
-	
+
+
+
+
 	public InformeBean populate() throws Exception{
 		InformeBean informeBean = new InformeBean();
-		
-		if(StringUtils.isNotBlank(getId())){ 
+
+		if(StringUtils.isNotBlank(getId())){
 			informeBean.setId(new Integer(getId()).intValue());
-		}		
+		}
 		informeBean.setDescription(description);
 		informeBean.setNameTypeReport(nameTypeReport);
 		informeBean.setReport(report);
@@ -527,38 +528,38 @@ public class InformeForm extends RPAdminActionForm{
 			informeBean.setFileData(informeFile.getFileData());
 			informeBean.setReport(informeFile.getFileName());
 		}
-		
+
 		if(getUsarParaTodasOficinas() != null)informeBean.setAllOfics(Utils.getIntValue(getUsarParaTodasOficinas().booleanValue()));
 		if(getUsarParaTodosPerfiles() != null)informeBean.setAllPerfs(Utils.getIntValue(getUsarParaTodosPerfiles().booleanValue()));
 		if(getUsarParaTodosLibros() != null)informeBean.setAllArch(Utils.getIntValue(getUsarParaTodosLibros().booleanValue()));
 
 		return informeBean;
 	}
-	
-	
+
+
 	public InformeBean populate(List listaOficinas, List listaOficinasEliminadas, List listaLibros, List listaLibrosEliminados, List listaPerfiles, List listaPerfilesEliminados) throws Exception {
-		InformeBean informeBean = this.populate(listaOficinas,listaLibros,listaPerfiles);			    	    
+		InformeBean informeBean = this.populate(listaOficinas,listaLibros,listaPerfiles);
 	    if(listaOficinasEliminadas != null && listaOficinasEliminadas.size() > 0){
 	    	OficinasInformeBean oficinasInformeBean = new OficinasInformeBean();
-	    	oficinasInformeBean.setLista(listaOficinasEliminadas);	    
+		oficinasInformeBean.setLista(listaOficinasEliminadas);
 	    	informeBean.setOficinasEliminadas(oficinasInformeBean);
 	    }
 	    if(listaLibrosEliminados != null && listaLibrosEliminados.size() > 0){
 	    	LibrosInformeBean librosInformeBean = new LibrosInformeBean();
-	    	librosInformeBean.setLista(listaLibrosEliminados);	  
+		librosInformeBean.setLista(listaLibrosEliminados);
 	    	informeBean.setLibrosEliminados(librosInformeBean);
 	    }
 	    if(listaPerfilesEliminados != null && listaPerfilesEliminados.size() > 0){
 	    	PerfilesInformeBean perfilesInformeBean = new PerfilesInformeBean();
 	    	perfilesInformeBean.setLista(listaPerfilesEliminados);
 	    	informeBean.setPerfilesEliminados(perfilesInformeBean);
-	    }	    
-	    return informeBean;		
+	    }
+	    return informeBean;
 	}
-	
-	
+
+
 	public InformeBean populate(List listaOficinas, List listaLibros, List listaPerfiles) throws Exception {
-		InformeBean informeBean = this.populate();			        
+		InformeBean informeBean = this.populate();
 	    if(listaOficinas != null && listaOficinas.size() > 0){
 	    	OficinasInformeBean oficinasInformeBean = new OficinasInformeBean();
 	    	oficinasInformeBean.setLista(listaOficinas);
@@ -566,18 +567,18 @@ public class InformeForm extends RPAdminActionForm{
 	    }
 	    if(listaLibros != null && listaLibros.size() > 0){
 	    	LibrosInformeBean librosInformeBean = new LibrosInformeBean();
-	    	librosInformeBean.setLista(listaLibros);	
+		librosInformeBean.setLista(listaLibros);
 	    	informeBean.setLibros(librosInformeBean);
 	    }
 	    if(listaPerfiles != null && listaPerfiles.size() > 0){
 	    	PerfilesInformeBean perfilesInformeBean = new PerfilesInformeBean();
-	    	perfilesInformeBean.setLista(listaPerfiles);	
+		perfilesInformeBean.setLista(listaPerfiles);
 	    	informeBean.setPerfiles(perfilesInformeBean);
-	    }	    
+	    }
 	    return informeBean;
-	}	
-	
-	
+	}
+
+
 	/**
 	 * Resetea los datos
 	 */
@@ -591,18 +592,85 @@ public class InformeForm extends RPAdminActionForm{
 		this.idPerfil = null;
 		this.nombrePerfil = null;
 	}
-	
+
 	public void resetPerfil(){
 		this.posPerfil = null;
 		this.estadoPerfil = null;
 		this.idPerfil = null;
 		this.nombrePerfil = null;
 	}
-	
+
 	public void resetLibro(){
 		this.posLibro = null;
 		this.estadoLibro = null;
 		this.idLibro = null;
-		this.nombreLibro = null;	
+		this.nombreLibro = null;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("InformeForm [attrsToUpper=");
+		builder.append(Arrays.toString(attrsToUpper));
+		builder.append(", id=");
+		builder.append(id);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", report=");
+		builder.append(report);
+		builder.append(", nameTypeReport=");
+		builder.append(nameTypeReport);
+		builder.append(", typeReport=");
+		builder.append(typeReport);
+		builder.append(", allOfics=");
+		builder.append(allOfics);
+		builder.append(", allPerfs=");
+		builder.append(allPerfs);
+		builder.append(", allArch=");
+		builder.append(allArch);
+		builder.append(", typeArch=");
+		builder.append(typeArch);
+		builder.append(", informeFile=");
+		builder.append(informeFile);
+		builder.append(", usarParaTodasOficinas=");
+		builder.append(usarParaTodasOficinas);
+		builder.append(", usarParaTodosPerfiles=");
+		builder.append(usarParaTodosPerfiles);
+		builder.append(", usarParaTodosLibros=");
+		builder.append(usarParaTodosLibros);
+		builder.append(", estadoOficina=");
+		builder.append(estadoOficina);
+		builder.append(", posOficina=");
+		builder.append(posOficina);
+		builder.append(", idOficinaAsunto=");
+		builder.append(idOficinaAsunto);
+		builder.append(", idOficina=");
+		builder.append(idOficina);
+		builder.append(", codigoOficina=");
+		builder.append(codigoOficina);
+		builder.append(", nombreOficina=");
+		builder.append(nombreOficina);
+		builder.append(", idPerfil=");
+		builder.append(idPerfil);
+		builder.append(", nombrePerfil=");
+		builder.append(nombrePerfil);
+		builder.append(", posPerfil=");
+		builder.append(posPerfil);
+		builder.append(", estadoPerfil=");
+		builder.append(estadoPerfil);
+		builder.append(", idLibro=");
+		builder.append(idLibro);
+		builder.append(", nombreLibro=");
+		builder.append(nombreLibro);
+		builder.append(", posLibro=");
+		builder.append(posLibro);
+		builder.append(", estadoLibro=");
+		builder.append(estadoLibro);
+		builder.append(", activeTab=");
+		builder.append(activeTab);
+		builder.append("]");
+		return builder.toString();
+	}
+
+
 }

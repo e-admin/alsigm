@@ -1,5 +1,5 @@
 /**
- * Clase con metodos auxiliares de BookUseCase para el tratamiento 
+ * Clase con metodos auxiliares de BookUseCase para el tratamiento
  * de la funcionalidad de Asociacion de Registros
  */
 package com.ieci.tecdoc.isicres.usecase.book.util;
@@ -13,6 +13,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
+
+import org.apache.commons.lang.StringEscapeUtils;
 
 import com.ieci.tecdoc.common.exception.BookException;
 import com.ieci.tecdoc.common.exception.SessionException;
@@ -39,16 +41,16 @@ import com.ieci.tecdoc.isicres.usecase.book.xml.AsocRegsSearchFields;
 
 /**
  * @author 66575267
- * 
+ *
  * @date 03/06/2009
- * 
+ *
  */
 public class BookUseCaseAsocRegsUtil implements Keys {
 
 	/**
 	 * Crea un criterio de busqueda a partir de los datos introducidos en la
 	 * pantalla de busqueda de Asociacion de Registros
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param regWhere
 	 * @param locale
@@ -125,7 +127,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Comprueba si un registro tiene otros registros asociados. Ya sean
 	 * primarios o secundarios
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param folderId
 	 * @param bookId
@@ -144,7 +146,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Comprobamos si el libro de registro introducido es valido. Es decir, si
 	 * existe y esta abierto
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param bookId
 	 * @return
@@ -182,7 +184,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Dada una lista de registros, eliminamos de ella los registros que tienen
 	 * registros asociados. Ya sean primarios o secuandarios.
-	 * 
+	 *
 	 * @param queryResults
 	 * @param useCaseConf
 	 * @param bookId
@@ -225,7 +227,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Eliminamos de la lista de resultados el registro con el que estamos
 	 * trabajando
-	 * 
+	 *
 	 * @param listaRegs
 	 * @param bookId
 	 * @param folderId
@@ -255,7 +257,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	 * Transformamos una lista de registros en otra lista con los datos
 	 * estrictamente necesarios para mostrar en la pantalla de resultados de la
 	 * busqueda de registros asociados.
-	 * 
+	 *
 	 * @param folderList
 	 * @param bookId
 	 * @param locale
@@ -298,7 +300,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Obtenemos el codigo de validacion en funcion de los registros que hemos
 	 * seleccionado para asociar
-	 * 
+	 *
 	 * @param asocRegsSelected
 	 * @param useCaseConf
 	 * @return
@@ -355,7 +357,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Transformamos la lista de registros seleccionados en una lista de
 	 * objetos.
-	 * 
+	 *
 	 * @param asocRegsSelected
 	 * @param locale
 	 * @return
@@ -392,7 +394,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Obtenemos la lista de registros no asociados de la lista de registros
 	 * seleccionados
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param listaRegsSelec
 	 * @return
@@ -423,7 +425,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 
 	/**
 	 * Guardamos una lista de registros asociada a otro registro primario
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param listaRegsSec
 	 * @param bookIdPrim
@@ -449,7 +451,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 
 	/**
 	 * Guardamos un registro asociado
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param bookIdPrim
 	 * @param folderIdPrim
@@ -468,7 +470,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 
 	/**
 	 * Eliminamos un registro secundario
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param bookIdSec
 	 * @param folderIdSec
@@ -479,11 +481,11 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 
 		List lista = FolderAsocSession.getAsocRegFdr(useCaseConf.getSessionID(), bookIdSec,
 				folderIdSec.intValue(), useCaseConf.getEntidadId());
-		
+
 		if (lista != null && !lista.isEmpty()){
 			for (Iterator iterator = lista.iterator(); iterator.hasNext();) {
 				ScrRegasoc scrRegasoc = (ScrRegasoc) iterator.next();
-				
+
 				if (scrRegasoc.getIdArchsec() == bookIdSec.intValue() && scrRegasoc.getIdFdrsec() == folderIdSec.intValue()){
 					FolderAsocSession.deleteAsocRegFdr(useCaseConf.getSessionID(), useCaseConf
 							.getEntidadId(), scrRegasoc);
@@ -491,12 +493,12 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 				}
 			}
 		}
-		
+
 	}
 
 	/**
 	 * Obtenemos el registro primario del registro que se pasa como parametro
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param bookId
 	 * @param folderId
@@ -525,7 +527,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Obtenemos el registro primario comun de la lista de registros
 	 * seleccionados
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param listaRegsSelect
 	 * @return
@@ -559,7 +561,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 
 	/**
 	 * Traducimos el operador de busqueda de texto a su simbolo correspondiente
-	 * 
+	 *
 	 * @param operator
 	 * @param locale
 	 * @return
@@ -625,7 +627,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 
 	/**
 	 * Convertimos un parametro al valor necesario para la bsuqueda
-	 * 
+	 *
 	 * @param param
 	 * @param operator
 	 * @param type
@@ -657,7 +659,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 
 	/**
 	 * Convertimos un parametro al valor necesario para la bsuqueda
-	 * 
+	 *
 	 * @param type
 	 * @param param
 	 * @param locale
@@ -672,14 +674,14 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 			simpleDateFormat.setLenient(false);
 			return simpleDateFormat.parse(param);
 		} else {
-			return param;
+			return StringEscapeUtils.escapeSql(param);
 		}
 	}
 
 	/**
 	 * Obtenemos el codigo de validacion en funcion de los registros
 	 * seleccionados
-	 * 
+	 *
 	 * @param regsSelected
 	 * @param useCaseConf
 	 * @return
@@ -706,7 +708,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 			/*
 			 * Si la lista de registros asociados es vacia es que el registro no
 			 * esta asociado. Lo asociamos a la lista correspondiente.
-			 * 
+			 *
 			 * Si la lista de registros asociados no es vacia nos encontramos
 			 * con los siguientes casos.
 			 */
@@ -749,7 +751,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 
 	/**
 	 * Obtenemos el codigo en funcion de las listas de registros obtenidas
-	 * 
+	 *
 	 * @param useCaseConf
 	 * @param listaPrimarios
 	 * @param listaSecundarios
@@ -849,7 +851,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 					 * siguientes casos: - Solo hemos seleccionado un registro
 					 * no asociado: Codigo 2 - Hemos seleccionado mas de un
 					 * registro asociado: Codigo 4
-					 * 
+					 *
 					 */
 				} else if (listaNoAsociados != null
 						&& !listaNoAsociados.isEmpty()) {
@@ -869,7 +871,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Obtenemos la lista de Registros Seleccionados que son primarios y
 	 * distintos
-	 * 
+	 *
 	 * @param listaPrimarios
 	 * @return
 	 */
@@ -906,7 +908,7 @@ public class BookUseCaseAsocRegsUtil implements Keys {
 	/**
 	 * Obtenemos los padres distintos de los registros seleccionados que son
 	 * secundarios
-	 * 
+	 *
 	 * @param listaSecundarios
 	 * @param useCaseConf
 	 * @return

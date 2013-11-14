@@ -4,7 +4,9 @@ package es.ieci.tecdoc.isicres.admin.rpadmin.manager;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import es.ieci.tecdoc.isicres.admin.base.dbex.DbConnection;
@@ -42,6 +44,7 @@ import es.ieci.tecdoc.isicres.admin.core.database.SicresLibroInformesDatos;
 import es.ieci.tecdoc.isicres.admin.core.database.SicresLibroOficinaDatos;
 import es.ieci.tecdoc.isicres.admin.core.database.SicresUserFilterDatos;
 import es.ieci.tecdoc.isicres.admin.core.db.DBSessionManager;
+import es.ieci.tecdoc.isicres.admin.core.exception.ISicresAdminDAOException;
 import es.ieci.tecdoc.isicres.admin.core.exception.IeciTdException;
 import es.ieci.tecdoc.isicres.admin.estructura.adapter.ISicresAdminEstructuraAdapter;
 import es.ieci.tecdoc.isicres.admin.estructura.beans.Archive;
@@ -52,6 +55,7 @@ import es.ieci.tecdoc.isicres.admin.estructura.dao.ArchiveUpdInfo;
 import es.ieci.tecdoc.isicres.admin.estructura.dao.impl.ArchiveFldImpl;
 import es.ieci.tecdoc.isicres.admin.estructura.factory.ISicresAdminObjectFactory;
 import es.ieci.tecdoc.isicres.admin.estructura.keys.ISicresAdminDefsKeys;
+import es.ieci.tecdoc.isicres.admin.exception.ISicresAdminEstructuraException;
 import es.ieci.tecdoc.isicres.admin.exception.ISicresAdminException;
 import es.ieci.tecdoc.isicres.admin.exception.ISicresRPAdminDAOException;
 import es.ieci.tecdoc.isicres.admin.service.ISicresAdminEstructuraService;
@@ -59,6 +63,7 @@ import es.ieci.tecdoc.isicres.admin.service.ISicresAdminEstructuraService;
 /*$Id*/
 
 public class ISicresRPAdminLibroManager {
+
 
 	private static final Logger logger = Logger
 			.getLogger(ISicresRPAdminLibroManager.class);
@@ -229,9 +234,14 @@ public class ISicresRPAdminLibroManager {
 
 			if (!isLibroSicres3 || !hasReservedFields) {
 
+				//Obtenemos la definicion del libro
 				DefinicionLibroRegistro defLibro = getDefinicionLibroRegistro(arch.getType());
 
+				//obtenemos los campos del libro que estamos tratando
 				archiveFlds = getArchiveFields(flds);
+
+				//Validamos si el libro tiene todos los campos (Ref. Expediene y Fecha de Documento)
+				List fieldsAddModifRefExpedienteOrFechaDocumento = validarCamposLibro(idLibro, archiveFlds, arch.getType(), defLibro);
 
 				if (!isLibroSicres3) {
 					//añadimos la definición de los campos de sicres3
@@ -258,10 +268,18 @@ public class ISicresRPAdminLibroManager {
 
 				//comprobamos si el archivador ya tiene registros
 				if(arch.existsFdrsInArch(entidad)){
+					ArrayList camposNuevos = new ArrayList();
+
+					// Añadimos al array de campos nuevos los campos de ref.
+					// expediente y fecha documento, si estos han sido
+					// modificados o creados
+					camposNuevos.addAll(fieldsAddModifRefExpedienteOrFechaDocumento);
+
 					//si es asi, añadimos los nuevos campos, como campos nuevos del archivador, para que actualice los datos
-					ArrayList camposNuevos = (ArrayList) DefinicionLibroSicres3Utils
+					camposNuevos.addAll(DefinicionLibroSicres3Utils
 							.getCamposNuevosSicres3(!isLibroSicres3,
-									!hasReservedFields);
+									!hasReservedFields));
+
 					//setemos los valores con los nuevos campos en el objeto
 					updInfo.setUpdateFlds(camposNuevos, null, false);
 				}
@@ -281,14 +299,296 @@ public class ISicresRPAdminLibroManager {
 					formatos(idLibro, defLibro, entidad);
 				}
 			}
-
+		} catch (ISicresRPAdminDAOException rpaE){
+			logger.error("Error actualizando libro a SICRES3", rpaE);
+			throw rpaE;
 		} catch (Exception e) {
-			logger.error("Error actualizando libro a SICRES3");
+			logger.error("Error actualizando libro a SICRES3",e);
 			throw new ISicresRPAdminDAOException(
 					ISicresRPAdminDAOException.EXC_GENERIC_EXCEPCION, e);
 		}
 
 		return;
+	}
+
+	/**
+	 * Método que valida que el archivador contenga los campos Fecha del Documento y Ref. Expediente (Este solo en libros de Entrada)
+	 *
+	 * @param archiveFlds - Lista de campos del libro
+	 * @param typeBook - Tipo de libro (1-Entrada / 2-Salida)
+	 * @param defLibro - Definición del libro
+	 *
+	 * @return {@link List} - Listado de ids con los campos modificados/creados
+	 *
+	 * @throws Exception
+	 * @throws ISicresRPAdminDAOException
+	 * @throws ISicresAdminEstructuraException
+	 */
+	private static List validarCamposLibro(int idLibro,
+			ArchiveFlds archiveFlds, int typeBook,
+			DefinicionLibroRegistro defLibro) throws Exception,
+			ISicresRPAdminDAOException, ISicresAdminEstructuraException {
+		// Array con los ids de los campos modificados o creados
+		List result = new ArrayList();
+
+		// verificamos que campo existe
+		ArchiveFlds camposByDefault = defLibro.getBookDefinition("")
+				.getFldsDef();
+
+		ArchiveFld campo = null;
+
+		// Verificamos tipo de libro
+		if (typeBook == DefinicionLibroRegistro.LIBRO_ENTRADA) {
+
+			// Libro de Entrada
+			DefinicionLibroEntrada definicionLibroEntrada = new DefinicionLibroEntrada();
+
+			// Validamos el campo
+			Integer fieldId = validateFieldRefExpediente(idLibro, archiveFlds,
+					camposByDefault, definicionLibroEntrada);
+			if (fieldId != null) {
+				// añadimos al array de campos modificados el id del campo
+				result.add(fieldId);
+			}
+
+			// Comprobamos el campo Fecha de Documento - ID: 20 - FLD20
+			campo = getFieldById(archiveFlds,
+					definicionLibroEntrada.FECHA_DOCUMENTO);
+			if (!validateIfExistField(camposByDefault, campo)) {
+				definicionLibroEntrada.getFieldFechaDocumento(archiveFlds);
+				// añadimos al array de campos modificados el id del campo
+				result.add(new Integer(definicionLibroEntrada.FECHA_DOCUMENTO));
+			}
+
+		} else {
+			// Libro de Salida
+			DefinicionLibroSalida definicionLibroSalida = new DefinicionLibroSalida();
+
+			// Comprobamos el campo Fecha de Documento - ID: 15 - FLD15
+			campo = getFieldById(archiveFlds,
+					definicionLibroSalida.FECHA_DOCUMENTO);
+			if (!validateIfExistField(camposByDefault, campo)) {
+				definicionLibroSalida.getFieldFechaDocumento(archiveFlds);
+				// añadimos al array de campos modificados el id del campo
+				result.add(new Integer(definicionLibroSalida.FECHA_DOCUMENTO));
+			}
+		}
+
+		return result;
+	}
+
+	public static boolean validarCampoRefExpediente(ArchiveFlds archiveFlds,
+			DefinicionLibroRegistro defLibro, int typeBook) throws Exception{
+		boolean result = false;
+
+		//verificamos que campo existe
+		ArchiveFlds camposByDefault = defLibro.getBookDefinition("").getFldsDef();
+
+		//Verificamos tipo de libro
+		if(typeBook == DefinicionLibroRegistro.LIBRO_ENTRADA){
+			// Comprobamos el campo Referencia de Expediente - ID: 19 - FLD19
+			ArchiveFld campo = getFieldById(archiveFlds, 19);
+
+			// Se comprueba si el campo tiene el mismo nombre, id, ... y si mide 50
+			// caracteres
+			if ((campo != null)
+					&& (StringUtils.equals(campo.getColName(), camposByDefault
+							.getFldDefById(campo.getId()).getColName()))
+					&& (StringUtils.equals(campo.getName(), camposByDefault
+							.getFldDefById(campo.getId()).getName()))
+					&& (campo.getLen() == 50)// Se compara con 50 caracteres por
+												// las versiones anteriores
+					&& (campo.getType() == camposByDefault.getFldDefById(
+							campo.getId()).getType())) {
+				// en este caso actualizamos el campo existente a una longitud de 80
+				// caracteres para adaptarlo a intercambio registral
+				archiveFlds.getFldDefById(19).setLen(80);
+			} else {
+				// sino se realizan el resto de validaciones
+				if (!validateIfExistField(camposByDefault, campo)) {
+					result = true;
+				}
+			}
+		}
+
+		return result;
+	}
+
+
+	public static boolean validarCampoFechaDocumento(ArchiveFlds archiveFlds,
+			DefinicionLibroRegistro defLibro, int typeBook) throws Exception {
+		boolean result = false;
+
+		//verificamos que campo existe
+		ArchiveFlds camposByDefault = defLibro.getBookDefinition("").getFldsDef();
+
+		ArchiveFld campo = null;
+
+		//Verificamos tipo de libro
+		if(typeBook == DefinicionLibroRegistro.LIBRO_ENTRADA){
+
+			//Libro de Entrada
+			DefinicionLibroEntrada definicionLibroEntrada = new DefinicionLibroEntrada();
+
+			//Comprobamos el campo Fecha de Documento - ID: 20 - FLD20
+			campo = getFieldById(archiveFlds, 20);
+			if(!validateIfExistField(camposByDefault, campo)){
+				result = true;
+			}
+		}else{
+			//Libro de Salida
+			DefinicionLibroSalida definicionLibroSalida = new DefinicionLibroSalida();
+			//Comprobamos el campo Fecha de Documento - ID: 15 - FLD15
+			campo = getFieldById(archiveFlds, 15);
+			if(!validateIfExistField(camposByDefault, campo)){
+				result = true;
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Método que verifica si el campo Ref. Expediente existe y sino lo generamos en el archivador
+	 *
+	 * @param archiveFlds - Array de campos del libro
+	 * @param camposByDefault - Campos por defecto para un libro
+	 * @param definicionLibroEntrada - Definicion del archivador a crear/actualizar
+	 *
+	 * @return {@link Interger} - Ids del campo modificado/creado
+	 *
+	 * @throws Exception
+	 * @throws ISicresRPAdminDAOException
+	 * @throws ISicresAdminEstructuraException
+	 */
+	private static Integer validateFieldRefExpediente(int idLibro,
+			ArchiveFlds archiveFlds, ArchiveFlds camposByDefault,
+			DefinicionLibroEntrada definicionLibroEntrada) throws Exception,
+			ISicresRPAdminDAOException, ISicresAdminEstructuraException {
+
+		Integer result = null;
+
+		// Comprobamos el campo Referencia de Expediente - ID: 19 - FLD19
+		ArchiveFld campo = getFieldById(archiveFlds,
+				definicionLibroEntrada.REFERENCIA_EXPEDIENTE);
+
+		// Se comprueba si el campo tiene el mismo nombre, id, ... y si mide 50
+		// caracteres
+		if ((campo != null)
+				&& (StringUtils.equals(campo.getColName(), camposByDefault
+						.getFldDefById(campo.getId()).getColName()))
+				&& (StringUtils.equals(campo.getName(), camposByDefault
+						.getFldDefById(campo.getId()).getName()))
+				&& (campo.getLen() == 50)// Se compara con 50 caracteres por
+											// las versiones anteriores
+				&& (campo.getType() == camposByDefault.getFldDefById(
+						campo.getId()).getType())) {
+			// en este caso actualizamos el campo existente a una longitud de 80
+			// caracteres para adaptarlo a intercambio registral
+			archiveFlds.getFldDefById(campo.getId()).setLen(80);
+
+			// actualizamos el tamaño del campo en BBDD
+			definicionLibroEntrada.updateFieldRefExpediente(idLibro);
+
+		} else {
+			// sino se realizan el resto de validaciones
+			if (!validateIfExistField(camposByDefault, campo)) {
+				definicionLibroEntrada.getFieldRefExpediente(archiveFlds);
+				// añadimos al resultado el id del campo creado
+				result = new Integer(
+						definicionLibroEntrada.REFERENCIA_EXPEDIENTE);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Método que comprueba si el campo existe en el libro
+	 *
+	 * @param camposByDefault - Campos por defecto para el libro
+	 * @param campo - Campo a verificar
+	 *
+	 * @return TRUE - El campo ya existe / False - El campo indicado no existe
+	 *
+	 * @throws Exception
+	 * @throws ISicresRPAdminDAOException
+	 * @throws ISicresAdminEstructuraException
+	 */
+	private static boolean validateIfExistField(ArchiveFlds camposByDefault,
+			ArchiveFld campo) throws Exception, ISicresRPAdminDAOException,
+			ISicresAdminEstructuraException {
+		boolean result = false;
+
+		// comprobamos si el campo es distinto de nulo
+		if (campo != null) {
+			// validamos si el campo indicado es igual al por defecto del libro
+			if (!validateEqualsFields(campo,
+					camposByDefault.getFldDefById(campo.getId()))) {
+				StringBuffer sb = new StringBuffer();
+				sb.append("El libro ya tiene el campo con ID[")
+						.append(campo.getId()).append("] creado");
+				logger.error(sb.toString());
+				throw new ISicresRPAdminDAOException(
+						ISicresRPAdminDAOException.ERROR_UPDATE_BOOK_SICRES3);
+			}
+			result = true;
+		}
+
+		return result;
+	}
+
+
+	/**
+	 * Método que obtiene la información del campo según su ID
+	 * @param flds - Colección de campos
+	 * @param fldId - Id del campo a buscar
+	 *
+	 * @return {@link ArchiveFld} Información del campo buscado
+	 *
+	 * @throws Exception
+	 */
+	private static ArchiveFld getFieldById(ArchiveFlds flds, int fldId) throws Exception {
+
+		ArchiveFld result = null;
+
+		try {
+			//buscamos el campo
+			result = flds.getFldDefById(fldId);
+		} catch (IeciTdException e) {
+			//Si el campo no es encontrado se devuelve una excepción por tanto la capturamos
+			if (logger.isDebugEnabled()) {
+				StringBuffer sb = new StringBuffer();
+				sb.append("No se ha encontrado el campo [").append(fldId)
+						.append("]");
+				logger.debug(sb.toString(), e);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Método que verifica si ambos campos pasados como paramétros son iguales
+	 * @param campoFld - Campo a comparar
+	 * @param campoDefinicionLibroDefault - Campo por defecto del libro
+	 * @return boolean - TRUE: los campos son iguales / FALSE: los campos no son iguales
+	 */
+	private static boolean validateEqualsFields(ArchiveFld campoFld,
+			ArchiveFld campoDefinicionLibroDefault) {
+		boolean result = false;
+
+		// comprobamos el nombre de columna, el nombre del campo, el tamaño y el
+		// tipo de campo si todo ello es idéntico consideramos el mismo campo
+		if ((StringUtils.equals(campoFld.getColName(),
+				campoDefinicionLibroDefault.getColName()))
+				&& (StringUtils.equals(campoFld.getName(),
+						campoDefinicionLibroDefault.getName()))
+				&& (campoFld.getLen() == campoDefinicionLibroDefault.getLen())
+				&& (campoFld.getType() == campoDefinicionLibroDefault.getType())) {
+			result = true;
+		}
+
+		return result;
 	}
 
 	/**
@@ -579,10 +879,16 @@ public class ISicresRPAdminLibroManager {
 			IVolArchListDatos listaDAO = new IVolArchListDatos();
 
 			try {
+				//cargamos los datos del libro
 				listaDAO.load(lista.getArchId(), db);
+				//se actualiza la lista de volumen asociada al libro
 				new IVolArchListDatos(lista).update(db);
-			} catch (ISicresRPAdminDAOException e) {
-				new IVolArchListDatos(lista).add(db);
+			} catch (ISicresAdminDAOException e) {
+				// Añadimos la lista del archivador siempre que la lista sea
+				// distinto de 0
+				if(lista.getListId()!=0){
+					new IVolArchListDatos(lista).add(db);
+				}
 			}
 		} catch (Exception e) {
 			logger.error("Error obteniendo lista");

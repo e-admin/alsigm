@@ -756,4 +756,3 @@ UPDATE scr_contador set contador=13 WHERE tablaid = 'SCR_CA';
 UPDATE scr_contador set contador=3 WHERE tablaid = 'SCR_OFIC';
 UPDATE scr_contador set contador=2 WHERE tablaid = 'SCR_TYPEOFIC';
 UPDATE scr_contador set contador=5 WHERE tablaid = 'SCR_WS';
---

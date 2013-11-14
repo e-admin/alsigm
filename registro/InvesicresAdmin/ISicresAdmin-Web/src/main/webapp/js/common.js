@@ -307,9 +307,9 @@ function abreUsuariosOficina(url, usuariosDisponibles, msg) {
 
 	if(usuariosDisponibles){
 		var alturaPopup=530;
-	   	var H = (screen.height - alturaPopup) / 2;
-	   	var anchuraPopup=590;
-	   	var L = (screen.width - anchuraPopup) / 2;
+		var H = (screen.height - alturaPopup) / 2;
+		var anchuraPopup=590;
+		var L = (screen.width - anchuraPopup) / 2;
 
 		var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 			features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -322,9 +322,9 @@ function abreUsuariosOficina(url, usuariosDisponibles, msg) {
 function abreListaDistribucion(url) {
 
 	var alturaPopup=530;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=590;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=590;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -335,9 +335,9 @@ function abreListaDistribucion(url) {
 function abreListaDistribucionLdap(url) {
 
 	var alturaPopup=390;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=490;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=490;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -348,9 +348,9 @@ function abreListaDistribucionLdap(url) {
 function abreUsuarios(url) {
 
 	var alturaPopup=280;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=590;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=590;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -361,9 +361,9 @@ function abreUsuarios(url) {
 function abreUsuariosLdap(url) {
 
 	var alturaPopup=390;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=490;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=490;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -374,9 +374,9 @@ function abreUsuariosLdap(url) {
 function abreListas(url) {
 
 	var alturaPopup=280;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=350;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=350;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -386,9 +386,9 @@ function abreListas(url) {
 function abreListaOficinas(url) {
 
 	var alturaPopup=350;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=400;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=400;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=1,status=no,titlebar=no,toolbar=no";
@@ -400,9 +400,9 @@ function abreListaOficinas(url) {
 function abreDepartamentos(url) {
 
 	var alturaPopup=290;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=390;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=390;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -413,9 +413,9 @@ function abreDepartamentos(url) {
 function abreDepartamentosLdap(url) {
 
 	var alturaPopup=390;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=490;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=490;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -426,9 +426,9 @@ function abreDepartamentosLdap(url) {
 function abreLdap(url) {
 
 	var alturaPopup=390;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=490;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=490;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -439,9 +439,9 @@ function abreLdap(url) {
 function abreOficinas(url) {
 
 	var alturaPopup=300;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=450;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=450;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -451,9 +451,9 @@ function abreOficinas(url) {
 
 function abreTiposAsunto(url) {
 	var alturaPopup=300;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=450;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=450;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -464,9 +464,9 @@ function abreTiposAsunto(url) {
 function abreUnidades(url) {
 
 	var alturaPopup=500;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=400;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=400;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -477,9 +477,9 @@ function abreUnidades(url) {
 
 function abreBusquedaEntidadesReg(url){
 	var alturaPopup=420;
-   	var H = (screen.height - alturaPopup) / 2;
-   	var anchuraPopup=800;
-   	var L = (screen.width - anchuraPopup) / 2;
+	var H = (screen.height - alturaPopup) / 2;
+	var anchuraPopup=800;
+	var L = (screen.width - anchuraPopup) / 2;
 
 	var features = "directories=0,top="+H+"px,left="+L+"px,height="+alturaPopup+"px,width="+anchuraPopup+"px,location=0,menubar=0";
 		features +="resizable=0,scrollbars=0,status=no,titlebar=no,toolbar=no";
@@ -598,7 +598,7 @@ function ocultaDiv(capa) {
 }
 
 
-var checkBox = new Array(19);
+var checkBox = new Array(20);
 checkBox[0] = 'altaPersonasCheck';
 checkBox[1] = 'adaptacionRegistrosCheck';
 checkBox[2] = 'modificaPersonasCheck';
@@ -613,12 +613,14 @@ checkBox[10] = 'cambioDestinoRechazadosCheck';
 checkBox[11] = 'accesoOperacionesCheck';
 checkBox[12] = 'distribucionManualCheck';
 checkBox[13] = 'verDocumentosCheck';
-checkBox[14] = 'gestionUnidadesAdministrativasCheck';
-checkBox[15] = 'gestionUsuariosCheck';
-checkBox[16] = 'gestionInformesCheck';
-checkBox[17] = 'gestionTiposAsuntoCheck';
-checkBox[18] = 'gestionTiposTransporteCheck';
-var permSelected = new Array(14);
+checkBox[14] = 'deleteDocumentosCheck';
+checkBox[15] = 'gestionUnidadesAdministrativasCheck';
+checkBox[16] = 'gestionUsuariosCheck';
+checkBox[17] = 'gestionInformesCheck';
+checkBox[18] = 'gestionTiposAsuntoCheck';
+checkBox[19] = 'gestionTiposTransporteCheck';
+
+var permSelected = new Array(20);
 
 function checkSuperUser( itemPerfil, operacion, init ) {
 	if( itemPerfil == 3) {

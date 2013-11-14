@@ -38,6 +38,7 @@ public class IbatisInfoRegistroDAOImpl implements
 	private static final String GET_INFO_REGISTRO_DIRECCIONES_INTERESADOS = "InfoRegistroDireccionVO.getInfoRegistroDireccionesList";
 	private static final String GET_INFO_REGISTRO_DIRECCION_TELEMATICA_INTERESADO = "InfoRegistroDireccionTelematicaInteresadoVO.getInfoRegistroDireccionTelematicaInteresadoVO";
 	private static final String GET_INFO_REGISTRO_DOMICILIO_INTERESADO = "InfoRegistroDomicilioInteresadoVO.getInfoRegistroDomicilioInteresadoVO";
+	private static final String GET_INFO_REGISTRO_DOMICILIO_INTERNACIONAL_INTERESADO = "InfoRegistroDomicilioInteresadoVO.getInfoRegistroDomicilioInternacionalInteresadoVO";
 
 	private static final String GET_INFO_REGISTRO_DIRECCION_INTERESADO = "InfoRegistroDireccionVO.getInfoRegistroDireccionInteresado";
 	private static final String GET_INFO_REGISTRO_PAGE_REPOSITORIES = "InfoRegistroPageRepositoryVO.getInfoRegistroPageRepositories";
@@ -171,6 +172,9 @@ public class IbatisInfoRegistroDAOImpl implements
 		try{
 
 			InfoRegistroDomicilioInteresadoVO domicilio = (InfoRegistroDomicilioInteresadoVO)getSqlMapClientTemplate().queryForObject(GET_INFO_REGISTRO_DOMICILIO_INTERESADO, direccion);
+			if (domicilio == null){
+				domicilio = (InfoRegistroDomicilioInteresadoVO)getSqlMapClientTemplate().queryForObject(GET_INFO_REGISTRO_DOMICILIO_INTERNACIONAL_INTERESADO, direccion);
+			}
 			return domicilio;
 		}
 		catch (DataAccessException e) {

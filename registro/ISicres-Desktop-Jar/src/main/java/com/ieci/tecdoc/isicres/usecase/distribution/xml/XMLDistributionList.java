@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
@@ -30,26 +31,31 @@ import com.ieci.tecdoc.common.isicres.ScrDistRegResults;
 import com.ieci.tecdoc.common.isicres.SessionInformation;
 import com.ieci.tecdoc.common.keys.ConfigurationKeys;
 import com.ieci.tecdoc.common.utils.Configurator;
+import com.ieci.tecdoc.common.utils.ISDistribution;
 import com.ieci.tecdoc.isicres.desktopweb.Keys;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
+import com.ieci.tecdoc.isicres.usecase.book.xml.XMLUtils;
 import com.ieci.tecdoc.isicres.usecase.validationlist.xml.XMLValidationListAbstract;
 
 /*
  * @author LMVICENTE @creationDate 26-oct-2004 12:59:29
- * 
+ *
  * @version @since
  */
 public class XMLDistributionList extends XMLValidationListAbstract implements Keys {
 
 	private static Logger _logger = Logger.getLogger(XMLDistributionList.class);
-    private static SimpleDateFormat shortFormatter = null;
+    private static SimpleDateFormat dateFormat = null;
+
+	private static final String FLD = "Fld";
 
     public static Document getXMLDistributionList(int init, int paso,
 			int total, Locale locale, List listScrDistRegResults, int typeDist,
 			Integer timeout, Integer[] distPerms, Date actualDate,
 			SessionInformation sessionInformation) {
-		shortFormatter = new SimpleDateFormat(RBUtil.getInstance(locale)
-				.getProperty(I18N_DATE_SHORTFORMAT));
+
+	//obtenemos el formato de fecha con el que se trabajará
+	dateFormat = XMLUtils.getDateFormatView(locale);
 
 		Document doc = createDocument(init, paso, total, distPerms,
 				sessionInformation.getCaseSensitive());
@@ -75,22 +81,22 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 		}
 		return doc;
 	}
-    
+
     public static Document getXMLSaveRemarks(int id, String remarks, Locale locale) {
         Document document = DocumentHelper.createDocument();
         Element root = document.addElement(XML_DISTRIBUTION_ROOT);
-        
+
         root.addAttribute(XML_ID_TEXT, Integer.toString(id));
         root.addElement(XML_MESSAGE_TEXT).add(DocumentHelper.createCDATA(remarks));
-        		
+
         return document;
     }
-    
+
     public static Document getXMLDistributionClausuleWhere(Object distWhere, Object regWhere, Locale locale) {
 
         Document document = DocumentHelper.createDocument();
 
-        Element root = document.addElement(XML_VALIDATION_TEXT); 
+        Element root = document.addElement(XML_VALIDATION_TEXT);
         if (distWhere instanceof List){
         	root.addElement(XML_ERROR_TEXT).add(DocumentHelper.createCDATA(RBUtil.getInstance(locale).getProperty(I18N_VALIDATIONUSECASE_VALIDATIONCODE_ERROR)));
     		root.addElement(XML_FLDNAME_TEXT).add(DocumentHelper.createCDATA((String) ((List) distWhere).get(0)));
@@ -104,7 +110,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 
         return document;
     }
-    
+
     public static Document getXMLDistributionVldBooks( Map createPermBooks) {
 
         Document document = DocumentHelper.createDocument();
@@ -115,27 +121,27 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 
         return document;
     }
-    
+
     public static Document getXMLDistributionSearchList( int typeDist, Locale locale, String dataBaseType, String caseSensitive) {
 
         Document document = DocumentHelper.createDocument();
 
         Element root = document.addElement(XML_SICRESLIST_TEXT);
-        
+
         addSearchTitle(root, locale);
         addDistRegFields(root, typeDist, locale, 1, dataBaseType, caseSensitive);
         addDistRegFields(root, typeDist, locale, 2, dataBaseType, caseSensitive);
 
         return document;
     }
-    
+
     private static void addBooks(Element parent, Map createPermBooks){
-    	
+
     	Element book = null;
     	Integer bookId = null;
     	String bookName = null;
     	for (Iterator it = createPermBooks.keySet().iterator(); it.hasNext();) {
-        	
+
         	bookId = (Integer) it.next();
         	bookName = (String) createPermBooks.get(bookId);
         	book = parent.addElement(XML_BOOK_TEXT);
@@ -143,22 +149,22 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
         	id.addText(bookId.toString());
         	Element name = book.addElement(XML_NAME_UPPER_TEXT);
         	name.addText(bookName);
-        	
+
     	}
     }
-  
+
     private static void addSearchTitle(Element parent, Locale locale){
-    	
+
 		Element title = parent.addElement(XML_TITLE_TEXT);
 		title.addText(RBUtil.getInstance(locale).getProperty(BOOKUSECASE_DISTRIBUTIONSEARCH_TITLE));
-    	
+
     }
-  
+
     private static void addDistRegFields(Element parent, int typeDist, Locale locale, int typeSearch, String dataBaseType, String caseSensitive){
-    	
+
     	DistributionSearchFields distributionSearchFields = null;
     	Element distRegFields = null;
-    	
+
     	if (typeSearch == 1){
     		distRegFields = parent.addElement(XML_DISTFIELDS_TEXT);
         	distRegFields.addElement(XML_NAME_UPPER_TEXT).add(DocumentHelper.createCDATA(RBUtil.getInstance(locale).getProperty(BOOKUSECASE_DISTRIBUTIONSEARCH_BY_DISTRIBUTION)));
@@ -166,7 +172,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
     		distRegFields = parent.addElement(XML_REGFIELDS_TEXT);
         	distRegFields.addElement(XML_NAME_UPPER_TEXT).add(DocumentHelper.createCDATA(RBUtil.getInstance(locale).getProperty(BOOKUSECASE_DISTRIBUTIONSEARCH_BY_FLD)));
     	}
-    	
+
 		distributionSearchFields = new DistributionSearchFields(new Integer(typeSearch), new Integer(typeDist), locale, dataBaseType);
 		List fieldSearch = distributionSearchFields.getResult();
 		Element fields = null;
@@ -197,12 +203,12 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
             		fields.addAttribute(XML_FLDID_TEXT,Integer.toString(fldid));
             		fields.addAttribute(XML_TVALID_TEXT,"8");
         		}
-        		
+
         		if (validation == 6){
             		fields.addAttribute(XML_FLDID_TEXT,"16");
             		fields.addAttribute(XML_TVALID_TEXT,"3");
         		}
-    			
+
     		}
     		fields.addElement(XML_FIELDLABEL_TEXT).add(DocumentHelper.createCDATA(distributionFields.getFieldLabel()));
     		fields.addElement(XML_FIELDNAME_TEXT).add(DocumentHelper.createCDATA(distributionFields.getFieldName()));
@@ -219,8 +225,8 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
         		Element values = fields.addElement(XML_VALUES_TEXT);
 				key = I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_MINUTA_DIST_STATE;
 				Element value = null;
-				
-				int limit = (typeDist == 1)?6:7;				
+
+				int limit = (typeDist == 1)?6:7;
         		for (int k = 0; k < limit; k++){
 					state = key + k;
 	        		value = values.addElement(XML_VALUE_TEXT);
@@ -233,7 +239,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 	        		}
         		}
         	}
-    		
+
     	}
     }
 
@@ -261,7 +267,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 				BOOKUSECASE_DISTRIBUTIONHISTORY_WIDTH_COL1);
 		String cdata = RBUtil.getInstance(locale).getProperty(
 				I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL1);
-		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width)
+		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width).addAttribute(FLD, "BOOKNAME")
 				.add(DocumentHelper.createCDATA(cdata));
 
 		// Columna 2 Numero de registro
@@ -269,7 +275,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 				BOOKUSECASE_DISTRIBUTIONHISTORY_WIDTH_COL2);
 		cdata = RBUtil.getInstance(locale).getProperty(
 				I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL2);
-		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width)
+		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width).addAttribute(FLD, "FLD1")
 				.add(DocumentHelper.createCDATA(cdata));
 
 		// Columna 3 Fecha de Registro
@@ -277,7 +283,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 				BOOKUSECASE_DISTRIBUTIONHISTORY_WIDTH_COL3);
 		cdata = RBUtil.getInstance(locale).getProperty(
 				I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL3);
-		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width)
+		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width).addAttribute(FLD, "FLD2")
 				.add(DocumentHelper.createCDATA(cdata));
 
 		// Columna 4 Destino
@@ -285,7 +291,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 				BOOKUSECASE_DISTRIBUTIONHISTORY_WIDTH_COL4);
 		cdata = RBUtil.getInstance(locale).getProperty(
 				I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL4);
-		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width)
+		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width).addAttribute(FLD, "FLD8_TEXT")
 				.add(DocumentHelper.createCDATA(cdata));
 
 		// Columna 5 Tipo de Asunto
@@ -293,7 +299,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 				BOOKUSECASE_DISTRIBUTIONHISTORY_WIDTH_COL5);
 		cdata = RBUtil.getInstance(locale).getProperty(
 				I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL5);
-		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width)
+		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width).addAttribute(FLD, "ASUNTO_TEXT")
 				.add(DocumentHelper.createCDATA(cdata));
 
 		// Columna 6 Resumen
@@ -301,7 +307,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 				BOOKUSECASE_DISTRIBUTIONHISTORY_WIDTH_COL6);
 		cdata = RBUtil.getInstance(locale).getProperty(
 				I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL6);
-		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width)
+		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width).addAttribute(FLD, "RESUMEN")
 				.add(DocumentHelper.createCDATA(cdata));
 
 		// Columna 7 - Origen de la Distribucion (Distribucion de Entrada)
@@ -331,12 +337,18 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 					width).add(DocumentHelper.createCDATA(cdata));
 		}
 
+		// Columna Distribución actual
+		cdata = RBUtil.getInstance(locale).getProperty(
+				I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL16);
+		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width)
+				.add(DocumentHelper.createCDATA(cdata));
+
 		// Columna 8 Estado
 		width = RBUtil.getInstance(locale).getProperty(
 				BOOKUSECASE_DISTRIBUTIONHISTORY_WIDTH_COL8);
 		cdata = RBUtil.getInstance(locale).getProperty(
 				I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL8);
-		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width)
+		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width).addAttribute(FLD, "DIST_STATE")
 				.add(DocumentHelper.createCDATA(cdata));
 
 		// Columna 9 Fecha de Estado
@@ -344,10 +356,10 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 				BOOKUSECASE_DISTRIBUTIONHISTORY_WIDTH_COL9);
 		cdata = RBUtil.getInstance(locale).getProperty(
 				I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL9);
-		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width)
+		headMinuta.addElement(XML_COL_TEXT).addAttribute(XML_WIDTH_TEXT, width).addAttribute(FLD, "DIST_STATE_DATE")
 				.add(DocumentHelper.createCDATA(cdata));
 	}
-    
+
     private static void addBodyMinuta(ScrDistRegResults scr,
 			Locale locale, Element parent, int paso, int typeDist,
 			Integer timeout,
@@ -376,7 +388,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 			outOfDate = getOutOfDate(scr.getScrDistReg().getDistDate(),
 					actualDate, timeout);
 		}
-		
+
 		int idocarchType = 0;
 		String idocarchName = null;
 		Object idocarch = scr.getIdocarch();
@@ -427,7 +439,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 			row.addElement(XML_COLDATA_TEXT).add(
 					DocumentHelper.createCDATA(scr.getAxsf()
 							.getAttributeValueAsString("fld17")));
-			
+
 		} else {
 			row.addElement(XML_COLDATA_TEXT).add(
 					DocumentHelper.createCDATA(getAsuntType(((AxSfOut) scr
@@ -435,9 +447,9 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 			row.addElement(XML_COLDATA_TEXT).add(
 					DocumentHelper.createCDATA(scr.getAxsf()
 							.getAttributeValueAsString("fld13")));
-			
+
 		}
-		
+
 		if (typeDist == 1) {
 			row.addElement(XML_COLDATA_TEXT).add(
 					DocumentHelper.createCDATA(scr.getSourceDescription()));
@@ -450,13 +462,24 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 					DocumentHelper.createCDATA(scr.getSourceDescription()));
 		}
 
+		//Destino actual de la distribución
+		if (scr.getScrDistReg().getState() == ISDistribution.STATE_REDISTRIBUIDO) {
+			//mostramos el destino actual para la redistribución
+			row.addElement(XML_COLDATA_TEXT).add(DocumentHelper.createText
+					(scr.getTargetActualDescription().replace("\n", ", ")));
+		}else{
+			//mostramos el destino de la distribución
+			row.addElement(XML_COLDATA_TEXT).add(
+					DocumentHelper.createCDATA(scr.getTargetDescription()));
+		}
+
 		row.addElement(XML_COLDATA_TEXT).add(
 				DocumentHelper.createCDATA(RBUtil.getInstance(locale)
 						.getProperty(
 								I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_MINUTA_DIST_STATE
 										+ scr.getScrDistReg().getState())));
 		row.addElement(XML_COLDATA_TEXT).addText(
-				shortFormatter.format(scr.getScrDistReg().getStateDate()));
+				dateFormat.format(scr.getScrDistReg().getStateDate()));
 
 		row.addElement(XML_NAMEARCH_TEXT).addText(idocarchName);
 		row.addElement(XML_REMARKS_TEXT).add(
@@ -466,13 +489,13 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
 	}
 
     private static void addNoBobyMinuta(Locale locale, Element parent) {
-    	
+
         Element message = parent.addElement(XML_MESSAGE_TEXT);
         message.add(DocumentHelper.createCDATA(
                 RBUtil.getInstance(locale).getProperty(
                 		I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_NOBODYMINUTA )));
     }
-    
+
     private static String getAdminUnit(ScrOrg org) {
         String text = "";
         if (org != null) {
@@ -492,18 +515,15 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
         }
         return text;
     }
-    
+
     private static String getAsuntType(ScrCa ca) {
         String text = "";
         if (ca != null) {
             if (Configurator.getInstance().getPropertyBoolean(
-            		ConfigurationKeys.KEY_DESKTOP_QUERYRESULTSTABLEREPRESENTATION_ADMINUNITS_CODE)) {
+			ConfigurationKeys.KEY_DESKTOP_QUERYRESULTSTABLEREPRESENTATION_SUBJTYPE_CODE)) {
                 text = ca.getCode();
             } else if (Configurator.getInstance().getPropertyBoolean(
-            		ConfigurationKeys.KEY_DESKTOP_QUERYRESULTSTABLEREPRESENTATION_ADMINUNITS_ABBV)) {
-                text = ca.getCode();
-            } else if (Configurator.getInstance().getPropertyBoolean(
-            		ConfigurationKeys.KEY_DESKTOP_QUERYRESULTSTABLEREPRESENTATION_ADMINUNITS_NAME)) {
+			ConfigurationKeys.KEY_DESKTOP_QUERYRESULTSTABLEREPRESENTATION_SUBJTYPE_NAME)) {
                 text = ca.getMatter();
             }
             if (text == null) {
@@ -512,30 +532,30 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
         }
         return text;
     }
-    
+
     private static String getRegisterDate(AxSf axsf){
     	String text = "";
     	if (axsf.getAttributeValue("fld2") != null
 				&& axsf.getAttributeClass("fld2") != null) {
 			if (axsf.getAttributeClass("fld2").equals(Date.class)) {
-				text = shortFormatter.format((Date) axsf
+				text = dateFormat.format((Date) axsf
 						.getAttributeValue("fld2"));
 			}
 		} else if (axsf.getAttributeClass("fld2") == null) {
 			if (axsf.getAttributeValue("fld2") instanceof Date) {
-				text = shortFormatter.format((Date) axsf
+				text = dateFormat.format((Date) axsf
 						.getAttributeValue("fld2"));
 			}
 			if (axsf.getAttributeValue("fld2") instanceof java.sql.Date) {
-				text = shortFormatter.format(new Date(((java.sql.Date) axsf
+				text = dateFormat.format(new Date(((java.sql.Date) axsf
 						.getAttributeValue("fld2")).getTime()));
 			}
 			if (axsf.getAttributeValue("fld2") instanceof Timestamp) {
-				text = shortFormatter.format(new Date(((Timestamp) axsf
+				text = dateFormat.format(new Date(((Timestamp) axsf
 						.getAttributeValue("fld2")).getTime()));
 			}
 		}
-    	
+
     	return text;
     }
 
@@ -549,7 +569,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
             return result;
         }
     }
-    
+
     public static class ScrDistregComparator implements Comparator {
         public boolean equals(Object object) {
             return false;
@@ -559,7 +579,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
             return (new Integer(((ScrDistreg) o1).getIdFdr())).compareTo(new Integer(((ScrDistreg) o2).getIdFdr()));
         }
     }
-   
+
     public static class IntegerComparator implements Comparator {
         public boolean equals(Object object) {
             return false;
@@ -569,7 +589,7 @@ public class XMLDistributionList extends XMLValidationListAbstract implements Ke
              return ((Integer) o1).compareTo((Integer)o2);
         }
     }
-    
+
     public static class StringComparator implements Comparator {
         public boolean equals(Object object) {
             return false;

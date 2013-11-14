@@ -197,9 +197,9 @@ public class SecuritySession extends SecuritySessionUtil implements ServerKeys,
 
 	/**
 	 * Logue al usuario en la oficina indicada.
-	 * 
+	 *
 	 * Si no se especifica una oficina se coge la oficina por defecto del usuario
-	 * 
+	 *
 	 * @param login
 	 * @param password
 	 * @param codigoOficina
@@ -227,6 +227,31 @@ public class SecuritySession extends SecuritySessionUtil implements ServerKeys,
 
 			Session session = HibernateUtil.currentSession(entidad);
 			tran = session.beginTransaction();
+
+			ScrOfic scrofic = null;
+			if (StringUtils.isEmpty(codigoOficina)){
+				// Chequeamos si el usuario tiene definida una oficina
+				// preferente y en caso afirmativo, almacenarla como dato del
+				// usuario
+				scrofic = checkScrOficPref(session, user, locale.getLanguage(),
+						entidad);
+			} else{
+				//obtenemos la oficina
+				scrofic = getOfficeByCodeOfUser(codigoOficina, locale, user, session);
+				//si no se recupera información para la oficina indicada
+				if (scrofic == null) {
+					StringBuffer sb = new StringBuffer("El usuario [")
+							.append(login)
+							.append("] no ha podido hacer login en la oficina con codigo [")
+							.append(codigoOficina).append("]");
+					log.error(sb.toString());
+					throw new SecurityException(SecurityException.ERROR_SCROFIC_NOT_FOUND);
+
+				}
+				// si se ha indicado oficina para el usuario, se setea el valor
+				// al usuario autenticado
+				user.setDeptid(scrofic.getDeptid());
+			}
 
 			String sessionID = completarDatosLogin(locale, entidad, user,
 					session, codigoOficina, false);
@@ -415,6 +440,57 @@ public class SecuritySession extends SecuritySessionUtil implements ServerKeys,
 			log.debug(sb.toString());
 		}
 		return sessionID;
+	}
+
+
+	/**
+	 *
+	 * Devuelve la oficina asociada al usuario a partir del código de la oficina.
+	 *
+	 * Si el usuario no pertenece a esa oficina devuelve nulo.
+	 *
+	 * @param codigoOficina
+	 * @param locale
+	 * @param user
+	 * @param session
+	 */
+	private static ScrOfic getOfficeByCodeOfUser(String codigoOficina,
+			Locale locale, AuthenticationUser user, Session session) {
+
+		ScrOfic scrOfic = getScrOficByCode(session, locale.getLanguage(),
+				codigoOficina);
+
+		/*
+		 * Obtener el objeto ScrOfic a partir del codigo de la oficina
+		 * y después comprobar que esa oficna está en el listado de oficinas
+		 * del usuario o en la oficina del departamento del usuario.
+		 *
+		 */
+		if (null != scrOfic) {
+			if (user.getDeptList() != null) {
+				for (Iterator it = user.getDeptList().iterator(); it.hasNext();) {
+					Integer idDept = (Integer) it.next();
+					if (idDept.intValue() == scrOfic.getDeptid()) {
+						return scrOfic;
+					}
+				}
+			} else{
+				log.warn("El usuario ["+user.getName()+"] tiene la lista de departamentos vacía");
+				try {
+					ScrOfic scroficDept = ISicresQueries.getScrOficByDeptId(session, user
+							.getDeptid());
+					if (scroficDept!=null){
+						if (scrOfic.getId()==scroficDept.getId()){
+							return scrOfic;
+						}
+					}
+				} catch (HibernateException e) {
+					log.error("No se ha podido obtener la oficina del departamento ["+user.getDeptid()+"]", e);
+				}
+			}
+		}
+
+		return null;
 	}
 
 	/**

@@ -698,11 +698,11 @@ public class ValidationListUseCase implements Keys {
 							.getInstance().getDefaultPageValidationListSize(),
 							vldQuery, locale, useCaseConf.getEntidadId());
 				} else {
-					Object scrOrgFromFather = ValidationSessionEx.getScrOrg(
+					Object scrOrgVal = ValidationSessionEx.getScrOrg(
 							useCaseConf.getSessionID(), EntityByLanguage
 									.getParentIds(scrOrg).intValue(), locale
 									.getLanguage(), useCaseConf.getEntidadId());
-					if (EntityByLanguage.getParentIds(scrOrgFromFather) == null) {
+					if (EntityByLanguage.getParentIds(scrOrgVal) == null) {
 						results = ValidationSession
 								.getScrOrgsForAdminUnitsWithType(
 										useCaseConf.getSessionID(),
@@ -712,17 +712,17 @@ public class ValidationListUseCase implements Keys {
 												.getDefaultPageValidationListSize(),
 										vldQuery,
 										enabled,
-										EntityByLanguage
+											EntityByLanguage
 												.getScrTypeAdmIdFromOrg(
-														scrOrgFromFather)
-												.intValue(), locale,
-										useCaseConf.getEntidadId());
-						Object scrTypeadm = ValidationSessionEx.getScrTypeAdm(
+														scrOrgVal).intValue(),
+										locale, useCaseConf.getEntidadId());
+						Object scrAdm = ValidationSessionEx.getScrTypeAdm(
+
 								useCaseConf.getSessionID(), EntityByLanguage
 										.getScrTypeAdmIdFromOrg(scrOrg)
 										.intValue(), locale.getLanguage(),
 								useCaseConf.getEntidadId());
-						name = EntityByLanguage.getScrTypeAdmName(scrTypeadm);
+						name = EntityByLanguage.getScrTypeAdmName(scrAdm);
 					} else {
 						results = ValidationSession
 								.getScrOrgsForAdminUnitsWithFather(
@@ -732,18 +732,20 @@ public class ValidationListUseCase implements Keys {
 												.getInstance()
 												.getDefaultPageValidationListSize(),
 										vldQuery, enabled, EntityByLanguage
-												.getParentIds(scrOrg)
+												.getParentIds(scrOrgVal)
 												.intValue(), locale,
 										useCaseConf.getEntidadId());
-						scrOrgFromFather = ValidationSessionEx.getScrOrg(
-								useCaseConf.getSessionID(), EntityByLanguage
-										.getParentIds(scrOrgFromFather)
-										.intValue(), locale.getLanguage(),
-								useCaseConf.getEntidadId());
+						Object scrOrgFromFather = ValidationSessionEx
+								.getScrOrg(useCaseConf.getSessionID(),
+										EntityByLanguage
+												.getParentIds(scrOrgVal)
+												.intValue(), locale
+												.getLanguage(), useCaseConf
+												.getEntidadId());
 						name = EntityByLanguage.getOrgNames(scrOrgFromFather);
 						// Obtener el padre de nivel superior
 						String aux = "";
-						if (EntityByLanguage.getParentIds(scrOrg) != null) {
+						if (EntityByLanguage.getParentIds(scrOrgFromFather) != null) {
 							Object scrOrgTopLevel = ValidationSessionEx
 									.getTopLevelParentScrOrg(useCaseConf
 											.getSessionID(), EntityByLanguage
@@ -770,17 +772,27 @@ public class ValidationListUseCase implements Keys {
 		}
 		}
 
-		List fieldsInfo = createFieldsInfo(3, 0);
+		if (results != null) {
+			Map parentNames = null;
+			if (vldQuery != null && !vldQuery.equals("")) {
+				parentNames = getParentNames(useCaseConf, results);
+			}
+			List fieldsInfo = createFieldsInfo(3, 0);
 
-		SessionInformation sessionInformation = BookSession
-				.getSessionInformation(useCaseConf.getSessionID(), locale,
-						useCaseConf.getEntidadId());
+			SessionInformation sessionInformation = BookSession
+					.getSessionInformation(useCaseConf.getSessionID(), locale,
+							useCaseConf.getEntidadId());
 
-		return XMLTypeEntReg.createXMLDtrValidationList(results, initValue,
-				enabled, typeBusc, locale, name, ref,
-				Keys.I18N_VALIDATIONUSECASE_TYPEDISTRIBUTION, fieldsInfo,
-				sessionInformation.getCaseSensitive());
+			return XMLTypeEntReg.createXMLDtrValidationList(results, initValue,
+					enabled, typeBusc, locale, name, ref,
+					Keys.I18N_VALIDATIONUSECASE_TYPEDISTRIBUTION, fieldsInfo,
+					sessionInformation.getCaseSensitive());
+
+		} else {
+			return null;
+		}
 	}
+
 
 	public Document getValidationListTypeSubject(UseCaseConf useCaseConf,
 			Integer bookID, int initValue, int enabled, String vldQuery)

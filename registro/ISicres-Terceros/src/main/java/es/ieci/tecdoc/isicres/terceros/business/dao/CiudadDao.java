@@ -11,10 +11,17 @@ import es.ieci.tecdoc.isicres.terceros.business.vo.ProvinciaVO;
  */
 public interface CiudadDao extends BaseReadOnlyDao<CiudadVO, String> {
 
+	public List<CiudadVO> getCiudades(int from, int to);
+
+	public Integer getCiudadesCount();
+
+
 	public CiudadVO findByCodigo(String codigo);
 
 	public CiudadVO findByNombre(String nombre);
 
+
+	public Integer getCiudadesByProvinciaCount(ProvinciaVO provincia);
 	/**
 	 * Devuelve las ciudades de la provincia <code>provincia</code>.
 	 *
@@ -22,4 +29,7 @@ public interface CiudadDao extends BaseReadOnlyDao<CiudadVO, String> {
 	 * @return
 	 */
 	public List<CiudadVO> getCiudadesByProvincia(ProvinciaVO provincia);
+
+
+	public List<CiudadVO> getCiudadesByProvincia(ProvinciaVO provincia, int from, int to);
 }

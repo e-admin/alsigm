@@ -101,7 +101,7 @@
             	<IMG src="images/file_doc.png" border="0" style="cursor:pointer; margin-right: 2px"
                		onclick="SelElem( 5, this.parentNode.id );OpenPageData(event)"/>
             </xsl:if>
-            <xsl:if test="Id[.=1]">
+            <xsl:if test="Id[.=1 or .=2]">
             	<IMG src="images/datblank.gif" border="0"/>
             	<IMG src="images/comment.png" border="0" style="cursor:pointer; margin-right: 2px"
                		onclick="SelElem( 5, this.parentNode.id );OpenPageData(event)"/>
@@ -112,7 +112,10 @@
             		<xsl:value-of select="Title"/>
           	</A>
           	<xsl:if test="Id[.=0]">
-          		<b>&#160;<xsl:value-of select="../Properties/RegNumber"/></b>
+				<xsl:if test="../Properties/RegNumber[.!='']">
+					<br/>
+					<b style="margin-left:35px">n&#176;&#58;&#160;<xsl:value-of select="../Properties/RegNumber"/></b>
+				</xsl:if>
           	</xsl:if>
 
          </LI>
@@ -134,6 +137,7 @@
 		<xsl:attribute name="value"><xsl:value-of select="VldSave"/></xsl:attribute>
 	</input>
    <xsl:apply-templates select="IsBookAdm"/>
+   <xsl:apply-templates select="CanDist"/>
 </xsl:template>
 
 <xsl:template match="Session">
@@ -206,6 +210,12 @@
 <xsl:template match="Fields">
 	<input type="hidden" id="Fields">
 		<xsl:attribute name="value"><xsl:apply-templates select="Field"/></xsl:attribute>
+	</input>
+</xsl:template>
+
+<xsl:template match="CanDist">
+	<input id="CanDist" type="hidden">
+		<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 	</input>
 </xsl:template>
 

@@ -49,18 +49,34 @@ public class BuscarUnidadesTramitacionDCO extends HttpServlet{
 		try{
 			IntercambioRegistralManager intercambioManager =  IsicresManagerProvider.getInstance().getIntercambioRegistralManager();
 
+			String codeEntityToFind = req.getParameter("codeEntityToFind");
+
 			String tramunitCodeToFind = req.getParameter("tramunitCodeToFind");
 			String tramunitNameToFind = req.getParameter("tramunitNameToFind");
-			if(StringUtils.isNotEmpty(tramunitCodeToFind) || StringUtils.isNotEmpty(tramunitNameToFind))
-			{
-				List<UnidadTramitacionDCO> listaUnidadesTramitacionDCO =intercambioManager.buscarUnidadesTramitacionDCO(tramunitCodeToFind, tramunitNameToFind);
+			//Si se indica una entidad registral, se buscarán las unid. asociadas a dicha entidad
+			if(StringUtils.isNotEmpty(codeEntityToFind)){
+				List<UnidadTramitacionDCO> listaUnidadesTramitacionDCO = intercambioManager
+				.buscarUnidadesTramitacionDCOByEntidad(codeEntityToFind, tramunitCodeToFind,
+						tramunitNameToFind);
 
 				req.setAttribute("listaUnidadesTramitacionDCO", listaUnidadesTramitacionDCO);
 				req.setAttribute("tramunitCodeToFind", tramunitCodeToFind);
 				req.setAttribute("tramunitNameToFind", tramunitNameToFind);
 
-			}
+			}else{
+				//buscamos todas las unidades de tramitación
+				if(StringUtils.isNotEmpty(tramunitCodeToFind) || StringUtils.isNotEmpty(tramunitNameToFind))
+				{
+					List<UnidadTramitacionDCO> listaUnidadesTramitacionDCO = intercambioManager
+							.buscarUnidadesTramitacionDCO(tramunitCodeToFind,
+									tramunitNameToFind);
 
+					req.setAttribute("listaUnidadesTramitacionDCO", listaUnidadesTramitacionDCO);
+					req.setAttribute("tramunitCodeToFind", tramunitCodeToFind);
+					req.setAttribute("tramunitNameToFind", tramunitNameToFind);
+
+				}
+			}
 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/listadoUnidadesTramitacionDCO.jsp");
 			dispatcher.forward(req, resp);

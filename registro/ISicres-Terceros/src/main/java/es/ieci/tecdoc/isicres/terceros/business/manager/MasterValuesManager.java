@@ -42,12 +42,21 @@ public interface MasterValuesManager {
 	 */
 	public List<CiudadVO> getCiudades();
 
+	public List<CiudadVO> getCiudades(int from, int to);
+
+	public Integer getCiudadesCount();
+
+
+
+	public Integer getCiudadesCount(ProvinciaVO provincia);
 	/**
 	 *
 	 * @param codigoProvincia
 	 * @return
 	 */
 	public List<CiudadVO> getCiudades(ProvinciaVO provincia);
+
+	public List<CiudadVO> getCiudades(ProvinciaVO provincia, int from, int to);
 
 	/**
 	 *
@@ -60,7 +69,7 @@ public interface MasterValuesManager {
 	 * @return
 	 */
 	public CiudadVO getCiudadById(Long id);
-	
+
 	/**
 	 *
 	 *Devuelve una ciudad a partir de su nombre
@@ -75,6 +84,10 @@ public interface MasterValuesManager {
 	 */
 	public List<ProvinciaVO> getProvincias();
 
+	public List<ProvinciaVO> getProvincias(int from, int to);
+
+	public Integer getProvinciasCount();
+
 	/**
 	 *
 	 * @param codigo
@@ -83,7 +96,7 @@ public interface MasterValuesManager {
 	public ProvinciaVO getProvincia(String codigo);
 
 	public ProvinciaVO getProvinciaById(Long id);
-	
+
 	/**
 	 * Devuelve una provincia a partir de su nombre
 	 * @param nombre

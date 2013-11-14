@@ -39,11 +39,46 @@ public class CiudadDaoImpl extends
 	}
 
 	@SuppressWarnings("unchecked")
+	public Integer getCiudadesByProvinciaCount(ProvinciaVO provincia) {
+		return (Integer) getSqlMapClientTemplate().queryForObject(
+				StringUtils.join(
+						new String[] {
+								ClassUtils.getShortName(getPersistentClass()),
+								"getCiudadesByProvinciaCount" }, "."), provincia);
+	}
+
+	@SuppressWarnings("unchecked")
 	public List<CiudadVO> getCiudadesByProvincia(ProvinciaVO provincia) {
 		return getSqlMapClientTemplate().queryForList(
 				StringUtils.join(
 						new String[] {
 								ClassUtils.getShortName(getPersistentClass()),
 								"getCiudadesByProvincia" }, "."), provincia);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<CiudadVO> getCiudadesByProvincia(ProvinciaVO provincia, int from, int to) {
+		return getSqlMapClientTemplate().queryForList(
+				StringUtils.join(
+						new String[] {
+								ClassUtils.getShortName(getPersistentClass()),
+								"getCiudadesByProvincia" }, "."), provincia, from, to);
+	}
+
+	public List<CiudadVO> getCiudades(int from, int to){
+		return getSqlMapClientTemplate().queryForList(
+				StringUtils.join(
+						new String[] {
+								ClassUtils.getShortName(getPersistentClass()),
+								"getCiudadVOs" }, "."), from, to);
+	}
+
+
+	public Integer getCiudadesCount(){
+		return (Integer) getSqlMapClientTemplate().queryForObject(
+				StringUtils.join(
+						new String[] {
+								ClassUtils.getShortName(getPersistentClass()),
+								"getCiudadesCount" }, "."));
 	}
 }

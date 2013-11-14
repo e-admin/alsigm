@@ -24,7 +24,8 @@ public class ListadoSeleccionPerfilesAction  extends RPAdminWebAction {
 		Entidad entidad = new Entidad();
 		entidad.setIdentificador(MultiEntityContextHolder.getEntity());
 
-		request.setAttribute("listas", oServicio.obtenerPerfilesCombo(entidad).getLista());
+		//Obtenemos los posibles perfiles asociados a los informes (SCR_REPORTPERF)
+		request.setAttribute("listas", oServicio.obtenerPerfilesReportCombo(entidad).getLista());
 
 		return mapping.findForward("success");
 	}

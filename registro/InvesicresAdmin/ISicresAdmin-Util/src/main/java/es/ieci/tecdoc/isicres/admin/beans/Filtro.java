@@ -2,8 +2,8 @@ package es.ieci.tecdoc.isicres.admin.beans;
 
 /**
  * Filtro de tratamiento de libros
- * 
- * 
+ *
+ *
  */
 public class Filtro {
 
@@ -37,7 +37,7 @@ public class Filtro {
 
 	public static final int CAMPO_FECHA_DEL_DOCUMENTO_ENTRADA = 20;
 	public static final int CAMPO_FECHA_DEL_DOCUMENTO_SALIDA = 15;
-	
+
 	public static final int CAMPO_TIPO_ASUNTO_ENTRADA = 16;
 	public static final int CAMPO_TIPO_ASUNTO_SALIDA = 12;
 
@@ -61,7 +61,11 @@ public class Filtro {
 	public static final int ESTADO_COMPLETO = 0;
 	public static final int ESTADO_INCOMPLETO = 1;
 	public static final int ESTADO_RESERVADO = 2;
-	public static final int ESTADO_ANULADO = 3;
+	//Este valor esta reservado para futuros estados, de momento no se utiliza
+	public static final int VALOR_ESTADO_NO_VALIDO = 3;
+	//
+	public static final int ESTADO_ANULADO = 4;
+	public static final int ESTADO_CERRADO = 5;
 
 	/** ******* TIPO REGISTRO ORIGINAL ********** */
 	public static final int TIPO_REGISTRO_ORIGINAL_ENTRADA = 1;

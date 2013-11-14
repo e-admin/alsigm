@@ -4,6 +4,7 @@ UPDATE SCR_CONTADOR SET CONTADOR=(SELECT MAX(ID) from SCR_REPORTS) WHERE TABLAID
 --Borramos la entrada en SCR_CONTADOR con el contador SCR_REPORT
 DELETE FROM SCR_CONTADOR WHERE TABLAID = 'SCR_REPORT';
 
+--Borramos las tablas de intercambio registral
 drop table scr_tramunit;
 drop table scr_tramunit_id_seq;
 
@@ -16,8 +17,21 @@ drop table scr_exreg_id_seq;
 drop table scr_exregaccept;
 drop table scr_exregaccept_id_seq;
 
+drop table scr_attachment_seq;
+drop table  scr_attachment_sign_info_seq;
+drop table scr_exregstate_id_seq;
+
+drop table scr_attachment;
+drop table scr_attachment_document_type;
+drop table scr_attachment_sign_info;
+drop table scr_attachment_validity_type;
+drop table scr_exreg_in;
+drop table scr_exregstate;
+
+drop table scr_country;
 drop table scr_provexreg;
 drop table scr_citiesexreg;
+drop table scr_repre;
 
 DROP INDEX SCR_USERFILTER2 ON scr_userfilter
 ;
@@ -349,10 +363,10 @@ CREATE TABLE scr_repre (id               INT NOT NULL,
 --
 
 CREATE TABLE scr_tramunit (id            INT NOT NULL,
-                           code_tramunit VARCHAR(21) NOT NULL,
-                           name_tramunit VARCHAR(80) NOT NULL,
-                           code_entity   VARCHAR(21) NOT NULL,
-                           name_entity   VARCHAR(80) NOT NULL,
+                           code_tramunit VARCHAR(21) NULL,
+                           name_tramunit VARCHAR(80) NULL,
+                           code_entity   VARCHAR(21) NULL,
+                           name_entity   VARCHAR(80) NULL,
                            id_orgs       INT NOT NULL)
     ;
 ALTER TABLE scr_tramunit ADD CONSTRAINT pk_scr_tramunit PRIMARY KEY (id)

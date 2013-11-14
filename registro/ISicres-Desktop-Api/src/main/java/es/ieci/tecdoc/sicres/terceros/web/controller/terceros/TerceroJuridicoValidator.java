@@ -22,10 +22,15 @@ public class TerceroJuridicoValidator extends
 				"tercero.juridico.nombre.required",
 				"Razon social es obligatorio");
 		if (!StringUtils.isEmpty(target.getTipoDocumento().getId())) {
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors,
-					"numeroDocumento",
-					"tercero.juridico.numeroDocumento.required",
-					"Numero de documento es obligatorio");
+			// Si el tipo de documento es otros, no es obligatorio indicar
+			// número de documento
+			if (!TIPO_DOCUMENTO_OTROS.equals(target.getTipoDocumento()
+					.getId())) {
+				ValidationUtils.rejectIfEmptyOrWhitespace(errors,
+						"numeroDocumento",
+						"tercero.juridico.numeroDocumento.required",
+						"Numero de documento es obligatorio");
+			}
 		}
 		if (!StringUtils.isEmpty(target.getNumeroDocumento())) {
 			ValidationUtils.rejectIfEmpty(errors, "tipoDocumento.id",
@@ -48,6 +53,7 @@ public class TerceroJuridicoValidator extends
 
 	protected CIFValidator cifValidator;
 
+	protected static final String TIPO_DOCUMENTO_OTROS = "5";
 	protected static final String CODIGO_CIF = "1";
 
 }

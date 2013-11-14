@@ -16,7 +16,7 @@
 	</head>
 	<body>
 	<div style="padding:60px 0 0 50px; font-size: 15px;text-align: center;"><c:out value='${successMessage}' /></div>
-	<div style="padding:60px 0 0 50px;color:red; font-size: 15px;text-align: center;"><c:out value='${errorMessage}' /></div>
+	<div style="padding:60px 0 0 50px;color:red; font-size: 15px;text-align: center;"><c:out value='${errorMessage}' /><c:out value='${error}' /></div>
 
 <div style="text-align:center;">
 <input type="button" value="Aceptar" class="button" onclick="javascript:closeIntercambioRegistral();return false;"/>
@@ -27,15 +27,19 @@
 
 
 function closeIntercambioRegistral(){
-	// Cerramos los frames
-	top.SetInnerText(parent.VldTitle.document.getElementById("V_Title"), "");
-
-	top.g_WndVld.document.getElementById("Vld").style.display = "none";
-
-	// Volvemos a mostrar el formulario
+	//Verificamos si estamos en el formulario del registro o en la bandeja de intercambio
 	if(top.g_FormVld){
+		// Cerramos los frames
+		top.SetInnerText(parent.VldTitle.document.getElementById("V_Title"), "");
+
+		//Se oculta el frame
+		top.g_WndVld.document.getElementById("Vld").style.display = "none";
+
 		//recargamos la pantalla del registro - refrescamos datos
 		top.Main.Folder.FolderData.FolderFormTree.ReLoad();
+	}else{
+		//Recargamos la pantalla de los frames
+		window.open(top.g_URL + "/mainfrm_iframes.htm", "Main","location=no",true);
 	}
 }
 

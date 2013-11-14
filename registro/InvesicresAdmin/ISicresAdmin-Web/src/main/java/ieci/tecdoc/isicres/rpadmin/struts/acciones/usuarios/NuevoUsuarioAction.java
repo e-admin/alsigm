@@ -47,7 +47,7 @@ public class NuevoUsuarioAction extends RPAdminWebAction {
 				// Comprobar que el nodo base de grupos existe
 				LdapUtil.checkExistenciaNodo(entidad.getIdentificador(), startNode);
 			} catch (Exception e) {
-				logger.error("Error en la comprobación de existencia de nodo LDAP: " + e.getMessage());
+				logger.error("Error en la comprobación de existencia de nodo LDAP: " + e.getMessage(),e);
 
 				ActionErrors errores = new ActionErrors();
 				ActionError error = null;

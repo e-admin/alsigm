@@ -47,7 +47,7 @@ public class StringClobType implements UserType
 				if(StringUtils.isNotEmpty(str)){
 					str += "\n";
 				}
-				str += line;	
+				str += line;
 			}
 		} catch (IOException e) {
 			throw new SQLException(e.toString());
@@ -57,7 +57,7 @@ public class StringClobType implements UserType
 		/*
 		 * Clob clob = rs.getClob(names[0]); String text = ""; if (clob !=
 		 * null){ text = clob.getSubString(1, (int) clob.length()); }
-		 * 
+		 *
 		 * return text;
 		 */
 	}
@@ -65,12 +65,21 @@ public class StringClobType implements UserType
     public void nullSafeSet(PreparedStatement st, Object value, int index)
         throws HibernateException, SQLException
     {
+	if (value==null){
+		value="";
+	}
+
         StringReader r = new StringReader( (String)value );
         st.setCharacterStream( index, r, ((String)value).length() );
     }
-    
+
     public void nullSafeSet1(PreparedStatement st, Object value, int index)
 			throws HibernateException, SQLException {
+
+	if (value==null){
+		value="";
+	}
+
 		StringReader r = new StringReader((String) value);
 		st.setString(index, (String) value);
 	}

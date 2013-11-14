@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.ieci.tecdoc.isicres.desktopweb.Keys;
@@ -26,6 +27,7 @@ import es.ieci.tecdoc.isicres.intercambio.registral.util.IntercambioRegistralMan
 
 public class RechazarIntercambiosRegistrales extends HttpServlet{
 
+	private static final String BANDEJA_ENTRADA_INTERCAMBIO_REGISTRAL_SERVLET = "/BandejaEntradaIntercambioRegistral.do";
 	private static Logger _logger = Logger.getLogger(RechazarIntercambiosRegistrales.class);
 	private static final long serialVersionUID = 1L;
 
@@ -48,15 +50,20 @@ public class RechazarIntercambiosRegistrales extends HttpServlet{
 
 		HttpSession mySession = req.getSession();
 		UseCaseConf useCaseConf = (UseCaseConf) mySession.getAttribute(com.ieci.tecdoc.isicres.desktopweb.Keys.J_USECASECONF);
-		
-		ContextoAplicacionVO contextoAplicacion=null;
-		
 
+		ContextoAplicacionVO contextoAplicacion=null;
+
+
+		String paramUrlRequestDispatcher = req.getParameter("requestDispatcherUrl");
+		String urlRequestDispatcher = BANDEJA_ENTRADA_INTERCAMBIO_REGISTRAL_SERVLET;
+		if (StringUtils.isNotBlank(paramUrlRequestDispatcher)){
+			urlRequestDispatcher = paramUrlRequestDispatcher;
+		}
 
 		try{
-			
+
 			contextoAplicacion=ContextoAplicacionUtil.getContextoAplicacion(req);
-			
+
 			String[] registrosSeleccionados = req.getParameterValues("checkRegistro");
 			String motivoRechazo = req.getParameter("motivoRechazo");
 			IntercambioRegistralManager intercambioManager =  IsicresManagerProvider.getInstance().getIntercambioRegistralManager();
@@ -68,8 +75,8 @@ public class RechazarIntercambiosRegistrales extends HttpServlet{
 			String mensaje = RBUtil.getInstance(useCaseConf.getLocale()).getProperty(Keys.I18N_ISICRESIR_REJECT_OK);
 			req.setAttribute(Keys.REQUEST_MSG, mensaje);
 
+			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher(urlRequestDispatcher);
 
-			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher("/BandejaEntradaIntercambioRegistral.do");
 			rd.forward(req, resp);
 		}catch (IntercambioRegistralException irEx) {
 			_logger.error("Ha ocurrido un error al rechazar un Intercambio Regisral.", irEx);
@@ -83,7 +90,7 @@ public class RechazarIntercambiosRegistrales extends HttpServlet{
 			String error = RBUtil.getInstance(useCaseConf.getLocale()).getProperty(com.ieci.tecdoc.isicres.desktopweb.Keys.I18N_ISICRESIR_REJECT_ERROR);
 			req.setAttribute(com.ieci.tecdoc.isicres.desktopweb.Keys.REQUEST_ERROR, error);
 
-			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher("/BandejaEntradaIntercambioRegistral.do");
+			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher(urlRequestDispatcher);
 			rd.forward(req, resp);
 		}
 	}
