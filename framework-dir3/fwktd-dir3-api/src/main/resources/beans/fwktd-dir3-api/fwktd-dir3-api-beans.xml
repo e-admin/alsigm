@@ -9,15 +9,20 @@
 		class="es.ieci.tecdoc.fwktd.dir3.api.service.impl.ServicioConsultaDirectorioComunImpl">
 		<property name="datosBasicosOficinaManager" ref="fwktd_dir3_datosBasicosOficinaManager" />
 		<property name="datosBasicosUnidadOrganicaManager" ref="fwktd_dir3_datosBasicosUnidadOrganicaManager" />
+		<property name="datosBasicosRelacionUnidOrgOficinaManager" ref="fwktd_dir3_datosBasicosRelacionUnidOrgOficinaManager"/>
 	</bean>
 
 	<bean id="fwktd_dir3_api_servicioInicializacionDirectorioComunImpl"
 		class="es.ieci.tecdoc.fwktd.dir3.api.service.impl.ServicioInicializacionDirectorioComunImpl">
 		<property name="datosBasicosOficinaManager" ref="fwktd_dir3_datosBasicosOficinaManager" />
 		<property name="datosBasicosUnidadOrganicaManager" ref="fwktd_dir3_datosBasicosUnidadOrganicaManager" />
+		<property name="datosBasicosRelacionUnidOrgOficinaManager" ref="fwktd_dir3_datosBasicosRelacionUnidOrgOficinaManager"/>
+		<property name="estadoActualizacionDCOManager" ref="fwktd_dir3_datosEstadoActualizacionDCOManager" />
 		<property name="generateScriptSQLOficinaManager" ref="fwktd_dir3_generateScriptSQLOficinaManager" />
-		<property name="generateScriptSQLUnidadOrganicaManagerImpl" ref="fwktd_dir3_generateScriptSQLUnidadOrganicaManager" />
+		<property name="generateScriptSQLUnidadOrganicaManager" ref="fwktd_dir3_generateScriptSQLUnidadOrganicaManager" />
+		<property name="generateScriptSQLRelacionesOficinaUnidOrgManager" ref="fwktd_dir3_generateScriptSQLRelacionesOficinaUnidOrgManager"/>
 		<property name="servicioObtenerInicializacionDCO" ref="fwktd_dir3_dco_servicioObtenerInicializacionDCO" />
+
 	</bean>
 
 
@@ -25,9 +30,11 @@
 		class="es.ieci.tecdoc.fwktd.dir3.api.service.impl.ServicioActualizacionDirectorioComunImpl">
 		<property name="datosBasicosOficinaManager" ref="fwktd_dir3_datosBasicosOficinaManager" />
 		<property name="datosBasicosUnidadOrganicaManager" ref="fwktd_dir3_datosBasicosUnidadOrganicaManager" />
+		<property name="datosBasicosRelacionUnidOrgOficinaManager" ref="fwktd_dir3_datosBasicosRelacionUnidOrgOficinaManager" />
 		<property name="estadoActualizacionDCOManager" ref="fwktd_dir3_datosEstadoActualizacionDCOManager" />
 		<property name="generateScriptSQLOficinaManager" ref="fwktd_dir3_generateScriptSQLOficinaManager" />
-		<property name="generateScriptSQLUnidadOrganicaManagerImpl" ref="fwktd_dir3_generateScriptSQLUnidadOrganicaManager" />
+		<property name="generateScriptSQLUnidadOrganicaManager" ref="fwktd_dir3_generateScriptSQLUnidadOrganicaManager" />
+		<property name="generateScriptSQLRelacionesOficinaUnidOrgManager" ref="fwktd_dir3_generateScriptSQLRelacionesOficinaUnidOrgManager" />
 		<property name="servicioObtenerActualizacionesDCO" ref="fwktd_dir3_dco_servicioObtenerActualizacionDCO" />
 	</bean>
 

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -23,6 +24,8 @@ import es.ieci.tecdoc.isicres.admin.beans.Transporte;
 import es.ieci.tecdoc.isicres.admin.estructura.adapter.ISicresServicioRPAdminAdapter;
 import es.ieci.tecdoc.isicres.admin.exception.ISicresRPAdminException;
 import es.ieci.tecdoc.isicres.admin.service.ISicresServicioRPAdmin;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.TipoTransporteIntercambioRegistralManager;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.TipoTransporteIntercambioRegistralVO;
 
 public class GuardarNuevoTransporteAction extends RPAdminWebAction {
 
@@ -56,11 +59,15 @@ public class GuardarNuevoTransporteAction extends RPAdminWebAction {
 				saveErrors(request, errores);
 				af = mapping.findForward("error");
 			} else {
-				//Se obtiene la entidad
+				// Se obtiene la entidad
 				Entidad entidad = new Entidad();
 				entidad.setIdentificador(MultiEntityContextHolder.getEntity());
 
 				oServicio.crearTransporte(nuevoTransporte, entidad);
+				transporteForm.setIdTipoTransporte(nuevoTransporte.getId());
+
+				createTipoTransporteSIR(transporteForm);
+
 				ActionMessages messages = new ActionMessages();
 				ActionMessage mesage = new ActionMessage(
 						"ieci.tecdoc.sgm.rpadmin.transportes.resultado.guardadoOK");
@@ -72,14 +79,34 @@ public class GuardarNuevoTransporteAction extends RPAdminWebAction {
 			logger.error("Error en la aplicación", e);
 			ActionErrors errores = new ActionErrors();
 			ActionError error = null;
-			error = new ActionError("ieci.tecdoc.sgm.rpadmin.error.mensaje", e
-					.getMessage());
+			error = new ActionError("ieci.tecdoc.sgm.rpadmin.error.mensaje",
+					e.getMessage());
 			errores.add("Error interno", error);
 			saveErrors(request, errores);
 			af = mapping.findForward("error");
 		}
 
 		return af;
+	}
+
+	/**
+	 * @param transporteForm
+	 */
+	private void createTipoTransporteSIR(TransporteForm transporteForm) {
+		if (StringUtils.isNotEmpty(transporteForm
+				.getCodigoIntercambioRegistral())) {
+			TipoTransporteIntercambioRegistralManager manager = es.ieci.tecdoc.isicres.admin.business.spring.AdminIRManagerProvider
+					.getInstance()
+					.getTipoTransporteIntercambioRegistralManager();
+			TipoTransporteIntercambioRegistralVO tipoTransporteIntercambioRegistralVO = new TipoTransporteIntercambioRegistralVO();
+			tipoTransporteIntercambioRegistralVO.setCodigoSIR(transporteForm
+					.getCodigoIntercambioRegistral());
+			tipoTransporteIntercambioRegistralVO.setDescripcion(transporteForm
+					.getTransport().toUpperCase());
+			tipoTransporteIntercambioRegistralVO
+					.setIdTipoTransporte(transporteForm.getIdTipoTransporte());
+			manager.save(tipoTransporteIntercambioRegistralVO);
+		}
 	}
 
 }

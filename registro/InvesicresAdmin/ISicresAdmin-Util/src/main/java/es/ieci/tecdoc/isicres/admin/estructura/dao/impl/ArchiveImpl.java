@@ -1911,7 +1911,7 @@ public class ArchiveImpl implements Archive {
 		} catch (Exception e) {
 			String Err;
 
-			Err = ((IeciTdException) e).getErrorCode();
+			Err = ((es.ieci.tecdoc.isicres.admin.base.exception.IeciTdException) e).getErrorCode();
 			if (Err.compareTo("IECI_TECDOC_CORE_DATABASE_NOT_FOUND") != 0) {
 				_logger.error(e);
 				throw e;
@@ -4385,9 +4385,6 @@ public class ArchiveImpl implements Archive {
 			// se inicializan las tablas necesarias para el funcionamiento del
 			// archivador
 			initArchTbls(dbConn);
-
-			// se asocia la lista de volúmenes al archivador
-			insertListVols(dbConn);
 
 			commit = true;
 

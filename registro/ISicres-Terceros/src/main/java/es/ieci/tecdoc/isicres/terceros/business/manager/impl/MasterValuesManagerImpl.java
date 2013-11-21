@@ -40,11 +40,27 @@ public class MasterValuesManagerImpl implements MasterValuesManager {
 		return getCiudadDao().getAll();
 	}
 
+	public List<CiudadVO> getCiudades(int from, int to){
+		return getCiudadDao().getCiudades(from, to);
+	}
+
+	public Integer getCiudadesCount(){
+		return getCiudadDao().getCiudadesCount();
+	}
+
+
+	public Integer getCiudadesCount(ProvinciaVO provincia) {
+		return (getCiudadDao()).getCiudadesByProvinciaCount(provincia);
+	}
+
 	public List<CiudadVO> getCiudades(ProvinciaVO provincia) {
 		return ((CiudadDao) getCiudadDao()).getCiudadesByProvincia(provincia);
 	}
 
-	
+	public List<CiudadVO> getCiudades(ProvinciaVO provincia, int from, int to) {
+		return ((CiudadDao) getCiudadDao()).getCiudadesByProvincia(provincia, from, to);
+	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -59,6 +75,14 @@ public class MasterValuesManagerImpl implements MasterValuesManager {
 		return getProvinciaDao().getAll();
 	}
 
+	public List<ProvinciaVO> getProvincias(int from, int to) {
+		return getProvinciaDao().getProvincias(from, to);
+	}
+
+	public Integer getProvinciasCount() {
+		return getProvinciaDao().getProvinciasCount();
+	}
+
 	public List<PaisVO> getPaises() {
 		return getPaisDao().getAll();
 	}
@@ -67,14 +91,14 @@ public class MasterValuesManagerImpl implements MasterValuesManager {
 		return getCiudadDao().findByCodigo(codigo);
 	}
 
-	
+
 
 	/**
 	 * {@inheritDoc}
 	 * @see es.ieci.tecdoc.isicres.terceros.business.manager.MasterValuesManager#getCiudad(java.lang.Long)
 	 */
 	public CiudadVO getCiudadById(Long id) {
-		
+
 		return ciudadDao.get(String.valueOf(id));
 	}
 
@@ -82,13 +106,13 @@ public class MasterValuesManagerImpl implements MasterValuesManager {
 		return getProvinciaDao().findByCodigo(codigo);
 	}
 
-	
-	
+
+
 	/**
 	 * {@inheritDoc}
 	 * @see es.ieci.tecdoc.isicres.terceros.business.manager.MasterValuesManager#getProvinciaById(java.lang.Long)
 	 */
-	public ProvinciaVO getProvinciaById(Long id) {	
+	public ProvinciaVO getProvinciaById(Long id) {
 		return getProvinciaDao().get(String.valueOf(id));
 	}
 

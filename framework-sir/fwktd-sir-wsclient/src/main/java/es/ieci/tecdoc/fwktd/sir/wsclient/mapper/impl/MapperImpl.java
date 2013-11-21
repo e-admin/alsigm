@@ -233,6 +233,7 @@ public class MapperImpl implements Mapper {
 			infoBAsientoDTO.setSolicita(infoBAsientoVO.getSolicita());
 			infoBAsientoDTO.setCodigoError(infoBAsientoVO.getCodigoError());
 			infoBAsientoDTO.setDescripcionError(infoBAsientoVO.getDescripcionError());
+			infoBAsientoDTO.setDescripcionTipoAnotacion(infoBAsientoVO.getDescripcionTipoAnotacion());
 		}
 
 		return infoBAsientoDTO;
@@ -290,7 +291,7 @@ public class MapperImpl implements Mapper {
 			asientoVO.setSolicita(asientoDTO.getSolicita());
 			asientoVO.setCodigoError(asientoDTO.getCodigoError());
 			asientoVO.setDescripcionError(asientoDTO.getDescripcionError());
-
+			asientoVO.setDescripcionTipoAnotacion(asientoDTO.getDescripcionTipoAnotacion());
 			// Anexos
 			asientoVO.getAnexos().addAll(getListaAnexoVO(asientoDTO.getAnexos()));
 
@@ -817,6 +818,9 @@ public class MapperImpl implements Mapper {
 		    infoReenvioDTO.setContacto(infoReenvioVO.getContacto());
 		    infoReenvioDTO.setDescripcion(infoReenvioVO.getDescripcion());
 		    infoReenvioDTO.setDescripcionEntidadRegistralDestino(infoReenvioVO.getDescripcionEntidadRegistralDestino());
+
+		    infoReenvioDTO.setCodigoUnidadTramitacionDestino(infoReenvioVO.getCodigoUnidadTramitacionDestino());
+		    infoReenvioDTO.setDescripcionUnidadTramitacionDestino(infoReenvioVO.getDescripcionUnidadTramitacionDestino());
 		    infoReenvioDTO.setUsuario(infoReenvioVO.getUsuario());
 		}
 		

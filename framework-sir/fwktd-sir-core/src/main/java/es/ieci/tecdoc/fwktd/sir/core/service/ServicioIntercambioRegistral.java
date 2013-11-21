@@ -3,7 +3,6 @@ package es.ieci.tecdoc.fwktd.sir.core.service;
 import java.util.Date;
 import java.util.List;
 
-import es.ieci.tecdoc.fwktd.sir.core.types.EstadoAsientoRegistralEnum;
 import es.ieci.tecdoc.fwktd.sir.core.vo.AnexoFormVO;
 import es.ieci.tecdoc.fwktd.sir.core.vo.AnexoVO;
 import es.ieci.tecdoc.fwktd.sir.core.vo.AsientoRegistralFormVO;
@@ -176,7 +175,7 @@ public interface ServicioIntercambioRegistral {
 	 * @return Histórico del asiento registral.
 	 */
 	public List<TrazabilidadVO> getHistoricoAsientoRegistral(String id);
-	
+
 	/**
 	 * Obtiene el histórico de un mensajes de control de un asiento registral.
 	 *
@@ -185,7 +184,7 @@ public interface ServicioIntercambioRegistral {
 	 * @return Histórico del asiento registral.
 	 */
 	public List<TrazabilidadVO> getHistoricoMensajeIntercambioRegistral(String id);
-	
+
 	/**
 	 * Obtiene el histórico de tanto mensajes como estados del asiento de un intercambio registral
 	 *
@@ -236,7 +235,7 @@ public interface ServicioIntercambioRegistral {
 
 	/**
 	 * Reenvía un asiento registral recibido.
-	 * 
+	 *
 	 * @param id
 	 *            Identificador del asiento registral.
 	 * @param infoReenvio
@@ -253,7 +252,8 @@ public interface ServicioIntercambioRegistral {
 	 *            Información sobre el rechazo.
 	 */
 	public void rechazarAsientoRegistral(String id,
-			InfoRechazoVO infoRechazo);	
+			InfoRechazoVO infoRechazo);
+
 
 	/**
 	 * Anula un asiento registral devuelto.

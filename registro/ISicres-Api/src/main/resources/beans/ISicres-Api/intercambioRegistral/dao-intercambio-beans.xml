@@ -30,4 +30,18 @@
 		</property>
 	</bean>
 
+	<bean name="tipoTransporteIntercambioRegistralDAO"
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.impl.TipoTransporteIntercambioRegistralDAOImpl">
+		<property name="sqlMapClient">
+			<ref bean="isicresIntercambioSqlMapClient" />
+		</property>
+	</bean>
+
+	<bean name="direccionesIntercambioRegistralDAO"
+		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.impl.DireccionesIntercambioRegistralDAOImpl">
+		<property name="sqlMapClient">
+			<ref bean="isicresIntercambioSqlMapClient" />
+		</property>
+	</bean>
+
 </beans>

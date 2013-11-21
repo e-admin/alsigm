@@ -110,6 +110,10 @@
 	<script type="text/javascript" src="scripts/frmint.js"></script>
 	<script type="text/javascript">
 	<!--
+	//variable con la operativa ha realizar cuando se cierra la ventana de
+	//edicion de interesados/representantes
+	var actionCancelEditInteresado="";
+
 	function OnOk(strInteresados){
 				// Guardamos la cadena en el campo
 				if ( top.g_Field ){
@@ -371,12 +375,14 @@
 					var parameters = null;
 
 					if($("#interesadosRegistro :input:checked").hasClass('interesado')){
-						closeURL = 'interesado/crud.action?method=addOrUpdateInteresado';
+						//id del tercero
 						idTercero = $("#interesadosRegistro :input:checked").val();
+						actionCancelEditInteresado = 'interesado/crud.action?method=addOrUpdateInteresado&tercero.id='+idTercero;
 						parameters = "tercero.id=" + $("#interesadosRegistro :input:checked").val();
 					}else{
+						//id del representante
 						idTercero = $("#interesadosRegistro :input:checked").val();
-						closeURL = 'interesado/crud.action?method=addOrUpdateRepresentante&representante.id='+$("#interesadosRegistro :input:checked").val();
+						actionCancelEditInteresado = 'interesado/crud.action?method=addOrUpdateRepresentante&tercero.id='+$('input[name="representante['+$("#interesadosRegistro :input:checked").val()+']"]').val() + '&representante.id='+$("#interesadosRegistro :input:checked").val();
 						parameters = "tercero.id=" + $('input[name="representante['+$("#interesadosRegistro :input:checked").val()+']"]').val();
 					}
 
@@ -392,23 +398,7 @@
 										$.fancybox.showActivity();
 						           		$.fancybox({
 							           		modal:true,
-							           		content:data,
-											onCleanup:function() {
-								           			if($('input[name="content.id"]').val() != ""){
-								    					$.ajax({
-								    				           type: 'POST',
-								    				           cache: false,
-								    				           url: closeURL,
-								    				           data: parameters,
-								    				           dataType: 'html',
-								    				           success: function(data) {
-								    								$.get('interesado/crud.action?method=listInteresados', function(data) {
-								    									$('#interesadosRegistro').html(data);
-								    								});
-								    				           }
-								    						});
-								    				}
-											}
+										content:data
 							           	});
 						           	}
 						           }
@@ -425,23 +415,7 @@
 										$.fancybox.showActivity();
 						           		$.fancybox({
 							           		modal:true,
-											content:data,
-											onCleanup:function() {
-								           			if($('input[name="content.id"]').val() != ""){
-								    					$.ajax({
-								    				           type: 'POST',
-								    				           cache: false,
-								    				           url: closeURL,
-								    				           data: parameters,
-								    				           dataType: 'html',
-								    				           success: function(data) {
-								    								$.get('interesado/crud.action?method=listInteresados', function(data) {
-								    									$('#interesadosRegistro').html(data);
-								    								});
-								    				           }
-								    						});
-								    				}
-											}
+											content:data
 							           	});
 						           	}
 						           }

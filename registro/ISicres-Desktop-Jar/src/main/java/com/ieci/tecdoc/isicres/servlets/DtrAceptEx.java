@@ -41,6 +41,7 @@ import com.ieci.tecdoc.isicres.desktopweb.Keys;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RequestUtils;
 import com.ieci.tecdoc.isicres.desktopweb.utils.ResponseUtils;
+import com.ieci.tecdoc.isicres.desktopweb.utils.SQLValidator;
 import com.ieci.tecdoc.isicres.events.exception.EventException;
 import com.ieci.tecdoc.isicres.usecase.UseCaseConf;
 import com.ieci.tecdoc.isicres.usecase.distribution.DistributionUseCase;
@@ -102,6 +103,10 @@ public class DtrAceptEx extends HttpServlet implements Keys {
         String distWhere = RequestUtils.parseRequestParameterAsString(request, "distWhere");
         // Clausura WHERE de búsqueda de registros distribuidos.
         String regWhere = RequestUtils.parseRequestParameterAsString(request, "regWhere");
+		// Lista de ordenación de la bandeja de distribución
+		String listOrder = RequestUtils.parseRequestParameterAsStringWithEmpty(
+				request, "orderDistribution");
+
          // Obtenemos la sesión asociada al usuario.
         HttpSession session = request.getSession();
         // Texto del idioma. Ej: EU_
@@ -114,31 +119,48 @@ public class DtrAceptEx extends HttpServlet implements Keys {
         UseCaseConf useCaseConf = (UseCaseConf) session.getAttribute(J_USECASECONF);
         PrintWriter writer = response.getWriter();
         try {
+		//Validamos que los valores para generar el where son correctos
+		// Invocamos al método que valida el where para los campos distribución
+		SQLValidator.getInstance().validateDistributionDistWhere(distWhere);
+		// Invocamos al método que valida el where para los campos del registro
+		// y retorna la consulta tratada
+		regWhere = SQLValidator.getInstance().validateDistributionRegWhere(useCaseConf,
+				lnTypeDistr, regWhere);
+
             // Transformamos el xml mediante la xsl en html.
             // Los errores pueden ser de comunicación, de validación, de
             // transformación, etc...
         	String xslPath = null;
-        	Document xmlDocumentAccept = distributionUseCase.acceptDistributionEx(useCaseConf, ids, estado.intValue(),
-        			initValue.intValue(), lnTypeDistr.intValue(), bookId, distWhere, regWhere);
-        	if (xmlDocumentAccept == null){
-        		ResponseUtils.generateJavaScriptLog(writer, RBUtil.getInstance(useCaseConf.getLocale()).getProperty(
-                        Keys.I18N_DTREX_ACCEPT_SATISFY));
-                ResponseUtils.generateJavaScriptErrorDtrAceptRechEx(writer, initValue.intValue());
-        	} else {
-	            xslPath = ContextUtil.getRealPath(session.getServletContext(),XSL_DISTRIBUTIONBOOK_RELATIVE_PATH);
-	            Transformer transformer = factory.newTransformer(new StreamSource(new InputStreamReader(
-	                    new BufferedInputStream(new FileInputStream(xslPath)))));
-	            DocumentSource source = new DocumentSource(xmlDocumentAccept);
-	            Writer outWriter = new StringWriter();
-	            StreamResult result = new StreamResult(outWriter);
-	            transformer.transform(source, result);
+			Document xmlDocumentAccept = distributionUseCase
+					.acceptDistributionEx(useCaseConf, ids, estado.intValue(),
+							initValue.intValue(), lnTypeDistr.intValue(),
+							bookId, distWhere, regWhere, listOrder);
 
-	            String html = result.getWriter().toString();
-	            html = parseValues(html);
-	            ResponseUtils.generateJavaScriptVldBooksDtrAcceptEx(writer, html, initValue.intValue());
-	            writer.flush();
-	            writer.close();
-        	}
+			if (xmlDocumentAccept == null) {
+				ResponseUtils.generateJavaScriptLog(writer,
+						RBUtil.getInstance(useCaseConf.getLocale())
+								.getProperty(Keys.I18N_DTREX_ACCEPT_SATISFY));
+				ResponseUtils.generateJavaScriptErrorDtrAceptRechEx(writer,
+						initValue.intValue());
+			} else {
+				xslPath = ContextUtil.getRealPath(session.getServletContext(),
+						XSL_DISTRIBUTIONBOOK_RELATIVE_PATH);
+				Transformer transformer = factory
+						.newTransformer(new StreamSource(new InputStreamReader(
+								new BufferedInputStream(new FileInputStream(
+										xslPath)))));
+				DocumentSource source = new DocumentSource(xmlDocumentAccept);
+				Writer outWriter = new StringWriter();
+				StreamResult result = new StreamResult(outWriter);
+				transformer.transform(source, result);
+
+				String html = result.getWriter().toString();
+				html = parseValues(html);
+				ResponseUtils.generateJavaScriptVldBooksDtrAcceptEx(writer,
+						html, initValue.intValue());
+				writer.flush();
+				writer.close();
+			}
 
         } catch (RemoteException e) {
             _logger.fatal("Error de comunicaciones", e);

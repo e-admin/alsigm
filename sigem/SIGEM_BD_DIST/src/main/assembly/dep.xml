@@ -4,6 +4,38 @@
 		<format>zip</format>
 	</formats>
 	<includeBaseDirectory>false</includeBaseDirectory>
+	<!-- actualizacion de dir3 -->
+		<files>
+			<file>
+			<filtered>false</filtered>
+			<source>${project.basedir}/target/dir3/oracle/actualizaciones/fwktd-dir3-Parche-v1_0_1-v1_0_2-01.sql</source>
+			<outputDirectory>/Oracle/actualizaciones/</outputDirectory>
+			<destName>SIGEM-Parche-v3_0_0-v3_0_1-00-dir3.sql</destName>
+			</file>
+		<!-- actualizacion de dir3 -->
+
+			<file>
+			<filtered>false</filtered>
+			<source>${project.basedir}/target/dir3/postgresql/actualizaciones/fwktd-dir3-Parche-v1_0_1-v1_0_2-01.sql</source>
+			<outputDirectory>/PostgreSQL/actualizaciones/</outputDirectory>
+			<destName>SIGEM-Parche-v3_0_0-v3_0_1-00-dir3.sql</destName>
+			</file>
+
+		<!-- actualizacion de dir3 -->
+			<file>
+			<filtered>false</filtered>
+			<source>${project.basedir}/target/dir3/sqlserver/actualizaciones/fwktd-dir3-Parche-v1_0_1-v1_0_2-01.sql</source>
+			<outputDirectory>/SQLServer/actualizaciones/</outputDirectory>
+			<destName>SIGEM-Parche-v3_0_0-v3_0_1-00-dir3.sql</destName>
+			</file>
+		<!-- actualizacion de dir3 -->
+			<file>
+			<filtered>false</filtered>
+			<source>${project.basedir}/target/dir3/db2/actualizaciones/fwktd-dir3-Parche-v1_0_1-v1_0_2-01.sql</source>
+			<outputDirectory>/DB2/actualizaciones/</outputDirectory>
+			<destName>SIGEM-Parche-v3_0_0-v3_0_1-00-dir3.sql</destName>
+			</file>
+		</files>
 	<fileSets>
 		<fileSet>
 			<filtered>false</filtered>
@@ -12,10 +44,12 @@
 			<excludes>
 				<exclude>pom.xml</exclude>
 				<exclude>cmds/**</exclude>
+				<!--
 				<exclude>DB2/actualizaciones/**</exclude>
 				<exclude>Oracle/actualizaciones/**</exclude>
 				<exclude>PostgreSQL/actualizaciones/**</exclude>
 				<exclude>SQLServer/actualizaciones/**</exclude>
+				 -->
 				<exclude>target/**</exclude>
 			</excludes>			
 		</fileSet>
@@ -59,45 +93,88 @@
 			<directory>${project.basedir}/target/audit/db2</directory>
 			<outputDirectory>/DB2/audit</outputDirectory>
 		</fileSet>	
+
 		<fileSet>
 			<filtered>false</filtered>
 			<directory>${project.basedir}/target/dir3/postgresql</directory>
 			<outputDirectory>/PostgreSQL/dir3</outputDirectory>
+			<excludes>
+				 <exclude>actualizaciones/**</exclude>
+			</excludes>
 		</fileSet>
+
+
+
 		<fileSet>
 			<filtered>false</filtered>
 			<directory>${project.basedir}/target/dir3/oracle</directory>
 			<outputDirectory>/Oracle/dir3</outputDirectory>
+			<excludes>
+				 <exclude>actualizaciones/**</exclude>
+			</excludes>
 		</fileSet>
+
 		<fileSet>
 			<filtered>false</filtered>
 			<directory>${project.basedir}/target/dir3/sqlserver</directory>
 			<outputDirectory>/SQLServer/dir3</outputDirectory>
+			<excludes>
+				 <exclude>actualizaciones/**</exclude>
+			</excludes>
 		</fileSet>
+
 		<fileSet>
 			<filtered>false</filtered>
 			<directory>${project.basedir}/target/dir3/db2</directory>
 			<outputDirectory>/DB2/dir3</outputDirectory>
-		</fileSet>		
+			<excludes>
+				 <exclude>actualizaciones/**</exclude>
+			</excludes>
+		</fileSet>
+
 		<fileSet>
 			<filtered>false</filtered>
 			<directory>${project.basedir}/target/sir/postgresql</directory>
 			<outputDirectory>/PostgreSQL/sir</outputDirectory>
+		</fileSet>
+		<!-- actualizacion de sir -->
+		<fileSet>
+			<filtered>false</filtered>
+			<directory>${project.basedir}/target/sir/postgresql/actualizaciones</directory>
+			<outputDirectory>/PostgreSQL/actualizaciones/sir</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<filtered>false</filtered>
 			<directory>${project.basedir}/target/sir/oracle</directory>
 			<outputDirectory>/Oracle/sir</outputDirectory>
 		</fileSet>
+		<!-- actualizacion de sir -->
+		<fileSet>
+			<filtered>false</filtered>
+			<directory>${project.basedir}/target/sir/oracle/actualizaciones</directory>
+			<outputDirectory>/Oracle/actualizaciones/sir</outputDirectory>
+		</fileSet>
 		<fileSet>
 			<filtered>false</filtered>
 			<directory>${project.basedir}/target/sir/sqlserver</directory>
 			<outputDirectory>/SQLServer/sir</outputDirectory>
+		</fileSet>
+		<!-- actualizacion de sir -->
+		<fileSet>
+			<filtered>false</filtered>
+			<directory>${project.basedir}/target/sir/sqlserver/actualizaciones</directory>
+			<outputDirectory>/SQLSever/actualizaciones/sir</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<filtered>false</filtered>
 			<directory>${project.basedir}/target/sir/db2</directory>
 			<outputDirectory>/DB2/sir</outputDirectory>
 		</fileSet>	
+		<!-- actualizacion de sir -->
+		<fileSet>
+			<filtered>false</filtered>
+			<directory>${project.basedir}/target/sir/db2/actualizaciones</directory>
+			<outputDirectory>/DB2/actualizaciones/sir</outputDirectory>
+		</fileSet>
 	</fileSets>
 </assembly>

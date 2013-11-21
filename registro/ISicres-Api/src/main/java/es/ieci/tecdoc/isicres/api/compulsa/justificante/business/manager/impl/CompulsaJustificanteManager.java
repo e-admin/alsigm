@@ -42,8 +42,7 @@ public class CompulsaJustificanteManager {
 			pdfCompulsaDocument = new Document();
 			pdfCompulsaWriter = PdfWriter.getInstance(pdfCompulsaDocument, compulsaJustificanteVO.getPdfCompulsaStream());
 			pdfCompulsaDocument.open();
-			//Asignar el localizador
-			CompulsaJustificanteLocatorHelper.getInstance().setLocator(compulsaJustificanteVO);
+
 			//Compulsar documento
 			generateJustificante(pdfOriginalReader, pdfCompulsaWriter, pdfCompulsaDocument, compulsaJustificanteVO);						
 		} catch (IOException e) {

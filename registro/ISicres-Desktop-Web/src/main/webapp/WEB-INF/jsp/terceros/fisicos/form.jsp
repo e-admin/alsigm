@@ -213,11 +213,21 @@
 				var id = $('input[name="content.id"]').val();
 
 				if(id != ""){
+					var urlClose;
+					//Comprobamos si la url ha utilizar cuando se cierra la ventana es nula/vacia,
+					//se ejecutará la operativa por defecto tratando los datos como interesado
+					if(actionCancelEditInteresado!=""){
+						//se utiliza la url que se recibe como variable (puede ser un interesado o un representante)
+						urlClose = actionCancelEditInteresado;
+					}else{
+						//se esta trabajando con un interesado
+						urlClose = 'interesado/crud.action?method=addOrUpdateInteresado&tercero.id='+ id;
+					}
+
 					$.ajax({
 						   type: 'POST',
 						   cache: false,
-						   url: 'interesado/crud.action?method=addOrUpdateInteresado',
-						   data: 'tercero.id='+ id,
+						   url: urlClose,
 						   dataType: 'html',
 						   success: function(data) {
 								//recargamos el frame de busqueda de interesados

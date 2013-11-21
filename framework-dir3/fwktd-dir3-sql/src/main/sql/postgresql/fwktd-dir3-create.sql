@@ -24,6 +24,12 @@ CREATE TABLE DIR_ESTADO_ACTUALIZACION (
 	ESTADO										character varying(10)			NOT NULL
 );
 
+CREATE TABLE DIR_RELAC_UNID_ORG_OFIC(
+	CODIGO_OFICINA                    			character varying(9)         NOT NULL,
+	DENOMINACION_OFICINA              			character varying(300)       NOT NULL,
+	CODIGO_UNIDAD_ORGANICA              		character varying(9)         NOT NULL,
+	DENOM_UNIDAD_ORGANICA		           		character varying(300)       NOT NULL
+);
 
 /* PRIMARY KEYS --------------------------------------- */
 ALTER TABLE DIR_OFICINA ADD CONSTRAINT PK_DIR_OFICINA PRIMARY KEY (CODIGO_OFICINA);

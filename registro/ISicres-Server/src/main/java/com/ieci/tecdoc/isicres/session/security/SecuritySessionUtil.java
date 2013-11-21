@@ -213,6 +213,7 @@ public class SecuritySessionUtil implements HibernateKeys, ServerKeys {
 			genPerms.setCanModifyReports(true);
 			genPerms.setCanModifyTransportTypes(true);
 			genPerms.setCanModifyUsers(true);
+			genPerms.setCanDeleteDocuments(true);
 		} else {
 			ScrUsrperm scrUsrperm = null;
 
@@ -238,6 +239,7 @@ public class SecuritySessionUtil implements HibernateKeys, ServerKeys {
 				genPerms.setCanModifyReports(false);
 				genPerms.setCanModifyTransportTypes(false);
 				genPerms.setCanModifyUsers(false);
+				genPerms.setCanDeleteDocuments(false);
 			}
 
 			if (scrUsrperm != null) {
@@ -283,6 +285,8 @@ public class SecuritySessionUtil implements HibernateKeys, ServerKeys {
 				genPerms
 				.setCanModifyUsers((scrUsrperm.getPerms() & ISicresGenPerms.ISUSER_PERM_CAN_MODIFY_USERS) == ISicresGenPerms.ISUSER_PERM_CAN_MODIFY_USERS);
 
+				genPerms
+						.setCanDeleteDocuments((scrUsrperm.getPerms() & ISicresGenPerms.ISUSER_PERM_CAN_DELETE_DOCUMENTS) == ISicresGenPerms.ISUSER_PERM_CAN_DELETE_DOCUMENTS);
 
 			}
 		}
@@ -359,7 +363,7 @@ public class SecuritySessionUtil implements HibernateKeys, ServerKeys {
 	 *
 	 * @return ScrOfic - Datos de la oficina
 	 */
-	protected static ScrOfic getScrOficByCode(Session session, 
+	protected static ScrOfic getScrOficByCode(Session session,
 			String language, String codigoOficina) {
 
 		if (StringUtils.isBlank(codigoOficina)) {

@@ -5,15 +5,15 @@
 <!-- Fichero de configuracion de hibernate -->
 <hibernate-configuration>
     <session-factory>
-        
+
         <!-- Cambiar para poner el nombre de la fuente de datos -->
         <property name="connection.datasource">${jdbc.jndi.name}</property>
-        
+
         <!-- Posibles implementaciones: net.sf.hibernate.dialect.OracleDialect
         net.sf.hibernate.dialect.SQLServerDialect
         net.sf.hibernate.dialect.PostgreSQLDialect
         net.sf.hibernate.dialect.DB2Dialect-->
-        
+
         <property name="dialect">${hibernate.dialect}</property>
         <property name="show_sql">${hibernate.showSql}</property>
         <property name="use_outer_join">false</property>
@@ -21,11 +21,11 @@
         <!--  <property name="cache.provider_class">net.sf.ehcache.hibernate.Provider</property>  -->
         <property name="cache.provider_class">net.sf.hibernate.cache.OSCacheProvider</property>
         <property name="hibernate.statement_cache.size">0</property>
-        
+
         ${hibernate.jta.transaction.factory}
         ${hibernate.user.transaction}
         ${hibernate.transaction.manager.lookup}
-        
+
         <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocbtblctlg.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesdoc/Iuserldapgrphdr.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesdoc/Idocrpt.hbm.xml"/>
@@ -109,7 +109,7 @@
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCa.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCaeu.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCagl.hbm.xml"/>
-        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCact.hbm.xml"/>        
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrCact.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDelta.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrTypeadm.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRegorigdoc.hbm.xml"/>
@@ -133,6 +133,7 @@
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrW.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrReportarch.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDistreg.hbm.xml"/>
+        <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDistribucionActual.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrDirofic.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrRegasoc.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrPfi.hbm.xml"/>
@@ -189,7 +190,7 @@
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrPageInfo.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrPagerepository.hbm.xml"/>
         <mapping resource="com/ieci/tecdoc/common/invesicres/ScrUsrloc.hbm.xml"/>
-        
+
     </session-factory>
 </hibernate-configuration>
 

@@ -11,6 +11,7 @@
 				<property name="intercambioRegistralEntradaManager"><ref bean="intercambioRegistralEntradaManager"/></property>
 				<property name="intercambioRegistralSIRManager"><ref bean="intercambioRegistralSIRManager"/></property>
 				<property name="configuracionIntercambioRegistralManager"><ref bean="configuracionIntercambioRegistralManager"/></property>
+				<property name="intercambioRegistralGeneradorObjetosManager"><ref bean="intercambioRegistralGeneradorObjetosManager"/></property>
 		    </bean>
 		</property>
 	</bean>
@@ -35,11 +36,13 @@
 			<bean  class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.impl.IntercambioRegistralEntradaManagerImpl">
 				<property name="intercambioRegistralSIRManager"><ref bean="intercambioRegistralSIRManager"/></property>
 				<property name="configuracionIntercambioRegistralManager"><ref bean="configuracionIntercambioRegistralManager"/></property>
-
 				<property name="bandejaEntradaIntercambioRegistralDAO"><ref bean="bandejaEntradaIntercambioRegistralDAO"/></property>
+				<property name="bandejaSalidaIntercambioRegistralDAO"><ref bean="bandejaSalidaIntercambioRegistralDAO"/></property>
 				<property name="intercambioRegistralEntradaIncrementer" ref="intercambioRegistralEntradaIncrementer"></property>
+			<property name="tipoTransporteIntercambioRegistralManager" ref="tipoTransporteIntercambioRegistralManager"/>
+			<property name="direccionesIntercambioRegistralRegManager" ref="direccionesIntercambioRegistralRegManager"/>
+			<property name="criteriosVOMapper" ref="criteriosVOMapper"/>
 		    </bean>
-
 		</property>
 	</bean>
 
@@ -59,7 +62,9 @@
 				<property name="configuracionIntercambioRegistralDAO"><ref bean="configuracionIntercambioRegistralDAO"/></property>
 				<property name="tipoAsuntoManager"><ref bean="tipoAsuntoManager"/></property>
 				<property name="infoRegistroDAO"><ref bean="infoRegistroDAO"/></property>
-					<property name="documentoElectronicoAnexoManager"><ref bean="documentoElectronicoAnexoManager"/></property>
+				<property name="documentoElectronicoAnexoManager"><ref bean="documentoElectronicoAnexoManager"/></property>
+				<property name="tipoTransporteIntercambioRegistralManager" ref="tipoTransporteIntercambioRegistralManager"/>
+				<property name="direccionesIntercambioRegistralRegManager" ref="direccionesIntercambioRegistralRegManager"/>
 		    </bean>
 		</property>
 	</bean>
@@ -81,10 +86,31 @@
 		    </bean>
 		</property>
 	</bean>
-	
+
+	<bean id="tipoTransporteIntercambioRegistralManager" parent="isicresIntercambioTransactionTemplate">
+		<property name="target">
+			<bean class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.impl.TipoTransporteIntercambioRegistralManagerImpl">
+				<property name="tipoTransporteIntercambioRegistralDAO" ref="tipoTransporteIntercambioRegistralDAO"/>
+				<property name="tipoTransporteIntercambioRegistralIncrementer" ref="tipoTransporteIntercambioRegistralIncrementer"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="direccionesIntercambioRegistralRegManager" parent="isicresIntercambioTransactionTemplate">
+		<property name="target">
+			<bean class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.impl.DireccionesIntercambioRegistralManagerImpl">
+				<property name="direccionesIntercambioRegistralDAO" ref="direccionesIntercambioRegistralDAO"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="criteriosVOMapper" class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.mapper.impl.CriteriosVOMapperImpl">
+		<property name="configuracionIntercambioRegistralManager" ref="configuracionIntercambioRegistralManager"/>
+	</bean>
+
 	<!-- Mock Servicio Intercambio -->
 	<bean id="fwktd_sir_servicioIntercambioRegistralMock" class="es.ieci.tecdoc.isicres.api.intercambioregistral.proxy.business.manager.impl.mock.ServicioIntercambioRegistralMockImpl">
-	
+
 	</bean>
 
 </beans>

@@ -40,7 +40,7 @@
 		<!-- applet de escaneo-->
 		<APPLET MAYSCRIPT="true" id="appletSendDeleteFiles" width="0" height="0" CODE="es.ieci.tecdoc.fwktd.applets.sendfiles.applet.SendFilesApplet"
 			ALT="Applet de escaneo"
-			ARCHIVE="applets/fwktd-sendFiles-applet-0.7.jar;jsessionid=<%=session.getId()%>">
+			ARCHIVE="applets/fwktd-sendFiles-applet-0.8.jar;jsessionid=<%=session.getId()%>">
 	        <PARAM name="codebase_lookup" value="false"/>
 	        <param name="codebase" value="<%=SigemHttpUtils.getHttpCodeBase(request)%>"/>
 	    </APPLET>

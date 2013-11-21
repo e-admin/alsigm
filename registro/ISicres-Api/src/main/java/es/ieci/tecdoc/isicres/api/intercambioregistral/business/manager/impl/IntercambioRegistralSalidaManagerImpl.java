@@ -13,6 +13,8 @@ import org.springframework.jdbc.support.incrementer.DataFieldMaxValueIncrementer
 
 import com.ieci.tecdoc.common.isicres.AxSf;
 
+import es.ieci.tecdoc.fwktd.server.pagination.PageInfo;
+import es.ieci.tecdoc.fwktd.server.pagination.PaginatedArrayList;
 import es.ieci.tecdoc.fwktd.sir.core.types.IndicadorPruebaEnum;
 import es.ieci.tecdoc.fwktd.sir.core.vo.AsientoRegistralFormVO;
 import es.ieci.tecdoc.fwktd.sir.core.vo.AsientoRegistralVO;
@@ -22,6 +24,7 @@ import es.ieci.tecdoc.isicres.api.business.vo.CampoGenericoRegistroVO;
 import es.ieci.tecdoc.isicres.api.business.vo.IdentificadorRegistroVO;
 import es.ieci.tecdoc.isicres.api.business.vo.UsuarioVO;
 import es.ieci.tecdoc.isicres.api.business.vo.enums.TipoLibroEnum;
+import es.ieci.tecdoc.isicres.api.intercambio.registral.business.util.IntercambioRegistralConfiguration;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.BandejaSalidaIntercambioRegistralDAO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.exception.IntercambioRegistralException;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.exception.IntercambioRegistralExceptionCodes;
@@ -30,6 +33,7 @@ import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.Intercam
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.IntercambioRegistralSIRManager;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.IntercambioRegistralSalidaManager;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.BandejaSalidaItemVO;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.CriteriosBusquedaIRSalidaVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaEnumVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.IntercambioRegistralSalidaVO;
@@ -234,9 +238,6 @@ public class IntercambioRegistralSalidaManagerImpl implements
 		intercambioSalida.setTipoOrigen(Integer.parseInt(tipoOrigen));
 		intercambioSalida.setUsername(username);
 
-
-
-
 		// enviamos al sir y actualizamos valores el vo intercambioSalida
 		result = enviarIntercambioRegistralSalida(intercambioSalida,
 				unidadDestino);
@@ -331,18 +332,39 @@ public class IntercambioRegistralSalidaManagerImpl implements
 	}
 
 
+	//TODO no se usa no vale para nada de momento
 	public void reenviarIntercambioRegistralSalidaById(
 			String id, String usuario,String contacto,String descripcionReenvio, UnidadTramitacionIntercambioRegistralVO nuevoDestino) {
 
 			getIntercambioRegistralSIRManager().reenviarAsientoRegistral(id, usuario,contacto,descripcionReenvio,nuevoDestino);
 
+			// comprobar si esta tambien en la tabla scr_exreg (puedo haber sido emisor original y si es asi actualizar estado a eenviado)
+			IntercambioRegistralSalidaVO intecambioRegistralSalida = null;
+			intecambioRegistralSalida = getBandejaSalidaIntercambioRegistralDAO().get(Long.parseLong(id));
+
+			EstadoIntercambioRegistralSalidaVO estadoEnviado = new EstadoIntercambioRegistralSalidaVO();
+			estadoEnviado.setEstado(EstadoIntercambioRegistralSalidaEnumVO.ENVIADO);
+			estadoEnviado.setFechaEstado(new Date());
+			estadoEnviado.setIdExReg(Long.parseLong(id));
+			estadoEnviado.setUserName(usuario );
+		//	aa
+			updateEstado(intecambioRegistralSalida , estadoEnviado);
+
+
+			//getBandejaSalidaIntercambioRegistralDAO().getBandejaSalidaByIdIntercambioRegistralSirYOficina(idIntercambioRegistralSir, idOficina);
 	}
 
 	public List<IntercambioRegistralSalidaVO> getHistorialIntercambioRegistralSalida(String idLibro,
 			String idRegistro, String idOficina) {
 
-		List<IntercambioRegistralSalidaVO> intercambiosRegistralSalidaVO = getBandejaSalidaIntercambioRegistralDAO()
-				.getIntercambiosRegistralesSalida(Integer.parseInt(idRegistro), Integer.parseInt(idLibro), Integer.parseInt(idOficina));
+		List<IntercambioRegistralSalidaVO> intercambiosRegistralSalidaVO = null;
+		if (idOficina == null){
+			intercambiosRegistralSalidaVO = getBandejaSalidaIntercambioRegistralDAO()
+				.getIntercambiosRegistralesSalida(Integer.parseInt(idRegistro), Integer.parseInt(idLibro), null);
+		}else{
+			intercambiosRegistralSalidaVO = getBandejaSalidaIntercambioRegistralDAO()
+					.getIntercambiosRegistralesSalida(Integer.parseInt(idRegistro), Integer.parseInt(idLibro), Integer.parseInt(idOficina));
+		}
 
 		for(Iterator<IntercambioRegistralSalidaVO> it=intercambiosRegistralSalidaVO.iterator();it.hasNext();){
 			IntercambioRegistralSalidaVO intercambioReg = it.next();
@@ -395,6 +417,9 @@ public class IntercambioRegistralSalidaManagerImpl implements
 				.getAsientoRegistralIntercambioRegistralVO(
 						intercambioRegistralSalida, unidadDestino);
 
+		//validamos los datos del intercambio
+		validateDatosIR(asientoRegistralIntercambio);
+
 		// Externalizar propiedad que indique si es una prueba
 		if (true) {
 			asientoRegistralIntercambio
@@ -446,6 +471,73 @@ public class IntercambioRegistralSalidaManagerImpl implements
 		}
 
 		return intercambioRegistralSalida.getIdIntercambioRegistral();
+	}
+
+	/**
+	 * Méotodo que valida los datos para realizar el IR
+	 * @param asientoRegistralIntercambio
+	 */
+	private void validateDatosIR(
+			AsientoRegistralFormVO asientoRegistralIntercambio) {
+
+		//validamos que la unidad de destino se corresponda con la entidad de destino
+		validateRelacionEntidadRegistralUnidadTramitacion(
+				asientoRegistralIntercambio.getCodigoEntidadRegistralDestino(),
+				asientoRegistralIntercambio.getCodigoUnidadTramitacionDestino());
+	}
+
+	/**
+	 * Método que valida la relación entre el cod. Entidad y el cod. de la Unid.
+	 * si por configuración esta activa la validación:
+	 * intercambioRegistral.properties
+	 *
+	 * @param codigoEntidad
+	 * @param codigoUnidTram
+	 */
+	private void validateRelacionEntidadRegistralUnidadTramitacion(
+			String codigoEntidad, String codigoUnidTram) {
+
+		// comprobamos si esta activa la validación para verificar la relación
+		// entre entidad y unidad
+		if (IntercambioRegistralConfiguration.getInstance()
+				.getActiveValidationRelationEntidadUnidad()) {
+			//validamos la relación
+			activeValidateRelacionEntidadRegistralUnidadTramitacion(
+					codigoEntidad, codigoUnidTram);
+		}
+	}
+
+	/**
+	 * Método que valida la relación entre el cod. Entidad y el cod. de la Unid.
+	 * @param codigoEntidad
+	 * @param codigoUnidTram
+	 */
+	private void activeValidateRelacionEntidadRegistralUnidadTramitacion(
+			String codigoEntidad, String codigoUnidTram) {
+		if (logger.isDebugEnabled()) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("Validando relación de la entidad [")
+					.append(codigoEntidad)
+					.append("] con la unid. tramitación [")
+					.append(codigoUnidTram).append("]");
+			logger.debug(sb.toString());
+		}
+
+		// se comprueba si el codigo de unidad es distinto de blanco
+		if (StringUtils.isNotBlank(codigoUnidTram)) {
+			// si esta rellena, pasamos a comprobar si existe una relación
+			// con
+			// la entidad registral
+			if (!getConfiguracionIntercambioRegistralManager()
+					.existRelacionUnidOrgaOficina(codigoEntidad,
+							codigoUnidTram)) {
+				// al no existir relación entre la unidad y la entidad
+				// devolvemos excepción alertando del problema
+				throw new IntercambioRegistralException(
+						"La unid. de tramitación indicada no se corresponde con la entidad registral",
+						IntercambioRegistralExceptionCodes.ERROR_CODE_VALIDACION_UNID_TRAMITA_ENTIDAD_REG);
+			}
+		}
 	}
 
 	public BandejaSalidaIntercambioRegistralDAO getBandejaSalidaIntercambioRegistralDAO() {
@@ -525,6 +617,25 @@ public class IntercambioRegistralSalidaManagerImpl implements
 		this.registroManager = registroManager;
 	}
 
+	/**
+	 *
+	 * {@inheritDoc}
+	 * @see es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.IntercambioRegistralSalidaManager#findBandejaSalidaByCriterios(es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaEnumVO, es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.CriteriosBusquedaIRSalidaVO)
+	 */
+	public List<BandejaSalidaItemVO> findBandejaSalidaByCriterios(
+			EstadoIntercambioRegistralSalidaEnumVO estado, CriteriosBusquedaIRSalidaVO criterios, Integer idLibro) {
+		return getBandejaSalidaIntercambioRegistralDAO().findByCriterios(estado, criterios, idLibro);
+	}
 
+	/**
+	 *
+	 * {@inheritDoc}
+	 * @see es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.IntercambioRegistralSalidaManager#findBandejaSalidaByCriterios(es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EstadoIntercambioRegistralSalidaEnumVO, es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.CriteriosBusquedaIRSalidaVO, es.ieci.tecdoc.fwktd.server.pagination.PageInfo)
+	 */
+	public PaginatedArrayList<BandejaSalidaItemVO> findBandejaSalidaByCriterios(
+			EstadoIntercambioRegistralSalidaEnumVO estado,
+			CriteriosBusquedaIRSalidaVO criterios, Integer idLibro, PageInfo pageInfo) {
+		return getBandejaSalidaIntercambioRegistralDAO().findByCriterios(estado, criterios, idLibro, pageInfo);
+	}
 
 }

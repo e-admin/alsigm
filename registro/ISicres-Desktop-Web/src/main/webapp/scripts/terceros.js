@@ -61,7 +61,7 @@
 				document.getElementById('cuerpo'+i).className = 'grupo_seccion_tab visible';
 				document.getElementById('cuerpo'+tabAct).className = 'grupo_seccion_tab oculto';
 				tabAct = i;
-			} 
+			}
 		}
 
 		var subAct = 1;
@@ -72,7 +72,7 @@
 				document.getElementById('subcuerpo'+i).className = 'grupo_sub visible';
 				document.getElementById('subcuerpo'+subAct).className = 'grupo_sub oculto';
 				subAct = i;
-			} 
+			}
 		}
 
 		var subAct2 = 4;
@@ -83,7 +83,7 @@
 				document.getElementById('subcuerpo'+i).className = 'grupo_sub visible';
 				document.getElementById('subcuerpo'+subAct2).className = 'grupo_sub oculto';
 				subAct2 = i;
-			} 
+			}
 		}
 
 

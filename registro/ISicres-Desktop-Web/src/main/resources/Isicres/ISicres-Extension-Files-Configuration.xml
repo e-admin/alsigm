@@ -7,8 +7,36 @@
 	<showDialogDownloadFileByDefault>${showdialog.extension.files.default}</showDialogDownloadFileByDefault>
 
 	<extensions-configuration>
+
+		<!-- Ficheros visualizados por ActiveX (ides.cab) -->
+		<extension-configuration>
+			<extension>JPG</extension>
+			<showDialogDownloadFile>false</showDialogDownloadFile>
+		</extension-configuration>
+
+		<extension-configuration>
+			<extension>JPEG</extension>
+			<showDialogDownloadFile>false</showDialogDownloadFile>
+		</extension-configuration>
+
+		<extension-configuration>
+			<extension>TIF</extension>
+			<showDialogDownloadFile>false</showDialogDownloadFile>
+		</extension-configuration>
+
+		<extension-configuration>
+			<extension>TIFF</extension>
+			<showDialogDownloadFile>false</showDialogDownloadFile>
+		</extension-configuration>
+
+		<extension-configuration>
+			<extension>BMP</extension>
+			<showDialogDownloadFile>false</showDialogDownloadFile>
+		</extension-configuration>
+
 		<!-- Coleccion con las diferentes extensiones y operativa a seguir -->
 		<extension-configuration>
+
 			<!-- Se define la extension del fichero -->
 			<extension>XADES</extension>
 			<!--
@@ -42,6 +70,7 @@
 		</extension-configuration>
 
 		-->
+
 	</extensions-configuration>
 
 </ISicres-Extension-Files-Configuration>

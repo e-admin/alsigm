@@ -54,6 +54,7 @@ import es.ieci.tecdoc.isicres.admin.business.exception.ISicresAdminIntercambioRe
 import es.ieci.tecdoc.isicres.admin.business.manager.GestionDCOManager;
 import es.ieci.tecdoc.isicres.admin.business.manager.IntercambioRegistralManager;
 import es.ieci.tecdoc.isicres.admin.business.spring.AppContext;
+import es.ieci.tecdoc.isicres.admin.business.spring.AdminIRManagerProvider;
 import es.ieci.tecdoc.isicres.admin.business.vo.DatosBasicosOficinaDCVO;
 import es.ieci.tecdoc.isicres.admin.business.vo.DatosBasicosUnidadOrganicaDCVO;
 import es.ieci.tecdoc.isicres.admin.business.vo.EntidadRegistralVO;
@@ -106,6 +107,8 @@ import es.ieci.tecdoc.isicres.admin.estructura.beans.Usuario;
 import es.ieci.tecdoc.isicres.admin.estructura.beans.UsuarioLdap;
 import es.ieci.tecdoc.isicres.admin.estructura.beans.Usuarios;
 import es.ieci.tecdoc.isicres.admin.estructura.beans.UsuariosLdap;
+import es.ieci.tecdoc.isicres.admin.estructura.enums.PerfilesReport;
+import es.ieci.tecdoc.isicres.admin.estructura.enums.PerfilesUsuario;
 import es.ieci.tecdoc.isicres.admin.exception.ISicresRPAdminDAOException;
 import es.ieci.tecdoc.isicres.admin.exception.ISicresRPAdminException;
 import es.ieci.tecdoc.isicres.admin.rpadmin.manager.ISicresRPAdminConfigLdapManager;
@@ -133,15 +136,6 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 
 	private static Logger logger = Logger
 			.getLogger(ISicresServicioRPAdminAdapter.class);
-
-	private static Map perfiles = new TreeMap();
-
-	static {
-		// perfiles.put("0", "Sin perfil");
-		perfiles.put("1", "operador");
-		// perfiles.put("2", "administrador");
-		perfiles.put("3", "superusuario");
-	}
 
 	public UsuariosRegistradores obtenerUsuarios(Entidad entidad)
 			throws ISicresRPAdminException {
@@ -486,11 +480,26 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 
 	public OptionsBean obtenerPerfilesCombo(Entidad entidad) throws ISicresRPAdminException {
 		OptionsBean options = new OptionsBean();
-		for (Iterator iter = perfiles.keySet().iterator(); iter.hasNext();) {
+
+		for (int i=0; i<PerfilesUsuario.getEnumList().size(); i++){
+			PerfilesUsuario perfil = (PerfilesUsuario) PerfilesUsuario.getEnumList().get(i);
 			OptionBean option = new OptionBean();
-			Object key = iter.next();
-			option.setCodigo(key.toString());
-			option.setDescripcion(perfiles.get(key).toString());
+			option.setCodigo(Integer.toString(perfil.getValue()));
+			option.setDescripcion(perfil.getName());
+			options.add(option);
+		}
+
+		return options;
+	}
+
+	public OptionsBean obtenerPerfilesReportCombo(Entidad entidad) throws ISicresRPAdminException {
+		OptionsBean options = new OptionsBean();
+
+		for (int i=0; i<PerfilesReport.getEnumList().size(); i++){
+			PerfilesReport perfil = (PerfilesReport) PerfilesReport.getEnumList().get(i);
+			OptionBean option = new OptionBean();
+			option.setCodigo(Integer.toString(perfil.getValue()));
+			option.setDescripcion(perfil.getName());
 			options.add(option);
 		}
 		return options;
@@ -518,9 +527,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 					.getLocalizacion(oficina.getId(), entidad.getIdentificador());
 
 			// creamos la Entidad Registral asociada a la oficina
-			IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-					.getApplicationContext().getBean(
-							"intercambioRegistralManager");
+			IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 			EntidadRegistralVO entidadRegistral = intercambioRegistralManager.getEntidadRegistralByIdOficina(id);
 
@@ -685,6 +692,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 		return;
 	}
 
+	@Deprecated
 	public OptionsBean obtenerDepartamentosCombo(boolean oficinas,
 			Entidad entidad) throws ISicresRPAdminException {
 		OptionsBean optionsAPI = new OptionsBean();
@@ -697,6 +705,24 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 			logger.error("Error obteniendo tipos de oficina");
 			throw new ISicresRPAdminException(ISicresRPAdminException.EXC_GENERIC_EXCEPCION,
 					e);
+		}
+
+		return optionsAPI;
+	}
+
+	public OptionsBean obtenerDepartamentosCombo(Entidad entidad)
+			throws ISicresRPAdminException {
+		OptionsBean optionsAPI = new OptionsBean();
+
+		try {
+			Departamentos departamentosDAO = ISicresRPAdminOficinaManager
+					.obtenerDepartamentos(entidad.getIdentificador());
+
+			optionsAPI = getAPIOptionsBean(departamentosDAO);
+		} catch (ISicresRPAdminDAOException e) {
+			logger.error("Error obteniendo tipos de oficina");
+			throw new ISicresRPAdminException(
+					ISicresRPAdminException.EXC_GENERIC_EXCEPCION, e);
 		}
 
 		return optionsAPI;
@@ -1120,9 +1146,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 						.getLocalizacion(orgId, entidad.getIdentificador());
 
 				//Intercambio Registral
-				IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-						.getApplicationContext().getBean(
-								"intercambioRegistralManager");
+				IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 				UnidadRegistralVO unidadRegistral = intercambioRegistralManager
 						.getUnidadRegistralByIdOrgs(organizacion.getId());
@@ -1156,9 +1180,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 								.getIdentificador());
 
 				//Intercambio Registral
-				IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-						.getApplicationContext().getBean(
-								"intercambioRegistralManager");
+				IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 				UnidadRegistralVO unidadRegistral = intercambioRegistralManager
 						.getUnidadRegistral(organizacion.getId());
@@ -2464,8 +2486,8 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 
 	private String obtenerDescripcionPerfil(int perfil) {
 		String sPerfil = new Integer(perfil).toString();
-		if (perfiles.get(sPerfil) != null) {
-			sPerfil = perfiles.get(sPerfil).toString();
+		if (PerfilesUsuario.getEnum(perfil) != null) {
+			sPerfil = PerfilesUsuario.getEnum(perfil).getName();
 		}
 		return sPerfil;
 	}
@@ -2876,7 +2898,10 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 	throws ISicresRPAdminException {
 		try {
 			return ISicresRPAdminInformeManager.obtenerInforme(id, entidad.getIdentificador(), perfiles);
+		} catch (ISicresRPAdminDAOException rPAE){
+			throw rPAE;
 		} catch (Exception e) {
+			logger.error(e);
 			throw new ISicresRPAdminException(e);
 		}
 	}
@@ -2919,9 +2944,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 
 			List listaEntidadesRegistrales = null;
 
-			IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-			.getApplicationContext().getBean(
-					"intercambioRegistralManager");
+			IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 			listaEntidadesRegistrales = intercambioRegistralManager.getEntidadesRegistrales();
 
@@ -2943,8 +2966,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 	public int crearEntidadRegistral(EntidadRegistralVO entidadRegistral,
 			Entidad entidad) throws ISicresAdminIntercambioRegistralException {
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		entidadRegistral = intercambioRegistralManager.addEntidadRegistral(entidadRegistral);
 
@@ -2955,8 +2977,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 	public int crearUnidadRegistral(UnidadRegistralVO unidad, Entidad entidad)
 			throws ISicresAdminIntercambioRegistralException {
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		unidad = intercambioRegistralManager.addUnidadRegistral(unidad);
 		return unidad.getId();
@@ -2969,8 +2990,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 		EntidadRegistralVO entidadRegistral = new EntidadRegistralVO();
 		entidadRegistral.setId(id);
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager =AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 		intercambioRegistralManager.deleteEntidadRegistral(entidadRegistral);
 
 	}
@@ -2981,8 +3001,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 		UnidadRegistralVO unidadRegistral = new UnidadRegistralVO();
 		unidadRegistral.setId(id);
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		intercambioRegistralManager.deleteUnidadRegistral(unidadRegistral);
 
@@ -2991,8 +3010,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 	public EntidadRegistralVO getEntidadRegistral(int id)
 			throws ISicresAdminIntercambioRegistralException {
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager =AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		EntidadRegistralVO entidadRegistral = intercambioRegistralManager
 				.getEntidadRegistral(id);
@@ -3004,8 +3022,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 	public UnidadRegistralVO getUnidadRegistral(int id)
 			throws ISicresAdminIntercambioRegistralException {
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager =AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		UnidadRegistralVO unidadRegistral = intercambioRegistralManager
 				.getUnidadRegistral(id);
@@ -3018,8 +3035,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 			EntidadRegistralVO entidadRegistral)
 			throws ISicresAdminIntercambioRegistralException {
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		EntidadRegistralVO entidadRegistralResult = intercambioRegistralManager
 				.updateEntidadRegistral(entidadRegistral);
@@ -3032,8 +3048,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 			UnidadRegistralVO unidadRegistral)
 			throws ISicresAdminIntercambioRegistralException {
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		UnidadRegistralVO unidadRegistralResult = intercambioRegistralManager
 				.updateUnidadRegistral(unidadRegistral);
@@ -3046,8 +3061,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 			Criterios<CriterioOficinaEnum> criteriosBusqueda)
 			throws ISicresAdminIntercambioRegistralException {
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager =AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		List<DatosBasicosOficinaDCVO> oficinas = intercambioRegistralManager
 				.findOficinasDirectorioComun(criteriosBusqueda);
@@ -3060,11 +3074,22 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 			Criterios<CriterioUnidadOrganicaEnum> criteriosBusqueda)
 			throws ISicresAdminIntercambioRegistralException {
 
-		IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-				.getApplicationContext().getBean("intercambioRegistralManager");
+		IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
 		List<DatosBasicosUnidadOrganicaDCVO> unidadesOrganicas = intercambioRegistralManager
 				.findUnidadesOrganicasDirectorioComun(criteriosBusqueda);
+		return unidadesOrganicas;
+
+	}
+
+	public List<DatosBasicosUnidadOrganicaDCVO> findUnidadesOrganicasDirectorioComunByCodEntidad(
+			String codEntidad, String codUnidad, String nombreUnidad)
+			throws ISicresAdminIntercambioRegistralException {
+
+		IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
+
+		List<DatosBasicosUnidadOrganicaDCVO> unidadesOrganicas = intercambioRegistralManager
+				.findUnidadesOrganicasDirectorioComunByCodEntidad(codEntidad, codUnidad, nombreUnidad);
 		return unidadesOrganicas;
 
 	}
@@ -3073,8 +3098,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 	 * Método que invoca a la actualizacion del DCO
 	 */
 	public void actualizarDCO() {
-		GestionDCOManager gestionDCOManager = (GestionDCOManager) AppContext
-		.getApplicationContext().getBean("gestionDCOManager");
+		GestionDCOManager gestionDCOManager = AdminIRManagerProvider.getInstance().getGestionDCOManager();
 
 		gestionDCOManager.actualizarDCO();
 
@@ -3083,8 +3107,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 	 * Método que invoca a la inicializacion del DCO
 	 */
 	public void inicializarDCO() {
-		GestionDCOManager gestionDCOManager = (GestionDCOManager) AppContext
-		.getApplicationContext().getBean("gestionDCOManager");
+		GestionDCOManager gestionDCOManager = AdminIRManagerProvider.getInstance().getGestionDCOManager();
 
 		gestionDCOManager.inicializarDCO();
 
@@ -3153,7 +3176,7 @@ public class ISicresServicioRPAdminAdapter implements ISicresServicioRPAdmin {
 			ISicresRPAdminLibroManager.actualizarLibroASicres3(idLibro, entidad.getIdentificador());
 		} catch (Exception e) {
 			logger.error("Error al actualizar el libro a SICRES3", e);
-			throw new ISicresRPAdminException(ISicresRPAdminException.EXC_GENERIC_EXCEPCION,
+			throw new ISicresRPAdminException(ISicresRPAdminException.ERROR_UPDATE_LIBROS,
 					e);
 		}
 	}

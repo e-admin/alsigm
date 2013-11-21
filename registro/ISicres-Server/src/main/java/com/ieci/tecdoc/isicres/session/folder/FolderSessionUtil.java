@@ -484,7 +484,7 @@ public class FolderSessionUtil extends UtilsSession implements ServerKeys,
 						newRegisterID, data.getLaunchDistributionType(), data
 								.getNewAttributeValueAsInteger("fld8"), data
 								.getUserId(), data.getDeptId(), data
-								.getUserName(), entidad, data.getLocale());
+								.getUserName(), entidad, data.getLocale(),new Integer(0));
 			}
 
 			createGenericInformationDocumentsTipoAsunto(bookID, data
@@ -524,7 +524,7 @@ public class FolderSessionUtil extends UtilsSession implements ServerKeys,
 
 	protected static FolderDataSession updateRegister(String sessionID,
 			Integer bookID, int fdrid, List inter, Integer newAssociatedBookID,
-			int newAssociatedRegisterID, String entidad, FolderDataSession data)
+			int newAssociatedRegisterID, String entidad, FolderDataSession data, Integer idDistFather)
 			throws BookException {
 		Transaction tran = null;
 		try {
@@ -557,7 +557,7 @@ public class FolderSessionUtil extends UtilsSession implements ServerKeys,
 						data.getLaunchDistributionType(), new Integer(data
 								.getOldAttributeValueAsString("fld8")), data
 								.getUserId(), data.getDeptId(), data
-								.getUserName(), entidad, data.getLocale());
+								.getUserName(), entidad, data.getLocale(), idDistFather);
 			} else if (data.changedContainsKey(new Integer(8))) {
 				DBEntityDAOFactory.getCurrentDBEntityDAO()
 						.deleteDistributeForUpdate(bookID.intValue(), fdrid,
@@ -1288,27 +1288,43 @@ public class FolderSessionUtil extends UtilsSession implements ServerKeys,
 		if ((Repository.getInstance(entidad).isInBook(bookID).booleanValue() || (Repository
 				.getInstance(entidad).isOutBook(bookID).booleanValue() && launchDistOutRegister
 				.intValue() == 1))
-				&& data.isCompletedState() && data.isDistributeRegInAccepted())
-		{
+				&& data.isCompletedState()
+				&& data.isDistributeRegInAccepted()) {
 			ScrOrg scrorg = null;
+			// fld8 es el identificador de la Unidad Administrativa destino del
+			// asiento. ID existente en SCR_ORGS.
 			if ((data.getAxsfOld() != null)
-					//Identificador de la Unidad Administrativa destino del asiento. ID existente en SCR_ORGS.
-					&& (data.getOldAttributeValue("fld8") != null))
-			{
-				scrorg = (ScrOrg) session.load(ScrOrg.class, new Integer(data
-						.getOldAttributeValueAsString("fld8")));
-			} else
-			{
-				if (!data.isCreate() && data.getAxsfOld() != null)
-				{
-					scrorg = (ScrOrg) session.load(ScrOrg.class, new Integer(data
-						.getOldAttributeValueAsString("fld8")));
-				} else
-				{
-					if (data.getNewAttributeValue("fld8") != null)
-					{
-						scrorg = (ScrOrg) session.load(ScrOrg.class, new Integer(data
-							.getNewAttributeValueAsString("fld8")));
+					&& (data.getOldAttributeValue("fld8") != null)) {
+				String destinoOldAttributeValue = data
+						.getOldAttributeValueAsString("fld8");
+				scrorg = (ScrOrg) session.load(ScrOrg.class, new Integer(
+						destinoOldAttributeValue));
+			} else {
+
+				String destinoNewAttributeValue = data
+						.getNewAttributeValueAsString("fld8");
+				// Si es modificacion
+				if (!data.isCreate() && data.getAxsfOld() != null) {
+					String destinoOldAttributeValue = data
+							.getOldAttributeValueAsString("fld8");
+					// Si el valor del destino no es nulo
+					if (StringUtils.isNotEmpty(destinoOldAttributeValue)) {
+						scrorg = (ScrOrg) session.load(ScrOrg.class,
+								new Integer(destinoOldAttributeValue));
+						// Si el valor del destino es nulo intentamos cogerlo
+						// del newAttribute
+					} else {
+
+						if (StringUtils.isNotEmpty(destinoNewAttributeValue)) {
+							scrorg = (ScrOrg) session.load(ScrOrg.class,
+									new Integer(destinoNewAttributeValue));
+						}
+					}
+				} else {
+					// Si es creacion y si el destino no es nulo
+					if (StringUtils.isNotEmpty(destinoNewAttributeValue)) {
+						scrorg = (ScrOrg) session.load(ScrOrg.class,
+								new Integer(destinoNewAttributeValue));
 					}
 				}
 			}
@@ -1320,7 +1336,8 @@ public class FolderSessionUtil extends UtilsSession implements ServerKeys,
 			// Si es una modificacion de un registro y el estado del registro no
 			// ha cambiado (anteriormente se valida que el estado sea completo),
 			// se pasará a comprobar si el destino (FLD8) realmente ha sido
-			// modificado para generar la distribución, en el caso que haya sido realmente
+			// modificado para generar la distribución, en el caso que haya sido
+			// realmente
 			// modificado
 			if (!data.isCreate()
 					&& (data.getChangedFields().get(new Integer(6)) == null)) {
@@ -1955,11 +1972,9 @@ public class FolderSessionUtil extends UtilsSession implements ServerKeys,
 			}
 			boolean finalChangeState = false;
 			if (changeState) {
-				int old = 0;
-				if (data.getOldAttributeValue("fld6") instanceof Integer) {
-					old = ((Integer) data.getOldAttributeValue("fld6"))
-							.intValue();
-				}
+				// Obtenemos el valor del FLD6 old en entero (ya que en Oracle es un BigDecimal)
+				int old = parseFLDToInt(oldFld6);
+
 				if (Repository.getInstance(entidad).isInBook(bookID)
 						.booleanValue()) {
 					if ((data.getOldAttributeValue("fld7") != null || fullInter)
@@ -2003,6 +2018,28 @@ public class FolderSessionUtil extends UtilsSession implements ServerKeys,
 
 		data.setCompletedState(completedState);
 		return data;
+	}
+
+	/**
+	 * Método que traduce el campo pasado como objeto en un entero
+	 * @param fld - Campo a convertir
+	 * @return valor entero del campo
+	 */
+	private static int parseFLDToInt(Object fld) {
+		int result = 0;
+		if(fld != null){
+			try {
+				result = Integer.parseInt(fld.toString());
+			} catch (NumberFormatException rFE) {
+				StringBuffer sb = new StringBuffer();
+				sb.append(
+						"Se ha producido error al intentar parsear FLD [")
+						.append(fld)
+						.append("] a un valor númerico");
+				log.warn(sb.toString());
+			}
+		}
+		return result;
 	}
 
 	private static FolderDataSession isAutomaticRegisterCreationType(

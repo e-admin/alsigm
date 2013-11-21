@@ -5013,7 +5013,6 @@ INSERT INTO scr_cities (id, tmstamp, code, name, id_prov) VALUES (5011, '2007-07
 INSERT INTO scr_cities (id, tmstamp, code, name, id_prov) VALUES (5012, '2007-07-23 12:27:13', 'L33076', 'Villaviciosa', 33);
 INSERT INTO scr_cities (id, tmstamp, code, name, id_prov) VALUES (5013, '2007-07-23 12:27:13', 'L33077', 'Villayon', 33);
 INSERT INTO scr_cities (id, tmstamp, code, name, id_prov) VALUES (5014, '2007-07-23 12:27:13', 'L33078', 'Yernes y Tameza', 33);
-INSERT INTO scr_cities (id, tmstamp, code, name, id_prov) VALUES (5015, '2007-07-23 12:27:13', 'L33241', 'Gijon', 33);
 INSERT INTO scr_cities (id, tmstamp, code, name, id_prov) VALUES (5016, '2007-07-23 12:27:13', 'L34001', 'Abarca', 34);
 INSERT INTO scr_cities (id, tmstamp, code, name, id_prov) VALUES (5017, '2007-07-23 12:27:13', 'L34003', 'Abia de Las Torres', 34);
 INSERT INTO scr_cities (id, tmstamp, code, name, id_prov) VALUES (5018, '2007-07-23 12:27:13', 'L34004', 'Aguilar de Campoo', 34);

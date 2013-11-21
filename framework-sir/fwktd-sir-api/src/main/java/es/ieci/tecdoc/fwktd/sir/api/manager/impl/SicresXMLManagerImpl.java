@@ -1440,6 +1440,10 @@ public class SicresXMLManagerImpl implements SicresXMLManager {
 					"'Codigo_Unidad_Tramitacion_Destino' is invalid");
 		}
 
+		//validamos que el destino está configurado en el módulo
+		String entidadDestinoConfigurada=getConfiguracionManager().getValorConfiguracion(ficheroIntercambio.getCodigoEntidadRegistralDestino()+".entidad.configurada");
+		Assert.isTrue(StringUtils.isNotBlank(entidadDestinoConfigurada),
+				"'Codigo_Entidad_Registral_Destino' is not configurated");
 	}
 
 	/**
@@ -1503,7 +1507,7 @@ public class SicresXMLManagerImpl implements SicresXMLManager {
 									.getRazon_Social_Interesado())
 									|| (StringUtils.isNotBlank(interesado
 											.getNombre_Interesado()) && StringUtils.isNotBlank(interesado
-											.getPrimer_Apellido_Interesado())),
+											.getPrimer_Apellido_Interesado()) ||"O".equalsIgnoreCase(interesado.getTipo_Documento_Identificacion_Interesado())),
 							"'razonSocialInteresado' or ('nombreInteresado' and 'primerApellidoInteresado') must not be empty");
 
 					/*

@@ -102,8 +102,8 @@ ALTER TABLE scr_pagetype ADD CONSTRAINT pk_pagetype PRIMARY KEY (id);
 --TABLA scr_pagerepository
 ALTER TABLE scr_pagerepository ADD CONSTRAINT fk_pagerepository0 FOREIGN KEY (id_pagetype) REFERENCES scr_pagetype(ID);
 
-
-
+--TABLA scr_distribucion_actual
+ALTER TABLE scr_distribucion_actual ADD CONSTRAINT pk_scr_distribucion_actual PRIMARY KEY (id_dist);
 
 -----------------
 --   INDICES   --

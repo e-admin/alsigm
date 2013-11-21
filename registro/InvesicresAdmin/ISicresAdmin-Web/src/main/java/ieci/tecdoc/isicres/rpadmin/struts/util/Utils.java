@@ -46,11 +46,18 @@ import es.ieci.tecdoc.isicres.admin.beans.Filtros;
 import es.ieci.tecdoc.isicres.admin.beans.LibroBean;
 import es.ieci.tecdoc.isicres.admin.beans.OptionBean;
 import es.ieci.tecdoc.isicres.admin.beans.OptionsBean;
+import es.ieci.tecdoc.isicres.admin.beans.OrganizacionBean;
 import es.ieci.tecdoc.isicres.admin.beans.UsuarioRegistrador;
 import es.ieci.tecdoc.isicres.admin.beans.UsuariosRegistradores;
 import es.ieci.tecdoc.isicres.admin.core.beans.FiltroImpl;
 import es.ieci.tecdoc.isicres.admin.sbo.config.CfgDefs;
 import es.ieci.tecdoc.isicres.admin.service.ISicresServicioRPAdmin;
+import es.ieci.tecdoc.isicres.api.business.manager.IsicresManagerProvider;
+import es.ieci.tecdoc.isicres.api.intercambio.registral.business.util.IntercambioRegistralConfiguration;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.exception.IntercambioRegistralException;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.exception.IntercambioRegistralExceptionCodes;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.ConfiguracionIntercambioRegistralManager;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.IntercambioRegistralManager;
 
 public class Utils {
 
@@ -240,6 +247,14 @@ public class Utils {
 		ResourceBundle rb = ResourceBundle.getBundle("ApplicationResource",
 				locale);
 
+		// se mantiene el valor 3, por motivos de compatibilidad, debido a que
+		// en versiones anteriores se ha utilizado de forma incorrecta este
+		// valor
+		option = new OptionBean();
+		option.setCodigo(String.valueOf(Filtro.VALOR_ESTADO_NO_VALIDO));
+		option.setDescripcion("");
+		options.add(option);
+
 		option = new OptionBean();
 		option.setCodigo(String.valueOf(Filtro.ESTADO_COMPLETO));
 		option
@@ -266,6 +281,13 @@ public class Utils {
 		option
 				.setDescripcion(rb
 						.getString("ieci.tecdoc.sgm.rpadmin.libros.filtros.estados.anulado"));
+		options.add(option);
+
+		option = new OptionBean();
+		option.setCodigo(String.valueOf(Filtro.ESTADO_CERRADO));
+		option
+				.setDescripcion(rb
+						.getString("ieci.tecdoc.sgm.rpadmin.libros.filtros.estados.cerrado"));
 		options.add(option);
 
 		return options;
@@ -919,5 +941,52 @@ public class Utils {
 		}
 
 		return errores;
+	}
+
+	/**
+	 * Método que comprueba si exite relación entre la unidad de tramitación y
+	 * la entidad registral indicada en el IR siempre y cuando dicha validación
+	 * este activa por configuración intercambioRegistral.properties
+	 *
+	 * @param unidad
+	 */
+	public static void validateDatosIR(OrganizacionBean unidad) {
+		// comprobamos si esta activa la validación para verificar la relación
+		// entre entidad y unidad
+		if (IntercambioRegistralConfiguration.getInstance()
+				.getActiveValidationRelationEntidadUnidad()) {
+
+			activeValidateDatosIR(unidad);
+		}
+	}
+
+	/**
+	 * Método que comprueba si exite relación entre la unidad de tramitación y la entidad registral indicada en el IR
+	 * @param unidad
+	 */
+	private static void activeValidateDatosIR(OrganizacionBean unidad) {
+		// managers a usar
+		ConfiguracionIntercambioRegistralManager intercambioManager = IsicresManagerProvider
+				.getInstance()
+				.getConfiguracionIntercambioRegistralManager();
+		// comprobamos si esta rellenada la unid. orgánica y la entidad para
+		// el
+		// IR
+		if (StringUtils.isNotBlank(unidad.getCodeUnidadTramit())
+				&& StringUtils.isNotBlank(unidad.getCodEntidadReg())) {
+			// si esta rellena, pasamos a comprobar si existe una relación
+			// con
+			// la entidad registral
+			if (!intercambioManager
+					.existRelacionUnidOrgaOficina(
+							unidad.getCodEntidadReg(),
+							unidad.getCodeUnidadTramit())) {
+				// al no existir relación entre la unidad y la entidad
+				// devolvemos excepción alertando del problema
+				throw new IntercambioRegistralException(
+						"La unid. de tramitación indicada no se corresponde con la entidad registral",
+						IntercambioRegistralExceptionCodes.ERROR_CODE_VALIDACION_UNID_TRAMITA_ENTIDAD_REG);
+			}
+		}
 	}
 }

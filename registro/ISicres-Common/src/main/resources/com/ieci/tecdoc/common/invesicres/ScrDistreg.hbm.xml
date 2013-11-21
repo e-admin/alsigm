@@ -2,17 +2,17 @@
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
-    
+
 <hibernate-mapping>
-<!-- 
+<!--
     Created by the Middlegen Hibernate plugin
 
     http://boss.bekk.no/boss/middlegen/
     http://hibernate.sourceforge.net/
 -->
 
-<class 
-    name="com.ieci.tecdoc.common.invesicres.ScrDistreg" 
+<class
+    name="com.ieci.tecdoc.common.invesicres.ScrDistreg"
     table="SCR_DISTREG"
 >
     <meta attribute="class-description" inherit="false">
@@ -47,7 +47,7 @@
             column="ID_ARCH"
             length="10"
             not-null="true"
-        </meta>    
+        </meta>
     </property>
     <property
         name="idFdr"
@@ -61,7 +61,7 @@
             column="ID_FDR"
             length="10"
             not-null="true"
-        </meta>    
+        </meta>
     </property>
     <property
         name="distDate"
@@ -75,7 +75,7 @@
             column="DIST_DATE"
             length="7"
             not-null="true"
-        </meta>    
+        </meta>
     </property>
     <property
         name="typeOrig"
@@ -89,7 +89,7 @@
             column="TYPE_ORIG"
             length="10"
             not-null="true"
-        </meta>    
+        </meta>
     </property>
     <property
         name="idOrig"
@@ -103,7 +103,7 @@
             column="ID_ORIG"
             length="10"
             not-null="true"
-        </meta>    
+        </meta>
     </property>
     <property
         name="typeDest"
@@ -117,7 +117,7 @@
             column="TYPE_DEST"
             length="10"
             not-null="true"
-        </meta>    
+        </meta>
     </property>
     <property
         name="idDest"
@@ -131,7 +131,7 @@
             column="ID_DEST"
             length="10"
             not-null="true"
-        </meta>    
+        </meta>
     </property>
     <property
         name="state"
@@ -145,7 +145,7 @@
             column="STATE"
             length="10"
             not-null="true"
-        </meta>    
+        </meta>
     </property>
     <property
         name="stateDate"
@@ -159,7 +159,7 @@
             column="STATE_DATE"
             length="7"
             not-null="true"
-        </meta>    
+        </meta>
     </property>
     <property
         name="message"
@@ -171,7 +171,19 @@
            @hibernate.property
             column="MESSAGE"
             length="250"
-        </meta>    
+        </meta>
+    </property>
+
+     <property
+        name="iddistfather"
+        type="java.lang.Integer"
+        column="id_dist_father"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="id_dist_father"
+            type="java.lang.Integer"
+        </meta>
     </property>
 
     <!-- associations -->

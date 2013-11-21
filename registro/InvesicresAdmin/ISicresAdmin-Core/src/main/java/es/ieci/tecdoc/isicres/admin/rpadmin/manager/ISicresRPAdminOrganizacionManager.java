@@ -16,6 +16,7 @@ import es.ieci.tecdoc.isicres.admin.base.ldap.LdapScope;
 import es.ieci.tecdoc.isicres.admin.business.exception.ISicresAdminIntercambioRegistralException;
 import es.ieci.tecdoc.isicres.admin.business.manager.IntercambioRegistralManager;
 import es.ieci.tecdoc.isicres.admin.business.spring.AppContext;
+import es.ieci.tecdoc.isicres.admin.business.spring.AdminIRManagerProvider;
 import es.ieci.tecdoc.isicres.admin.business.vo.UnidadRegistralVO;
 import es.ieci.tecdoc.isicres.admin.core.beans.SicresListaDistribucionImpl;
 import es.ieci.tecdoc.isicres.admin.core.beans.SicresListaDistribucionesImpl;
@@ -200,9 +201,7 @@ public class ISicresRPAdminOrganizacionManager {
                 // asignamos el id de la unidad a la unidad registral
                 unidadRegistral.setId_orgs(organizacion.getId());
                 // creamos la unidad Registral
-                IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-                        .getApplicationContext().getBean(
-                                "intercambioRegistralManager");
+                IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
                 addUnidadRegistralValidation(unidadRegistral, db,
                         intercambioRegistralManager);
@@ -301,9 +300,7 @@ public class ISicresRPAdminOrganizacionManager {
             throws ISicresAdminIntercambioRegistralException,
             ISicresAdminDAOException {
         //Intercambio Registral
-        IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-                .getApplicationContext().getBean(
-                        "intercambioRegistralManager");
+        IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
 
         if(unidadRegistral.getId() != 0){
             //obtenemos los datos almacenados de la Entidad Registral
@@ -477,9 +474,7 @@ public class ISicresRPAdminOrganizacionManager {
             localizacion.delete(db);
 
             //Intercambio Registral
-            IntercambioRegistralManager intercambioRegistralManager = (IntercambioRegistralManager) AppContext
-                    .getApplicationContext().getBean(
-                            "intercambioRegistralManager");
+            IntercambioRegistralManager intercambioRegistralManager = AdminIRManagerProvider.getInstance().getIntercambioRegistralManager();
             //buscamos la Entidad Registral asociada a la oficina
             UnidadRegistralVO unidadRegistral = intercambioRegistralManager
                     .getUnidadRegistralByIdOrgs(idOrg);

@@ -20,6 +20,8 @@ public class BusquedaDirectorioComunForm extends RPAdminActionForm {
     private String nombre;
 
 
+    private String codEntity;
+
     public Criterios<CriterioOficinaEnum> setForOficinas(Criterios<CriterioOficinaEnum> criterios)
     {
         if(nombre!=null && !"".equals(nombre))
@@ -77,8 +79,15 @@ public class BusquedaDirectorioComunForm extends RPAdminActionForm {
         this.nombre = nombre;
     }
 
+    public String getCodEntity() {
+		return codEntity;
+	}
 
-    @Override
+	public void setCodEntity(String codEntity) {
+		this.codEntity = codEntity;
+	}
+
+	@Override
     public String[] getAttrsToUpper() {
         // TODO Auto-generated method stub
         return null;

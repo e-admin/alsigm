@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>InvesSicres</artifactId>
+		<groupId>es.ieci.tecdoc.isicres</groupId>
+		<version>8.0.5-M1</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ISicres-external-resources-config</artifactId>
+	<name>ISicres-external-resources-config</name>
+	<packaging>pom</packaging>
+	<description>Recursos de configuracion externos de isicres, modulos fwktd, etc</description>
+
+	<properties>
+		<generated.resources.dir>target/generated-resources</generated.resources.dir>
+		<unpack.config.directory>${project.basedir}/${generated.resources.dir}</unpack.config.directory>
+	</properties>
+
+	<build>
+		<finalName>ISicres-external-resources-config</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>unpack-configurable-resources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+							 <!-- recursos configurables -->
+								<artifactItem>
+									<groupId>es.ieci.tecdoc.isicres</groupId>
+									<artifactId>ISicres-Desktop-Web</artifactId>
+									<version>${pom.version}</version>
+									<classifier>Config</classifier>
+									<type>zip</type>
+								</artifactItem>
+
+
+								<artifactItem>
+									<groupId>es.ieci.tecdoc.isicres.admin</groupId>
+									<artifactId>ISicresAdmin-resources-configurable</artifactId>
+									<version>${pom.version}</version>
+									<type>zip</type>
+								</artifactItem>
+
+
+
+								<!-- configuracion externalizada del modulo sir -->
+								<artifactItem>
+									<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
+									<artifactId>fwktd-sir-config</artifactId>
+									<version>${fwktd-sir.version}</version>
+									<classifier>configurable</classifier>
+									<type>zip</type>
+								</artifactItem>
+
+								<!-- configuracion externalizada del modulo auditoria-->
+								<artifactItem>
+									<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+									<artifactId>fwktd-audit-api</artifactId>
+									<version>${fwktd.audit.version}</version>
+									<classifier>configurable</classifier>
+									<type>zip</type>
+								</artifactItem>
+
+								<artifactItem>
+									<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
+									<artifactId>fwktd-audit-core</artifactId>
+									<version>${fwktd.audit.version}</version>
+									<classifier>configurable</classifier>
+									<type>zip</type>
+								</artifactItem>
+
+							</artifactItems>
+							<outputDirectory>
+								${unpack.config.directory}
+							</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>maven-replacer-plugin</artifactId>
+				<version>${maven-replacer-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+
+					<includes>
+						<include>${generated.resources.dir}/**/</include>
+					</includes>
+					<excludes>
+						<!--
+							<exclude>target/**/do-not-replace-me.*</exclude>
+						-->
+					</excludes>
+					<!--
+
+					<variableTokenValueMap>fwktd-auditDS=ISicres,fwktd-dir3DS=ISicres,fwktd-sirDS=ISicres,org.quartz.plugin.jobInitializer.fileNames=#org.quartz.plugin.jobInitializer.fileNames</variableTokenValueMap>
+					-->
+					<tokenValueMap>src/main/config/plugins/replacer/replacer.properties</tokenValueMap>
+				</configuration>
+			</plugin>
+
+			<plugin>
+
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<descriptors>
+						<descriptor>
+							src/main/assembly/dep-config.xml
+						</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assembly-common-resources</id>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+
+		</plugins>
+	</build>
+</project>

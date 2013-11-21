@@ -8,21 +8,21 @@ function SelectDir()
 		var iIndex = oListDir.getListSelectedIndex();
 		var oElem = oListDir.oRows[iIndex].oColumns[0];
 		var strPref = oElem.GetArgColumn("PreferenceDir");
-		
+
 		if (strPref == -1) {
 			strPref = "0"
 		}
-      
+
 		var strPob = oListDir.oRows[iIndex].oColumns[2].Text;
 		var strCiu = oListDir.oRows[iIndex].oColumns[3].Text;
 		var strCod = oListDir.oRows[iIndex].oColumns[1].Text;
 		var strText = oElem.Text + " " + strCod + " " + strPob + " " + strCiu;
 		var strRet = oElem.Id + "|" + strText + "|" + strPref + "||";
-		
+
 		window.returnValue = strRet;
 		window.close();
 	}
-	
+
 	return;
 }
 
@@ -41,7 +41,7 @@ function CargarCiudades()
 
 		top.XMLHTTPRequestGet(URL, ResponseLoadCities, true);
 	}
-	
+
 	return;
 }
 
@@ -51,7 +51,7 @@ function ResponseLoadCities()
 	if (top.g_oXMLHTTPRequest.readyState != 4){
 		return;
 	}
-				
+
 	if (top.g_oXMLHTTPRequest.status != 200){
 		alert(top.g_oXMLHTTPRequest.statusText + " (" + top.g_oXMLHTTPRequest.status.toString() + ")");
 		return;
@@ -59,7 +59,7 @@ function ResponseLoadCities()
 
 	var XMLText = top.g_oXMLHTTPRequest.responseText;
 
-	if (XMLText.indexOf("alert(") != -1){	
+	if (XMLText.indexOf("alert(") != -1){
 		evalAlert(XMLText);
 	}
 	else if (top.miTrim(XMLText) != "") {
@@ -69,7 +69,7 @@ function ResponseLoadCities()
 		if (datas != null){
 			for (var i = 0; i < datas.length; i++) {
 				var opt = document.createElement("OPTION");
-							
+
 				document.getElementById("oSelectCiu").appendChild(opt);
 
 				opt.text = datas[i].getElementsByTagName("Nombre")[0].firstChild.data;
@@ -154,19 +154,19 @@ function insertRowDom(domId, Dir, CodPostal, City, Prov, principal)
 		var newRow = insertRow(tabDir.rows.length - 1);
 		var datas = new Array;
 		var newCell = new Array;
-	
+
 		newRow.id = "rowDatas";
 		newRow.className="Style5";
 
 		newCell[0] = newRow.insertCell(-1);
 		newCell[0].width="3%";
 		newCell[0].setAttribute("id", domId);
-				
+
 		datas[0]=document.createElement("input");
 		datas[0].setAttribute ("type", "checkbox");
 		datas[0].setAttribute("class", "checkbox");
 		top.AttachEvent(datas[0], "click", CheckDir);
-	
+
 		newCell[0].appendChild(datas[0]);
 
 		newCell[1] = newRow.insertCell(-1);
@@ -184,20 +184,20 @@ function insertRowDom(domId, Dir, CodPostal, City, Prov, principal)
 		newCell[4] = newRow.insertCell(-1);
 		newCell[4].width="20%";
 		top.SetInnerText(newCell[4], Prov);
-		
+
 		newCell[5] = newRow.insertCell(-1);
 		newCell[5].width="6%";
-		
+
 		// Input hidden para almacenar si el domicilio es principal
 		datas[1]=document.createElement("input");
 		datas[1].setAttribute ("type", "hidden");
-		
+
 		// Imagen que indica si el domicilio es principal
 		datas[2]=document.createElement("img");
 		datas[2].setAttribute ("src", "./images/asterisk_orange.png");
 		datas[2].setAttribute("title",top.GetIdsLan("IDS_DIR_PRINCIPAL"));
 		datas[2].setAttribute("alt",top.GetIdsLan("IDS_DIR_PRINCIPAL"));
-		
+
 		if (principal == 1) {
 			datas[1].setAttribute("value", 1);
 			newCell[5].appendChild(datas[1]);
@@ -205,7 +205,7 @@ function insertRowDom(domId, Dir, CodPostal, City, Prov, principal)
 		} else {
 			newCell[5].appendChild(datas[1]);
 			datas[1].setAttribute("value", 0);
-		}				
+		}
 	}
 }
 
@@ -218,14 +218,14 @@ function insertRowTel(telId, DirTel, TypeDirTel, principal)
 		var datas = new Array;
 		var newCell = new Array;
 		var descriptionDirtel;
-	
+
 		newRow.id = "rowDatasTel";
 		newRow.className="Style5";
 
 		newCell[0] = newRow.insertCell(-1);
 		newCell[0].width="4%";
 		newCell[0].setAttribute("id", telId);
-				
+
 		datas[0]=document.createElement("input");
 		datas[0].setAttribute ("type", "checkbox");
 		datas[0].setAttribute("class", "checkbox");
@@ -246,14 +246,14 @@ function insertRowTel(telId, DirTel, TypeDirTel, principal)
 			}
 		}
 		top.SetInnerText(newCell[2], descriptionDirtel);
-		
+
 		newCell[3] = newRow.insertCell(-1);
 		newCell[3].width="6%";
-		
+
 		// Input hidden para almacenar si el domicilio es principal
 		datas[1]=document.createElement("input");
 		datas[1].setAttribute ("type", "hidden");
-		
+
 		datas[2]=document.createElement("img");
 		datas[2].setAttribute ("src", "./images/asterisk_orange.png");
 		datas[2].setAttribute("title",top.GetIdsLan("IDS_DIR_PRINCIPAL"));
@@ -262,7 +262,7 @@ function insertRowTel(telId, DirTel, TypeDirTel, principal)
 		if (principal == 1) {
 			datas[1].setAttribute("value", 1);
 			newCell[3].appendChild(datas[1]);
-			newCell[3].appendChild(datas[2]);			
+			newCell[3].appendChild(datas[2]);
 		} else {
 			datas[1].setAttribute("value", 0);
 			newCell[3].appendChild(datas[1]);
@@ -276,19 +276,19 @@ function AddDir()
 {
 	var indexCity = document.getElementById("oSelectCiu").selectedIndex;
 	var indexProv = document.getElementById("oSelectProv").selectedIndex;
-	
+
 	var optCiu = (indexCity != 0)?document.getElementById("oSelectCiu").options[indexCity].value:"0";
 	var optProv = (indexProv != 0)?document.getElementById("oSelectProv").options[indexProv].value:"0";
 
 	if ( (top.miTrim(document.getElementById("oTxtDir").value) == "") || (optCiu == "0") || (optProv == "0") ) {
 		alert(top.GetIdsLan("IDS_DIRPOS_REQUERIDOS"));
 	}
-	else {	
+	else {
 		if(caseSensitive == 'CS') {
 			document.getElementById("oTxtDir").value = document.getElementById("oTxtDir").value.toUpperCase();
 			document.getElementById("oTxtCod").value = document.getElementById("oTxtCod").value.toUpperCase();
 		}
-		
+
 		// La direccion principal es la que primero aparece en la lista
 		var principal = 1;
 		var tabDir = document.getElementById("tbDoms");
@@ -299,21 +299,21 @@ function AddDir()
 				}
 			}
 		}
-	    
-		insertRowDom("0", document.getElementById("oTxtDir").value, document.getElementById("oTxtCod").value, 
-			(indexCity != 0)?document.getElementById("oSelectCiu").options[indexCity].text:"", 
+
+		insertRowDom("0", document.getElementById("oTxtDir").value, document.getElementById("oTxtCod").value,
+			(indexCity != 0)?document.getElementById("oSelectCiu").options[indexCity].text:"",
 			(indexProv != 0)?document.getElementById("oSelectProv").options[indexProv].text:"",
 			principal);
-		
+
 		SetTabSize();
-	
+
 		document.getElementById("oTxtDir").value = "";
 		document.getElementById("oTxtCod").value = "";
 		document.getElementById("oSelectCiu").selectedIndex = 0;
 		document.getElementById("oSelectProv").selectedIndex = 0;
-	
+
 		EraseCiudades();
-			
+
 		HabilitarAceptar();
 	}
 }
@@ -321,13 +321,13 @@ function AddDir()
 function AddDirTel()
 {
 	if (changeComboTel()){
-		var indexTel = document.getElementById("oSelectDir").selectedIndex; 
-	
+		var indexTel = document.getElementById("oSelectDir").selectedIndex;
+
 		if ( (top.miTrim(document.getElementById("oTxtDirTel").value) == "") || (indexTel == "0") ) {
 			alert(top.GetIdsLan("IDS_DIRTEL_REQUERIDOS"));
 		}
 		else {
-	
+
 			// La direccion principal es la que primero aparece en la lista
 			var principal = 1;
 			var tabDir = document.getElementById("tbDirs");
@@ -338,16 +338,16 @@ function AddDirTel()
 					}
 				}
 			}
-		
-			insertRowTel("0", document.getElementById("oTxtDirTel").value, 
+
+			insertRowTel("0", document.getElementById("oTxtDirTel").value,
 			document.getElementById("oSelectDir").options[indexTel].value,
-			principal);	
-		
+			principal);
+
 			SetTabSizeTel();
-	
+
 			document.getElementById("oTxtDirTel").value = "";
 			document.getElementById("oSelectDir").selectedIndex = 0;
-		
+
 			HabilitarAceptar();
 		}
 	}
@@ -359,11 +359,11 @@ function DelDirs()
 	var tabDir = document.getElementById("tbDoms");
 	var ppal = false;
 	var primera = false;
-	
+
 	var numRowsCheck = getNumberOfRowsSelected(tabDir, "rowDatas");
-	
+
 	if(numRowsCheck <= 0){
-		alert(top.GetIdsLan("IDS_MSGALERT_DELET_TERCEROS"));	
+		alert(top.GetIdsLan("IDS_MSGALERT_DELET_TERCEROS"));
 	}
 	else{
 		for (var i = tabDir.rows.length - 1; i >= 0; i--){
@@ -387,19 +387,19 @@ function DelDirs()
 		document.getElementById("oTxtCod").value = "";
 		document.getElementById("oSelectProv").selectedIndex = 0;
 		document.getElementById("oSelectProv").onchange();
-	
+
 		if (primera){
 			if(tabDir.rows[2].cells[0].firstChild != null){
 				tabDir.rows[2].cells[0].firstChild.checked = true;
 				SetDirPrinc('tbDoms','rowDatas',5);
-			}	
+			}
 		}else{
 			if(ppal && (tabDir.rows[1].cells[0] != null)){
 				tabDir.rows[1].cells[0].firstChild.checked = true;
 				SetDirPrinc('tbDoms','rowDatas',5);
 			}
 		}
-	
+
 		HabilitarAceptar();
 	}
 }
@@ -411,9 +411,9 @@ function DelDirsTel()
 	var primera = false;
 
 	var numRowsCheck = getNumberOfRowsSelected(tabDir, "rowDatasTel");
-	
+
 	if(numRowsCheck <= 0){
-		alert(top.GetIdsLan("IDS_MSGALERT_DELET_TERCEROS"));	
+		alert(top.GetIdsLan("IDS_MSGALERT_DELET_TERCEROS"));
 	}
 	else{
 		for (var i = tabDir.rows.length - 1; i >= 0; i--){
@@ -435,19 +435,19 @@ function DelDirsTel()
 
 		document.getElementById("oTxtDirTel").value = "";
 		document.getElementById("oSelectDir").selectedIndex = 0;
-	
+
 		if (primera){
 			if(tabDir.rows[2].cells[0].firstChild != null){
 				tabDir.rows[2].cells[0].firstChild.checked = true;
 				SetDirPrinc('tbDirs','rowDatasTel',3);
-			}	
+			}
 		}else{
 			if(ppal && (tabDir.rows[1].cells[0] != null)){
 				tabDir.rows[1].cells[0].firstChild.checked = true;
 				SetDirPrinc('tbDirs','rowDatasTel',3);
 			}
 		}
-	
+
 		HabilitarAceptar();
 	}
 }
@@ -502,7 +502,7 @@ function CheckDirTel()
 	var index = getSelectedDir(tabDirTel);
 
 	document.getElementById("oTxtDirTel").value = (index != -1)?top.GetInnerText(tabDirTel.rows[index].cells[1]):"";
-	
+
 	if (index != -1){
 		var TypeTel = top.GetInnerText(tabDirTel.rows[index].cells[2]);
 
@@ -524,7 +524,7 @@ function ModifDir()
 {
 	var tabDir = document.getElementById("tbDoms");
 	var index = getSelectedDir(tabDir);
-	
+
 	if (index <= 0){
 		alert(top.GetIdsLan("IDS_MSGALERT_MODIF_TERCEROS"));
 	}
@@ -532,7 +532,7 @@ function ModifDir()
 	{
 		var indCity = document.getElementById("oSelectCiu").selectedIndex;
 		var indProv = document.getElementById("oSelectProv").selectedIndex;
-		
+
 		if(caseSensitive == 'CS') {
 			document.getElementById("oTxtDir").value = document.getElementById("oTxtDir").value.toUpperCase();
 			document.getElementById("oTxtCod").value = document.getElementById("oTxtCod").value.toUpperCase();
@@ -543,7 +543,7 @@ function ModifDir()
 		top.SetInnerText(tabDir.rows[index].cells[3], (indCity != 0)?document.getElementById("oSelectCiu").options[indCity].text:"");
 		top.SetInnerText(tabDir.rows[index].cells[4], (indProv != 0)?document.getElementById("oSelectProv").options[indProv].text:"");
 	}
-	
+
 	HabilitarAceptar();
 }
 
@@ -559,7 +559,7 @@ function ModifDirTel()
 		else
 		{
 			var indDir = document.getElementById("oSelectDir").selectedIndex;
-		
+
 			if(caseSensitive == 'CS') {
 				document.getElementById("oTxtDirTel").value = document.getElementById("oTxtDirTel").value.toUpperCase();
 			}
@@ -567,7 +567,7 @@ function ModifDirTel()
 			top.SetInnerText(tabDir.rows[index].cells[1], document.getElementById("oTxtDirTel").value);
 			top.SetInnerText(tabDir.rows[index].cells[2], (indDir != 0)?document.getElementById("oSelectDir").options[indDir].text:"");
 		}
-	
+
 		HabilitarAceptar();
 	}
 }
@@ -590,7 +590,7 @@ function SelectTypeDoc(oCombo, strValue)
 
 //Habilita el boton Aceptar
 function HabilitarAceptar(){
-	
+
 	if (((document.getElementById("oPerApe1").value!="") && (document.getElementById("oPerNombre").value!=""))
 		|| document.getElementById("oRazon").value!="")
 	{
@@ -600,7 +600,7 @@ function HabilitarAceptar(){
 	{
 		document.getElementById("btnOK").disabled = true;
 	}
-	
+
 	return;
 }
 
@@ -618,14 +618,14 @@ function SetDirPrinc(tbId, rowsId, cellId) {
 	var index = getSelectedDir(tabDir);
 	var datas = new Array;
 	var numCheck = 0;
-	
+
 	//validamos que no haya mas de una direccion seleccionada
 	for (var j = tabDir.rows.length - 1; j >= 0; j--){
 		if (tabDir.rows[j].id == rowsId){
 			if (tabDir.rows[j].cells[0].firstChild.checked == true){
 				numCheck += 1;
 			}
-		}	
+		}
 	}
 	if (numCheck <= 0){
 		alert(top.GetIdsLan("IDS_MSGALERT_MODIF_TERCEROS"));
@@ -637,38 +637,38 @@ function SetDirPrinc(tbId, rowsId, cellId) {
 			for (var i = tabDir.rows.length - 1; i >= 0; i--){
 				if (tabDir.rows[i].id == rowsId){
 					if (tabDir.rows[i].cells[cellId].hasChildNodes()) {
-			    		while (tabDir.rows[i].cells[cellId].childNodes.length >= 1 ) {
-			        		tabDir.rows[i].cells[cellId].removeChild(tabDir.rows[i].cells[cellId].firstChild );       
-			    		} 
+					while (tabDir.rows[i].cells[cellId].childNodes.length >= 1 ) {
+						tabDir.rows[i].cells[cellId].removeChild(tabDir.rows[i].cells[cellId].firstChild );
+					}
 					}
 					if (tabDir.rows[i].cells[0].firstChild.checked == true){
 						tabDir.rows[i].cells[0].firstChild.checked = false;
-						
+
 						// Input hidden para almacenar si el domicilio es principal
 						datas[0]=document.createElement("input");
 						datas[0].setAttribute ("type", "hidden");
 						datas[0].setAttribute("value", 1);
-												
+
 						// Imagen que indica si el domicilio es principal
 						datas[1]=document.createElement("img");
 						datas[1].setAttribute ("src", "./images/asterisk_orange.png");
 						datas[1].setAttribute("title",top.GetIdsLan("IDS_DIR_PRINCIPAL"));
 						datas[1].setAttribute("alt",top.GetIdsLan("IDS_DIR_PRINCIPAL"));
-				
+
 						tabDir.rows[i].cells[cellId].appendChild(datas[0]);
 						tabDir.rows[i].cells[cellId].appendChild(datas[1]);
-				
+
 					} else {
 						datas[0]=document.createElement("input");
 						datas[0].setAttribute ("type", "hidden");
 						datas[0].setAttribute("value", 0);
-						tabDir.rows[i].cells[cellId].appendChild(datas[0]);		
+						tabDir.rows[i].cells[cellId].appendChild(datas[0]);
 					}
 				}
 			}
-		}	
-	}	
-	
+		}
+	}
+
 	HabilitarAceptar();
 }
 
@@ -676,17 +676,17 @@ function SetDirPrinc(tbId, rowsId, cellId) {
 function getNumberOfRowsSelected(tabla, nameRow)
 {
 	var numCheck = 0;
-				
+
 	with (tabla){
 		for (var i = 0; i < rows.length; i++){
-			if (rows[i].id == nameRow){	
+			if (rows[i].id == nameRow){
 				if (rows[i].cells[0].firstChild.checked == true){
 					numCheck += 1;
 				}
-			}	
+			}
 		}
 	}
-	return (numCheck);	
+	return (numCheck);
 }
 
 /**
@@ -697,7 +697,7 @@ function getNumberOfRowsSelected(tabla, nameRow)
 function evalAlert(message) {
 	var startAlert = 0;
 	var endAler = 0;
-	
+
 	startAlert = message.indexOf("alert(");
 	if (startAlert != -1) {
 		endAlert = message.indexOf(");", startAlert);

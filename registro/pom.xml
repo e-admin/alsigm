@@ -4,7 +4,7 @@
 	<artifactId>InvesSicres</artifactId>
 	<packaging>pom</packaging>
 	<name>InvesSicres</name>
-	<version>8.0.1</version>
+	<version>8.0.5-M1</version>
 	<inceptionYear>2009</inceptionYear>
 	<description>Producto InvesSicres</description>
 	<issueManagement>
@@ -20,8 +20,8 @@
 		<jdk.version>1.5</jdk.version>
 		<fwktd.version>0.7</fwktd.version>
 		<fwktd.audit.version>0.7</fwktd.audit.version>
-		<fwktd-sir.version>1.0.1</fwktd-sir.version>
-		<fwktd.dir3.version>1.0</fwktd.dir3.version>
+		<fwktd-sir.version>1.0.2-M3</fwktd-sir.version>
+		<fwktd.dir3.version>1.0.3</fwktd.dir3.version>
 		<spring.version>3.0.2.RELEASE</spring.version>
 		<struts.version>1.2.9</struts.version>
 		<dwr.version>3.0.M1</dwr.version>
@@ -35,6 +35,7 @@
 		<dom4j.version>1.6.1</dom4j.version>
 		<jaxen.version>1.1</jaxen.version>
 		<itext.version>2.1.7</itext.version>
+		<maven-replacer-plugin.version>1.4.1</maven-replacer-plugin.version>
 		<skipDeploy>false</skipDeploy>
 	</properties>
 
@@ -82,6 +83,7 @@
 				<configuration>
 					<downloadSources>false</downloadSources>
 					<downloadJavadocs>false</downloadJavadocs>
+					<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -129,6 +131,8 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
+				<module>ISicres-Terceros</module>
+
 				<module>ISicres-Document-Connector</module>
 				<module>ISicres-Compulsa-Connector</module>
 				<module>ISicres-Common</module>
@@ -161,8 +165,9 @@
 			</activation>
 			<modules>
 				<module>ISicres-Desktop-Web</module>
-				<module>ISicres-WS-legacy</module>
 				<module>InvesicresAdmin</module>
+				<module>ISicres-external-resources-config</module>
+
 			</modules>
 		</profile>
 
@@ -181,6 +186,7 @@
 		<profile>
 			<id>distribucion</id>
 			<modules>
+				<module>ISicres-Terceros</module>
 				<module>ISicres-Document-Connector</module>
 				<module>ISicres-Compulsa-Connector</module>
 				<module>ISicres-Common</module>
@@ -207,14 +213,14 @@
 
 				<!-- wars -->
 				<module>ISicres-Desktop-Web</module>
-				<module>ISicres-WS-legacy</module>
 
-				<module>ISicres-documentation</module>
 
 				<!-- admin-->
 				<module>InvesicresAdmin</module>
 
-				<!-- distribucion 
+				<module>ISicres-external-resources-config</module>
+
+				<!-- distribucion
 				<module>ISicres-Distribucion</module>
 				-->
 			</modules>
@@ -224,7 +230,8 @@
 	</profiles>
 
 
-  <distributionManagement>
+
+	<distributionManagement>
     <repository>
       <id>releases</id>
       <name>Repositorio de releases</name>
@@ -238,6 +245,6 @@
     </distributionManagement>
 
   <modules>
-    <module>ISicres-Terceros</module>
+
   </modules>
 </project>

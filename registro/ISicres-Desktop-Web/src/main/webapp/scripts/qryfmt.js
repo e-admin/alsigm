@@ -417,9 +417,9 @@ function DoOnLoadResponse()
 	args[7] = top.Idioma.toString();
 	args[8] = opc;
 
-   	sRet = top.ShowModalDialog(URL, args, 400, 450, "");
+	sRet = top.ShowModalDialog(URL, args, 400, 450, "");
 
-   	DisableQryControls(false);
+	DisableQryControls(false);
 }
 
 
@@ -680,12 +680,12 @@ function getTableRow(NUMERO_INDICE)
 	td.innerHTML = "<input type='hidden' name='numregistro' id='numregistro' value='"+ NUMERO_INDICE + "'> <select class='comboSearchAvanced' name='oSelectCampo_"+ NUMERO_INDICE +"' id='oSelectCampo_"+ NUMERO_INDICE +"' onchange='CargarOperadores(" + NUMERO_INDICE + ")' tabindex='1'><option value=''></option></select>";
     row.appendChild(td);
 
- 	td = document.createElement("td");
+	td = document.createElement("td");
 	td.innerHTML = "<select class='comboSearchAvanced' name='oSelectOperador_"+ NUMERO_INDICE +"' id='oSelectOperador_"+ NUMERO_INDICE +"' tabindex='1'></select>";
     row.appendChild(td);
 
- 	td = document.createElement("td");
- 	td.innerHTML = "<input type='text' name='where_"+ NUMERO_INDICE +"' id='where_"+ NUMERO_INDICE +"' class='inputTextSearchAvanced' tabIndex='1'></input>";
+	td = document.createElement("td");
+	td.innerHTML = "<input type='text' name='where_"+ NUMERO_INDICE +"' id='where_"+ NUMERO_INDICE +"' class='inputTextSearchAvanced' tabIndex='1'></input>";
     row.appendChild(td);
 
     td = document.createElement("td");
@@ -708,7 +708,7 @@ function removeTableRows(id)
 	{
 		if (rows[i].value==id)
         {
-        	tabla.deleteRow(rows[i].parentNode.parentNode.rowIndex);
+		tabla.deleteRow(rows[i].parentNode.parentNode.rowIndex);
         }
 	}
 
@@ -737,80 +737,80 @@ function setNumeroFila(valor){
 
 
 function creaElemento(datosElemento){
- 	//si el elemento contiene "<" -> el parametro es codigo HTML
- 	//sino se crea y se devuelve el elemento creado
- 	datosElemento=trim(datosElemento);
+	//si el elemento contiene "<" -> el parametro es codigo HTML
+	//sino se crea y se devuelve el elemento creado
+	datosElemento=trim(datosElemento);
 
- 	var pos=datosElemento.indexOf("<");
- 	if(pos==-1 || document.all){ return document.createElement(datosElemento); }
+	var pos=datosElemento.indexOf("<");
+	if(pos==-1 || document.all){ return document.createElement(datosElemento); }
 
- 	//es codigo html y no estamos usando IExplorer
+	//es codigo html y no estamos usando IExplorer
 
- 	//obtener el tipo de parametro a crear (finaliza con el caracter espacio o con "/")
- 	var posSeparador=datosElemento.indexOf(" ");
- 	if(posSeparador==-1){
- 		posSeparador=datosElemento.indexOf("/");
- 		if(posSeparador==-1){
- 			posSeparador=datosElemento.indexOf(">");
- 			if(posSeparador==-1){ return null; }
- 		}
- 	}
- 	var tipoElemento=datosElemento.substring(1,posSeparador);
- 	var elemento=document.createElement(tipoElemento);
+	//obtener el tipo de parametro a crear (finaliza con el caracter espacio o con "/")
+	var posSeparador=datosElemento.indexOf(" ");
+	if(posSeparador==-1){
+		posSeparador=datosElemento.indexOf("/");
+		if(posSeparador==-1){
+			posSeparador=datosElemento.indexOf(">");
+			if(posSeparador==-1){ return null; }
+		}
+	}
+	var tipoElemento=datosElemento.substring(1,posSeparador);
+	var elemento=document.createElement(tipoElemento);
 
- 	//trim de la cadena restante
- 	var cadenaAtributos=trim(datosElemento.substring(posSeparador+1));
+	//trim de la cadena restante
+	var cadenaAtributos=trim(datosElemento.substring(posSeparador+1));
 
- 	//recorrer la cadena restante y extraer los atributos nombreAtributo="'valorAtributo'"
- 	//Se detecta el final de un atributo, por las comilla simple.
- 	//para obtener la cadena completa de un atributo hay que buscar las dos comillas
- 	//tener en cuenta que esta no puede estar precedida de una "\" (caracter de escape)
+	//recorrer la cadena restante y extraer los atributos nombreAtributo="'valorAtributo'"
+	//Se detecta el final de un atributo, por las comilla simple.
+	//para obtener la cadena completa de un atributo hay que buscar las dos comillas
+	//tener en cuenta que esta no puede estar precedida de una "\" (caracter de escape)
 
- 	do{
- 		var posComilla1=getPosComillaSimple(0,cadenaAtributos);
- 		var posComilla2=0;
-	 	var posSeparador=0;
+	do{
+		var posComilla1=getPosComillaSimple(0,cadenaAtributos);
+		var posComilla2=0;
+		var posSeparador=0;
 
-	 	if(posComilla1!=-1){
-	 		posComilla2=getPosComillaSimple(posComilla1+1,cadenaAtributos);
-	 		if(posComilla2==-1){
-	 			return elemento;
-	 		}
-	 		posComilla2=posComilla2+posComilla1+1;
-	 		posSeparador=posComilla2+1;
- 		}else{
- 			var posSeparador=cadenaAtributos.indexOf(" ");
-	 		if(posSeparador==-1){
-	 			posSeparador=cadenaAtributos.indexOf("/");
-		 		if(posSeparador==-1){
-		 			posSeparador=cadenaAtributos.indexOf(">");
-		 		}
-	 		}
-	 	}
+		if(posComilla1!=-1){
+			posComilla2=getPosComillaSimple(posComilla1+1,cadenaAtributos);
+			if(posComilla2==-1){
+				return elemento;
+			}
+			posComilla2=posComilla2+posComilla1+1;
+			posSeparador=posComilla2+1;
+		}else{
+			var posSeparador=cadenaAtributos.indexOf(" ");
+			if(posSeparador==-1){
+				posSeparador=cadenaAtributos.indexOf("/");
+				if(posSeparador==-1){
+					posSeparador=cadenaAtributos.indexOf(">");
+				}
+			}
+		}
 
-	 	if(posSeparador!=-1){
-		 	var cadenaAtrib=trim(cadenaAtributos.substring(0,posSeparador));
-		 	cadenaAtributos=trim(cadenaAtributos.substring(posSeparador));
+		if(posSeparador!=-1){
+			var cadenaAtrib=trim(cadenaAtributos.substring(0,posSeparador));
+			cadenaAtributos=trim(cadenaAtributos.substring(posSeparador));
 
-		 	//valor de atributo solo puede estar separado por "="
-		 	//para evitar el problema con los espacios extras se utiliza trim
-		 	var posIgual=cadenaAtrib.indexOf("=");
-		 	if(posIgual==-1){ return elemento; }
+			//valor de atributo solo puede estar separado por "="
+			//para evitar el problema con los espacios extras se utiliza trim
+			var posIgual=cadenaAtrib.indexOf("=");
+			if(posIgual==-1){ return elemento; }
 
-		 	var nombreAtributo=trim(cadenaAtrib.substring(0,posIgual));
-		 	var valorAtributo="";
-		 	if(posComilla1==-1){
-		 		valorAtributo=trim(cadenaAtrib.substring(posIgual+1));
-		 		valorAtributo=valorAtributo.replace(/'/g,"");
-		 	}else{
-		 		valorAtributo=trim(cadenaAtrib.substring(posComilla1+1,posComilla2));
-		 	}
-		 	//alert(nombreAtributo+'='+valorAtributo);
-		 	elemento.setAttribute(nombreAtributo,valorAtributo);
+			var nombreAtributo=trim(cadenaAtrib.substring(0,posIgual));
+			var valorAtributo="";
+			if(posComilla1==-1){
+				valorAtributo=trim(cadenaAtrib.substring(posIgual+1));
+				valorAtributo=valorAtributo.replace(/'/g,"");
+			}else{
+				valorAtributo=trim(cadenaAtrib.substring(posComilla1+1,posComilla2));
+			}
+			//alert(nombreAtributo+'='+valorAtributo);
+			elemento.setAttribute(nombreAtributo,valorAtributo);
 		 }
- 	}while(posSeparador!=-1);
+	}while(posSeparador!=-1);
 
- 	return elemento;
+	return elemento;
 }
 
 function trim(cadena)
@@ -835,11 +835,11 @@ function trim(cadena)
 }
 
 function addOptionInSelect(select,option){
- 	try{
- 		select.add(option);
- 	}catch(e){
- 		select.add(option,null);
- 	}
+	try{
+		select.add(option);
+	}catch(e){
+		select.add(option,null);
+	}
 }
 
   /**
@@ -847,19 +847,19 @@ function addOptionInSelect(select,option){
   * Es valida si no va precedida del caracter de escape "\"
   */
 function getPosComillaSimple(inicio,cadena){
- 	var cadenaAux=cadena.substring(inicio);
- 	var posComilla=0;
- 	do{
- 		posComilla=cadenaAux.indexOf("'");
- 		if(posComilla==-1){
- 			return -1;
- 		}
- 		var carAnterior=cadenaAux.charAt(posComilla-1);
- 		if(carAnterior=="\\"){
- 			cadenaAux=cadenaAux.substring(posComilla+1);
- 		}
-	 	}while(carAnterior=="\\");
-	 	return posComilla;
+	var cadenaAux=cadena.substring(inicio);
+	var posComilla=0;
+	do{
+		posComilla=cadenaAux.indexOf("'");
+		if(posComilla==-1){
+			return -1;
+		}
+		var carAnterior=cadenaAux.charAt(posComilla-1);
+		if(carAnterior=="\\"){
+			cadenaAux=cadenaAux.substring(posComilla+1);
+		}
+		}while(carAnterior=="\\");
+		return posComilla;
  }
 
 function doSearchAvanced(){

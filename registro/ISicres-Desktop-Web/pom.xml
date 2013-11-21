@@ -2,7 +2,7 @@
 	<parent>
 		<artifactId>InvesSicres</artifactId>
 		<groupId>es.ieci.tecdoc.isicres</groupId>
-		<version>8.0.1</version>
+		<version>8.0.5-M1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>ISicres-Desktop-Web</artifactId>
@@ -122,7 +122,7 @@
 			<artifactId>standard</artifactId>
 			<version>1.0.6</version>
 		</dependency>
-		
+
 		<dependency>
 			<artifactId>displaytag</artifactId>
 			<groupId>displaytag</groupId>
@@ -164,6 +164,10 @@
 			<resource>
 				<filtering>true</filtering>
 				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>../ISicres-Document-Connector-Alfresco/src/main/resources</directory>
 			</resource>
 		</resources>
 		<filters>

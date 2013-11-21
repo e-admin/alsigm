@@ -87,6 +87,7 @@ var IDS_BTNREFRESCAR    = "Refrescar";
 var IDS_BTNCOMPULSAR    = "Compulsar";
 var IDS_BTNDIST		= "Distribuir";
 var IDS_BTNSENDIR		= "Intercambio Registral";
+var IDS_BTNSENDIR_LABEL	= "Inter. Registral";
 
 var IDS_ETQSIGNIVEL     = "Siguiente nivel";
 var IDS_ETQNIVELANT     = "Nivel previo";
@@ -128,9 +129,9 @@ var IDS_QRY_BY			   = "Buscar por:";
 var IDS_FIRST_COL  		= "Primera col.";
 var IDS_SECOND_COL     	= "Segunda col.";
 
-var IDS_TITULO	      	= "Escritorio Web de invesicres Corporate 8.0.1";
-var IDS_TITULO_VAL		= "Escritorio Web de invesicres 8.0.1 - Validación";
-var IDS_TITULO_CONFIG	= "Escritorio Web de invesicres 8.0.1 - Configuración";
+var IDS_TITULO	      	= "Escritorio Web de invesicres Corporate 8.0.5";
+var IDS_TITULO_VAL		= "Escritorio Web de invesicres 8.0.5 - Validación";
+var IDS_TITULO_CONFIG	= "Escritorio Web de invesicres 8.0.5 - Configuración";
 
 var IDS_OPCUSERS        = "Usuario";
 var IDS_PER_FIS         = "Persona física";
@@ -209,6 +210,7 @@ var IDS_OPC_ENTRADA     = "Entrada";
 var IDS_OPC_SALIDA      = "Salida";
 var IDS_TIT_HIST_DISTR  = "Historial de Distribución";
 var IDS_TIT_HIST_INTERCAMBIO_REG = "Historial de Intercambio Registral";
+var IDS_TIT_DETALLE_INTERCAMBIO_REG = "Información Intercambio Registral";
 var IDS_DTR_ELEMENTOS   = "Elementos";
 var IDS_FRM_CONF_FLDS   = "Conf. registro";
 var IDS_REGISTRO        = "Registro";
@@ -469,6 +471,12 @@ var IDS_WAIT_PLEASE="Espere por favor...";
 
 var IDS_LABEL_COMBO_INTER_REG_NO = "No";
 var IDS_LABEL_COMBO_INTER_REG_SI = "Si";
+
+var IDS_UNID_ADMIN_PADRE = "Unidad Administrativa Padre";
+
+
+var IDS_QRYREITENTARCOMPULSA = "No se ha podido completar el proceso de compulsa del documento. ¿Desea volver a intentarlo?";
+
 // FIN DE CASTELLANO
 
 
@@ -558,6 +566,7 @@ var EU_IDS_BTNREFRESCAR    = "Freskatu";
 var EU_IDS_BTNCOMPULSAR    = "Konpultsatu";
 var EU_IDS_BTNDIST	   = "Banatzeatu";
 var EU_IDS_BTNSENDIR		= "Registrala trukatzen dut";
+var EU_IDS_BTNSENDIR_LABEL	= "Inter. Registrala";
 
 var EU_IDS_ETQSIGNIVEL     = "Hurrengo maila";
 var EU_IDS_ETQNIVELANT     = "Aurreko maila";
@@ -599,9 +608,9 @@ var EU_IDS_QRY_BY     	   = "Bilatu honelakoak:";
 var EU_IDS_FIRST_COL  	   = "Lehenengo zutabea";
 var EU_IDS_SECOND_COL	   = "Bigarren zutabea";
 
-var EU_IDS_TITULO	      	= "invesicres 8.0.1 corporaten Web mahaigaina";
-var EU_IDS_TITULO_VAL		= "invesicresen 8.0.1 Web mahaigaina-Egiaztapena";
-var EU_IDS_TITULO_CONFIG	= "invesicres-en 8.0.1 Web mahaigaina – Konfigurazioa";
+var EU_IDS_TITULO	      	= "invesicres 8.0.5 corporaten Web mahaigaina";
+var EU_IDS_TITULO_VAL		= "invesicresen 8.0.5 Web mahaigaina-Egiaztapena";
+var EU_IDS_TITULO_CONFIG	= "invesicres-en 8.0.5 Web mahaigaina – Konfigurazioa";
 
 
 var EU_IDS_OPCUSERS        = "Erabiltzaileak";
@@ -681,6 +690,7 @@ var EU_IDS_OPC_ENTRADA     = "Sarrera";
 var EU_IDS_OPC_SALIDA      = "Irteera";
 var EU_IDS_TIT_HIST_DISTR  = "Banaketaren historia";
 var EU_IDS_TIT_HIST_INTERCAMBIO_REG = "Registral trukearen historia";
+var EU_IDS_TIT_DETALLE_INTERCAMBIO_REG = "Registral trukearen";
 var EU_IDS_DTR_ELEMENTOS   = "Gaiak";
 var EU_IDS_FRM_CONF_FLDS   = "Konf. erreg.";
 var EU_IDS_REGISTRO        = "Erregistroa";
@@ -947,6 +957,10 @@ var EU_IDS_WAIT_PLEASE="Mesedez zain egon dezan...";
 
 var EU_IDS_LABEL_COMBO_INTER_REG_NO = "Ez";
 var EU_IDS_LABEL_COMBO_INTER_REG_SI = "Bai";
+
+var EU_IDS_UNID_ADMIN_PADRE = "Aita Administrazio Atala";
+
+var EU_IDS_QRYREITENTARCOMPULSA = "Dokumentuaren konpultsatzearen prozesua ez du osatu ahal izan. ¿ saiatu desiratzen du ?";
 // FIN EUSKERA
 
 
@@ -1032,6 +1046,7 @@ var CT_IDS_BTNREFRESCAR    = "Refresca";
 var CT_IDS_BTNCOMPULSAR    = "Compulsa";
 var CT_IDS_BTNDIST	   = "Distribueix";
 var CT_IDS_BTNSENDIR		= "Intercanvi registral";
+var CT_IDS_BTNSENDIR_LABEL	= "Inter. Registral";
 
 var CT_IDS_ETQSIGNIVEL     = "Nivell posterior";
 var CT_IDS_ETQNIVELANT     = "Nivell anterior";
@@ -1073,9 +1088,9 @@ var CT_IDS_QRY_BY			   = "Cerca per:";
 var CT_IDS_FIRST_COL  		= "Primera col.";
 var CT_IDS_SECOND_COL     	= "Segona col.";
 
-var CT_IDS_TITULO	      	= "Escriptori web de l'invesicres Corporate 8.0.1";
-var CT_IDS_TITULO_VAL		= "Escriptori web de l'invesicres 8.0.1 - Validació";
-var CT_IDS_TITULO_CONFIG	= "Escriptori web de l'invesicres 8.0.1 - Configuració";
+var CT_IDS_TITULO	      	= "Escriptori web de l'invesicres Corporate 8.0.5";
+var CT_IDS_TITULO_VAL		= "Escriptori web de l'invesicres 8.0.5 - Validació";
+var CT_IDS_TITULO_CONFIG	= "Escriptori web de l'invesicres 8.0.5 - Configuració";
 
 var CT_IDS_OPCUSERS        = "Usuari";
 var CT_IDS_PER_FIS         = "Persona física";
@@ -1140,6 +1155,7 @@ var CT_IDS_OPC_ENTRADA     = "Entrada";
 var CT_IDS_OPC_SALIDA      = "Sortida";
 var CT_IDS_TIT_HIST_DISTR  = "Historial de distribució";
 var CT_IDS_TIT_HIST_INTERCAMBIO_REG = "Historial d'intercanvi registral";
+var CT_IDS_TIT_DETALLE_INTERCAMBIO_REG = "Informació d'intercanvi registral";
 var CT_IDS_DTR_ELEMENTOS   = "Elements";
 var CT_IDS_FRM_CONF_FLDS   = "Conf. Registre";
 var CT_IDS_REGISTRO        = "Registre";
@@ -1402,6 +1418,10 @@ var CT_IDS_WAIT_PLEASE="Esperi per favor...";
 
 var CT_IDS_LABEL_COMBO_INTER_REG_NO = "No";
 var CT_IDS_LABEL_COMBO_INTER_REG_SI = "Si";
+
+var CT_IDS_UNID_ADMIN_PADRE = "Unitat administrativa pare";
+
+var CT_IDS_QRYREITENTARCOMPULSA = "No s'ha pogut completar el procés de compulsa del document. Desitja tornar a intentar-ho?"
 // FIN DE CATALAN
 
 
@@ -1485,6 +1505,7 @@ var GL_IDS_BTNREFRESCAR    = "Refrescar";
 var GL_IDS_BTNCOMPULSAR    = "Compulsar";
 var GL_IDS_BTNDIST	   = "Distribuír";
 var GL_IDS_BTNSENDIR		= "Intercambio rexistral";
+var GL_IDS_BTNSENDIR_LABEL	= "Inter. Rexistral";
 
 var GL_IDS_ETQSIGNIVEL     = "Seguinte nivel";
 var GL_IDS_ETQNIVELANT     = "Nivel previo";
@@ -1526,9 +1547,9 @@ var GL_IDS_QRY_BY			   = "Buscar por:";
 var GL_IDS_FIRST_COL  		= "Primeira col.";
 var GL_IDS_SECOND_COL     	= "Segunda col.";
 
-var GL_IDS_TITULO	      	= "Escritorio Web de invesicres Corporate 8.0.1";
-var GL_IDS_TITULO_VAL		= "Escritorio Web de invesicres 8.0.1 - Validación";
-var GL_IDS_TITULO_CONFIG	= "Escritorio Web de invesicres 8.0.1 - Configuración";
+var GL_IDS_TITULO	      	= "Escritorio Web de invesicres Corporate 8.0.5";
+var GL_IDS_TITULO_VAL		= "Escritorio Web de invesicres 8.0.5 - Validación";
+var GL_IDS_TITULO_CONFIG	= "Escritorio Web de invesicres 8.0.5 - Configuración";
 
 var GL_IDS_OPCUSERS        = "Usuario";
 var GL_IDS_PER_FIS         = "Persoa física";
@@ -1609,6 +1630,7 @@ var GL_IDS_OPC_ENTRADA     = "Entrada";
 var GL_IDS_OPC_SALIDA      = "Saída";
 var GL_IDS_TIT_HIST_DISTR  = "Historial de Distribución";
 var GL_IDS_TIT_HIST_INTERCAMBIO_REG = "Historial de intercambio rexistral";
+var GL_IDS_TIT_DETALLE_INTERCAMBIO_REG = "Información do intercambio rexistral";
 var GL_IDS_DTR_ELEMENTOS   = "Elementos";
 var GL_IDS_FRM_CONF_FLDS   = "Conf. rexistro";
 var GL_IDS_REGISTRO        = "Rexistro";
@@ -1871,6 +1893,10 @@ var GL_IDS_WAIT_PLEASE="Espere por favor...";
 
 var GL_IDS_LABEL_COMBO_INTER_REG_NO = "Non";
 var GL_IDS_LABEL_COMBO_INTER_REG_SI = "Si";
+
+var GL_IDS_UNID_ADMIN_PADRE = "Unidade administrativa pai";
+
+var GL_IDS_QRYREITENTARCOMPULSA = "Non se puido completar o proceso de compulsa do documento. Desexa volver tentalo?";
 // FIN DE GALLEGO
 
 // FIN DE SU IDIOMA

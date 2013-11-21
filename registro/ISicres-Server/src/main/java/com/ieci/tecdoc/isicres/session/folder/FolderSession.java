@@ -785,24 +785,24 @@ public class FolderSession extends FolderSessionUtil implements ServerKeys,
 			ValidationException {
 
 		return actualizarRegistro(sessionID, bookID, fdrid, axsfNew, inter,
-				documents, updateDate, launchDistOutRegister, locale, entidad);
+				documents, updateDate, launchDistOutRegister, locale, entidad, null);
 	}
 
 	public static FolderDataSession updateFolderEx(String sessionID,
 			Integer bookID, int fdrid, AxSf axsfNew, List inter, Map documents,
 			boolean updateDate, Integer launchDistOutRegister, Locale locale,
-			String entidad) throws BookException, SessionException,
+			String entidad, Integer idDistFather) throws BookException, SessionException,
 			ValidationException {
 
 		return actualizarRegistro(sessionID, bookID, fdrid, axsfNew, inter,
-				documents, updateDate, launchDistOutRegister, locale, entidad);
+				documents, updateDate, launchDistOutRegister, locale, entidad, idDistFather);
 	}
 
 
 	private static FolderDataSession actualizarRegistro(String sessionID,
 			Integer bookID, int fdrid, AxSf axsfNew, List inter, Map documents,
 			boolean updateDate, Integer launchDistOutRegister, Locale locale,
-			String entidad) throws ValidationException, BookException,
+			String entidad, Integer idDistFather) throws ValidationException, BookException,
 			SessionException {
 		Validator.validate_String_NotNull_LengthMayorZero(sessionID,
 				ValidationException.ATTRIBUTE_SESSION);
@@ -835,7 +835,7 @@ public class FolderSession extends FolderSessionUtil implements ServerKeys,
 
 		data = updateRegister(sessionID, bookID, fdrid, inter, data
 				.getNewAssociatedBookID(), data.getNewAssociatedRegisterID(),
-				entidad, data);
+				entidad, data, idDistFather);
 
 		// Modificación del registro
 		updateNewOutputRegister(sessionID, updateDate, launchDistOutRegister,
@@ -1228,7 +1228,7 @@ public class FolderSession extends FolderSessionUtil implements ServerKeys,
 					updateFolderEx(sessionID, new Integer(scrRegAsoc
 							.getIdArchsec()), scrRegAsoc.getIdFdrsec(),
 							newOutputRegister, null, null, updateDate,
-							launchDistOutRegister, locale, entidad);
+							launchDistOutRegister, locale, entidad,0);
 				}
 
 				break;
@@ -1242,7 +1242,7 @@ public class FolderSession extends FolderSessionUtil implements ServerKeys,
 					updateFolderEx(sessionID, new Integer(scrRegAsoc
 							.getIdArchsec()), scrRegAsoc.getIdFdrsec(),
 							newOutputRegister, inter, null, updateDate,
-							launchDistOutRegister, locale, entidad);
+							launchDistOutRegister, locale, entidad,0);
 				}
 				break;
 			}

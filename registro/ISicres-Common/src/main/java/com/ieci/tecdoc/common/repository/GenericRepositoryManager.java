@@ -60,9 +60,10 @@ public abstract class GenericRepositoryManager implements IRepositoryManager {
 	protected static String KEY_REGISTER_WORKDATE = "RegisterWorkDate";
 	protected static String KEY_REGISTER_OFIC_ID = "RegisterOficID";
 	protected static String KEY_REGISTER_OFIC_NAME = "RegisterOficName";
+	protected static String KEY_REGISTER_DATE = "RegisterDate";
 
 	public static SimpleDateFormat  LONG_DATE_SDF=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-	
+
 	protected ISicresDocumentConnector connector;
 
 	/**
@@ -296,7 +297,7 @@ public abstract class GenericRepositoryManager implements IRepositoryManager {
 	 */
 	public ISRepositoryRetrieveDocumentVO getDocUID(
 			ISRepositoryRetrieveDocumentVO retrieveVO) throws Exception {
-		
+
 		// va a obtener el docUID a la tabla scr_pageRepository
 		String docUID = DBEntityDAOFactory.getCurrentDBEntityDAO().getDocUID(
 				retrieveVO.getBookID(), retrieveVO.getFdrid(),
@@ -308,7 +309,7 @@ public abstract class GenericRepositoryManager implements IRepositoryManager {
 		//entoces se intenta hacer como una especie de migracion bajo demanda
 		if (StringUtils.isBlank(docUID)) {
 
-			//como el docUID es vacio o nulo pues se hace la peticion a este metodo 
+			//como el docUID es vacio o nulo pues se hace la peticion a este metodo
 			//que lo tendra sobreEscrito el manager correspondiente
 			retrieveVO = getEspecificDocUID(retrieveVO);
 
@@ -352,13 +353,15 @@ public abstract class GenericRepositoryManager implements IRepositoryManager {
 		String regWorkDate = LONG_DATE_SDF.format(axsf.getAttributeValue("fld4"));
 		String regOficId = axsf.getAttributeValueAsString("fld5");
 		String regOficName = axsf.getFld5Name();
-		
+		String regDate = LONG_DATE_SDF.format(axsf.getAttributeValue("fld2"));
+
 		Map axsfValues = new HashMap();
 		axsfValues.put(KEY_REGISTER_NUMBER, regNumber);
 		axsfValues.put(KEY_REGISTER_USER, regUser);
 		axsfValues.put(KEY_REGISTER_WORKDATE, regWorkDate);
 		axsfValues.put(KEY_REGISTER_OFIC_ID, regOficId);
 		axsfValues.put(KEY_REGISTER_OFIC_NAME, regOficName);
+		axsfValues.put(KEY_REGISTER_DATE, regDate);
 
 		return axsfValues;
 	}

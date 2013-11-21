@@ -30,7 +30,7 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * es.ieci.tecdoc.isicres.api.business.dao.OficinaDAO#getOficinaByCodigo
 	 * (java.util.Locale, java.lang.String)
@@ -61,7 +61,7 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * es.ieci.tecdoc.isicres.api.business.dao.OficinaDAO#getOficinaById(java
 	 * .util.Locale, java.lang.String)
@@ -86,6 +86,33 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 					"No se puede recuperar la informacion del tipo de la oficina con id ["
 							+ idOficina + "] ", e);
 		}
+		return result;
+	}
+
+	/**
+	 *
+	 * {@inheritDoc}
+	 * @see es.ieci.tecdoc.isicres.api.business.dao.OficinaDAO#getOficinas(java.util.Locale)
+	 */
+	public List<OficinaVO> getOficinas(Locale locale) {
+
+		List result = new ArrayList();
+
+		List scrOficList;
+		try {
+			scrOficList = findScrOfic(locale);
+
+			for (Iterator iterator = scrOficList.iterator(); iterator.hasNext();) {
+				ScrOfic scrOfic = (ScrOfic) iterator.next();
+				ScrTmzofic scrTmzofic = getScrTmzofic(scrOfic.getId());
+				OficinaVO oficina = oficinaAdapter(scrOfic, scrTmzofic);
+				result.add(oficina);
+			}
+		} catch (HibernateException e) {
+			throw new OficinaException(
+					"Error recuperando las oficinas", e);
+		}
+
 		return result;
 	}
 
@@ -148,12 +175,12 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * es.ieci.tecdoc.isicres.api.business.dao.OficinaDAO#findOficinaByUsuario
 	 * (java.util.Locale, es.ieci.tecdoc.isicres.api.business.vo.UsuarioVO)
 	 */
-	public List findOficinaByUsuario(Locale locale, UsuarioVO usuario) {
+	public List<OficinaVO> getOficinasByUsuario(Locale locale, UsuarioVO usuario) {
 
 		List result = new ArrayList();
 		String idUsuario = usuario.getId();
@@ -180,7 +207,7 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 
 	/**
 	 * Obtiene la informacion de la oficina a partir del codigo de la misma
-	 * 
+	 *
 	 * @param code
 	 * @return ScrOfic
 	 * @throws HibernateException
@@ -205,7 +232,7 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 	/**
 	 * Obtiene la informacion de la zona horaria de la oficina pasada como
 	 * parametro
-	 * 
+	 *
 	 * @param oficId
 	 * @return ScrTmzofic
 	 * @throws HibernateException
@@ -224,7 +251,7 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 
 	/**
 	 * Metodo adapta Vos del sistema legado a {@link ZonaHorariaVO}
-	 * 
+	 *
 	 * @param scrTmzofic
 	 *            informacion de la zona horaria de la oficina
 	 * @return {@link ZonaHorariaVO}
@@ -239,7 +266,7 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 
 	/**
 	 * Metodo adapta Vos del sistema legado a {@link OficinaVO}
-	 * 
+	 *
 	 * @param scrOfic
 	 *            informacion de la oficina
 	 * @param zonaHoraria
@@ -264,8 +291,8 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 	}
 
 	/**
-	 * Metodo que devuelve todas las oficinas vinculadas al usuari
-	 * 
+	 * Metodo que devuelve todas las oficinas vinculadas al usuario
+	 *
 	 * @param idUsuario
 	 * @return lista de objetos de tipo {@link ScrOfic}
 	 * @throws HibernateException
@@ -287,9 +314,29 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 	}
 
 	/**
+	 * Metodo que devuelve todas las oficinas vinculadas al usuario
+	 *
+	 * @param idUsuario
+	 * @return lista de objetos de tipo {@link ScrOfic}
+	 * @throws HibernateException
+	 */
+	protected List findScrOfic(Locale locale)
+			throws HibernateException {
+
+		List result = null;
+		// query para sacar los oficinas del usuario
+		StringBuffer queryUsrOfic = new StringBuffer();
+		String sqlUsrOfic = "id in (select idofic from scr_usrofic) ";
+		queryUsrOfic.append(sqlUsrOfic);
+		result = executeCriteriaReturnScrOficList(locale, queryUsrOfic);
+
+		return result;
+	}
+
+	/**
 	 * Metodo que ejecuta la consulta y comprueba que la consulta solamente nos
 	 * devuelve un objeto tipo ScrOfic
-	 * 
+	 *
 	 * @param locale
 	 * @param query
 	 * @return
@@ -318,7 +365,7 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 	 * Metodo que genera una consulta mediante Criteria de Hibernate y lo
 	 * ejecuta, obteniendo la consulta que se pasa como parametro a la tabla que
 	 * corresponde segun el idioma
-	 * 
+	 *
 	 * @param locale
 	 * @param query
 	 * @return
@@ -340,7 +387,7 @@ public class OficinaLegacyDAOImpl extends IsicresBaseHibernateDAOImpl implements
 
 	/**
 	 * Metodo que obtiene la tabla con la que se trabaja pasando el idioma
-	 * 
+	 *
 	 * @param language
 	 * @return
 	 */

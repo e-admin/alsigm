@@ -4,7 +4,9 @@ import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.dom4j.Element;
 
@@ -12,6 +14,7 @@ import com.ieci.tecdoc.common.isicres.AxSf;
 import com.ieci.tecdoc.idoc.decoder.validation.idocarchdet.FFldDef;
 import com.ieci.tecdoc.idoc.decoder.validation.idocarchdet.FieldFormat;
 import com.ieci.tecdoc.isicres.desktopweb.Keys;
+import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
 
 /**
  * @author LMVICENTE
@@ -226,6 +229,34 @@ public class XMLUtils implements Keys {
 		}
 
 		return dateType;
+	}
+
+
+    /**
+     * Método que obtiene el formato de fecha para la bandeja de distribución
+     *
+     * @param locale - Idioma utilizado
+     */
+	public static SimpleDateFormat getDateFormatView(Locale locale) {
+		SimpleDateFormat result;
+
+		String dateFormatByDefault = RBUtil.getInstance(locale).getProperty(
+				I18N_DATE_SHORTFORMAT);
+
+		// verificamos si esta definido el patron
+		String dateFormatString = RBUtil.getInstance(locale).getProperty(
+				DATE_FORMAT_VIEW_DISTRIBUTION, dateFormatByDefault);
+
+		//comprobamos si el formato no esta vacio
+		if (StringUtils.isNotBlank(dateFormatString)) {
+			//hay formato definido por tanto se asigna
+			result = new SimpleDateFormat(dateFormatString);
+		} else {
+			//no existe formato definido por tanto se asocia el de por defecto
+			result = new SimpleDateFormat(dateFormatByDefault);
+		}
+
+		return result;
 	}
 
     /*******************************************************************************************************************

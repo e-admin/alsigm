@@ -21,13 +21,13 @@ public class SicresUserLocalizacionDatos extends SicresUserLocalizacionImpl {
 	private static Logger logger = Logger.getLogger(SicresUserLocalizacionDatos.class);
 
 	public SicresUserLocalizacionDatos(){
-		
+
 	}
 
 	public SicresUserLocalizacionDatos(SicresUserLocalizacionImpl bean) throws Exception {
 		BeanUtils.copyProperties(this, bean);
 	}
-	
+
 	public Integer loadAllValues(DbOutputStatement statement, Integer idx)
 			throws Exception {
 
@@ -57,7 +57,7 @@ public class SicresUserLocalizacionDatos extends SicresUserLocalizacionImpl {
 		statement.setLongText(index++, getCountry());
 		statement.setLongText(index++, getTelephone());
 		statement.setLongText(index++, getFax());
-		statement.setLongText(index++, getEmail());		
+		statement.setLongText(index++, getEmail());
 		return new Integer(index);
 	}
 
@@ -104,13 +104,15 @@ public class SicresUserLocalizacionDatos extends SicresUserLocalizacionImpl {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Datos de scr_userloc obtenidos.");
 			}
+		} catch (ISicresRPAdminDAOException iRPADAOException){
+			if (logger.isDebugEnabled()){
+				logger.debug("No se ha encontrado fila en scr_userloc", iRPADAOException);
+			}
+			throw iRPADAOException;
 		} catch (Exception e) {
-			if(e instanceof ISicresRPAdminDAOException)
-				logger.warn("No se ha encontrado fila en scr_userloc");
-			else
-				logger.error("Error obteniendo datos de scr_userloc");			
+			logger.error("Error obteniendo datos de scr_userloc");
 			throw new ISicresRPAdminDAOException(ISicresRPAdminDAOException.EXC_GENERIC_EXCEPCION, e);
-		} 
+		}
 	}
 
 	public void add(DbConnection db) throws ISicresRPAdminDAOException {
@@ -157,7 +159,7 @@ public class SicresUserLocalizacionDatos extends SicresUserLocalizacionImpl {
 				logger.debug("Eliminado scr_userloc.");
 			}
 		} catch (Exception e) {
-			logger.error("Error eliminando scr_userloc");			
+			logger.error("Error eliminando scr_userloc");
 			throw new ISicresRPAdminDAOException(ISicresRPAdminDAOException.SCR_USRLOC_DELETE);
 		}
 	}
@@ -171,7 +173,7 @@ public class SicresUserLocalizacionDatos extends SicresUserLocalizacionImpl {
 		try {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Actualizando scr_userloc.");
-			}	
+			}
 
 			tableInfo.setTableObject(table);
 			tableInfo.setClassName(table.getClass().getName());
@@ -187,7 +189,7 @@ public class SicresUserLocalizacionDatos extends SicresUserLocalizacionImpl {
 					tableInfo, rowsInfo);
 			if (logger.isDebugEnabled()) {
 				logger.debug("Actualizado scr_userloc.");
-			}	
+			}
 		} catch (Exception e) {
 			logger.error("Error actualizando scr_userloc", e);
 			throw new ISicresRPAdminDAOException(ISicresRPAdminDAOException.SCR_USRLOC_UPDATE);

@@ -46,7 +46,9 @@ public class ISicresGenPerms {
     public static final int ISUSER_PERM_CAN_MODIFY_REPORTS = 65536;
     public static final int ISUSER_PERM_CAN_MODIFY_USERS= 131072;
 
+    public static final int ISUSER_PERM_CAN_DELETE_DOCUMENTS = 262144;
 
+    //reservado para futuras versiones --> public static final int ISUSER_PERM_CAN_COPIA_AUTENTICA = 524288;
 
     private boolean canCreatePersons = false;
 
@@ -80,6 +82,7 @@ public class ISicresGenPerms {
 	private boolean canModifyReports = false;
 	private boolean canModifyUsers = false;
 
+	private boolean canDeleteDocuments = false;
 
     public ISicresGenPerms() {
     }
@@ -266,7 +269,14 @@ public class ISicresGenPerms {
 		this.canShowDocuments = canShowDocuments;
 	}
 
-	
+    public boolean isCanDeleteDocuments() {
+		return canDeleteDocuments;
+	}
+
+	public void setCanDeleteDocuments(boolean canDeleteDocuments) {
+		this.canDeleteDocuments = canDeleteDocuments;
+	}
+
 
 	public boolean isCanModifyIssueTypes() {
 		return canModifyIssueTypes;

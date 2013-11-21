@@ -20,14 +20,14 @@ function llamadaActionComprobarCambios(action,comprobarCambios,msgCambios) {
 		}
 	}
 	else llamadaAction(action);
-	
+
 }
 
 
 function addControlCambios(){
 	if(!cambiosSinGuardar()){
 		var formulario = document.forms[0];
-		                            	                                  
+
 		if(formulario){
 			  var campos = formulario.getElementsByTagName("input");
 			  if(campos){
@@ -50,7 +50,7 @@ function addControlCambios(){
 					  }
 				  }
 			  }
-			  
+
 			  var selects = formulario.getElementsByTagName("select");
 			  if(selects){
 				  for(var k=0; k<selects.length; k++) {
@@ -68,6 +68,6 @@ function addEvento(elemento, evento, funcion) {
 	if (elemento.addEventListener) {
 		elemento.addEventListener(evento, funcion, false);
     } else {
-    	elemento.attachEvent("on"+evento, funcion);
+	elemento.attachEvent("on"+evento, funcion);
     }
 }

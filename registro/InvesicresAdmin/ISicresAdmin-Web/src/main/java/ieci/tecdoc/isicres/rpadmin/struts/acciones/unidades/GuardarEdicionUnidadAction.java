@@ -3,6 +3,7 @@ package ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades;
 
 import ieci.tecdoc.isicres.rpadmin.struts.acciones.RPAdminWebAction;
 import ieci.tecdoc.isicres.rpadmin.struts.forms.UnidadForm;
+import ieci.tecdoc.isicres.rpadmin.struts.util.Utils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -82,6 +83,9 @@ public class GuardarEdicionUnidadAction extends RPAdminWebAction {
 					Entidad entidad = new Entidad();
 					entidad.setIdentificador(MultiEntityContextHolder.getEntity());
 
+					//validamos los datos del IR
+					Utils.validateDatosIR(unidad);
+
 					oServicio.editarOrganizacion(unidad, entidad);
 
 					request.setAttribute("accion", "LISTADO");
@@ -106,5 +110,4 @@ public class GuardarEdicionUnidadAction extends RPAdminWebAction {
 
 			return af;
 	}
-
 }

@@ -6,14 +6,14 @@ import java.util.Locale;
 import es.ieci.tecdoc.isicres.api.business.vo.OficinaVO;
 import es.ieci.tecdoc.isicres.api.business.vo.UsuarioVO;
 
-/** 
- * @author Iecisa 
- * @version $Revision$ 
+/**
+ * @author Iecisa
+ * @version $Revision$
  *
  */
 
 public abstract class OficinaManager {
-	
+
 	/**
 	 * Obtiene una Oficina segun su codigo
 	 * @param usuario
@@ -21,13 +21,32 @@ public abstract class OficinaManager {
 	 * @return
 	 */
 	public abstract OficinaVO getOficinaByCodigo(UsuarioVO usuario,String codigoOficina);
-	
-	public abstract List findOficinasByUsuario(UsuarioVO usuario);
-	
-	public abstract List findOficinasAdministradasByUsuario(UsuarioVO usuario);
-	
+
+	/**
+	 * Obtiene las oficinas a las que está asociado un usuario
+	 *
+	 * @param usuario
+	 * @return
+	 */
+	public abstract List<OficinaVO> findOficinasByUsuario(UsuarioVO usuario);
+
+	/**
+	 * TODO ¿Oficinas administradas?
+	 * @param usuario
+	 * @return
+	 */
+	public abstract List<OficinaVO> findOficinasAdministradasByUsuario(UsuarioVO usuario);
+
+	/**
+	 * Devuelve todas las oficinas
+	 *
+	 * @return
+	 */
+	public abstract List<OficinaVO> getOficinas(Locale locale);
+
 	/**
 	 * Metodo que obtiene una oficina por su id
+	 *
 	 * @param locale
 	 * @param idOficina
 	 * @return

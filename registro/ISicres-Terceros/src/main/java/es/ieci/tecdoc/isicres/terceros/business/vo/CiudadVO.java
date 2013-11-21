@@ -1,5 +1,7 @@
 package es.ieci.tecdoc.isicres.terceros.business.vo;
 
+import javax.validation.constraints.Size;
+
 import es.ieci.tecdoc.fwktd.core.model.Entity;
 
 /**
@@ -33,6 +35,7 @@ public class CiudadVO extends Entity {
 		this.provincia = provincia;
 	}
 
+	@Size(max=40)
 	protected String nombre;
 
 	protected String codigo;

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="DatosBasicosRelacionUnidOrgOficinaVO">
+
+	<typeAlias alias="datosBasicosRelacionUnidOrgOficina"
+		type="es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosRelacionUnidOrgOficinaVO" />
+
+	<resultMap id="datosBasicosRelacionUnidOrgOficina" class="es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosRelacionUnidOrgOficinaVO">
+		<result property="codigoOficina" column="CODIGO_OFICINA" />
+		<result property="denominacionOficina" column="DENOMINACION_OFICINA" />
+
+		<result property="codigoUnidadOrganica" column="CODIGO_UNIDAD_ORGANICA" />
+		<result property="denominacionUnidadOrganica" column="DENOM_UNIDAD_ORGANICA" />
+	</resultMap>
+
+	<sql id="table">DIR_RELAC_UNID_ORG_OFIC</sql>
+
+	<sql id="from">
+		<include refid="table" />
+	</sql>
+
+	<sql id="columns">
+		CODIGO_OFICINA,
+		DENOMINACION_OFICINA,
+		CODIGO_UNIDAD_ORGANICA,
+		DENOM_UNIDAD_ORGANICA
+	</sql>
+
+	<sql id="columns_insert">
+		CODIGO_OFICINA,
+		DENOMINACION_OFICINA,
+		CODIGO_UNIDAD_ORGANICA,
+		DENOM_UNIDAD_ORGANICA
+	</sql>
+
+	<sql id="insert">
+		#codigoOficina#,
+		#denominacionOficina#,
+		#codigoUnidadOrganica#,
+		#denominacionUnidadOrganica#
+	</sql>
+
+
+	<sql id="update">
+		DENOMINACION_OFICINA=#denominacionOficina#,
+		DENOM_UNIDAD_ORGANICA=#denominacionUnidadOrganica#
+	</sql>
+
+
+	<sql id="findRelacionesUnidOrgOficina_fragment">
+		FROM
+			<include refid="from" />
+		<dynamic prepend="WHERE">
+			<iterate prepend="AND" property="criterios" conjunction="AND">
+				<isEqual property="criterios[].operador.value" compareValue="like">
+					UPPER($criterios[].nombre.table$.$criterios[].nombre.value$) LIKE UPPER('%$criterios[].valor$%')
+				</isEqual>
+				<isNotEqual property="criterios[].operador.value" compareValue="like">
+					<isEqual property="criterios[].operador.value" compareValue="in">
+						UPPER($criterios[].nombre.table$.$criterios[].nombre.value$)
+						<iterate prepend="IN" property="criterios[].valor" open="(" close=")" conjunction=",">
+							UPPER(#criterios[].valor[]#)
+						</iterate>
+					</isEqual>
+					<isNotEqual property="criterios[].operador.value" compareValue="in">
+						UPPER($criterios[].nombre.table$.$criterios[].nombre.value$) $criterios[].operador.value$ UPPER(#criterios[].valor#)
+					</isNotEqual>
+				</isNotEqual>
+			</iterate>
+		</dynamic>
+	</sql>
+
+	<select id="countRelacionesUnidOrgOficina" resultClass="java.lang.Integer">
+		SELECT COUNT(*) <include refid="findRelacionesUnidOrgOficina_fragment" />
+	</select>
+
+	<select id="findRelacionesUnidOrgOficina" resultMap="datosBasicosRelacionUnidOrgOficina">
+		SELECT
+			<include refid="columns" />
+		<include refid="findRelacionesUnidOrgOficina_fragment" />
+		<iterate prepend="ORDER BY" property="orden" conjunction=",">
+			$orden[].table$.$orden[].value$
+		</iterate>
+	</select>
+
+	<insert id="addDatosBasicosRelacionUnidOrgOficinaVO" parameterClass="datosBasicosRelacionUnidOrgOficina">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns_insert" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<delete id="deleteDatosBasicosRelacionUnidOrgOficinaVO" parameterClass="java.util.HashMap">
+		DELETE FROM
+			<include refid="table" />
+		 WHERE CODIGO_OFICINA=#codigoOficina#
+		   AND CODIGO_UNIDAD_ORGANICA=#codigoUnidadOrganica#
+	</delete>
+
+	<update id="updateDatosBasicosRelacionUnidOrgOficinaVO" parameterClass="datosBasicosRelacionUnidOrgOficina">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE CODIGO_OFICINA=#codigoOficina#
+		  and CODIGO_UNIDAD_ORGANICA=#codigoUnidadOrganica#
+	</update>
+
+</sqlMap>

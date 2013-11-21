@@ -42,16 +42,16 @@ function OpenPageData(aEvent)
 		top.g_PrevPage = top.g_Page;
 	    top.g_Page = parseInt(parentId);
 
-    	// Deshabilitamos las toolbar
+	// Deshabilitamos las toolbar
         if (!top.g_FolderView) {
 		top.g_OpcAval=false;
                 top.Main.Folder.ToolBarFrm.deshabilitar();
-    	}
-    	else  {
-        		top.Main.Folder.ToolBarFrm.ToolBarDisabled();
-    	}
+	}
+	else  {
+			top.Main.Folder.ToolBarFrm.ToolBarDisabled();
+	}
 
-    	var URL = top.g_URL + "/frmdata.jsp?SessionPId=" + top.g_SessionPId
+	var URL = top.g_URL + "/frmdata.jsp?SessionPId=" + top.g_SessionPId
 		+ "&Row=" + Row
 		+ "&Page=" + parentId
 		+ "&FdrQryPId=" + top.g_FdrQryPId.toString()
@@ -63,10 +63,10 @@ function OpenPageData(aEvent)
 
 		top.XMLHTTPRequestGet(URL, top.ResponseFrmData, true);
 
-    	top.g_ActivateTree = false;
-    	//top.g_PrevPage = -1;
+	top.g_ActivateTree = false;
+	//top.g_PrevPage = -1;
 
-    	if (top.g_FolderView)  {
+	if (top.g_FolderView)  {
 			ReActivateMenuBar();
 		}
     }
@@ -88,29 +88,29 @@ function OpenPage(aEvent, Id, FileName)
 
 	top.g_PrevPage = top.g_Page;
 
-    	if (top.g_ActivateTree) {
+	if (top.g_ActivateTree) {
 		// Deshabilitamos las toolbar
 	        if (!top.g_FolderView) {
 			top.g_OpcAval=false;
 		        top.Main.Folder.ToolBarFrm.deshabilitar();
 	        }
-        	else {
-	        	top.Main.Folder.ToolBarFrm.ToolBarDisabled();
-        	}
+		else {
+			top.Main.Folder.ToolBarFrm.ToolBarDisabled();
+		}
 
-        	SetSelected(element);
+		SetSelected(element);
 
 
-        	window.open(top.g_URL + "/getpage.jsp?SessionPId=" + top.g_SessionPId
-        		+ "&BookId=" + top.g_ArchiveId.toString()
+		window.open(top.g_URL + "/getpage.jsp?SessionPId=" + top.g_SessionPId
+			+ "&BookId=" + top.g_ArchiveId.toString()
 				+ "&RegId=" + top.g_FolderId.toString()
 				+ "&DocId=" + element.parentNode.parentNode.parentNode.id.toString()
 				+ "&PageId=" + Id.toString()
 				+ "&FileName=" + encodeURIComponent(FileName)
-            	+ "&topURL=" + top.g_URL, "FolderPageFile","location=no",true);
+		+ "&topURL=" + top.g_URL, "FolderPageFile","location=no",true);
 
-        	top.g_ActivateTree = false;
-    	}
+		top.g_ActivateTree = false;
+	}
 }
 
 
@@ -134,7 +134,7 @@ function getParams(iFolderPId, iFdrReadOnly, iFolderId, iVldSave)
 		top.g_FdrReadOnly = true;
 	}
 	else {
-	   	top.g_FdrReadOnly = false;
+		top.g_FdrReadOnly = false;
 	}
 
 	top.g_FolderId = iFolderId;
@@ -159,12 +159,14 @@ function AddHistoricIntercambioRegistral()
 {
 	if (top.g_FolderId > 0) {
 		document.getElementById("UL0").innerHTML += '<LI class="CL5" id="liHistInterCambioReg">'
-            + '<IMG src="images/clock_go.png" border="0" style="cursor:pointer;margin-right:2px" onclick="SelElem( 5, this.parentNode.id );OpenPageHistIntercambioRegistral(event);bloqueoDePantallaRegistro();"/>'
-            + '<A class="Item" onmouseover="OverArchive();" onmouseout="OutArchive();" onclick="SelElem( 5, this.parentNode.id );OpenPageHistIntercambioRegistral(event);bloqueoDePantallaRegistro();"'
-            + ' onkeydown="if (top.GetKeyCode(event)==13){SelElem( 5, this.parentNode.id );OpenPageHistIntercambioRegistral(event);bloqueoDePantallaRegistro();}" tabIndex="1">'
+            + '<IMG src="images/clock_go.png" border="0" style="cursor:pointer;margin-right:2px" onclick="SelElem( 5, this.parentNode.id );OpenPageHistIntercambioRegistral(event);"/>'
+            + '<A class="Item" onmouseover="OverArchive();" onmouseout="OutArchive();" onclick="SelElem( 5, this.parentNode.id );OpenPageHistIntercambioRegistral(event);"'
+            + ' onkeydown="if (top.GetKeyCode(event)==13){SelElem( 5, this.parentNode.id );OpenPageHistIntercambioRegistral(event);}" tabIndex="1">'
             + top.GetIdsLan("IDS_TIT_HIST_INTERCAMBIO_REG") + '</A></LI>';
     }
 }
+
+
 
 // Agrega en el arbol la opcion de historico de modificaciones del registro
 function AddHistoricReg()
@@ -221,8 +223,6 @@ function OpenPageDistr(aEvent)
    }
 }
 
-
-//Abre el historico de intercambio registral
 function OpenPageHistIntercambioRegistral(aEvent)
 {
 	//comprobamos si se debe ocultar el frame de visualizacion de documentos
@@ -251,6 +251,11 @@ function OpenPageHistIntercambioRegistral(aEvent)
         top.g_ActivateTree = false;
    }
 }
+
+
+
+
+
 
 // Abre el historico de modificaciones del registro
 function OpenPageModifReg(aEvent)
@@ -294,15 +299,15 @@ function OpenPageOrigDocs(aEvent)
 
 	if (top.g_ActivateTree)
     {
-       	// Deshabilitamos las toolbar
-       	if (!top.g_FolderView)
-       	{
-     		top.g_OpcAval=false;
+	// Deshabilitamos las toolbar
+	if (!top.g_FolderView)
+	{
+		top.g_OpcAval=false;
             top.Main.Folder.ToolBarFrm.deshabilitar();
          }
          else
          {
-         	top.Main.Folder.ToolBarFrm.ToolBarDisabled();
+		top.Main.Folder.ToolBarFrm.ToolBarDisabled();
          }
 
          SetSelected(element);
@@ -367,10 +372,10 @@ function OpenPageDataFromDtr()
 			+ "&Row=" + Row
 			+ "&Page=" + top.g_Page.toString()
 			+ "&FdrQryPId=" + top.g_FdrQryPId.toString()
-            		+ "&FolderPId=" + top.g_FolderPId.toString()
+			+ "&FolderPId=" + top.g_FolderPId.toString()
 			+ "&FolderId=" + top.g_FolderId.toString()
-            		+ "&ArchivePId=" + top.g_ArchivePId.toString()
-            		+ "&ArchiveId=" + top.g_ArchiveId.toString();
+			+ "&ArchivePId=" + top.g_ArchivePId.toString()
+			+ "&ArchiveId=" + top.g_ArchiveId.toString();
 
         top.XMLHTTPRequestGet(URL, top.ResponseFrmData, true);
 
@@ -473,4 +478,3 @@ function mostrarFrameFolderFormData(){
 	//cambiamos el tamaño de los frames
 	top.Main.Folder.FolderData.document.getElementById('FolderFSet').cols = "265px,*,0px,0px";
 }
-

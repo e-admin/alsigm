@@ -62,12 +62,33 @@ public interface AsientoRegistralManager extends
 	public AsientoRegistralVO saveAsientoRegistral(FicheroIntercambioVO ficheroIntercambio);
 	
 	/**
+	 * Guarda el asiento registral junto con los interesados y anexos del fichero de intercambio.
+	 * No genera el id del AsientoRegistralVO utiliza el pasado como parámetro
+	 *
+	 * @param ficheroIntercambio
+	 *            Información del fichero de intercambio.
+	 * @param idAsientoRegistralVO
+	 *            Identicador a usar para guardar el AsientoRegistralVO
+	 * @return Información del asiento registral creado.
+	 */
+	public AsientoRegistralVO saveAsientoRegistral(FicheroIntercambioVO ficheroIntercambio, String idAsientoRegistralVO);
+
+	/**
 	 * Elimina el asiento registral junto con sus interesados y anexos.
 	 *
 	 * @param id
 	 *            Identificador del asiento registral.
 	 */
 	public void deleteAsientoRegistral(String id);
+
+
+	/**
+	 * Regenera el asiento registral, borra el existente en el sistema con el id pasaado  y guarda de nuevo el fichero de intercambio en el sistema con id
+	 * Estado a recibido
+	 * @param ficheroIntercambio
+	 * @return
+	 */
+	public AsientoRegistralVO regenerateAsientoRegistral(FicheroIntercambioVO ficheroIntercambio, String id);
 
 	/**
 	 * Obtiene el código de intercambio de un asiento registral.
@@ -90,7 +111,7 @@ public interface AsientoRegistralManager extends
 	/**
 	 * Obtener la información del asiento registral a partir de su código de
 	 * entidad registral e identificador de intercambio.
-	 * 
+	 *
 	 * @param codigoEntidadRegistral
 	 *            Código de la Entidad Registral.
 	 * @param identificadorIntercambio
@@ -141,7 +162,7 @@ public interface AsientoRegistralManager extends
 
 	/**
 	 * Reenvía un asiento registral recibido.
-	 * 
+	 *
 	 * @param id
 	 *            Identificador del asiento registral.
 	 * @param infoReenvio
@@ -158,7 +179,13 @@ public interface AsientoRegistralManager extends
 	 *            Información sobre el rechazo.
 	 */
 	public void rechazarAsientoRegistral(String id,
-			InfoRechazoVO infoRechazo);	
+			InfoRechazoVO infoRechazo);
+
+	/**
+	 * Reintenta la validacion de los asientos registrales que están en estado
+	 * REINTENTAR_VALIDACION
+	 */
+	public void reintentarValidarAsientosRegistrales();
 
 	/**
 	 * Anula un asiento registral devuelto.
@@ -173,7 +200,7 @@ public interface AsientoRegistralManager extends
 	 * envíos de ficheros de datos de intercambio.
 	 */
 	public void comprobarTimeOutEnvios();
-	
+
 	/**
 	 * Obtiene la descripcion del tipo de anotacion de un asiento registral.
 	 *
@@ -182,4 +209,6 @@ public interface AsientoRegistralManager extends
 	 * @return Decripcion del tipo de anotacion
 	 */
 	public String getDescripcionTipoAnotacion(String id);
+
+
 }

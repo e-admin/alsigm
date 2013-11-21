@@ -2,6 +2,7 @@ package es.ieci.tecdoc.fwktd.dir3.api.dao;
 
 import java.util.List;
 
+import es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosRelacionUnidOrgOficinaVO;
 import es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosUnidadOrganicaVO;
 import es.ieci.tecdoc.fwktd.dir3.core.type.CriterioUnidadOrganicaEnum;
 import es.ieci.tecdoc.fwktd.dir3.core.vo.Criterios;
@@ -37,5 +38,7 @@ public interface DatosBasicosUnidadOrganicaDao extends
 	 */
 	public List<DatosBasicosUnidadOrganicaVO> findUnidadesOrganicas(
 			Criterios<CriterioUnidadOrganicaEnum> criterios);
+
+	public List<DatosBasicosUnidadOrganicaVO> findUnidadesOrganicasByEntidad(DatosBasicosRelacionUnidOrgOficinaVO relacion);
 
 }

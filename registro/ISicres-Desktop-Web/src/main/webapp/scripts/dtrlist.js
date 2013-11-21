@@ -41,13 +41,13 @@ function CheckSel()
 			}
 			else {
 				if (checks[i].getAttribute("State") != top.IDS_DISTR_RECH){
-	   				bHasRech = false;
-	   			}
+					bHasRech = false;
+				}
 
 				if (checks[i].getAttribute("DistType") == "0") {
-	   				ExistS = true;
-	   			}
-   			}
+					ExistS = true;
+				}
+			}
 		}
 	}
 	else {
@@ -96,23 +96,23 @@ function Expand(oElemImg)
 	var oElemTR =  nextSibling (oElemImg.parentNode.parentNode);
 
 	if (document.getElementsByTagName("*")){
-   		if (oElemImg.src.indexOf ("datplus") > 0) {
-   			oElemTR.style.display = "";
+		if (oElemImg.src.indexOf ("datplus") > 0) {
+			oElemTR.style.display = "";
 			oElemImg.src = "./images/datminus.gif";
-   		}else{
+		}else{
 			oElemTR.style.display = "none";
 			oElemImg.src = "./images/datplus.gif";
-   		}
+		}
 	}else{
 	    oElemTR.style.display = "";
 		if (oElemImg.src.indexOf ("datplus") > 0) {
            oElemTR.style.visibility = "visible";
 		   oElemImg.src = "./images/datminus.gif";
 
-   		}else{
+		}else{
 			oElemTR.style.visibility = "collapse";
 			oElemImg.src = "./images/datplus.gif";
-   		}
+		}
 	}
 }
 
@@ -136,24 +136,29 @@ function ExpandAll(oTableParent)
 
 
 // abre una carpeta de la distribucion
-function OpenFolderDtr(strNameArch, iFolderId, iArchiveId)
-{
+function OpenFolderDtr(strNameArch, iFolderId, iArchiveId, viewEditDistAcept) {
    var strArchivePId = top.g_ArchivePId.toString();
 
    if (top.g_ArchiveId != iArchiveId) {
       strArchivePId = 0;
    }
 
-   top.OpenNewWindow(top.g_URL + "/default.jsp?AppId=" + top.g_AppId.toString()
-               + "&SessionPId=" + top.g_SessionPId + "&FolderView=1&ArchiveId=" + iArchiveId.toString()
-               + "&ArchiveName=" + strNameArch
-               + "&ArchivePId=" + strArchivePId
-               + "&FolderId=" + iFolderId.toString()
-               + "&VldSave=1" + "&Idioma=" + top.Idioma.toString()
-               + "&numIdioma=" + top.numIdioma.toString()
-               + "&OpenType=0&OpenFolderDtr=1", "", "10000", "10000", "auto","yes");
+	var URL = top.g_URL + "/default.jsp?AppId=" + top.g_AppId.toString()
+			+ "&SessionPId=" + top.g_SessionPId + "&FolderView=1&ArchiveId="
+			+ iArchiveId.toString() + "&ArchiveName=" + strNameArch
+			+ "&ArchivePId=" + strArchivePId + "&FolderId="
+			+ iFolderId.toString() + "&VldSave=1" + "&Idioma="
+			+ top.Idioma.toString() + "&numIdioma=" + top.numIdioma.toString()
+			+ "&FdrQryPId=" + top.g_FdrQryPId.toString()
+			+ "&OpenType=0&OpenFolderDtr=1";
+
+	if (viewEditDistAcept) {
+		URL += "&OpenEditDistr=1";
 }
 
+	top.OpenNewWindow(URL, "", "10000", "10000", "auto", "yes");
+
+}
 
 function ShowRemarksEx(msg, isAceptar, caseSensitive)
 {
@@ -170,7 +175,3 @@ function ShowRemarksEx(msg, isAceptar, caseSensitive)
 
 	return (resp);
 }
-
-
-
-

@@ -1,4 +1,4 @@
 Localizador : ${localizador}
-Número de Registro : ${num_registro} - A fecha : ${fecha_compulsa}
+NÃºmero de Registro : ${num_registro} - A fecha : ${fecha_compulsa}
 Compulsado por : ${certificado}
 El documento consta de un total de ${total_paginas} folios. Folio ${numero_pagina} de ${total_paginas}

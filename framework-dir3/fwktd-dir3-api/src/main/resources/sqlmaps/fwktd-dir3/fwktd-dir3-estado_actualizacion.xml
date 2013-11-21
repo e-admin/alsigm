@@ -3,6 +3,8 @@
 						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="EstadoActualizacionDcoVO">
 
+	<typeAlias alias="EstadoActualizacionDco"
+		type="es.ieci.tecdoc.fwktd.dir3.api.vo.EstadoActualizacionDcoVO" />
 
 
 	<resultMap id="EstadoActualizacionDco" class="es.ieci.tecdoc.fwktd.dir3.api.vo.EstadoActualizacionDcoVO">
@@ -23,8 +25,22 @@
 		<include refid="table" /> ESTADO
 	</sql>
 
+	<sql id="update">
+		FECHA_ACTUALIZACION=#fechaActualizacion#,
+		ESTADO=#estado#
+	</sql>
 
+	<sql id="columns_insert">
+		ID,
+		FECHA_ACTUALIZACION,
+		ESTADO
+	</sql>
 
+	<sql id="insert">
+		#id:INTEGER#,
+		#fechaActualizacion#,
+		#estado#
+	</sql>
 
 	<select id="getLastSuccessUpdate" resultMap="EstadoActualizacionDco">
 		SELECT
@@ -33,6 +49,22 @@
 		  <include refid="from" />
 		where ESTADO.ESTADO='OK' and ESTADO.ID=(SELECT MAX(EA.ID) from DIR_ESTADO_ACTUALIZACION EA)
 	</select>
+
+	<insert id="addEstadoActualizacionDcoVO" parameterClass="EstadoActualizacionDco">
+		INSERT INTO
+			<include refid="table" />
+		(<include refid="columns_insert" />)
+		VALUES (<include refid="insert" />)
+	</insert>
+
+	<update id="updateEstadoActualizacionDcoVO" parameterClass="EstadoActualizacionDco">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE
+			ID=#id:INTEGER#
+	</update>
 
 
 </sqlMap>

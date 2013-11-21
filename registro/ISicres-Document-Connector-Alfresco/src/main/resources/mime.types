@@ -154,13 +154,13 @@ text/comma-separated-values                     csv
 text/css                                        css
 text/html                                       htm html xhtml
 text/mathml                                     mml
-text/plain                                      asc txt text diff
+text/plain                                      asc txt text diff sql
 text/richtext                                   rtx
 text/rtf                                        rtf
 text/tab-separated-values                       tsv
 text/vnd.wap.wml                                wml
 text/vnd.wap.wmlscript                          wmls
-text/xml                                        xml xsl xades
+text/xml                                        xml xsl xades xsig
 text/x-c++hdr                                   h++ hpp hxx hh
 text/x-c++src                                   c++ cpp cxx cc
 text/x-chdr                                     h

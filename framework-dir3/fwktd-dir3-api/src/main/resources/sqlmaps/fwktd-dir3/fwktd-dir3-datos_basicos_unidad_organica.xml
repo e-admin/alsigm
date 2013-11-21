@@ -50,6 +50,13 @@
 		#nombreUnidadOrganicaSuperior#
 	</sql>
 
+	<sql id="update">
+		NOMBRE_UNIDAD_ORGANICA=#nombre#,
+		CODIGO_UNIDAD_SUP_JERARQUICA=#idUnidadOrganicaSuperior#,
+		DENOM_UNIDAD_SUP_JERARQUICA=#nombreUnidadOrganicaSuperior#,
+		CODIGO_EXTERNO_FUENTE=#idExternoFuente#
+	</sql>
+
 
 	<sql id="findUnidadesOrganicas_fragment">
 		FROM
@@ -90,6 +97,24 @@
 		</iterate>
 	</select>
 
+	<select id="findUnidadesOrganicasByEntidad" resultMap="datosBasicosUnidadOrganica" parameterClass="java.util.HashMap">
+		SELECT
+			 UO.CODIGO_UNIDAD_ORGANICA,
+			 UO.NOMBRE_UNIDAD_ORGANICA,
+			 UO.CODIGO_EXTERNO_FUENTE,
+			 UO.CODIGO_UNIDAD_SUP_JERARQUICA,
+			 UO.DENOM_UNIDAD_SUP_JERARQUICA
+		FROM DIR_UNIDAD_ORGANICA UO, DIR_RELAC_UNID_ORG_OFIC RUOF
+	   WHERE UO.CODIGO_UNIDAD_ORGANICA = RUOF.CODIGO_UNIDAD_ORGANICA
+		 AND UPPER(RUOF.CODIGO_OFICINA) = UPPER(#codeEntity#)
+		<isNotEmpty prepend="and" property="codeUnid">
+			UPPER(UO.CODIGO_UNIDAD_ORGANICA) LIKE UPPER('%'||#codeUnid#||'%')
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="nameUnid">
+			UPPER(UO.NOMBRE_UNIDAD_ORGANICA) LIKE UPPER('%'||#nameUnid#||'%')
+		</isNotEmpty>
+	</select>
+
 	<select id="getDatosBasicosUnidadOrganicaVOs" resultMap="datosBasicosUnidadOrganica">
 		SELECT
 			<include refid="columns" />
@@ -117,7 +142,15 @@
 	<delete id="deleteDatosBasicosUnidadOrganicaVO" parameterClass="java.lang.String">
 		DELETE FROM
 			<include refid="table" />
-		WHERE id=#value:INTEGER#
+		WHERE CODIGO_UNIDAD_ORGANICA=#value#
 	</delete>
+
+	<update id="updateDatosBasicosUnidadOrganicaVO" parameterClass="datosBasicosUnidadOrganica">
+		UPDATE
+			<include refid="table" />
+		SET
+			<include refid="update" />
+		WHERE CODIGO_UNIDAD_ORGANICA=#id#
+	</update>
 
 </sqlMap>

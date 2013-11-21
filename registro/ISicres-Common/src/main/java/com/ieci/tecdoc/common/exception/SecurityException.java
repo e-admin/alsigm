@@ -13,10 +13,10 @@ import java.io.Serializable;
 public class SecurityException extends TecDocException implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final String ERROR_SQL = "securityexception.error_sql";
 	public static final String ERROR_USER_NOTFOUND = "securityexception.error_user_notfound";
 	public static final String ERROR_NAME_INCORRECT = "securityexception.error_name_incorrect";
@@ -33,7 +33,7 @@ public class SecurityException extends TecDocException implements Serializable {
 	public static final String ERROR_CAN_NOT_CONNECT_LDAP = "securityexception.can_not_connect_ldap";
 	public static final String ERROR_CAN_NOT_FIND_USER_ATTRIBUTES_LDAP = "securityexception.can_not_find_user_attributes_ldap";
 	public static final String ERROR_CAN_NOT_OPEN_CLOSE_REG= "securityexception.can_not_open_close_reg";
-	
+	public static final String ERROR_USER_NOT_PERMS_NECESSARY = "securityexception.user_not_perms_necessary";
 
 	/**
 	 * @param key

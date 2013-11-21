@@ -8,8 +8,8 @@
 
 <typeAlias alias="infoRegistroDomicilioInteresadoVO"
 		type="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroDomicilioInteresadoVO" />
-		
-	<resultMap 
+
+	<resultMap
 		class="es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoRegistroDomicilioInteresadoVO"
 		id="infoRegistroDomicilioInteresadoResultMap">
 		<result property="id" column="id" />
@@ -17,6 +17,9 @@
 		<result property="ciudad" column="city" />
 		<result property="codigoPostal" column="zip" />
 		<result property="provincia" column="country" />
-
+		<result property="pais" column="pais" />
+		<result property="nombrePais" column="paisName" />
+		<result property="nombreProvincia" column="countryName" />
+		<result property="nombreCiudad" column="cityName" />
 	</resultMap>
 </sqlMap>

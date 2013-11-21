@@ -30,6 +30,7 @@ import com.ieci.tecdoc.common.isicres.AxSf;
 import com.ieci.tecdoc.common.keys.HibernateKeys;
 import com.ieci.tecdoc.common.keys.IDocKeys;
 import com.ieci.tecdoc.common.utils.ISicresQueries;
+import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
 import com.ieci.tecdoc.isicres.session.folder.FolderFileSession;
 import com.ieci.tecdoc.utils.HibernateUtil;
 import com.ieci.tecdoc.utils.cache.CacheBag;
@@ -58,18 +59,18 @@ import gnu.trove.THashMap;
  *
  */
 public class CompulsaJustificanteHelper {
-	
+
 	private static final Logger logger = Logger
-	.getLogger(CompulsaJustificanteHelper.class);	
+	.getLogger(CompulsaJustificanteHelper.class);
 
 	static CompulsaJustificanteHelper instance;
-	
+
 	public static synchronized CompulsaJustificanteHelper getInstance() {
-		if (instance == null) 
+		if (instance == null)
 			instance = new CompulsaJustificanteHelper();
 		return instance;
 	}
-	
+
 	/**
 	 * Obtiene la imagen que servira de fondo para los datos de información de la compulsa.
 	 * @param imagePath Path a la imagen que se usara para la marca de agua.
@@ -80,7 +81,7 @@ public class CompulsaJustificanteHelper {
 	 */
 	public Image getBackgroundForData(String imagePath) {
 		Image image;
-		
+
 		//Cargar la imagen
 		try {
 			image = Image.getInstance(imagePath);
@@ -97,10 +98,10 @@ public class CompulsaJustificanteHelper {
 			logger.error(msgError, e);
 			throw new ISicresCompulsaJustificanteException(msgError);
 		}
-		
+
 		return image;
 	}
-	
+
 	/**
 	 * Devuelve una representación de una pagina con el hueco para la banda de datos de información de la compulsa.
 	 * @param page Pagina original
@@ -111,7 +112,7 @@ public class CompulsaJustificanteHelper {
 	 */
 	public Image getPageWithRoomForData(PdfImportedPage page, ISicresCompulsaJustificanteDatosEspecificosVO datosEspecificosVO) {
 		Image pageImage;
-		
+
 		//Obtener una representacion imagen de la pagina
 		try {
 			pageImage = Image.getInstance(page);
@@ -120,30 +121,30 @@ public class CompulsaJustificanteHelper {
 			logger.error(msgError, e);
 			throw new ISicresCompulsaJustificanteException(msgError);
 		}
-		
+
 		//Establecer la posicion de la banda de datos con informacion de la compulsa.
 		if (datosEspecificosVO.getBand() == 1) {
 			//Se deja hueco en el margen izquierdo para la informacion de la compulsa
 			pageImage.setAbsolutePosition(datosEspecificosVO.getBandSize(), 0);
 			pageImage.scaleAbsoluteWidth(page.getWidth() - datosEspecificosVO.getBandSize());
-			pageImage.scaleAbsoluteHeight(page.getHeight());		
-			
-		} else {		
+			pageImage.scaleAbsoluteHeight(page.getHeight());
+
+		} else {
 			//Se deja hueco en el margen inferior para la informacion de la compulsa
 			pageImage.setAbsolutePosition(0, 0);
 			pageImage.scaleAbsoluteWidth(page.getWidth());
 			pageImage.scaleAbsoluteHeight(page.getHeight() - datosEspecificosVO.getBandSize());
 		}
-		
+
 		return pageImage;
 	}
-	
+
 	/**
 	 * Añade la imagen que servira de fondo para los datos de información de la compulsa a la pagina actual del documento.
 	 * @param document El documento pdf que se modificara. A este documento se añadira la imagen de fondo.
 	 * @param band Posición de la banda (1 - Margen izquierdo, Otro - Pie de pagina)
 	 * @param bandSize Tamaño de la banda
-	 * @throws DocumentException 
+	 * @throws DocumentException
 	 */
 	public void addBackgroundImageForData(Document document, Image image, ISicresCompulsaJustificanteDatosEspecificosVO datosEspecificosVO)  {
 		//Determinar donde ira la banda de Datos con información de la compulsa
@@ -181,7 +182,7 @@ public class CompulsaJustificanteHelper {
 			}
 		}
 	}
-	
+
 	/**
 	 * Devuelve un objeto con las propiedades especificas de la compulsa, que sirven para colocar la banda de datos de informacion de la compulsa.
 	 * @param locale Localización
@@ -189,37 +190,31 @@ public class CompulsaJustificanteHelper {
 	 */
 	public ISicresCompulsaJustificanteDatosEspecificosVO getCompulsaDatosEspecificos(Locale locale) {
 		ISicresCompulsaJustificanteDatosEspecificosVO compulsaDatosEspecificosVO;
-		
+
 		compulsaDatosEspecificosVO = new ISicresCompulsaJustificanteDatosEspecificosVO();
-		
+
 		//Margen
-		//compulsaDatosEspecificosVO.setMargen(new Float(RBUtil.getInstance(locale)
-		//		.getProperty(CompulsaKeys.I18N_PDF_WATER_MARK_POSITION_X)).floatValue());
-		compulsaDatosEspecificosVO.setMargen(10F);
+		compulsaDatosEspecificosVO.setMargen(new Float(RBUtil.getInstance(locale)
+				.getProperty(CompulsaJustificanteKeys.I18N_PDF_WATER_MARK_POSITION_X)).floatValue());
 		//Tipo de fuente
-		//compulsaDatosEspecificosVO.setFont(RBUtil.getInstance(locale)
-		//		.getProperty(CompulsaKeys.I18N_PDF_WATER_MARK_FONT));
-		compulsaDatosEspecificosVO.setFont("Helvetica");
+		compulsaDatosEspecificosVO.setFont(RBUtil.getInstance(locale)
+				.getProperty(CompulsaJustificanteKeys.I18N_PDF_WATER_MARK_FONT));
 		//Tamaño de la fuente
-		//compulsaDatosEspecificosVO.setFontSize(new Float(RBUtil.getInstance(locale)
-		//		.getProperty(CompulsaKeys.I18N_PDF_WATER_MARK_SIZE)).floatValue());
-		compulsaDatosEspecificosVO.setFontSize(10F);
+		compulsaDatosEspecificosVO.setFontSize(new Float(RBUtil.getInstance(locale)
+				.getProperty(CompulsaJustificanteKeys.I18N_PDF_WATER_MARK_SIZE)).floatValue());
 		//Codificación de la fuente
-		//compulsaDatosEspecificosVO.setEncoding(RBUtil.getInstance(locale)
-		//		.getProperty(CompulsaKeys.I18N_PDF_WATER_MARK_ENCODING));
-		compulsaDatosEspecificosVO.setEncoding("winansi");
+		compulsaDatosEspecificosVO.setEncoding(RBUtil.getInstance(locale)
+				.getProperty(CompulsaJustificanteKeys.I18N_PDF_WATER_MARK_ENCODING));
 		//Tipo de banda (1 - Marge izquierdo, vertical. Otro - Pie de pagina.
-		//compulsaDatosEspecificosVO.setBand(new Integer(RBUtil.getInstance(locale)
-		//		.getProperty(CompulsaKeys.I18N_PDF_WATER_BAND_VH)).intValue());
-		compulsaDatosEspecificosVO.setBand(1);
+		compulsaDatosEspecificosVO.setBand(new Integer(RBUtil.getInstance(locale)
+				.getProperty(CompulsaJustificanteKeys.I18N_PDF_WATER_BAND_VH)).intValue());
 		//Tamaño de la banda.
-		//compulsaDatosEspecificosVO.setBandSize(new Integer(RBUtil.getInstance(locale)
-		//		.getProperty(CompulsaKeys.I18N_PDF_WATER_BAND_SIZE)).intValue());
-		compulsaDatosEspecificosVO.setBandSize(40);
-		
+		compulsaDatosEspecificosVO.setBandSize(new Integer(RBUtil.getInstance(locale)
+				.getProperty(CompulsaJustificanteKeys.I18N_PDF_WATER_BAND_SIZE)).intValue());
+
 		return compulsaDatosEspecificosVO;
 	}
-	
+
 	/**
 	 * Devuelve el texto del fichero usado de plantilla para los datos de información de la compulsa con los datos combinados.
 	 * @param iSicresCompulsaVO Objeto con las propiedades de la compulsa, que se usara para obtener los datos.
@@ -231,7 +226,7 @@ public class CompulsaJustificanteHelper {
 		String dataText;
 		String tag;
 		String value;
-		
+
 		//Leemos el fichero de texto con la plantilla a usar para los datos de información de compulsa
 		try {
 			dataText = readStream(new FileInputStream(iSicresCompulsaVO.getDatosPath()));
@@ -249,12 +244,12 @@ public class CompulsaJustificanteHelper {
 			logger.error(msgError, e);
 			throw new ISicresCompulsaJustificanteException(msgError);
 		}
-		
+
 		//Componer expresion regular para buscar todos los tags ${*}
 		StringBuffer sb = new StringBuffer(dataText.length());
 		Pattern pattern = Pattern.compile("\\$\\{(.*?)\\}");
 		Matcher matcher = pattern.matcher(dataText);
-		
+
 		//Recorrer todos los tags encontrados en el mensaje
 		while (matcher.find()) {
 			//Obtener el tag sin eliminando "${" y "}". Si obtenemos el indice "0", matcher.group(0), obtendriamos el tag completo.
@@ -262,13 +257,13 @@ public class CompulsaJustificanteHelper {
 			value = parseTag(iSicresCompulsaVO, session, tag);
 			matcher.appendReplacement(sb, Matcher.quoteReplacement(value));
 		}
-		
+
 		//Añadir el final del texto.
 		matcher.appendTail(sb);
-		
-		return sb.toString();		
+
+		return sb.toString();
 	}
-	
+
 	/**
 	 * Añade texto a un documento PDF.
 	 * @param pdfContentByte Contendio de texto y graficos del PDF al que se añadira el texto.
@@ -279,11 +274,11 @@ public class CompulsaJustificanteHelper {
 		BaseFont baseFont;
 		String lineStr;
 		float xPoint;
-		
+
 		//Abrir un buffer para la lectura linea por linea de los datos de informacion de la compulsa.
 		BufferedReader reader = new BufferedReader(
 				  new StringReader(dataText));
-		
+
 		try {
 			//Crear la fuente que se usara para escribir los datos
 			baseFont = BaseFont.createFont(datosEspecificosVO.getFont(), datosEspecificosVO.getEncoding(), false);
@@ -313,7 +308,7 @@ public class CompulsaJustificanteHelper {
 			throw new ISicresCompulsaJustificanteException(msgError);
 		}
 	}
-	
+
 	/**
 	 * Retorna el texto de datos de informacion de la compulsa con los numeros de paginas totales y numero de pagina actual combinados.
 	 * @param dataText Texto de datos de informacion de la compulsa
@@ -324,12 +319,12 @@ public class CompulsaJustificanteHelper {
 	public String getParsedPageNumbers(String dataText, int totalPagesNumber, int currentPageNumber) {
 		String tag;
 		String value;
-		
+
 		//Componer expresion regular para buscar todos los tags ${*}
 		StringBuffer sb = new StringBuffer(dataText.length());
 		Pattern pattern = Pattern.compile("\\$\\{(.*?)\\}");
 		Matcher matcher = pattern.matcher(dataText);
-		
+
 		//Recorrer todos los tags encontrados en el mensaje
 		while (matcher.find()) {
 			tag = matcher.group(1);
@@ -342,13 +337,13 @@ public class CompulsaJustificanteHelper {
 			}
 			matcher.appendReplacement(sb, Matcher.quoteReplacement(value));
 		}
-		
+
 		//Añadir el final del texto.
 		matcher.appendTail(sb);
-		
-		return sb.toString();		
-	}	
-	
+
+		return sb.toString();
+	}
+
 	/**
 	 * Transforma una etiqueta al valor correspondiente de los datos del registro.
 	 * @param ctx Contexto del evento con la información del registro.
@@ -358,7 +353,7 @@ public class CompulsaJustificanteHelper {
 	 * @throws Exception
 	 */
 	private String parseTag(ISicresCompulsaJustificanteVO iSicresCompulsaVO, Session session, String tag)  {
-		
+
 		AxSf axsf=null;
 		//Asunto del registro
 		if (tag.equals(CompulsaJustificanteKeys.TAG_ASUNTO)) {
@@ -374,66 +369,78 @@ public class CompulsaJustificanteHelper {
 		//Oficina de registro
 		if (tag.equals(CompulsaJustificanteKeys.TAG_OFICINA_REGISTRO)) {
 			Integer oficinaId = getInteger(getAxsf(session,axsf).getAttributeValue(AxSf.FLD5_FIELD));
-			if (oficinaId.intValue() != 0) return getOficina(session, oficinaId);
+			if (oficinaId.intValue() != 0) return getNameOficina(session, oficinaId);
+		}
+
+		//Codigo oficina de registro
+		if (tag.equals(CompulsaJustificanteKeys.TAG_COD_OFICINA_REGISTRO)) {
+			Integer oficinaId = getInteger(getAxsf(session,axsf).getAttributeValue(AxSf.FLD5_FIELD));
+			if (oficinaId.intValue() != 0) return getCodeOficina(session, oficinaId);
 		}
 
 		//Usuario que ha realizado el registro
 		if (tag.equals(CompulsaJustificanteKeys.TAG_USUARIO)) {
 			return getAxsf(session,axsf).getAttributeValue(AxSf.FLD3_FIELD).toString();
 		}
-		
+
 		//Origen del registro
 		if (tag.equals(CompulsaJustificanteKeys.TAG_ORIGEN)) {
 			Integer organismoId = getInteger(getAxsf(session,axsf).getAttributeValue(AxSf.FLD7_FIELD));
 			if (organismoId.intValue() != 0) return getOrganismo(session, organismoId);
 		}
-		
+
 		//Destino del registro
 		if (tag.equals(CompulsaJustificanteKeys.TAG_DESTINO)) {
 			Integer organismoId = getInteger(getAxsf(session,axsf).getAttributeValue(AxSf.FLD8_FIELD));
 			if (organismoId.intValue() != 0) return getOrganismo(session, organismoId);
 		}
-		
+
 		//Remitente del registro. Solo se obtiene el primer remitente.
 		if (tag.equals(CompulsaJustificanteKeys.TAG_REMITENTE)) {
-			
+
 			//Object remitente = iSicresCompulsaVO.getAxsf().getAttributeValue(AxSf.FLD9_FIELD);
 			//if (remitente != null && remitente.toString().length() != 0)
 			//	return remitente.toString();
 			iSicresCompulsaVO.getRegistro().getInteresadoPrincipal().getNombre();
 		}
-		
+
 		//Certificado con el que se ha firmado
 		if (tag.equals(CompulsaJustificanteKeys.TAG_CERTIFICADO)) {
 			return iSicresCompulsaVO.getCNcertificado();
 		}
-		
+
+		//Certificado con el que se ha firmado
+		if (tag.equals(CompulsaJustificanteKeys.TAG_CERTIFICADO_SOLO_NOMBRE)) {
+			//a partir del cnCertificado obtenemos unicamente el nombre del firmante
+			return getNombreFirmante(iSicresCompulsaVO.getCNcertificado());
+		}
+
 		//Fecha de Compulsa
 		if (tag.equals(CompulsaJustificanteKeys.TAG_FECHA_COMPULSA)) {
 			SimpleDateFormat sdf = new SimpleDateFormat(
 					CompulsaJustificanteKeys.DATE_FORMAT_COMPULSA);
 			return sdf.format(iSicresCompulsaVO.getFechaCompulsa());
 		}
-		
+
 		//Numero de paginas totales. Este tag se devuelve como el propio tag, ya que se combinara en la funcion "getParsedPageNumbers"
 		if (tag.equals(CompulsaJustificanteKeys.TAG_TOTAL_PAGES)) {
 			return "${" + tag + "}";
 		}
-		
+
 		//Numero de paginas actual. Este tag se devuelve como el propio tag, ya que se combinara en la funcion "getParsedPageNumbers"
 		if (tag.equals(CompulsaJustificanteKeys.TAG_CURRENT_PAGE)) {
 			return "${" + tag + "}";
 		}
-		
+
 		//Localizador
 		if (tag.equals(CompulsaJustificanteKeys.TAG_LOCATOR)) {
 			return iSicresCompulsaVO.getLocator();
 		}
-		
+
 		return "";
-	}	
-	
-	
+	}
+
+
 	/**
 	 * Devuelve el literal de un asunto de inveSicres.
 	 * @param session Sesion Hibernate.
@@ -443,51 +450,51 @@ public class CompulsaJustificanteHelper {
 	 */
 	private String getAsunto(Session session, Integer asuntoId) {
 
-		StringBuffer query = new StringBuffer();		
+		StringBuffer query = new StringBuffer();
 		query.append("FROM  ");
 		query.append(HibernateKeys.HIBERNATE_ScrCa);
 		query.append(" scr WHERE scr.id=?");
 		List asuntos;
-		
+
 		try {
 			asuntos = session.find(query.toString(), new Object[] { asuntoId }, new Type[] { Hibernate.INTEGER });
 			if (asuntos != null && !asuntos.isEmpty()) {
 				ScrCa asunto = (ScrCa)asuntos.get(0);
 				return asunto.getMatter();
-			}		
+			}
 		} catch (HibernateException e) {
 			String msgError = "Error al obtener el literal del asunto con Id:" + asuntoId.toString();
 			logger.error(msgError, e);
 			throw new ISicresCompulsaJustificanteException(msgError);
-		}	
-		
+		}
+
 		return "";
 	}
-	
+
 	protected AxSf getAxsf(Session session,AxSf axsf) {
 		AxSf result=null;
 		if (axsf==null){
 			try{
 				ContextoAplicacionVO contextoAplicacion = ContextoAplicacionManagerFactory.getInstance().getContextoAplicacionVO();
 				BaseRegistroVO registroActual = contextoAplicacion.getRegistroActual();
-				
+
 				String entidad=contextoAplicacion.getUsuarioActual().getConfiguracionUsuario().getIdEntidad();
-				
+
 				boolean load=false;
-				
+
 				Locale locale=contextoAplicacion.getUsuarioActual().getConfiguracionUsuario().getLocale();
 				Integer idLibro= Integer.parseInt(registroActual.getIdLibro());
 				Integer idRegistro=Integer.parseInt(registroActual.getIdRegistro());
-				
+
 				String sessionID=contextoAplicacion.getUsuarioActual().getConfiguracionUsuario().getSessionID();
 				// Recuperamos la sesión
 				CacheBag cacheBag = CacheFactory.getCacheInterface().getCacheEntry(sessionID);
 				THashMap bookInformation = (THashMap) cacheBag.get(idLibro);
 				Idocarchdet idoc = (Idocarchdet) bookInformation.get(IDocKeys.IDOCARCHDET_FLD_DEF_ASOBJECT);
-				
+
 				result=FolderFileSession.getAxSf(session, idLibro, idRegistro, idoc, locale.getLanguage(), entidad, load);
 			}catch (Exception ex){
-				
+
 				String msgError="Error en el proceso de compulsa, no se ha podido recuperar Axsf.";
 				logger.error(msgError, ex);
 				throw new ISicresCompulsaJustificanteException(msgError,ex);
@@ -496,10 +503,10 @@ public class CompulsaJustificanteHelper {
 			result=axsf;
 		}
 		return result;
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Devuelve el nombre de la Oficina de Registro
 	 * @param session Sesion de Hibernate
@@ -507,7 +514,7 @@ public class CompulsaJustificanteHelper {
 	 * @return El nombre de la Oficina de Registro
 	 * @throws Exception
 	 */
-	private String getOficina(Session session, Integer oficinaId) {
+	private String getNameOficina(Session session, Integer oficinaId) {
 		ScrOfic oficina;
 		try {
 			oficina = ISicresQueries.getScrOficById(session, oficinaId);
@@ -518,7 +525,29 @@ public class CompulsaJustificanteHelper {
 			logger.error(msgError, e);
 			throw new ISicresCompulsaJustificanteException(msgError);
 		}
-		
+
+		return "";
+	}
+
+	/**
+	 * Devuelve el nombre de la Oficina de Registro
+	 * @param session Sesion de Hibernate
+	 * @param oficinaId Identificador de la oficina
+	 * @return El nombre de la Oficina de Registro
+	 * @throws Exception
+	 */
+	private String getCodeOficina(Session session, Integer oficinaId) {
+		ScrOfic oficina;
+		try {
+			oficina = ISicresQueries.getScrOficById(session, oficinaId);
+			if (oficina != null && oficina.getName() != null && oficina.getName().length() != 0)
+				return oficina.getCode();
+		} catch (HibernateException e) {
+			String msgError = "Error al obtener el código de la oficina con Id:" + oficinaId.toString();
+			logger.error(msgError, e);
+			throw new ISicresCompulsaJustificanteException(msgError);
+		}
+
 		return "";
 	}
 
@@ -527,7 +556,7 @@ public class CompulsaJustificanteHelper {
 	 * @param session Sesion de Hibernate
 	 * @param organismoId  Identificador del organismo.
 	 * @return El nombre del Organismo.
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private String getOrganismo(Session session, Integer organismoId) {
 
@@ -536,32 +565,42 @@ public class CompulsaJustificanteHelper {
 		query.append(HibernateKeys.HIBERNATE_ScrOrg);
 		query.append(" scr WHERE scr.id=?");
 		List organismos;
-		
+
 		try {
 			organismos = session.find(query.toString(), new Object[] { organismoId }, new Type[] { Hibernate.INTEGER });
 			if (organismos != null && !organismos.isEmpty()) {
 				ScrOrg organismo = (ScrOrg)organismos.get(0);
 				return organismo.getName();
-			}				
+			}
 		} catch (HibernateException e) {
 			String msgError = "Error al obtener el literal del organismo con Id:" + organismoId.toString();
 			logger.error(msgError, e);
 			throw new ISicresCompulsaJustificanteException(msgError);
-		}	
-		
-		
+		}
+
+
 		return "";
 	}
-	
+
+	private String getNombreFirmante(String certificado){
+		String result = certificado;
+
+		if (certificado.lastIndexOf(" - ") != -1) {
+			result = certificado.substring(0, certificado.lastIndexOf(" - "));
+		}
+
+		return result;
+	}
+
 	private Integer getInteger(Object value) {
 		try {
 			int aux_value = Integer.parseInt(value.toString());
 			return new Integer(aux_value);
 		} catch (Exception e ) {
 			return new Integer(0);
-		}		
-	}	
-	
+		}
+	}
+
 	private String readStream(InputStream is) {
 	    StringBuilder sb = new StringBuilder(512);
 	    try {
@@ -576,5 +615,5 @@ public class CompulsaJustificanteHelper {
 	    }
 	    return sb.toString();
 	}
-	
+
 }

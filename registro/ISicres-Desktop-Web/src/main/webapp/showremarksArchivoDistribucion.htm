@@ -1,0 +1,78 @@
+<HTML>
+	<HEAD>
+		<title>&nbsp;</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script language="javascript">
+			document.write('<link REL=\"stylesheet\" TYPE=\"text/css\" HREF="' + top.urlSkinCSS + '"/>');
+		</script>
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/global.css">
+		<link REL="stylesheet" TYPE="text/css" HREF="./css/font.css">
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/dtrlist.js"></script>
+		<script type="text/javascript">
+			top.Idioma = top.GetDlgParam(3);
+			document.title = top.GetDlgParam(2);
+		</script>
+		<script type="text/javascript">
+			var Mode = 0;
+			function OnWindowLoad()
+		{
+				if (top.GetDlgParam(4) == 'CS'){
+					document.getElementById("oTxtMotivo").style.textTransform = "uppercase";
+				}
+
+				document.getElementById("oTxtMotivo").value = top.GetDlgParam(0);
+				Mode = top.GetDlgParam(1);
+
+				if (Mode == 1){
+					top.SetInnerText(document.getElementById("lbMotivo"), top.GetIdsLan("IDS_LABEL_MOTIVO") + ":");
+				}
+				else {
+					top.SetInnerText(document.getElementById("lbMotivo"), top.GetIdsLan("IDS_LABEL_REMARKS") + ":");
+				}
+
+				document.getElementById("btnAceptar").value = top.GetIdsLan("IDS_BTNACEPTAR");
+
+				document.getElementById("btnCancel").value = top.GetIdsLan("IDS_BTNCANCEL");
+				document.getElementById("oTxtMotivo").tabindex = "1";
+				document.getElementById("oTxtMotivo").focus();
+
+
+		}
+
+			function OnOK()
+			{
+				var pattern =/%0D%0A/g, resp;
+
+				if (document.getElementById("oTxtMotivo").value.length > 250){
+					alert(top.GetIdsLan("IDS_LENGTH_EXCEDEED"));
+					document.getElementById("oTxtMotivo").focus();
+					return;
+				}
+
+				if (top.GetDlgParam(4) == 'CI'){
+					resp = document.getElementById("oTxtMotivo").value;
+				} else {
+					resp = document.getElementById("oTxtMotivo").value.toUpperCase();
+				}
+
+			    resp = escape(resp);
+			    resp = unescape(resp.replace(pattern, "%20"));
+
+
+
+				top.returnValue = resp;
+				top.close();
+			}
+		</script>
+	</HEAD>
+	<body tabIndex="-1" onload="OnWindowLoad();" onunload="top.EnableEvents(window.opener);">
+		<label id="lbMotivo" class="label" style="position:absolute; top:7; left:7;"></label>
+		<textarea class="textarea" id="oTxtMotivo" name="oTxtMotivo"
+			style="position:absolute;top:30;left:7;width:340;height:125;overflow-y:scroll;word-wrap:break-word;"></textarea>
+		<input class="button" ID="btnAceptar" style="position:absolute;top:160;left:177;width:80;" Name="btnAceptar" type="button" onclick="OnOK();" tabindex="1"></input>
+		<input class="button" ID="btnCancel" style="position:absolute;top:160;left:267;width:80;" Name="btnCancel" type="button" onclick="top.close();" tabindex="1"></input>
+	</body>
+</HTML>

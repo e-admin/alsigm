@@ -1,7 +1,11 @@
 package es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager;
 
 import es.ieci.tecdoc.fwktd.sir.core.vo.AsientoRegistralFormVO;
+import es.ieci.tecdoc.fwktd.sir.core.vo.AsientoRegistralVO;
+import es.ieci.tecdoc.fwktd.sir.core.vo.InteresadoVO;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InfoAsientoRegistralVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.IntercambioRegistralSalidaVO;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.InteresadoExReg;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.UnidadTramitacionIntercambioRegistralVO;
 
 /**
@@ -28,5 +32,23 @@ public interface IntercambioRegistralGeneradorObjetosManager {
 	 */
 	public AsientoRegistralFormVO getAsientoRegistralIntercambioRegistralVO(
 			IntercambioRegistralSalidaVO intercambioSalidaVO, UnidadTramitacionIntercambioRegistralVO unidadTramitacionDestino);
+
+	/**
+	 *
+	 * Devuelve un objeto <code>InteresadoExReg</code> (que contiene información
+	 * del país, provincia y municipio) a partir de un objeto
+	 * <code>InteresadoVO</code>.
+	 *
+	 * @param interesado
+	 * @param interesadoExReg
+	 */
+	public InteresadoExReg getInteresadoExReg(InteresadoVO interesado);
+
+	/**
+	 * Devuelve un objeto <code>InfoAsientoRegistralVO</code> a partir de un objeto <code>AsientoRegistralVO</code>
+	 * @param asientoRegistralVO
+	 * @return
+	 */
+	public InfoAsientoRegistralVO getInfoAsientoRegistralVO(AsientoRegistralVO asientoRegistralVO);
 
 }

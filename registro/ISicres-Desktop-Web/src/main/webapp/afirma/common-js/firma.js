@@ -1,10 +1,10 @@
 /*
- * Este fichero forma parte del Cliente @firma. 
+ * Este fichero forma parte del Cliente @firma.
  * El Cliente @firma es un aplicativo de libre distribucion cuyo codigo fuente puede ser consultado
  * y descargado desde www.ctt.map.es.
  * Copyright 2009,2010,2011 Gobierno de Espana
  * Este fichero se distribuye bajo licencia GPL version 3 segun las
- * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este 
+ * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este
  * fichero individualmente, deben incluirse aqui las condiciones expresadas alli.
  */
 
@@ -27,7 +27,7 @@
  *
  * firmar(), coFirmar(), contraFirmarNodos([cadenaDeIndices]), contraFirmarArbol(), contraFirmarHojas(), contraFirmarFirmantes([cadenaDeFirmantes]):
  *      Inician los respectivos procesos de firma
- *		-> cadenaDeIndices es una cadena de enteros separados por '\n' que indican qu? nodos contraFirmar. Los indices(0, 1, ...) est?n referidos al 
+ *		-> cadenaDeIndices es una cadena de enteros separados por '\n' que indican qu? nodos contraFirmar. Los indices(0, 1, ...) est?n referidos al
  *        resultado de getEstructuraNodos(). Por ejemplo, para firmar los nodos 0 y 4 la cadena ser?a '0\n4'
  *      -> cadenaDeFirmantes es una cadena de nombres de firmantes separados por '\n' que indican qu? firmantes contrafirmar. Los nombres de los
  *        posibles firmantes se obtienen de getEstructuraNodos().
@@ -40,7 +40,7 @@
 
 /**
  * Establece los valores de firma. Ver constantes.js.
- */ 
+ */
 function configuraFirma()
 {
 	var command	= "";
@@ -86,7 +86,7 @@ function contraFirmarNodos(cadenaDeIndices)
 	{
 		command	= "clienteFirma.setSignersToCounterSign('"+cadenaDeIndices+"'); " + command;
 	}
-	
+
 	eval(command);
 }
 
@@ -107,7 +107,7 @@ function contraFirmarFirmantes(cadenaDeFirmantes)
 	{
 		command	= "clienteFirma.setSignersToCounterSign('"+cadenaDeFirmantes+"'); " + command;
 	}
-	
+
 	eval(command);
 }
 
@@ -147,13 +147,13 @@ function isFireFox2()
 {
 	if(window.navigator.appName == 'Netscape') {
 		var userAgent = window.navigator.userAgent;
-		
+
 		//posición de la cadena que coge la parte  de la versión de Firefox
-		posfinal = userAgent.lastIndexOf('/') + 2; 
+		posfinal = userAgent.lastIndexOf('/') + 2;
 		//posicion de la cadena que devuelve si realmente es Firefox
 		posinicial=  userAgent.lastIndexOf('/') - 7;
 		navigator = userAgent.substring(posinicial, posfinal);
-	
+
 		if(navigator== 'Firefox/2') {
 			return true;
 		}
@@ -175,7 +175,7 @@ function dividir(text, delimitator)
 		nDel++;
 		tempPos += delimitator.length;
 	}
-	
+
 	/* Creamos el array en donde almacenaremos las cadenas. */
 	var substrings = new Array(nDel+1);
 

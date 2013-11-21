@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	"http://www.ibatis.com/dtd/sql-map-2.dtd">
-	
+
 <sqlMap namespace="InfoRegistroDomicilioInteresadoVO">
-		
+
 	<select id="getInfoRegistroDomicilioInteresadoVO" resultMap="infoRegistroDomicilioInteresadoResultMap" parameterClass="infoRegistroDireccionVO">
-		select dom.id, dom.address, dom.zip, provexreg.code as country , 
-		citiesexreg.code as city  from scr_dom  dom, scr_prov prov, 
-		scr_provexreg provexreg, scr_cities cities, scr_citiesexreg citiesexreg
-		 where dom.id=#id# and provexreg.id_prov=prov.id and prov.name=dom.country
+		select dom.id, dom.address, dom.zip, provexreg.code as country,
+		citiesexreg.code as city, countryexreg.code as pais, dom.city as cityName, dom.country as countryName, dom.pais as paisName
+		from scr_dom  dom, scr_prov prov,
+		scr_provexreg provexreg, scr_cities cities, scr_citiesexreg citiesexreg, scr_country country, scr_countryexreg countryexreg
+		where dom.id=#id# and provexreg.id_prov=prov.id and prov.name=dom.country
 		and citiesexreg.id_city=cities.id and cities.name=dom.city
+		and countryexreg.id_country=country.id
+		and dom.pais=country.name
 	</select>
-</sqlMap>	
+
+	<select id="getInfoRegistroDomicilioInternacionalInteresadoVO" resultMap="infoRegistroDomicilioInteresadoResultMap" parameterClass="infoRegistroDireccionVO">
+		select dom.id, dom.address, dom.zip,
+		countryexreg.code as pais, dom.city as cityName, dom.country as countryName, dom.pais as paisName,
+		'' as city, '' as country
+		from scr_dom  dom, scr_country country, scr_countryexreg countryexreg
+		where dom.id=#id#
+		and countryexreg.id_country=country.id
+		and dom.pais=country.name
+	</select>
+
+</sqlMap>

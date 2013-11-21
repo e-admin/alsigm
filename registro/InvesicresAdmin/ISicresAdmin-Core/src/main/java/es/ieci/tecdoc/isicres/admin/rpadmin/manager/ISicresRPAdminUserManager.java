@@ -649,11 +649,12 @@ public class ISicresRPAdminUserManager {
 				usuarioConfig.setIdOficPref(IeciTdType.NULL_LONG_INTEGER);
 				usuarioConfig.update(db);
 			}
+			db.endTransaction(true);
 
-			//Elimino el usuario LDAP de iuserldapuserhdr
+			// Una vez que se ha borrado todos los datos del usuario, se procede
+			// a eliminar el usuario LDAP de iuserldapuserhdr
 			oServicio.eliminarUsuarioLdap(id, entidad);
 
-			db.endTransaction(true);
 		} catch (Exception e) {
 			if (db != null && db.inTransaction())
 				try {
@@ -781,6 +782,9 @@ public class ISicresRPAdminUserManager {
 		try {
 			db.open(DBSessionManager.getSession());
 			permisos.load(id, db);
+		} catch (ISicresRPAdminDAOException iRPAEx){
+			logger.warn("No se han encontrado los permisos especiales del usuario");
+			return null;
 		} catch (Exception e) {
 			logger
 					.error("No se ha podido recuperar los permisos especiales del usuario", e);
@@ -803,6 +807,9 @@ public class ISicresRPAdminUserManager {
 		try {
 			db.open(DBSessionManager.getSession());
 			identificacion.load(id, db);
+		} catch (ISicresRPAdminDAOException iRPADAOException){
+			logger.warn("No se ha encontrado la identificacion del usuario");
+			return null;
 		} catch (Exception e) {
 			logger
 					.error("No se ha podido recuperar la identificacion del usuario", e);
@@ -826,6 +833,9 @@ public class ISicresRPAdminUserManager {
 		try {
 			db.open(DBSessionManager.getSession());
 			localizacion.load(id, db);
+		} catch (ISicresRPAdminDAOException iRPADAOException){
+			logger.warn("No se ha encontrado la localizacion del usuario");
+			return null;
 		} catch (Exception e) {
 			logger
 					.error("No se ha podido recuperar la localizacion del usuario", e);

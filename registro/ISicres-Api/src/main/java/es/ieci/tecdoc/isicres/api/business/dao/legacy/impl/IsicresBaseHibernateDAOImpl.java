@@ -19,20 +19,20 @@ public abstract class IsicresBaseHibernateDAOImpl {
 	 */
 	private static final Logger logger = Logger
 			.getLogger(IsicresBaseHibernateDAOImpl.class);
-	
-	
+
+
 	protected ContextoAplicacionManager getContextoAplicacionManager() {
 		return  ContextoAplicacionManagerFactory.getInstance();
 	}
 
-	public  Session getSession() throws HibernateException{
+	protected  Session getSession() throws HibernateException{
 		Session result=null;
 	    String entity=MultiEntityContextHolder.getEntity();
 		result=HibernateUtil.currentSession(entity);
 		return result;
 	  }
-	
-	 public  void closeSession(Session session)
+
+	 protected  void closeSession(Session session)
 	    {
 	        if(session != null)
 	        {
@@ -53,6 +53,6 @@ public abstract class IsicresBaseHibernateDAOImpl {
 	            }
 	        }
 	    }
-	
+
 
 }

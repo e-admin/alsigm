@@ -6,6 +6,7 @@ import es.ieci.tecdoc.fwktd.dir3.core.type.CriterioOficinaEnum;
 import es.ieci.tecdoc.fwktd.dir3.core.type.CriterioUnidadOrganicaEnum;
 import es.ieci.tecdoc.fwktd.dir3.core.vo.Criterios;
 import es.ieci.tecdoc.fwktd.dir3.core.vo.DatosBasicosOficina;
+import es.ieci.tecdoc.fwktd.dir3.core.vo.DatosBasicosRelacionUnidOrgOficina;
 import es.ieci.tecdoc.fwktd.dir3.core.vo.DatosBasicosUnidadOrganica;
 
 /**
@@ -67,6 +68,18 @@ public interface ServicioConsultaDirectorioComun {
 	public List<DatosBasicosUnidadOrganica> findUnidadesOrganicas(
 			Criterios<CriterioUnidadOrganicaEnum> criterios);
 
+
+	/**
+	 * Realiza una búsqueda de unidades orgánicas. Con relación a una entidad.
+	 *
+	 * @param codeEntity
+	 * @param codeUnid
+	 * @param nameUnid
+	 * @return
+	 */
+	public List<DatosBasicosUnidadOrganica> findUnidadesOrganicasByEntidad(
+			String codeEntity, String codeUnid, String nameUnid);
+
 	/**
 	 * Obtiene los datos básicos de una unidad orgánica.
 	 *
@@ -75,5 +88,8 @@ public interface ServicioConsultaDirectorioComun {
 	 * @return Datos básicos de la unidad orgánica.
 	 */
 	public DatosBasicosUnidadOrganica getDatosBasicosUnidadOrganica(String id);
-	
+
+
+	public DatosBasicosRelacionUnidOrgOficina getDatosBasicosRelacionUnidOrgOficinaByCodes(String codOficina, String codUnidOrg);
+
 }

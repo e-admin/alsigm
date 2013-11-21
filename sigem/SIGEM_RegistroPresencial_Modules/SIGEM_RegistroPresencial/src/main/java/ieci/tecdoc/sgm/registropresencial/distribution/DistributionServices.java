@@ -590,7 +590,8 @@ public class DistributionServices implements Keys, ServerKeys {
 
 			DistributionSession.changeDistribution(sessionID, dis, code,
 					typeDist, launchDistOutRegister, canDestWithoutList, user
-							.getLocale(), entidad);
+							.getLocale(), entidad, Login.isAuthenticationLdap(entidad));
+
 			result = distRegFormFolder;
 		} finally {
 			SecuritySession.logout(sessionID, entidad);

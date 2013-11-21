@@ -19,9 +19,7 @@ public class ISicresSpringContextServiceFactory {
 			break;
 
 		case NON_SPRING_INTEGRATION:
-			//result = new ISicresServiceNonSpringImpl();
-			new  ISicresServiceNonSpringImpl();
-
+			ISicresServiceNonSpringImpl.getInstance();
 			result = (ApplicationContext) ISicresSpringAppContext.getApplicationContext();
 
 			break;

@@ -779,9 +779,6 @@ div.fixedHeaderTableDistrib thead tr {
 /* Estilos que cargan las imagenes de ordenar en Distribucion */
 
 #tblMain thead tr .report2{
-	background-image: url(../images/bg.gif);
-    background-repeat: no-repeat;
-	background-position: center left;
 	cursor: pointer;
 	padding-left: 20px;
 	margin-left: -1px;

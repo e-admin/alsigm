@@ -1,5 +1,7 @@
 package ieci.tecdoc.isicres.rpadmin.struts.filters;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -11,12 +13,16 @@ import javax.servlet.ServletResponse;
 
 /**
  * Filtro para que la aplicación acepte codificación en formato UTF-8
- * 
+ *
  * @author SLuna
  * @version 1.0
  * @since 2008/11/10
  */
 public class UTF8Filter implements Filter {
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger logger = Logger.getLogger(UTF8Filter.class);
 
 	/**
 	 * Cadena con la codificación
@@ -26,13 +32,16 @@ public class UTF8Filter implements Filter {
 	/**
 	 * Recogemos el tipo de codificación definido en el web.xml Si no se hubiera
 	 * especificado ninguno se toma "UTF-8" por defecto
-	 * 
+	 *
 	 * @param aFilterConfig
 	 *            Filtro de configuración
 	 * @throws ServletException
 	 *             Excepción lanzada por el servlet en caso de error
 	 */
 	public void init(FilterConfig aFilterConfig) throws ServletException {
+		if (logger.isDebugEnabled()) {
+			logger.debug("init(FilterConfig) - start");
+		}
 
 		encoding = aFilterConfig.getInitParameter("requestEncoding");
 
@@ -42,11 +51,14 @@ public class UTF8Filter implements Filter {
 
 		}
 
+		if (logger.isDebugEnabled()) {
+			logger.debug("init(FilterConfig) - end");
+		}
 	}
 
 	/**
 	 * Metemos en la request el formato de codificacion UTF
-	 * 
+	 *
 	 * @param aRequest
 	 *            La petición
 	 * @param aResponse
@@ -60,10 +72,17 @@ public class UTF8Filter implements Filter {
 	 */
 	public void doFilter(ServletRequest aRequest, ServletResponse aResponse,
 			FilterChain aFilterChain) throws IOException, ServletException {
+		if (logger.isDebugEnabled()) {
+			logger.debug("doFilter(ServletRequest, ServletResponse, FilterChain) - start. Encoding: " + aRequest.getCharacterEncoding());
+		}
+
 
 		aRequest.setCharacterEncoding(encoding);
 		aFilterChain.doFilter(aRequest, aResponse);
 
+		if (logger.isDebugEnabled()) {
+			logger.debug("doFilter(ServletRequest, ServletResponse, FilterChain) - end. Encoding: " + aRequest.getCharacterEncoding());
+		}
 	}
 
 	/**

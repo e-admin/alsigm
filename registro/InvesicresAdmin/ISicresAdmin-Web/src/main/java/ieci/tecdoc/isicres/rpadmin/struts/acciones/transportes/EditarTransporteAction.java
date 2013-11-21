@@ -16,6 +16,8 @@ import es.ieci.tecdoc.isicres.admin.beans.Entidad;
 import es.ieci.tecdoc.isicres.admin.beans.Transporte;
 import es.ieci.tecdoc.isicres.admin.estructura.adapter.ISicresServicioRPAdminAdapter;
 import es.ieci.tecdoc.isicres.admin.service.ISicresServicioRPAdmin;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.TipoTransporteIntercambioRegistralManager;
+import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.TipoTransporteIntercambioRegistralVO;
 
 public class EditarTransporteAction extends RPAdminWebAction {
 
@@ -43,6 +45,14 @@ public class EditarTransporteAction extends RPAdminWebAction {
 				entidad.setIdentificador(MultiEntityContextHolder.getEntity());
 
 				Transporte transporte = oServicio.obtenerTransporte(Integer.parseInt(id), entidad);
+
+				TipoTransporteIntercambioRegistralManager manager = es.ieci.tecdoc.isicres.admin.business.spring.AdminIRManagerProvider.getInstance().getTipoTransporteIntercambioRegistralManager();
+
+				TipoTransporteIntercambioRegistralVO tipoTransporte = manager.getTipoTransporteByDesc(transporte.getTransport().toUpperCase());
+				if (tipoTransporte != null){
+					transporteForm.setCodigoIntercambioRegistral(tipoTransporte.getCodigoSIR());
+				}
+
 				BeanUtils.copyProperties(transporteForm, transporte);
 			}
 		}

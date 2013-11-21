@@ -1,0 +1,1 @@
+INSERT INTO sir_configuracion (id, nombre, valor, descripcion) values (NEXTVAL FOR sir_config_seq, 'O00000000.entidad.configurada', 'O00000000', 'Código de las entidades O00000000 configurada para recepción');

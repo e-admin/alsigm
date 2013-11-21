@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>es.ieci.tecdoc.sigem</groupId>
 		<artifactId>sigem_registroPresencial_modules</artifactId>
-		<version>3.0.1-M2</version>
+		<version>3.0.1-M3</version>
 	</parent>
 
 	<artifactId>SIGEM_fwktd-sir-ws</artifactId>
@@ -13,18 +13,18 @@
 	<name>SIGEM_fwktd-sir-ws</name>
 	<description>Modulo web service de SIGEM_fwktd-sir-ws</description>
 
-  <distributionManagement>
-    <repository>
+	<distributionManagement>
+		<repository>
       <id>releases</id>
       <name>Repositorio de releases</name>
       <url>http://devel.uji.es/nexus/content/repositories/releases/</url>
-    </repository>
-    <snapshotRepository>
+		</repository>
+		<snapshotRepository>
       <id>snapshots</id>
       <name>Repositorio de snapshots</name>
       <url>http://devel.uji.es/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
 		<warSourceExcludes>META-INF/context.xml</warSourceExcludes>

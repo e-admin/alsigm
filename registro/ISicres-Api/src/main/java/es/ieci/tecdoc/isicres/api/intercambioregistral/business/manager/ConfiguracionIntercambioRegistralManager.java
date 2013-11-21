@@ -20,6 +20,24 @@ public interface ConfiguracionIntercambioRegistralManager {
 	 */
 	public UnidadAdministrativaIntercambioRegistralVO getUnidadAdministrativaByCodigosComunes(String codeEntidadRegistral, String codeUnidadTramitacion);
 
+
+	/**
+	 * Obtiene la unidad administrativa con la cual esta mapeada la siguiente
+	 * unidad de tramitacion del modulo comun (mapeo inverso)
+	 * @param codigoUnidadTramitacion
+	 * @param codigoEntidadRegistral
+	 * @return
+	 */
+	public UnidadAdministrativaIntercambioRegistralVO getUnidadAdmimistrativaByCodigoEntidadRegistralYUnidadTramitacion(String codigoUnidadTramitacion, String codigoEntidadRegistral);
+
+	/**
+	 * Obtiene la lista de unidades administrativas que están mapeadas con la entidad registral del modulo comun.
+	 *
+	 * @param codigo
+	 * @return
+	 */
+	public List<UnidadAdministrativaIntercambioRegistralVO> getUnidadAdmimistrativaByCodigoEntidadRegistral(
+			String codigo);
 	/**
 	 * Obtiene la entidad registral mapeada en el modulo comun para este <code>idScrOfic</code>
 	 * @param idSrcOfic
@@ -56,4 +74,22 @@ public interface ConfiguracionIntercambioRegistralManager {
 	 * @return Lista de <code>UnidadTramitacionDCO</code> del DCO que concuerden con el code y nombre pasado
 	 */
 	public List<UnidadTramitacionDCO> buscarUnidadesTramitacionDCO(String code, String nombre);
+
+	/**
+	 * Método de búsqueda de Unidades de Tramitación en el DCO filtradas por entidad
+	 *
+	 * @param codeEntity - Código de la entidad
+	 * @param code - Código de la unid.
+	 * @param nombre - Nombre de la unid.
+	 * @return Lista de <code>UnidadTramitacionDCO</code> del DCO que concuerden con el cod. de la entidad además de code y nombre indicado
+	 */
+	public List<UnidadTramitacionDCO> buscarUnidadesTramitacionDCOByEntidad(String codeEntity, String code, String nombre);
+
+	/**
+	 * Método que comprueba la existencia de la relación entre la entidad y la unid. de tramitación
+	 * @param codeEntidadRegistral
+	 * @param codeUnidadTramitacion
+	 * @return boolean TRUE: Existe la relación / False: No existe la relación
+	 */
+	public boolean existRelacionUnidOrgaOficina(String codeEntidadRegistral, String codeUnidadTramitacion);
 }

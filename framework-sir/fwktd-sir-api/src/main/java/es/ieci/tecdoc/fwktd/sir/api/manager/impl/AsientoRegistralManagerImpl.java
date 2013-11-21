@@ -93,7 +93,7 @@ public class AsientoRegistralManagerImpl extends
 	 * Gestor de fechas.
 	 */
 	private FechaManager fechaManager = null;
-	
+
 	/**
 	 * Gestor de configuración.
 	 */
@@ -267,8 +267,8 @@ public class AsientoRegistralManagerImpl extends
 
         if (logger.isDebugEnabled()){
         	logger.debug("Salvando asiento registral [{}]", ToStringLoggerHelper.toStringLogger(asiento));
-        }	
-        
+        }
+
 
 		// Guardar la información del asiento registral
 		asiento = save(asiento);
@@ -329,7 +329,7 @@ public class AsientoRegistralManagerImpl extends
 
 		return get(asiento.getId());
 	}
-	
+
 	private int getOrdenCodigoFichero(String codigoFichero, List<AnexoFormVO> listaAnexoFormVO) {
 
 		for (int orden = 0; orden < listaAnexoFormVO.size(); orden++) {
@@ -344,16 +344,40 @@ public class AsientoRegistralManagerImpl extends
 	
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see es.ieci.tecdoc.fwktd.sir.api.manager.AsientoRegistralManager#saveAsientoRegistral(es.ieci.tecdoc.fwktd.sir.api.vo.FicheroIntercambioVO)
+	 *
+	 * @see es.ieci.tecdoc.fwktd.sir.api.manager.AsientoRegistralManager#regenerateAsientoRegistral(es.ieci.tecdoc.fwktd.sir.api.vo.FicheroIntercambioVO )
+	 */
+	public AsientoRegistralVO regenerateAsientoRegistral(FicheroIntercambioVO ficheroIntercambio, String id) {
+		AsientoRegistralVO result=null;
+		//borramos el anterior pero guardamos con el nuevo con el identificador
+		deleteAsientoRegistral(id);
+		result = saveAsientoRegistral(ficheroIntercambio,id);
+		
+		return result;
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see es.ieci.tecdoc.fwktd.sir.api.manager.AsientoRegistralManager#saveAsientoRegistral(es.ieci.tecdoc.fwktd.sir.api.vo.FicheroIntercambioVO )
 	 */
 	public AsientoRegistralVO saveAsientoRegistral(FicheroIntercambioVO ficheroIntercambio) {
-		
+		return saveAsientoRegistral(ficheroIntercambio,null);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see es.ieci.tecdoc.fwktd.sir.api.manager.AsientoRegistralManager#saveAsientoRegistral(es.ieci.tecdoc.fwktd.sir.api.vo.FicheroIntercambioVO, java.lang.String)
+	 */
+	public AsientoRegistralVO saveAsientoRegistral(FicheroIntercambioVO ficheroIntercambio, String idAsientoRegistralVO) {
+
 		if (logger.isInfoEnabled()) {
 			logger.info("Guardando la información del asiento registral del fichero de intercambio recibido [{}]",
 					ficheroIntercambio.getIdentificadorIntercambio());
 		}
-		
+
 		// Guardar la información del asiento registral
 		AsientoRegistralVO asiento = ficheroIntercambio.getAsientoRegistralVO();
 		asiento.setCodigoEntidadRegistral(ficheroIntercambio.getCodigoEntidadRegistralDestino());
@@ -363,10 +387,11 @@ public class AsientoRegistralManagerImpl extends
         asiento.setEstado(EstadoAsientoRegistralEnum.RECIBIDO);
         asiento.setFechaEstado(getFechaManager().getFechaActual());
         asiento.setFechaRecepcion(asiento.getFechaEstado());
+        asiento.setId(idAsientoRegistralVO);
 
         if (logger.isDebugEnabled()){
         	logger.debug("Salvando asiento registral [{}]", ToStringLoggerHelper.toStringLogger(asiento));
-        }	
+        }
 
 		// Guardar la información del asiento registral
 		asiento = save(asiento);
@@ -375,11 +400,11 @@ public class AsientoRegistralManagerImpl extends
 			logger.info("Guardando la información de los interesados en el fichero de intercambio recibido [{}]",
 					ficheroIntercambio.getIdentificadorIntercambio());
 		}
-		
+
 		// Guardar la información de los interesados
         if (!CollectionUtils.isEmpty(asiento.getInteresados())) {
         	for (InteresadoVO interesado : asiento.getInteresados()) {
-        		
+
 				if (logger.isDebugEnabled()){
 					logger.debug("Salvando interesado [{}]",
 							ToStringLoggerHelper.toStringLogger(interesado));
@@ -387,7 +412,7 @@ public class AsientoRegistralManagerImpl extends
 
             	// Establecer el identificador del asiento registral
         		interesado.setIdAsientoRegistral(asiento.getId());
-        		
+
         		// Guardar la información del interesado
         		getInteresadoManager().save(interesado);
         	}
@@ -395,13 +420,13 @@ public class AsientoRegistralManagerImpl extends
 
 		// Guardar la información de los anexos
 		if (CollectionUtils.isNotEmpty(asiento.getAnexos())) {
-			
+
 			List<AnexoVO> anexosAActualizar = new ArrayList<AnexoVO>();
 			Map<String, String> idsMapping = new HashMap<String, String>();
-			
+
 			int cont = 0;
 			for (AnexoVO anexo : asiento.getAnexos()) {
-				
+
 				if (logger.isDebugEnabled()){
 					logger.debug("Salvando anexo #{}: [{}]", cont,
 							ToStringLoggerHelper.toStringLogger(anexo));
@@ -409,28 +434,28 @@ public class AsientoRegistralManagerImpl extends
 
             	// Establecer el identificador del asiento registral
         		anexo.setIdAsientoRegistral(asiento.getId());
-        		
+
         		// Guardar la información del anexo
         		anexo = getAnexoManager().save(anexo);
-        		
+
         		// Almacenar temporalmente el mapeo identificadorFichero-id
         		if (StringUtils.isNotBlank(anexo.getIdentificadorFichero())) {
         			idsMapping.put(anexo.getIdentificadorFichero(), anexo.getId());
         		}
-        		
+
 				// Si el anexo es una firma, añadirlo a la lista para actualizar
 				// después el identificador del fichero firmado
         		if (StringUtils.isNotBlank(anexo.getIdentificadorDocumentoFirmado())) {
         			anexosAActualizar.add(anexo);
         		}
-        		
+
         		// Guardar el contenido del anexo
 				getAnexoManager().setContenidoAnexo(anexo,
 						ficheroIntercambio.getContenidoAnexo(cont));
-        		
+
         		cont++;
 			}
-			
+
 			// Actualizar el id de fichero firmado
 			if (!CollectionUtils.isEmpty(anexosAActualizar)) {
 				for (AnexoVO anexo : anexosAActualizar) {
@@ -476,8 +501,8 @@ public class AsientoRegistralManagerImpl extends
 
 		return ((AsientoRegistralDao)getDao()).getCodigoIntercambio(id);
 	}
-	
-	
+
+
 	/* (non-Javadoc)
 	 * @see es.ieci.tecdoc.fwktd.sir.api.manager.AsientoRegistralManager#getDescripcionTipoAnotacion(java.lang.String)
 	 */
@@ -505,7 +530,7 @@ public class AsientoRegistralManagerImpl extends
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see es.ieci.tecdoc.fwktd.sir.api.manager.AsientoRegistralManager#getAsientoRegistral(java.lang.String,java.lang.String)
 	 */
 	public AsientoRegistralVO getAsientoRegistral(
@@ -623,8 +648,8 @@ public class AsientoRegistralManagerImpl extends
         AsientoRegistralVO asiento = get(id);
         if (asiento != null) {
 
-            // Comprobar que el estado del asiento registral sea RECIBIDO
-            if (!EstadoAsientoRegistralEnum.RECIBIDO.equals(asiento.getEstado())) {
+            // Comprobar que el estado del asiento registral sea RECIBIDO o DEVUELTO o REENVIADO
+            if (!(EstadoAsientoRegistralEnum.RECIBIDO.equals(asiento.getEstado())|| EstadoAsientoRegistralEnum.DEVUELTO.equals(asiento.getEstado())|| EstadoAsientoRegistralEnum.REENVIADO.equals(asiento.getEstado()))) {
                 logger.error("El asiento registral a validar con identificador [{}] está en estado [{}]",
                         id, asiento.getEstado());
                 throw new SIRException("error.sir.validarAsientoRegistral.estadoNoValido", null,
@@ -642,9 +667,25 @@ public class AsientoRegistralManagerImpl extends
 
             logger.info("Asiento validado, enviando mensaje de control");
 
-            // Enviar mensaje de confirmación
-            enviarMensajeConfirmacion(asiento);
-            logger.info("Mensaje de confirmación enviado");
+
+			try {
+				// Enviar mensaje de confirmación
+				enviarMensajeConfirmacion(asiento);
+				logger.info("Mensaje de confirmación enviado");
+			} catch (SIRException e) {
+				/*
+				 * Si falla el mensaje al CIR entonces se pone el estado a
+				 * REINTENTAR VALIDACION para que más adelante lo actualice un
+				 * job.
+				 */
+				logger.error("Ha fallado el envio del mensaje de confirmacion para validar el asiento registral [{}]", id);
+
+				asiento.setEstado(EstadoAsientoRegistralEnum.REINTENTAR_VALIDACION);
+				logger.info("Debido al fallo anterior, al asiento registral con identificador [{}] se le establecera el estado [{}]",
+                        id, asiento.getEstado());
+				update(asiento);
+			}
+
 
         } else {
             logger.error("No se ha encontrado el asiento registral a validar con identificador [{}]", id);
@@ -679,7 +720,7 @@ public class AsientoRegistralManagerImpl extends
      * @see es.ieci.tecdoc.fwktd.sir.api.manager.AsientoRegistralManager#reenviarAsientoRegistral(java.lang.String, es.ieci.tecdoc.fwktd.sir.core.vo.InfoReenvioVO)
      */
     public void reenviarAsientoRegistral(String id, InfoReenvioVO infoReenvio) {
-    	
+
 		logger.info(
 				"Reenviando el asiento registral con identificador [{}] e información de reenvío: {}",
 				id, infoReenvio);
@@ -691,7 +732,7 @@ public class AsientoRegistralManagerImpl extends
         // Obtener la información del asiento registral
         AsientoRegistralVO asiento = get(id);
         if (asiento != null) {
-        	
+
         	// Actualizar el asiento registral con la información de reenvío
         	if (!StringUtils.equals(asiento.getCodigoEntidadRegistral(), asiento.getCodigoEntidadRegistralOrigen())) {
 	            asiento.setCodigoEntidadRegistralOrigen(asiento.getCodigoEntidadRegistralDestino());
@@ -699,24 +740,24 @@ public class AsientoRegistralManagerImpl extends
         	}
 	        asiento.setCodigoEntidadRegistralDestino(infoReenvio.getCodigoEntidadRegistralDestino());
 	        asiento.setDescripcionEntidadRegistralDestino(infoReenvio.getDescripcionEntidadRegistralDestino());
-	        
+
 	        asiento.setCodigoUnidadTramitacionDestino(infoReenvio.getCodigoUnidadTramitacionDestino());
-	        asiento.setDescripcionUnidadTramitacionDestino(infoReenvio.getDescripcionEntidadRegistralDestino());
-	        
+	        asiento.setDescripcionUnidadTramitacionDestino(infoReenvio.getDescripcionUnidadTramitacionDestino());
+
             asiento.setNombreUsuario(infoReenvio.getUsuario());
             asiento.setContactoUsuario(infoReenvio.getContacto());
             asiento.setAplicacion(infoReenvio.getAplicacion());
             asiento.setDescripcionTipoAnotacion(infoReenvio.getDescripcion());
 
         	reenviarAsientoRegistral(asiento);
-        	
+
         } else {
             logger.error("No se ha encontrado el asiento registral a reenviar con identificador [{}]", id);
             throw new SIRException("error.sir.reenviarAsientoRegistral.asientoNoEncontrado", null,
                     "No se ha encontrado el asiento registral a reenviar");
         }
     }
-    
+
     protected void reenviarAsientoRegistral(AsientoRegistralVO asiento) {
 
     	if (logger.isDebugEnabled()){
@@ -756,6 +797,47 @@ public class AsientoRegistralManagerImpl extends
 	    asiento.setFechaEnvio(getFechaManager().getFechaActual());
 	    update(asiento);
     }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see es.ieci.tecdoc.fwktd.sir.api.manager.AsientoRegistralManager#reintentarValidarAsientosRegistrales()
+	 */
+	public void reintentarValidarAsientosRegistrales() {
+
+		CriteriosVO criterio = new CriteriosVO().addCriterioVO(new CriterioVO(
+				CriterioEnum.ASIENTO_ESTADO, OperadorCriterioEnum.EQUAL,
+				EstadoAsientoRegistralEnum.REINTENTAR_VALIDACION));
+		List<AsientoRegistralVO> asientos = findAsientosRegistrales(criterio);
+		if (CollectionUtils.isNotEmpty(asientos)) {
+			logger.info("Intentando validar {} asiento/s registral/es",
+					asientos.size());
+			for (AsientoRegistralVO asiento : asientos) {
+				reintentarValidarAsientoRegistral(asiento);
+			}
+		}
+	}
+
+	/**
+	 * Reintenta validar un asiento registral
+	 * @param asiento
+	 */
+	private void reintentarValidarAsientoRegistral(AsientoRegistralVO asiento) {
+		logger.info("Validando el asiento con identificador [{}]",
+				asiento.getId());
+		try {
+			enviarMensajeConfirmacion(asiento);
+			logger.info("Mensaje de confirmación enviado");
+			asiento.setEstado(EstadoAsientoRegistralEnum.VALIDADO);
+			update(asiento);
+			logger.info("Asiento con identificador [{}] validado",
+					asiento.getId());
+		} catch (Exception e) {
+			logger.error(
+					"Error al intentar validar el asiento con identificador [{}]",
+					asiento.getId(), e);
+		}
+	}
 
     /**
      * {@inheritDoc}
@@ -929,7 +1011,7 @@ public class AsientoRegistralManagerImpl extends
 
 		// Número de reintentos
 		int numeroReintentos = getNumeroReintentos();
-		
+
 		// Obtener los asientos registrales enviados que hayan sobrepasado el time-out
 		CriteriosVO criterios = new CriteriosVO()
 	    	.addCriterioVO(new CriterioVO(
@@ -937,21 +1019,24 @@ public class AsientoRegistralManagerImpl extends
 					OperadorCriterioEnum.IN,
 					new EstadoAsientoRegistralEnum[] {
 							EstadoAsientoRegistralEnum.ENVIADO,
+							EstadoAsientoRegistralEnum.ENVIADO_Y_ERROR,
 							EstadoAsientoRegistralEnum.REENVIADO,
-							EstadoAsientoRegistralEnum.RECHAZADO }))
+							EstadoAsientoRegistralEnum.REENVIADO_Y_ERROR,
+							EstadoAsientoRegistralEnum.RECHAZADO,
+							EstadoAsientoRegistralEnum.RECHAZADO_Y_ERROR}))
 	    	.addCriterioVO(new CriterioVO(
 	    			CriterioEnum.ASIENTO_FECHA_ENVIO,
 					OperadorCriterioEnum.LESS_THAN,
 					fechaTimeOut))
 	    	.addOrderBy(CriterioEnum.ASIENTO_FECHA_ENVIO);
-		
+
 		if (numeroReintentos > 0) {
 			criterios.addCriterioVO(new CriterioVO(
 					CriterioEnum.ASIENTO_NUMERO_REINTENTOS,
 					OperadorCriterioEnum.EQUAL_OR_LESS_THAN,
 					getNumeroReintentos()));
 		}
-		
+
         List<AsientoRegistralVO> asientos = findAsientosRegistrales(criterios);
 
         if (CollectionUtils.isNotEmpty(asientos)) {
@@ -968,39 +1053,39 @@ public class AsientoRegistralManagerImpl extends
 	        		// Comprobar que no se haya excedido del número máximo de reintentos
 					if ((numeroReintentos == 0)
 							|| (aux.getNumeroReintentos() <= numeroReintentos)) {
-	        			
+
 						// Incrementar el número de reintentos
 						asiento.setNumeroReintentos(asiento.getNumeroReintentos() + 1);
-						
-		        		if (aux.getEstado().equals(EstadoAsientoRegistralEnum.ENVIADO)) {
-	
+
+					if (aux.getEstado().equals(EstadoAsientoRegistralEnum.ENVIADO)||aux.getEstado().equals(EstadoAsientoRegistralEnum.ENVIADO_Y_ERROR)) {
+
 		        			logger.info("Volviendo a enviar el asiento: id=[{}], identificadorIntercambio=[{}]",
 		        					asiento.getId(), asiento.getIdentificadorIntercambio());
-	
+
 		        			// Enviar el asiento
 		        			enviarAsientoRegistral(asiento);
-	
-		        		} else if (aux.getEstado().equals(EstadoAsientoRegistralEnum.REENVIADO)) {
-	
+
+					} else if (aux.getEstado().equals(EstadoAsientoRegistralEnum.REENVIADO)||aux.getEstado().equals(EstadoAsientoRegistralEnum.REENVIADO_Y_ERROR)) {
+
 		        			logger.info("Volviendo a reenviar el asiento: id=[{}], identificadorIntercambio=[{}]",
 		        					asiento.getId(), asiento.getIdentificadorIntercambio());
-	
+
 		        			// Reenviar el asiento
 		        			reenviarAsientoRegistral(asiento);
-	
-		        		} else if (aux.getEstado().equals(EstadoAsientoRegistralEnum.RECHAZADO)) {
-	
+
+					} else if (aux.getEstado().equals(EstadoAsientoRegistralEnum.RECHAZADO)||aux.getEstado().equals(EstadoAsientoRegistralEnum.RECHAZADO_Y_ERROR)) {
+
 		        			logger.info("Volviendo a rechazar el asiento: id=[{}], identificadorIntercambio=[{}]",
 		        					asiento.getId(), asiento.getIdentificadorIntercambio());
-	
+
 		        			// Rechazar el asiento
 		        			rechazarAsientoRegistral(asiento);
 		        		}
 	        		} else {
-	        			
+
 	        			logger.error("El asiento con identificador [{}] ha excedido el número de reintentos [{}]",
 	        					asiento.getId(), numeroReintentos);
-	        			
+
 						// Posible mejora: Cambiar el estado del asiento a
 						// ENVIADO_TIME_OUT, REENVIADO_TIME_OUT o RECHAZADO_TIME_OUT
 	        		}
@@ -1008,6 +1093,8 @@ public class AsientoRegistralManagerImpl extends
 	        }
         }
 	}
+
+
 
     /**
      * Envía un mensaje de control de confirmación.
@@ -1026,19 +1113,19 @@ public class AsientoRegistralManagerImpl extends
 
         getMensajeManager().enviarMensaje(mensaje);
     }
-    
+
     protected long getTimeOut() {
-    	
+
 		long timeout = getDefaultTimeOut();
-		
+
 		if (getConfiguracionManager() != null) {
-			
+
 			// Obtener el time-out a partir de la configuración en base de
 			// datos
 			String strTimeOut = getConfiguracionManager()
 					.getValorConfiguracion(TIME_OUT_PARAM_NAME);
 			logger.info("Valor de {} en base de datos: [{}]", TIME_OUT_PARAM_NAME, strTimeOut);
-			
+
 			if (StringUtils.isNotBlank(strTimeOut)) {
 				try {
 					timeout = Long.parseLong(strTimeOut);
@@ -1053,22 +1140,22 @@ public class AsientoRegistralManagerImpl extends
 		}
 
 		logger.info("Time-out para envíos: [{}]", timeout);
-		
+
 		return timeout;
     }
 
     protected int getNumeroReintentos() {
-    	
+
 		int numReintentos = getDefaultNumeroReintentos();
-		
+
 		if (getConfiguracionManager() != null) {
-			
+
 			// Obtener el número de reintentos de envío a partir de la
 			// configuración en base de datos
 			String strNumReintentos = getConfiguracionManager()
 					.getValorConfiguracion(NUMERO_REINTENTOS_PARAM_NAME);
 			logger.info("Valor de {} en base de datos: [{}]", NUMERO_REINTENTOS_PARAM_NAME, strNumReintentos);
-			
+
 			if (StringUtils.isNotBlank(strNumReintentos)) {
 				try {
 					numReintentos = Integer.parseInt(strNumReintentos);
@@ -1083,8 +1170,10 @@ public class AsientoRegistralManagerImpl extends
 		}
 
 		logger.info("Número de reintentos para envíos: [{}]", numReintentos);
-		
+
 		return numReintentos;
     }
+
+
 
 }

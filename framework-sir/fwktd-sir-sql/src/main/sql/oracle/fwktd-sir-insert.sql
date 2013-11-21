@@ -24,3 +24,5 @@ INSERT INTO sir_configuracion (id, nombre, valor, descripcion) values (sir_confi
 
 INSERT INTO sir_configuracion (id, nombre, valor, descripcion) values (sir_config_seq.NEXTVAL, 'max.tamaño.anexos', '3145728', 'Tamaño máximo en bytes de cada fichero de intercambio. Si no se indica o el valor es 0, no se aplica límite alguno.');
 INSERT INTO sir_configuracion (id, nombre, valor, descripcion) values (sir_config_seq.NEXTVAL, 'max.num.anexos', '5', 'Número máximo de anexos de tipo 02 que puede tener un fichero de intercambio. Si no se indica o el valor es 0, no se aplica límite alguno.');
+
+INSERT INTO sir_configuracion (id, nombre, valor, descripcion) values (sir_config_seq.NEXTVAL, 'O00000000.entidad.configurada', 'O00000000', 'Código de las entidades O00000000 configurada para recepción');

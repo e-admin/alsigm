@@ -75,8 +75,28 @@ public interface IDocKeys {
      */
 	public static final int FIELD_NUM_TRANSPORTE_SIZE_IR_DISABLED = 30;
 
+	/**
+     * Tamaño del campo "Comentarios" cuando el IR está activado
+     */
+    public static final int FIELD_COMENTARIOS_SIZE_IR_ENABLED = 50;
+
+    /**
+     * Tamaño del campo "Expone" cuando el IR está activado
+     */
+    public static final int FIELD_EXPONE_SIZE_IR_ENABLED = 4000;
+
+    /**
+     * Tamaño del campo "Solicita" cuando el IR está activado
+     */
+    public static final int FIELD_SOLICITA_SIZE_IR_ENABLED = 4000;
+
     //Información de los caracteres para los nombre de los ficheros
     public static final int MAX_LENGTH_NAME_FILE = 64;
+
+    /**
+	 * Tamaño máximo del campo "Direccion" para enviar por IR
+	 */
+	public static final int DIRECCION_INTERESADOS_IR_MAX_LENGTH = 160;
 
     /*******************************************************************************************************************
      * Constructors

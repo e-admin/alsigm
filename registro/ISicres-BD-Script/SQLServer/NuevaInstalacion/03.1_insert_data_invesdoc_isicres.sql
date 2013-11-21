@@ -53,7 +53,7 @@ INSERT INTO iusernextid (type, id) VALUES (5, 8);
 
 
 -- TABLA iuserobjhdr
-INSERT INTO iuserobjhdr (id, prodid, type, extid1, extid2, extid3, ownertype, ownerid, crtrid, crtndate, updrid, upddate) VALUES (1, 3, 4, 1, 0, 0, 1, 0, 0, getdate(), NULL, NULL);
+INSERT INTO iuserobjhdr (id, prodid, type, extid1, extid2, extid3, ownertype, ownerid, crtrid, crtndate, updrid, upddate) VALUES (1, 3, 4, 0, 0, 0, 1, 0, 0, getdate(), NULL, NULL);
 
 -- TABLA iuseruserhdr
 INSERT INTO iuseruserhdr (id, name, password, deptid, flags, stat, numbadcnts, remarks, crtrid, crtndate, updrid, upddate, pwdlastupdts, pwdmbc, pwdvpcheck) VALUES (0, 'SYSSUPERUSER', 'ADd6PK3AWOSc5e4=', 0, 0, 0, 0, NULL, 0, getdate(), NULL, NULL, 343073, 'N', 'N');

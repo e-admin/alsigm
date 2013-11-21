@@ -25,6 +25,10 @@ public class CalculadorPermisos {
 	private static int ISUSER_PERM_CAN_MODIFY_REPORTS = 0x10000;
 	private static int ISUSER_PERM_CAN_MODIFY_USERS= 0x20000;
 
+	private static int ISUSER_PERM_CAN_DELETE_DOCUMENTS = 0x40000;
+
+//	Valor reservado para futuras versiones --> ISUSER_PERM_CAN_COPIA_AUTENTICA = 0x80000;
+
 	public static void cifraPermisos(SicresUserPermisosImpl type, UsuarioRegistradorBean usuario) {
 		int permisos = 0;
 		if(usuario.getAccesoOperaciones())
@@ -51,6 +55,8 @@ public class CalculadorPermisos {
 			permisos |= ISUSER_PERM_CAN_REJECT_DISTREG;
 		if(usuario.isVerDocumentos())
 			permisos |= ISUSER_PERM_CAN_SHOW_DOCUMENTS;
+		if(usuario.isDeleteDocumentos())
+			permisos |= ISUSER_PERM_CAN_DELETE_DOCUMENTS;
 		if(usuario.isDistribucionManual())
 			permisos |= ISUSER_PERM_CAN_DISTRIBUTION_MANUAL;
 		//Permisos de administración
@@ -82,6 +88,7 @@ public class CalculadorPermisos {
 		usuario.setModificaPersonas(false);
 		usuario.setRechazoRegistros(false);
 		usuario.setDistribucionManual(false);
+		usuario.setDeleteDocumentos(false);
 
 		//Permisos administracion
 		usuario.setGestionTiposAsunto(false);
@@ -114,6 +121,8 @@ public class CalculadorPermisos {
 			usuario.setRechazoRegistros(true);
 		if((permisos & ISUSER_PERM_CAN_SHOW_DOCUMENTS) != 0)
 			usuario.setVerDocumentos(true);
+		if((permisos & ISUSER_PERM_CAN_DELETE_DOCUMENTS) != 0)
+			usuario.setDeleteDocumentos(true);
 		if((permisos & ISUSER_PERM_CAN_DISTRIBUTION_MANUAL) != 0)
 			usuario.setDistribucionManual(true);
 		//Permisos administración

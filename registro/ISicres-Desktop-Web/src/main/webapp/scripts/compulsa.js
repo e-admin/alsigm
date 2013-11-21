@@ -73,11 +73,11 @@ var CompulsarClass= function (appletScan, appletConverter, appletFirma,appletSen
 	    //generamos el fichero pdf
 	    this.fileScan=generatePdfFromFile(this.fileScan);
 	    if(this.fileScan){
-	    	//firmar
-	    	if(this.firmarFileScan()){
-	    		//subirlo al servidor
-	    		this.uploadFiles();
-	    	}
+		//firmar
+		if(this.firmarFileScan()){
+			//subirlo al servidor
+			this.uploadFiles();
+		}
 	    }
 
 	   //destruimos applets
@@ -137,46 +137,59 @@ var CompulsarClass= function (appletScan, appletConverter, appletFirma,appletSen
 					this.fileFirma= this.fileScan.substring(0, this.fileScan.indexOf(".") + 1) + "xsig";
 					if(this.appletFirma&& (this.fileScan != "")){
 
-
-						// Inicializamos la configuración para asegurar que no hay preestablecido
-						// ningún valor de operaciones anteriores
-						this.appletFirma.initialize();
-
-						// Configuramos todos los parámetros del cliente de firma.
-						this.appletFirma.setFileuri(this.fileScan);
-						this.appletFirma.setSignatureFormat('XADES');
-						this.appletFirma.setSignatureMode('EXPLICIT');
-						this.appletFirma.setOutFilePath(this.fileFirma);
-
-						// Ejecutamos la operación de firma
-						this.appletFirma.sign();
-
-						//Si no hay error guardamos los datos de la firma.
-						if(!this.appletFirma.isError()){
-
-							//se guarda el fichero de firma
-							this.appletFirma.saveSignToFile();
-
-
-							this.firma = this.appletFirma.getSignatureText(); //Firma
-							this.certificate = this.appletFirma.getSignCertificate().toString(); //Certificado
-							this.user = this.appletFirma.getSignCertificate().getSubjectDN().getName(); //Nombre del firmante
-							this.fileScanHash = this.appletFirma.getFileHashBase64Encoded(false); //Has del fichero firmado.
-
-
-
-							//calculamos la hash del fichero firma
+						//variable que indica si en caso de error se repite el proceso
+						var repetirProcesoEnCasoError = false;
+						do{
+							// Inicializamos la configuración para asegurar que no hay preestablecido
+							// ningún valor de operaciones anteriores
 							this.appletFirma.initialize();
-							this.appletFirma.setFileuri(this.fileFirma);
-							this.fileFirmaHash= this.appletFirma.getFileHashBase64Encoded(false); //Has del fichero xades
 
-							//**********************************************************************************
-							resultOk = true;
+							// Configuramos todos los parámetros del cliente de firma.
+							this.appletFirma.setFileuri(this.fileScan);
+							this.appletFirma.setSignatureFormat('XADES');
+							this.appletFirma.setSignatureMode('EXPLICIT');
+							this.appletFirma.setOutFilePath(this.fileFirma);
 
-						} else {
-							//Error en la firma
-							alert(GetIdsLan("IDS_ERROR_FIRMA") + "\n\n" + this.appletFirma.getErrorMessage());
-						}
+							// Ejecutamos la operación de firma
+							this.appletFirma.sign();
+
+							//Si no hay error guardamos los datos de la firma.
+							if(!this.appletFirma.isError()){
+
+								//se guarda el fichero de firma
+								this.appletFirma.saveSignToFile();
+
+
+								this.firma = this.appletFirma.getSignatureText(); //Firma
+								this.certificate = this.appletFirma.getSignCertificate().toString(); //Certificado
+								this.user = this.appletFirma.getSignCertificate().getSubjectDN().getName(); //Nombre del firmante
+								this.fileScanHash = this.appletFirma.getFileHashBase64Encoded(false); //Has del fichero firmado.
+
+
+
+								//calculamos la hash del fichero firma
+								this.appletFirma.initialize();
+								this.appletFirma.setFileuri(this.fileFirma);
+								this.fileFirmaHash= this.appletFirma.getFileHashBase64Encoded(false); //Has del fichero xades
+
+								//**********************************************************************************
+								resultOk = true;
+
+								//todo el proceso finalizo correctamente por tanto salimos del bucle
+								repetirProcesoEnCasoError=false;
+
+							} else {
+								//se ha producido error, preguntamos al usuario si desea reitentar la operacion
+								repetirProcesoEnCasoError = confirm(GetIdsLan("IDS_QRYREITENTARCOMPULSA"));
+								//si no se desea continuar
+								if(!repetirProcesoEnCasoError){
+									//Mostramos por pantalla el error producido al compulsar y salimos del bucle
+									alert(GetIdsLan("IDS_ERROR_FIRMA") + "\n\n" + this.appletFirma.getErrorMessage());
+								}
+							}
+						//comprobamos si se repite el proceso si se ha producido algún error al compulsar y el usuario lo indica
+						} while(repetirProcesoEnCasoError == true);
+
 					} else {
 
 						alert(GetIdsLan("IDS_ERROR_CLIENTE_FIRMA"));
@@ -197,7 +210,7 @@ var CompulsarClass= function (appletScan, appletConverter, appletFirma,appletSen
      *
      */
     this.uploadFiles=function(){
-    	try{
+	try{
 		    var paramsCompulsa= new Array();
 		    paramsCompulsa["idRegistro"]=this.idRegistro;
 		    paramsCompulsa["idLibro"]=this.idLibro;
@@ -232,7 +245,7 @@ var CompulsarClass= function (appletScan, appletConverter, appletFirma,appletSen
 			if(!result){
 				alert(top.GetIdsLan("IDS_ERR_SAVE_SCAN_FILES"));
 			}
-    	}catch (err) {
+	}catch (err) {
 			alert(GetIdsLan("IDS_ERR_SAVE_SCAN_FILES"));
 		}
 
@@ -272,9 +285,9 @@ var CompulsarClass= function (appletScan, appletConverter, appletFirma,appletSen
      *
      */
      this.unblockUI=function() {
-    	 top.Main.Folder.FolderData.FolderFormTree.$.unblockUI();
-    	 top.Main.Folder.FolderData.FolderFormData.$.unblockUI();
-    	 top.Main.Folder.FolderBar.$.unblockUI();
+	 top.Main.Folder.FolderData.FolderFormTree.$.unblockUI();
+	 top.Main.Folder.FolderData.FolderFormData.$.unblockUI();
+	 top.Main.Folder.FolderBar.$.unblockUI();
       }
 
 
@@ -285,16 +298,16 @@ var CompulsarClass= function (appletScan, appletConverter, appletFirma,appletSen
 
 	   cadena="idRegistro:"+this.idRegistro+"\n"+
 	     "idLibro:"+this.idLibro+"\n"+
-    	    "sessionPId:"+this.sessionPId+"\n"+
-    	    "firma:"+this.firma+"\n"+
-    	    "certificate:"+this.certificate+"\n"+
-    	    "fileScan:"+this.fileScan+"\n"+
-    	    "fileScanHash"+this.fileScanHash+"\n"+
-    	    "user:"+this.user+"\n"+
-    	    "fileFirma:"+this.fileFirma+"\n"+
-    	    "fileFirmaHash:"+this.fileFirmaHash;
+	    "sessionPId:"+this.sessionPId+"\n"+
+	    "firma:"+this.firma+"\n"+
+	    "certificate:"+this.certificate+"\n"+
+	    "fileScan:"+this.fileScan+"\n"+
+	    "fileScanHash"+this.fileScanHash+"\n"+
+	    "user:"+this.user+"\n"+
+	    "fileFirma:"+this.fileFirma+"\n"+
+	    "fileFirmaHash:"+this.fileFirmaHash;
 
-    	    alert(cadena);
+	    alert(cadena);
 
      }
         */
@@ -355,4 +368,3 @@ function post_to_url(path, paramsCompulsa,fileParamsCompulsa, method,enctype) {
     form.submit();
 }
 */
-

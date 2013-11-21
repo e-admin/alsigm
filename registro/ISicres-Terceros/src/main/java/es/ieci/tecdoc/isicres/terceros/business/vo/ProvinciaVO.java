@@ -1,5 +1,7 @@
 package es.ieci.tecdoc.isicres.terceros.business.vo;
 
+import javax.validation.constraints.Size;
+
 import es.ieci.tecdoc.fwktd.core.model.Entity;
 
 /**
@@ -26,6 +28,7 @@ public class ProvinciaVO extends Entity {
 	}
 
 	// Members
+	@Size(max=30)
 	protected String nombre;
 
 	protected String codigo;

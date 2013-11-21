@@ -54,17 +54,17 @@ public class MostrarHistorialIntercambioRegistral extends HttpServlet {
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Pragma", "no-cache");
         response.setContentType("text/html; charset=UTF-8");
-        
+
         IntercambioRegistralManager intercambioManager =  IsicresManagerProvider.getInstance().getIntercambioRegistralManager();
-        
+
         String idLibro = null;
         String idRegistro = null;
         String idOficina = null;
         UsuarioVO usuarioActual = null;
-		
+
 		try{
-			
-			
+
+
 			//seteamos el contexto
 			ContextoAplicacionVO contextoAplicacion = ContextoAplicacionUtil.getContextoAplicacion(request);
 			//obtenemos los parámetros necesarios
@@ -72,16 +72,18 @@ public class MostrarHistorialIntercambioRegistral extends HttpServlet {
 			idRegistro = contextoAplicacion.getRegistroActual().getIdRegistro();
 			idOficina = contextoAplicacion.getOficinaActual().getId();
 			usuarioActual = contextoAplicacion.getUsuarioActual();
-			
+
 			//obtenemos la informacion del intercambio registral de entrada
 			List<IntercambioRegistralEntradaVO> historialIntercambioRegistralEntrada = intercambioManager
 					.getHistorialIntercambioRegistralEntrada(idLibro,
-							idRegistro,idOficina);
+							idRegistro,null,false);
+
+
 
 			//obtenemos la informacion del intercambio registral de salida
 			List<IntercambioRegistralSalidaVO> historialIntercambioRegistralSalida = intercambioManager
 					.getHistorialIntercambioRegistralSalida(
-							idLibro, idRegistro,idOficina);
+							idLibro, idRegistro,null,false);
 
 			//comprobamos si los historial tanto el de entrada como el de salida son vacios
 			if((historialIntercambioRegistralEntrada.size()>0) || (historialIntercambioRegistralSalida.size() >0)){
@@ -108,5 +110,5 @@ public class MostrarHistorialIntercambioRegistral extends HttpServlet {
 			rd.forward(request, response);
 		}
     }
-	
+
 }

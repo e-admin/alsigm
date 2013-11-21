@@ -106,16 +106,14 @@
 							</xsl:otherwise>
 						</xsl:choose>
 					</TD>
-					<TD WIDTH="15px">
+					<TD>
 						<xsl:if test="PARENTNAME[.!='']">
-							<img src="images/treePadre.gif" width="15" height="15" border="0">
-								<xsl:attribute name="title">									
-									 <xsl:value-of select="PARENTNAME" />
-								</xsl:attribute>
-								<xsl:attribute name="alt">									
-									 <xsl:value-of select="PARENTNAME" />
-								</xsl:attribute>
-							</img>
+							<SCRIPT language="javascript">
+								document.write( '<img src="images/treePadre.gif" width="15" height="15" title="'
+									+ top.GetIdsLan('IDS_UNID_ADMIN_PADRE') + '" alt="'
+									+ top.GetIdsLan('IDS_UNID_ADMIN_PADRE') + '" border="0" />' )
+							</SCRIPT>
+							<xsl:value-of select="PARENTNAME" />
 						</xsl:if>
 					</TD>
 					<TD width="15px">
@@ -129,7 +127,7 @@
                   + top.GetIdsLan('IDS_ETQNIVELANT') + '" border="0" />' )</SCRIPT>
 						</A>
 					</TD>
-					
+
 					<TD width="15px">
 						<A href="#" tabIndex="1">
 							<xsl:attribute name="onclick">DownValues(<xsl:value-of select="TYPE" />,<xsl:value-of select="Id" />);return false;</xsl:attribute>

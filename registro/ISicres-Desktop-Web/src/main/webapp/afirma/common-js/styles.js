@@ -1,10 +1,10 @@
 /*
- * Este fichero forma parte del Cliente @firma. 
+ * Este fichero forma parte del Cliente @firma.
  * El Cliente @firma es un aplicativo de libre distribucion cuyo codigo fuente puede ser consultado
  * y descargado desde www.ctt.map.es.
  * Copyright 2009,2010,2011 Gobierno de Espana
  * Este fichero se distribuye bajo licencia GPL version 3 segun las
- * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este 
+ * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este
  * fichero individualmente, deben incluirse aqui las condiciones expresadas alli.
  */
 
@@ -16,7 +16,7 @@ function getStyles(doc)
 	}
 
 	var xml = "";
-	
+
 	if(!isEmpty(doc.styleSheets))
 	{
 		var i;
@@ -26,21 +26,21 @@ function getStyles(doc)
 			xml += getStyleSheetText(styleSheet) + '\n';
 		}
 	}
-	
+
 	var text = xml;
-	var aux;	
+	var aux;
 	while(text.indexOf("-moz")!=-1 && aux!=text)
 	{	/* Eliminamos las reglas que comiencen por "-moz", exclusivas de mozilla */
 		aux = text;
 		text= text.replace(/-moz[^\:]*\:[^\;\}]*;/, "");
 		text= text.replace(/-moz[^\:]*\:[^\;\}]*}/, "}");
 	}
-	
+
 	aux = "";
 	while(text.indexOf("rgb")!=-1 && aux!=text)
 	{	/* Convertimos los rgb pq el visor no los interpreta bien */
 		aux = text;
-		
+
 		var posIni = aux.search(/rgb[\\s]*\([^\)]*\)/);
 		var posFin = aux.indexOf(")", posIni);
 		var rgbStr1 = aux.substring(posIni, posFin+1);
@@ -52,11 +52,11 @@ function getStyles(doc)
 		var green = toHex(rgbNum[1]);
 		var blue  = toHex(rgbNum[2]);
 		var newColor = "#"+red+green+blue;
-		
+
 		text= text.replace(rgbStr1, newColor);
 	}
 	xml = text;
-	
+
 	return xml;
 }
 
@@ -70,7 +70,7 @@ function getStyleSheetText(styleSheet)
 	var xml = "";
 
 	// styleSheet.cssRules -> Mozilla, styleSheet.rules -> IE4+
-	var cssRules = styleSheet.cssRules?styleSheet.cssRules:styleSheet.rules; 
+	var cssRules = styleSheet.cssRules?styleSheet.cssRules:styleSheet.rules;
 	if(!isEmpty(cssRules))
 	{
 		var j;
@@ -80,7 +80,7 @@ function getStyleSheetText(styleSheet)
 			xml+= getStyleCSSRuleText(cssRule) + '\n';
 		}
 	}
-	
+
 	if(!isEmpty(styleSheet.imports))
 	{	/* IE4+ */
 		var k;
@@ -90,7 +90,7 @@ function getStyleSheetText(styleSheet)
 			xml += getStyleSheetText(imp) + '\n';
 		}
 	}
-	
+
 	return xml;
 }
 
@@ -114,7 +114,6 @@ function getStyleCSSRuleText(cssRule)
 			xml = cssRule.selectorText + " { " + cssRule.style.cssText+" }";
 		}
 	}
-	
+
 	return xml;
 }
-

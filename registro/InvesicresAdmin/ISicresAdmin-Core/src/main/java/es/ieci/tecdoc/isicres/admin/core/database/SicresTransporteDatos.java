@@ -14,6 +14,7 @@ import es.ieci.tecdoc.isicres.admin.base.dbex.DynamicRows;
 import es.ieci.tecdoc.isicres.admin.base.dbex.DynamicTable;
 import es.ieci.tecdoc.isicres.admin.beans.Transporte;
 import es.ieci.tecdoc.isicres.admin.beans.Transportes;
+import es.ieci.tecdoc.isicres.admin.core.UtilsBD;
 import es.ieci.tecdoc.isicres.admin.core.exception.ISicresAdminDAOException;
 
 public class SicresTransporteDatos extends Transporte {
@@ -120,8 +121,14 @@ public class SicresTransporteDatos extends Transporte {
 				logger.debug("scr_tt añadida.");
 			}
 		} catch (Exception e) {
-			logger.error("Error añadiendo scr_tt.", e);
-			throw new ISicresAdminDAOException(ISicresAdminDAOException.SCR_TT_INSERT,e);
+			//TODO Hacer esto de los errores de foreing key de forma generica
+			if(UtilsBD.isErrorDuplicateKey(e.getMessage())){
+				logger.error("Error añadiendo scr_tt. Error duplicate key");
+				throw new ISicresAdminDAOException(ISicresAdminDAOException.SCR_TT_UNIQUE_KEY_ERROR);
+			}else{
+				logger.error("Error añadiendo scr_tt.", e);
+				throw new ISicresAdminDAOException(ISicresAdminDAOException.SCR_TT_INSERT,e);
+			}
 		}
 	}
 
@@ -168,9 +175,15 @@ public class SicresTransporteDatos extends Transporte {
 				logger.debug("Actualizado scr_tt.");
 			}
 		} catch (Exception e) {
-			logger.error("Error actualizando scr_tt", e);
-			throw new ISicresAdminDAOException(ISicresAdminDAOException.SCR_TT_UPDATE,
-					e);
+			if (UtilsBD.isErrorDuplicateKey(e.getMessage())) {
+				logger.error("Error añadiendo scr_tt. Error duplicate key");
+				throw new ISicresAdminDAOException(
+						ISicresAdminDAOException.SCR_TT_UNIQUE_KEY_ERROR);
+			} else {
+				logger.error("Error actualizando scr_tt", e);
+				throw new ISicresAdminDAOException(
+						ISicresAdminDAOException.SCR_TT_UPDATE, e);
+			}
 		}
 	}
 

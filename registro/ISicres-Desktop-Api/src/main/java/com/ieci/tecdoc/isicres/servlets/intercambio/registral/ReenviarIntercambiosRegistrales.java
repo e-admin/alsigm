@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.ieci.tecdoc.common.invesicres.ScrOfic;
@@ -29,6 +30,7 @@ import es.ieci.tecdoc.isicres.intercambio.registral.util.IntercambioRegistralMan
 
 public class ReenviarIntercambiosRegistrales extends HttpServlet{
 
+	private static final String BANDEJA_ENTRADA_INTERCAMBIO_REGISTRAL_SERVLET = "/BandejaEntradaIntercambioRegistral.do";
 	private static Logger _logger = Logger.getLogger(ReenviarIntercambiosRegistrales.class);
 	private static final long serialVersionUID = 1L;
 
@@ -54,9 +56,16 @@ public class ReenviarIntercambiosRegistrales extends HttpServlet{
 		UseCaseConf useCaseConf = (UseCaseConf) mySession.getAttribute(com.ieci.tecdoc.isicres.desktopweb.Keys.J_USECASECONF);
 		String entidad = useCaseConf.getEntidadId();
 		ContextoAplicacionVO contextoAplicacion=null;
+
+		String paramUrlRequestDispatcher = req.getParameter("requestDispatcherUrl");
+		String urlRequestDispatcher = BANDEJA_ENTRADA_INTERCAMBIO_REGISTRAL_SERVLET;
+		if (StringUtils.isNotBlank(paramUrlRequestDispatcher)){
+			urlRequestDispatcher = paramUrlRequestDispatcher;
+		}
+
 		try{
 			contextoAplicacion=ContextoAplicacionUtil.getContextoAplicacion(req);
-			
+
 			String[] registrosSeleccionados = req.getParameterValues("checkRegistro");
 			String entityCode = req.getParameter("entityCode");
 			String entityName = req.getParameter("entityName");
@@ -76,12 +85,12 @@ public class ReenviarIntercambiosRegistrales extends HttpServlet{
 			for (String idIntercambioRegistral : registrosSeleccionados) {
 				//intercambioManager.reenviarIntercambioRegistralEntradaById(idIntercambioRegistral, "usuario","contacto",observaciones,unidadTramitacionDestino);
 				intercambioManager.reenviarIntercambioRegistralEntradaById(idIntercambioRegistral, unidadTramitacionDestino, observaciones);
-				
+
 			}
 			String mensaje = RBUtil.getInstance(useCaseConf.getLocale()).getProperty(Keys.I18N_ISICRESIR_SEND_OK);
 			req.setAttribute(Keys.REQUEST_MSG, mensaje);
 
-			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher("/BandejaEntradaIntercambioRegistral.do");
+			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher(urlRequestDispatcher);
 			rd.forward(req, resp);
 
 		}catch (IntercambioRegistralException irEx) {
@@ -96,7 +105,7 @@ public class ReenviarIntercambiosRegistrales extends HttpServlet{
 			String error = RBUtil.getInstance(useCaseConf.getLocale()).getProperty(Keys.I18N_ISICRESIR_SEND_ERROR);
 			req.setAttribute(Keys.REQUEST_ERROR, error);
 
-			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher("/BandejaEntradaIntercambioRegistral.do");
+			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher(urlRequestDispatcher);
 			rd.forward(req, resp);
 		}
 	}

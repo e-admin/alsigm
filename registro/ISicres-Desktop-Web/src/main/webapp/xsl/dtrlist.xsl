@@ -16,20 +16,15 @@
 		<script type="text/javascript" language="javascript" src="./scripts/jquery-1.6.2.min.js"></script>
     	<script type="text/javascript" language="javascript" src="./scripts/jquery.hotkeys-0.8.js"></script>
     	<script type="text/javascript" language="javascript" src="./scripts/custom_hotkeys.js"></script>
-		<SCRIPT type="text/javascript" LANGUAGE="javascript" SRC="./scripts/jquery.tablesorter.min.js"></SCRIPT>
 		<SCRIPT type="text/javascript">
-			$(document).ready(function()
-				{
-					$("#tblMain").tablesorter({
-						widgets: ['zebra'],
-						headers: {0: {sorter: false}, 1: {sorter: false}}
-						}
-					);
-				}
-			);
+			$(document).ready(function(){
+				/* Cebreado con jQuery */
+				$("#tblMain tbody tr:odd").addClass("Style5 odd");
+			});
+
 		</SCRIPT>
 	</HEAD>
-	<BODY tabIndex="-1" onload="EnabledToolbar();" style="cursor:default">
+	<BODY tabIndex="-1" onload="EnabledToolbar(); loadImagenesOrderDistribution();" style="cursor:default">
 		<xsl:apply-templates select="Sicreslist/CONTEXT"/>
 		<xsl:apply-templates select="Sicreslist/Perms"/>
 		<xsl:choose>
@@ -63,8 +58,17 @@
 
 <xsl:template match="HEADMINUTA/COL">
 	<TH class="report2" align="left">
-		<xsl:attribute name="width"><xsl:value-of select='@Width'/></xsl:attribute>
-		<xsl:value-of select="."/>
+		<xsl:attribute name="width"><xsl:value-of select='@Width' /></xsl:attribute>
+		<xsl:if test="@Fld[.!='']">
+			<xsl:attribute name="order"><xsl:value-of select='@Fld' /></xsl:attribute>
+			<a href="#">
+				<IMG src="./images/bg.gif" border="0">
+					<xsl:attribute name="Id">ordenCampo<xsl:value-of select="@Fld" /></xsl:attribute>
+					<xsl:attribute name="onclick">ordernarDistribucion("<xsl:value-of select="@Fld" />")</xsl:attribute>
+				</IMG>
+			</a>
+		</xsl:if>
+		<xsl:value-of select="." />
 	</TH>
 </xsl:template>
 
@@ -77,7 +81,17 @@
 <xsl:template match="ROW">
       <xsl:if test="@Id[.!=-1]">
          <TR height="25" class="Style5" onmouseover="onrowover(this)" onmouseout="onrowout(this)" onfocus="onrowsel(this);" onblur="onrowunsel(this);" tabIndex="-1">
-            <xsl:attribute name="ondblclick">OpenFolderDtr("<xsl:value-of select='@NameArch'/>", <xsl:value-of select="@IdFdr"/>, <xsl:value-of select="@IdArch"/>);</xsl:attribute>
+            <xsl:attribute name="ondblclick">
+				<xsl:choose>
+					<xsl:when test="@State[.!=2]">
+						OpenFolderDtr("<xsl:value-of select='@NameArch'/>", <xsl:value-of select="@IdFdr"/>, <xsl:value-of select="@IdArch"/>, false);
+					</xsl:when>
+					<xsl:otherwise>
+						OpenFolderDtr("<xsl:value-of select='@NameArch'/>", <xsl:value-of select="@IdFdr"/>, <xsl:value-of select="@IdArch"/>, true);
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+
             <xsl:attribute name="oncontextmenu">return ShowRemarksCtx();</xsl:attribute>
             <TD>
                <input type="checkbox" name="checkrow" onclick="CheckSel();" tabIndex="1">

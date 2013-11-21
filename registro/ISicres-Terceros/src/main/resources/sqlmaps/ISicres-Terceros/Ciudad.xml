@@ -42,6 +42,11 @@
 		WHERE name=#value#
 	</select>
 
+	<select id="getCiudadesCount" resultClass="java.lang.Integer" >
+		SELECT COUNT(*)
+		FROM SCR_CITIES
+	</select>
+
 	<select id="getCiudadesByProvincia" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.ProvinciaVO"
 		resultMap="ciudad">
 		SELECT cities.id, cities.name, cities.code, cities.id_prov
@@ -51,6 +56,16 @@
 			prov.id=#id:INTEGER#
 		</isNotNull>
 		ORDER BY cities.name ASC
+	</select>
+
+	<select id="getCiudadesByProvinciaCount" parameterClass="es.ieci.tecdoc.isicres.terceros.business.vo.ProvinciaVO"
+		resultClass="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM SCR_CITIES cities, SCR_PROV prov
+		WHERE cities.id_prov=prov.id AND prov.name=#nombre#
+		<isNotNull prepend="AND" property="id">
+			prov.id=#id:INTEGER#
+		</isNotNull>
 	</select>
 
 </sqlMap>

@@ -39,7 +39,15 @@ public class ConfiguracionDCOAction extends RPAdminWebAction {
 				Criterios<CriterioOficinaEnum> criterios= new Criterios<CriterioOficinaEnum>();
 				List listEntidadRegistral = oServicio.findOficinasDirectorioComun(criterios);
 
-				request.setAttribute(INICIALIZADO_DCO, true);
+				//Comprobamos si se nos devuelve algún dato
+				if((listEntidadRegistral!=null) && (!listEntidadRegistral.isEmpty())){
+					//se considera que el DCO ha sido inicializado
+					request.setAttribute(INICIALIZADO_DCO, true);
+				}else{
+					//el DCO no ha sido inicializado
+					request.setAttribute(INICIALIZADO_DCO, false);
+				}
+
 			}catch (Exception e){
 				//Si se produce una excepcion consideramos que no esta inicializado el DCO
 				if(logger.isDebugEnabled()){

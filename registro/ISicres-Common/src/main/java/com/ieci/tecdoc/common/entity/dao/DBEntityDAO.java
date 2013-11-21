@@ -13,7 +13,7 @@ import com.ieci.tecdoc.common.isicres.AxSfQuery;
 
 /**
  * Interfaz de acceso a datos
- * 
+ *
  * @author LMVICENTE
  * @creationDate 28-may-2004 10:08:11
  * @version
@@ -21,7 +21,7 @@ import com.ieci.tecdoc.common.isicres.AxSfQuery;
  */
 /**
  * @author 66575267
- * 
+ *
  */
 public interface DBEntityDAO {
 
@@ -44,7 +44,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que obtiene la fecha del servidor de bases de datos
-	 * 
+	 *
 	 * @param entidad
 	 * @return fecha del servidor
 	 */
@@ -52,7 +52,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve la fecha de la última conexión del usuario
-	 * 
+	 *
 	 * @param idUser
 	 *            identificador del usuario
 	 * @param entidad
@@ -63,11 +63,11 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve el identificador del último registro creado por
 	 * un usuario en un libro determinado.
-	 * 
+	 *
 	 * En caso de que el parametro <code>fdrid</code> tenga algun valor,
 	 * actualizaremos la base de datos asignando este nuevo valor como ultimo
 	 * registro creado
-	 * 
+	 *
 	 * @param fdrid
 	 *            identificador del registro
 	 * @param idUser
@@ -83,21 +83,21 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve el tipo de base de datos con el que estamos
 	 * trabajando
-	 * 
+	 *
 	 * <ul>
 	 * <li>DB2</li>
 	 * <li>Postgres</li>
 	 * <li>Oracle</li>
 	 * <li>SqlServer</li>
 	 * </ul>
-	 * 
+	 *
 	 * @return tipo de base de datos
 	 */
 	public String getDataBaseType();
 
 	/**
 	 * Método que nos devuelve la versión de la base de datos
-	 * 
+	 *
 	 * @param entidad
 	 * @return versión de la base de datos
 	 */
@@ -106,7 +106,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve la sentencia para acceder al ultimo registro
 	 * creado por un usuario
-	 * 
+	 *
 	 * @param tableName
 	 *            archivador sobre el que se realizara la consulta
 	 * @param filter
@@ -120,7 +120,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve la sentencia para acceso a informes
-	 * 
+	 *
 	 * @param axsf
 	 *            datos del archivador con el que trabajamos
 	 * @param axsfQuery
@@ -135,7 +135,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve la sentencia para acceso a los registros
-	 * 
+	 *
 	 * @param axsf
 	 *            datos del archivador con el que trabajamos
 	 * @param axsfQuery
@@ -152,7 +152,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos convierte una fecha a un timestamp de base de datos
-	 * 
+	 *
 	 * @param date
 	 *            fecha a convertir
 	 * @param index
@@ -163,7 +163,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve una consulta con la que obtendremos una lista de
 	 * identificadores de registro en funcion de los criterios introducidos
-	 * 
+	 *
 	 * @param axsf
 	 *            datos del archivador con el que trabajamos
 	 * @param tableName
@@ -190,7 +190,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve una consulta con la que obtendremos el numero de
 	 * registros que coinciden con los criterios introducidos
-	 * 
+	 *
 	 * @param axsf
 	 *            datos del archivador con el que trabajamos
 	 * @param tableName
@@ -209,7 +209,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que prepara la ejecucion de una consulta
-	 * 
+	 *
 	 * @param axsfQuery
 	 *            criterios de busqueda sobre el archivador con el que
 	 *            trabajamos
@@ -225,14 +225,14 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve el caracter que la base de datos con la que
 	 * trabajamos interpreta como like
-	 * 
+	 *
 	 * @return traduccion del like
 	 */
 	public String getLikeCharacter();
 
 	/**
 	 * Método que nos devuelve el siguiente identificador de una secuencia
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param entidad
@@ -244,7 +244,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve el siguiente identificador de una secuencia
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param entidad
@@ -256,7 +256,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve el siguiente identificador de una secuencia
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param entidad
@@ -268,7 +268,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que obtiene el siguiente identificador para un documento
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro al que se adjunta el documento
 	 * @param entidad
@@ -279,7 +279,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve el siguiente identificador de una secuencia
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param entidad
@@ -291,7 +291,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve el siguiente identificador de una secuencia
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param entidad
@@ -303,7 +303,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve el siguiente identificador de una secuencia
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param entidad
@@ -315,7 +315,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve el siguiente identificador de una secuencia
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param entidad
@@ -327,7 +327,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve el siguiente identificador de una secuencia
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param entidad
@@ -339,7 +339,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que obtiene el siguiente identificador para un registro
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro al que se adjunta el documento
 	 * @param entidad
@@ -351,7 +351,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que obtiene el siguiente identificador para un usuario
-	 * 
+	 *
 	 * @param guid
 	 *            identificador del usuario en un sistema ldap
 	 * @param fullName
@@ -365,7 +365,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que obtiene el siguiente identificador para un campo extendido
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro al que se adjunta el documento
 	 * @param entidad
@@ -378,7 +378,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que incrementa el contador de número de registro en la secuencia
 	 * central de numeración
-	 * 
+	 *
 	 * @param year
 	 *            Año correspondiente al contador
 	 * @param bookType
@@ -392,7 +392,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que incrementa el contador de número de registro en la secuencia
 	 * local de numeración por oficina
-	 * 
+	 *
 	 * @param year
 	 *            Año correspondiente al contador
 	 * @param bookType
@@ -408,7 +408,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que obtiene el número de registro de la secuencia central de
 	 * numeración
-	 * 
+	 *
 	 * @param year
 	 *            Año correspondiente al contador
 	 * @param bookType
@@ -423,7 +423,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que obtiene el número de registro en la secuencia local de
 	 * numeración por oficina
-	 * 
+	 *
 	 * @param year
 	 *            Año correspondiente al contador
 	 * @param bookType
@@ -440,7 +440,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método para bloquear el contador de número de registro en la secuencia
 	 * central de numeración
-	 * 
+	 *
 	 * @param year
 	 *            Año correspondiente al contador
 	 * @param entidad
@@ -451,7 +451,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método para bloquear el contador de número de registro en la secuencia
 	 * local de numeración por oficina
-	 * 
+	 *
 	 * @param year
 	 * @param entidad
 	 * @throws SQLException
@@ -460,7 +460,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método para bloquear los registros distribuidos
-	 * 
+	 *
 	 * @param id
 	 *            identificador de la distribución del registro
 	 * @param entidad
@@ -470,7 +470,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que elimina la configuración de un usuario
-	 * 
+	 *
 	 * @param id
 	 *            identificador del usuario
 	 * @param entidad
@@ -480,7 +480,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que actualiza la tabla de bloqueo de relaciones
-	 * 
+	 *
 	 * @param typeBook
 	 *            Tipo de libro de registro (1.- Entrada y 2.- Salida)
 	 * @param typeRel
@@ -496,7 +496,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que crea un nuevo contador de número de registro en la secuencia
 	 * central de numeración
-	 * 
+	 *
 	 * @param year
 	 *            Año correspondiente al contador
 	 * @param bookType
@@ -511,7 +511,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que crea un nuevo contador de número de registro en la secuencia
 	 * local de numeración por oficina
-	 * 
+	 *
 	 * @param year
 	 *            Año correspondiente al contador
 	 * @param bookType
@@ -527,7 +527,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que crea una nueva relacion
-	 * 
+	 *
 	 * @param typebook
 	 *            Tipo de libro de registro (1.- Entrada y 2.- Salida)
 	 * @param typerel
@@ -562,7 +562,7 @@ public interface DBEntityDAO {
 	 * <li>SCR_VALDATE: Tabla de valores modificados de tipo fecha</li>
 	 * <li>SCR_VALNUM: Tabla de valores modificados de tipo numérico</li>
 	 * <ul>
-	 * 
+	 *
 	 * @param id
 	 *            Identificador de registro de modificación
 	 * @param oldValue
@@ -583,7 +583,7 @@ public interface DBEntityDAO {
 	 * <li>SCR_DISTREGSTATE: Tabla de cambios de estado de mensajes recibidos</li>
 	 * <li>SCR_DISTREG: Tabla de distribución de registros</li>
 	 * </ul>
-	 * 
+	 *
 	 * @param idArch
 	 *            identificador del archivo de registro
 	 * @param idFdr
@@ -613,7 +613,7 @@ public interface DBEntityDAO {
 	 * <li>SCR_DISTREGSTATE: Tabla de cambios de estado de mensajes recibidos</li>
 	 * <li>SCR_DISTREG: Tabla de distribución de registros</li>
 	 * </ul>
-	 * 
+	 *
 	 * @param idArch
 	 *            identificador del archivo de registro
 	 * @param idFdr
@@ -629,7 +629,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve los campos validados de un tipo de libro de
 	 * registro, para una sentencia sql
-	 * 
+	 *
 	 * @param bookType
 	 *            Tipo de libro de registro (1.- Entrada y 2.- Salida)
 	 * @return campos validados
@@ -639,7 +639,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve parte de una sentencia sql con la que poder
 	 * obtener el valor de los campos validados de un tipo de libro de registro
-	 * 
+	 *
 	 * @param bookType
 	 *            Tipo de libro de registro (1.- Entrada y 2.- Salida)
 	 * @return sentencia sql
@@ -649,7 +649,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que crea una sentencia para obtener lo danos necesarios para la
 	 * generación de un informe
-	 * 
+	 *
 	 * @param tableName
 	 *            nombre de la tabla
 	 * @param bookId
@@ -686,7 +686,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que crea una sentencia sql para la creaccion de una tabla que
 	 * contiene la información que se quiere imprimir en un informe
-	 * 
+	 *
 	 * @param tableName
 	 *            nombre de la tabla que se va a crear
 	 * @param bookId
@@ -767,7 +767,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que relaciona la fecha y el organismo de un registro.
-	 * 
+	 *
 	 * @param tableName
 	 *            nombre de la tabla en la que se realizara esta relacion
 	 * @param opcion
@@ -782,7 +782,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve el número de relaciones
-	 * 
+	 *
 	 * @param typebook
 	 *            Tipo de libro de registro (1.- Entrada y 2.- Salida)
 	 * @param typerel
@@ -803,7 +803,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve el número de oficinas asociadas a un usuario. Sin
 	 * contar con la oficina asociada (si la hay) al departamento del usuario
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param useridofic
@@ -816,7 +816,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Elimina una tabla o vista
-	 * 
+	 *
 	 * @param tableName
 	 *            nombre de la tabla o vista a eliminar
 	 * @param entidad
@@ -825,7 +825,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que crea una tabla o vista
-	 * 
+	 *
 	 * @param sentence
 	 *            sentencia sql de creacion de tabla o vista
 	 * @param entidad
@@ -892,7 +892,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que devuelve el número de registros que tiene una tabla o una
 	 * vista
-	 * 
+	 *
 	 * @param tableName
 	 *            nombre de la tabla o vista
 	 * @param entidad
@@ -904,7 +904,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que devuelve el número de registros en estado incompleto
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro de registro
 	 * @param scroficId
@@ -944,7 +944,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve una sentencia para obtener los registros
 	 * distribuidos
-	 * 
+	 *
 	 * @param tableName
 	 *            nombre de la tabla
 	 * @param bookId
@@ -958,9 +958,33 @@ public interface DBEntityDAO {
 			Integer bookId, String where, int index);
 
 	/**
+	 * Método que nos devuelve una sentencia para obtener los registros
+	 * distribuidos y ordenados según el criterio indicado
+	 *
+	 * @param tableName - Nombre de la tabla
+	 * @param bookId - Identificador del libro
+	 * @param where - clausula where de la sentencia
+	 * @param regWhere - clausula de búsqueda por campos del registro
+	 * @param isCreateTable - indica si se debe concatenar la sentencia o generar nueva tabla/vista
+	 * @param isInBook - indica si el libro es de entrada o salida
+	 * @param language
+	 *            <ul>
+	 *            <li>Vacio o nulo: Castellano</li>
+	 *            <li>es: Castellano</li>
+	 *            <li>eu: Euskera</li>
+	 *            <li>ct: Catalán</li>
+	 *            <li>gl: Gallego</li>
+	 *            </ul>
+	 *
+	 * @return String con la sentencia que genera la tabla temporal
+	 */
+	public String getTemporalTableDistributionQuerySentenceOrderBy(String tableName,
+			Integer bookId, String where, String regWhere, boolean isCreateTable,  boolean isInBook, String language);
+
+	/**
 	 * Método que nos devuelve el número de registros distribuidos según la
 	 * sentencia sql que le pasamos
-	 * 
+	 *
 	 * @param sentence
 	 *            sentencia sql
 	 * @param entidad
@@ -972,7 +996,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que devuelve el número de personas que coinciden con la consulta
-	 * 
+	 *
 	 * @param sentence
 	 *            consulta sql
 	 * @param entidad
@@ -985,7 +1009,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que obtiene una lista de libros de registro que tienen registros
 	 * distribuidos
-	 * 
+	 *
 	 * @param query
 	 *            sentencia sql
 	 * @param entidad
@@ -997,7 +1021,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que comprueba si un registro ha sido distribuido y aceptado o no
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro de registro
 	 * @param fdrid
@@ -1017,7 +1041,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que comprueba si un registro tiene una distribucion aceptada
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro de registro
 	 * @param fdrid
@@ -1033,7 +1057,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que actualiza el estado del registro distribuido aceptado
-	 * 
+	 *
 	 * @param exist
 	 *            parametro que nos indica si esta en estado aceptado o no
 	 * @param bookId
@@ -1058,7 +1082,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Eliminamos el registro indicado de la tabla SCR_DISTACCEPT
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro de registro
 	 * @param fdrid
@@ -1070,7 +1094,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve el final de una sentencia sql que fija el limite
 	 * de registros a devulver por la consulta
-	 * 
+	 *
 	 * @param maxReportRegister
 	 *            limite de registros
 	 * @return sentencia sql
@@ -1080,7 +1104,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que almacena un fichero compartido entre registros de distintos
 	 * libros
-	 * 
+	 *
 	 * @param fileId
 	 *            identificador de la imagen
 	 * @param ownerBookId
@@ -1105,7 +1129,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que recupera un informe de la base de datos y lo almacena en un
 	 * directorio temporal
-	 * 
+	 *
 	 * @param reportId
 	 *            identificador del informe
 	 * @param temporalDirectory
@@ -1118,7 +1142,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que nos devuelve la hash de un documento
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro de registro
 	 * @param fdrid
@@ -1139,6 +1163,20 @@ public interface DBEntityDAO {
 	public String getHashDocument(Integer bookId, int fdrid, int pageId,
 			String hash, boolean selDel, String entidad);
 
+
+	/**
+	 * Metodo que borra la información del hash (tabla SCR_PAGEINFO) a partir del registro, libro y pagina
+	 *
+	 * @param bookId - Id del libro
+	 * @param fdrid - Id del registro
+	 * @param pageId - Id de la pagina
+	 * @param entidad - Entidad
+
+	 * @throws SQLException
+	 */
+	public void deleteHashDocument(Integer bookId, int fdrid, int pageId,
+			String entidad) throws SQLException;
+
 	/**
 	 * @deprecated
 	 * @param entidad
@@ -1147,7 +1185,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que actualiza el perfil del usuario
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param prodId
@@ -1161,7 +1199,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que actualiza los datos de un usuario ldap en las tablas de
 	 * invesdoc
-	 * 
+	 *
 	 * @param id
 	 *            identificador del usuario en nuestras tablas
 	 * @param ldapFullName
@@ -1172,7 +1210,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que almacena las preferencias de configuracion de un usuario
-	 * 
+	 *
 	 * @param result
 	 *            xml que contiene las preferencias de configuracion
 	 * @param idUser
@@ -1189,7 +1227,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método para eliminar los contadores
-	 * 
+	 *
 	 * @param userId
 	 *            identificador del usuario
 	 * @param entidad
@@ -1199,7 +1237,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que obtiene todas las relaciones unidades-oficinas para una
 	 * oficina determinada
-	 * 
+	 *
 	 * @param idofic
 	 *            identificador de la oficina
 	 * @param entidad
@@ -1235,7 +1273,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que nos devuelve una sentencia para buscar los registros cerrados
 	 * de un libro de registro
-	 * 
+	 *
 	 * @param tableName
 	 *            nombre de la tabla del libro de registro
 	 * @param filter
@@ -1247,7 +1285,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que almacena en la tabla de configuración del usuario la oficina
 	 * preferente del usuario
-	 * 
+	 *
 	 * @param idUser
 	 *            identificador del usuario
 	 * @param idOficPref
@@ -1259,7 +1297,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que obtiene los interesados de un registro
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro de registro
 	 * @param fdrid
@@ -1273,7 +1311,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que relaciona a un interesado con un registro
-	 * 
+	 *
 	 * @param id
 	 *            identificador
 	 * @param archId
@@ -1311,7 +1349,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que devuelte la descripcion de un elemento de la tabla indicada en
 	 * funcion del idioma
-	 * 
+	 *
 	 * @param id
 	 *            identificador
 	 * @param isScrTypeAdm
@@ -1344,7 +1382,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que obtiene la lista de informes en el idioma indicado
-	 * 
+	 *
 	 * @param reportType
 	 *            tipo de informe
 	 * @param bookType
@@ -1381,7 +1419,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que obtiene el identificador de un documento
-	 * 
+	 *
 	 * @param bookId
 	 *            identificador del libro de registro
 	 * @param fdrId
@@ -1397,7 +1435,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que almacena una nueva relación entre documentos anexos a
 	 * registros y repositorios.
-	 * 
+	 *
 	 * @param bookID
 	 *            identificador del libro de registro
 	 * @param fdrID
@@ -1414,9 +1452,22 @@ public interface DBEntityDAO {
 			String docUID, String entidad) throws SQLException;
 
 	/**
+	 * Método que borra la relación de documentos anexos a registros y repositorios
+	 *
+	 * @param bookId - Id del libro
+	 * @param fdrId - Id del registro
+	 * @param pageID - Id de la pagina
+	 * @param entidad - Entidad
+	 *
+	 * @throws SQLException
+	 */
+
+	public void deleteScrPageRepository(int bookId, int fdrId, int pageID,
+			String entidad) throws SQLException;
+	/**
 	 * Método que nos devuleve el identificador unico del documento en el
 	 * repositorio documental
-	 * 
+	 *
 	 * @param isicresDocUID
 	 *            identificador del documento en invesicres - invesdoc
 	 * @param entidad
@@ -1430,7 +1481,7 @@ public interface DBEntityDAO {
 	 * Método en el que almacenamos un nueva nueva relación entre el
 	 * identificador del documento en invesicres - invesdoc y el identificador
 	 * en el repositorio documental
-	 * 
+	 *
 	 * @param documentRepositoryUID
 	 *            identificador del documento en el repositorio documental
 	 * @param entidad
@@ -1443,7 +1494,7 @@ public interface DBEntityDAO {
 	/**
 	 * Método que obtiene el identificador de la configuracion del repositorio
 	 * en la base de datos
-	 * 
+	 *
 	 * @param bookType
 	 *            tipo del libro de registro
 	 * @param entidad
@@ -1455,7 +1506,7 @@ public interface DBEntityDAO {
 
 	/**
 	 * Método que obtiene la configuracion del repositorio en la base de datos
-	 * 
+	 *
 	 * @param id
 	 *            identificador de la configuración del repositorio
 	 * @param entidad
@@ -1464,11 +1515,11 @@ public interface DBEntityDAO {
 	 */
 	public String getRepositoryConfiguration(Integer id, String entidad)
 			throws SQLException;
-	
+
 	/**
 	 * Método que almacena una nueva relación entre documentos compulsados
 	 * y un localizador
-	 * 
+	 *
 	 * @param bookID
 	 *            identificador del libro de registro
 	 * @param folderId
@@ -1481,24 +1532,47 @@ public interface DBEntityDAO {
 	 * @return 1
 	 * @throws SQLException
 	 */
-	public int insertScrDocLocator(int bookId, int folderId, int pageID, String locator, String entidad) 
+	public int insertScrDocLocator(int bookId, int folderId, int pageID, String locator, String entidad)
 			throws SQLException;
 
-	
+
 	/**
 	 * Método que devuelve la fecha maxima de cierre de cada libro por oficina de registro
-	 * 
+	 *
 	 * @param bookID
 	 *            identificador del libro de registro
 	 * @param entidad
 	 * @param oficId
 	 * @return fecha maxima
 	 * @throws SQLException
-	 */	
-	
+	 */
+
 	public Timestamp getMaxDateClose(Integer bookId, String entidad, Integer oficId)
 			throws SQLException;
-	
+
+	/**
+	 * Método que obtiene la información de la distribución de la tabla y según
+	 * el ordenación indicado
+	 *
+	 * @param firstRow
+	 *            - Posición inicial de elementos a mostrar
+	 * @param maxResults
+	 *            - Máximo de elementos a mostrar
+	 * @param entidad
+	 *            - Entidad
+	 * @param orderBy
+	 *            - Orden a realizar la búsqueda
+	 * @param tableName
+	 *            - Nombre de la tabla sobre la que se realiza la búsqueda
+	 *
+	 * @return Listado de objetos {@link ScrDistReg}
+	 *
+	 * @throws SQLException
+	 */
+	public List getListDistributionOrderBy(int firstRow, int maxResults,
+			String entidad, String orderBy, String tableName)
+			throws SQLException;
+
 	/***************************************************************************
 	 * Protected methods
 	 **************************************************************************/

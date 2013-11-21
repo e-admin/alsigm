@@ -84,14 +84,34 @@ public class IntercambioRegistralConfiguration {
 		return configurationProperties.getProperty(key);
 	}
 
+	/**
+	 * Recupera el código del pais por defecto
+	 * @return
+	 */
 	public String getCountryCode(){
 		return configurationProperties.getProperty(IntercambioRegistralConfigurationKeys.COUNTRY_CODE_KEY);
 	}
 
+	/**
+	 * Recupera el tamaño máximo permitido por fichero
+	 * @return
+	 */
 	public Long getFileMaxSize(){
 		return Long.valueOf(configurationProperties.getProperty(IntercambioRegistralConfigurationKeys.FILE_MAX_SIZE_KEY));
 	}
 
+	/**
+	 * Recupera la información del tamaño máximo permitido para el conjunto de ficheros
+	 * @return
+	 */
+	public Long getFilesSetMaxSize(){
+		return Long.valueOf(configurationProperties.getProperty(IntercambioRegistralConfigurationKeys.FILES_SET_MAX_SIZE_TOTAL_KEY));
+	}
+
+	/**
+	 * Recupera la información del número máximo total de ficheros
+	 * @return
+	 */
 	public Integer getFileMaxNum(){
 		return Integer.valueOf(configurationProperties.getProperty(IntercambioRegistralConfigurationKeys.FILE_MAX_NUM_KEY));
 	}
@@ -101,4 +121,11 @@ public class IntercambioRegistralConfiguration {
 		return extensionsList;
 	}
 
+	public boolean getActiveValidationRelationEntidadUnidad() {
+		return Boolean
+				.parseBoolean(configurationProperties
+						.getProperty(
+								IntercambioRegistralConfigurationKeys.ACTIVE_VALIDATION_RELATION_ENTIDAD_UNIDAD,
+								"false"));
+	}
 }

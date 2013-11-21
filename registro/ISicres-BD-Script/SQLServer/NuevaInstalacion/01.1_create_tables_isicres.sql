@@ -202,7 +202,8 @@ CREATE TABLE scr_distreg (
     id_dest int NOT NULL,
     state int NOT NULL,
     state_date datetime NOT NULL,
-    message varchar(250)
+    message varchar(250),
+    id_dist_father int
 );
 
 CREATE TABLE scr_distregstate (
@@ -210,8 +211,16 @@ CREATE TABLE scr_distregstate (
     id_dist int NOT NULL,
     state int NOT NULL,
     state_date datetime NOT NULL,
-    username varchar(32) NOT NULL
+    username varchar(32) NOT NULL,
+    message varchar(250)
 );
+
+-- Tabla scr_distribucion_actual
+CREATE TABLE scr_distribucion_actual(
+    id_dist int NOT NULL,
+    dist_actual text
+);
+
 
 CREATE TABLE scr_dom (
     id int NOT NULL,

@@ -34,14 +34,7 @@
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<useProjectArtifact>false</useProjectArtifact>				
 			<includes>
-				<include>es.ieci.tecdoc.isicres.admin:ISicresAdmin-resources-configurable:zip:*</include>
-				<include>es.ieci.tecdoc.isicres:ISicres-Desktop-Web:zip:Config</include>
-				<include>es.ieci.tecdoc.isicres:ISicres-WS-legacy:zip:Config</include>
-				
-				<include>es.ieci.tecdoc.fwktd.modules.fwktd-sir:fwktd-sir-config:zip:configurable</include>
-				
-				<include>es.ieci.tecdoc.fwktd.modules.fwktd-audit:fwktd-audit-core:zip:configurable</include>
-				<include>es.ieci.tecdoc.fwktd.modules.fwktd-audit:fwktd-audit-api:zip:configurable</include>
+				<include>es.ieci.tecdoc.isicres:ISicres-external-resources-config:zip:*</include>
 						
 			</includes>
 			<outputDirectory>Binarios/config</outputDirectory>

@@ -5,6 +5,9 @@
 
 	<settings lazyLoadingEnabled="true" useStatementNamespaces="true" enhancementEnabled="false" />
 
+	<typeHandler
+		javaType="java.lang.String"
+		callback="es.ieci.tecdoc.fwktd.server.dao.ibatis.sqlmap.client.extensions.StringTypeHandlerCallback" />
 	<!--
 	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-ambito_territorial.xml" />
 	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-comunidad_autonoma.xml" />
@@ -25,5 +28,6 @@
 	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-estado_actualizacion.xml" />
 	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-datos_basicos_oficina.xml" />
 	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-datos_basicos_unidad_organica.xml" />
+	<sqlMap resource="sqlmaps/fwktd-dir3/fwktd-dir3-datos-basicos-relaciones-unid-ofic.xml" />
 
 </sqlMapConfig>

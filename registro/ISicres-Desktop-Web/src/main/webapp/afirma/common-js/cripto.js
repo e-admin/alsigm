@@ -1,16 +1,16 @@
 /*
- * Este fichero forma parte del Cliente @firma. 
+ * Este fichero forma parte del Cliente @firma.
  * El Cliente @firma es un aplicativo de libre distribucion cuyo codigo fuente puede ser consultado
  * y descargado desde www.ctt.map.es.
  * Copyright 2009,2010,2011 Gobierno de Espana
  * Este fichero se distribuye bajo licencia GPL version 3 segun las
- * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este 
+ * condiciones que figuran en el fichero 'licence' que se acompana. Si se distribuyera este
  * fichero individualmente, deben incluirse aqui las condiciones expresadas alli.
  */
 
 /**
  * Establece los valores del applet para cifrado. Ver constantes.js.
- */ 
+ */
 function configuraCifrador()
 {
 	var command	= "";
@@ -104,7 +104,7 @@ function recuperaEnvelopedDataMozilla(data){
 	    return "";
 	}
 }
-	
+
 function recuperaEnvelopedData(data){
     if(_ie)
         return recuperaEnvelopedDataIE(data);
@@ -113,7 +113,7 @@ function recuperaEnvelopedData(data){
 }
 
 function recuperaEncryptedData(data){
- 	clienteFirma.setData(data);
+	clienteFirma.setData(data);
 	if(clienteFirma.recoverCMS()){
 		return clienteFirma.getData();
 	}else{

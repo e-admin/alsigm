@@ -36,6 +36,7 @@ import com.ieci.tecdoc.common.isicres.SessionInformation;
 import com.ieci.tecdoc.common.keys.ConfigurationKeys;
 import com.ieci.tecdoc.common.keys.IDocKeys;
 import com.ieci.tecdoc.common.utils.Configurator;
+import com.ieci.tecdoc.common.utils.ISDistribution;
 import com.ieci.tecdoc.common.utils.ScrRegStateByLanguage;
 import com.ieci.tecdoc.isicres.desktopweb.Keys;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
@@ -125,8 +126,8 @@ public class DistributionUseCase {
 	}
 
 	public Document getDistribution(UseCaseConf useCaseConf, int state,
-			int firstRow, int typeDist, String distWhere, String regWhere)
-			throws ValidationException, DistributionException,
+			int firstRow, int typeDist, String distWhere, String regWhere,
+			String orderBy) throws ValidationException, DistributionException,
 			SessionException, BookException, SecurityException {
 
 		if (_logger.isDebugEnabled()) {
@@ -157,14 +158,13 @@ public class DistributionUseCase {
 						useCaseConf.getSessionID(),
 						state,
 						firstRow,
-						Integer
-								.parseInt(Configurator
-										.getInstance()
-										.getProperty(
-												ConfigurationKeys.KEY_DESKTOP_DEFAULT_PAGE_DISTRIBUTION_MINUTA_SIZE)),
+						Integer.parseInt(Configurator
+								.getInstance()
+								.getProperty(
+										ConfigurationKeys.KEY_DESKTOP_DEFAULT_PAGE_DISTRIBUTION_MINUTA_SIZE)),
 						typeDist, distWhere, regWhere, isOfficeAsoc,
 						useCaseConf.getLocale(), useCaseConf.getEntidadId(),
-						useCaseConf.getUseLdap().booleanValue());
+						useCaseConf.getUseLdap().booleanValue(), orderBy);
 
 		Map booksReg = descompBookIDRegs(distributionResults);
 		Map axsfs = new HashMap();
@@ -256,8 +256,11 @@ public class DistributionUseCase {
 						.getInstance()
 						.getProperty(
 								ConfigurationKeys.KEY_DESKTOP_DEFAULT_PAGE_DISTRIBUTION_MINUTA_SIZE));
+
+		//Se obtienen los datos a mostrar en pantalla
 		List listScrDistRegResults = getScrDistRegResults(useCaseConf,
 				distributionResults, axsfs);
+
 		return XMLDistributionList.getXMLDistributionList(firstRow, paso,
 				distributionResults.getTotalSize(), useCaseConf.getLocale(),
 				listScrDistRegResults, typeDist, timeout, distPerms,
@@ -296,7 +299,7 @@ public class DistributionUseCase {
 
 	public Document acceptDistribution(UseCaseConf useCaseConf, List dis,
 			int state, int firstRow, int typeDist, Integer bookId,
-			String distWhere, String regWhere) throws ValidationException,
+			String distWhere, String regWhere, String orderBy) throws ValidationException,
 			DistributionException, SessionException, BookException,
 			SecurityException {
 
@@ -353,7 +356,7 @@ public class DistributionUseCase {
 						maxResults, typeDist, distWhere, regWhere,
 						isOfficeAsoc, useCaseConf.getLocale(), useCaseConf
 								.getEntidadId(), useCaseConf.getUseLdap()
-								.booleanValue());
+								.booleanValue(), orderBy);
 		try {
 			result = DistributionSession.acceptDistribution(useCaseConf
 					.getSessionID(), dis, state, firstRow, maxResults,
@@ -382,7 +385,7 @@ public class DistributionUseCase {
 
 	public Document acceptDistributionEx(UseCaseConf useCaseConf, List dis,
 			int state, int firstRow, int typeDist, Integer bookId,
-			String distWhere, String regWhere) throws ValidationException,
+			String distWhere, String regWhere, String orderBy) throws ValidationException,
 			DistributionException, SessionException, BookException,
 			SecurityException {
 
@@ -439,7 +442,7 @@ public class DistributionUseCase {
 						maxResults, typeDist, distWhere, regWhere,
 						isOfficeAsoc, useCaseConf.getLocale(), useCaseConf
 								.getEntidadId(), useCaseConf.getUseLdap()
-								.booleanValue());
+								.booleanValue(), orderBy);
 		try {
 			result = DistributionSession.acceptDistribution(useCaseConf
 					.getSessionID(), dis, state, firstRow, maxResults,
@@ -498,12 +501,12 @@ public class DistributionUseCase {
 		useCaseConf.setLocale(locale);
 
 		rejectDistribution(useCaseConf, dis, state, firstRow, typeDist,
-				remarks, distWhere, regWhere);
+				remarks, distWhere, regWhere, null);
 	}
 
 	public void rejectDistribution(UseCaseConf useCaseConf, List dis,
 			int state, int firstRow, int typeDist, String remarks,
-			String distWhere, String regWhere) throws ValidationException,
+			String distWhere, String regWhere, String orderBy) throws ValidationException,
 			DistributionException, SessionException, BookException {
 		List archidFdr = new ArrayList();
 		ScrDistreg distReg = null;
@@ -518,7 +521,7 @@ public class DistributionUseCase {
 					.getSessionID(), dis, remarks, state, firstRow, maxResults,
 					typeDist, distWhere, regWhere, useCaseConf.getLocale(),
 					useCaseConf.getEntidadId(), useCaseConf.getUseLdap()
-							.booleanValue());
+							.booleanValue(), orderBy);
 		} finally {
 			for (Iterator it4 = archidFdr.iterator(); it4.hasNext();) {
 				distReg = (ScrDistreg) it4.next();
@@ -530,7 +533,7 @@ public class DistributionUseCase {
 	}
 
 	public void saveDistribution(UseCaseConf useCaseConf, List dis, int state,
-			int firstRow, int typeDist, String distWhere, String regWhere)
+			int firstRow, int typeDist, String distWhere, String regWhere, String orderBy, String remarks)
 			throws ValidationException, DistributionException,
 			SessionException, BookException {
 		List archidFdr = new ArrayList();
@@ -547,7 +550,7 @@ public class DistributionUseCase {
 					.getSessionID(), dis, state, firstRow, maxResults,
 					typeDist, distWhere, regWhere, useCaseConf.getLocale(),
 					useCaseConf.getEntidadId(), useCaseConf.getUseLdap()
-							.booleanValue());
+							.booleanValue(), orderBy, remarks);
 		} finally {
 			for (Iterator it4 = archidFdr.iterator(); it4.hasNext();) {
 				distReg = (ScrDistreg) it4.next();
@@ -573,7 +576,8 @@ public class DistributionUseCase {
 
 		DistributionSession.changeDistribution(useCaseConf.getSessionID(), dis,
 				code, typeDist, launchDistOutRegister, canDestWithoutList,
-				useCaseConf.getLocale(), useCaseConf.getEntidadId());
+				useCaseConf.getLocale(), useCaseConf.getEntidadId(), useCaseConf.getUseLdap()
+				.booleanValue());
 	}
 
 	public String createDistribution(UseCaseConf useCaseConf, Integer bookId,
@@ -1225,27 +1229,41 @@ public class DistributionUseCase {
 		for (Iterator it = treemap.keySet().iterator(); it.hasNext();) {
 			Integer distId = (Integer) it.next();
 			Map aux = (Map) treemap.get(distId);
-			String id = (String) aux.keySet().iterator().next();
-			ScrDistreg distReg = (ScrDistreg) aux.get(id);
-			Integer dType = (Integer) distType.get(distReg.getId());
+			if(aux != null && aux.size()>0 ){
+				String id = (String) aux.keySet().iterator().next();
+				ScrDistreg distReg = (ScrDistreg) aux.get(id);
+				Integer dType = (Integer) distType.get(distReg.getId());
 
-			String sourceDesc = DistributionSession.getOrigDestDescription(
-					useCaseConf.getSessionID(), distReg, true, useCaseConf
-							.getEntidadId(), useCaseConf.getUseLdap()
-							.booleanValue());
-			String targetDesc = DistributionSession.getOrigDestDescription(
-					useCaseConf.getSessionID(), distReg, false, useCaseConf
-							.getEntidadId(), useCaseConf.getUseLdap()
-							.booleanValue());
-			AxSf axsf = (AxSf) axsfs.get(distReg.getIdArch() + "_"
-					+ distReg.getIdFdr());
-			Object idocarch = distributionResults.getIdocarchhdr().get(
-					new Integer(distReg.getIdArch()));
+				String sourceDesc = DistributionSession.getOrigDestDescription(
+						useCaseConf.getSessionID(), distReg, true, useCaseConf
+								.getEntidadId(), useCaseConf.getUseLdap()
+								.booleanValue());
+				String targetDesc = DistributionSession.getOrigDestDescription(
+						useCaseConf.getSessionID(), distReg, false, useCaseConf
+								.getEntidadId(), useCaseConf.getUseLdap()
+								.booleanValue());
+				AxSf axsf = (AxSf) axsfs.get(distReg.getIdArch() + "_"
+						+ distReg.getIdFdr());
+				Object idocarch = distributionResults.getIdocarchhdr().get(
+						new Integer(distReg.getIdArch()));
 
-			ScrDistRegResults scrDistRegResult = new ScrDistRegResults(distReg,
-					axsf, idocarch, sourceDesc, targetDesc, dType);
+				// Si la distribucion esta en estado redistribuido buscaremos la
+				// información del destino actual
+				String targetActualDist = null;
+				if (distReg.getState() == ISDistribution.STATE_REDISTRIBUIDO) {
+					//Obtenemos el destino actual de la distribucion
+					targetActualDist = DistributionSession
+							.getDestinoActualDistribucion(
+									useCaseConf.getSessionID(), distReg.getId(),
+									useCaseConf.getEntidadId());
+				}
 
-			listScrDistRegResults.add(scrDistRegResult);
+				//Se genera el objeto con la información a mostrar
+				ScrDistRegResults scrDistRegResult = new ScrDistRegResults(distReg,
+						axsf, idocarch, sourceDesc, targetDesc, dType, targetActualDist);
+
+				listScrDistRegResults.add(scrDistRegResult);
+			}
 		}
 
 		return listScrDistRegResults;
@@ -1289,7 +1307,7 @@ public class DistributionUseCase {
 				useCaseConf.getSessionID(), useCaseConf.getLocale(),
 				useCaseConf.getEntidadId(), dis, userId, typeDist,
 				canDestWithoutList, messageForUser,
-				userType);
+				userType, useCaseConf.getUseLdap().booleanValue());
 
 	}
 

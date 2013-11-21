@@ -19,7 +19,7 @@ thead tr {
 }
 
 th.sorted {
-	background-color: orange;
+	background-color: #C7CE4E;
 }
 
 th a,th a:visited {
@@ -38,15 +38,27 @@ th.sorted a,th.sortable a {
 }
 
 th.sortable a {
-	background-image: url(../img/arrow_off.png);
+	background-image: url(../images/bg.gif);
+    background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	padding-right: 20px;
 }
 
 th.order1 a {
-	background-image: url(../img/arrow_down.png);
+	background-image: url(../images/desc.gif);
+    background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	padding-right: 20px;
 }
 
 th.order2 a {
-	background-image: url(../img/arrow_up.png);
+	background-image: url(../images/asc.gif);
+    background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	padding-right: 20px;
 }
 
 tr.odd {

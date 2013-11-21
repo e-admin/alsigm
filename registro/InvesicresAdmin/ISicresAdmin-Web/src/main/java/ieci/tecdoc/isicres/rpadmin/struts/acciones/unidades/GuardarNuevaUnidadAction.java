@@ -4,6 +4,7 @@ package ieci.tecdoc.isicres.rpadmin.struts.acciones.unidades;
 
 import ieci.tecdoc.isicres.rpadmin.struts.acciones.RPAdminWebAction;
 import ieci.tecdoc.isicres.rpadmin.struts.forms.UnidadForm;
+import ieci.tecdoc.isicres.rpadmin.struts.util.Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,6 +52,9 @@ public class GuardarNuevaUnidadAction extends RPAdminWebAction {
 			//Se obtiene la entidad
 			Entidad entidad = new Entidad();
 			entidad.setIdentificador(MultiEntityContextHolder.getEntity());
+
+			//validamos los datos del IR
+			Utils.validateDatosIR(nuevaUnidad);
 
 			oServicio.crearOrganizacion(false, nuevaUnidad, entidad);
 

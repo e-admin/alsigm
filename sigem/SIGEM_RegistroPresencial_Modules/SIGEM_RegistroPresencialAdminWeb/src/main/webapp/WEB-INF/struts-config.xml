@@ -149,7 +149,7 @@
 	       scope="request" input="/editarOficina.do" name="oficinaForm" validate="true">
 	    	<forward name="success" path="/jsp/editarOficina.jsp"/>
 	    	<forward name="listado" path="/listadoOficinas.do"/>
-	    	<forward name="error" path="/editarOficina.do"/>
+		<forward name="error" path="/jsp/editarOficina.jsp"/>
 	    </action>
 
 	    <action path="/eliminarOficina"
@@ -433,7 +433,7 @@
 	       type="ieci.tecdoc.isicres.rpadmin.struts.acciones.libros.EditarLibroAction"
 	       scope="request" input="/editarLibro.do" name="libroForm" validate="true">
 	    	<forward name="success" path="/jsp/editarLibro.jsp"/>
-	    	<forward name="error" path="/editarLibro.do"/>
+		<forward name="error" path="/listadoLibros.do"/>
 	    </action>
 
 	    <action path="/guardarEdicionLibro"

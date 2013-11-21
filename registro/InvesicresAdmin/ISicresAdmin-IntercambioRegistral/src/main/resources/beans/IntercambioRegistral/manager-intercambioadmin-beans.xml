@@ -9,7 +9,7 @@
 		class="es.ieci.tecdoc.isicres.admin.business.spring.ApplicationContextProvider"></bean>
 
 
-	<bean id="intercambioRegistralManager"
+	<bean id="intercambioRegistralAdminManager"
 		class="es.ieci.tecdoc.isicres.admin.business.manager.impl.IntercambioRegistralManagerImpl">
 		<property name="intercambioRegistralDAO">
 			<ref bean="intercambioRegistralDAO" />
@@ -19,11 +19,10 @@
 		<property name="servicioConsultaDirectorioComun" ref="fwktd_dir3_servicioConsultaDirectorioComun"></property>
 	</bean>
 
-	<bean id="gestionDCOManager"
+	<bean id="gestionDCOAdminManager"
 		class="es.ieci.tecdoc.isicres.admin.business.manager.impl.GestionDCOManagerImpl">
 		<property name="servicioInicializacionDirectorioComun" ref="fwktd_dir3_servicioInicializacionDirectorioComun"></property>
 		<property name="servicioActualizacionDirectorioComun" ref="fwktd_dir3_servicioActualizacionDirectorioComun"></property>
 	</bean>
-
 
 </beans>

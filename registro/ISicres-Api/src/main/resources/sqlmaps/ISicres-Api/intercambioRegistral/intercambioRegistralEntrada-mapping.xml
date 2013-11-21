@@ -25,17 +25,17 @@
 		<result property="estado" column="state" />
 		<result property="fechaIntercambio" column="exchange_date" />
 		<result property="username" column="username" />
-		
+
 		<result property="codeEntity" column="code_entity" />
 		<result property="nameEntity" column="name_entity" />
 		<result property="codeTramunit" column="code_tramunit" />
 		<result property="nameTramunit" column="name_tramunit" />
-		
+
 		<result property="numeroRegistroOrigen" column="num_reg_orig" />
 		<result property="contactoOrigen" column="contacto_orig" />
-		
+
 		<result property="comentarios" column="comments" />
-		
+
 	</resultMap>
 
 	<resultMap
@@ -48,19 +48,21 @@
 		<result property="idIntercambioInterno" column="id_exchange" />
 		<result property="estado" column="state" />
 		<result property="fechaIntercambioRegistral" column="exchange_date" />
-		
+
+		<result property="fechaEstado" column="state_date" />
+
 		<result property="username" column="username" />
-		
+
 		<result property="codigoUnidadTramitacion" column="code_tramunit" />
 		<result property="nombreUnidadTramitacion" column="name_tramunit" />
 		<result property="codigoEntidadTramitacion" column="code_entity" />
 		<result property="nombreEntidadTramitacion" column="name_entity" />
-		
+
 		<result property="numeroRegistroOrigen" column="num_reg_orig" />
 		<result property="contactoOrigen" column="contacto_orig" />
-		
+
 		<result property="comentarios" column="comments" />
-		
+
 	</resultMap>
 
 	<resultMap

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+
+<scr_exreg_in id="1004" id_arch="3" id_fdr="107" id_ofic="2" exchange_date="2013-06-11 10:40:37.872" state="1" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000007" id_exchange="10" username="OPE1" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" num_reg_orig="201300100000096" contacto_orig="" comments=""/>
+
+<scr_exreg_in id="1000" id_arch="1" id_fdr="104" id_ofic="2" exchange_date="2013-06-11 10:40:37.872" state="1" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000004" id_exchange="7" username="REGISTRO" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" num_reg_orig="201300100000096" contacto_orig="" comments=""/>
+
+<scr_exreg_in id="1001" id_arch="1" id_fdr="105" id_ofic="2" exchange_date="2013-06-11 10:40:37.872" state="2" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000005" id_exchange="8" username="REGISTRO" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" num_reg_orig="201300100000096" contacto_orig="" comments=""/>
+
+<scr_exreg_in id="1002" id_arch="1" id_fdr="106" id_ofic="2" exchange_date="2013-06-11 10:40:37.872" state="3" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000006" id_exchange="9" username="REGISTRO" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" num_reg_orig="201300100000096" contacto_orig="" comments=""/>
+
+<scr_exreg_in id="1003" id_arch="1" id_fdr="106" id_ofic="2" exchange_date="2013-06-11 10:40:37.872" state="1" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000007" id_exchange="10" username="REGISTRO" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" num_reg_orig="201300100000096" contacto_orig="" comments=""/>
+
+<scr_exreg id="1004" id_arch="3" id_fdr="110" id_ofic="2" type_orig="1" exchange_date="2013-06-11 10:40:37.872" state="1" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000007" id_exchange="10" username="OPE1" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" comments=""/>
+
+<scr_exreg id="1000" id_arch="1" id_fdr="104" id_ofic="2" type_orig="1" exchange_date="2013-06-11 10:40:37.872" state="1" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000007" id_exchange="10" username="REGISTRO" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" comments=""/>
+
+<scr_exreg id="1001" id_arch="1" id_fdr="107" id_ofic="2" type_orig="1" exchange_date="2013-06-11 10:40:37.872" state="4" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000007" id_exchange="10" username="REGISTRO" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" comments=""/>
+
+
+<scr_exreg id="1002" id_arch="1" id_fdr="108" id_ofic="2" type_orig="1" exchange_date="2013-06-11 10:40:37.872" state="5" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000004" id_exchange="10" username="REGISTRO" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" comments=""/>
+
+<scr_exreg id="1003" id_arch="1" id_fdr="109" id_ofic="2" type_orig="1" exchange_date="2013-06-11 10:40:37.872" state="1" state_date="2013-06-11 10:40:37.872"
+		id_exchange_sir="O00001013_13_00000007" id_exchange="10" username="REGISTRO" code_tramunit="" name_tramunit="" code_entity="O00001013"
+		name_entity="REGISTRO DE LA COMARCA DE LA RIBAGORZA" comments=""/>
+
+
+<scr_typeadm id="0" code="R" description="REGISTROS"/>
+<scr_typeadm id="1" code="0" description="PROPIOS"/>
+
+<scr_typeofic id="1" description="Registro central" />
+<scr_typeofic id="2" description="Registro auxiliar" />
+
+<scr_orgs id="1" code="ER1"  acron="ER1" name="ENTIDAD REGISTRAL1" creation_date="2007-10-16 17:06:08"
+		disable_date="2015-06-11 10:40:37.872" type="0" enabled="1" cif=""/>
+
+
+<scr_ofic id="2" code="001" acron="OR1" name="OFICINA DE REGISTRO1" creation_date="2007-10-16 00:00:00" disable_date="2020-10-16 00:00:00"
+	id_orgs="1"	stamp="OFICINA DE REGISTRO1" deptid="3" type="1" />
+
+<!--
+<scr_entityreg id="1" code="O00001012" name="REGISTRO DEL AYUNTAMIENTO DE SABIÑÁNIGO" id_ofic="2"/>
+
+<scr_usrofic id="1" iduser="3" idofic="2" />
+-->
+
+</dataset>

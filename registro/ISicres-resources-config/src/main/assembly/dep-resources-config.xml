@@ -18,8 +18,11 @@
 				<exclude>Isicres/database.properties</exclude>
 				<exclude>Isicres/intercambioRegistral.properties</exclude>
 				<exclude>commons-logging.properties</exclude>
-
 			</excludes>
+		</fileSet>
+		<fileSet>
+			<directory>../ISicres-Document-Connector-Alfresco/src/main/resources</directory>
+			<outputDirectory>/</outputDirectory>
 		</fileSet>
 
 	</fileSets>

@@ -21,13 +21,13 @@ public class SicresUserIdentificacionDatos extends SicresUserIdentificacionImpl 
 	private static Logger logger = Logger.getLogger(SicresUserIdentificacionDatos.class);
 
 	public SicresUserIdentificacionDatos(){
-		
+
 	}
 
 	public SicresUserIdentificacionDatos(SicresUserIdentificacionImpl bean) throws Exception {
 		BeanUtils.copyProperties(this, bean);
 	}
-	
+
 	public Integer loadAllValues(DbOutputStatement statement, Integer idx)
 			throws Exception {
 
@@ -95,13 +95,15 @@ public class SicresUserIdentificacionDatos extends SicresUserIdentificacionImpl 
 			if (logger.isDebugEnabled()) {
 				logger.debug("Datos de scr_userident obtenidos.");
 			}
+		} catch (ISicresRPAdminDAOException iRPADAOException) {
+			if (logger.isDebugEnabled()){
+				logger.debug("No se ha encontrado fila en scr_userident", iRPADAOException);
+			}
+			throw iRPADAOException;
 		} catch (Exception e) {
-			if(e instanceof ISicresRPAdminDAOException)
-				logger.warn("No se ha encontrado fila en scr_userident");
-			else
-				logger.error("Error obteniendo datos de scr_userident");			
+			logger.error("Error obteniendo datos de scr_userident");
 			throw new ISicresRPAdminDAOException(ISicresRPAdminDAOException.EXC_GENERIC_EXCEPCION, e);
-		} 
+		}
 	}
 
 	public void add(DbConnection db) throws ISicresRPAdminDAOException {
@@ -148,7 +150,7 @@ public class SicresUserIdentificacionDatos extends SicresUserIdentificacionImpl 
 				logger.debug("Eliminado scr_userident.");
 			}
 		} catch (Exception e) {
-			logger.error("Error eliminando scr_userident");			
+			logger.error("Error eliminando scr_userident");
 			throw new ISicresRPAdminDAOException(ISicresRPAdminDAOException.SCR_USRIDENT_DELETE);
 		}
 	}
@@ -162,7 +164,7 @@ public class SicresUserIdentificacionDatos extends SicresUserIdentificacionImpl 
 		try {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Actualizando scr_userident.");
-			}	
+			}
 
 			tableInfo.setTableObject(table);
 			tableInfo.setClassName(table.getClass().getName());
@@ -178,7 +180,7 @@ public class SicresUserIdentificacionDatos extends SicresUserIdentificacionImpl 
 					tableInfo, rowsInfo);
 			if (logger.isDebugEnabled()) {
 				logger.debug("Actualizado scr_userident.");
-			}	
+			}
 		} catch (Exception e) {
 			logger.error("Error actualizando scr_userident", e);
 			throw new ISicresRPAdminDAOException(ISicresRPAdminDAOException.SCR_USRIDENT_UPDATE);

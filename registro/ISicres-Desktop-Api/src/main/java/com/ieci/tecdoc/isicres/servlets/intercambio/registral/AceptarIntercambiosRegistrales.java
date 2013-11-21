@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.ieci.tecdoc.isicres.desktopweb.Keys;
@@ -24,6 +25,7 @@ import es.ieci.tecdoc.isicres.intercambio.registral.util.IntercambioRegistralMan
 
 public class AceptarIntercambiosRegistrales extends HttpServlet{
 
+	private static final String BANDEJA_ENTRADA_INTERCAMBIO_REGISTRAL_SERVLET = "/BandejaEntradaIntercambioRegistral.do";
 	private static Logger _logger = Logger.getLogger(AceptarIntercambiosRegistrales.class);
 	private static final long serialVersionUID = 1L;
 
@@ -48,34 +50,40 @@ public class AceptarIntercambiosRegistrales extends HttpServlet{
 
 
 		ContextoAplicacionVO contextoAplicacion=null;
-		
+
 		IntercambioRegistralManager intercambioManager =  IsicresManagerProvider.getInstance().getIntercambioRegistralManager();
-		
+
+		String paramUrlRequestDispatcher = req.getParameter("requestDispatcherUrl");
+		String urlRequestDispatcher = BANDEJA_ENTRADA_INTERCAMBIO_REGISTRAL_SERVLET;
+		if (StringUtils.isNotBlank(paramUrlRequestDispatcher)){
+			urlRequestDispatcher = paramUrlRequestDispatcher;
+		}
+
 		try{
-			
+
 			//seteamos el contxto de aplicacion
 			CurrentUserSessionContextUtil currentUserSessionContextUtil= new CurrentUserSessionContextUtil();
 			contextoAplicacion=currentUserSessionContextUtil.getContextoAplicacionActual(req);
-			
+
 			String[] registrosSeleccionados = req.getParameterValues("checkRegistro");
 			boolean llegoDocFisica = Boolean.valueOf(req.getParameter("docRecibida"));
-			
+
 			String user = contextoAplicacion.getUsuarioActual().getLoginName();
-			
+
 			Integer idOficina = Integer.parseInt(contextoAplicacion.getOficinaActual().getId());
 			String codOficina = ((OficinaVO)contextoAplicacion.getOficinaActual()).getCodigoOficina();
 			String idLibro = req.getParameter("idLibro");
-			
-			
+
+
 			for (String idIntercambioRegistral : registrosSeleccionados) {
 				 intercambioManager.aceptarIntercambioRegistralEntradaById(idIntercambioRegistral,idLibro, user,idOficina,codOficina,llegoDocFisica);
 
 			}
-			
+
 			String mensaje = RBUtil.getInstance(contextoAplicacion.getUsuarioActual().getConfiguracionUsuario().getLocale()).getProperty(Keys.I18N_ISICRESIR_ACCEPT_OK);
 			req.setAttribute(Keys.REQUEST_MSG, mensaje);
 
-			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher("/BandejaEntradaIntercambioRegistral.do");
+			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher(urlRequestDispatcher);
 			rd.forward(req, resp);
 
 		}catch (IntercambioRegistralException irEx) {
@@ -90,7 +98,7 @@ public class AceptarIntercambiosRegistrales extends HttpServlet{
 			String error = RBUtil.getInstance(contextoAplicacion.getUsuarioActual().getConfiguracionUsuario().getLocale()).getProperty(Keys.I18N_ISICRESIR_ACCEPT_ERROR);
 			req.setAttribute(Keys.REQUEST_ERROR, error);
 
-			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher("/BandejaEntradaIntercambioRegistral.do");
+			RequestDispatcher rd = getServletConfig().getServletContext().getRequestDispatcher(urlRequestDispatcher);
 			rd.forward(req, resp);
 		}
 	}

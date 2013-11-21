@@ -3,7 +3,7 @@
   <parent>
     <artifactId>sigem_registroPresencial_modules</artifactId>
     <groupId>es.ieci.tecdoc.sigem</groupId>
-    <version>3.0.1-M2</version>
+    <version>3.0.1-M3</version>
   </parent>
   <artifactId>SIGEM_RegistroPresencialAdminWeb-configurable-resources</artifactId>
   <packaging>pom</packaging>

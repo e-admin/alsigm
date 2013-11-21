@@ -249,10 +249,10 @@ function meterEnLista( pclase, ptipo, pvalor, pelemento )
 
 function escape_especial_chars(file){
 	var special_chars=["'"];
-   
-    	for(j=0;j<special_chars.length;j++){
-    		file=file.replace(special_chars[j],"\\"+special_chars[j]);
-    	}
+
+	for(j=0;j<special_chars.length;j++){
+		file=file.replace(special_chars[j],"\\"+special_chars[j]);
+	}
     return file;
 }
 
@@ -371,10 +371,12 @@ function RmvObjFile( ONode )
 {
 	if( ( ONode.className == "CL3" )&&( ONode.id.search( 'LI' ) != -1 ) ) {
 		var ObjId = ONode.id.substring( 2, ONode.id.length );
-		var ObjToRmv = parent.parent.FolderBar.document.getElementById("frmStrUpdate").document.getElementById("LI" + ObjId.toString());
+		var idFicheroBorrar = "LI" + ObjId.toString();
+		var ObjToRmv = parent.parent.FolderBar.document.getElementById("frmStrUpdate").document.getElementById(idFicheroBorrar);
+		//Borramos los datos del fichero
+		eliminarInputTreeUpdateFichero(idFicheroBorrar);
 
 		parent.parent.FolderBar.document.getElementById("frmStrUpdate").removeChild(ObjToRmv);
-		parent.parent.FolderBar.PageCnt = parseInt( parent.parent.FolderBar.PageCnt ) - 1;
    }
 
    for ( var ii = 0; ii < ONode.childNodes.length; ii++ ) {
@@ -384,6 +386,31 @@ function RmvObjFile( ONode )
    return;
 }
 
+//Función que borra un fichero adjuntado al registro
+function deleteFile(){
+	var TreeElemLocal = window.TreeElemAux;
+	var TreeTypeLocal = window.TreeTypeAux;
+
+	if ( window.confirm( top.GetIdsLan( "IDS_QRYBORRAELEM" ) ) ) {
+		//obtenemos la información del fichero
+		var ONode  = ObjId( TreeElemLocal, ClaseNumero( TreeTypeLocal ) );
+		//obtenemos la información del documento
+		var OPadre = ONode.parentNode.parentNode;
+
+		//componemos la url con los datos
+		var URL = top.g_URL + "/FileDelete?SessionPId=" + top.g_SessionPId
+				+ "&RegId=" + top.g_FolderId.toString()
+				+ "&BookId=" + top.g_ArchiveId.toString()
+				+ "&DocId=" + OPadre.id
+				+ "&PageId=" + ONode.id;
+
+		//Realizamos la invocación al servidor
+		top.XMLHTTPRequestGet(URL, top.ResponseFrmData, false);
+
+		//Recargamos la pantalla
+		top.Main.Folder.FolderBar.CloseModify(new Object());
+	}
+}
 
 function rmvElem()
 {
@@ -458,6 +485,27 @@ function rmvElem()
 	HideMenu();
 
 	return;
+}
+
+// Función que borra del formulario frmStrUpdate los datos TREEUPDATE referentes a los
+// ficheros
+function eliminarInputTreeUpdateFichero(idFicheroBorrar){
+	//obtenemos los datos del formulario
+	var oForm = parent.parent.FolderBar.document.getElementById("frmStrUpdate");
+	// recorremos todos los elementos del formulario
+	for(var ii=0; ii < oForm.length; ii++){
+		// obtenemos los que son de tipo TEXT y con nombre TREEUPDATE
+		if((oForm[ii].type == "text") && (oForm[ii].name = "TreeUpdate")){
+			// Descomponemos el valor de dichos inputs (Ejemplo del valor
+			// para Ficheros: 1|CL3|LI0|nombre_fichero|LI2000|CL2)
+			var value = oForm[ii].value.split("|");
+			// Comprobamos si el elemento tratado coincide con el fichero
+			// que llega como parametro para eliminarlo del formulario
+			if(value[2] == idFicheroBorrar){
+				parent.parent.FolderBar.document.getElementById("frmStrUpdate").removeChild(oForm[ii]);
+			}
+		}
+	}
 }
 
 
@@ -595,17 +643,17 @@ function NumeroClase( Ptipo )
    switch ( Ptipo )
    {
       case "CL0":	return 0;
-      	         break;
+	         break;
       case "CL1":	return 1;
-      	         break;
+	         break;
       case "CL2":	return 2;
-      	         break;
+	         break;
       case "CL3":	return 3;
-      	         break;
+	         break;
       case "CL4":	return 4;
-      	         break;
+	         break;
       case "CL5":	return 5;
-      	         break;
+	         break;
    }
    return;
 }
@@ -753,10 +801,16 @@ function ShowMenu(aEvent, PTipo, PId )
 
 		// LI == elemento no subido todavía al servidor se puede borrar
 		if( window.TreeElemAux.search( "LI" ) != -1 )  {
-			divHTML += '<td id="tdRemove" class="Option" onmouseOver="OverMenu(this);" onmouseOut="OutMenu(this);" onfocus="OverMenu(this);" onblur="OutMenu(this);" onclick="rmvElem()" onkeydown="if (top.GetKeyCode(event)==13){rmvElem();}" tabIndex="1" nowrap="true">'
+			divHTML += '<td id="tdRemove" class="Option" onmouseOver="OverMenu(this);" onmouseOut="OutMenu(this);" onfocus="OverMenu(this);" onblur="OutMenu(this);" onclick="rmvElem()" onkeydown="if (top.GetKeyCode(event)==13){rmvElem();}" tabIndex="1" nowrap="true">';
 		}
 		else {
-			divHTML += '<td class="Disabled" nowrap="true">'
+			//se comprueba que el usuario tenga permisos y que sea una pagina del documento
+			//PTipo == 0 - Raiz de documentos; PTipo == 2 - Documento; PTipo == 3 - Pagina
+			if((top.g_deleteFilePerms == "true") && (PTipo == 3)){
+				divHTML += '<td id="tdRemove" class="Option" onmouseOver="OverMenu(this);" onmouseOut="OutMenu(this);" onfocus="OverMenu(this);" onblur="OutMenu(this);" onclick="deleteFile()" onkeydown="if (top.GetKeyCode(event)==13){deleteFile();}" tabIndex="1" nowrap="true">';
+			}else{
+				divHTML += '<td class="Disabled" nowrap="true">';
+			}
 		}
 
 		divHTML += top.GetIdsLan( "IDS_MENUBORRAR" )
@@ -766,14 +820,14 @@ function ShowMenu(aEvent, PTipo, PId )
 			+ '<td nowrap="true">'
 			+ '<hr class="Disabled" style="height:1px"></td>'
 			+ '</tr>'
-			+ '<tr>'
+			+ '<tr>';
 
 	   //LI == elemento no subido todavía al servidor se puede renombrar
 	   if( window.TreeElemAux.search( "LI" ) != -1 )   {
-			divHTML += '<td id="tdRename" class="Option" onmouseOver="OverMenu(this);" onmouseOut="OutMenu(this);" onfocus="OverMenu(this);" onblur="OutMenu(this);" onclick="rnmElem()" onkeydown="if (top.GetKeyCode(event)==13){rnmElem();}" tabIndex="1" nowrap="true">'
+			divHTML += '<td id="tdRename" class="Option" onmouseOver="OverMenu(this);" onmouseOut="OutMenu(this);" onfocus="OverMenu(this);" onblur="OutMenu(this);" onclick="rnmElem()" onkeydown="if (top.GetKeyCode(event)==13){rnmElem();}" tabIndex="1" nowrap="true">';
 		}
 		else {
-			divHTML += '<td class="Disabled" nowrap="true">'
+			divHTML += '<td class="Disabled" nowrap="true">';
 		}
 
 		divHTML += top.GetIdsLan( "IDS_MENUCHGNAME" ) + '</td>'
@@ -788,7 +842,7 @@ function ShowMenu(aEvent, PTipo, PId )
 				divHTML +='<tr>';
 				divHTML += '<td id="tdProperties" class="Option" onclick="showDocumentAttachmentInfo('+PId+')">';
 				divHTML += top.GetIdsLan( "IDS_MENUINFODOCELECTRONICO" )+ '</td>'
-					+ '</tr>'
+					+ '</tr>';
 			}
 
 		divHTML += '</table>';
@@ -926,7 +980,7 @@ function PromptName( PTipo )
                 + '<input type="file" style="visibility:hidden" name="fichero"></td>';
 			break;
 		case 4:
-			divHTML += '<tr><td class="Option">' + top.GetIdsLan( "IDS_MENUNAMELINK" ) + ':</td></tr>'
+			divHTML += '<tr><td class="Option">' + top.GetIdsLan( "IDS_MENUNAMELINK" ) + ':</td></tr>';
 			break;
 		case 5:
 			divHTML += '<tr><td class="Option">' + top.GetIdsLan( "IDS_MENUNAMEPAG_ESC" ) + ':</td></tr>'
@@ -1082,8 +1136,8 @@ function CleanFldsForm(oForm, oColImages)
 	var Fields = top.Main.Folder.FolderData.FolderFormTree.document.getElementById("Fields").value;
 	var arrFields = Fields.split(";");
 
-   	for (var ii=0; ii < oForm.length; ii++)  {
-        	if ((oForm[ii].type.toUpperCase() == "TEXT") || (oForm[ii].nodeName.toUpperCase() == "TEXTAREA")){
+	for (var ii=0; ii < oForm.length; ii++)  {
+		if ((oForm[ii].type.toUpperCase() == "TEXT") || (oForm[ii].nodeName.toUpperCase() == "TEXTAREA")){
 			// No borramos los campos marcados como persistentes
 			if (!top.existInArray(oForm[ii].getAttribute("FldId"), arrFields)){
 				oForm[ii].value = "";
@@ -1153,7 +1207,7 @@ function CleanFldsForm(oForm, oColImages)
 	top.Main.Folder.document.getElementById("FolderData").tabIndex = "0";
 
 	if (top.Main.Folder.FolderData.FolderFormData.document.getElementById("AddInfo") != null){
-   		FormData.AddInfo.style.visibility = "hidden";
+		FormData.AddInfo.style.visibility = "hidden";
 	}
 
 	// Ponemos el foco en el primer campo de la pagina que estamos visualizando
@@ -1171,11 +1225,11 @@ function Maximized(){
         top.Main.Folder.FolderData.FolderFormTree.document.getElementById("img_menu_on").className = "img_menu_on";
         top.Main.Folder.FolderData.FolderFormTree.document.getElementById("tree").style.display = "block";
     }else{
-    	g_PrevFormTreeWidth = top.Main.Folder.FolderData.document.getElementById("FolderFormTree").offsetWidth + 26;
-    	top.Main.Folder.FolderData.FolderFormTree.document.getElementById("tree").style.display = "none";
-    	//top.Main.Folder.FolderData.FolderFormTree.document.getElementById("img_menu_on").src = "images/menu_on.gif";
-    	top.Main.Folder.FolderData.FolderFormTree.document.getElementById("img_menu_on").className = "img_menu_off";
-    	top.Main.Folder.FolderData.document.getElementById('FolderFSet').cols = "26, *";
+	g_PrevFormTreeWidth = top.Main.Folder.FolderData.document.getElementById("FolderFormTree").offsetWidth + 26;
+	top.Main.Folder.FolderData.FolderFormTree.document.getElementById("tree").style.display = "none";
+	//top.Main.Folder.FolderData.FolderFormTree.document.getElementById("img_menu_on").src = "images/menu_on.gif";
+	top.Main.Folder.FolderData.FolderFormTree.document.getElementById("img_menu_on").className = "img_menu_off";
+	top.Main.Folder.FolderData.document.getElementById('FolderFSet').cols = "26, *";
     }
 
     g_Maximized = !g_Maximized;

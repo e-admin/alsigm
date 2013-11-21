@@ -1,7 +1,7 @@
 /**
- * 
+ *
  * @author jcebrien
- * 
+ *
  */
 package com.ieci.tecdoc.isicres.servlets;
 
@@ -38,6 +38,7 @@ import com.ieci.tecdoc.isicres.desktopweb.Keys;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RBUtil;
 import com.ieci.tecdoc.isicres.desktopweb.utils.RequestUtils;
 import com.ieci.tecdoc.isicres.desktopweb.utils.ResponseUtils;
+import com.ieci.tecdoc.isicres.desktopweb.utils.SQLValidator;
 import com.ieci.tecdoc.isicres.usecase.UseCaseConf;
 import com.ieci.tecdoc.isicres.usecase.book.BookUseCase;
 
@@ -46,9 +47,9 @@ import es.ieci.tecdoc.fwktd.core.config.web.ContextUtil;
 /**
  * Este servlet permite navegar por las páginas donde se muestran los registros obtenidos después de realizar una
  * consulta en el formulario de consulta y pulsar el botón Aceptar.
- * 
+ *
  * @author jcebrien
- *  
+ *
  */
 public class Tbltext2 extends HttpServlet implements Keys {
 
@@ -77,7 +78,7 @@ public class Tbltext2 extends HttpServlet implements Keys {
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Pragma", "no-cache");
         response.setContentType("text/html; charset=UTF-8");
-        
+
         // Identificador de la consulta.
         Integer fdrQryPId = RequestUtils.parseRequestParameterAsInteger(request, "FdrQryPId");
         // Identificador de registro.
@@ -97,6 +98,10 @@ public class Tbltext2 extends HttpServlet implements Keys {
         Long numIdioma = (Long) session.getAttribute(Keys.J_NUM_IDIOMA);
 		PrintWriter writer = response.getWriter ();
         try {
+			// Validamos si la ordenación que recibimos es correcta y no haya
+			// sido modificada con SQL malicioso
+			SQLValidator.getInstance().validateOrderQueryRegister(orderByTable);
+
             Document xmlDocument = null;
 
             switch (row.intValue()) {

@@ -6,14 +6,16 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/** 
+/**
  *        @hibernate.class
  *         table="SCR_DISTREGSTATE"
- *     
+ *
 */
 public class ScrDistregstate implements Serializable {
 
-    /** identifier field */
+	private static final long serialVersionUID = 1758996812714734266L;
+
+	/** identifier field */
     private Integer id;
 
     /** persistent field */
@@ -28,25 +30,28 @@ public class ScrDistregstate implements Serializable {
     /** persistent field */
     private String username;
 
+    private String message;
+
     /** full constructor */
-    public ScrDistregstate(Integer id, int idDist, int state, Date stateDate, String username) {
+    public ScrDistregstate(Integer id, int idDist, int state, Date stateDate, String username, String message) {
         this.id = id;
         this.idDist = idDist;
         this.state = state;
         this.stateDate = stateDate;
         this.username = username;
+        this.message = message;
     }
 
     /** default constructor */
     public ScrDistregstate() {
     }
 
-    /** 
+    /**
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Integer"
      *             column="ID"
-     *         
+     *
      */
     public Integer getId() {
         return this.id;
@@ -56,12 +61,12 @@ public class ScrDistregstate implements Serializable {
         this.id = id;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="ID_DIST"
      *             length="10"
      *             not-null="true"
-     *         
+     *
      */
     public int getIdDist() {
         return this.idDist;
@@ -71,12 +76,12 @@ public class ScrDistregstate implements Serializable {
         this.idDist = idDist;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="STATE"
      *             length="10"
      *             not-null="true"
-     *         
+     *
      */
     public int getState() {
         return this.state;
@@ -86,12 +91,12 @@ public class ScrDistregstate implements Serializable {
         this.state = state;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="STATE_DATE"
      *             length="7"
      *             not-null="true"
-     *         
+     *
      */
     public Date getStateDate() {
         return this.stateDate;
@@ -101,18 +106,28 @@ public class ScrDistregstate implements Serializable {
         this.stateDate = stateDate;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="USERNAME"
      *             length="32"
      *             not-null="true"
-     *         
+     *
      */
     public String getUsername() {
         return this.username;
     }
 
-    public void setUsername(String username) {
+
+
+    public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setUsername(String username) {
         this.username = username;
     }
 
@@ -130,9 +145,9 @@ public class ScrDistregstate implements Serializable {
             .isEquals();
     }
 
-    
-         
-                                       
+
+
+
 //************************************
 // Incluido pos ISicres-Common Oracle 9i
 
@@ -170,11 +185,11 @@ public String toXML() {
        buffer.append(">");
        return buffer.toString();
 }
-                               
-//************************************  
-                                                                                                                                                                   
+
+//************************************
+
 public int hashCode() {
-      
+
         return new HashCodeBuilder()
             .append(getId())
             .toHashCode();

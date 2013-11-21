@@ -240,4 +240,8 @@ TR.odd{
     FONT-FAMILY: Verdana;
 	BACKGROUND-COLOR:#F0F0F6;
 }
+
+tr.Style5 td{
+	text-align:left;
+}
 /* */

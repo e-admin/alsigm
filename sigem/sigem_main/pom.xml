@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>es.ieci.tecdoc.sigem</groupId>
   <artifactId>sigem_main</artifactId>
-  <version>3.0.1-M2</version>
+  <version>3.0.1-M3</version>
   <packaging>pom</packaging>
 
 
@@ -33,18 +33,18 @@
   		<!-- TODO definicion de repositorios -->
   	</repositories>
 
-  <distributionManagement>
-    <repository>
+	<distributionManagement>
+		<repository>
       <id>releases</id>
       <name>Repositorio de releases</name>
       <url>http://devel.uji.es/nexus/content/repositories/releases/</url>
-    </repository>
-    <snapshotRepository>
+		</repository>
+		<snapshotRepository>
       <id>snapshots</id>
       <name>Repositorio de snapshots</name>
       <url>http://devel.uji.es/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
 
@@ -53,15 +53,15 @@
 
 		<!-- SIGEM dependencies properties -->
 		<ispac.version>6.4.1</ispac.version>
-		<isicres.version>8.0.1</isicres.version>
+		<isicres.version>8.0.5-M1</isicres.version>
 		<fwktd.version>0.7</fwktd.version>
 		<invesdoc.version>9.2.3.1</invesdoc.version>
 		<archidoc.version>5.0.9-M1</archidoc.version>
 
 		<!-- fwktd dependencies -->
 		<fwktd.audit.version>0.7</fwktd.audit.version>
-		<fwktd.dir3.version>1.0</fwktd.dir3.version>
-		<fwktd.sir.version>1.0.1</fwktd.sir.version>
+		<fwktd.dir3.version>1.0.3</fwktd.dir3.version>
+		<fwktd.sir.version>1.0.2-M3</fwktd.sir.version>
 		<fwktd.csv.version>1.1</fwktd.csv.version>
 
 		<!-- Third party dependencies properties -->

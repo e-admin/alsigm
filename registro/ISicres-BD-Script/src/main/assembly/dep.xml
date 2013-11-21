@@ -84,14 +84,15 @@
 		    		
 		    		<!-- actualización -->
 		    		<file>
-		        		<source>${dir3.unpackdirectory}/postgresql/fwktd-dir3-create.sql</source>
+					<source>${dir3.unpackdirectory}/postgresql/actualizaciones/historico_inicial/fwktd-dir3-initial-create.sql</source>
 		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
 					<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-00.sql</destName>
 		    		</file>
-		    		<file>
-		        		<source>${dir3.unpackdirectory}/postgresql/fwktd-dir3-insert.sql</source>
+
+				<file>
+					<source>${dir3.unpackdirectory}/postgresql/actualizaciones/fwktd-dir3-Parche-v1_0_1-v1_0_2-01.sql</source>
 		        		<outputDirectory>postgresql/actualizaciones</outputDirectory>
-					<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-01.sql</destName>
+					<destName>ISicres-Parche-dir3-v8_0_3-v8_0_3_M9-01.sql</destName>
     				</file>
     		
     	
@@ -110,14 +111,14 @@
 			    		
 			    		<!-- actualización -->
 			    		<file>
-			        		<source>${dir3.unpackdirectory}/sqlserver/fwktd-dir3-create.sql</source>
+						<source>${dir3.unpackdirectory}/sqlserver/actualizaciones/historico_inicial/fwktd-dir3-initial-create.sql</source>
 			        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
 						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-00.sql</destName>
 			    		</file>
-			    		<file>
-			        		<source>${dir3.unpackdirectory}/sqlserver/fwktd-dir3-insert.sql</source>
+					<file>
+						<source>${dir3.unpackdirectory}/sqlserver/actualizaciones/fwktd-dir3-Parche-v1_0_1-v1_0_2-01.sql</source>
 			        		<outputDirectory>sqlserver/actualizaciones</outputDirectory>
-						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-01.sql</destName>
+						<destName>ISicres-Parche-dir3-v8_0_3-v8_0_3_M9-01.sql</destName>
 	    				</file>
 	    				
 	    	<!-- db2 -->
@@ -133,16 +134,17 @@
 			        		<destName>07.01-fwktd-dir3-insert.sql</destName>           
 			    		</file>
 			    		
+
 			    		<!-- actualización -->
 			    		<file>
-			        		<source>${dir3.unpackdirectory}/db2/fwktd-dir3-create.sql</source>
+						<source>${dir3.unpackdirectory}/db2/actualizaciones/historico_inicial/fwktd-dir3-initial-create.sql</source>
 			        		<outputDirectory>db2/actualizaciones</outputDirectory>
 						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-00.sql</destName>
 			    		</file>
-			    		<file>
-			        		<source>${dir3.unpackdirectory}/db2/fwktd-dir3-insert.sql</source>
+					<file>
+						<source>${dir3.unpackdirectory}/db2/actualizaciones/fwktd-dir3-Parche-v1_0_1-v1_0_2-01.sql</source>
 			        		<outputDirectory>db2/actualizaciones</outputDirectory>
-						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-01.sql</destName>
+						<destName>ISicres-Parche-dir3-v8_0_3-v8_0_3_M9-01.sql</destName>
 	    				</file>
 	    				
 	    <!-- oracle -->
@@ -160,14 +162,14 @@
 			    		
 			    		<!-- actualización -->
 			    		<file>
-			        		<source>${dir3.unpackdirectory}/oracle/fwktd-dir3-create.sql</source>
+						<source>${dir3.unpackdirectory}/oracle/actualizaciones/historico_inicial/fwktd-dir3-initial-create.sql</source>
 			        		<outputDirectory>oracle/actualizaciones</outputDirectory>
 						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-00.sql</destName>
 			    		</file>
-			    		<file>
-			        		<source>${dir3.unpackdirectory}/oracle/fwktd-dir3-insert.sql</source>
+					<file>
+						<source>${dir3.unpackdirectory}/oracle/actualizaciones/fwktd-dir3-Parche-v1_0_1-v1_0_2-01.sql</source>
 			        		<outputDirectory>oracle/actualizaciones</outputDirectory>
-						<destName>ISicres-Parche-dir3-v7_2_6-v8_0_0-01.sql</destName>
+						<destName>ISicres-Parche-dir3-v8_0_3-v8_0_3_M9-01.sql</destName>
 	    				</file>
 	    				
 	   
@@ -392,7 +394,7 @@
 		    		
 		    		<file>
 		        		<source>${sir.unpackdirectory}/oracle/fwktd-sir-insert.sql</source>
-		        		<outputDirectory>db2/actualizaciones</outputDirectory>
+					<outputDirectory>oracle/actualizaciones</outputDirectory>
 					<destName>ISicres-Parche-sir-v7_2_6-v8_0_0-01.sql</destName>
 		    		</file>
 		    		

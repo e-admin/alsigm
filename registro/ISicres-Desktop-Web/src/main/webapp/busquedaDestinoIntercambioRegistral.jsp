@@ -100,6 +100,7 @@
           type: 'GET',
           cache: false,
           url: 'BuscarUnidadesTramitacionDCO.do',
+          data: 'codeEntityToFind='+$('#entityCode').val(),
           dataType: 'html',
           success:function(data){
             $.fancybox({
@@ -107,6 +108,7 @@
               content:data
               });
             putEventToFindTramUnit();
+            putPaginateEvents();
             }
         });
       });
@@ -167,7 +169,7 @@ function putEventToFindTramUnit(){
 	      $.ajax({
 	        type: 'GET',
 	        cache: false,
-	        url: 'BuscarUnidadesTramitacionDCO.do?tramunitCodeToFind='+$('#tramunitCodeToFind').val()+'&tramunitNameToFind='+$('#tramunitNameToFind').val(),
+	        url: 'BuscarUnidadesTramitacionDCO.do?tramunitCodeToFind='+$('#tramunitCodeToFind').val()+'&tramunitNameToFind='+$('#tramunitNameToFind').val()+'&codeEntityToFind='+$('#entityCode').val(),
 	        dataType: 'html',
 	        success:function(data){
 	          $.fancybox({

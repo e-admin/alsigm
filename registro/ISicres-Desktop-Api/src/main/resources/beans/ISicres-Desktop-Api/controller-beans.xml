@@ -23,6 +23,23 @@
 	<bean id="cifValidator"
 		class="es.ieci.tecdoc.sicres.terceros.web.validator.CIFValidator" />
 
+	<bean id="terceroFisicoValidator"
+		class="es.ieci.tecdoc.sicres.terceros.web.controller.terceros.TerceroFisicoValidator">
+		<property name="nifValidator">
+			<ref bean="nifValidator" />
+		</property>
+		<property name="nieValidator">
+			<ref bean="nieValidator" />
+		</property>
+	</bean>
+
+	<bean id="terceroJuridicoValidator"
+		class="es.ieci.tecdoc.sicres.terceros.web.controller.terceros.TerceroJuridicoValidator">
+		<property name="cifValidator">
+			<ref bean="cifValidator" />
+		</property>
+	</bean>
+
 	<bean
 		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
 		<property name="interceptors">
@@ -74,15 +91,7 @@
 		<property name="validators">
 			<array>
 				<ref bean="jsr303Validator" />
-				<bean
-					class="es.ieci.tecdoc.sicres.terceros.web.controller.terceros.TerceroFisicoValidator">
-					<property name="nifValidator">
-						<ref bean="nifValidator" />
-					</property>
-					<property name="nieValidator">
-						<ref bean="nieValidator" />
-					</property>
-				</bean>
+				<ref bean="terceroFisicoValidator"/>
 			</array>
 		</property>
 		<property name="commandName" value="terceroFisico"></property>
@@ -112,12 +121,7 @@
 		<property name="validators">
 			<array>
 				<ref bean="jsr303Validator" />
-				<bean
-					class="es.ieci.tecdoc.sicres.terceros.web.controller.terceros.TerceroJuridicoValidator">
-					<property name="cifValidator">
-						<ref bean="cifValidator" />
-					</property>
-				</bean>
+				<ref bean="terceroJuridicoValidator" />
 			</array>
 		</property>
 		<property name="commandName" value="terceroJuridico"></property>

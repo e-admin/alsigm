@@ -49,7 +49,7 @@ function Print()
 		args[6] = top.g_ArrFdrSelected.length.toString() + "_" + args[6];
 	}
 
-   	sRet = top.ShowModalDialog(URL, args, 400, 450, "");
+	sRet = top.ShowModalDialog(URL, args, 400, 450, "");
 }
 
 

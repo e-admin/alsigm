@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.sf.hibernate.Session;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.ieci.tecdoc.common.AuthenticationUser;
@@ -66,72 +65,18 @@ public class LoginLegacyManagerImpl implements LoginManager {
 			CacheBag cacheBag = CacheFactory.getCacheInterface().getCacheEntry(
 					sessionID);
 
-			ScrOfic scrOfic = (ScrOfic) cacheBag
-					.get(HibernateKeys.HIBERNATE_ScrOfic);
-
-
-			// Si el usuario no tiene oficina hay que comprobar que no se le
-			// pasa ninguna oficina en el login
-			if (scrOfic == null) {
-				if (StringUtils.isNotEmpty(usuario.getConfiguracionUsuario()
-						.getOficina().getCodigoOficina())) {
-					StringBuffer sb = new StringBuffer("El usuario [")
-							.append(usuario.getLoginName())
-							.append("] no ha podido hacer login en la oficina con codigo [")
-							.append(usuario.getConfiguracionUsuario()
-									.getOficina().getCodigoOficina())
-							.append("]");
-					throw new LoginException(sb.toString(),
-							new IllegalArgumentException(
-									"El código de oficina ["
-											+ usuario.getConfiguracionUsuario()
-													.getOficina()
-													.getCodigoOficina()
-											+ "] no esta asociado al usuario ["
-											+ usuario.getLoginName() + "]."));
-				}
-
-			} else {
-				// Si no se le pasa oficina en el método entonces establecemos
-				// la
-				// oficina por defecto en la configuración del usuario.
-				if (StringUtils.isEmpty(usuario.getConfiguracionUsuario()
-						.getOficina().getCodigoOficina())) {
-					usuario.getConfiguracionUsuario().getOficina()
-							.setCodigoOficina(scrOfic.getCode());
-				}
-
-				// La oficina asociada al usuario debe ser la misma que la que
-				// se
-				// indique en el parametro de llamada al metodo de login
-				if (StringUtils.equals(scrOfic.getCode(), usuario
-						.getConfiguracionUsuario().getOficina()
-						.getCodigoOficina())) {
-
-					usuario.getConfiguracionUsuario().setOficina(
-							new ScrOficToOficinaVOMapper().map(scrOfic));
-				} else {
-					StringBuffer sb = new StringBuffer("El usuario [")
-							.append(usuario.getLoginName())
-							.append("] no ha podido hacer login en la oficina con codigo [")
-							.append(usuario.getConfiguracionUsuario()
-									.getOficina().getCodigoOficina())
-							.append("]");
-					throw new LoginException(sb.toString(),
-							new IllegalArgumentException(
-									"El código de oficina ["
-											+ usuario.getConfiguracionUsuario()
-													.getOficina()
-													.getCodigoOficina()
-											+ "] no esta asociado al usuario ["
-											+ usuario.getLoginName() + "]."));
-				}
-			}
-
 			AuthenticationUser userLogin = SecuritySession
 					.getUserLogin(sessionID);
 
 			usuario.setId(String.valueOf(userLogin.getId().intValue()));
+
+			ScrOfic scrOfic = (ScrOfic) cacheBag
+					.get(HibernateKeys.HIBERNATE_ScrOfic);
+
+			if (scrOfic != null) {
+				usuario.getConfiguracionUsuario().setOficina(
+						new ScrOficToOficinaVOMapper().map(scrOfic));
+			}
 
 			// Extraemos la informacion de la session para sacar el nombre
 			// completo
@@ -222,8 +167,38 @@ public class LoginLegacyManagerImpl implements LoginManager {
 			boolean consultarDocuAnexa = perms.isCanShowDocuments();
 			permisosAplicacion.setConsultarDocuAnexa(consultarDocuAnexa);
 
+			// borrado de documentos anexos;
+			boolean borrarDocuAnexa = perms.isCanDeleteDocuments();
+			permisosAplicacion.setBorrarDocuAnexa(borrarDocuAnexa);
+
+			// Permisos administrativos
+			// Gestion de las unidades administrativas
+			boolean gestionUnidadesAdministrativas = perms
+					.getCanModifyAdminUnits();
+			permisosAplicacion
+					.setGestionUnidadesAdministrativas(gestionUnidadesAdministrativas);
+
+			// Gestion de los informes;
+			boolean gestionInformes = perms.getCanModifyReports();
+			permisosAplicacion.setGestionInformes(gestionInformes);
+
+			// Gestion de tipos de asunto;
+			boolean gestionTiposAsunto = perms.getCanModifyIssueTypes();
+			permisosAplicacion.setGestionTiposAsunto(gestionTiposAsunto);
+
+			// Gestion de usuarios;
+			boolean gestionUsuarios = perms.getCanModifyUsers();
+			permisosAplicacion.setGestionUsuarios(gestionUsuarios);
+
+			// Gestion de tipos de transporte;
+			boolean gestionTiposTransporte = perms.getCanModifyTransportTypes();
+			permisosAplicacion
+					.setGestionTiposTransporte(gestionTiposTransporte);
+			//
+
 			// intercambio registral
-			boolean operacionesIntercambioRegistral = perms.canAccessRegInterchange();
+			boolean operacionesIntercambioRegistral = perms
+					.canAccessRegInterchange();
 			permisosAplicacion
 					.setOperacionesIntercambioRegistral(operacionesIntercambioRegistral);
 
@@ -237,8 +212,9 @@ public class LoginLegacyManagerImpl implements LoginManager {
 					.getConfiguracionUsuario().getIdEntidad());
 
 		} catch (Exception e) {
-			logger.error("Error en el login del usuario ["
-					+ usuario.getLoginName() + "]", e);
+			logger.error(
+					"Error en el login del usuario [" + usuario.getLoginName()
+							+ "]", e);
 			throw new LoginException("Error en el login del usuario ["
 					+ usuario.getLoginName() + "]", e);
 		}
@@ -270,8 +246,8 @@ public class LoginLegacyManagerImpl implements LoginManager {
 			authenticationUser.setDeptid(new Integer(user.getDeptid()));
 
 			InvesDocAuthenticationPolicy authenticationPolicy = new InvesDocAuthenticationPolicy();
-			List deptList = authenticationPolicy.getUserDeptList(Integer
-					.valueOf(id), entidad);
+			List deptList = authenticationPolicy.getUserDeptList(
+					Integer.valueOf(id), entidad);
 			authenticationUser.setDeptList(deptList);
 
 		} catch (Exception e) {

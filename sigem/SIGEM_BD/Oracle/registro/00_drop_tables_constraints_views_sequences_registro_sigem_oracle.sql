@@ -122,6 +122,7 @@ DROP TABLE scr_distaccept;
 DROP TABLE scr_distlist;
 DROP TABLE scr_distreg;
 DROP TABLE scr_distregstate;
+DROP TABLE scr_distribucion_actual;
 DROP TABLE scr_dom;
 DROP TABLE scr_entregsnd;
 DROP TABLE scr_expcnts;

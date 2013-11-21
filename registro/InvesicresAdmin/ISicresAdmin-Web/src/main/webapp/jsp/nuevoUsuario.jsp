@@ -304,8 +304,12 @@
 									&nbsp;<bean:message key="ieci.tecdoc.sgm.rpadmin.usuarios.permisos.ver.documentacion"/>
 									<html:hidden property="verDocumentos"/>
 								</td>
-								<td class="txt">
-									&nbsp;
+							<td class="txt">
+									<input type="checkbox" name="deleteDocumentosCheck" style="width:20px" id="deleteDocumentosCheck"
+										onclick="document.forms[0].deleteDocumentos.value=this.checked;"
+										<logic:equal name="usuarioForm" property="deleteDocumentos" value="true">checked</logic:equal> />
+									&nbsp;<bean:message key="ieci.tecdoc.sgm.rpadmin.usuarios.permisos.delete.documentacion"/>
+									<html:hidden property="deleteDocumentos"/>
 								</td>
 							</tr>
 							<tr><td height="100%" colspan="4"></td></tr>

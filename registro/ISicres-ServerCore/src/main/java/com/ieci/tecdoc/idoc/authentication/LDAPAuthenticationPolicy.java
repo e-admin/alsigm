@@ -26,6 +26,7 @@ import com.ieci.tecdoc.common.entity.dao.DBEntityDAOFactory;
 import com.ieci.tecdoc.common.exception.SecurityException;
 import com.ieci.tecdoc.common.exception.ValidationException;
 import com.ieci.tecdoc.common.invesdoc.Iuserdepthdr;
+import com.ieci.tecdoc.common.invesdoc.Iusergenperm;
 import com.ieci.tecdoc.common.invesdoc.Iuserldapgrphdr;
 import com.ieci.tecdoc.common.invesdoc.Iuserldapuserhdr;
 import com.ieci.tecdoc.common.invesdoc.Iuserusertype;
@@ -616,7 +617,7 @@ public class LDAPAuthenticationPolicy implements AuthenticationPolicy,
 				if (list == null || list.isEmpty()) {
 					userType = new Iuserusertype();
 					userType.setUserid(userId.intValue());
-					
+
 					//producto sicres valor 5
 					// seteamos usuario estandar (operador de registro)
 					//IDocKeys
@@ -627,16 +628,19 @@ public class LDAPAuthenticationPolicy implements AuthenticationPolicy,
 					userType.setProdid(5);
 					userType.setType(1);
 					session.save(userType);
-					
+
 					//IUSER_PROD_ID_IUSER    (2) (q tipo de producto es este? para q es?)
 					userType = new Iuserusertype();
 					userType.setUserid(userId.intValue());
 					userType.setProdid(2);
 					userType.setType(0);
 					session.save(userType);
+
 					session.flush();
 				}
-			} else {//el usuario ya existe en el sistema de sicres
+				//metodo que asigna los permisos al usuario IUSERGENPERMS
+				asignarPermisosUsuario(userId, session);
+			} else {
 				Iuserldapuserhdr ldapUser = (Iuserldapuserhdr) list.get(0);
 				if (log.isDebugEnabled()) {
 					log.debug("exist userId Iuserldapuserhdr [" + ldapUser
@@ -685,6 +689,57 @@ public class LDAPAuthenticationPolicy implements AuthenticationPolicy,
 			 */
 		return userId;
 
+	}
+
+	/**
+	 * Método que asigna los permisos al usuario (IUSERGENPERMS) al igual que si
+	 * se da de alta al usuario desde la herramienta ISicresAdminWeb
+	 *
+	 * @param userId
+	 *            - Identificador del usuario
+	 * @param session
+	 *            - Sesion de hibernate
+	 *
+	 * @throws HibernateException
+	 */
+	private void asignarPermisosUsuario(Integer userId, Session session)
+			throws HibernateException {
+		//obtenemos los permisos que tiene el usuario
+		List listadoPermisosUsuario = ISicresQueries.getUserGenPerms(session,
+				1, userId.intValue());
+		Iusergenperm iuserGenPerm = null;
+		// comprobamos si el usuario tiene permisos
+		if (listadoPermisosUsuario == null || listadoPermisosUsuario.isEmpty()) {
+			// si el usuario no tiene permisos creamos los permisos para cada
+			// una de las aplicaciones: IUSER_PROD_ID_IDOC, IUSER_PROD_ID_IFLOW
+			// y IUSER_PROD_ID_ISICRES
+
+			iuserGenPerm = new Iusergenperm();
+			iuserGenPerm.setDsttype(1);
+			iuserGenPerm.setDstid(userId);
+			// Asignamos el permiso de consulta
+			iuserGenPerm.setPerms(1);
+			// prodid: IUSER_PROD_ID_IDOC (3)
+			iuserGenPerm.setProdid(3);
+			session.save(iuserGenPerm);
+
+			iuserGenPerm = new Iusergenperm();
+			iuserGenPerm.setDsttype(1);
+			iuserGenPerm.setDstid(userId);
+			iuserGenPerm.setPerms(0);
+			// prodid: IUSER_PROD_ID_IFLOW (4)
+			iuserGenPerm.setProdid(4);
+			session.save(iuserGenPerm);
+
+			iuserGenPerm = new Iusergenperm();
+			iuserGenPerm.setDsttype(1);
+			iuserGenPerm.setDstid(userId);
+			iuserGenPerm.setPerms(0);
+			// prodid: IUSER_PROD_ID_ISICRES (5)
+			iuserGenPerm.setProdid(5);
+			session.save(iuserGenPerm);
+			session.flush();
+		}
 	}
 
 	public List connectionVerification(LdapConnection conn,
@@ -790,7 +845,7 @@ public class LDAPAuthenticationPolicy implements AuthenticationPolicy,
 			ldapConfig.setProvider(1);
 			//conn.open(ldapConfig, ldapDef.getLdapUser(), password, 1);
 			conn.open(ldapConfig, ldapConfig.getUser(), password);
-			
+
 			List groups = null;
 			int scope = new Integer(LDAPRBUtil.getInstance(null).getProperty(
 					LDAP_SCOPEGROUP + ldapDef.getLdapEngine())).intValue();

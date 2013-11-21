@@ -3,6 +3,7 @@ package es.ieci.tecdoc.isicres.api.business.manager.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -40,17 +41,24 @@ import com.ieci.tecdoc.utils.cache.CacheFactory;
 import es.ieci.tecdoc.isicres.api.business.exception.DistributionException;
 import es.ieci.tecdoc.isicres.api.business.exception.LoginException;
 import es.ieci.tecdoc.isicres.api.business.exception.UnknownDistributionException;
+import es.ieci.tecdoc.isicres.api.business.manager.DepartamentoManager;
 import es.ieci.tecdoc.isicres.api.business.manager.DistribucionManager;
+import es.ieci.tecdoc.isicres.api.business.manager.GrupoManager;
 import es.ieci.tecdoc.isicres.api.business.manager.LibroManager;
+import es.ieci.tecdoc.isicres.api.business.manager.OficinaManager;
 import es.ieci.tecdoc.isicres.api.business.manager.RegistroManager;
 import es.ieci.tecdoc.isicres.api.business.manager.TipoAsuntoManager;
 import es.ieci.tecdoc.isicres.api.business.manager.UnidadAdministrativaManager;
+import es.ieci.tecdoc.isicres.api.business.manager.UsuarioManager;
 import es.ieci.tecdoc.isicres.api.business.manager.impl.mapper.ScrDistregToDistribucionVOMapper;
 import es.ieci.tecdoc.isicres.api.business.vo.BaseCriterioBusquedaVO;
+import es.ieci.tecdoc.isicres.api.business.vo.BaseDepartamentoVO;
 import es.ieci.tecdoc.isicres.api.business.vo.BaseLibroVO;
 import es.ieci.tecdoc.isicres.api.business.vo.BaseRegistroVO;
+import es.ieci.tecdoc.isicres.api.business.vo.BaseUsuarioVO;
 import es.ieci.tecdoc.isicres.api.business.vo.CriterioBusquedaDistribucionVO;
 import es.ieci.tecdoc.isicres.api.business.vo.DistribucionVO;
+import es.ieci.tecdoc.isicres.api.business.vo.GrupoUsuarioVO;
 import es.ieci.tecdoc.isicres.api.business.vo.IdentificadorRegistroVO;
 import es.ieci.tecdoc.isicres.api.business.vo.ImplicadoDistribucionVO;
 import es.ieci.tecdoc.isicres.api.business.vo.LibroEntradaVO;
@@ -67,6 +75,31 @@ import es.ieci.tecdoc.isicres.api.business.vo.enums.EstadoDistribucionEnum;
  *
  */
 public class DistribucionManagerImpl extends DistribucionManager {
+
+	protected static final Logger logger = Logger
+			.getLogger(DistribucionManagerImpl.class);
+
+	protected DistributionUseCase distributionUseCase;
+
+	protected UnidadAdministrativaManager unidadAdministrativaManager;
+
+	protected TipoAsuntoManager tipoAsuntoManager;
+
+	protected LibroManager libroManager;
+
+	protected RegistroManager registroManager;
+
+	protected static final String REGISTRO_NUMERO_REGISTRO_PROPERTY = "registro.numeroRegistro";
+
+	protected LoginLegacyManagerImpl loginManager;
+
+	protected GrupoManager grupoManager;
+
+	protected OficinaManager oficinaManager;
+
+	protected UsuarioManager usuarioManager;
+
+	protected DepartamentoManager departamentoManager;
 
 	/**
 	 * {@inheritDoc}
@@ -470,8 +503,8 @@ public class DistribucionManagerImpl extends DistribucionManager {
 	}
 
 	/**
-	 * Devuelve las distribuciones asociadas al número de registro que recibe como
-	 * parámetro como atributo <code>numeroRegistro</code> de
+	 * Devuelve las distribuciones asociadas al número de registro que recibe
+	 * como parámetro como atributo <code>numeroRegistro</code> de
 	 * <code>registro</code>. La distribucion debe encontrarse en alguno de los
 	 * estados especificados en el array <code>estados</code> en la bandeja de
 	 * entrada del usuario.
@@ -485,8 +518,9 @@ public class DistribucionManagerImpl extends DistribucionManager {
 	 *             registro especificado
 	 * @return
 	 */
-	protected List<DistribucionVO> getDistributionsFromInputBox(UsuarioVO usuario,
-			String numRegistro, EstadoDistribucionEnum[] estados) {
+	protected List<DistribucionVO> getDistributionsFromInputBox(
+			UsuarioVO usuario, String numRegistro,
+			EstadoDistribucionEnum[] estados) {
 
 		checkLoadDistributionsPermissions(usuario);
 
@@ -496,14 +530,12 @@ public class DistribucionManagerImpl extends DistribucionManager {
 			CriterioBusquedaDistribucionVO criterio = new CriterioBusquedaDistribucionVO(
 					new Long(Integer.MAX_VALUE), new Long(
 							BaseCriterioBusquedaVO.DEFAULT_OFFSET), estados[i]);
-			inputBox.addAll((List<DistribucionVO>)getInputDistributions(usuario, criterio)
-					.getDistributions());
+			inputBox.addAll((List<DistribucionVO>) getInputDistributions(
+					usuario, criterio).getDistributions());
 		}
 
-		CollectionUtils.filter(
-				inputBox,
-				new BeanPropertyValueEqualsPredicate(
-						REGISTRO_NUMERO_REGISTRO_PROPERTY, numRegistro));
+		CollectionUtils.filter(inputBox, new BeanPropertyValueEqualsPredicate(
+				REGISTRO_NUMERO_REGISTRO_PROPERTY, numRegistro));
 
 		if (CollectionUtils.isEmpty(inputBox)) {
 			StringBuffer message = new StringBuffer(
@@ -572,8 +604,8 @@ public class DistribucionManagerImpl extends DistribucionManager {
 	}
 
 	/**
-	 * Devuelve las distribuciones asociadas al número de registro que recibe como
-	 * parámetro como atributo <code>numeroRegistro</code> de
+	 * Devuelve las distribuciones asociadas al número de registro que recibe
+	 * como parámetro como atributo <code>numeroRegistro</code> de
 	 * <code>registro</code>. La distribucion debe encontrarse en alguno de los
 	 * estados especificados en el array <code>estados</code> en la bandeja de
 	 * entrada del usuario.
@@ -587,8 +619,9 @@ public class DistribucionManagerImpl extends DistribucionManager {
 	 *             registro especificado
 	 * @return
 	 */
-	protected List<DistribucionVO> getDistributionsFromOutputBox(UsuarioVO usuario,
-			String numRegistro, EstadoDistribucionEnum[] estados) {
+	protected List<DistribucionVO> getDistributionsFromOutputBox(
+			UsuarioVO usuario, String numRegistro,
+			EstadoDistribucionEnum[] estados) {
 
 		checkLoadDistributionsPermissions(usuario);
 
@@ -602,10 +635,8 @@ public class DistribucionManagerImpl extends DistribucionManager {
 					.getDistributions());
 		}
 
-		CollectionUtils.filter(
-				outputBox,
-				new BeanPropertyValueEqualsPredicate(
-						REGISTRO_NUMERO_REGISTRO_PROPERTY, numRegistro));
+		CollectionUtils.filter(outputBox, new BeanPropertyValueEqualsPredicate(
+				REGISTRO_NUMERO_REGISTRO_PROPERTY, numRegistro));
 
 		if (CollectionUtils.isEmpty(outputBox)) {
 			StringBuffer message = new StringBuffer(
@@ -859,18 +890,12 @@ public class DistribucionManagerImpl extends DistribucionManager {
 	private ResultadoBusquedaDistribucionVO getResultadoBusquedaDistribucionVO(
 			UsuarioVO usuario, CriterioBusquedaDistribucionVO criterio,
 			int tipo, DistributionResults distributionResults) {
+
 		List distributions = distributionResultsToDistribucionVOList(usuario,
 				distributionResults);
 
-		// Recuperamos el total de distribuciones
-		CriterioBusquedaDistribucionVO cbd = new CriterioBusquedaDistribucionVO(
-				new Long(Integer.MAX_VALUE), new Long(0), criterio.getEstado(),
-				criterio.getUser());
-		DistributionResults distributionResultsTotal = getDistributionResults(
-				usuario, cbd, tipo);
-
 		return new ResultadoBusquedaDistribucionVO(distributions,
-				distributionResultsTotal.getTotalSize());
+				distributionResults.getTotalSize());
 	}
 
 	/**
@@ -933,7 +958,7 @@ public class DistribucionManagerImpl extends DistribucionManager {
 							.getId()) }), codDestino, type,
 					launchDistOutRegister, canDestWithoutList, usuario
 							.getConfiguracionUsuario().getLocale(), usuario
-							.getConfiguracionUsuario().getIdEntidad());
+							.getConfiguracionUsuario().getIdEntidad(), usuario.isLdapUser());
 
 		} catch (BookException be) {
 			StringBuffer message = new StringBuffer(
@@ -1393,24 +1418,6 @@ public class DistribucionManagerImpl extends DistribucionManager {
 		return new StringBuffer("STATE=").append(estado.getValue()).toString();
 	}
 
-	// Members
-	protected static final Logger logger = Logger
-			.getLogger(DistribucionManagerImpl.class);
-
-	protected DistributionUseCase distributionUseCase;
-
-	protected UnidadAdministrativaManager unidadAdministrativaManager;
-
-	protected TipoAsuntoManager tipoAsuntoManager;
-
-	protected LibroManager libroManager;
-
-	protected RegistroManager registroManager;
-
-	protected static final String REGISTRO_NUMERO_REGISTRO_PROPERTY = "registro.numeroRegistro";
-
-	protected LoginLegacyManagerImpl loginManager;
-
 	/**
 	 * @return el libroManager
 	 */
@@ -1500,32 +1507,21 @@ public class DistribucionManagerImpl extends DistribucionManager {
 	public ResultadoBusquedaDistribucionVO getDistributionsByCondition(
 			UsuarioVO usuario, CriterioBusquedaDistribucionVO criterio,
 			String query) {
-		CriterioBusquedaDistribucionVO criterioTodos = new CriterioBusquedaDistribucionVO();
-		criterioTodos.setLimit(Long.valueOf(Integer.MAX_VALUE));
-		criterioTodos.setOffset(0L);
 
 		// 1.- Buscar dist entrada
+
+		// Se indica distribución entrada, porque durante la búsqueda de la
+		// condición dada nos es indiferente que sea una distribución de entrada
+		// o de salida sino la condición recibida
 		ResultadoBusquedaDistribucionVO distribucionesEntrada = getDistributionsByCondition(
-				usuario, criterioTodos, Keys.DISTRIBUCION_IN_DIST, query, false);
+				usuario, criterio, Keys.DISTRIBUCION_IN_DIST, query, false);
 
-		// 2.- Sumarlas
-		List listaDistribucionesTotales = distribucionesEntrada
-				.getDistributions();
+		// 2.- Obtenemos el tamaño de la consulta
+		int total = distribucionesEntrada.getTotal();
 
-
-		int toIndex = criterio.getOffset().intValue()
-				+ criterio.getLimit().intValue();
-		if (toIndex > listaDistribucionesTotales.size()) {
-			toIndex = listaDistribucionesTotales.size();
-		}
-		List listaDistribuciones = listaDistribucionesTotales.subList(criterio
-				.getOffset().intValue(), toIndex);
-
-		// int total =
-		// distribucionesEntrada.getTotal()+distribucionesSalida.getTotal();
-		int total = listaDistribucionesTotales.size();
+		// 3.- Convertimos los datos
 		ResultadoBusquedaDistribucionVO distribucionesTotales = new ResultadoBusquedaDistribucionVO(
-				listaDistribuciones, total);
+				distribucionesEntrada.getDistributions(), total);
 
 		return distribucionesTotales;
 	}
@@ -1638,8 +1634,6 @@ public class DistribucionManagerImpl extends DistribucionManager {
 		return distribucion;
 	}
 
-
-
 	private DistribucionVO getDistributionByBookRegUsers(UsuarioVO usuario,
 			Integer bookId, Integer folderId, Integer idOrigen,
 			Integer typeOrigen, Integer idDestino, Integer typeDestino,
@@ -1710,7 +1704,7 @@ public class DistribucionManagerImpl extends DistribucionManager {
 
 		DistributionSession.redistributionDistribution(sessionID, locale,
 				entidad, idDistribuciones, userId, typeDist,
-				canDestWithoutList, matter, userType);
+				canDestWithoutList, matter, userType, usuario.isLdapUser());
 	}
 
 	/**
@@ -1732,13 +1726,13 @@ public class DistribucionManagerImpl extends DistribucionManager {
 				new EstadoDistribucionEnum[] { EstadoDistribucionEnum.RECHAZADO });
 		List<Integer> dis = new ArrayList<Integer>();
 
-			// 1.- Obtener las distribuciones del registro
+		// 1.- Obtener las distribuciones del registro
 
 		if (CollectionUtils.isNotEmpty(distribuciones)) {
 
-				// 2.- Añadir los ids de las distribuciones a la lista para
-				// generar la redistribucion
-				Iterator iterDistribuciones = distribuciones.iterator();
+			// 2.- Añadir los ids de las distribuciones a la lista para
+			// generar la redistribucion
+			Iterator iterDistribuciones = distribuciones.iterator();
 			try {
 
 				while (iterDistribuciones.hasNext()) {
@@ -1748,11 +1742,11 @@ public class DistribucionManagerImpl extends DistribucionManager {
 				}
 				redistributeDistributionsManual(usuario, destinoDistribucion,
 						dis, Keys.DISTRIBUCION_OUT_DIST, matter);
-		} catch (Exception e) {
-			String messageEx = "Error al redistribuir al distribucion manual";
-			logger.error(messageEx, e);
-			throw new DistributionException(messageEx, e);
-		}
+			} catch (Exception e) {
+				String messageEx = "Error al redistribuir al distribucion manual";
+				logger.error(messageEx, e);
+				throw new DistributionException(messageEx, e);
+			}
 
 		} else {
 			StringBuffer message = new StringBuffer(
@@ -1768,9 +1762,6 @@ public class DistribucionManagerImpl extends DistribucionManager {
 		}
 
 	}
-
-
-
 
 	/**
 	 * {@inheritDoc}
@@ -1794,12 +1785,12 @@ public class DistribucionManagerImpl extends DistribucionManager {
 
 		// 1.- Obtener las distribuciones del registro
 
-		List<DistribucionVO> distribuciones = getDistributionsFromInputBox(usuario,
-				numRegistro, new EstadoDistribucionEnum[] {
+		List<DistribucionVO> distribuciones = getDistributionsFromInputBox(
+				usuario, numRegistro, new EstadoDistribucionEnum[] {
 						EstadoDistribucionEnum.PENDIENTE,
 						EstadoDistribucionEnum.ACEPTADO });
 
-		if ( CollectionUtils.isNotEmpty(distribuciones)) {
+		if (CollectionUtils.isNotEmpty(distribuciones)) {
 
 			// 2.- Añadir los ids de las distribuciones a la lista para
 			// generar la redistribucion
@@ -1883,30 +1874,17 @@ public class DistribucionManagerImpl extends DistribucionManager {
 	public ResultadoBusquedaDistribucionVO getUserInputDistributionsByCondition(
 			UsuarioVO usuario, CriterioBusquedaDistribucionVO criterio,
 			String query) {
-		CriterioBusquedaDistribucionVO criterioTodos = new CriterioBusquedaDistribucionVO();
-		criterioTodos.setLimit(Long.valueOf(Integer.MAX_VALUE));
-		criterioTodos.setOffset(0L);
 
 		// 1.- Buscar dist entrada
 		ResultadoBusquedaDistribucionVO distribucionesEntrada = getDistributionsByCondition(
-				usuario, criterioTodos, Keys.DISTRIBUCION_IN_DIST, query, true);
+				usuario, criterio, Keys.DISTRIBUCION_IN_DIST, query, true);
 
-		List listaDistribucionesTotales = distribucionesEntrada
-				.getDistributions();
+		// 2.- Obtenemos el tamaño de la consulta
+		int total = distribucionesEntrada.getTotal();
 
-		int toIndex = criterio.getOffset().intValue()
-				+ criterio.getLimit().intValue();
-		if (toIndex > listaDistribucionesTotales.size()) {
-			toIndex = listaDistribucionesTotales.size();
-		}
-		List listaDistribuciones = listaDistribucionesTotales.subList(criterio
-				.getOffset().intValue(), toIndex);
-
-		// int total =
-		// distribucionesEntrada.getTotal()+distribucionesSalida.getTotal();
-		int total = listaDistribucionesTotales.size();
+		// 3.- Convertimos los datos
 		ResultadoBusquedaDistribucionVO distribucionesTotales = new ResultadoBusquedaDistribucionVO(
-				listaDistribuciones, total);
+				distribucionesEntrada.getDistributions(), total);
 
 		return distribucionesTotales;
 	}
@@ -1922,33 +1900,137 @@ public class DistribucionManagerImpl extends DistribucionManager {
 	public ResultadoBusquedaDistribucionVO getUserOutputDistributionsByCondition(
 			UsuarioVO usuario, CriterioBusquedaDistribucionVO criterio,
 			String query) {
-		CriterioBusquedaDistribucionVO criterioTodos = new CriterioBusquedaDistribucionVO();
-		criterioTodos.setLimit(Long.valueOf(Integer.MAX_VALUE));
-		criterioTodos.setOffset(0L);
 
 		// 1.- Buscar dist entrada
 		ResultadoBusquedaDistribucionVO distribucionesEntrada = getDistributionsByCondition(
-				usuario, criterioTodos, Keys.DISTRIBUCION_OUT_DIST, query, true);
+				usuario, criterio, Keys.DISTRIBUCION_OUT_DIST, query, true);
 
-		List listaDistribucionesTotales = distribucionesEntrada
-				.getDistributions();
+		// 2.- Obtenemos el tamaño de la consulta
+		int total = distribucionesEntrada.getTotal();
 
-		int toIndex = criterio.getOffset().intValue()
-				+ criterio.getLimit().intValue();
-		if (toIndex > listaDistribucionesTotales.size()) {
-			toIndex = listaDistribucionesTotales.size();
-		}
-		List listaDistribuciones = listaDistribucionesTotales.subList(criterio
-				.getOffset().intValue(), toIndex);
-
-		// int total =
-		// distribucionesEntrada.getTotal()+distribucionesSalida.getTotal();
-		int total = listaDistribucionesTotales.size();
+		// 3.- Convertimos los datos
 		ResultadoBusquedaDistribucionVO distribucionesTotales = new ResultadoBusquedaDistribucionVO(
-				listaDistribuciones, total);
+				distribucionesEntrada.getDistributions(), total);
 
 		return distribucionesTotales;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see es.ieci.tecdoc.isicres.api.business.manager.DistribucionManager#getUsuarios(es.ieci.tecdoc.isicres.api.business.vo.UsuarioVO)
+	 */
+	@Override
+	public List<BaseUsuarioVO> getUsuariosLdapExceptoActual(BaseUsuarioVO usuario) {
+
+		List<BaseUsuarioVO> results = new LinkedList<BaseUsuarioVO>();
+
+		List<BaseUsuarioVO> usuarios = usuarioManager.getUsuarios();
+
+		for (BaseUsuarioVO usuarioVO : usuarios) {
+
+			if (!usuarioVO.getId().equalsIgnoreCase(usuario.getId())){
+				results.add(usuarioVO);
+			}
+		}
+
+		return results;
+	}
+
+	/**
+	 *
+	 * {@inheritDoc}
+	 * @see es.ieci.tecdoc.isicres.api.business.manager.DistribucionManager#getGruposPertenecientesUsuario(es.ieci.tecdoc.isicres.api.business.vo.BaseUsuarioVO)
+	 */
+	public List<GrupoUsuarioVO> getGruposPertenecientesUsuario(
+			Integer idUsuario){
+		return grupoManager.getGruposPertenecientesUsuario(idUsuario);
+	}
+
+	/**
+	 *
+	 * {@inheritDoc}
+	 * @see es.ieci.tecdoc.isicres.api.business.manager.DistribucionManager#getGruposNoPertenecientesUsuario(es.ieci.tecdoc.isicres.api.business.vo.BaseUsuarioVO)
+	 */
+	public List<GrupoUsuarioVO> getGruposNoPertenecientesUsuario(
+			Integer idUsuario){
+		return grupoManager.getGruposNoPertenecientesUsuario(idUsuario);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see es.ieci.tecdoc.isicres.api.business.manager.DistribucionManager#getOficinas(es.ieci.tecdoc.isicres.api.business.vo.UsuarioVO)
+	 */
+	public List<BaseDepartamentoVO> getDepartamentosExceptoActual(
+			Integer idDepartamento) {
+		List<BaseDepartamentoVO> results = new LinkedList<BaseDepartamentoVO>();
+		List<BaseDepartamentoVO> departamentos = departamentoManager
+				.getDepartamentos();
+
+		for (BaseDepartamentoVO baseDepartamentoVO : departamentos) {
+
+			if (!baseDepartamentoVO.getId().equalsIgnoreCase(String.valueOf(idDepartamento))){
+				results.add(baseDepartamentoVO);
+			}
+		}
+
+		return results;
+	}
+
+	/**
+	 *
+	 * {@inheritDoc}
+	 * @see es.ieci.tecdoc.isicres.api.business.manager.DistribucionManager#getDepartamentos()
+	 */
+	public List<BaseDepartamentoVO> getDepartamentos(){
+		return departamentoManager.getDepartamentos();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see es.ieci.tecdoc.isicres.api.business.manager.DistribucionManager#getDepartamentosGrupoLdap(java.lang.Integer)
+	 */
+	@Override
+	public List<BaseDepartamentoVO> getDepartamentosGrupoLdap(
+			Integer idGrupoLdap) {
+
+		return departamentoManager.getDepartamentosGrupoLdap(idGrupoLdap);
+	}
+
+	public GrupoManager getGrupoManager() {
+		return grupoManager;
+	}
+
+	public void setGrupoManager(GrupoManager grupoManager) {
+		this.grupoManager = grupoManager;
+	}
+
+	public OficinaManager getOficinaManager() {
+		return oficinaManager;
+	}
+
+	public void setOficinaManager(OficinaManager oficinaManager) {
+		this.oficinaManager = oficinaManager;
+	}
+
+	public UsuarioManager getUsuarioManager() {
+		return usuarioManager;
+	}
+
+	public void setUsuarioManager(UsuarioManager usuarioManager) {
+		this.usuarioManager = usuarioManager;
+	}
+
+	public DepartamentoManager getDepartamentoManager() {
+		return departamentoManager;
+	}
+
+	public void setDepartamentoManager(DepartamentoManager departamentoManager) {
+		this.departamentoManager = departamentoManager;
+	}
+
+
 
 }
 

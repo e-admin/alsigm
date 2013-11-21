@@ -11,12 +11,12 @@
 
 	<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-dir3</groupId>
 	<artifactId>fwktd-dir3</artifactId>
-	<version>1.0</version>
+	<version>1.0.3</version>
 
 	<packaging>pom</packaging>
 
 	<name>fwktd-dir3</name>
-  <description>Modulo de consulta sobre el Directorio Comun (DIR3)</description>
+	<description>Modulo de consulta sobre el Directorio Comun (DIR3)</description>
 
   <properties> 
     <!-- Framework dependencies -->

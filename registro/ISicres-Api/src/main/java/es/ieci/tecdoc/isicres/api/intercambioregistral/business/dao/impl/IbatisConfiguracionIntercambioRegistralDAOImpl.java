@@ -1,6 +1,7 @@
 package es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -23,6 +24,9 @@ public class IbatisConfiguracionIntercambioRegistralDAOImpl implements
 	private static final String GET_ENTIDAD_REGISTRAL_BY_ID_OFIC = "EntidadRegistralVO.getEntidadRegistralByIdOfic";
 
 	private static final String GET_UNIDAD_ADMINISTRATIVA_BY_CODE_ENTITY_REG = "UnidadAdministrativaIntercambioRegistralVO.getUnidadAdministrativaByCodeEntityReg";
+
+	private static final String GET_UNIDAD_ADMINISTRATIVA_BY_CODE_ENTITY = "UnidadAdministrativaIntercambioRegistralVO.getUnidadAdministrativaByCodeEntity";
+
 	private static final String GET_UNIDAD_ADMINISTRATIVA_BY_CODE_ENTITY_AND_TRAM_UNIT = "UnidadAdministrativaIntercambioRegistralVO.getUnidadAdministrativaByCodeEntityAndTramunit";
 
 	private static final String GET_UNIDAD_TRAMITACION_BY_ID_OFICINA = "UnidadAdministrativaIntercambioRegistralVO.getUnidadAdministrativaByIdOficina";
@@ -39,7 +43,17 @@ public class IbatisConfiguracionIntercambioRegistralDAOImpl implements
 			return unidadAdministrativa;
 		} catch (DataAccessException exception) {
 			logger.error("Error en la obtención de una unidad administrativa a partir de lso codigos comunes de entidad registral", exception);
+			throw new RuntimeException(exception);
+		}
+	}
 
+	public List<UnidadAdministrativaIntercambioRegistralVO> getUnidadAdministrativaByCodidgoER(
+			String codigo) {
+		try{
+			List<UnidadAdministrativaIntercambioRegistralVO> unidadAdministrativa = (List<UnidadAdministrativaIntercambioRegistralVO>)getSqlMapClientTemplate().queryForList(GET_UNIDAD_ADMINISTRATIVA_BY_CODE_ENTITY, codigo);
+			return unidadAdministrativa;
+		} catch (DataAccessException exception) {
+			logger.error("Error en la obtención de una unidad administrativa a partir de lso codigos comunes de entidad registral", exception);
 			throw new RuntimeException(exception);
 		}
 	}

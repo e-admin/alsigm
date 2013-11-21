@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="DireccionesExReg">
+
+
+	<select id="getProvinciaExRegByCodigo" resultMap="provinciaExRegResultMap" parameterClass="java.lang.String">
+		select * from scr_provexreg where code=#codigo#
+	</select>
+
+	<select id="getCiudadExRegByCodigo" resultMap="ciudadExRegResultMap" parameterClass="java.util.HashMap">
+		select scr_citiesexreg.* from scr_citiesexreg, scr_cities, scr_provexreg, scr_prov
+		where scr_citiesexreg.code=#codigoMunicipio#
+		AND scr_citiesexreg.id_city = scr_cities.id
+		AND scr_cities.id_prov = scr_prov.id
+		AND scr_provexreg.id_prov = scr_prov.id
+		AND scr_provexreg.code=#codigoProvincia#
+	</select>
+
+	<select id="getPaisExRegByCodigo" resultMap="paisExRegResultMap" parameterClass="java.lang.String">
+		select * from scr_countryexreg where code=#codigo#
+	</select>
+
+</sqlMap>

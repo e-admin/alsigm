@@ -339,7 +339,7 @@ function valida_cif(a, errorsId, infoId){
 function showCapaInteresados(data){
 	$.blockUI({ message: data,
 		css: { top: '10%',
-	      	  left: '10%',
+		  left: '10%',
 		     width: '600px',
 		    height: '310px',
 		    cursor: 'cursor'}
@@ -384,9 +384,9 @@ function addTerceroRegisterForm(idTercero){
            dataType: 'html',
            data: {'tercero.id':  idTercero},
            success: function(data) {
-        	    // se invoca a la funcion OnOk (copia de una legada) que se encarga de actualizar el atributo "value"
-        	    // del frame "Interesados" con la cadena recuperada
-           		OnOk($.trim(data));
+		    // se invoca a la funcion OnOk (copia de una legada) que se encarga de actualizar el atributo "value"
+		    // del frame "Interesados" con la cadena recuperada
+			OnOk($.trim(data));
            }
        });
 }

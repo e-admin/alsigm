@@ -4,8 +4,10 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%String idTercero = request.getParameter("tercero.id");%>
+
 <spring:url value="interesado/crud.action?method=addOrUpdateRepresentante" var="selectURI">
-	<spring:param name="tercero.id" value="<%= request.getParameter(\"tercero.id\") %>"></spring:param>
+	<spring:param name="tercero.id" value="<%=idTercero%>"/>
 </spring:url>
 
 <div id="resultSearchRepresentante" style="width: auto; overflow: auto; position: relative;">

@@ -25,14 +25,14 @@
 			COMMENTS
 	    )
 		VALUES (
-			#id:INT#,
-		    #idLibro:INT#,
-			#idRegistro:INT#,
-			#idEstado:INT#,
+			#id:NUMERIC#,
+		    #idLibro:NUMERIC#,
+			#idRegistro:NUMERIC#,
+			#idEstado:NUMERIC#,
 			#fechaEstado:TIMESTAMP#,
-			#tipoOrigen:INT#,
-			#idOfic:INT#,
-			#idIntercambioInterno:INT#,
+			#tipoOrigen:NUMERIC#,
+			#idOfic:NUMERIC#,
+			#idIntercambioInterno:NUMERIC#,
 			#idIntercambioRegistral:VARCHAR#,
 			#fechaIntercambio:TIMESTAMP#,
 			#username:VARCHAR#,
@@ -54,9 +54,9 @@
 			COMMENTS
 	    )
 		VALUES (
-			#id:INT#,
-		    #idExReg:INT#,
-			#idEstado:INT#,
+			#id:NUMERIC#,
+		    #idExReg:NUMERIC#,
+			#idEstado:NUMERIC#,
 			#fechaEstado:TIMESTAMP#,
 			#userName:VARCHAR#,
 			#comentarios:VARCHAR#
@@ -66,9 +66,9 @@
 	<update id="updateStateIntercambioRegistralSalidaVO"  parameterClass="intercambioRegistralSalidaVO">
 		UPDATE SCR_EXREG
 		SET
-			STATE=#idEstado:INT#,
+			STATE=#idEstado:NUMERIC#,
 			STATE_DATE=#fechaEstado:TIMESTAMP#,
-			COMMENTS=#comentarios:VARCHAR# 
+			COMMENTS=#comentarios:VARCHAR#
 		WHERE
 			ID=#id#
 	</update>
@@ -76,11 +76,16 @@
 	<update id="updateIntercambioRegistralSalidaVO"  parameterClass="intercambioRegistralSalidaVO">
 		UPDATE SCR_EXREG
 		SET
-			STATE=#idEstado:INT#,
+			STATE=#idEstado:NUMERIC#,
 			STATE_DATE=#fechaEstado:TIMESTAMP#,
-			ID_EXCHANGE=#idIntercambioInterno:INT#,
+			ID_EXCHANGE=#idIntercambioInterno:NUMERIC#,
 			ID_EXCHANGE_SIR=#idIntercambioRegistral#,
-			COMMENTS=#comentarios:VARCHAR#
+			COMMENTS=#comentarios:VARCHAR#,
+			CODE_ENTITY=#codeEntity:VARCHAR#,
+			NAME_ENTITY=#nameEntity:VARCHAR#,
+			CODE_TRAMUNIT=#codeTramunit:VARCHAR#,
+			NAME_TRAMUNIT=#nameTramunit:VARCHAR#
+
 		WHERE
 			ID=#id#
 	</update>
@@ -88,18 +93,18 @@
 	<delete id="deleteIntercambioRegistralSalidaVO"
 			parameterClass="intercambioRegistralSalidaVO">
 		DELETE
-		FROM SCR_EXREG where ID=#id:INT#
+		FROM SCR_EXREG where ID=#id:NUMERIC#
 	</delete>
 
 	<delete id="deleteIntercambioRegistralSalidaByIdArchIdFolderVO"
 			parameterClass="java.util.HashMap">
 		DELETE
-		FROM SCR_EXREG where ID_ARCH=#idLibro:INT# and ID_FDR=#idRegistro:INT# and ID_OFIC=#idOficina:INT#
+		FROM SCR_EXREG where ID_ARCH=#idLibro:NUMERIC# and ID_FDR=#idRegistro:NUMERIC# and ID_OFIC=#idOficina:NUMERIC#
 	</delete>
 
 	<select id="getBandejaSalidaByEstadoOficina" parameterClass="java.util.HashMap"  resultMap="bandejaSalidaItemResultmap">
 		select * from SCR_EXREG
-		where id_ofic=#idOficina:INT# AND STATE=#estado:INT#
+		where id_ofic=#idOficina:NUMERIC# AND STATE=#estado:NUMERIC#
 	</select>
 
 	<select id="getIntercambiosRegistralesByIdRegistroIdLibroIdOficina" parameterClass="java.util.HashMap"
@@ -108,16 +113,56 @@
 		       exreg.state, exreg.username, exreg.code_entity, exreg.name_entity, exreg.name_tramunit,
 		        exreg.code_tramunit, exreg.state_date, exreg.id_exchange, exreg.id_exchange_sir, exreg.comments, ofic.name as nameOfic
 		  from SCR_EXREG exreg, SCR_OFIC ofic
-		 where exreg.id_fdr=#idRegistro:INT#
-		   AND exreg.id_arch=#idLibro:INT#
+		 where exreg.id_fdr=#idRegistro:NUMERIC#
+		   AND exreg.id_arch=#idLibro:NUMERIC#
 		   AND exreg.id_ofic = ofic.id
+			<isNotNull prepend="and" property="idOficina">
+				ID_OFIC=#idOficina:NUMERIC#
+			</isNotNull>
 	</select>
+
+	<select id="getIntercambiosRegistralesByIdIntercambioRegistralSirOficina" parameterClass="java.util.HashMap"
+			resultMap="intercambioRegistralSalidaResultMap">
+		select exreg.id, exreg.id_arch, exreg.id_fdr, exreg.id_ofic, exreg.type_orig, exreg.exchange_date,
+		       exreg.state, exreg.username, exreg.code_entity, exreg.name_entity, exreg.name_tramunit,
+		        exreg.code_tramunit, exreg.state_date, exreg.id_exchange, exreg.id_exchange_sir, exreg.comments, ofic.name as nameOfic
+		  from SCR_EXREG exreg, SCR_OFIC ofic
+		 where exreg.id_ofic = ofic.id
+			<isNotNull prepend="and" property="idOficina">
+				ID_OFIC=#idOficina:NUMERIC#
+			</isNotNull>
+
+			<isNotNull prepend="and" property="idIntercambioRegistralSir">
+				ID_EXCHANGE_SIR=#idIntercambioRegistralSir:VARCHAR#
+			</isNotNull>
+
+	</select>
+
+	<select id="getBandejaSalidaByIdIntercambioRegistralSirOficina" parameterClass="java.util.HashMap"
+			resultMap="bandejaSalidaItemResultmap">
+		select exreg.id, exreg.id_arch, exreg.id_fdr, exreg.id_ofic, exreg.type_orig, exreg.exchange_date,
+		       exreg.state, exreg.username, exreg.code_entity, exreg.name_entity, exreg.name_tramunit,
+		        exreg.code_tramunit, exreg.state_date, exreg.id_exchange, exreg.id_exchange_sir, exreg.comments, ofic.name as nameOfic
+		  from SCR_EXREG exreg, SCR_OFIC ofic
+		 where exreg.id_ofic = ofic.id
+			<isNotNull prepend="and" property="idOficina">
+				ID_OFIC=#idOficina:NUMERIC#
+			</isNotNull>
+
+			<isNotNull prepend="and" property="idIntercambioRegistralSir">
+				ID_EXCHANGE_SIR=#idIntercambioRegistralSir:VARCHAR#
+			</isNotNull>
+
+	</select>
+
+
+
 
 	<select id="getHistorialEstadoByIntercambioRegistralSalida"
 		parameterClass="java.lang.Long" resultMap="intercambioRegistralSalidaDetalleEstadosResultMap">
 		select *
 		  from SCR_EXREGSTATE
-		 where id_exreg=#idExReg:INT#
+		 where id_exreg=#idExReg:NUMERIC#
 	</select>
 
 	<select id="getBandejaSalidaByEstadoOficinaYLibro" parameterClass="java.util.HashMap"  resultMap="bandejaSalidaItemResultmap">
@@ -126,20 +171,31 @@
 		exreg.state_date as state_date, exreg.state as state, exreg.id_ofic as id_ofic, exreg.comments as comments,
 		 libro.fld1 as fld1, libro.fld2 as fld2, libro.fld6 as fld6, libro.fld8 as fld8
 		 from a$idLibro$sf libro, scr_exreg exreg
-		where libro.fdrid=exreg.id_fdr and exreg.id_arch=#idLibro:INT# and exreg.id_ofic=#idOficina:INT# AND exreg.state=#estado:INT#
+		where libro.fdrid=exreg.id_fdr and exreg.id_arch=#idLibro:NUMERIC# and exreg.id_ofic=#idOficina:NUMERIC# AND exreg.state=#estado:NUMERIC#
 	</select>
 
 	<select id="getIntercambioRegistralSalidaById" parameterClass="java.lang.Long"  resultMap="intercambioRegistralSalidaResultMap">
-	select *, 'NULL' as nameOfic from SCR_EXREG where id=#value#
+		select id, id_arch, id_fdr, state_date, id_exchange_sir, id_exchange, exchange_date,
+			   type_orig, id_ofic, 'NULL' as nameOfic, state, username, code_entity,
+			   name_entity, code_tramunit, name_tramunit, comments
+		  from SCR_EXREG
+		 where id=#value#
 	</select>
 
 	<select id="getIntercambiosRegistralesSalida" parameterClass="java.lang.Integer"  resultMap="intercambioRegistralSalidaResultMap">
-	select *, 'NULL' as nameOfic from SCR_EXREG where STATE=#value#
+		select id, id_arch, id_fdr, state_date, id_exchange_sir, id_exchange, exchange_date,
+			   type_orig, id_ofic, 'NULL' as nameOfic, state, username, code_entity,
+		       name_entity, code_tramunit, name_tramunit, comments
+		  from SCR_EXREG
+		 where STATE=#value#
 	</select>
 
 
 	<select id="findByCriterios" parameterClass="java.util.List" resultMap="intercambioRegistralSalidaResultMap">
-	select *, 'NULL' as nameOfic from SCR_EXREG
+		select id, id_arch, id_fdr, state_date, id_exchange_sir, id_exchange, exchange_date,
+			   type_orig, id_ofic, 'NULL' as nameOfic, state, username, code_entity,
+		       name_entity, code_tramunit, name_tramunit, comments
+		  from SCR_EXREG
 	<dynamic prepend="WHERE">
 		<iterate open="(" close=")" conjunction="AND">
 
@@ -160,7 +216,68 @@
 	<select id="getBandejaSalidaItemRegistro" parameterClass="bandejaSalidaItemVO"  resultMap="bandejaSalidaItemRegistroResultmap">
 	select libro.fld1 as fld1, libro.fld2 as fld2, libro.fld6 as fld6
 	 from a$idLibro$sf libro
-	where libro.fdrid=#idRegistro:INT#
+	where libro.fdrid=#idRegistro:NUMERIC#
+	</select>
+
+	<sql id="findIntercambiosRegistrales_fragment">
+		<dynamic>
+			<iterate prepend="AND" property="criterios" conjunction="AND">
+				<isEqual property="criterios[].operador.value" compareValue="like">
+					$criterios[].nombre.value$ LIKE '%$criterios[].valor$%'
+				</isEqual>
+				<isNotEqual property="criterios[].operador.value" compareValue="like">
+					<isEqual property="criterios[].operador.value" compareValue="in">
+						$criterios[].nombre.value$
+						<iterate prepend="IN" property="criterios[].valor" open="(" close=")" conjunction=",">
+							#criterios[].valor[]#
+						</iterate>
+					</isEqual>
+					<isNotEqual property="criterios[].operador.value" compareValue="in">
+						$criterios[].nombre.value$ $criterios[].operador.value$ #criterios[].valor#
+					</isNotEqual>
+				</isNotEqual>
+			</iterate>
+		</dynamic>
+	</sql>
+
+	<sql id="selectIntercambiosRegistrales_fragment">
+		SELECT exreg.id as id, exreg.id_arch as id_arch, exreg.id_fdr as id_fdr, exreg.type_orig as type_orig, exreg.id_exchange as id_exchange,
+		exreg.id_exchange_sir as id_exchange_sir, exreg.code_entity as code_entity, exreg.name_entity as name_entity, exreg.code_tramunit as code_tramunit, exreg.name_tramunit as name_tramunit,
+		exreg.state_date as state_date, exreg.state as state, exreg.id_ofic as id_ofic, exreg.comments as comments,
+		 libro.fld1 as fld1, libro.fld2 as fld2, libro.fld6 as fld6, libro.fld8 as fld8
+		 from a$idLibro$sf libro, scr_exreg exreg
+	</sql>
+
+	<select id="findIntercambiosRegistrales" parameterClass="java.util.HashMap" resultMap="bandejaSalidaSimpleItemResultmap">
+		SELECT * from SCR_EXREG
+		WHERE state = #estado:NUMERIC#
+		<include refid="findIntercambiosRegistrales_fragment"/>
+		<iterate prepend="ORDER BY" property="orden" conjunction=",">
+			$orden[].value$
+		</iterate>
+	</select>
+
+	<select id="countFindIntercambiosRegistrales" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT COUNT(*) FROM SCR_EXREG
+		WHERE state = #estado:NUMERIC#
+		<include refid="findIntercambiosRegistrales_fragment"/>
+	</select>
+
+	<select id="findBandejaSalidaByCriterios" parameterClass="java.util.HashMap" resultMap="bandejaSalidaItemResultmap">
+		<include refid="selectIntercambiosRegistrales_fragment"/>
+		WHERE state = #estado:NUMERIC#
+		AND libro.fdrid=exreg.id_fdr and exreg.id_arch=#idLibro:NUMERIC#
+		<include refid="findIntercambiosRegistrales_fragment"/>
+		<iterate prepend="ORDER BY" property="orden" conjunction=",">
+			$orden[].value$
+		</iterate>
+	</select>
+
+	<select id="countFindBandejaSalidaByCriterios" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT COUNT(*) FROM SCR_EXREG exreg, a$idLibro$sf libro
+		WHERE state = #estado:NUMERIC#
+		AND libro.fdrid=exreg.id_fdr and exreg.id_arch=#idLibro:NUMERIC#
+		<include refid="findIntercambiosRegistrales_fragment"/>
 	</select>
 
 

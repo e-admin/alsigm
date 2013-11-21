@@ -9,7 +9,7 @@ tabArray[2] = getStyleObj('tab2');
 tabArray[3] = getStyleObj('tab3');
 
 
-// Set up array of tabmiddle td element style property strings 
+// Set up array of tabmiddle td element style property strings
 
 var tabTextArray = new Array(5);
 tabTextArray[0] = null;
@@ -57,21 +57,21 @@ function tabcolor(tabnum, color1, color2) {
 function choosebox(num, perfiles ) {
 if (perfiles == null )
 	perfiles = 1;
-if (document.all || document.getElementById) { 
+if (document.all || document.getElementById) {
 		if (active) {
 			activetablayer = eval(tabArray[active]);
 			activetabtext = eval(tabTextArray[active]);
 			activetablayer.zIndex = 0;
 			tabcolor(active,inactivebgcolor, inactivetextcolor);
 	    }
-	
+
 	tablayer = eval(tabArray[num]);
 	tabtext = eval(tabTextArray[num]);
 	tablayer.zIndex = 11;
 	tabcolor(num,activebgcolor, activetextcolor);
-	
+
 	active = num;
-	
+
   }
 } // fin choosebox
 
@@ -83,14 +83,14 @@ function getStyleObj(elem,parent) {
 	    else {
 		return "document."+elem + ".style";
 		     }
-		
-	  } 
+
+	  }
 	    else if (document.all) {
 		return "document.all."+elem + ".style";
-	  } 
+	  }
 	    else if (document.getElementById) {
 		return "document.getElementById('"+elem+"').style";
-		
+
 	}
 }
 
@@ -119,20 +119,20 @@ function asignarUnidadAdministrativa(id ,codigo, nombre){
 //Funciones Busqueda en Popups
 
 function chequearSessionBuscar(url, urlCheck, urlSessionExpired) {
-	var check = chequearSession(urlCheck); 
+	var check = chequearSession(urlCheck);
 	if( check == "false") {
 		abreListaOficinas( url );
 	} else {
-		window.document.location.href = urlSessionExpired;		
+		window.document.location.href = urlSessionExpired;
 	}
 }
 
 function chequearSessionBuscarOficinas(url, urlCheck, urlSessionExpired) {
-	var check = chequearSession(urlCheck); 
+	var check = chequearSession(urlCheck);
 	if( check == "false") {
 		abreListaOficinas( url );
 	} else {
-		window.document.location.href = urlSessionExpired;		
+		window.document.location.href = urlSessionExpired;
 	}
 }
 
@@ -149,7 +149,7 @@ function eliminarOficina(url,fila,msg,nombre,estado){
 	if( confirm( msg + " '" + nombre + "' ?")) {
 		document.forms[0].posOficina.value= fila;
 		document.forms[0].estadoOficina.value= estado;
-		llamadaAction(url);					
+		llamadaAction(url);
 	}
 }
 
@@ -168,7 +168,7 @@ function editarDocumento(fila, valor){
 	if(filaActiva != 0)	cancelarEdicionDocumento();
 	filaActiva = fila;
 	valorFilaActiva = valor;
-	
+
 	visibleInLineDiv("txtDocumento_" + String(fila));
 	visibleInLineDiv("btnAceptar_" + String(fila));
 	visibleInLineDiv("btnCancelar_" + String(fila));
@@ -213,10 +213,6 @@ function eliminarDocumento(url,fila,msg,nombre,estado){
 	if( confirm( msg + " '" + nombre + "' ?")) {
 		document.forms[0].posDocumento.value= fila;
 		document.forms[0].estadoDocumento.value= estado;
-		llamadaAction(url);					
+		llamadaAction(url);
 	}
 }
-
-
-
-

@@ -1,7 +1,7 @@
 /**
- * 
+ *
  * @author jcebrien
- * 
+ *
  */
 package com.ieci.tecdoc.isicres.servlets.core;
 
@@ -38,7 +38,7 @@ import es.ieci.tecdoc.fwktd.core.config.web.ContextUtil;
 
 /**
  * @author jcebrien
- *  
+ *
  */
 public class FileUploadScan extends HttpServlet implements Keys {
 
@@ -96,22 +96,22 @@ public class FileUploadScan extends HttpServlet implements Keys {
     	File newDir = null;                //Directorio destino donde se guardara el fichero subido
     	Properties parameters = null;      //Objeto usado para guardar los parametros de la request
     	int fileIndex = 0;                 //Indice usado para enumerar los ficheros subidos, se usa para componer el nombre del fichero.
-    	
+
     	//Obtenemos de la configuracion el limite de tamaño de los ficheros
     	maxUploadFileSize = new Long(Configurator.getInstance().getProperty(ConfigurationKeys.KEY_DESKTOP_MAXUPLOADFILESIZE));
 
     	PrintWriter writer = response.getWriter(); //Usado solo para la respuesta del error en caso de producirse.
-    	
+
     	try {
     		if (FileUpload.isMultipartContent(request)) {
     			fileUpload = new DiskFileUpload();
-    			//Si el tamaño del fichero excede el limite configurado se lanzara una excepcion    			
+			//Si el tamaño del fichero excede el limite configurado se lanzara una excepcion
     			fileUpload.setSizeMax(maxUploadFileSize);
     			//Obtener los "FileItem" de la request.
     			List fileItems = fileUpload.parseRequest(request);
-    			
-    			if (fileItems != null) {    				
-    				
+
+			if (fileItems != null) {
+
 	    			//Recorrer los fileItems primero para obtener solo los parametros (SessionId y FolderId)
     				parameters = new Properties();
 	    			for (int i = 0; i < fileItems.size(); i++) {
@@ -121,26 +121,29 @@ public class FileUploadScan extends HttpServlet implements Keys {
 	    					parameters.setProperty(fileItem.getFieldName(), fileItem.getString());
 	    				}
 	    			}
-	    			
+
 	    			//Recoger los parametros
 	    			sessionId = parameters.getProperty("SessionPId");
 	    			folderId = parameters.getProperty("FolderId");
-	    			
+
 	    			//Guardar los ficheros
 	    			for (int i = 0; i < fileItems.size(); i++) {
 	    				fileItem = (FileItem)fileItems.get(i);
-	    				
+
 	    				//Solo procesar si es un fichero.
 	    				if (!fileItem.isFormField()) {
-	    					
+
+						//obtenemos el codigo referente al fichero
+						int indice = getCodigoFichero(fileItem, fileIndex);
+
 	    					//Componer nombre del fichero
-	                        String fileNameFis = getFileNameFis(sessionId, folderId.toString(), fileIndex, fileItem.getName());	                        
+	                        String fileNameFis = getFileNameFis(sessionId, folderId.toString(), indice, fileItem.getName());
 	                        fileIndex++;
 
 	                        //Obtener directorio temporal para guardar el fichero
 	                        if (Configurator.getInstance().getPropertyBoolean(ConfigurationKeys.KEY_DESKTOP_ISRELATIVE_TEMPORAL_DIR)) {
 	                        	newDir = new File(ContextUtil.getRealPath(getServletContext(),
-	                                    Configurator.getInstance().getProperty(ConfigurationKeys.KEY_DESKTOP_TEMPORALDIRECTORYNAME)));     	
+	                                    Configurator.getInstance().getProperty(ConfigurationKeys.KEY_DESKTOP_TEMPORALDIRECTORYNAME)));
 	                        } else {
 	                            newDir = new File(Configurator.getInstance().getProperty(
 	                            		ConfigurationKeys.KEY_DESKTOP_TEMPORALDIRECTORYNAME));
@@ -149,7 +152,7 @@ public class FileUploadScan extends HttpServlet implements Keys {
 	                        if (!newDir.exists()) {
 	                            newDir.mkdir();
 	                        }
-	                        
+
 	                        //Obtener el fichero destino
 	                        if (Configurator.getInstance().getPropertyBoolean(ConfigurationKeys.KEY_DESKTOP_ISRELATIVE_TEMPORAL_DIR)) {
 	                              newFile = new File(ContextUtil.getRealPath(getServletContext(),
@@ -158,11 +161,11 @@ public class FileUploadScan extends HttpServlet implements Keys {
 	                        } else {
 	                            newFile = new File(
 	                                    Configurator.getInstance().getProperty(ConfigurationKeys.KEY_DESKTOP_TEMPORALDIRECTORYNAME),
-	                                    fileNameFis);	                            
+	                                    fileNameFis);
 	                        }
 	                        //Escribir el fichero
 	                        newFile.deleteOnExit();
-	                        fileItem.write(newFile);	    					
+	                        fileItem.write(newFile);
 	    				}
 	    			}
 				}
@@ -174,7 +177,7 @@ public class FileUploadScan extends HttpServlet implements Keys {
             String msg = MessageFormat.format(RBUtil.getInstance(request.getLocale()).getProperty(
                     Keys.I18N_EXCEPTION_MAXUPLOADFILESIZE), new String[] { maxUploadFileSize.toString() });
             ResponseUtils.generateJavaScriptLog(writer, msg);
- 
+
         } catch (Exception e) {
             _logger.fatal("Error cargando ficheros", e);
             //ResponseUtils.generateJavaScriptLog(response, RBUtil.getInstance(useCaseConf.getLocale())
@@ -183,8 +186,33 @@ public class FileUploadScan extends HttpServlet implements Keys {
 
     }
 
+    /**
+     * Método que obtiene el código del fichero a partir del nombre del fichero
+     * @param fileItem - Información del fichero
+     * @param fileIndex - Posición del fichero dentro del array de ficheros
+     * @return codigo del fichero
+     */
+	private int getCodigoFichero(FileItem fileItem, int fileIndex) {
+
+		int result;
+		try {
+			//Obtenemos el identificador del fichero a partir del nombre
+			String codigoFichero = fileItem.getFieldName().substring("LI".length(),
+					fileItem.getFieldName().length());
+			// lo pasamos a un valor integer
+			result = Integer.parseInt(codigoFichero);
+		} catch (Exception e) {
+			// Si se produce alguna excepción durante el proceso anterior, asignamos como
+			// codigo del fichero la posición de este, dentro del array de
+			// ficheros
+			_logger.warn("No se ha podido obtener el identificador del documento: " + fileItem.getFieldName());
+			result = fileIndex;
+		}
+		return result;
+	}
+
     private String getFileNameFis(String sessionId, String folderId, int order, String name) {
-    	String extension = getExtension(name); 
+	String extension = getExtension(name);
         StringBuffer buffer = new StringBuffer();
         buffer.append(sessionId);
         buffer.append(GUIONBAJO);

@@ -113,10 +113,10 @@ function LoadFrameText(cadena, Mode)
 			var datas = arrInt[i].split("#");
 
 			if (valor == "") {
-				valor = datas[1];
+				valor = decodeURIComponent((datas[1]+'').replace(/\+/g, '%20'));
 			}
 			else {
-				valor += "\r\n" + datas[1];
+				valor += "\r\n" + decodeURIComponent((datas[1]+'').replace(/\+/g, '%20'));
 			}
 		}
 	}
@@ -410,9 +410,7 @@ function GetDataText()
 		var temp = top.miTrim(arr2[i]);
 
 		if (temp != "")	{
-			temp = temp.replace(/\"/g, "\'");
-			temp = temp.replace(/&&/g, "&");
-			temp = temp.replace(/#/g, "?");
+			temp = encodeURIComponent(temp);
 
 			if (data.length == 0) {
 				data = "0#" + temp + "#0##";

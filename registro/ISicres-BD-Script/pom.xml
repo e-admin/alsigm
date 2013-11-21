@@ -4,19 +4,19 @@
 	<parent>
 		<artifactId>InvesSicres</artifactId>
 		<groupId>es.ieci.tecdoc.isicres</groupId>
-		<version>8.0.1</version>
+		<version>8.0.5-M1</version>
 	</parent>
 
 	<artifactId>ISicres-sql</artifactId>
 	<name>ISicres-sql</name>
-	
+
 	<properties>
 		<dir3.unpackdirectory>${basedir}/target/dir3</dir3.unpackdirectory>
 		<audit.unpackdirectory>${basedir}/target/audit</audit.unpackdirectory>
 		<sir.unpackdirectory>${basedir}/target/sir</sir.unpackdirectory>
-		
-		
-	
+
+
+
 	</properties>
 
 	<profiles>
@@ -29,9 +29,9 @@
 				<dependencyDriverArtifactId>postgresql</dependencyDriverArtifactId>
 				<dependencyDriverVersionId>8.3-603.jdbc3</dependencyDriverVersionId>
 				<driverJdbc>org.postgresql.Driver</driverJdbc>
-				<urlJdbc>jdbc:postgresql://10.228.75.123:5432/ISicres_8_0</urlJdbc>
-				<usernameJdbc>postgres</usernameJdbc>
-				<passwordJdbc>postgres</passwordJdbc>
+				<urlJdbc>jdbc:postgresql://localhost:5432/isicres803</urlJdbc>
+				<usernameJdbc>isicres803</usernameJdbc>
+				<passwordJdbc>isicres803</passwordJdbc>
 
 				<baseDirSql>${basedir}/PostgreSQL/NuevaInstalacion</baseDirSql>
 				<baseDirDir3SQL>${basedir}/target/dir3/postgresql</baseDirDir3SQL>
@@ -163,13 +163,13 @@
 						              <srcFiles>
                 						<srcFile>${baseDirSql}/../00_drop_tables_constraints_views_sequences_isicres.sql</srcFile>
                 						<srcFile>${baseDirSql}/dropSicres3.sql</srcFile>
-                						
+
                							<srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-drop.sql</srcFile>
 									   	<srcFile>${audit.unpackdirectory}/${database.subdirectory}/fwktd-audit-drop.sql</srcFile>
 									   	<srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-drop.sql</srcFile>
   										<srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-drop.sql</srcFile>
-									   
-									   	
+
+
 									   	<srcFile>${baseDirSql}/01.1_create_tables_isicres.sql</srcFile>
 										<srcFile>${baseDirSql}/01.2_create_tables_invesdoc_isicres.sql</srcFile>
 										<srcFile>${baseDirSql}/02.1_create_indexes_constraints_isicres.sql</srcFile>
@@ -178,17 +178,17 @@
 										<srcFile>${baseDirSql}/03.2_insert_data_territorio_isicres.sql</srcFile>
 										<srcFile>${baseDirSql}/03.3_insert_data_orgs_isicres.sql</srcFile>
 										<srcFile>${baseDirSql}/03.4_insert_data_isicres.sql</srcFile>
-										<srcFile>${baseDirSql}/05-sicres3.sql</srcFile> 
-              						   
+										<srcFile>${baseDirSql}/05-sicres3.sql</srcFile>
+
               						   <srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-create.sql</srcFile>
               						   <srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-insert.sql</srcFile>
 									   <srcFile>${audit.unpackdirectory}/${database.subdirectory}/fwktd-audit-create.sql</srcFile>
-									   
-									   <srcFile>${baseDirSql}/06-insert_data_registro_auditoria_datos_postgres.sql</srcFile>
-									   
+
+									   <srcFile>${baseDirSql}/06-insert_data_registro_auditoria_datos.sql</srcFile>
+
 									   <srcFile>${baseDirSql}/loadDataTest.sql</srcFile>
 									   <srcFile>${baseDirSql}/mapeoCiudadesProvinciasDco.sql</srcFile>
-									   
+
 									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-create.sql</srcFile>
 									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-insert.sql</srcFile>
 									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-create.sql</srcFile>
@@ -279,21 +279,21 @@
 										<srcFile>${baseDirSql}/03.2_insert_data_territorio_isicres.sql</srcFile>
 										<srcFile>${baseDirSql}/03.3_insert_data_orgs_isicres.sql</srcFile>
 										<srcFile>${baseDirSql}/03.4_insert_data_isicres.sql</srcFile>
-										<srcFile>${baseDirSql}/05-sicres3.sql</srcFile> 
-              						   
+										<srcFile>${baseDirSql}/05-sicres3.sql</srcFile>
+
               						   <srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-create.sql</srcFile>
               						   <srcFile>${dir3.unpackdirectory}/${database.subdirectory}/fwktd-dir3-insert.sql</srcFile>
 									   <srcFile>${audit.unpackdirectory}/${database.subdirectory}/fwktd-audit-create.sql</srcFile>
-									   <srcFile>${baseDirSql}/06-insert_data_registro_auditoria_datos_postgres.sql</srcFile>
-									   
+									   <srcFile>${baseDirSql}/06-insert_data_registro_auditoria_datos.sql</srcFile>
+
 									   <srcFile>${baseDirSql}/loadDataTest.sql</srcFile>
 									   <srcFile>${baseDirSql}/mapeoCiudadesProvinciasDco.sql</srcFile>
-									   
+
 									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-create.sql</srcFile>
 									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-sir-insert.sql</srcFile>
 									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-create.sql</srcFile>
 									   <srcFile>${sir.unpackdirectory}/${database.subdirectory}/fwktd-dm-bd-insert.sql</srcFile>
-              						   
+
              					   </srcFiles>
 
 						            </configuration>
@@ -383,7 +383,7 @@
 				</build>
 			</profile>
 
-			
+
 
 			<!-- perfil para actualizar squemas -->
 			<profile>
@@ -459,8 +459,8 @@
 
 	<build>
 		<plugins>
-		
-		
+
+
 					<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-dependency-plugin</artifactId>
@@ -484,7 +484,7 @@
 							                    <outputDirectory>${dir3.unpackdirectory}</outputDirectory>
 							                    <includes>**/**.*</includes>
 							                 </artifactItem>
-							                
+
 							                <!-- audit -->
 							                <artifactItem>
 							                    <groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
@@ -495,9 +495,9 @@
 							                    <overWrite>true</overWrite>
 							                    <outputDirectory>${audit.unpackdirectory}</outputDirectory>
 							                    <includes>**/**.*</includes>
-							                    
+
 							                </artifactItem>
-							                
+
 							                <!-- SIR -->
 							                <artifactItem>
 							                    <groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
@@ -514,9 +514,9 @@
 								</execution>
 							</executions>
 						</plugin>
-		
-		
-		
+
+
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>

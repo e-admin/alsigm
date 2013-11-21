@@ -131,6 +131,9 @@ public interface Keys {
 	public static final String I18N_DATE_LONGFORMAT = "date.longFormat";
 	public static final String I18N_DATE_SHORTFORMAT = "date.shortFormat";
 
+	//Formato de las fechas para la bandeja de distribución
+	public static final String DATE_FORMAT_VIEW_DISTRIBUTION = "date.view.distribution";
+
 	public static final String I18N_ISICRESSRV_ERR_CREATING_LESTREE_OBJ = "exception.ISICRESSRV_ERR_CREATING_LESTREE_OBJ";
 	public static final String I18N_ISICRESSRV_ERR_CREATING_SESSION_OBJ = "exception.ISICRESSRV_ERR_CREATING_SESSION_OBJ";
 	public static final String I18N_ISICRESSRV_ERR_CREATING_FDRQRY_OBJ = "exception.ISICRESSRV_ERR_CREATING_FDRQRY_OBJ";
@@ -154,6 +157,7 @@ public interface Keys {
 	public static final String I18N_ISICRESSRV_ERR_COMPUL_UPLOAD_OBJ = "exception.ISICRESSRV_ERR_COMPUL_UPLOAD_OBJ";
 	public static final String I18N_ISICRESSRV_ERR_CREATING_FDRSAVE_OBJ = "exception.ISICRESSRV_ERR_CREATING_FDRSAVE_OBJ";
 	public static final String I18N_ISICRESSRV_ERR_DOWNLOAD_OBJ = "exception.ISICRESSRV_ERR_DOWNLOAD_OBJ";
+	public static final String I18N_ISICRESSRV_ERR_DELETE_OBJ = "exception.ISICRESSRV_ERR_DELETE_OBJ";
 	public static final String I18N_ISICRESSRV_ERR_UPDATEFOLDERS_OBJ = "exception.ISICRESSRV_ERR_UPDATEFOLDERS_OBJ";
 	public static final String I18N_ISICRESSRV_ERR_UPDATEFIELDS_OBJ = "exception.ISICRESSRV_ERR_UPDATEFIELDS_OBJ";
 	public static final String I18N_ISICRESSRV_ERR_SETPERSISTFIELDS_OBJ = "exception.ISICRESSRV_ERR_SETPERSISTFIELDS_OBJ";
@@ -195,6 +199,7 @@ public interface Keys {
 	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL13 = "bookusecase.distributionhistory.headminuta.col13";
 	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL14 = "bookusecase.distributionhistory.headminuta.col14";
 	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL15 = "bookusecase.distributionhistory.headminuta.col15";
+	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_HEADMINUTA_COL16 = "bookusecase.distributionhistory.headminuta.col16";
 
 	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_BODYMINUTA_COL1 = "bookusecase.distributionhistory.bodyminuta.col1";
 	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_BODYMINUTA_COL2 = "bookusecase.distributionhistory.bodyminuta.col2";
@@ -207,6 +212,7 @@ public interface Keys {
 	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_BODYMINUTA_COL9 = "bookusecase.distributionhistory.bodyminuta.col9";
 	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_BODYMINUTA_COL10 = "bookusecase.distributionhistory.bodyminuta.col10";
 	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_BODYMINUTA_COL11 = "bookusecase.distributionhistory.bodyminuta.col11";
+	public static final String I18N_BOOKUSECASE_DISTRIBUTIONHISTORY_BODYMINUTA_COL12 = "bookusecase.distributionhistory.bodyminuta.col12";
 
 	public static final String I18N_BOOKUSECASE_UPDATEHISTORY_HEADMINUTA_COL1 = "bookusecase.updatehistory.headminuta.col1";
 	public static final String I18N_BOOKUSECASE_UPDATEHISTORY_HEADMINUTA_COL2 = "bookusecase.updatehistory.headminuta.col2";
@@ -340,6 +346,10 @@ public interface Keys {
 	public static final String I18N_ISICRESIR_ERROR_UNIDAD_NO_MAPEADA = "intercambioRegistral.errorUnidadDestinoNoMapeada";
 	public static final String I18N_ISICRESIR_ERROR_SHOW_HISTORIAL_INTERCAMBIO="intercambioRegistral.errorObtenerHistorialIntercambio";
 	public static final String I18N_ISICRESIR_ERROR_NO_DATA_SHOW_HISTORIAL_INTERCAMBIO="intercambioRegistral.errorNoDataHistorialIntercambio";
+
+	public static final String I18N_ISICRESIR_ERROR_NO_DATA_SHOW_DETALLE_INTERCAMBIO="intercambioRegistral.errorNoDataDetalleIntercambioRegistral";
+	public static final String I18N_ISICRESIR_ERROR_SHOW_DETALLE_INTERCAMBIO="intercambioRegistral.errorObtenerDetalleIntercambioRegistral";
+
 	public static final String I18N_ISICRESIR_ERROR_BUSCAR_IN_DCO = "intercambioRegistral.error.buscar.dco";
 
 	public static final String REQUEST_MSG = "msg";
@@ -735,6 +745,9 @@ public interface Keys {
 	public static final String AUTHENTICATION_POLICY_TYPE_INVESDOC = "invesdoc";
 	public static final String AUTHENTICATION_POLICY_TYPE_LDAP = "ldap";
 
+	// Arrays con la información de los campo de búsqueda para los campos validados
+	public String STRING_FIELD_NAME[] = {"CODE", "ACRON", "NAME", "TRANSPORT", "MATTER"};
+	public String STRING_FIELD_LABEL[] = {"0", "1", "2", "3", "2"};
 
 	/***************************************************************************
 	 * Constructors

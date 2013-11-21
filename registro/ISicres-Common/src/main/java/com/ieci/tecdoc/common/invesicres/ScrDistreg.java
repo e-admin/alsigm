@@ -6,10 +6,10 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/** 
+/**
  *        @hibernate.class
  *         table="SCR_DISTREG"
- *     
+ *
 */
 public class ScrDistreg implements Serializable {
 
@@ -46,20 +46,9 @@ public class ScrDistreg implements Serializable {
     /** nullable persistent field */
     private String message;
 
-    /** full constructor */
-    public ScrDistreg(Integer id, int idArch, int idFdr, Date distDate, int typeOrig, int idOrig, int typeDest, int idDest, int state, Date stateDate, String message) {
-        this.id = id;
-        this.idArch = idArch;
-        this.idFdr = idFdr;
-        this.distDate = distDate;
-        this.typeOrig = typeOrig;
-        this.idOrig = idOrig;
-        this.typeDest = typeDest;
-        this.idDest = idDest;
-        this.state = state;
-        this.stateDate = stateDate;
-        this.message = message;
-    }
+    /** persistent field */
+    private Integer iddistfather;
+
 
     /** default constructor */
     public ScrDistreg() {
@@ -79,12 +68,30 @@ public class ScrDistreg implements Serializable {
         this.stateDate = stateDate;
     }
 
-    /** 
+	/** full constructor */
+    public ScrDistreg(Integer id, int idArch, int idFdr, Date distDate,
+			int typeOrig, int idOrig, int typeDest, int idDest, int state,
+			Date stateDate, String message, Integer iddistfather) {
+		this.id = id;
+		this.idArch = idArch;
+		this.idFdr = idFdr;
+		this.distDate = distDate;
+		this.typeOrig = typeOrig;
+		this.idOrig = idOrig;
+		this.typeDest = typeDest;
+		this.idDest = idDest;
+		this.state = state;
+		this.stateDate = stateDate;
+		this.message = message;
+		this.iddistfather = iddistfather;
+	}
+
+	/**
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Integer"
      *             column="ID"
-     *         
+     *
      */
     public Integer getId() {
         return this.id;
@@ -94,12 +101,12 @@ public class ScrDistreg implements Serializable {
         this.id = id;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="ID_ARCH"
      *             length="10"
      *             not-null="true"
-     *         
+     *
      */
     public int getIdArch() {
         return this.idArch;
@@ -109,12 +116,12 @@ public class ScrDistreg implements Serializable {
         this.idArch = idArch;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="ID_FDR"
      *             length="10"
      *             not-null="true"
-     *         
+     *
      */
     public int getIdFdr() {
         return this.idFdr;
@@ -124,12 +131,12 @@ public class ScrDistreg implements Serializable {
         this.idFdr = idFdr;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="DIST_DATE"
      *             length="7"
      *             not-null="true"
-     *         
+     *
      */
     public Date getDistDate() {
         return this.distDate;
@@ -139,12 +146,12 @@ public class ScrDistreg implements Serializable {
         this.distDate = distDate;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="TYPE_ORIG"
      *             length="10"
      *             not-null="true"
-     *         
+     *
      */
     public int getTypeOrig() {
         return this.typeOrig;
@@ -154,12 +161,12 @@ public class ScrDistreg implements Serializable {
         this.typeOrig = typeOrig;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="ID_ORIG"
      *             length="10"
      *             not-null="true"
-     *         
+     *
      */
     public int getIdOrig() {
         return this.idOrig;
@@ -169,12 +176,12 @@ public class ScrDistreg implements Serializable {
         this.idOrig = idOrig;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="TYPE_DEST"
      *             length="10"
      *             not-null="true"
-     *         
+     *
      */
     public int getTypeDest() {
         return this.typeDest;
@@ -184,12 +191,12 @@ public class ScrDistreg implements Serializable {
         this.typeDest = typeDest;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="ID_DEST"
      *             length="10"
      *             not-null="true"
-     *         
+     *
      */
     public int getIdDest() {
         return this.idDest;
@@ -199,12 +206,12 @@ public class ScrDistreg implements Serializable {
         this.idDest = idDest;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="STATE"
      *             length="10"
      *             not-null="true"
-     *         
+     *
      */
     public int getState() {
         return this.state;
@@ -214,12 +221,12 @@ public class ScrDistreg implements Serializable {
         this.state = state;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="STATE_DATE"
      *             length="7"
      *             not-null="true"
-     *         
+     *
      */
     public Date getStateDate() {
         return this.stateDate;
@@ -229,11 +236,11 @@ public class ScrDistreg implements Serializable {
         this.stateDate = stateDate;
     }
 
-    /** 
+    /**
      *            @hibernate.property
      *             column="MESSAGE"
      *             length="250"
-     *         
+     *
      */
     public String getMessage() {
         return this.message;
@@ -243,13 +250,29 @@ public class ScrDistreg implements Serializable {
         this.message = message;
     }
 
+    /**
+     *            @hibernate.property
+     *             column="iddistfather"
+     *             type="java.lang.Integer"
+     *
+     */
+
+    public Integer getIddistfather() {
+		return iddistfather;
+	}
+
+	public void setIddistfather(Integer iddistfather) {
+		this.iddistfather = iddistfather;
+	}
+
     public String toString() {
         return new ToStringBuilder(this)
             .append("id", getId())
             .toString();
     }
 
-    public boolean equals(Object other) {
+
+	public boolean equals(Object other) {
         if ( !(other instanceof ScrDistreg) ) return false;
         ScrDistreg castOther = (ScrDistreg) other;
         return new EqualsBuilder()
@@ -257,9 +280,9 @@ public class ScrDistreg implements Serializable {
             .isEquals();
     }
 
-    
-         
-                                       
+
+
+
 //************************************
 // Incluido pos ISicres-Common Oracle 9i
 
@@ -297,11 +320,11 @@ public String toXML() {
        buffer.append(">");
        return buffer.toString();
 }
-                               
-//************************************  
-                                                                                                                                                                   
+
+//************************************
+
 public int hashCode() {
-      
+
         return new HashCodeBuilder()
             .append(getId())
             .toHashCode();

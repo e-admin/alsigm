@@ -7,9 +7,9 @@ package com.ieci.tecdoc.common.keys;
 
 /**
  * @author: 66575267 - Gabriel Saiz Martín
- * 
+ *
  * @date: 26/01/2009
- * 
+ *
  */
 public interface HibernateKeys {
 
@@ -72,6 +72,8 @@ public interface HibernateKeys {
 			+ "ScrTt";
 	public static final String HIBERNATE_ScrDistregstate = HIBERNATE_INVESICRES_OBJ_PATH
 			+ "ScrDistregstate";
+	public static final String HIBERNATE_ScrDistribucionActual = HIBERNATE_INVESICRES_OBJ_PATH
+			+ "ScrDistribucionActual";
 	public static final String HIBERNATE_ScrCaofic = HIBERNATE_INVESICRES_OBJ_PATH
 			+ "ScrCaofic";
 	public static final String HIBERNATE_ScrValdate = HIBERNATE_INVESICRES_OBJ_PATH
@@ -299,5 +301,4 @@ public interface HibernateKeys {
 			+ "Ivolarchlist";
 	public static final String HIBERNATE_Iuserusersys = HIBERNATE_INVESDOC_OBJ_PATH
 			+ "Iuserusersys";
-
 }

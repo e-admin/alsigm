@@ -243,6 +243,16 @@ public interface ISicresServicioRPAdmin {
 			throws ISicresRPAdminException;
 
 	/**
+	 * Método que obtiene los perfiles posibles para los informes
+	 *
+	 * @param entidad
+	 * @return
+	 *
+	 * @throws ISicresRPAdminException
+	 */
+	public OptionsBean obtenerPerfilesReportCombo(Entidad entidad) throws ISicresRPAdminException;
+
+	/**
 	 * Método que obtiene la lista de oficinas
 	 *
 	 * @param entidad
@@ -366,8 +376,19 @@ public interface ISicresServicioRPAdmin {
 	 * @return
 	 * @throws RPAdminException
 	 */
+	@Deprecated
 	public OptionsBean obtenerDepartamentosCombo(boolean oficinas,
 			Entidad entidad) throws ISicresRPAdminException;
+
+	/**
+	 * Método que obtiene la lista de departamentos.
+	 *
+	 * @param entidad
+	 * @return
+	 * @throws ISicresRPAdminException
+	 */
+	public OptionsBean obtenerDepartamentosCombo(Entidad entidad)
+			throws ISicresRPAdminException;
 
 	/**
 	 * Método para asociar una lista de usuario a una oficina
@@ -1493,7 +1514,23 @@ public interface ISicresServicioRPAdmin {
 	public List<DatosBasicosUnidadOrganicaDCVO> findUnidadesOrganicasDirectorioComun(Criterios<CriterioUnidadOrganicaEnum> criteriosBusqueda) throws ISicresAdminIntercambioRegistralException ;
 
 
+	/**
+	 * Método que busca unidades orgánicas en la réplica del DIR3 según unos criterios
+	 * @param criteriosBusqueda
+	 * @return Lista de las unidades orgánicas con sus datos básicos
+	 * @throws ISicresAdminIntercambioRegistralException
+	 */
+	public List<DatosBasicosUnidadOrganicaDCVO> findUnidadesOrganicasDirectorioComunByCodEntidad(
+			String codEntidad, String codUnidad, String nombreUnidad) throws ISicresAdminIntercambioRegistralException;
+
+	/**
+	 * Método que actualiza el DCO
+	 */
 	public void actualizarDCO();
+
+	/**
+	 * Método que inicializa el DCO
+	 */
 	public void inicializarDCO();
 
 	/**

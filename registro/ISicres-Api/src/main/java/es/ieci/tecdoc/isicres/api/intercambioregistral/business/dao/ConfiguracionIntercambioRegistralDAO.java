@@ -1,5 +1,7 @@
 package es.ieci.tecdoc.isicres.api.intercambioregistral.business.dao;
 
+import java.util.List;
+
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.EntidadRegistralVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.UnidadAdministrativaIntercambioRegistralVO;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.vo.UnidadTramitacionIntercambioRegistralVO;
@@ -35,6 +37,14 @@ public interface ConfiguracionIntercambioRegistralDAO {
 	 */
 	public UnidadAdministrativaIntercambioRegistralVO getUnidadAdmimistrativaByCodigoEntidadRegistral(String codigo);
 
+	/**
+	 * Obtiene la lista de unidades administrativas que están mapeadas con la entidad registral del modulo comun.
+	 *
+	 * @param codigo
+	 * @return
+	 */
+	public List<UnidadAdministrativaIntercambioRegistralVO> getUnidadAdministrativaByCodidgoER(
+			String codigo);
 	/**
 	 * Obtiene la unidad administrativa con la cual esta mapeada la siguiente
 	 * unidad de tramitacion del modulo comun (mapeo inverso)

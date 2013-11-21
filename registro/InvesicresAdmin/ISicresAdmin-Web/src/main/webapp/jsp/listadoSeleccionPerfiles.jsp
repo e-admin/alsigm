@@ -20,8 +20,8 @@
 	function guardar() {
 
 		var posSeleccionada = -1;
-		for( var i = 0; i < document.forms[0].seleccionada.length; i++) {
-			if( document.forms[0].seleccionada[i].checked) {
+		for( var i = 0; i < document.getElementsByName("seleccionada").length; i++) {
+			if( document.getElementsByName("seleccionada")[i].checked) {
 				posSeleccionada = i+1;
 				break;
 			}

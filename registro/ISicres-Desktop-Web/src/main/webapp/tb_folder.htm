@@ -122,12 +122,28 @@
 			var e;
 
 			try {
-				document.getElementById("ToggleBtn").className="SubOptionsDisabled";
-				document.getElementById("CloseBtn").className="SubOptionsDisabled";
+				//Validamos si estos botones existen para deshabilitarlos
+				if(document.getElementById("ToggleBtn")){
+					document.getElementById("ToggleBtn").className="SubOptionsDisabled";
+				}
+
+				if(document.getElementById("CloseBtn")){
+					document.getElementById("CloseBtn").className="SubOptionsDisabled";
+				}
+
+				// Deshabilitamos los botones básicos del registro
+				// botón Limpiar
+				top.asignarClassName("ClearRegBtn", "SubOptionsDisabled");
+				// botón Imprimir
+				top.asignarClassName("btnPrintReg", "SubOptionsDisabled");
+				// botón Sello
+				top.asignarClassName("selloReg", "SubOptionsDisabled");
+				// botón Intercambio Registral
+				top.asignarClassName("SendIRBtn", "SubOptionsDisabled");
 
 		        if ( (top.g_FolderId != -1) && (top.g_OpenType == 1) ) {
-					document.getElementById("NewBtn").className="SubOptionsDisabled";
-					document.getElementById("SendIRBtn").className="SubOptionsDisabled";
+			        // Deshabilitamos el botón de Nuevo Registro Bucle
+				top.asignarClassName("NewBtn", "SubOptionsDisabled");
 				}
 
 				top.g_OpcAval=false;

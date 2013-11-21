@@ -2,22 +2,22 @@
 	<parent>
 		<artifactId>InvesSicres</artifactId>
 		<groupId>es.ieci.tecdoc.isicres</groupId>
-		<version>8.0.1</version>
+		<version>8.0.5-M1</version>
 	</parent>
-	
+
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>ISicres-Distribucion</artifactId>
 	<packaging>pom</packaging>
-	
-	
+
+
 	<properties>
 		<skipDeploy>true</skipDeploy>
 	</properties>
-	
+
 	<dependencies>
 
 	<!-- DEPENDENCIAS DE ISICRES  -->
- 
+
  		<!-- war de isicres-->
 		<dependency>
 			<groupId>es.ieci.tecdoc.isicres</groupId>
@@ -25,7 +25,7 @@
 			<version>${pom.version}</version>
 			<type>war</type>
 		</dependency>
-		
+
 		<!-- recursos configurables -->
 		<dependency>
 			<groupId>es.ieci.tecdoc.isicres</groupId>
@@ -34,26 +34,7 @@
 			<classifier>Config</classifier>
 			<type>zip</type>
 		</dependency>
-		
-		<!-- ************************DEPENDENCIAS DE ISICRES  WEB SERVICES *******************************-->
-		
-		
-		<dependency>
-			<groupId>es.ieci.tecdoc.isicres</groupId>
-			<artifactId>ISicres-WS-legacy</artifactId>
-			<version>${pom.version}</version>
-			<type>war</type>
-		</dependency>
-		
-		<!-- recursos configurables -->
-		<dependency>
-			<groupId>es.ieci.tecdoc.isicres</groupId>
-			<artifactId>ISicres-WS-legacy</artifactId>
-			<version>${pom.version}</version>
-			<classifier>Config</classifier>
-			<type>zip</type>
-		</dependency>
-		
+
 
 		<!-- ************************DEPENDENCIAS DE ISICRES ADMIN *******************************-->
 		<dependency>
@@ -62,14 +43,14 @@
 			<version>${pom.version}</version>
 			<type>war</type>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>es.ieci.tecdoc.isicres.admin</groupId>
 			<artifactId>ISicresAdmin-resources-configurable</artifactId>
 			<version>${pom.version}</version>
 			<type>zip</type>
 		</dependency>
-		
+
 		<!-- ************************DEPENDENCIAS DE fwktdsir *******************************-->
 		<dependency>
 			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
@@ -77,36 +58,17 @@
 			<version>${fwktd-sir.version}</version>
 			<type>war</type>
 		</dependency>
-		
+
+			<!-- ************************DEPENDENCIAS DE configuracion externa *******************************-->
+
 		<dependency>
-			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
-			<artifactId>fwktd-sir-config</artifactId>
-			<version>${fwktd-sir.version}</version>
-			<classifier>configurable</classifier>
+			<groupId>es.ieci.tecdoc.isicres</groupId>
+			<artifactId>ISicres-external-resources-config</artifactId>
+			<version>${pom.version}</version>
+			<classifier>config</classifier>
 			<type>zip</type>
 		</dependency>
-		
-		<!-- ************************DEPENDENCIAS DE auditoria *******************************-->
-		
-		<!-- configurables auditoria --> 
-		
-		
-		<dependency>
-			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
-			<artifactId>fwktd-audit-core</artifactId>
-			<version>${fwktd.audit.version}</version>
-			<classifier>configurable</classifier>
-			<type>zip</type>
-		</dependency>
-		<dependency>
-			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
-			<artifactId>fwktd-audit-api</artifactId>
-			<version>${fwktd.audit.version}</version>
-			<classifier>configurable</classifier>
-			<type>zip</type>
-		</dependency>
-		
-		 
+
 
 		<!-- ************************ scripts de base de datos ********************************************-->
 		<dependency>
@@ -116,44 +78,6 @@
 			<classifier>bd</classifier>
 			<type>zip</type>
 		</dependency>
-		
-		
-
-		<!-- - ************************  documentacion - ************************  --> 
-		<dependency>
-			<groupId>es.ieci.tecdoc.isicres.documentation</groupId>
-			<artifactId>Isicres-documentation-documentos</artifactId>
-			<version>${pom.version}</version>
-			<classifier>documentacion</classifier>
-			<type>zip</type>
-		</dependency>
-		
-		<dependency>
-			<groupId>es.ieci.tecdoc.isicres.admin.documentation</groupId>
-			<artifactId>IsicresAdmin-documentation-documentos</artifactId>
-			<version>${pom.version}</version>
-			<classifier>documentacion</classifier>
-			<type>zip</type>
-		</dependency>
-		
-		
-		<dependency>
-			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-audit</groupId>
-			<artifactId>fwktd-audit-doc</artifactId>
-			<version>${fwktd.audit.version}</version>
-			<classifier>documentacion</classifier>
-			<type>zip</type>
-		</dependency>
-		
-		<dependency>
-			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
-			<artifactId>fwktd-sir-doc</artifactId>
-			<version>${fwktd-sir.version}</version>
-			<classifier>documentacion</classifier>
-			<type>zip</type>
-		</dependency>
-
-
 
 	</dependencies>
 

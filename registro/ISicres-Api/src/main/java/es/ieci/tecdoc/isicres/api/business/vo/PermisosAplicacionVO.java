@@ -3,7 +3,7 @@ package es.ieci.tecdoc.isicres.api.business.vo;
 /**
  * Clase que representa los permisos a nivel de aplicacion y se asocian a nivel
  * de usuario:
- * 
+ *
  * Alta de personas físicas/jurídicas Aceptación de registros distribuidos
  * Modificación de personas físicas/juridicas Rechazo de registros distribuidos
  * Introducción de fecha de registro Archivo de registros distribuidos
@@ -11,9 +11,9 @@ package es.ieci.tecdoc.isicres.api.business.vo;
  * Modificación de campos protegidos Cambio de destino de registros rechazados
  * Acceso a operaciones de intercambio registral Distribución Manual Consultar
  * documentación anexa Superusuario
- * 
+ *
  * @author Iecisa
- * 
+ *
  */
 public class PermisosAplicacionVO extends BasePermisosVO {
 
@@ -41,6 +41,15 @@ public class PermisosAplicacionVO extends BasePermisosVO {
 
 	protected boolean consultarDocuAnexa;
 
+	protected boolean borrarDocuAnexa;
+
+	//Permisos para la gestion de la herramienta de administracion
+	protected boolean gestionUnidadesAdministrativas;
+	protected boolean gestionInformes;
+	protected boolean gestionTiposAsunto;
+	protected boolean gestionUsuarios;
+	protected boolean gestionTiposTransporte;
+	//
 	protected boolean operacionesIntercambioRegistral;
 
 	public boolean isSuperUsuario() {
@@ -156,5 +165,56 @@ public class PermisosAplicacionVO extends BasePermisosVO {
 			boolean operacionesIntercambioRegistral) {
 		this.operacionesIntercambioRegistral = operacionesIntercambioRegistral;
 	}
+
+	public boolean isBorrarDocuAnexa() {
+		return borrarDocuAnexa;
+	}
+
+	public void setBorrarDocuAnexa(boolean borrarDocuAnexa) {
+		this.borrarDocuAnexa = borrarDocuAnexa;
+	}
+
+	public boolean isGestionUnidadesAdministrativas() {
+		return gestionUnidadesAdministrativas;
+	}
+
+	public void setGestionUnidadesAdministrativas(
+			boolean gestionUnidadesAdministrativas) {
+		this.gestionUnidadesAdministrativas = gestionUnidadesAdministrativas;
+	}
+
+	public boolean isGestionInformes() {
+		return gestionInformes;
+	}
+
+	public void setGestionInformes(boolean gestionInformes) {
+		this.gestionInformes = gestionInformes;
+	}
+
+	public boolean isGestionTiposAsunto() {
+		return gestionTiposAsunto;
+	}
+
+	public void setGestionTiposAsunto(boolean gestionTiposAsunto) {
+		this.gestionTiposAsunto = gestionTiposAsunto;
+	}
+
+	public boolean isGestionUsuarios() {
+		return gestionUsuarios;
+	}
+
+	public void setGestionUsuarios(boolean gestionUsuarios) {
+		this.gestionUsuarios = gestionUsuarios;
+	}
+
+	public boolean isGestionTiposTransporte() {
+		return gestionTiposTransporte;
+	}
+
+	public void setGestionTiposTransporte(boolean gestionTiposTransporte) {
+		this.gestionTiposTransporte = gestionTiposTransporte;
+	}
+
+
 
 }

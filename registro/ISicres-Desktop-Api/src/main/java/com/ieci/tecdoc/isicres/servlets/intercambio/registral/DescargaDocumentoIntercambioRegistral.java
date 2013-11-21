@@ -1,9 +1,8 @@
 /**
- * 
+ *
  */
 package com.ieci.tecdoc.isicres.servlets.intercambio.registral;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,9 +20,12 @@ import es.ieci.tecdoc.isicres.api.business.manager.IsicresManagerProvider;
 import es.ieci.tecdoc.isicres.api.intercambioregistral.business.manager.IntercambioRegistralManager;
 
 /**
+ *
+ * Servlet que devuelve un documento asociado a un intercambio registral
+ *
  * @author IECISA
  * @version $Revision$
- * 
+ *
  */
 public class DescargaDocumentoIntercambioRegistral extends HttpServlet {
 
@@ -48,8 +50,6 @@ public class DescargaDocumentoIntercambioRegistral extends HttpServlet {
 		}
 
 		response.setDateHeader("Expires", 0);
-		response.setHeader("Cache-Control", "no-cache");
-		response.setHeader("Pragma", "no-cache");
 
 		String idAnexo = request.getParameter("idAnexo");
 		String idIntercambio = request.getParameter("idIntercambio");
@@ -68,13 +68,12 @@ public class DescargaDocumentoIntercambioRegistral extends HttpServlet {
 							"attachment; filename=" + anexo.getNombreFichero());
 					byte[] contenido = intercambioManager.getContenidoAnexo(idAnexo);
 
-					ServletOutputStream out = response.getOutputStream();					
+					ServletOutputStream out = response.getOutputStream();
 					out.write(contenido);
 					out.flush();
 				}
 			}
 		} catch (Exception e) {
-			// TODO Bloque catch auto-generado
 			logger.error("ERROR obtener el documento del asiento registral con el identificador" + idIntercambio,
 					e);
 		}

@@ -1,0 +1,49 @@
+version: 1
+
+dn: ou=invesicres,ou=system
+objectClass: organizationalUnit
+objectClass: top
+ou: invesicres
+
+dn: ou=Group,ou=invesicres,ou=system
+objectClass: organizationalUnit
+objectClass: top
+ou: Group
+
+dn: ou=User,ou=invesicres,ou=system
+objectClass: organizationalUnit
+objectClass: top
+ou: User
+
+dn: cn=Grupo de Pruebas,ou=Group,ou=invesicres,ou=system
+objectClass: group
+objectClass: top
+cn: Grupo de Pruebas
+member: cn=Usuario Pruebas,ou=User,ou=invesicres,ou=system
+description: b7a55828-1f1a-4b0f-a65b-463eaad2fc77
+
+dn: uid=admin,ou=User,ou=invesicres,ou=system
+objectClass: account
+objectClass: simpleSecurityObject
+objectClass: top
+uid: admin
+userPassword: admin
+
+dn: uid=administrador,ou=User,ou=invesicres,ou=system
+objectClass: account
+objectClass: simpleSecurityObject
+objectClass: top
+uid: administrador
+userPassword:: e1NTSEF9Ymg1R0RxZmIxaEREcHJPQ3gxSm90MjQ1OEdmbGFjcUg5M1VZTHc9P
+ Q==
+
+dn: cn=Usuario Pruebas,ou=User,ou=invesicres,ou=system
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: Usuario Pruebas
+sn: Pruebas
+uid: usuario pruebas
+userPassword: prueba
+description: f31c03ee-819d-4203-94b7-42a8f3ebf136

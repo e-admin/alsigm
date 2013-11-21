@@ -100,12 +100,12 @@ function OpenFolderEx()
 function OpenFolder()
 {
 	if ((top.g_FolderSel > (top.Main.Table.TableData.g_FirstRow + top.Main.Table.TableData.g_RowsVisible - 1))
-       		|| (top.g_FolderSel < top.Main.Table.TableData.g_FirstRow)){
+		|| (top.g_FolderSel < top.Main.Table.TableData.g_FirstRow)){
 		top.g_ShowTable = false;
-      		window.open(top.g_URL + "/tbltext2.jsp?SessionPId=" + top.g_SessionPId + "&Row=" + top.g_FolderSel
-         		+ "&FdrQryPId=" + top.g_FdrQryPId.toString(), "TableData","location=no",true);
-   	}
-   	else {
+		window.open(top.g_URL + "/tbltext2.jsp?SessionPId=" + top.g_SessionPId + "&Row=" + top.g_FolderSel
+			+ "&FdrQryPId=" + top.g_FdrQryPId.toString(), "TableData","location=no",true);
+	}
+	else {
 	      OpenFolderEx();
 	}
 }
@@ -156,7 +156,7 @@ function GoTo()
 function Print(obj)
 {
 	if (obj.className != "SubOptionsDisabled"){
-   		var sRet;
+		var sRet;
 		var args = new Array;
 		var URL = top.g_URL + "/report.htm";
 
@@ -169,8 +169,8 @@ function Print(obj)
 		args[6] = "";
 		args[7] = top.Idioma.toString();
 
-   		sRet = top.ShowModalDialog(URL, args, 400, 450, "");
-   	}
+		sRet = top.ShowModalDialog(URL, args, 400, 450, "");
+	}
 }
 
 function Compulsa(obj)
@@ -215,7 +215,7 @@ function BuildStrUpdateFolder()
 
 	// creamos la cadena con los campos que se modifican y limpiamos los interesados modificados
 	for( var ii=0; ii< FldDataArr.length; ii++) {
-		StrCad += FldDataArr[ii].Id + '|' + FldDataArr[ii].Value + '|' + FldDataArr[ii].CtrlId + '||';
+		StrCad += FldDataArr[ii].Id + '|' + encodeURIComponent(FldDataArr[ii].Value) + '|' + FldDataArr[ii].CtrlId + '||';
 		AsignValueToFldsSust(FldDataArr[ii].valueSust, FldDataArr[ii].Id);
 	}
 
@@ -228,13 +228,16 @@ function BuildStrUpdateFolder()
 
 	// Array de Inputs para pasar la cadena de modificacion y que la coja
 	for (var ii=0; ii < oArrStrUpdate.length; ii++){
-		var OElement1 = document.createElement("INPUT");
-		OElement1.setAttribute("class", "input");
-		OElement1.setAttribute("type", "text");
-		OElement1.setAttribute("name", "TreeUpdate");
-
-		OElement1.value = oArrStrUpdate[ii];
-		document.getElementById("frmStrUpdate").appendChild( OElement1 );
+		//verificamos la cadena con la modificación ya se encuentra en el formulario
+		if(validateIfAddDataFormFrmStrUpdate(oArrStrUpdate[ii])){
+			//sino se encuentra en el formulario lo añadimos
+			var OElement1 = document.createElement("INPUT");
+			OElement1.setAttribute("class", "input");
+			OElement1.setAttribute("type", "text");
+			OElement1.setAttribute("name", "TreeUpdate");
+			OElement1.value = oArrStrUpdate[ii];
+			document.getElementById("frmStrUpdate").appendChild( OElement1 );
+		}
 	}
 
 	// Se lanza el applet para subirnos los ficheros escaneados si hay
@@ -245,6 +248,33 @@ function BuildStrUpdateFolder()
 		//No es necesario subir archivos, llamar a guardar carpeta.
 		ExecuteUpdateFolder();
 	}
+
+	// Inicializamos de nuevo las variables, por si se produce algún error en
+	// ejecución que no sean tratados los datos dos veces
+	oArrStrUpdate = new Array();
+}
+
+// Funcion que comprueba si se debe insertar en el formulario frmStrUpdate
+function validateIfAddDataFormFrmStrUpdate(cadenaModificacion){
+	//añadimos los datos al formulario como un campo
+	var result = true;
+
+	//Obtenemos el formulario que contiene la información de los documentos adjuntados
+	var oForm = document.getElementById("frmStrUpdate");
+
+	//recorremos los elementos del formulario
+	for(var jj=0; jj< oForm.length; jj++){
+		// si el elemento es de tipo TEXTO y con el nombre TREEUPDATE
+		if((oForm[jj].type == "text") && (oForm[jj].name = "TreeUpdate")){
+			//pasamos a comparar, si la cadena almacenada es identica al que intentamos adjuntar
+			if(oForm[jj].value == cadenaModificacion){
+				//El documento ya se encuentra en el formulario por tanto no se añade
+				result = false;
+			}
+		}
+	}
+
+	return result;
 }
 
 //Ejecuta el servlet de subir los cambios de la carpeta.
@@ -329,9 +359,9 @@ function ResponseUpdate()
 					 top.Main.Folder.FolderBar.DeleteScanFiles();
 				}
 				top.g_bIsSaved = true;
-      			top.SetFolderFormTree(response);
+			top.SetFolderFormTree(response);
 
-      		}
+		}
 		}
 	}
 
@@ -451,6 +481,11 @@ function GetBarText(Mode)
 			}
 		}
 
+		//se genera el boton: LIMPIAR siempre que sea en modo edición
+		if((!top.g_FdrReadOnly) || ((top.g_FolderView) && (!top.g_FdrReadOnly))){
+			HTMLText += generarBotonLimpiarPantallaRegistro();
+		}
+
 		//se generan los botones basicos del registro: IMPRIMIR, SELLAR Y COMPULSAR
 		var FrmTree = top.Main.Folder.FolderData.FolderFormTree.document;
 		var EBookType = (parseInt(FrmTree.getElementById("BookType").value, 10) == 1) ? true : false;
@@ -461,11 +496,23 @@ function GetBarText(Mode)
 			HTMLText += generarBotonesBasicosRegistro(EBookType);
 		}
 
+		// Botón de distribución manual
+		// se comprueban los permisos de distribución manual, que sea un
+		// registro existente, y que si se abre desde la bandeja de distribución
+		// se realice desde la bandeja de aceptados
+		if ((parseInt(FrmTree.getElementById("CanDist").value, 10) == 1) && (top.g_FolderId != -1)
+			&& ((top.g_OpenFolderDtr && top.g_OpenEditDistr && !top.g_FdrReadOnly) || !top.g_OpenFolderDtr)){
+			HTMLText += generarBotonDistribucionManualFormularioReg();
+		}
+
+
 		//se generan los botones de configuracion: CONF. SELLO, CONF. ESCANES y CONF. REGISTRO
 		if((!top.g_FdrReadOnly) || ((top.g_FolderView) && (!top.g_FdrReadOnly))){
 			//Boton para ocultar/mostrar capa de botones de configuracion
-			HTMLText += "<td class=\"SubOptions\" width=\"130\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"OcultarMostrarBotonesConf()\"><IMG id=\"config\" src=\"images/configure.png\" title=\""+ top.GetIdsLan("IDS_LABEL_CONFIG") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan("IDS_LABEL_CONFIG") + "  <IMG id=\"imgdesplegarConf\" src=\"images/flechas_dobles_dcha_sin_fondo.png\" border=\"0\" align=\"middle\"/></td>";
-			HTMLText += "<td width=\"15\"></td>";
+			HTMLText += "<td class=\"SubOptions\" width=\"130\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"OcultarMostrarBotonesConf()\">";
+			HTMLText += "<div align=\"center\"><IMG id=\"config\" src=\"images/configure.png\" title=\""+ top.GetIdsLan("IDS_LABEL_CONFIG") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan("IDS_LABEL_CONFIG") + "  <IMG id=\"imgdesplegarConf\" src=\"images/flechas_dobles_dcha_sin_fondo.png\" border=\"0\" align=\"middle\"/>";
+			HTMLText += "</div></td>";
+			HTMLText += "<td width=\"4\"></td>";
 			HTMLText += "<td>" + generarBotonesDeConfiguracion() + "</td>";
 		}
 
@@ -548,7 +595,7 @@ function generarBotonRegistrarGuardar(){
 	}
 	else {
 		//GUARDAR
-		result += "<td width=\"100\" id=\"SaveMenuBtn\" class=\"SubOptionsDisabled\" valign=\"middle\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"CloseModify(this);\" onkeydown=\"javascript:if (top.GetKeyCode(event)==13){CloseModify(this);}\" tabIndex=\"1\">";
+		result += "<td width=\"90\" id=\"SaveMenuBtn\" class=\"SubOptionsDisabled\" valign=\"middle\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"CloseModify(this);\" onkeydown=\"javascript:if (top.GetKeyCode(event)==13){CloseModify(this);}\" tabIndex=\"1\">";
 		result +=   "<div align=\"center\"><IMG id=\"imgsave\" src=\"images/disk.png\" title=\""+ top.GetIdsLan("IDS_OPCGUARDAR") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_OPCGUARDAR" ) + "</div>";
 		result += "</td>";
 	}
@@ -572,11 +619,22 @@ function generarBotonesRegistroAccesoPorURL(){
 	return result;
 }
 
+//Boton DISTRIBUCION MANUAL formulario de Registro
+function generarBotonDistribucionManualFormularioReg(){
+	var result = "";
+
+	result += "<td id=\"DistribucionManual\"  width=\"92\" class=\"SubOptions\" onclick=\"javascript:Distribute(this)\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onkeydown=\"javascript:if (top.GetKeyCode(event)==13){Distribute(this);}\" tabIndex=\"1\">";
+	result += "<div align=\"center\"><IMG src=\"images/ico_distrib.gif\" title=\""+ top.GetIdsLan("IDS_BTNDIST") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_BTNDIST" ) + "</IMG></div>";
+	result += "</td>";
+
+	return result;
+}
+
 //Boton NUEVO REGISTRO
 function generarBotonNuevoRegistroBcl(){
 	var result = "";
 
-	result +="<td id=\"NewBtn\" width=\"120\" class=\"SubOptions\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"top.NewFolderBucle(this.className)\" onkeydown=\"if (top.GetKeyCode(event)==13){top.NewFolderBucle(this.className);}\" tabIndex=\"1\">";
+	result +="<td id=\"NewBtn\" width=\"120\" class=\"SubOptionsDisabled\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"top.NewFolderBucle(this.className)\" onkeydown=\"if (top.GetKeyCode(event)==13){top.NewFolderBucle(this.className);}\" tabIndex=\"1\">";
 	result += "<div align=\"center\"><IMG id=\"imgnewreg\" src=\"images/nuevo_registro.png\" title=\""+ top.GetIdsLan("IDS_OPCNUEVA") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_OPCNUEVA" ) + "</div>";
 	result += "</td>";
 
@@ -587,8 +645,19 @@ function generarBotonNuevoRegistroBcl(){
 function generarBotonIntercambioRegistral(){
 	var result = "";
 
-	result += "<td id=\"SendIRBtn\" width=\"180\" class=\"SubOptions\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"top.SendIntercambioRegistral(this.className)\" onkeydown=\"if (top.GetKeyCode(event)==13){top.SendIntercambioRegistral(this.className);}\" tabIndex=\"1\">";
-	result +=   "<div align=\"center\"><IMG id=\"imgintercambio\" src=\"images/change_dest.png\" title=\""+ top.GetIdsLan("IDS_BTNSENDIR") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_BTNSENDIR" ) + "</div>";
+	result += "<td id=\"SendIRBtn\" width=\"130\" class=\"SubOptionsDisabled\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"top.SendIntercambioRegistral(this.className)\" onkeydown=\"if (top.GetKeyCode(event)==13){top.SendIntercambioRegistral(this.className);}\" tabIndex=\"1\">";
+	result +=   "<div align=\"center\"><IMG id=\"imgintercambio\" src=\"images/change_dest.png\" title=\""+ top.GetIdsLan("IDS_BTNSENDIR") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_BTNSENDIR_LABEL" ) + "</div>";
+	result += "</td>";
+
+	return result;
+}
+
+//BOTON LIMPIAR FORMULARIO DEL REGISTRO
+function generarBotonLimpiarPantallaRegistro(){
+	var result = "";
+
+	result += "<td id=\"ClearRegBtn\" width=\"75\" class=\"SubOptions\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"top.ClearFormRegister(this.className)\" onkeydown=\"if (top.GetKeyCode(event)==13){top.ClearFormRegister(this.className);}\" tabIndex=\"1\">";
+	result +=   "<div align=\"center\"><IMG id=\"imgClearReg\" src=\"images/clear.gif\" title=\""+ top.GetIdsLan("IDS_BTNLIMPIAR") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_BTNLIMPIAR" ) + "</div>";
 	result += "</td>";
 
 	return result;
@@ -598,19 +667,17 @@ function generarBotonIntercambioRegistral(){
 function generarBotonesBasicosRegistroDesactivados(EBookType){
 	var result = "";
 
-	result += "<td width=\"100\" class=\"SubOptionsDisabled\" valign=\"middle\">";
+	result += "<td id=\"btnPrintReg\"width=\"90\" class=\"SubOptionsDisabled\" valign=\"middle\">";
 	result +=   "<div align=\"center\"><IMG id=\"imgprint\" src=\"images/printer.png\" title=\""+ top.GetIdsLan("IDS_OPCIMPRIMIR") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_OPCIMPRIMIR" ) + "</div>";
 	result += "</td>";
 
-	result += "<td width=\"70\" class=\"SubOptionsDisabled\" valign=\"middle\">";
+	result += "<td width=\"65\" class=\"SubOptionsDisabled\" valign=\"middle\">";
 	result +=   "<div align=\"center\" valign=\"middle\"><IMG id=\"imgsello\" src=\"images/sellar.png\" title=\""+ top.GetIdsLan("IDS_OPCSELLO") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_OPCSELLO" ) + "</div>";
 	result += "</td>";
 
-	if (EBookType){
-		result += "<td id=\"compulsa\" width=\"100\" class=\"SubOptionsDisabled\" valign=\"middle\">";
-		result +=   "<div align=\"center\"><IMG id=\"imgcompulsa\" src=\"images/compulsa.png\" title=\""+ top.GetIdsLan("IDS_LABEL_COMPULSA") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_LABEL_COMPULSA" ) + "</div>";
-		result += "</td><td width=\"15\"></td>";
-	}
+	result += "<td id=\"compulsa\" width=\"95\" class=\"SubOptionsDisabled\" valign=\"middle\">";
+	result +=   "<div align=\"center\"><IMG id=\"imgcompulsa\" src=\"images/compulsa.png\" title=\""+ top.GetIdsLan("IDS_LABEL_COMPULSA") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_LABEL_COMPULSA" ) + "</div>";
+	result += "</td>";
 
 	return result;
 }
@@ -621,23 +688,23 @@ function generarBotonesBasicosRegistro(EBookType){
 
 	if (!top.g_FdrReadOnly) {
 		//boton de IMPRIMIR
-		result += "<td width=\"100\" class=\"SubOptions\" valign=\"middle\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"Print(this)\" onkeydown=\"if (top.GetKeyCode(event)==13){Print(this);}\" tabIndex=\"1\">";
+		result += "<td id=\"btnPrintReg\" width=\"90\" class=\"SubOptions\" valign=\"middle\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"Print(this)\" onkeydown=\"if (top.GetKeyCode(event)==13){Print(this);}\" tabIndex=\"1\">";
 		result +=   "<div align=\"center\"><IMG id=\"imgprint\" src=\"images/printer.png\" title=\""+ top.GetIdsLan("IDS_OPCIMPRIMIR") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_OPCIMPRIMIR" ) + "</div>";
 		result += "</td>";
 	}
 
-	if (!top.g_OpenFolderDtr) {
+	if (!top.g_OpenFolderDtr || (top.g_OpenFolderDtr && top.g_OpenEditDistr && !top.g_FdrReadOnly)) {
 		//boton de SELLAR
-		result += "<td id=\"selloReg\" width=\"70\" class=\"SubOptions\"  valign=\"middle\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"PrintSello(this, 1)\" onkeydown=\"if (top.GetKeyCode(event)==13){PrintSello(this, 1);}\" tabIndex=\"1\">";
+		result += "<td id=\"selloReg\" width=\"65\" class=\"SubOptions\"  valign=\"middle\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"PrintSello(this, 1)\" onkeydown=\"if (top.GetKeyCode(event)==13){PrintSello(this, 1);}\" tabIndex=\"1\">";
 		result +=   "<div align=\"center\"><IMG id=\"imgsello\" src=\"images/sellar.png\" title=\""+ top.GetIdsLan("IDS_OPCSELLO") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_OPCSELLO" ) + "</div>";
 		result += "</td>";
 	}
 
-	if (!top.g_FdrReadOnly && EBookType) {
+	if (!top.g_FdrReadOnly) {
 		//boton de COMPULSAR
-		result += "<td id=\"compulsa\" width=\"100\" valign=\"middle\" class=\"SubOptions\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"Compulsa(this)\" onkeydown=\"if (top.GetKeyCode(event)==13){Compulsa(this);}\" tabIndex=\"1\">";
+		result += "<td id=\"compulsa\" width=\"95\" valign=\"middle\" class=\"SubOptions\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"Compulsa(this)\" onkeydown=\"if (top.GetKeyCode(event)==13){Compulsa(this);}\" tabIndex=\"1\">";
 		result +=   "<div align=\"center\"><IMG id=\"imgcompulsa\" src=\"images/compulsa.png\" title=\""+ top.GetIdsLan("IDS_LABEL_COMPULSA") +"\" border=\"0\" align=\"middle\"/> " + top.GetIdsLan( "IDS_LABEL_COMPULSA" ) + "</div>";
-		result += "</td><td width=\"15\"></td>";
+		result += "</td>";
 	}
 	return result;
 }
@@ -652,24 +719,24 @@ function generarBotonesDeConfiguracion(){
 
 		// Boton de configurar sello
 		if (!top.g_FdrReadOnly)	{
-			result += "<td id=\"confSelloReg\" class=\"SubOptions\" width=\"120\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"PrintSello(this, 2)\" onkeydown=\"if (top.GetKeyCode(event)==13){PrintSello(this, 2);}\" tabIndex=\"1\">";
-			result +=   "<IMG id=\"imgconfigsello\" src=\"images/confsellar.png\" title=\""+ top.GetIdsLan("IDS_OPCCONFSELLO") +"\" border=\"0\" align=\"middle\"/> ";
+			result += "<td id=\"confSelloReg\" class=\"SubOptions\" width=\"95\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"PrintSello(this, 2)\" onkeydown=\"if (top.GetKeyCode(event)==13){PrintSello(this, 2);}\" tabIndex=\"1\">";
+			result +=   "<div align=\"center\"><IMG id=\"imgconfigsello\" src=\"images/confsellar.png\" title=\""+ top.GetIdsLan("IDS_OPCCONFSELLO") +"\" border=\"0\" align=\"middle\"/> ";
 			result +=    top.GetIdsLan( "IDS_OPCCONFSELLO" );
-			result += "</td>";
+			result += "</div></td>";
 		}
 		// Boton de configurar escaner
 		if ((top.g_FolderView) && (!top.g_FdrReadOnly))	{
-			result += "<td id=\"confScanner\" class=\"SubOptions\" width=\"130\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"ConfScanner(this)\" onkeydown=\"if (top.GetKeyCode(event)==13){ConfScanner(this);}\" tabIndex=\"1\">";
-			result +=   "<IMG id=\"imgconfigscanner\" src=\"images/confscanner.png\" title=\""+ top.GetIdsLan("IDS_OPCCONFSCAN") +"\" border=\"0\" align=\"middle\"/> ";
+			result += "<td id=\"confScanner\" class=\"SubOptions\" width=\"120\" onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"ConfScanner(this)\" onkeydown=\"if (top.GetKeyCode(event)==13){ConfScanner(this);}\" tabIndex=\"1\">";
+			result +=   "<div align=\"center\"><IMG id=\"imgconfigscanner\" src=\"images/confscanner.png\" title=\""+ top.GetIdsLan("IDS_OPCCONFSCAN") +"\" border=\"0\" align=\"middle\"/> ";
 			result +=    top.GetIdsLan( "IDS_OPCCONFSCAN" );
-			result += "</td>";
+			result += "</div></td>";
 		}
 		// Boton de configurar registro
 		if ((top.g_FolderView) && (!top.g_FdrReadOnly))	{
-			result += "<td id=\"confRegistro\" class=\"SubOptions\" width=\"120\"  onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"ConfRegister(this)\" onkeydown=\"if (top.GetKeyCode(event)==13){ConfRegister(this);}\" tabIndex=\"1\">";
-			result +=   "<IMG id=\"imgconfigregistro\" src=\"images/confregistro.png\" title=\""+ top.GetIdsLan("IDS_FRM_CONF_FLDS") +"\" border=\"0\" align=\"middle\"/> ";
+			result += "<td id=\"confRegistro\" class=\"SubOptions\" width=\"115\"  onmouseover=\"Over(this)\" onmouseout=\"Out(this)\" onclick=\"ConfRegister(this)\" onkeydown=\"if (top.GetKeyCode(event)==13){ConfRegister(this);}\" tabIndex=\"1\">";
+			result +=   "<div align=\"center\"><IMG id=\"imgconfigregistro\" src=\"images/confregistro.png\" title=\""+ top.GetIdsLan("IDS_FRM_CONF_FLDS") +"\" border=\"0\" align=\"middle\"/> ";
 			result +=    top.GetIdsLan( "IDS_FRM_CONF_FLDS" );
-			result += "</td>";
+			result += "</div></td>";
 		}
 
 	result +=    "</tr>";
@@ -682,16 +749,38 @@ function generarBotonesDeConfiguracion(){
 function OcultarMostrarBotonesConf(){
 
 	if (document.getElementById("botonesConfiguracion").style.display == 'none'){
+		//comprobamos si debemos ampliar el tamaño del frame, para incluir los botones de configuración
+		if(validateExpandFrame()){
+			top.Main.Folder.document.getElementById("frSetFolder").rows="50px,*";
+		}
 		document.getElementById("imgdesplegarConf").src = "images/flechas_dobles_izq_sin_fondo.png";
 		document.getElementById("botonesConfiguracion").style.display = 'block';
 	}
 	else{
-	 	document.getElementById("imgdesplegarConf").src = "images/flechas_dobles_dcha_sin_fondo.png";
+		// incidamos el tamaño del frame, por si ha sido modificado debido a la
+		// resolución de la pantalla, lo reseteamos siempre
+		top.Main.Folder.document.getElementById("frSetFolder").rows="24px,*";
+
+		document.getElementById("imgdesplegarConf").src = "images/flechas_dobles_dcha_sin_fondo.png";
 		document.getElementById("botonesConfiguracion").style.display = 'none';
 	}
 
 }
 
+// Función que comprueba si se debe ampliar el tamaño del frame que contiene el
+// panel de botones del formulario del registro
+function validateExpandFrame(){
+	var result = false;
+
+	// comprobamos si el tamaño de la ventana abierta es menor de 1268px (1280 resolución real de pantalla) y el
+	// registro no es nuevo (en este caso, tiene los botones básicos y no
+	// necesita expanderse el frame)
+	if((document.getElementsByTagName('body')[0].clientWidth<1268) && (top.g_FolderId != -1)){
+		result = true;
+	}
+
+	return result;
+}
 
 function FrmNavigate(index)
 {
@@ -863,7 +952,7 @@ function Over(obj)
 {
    if (obj.className != "SubOptionsDisabled")
    {
-   	obj.className="SubOptionsOver";
+	obj.className="SubOptionsOver";
    }
 }
 
@@ -871,7 +960,7 @@ function Over(obj)
 function Out(obj)
 {
    if (obj.className != "SubOptionsDisabled")
-   	obj.className="SubOptions";
+	obj.className="SubOptions";
 }
 
 
@@ -907,7 +996,7 @@ function ClearAllInvalids()
 		for (var i = 0; i < oFrame.document.images.length; i++) {
 			if ( (oFrame.document.images[i].name != "thumbnail")
              && ((oFrame.document.images[i].src.indexOf("buscar2.gif") == -1)
-             	&& (oFrame.document.images[i].src.indexOf("calendarM.gif") == -1))
+		&& (oFrame.document.images[i].src.indexOf("calendarM.gif") == -1))
              && (!oFrame.document.images[i].getAttribute("isObli")) ){
 				oFrame.document.images[i].style.display = "none";
 			}
@@ -1019,7 +1108,7 @@ function DesactivateCompulsa()
    // comprobamos si el boton compulsa existe
    if(botonCompulsa){
 	   botonCompulsa.className = "SubOptionsDisabled";
-   	   top.g_SavePending = false;
+	   top.g_SavePending = false;
    }
 }
 
@@ -1103,7 +1192,7 @@ function PrintSello(obj, iOpc)
 			document.body.style.cursor = "cursor";
 			FrmTree.body.style.cursor = "cursor";
 			FrmData.body.style.cursor = "cursor";
-   		}
+		}
 	}
 }
 
@@ -1160,7 +1249,8 @@ function SendScanFilesToServer(oForm)
 				try {
 					//Añadir los ficheros al applet
 					for (var ii=0; (ii < top.g_ArrScanFiles.length); ii++) {
-						applet.addFile(top.g_ArrScanFiles[ii].PathFile);
+						//Enviamos el id del fichero LI[IDENTIFICIADOR] y el path del fichero
+						applet.addFile(top.g_ArrScanFiles[ii].IdFile, top.g_ArrScanFiles[ii].PathFile);
 					}
 
 					//Subir los ficheros
@@ -1171,7 +1261,7 @@ function SendScanFilesToServer(oForm)
 						for (var ii=0; (ii < top.g_ArrScanFiles.length); ii++) {
 
 							strFileScan = top.g_ArrScanFiles[ii].IdFile + "|" + "\\" + top.GetNamePath(top.g_ArrScanFiles[ii].PathFile);
-							oElemTxt = document.createElement("input");
+							oElemTxt = top.g_frmStrUpdate.ownerDocument.createElement("input");
 							oElemTxt.setAttribute("type", "text");
 							oElemTxt.setAttribute("name", "FileScan");
 							oElemTxt.value= strFileScan;
@@ -1189,6 +1279,9 @@ function SendScanFilesToServer(oForm)
 					alert(e.description);
 	            }
 			}
+		} else{
+			//si no hay ficheros para subir al servidor se actualiza los datos de la carpeta
+			top.Main.Folder.FolderBar.ExecuteUpdateFolder();
 		}
 
 
@@ -1514,5 +1607,51 @@ function evalAlert(message) {
 	if (startAlert != -1) {
 		endAlert = message.indexOf(");", startAlert);
 		eval(message.substr(startAlert, endAlert - startAlert + 2));
+	}
+}
+
+/**
+ * función que permite la distribución manual desde el formulario de registro
+ */
+function Distribute(obj){
+	var sRet;
+	var args = new Array;
+	var URL = top.g_URL + "/dtrselectuser.jsp";
+	var tabData;
+	var numCheck = 0;
+
+	if (obj.className == "SubOptionsDisabled"){
+		return;
+	}
+
+	args[0] = top.g_URL;
+	args[1] = top.g_SessionPId.toString();
+	args[2] = top.g_ArchivePId.toString();
+	args[3] = 1 + "_" + top.g_FolderId.toString();
+	args[4] = top.Idioma;
+	args[5] = top.g_CaseSensitive;
+
+	sRet = top.ShowModalDialog(URL, args, 450, 500, "");
+	if (sRet != null && sRet != ""){
+		var tokens = sRet.split("#");
+
+		if (tokens.length > 1){
+			var IdColDist = GetIdColumn(tokens[0]);
+			var arrFdrId = tokens[1].split("_");
+
+			if (IdColDist != -1){
+				for (i = 1; i < tabData.rows.length; i++){
+					if (tabData.rows[i].cells[1].firstChild.checked == true){
+							for (var j = 0; j < arrFdrId.length; j++){
+								if (tabData.rows[i].id == arrFdrId[j]){
+									top.SetInnerText(tabData.rows[i].cells[IdColDist], 'SI');
+									break;
+								}
+							}
+
+					}
+				}
+			}
+		}
 	}
 }

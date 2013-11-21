@@ -25,6 +25,7 @@ public class UsuarioRegistradorBean {
 	private boolean cambioDestinoRechazados;
 	private boolean distribucionManual;
 	private boolean verDocumentos;
+	private boolean deleteDocumentos;
 	private boolean gestionUnidadesAdministrativas;
 	private boolean gestionInformes;
 	private boolean gestionTiposAsunto;
@@ -434,6 +435,20 @@ public class UsuarioRegistradorBean {
 	 */
 	public void setVerDocumentos(boolean verDocumentos) {
 		this.verDocumentos = verDocumentos;
+	}
+	/**
+	 * @return the deleteDocumentos
+	 */
+	public boolean isDeleteDocumentos() {
+		return deleteDocumentos;
+	}
+
+	/**
+	 * @param deleteDocumentos
+	 *            the verDocumentos to set
+	 */
+	public void setDeleteDocumentos(boolean deleteDocumentos) {
+		this.deleteDocumentos = deleteDocumentos;
 	}
 
 	public boolean isGestionUnidadesAdministrativas() {

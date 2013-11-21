@@ -40,6 +40,7 @@
 
 		<script type="text/javascript" language="javascript" src="./scripts/global.js"></script>
 		<script type="text/javascript" language="javascript" src="./scripts/frmdata.js"></script>
+		<script type="text/javascript" src="./scripts/terceros/jquery.fancybox-1.3.4.pack.js"></script>
 
 
 		<script type="text/javascript">
@@ -67,7 +68,16 @@
 				alert(msg);
 				top.Main.Folder.FolderData.FolderFormTree.ReLoad();
 			}
+
 		</script>
+		<style type="text/css">
+			a:active, a:visited {border-style:none;
+				outline:none;
+				ie-dummy: expression(this.hideFocus=true);
+				}
+			a img{border-style:none;
+			outline:none;}
+		</style>
 	</head>
 	<body onload="ActivateFrmtMenu();">
 		<fmt:setLocale value="<%=session.getAttribute(\"JLocale\")%>" scope="session"/>
@@ -90,17 +100,18 @@
 		<c:if test="${not empty historialIntercambioEntrada}">
 			<div id="divHistorialIntercambioRegEntrada">
 				<c:forEach items="${historialIntercambioEntrada}" var="infoEstado" varStatus="status">
-					<table id="historial" width="95%" class="Style2" cellspacing="0" cellpadding="0" align="center">
+					<table id="historial" width="95%" class="Style2" cellspacing="0" cellpadding="2" align="center">
 					<thead>
 						<tr>
 							<td colspan="5" class="historialIntercambio"><fmt:message key="intercambioRegistral.historial.entrada"/></td>
 						</tr>
-						<tr class="Style1" align="left" valign="middle" tabindex="-1">
-							<td></td>
-							<td><fmt:message key="intercambioRegistral.tabla.fechaIntercambio" /></td>
-							<td><fmt:message key="intercambioRegistral.tabla.estado" /></td>
-							<td><fmt:message key="intercambioRegistral.tabla.fechaEstado" /></td>
-							<td><fmt:message key="intercambioRegistral.tabla.usuario" /></td>
+						<tr class="Style1"  valign="middle" tabindex="-1">
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.fechaIntercambio" /></td>
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.estado" /></td>
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.fechaEstado" /></td>
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.usuario" /></td>
+							<td align="center"><fmt:message key="intercambioRegistral.tabla.masInfo"/></td>
+							<td align="center"><fmt:message key="intercambioRegistral.tabla.trazas"/></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -109,26 +120,25 @@
 						</tr>
 
 						<tr class="Style3" align="left" valign="middle" tabindex="-1">
-							<td height="25" align="center" width="4%">
-									<img id="<c:out value='img${status.index}'/>"
-										onkeydown="if(top.GetKeyCode(event)==13){Expand('<c:out value="${status.index}"/>');}"
-										src="./images/datplus.gif"
-										onclick="Expand('<c:out value="${status.index}"/>');" style="cursor: pointer;"
-										tabindex="1">
-								</td>
-
 							<td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${infoEstado.fechaIntercambio}" /></td>
 							<td><c:out value="${infoEstado.estado.name}"/></td>
 							<td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${infoEstado.fechaEstado}" /></td>
 							<td><c:out value="${infoEstado.username}"/></td>
+							<td align="center">
+									<a class="linkInfoSolicitudIntercambio" href="MostrarIntercambioRegistral.do?idIntercambio=<c:out value='${infoEstado.idIntercambioInterno}'/>">
+										<img src="./images/information.png" alt="<fmt:message key="intercambioRegistral.tabla.masInfo"/>"/>
+									</a>
+							</td>
+							<td align="center">
+									<a class="linkInfoSolicitudIntercambio" href="MostrarTrazasHistorialIntercambioRegistral.do?idIntercambio=<c:out value='${infoEstado.idIntercambioInterno}'/>">
+										<img src="./images/legend.gif" alt="<fmt:message key="intercambioRegistral.tabla.trazas"/>"/>
+									</a>
+							</td>
 						</tr>
 
 						<tr class="Style2" height="1">
 							<td colspan="5"></td>
 						</tr>
-
-
-						<%@ include file="WEB-INF/jsp/intercambio/include/trazasHistorialIntercambio.jsp" %>
 
 					</tbody>
 				</table>
@@ -152,20 +162,21 @@
 		<!--  historial de salida -->
 		<c:if test="${not empty historialIntercambioSalida}">
 			<div id="divHistorialIntercambioRegSalida">
-				<table id="historial" width="95%" class="Style2" cellspacing="0" cellpadding="0" align="center">
+				<table id="historial" width="95%" class="Style2" cellspacing="0" cellpadding="2" align="center">
 					<thead>
 						<tr>
 							<td colspan="6" class="historialIntercambio"><fmt:message key="intercambioRegistral.historial.salida"/></td>
 						</tr>
-						<tr class="Style1" align="left" valign="middle" tabindex="-1">
-							<td></td>
-							<td><fmt:message key="intercambioRegistral.tabla.fechaIntercambio" /></td>
-							<td><fmt:message key="intercambioRegistral.tabla.oficina" /></td>
-							<td><fmt:message key="intercambioRegistral.tabla.tipo.origen" /></td>
-							<td><fmt:message key="intercambioRegistral.tabla.destino.entidadRegistral" /></td>
-							<td><fmt:message key="intercambioRegistral.tabla.destino.unidadTramitacion" /></td>
-							<td><fmt:message key="intercambioRegistral.tabla.estado" /></td>
-							<td><fmt:message key="intercambioRegistral.tabla.fechaEstado" /></td>
+						<tr class="Style1" valign="middle" tabindex="-1">
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.fechaIntercambio" /></td>
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.oficina" /></td>
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.tipo.origen" /></td>
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.destino.entidadRegistral" /></td>
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.destino.unidadTramitacion" /></td>
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.estado" /></td>
+							<td align="left"><fmt:message key="intercambioRegistral.tabla.fechaEstado" /></td>
+							<td align="center"><fmt:message key="intercambioRegistral.tabla.masInfo"/></td>
+							<td align="center"><fmt:message key="intercambioRegistral.tabla.trazas"/></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -174,13 +185,6 @@
 						</tr>
 						<c:forEach items="${historialIntercambioSalida}" var="infoEstado" varStatus="status">
 							<tr class="Style3" align="left" valign="middle" tabindex="-1">
-								<td height="25" align="center" width="4%">
-									<img id="<c:out value='img${status.index}'/>"
-										onkeydown="if(top.GetKeyCode(event)==13){Expand('<c:out value="${status.index}"/>');}"
-										src="./images/datplus.gif"
-										onclick="Expand('<c:out value="${status.index}"/>');" style="cursor: pointer;"
-										tabindex="1">
-								</td>
 								<td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${infoEstado.fechaIntercambio}" /></td>
 								<td><c:out value="${infoEstado.nombreOfic}"/></td>
 								<td><fmt:message key="intercambioRegistral.type.origen.${infoEstado.tipoOrigen}"/></td>
@@ -193,7 +197,16 @@
 								 -->
 								<td><c:out value="${infoEstado.estado.name}"/></td>
 								<td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${infoEstado.fechaEstado}" /></td>
-
+								<td align="center">
+									<a class="linkInfoSolicitudIntercambio" href="MostrarIntercambioRegistral.do?idIntercambio=<c:out value='${infoEstado.idIntercambioInterno}'/>">
+										<img src="./images/information.png" alt="<fmt:message key="intercambioRegistral.tabla.masInfo"/>"/>
+									</a>
+								</td>
+								<td align="center">
+									<a class="linkInfoSolicitudIntercambio" href="MostrarTrazasHistorialIntercambioRegistral.do?idIntercambio=<c:out value='${infoEstado.idIntercambioInterno}'/>">
+										<img src="./images/legend.gif" alt="<fmt:message key="intercambioRegistral.tabla.trazas"/>"/>
+									</a>
+								</td>
 							</tr>
 
 
@@ -201,9 +214,6 @@
 						<tr class="Style2" height="1">
 							<td colspan="5"></td>
 						</tr>
-
-						<%--Tabla trazas intercambio --%>
-						<%@ include file="WEB-INF/jsp/intercambio/include/trazasHistorialIntercambio.jsp" %>
 
 						</c:forEach>
 					</tbody>
@@ -217,6 +227,9 @@
 		</c:if>
 	</body>
 <script type="text/javascript">
-desbloqueoDePantallaRegistro();
+	desbloqueoDePantallaRegistro();
+	jQuery("a.linkInfoSolicitudIntercambio").fancybox({
+	'hideOnContentClick': true
+	});
 </script>
 </html>

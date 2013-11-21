@@ -15,6 +15,11 @@
 		<constructor-arg ref="fwktd_dir3_datosBasicosUnidadOrganicaDao" />
 	</bean>
 
+	<bean id="fwktd_dir3_datosBasicosRelacionUnidOrgOficinaManagerImpl" name="fwktd_dir3_datosBasicosRelacionUnidOrgOficinaManager"
+		class="es.ieci.tecdoc.fwktd.dir3.api.manager.impl.DatosBasicosRelacionUnidOrgOficinaManagerImpl">
+		<constructor-arg ref="fwktd_dir3_datosBasicosRelacionUnidOrgOficinaDao" />
+	</bean>
+
 	<bean id="fwktd_dir3_datosEstadoActualizacionDCOManager" name="fwktd_dir3_datosEstadoActualizacionDCOManager"
 		class="es.ieci.tecdoc.fwktd.dir3.api.manager.impl.EstadoActualizacionDCOManagerImpl">
 		<constructor-arg ref="fwktd_dir3_datosEstadoActualizacionDcoDao" />
@@ -29,6 +34,12 @@
 	<bean id="fwktd_dir3_generateScriptSQLUnidadOrganicaManagerImpl" name="fwktd_dir3_generateScriptSQLUnidadOrganicaManager"
 		class="es.ieci.tecdoc.fwktd.dir3.api.manager.impl.GenerateScriptSQLUnidadOrganicaManagerImpl">
 		<property name="datosBasicosUnidadOrganicaManager" ref="fwktd_dir3_datosBasicosUnidadOrganicaManager" />
+		<property name="scriptsFilesDir" value="${fwktd-dir3-dco.scriptsFilesDir}" />
+	</bean>
+
+	<bean id="fwktd_dir3_generateScriptSQLRelacionesOficinaUnidOrgManagerImpl" name="fwktd_dir3_generateScriptSQLRelacionesOficinaUnidOrgManager"
+		class="es.ieci.tecdoc.fwktd.dir3.api.manager.impl.GenerateScriptSQLRelacionesOficinaUnidOrgManagerImpl">
+		<property name="datosBasicosRelacionUnidOrgOficinaManager" ref="fwktd_dir3_datosBasicosRelacionUnidOrgOficinaManager" />
 		<property name="scriptsFilesDir" value="${fwktd-dir3-dco.scriptsFilesDir}" />
 	</bean>
 

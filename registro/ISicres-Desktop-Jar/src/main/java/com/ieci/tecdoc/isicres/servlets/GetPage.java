@@ -99,41 +99,8 @@ public class GetPage extends HttpServlet implements Keys{
     	    writer.write("<script type=\"text/javascript\" language=\"javascript\" src=\"./scripts/frmt.js\"></script>");
     	    writer.write("</head>");
 
-    	    //si el fichero tiene una extension de tipo IMAGEN (JPG, JPEG, TIF, TIFF O BMP) se invoca al activeX de visualizacion de ficheros
-        	if(fileExt.equals("JPG") || fileExt.equals("JPEG") || fileExt.equals("TIF")
-        		|| fileExt.equals("TIFF") || fileExt.equals("BMP")){
-    			writer.write("<BODY tabIndex=\"-1\" onload=\"ActivateTree();\" onunload=\"\" scroll=\"no\">");
-        		writer.write("<object classid=\"CLSID:24C6D59E-6D0D-11D4-8128-00C0F049167F\" width=\"100%\" height=\"100%\"");
-        	    writer.write("codebase=\"plugins/ides.cab#version=2,2,0,0\" id=Control1>");
-        	    writer.write("<PARAM name=\"FileName\" value=\""+ URL+ "\">");
-        	    writer.write("<PARAM name=\"FitMode\" value=0>");
-        	    writer.write("<PARAM name=\"Enhancement\" value=2>");
-				if (Configurator.getInstance().getPropertyBoolean(
-						ConfigurationKeys.KEY_DESKTOP_IDOCIMGENABLESAVEAS)) {
-					writer.write("<PARAM name=\"EnableSaveAs\" value=1>");
-				}
-        	    writer.write("</object>");
-        	}
-        	else{
-        	 	//Variable que indica si se debe mostrar el cuadro de dialogo de abrir/guardar el fichero
-                boolean showDialogSaveOpen = ConfigExtensionFileHelper.getShowDialogSaveOpenFile(fileExt);
-                StringBuffer htmlBody = new StringBuffer();
-        		//si el documento tiene una extension diferente a tipo de IMAGEN, se abre como una nueva ventana
-                htmlBody.append("<BODY tabIndex=\"-1\" onload=\"ActivateTree();window.open('" + URL + "','frmPage','location=no',true); ");
-
-                //comprobamos si se va a mostrar el fichero o forzar la descarga
-                if(showDialogSaveOpen){
-                	//si se fuerza la descarga mostramos el frame con los datos del registro, para que no se muestre una pantalla en blanco
-                	htmlBody.append("mostrarFrameFolderFormData()");
-                }
-
-                htmlBody.append(";\" scroll=\"no\">");
-
-                writer.write(htmlBody.toString());
-	            writer.write("<iframe id=\"frmPage\" name=\"frmPage\" style=\"position:absolute;top:0px;left:0px;width:100%;height:100%\">");
-	            writer.write("</iframe>");
-
-        	}
+            //obtenemos la forma para visualizar el fichero
+	    getViewFile(writer, URL, fileExt);
 
     	    writer.write("</BODY>");
     	    writer.write("</HTML>");
@@ -145,6 +112,62 @@ public class GetPage extends HttpServlet implements Keys{
         }
 
     }
+
+    /**
+     * Método que genera la forma para visualizar el fichero
+     *
+     * @param writer - Objeto en el que se escribe la respuesta del servlet
+     * @param URL - URL
+     * @param fileExt - Extensión del fichero a mostrar
+     */
+	private void getViewFile(PrintWriter writer, String URL, String fileExt) {
+
+		// Variable que indica si se debe mostrar el cuadro de dialogo de
+		// abrir/guardar el fichero
+		boolean showDialogSaveOpen = ConfigExtensionFileHelper
+				.getShowDialogSaveOpenFile(fileExt);
+
+		// si el fichero tiene una extension de tipo IMAGEN (JPG, JPEG, TIF,
+		// TIFF O BMP) y no se ha indicado la descarga/visualizar por el
+		// navegador (showDialogSaveOpen), se invoca al activeX de visualizacion
+		// de ficheros
+		if (!showDialogSaveOpen
+				&& (fileExt.equals("JPG") || fileExt.equals("JPEG")
+						|| fileExt.equals("TIF") || fileExt.equals("TIFF") || fileExt
+						.equals("BMP"))) {
+			writer.write("<BODY tabIndex=\"-1\" onload=\"ActivateTree();\" onunload=\"\" scroll=\"no\">");
+			writer.write("<object classid=\"CLSID:24C6D59E-6D0D-11D4-8128-00C0F049167F\" width=\"100%\" height=\"100%\"");
+			writer.write("codebase=\"plugins/ides.cab#version=2,2,0,0\" id=Control1>");
+			writer.write("<PARAM name=\"FileName\" value=\"" + URL + "\">");
+			writer.write("<PARAM name=\"FitMode\" value=0>");
+			writer.write("<PARAM name=\"Enhancement\" value=2>");
+			if (Configurator.getInstance().getPropertyBoolean(
+					ConfigurationKeys.KEY_DESKTOP_IDOCIMGENABLESAVEAS)) {
+				writer.write("<PARAM name=\"EnableSaveAs\" value=1>");
+			}
+			writer.write("</object>");
+		} else {
+			StringBuffer htmlBody = new StringBuffer();
+			// si el documento tiene una extension diferente a tipo de IMAGEN,
+			// se abre como una nueva ventana
+			htmlBody.append("<BODY tabIndex=\"-1\" onload=\"ActivateTree();window.open('"
+					+ URL + "','frmPage','location=no',true); ");
+
+			// comprobamos si se va a mostrar el fichero o forzar la descarga
+			if (showDialogSaveOpen) {
+				// si se fuerza la descarga mostramos el frame con los datos del
+				// registro, para que no se muestre una pantalla en blanco
+				htmlBody.append("mostrarFrameFolderFormData()");
+			}
+
+			htmlBody.append(";\" scroll=\"no\">");
+
+			writer.write(htmlBody.toString());
+			writer.write("<iframe id=\"frmPage\" name=\"frmPage\" style=\"position:absolute;top:0px;left:0px;width:100%;height:100%\">");
+			writer.write("</iframe>");
+
+		}
+	}
 
     /**
      * Funcion que compone la URL necesaria para visualizar el fichero
@@ -165,7 +188,7 @@ public class GetPage extends HttpServlet implements Keys{
         buffer.append(query);
         return escapeSpecialChars(buffer.toString());
     }
-    
+
     private String escapeSpecialChars(String url){
     	String [] specialChars={"'"};
     	return url.replaceAll("'","\\\\'");

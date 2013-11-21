@@ -2,6 +2,7 @@ package es.ieci.tecdoc.fwktd.dir3.api.manager;
 
 import java.util.List;
 
+import es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosRelacionUnidOrgOficinaVO;
 import es.ieci.tecdoc.fwktd.dir3.api.vo.DatosBasicosUnidadOrganicaVO;
 import es.ieci.tecdoc.fwktd.dir3.api.vo.unidad.OrganismosVO;
 import es.ieci.tecdoc.fwktd.dir3.core.type.CriterioUnidadOrganicaEnum;
@@ -60,4 +61,14 @@ public interface DatosBasicosUnidadOrganicaManager extends
 	 * @param organismosDCO
 	 */
 	public void updateDatosBasicosUnidadesOrganicas(OrganismosVO organismosDCO);
+
+	/**
+	 * Realiza una búsqueda de unidades orgánicas. Según la relación con la entidad.
+	 *
+	 * @param relacion - Relación entre los parámetros de la unid. orgánica a buscar y la entidad.
+	 *
+	 * @return Unidades orgánicas encontradas.
+	 */
+	public List<DatosBasicosUnidadOrganicaVO> findUnidadesOrganicasByEntidad(
+			DatosBasicosRelacionUnidOrgOficinaVO relacion);
 }

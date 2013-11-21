@@ -42,17 +42,17 @@ public class URLCheckFilter implements Filter{
 
 	private static Logger _logger = Logger.getLogger(URLCheckFilter.class);
 
-	private static String ArchiveID = "ArchiveId";
-	private static String BookID = "BookId";
+	private static String ARCHIVEID = "ArchiveId";
+	private static String BOOKID = "BookId";
 
-	private static String FolderID = "FolderId";
-	private static String RegID = "RegId";
+	private static String FOLDERID = "FolderId";
+	private static String REGID = "RegId";
 
 	//variable almacenada en session con valor ID del libro + "_" + ID del registro al que se intenta acceder
-	private static String Book_Reg_Validado = "idBookIdRegValidado";
+	private static String BOOK_REG_VALIDADO = "idBookIdRegValidado";
 
 	//variable almacenada en session con valor ID del libro + "_" + ID del registro a copiar
-	private static String Book_Reg_Copy_Validado = "idBookIdRegCopyValidado";
+	private static String BOOK_REG_COPY_VALIDADO = "idBookIdRegCopyValidado";
 
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -134,7 +134,7 @@ public class URLCheckFilter implements Filter{
 		if((copyFdr != null) && (copyFdr!=0)){
 			try {
 	        	//obtenemos la cadena almacenada en sesion con la informacion del libro y registro validado con anterioridad
-	        	String bookRegCopyValidado = (String) session.getAttribute(Book_Reg_Copy_Validado);
+			String bookRegCopyValidado = (String) session.getAttribute(BOOK_REG_COPY_VALIDADO);
 	    		//componemos una cadena auxiliar con id del libro + "_" + id del registro
 	    		String auxBookRegistroCopy = bookIdAux + Keys.GUION_BAJO + copyFdr;
 
@@ -146,7 +146,7 @@ public class URLCheckFilter implements Filter{
 				validateInfoRegister(useCaseConf, bookIdAux, copyFdr);
 
 					//si la validacion fue correcta almacenamos el valor en session
-					session.setAttribute(Book_Reg_Copy_Validado, auxBookRegistroCopy);
+					session.setAttribute(BOOK_REG_COPY_VALIDADO, auxBookRegistroCopy);
 	        	}
 			} catch (TecDocException e) {
 				if(_logger.isDebugEnabled()){
@@ -260,7 +260,7 @@ public class URLCheckFilter implements Filter{
         //si el id del registro es distinto de nulo y de -1 comprobamos si el dato es valido
         if((regIdRequest!= null) && (regIdRequest!=-1)){
         	//obtenemos la cadena almacenada en sesion con la informacion del libro y registro validado con anterioridad
-        	String bookRegValidadoInSession = (String) session.getAttribute(Book_Reg_Validado);
+		String bookRegValidadoInSession = (String) session.getAttribute(BOOK_REG_VALIDADO);
 
         	//validamos el registro recibido en la request respecto al almacenado en session
         	validateRegisterRequestWithSession(useCaseConf, bookId, regIdRequest, regIdSession, bookRegValidadoInSession);
@@ -269,7 +269,7 @@ public class URLCheckFilter implements Filter{
     		session.setAttribute(Keys.J_REGISTER, regIdRequest);
 
     		//almacenamos en la session la cadena con la información de libro y del registro: "idBook_idReg"
-    		session.setAttribute(Book_Reg_Validado, (bookId + Keys.GUION_BAJO + regIdRequest));
+		session.setAttribute(BOOK_REG_VALIDADO, (bookId + Keys.GUION_BAJO + regIdRequest));
         }
 	}
 
@@ -488,11 +488,11 @@ public class URLCheckFilter implements Filter{
 	 */
 	private Integer getBookIDByURL(HttpServletRequest request) {
 		//obtenemos el id del libro si viene denominado como ArchiveID
-		Integer result = RequestUtils.parseRequestParameterAsInteger(request, ArchiveID);
+		Integer result = RequestUtils.parseRequestParameterAsInteger(request, ARCHIVEID);
 
 		if(result == null){
 			//sino se encuentra nada por ArchiveID, intentamos obtenerlo como BookID
-			result = RequestUtils.parseRequestParameterAsInteger(request, BookID);
+			result = RequestUtils.parseRequestParameterAsInteger(request, BOOKID);
 		}
 		return result;
 	}
@@ -504,11 +504,11 @@ public class URLCheckFilter implements Filter{
 	 */
 	private Integer getIdRegisterByURL(HttpServletRequest request) {
 		//comprobamos si el id del registro viene denominado por FolderID
-        Integer result = RequestUtils.parseRequestParameterAsInteger(request, FolderID);
+        Integer result = RequestUtils.parseRequestParameterAsInteger(request, FOLDERID);
 
         if(result == null){
         	//comprobamos si el id del registro viene denominado por RegID
-        	result = RequestUtils.parseRequestParameterAsInteger(request, RegID);
+		result = RequestUtils.parseRequestParameterAsInteger(request, REGID);
         }
         // Identificador de carpeta.
 		return result;
