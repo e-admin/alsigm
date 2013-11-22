@@ -25,7 +25,7 @@
 			<version>${isicres.version}</version>
 			<exclusions>
 				<exclusion>
-					<groupId>xml-security</groupId>
+					<groupId>org.apache.santuario</groupId>
 					<artifactId>xmlsec</artifactId>
 				</exclusion>
 				<!-- 

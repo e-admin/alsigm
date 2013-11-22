@@ -44,7 +44,7 @@
 					<artifactId>xml-apis</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>xml-security</groupId>
+					<groupId>org.apache.santuario</groupId>
 					<artifactId>xmlsec</artifactId>
 				</exclusion>
 			</exclusions>

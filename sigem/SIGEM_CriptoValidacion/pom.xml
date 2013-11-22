@@ -115,7 +115,7 @@
 			<version>1.5.2</version>
 		</dependency>
 		<dependency>
-			<groupId>xml-security</groupId>
+			<groupId>org.apache.santuario</groupId>
 			<artifactId>xmlsec</artifactId>
 			<version>1.4.0</version>
 		</dependency>
