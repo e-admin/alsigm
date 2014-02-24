@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="true">
+	<!-- Clases que implementan las tareas programadas -->
+	<bean id="testQuartz" class="ieci.tecdoc.sgm.migration.JobMigration" />
+	<!-- Tareas programadas y metodos que se deben lanzar -->
+	<bean id="jobTestQuartz" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="testQuartz" />
+		<property name="targetMethod" value="run" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<!-- Configuracion asociada a la programacion de las tareas -->
+	<bean id="simpleTriggerTestQuartz" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="jobTestQuartz" />
+		<!-- Empieza pasados 10 segundos --> 
+		<property name="startDelay" value="1000" />
+		<!-- Repite cada 30minutos(1800000) -->  
+		<!-- Repite cada minuto(60000) -->
+		<property name="repeatInterval" value="300000" /> <!-- Cada 5 minutos -->
+		<!-- Se lanza la tarea todos los dias -->  
+    	<!-- <property name="cronExpression" value="* * * 1 * ?" />-->
+    	<!-- Se lanza la tarea una vez a la semana, a las 08:00, empieza en el momento de arraque del tomcat -->  
+    	<!-- <property name="cronExpression" value="0 0 8 1/7 * ? *" />-->
+	</bean>
+	<!-- Factoria de tareas programadas -->
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+		<property name="triggers">
+			<list>
+				<ref bean="simpleTriggerTestQuartz" />
+			</list>
+		</property>
+	</bean>
+</beans>
