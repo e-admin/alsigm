@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="FICHERO" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/home/sigem/SIGEM/logs/SIGEM_MigrationScheluder/SIGEM_MigrationScheluder.log"/>
+		<param name="MaxFileSize" value="5000KB"/>
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%p] %C %M %m %n"/>
+		</layout>
+	</appender>
+
+	<appender name="CONSOLA" class="org.apache.log4j.ConsoleAppender">
+       <param name="Target" value="System.out"/>
+       <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+       </layout>
+	</appender>	
+
+    <root>
+		<priority value ="ERROR" />
+		<appender-ref ref="FICHERO"/>
+    </root>
+
+</log4j:configuration>
