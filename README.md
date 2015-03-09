@@ -12,11 +12,11 @@ Para más información sobre este módulo, sobre cómo crear y compartir en la c
 
 ###Registro de Entrada y Salida
 Permite la gestión del registro, tanto presencial como electrónico. En el registro electrónico se incluye el catálogo de trámites que pueden ser iniciados directamente por el ciudadano de forma electrónica. Se pueden configurar diferentes oficinas de registro, libros, usuarios, etc.
-Para más información puedes consultar la wiki.
+<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/P%C3%A1gina_principal" target="_new">Puedes consultar la wiki</a>
 
 ###Archivo
 Almacena temporal y/o definitivamente la documentación de los expedientes, con posibilidad de cambios de textos masivos de acuerdo a las normas de descripción y categorización definidas para los archivos.
-Para más información puedes consultar la wiki.
+<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/P%C3%A1gina_principal" target="_new">Puedes consultar la wiki</a>
 
 ###Aplicaciones para la ciudadanía
 Se incluyen una serie de servicios que pueden ser utilizados por el ciudadano, bien de forma aislada o en el contexto de un procedimiento:
@@ -28,11 +28,11 @@ Se incluyen una serie de servicios que pueden ser utilizados por el ciudadano, b
 * Certificaciones
 * ...
 Los ciudadanos podrán identificarse y firmar utilizando certificados electrónicos admitidos por la plataforma @firma, incluyendo el DNI electrónico.
-Para más información puedes consultar la wiki.
+<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/P%C3%A1gina_principal" target="_new">Puedes consultar la wiki</a>
 
 ##Descripción técnica
 ###Solución tecnológica
 AL SIGM es una aplicación web desarrollada en JAVA. Tiene estructura modular, por lo que se pueden desactivar los módulos que no interesen e integrarla con otros módulos diferentes. Por ejemplo, se puede sustituir el registro de AL SIGM por otro e integrarlo con el resto de módulos de AL SIGM.
 Además del interfaz web, ofrece una serie de servicios web (web services) que permiten su interconexión con otras aplicaciones, como podrían ser el portal web de la entidad, la sede electrónica, etc.
-Para más información sobre la solución tecnológica, arquitectura, plataformas certificadas, etc, …, puedes consultar la wiki.
-
+Para más información sobre la solución tecnológica, arquitectura, plataformas certificadas, etc...
+<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/P%C3%A1gina_principal" target="_new">Puedes consultar la wiki</a>
