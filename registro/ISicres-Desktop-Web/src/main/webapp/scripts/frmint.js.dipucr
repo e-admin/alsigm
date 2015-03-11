@@ -90,12 +90,6 @@ function LoadFrame()
 		}
 		LoadFrameText(cadena, Mode);
 	}
-	
-	//[Teresa-felipe-ecenpri Ticket#71] 22/02/2010
-	if (top.g_ArchiveId == 1)
-	{
-		document.body.className = 'registroEntrada';
-	}
 
 }
 
