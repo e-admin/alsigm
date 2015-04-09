@@ -47,7 +47,7 @@ Desde los siguientes enlaces se podrá consultar la documentación técnica de A
 
 ¿Has detectado algún bug en el código y quieres informar de ello? ¿quieres debatir sobre algún tema de la plataforma o la comunidad, negocio, técnico? ¿tienes alguna necesidad de nueva funcionalidad de la plataforma y lo quieres comunicar a la comunidad? Para todo este tipo de cuestiones utilizaremos la sección "issues" de este proyecto donde hemos desplegado una serie de etiquetas para identificar y distinguir la categoría a tratar, en todo caso, si tenéis alguna sugerencia estaremos encantados de poder escucharos.
 
-##Versionado
+##Versionado, tags y releases
 
 Con el objetivo principal de asegurar transparencia entre nuestro ciclo de lanzamiento y el esfuerzo por mantener la compatibilidad con versiones anteriores, este proyecto se mantendrá bajo las directrices de versiones semánticas. A veces cuesta un poco mantener un orden en el versionado, pero vamos a adherimos a estas reglas siempre que sea posible.
 
@@ -64,6 +64,10 @@ Y será construido con las siguientes pautas:
 * Corrección de errores y cambios en general chocan sólo con el parche
 
 Para obtener más información sobre Versionamiento Semántico visita <a href="http://semver.org/lang/es/" target="_new">Versionado Semántico 2.0.0-rc.2</a>
+
+####Tags y releases
+
+Tenéis disponibles los tags, las releases de las versiones 3.0 y 3.0.1, así como la máquina virtual de la versión 3.0.1 en este <a href="https://github.com/Cenatic/alsigm/releases" target="_new">enlace.</a>
 
 ##Contribuye
 
