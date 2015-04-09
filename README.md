@@ -57,11 +57,11 @@ Se numerarán Releases con el siguiente formato:
 
 Y será construido con las siguientes pautas:
 
-*Rompiendo la compatibilidad hacia atrás choca con el principal al restablecer menor y parche
+* Rompiendo la compatibilidad hacia atrás choca con el principal al restablecer menor y parche
 
-*Nuevos añadidos sin romper la compatibilidad hacia atrás chocan con el menor mientras se restaura el parche
+* Nuevos añadidos sin romper la compatibilidad hacia atrás chocan con el menor mientras se restaura el parche
 
-*Corrección de errores y cambios en general chocan sólo con el parche
+* Corrección de errores y cambios en general chocan sólo con el parche
 
 Para obtener más información sobre Versionamiento Semántico visita <a href="http://semver.org/lang/es/" target="_new">El texto del Versionado Semántico 2.0.0-rc.2</a>
 
