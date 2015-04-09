@@ -2,48 +2,13 @@
 
 AL SIGM (Sistema Integrado de Gestión Modular) es una aplicación desarrollada para el inicio, tramitación, resolución y archivado del procedimiento administrativo. AL SIGM es un proyecto de modernización y actualización de las administraciones públicas, dotándolas de un sistema que puede reunir en formato electrónico toda la documentación de un expediente, integrando los tradicionales subsistemas de Registro, Motor de Expedientes (Flujos de procedimientos) y Archivo.
 
-##Documentación técnica
+##Documentación histórica y nueva documentación
 
-Desde los siguientes enlaces se podrá consultar la documentación técnica de AL SIGM:
+Hemos mantenido la documentación histórica del proyecto porque consideramos que tiene un gran valor de consulta, así se han mantenido los foros, wiki, documentos, bugs, peticiones, etc de la etapa anterior del proyecto. Toda esta documentación está accesible desde el wiki de github en este <a href="https://github.com/Cenatic/alsigm/wiki/Hist%C3%B3rico-de-documentaci%C3%B3n,-bugs-e-incidencias-de-AL-SIGM" target="_new">enlace.</a>
 
-<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/P%C3%A1gina_principal#Documentaci.C3.B3n_t.C3.A9cnica" target="_new">1 Documentación Técnica</a>
+Por otro lado, la documentación generada a partir de ahora irá siendo desplegada en nuevas secciones del wiki de github a medida que se vaya generando.
 
-<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/P%C3%A1gina_principal#Manuales
-" target="_new">2 Manuales</a>
-
-<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/P%C3%A1gina_principal#Documentaci.C3.B3n_para_intercambio_de_procedimientos.2C_tr.C3.A1mites_y_reglas" target="_new">3 Documentación para intercambio de procedimientos, trámites y reglas</a>
-
-<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/Documentaci%C3%B3n" target="_new">4 Certificación SICRES de AL SIGM 3.0</a>
-
-<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/Informe_Jur%C3%ADdico_de_Titularidad_y_Liberaci%C3%B3n" target="_new">5 Informe Jurídico de Titularidad y Liberación de AL SIGM</a>
-
-<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/P%C3%A1gina_principal#Buenas_pr.C3.A1cticas_de_calidad_en_el_desarrollo_de_aplicaciones" target="_new">6 Buenas prácticas de calidad en el desarrollo de aplicaciones</a>
-
-<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/Roadmap_de_AL_SIGM" target="_new">7 Roadmap</a>
-
-<a href="https://forja.cenatic.es/plugins/mediawiki/wiki/alsigm/index.php/FAQs_-_Preguntas_frecuentes" target="_new">8 FAQs</a>
-
-####Documentación adicional en formato .pdf
-
-<a href="https://forja.cenatic.es/docman/?group_id=223&view=listfile&dirid=728" target="_new">Certificación AL SIGM-SICRES / SIR</a>
-
-<a href="https://forja.cenatic.es/docman/?group_id=223&view=listfile&dirid=582" target="_new">Diseño, análisis y pruebas</a>
-
-<a href="https://forja.cenatic.es/docman/?group_id=223&view=listfile&dirid=719" target="_new">Documentación de AL SIGM en desarrollo</a>
-
-<a href="https://forja.cenatic.es/docman/?group_id=223&view=listfile&dirid=719" target="_new">Documentación de AL SIGM en desarrollo</a>
-
-
-<a href="https://forja.cenatic.es/docman/?group_id=223&view=listfile&dirid=578" target="_new">Formación</a>
-
-
-<a href="https://forja.cenatic.es/docman/?group_id=223&view=listfile&dirid=669" target="_new">Gestión de la comunidad</a>
-
-<a href="https://forja.cenatic.es/docman/?group_id=223&view=listfile&dirid=577" target="_new">Guías de referencia y buenas prácticas</a>
-
-<a href="https://forja.cenatic.es/docman/?group_id=223&view=listfile&dirid=576" target="_new">Presentaciones</a>
-
-##Bugs, foro y petición de nuevas funcionalidades
+##Bugs, foros y petición de nuevas funcionalidades
 
 ¿Has detectado algún bug en el código y quieres informar de ello? ¿quieres debatir sobre algún tema de la plataforma o la comunidad, negocio, técnico? ¿tienes alguna necesidad de nueva funcionalidad de la plataforma y lo quieres comunicar a la comunidad? Para todo este tipo de cuestiones utilizaremos la sección "issues" de este proyecto donde hemos desplegado una serie de etiquetas para identificar y distinguir la categoría a tratar, en todo caso, si tenéis alguna sugerencia estaremos encantados de poder escucharos.
 
