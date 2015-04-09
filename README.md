@@ -1,8 +1,6 @@
 #AL SIGM
 
 AL SIGM (Sistema Integrado de Gestión Modular) es una aplicación desarrollada para el inicio, tramitación, resolución y archivado del procedimiento administrativo. AL SIGM es un proyecto de modernización y actualización de las administraciones públicas, dotándolas de un sistema que puede reunir en formato electrónico toda la documentación de un expediente, integrando los tradicionales subsistemas de Registro, Motor de Expedientes (Flujos de procedimientos) y Archivo.
-AL SIGM realiza la gestión del procedimiento administrativo de un expediente. Permite que la ciudadanía, en su relación con su administración pública, pueda solicitar telemáticamente desde su domicilio una subvención, una ayuda, una licencia, o realizar un pago; recibir noticias del estado de su petición, información sobre la falta de algún documento e indicaciones de cómo anexarlo, para recibir, finalmente, una notificación del resultado de sus gestiones.
-En esta relación, el ciudadano podrá identificarse utilizando e-DNI, firma electrónica, o claves concertadas, garantizándose la confidencialidad y privacidad de sus datos.
 
 ##Documentación técnica
 
@@ -60,7 +58,9 @@ Se numerarán Releases con el siguiente formato:
 Y será construido con las siguientes pautas:
 
 *Rompiendo la compatibilidad hacia atrás choca con el principal al restablecer menor y parche
+
 *Nuevos añadidos sin romper la compatibilidad hacia atrás chocan con el menor mientras se restaura el parche
+
 *Corrección de errores y cambios en general chocan sólo con el parche
 
 Para obtener más información sobre Versionamiento Semántico visita <a href="http://semver.org/lang/es/" target="_new">El texto del Versionado Semántico 2.0.0-rc.2</a>
@@ -76,12 +76,7 @@ Y muy importante, respeta nuestro <a href="http://blogs.forja.cenatic.es/al-sigm
 
 ##Licencia
 
-La siguiente «Licencia Pública de la Unión Europea» («European Union Public Licence
-- EUPL») se ha elaborado en el marco de IDABC, programa de la Comunidad
-Europea cuyo objetivo es promover la prestación interoperable de servicios de
-administración electrónica europea a las administraciones públicas, las empresas y los
-ciudadanos. IDABC prolonga y profundiza el anterior programa IDA («Intercambio
-de Datos entre Administraciones»). 
+La siguiente «Licencia Pública de la Unión Europea» («European Union Public Licence EUPL») se ha elaborado en el marco de IDABC, programa de la Comunidad Europea cuyo objetivo es promover la prestación interoperable de servicios de administración electrónica europea a las administraciones públicas, las empresas y los ciudadanos. IDABC prolonga y profundiza el anterior programa IDA («Intercambio de Datos entre Administraciones»). 
 
 <a href="https://joinup.ec.europa.eu/system/files/ES/EUPL%20v.1.1%20-%20Licencia.pdf" target="_new">EUPL 1.1</a>
 
