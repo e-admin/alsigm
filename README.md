@@ -55,7 +55,7 @@ Con el objetivo principal de asegurar transparencia entre nuestro ciclo de lanza
 
 Se numerarán Releases con el siguiente formato:
 
-<major>. <menor>. <parche>
+"major". "menor". "parche"
 
 Y será construido con las siguientes pautas:
 
@@ -72,7 +72,7 @@ Hemos abierto en el wiki una sección donde se explica de manera clara y sencill
 Con el objetivo de homogeneizar el estilo del código de AL SIGM escrito en distintos IDEs recomendamos seguir las pautas que nos proponen desde <a href="editorconfig.org" target="_new">editorconfig.org</a>
 
 Y muy importante, respeta nuestro <a href="http://blogs.forja.cenatic.es/al-sigm/2013/01/24/codigo-de-conducta-y-buenas-practicas/
-" target="_new">Código de conducta y buenas prácticas</a>
+" target="_new">código de conducta y buenas prácticas</a>
 
 ##Licencia
 
