@@ -63,7 +63,7 @@ Y será construido con las siguientes pautas:
 
 * Corrección de errores y cambios en general chocan sólo con el parche
 
-Para obtener más información sobre Versionamiento Semántico visita <a href="http://semver.org/lang/es/" target="_new">El texto del Versionado Semántico 2.0.0-rc.2</a>
+Para obtener más información sobre Versionamiento Semántico visita <a href="http://semver.org/lang/es/" target="_new">Versionado Semántico 2.0.0-rc.2</a>
 
 ##Contribuye
 
