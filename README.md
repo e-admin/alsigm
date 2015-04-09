@@ -75,8 +75,7 @@ Hemos abierto en el wiki una sección donde se explica de manera clara y sencill
 
 Con el objetivo de homogeneizar el estilo del código de AL SIGM escrito en distintos IDEs recomendamos seguir las pautas que nos proponen desde <a href="editorconfig.org" target="_new">editorconfig.org</a>
 
-Y muy importante, respeta nuestro <a href="http://blogs.forja.cenatic.es/al-sigm/2013/01/24/codigo-de-conducta-y-buenas-practicas/
-" target="_new">código de conducta y buenas prácticas</a>
+Y muy importante, respeta nuestro <a href="https://github.com/Cenatic/alsigm/wiki/C%C3%B3digo-conducta" target="_new">código de conducta y buenas prácticas</a>
 
 ##Licencia
 
