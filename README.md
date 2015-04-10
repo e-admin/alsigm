@@ -2,6 +2,10 @@
 
 AL SIGM (Sistema Integrado de Gestión Modular) es una aplicación desarrollada para el inicio, tramitación, resolución y archivado del procedimiento administrativo. AL SIGM es un proyecto de modernización y actualización de las administraciones públicas, dotándolas de un sistema que puede reunir en formato electrónico toda la documentación de un expediente, integrando los tradicionales subsistemas de Registro, Motor de Expedientes (Flujos de procedimientos) y Archivo.
 
+####Descarga AL SIGM
+
+Descarga la máquina virtual de AL SIGM y <a href="https://github.com/Cenatic/alsigm/releases" target="_new">¡prueba!.</a>
+
 ##Documentación histórica y nueva documentación
 
 Hemos mantenido la documentación histórica del proyecto porque consideramos que tiene un gran valor de consulta, así se han mantenido los foros, wiki, documentos, bugs, peticiones, etc de la etapa anterior del proyecto. Toda esta documentación está accesible desde el wiki de github en este <a href="https://github.com/Cenatic/alsigm/wiki/Hist%C3%B3rico-de-documentaci%C3%B3n,-bugs-e-incidencias-de-AL-SIGM" target="_new">enlace.</a>
@@ -32,7 +36,7 @@ Para obtener más información sobre Versionamiento Semántico visita <a href="h
 
 ####Tags y releases
 
-Tenéis disponibles los tags, las releases de las versiones 3.0 y 3.0.1, así como la máquina virtual de la versión 3.0.1 en este <a href="https://github.com/Cenatic/alsigm/releases" target="_new">enlace.</a>
+Tenéis disponibles los tags, las releases de las versiones 3.0 y 3.0.1 en este <a href="https://github.com/Cenatic/alsigm/releases" target="_new">enlace.</a>
 
 ##Contribuye
 
