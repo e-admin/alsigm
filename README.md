@@ -6,6 +6,14 @@ AL SIGM (Sistema Integrado de Gestión Modular) es una aplicación desarrollada 
 
 Descarga la máquina virtual de AL SIGM y <a href="https://github.com/Cenatic/alsigm/releases" target="_new">¡prueba!.</a>
 
+####Configuración del entorno de desarrollo (Instalación y compilación)
+
+Aquí tienes disponibles las instrucciones de configuración del entorno Maven de desarrollo así como las instrucciones de compilación e instalación
+
+<a href="https://github.com/Cenatic/alsigm/wiki/Configuraci%C3%B3n-del-entorno-de-desarrollo-(Instalaci%C3%B3n-y-compilaci%C3%B3n)">¡Instrucciones!.</a>
+
+https://github.com/Cenatic/alsigm/wiki/Configuraci%C3%B3n-del-entorno-de-desarrollo-(Instalaci%C3%B3n-y-compilaci%C3%B3n)
+
 ##Documentación histórica y nueva documentación
 
 Hemos mantenido la documentación histórica del proyecto porque consideramos que tiene un gran valor de consulta, así se han mantenido los foros, wiki, documentos, bugs, peticiones, etc de la etapa anterior del proyecto. Toda esta documentación está accesible desde el wiki de github en este <a href="https://github.com/Cenatic/alsigm/wiki/Hist%C3%B3rico-de-documentaci%C3%B3n,-bugs-e-incidencias-de-AL-SIGM" target="_new">enlace.</a>
