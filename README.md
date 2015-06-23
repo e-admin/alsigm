@@ -10,7 +10,9 @@ Descarga la máquina virtual de AL SIGM y <a href="https://github.com/Cenatic/al
 
 Aquí tienes disponibles las instrucciones de configuración del entorno Maven de desarrollo así como las instrucciones de compilación e instalación.
 
-<a href="https://github.com/Cenatic/alsigm/wiki/Configuraci%C3%B3n-del-entorno-de-desarrollo-(Instalaci%C3%B3n-y-compilaci%C3%B3n)">¡Instrucciones!</a>
+<a href="https://github.com/Cenatic/alsigm/wiki/Configuraci%C3%B3n-del-entorno-de-desarrollo-(Instalaci%C3%B3n-y-compilaci%C3%B3n)">Instrucciones</a>
+
+Algunos <a href="https://forja.cenatic.es/forum/forum.php?thread_id=344081&forum_id=742&group_id=223">consejos</a> sobre versiones y compilación. Gracias a los colaboradores.
 
 ##Documentación histórica y nueva documentación
 
