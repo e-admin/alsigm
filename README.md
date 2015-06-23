@@ -4,9 +4,9 @@ AL SIGM (Sistema Integrado de Gestión Modular) es una aplicación desarrollada 
 
 ####Descarga AL SIGM
 
-AL SIGM 3.0.1: VM no completa, contiene fuentes y wars de los módulos modificados respecto de la 3.0.
+**AL SIGM 3.0.1:** VM no completa, contiene fuentes y wars de los módulos modificados respecto de la 3.0.
 
-AL SIGM 3.0: VM completa, incluye Postgres, Tomcat y Wars desplegados. Contiene trámites y procedimientos modelados.
+**AL SIGM 3.0:** VM completa, incluye Postgres, Tomcat y Wars desplegados. Contiene trámites y procedimientos modelados.
 
 Descarga las <a href="https://github.com/Cenatic/alsigm/releases" target="_new">VMs y el código</a>
 
