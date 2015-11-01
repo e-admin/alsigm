@@ -31,20 +31,20 @@
 	</properties>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.5</version>
 		</dependency>
-	
+
 		<!-- dependencia para multientidad -->
-		<dependency> 
+		<dependency>
 			<groupId>es.ieci.tecdoc.sigem</groupId>
-			<artifactId>sigem_entidades</artifactId> 
-			<version>${pom.version}</version> 
- 		</dependency> 
- 		
+			<artifactId>sigem_entidades</artifactId>
+			<version>${pom.version}</version>
+ 		</dependency>
+
  		<dependency>
  			<groupId>es.ieci.tecdoc.sigem</groupId>
 			<artifactId>sigem_administracionSesionesBackOfficeWsClient</artifactId>
@@ -72,7 +72,7 @@
 			<type>warpath</type>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- dependencias de configuracion -->
 		<dependency>
 			<groupId>es.ieci.tecdoc.fwktd.modules.fwktd-sir</groupId>
@@ -103,7 +103,7 @@
 			<type>zip</type>
 		</dependency>
 
-	
+
 
 	</dependencies>
 
@@ -115,9 +115,9 @@
 
 			<!-- plugin de overlay correcto con dependencias -->
 		 	<plugin>
-				<groupId>org.appfuse.plugins</groupId>
+				<groupId>org.appfuse</groupId>
 				<artifactId>maven-warpath-plugin</artifactId>
-				<version>2.1.0</version>
+				<version>2.0.2</version>
 				<extensions>true</extensions>
 			    <executions>
 			        <execution>
@@ -138,8 +138,8 @@
 					<warSourceExcludes>${warSourceExcludes}</warSourceExcludes>
 				</configuration>
 			</plugin>
-			
-			
+
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -161,14 +161,14 @@
 					</execution>
 				</executions>
 			</plugin>
-		
+
 
 		</plugins>
 
 	</build>
 
 	<profiles>
-		
+
 
   	</profiles>
 
