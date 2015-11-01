@@ -96,7 +96,7 @@ public class InvesdocServiceImpl extends DefaultGestionDocumentalServiceImpl {
      */
     public void createSesion() throws GestionDocumentalException {
 		if (dbConnectionConfig != null) {
-			CfgMdoConfig.setDbConnectionConfig(dbConnectionConfig);
+			this.setDbConnectionConfig(dbConnectionConfig);
 		}
     }
 
