@@ -27,18 +27,18 @@
 			<artifactId>invesdoc-core</artifactId>
 			<version>${invesdoc.version}</version>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>es.ieci.tecdoc.invesdoc</groupId>
 			<artifactId>invesdoc-business</artifactId>
 			<version>${invesdoc.version}</version>
 		</dependency>
-		<!--
+		-->
 		<dependency>
 			<groupId>es.ieci.tecdoc.invesdoc</groupId>
 			<artifactId>invesdoc-admin</artifactId>
 			<version>${invesdoc.version}</version>
 		</dependency>
-		-->
 
 
 		<!-- Test dependencies -->
