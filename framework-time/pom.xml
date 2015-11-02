@@ -67,7 +67,7 @@
 								<phase>package</phase>
 								<configuration>
 									<tasks>
-										<property name="dist.dir" value="${basedir}/fwktd-time-dist"/>
+										<property name="dist.dir" value="${basedir}/dist/fwktd-time"/>
 
 										<delete dir="${dist.dir}"/>
 										<mkdir dir="${dist.dir}"/>
