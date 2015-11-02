@@ -223,9 +223,9 @@
 
 				<module>SIGEM_Config_Fwktd</module>
 				<module>SIGEM_Config</module>
-				
+
 				<module>SIGEM_BD_DIST</module>
-				
+
 			</modules>
 
 
@@ -298,7 +298,7 @@
 								<phase>package</phase>
 								<configuration>
 									<tasks>
-										<property name="dist.dir" value="${basedir}/SIGEM_DIST"/>
+										<property name="dist.dir" value="${basedir}/dist/sigem"/>
 
 										<delete dir="${dist.dir}"/>
 										<mkdir dir="${dist.dir}"/>
