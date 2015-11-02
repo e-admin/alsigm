@@ -83,6 +83,20 @@
 		<!-- Los modulos que tengan como resultado un war/ear deben incluirse
 			 en este perfil -->
 		<profile>
+			<id>generate-wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>ispac-catalog</module>
+				<module>ispac-mgr</module>
+				<module>ispac-publicador</module>
+				<module>ispac-services-ws</module>
+			</modules>
+		</profile>
+		<profile>
 			<id>generate-ears</id>
 			<activation>
 				<property>
