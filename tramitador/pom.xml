@@ -145,7 +145,7 @@
 								<phase>package</phase>
 								<configuration>
 									<tasks>
-										<property name="dist.dir" value="/invesFlow/${pom.version}"/>
+										<property name="dist.dir" value="${basedir}/dist/invesFlow"/>
 
 										<delete dir="${dist.dir}"/>
 										<mkdir dir="${dist.dir}" />
@@ -158,7 +158,7 @@
 										<mkdir dir="${dist.dir}/war" />
 
 										<unzip src="${basedir}/ispac-config/target/ispac-config-${pom.version}.zip" dest="${dist.dir}/config"/>
-										<unzip src="${basedir}/ispac-docs/target/ispac-docs-${pom.version}-documentacion.zip" dest="${dist.dir}/docs"/>
+										<!--<unzip src="${basedir}/ispac-docs/target/ispac-docs-${pom.version}-documentacion.zip" dest="${dist.dir}/docs"/> -->
 
 										<copy todir="${dist.dir}/database" overwrite="true" verbose="true">
 											<fileset dir="${basedir}/ispac-db" excludes="**/*svn"/>
