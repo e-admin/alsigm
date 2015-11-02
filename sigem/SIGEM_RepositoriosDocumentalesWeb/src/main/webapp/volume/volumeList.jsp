@@ -32,25 +32,25 @@ var nameColum = 0;
 
 function properties(){
     var check = chequearSession('<html:rewrite page="/chequearSession.do"/>');
-	if( check == "false" ) { 
+	if( check == "false" ) {
 		if (tipo == 1 ) // repositorios
 			parent.edicion.location.href = appBase + '/volume/repositoryProperties.do?id='+id;
 		else
 			parent.edicion.location.href = appBase + '/volume/listProperties.do?id='+id;
 	} else {
-		window.parent.redirect('<%=AutenticacionAdministracion.obtenerUrlLogin(request, ConstantesGestionUsuariosAdministracion.APLICACION_REPOSITORIOS_DOCUMENTALES) %>');	
+		window.parent.redirect('<%=AutenticacionAdministracion.obtenerUrlLogin(request, ConstantesGestionUsuariosAdministracion.APLICACION_REPOSITORIOS_DOCUMENTALES) %>');
 	}
 }
 function edit(){
     var check = chequearSession('<html:rewrite page="/chequearSession.do"/>');
-	if( check == "false" ) { 
+	if( check == "false" ) {
 		if (tipo == 1 ) // repositorios
 			parent.edicion.location.href = appBase + '/volume/repositoryEdit.do?id='+id;
 		else
 			parent.edicion.location.href = appBase + '/volume/listEdit.do?id='+id;
 	} else {
-		window.parent.redirect('<%=AutenticacionAdministracion.obtenerUrlLogin(request, ConstantesGestionUsuariosAdministracion.APLICACION_REPOSITORIOS_DOCUMENTALES) %>');	
-	}	
+		window.parent.redirect('<%=AutenticacionAdministracion.obtenerUrlLogin(request, ConstantesGestionUsuariosAdministracion.APLICACION_REPOSITORIOS_DOCUMENTALES) %>');
+	}
 }
 
 function volNew()
@@ -62,7 +62,7 @@ function volNew()
 function volProperties(id)
 {
 	parent.edicion.location.href = appBase + '/volume/volumeProperties.do?id='+id;
-	
+
 }
 function volEdit (id)
 {
@@ -71,9 +71,9 @@ function volEdit (id)
 
 	var volumes = new Array();
 	<logic:iterate name="volumeListForm" property="volumenes" id="volume" >
-		volumes['<bean:write name="volume" property="name" />']=<bean:write name="volume" property="id" />;	
+		volumes['<bean:write name="volume" property="name" />']=<bean:write name="volume" property="id" />;
 	</logic:iterate>
-	
+
 
 	function getId(name){
 		return volumes[name];
@@ -89,7 +89,7 @@ function volEdit (id)
 		var rowSelected = table.rows[rowIndex];
 		// rowSelected.style.backgroundColor = "#ff0000";
 		rowSelected.className = 'selectedRow';
-		
+
 	}
 	function changeRow(table,id1, id2){
 		var row1 = table.rows[id1];
@@ -104,13 +104,13 @@ function volEdit (id)
 			row2.cells[i].innerHTML = array1[i];
 		}
 	}
-	function top()
+	function up()
 	{
 		var lista = document.getElementById('lista');
-		
+
 		if (rowIndex && rowIndex >1)
 		{
-			changeRow(lista, rowIndex,rowIndex - 1);	
+			changeRow(lista, rowIndex,rowIndex - 1);
 			selectRow(rowIndex - 1);
 		}
 	}
@@ -120,11 +120,11 @@ function volEdit (id)
 		var tam = table.rows.length;
 		if (rowIndex && rowIndex != tam -1)
 		{
-			changeRow(lista, rowIndex,rowIndex + 1);	
+			changeRow(lista, rowIndex,rowIndex + 1);
 			selectRow(rowIndex + 1);
 		}
 	}
-	
+
 	function changeOrder()
 	{
 		var table = document.getElementById('lista');
@@ -141,9 +141,9 @@ function volEdit (id)
 		var form = document.getElementById('changeOrderForm');
 		document.getElementById('order').value = arrayId;
 		form.submit();
-		
+
 	}
-	
+
 </script>
 </head>
 
@@ -167,23 +167,23 @@ function volEdit (id)
 								<bean:message key="message.lista.etiqueta.listavolumennes"/>
 							</c:otherwise>
 						</c:choose>
-						<c:out value="${requestScope.name}"/>	    			
+						<c:out value="${requestScope.name}"/>
 	    			</h1>
 	    			<br/>
-	    			<div class="cuadro" style="height: 130px;">						
+	    			<div class="cuadro" style="height: 130px;">
 						<a class="menu0" href="javascript:properties();"><bean:message key="message.comun.etiqueta.propiedades"/></a>
-						<a class="menu0" href="javascript:edit();"><bean:message key="message.comun.etiqueta.editar"/></a> 
-						
+						<a class="menu0" href="javascript:edit();"><bean:message key="message.comun.etiqueta.editar"/></a>
+
 						<div id="lista" style="position:absolute; left:10px; top:75px; width:570px; height:90px; z-index:1; border: 1px none #000000;">
-						  <iframe name="lista" src="<html:rewrite page="/volume/volumeTable.jsp"/>" frameborder="no" width="100%" height="90px;" scrolling="yes" >  
+						  <iframe name="lista" src="<html:rewrite page="/volume/volumeTable.jsp"/>" frameborder="no" width="100%" height="90px;" scrolling="yes" >
 						  </iframe>
 						</div>
-								    			 
+
 	       			</div>
-	       		</div>  				
+	       		</div>
      		</div>
-	   	</div> 	
-		
+	   	</div>
+
 
 	</div>
 
@@ -192,16 +192,16 @@ function volEdit (id)
       		<div class="cuerpomidbt"></div>
     	</div>
 	</div>
-	    						
+
 
 </body>
 
-<!-- 
+<!--
 <body>
 	<div class="encabezado1">
 	<c:choose>
 		<c:when test="${requestScope.tipo == 1}">
-			Volúmenes del repositorio: 
+			Volúmenes del repositorio:
 		</c:when>
 		<c:otherwise>
 			Volúmenes de la lista:
@@ -225,10 +225,10 @@ function volEdit (id)
 
 	<c:choose>
 		<c:when test="${requestScope.tipo == 2}"> <%-- Solo quiero que las filas sean seleccionables, si se muestran volumenes de listas --%>
-			<tr onclick="selectRow(this.rowIndex)">				
+			<tr onclick="selectRow(this.rowIndex)">
 			<td class="tdBase"><bean:write name="volume" property="name" /></td>
 			<td class="tdBase"><bean:write name="volume" property="maxSize" /></td>
-			<td class="tdBase"><bean:write name="volume" property="actSize" /></td>				
+			<td class="tdBase"><bean:write name="volume" property="actSize" /></td>
 			<td class="tdBase"><bean:write name="volume" property="numFiles" /></td>
 			<td class="tdBase"><bean:write name="volume" property="states" /></td>
 			<td class="tdBase"><a href="javascript:volProperties('<bean:write name='volume' property='id'/>');">Propiedades</a></td>
@@ -236,31 +236,31 @@ function volEdit (id)
 			</tr>
 		</c:when>
 		<c:otherwise>
-			<tr>				
+			<tr>
 				<td class="tdBase"><bean:write name="volume" property="name" /></td>
 				<td class="tdBase"><bean:write name="volume" property="maxSize" /></td>
-				<td class="tdBase"><bean:write name="volume" property="actSize" /></td>				
+				<td class="tdBase"><bean:write name="volume" property="actSize" /></td>
 				<td class="tdBase"><bean:write name="volume" property="numFiles" /></td>
 				<td class="tdBase"><bean:write name="volume" property="states" /></td>
 				<td class="tdBase"><a href="javascript:volProperties('<bean:write name='volume' property='id'/>');">Propiedades</a></td>
-				<td class="tdBase"><a href="javascript:volEdit('<bean:write name='volume' property='id'/>');">Editar</a></td>			
+				<td class="tdBase"><a href="javascript:volEdit('<bean:write name='volume' property='id'/>');">Editar</a></td>
 			</tr>
 		</c:otherwise>
 	</c:choose>
 
-	</logic:iterate> 
+	</logic:iterate>
 	<c:if test="${requestScope.tipo != 2}"> <%-- Si Ocultar la opcion, nuevo volumen, si se muestra los volumenes asociados a listas --%>
-	<tr> 
-		<td colspan="7"><a href="javascript:volNew();">Nuevo Volumen</a></td>	
+	<tr>
+		<td colspan="7"><a href="javascript:volNew();">Nuevo Volumen</a></td>
 	</tr>
 	</c:if>
 	</table>
-	
-	<c:if test="${requestScope.tipo == 2}"> 
+
+	<c:if test="${requestScope.tipo == 2}">
 	<html:form action="/volume/volumeList" styleId="changeOrderForm">
 		<table align="center" width="30%">
 			<tr>
-				<td><input type="button" value="Subir" onclick="top();"></td>
+				<td><input type="button" value="Subir" onclick="up();"></td>
 				<td><input type="button" value="Bajar" onclick="down();"></td>
 				<td><input type="button" value="Cambiar orden" onclick="changeOrder();"></td>
 			</tr>
