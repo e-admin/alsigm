@@ -25,7 +25,7 @@
           <bcprov.version>1.40</bcprov.version>
           <dom4j.version>1.6.1</dom4j.version>
           <jaxen.version>1.1.1</jaxen.version>
-          <invesdoc.version>11.1</invesdoc.version>
+          <invesdoc.version>9.2.3.1</invesdoc.version>
           <mime-util.version>2.1.3</mime-util.version>
 
           <!-- Test dependencies -->

@@ -31,6 +31,17 @@
 			</modules>
 		</profile>
 		<profile>
+			<id>generate-wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>ispac-mgr-war</module>
+			</modules>
+		</profile>
+		<profile>
 			<id>generate-ears</id>
 			<activation>
 				<property>
@@ -38,7 +49,6 @@
 				</property>
 			</activation>
 			<modules>
-				<module>ispac-mgr-war</module>
 				<module>ispac-mgr-ear</module>
 			</modules>
 		</profile>

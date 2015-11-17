@@ -83,6 +83,20 @@
 		<!-- Los modulos que tengan como resultado un war/ear deben incluirse
 			 en este perfil -->
 		<profile>
+			<id>generate-wars</id>
+			<activation>
+				<property>
+					<name>wars</name>
+				</property>
+			</activation>
+			<modules>
+				<module>ispac-catalog</module>
+				<module>ispac-mgr</module>
+				<module>ispac-publicador</module>
+				<module>ispac-services-ws</module>
+			</modules>
+		</profile>
+		<profile>
 			<id>generate-ears</id>
 			<activation>
 				<property>
@@ -139,66 +153,73 @@
 				<plugins>
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.8</version>
 						<executions>
 							<execution>
 								<id>copy-jars-wars-ears</id>
 								<phase>package</phase>
 								<configuration>
-									<tasks>
-										<property name="dist.dir" value="/invesFlow/${pom.version}"/>
+									<target name="copy-all-except-ears">
+										<tasks>
+											<property name="dist.dir" value="${basedir}/dist/invesFlow"/>
 
-										<delete dir="${dist.dir}"/>
-										<mkdir dir="${dist.dir}" />
-										<mkdir dir="${dist.dir}/config" />
-										<mkdir dir="${dist.dir}/database" />
-										<mkdir dir="${dist.dir}/docs" />
-										<mkdir dir="${dist.dir}/ear" />
-										<mkdir dir="${dist.dir}/jar" />
-										<mkdir dir="${dist.dir}/src" />
-										<mkdir dir="${dist.dir}/war" />
+											<delete dir="${dist.dir}"/>
+											<mkdir dir="${dist.dir}" />
+											<mkdir dir="${dist.dir}/config" />
+											<mkdir dir="${dist.dir}/database" />
+											<mkdir dir="${dist.dir}/docs" />
+											<mkdir dir="${dist.dir}/jar" />
+											<mkdir dir="${dist.dir}/src" />
+											<mkdir dir="${dist.dir}/war" />
 
-										<unzip src="${basedir}/ispac-config/target/ispac-config-${pom.version}.zip" dest="${dist.dir}/config"/>
-										<unzip src="${basedir}/ispac-docs/target/ispac-docs-${pom.version}-documentacion.zip" dest="${dist.dir}/docs"/>
+											<unzip src="${basedir}/ispac-config/target/ispac-config-${pom.version}.zip" dest="${dist.dir}/config"/>
+											<!--<unzip src="${basedir}/ispac-docs/target/ispac-docs-${pom.version}-documentacion.zip" dest="${dist.dir}/docs"/> -->
 
-										<copy todir="${dist.dir}/database" overwrite="true" verbose="true">
-											<fileset dir="${basedir}/ispac-db" excludes="**/*svn"/>
-										</copy>
+											<copy todir="${dist.dir}/database" overwrite="true" verbose="true">
+												<fileset dir="${basedir}/ispac-db" excludes="**/*svn"/>
+											</copy>
 
-										<copy todir="${dist.dir}/jar" overwrite="true" verbose="true">
-											<fileset file="${basedir}/ispac-designer/target/ispac-designer-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-documentum/target/ispac-documentum-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-sharepoint/target/ispac-sharepoint-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-alfresco/target/ispac-alfresco-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-invesdoc/target/ispac-invesdoc-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-invesicres/target/ispac-invesicres-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-archidoc/target/ispac-archidoc-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-ldap/target/ispac-ldap-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-lib/target/ispac-lib-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-lib-cfg/target/ispac-lib-cfg-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-services-ws/ispac-services/target/ispac-services-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-services-ws/ispac-services-wsclient/target/ispac-services-wsclient-${pom.version}.jar"/>
-											<fileset file="${basedir}/ispac-web/target/ispac-web-${pom.version}.jar"/>
-										</copy>
+											<copy todir="${dist.dir}/jar" overwrite="true" verbose="true">
+												<fileset file="${basedir}/ispac-designer/target/ispac-designer-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-documentum/target/ispac-documentum-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-sharepoint/target/ispac-sharepoint-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-alfresco/target/ispac-alfresco-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-invesdoc/target/ispac-invesdoc-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-invesicres/target/ispac-invesicres-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-archidoc/target/ispac-archidoc-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-ldap/target/ispac-ldap-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-lib/target/ispac-lib-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-lib-cfg/target/ispac-lib-cfg-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-services-ws/ispac-services/target/ispac-services-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-services-ws/ispac-services-wsclient/target/ispac-services-wsclient-${pom.version}.jar"/>
+												<fileset file="${basedir}/ispac-web/target/ispac-web-${pom.version}.jar"/>
+											</copy>
 
-										<copy todir="${dist.dir}/war" overwrite="true" verbose="true">
-											<fileset file="${basedir}/ispac-catalog/ispac-catalog-war/target/ispaccatalog.war"/>
-											<fileset file="${basedir}/ispac-mgr/ispac-mgr-war/target/ispacmgr.war"/>
-											<fileset file="${basedir}/ispac-publicador/ispac-publicador-war/target/ispacpublicador.war"/>
-											<fileset file="${basedir}/ispac-services-ws/ispac-services-ws-war/target/ispacservicesws.war"/>
-										</copy>
-
-										<copy todir="${dist.dir}/ear" overwrite="true" verbose="true">
-											<fileset file="${basedir}/ispac-catalog/ispac-catalog-ear/target/ispaccatalog.ear"/>
-											<fileset file="${basedir}/ispac-mgr/ispac-mgr-ear/target/ispacmgr.ear"/>
-											<fileset file="${basedir}/ispac-publicador/ispac-publicador-ear/target/ispacpublicador.ear"/>
-											<fileset file="${basedir}/ispac-services-ws/ispac-services-ws-ear/target/ispacservicesws.ear"/>
-										</copy>
-
-										<copy todir="${dist.dir}/src" overwrite="true" verbose="true">
-											<fileset file="${basedir}/ispac-src/target/*.zip"/>
-										</copy>
-
-									</tasks>
+											<copy todir="${dist.dir}/war" overwrite="true" verbose="true">
+												<fileset file="${basedir}/ispac-catalog/ispac-catalog-war/target/ispaccatalog.war"/>
+												<fileset file="${basedir}/ispac-mgr/ispac-mgr-war/target/ispacmgr.war"/>
+												<fileset file="${basedir}/ispac-publicador/ispac-publicador-war/target/ispacpublicador.war"/>
+												<fileset file="${basedir}/ispac-services-ws/ispac-services-ws-war/target/ispacservicesws.war"/>
+											</copy>
+											<copy todir="${dist.dir}/src" overwrite="true" verbose="true">
+												<fileset file="${basedir}/ispac-src/target/*.zip"/>
+											</copy>
+										</tasks>
+									</target>
+									<target name="check-ears">
+										<available file="{basedir}/ispac-catalog/ispac-catalog-ear/target/ispaccatalog.ear" property="ears.present"/>
+									</target>
+									<target name="copy-ears" if="ears.present">
+										<tasks>
+											<mkdir dir="${dist.dir}/ear" />
+											<copy todir="${dist.dir}/ear" overwrite="true" verbose="true">
+												<fileset file="${basedir}/ispac-catalog/ispac-catalog-ear/target/ispaccatalog.ear"/>
+												<fileset file="${basedir}/ispac-mgr/ispac-mgr-ear/target/ispacmgr.ear"/>
+												<fileset file="${basedir}/ispac-publicador/ispac-publicador-ear/target/ispacpublicador.ear"/>
+												<fileset file="${basedir}/ispac-services-ws/ispac-services-ws-ear/target/ispacservicesws.ear"/>
+											</copy>
+										</tasks>
+									</target>
 								</configuration>
 								<goals>
 									<goal>run</goal>

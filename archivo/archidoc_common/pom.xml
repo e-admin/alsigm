@@ -12,7 +12,14 @@
 	<name>Archidoc: Elementos Comunes</name>
 	<description>Modulo de elementos comunes de ArchiDoc</description>
 
-	<prerequisites>
+    <repositories>
+      <repository>
+        <id>uji</id>
+        <url>http://devel.uji.es/nexus/content/groups/public/</url>
+      </repository>
+    </repositories>
+
+  	<prerequisites>
 		<maven>2.0.9</maven>
 	</prerequisites>
 

@@ -12,6 +12,13 @@
 	<name>Archidoc: Logica Web de Archidoc</name>
 	<description>Modulo de logica Web de ArchiDoc</description>
 
+    <repositories>
+      <repository>
+        <id>uji</id>
+        <url>http://devel.uji.es/nexus/content/groups/public/</url>
+      </repository>
+    </repositories>
+
 	<build>
 		<sourceDirectory>../archidoc/src/main/java</sourceDirectory>
 		<plugins>

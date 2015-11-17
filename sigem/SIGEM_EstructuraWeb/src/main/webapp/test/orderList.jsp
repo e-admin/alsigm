@@ -4,7 +4,7 @@
 <html:html locale="true">
 <head>
 	<title></title>
-	
+
 	<script language="javascript">
 		var rowIndex;
 
@@ -12,19 +12,19 @@
 		volumes['VOL1']=1;
 		volumes['VOL2']=3;
 		volumes['VOL3']=5;
-		
+
 		var nameColum = 1;
 		function getId(name){
 			return volumes[name];
 		}
-		
-		function top()
+
+		function up()
 		{
 			var lista = document.getElementById('lista');
-			
+
 			if (rowIndex && rowIndex >1)
 			{
-				changeRow(lista, rowIndex,rowIndex - 1);	
+				changeRow(lista, rowIndex,rowIndex - 1);
 				selectRow(rowIndex - 1);
 			}
 		}
@@ -34,7 +34,7 @@
 			var tam = table.rows.length;
 			if (rowIndex && rowIndex != tam -1)
 			{
-				changeRow(lista, rowIndex,rowIndex + 1);	
+				changeRow(lista, rowIndex,rowIndex + 1);
 				selectRow(rowIndex + 1);
 			}
 		}
@@ -51,7 +51,7 @@
 				row2.cells[i].innerHTML = array1[i];
 			}
 		}
-		
+
 		function selectRow(index){
 			var table = document.getElementById('lista');
 			if (rowIndex){
@@ -61,9 +61,9 @@
 			rowIndex = index;
 			var rowSelected = table.rows[rowIndex];
 			rowSelected.style.backgroundColor = "#ff0000";
-			
+
 		}
-		
+
 		function submit()
 		{
 			var table = document.getElementById('lista');
@@ -86,7 +86,7 @@
 			<td>Orden</td>
 			<td>Nombre</td>
 		</tr>
-		
+
 		<tr onclick="selectRow(this.rowIndex)">
 			<td>1</td>
 			<td>VOL1</td>
@@ -94,15 +94,15 @@
 		<tr onclick="selectRow(this.rowIndex)">
 			<td>2</td>
 			<td>VOL2</td>
-		</tr>		
+		</tr>
 		<tr onclick="selectRow(this.rowIndex)">
 			<td>3</td>
 			<td>VOL3</td>
-		</tr>	
+		</tr>
 	</table>
 	<table style="margin-top: 50px;" align="center" width="30%">
 		<tr>
-		<td><input type="button" value="Subir" onclick="top();"></td>
+		<td><input type="button" value="Subir" onclick="up();"></td>
 		<td><input type="button" value="Bajar" onclick="down();"></td>
 		<td><input type="button" value="Enviar" onclick="submit();"></td>
 		</tr>
