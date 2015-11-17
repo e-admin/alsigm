@@ -67,7 +67,7 @@ public class AplicacionDatos extends AplicacionImpl implements Serializable {
 							getChildElement(AplicacionEtiquetas.servidor).getValue());
 					// aplicacion.setPuertoApp(appNodes.getItem(i).
 					//		getChildElement(AplicacionEtiquetas.puertoApp).getValue());
-					aplicacion.setPuertoApp(PortsConfig.getHttpsPort());
+					aplicacion.setPuertoApp(PortsConfig.getHttpsFrontendPort());
 					aplicacion.setProtocolo(appNodes.getItem(i).
 							getChildElement(AplicacionEtiquetas.protocolo).getValue());
 					aplicacion.setContextoApp(appNodes.getItem(i).
