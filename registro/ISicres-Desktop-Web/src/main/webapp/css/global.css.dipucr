@@ -890,12 +890,3 @@ div.historialDist{
 #documentoElectronicoPropiedades h3{
 	border-bottom:1px solid #000000;
 }
-
-/*[teresa-felipe-ecenpri Ticket #71] 22/02/2010
-Color para diferenciar registro de entrada del de salida
-en el registroTelematicoWeb. */
-.registroEntrada{
-    background-color: #FFF8BC
-}
-
-/*

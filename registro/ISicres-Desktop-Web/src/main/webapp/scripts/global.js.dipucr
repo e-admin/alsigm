@@ -657,23 +657,6 @@ function ShowForm()
 		top.Main.document.getElementById("Distr").tabIndex = "-1";
 		top.Main.document.getElementById("Reports").tabIndex = "-1";
 	}
-	
-	//[Teresa-felipe-ecenpri Ticket #71] 22/02/2010
-	//Si se trata de un nuevo registro de entrada, cambiamos el color para diferenciarlo del de salida
-	if (top.g_ArchiveId == 1)
-	{
-
-		tree=top.Main.Folder.FolderData.FolderFormTree.document.getElementById("tree");
-		tree.className = 'registroEntrada';
-
-		//interesados=top.Main.Folder.FolderData.FolderFormData.document.getElementById("Interesados");
-		//interesados.className = 'registroEntrada';
-
-		top.Main.Folder.FolderData.FolderFormData.document.body.className = 'registroEntrada';
-		top.Main.Folder.FolderData.FolderFormTree.document.body.className = 'registroEntrada';
-	}
-	//Fin [Teresa-felipe-ecenpri] 22/02/2010
-
 }
 
 
