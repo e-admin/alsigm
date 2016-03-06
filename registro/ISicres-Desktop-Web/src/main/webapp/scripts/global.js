@@ -1876,12 +1876,7 @@ function ShowModalDialog(URL, arguments, height, width, sFeatures)
 		style += ",screenX="+((screen.availWidth-width)/2);
 
 		for (var i = 0; i < arguments.length; i++){
-			if (arguments[i].documentElement != null){
-				eval("top.param" + i + "= " + arguments[i]);
-			}
-			else {
-				eval("top.param" + i + "= '" + arguments[i] + "'");
-			}
+			top["param" + i] = arguments[i];
 		}
 
 		DisableEvents(window.top);
