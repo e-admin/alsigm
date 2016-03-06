@@ -462,19 +462,22 @@ function ValidateOtherOffices(XMLDoc)
 		args[4] = Action;
 		args[5] = top.Idioma;
 		args[6] = top.GetIdsLan( "IDS_OPCCHANGEOFFICE");
-
+		function changeOffice(sRet) {
+			if (sRet.target) {
+				sRet = top.g_WinModal.returnValue;
+			}
+			if ((sRet != null) && (sRet != "")) {
+				var arrTokens = top.getTokens(sRet, "#", "#", 2);
+				var URL = top.g_URL + "/changeoffice.jsp?SessionPId=" + top.g_SessionPId.toString()
+					+ "&OfficeCode=" + arrTokens[0];
+				top.g_TreeFunc = false;
+				window.open(URL, "LEST","location=no",true);
+			}
+		}
 		document.body.style.cursor = "wait";
-
-		sRet = top.ShowModalDialog(top.g_URL + "/dlglist.htm", args, 550, 750, "");
-
-		if ((sRet != null) && (sRet != ""))	{
-			var arrTokens = top.getTokens(sRet, "#", "#", 2);
-			var URL = top.g_URL + "/changeoffice.jsp?SessionPId=" + top.g_SessionPId.toString()
-				+ "&OfficeCode=" + arrTokens[0];
-
-			top.g_TreeFunc = false;
-
-			window.open(URL, "LEST","location=no",true);
+		sRet = top.ShowModalDialog(top.g_URL + "/dlglist.htm", args, 550, 750, "", changeOffice);
+		if (typeof sRet === 'string' || sRet instanceof String) {
+			changeOffice(sRet);
 		}
 	}
 }
@@ -1857,7 +1860,7 @@ function GetEventPositionY(aEvent)
 	return posY;
 }
 
-function ShowModalDialog(URL, arguments, height, width, sFeatures)
+function ShowModalDialog(URL, arguments, height, width, sFeatures, callback)
 {
 	var ret = "";
 	var style = "";
@@ -1876,18 +1879,15 @@ function ShowModalDialog(URL, arguments, height, width, sFeatures)
 		style += ",screenX="+((screen.availWidth-width)/2);
 
 		for (var i = 0; i < arguments.length; i++){
-			if (arguments[i].documentElement != null){
-				eval("top.param" + i + "= " + arguments[i]);
-			}
-			else {
-				eval("top.param" + i + "= '" + arguments[i] + "'");
-			}
+			top["param" + i] = arguments[i];
 		}
 
 		DisableEvents(window.top);
 
 		top.g_WinModal = window.open(URL, "", style);
-
+		if (callback) {
+			top.g_WinModal.onunload = callback;
+		}
 		top.g_WinModal.focus();
 	}
 

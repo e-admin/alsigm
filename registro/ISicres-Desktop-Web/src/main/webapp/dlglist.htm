@@ -12,6 +12,7 @@
 		<script TYPE="text/javascript" LANGUAGE="javascript" SRC="scripts/colors.js"></script>
 		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/genmsg.js"></SCRIPT>
 		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/global.js"></SCRIPT>
+		<SCRIPT TYPE="text/javascript" LANGUAGE="javascript" SRC="./scripts/jquery-1.6.2.min.js"></SCRIPT>
 		<SCRIPT LANGUAGE="javascript">
 			top.g_URL = top.GetDlgParam(1);
 			top.g_SessionPId = top.GetDlgParam(2);
@@ -135,7 +136,7 @@
 					arrTypeTelIds[i] = tipo;
 				}
 
-				with (document.body.all("tbUnits"))	{
+				with ($("#tbUnits")[0])	{
 					with (tHead.rows[0]){
 						top.SetInnerText(cells[1], top.GetIdsLan("IDS_LABEL_CODE"));
 						top.SetInnerText(cells[2], top.GetIdsLan("IDS_LABEL_DESC"));
@@ -153,7 +154,7 @@
 						var newCell = new Array;
 						var typeDescription = "" ;
 
-						newRow.id = "rowDatas";
+						newRow.name = "rowDatas";
 						newRow.className="Style5";
 						newRow.onclick = OnDataRowClick;
 						newRow.ondblclick = OnOK;
@@ -217,42 +218,37 @@
 						newCell[5].setAttribute("idType", arrTypeTelIds[i]);
 					}
 
-					rows("rowDatas", 0).style.backgroundColor = g_color4;
+					$("#tbUnits").find(".Style5")[0].style.backgroundColor = g_color4;
 				}
 
-				with (document.body.all("tbButtons")){
-					with (rows("rowButtons")){
-						cells[1].firstChild.value = top.GetIdsLan("IDS_BTNACEPTAR");
-						cells[2].firstChild.value = top.GetIdsLan("IDS_BTNCANCEL");
-					}
+				var rowButtons = $("#rowButtons").find("input");
+				rowButtons[0].value = top.GetIdsLan("IDS_BTNACEPTAR");
+				rowButtons[1].value = top.GetIdsLan("IDS_BTNCANCEL");
+				var display = (init == 1) ? "none" : "inline";
 
-					with (rows("tbNav").cells[0]){
-						all("imgFirst").style.display = (init == 1)?"none":"inline";
-						all("trans1").style.display = (init == 1)?"none":"inline";
-						all("imgPrev").style.display = (init == 1)?"none":"inline";
+				$("#imgFirst").css("display:" + display);
+				$("#trans1").css("display:" + display);
+				$("#imgPrev").css("display:" + display);
+				display = (total - end >= 1) ? "inline" : "none";
+				$("#imgNext").css("display:" + display);
+				$("#trans2").css("display:" + display);
+				$("#imgLast").css("display:" + display);
+				$("#imgFirst")[0].title = top.GetIdsLan("IDS_ETQPRINCIPIO");
+				$("#imgPrev")[0].title = top.GetIdsLan("IDS_ETQANTERIOR");
+				$("#imgNext")[0].title = top.GetIdsLan("IDS_ETQSIGUIENTE");
+				$("#imgLast")[0].title = top.GetIdsLan("IDS_ETQFINAL");
+				top.SetInnerText($("#lbRango")[0], init.toString() + " - " + end.toString());
+				top.SetInnerText($("#lbPrepDe")[0], " " + top.GetIdsLan("IDS_PREPDE") + " ");
+				top.SetInnerText($("#lbTotal")[0], total.toString());
 
-						all("imgNext").style.display = (total - end >= 1)?"inline":"none";
-						all("trans2").style.display = (total - end >= 1)?"inline":"none";
-						all("imgLast").style.display = (total - end >= 1)?"inline":"none";
+				top.SetInnerText($("#Init")[0], init.toString());
+				top.SetInnerText($("#Paso")[0], paso.toString());
+				top.SetInnerText($("#Total")[0], total.toString());
+				top.SetInnerText($("#Code")[0], XMLDoc.documentElement.getElementsByTagName("Name")[0].firstChild.data);
 
-						all("imgFirst").title = top.GetIdsLan("IDS_ETQPRINCIPIO");
-						all("imgPrev").title = top.GetIdsLan("IDS_ETQANTERIOR");
-						all("imgNext").title = top.GetIdsLan("IDS_ETQSIGUIENTE");
-						all("imgLast").title = top.GetIdsLan("IDS_ETQFINAL");
-
-						top.SetInnerText(all("lbRango"), init.toString() + " - " + end.toString());
-						top.SetInnerText(all("lbPrepDe"), " " + top.GetIdsLan("IDS_PREPDE") + " ");
-						top.SetInnerText(all("lbTotal"), total.toString());
-
-						top.SetInnerText(all("Init"), init.toString());
-						top.SetInnerText(all("Paso"), paso.toString());
-						top.SetInnerText(all("Total"), total.toString());
-						top.SetInnerText(all("Code"), XMLDoc.documentElement.getElementsByTagName("Name")[0].firstChild.data);
-					}
-				}
-
-				rowSelected = document.body.all("tbUnits").rows("rowDatas", 0).rowIndex;
-				top.SetTableFocus(document.body.all("tbUnits").rows("rowDatas", 0));
+				var firstRow = $("#tbUnits").find(".Style5")[0];
+				rowSelected = firstRow.rowIndex;
+				top.SetTableFocus(firstRow);
 
 				document.body.style.cursor = "cursor";
 
@@ -262,18 +258,18 @@
 			function OnOK()
 			{
 				if ((typeForm == "ValidateInt") || (typeForm == "SearchInt")){
-					top.returnValue = top.GetInnerText(document.body.all("tbUnits").rows[rowSelected].cells[1]) + "#" +
-					  				  top.GetInnerText(document.body.all("tbUnits").rows[rowSelected].cells[2]) + "#" +
-									  document.body.all("tbUnits").rows[rowSelected].cells[0].getAttribute("id") + "#" +
-									  top.GetInnerText(document.body.all("tbUnits").rows[rowSelected].cells[3]) + "#" +
-									  document.body.all("tbUnits").rows[rowSelected].cells[5].getAttribute("idDom") + "#" +
-									  top.GetInnerText(document.body.all("tbUnits").rows[rowSelected].cells[4]) + "#" +
-									  document.body.all("tbUnits").rows[rowSelected].cells[5].getAttribute("idDirtel") + "#" +
-									  document.body.all("tbUnits").rows[rowSelected].cells[5].getAttribute("idType") + "#";
+					top.returnValue = top.GetInnerText(document.getElementById("tbUnits").rows[rowSelected].cells[1]) + "#" +
+									  top.GetInnerText(document.getElementById("tbUnits").rows[rowSelected].cells[2]) + "#" +
+									  document.getElementById("tbUnits").rows[rowSelected].cells[0].getAttribute("id") + "#" +
+									  top.GetInnerText(document.getElementById("tbUnits").rows[rowSelected].cells[3]) + "#" +
+									  document.getElementById("tbUnits").rows[rowSelected].cells[5].getAttribute("idDom") + "#" +
+									  top.GetInnerText(document.getElementById("tbUnits").rows[rowSelected].cells[4]) + "#" +
+									  document.getElementById("tbUnits").rows[rowSelected].cells[5].getAttribute("idDirtel") + "#" +
+									  document.getElementById("tbUnits").rows[rowSelected].cells[5].getAttribute("idType") + "#";
 				} else {
-					top.returnValue = top.GetInnerText(document.body.all("tbUnits").rows[rowSelected].cells[1]) + "#" +
-									  top.GetInnerText(document.body.all("tbUnits").rows[rowSelected].cells[2]) + "#" +
-						document.body.all("tbUnits").rows[rowSelected].cells[0].getAttribute("id") + "#";
+					top.returnValue = top.GetInnerText(document.getElementById("tbUnits").rows[rowSelected].cells[1]) + "#" +
+									  top.GetInnerText(document.getElementById("tbUnits").rows[rowSelected].cells[2]) + "#" +
+						document.getElementById("tbUnits").rows[rowSelected].cells[0].getAttribute("id") + "#";
 				}
 				top.close();
 			}
@@ -297,7 +293,7 @@
 
 			function ChangeToRow(row)
 			{
-				document.body.all("tbUnits").rows[rowSelected].style.backgroundColor = "#fafcff";
+				document.getElementById("tbUnits").rows[rowSelected].style.backgroundColor = "#fafcff";
 				row.style.backgroundColor= g_color4;
 				rowSelected = row.rowIndex;
 				top.SetTableFocus(row);
@@ -305,7 +301,7 @@
 
 			function DoDownload(InitValue)
 			{
-				var Code = top.GetInnerText(document.body.all("tbButtons").rows["tbNav"].cells[0].all("Code"));
+				var Code = top.GetInnerText($("#Code")[0]);
 
 				document.body.style.cursor = "wait";
 
@@ -363,11 +359,8 @@
 			function PrevValue()
 			{
 				var Init, Paso, Prev;
-
-				with (document.body.all("tbButtons").rows["tbNav"].cells[0]) {
-					Init = parseInt(top.GetInnerText(all("Init")), 10);
-					Paso = parseInt(top.GetInnerText(all("Paso")), 10);
-				}
+				Init = parseInt(top.GetInnerText($("Init")[0]), 10);
+				Paso = parseInt(top.GetInnerText($("Paso")[0]), 10);
 				Prev = Init - Paso - 1;
 
 				DoDownload(Prev.toString());
@@ -376,12 +369,8 @@
 			function NextValue()
 			{
 				var Init, Paso, Next;
-
-				with (document.body.all("tbButtons").rows["tbNav"].cells[0]) {
-					Init = parseInt(top.GetInnerText(all("Init")), 10);
-					Paso = parseInt(top.GetInnerText(all("Paso")), 10);
-				}
-
+				Init = parseInt(top.GetInnerText($("Init")[0]), 10);
+				Paso = parseInt(top.GetInnerText($("Paso")[0]), 10);
 				Next = Init + Paso - 1;
 
 				DoDownload(Next.toString());
@@ -390,13 +379,9 @@
 			function LastValue()
 			{
 				var Init, Paso, Total, Last;
-
-				with (document.body.all("tbButtons").rows["tbNav"].cells[0]){
-					Init = parseInt(top.GetInnerText(all("Init")), 10);
-					Paso = parseInt(top.GetInnerText(all("Paso")), 10);
-					Total = parseInt(top.GetInnerText(all("Total")), 10);
-				}
-
+				Init = parseInt(top.GetInnerText($("Init")[0]), 10);
+				Paso = parseInt(top.GetInnerText($("Paso")[0]), 10);
+				Total = parseInt(top.GetInnerText($("Total")[0]), 10);
 				Last = Init - 1;
 
 				while (Last + Paso < Total){
@@ -408,18 +393,19 @@
 
 			function OnPressKey(aEvent)
 			{
-				var key = top.GetKeyCode(aEvent);
+				var key = top.GetKeyCode(aEvent),
+				    rows = $("#tbUnits").find("Style5");
 
 				switch(key) {
 					case 40: {
-						if (rowSelected < document.body.all("tbUnits").rows["rowDatas"].length) {
-							ChangeToRow(document.body.all("tbUnits").rows("rowDatas", rowSelected))
+						if (rowSelected < rows.length) {
+							ChangeToRow(rows[rowSelected]);
 						}
 						break;
 					}
 					case 38: {
 						if (rowSelected - 1 > 0) {
-							ChangeToRow(document.body.all("tbUnits").rows("rowDatas", rowSelected-2))
+							ChangeToRow(rows[rowSelected-2]);
 						}
 						break;
 					}
