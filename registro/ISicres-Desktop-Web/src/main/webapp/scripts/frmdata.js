@@ -209,7 +209,7 @@ function cambioValor( Field )
 
 		var cantidad = FolderBarWnd.FldDataArr.length;
 
-		strValue = Field.value;
+		strValue = Field.getAttribute("value");
 
 		if (top.g_CopyFdr == 0){
 			FolderBarWnd.FldDataArr[cantidad] =
@@ -217,7 +217,7 @@ function cambioValor( Field )
 		}
 		/*Si estamos copiando un registro entonces no hay que meter en el array los campos vacios, solo los que tengan valor*/
 		else{
-			if (Field.value!=null && Field.value!="" && Field.getAttribute("FldId")!=null && Field.getAttribute("FldId")!=""){
+			if (Field.getAttribute("value")!=null && Field.getAttribute("value")!="" && Field.getAttribute("FldId")!=null && Field.getAttribute("FldId")!=""){
 				FolderBarWnd.FldDataArr[cantidad] =
 					 new FolderBarWnd.FldData( Field.getAttribute("FldId"), strValue, Field.name, Field.getAttribute("valueSust"));
 				FolderBarWnd.FldDataArr[cantidad].valueSust = top.getSustValue(Field.getAttribute("FldId"), document.getElementById("FrmData"));
