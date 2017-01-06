@@ -6,7 +6,7 @@ import java.security.cert.X509Certificate;
 
 public class FnmtCertReader implements IReaderCert {
 	
-	final static String CADENA = "OU=FNMT Clase 2 CA, O=FNMT, C=ES";
+    final static String CADENA = "FNMT";
     final static String CN_PERSONA_FISICA = "CN=NOMBRE ";
     final static String CN_PERSONA_JURIDICA = "CN=ENTIDAD ";
     final static String SEPARADOR = " - ";
@@ -82,7 +82,7 @@ public class FnmtCertReader implements IReaderCert {
 	}
 
 	public boolean isTypeOf(X509Certificate cert) {
-		return CADENA.equals(cert.getIssuerDN().toString());
+		return cert.getIssuerDN().toString().toLowerCase().contains(CADENA.toLowerCase());
 	}
 
 }
